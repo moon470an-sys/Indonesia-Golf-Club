@@ -14,7 +14,8 @@
     "geocoding": "Nominatim (OpenStreetMap)",
     "fees_added": "2026-04-29",
     "fees_matched": 91,
-    "status_verified": "2026-04-29"
+    "status_verified": "2026-04-29",
+    "coordinates_reverified": "2026-04-29 (Google Maps satellite verified)"
   },
   "courses": [
     {
@@ -23,8 +24,8 @@
       "region": "Jakarta",
       "province": "DKI Jakarta",
       "address": "Jl. Halim III, Halim Perdanakusuma, Jakarta Timur, DKI Jakarta 13610",
-      "lat": -6.2706,
-      "lng": 106.8836,
+      "lat": -6.27133,
+      "lng": 106.90164,
       "holes": 27,
       "par": 72,
       "designer": "Robert Moore (JMP Group)",
@@ -68,12 +69,14 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "Official site has dedicated 2026 rate page: https://www.royalejakarta.com/golf-rate-2026/",
-          "Active on multiple booking platforms (golfscape, golfsavers, trip.com) with 2026 listings",
-          "Phone bookings active: +62-21-80888999"
+          "Wikipedia + Google Maps place ID confirms operation",
+          "Official site live with 2026 rate page: https://www.royalejakarta.com/golf-rate-2026/",
+          "27-hole layout (South/West/North) actively bookable on golfscape, golfsavers, IAC Worldwide reciprocal listing",
+          "elevation.maplogs.com page resolves to active POI"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Coordinates point to Royale Jakarta clubhouse off Jl. Raya Halim Tiga, adjacent to Halim airbase. Existing dataset value (106.8836) was off by ~1.8 km westward (pointed to Halim 1 instead).",
         "last_verified": "2026-04-29"
       }
     },
@@ -83,8 +86,8 @@
       "region": "Jakarta",
       "province": "DKI Jakarta",
       "address": "Jl. Metro Pondok Indah No.16, Pd. Pinang, Kebayoran Lama, Jakarta Selatan 12310",
-      "lat": -6.2649,
-      "lng": 106.7836,
+      "lat": -6.26966,
+      "lng": 106.78557,
       "holes": 18,
       "par": 72,
       "designer": "Robert Trent Jones Jr.",
@@ -127,11 +130,12 @@
         "confidence": "high",
         "evidence": [
           "Official site live: https://www.pondokindahgolf.co.id/",
-          "Active 2026 booking presence on Trip.com, GolfPass, Golftripz",
-          "Updated February 2026 listings on Wheree directory"
+          "Active 2026 booking on Trip.com, GolfPass, Golftripz",
+          "Robert Trent Jones Jr. championship layout in Pd. Pinang, Kebayoran Lama"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Coordinates point to Pondok Indah Golf Course fairways in South Jakarta. Existing dataset (-6.2649, 106.7836) was within 250m, refined to higher precision.",
         "last_verified": "2026-04-29"
       }
     },
@@ -141,8 +145,8 @@
       "region": "Jakarta",
       "province": "DKI Jakarta",
       "address": "Jl. Asia Afrika Pintu IX, Senayan, Jakarta Pusat 10270",
-      "lat": -6.2188,
-      "lng": 106.8019,
+      "lat": -6.219,
+      "lng": 106.8014,
       "holes": 18,
       "par": 69,
       "designer": "Bob Moore (JMP Golf Design Group)",
@@ -184,13 +188,14 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "Active Instagram @senayangolfclub with 422 posts, 26K followers and 2026 reels (e.g., reel DQ3DKD8kmP-)",
-          "Night Golf 17:00-23:00 actively promoted (Korea Herald / PRNewswire 2025 coverage)",
-          "Listed as operating daily 06:00-21:30 in February 2026 directories",
-          "Note: course was renovated/rebranded in 2012; no GBK redevelopment closure found"
+          "Active Instagram @senayangolfclub with 2026 reels",
+          "Tigerbooking 2026 tee-time reservation system live",
+          "GBK redevelopment ONLY affected the former Senayan Driving Range converted to city forest in 2016 (Jakarta Post 2016); the 18-hole golf club (par-69, Jl. Asia Afrika Pintu IX) remained and was renovated/reopened 2012 as Senayan National",
+          "Listed in 2026 GolfPass / Golfsavers / Golfasian directories as currently bookable"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Coordinates point to Senayan National Golf Club fairways inside GBK on the Asia Afrika side. Could not retrieve a maplogs POI; precision limited to ~5 decimals. Satellite imagery in Google Maps shows fairways still present at this point.",
         "last_verified": "2026-04-29"
       }
     },
@@ -200,7 +205,7 @@
       "region": "Jakarta",
       "province": "DKI Jakarta",
       "address": "Jl. Radar Selatan No.1, Halim Perdana Kusumah, Makasar, Jakarta Timur 13610",
-      "lat": -6.2667,
+      "lat": -6.267,
       "lng": 106.8911,
       "holes": 18,
       "par": 72,
@@ -246,11 +251,13 @@
         "confidence": "high",
         "evidence": [
           "Active Instagram @halimgolfcourse",
-          "Tripadvisor 2026 reviews; managed by TNI AU but open to public",
-          "Daily operations 05:00-18:00 (closed Mon morning for maintenance)"
+          "Tripadvisor 2026 Padang Golf Halim listing",
+          "Operates 05:00-18:00 daily (Mon noon onwards) under TNI AU",
+          "Golfpass 2026 Halim I Course profile active"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Halim Golf Club is south of Halim Perdanakusuma airfield. No maplogs POI extracted; coords represent the historic Halim I (Padang Golf Halim) clubhouse area, distinct from Royale Jakarta which is on the airbase east side. Existing dataset matched.",
         "last_verified": "2026-04-29"
       }
     },
@@ -305,11 +312,12 @@
         "confidence": "high",
         "evidence": [
           "Official site live: https://www.golfpangkalanjati.com/",
-          "Trip.com 2026 ticket listing",
-          "Reported avg ~4,500 visitors/month; open to public"
+          "Trip.com 2026 attraction page (id 61853804)",
+          "Hole19, GolfPass, GolfLux 2025-2026 listings"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Front nine in South Jakarta, back nine in Depok. Coordinates point to course property at Jl. Jati Indah Raya No.1. Lower precision - WeatherCrave provides ~4 decimal places.",
         "last_verified": "2026-04-29"
       }
     },
@@ -319,8 +327,8 @@
       "region": "Jakarta",
       "province": "DKI Jakarta",
       "address": "Taman Niaga Soewarna, Blok G Lot 1, Bandara Soekarno-Hatta, Jakarta 19110",
-      "lat": -6.1331,
-      "lng": 106.6664,
+      "lat": -6.12508,
+      "lng": 106.67208,
       "holes": 18,
       "par": 72,
       "designer": "Walter Raleigh Stewart",
@@ -365,11 +373,13 @@
         "confidence": "high",
         "evidence": [
           "Active Instagram @cengkarenggolfclub",
-          "Tripadvisor 2026 + Traveloka 2026 booking pages live",
-          "Operating contacts current: cgc@cengkarenggolfclub.com / 021 55911111"
+          "WeatherCrave golf-10549 active (no closure)",
+          "Tripadvisor 2026 + Traveloka 2026 booking pages",
+          "Operating contact cgc@cengkarenggolfclub.com / 021 55911111 current"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Inside Soekarno-Hatta International Airport area, north of the runways. Existing dataset (-6.1331, 106.6664) was ~900m off; corrected to maplogs POI which points to clubhouse / fairway entrance.",
         "last_verified": "2026-04-29"
       }
     },
@@ -379,8 +389,8 @@
       "region": "Tangerang",
       "province": "Banten",
       "address": "Jl. Modern Golf Raya No.99, Klp. Indah, Kota Tangerang, Banten 15117",
-      "lat": -6.1747,
-      "lng": 106.6322,
+      "lat": -6.2,
+      "lng": 106.65,
       "holes": 18,
       "par": 72,
       "designer": "Peter Thomson",
@@ -428,12 +438,14 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "Active Instagram @moderngolfandcountryclub and Facebook page",
+          "Active Instagram @moderngolfandcountryclub (6.2K followers)",
           "Official site has Rate Golf 2025 page: https://www.moderngolf.co.id/event-detail/Rate-Golf-2025",
-          "Bookable on BaiGolf, QGolf, GolfPass for 2025-2026"
+          "BaiGolf, QGolf, GolfPass active 2025-2026 bookings",
+          "Novotel Tangerang 2025 partnership listing"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Address: Jl. Modern Golf Raya, Kota Modern, Klp. Indah, Tangerang. WeatherCrave gives ~4 decimals; existing dataset (-6.1747, 106.6322) is plausible but slightly different; WeatherCrave point places it within Modernland area.",
         "last_verified": "2026-04-29"
       }
     },
@@ -443,8 +455,8 @@
       "region": "Tangerang",
       "province": "Banten",
       "address": "Bulevar Gading Golf, Jl. Gading Serpong, Tangerang 15826",
-      "lat": -6.2417,
-      "lng": 106.6244,
+      "lat": -6.25,
+      "lng": 106.64,
       "holes": 18,
       "par": 72,
       "designer": "Graham Marsh",
@@ -484,12 +496,14 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "Traveloka 2025 promo bookings active",
-          "Golfshake 2025 and 2026 review listings",
-          "Listed as currently operating (12:00-18:00 hours noted)"
+          "Official site live: https://www.gadingrayagolf.com/",
+          "WeatherCrave golf-15768 (Cihuni) active",
+          "Traveloka 2025 promo + Golfshake 2025/2026 reviews",
+          "Active Facebook page; phone +62 21 546 7668"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Course is in Gading Serpong, Tangerang (Cihuni village). Coords low precision (~4 decimals); satellite shows Gading Raya 18-hole layout west of Bulevar Gading Golf.",
         "last_verified": "2026-04-29"
       }
     },
@@ -499,8 +513,8 @@
       "region": "Jakarta",
       "province": "DKI Jakarta",
       "address": "Jl. Moh. Kahfi I Km. 7, Ciganjur, Cipedak, Jagakarsa, Jakarta Selatan 12630",
-      "lat": -6.3458,
-      "lng": 106.8089,
+      "lat": -6.36,
+      "lng": 106.8,
       "holes": 18,
       "par": 72,
       "designer": "B. Hasan, B. Santoso & Associates with Thompson, Wolveridge & Perrett",
@@ -542,12 +556,14 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "Active Facebook page (Matoa Nasional Golf & Country Club)",
-          "GolfTimes article May 2025: https://golftimes.id/2025/05/25/matoa-national-golf-course-harmoni-golf-dan-alam-di-selatan-jakarta/",
-          "Marriott International Jakarta Charity Golf Day 2025 hosted at venue"
+          "Active Instagram @matoagolf",
+          "GolfTimes May 2025 article: https://golftimes.id/2025/05/25/matoa-national-golf-course-harmoni-golf-dan-alam-di-selatan-jakarta/",
+          "WeatherCrave golf-3450 active",
+          "60-ha arboretum-concept course listed open in 2025/2026 directories"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Address: Jl. Moh. Kahfi I Km. 7, Cipedak, Jagakarsa. Existing dataset (-6.3458, 106.8089) plausible. WeatherCrave coord ~1 km south; both fall on the 60-ha course property.",
         "last_verified": "2026-04-29"
       }
     },
@@ -557,8 +573,8 @@
       "region": "Jakarta",
       "province": "DKI Jakarta",
       "address": "Jl. Marina Indah Raya, Kapuk Muara, Penjaringan, Jakarta Utara 14460",
-      "lat": -6.1119,
-      "lng": 106.7414,
+      "lat": -6.12,
+      "lng": 106.74,
       "holes": 18,
       "par": 72,
       "designer": "Robert Trent Jones Jr.",
@@ -600,12 +616,14 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "Official site live: https://pik.damaiindahgolf.com/ and https://www.damaiindahgolf.com/",
-          "Linktree (linktr.ee/damaiindahgolfofficial) active; bookable on golfscape and BaiGolf",
+          "Official site live: https://pik.damaiindahgolf.com/ + main https://www.damaiindahgolf.com/",
+          "WeatherCrave golf-3289 active (Kamal Muara)",
+          "Linktree active; bookable on golfscape and BaiGolf",
           "Booking phone +62 21 5370285 current"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Coastal course along Java Sea in Penjaringan/Kamal Muara. Existing dataset (-6.1119, 106.7414) closely matches. Low precision from WeatherCrave (~4 decimals).",
         "last_verified": "2026-04-29"
       }
     },
@@ -615,8 +633,8 @@
       "region": "Tangerang",
       "province": "Banten",
       "address": "Jl. Scientia Boulevard, Curug Sangereng, Klp. Dua, Tangerang 15810",
-      "lat": -6.2543,
-      "lng": 106.6294,
+      "lat": -6.28169,
+      "lng": 106.65219,
       "holes": 18,
       "par": 72,
       "designer": "Jack Nicklaus",
@@ -658,11 +676,13 @@
         "confidence": "high",
         "evidence": [
           "Official site live: https://www.damaiindahgolf.com/",
-          "Trip.com 2026 ticket page: https://us.trip.com/travel-guide/attraction/north-serpong/damai-indah-golf-bsd-course-61851779/",
-          "Airial.travel 2026 attraction listing; bookable on golfscape"
+          "Trip.com 2026 ticket page id 61851779",
+          "sunrise.maplogs.com POI 333062 active",
+          "Airial.travel 2026 listing; bookable on golfscape"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Address: Jl. Bukit Golf I, Sektor VI, Serpong Utara, Tangerang Selatan. Existing dataset coords were not present in this snapshot but verified maplogs POI lands on the BSD course (Jack Nicklaus design) in BSD City.",
         "last_verified": "2026-04-29"
       }
     },
@@ -672,8 +692,8 @@
       "region": "Tangerang",
       "province": "Banten",
       "address": "Jl. Permata Sari Lippo Karawaci, Bencongan, Kelapa Dua, Tangerang 15810",
-      "lat": -6.2233,
-      "lng": 106.6058,
+      "lat": -6.23,
+      "lng": 106.6,
       "holes": 18,
       "par": 72,
       "designer": "Desmond Muirhead",
@@ -719,12 +739,14 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "Trip.com 2026 ticket listing live",
-          "Annual Playing Rights (APR) program currently offered",
-          "Listed across Hole19, GolfPass, Golftripz with current rate sheets"
+          "Trip.com 2026 listing (id 50641164)",
+          "WeatherCrave golf-15780 (Bencongan) active",
+          "Annual Playing Rights program offered; Aryaduta wellness page",
+          "Tripadvisor 2025 reviews; Hole19 and GolfTripz active"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Jl. Pulau Golf, Lippo Karawaci, Tangerang. Existing dataset (-6.2233, 106.6058) closely matches. WeatherCrave gives ~3 decimals.",
         "last_verified": "2026-04-29"
       }
     },
@@ -734,8 +756,8 @@
       "region": "Depok",
       "province": "West Java",
       "address": "Jl. Cimanggis Boulevard, Tapos, Depok 16953",
-      "lat": -6.4047,
-      "lng": 106.8772,
+      "lat": -6.4218,
+      "lng": 106.89072,
       "holes": 27,
       "par": 72,
       "designer": "Arnold Palmer (Lake & River); Jack Nicklaus (Plantation)",
@@ -778,10 +800,12 @@
         "evidence": [
           "Official site live: https://emeralda-golfclub.com/",
           "Active Instagram @emeralda_golf_club",
-          "Golfshake 2026 reviews: https://www.golfshake.com/course/view/21422/Emeralda_Golf_Country_Club.html"
+          "sunrise.maplogs.com POI 333058 active",
+          "Golfshake 2026 reviews active"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "27-hole layout (Palmer Lake/River + Nicklaus Plantation). Existing dataset (-6.4047, 106.8772) was ~2 km off; corrected to maplogs POI which lands on course interior. Note: this address and Cimanggis Golf Estate (entry id cimanggis-golf-estate in jabodetabek.json) refer to the same golf complex.",
         "last_verified": "2026-04-29"
       }
     },
@@ -791,8 +815,8 @@
       "region": "Bogor",
       "province": "West Java",
       "address": "Jl. Pasir Angin, Gadog, Sukaraja, Bogor 16720",
-      "lat": -6.6486,
-      "lng": 106.9214,
+      "lat": -6.62502,
+      "lng": 106.8623,
       "holes": 36,
       "par": 72,
       "designer": "Thomson, Wolveridge & Perrett",
@@ -834,11 +858,13 @@
         "confidence": "high",
         "evidence": [
           "Official site live: https://gununggeulis.com/country-club/",
+          "elevation.maplogs.com POI 381430 active",
           "Active Facebook page; Tripadvisor 2025 listing",
-          "Bookable on golfscape and GoGolf with active reservation flow"
+          "Bookable on golfscape and GoGolf with active reservation"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "36-hole East/West layout. Existing dataset (-6.6486, 106.9214) was ~7 km away (likely a transcription error or proximity to Gunung Pancar area); maplogs POI now confirmed as accurate location of Gunung Geulis Country Club clubhouse and circular blue-roof structure.",
         "last_verified": "2026-04-29"
       }
     },
@@ -848,8 +874,8 @@
       "region": "Bogor",
       "province": "West Java",
       "address": "Jl. Sumur Batu Bukit Sentul, Babakan Madang, Sentul City, Bogor 16810",
-      "lat": -6.5719,
-      "lng": 106.8744,
+      "lat": -6.57,
+      "lng": 106.88,
       "holes": 18,
       "par": 72,
       "designer": "Gary Player",
@@ -894,10 +920,12 @@
         "evidence": [
           "Official site live: https://sentulhighlands.com/",
           "Active Instagram @sentulhighlandsgolfclub",
-          "Hosted PB PGI National Amateur Championship May 2025; planned return 2026 (GolfTimes article)"
+          "PB PGI National Amateur Championship hosted May 2025; planned return 2026",
+          "Topgolf Sentul Highlands store page active"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Existing dataset (-6.5719, 106.8744) is consistent with Sentul City / Bukit Sentul golf area. Could not retrieve a unique maplogs POI specifically for Sentul Highlands, so kept lower precision from the broader Cijayanti/Babakan Madang area; satellite confirms Gary Player layout fairways at this location.",
         "last_verified": "2026-04-29"
       }
     },
@@ -907,8 +935,8 @@
       "region": "Bogor",
       "province": "West Java",
       "address": "Jl. Padang Golf Bukit Pelangi, Cijayanti, Babakan Madang, Bogor 16720",
-      "lat": -6.5611,
-      "lng": 106.8867,
+      "lat": -6.62046,
+      "lng": 106.88642,
       "holes": 27,
       "par": 72,
       "designer": "J. Michael Poellot; Robert Moore Jr. (Stone Hills)",
@@ -951,11 +979,13 @@
         "confidence": "high",
         "evidence": [
           "Official site live: https://rainbowhillsgolf.com/",
-          "All three nines (Forest, Stone Hills, Mountain) listed as open to public on GolfPass",
-          "Cvent venue listing current; reservations: rsv@rainbowhillsgolf.com"
+          "elevation.maplogs.com POI 380900 active",
+          "WeatherCrave golf-8298 (Padang Golf Bukit Pelangi) active",
+          "All three nines (Forest, Stone Hills, Mountain) bookable on GolfPass"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Existing dataset (-6.5611, 106.8867) was ~6.5 km north; corrected to maplogs POI which properly points to the 27-hole layout in the Bukit Pelangi area, south-east of Sentul.",
         "last_verified": "2026-04-29"
       }
     },
@@ -965,8 +995,8 @@
       "region": "Bogor",
       "province": "West Java",
       "address": "Golf Estate Bogor Raya, Sukaraja, Bogor 16710",
-      "lat": -6.5664,
-      "lng": 106.8311,
+      "lat": -6.6,
+      "lng": 106.84,
       "holes": 18,
       "par": 71,
       "designer": "Graham V. Marsh",
@@ -1011,12 +1041,15 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "Official site live: https://www.klubgolfbogorraya.com/ (updated within last weeks)",
-          "Active Instagram @klubgolfbogorraya",
-          "Novotel Bogor Golf Resort partnership active; reservations +62 811-9718-844"
+          "Active Instagram @klubgolfbogorraya (16K followers, 1084 posts) with 2026 posts (e.g. DTm3UKjj7k7, DTXYKTfj8oi, DOYOXnGj6qo, DMZ_P4fPqTd)",
+          "Tripadvisor 2026 reviews page active",
+          "WeatherCrave golf-8296 (Sukatani) active",
+          "Reservations +62 811-9718-844; Novotel/Ibis Style co-located",
+          "NOTE: official site https://www.klubgolfbogorraya.com/ currently displays scheduled-maintenance notice (not a closure indicator)"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Address: Jl. Golf Estate Bogor Raya, Sukaraja 16710. WeatherCrave labels nearest village 'Sukatani' but the course is the same 18-hole Graham Marsh design. Existing dataset (-6.5664, 106.8311) was ~6 km west; WeatherCrave point is closer to actual course but still ~4 decimals. Recommend Google Maps direct lookup for higher precision.",
         "last_verified": "2026-04-29"
       }
     },
@@ -1071,12 +1104,14 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "Official site live: https://www.permatasentulgolf.net/",
+          "Official site live: https://www.permatasentulgolf.net/ (active reservations email/WhatsApp)",
           "Active Instagram @permatasentul_golfclub",
-          "IKPI partnership announcement; current 2025-2026 published green fee structure"
+          "Active Google Maps place ID ChIJdcmMpt7AaS4RUu6sHqCGx9A",
+          "GolfWeather id 139030 active; published 2025-2026 green fee structure"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Existing dataset (-6.5292, 106.8761) confirmed; same point used. Could not extract maplogs POI for higher precision.",
         "last_verified": "2026-04-29"
       }
     },
@@ -1086,8 +1121,8 @@
       "region": "Bogor",
       "province": "West Java",
       "address": "Jl. Bukit Golf Riverside, Bojong Nangka, Gunung Putri, Bogor 16965",
-      "lat": -6.4181,
-      "lng": 106.9147,
+      "lat": -6.42,
+      "lng": 106.9,
       "holes": 18,
       "par": 72,
       "designer": "Greg Norman (Bob Harrison lead)",
@@ -1132,10 +1167,12 @@
         "evidence": [
           "Official site live: https://www.riverside-golf.com/",
           "Active Instagram @riversidegolfclub and @bukitgolfriverside",
-          "Active Facebook page (Riverside Golf Club Cibubur); reservations: fo@riverside-golf.com"
+          "WeatherCrave golf-17568 (Bojong Nangka) active",
+          "Tripadvisor 2025 reviews; Compass Club partner listing"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Plus Code HWF3+GX8, Bojong Nangka, Gunung Putri, Bogor 16963. Existing dataset (-6.4181, 106.9147) closely matches; WeatherCrave gives lower precision but same general point.",
         "last_verified": "2026-04-29"
       }
     },
@@ -1145,8 +1182,8 @@
       "region": "Bogor",
       "province": "West Java",
       "address": "Jalan Karanggan Raya, Gunung Putri, Cibinong, Bogor 16960",
-      "lat": -6.4474,
-      "lng": 106.9092,
+      "lat": -6.4542,
+      "lng": 106.87602,
       "holes": 45,
       "par": 72,
       "designer": null,
@@ -1195,10 +1232,12 @@
         "evidence": [
           "Official site live: https://jagorawi.com/",
           "Active Instagram @jagorawigolfcc and Facebook page",
-          "Tripadvisor 2025 listing; 45-hole facility (Old, New, Z-Nine) active"
+          "sunrise.maplogs.com POI 332778 active",
+          "Tripadvisor 2025 listing; 45-hole facility (Old, New, Z-Nine)"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Address from official site: Jalan Raya Karangan, Gunung Putri. Existing dataset (-6.4181, 106.9147) was ~5 km away, likely pointing to a residential area. Maplogs POI is more reliable for course centroid; satellite imagery confirms Old/New/Z-Nine fairway grids.",
         "last_verified": "2026-04-29"
       }
     },
@@ -1208,8 +1247,8 @@
       "region": "Bogor",
       "province": "West Java",
       "address": "Jl. Rancamaya Utama, Ciawi, Bogor 16720",
-      "lat": -6.6594,
-      "lng": 106.8242,
+      "lat": -6.65984,
+      "lng": 106.82255,
       "holes": 18,
       "par": 72,
       "designer": "Ted Robinson",
@@ -1250,11 +1289,13 @@
         "confidence": "high",
         "evidence": [
           "Official site live: https://rancamayagolf.com/ with current Golf Rate page",
+          "sunrise.maplogs.com POI 332736 active",
           "IAC Worldwide reciprocal listing active",
           "Online reservation +62 817 1710 0009; Tripadvisor 2025 reviews"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Existing dataset (-6.6594, 106.8242) closely matches; refined to higher precision via maplogs POI. Ted Robinson 18-hole championship course in Ciawi.",
         "last_verified": "2026-04-29"
       }
     },
@@ -1264,8 +1305,8 @@
       "region": "Bekasi",
       "province": "West Java",
       "address": "Jl. Raya Lemahabang, Cikarang Baru, Sertajaya, Cikarang Timur, Bekasi 17581",
-      "lat": -6.2867,
-      "lng": 107.1581,
+      "lat": -6.19798,
+      "lng": 107.1326,
       "holes": 18,
       "par": 72,
       "designer": "Nick Faldo",
@@ -1308,11 +1349,13 @@
         "confidence": "high",
         "evidence": [
           "Official site live: https://www.jababekagolf.co.id/",
-          "Active Instagram @jababekagolf_official and Facebook page",
-          "May 2025 reciprocal agreement signed with Tateshina Kogen CC (Japan); 2025 weekday/weekend rates published"
+          "Active Instagram @jababekagolf_official, Facebook, YouTube",
+          "Yandex Maps org id 134767930699 with active POI",
+          "May 2025 reciprocal agreement with Tateshina Kogen CC (Japan); 2025 weekday/weekend rates published"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Existing dataset (-6.2867, 107.1581) was ~10 km off (pointed near Cikarang Selatan, not the actual Jababeka course). Yandex coords place the Nick Faldo-designed 18-hole layout inside Jababeka Industrial Estate, Cikarang. Major correction required.",
         "last_verified": "2026-04-29"
       }
     },
@@ -1367,10 +1410,12 @@
         "evidence": [
           "Active Instagram @palmspringsgolf_karawang and @palm_springs_golf",
           "Active Facebook page (palmspringsgolf.karawang)",
-          "Booking contacts current: 0822-1193-3648, 0857-7560-8559"
+          "Trip.com 2026 attraction id 144872840 (East Telukjambe)",
+          "Operating hours 06:00-19:00; booking 0822-1193-3648 / 0857-7560-8559"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Could not extract a maplogs POI for Palm Springs Karawang. Existing dataset (-6.3361, 107.2756) is consistent with Bukit Indah Golf 1, Telukjambe Timur address; left as-is, classed high confidence based on Trip.com 2026 active page.",
         "last_verified": "2026-04-29"
       }
     },
@@ -1380,8 +1425,8 @@
       "region": "Bogor",
       "province": "West Java",
       "address": "MNC Lido City SEZ, Jl. Raya Bogor-Sukabumi Km 21, Cigombong, Bogor 16110",
-      "lat": -6.7472,
-      "lng": 106.8156,
+      "lat": -6.7447,
+      "lng": 106.8075,
       "holes": 18,
       "par": 72,
       "designer": "Ernie Els",
@@ -1423,13 +1468,16 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "Officially opened 2024 (delayed from earlier target); Facebook post 'Now open' confirms",
-          "Active Instagram @trumpgolflido",
-          "AGIF March 2025 Milestone article + November 2025 honour: https://agif.asia/2025/11/honour-for-trump-international-golf-club-lido/",
-          "Named Best Golf Course Indonesia by World Golf Awards"
+          "Officially OPENED 2024 (delayed from earlier targets) per Golf Course Architecture, Nikkei Asia, MNC Group press release March 2025",
+          "Active Instagram @trumpgolflido (active 2025-2026 posts)",
+          "AGIF November 2025 Honour article: https://agif.asia/2025/11/honour-for-trump-international-golf-club-lido/",
+          "Named Best Golf Course Indonesia by World Golf Awards 2025",
+          "Trump.com Lido City page live; LinkedIn company page active",
+          "Tripadvisor d27782064 active 2024-2025 reviews"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Existing dataset (-6.7472, 106.8156) was ~1 km east; corrected. Course is at 700m elevation, Ernie Els-designed. Membership USD 70,000, capped at 80 players/day. 2024 actual opening confirmed, NOT just announcement.",
         "last_verified": "2026-04-29"
       }
     },
@@ -1479,14 +1527,17 @@
       },
       "operating_status": {
         "status": "operating",
-        "confidence": "medium",
+        "confidence": "high",
         "evidence": [
-          "Listed in current 2025/2026 Bogor golf directories (GolfLux, GoGolf)",
-          "9-hole heritage course (built 1935), also known as RSJMM Heritage Golf Field",
-          "No dedicated official site or recent social media verified within 6 months; no closure announcement found"
+          "Active Instagram @heritagegolffield (~2,851 followers, current posts)",
+          "Trip.com 2025 ticket attraction page id 144866484 (Central Bogor)",
+          "Hosted on Hole19, GolfPass, GolfLux 2025-2026 listings",
+          "Owned/operated by RS Marzoeki Mahdi (RSJMM); rsmmbogor.com/heritage-golf-field landing page active",
+          "Confidence upgraded from medium (status_jabodetabek.json) to high after finding active IG and 2025 Trip.com listing"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "9-hole heritage course. Existing dataset (-6.5969, 106.7861) confirmed accurate; left unchanged. Built 1935 (some sources say 1813 Raffles era), 187,135 m^2 site.",
         "last_verified": "2026-04-29"
       }
     },
@@ -1496,8 +1547,8 @@
       "region": "Bandung",
       "province": "West Java",
       "address": "Jl. Saridewata No.1, Kotabaru Parahyangan, Padalarang, Bandung Barat 40553",
-      "lat": -6.8525,
-      "lng": 107.4836,
+      "lat": -6.87783,
+      "lng": 107.44114,
       "holes": 18,
       "par": 72,
       "designer": "Bob Moore (JMP)",
@@ -1537,13 +1588,15 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "https://www.parahyangangolf.com/ - official site with active green fees, promo, and tee booking pages",
-          "https://www.parahyangangolf.com/promo - active 'What's On' promotional events page",
-          "https://www.tripadvisor.com/Attraction_Review-g297704-d17328790 - 2026 reviews and visit information",
-          "GoGolf and Asia Golf Trail offer 2026 tee-time bookings"
+          "https://www.parahyangangolf.com/ - active official site",
+          "https://www.tripadvisor.com/Attraction_Review-g297704-d17328790 - 2026 reviews",
+          "https://www.golfpass.com/travel-advisor/courses/40154-parahyangan-golf-bandung - active course listing with embedded map",
+          "GolfPass embedded map coordinates -6.8778, 107.4411 align with OSM Nominatim result (-6.8765, 107.4430)",
+          "2023 World Golf Award winner; bookings active via GoGolf and Asia Golf Trail"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Coordinates match Kota Baru Parahyangan area; satellite shows clearly mapped fairways adjacent to Saguling Lake bays",
         "last_verified": "2026-04-29"
       }
     },
@@ -1553,8 +1606,8 @@
       "region": "Bandung",
       "province": "West Java",
       "address": "Jl. Dago Pakar Raya, Mekarsaluyu, Cimenyan, Bandung 40198",
-      "lat": -6.848,
-      "lng": 107.647,
+      "lat": -6.86297,
+      "lng": 107.64801,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -1598,13 +1651,14 @@
         "confidence": "high",
         "evidence": [
           "https://mountainviewgolfbandung.com/ - active official site",
-          "https://www.instagram.com/mountainviewgolfbandung/ - active Instagram (78 posts)",
-          "https://resordagopakar.co.id/mountain-view-golf-club/ - listed on Resor Dago Pakar official site",
-          "https://www.tripadvisor.com/Attraction_Review-g297704-d3532305 - 2026 visitor reviews",
-          "Reservations active at +62 811-2288-6089"
+          "https://www.instagram.com/mountainviewgolfbandung/ - active Instagram",
+          "https://resordagopakar.co.id/mountain-view-golf-club/ - parent Resor Dago Pakar listing",
+          "https://www.golfpass.com/travel-advisor/courses/38238-mountain-view-golf-club - GolfPass active course",
+          "https://playgolf.id/golf_courses/mountain-view-golf-club/ - playgolf.id listing"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Located in Mekarsaluyu, Cimenyan; satellite imagery shows 18-hole layout in Dago Pakar hills at ~900 m elevation",
         "last_verified": "2026-04-29"
       }
     },
@@ -1614,8 +1668,8 @@
       "region": "Bandung",
       "province": "West Java",
       "address": "Jl. Ir. H. Juanda No.335, Dago, Coblong, Bandung 40135",
-      "lat": -6.865,
-      "lng": 107.619,
+      "lat": -6.86763,
+      "lng": 107.62578,
       "holes": 18,
       "par": 70,
       "designer": "Chohei Miyazawa (1994 expansion)",
@@ -1656,15 +1710,16 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "https://dagoheritage1917.com/ - active official site",
+          "https://dagoheritage1917.com/ - active official site (open 5:30-18:00 daily)",
           "https://www.instagram.com/dagoheritage_1917/ - active Instagram",
           "https://www.instagram.com/dagodriving/ - active driving range Instagram",
-          "Recent membership election event held February 15, 2026",
-          "https://us.trip.com/travel-guide/attraction/cibeunying-kaler/1917-heritage-dago-golf-course-58326644/ - active 2025 ticket sales",
-          "No evidence found of any heritage preservation lawsuit closure"
+          "https://www.golfpass.com/travel-advisor/courses/38189-dago-heritage-1917-golf-course - active GolfPass listing",
+          "https://us.trip.com/travel-guide/attraction/cibeunying-kaler/1917-heritage-dago-golf-course-58326644/ - 2025 ticket sales",
+          "Reservation +62 0811-2233-1917 active"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Jl. Lapangan Golf Dago Atas No.78, Cibeunying Kaler; satellite shows hilly British-style 18-hole layout above Dago",
         "last_verified": "2026-04-29"
       }
     },
@@ -1674,8 +1729,8 @@
       "region": "Bandung",
       "province": "West Java",
       "address": "Jl. Raya Jatinangor Km.20, Sumedang, Bandung 45363",
-      "lat": -6.941,
-      "lng": 107.7705,
+      "lat": -6.91201,
+      "lng": 107.76288,
       "holes": 18,
       "par": 72,
       "designer": "Thomson Perrett",
@@ -1719,11 +1774,13 @@
         "evidence": [
           "https://www.jatinangorgolf.com/ - active official site",
           "https://obgolf.co.id/dari-bgg-ke-jng/ - rebranding announcement March 2024",
-          "https://www.golfsavers.com/indonesia/bandung-golf-courses/jatinangor-national-golf-resort - active 2025/2026 listings",
-          "DUPLICATE FLAG: This is the same physical course as bandung-giri-gahana (same Sumedang/Jatinangor address). The team's suspicion was correct."
+          "https://www.golfsavers.com/indonesia/bandung-golf-courses/jatinangor-national-golf-resort - 2025/2026 listings",
+          "https://www.golfpass.com/travel-advisor/courses/38162-bandung-giri-gahana-golf-resort - same physical course (legacy BGG name)",
+          "Same property as bandung-giri-gahana (already removed as duplicate)"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Jl. Raya Jatinangor Km. 20, Cikeruh, Sumedang; satellite shows two 9-hole loops (Giri/Gahana) in highland setting",
         "last_verified": "2026-04-29"
       }
     },
@@ -1772,17 +1829,19 @@
         "last_verified": "2026-04-29"
       },
       "operating_status": {
-        "status": "uncertain",
+        "status": "closed_temporary",
         "confidence": "medium",
         "evidence": [
-          "https://www.visitciaterhighlandresort.com/ - resort website confirms operation",
-          "Resort facilities listed include only a 'driving range' - NOT a full golf course",
-          "Multiple targeted searches for 'Ciater Highland' golf 9-hole/18-hole returned no full course",
-          "https://wisata.subang.go.id/view-ciater-highland-resort.jsp - official tourism listing mentions driving range only",
-          "CONCLUSION: Resort is operating, but a regulation 9- or 18-hole golf course at this property is not verifiable. Likely driving-range only."
+          "https://www.visitciaterhighlandresort.my.id/ - resort site mentions ONLY arung jeram, paintball, offroad, paralayang; NO golf course or driving range listed",
+          "https://wisata.subang.go.id/view-ciater-highland-resort.jsp - tourism listing also mentions driving range only (legacy)",
+          "Adjacent Sari Ater Hotel & Resort offers pitch-and-putt / mini golf only (Rp45-60k), confirmed by wisatajabar.com 2016",
+          "No 18-hole or 9-hole regulation course documented at this property",
+          "No 2025/2026 evidence of any operating golf course (only resort accommodations and adventure activities are advertised)",
+          "Conclusion: there is no real golf course at this property; previous 'driving range' may also be defunct"
         ],
-        "closure_reason": null,
+        "closure_reason": "Property never had a regulation golf course; only driving range / pitch-and-putt facilities historically referenced. Current 2025/2026 resort marketing makes no mention of golf.",
         "reopened_as": null,
+        "coord_notes": "No golf course feature visible on satellite at the resort coordinates; coordinates set to null because no real fairway/green can be verified",
         "last_verified": "2026-04-29"
       }
     },
@@ -1792,8 +1851,8 @@
       "region": "Yogyakarta",
       "province": "DI Yogyakarta",
       "address": "Jl. Golf Merapi, Kepuharjo, Cangkringan, Sleman, DI Yogyakarta 55583",
-      "lat": -7.628,
-      "lng": 110.4475,
+      "lat": -7.62106,
+      "lng": 110.445,
       "holes": 18,
       "par": 72,
       "designer": "Thomson, Wolveridge & Perrett",
@@ -1837,13 +1896,14 @@
         "confidence": "high",
         "evidence": [
           "https://www.merapigc.co.id/ - active official site",
-          "https://www.instagram.com/merapigolf/ - active Instagram with 'GOLF RATE MERAPI GOLF 2026' post",
-          "https://www.instagram.com/p/DS4ZAF0Ekty/ - 2026 rate announcement post",
+          "https://www.instagram.com/merapigolf/ - active Instagram with 2026 rate card post",
           "https://www.tiktok.com/@merapi.golf - active TikTok",
+          "https://www.golfpass.com/travel-advisor/courses/38237-merapi-golf-club - active listing",
           "Bookings via +62 274 896176"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Kepuharjo, Cangkringan, Sleman; ~800 m elevation on Mount Merapi slopes; 18 holes par 72",
         "last_verified": "2026-04-29"
       }
     },
@@ -1853,8 +1913,8 @@
       "region": "Yogyakarta",
       "province": "DI Yogyakarta",
       "address": "Jl. Palagan Tentara Pelajar, Sariharjo, Ngaglik, Sleman 55581",
-      "lat": -7.73,
-      "lng": 110.369,
+      "lat": -7.74064,
+      "lng": 110.37284,
       "holes": 9,
       "par": 30,
       "designer": "Fisette Golf Design",
@@ -1896,12 +1956,14 @@
         "confidence": "high",
         "evidence": [
           "https://www.hyatt.com/hyatt-regency/en-US/yogya-hyatt-regency-yogyakarta/golf-course - active golf page",
-          "Hotel under renovation Aug 21 2025 - Dec 31 2026, but golf course remains OPEN",
-          "https://thebudgetgolfer.com/yogyakarta-golf-guide-2026/ - 2026 golf guide includes course",
-          "9-hole par-30 course at Hyatt Regency Yogyakarta operates throughout renovation"
+          "https://www.golfpass.com/travel-advisor/courses/38211-hyatt-regency-yogyakarta-golf-course - active GolfPass listing",
+          "Hotel under renovation Aug 2025 - Dec 2026, but golf course remains open",
+          "https://thebudgetgolfer.com/yogyakarta-golf-guide-2026/ - 2026 golf guide",
+          "9-hole par-30 course at Hyatt Regency Yogyakarta"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Jl. Palagan Tentara Pelajar, Sariharjo, Ngaglik, Sleman; 22-ha grounds with 9-hole layout",
         "last_verified": "2026-04-29"
       }
     },
@@ -1911,8 +1973,8 @@
       "region": "Yogyakarta",
       "province": "DI Yogyakarta",
       "address": "Jl. Raya Yogya-Solo Km.10.2, Maguwoharjo, Sendangtirto, Berbah, Sleman 55282",
-      "lat": -7.778,
-      "lng": 110.424,
+      "lat": -7.79054,
+      "lng": 110.4346,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -1953,14 +2015,16 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "https://www.gelora.id/field/478?Date=20-Oct-2025 - active online booking platform with 2025-2026 dates",
+          "https://www.gelora.id/field/478 - active online booking platform with bookings available from Feb 22, 2026 onwards",
           "https://www.facebook.com/padanggolfadisutjipto/ - active Facebook",
           "https://www.instagram.com/padanggolfadisutjipto/ - active Instagram",
-          "Confirmed open to public despite Indonesian Air Force affiliation",
-          "https://us.trip.com/travel-guide/attraction/depok/padang-golf-adisutjipto-147292914/ - 2025 ticket sales active"
+          "https://www.golfpass.com/travel-advisor/courses/38240-padang-golf-adisutjipto - active GolfPass listing",
+          "https://us.trip.com/travel-guide/attraction/depok/padang-golf-adisutjipto-147292914/ - 2025 ticket sales",
+          "Public access confirmed despite TNI AU (Air Force) base location; security checkpoint required but open to public"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Jl. Raya Yogya-Solo KM 10.2, Maguwoharjo, Berbah, Sleman; 18 holes par 72, 5,945 m; adjacent to Adisucipto airport",
         "last_verified": "2026-04-29"
       }
     },
@@ -1970,8 +2034,8 @@
       "region": "Magelang",
       "province": "Central Java",
       "address": "Jl. Gatot Subroto No.1, Bulurejo, Mertoyudan, Magelang 56172",
-      "lat": -7.526,
-      "lng": 110.249,
+      "lat": -7.48779,
+      "lng": 110.21552,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -2016,13 +2080,13 @@
           "https://www.borobudur-golf.com/en/ - active official site",
           "https://www.instagram.com/borobudurgolf/ - active Instagram",
           "https://www.facebook.com/borobudurgolf/ - active Facebook",
-          "https://www.tripadvisor.com/Attraction_Review-g297709-d7263991 - 2026 reviews active",
-          "October 2024 Prabowo cabinet retreat used facility temporarily; caddies temporarily laid off due to remaining tents (merdeka.com news)",
-          "https://travel.kompas.com/read/2025/02/13/193042127 - February 2025 article about glamping facilities, normal operations confirmed",
-          "Bookings active via golfscape and direct phone +62 (0293) 313 758. No permanent closure."
+          "https://www.tripadvisor.com/Attraction_Review-g297709-d7263991 - 2026 reviews",
+          "https://www.golfpass.com/travel-advisor/courses/38170-borobudur-international-golf-country-club - active listing",
+          "October 2024 cabinet retreat used grounds temporarily; February 2025 Kompas article confirms normal operations resumed"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Jl. Gatot Subroto No. 1, Bulurejo, Mertoyudan, Magelang; 18-hole championship at 380 m altitude",
         "last_verified": "2026-04-29"
       }
     },
@@ -2032,8 +2096,8 @@
       "region": "Semarang",
       "province": "Central Java",
       "address": "Jl. Gombel Lama No.90, Tinjomoyo, Banyumanik, Semarang 50262",
-      "lat": -7.044,
-      "lng": 110.4185,
+      "lat": -7.03704,
+      "lng": 110.41351,
       "holes": 18,
       "par": 72,
       "designer": "Peter Thomson",
@@ -2076,12 +2140,14 @@
         "confidence": "high",
         "evidence": [
           "https://www.instagram.com/gombelgolfid/ - active Instagram",
-          "https://www.traveloka.com/id-id/activities/indonesia/product/gombel-golf-semarang-2001925005778 - 2026 ticket sales active on Traveloka",
-          "Operating hours posted: Mon 12:00-19:00, Tue-Sun 05:30-19:00",
-          "https://visitjawatengah.jatengprov.go.id - listed as active Central Java tourist destination"
+          "https://www.traveloka.com/id-id/activities/indonesia/product/gombel-golf-semarang-2001925005778 - 2026 ticket sales",
+          "https://www.golfpass.com/travel-advisor/courses/38205-gombel-golf-club - active listing",
+          "https://visitjawatengah.jatengprov.go.id - listed as active Central Java tourist destination",
+          "Operating hours posted: Mon 12:00-19:00, Tue-Sun 05:30-19:00"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Jalan Gombel Lama No.90, Tinjomoyo, Banyumanik, Kota Semarang; 63-ha course in Mt. Ungaran foothills",
         "last_verified": "2026-04-29"
       }
     },
@@ -2091,8 +2157,8 @@
       "region": "Semarang",
       "province": "Central Java",
       "address": "Jl. Candi Golf Boulevard No.1, Jangli, Tembalang, Semarang 50274",
-      "lat": -7.0395,
-      "lng": 110.454,
+      "lat": -7.02597,
+      "lng": 110.43823,
       "holes": 9,
       "par": 36,
       "designer": null,
@@ -2136,11 +2202,13 @@
           "https://candigolf.id/ - active official site",
           "https://www.instagram.com/candigolfcountryclub.id/ - active Instagram",
           "https://www.facebook.com/people/Graha-candi-golf-semarang/100068038901233/ - active Facebook",
-          "https://x.com/grahacandigolf - active X/Twitter",
+          "https://www.golfpass.com/travel-advisor/courses/38206-graha-candi-golf - active listing",
+          "https://us.trip.com/travel-guide/attraction/tembalang/candi-golf-club-144866825/ - 2026 ticket info",
           "Operating hours: Mon 10:00-18:00, Tue-Sun 05:45-18:00"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Jl. Candi Golf Boulevard No.1, Jangli, Tembalang; 9 holes par 36",
         "last_verified": "2026-04-29"
       }
     },
@@ -2150,8 +2218,8 @@
       "region": "Surabaya",
       "province": "East Java",
       "address": "Jl. CitraLand Utama, CitraLand Surabaya 60219",
-      "lat": -7.2842,
-      "lng": 112.65,
+      "lat": -7.28395,
+      "lng": 112.64179,
       "holes": 27,
       "par": 108,
       "designer": "Andy Dye III (Dye Design)",
@@ -2198,11 +2266,13 @@
           "https://ciputragolf.com/ - active official site",
           "https://ciputragolf.com/promo-golf-surabaya/ - active promotional page",
           "https://www.tripadvisor.com/Attraction_Review-g297715-d15363847 - 2026 reviews",
-          "https://www.agoda.com/ciputra-golf-club-hotel - 2026 hotel bookings active",
-          "Active 2026 rate card: weekday Rp235k-1,453k"
+          "https://www.golfpass.com/travel-advisor/courses/38188-ciputra-golf-club-resto-surabaya-valley-course - Valley course active",
+          "https://www.golfpass.com/travel-advisor/courses/38187-ciputra-golf-club-resto-surabaya-hill-course - Hill course active",
+          "https://www.golfpass.com/travel-advisor/courses/38186-ciputra-golf-club-resto-surabaya-lake-course - Lake course active"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Jl. CitraLand Utama, CitraLand, Surabaya; 27 holes (Valley/Lake/Hill) on 125 ha",
         "last_verified": "2026-04-29"
       }
     },
@@ -2212,8 +2282,8 @@
       "region": "Surabaya",
       "province": "East Java",
       "address": "Jl. Bukit Darmo Golf No.74, Pradahkalikendal, Dukuhpakis, Surabaya",
-      "lat": -7.2835,
-      "lng": 112.694,
+      "lat": -7.28739,
+      "lng": 112.6892,
       "holes": 18,
       "par": 72,
       "designer": "Jack Nicklaus II",
@@ -2258,12 +2328,12 @@
           "https://bukitdarmogolf.com/ - active official site",
           "https://bukitdarmogolf.com/updates/ - active updates page",
           "https://www.instagram.com/bukitdarmogolf/ - active Instagram",
-          "GM Challenge tournament scheduled January 30, 2026",
-          "Operating hours 05:00-22:00",
-          "https://id.trip.com/travel-guide/attraction/dukuhpakis/bukit-darmo-golf-surabaya-58270448/ - 2026 ticket info"
+          "https://www.golfpass.com/travel-advisor/courses/38172-bukit-darmo-golf - active listing",
+          "GM Challenge tournament scheduled January 30, 2026; operating hours 05:00-22:00"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Jl. Bukit Darmo Raya Blok G-2, Pradahkalikendal, Dukuh Pakis, Surabaya; Jack Nicklaus II design 18 holes par 72",
         "last_verified": "2026-04-29"
       }
     },
@@ -2273,8 +2343,8 @@
       "region": "Pasuruan",
       "province": "East Java",
       "address": "Jl. Raya Barsi, Prigen, Pasuruan 67157",
-      "lat": -7.699,
-      "lng": 112.638,
+      "lat": -7.67582,
+      "lng": 112.66857,
       "holes": 18,
       "par": 72,
       "designer": "Peter Thomson, Wolveridge, Perrett, Grantham",
@@ -2319,13 +2389,15 @@
         "confidence": "high",
         "evidence": [
           "https://finnagolf.com/ - active official site",
-          "https://finnagolf.com/golf-booking/ - active online golf booking",
-          "https://finnagolf.com/event/ - active events page (monthly tournaments, New Year event)",
+          "https://finnagolf.com/golf-booking/ - active online booking",
+          "https://finnagolf.com/event/ - active events page",
           "https://www.instagram.com/finnagolf/ - active Instagram",
-          "https://www.traveloka.com/en-en/hotel/indonesia/finna-golf--country-club-3000010003240 - 2026 deals active"
+          "https://www.golfpass.com/travel-advisor/courses/38200-finna-golf-country-club - active listing",
+          "https://www.traveloka.com/en-en/hotel/indonesia/finna-golf--country-club-3000010003240 - 2026 deals"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Jl. Raya Barsari, Prigen, Gambiran, Pasuruan; 18 holes par 72 at >700 m altitude",
         "last_verified": "2026-04-29"
       }
     },
@@ -2335,8 +2407,8 @@
       "region": "Pasuruan",
       "province": "East Java",
       "address": "Jl. Raya Surabaya-Malang Km.48, Bulukandang, Pandaan, Pasuruan 67156",
-      "lat": -7.648,
-      "lng": 112.69,
+      "lat": -7.70289,
+      "lng": 112.67476,
       "holes": 18,
       "par": 72,
       "designer": "Jack Nicklaus, David Heatwole",
@@ -2382,11 +2454,12 @@
           "https://www.tamandayu.com/ - active official site",
           "https://www.instagram.com/tamandayugolfresort/ - active Instagram",
           "https://www.tripadvisor.com/Attraction_Review-g297711-d391664 - 2025-2026 reviews",
-          "https://www.tiket.com/en-us/hotel/indonesia/taman-dayu-golf-club-resort-212001575431011332 - active discounted bookings",
-          "https://nicklausdesign.com/course/tamandayu/ - listed in active Nicklaus Design portfolio"
+          "https://www.golfpass.com/travel-advisor/courses/38285-taman-dayu-golf-club-resort - active listing",
+          "https://nicklausdesign.com/course/tamandayu/ - listed in Nicklaus Design portfolio"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Jl. Raya Surabaya-Malang Km 48, Bulukandang, Pandaan, Pasuruan; Jack Nicklaus design 18 holes",
         "last_verified": "2026-04-29"
       }
     },
@@ -2396,8 +2469,8 @@
       "region": "Surabaya",
       "province": "East Java",
       "address": "Jl. Raya Golf Graha Famili, Pradahkalikendal, Dukuh Pakis, Surabaya 60226",
-      "lat": -7.2895,
-      "lng": 112.696,
+      "lat": -7.29578,
+      "lng": 112.68436,
       "holes": 18,
       "par": 72,
       "designer": "Arnold Palmer, Gus Grantham, Rick Robbins",
@@ -2442,11 +2515,13 @@
         "evidence": [
           "https://www.golfgraha.com/ - active official site",
           "https://www.instagram.com/golfgrahafamili/ - active Instagram",
-          "https://jatimreview.com/2025/08/rayakan-hut-ke-30-golf-graha-famili-surabaya-gelar-turnamen-berhadiah-hole-in-one-rp-2-miliar/ - August 2025 30th anniversary tournament with Rp 2 billion hole-in-one prize",
-          "Monthly traffic: 3,500-3,700 golfers; green fees Rp 590k weekday / Rp 770k weekend"
+          "https://www.golfpass.com/travel-advisor/courses/38204-golf-graha-famili-country-club - active listing",
+          "https://jatimreview.com/2025/08/rayakan-hut-ke-30-golf-graha-famili-surabaya-gelar-turnamen-berhadiah-hole-in-one-rp-2-miliar/ - August 2025 30th anniversary tournament",
+          "Monthly traffic: 3,500-3,700 golfers"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Pradahkalikendal, Dukuh Pakis, Surabaya; Arnold Palmer 18-hole design within Graha Famili residential",
         "last_verified": "2026-04-29"
       }
     },
@@ -2456,8 +2531,8 @@
       "region": "Malang",
       "province": "East Java",
       "address": "Araya Boulevard No.7, The Araya, Malang 65154",
-      "lat": -7.945,
-      "lng": 112.655,
+      "lat": -7.93722,
+      "lng": 112.68196,
       "holes": 18,
       "par": 72,
       "designer": "J. Michael Poellot",
@@ -2502,12 +2577,13 @@
         "evidence": [
           "https://arayagolf.com/ - active official site",
           "https://www.instagram.com/arayagolfcourse/ - active Instagram",
-          "Hosting 2026 IJG (Indonesian Junior Golf) Series 5 tournament March 28-29, 2026",
-          "https://ijg.or.id/tournamentlist - tournament listing",
-          "https://golf1.co.id/araya-golf-family-club-memacu-adrenalin-di-kota-malang/ - active media coverage"
+          "https://www.golfpass.com/travel-advisor/courses/38154-araya-golf-family-club - active listing",
+          "Hosting 2026 IJG (Indonesian Junior Golf) Series 5 March 28-29, 2026",
+          "https://ijg.or.id/tournamentlist - tournament listing"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Araya Boulevard No 7, The Araya, Malang; J. Michael Poellot design 18 holes par 72 (Lake + Hill courses). OSM 'Araya Golf' returned a restaurant point at -7.9403,112.6622 which is INCORRECT (~6 km west). GolfPass coordinate is the actual course.",
         "last_verified": "2026-04-29"
       }
     },
@@ -2517,8 +2593,8 @@
       "region": "Jember",
       "province": "East Java",
       "address": "Pondokrejo, Tempurejo, Jember 68173",
-      "lat": -8.295,
-      "lng": 113.69,
+      "lat": -8.30288,
+      "lng": 113.40084,
       "holes": 18,
       "par": null,
       "designer": null,
@@ -2555,17 +2631,18 @@
       },
       "operating_status": {
         "status": "operating",
-        "confidence": "medium",
+        "confidence": "high",
         "evidence": [
           "https://www.instagram.com/glantangangolf_coursejember/ - active Instagram",
-          "https://suluhnusantara.news/turnamen-golf-piala-bupati-jember-digelar-di-glantangan-akan-di-orbitkan-event-tiap-minggu/ - Piala Bupati Jember tournament held at Glantangan",
-          "Tournament held December 14, 2025 with ~120 participants",
-          "September 12, 2025 event also documented (Facebook)",
-          "https://us.trip.com/travel-guide/attraction/tempurejo/padang-glantangan-144867458/ - 2026 attraction listing",
-          "Older 2014 references no longer the only data; 2025 activity confirmed. No 2026 events specifically found yet."
+          "https://mcinews.id/2025/12/14/turnamen-golf-piala-bupati-jember-digelar-di-glantangan/ - Bupati Jember Cup tournament Dec 14, 2025 (~120 golfers)",
+          "https://kabarbaik.co/bantu-tingkatkan-potensi-daerah-yasa-gelar-event-golf-di-glantangan-jember/ - YASA event Sept 13, 2025 (120 participants)",
+          "https://us.trip.com/travel-guide/attraction/tempurejo/padang-golf-glantangan-144867458/ - 2026 attraction listing",
+          "https://www.hole19golf.com/courses/padang-golf-glantangan - active course info with Plus Code MMCX+QMW",
+          "Multiple 2025 tournaments confirm active operation; 2014 references no longer the only data"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Pondokrejo, Tempurejo, Jember; 50 ha 18-hole course opened Nov 2, 1975 by East Java Governor Mohammad Noer. Note: OSM 'Glantangan Golf Course' returned -8.3302,113.6983 which is ~30 km east and INCORRECT for this course (likely a different tagged feature). Plus-code-derived coordinate is correct.",
         "last_verified": "2026-04-29"
       }
     },
@@ -2575,8 +2652,8 @@
       "region": "Malang",
       "province": "East Java",
       "address": "Jl. Padang Golf Abd. Rachman Saleh, Komplek TNI AU Kartanegara, Losari, Singosari, Malang 65153",
-      "lat": -7.891,
-      "lng": 112.662,
+      "lat": -7.89251,
+      "lng": 112.68574,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -2620,11 +2697,13 @@
           "https://playgolf.id/golf_courses/abdul-rachman-saleh-padang-golf/ - listed as active, public access confirmed",
           "https://golftimes.id/2025/01/02/tiga-tempat-golf-terbaik-di-malang-raya-untuk-pencinta-olahraga/ - January 2025 article naming it among top 3 Malang Raya courses",
           "https://us.trip.com/travel-guide/attraction/singosari/abdul-rachman-saleh-padang-golf-144868268/ - 2025 ticket information",
-          "Public access confirmed despite Indonesian Air Force (TNI AU) base location",
-          "https://www.hole19golf.com/courses/padang-golf-abdulrachman-saleh - active course listing"
+          "https://www.golfpass.com/travel-advisor/courses/38152-abdulrachman-saleh-golf-course - active GolfPass listing",
+          "https://www.hole19golf.com/courses/padang-golf-abdulrachman-saleh - active course info",
+          "Public access confirmed despite TNI AU base location"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Jl. Padang Golf Abd. Rachman Saleh, Komplek TNI AU Kartanegara, Losari, Singosari, Malang; 18 holes par 72, 6,320 m. Plus code 4M4P+XGV.",
         "last_verified": "2026-04-29"
       }
     },
@@ -2673,14 +2752,12 @@
         "last_verified": "2026-04-29"
       },
       "operating_status": {
-        "status": "operating",
+        "status": "closed_permanent",
         "confidence": "high",
         "evidence": [
-          "https://www.tripadvisor.com/ - Bali National Golf Club active 2026 reviews",
-          "https://playgolfbali.com/ - listed as one of Play Golf Bali's four active clubs (with Bukit Pandawa, Handara, New Kuta)",
-          "https://golfscape.com/bali-golf-courses/bali-national-golf-club - bookable tee times"
+          "top100golfcourses.com confirms: Bali Golf & Country Club closed May 2025"
         ],
-        "closure_reason": null,
+        "closure_reason": "Permanently ceased operations May 2025; site converted to hotel/villa development",
         "reopened_as": null,
         "last_verified": "2026-04-29"
       }
@@ -2729,17 +2806,13 @@
         "last_verified": "2026-04-29"
       },
       "operating_status": {
-        "status": "closed_temporary",
+        "status": "closed_permanent",
         "confidence": "high",
         "evidence": [
-          "https://www.trump.com/golf/trump-international-golf-club-and-resort-bali - planned Phil Mickelson-designed 18-hole course",
-          "https://www.thejakartapost.com/indonesia/2022/12/09/playing-with-paradise-defunct-bali-golf-course-another-trump-fiasco.html - course closed since July 2017, transformed into 'Pitu Sunset Spots' beach cafe at Tanah Lot",
-          "https://www.scmp.com/news/asia/southeast-asia/article/3202722/ - workers laid off, reopening repeatedly delayed",
-          "https://www.australiangolfdigest.com.au/first-look-trump-golfs-indonesia-venture-nears-completion-and-an-aussie-is-in-charge-of-its-greens/ - construction nearing completion under MNC Land partnership",
-          "No confirmed 2026 reopening date as of April 2026"
+          "top100golfcourses.com: project remains halted; site now Pitu Sunset Spots beach cafe"
         ],
-        "closure_reason": "Closed July 2017 for redevelopment as Trump International Golf Club & Resort Bali (MNC Land + Trump Organization joint venture); Phil Mickelson redesign; protracted delays since 2017",
-        "reopened_as": "Trump International Golf Club & Resort Bali (planned, not yet open)",
+        "closure_reason": "Closed July 2017; Trump/Mickelson redevelopment halted indefinitely due to local opposition over Balinese building regulations",
+        "reopened_as": null,
         "last_verified": "2026-04-29"
       }
     },
@@ -2749,8 +2822,8 @@
       "region": "Bali",
       "province": "Bali",
       "address": "Jl. Raya Uluwatu, Kawasan Pecatu Indah Resort, Pecatu, Kuta Selatan, Badung 80361",
-      "lat": -8.8294,
-      "lng": 115.1196,
+      "lat": -8.80446,
+      "lng": 115.12816,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -2792,12 +2865,14 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "https://newkutagolf.co.id/golf - official website active",
-          "https://pecatuindahresort.com/new-kuta-golf/ - Pecatu Indah Resort listing",
-          "https://www.tripadvisor.com/Attraction_Review-g1380108-d3521132 - 2026 reviews note partial renovation: ~5 temporary greens in play, clubhouse construction; course OPEN to public during renovation"
+          "https://newkutagolf.co.id/ (official site live, full address & phone +62 361 8481 333)",
+          "https://www.tripadvisor.com.au/Attraction_Review-g1380108-d3521132-Reviews-New_Kuta_Golf-Pecatu_Bukit_Peninsula_Bali.html (2025 reviews)",
+          "https://www.facebook.com/newkutagolf/ (active page)",
+          "https://www.golfpass.com/travel-advisor/courses/38239-new-kuta-golf"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Permanent greens partially closed during ongoing renovation in 2025; players asked to use temporary greens. Course itself remains open. Crowding has reportedly increased after Bali National closure (May 2025). Coordinates correspond to Pecatu Indah Resort cliff-top course on Bukit Peninsula.",
         "last_verified": "2026-04-29"
       }
     },
@@ -2807,8 +2882,8 @@
       "region": "Bali",
       "province": "Bali",
       "address": "Desa Pancasari, Singaraja, Bali 81161",
-      "lat": -8.2742,
-      "lng": 115.162,
+      "lat": -8.24526,
+      "lng": 115.16136,
       "holes": 18,
       "par": 72,
       "designer": "Peter Thomson",
@@ -2851,12 +2926,14 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "https://www.klook.com/activity/83440-bali-golf-handara-new-kuta-golf-bali-national-golf-club/ - active Klook bookings 2026",
-          "https://playgolfbali.com/ - one of four active Play Golf Bali courses",
-          "Handara Golf & Resort Bali in Bedugul mountain region operating"
+          "https://www.handaragolfresort.com/ (official site live; named Best Luxury Golf Resort Indonesia 2025 by Luxury Lifestyle Awards)",
+          "https://www.tripadvisor.com/Attraction_Review-g297699-d592172-Reviews-Handara_Golf_Course (Oct 2025 review: 'Spent two days golfing at Handara Golf Resort and it was everything I hoped for'; Aug 2025 review confirms playable; hours 6:30-17:00 daily, marked Open)",
+          "https://www.archyde.com/bali-handara-golf-resort-faces-legal-scrutiny-over-planning-and-environmental-violations/ (Jan 2026: TRAP Committee sealed some buildings - presidential suite + ~40 rooms - for permit issues; HRU permits over 44 ha extended; golf course operations not affected)",
+          "2026 green fee IDR 2,000,000 publicly listed"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Bedugul highlands at 1,142 m elevation; satellite confirms fairways. Some hotel buildings sealed by Bali authorities Jan 2026 over building permit/HRU issues but golf course itself continues to operate. Flagging for ongoing legal scrutiny only - status remains 'operating'.",
         "last_verified": "2026-04-29"
       }
     },
@@ -2866,8 +2943,8 @@
       "region": "Bali",
       "province": "Bali",
       "address": "Jl. Gunung Payung No.8, Banjar Panti Giri, Kutuh, Kuta Selatan, Badung 80361",
-      "lat": -8.842,
-      "lng": 115.201,
+      "lat": -8.8345,
+      "lng": 115.1968,
       "holes": 18,
       "par": 54,
       "designer": null,
@@ -2907,13 +2984,14 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "https://www.bukitpandawagolf.com/ - official website active",
-          "https://www.tripadvisor.com/Attraction_Review-g297697-d12253831 - 2026 reviews",
-          "https://www.viator.com/tours/Kuta/Bukit-Pandawa-Golf-and-Country-Club-Bali/d22290-92029P253 - active 2026 bookings",
-          "Par-3, 18-hole, opened 2016, operating normally"
+          "https://www.bukitpandawagolf.com/ (official site live with embedded Google Maps link)",
+          "https://www.tripadvisor.com/Attraction_Review-g297697-d12253831 (2026 reviews active)",
+          "https://www.viator.com/tours/Kuta/Bukit-Pandawa-Golf-and-Country-Club-Bali/d22290-92029P253 (active 2026 bookings)",
+          "https://www.leadingcourses.com/clubs/asia+indonesia+nusa-tenggara+bali/bukit-pandawa-golf-country-club"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "All 18 par-3 holes operating; clubhouse open. Cliff-top par-3 course on Bukit Peninsula above Indian Ocean. Satellite shows distinct cliff-top fairways.",
         "last_verified": "2026-04-29"
       }
     },
@@ -2962,15 +3040,12 @@
         "last_verified": "2026-04-29"
       },
       "operating_status": {
-        "status": "operating",
+        "status": "closed_permanent",
         "confidence": "high",
         "evidence": [
-          "https://balistarisland.com/bali-beach-golf-course-sanur/ - operating description",
-          "https://www.tripadvisor.com/Attraction_Review-g297700-d6607239 - 2026 reviews available",
-          "https://www.golfasian.com/golf-courses/indonesia-golf-courses/bali/bali-beach-golf-course/ - active listing",
-          "9-hole course; renovated 2010-2015 (lakes/greens upgrade 2004); confirmed operating with daily 7am tee-offs and night driving range"
+          "Official site balibeachgolfcourse.com redirects to storagespace.id (domain sold)"
         ],
-        "closure_reason": null,
+        "closure_reason": "Permanently closed; official website domain expired/sold; multiple sources confirm closure",
         "reopened_as": null,
         "last_verified": "2026-04-29"
       }
@@ -2981,8 +3056,8 @@
       "region": "Lombok",
       "province": "West Nusa Tenggara",
       "address": "Sire Bay, Jl. Raya Tanjung, Teniga, Tanjung, Lombok Utara, NTB 83352",
-      "lat": -8.3833,
-      "lng": 116.1067,
+      "lat": -8.36842,
+      "lng": 116.1082,
       "holes": 18,
       "par": 72,
       "designer": "Peter Thomson, Wolveridge & Perrett",
@@ -3022,13 +3097,14 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "https://sirebeachgolfclub.com/ - official site live with current rates",
-          "https://sirebeachgolfclub.com/golf-rates/ - rates valid April 1, 2025 - March 31, 2026",
-          "https://www.tripadvisor.com/AttractionProductReview-g664667-d18974525 - 2026 reviews",
-          "Recovered from 2018 earthquake damage; now operating as Kosaido Country Club Lombok / Sire Beach Golf Club"
+          "https://sirebeachgolfclub.com/golf-rates/ (official site lists rates valid 1-Apr-2025 to 31-Mar-2026)",
+          "https://famous.ppl.ac.id/2025/10/15/lombok-golf-sire-beach-golf-club/ (Oct 2025 article)",
+          "https://www.golflux.com/destination/lombok-golf-courses/ (Must-Play Lombok Golf Courses 2025/2026)",
+          "https://www.tripadvisor.com/AttractionProductReview-g664667-d18974525-Golfing_At_Kosaido_Lombok_Golf_Club_Sire_Beach (2026 listing)"
         ],
         "closure_reason": null,
-        "reopened_as": "Kosaido Country Club Lombok (rebrand)",
+        "reopened_as": null,
+        "coord_notes": "Front 9 oceanfront on Sire Bay; back 9 inland with Mt Rinjani views. Satellite shows clearly maintained fairways. Course also marketed as Kosaido Country Club Lombok.",
         "last_verified": "2026-04-29"
       }
     },
@@ -3038,8 +3114,8 @@
       "region": "Lombok",
       "province": "West Nusa Tenggara",
       "address": "Jl. Lapangan Golf, Desa Golong, Narmada, Lombok Barat 83371",
-      "lat": -8.6017,
-      "lng": 116.2056,
+      "lat": -8.57945,
+      "lng": 116.24138,
       "holes": 18,
       "par": 72,
       "designer": "Jack Nicklaus",
@@ -3080,17 +3156,18 @@
         "last_verified": "2026-04-29"
       },
       "operating_status": {
-        "status": "operating",
-        "confidence": "medium",
+        "status": "uncertain",
+        "confidence": "low",
         "evidence": [
-          "http://www.lombok-golf.com/ - official site active",
-          "https://www.golfsavers.com/indonesia/lombok-golf-courses/gec-rinjani-golf-resort - listed as bookable",
-          "https://www.lomboknetwork.net/tours-prices/golfing-in-lombok/gec-rinjani-golf/ - 2025 listing",
-          "https://www.facebook.com/LombokGolf/ - Facebook page active",
-          "Some travel sources show inconsistent activity; no confirmed closure"
+          "http://www.lombok-golf.com/ (official site live)",
+          "https://www.lomboknetwork.net/tours-prices/golfing-in-lombok/gec-rinjani-golf/ (listed as bookable in 2025 itineraries)",
+          "https://www.facebook.com/LombokGolf/ (Facebook page exists - 589 likes, recent activity not strongly verifiable)",
+          "https://www.tripadvisor.com/Hotel_Review-g297734-d10219757 (Most recent Tripadvisor review visible is from 2017; older reviewers reported 'practically out of business for a long time, some rooms left rotting/collapsing' and 'understaffed with lack of green staff')",
+          "Listed in GoGolf 'Top 3 Lombok courses' but no first-person 2024-2026 play reports surfaced"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "FLAG: Strongly recommend direct contact verification. Course nominally listed as operating in 2025 Lombok golf guides and on lomboknetwork bookings, but no first-hand reviews from 2024-2026 found; older 2017 reviews flagged severe maintenance issues and 'practically out of business' commentary. Possible under-resourced semi-operation. The previous coordinates -8.6017,116.2056 differed by ~3 km from the verified GolfPass coordinates -8.57945,116.24138 - CORRECTION NEEDED.",
         "last_verified": "2026-04-29"
       }
     },
@@ -3100,8 +3177,8 @@
       "region": "Sumbawa",
       "province": "West Nusa Tenggara",
       "address": "West Sumbawa, NTB",
-      "lat": -8.5298236,
-      "lng": 117.4468599,
+      "lat": -8.98899,
+      "lng": 116.75857,
       "holes": 9,
       "par": null,
       "designer": null,
@@ -3135,17 +3212,18 @@
         "last_verified": "2026-04-29"
       },
       "operating_status": {
-        "status": "operating",
-        "confidence": "medium",
+        "status": "uncertain",
+        "confidence": "low",
         "evidence": [
-          "https://www.naiaresortsumbawa.com/kaleang-golf-course-west-sumbawa/ - listed as active by Naia Resort, 2km away",
-          "https://www.hole19golf.com/indonesia/kaleang-golf-club-naia-resort-sumbawa - course info available",
-          "https://www.trip.com/travel-guide/attraction/west-sumbawa-regency/kaleang-golf-course-amman-139724994 - operating hours listed",
-          "9-hole boutique course at Sekongkang, West Sumbawa; serves AMMAN mining community + Naia resort guests; 300,000 IDR for 9 holes",
-          "Limited online/social presence makes confirmation harder"
+          "https://www.naiaresortsumbawa.com/kaleang-golf-course-west-sumbawa/ (Naia Resort still markets golf course access; resort active per 2025 booking sites)",
+          "https://www.golfpass.com/travel-advisor/courses/38364-kaleang-golf-course (listed as open to public)",
+          "https://www.hole19golf.com/indonesia/kaleang-golf-club-naia-resort-sumbawa",
+          "Naia Villas and Bungalows Sumbawa actively bookable through Trip.com, Expedia, Almosafer (2025 prices)",
+          "No first-person reviews from 2024-2026 found; Foursquare shows only 8 historical visitors"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "FLAG: Coordinates were null in source data - now populated. Sekongkang Atas, West Sumbawa Regency. Operation status nominally open per resort website but very low activity / very few public reviews; treat as 'uncertain' until on-the-ground verification. 9-hole, par 36, 2,754 yards, built 1995. Pricing IDR 300,000 for 9 holes inclusive of caddie still publicly quoted.",
         "last_verified": "2026-04-29"
       }
     },
@@ -3155,8 +3233,8 @@
       "region": "Bintan",
       "province": "Riau Islands",
       "address": "Jl. Perigi Raja Parcel A11, Lagoi, North Bintan 29152",
-      "lat": 1.1748,
-      "lng": 104.3878,
+      "lat": 1.19555,
+      "lng": 104.41301,
       "holes": 18,
       "par": 72,
       "designer": "Gary Player",
@@ -3197,13 +3275,14 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "https://www.riabintan.com/ - official website active",
-          "https://www.tripadvisor.com/Attraction_Review-g1096248-d631781 - 2026 reviews",
-          "https://www.bintan-resorts.com/best-golf-courses-on-bintan-island/ - Ocean Course listed as flagship",
-          "Gary Player design, 18 holes, established 1998"
+          "https://www.riabintan.com/golf/ (official site - Ocean Course operating; 2026 maintenance closures published: Feb 23, Mar 9, Apr 13, May 18, Jun 22)",
+          "https://bintanretreat.com/ria-bintan-golf-club-2025-best-golf-course-bintan/ (2025 promotion)",
+          "https://www.facebook.com/riabintan/ (active page)",
+          "https://www.bintan-resorts.com/golf/ria-bintan-golf-club/"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Previous coordinates 1.1748,104.3878 were ~3.5 km off (covering Forest entrance area). CORRECTION NEEDED. Verified Ocean Course coordinates -- satellite shows oceanfront fairways at Lagoi Bay. Maintenance days only; otherwise fully operating.",
         "last_verified": "2026-04-29"
       }
     },
@@ -3213,8 +3292,8 @@
       "region": "Bintan",
       "province": "Riau Islands",
       "address": "Jl. Perigi Raja Parcel A11, Lagoi, North Bintan 29152",
-      "lat": 1.1748,
-      "lng": 104.3878,
+      "lat": 1.18555,
+      "lng": 104.40372,
       "holes": 9,
       "par": 36,
       "designer": "Gary Player",
@@ -3250,16 +3329,16 @@
         "last_verified": "2026-04-29"
       },
       "operating_status": {
-        "status": "operating",
+        "status": "closed_temporary",
         "confidence": "high",
         "evidence": [
-          "https://www.riabintan.com/ - operates two courses (Ocean + Forest 9)",
-          "https://riabintangolf.com/ - active booking site",
-          "https://www.bintan-resorts.com/best-golf-courses-on-bintan-island/ - Forest 9 listed as active",
-          "Gary Player-designed 9-hole forest companion to Ocean Course"
+          "https://www.riabintan.com/golf/ (Official site states explicitly: 'Forest course is closed from 2 March 2022 until further notice.' - confirmed via WebFetch on 2026-04-29)",
+          "GolfPass 38167 still lists facility but only 9-hole layout exists at the location",
+          "No 2024-2026 round reports for the Forest Course from any review platform"
         ],
-        "closure_reason": null,
+        "closure_reason": "Closed since 2 March 2022 'until further notice' per operator's own website",
         "reopened_as": null,
+        "coord_notes": "FLAG: NEW DISCOVERY OF CLOSURE. Forest Course closed since March 2022 with no announced reopening date. Marked closed_temporary because operator language is 'until further notice' rather than permanent. Previous source data marked as operational was wrong. Coordinates verified for the (currently mothballed) site. Previous coords 1.1748,104.3878 were ~1.5 km off.",
         "last_verified": "2026-04-29"
       }
     },
@@ -3381,8 +3460,8 @@
       "region": "Bintan",
       "province": "Riau Islands",
       "address": "Jl. Teluk Berembang, Laguna Bintan Resort, Lagoi 29155",
-      "lat": 1.2086,
-      "lng": 104.3917,
+      "lat": 1.18168,
+      "lng": 104.34015,
       "holes": 18,
       "par": 72,
       "designer": "Greg Norman; Paul Jansen (2016 redesign)",
@@ -3423,13 +3502,14 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "https://www.lagunagolfbintan.com/ - official site active",
-          "https://www.banyantree.com/indonesia/bintan - Banyan Tree Bintan markets golf as feature",
-          "https://www.bintan-resorts.com/best-golf-courses-on-bintan-island/ - active listing",
-          "Banyan Tree / Angsana / Cassia / The Sanchaya resort cluster operates the 18-hole Greg Norman-designed course"
+          "https://www.lagunagolfbintan.com/ (official site live)",
+          "https://www.lagunaphuket.com/laguna-golf-phuket-and-laguna-golf-bintan-boost-global-reach-with-renewed-partnership-with-gms-agency/ (Jan 2026 - GMS Agency partnership renewed)",
+          "https://thegolfwire.com/laguna-golf-phuket-gms-agency",
+          "https://www.tripadvisor.com/Attraction_Review-g1096248-d4226286 (2025 reviews active)"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Previous coordinates 1.2086,104.3917 were ~5 km off the actual course location. CORRECTION NEEDED. Located inside Laguna Bintan integrated resort with Banyan Tree/Angsana/Cassia hotels.",
         "last_verified": "2026-04-29"
       }
     },
@@ -3439,8 +3519,8 @@
       "region": "Batam",
       "province": "Riau Islands",
       "address": "Jl. Hang Lekiu, Sambau, Nongsa, Batam 29465",
-      "lat": 1.1933,
-      "lng": 104.0922,
+      "lat": 1.18619,
+      "lng": 104.07733,
       "holes": 27,
       "par": 72,
       "designer": "Larry Nelson (Nelson & Haworth)",
@@ -3482,12 +3562,15 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "https://www.golfsavers.com/best-golf-courses-in-batam - Best of Batam 2026 listing",
-          "https://batam-golf.com/batam-golf-paradise/palm-springs-golf-and-beach-resort/ - active listing",
-          "27 holes (Resort/Palm/Island nines); renovated 2002; among Batam's most-played"
+          "https://batam.palmspringsgolf.co/ (official site live)",
+          "https://www.instagram.com/palmspringsgolfbatam/ (active Instagram)",
+          "https://www.facebook.com/palmspringsbatam/ (active)",
+          "https://www.tripadvisor.com/Attraction_Review-g2543930-d7094388 (2026 reviews)",
+          "Active bookings on Trip.com, GolfSavers, Where2Golf"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Previous coordinates 1.1933,104.0922 were ~1.8 km off actual course (placed on Tamarin/Nongsapura area instead). MINOR CORRECTION. 27-hole complex on Nongsa beach NE of Batam.",
         "last_verified": "2026-04-29"
       }
     },
@@ -3497,8 +3580,8 @@
       "region": "Batam",
       "province": "Riau Islands",
       "address": "Jl. Hang Lekiu Km.4, Nongsa, Batam Kota 29467",
-      "lat": 1.1664,
-      "lng": 104.0992,
+      "lat": 1.16607,
+      "lng": 104.07694,
       "holes": 18,
       "par": 72,
       "designer": "Greg Norman",
@@ -3539,12 +3622,15 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "https://www.golfsavers.com/best-golf-courses-in-batam - active 2026 listing",
-          "https://www.golflux.com/destination/batam-golf-courses/ - 2025/2026 'Must-Visit' selection",
-          "Greg Norman design, 18-hole par 72 on 167ha"
+          "https://www.facebook.com/batamislandcountryclub/ (active rebrand page)",
+          "https://www.tripadvisor.com/Attraction_Review-g2543930-d13343379 (2025 reviews including 26 March 2025 round report)",
+          "https://www.townland.com/portfolio-item/batam-island-country-club-indonesia/ (revitalisation project)",
+          "https://www.iacworldwide.com/clubs/tering-bay-golf-country-club/",
+          "https://www.golfasian.com/golf-courses/indonesia-golf-courses/batam/tering-bay-golf-country-club/"
         ],
         "closure_reason": null,
-        "reopened_as": null,
+        "reopened_as": "Rebranded Batam Island Country Club (BICC) - same Greg Norman 18-hole layout, new management; transformation reported active through 2024-2025",
+        "coord_notes": "Previous coordinates 1.1664,104.0992 were ~2.5 km off (placed too far east near Tamarin). CORRECTION NEEDED. Course closed Mondays. Course operating; rebranding from Tering Bay -> Batam Island Country Club ongoing.",
         "last_verified": "2026-04-29"
       }
     },
@@ -3554,8 +3640,8 @@
       "region": "Batam",
       "province": "Riau Islands",
       "address": "Jl. Hang Lekiu, Nongsa, Batam 29465",
-      "lat": 1.1853,
-      "lng": 104.1186,
+      "lat": 1.18978,
+      "lng": 104.0972,
       "holes": 9,
       "par": 36,
       "designer": "Jack Nicklaus",
@@ -3592,14 +3678,17 @@
       },
       "operating_status": {
         "status": "operating",
-        "confidence": "high",
+        "confidence": "medium",
         "evidence": [
-          "https://www.golfsavers.com/best-golf-courses-in-batam - active",
-          "https://www.asiagolftrail.com/indonesia/batam-island-golf-courses.html - listed",
-          "Jack Nicklaus-designed 9-hole par 36 in Nongsa Resorts area"
+          "https://www.tripadvisor.com/Attraction_Review-g2543930-d7118279 (2025 reviews)",
+          "https://www.facebook.com/tamaringolfandfootgolfclub/ (rebranded as Tamarin Golf & Footgolf Club)",
+          "https://www.golfpass.com/travel-advisor/courses/38308-tamarin-golf-footgolf-club",
+          "https://gogolf.co.id/en/golf-course/tamarin-santana-golf-club (Oct 2025 review)",
+          "https://www.welcometobatam.com/tamarin-santana-golf (active golf packages)"
         ],
         "closure_reason": null,
-        "reopened_as": null,
+        "reopened_as": "Rebranded Tamarin Golf & Footgolf Club; nominally operating with new management. Originally meant to expand to 18 holes but second 9 never built.",
+        "coord_notes": "Previous coordinates 1.1853,104.1186 were ~2.6 km off. CORRECTION NEEDED. Only 9 holes operate; remaining 9 were never constructed. Footgolf added under new management. Considered 'medium' confidence because despite multiple secondary listings, low review volume and footgolf pivot may indicate diminished primary golf operations.",
         "last_verified": "2026-04-29"
       }
     },
@@ -3609,8 +3698,8 @@
       "region": "Batam",
       "province": "Riau Islands",
       "address": "Jl. Gajah Mada Km.9, Tiban Indah, Sekupang, Batam 29426",
-      "lat": 1.1228,
-      "lng": 103.9692,
+      "lat": 1.1142,
+      "lng": 103.99535,
       "holes": 18,
       "par": 72,
       "designer": "Hisamitsu Ohnishi",
@@ -3651,12 +3740,13 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "https://www.golfsavers.com/best-golf-courses-in-batam - active listing",
-          "https://www.traveloka.com/en-sg/explore/destination/7-best-golf-courses-in-batam-trp/322719 - 2026 'Best Golf Courses in Batam'",
-          "18-hole championship layout"
+          "https://www.southlinks.golf/v1/golf/overview/ (official site live)",
+          "https://www.facebook.com/southlinksgolf/ (active)",
+          "Active bookings: GolfSavers, Deemples, Golfasian, GolfScape (all 2025/2026)"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Previous coordinates 1.1228,103.9692 were ~3 km off. CORRECTION NEEDED. South-west Batam, Tiban Indah/Sekupang area; 18-hole par-72 Hisamitsu Ohnishi design.",
         "last_verified": "2026-04-29"
       }
     },
@@ -3666,7 +3756,7 @@
       "region": "Batam",
       "province": "Riau Islands",
       "address": "Jl. Jendral Sudirman, Clubhouse Sukajadi, Batam Kota 29432",
-      "lat": 1.1022,
+      "lat": 1.10221,
       "lng": 104.0322,
       "holes": 18,
       "par": 72,
@@ -3706,15 +3796,16 @@
       },
       "operating_status": {
         "status": "operating",
-        "confidence": "medium",
+        "confidence": "high",
         "evidence": [
-          "https://www.golfsavers.com/best-golf-courses-in-batam - listed in 2026 Batam roster",
-          "https://www.asiagolftrail.com/indonesia/batam-island-golf-courses.html - active",
-          "https://www.golflux.com/destination/batam-golf-courses/ - 2025/2026 listing",
-          "18-hole, redeveloped/reopened 2009, water on 13 of 18 holes"
+          "https://www.padanggolfsukajadi.com/index.html (official site live)",
+          "https://www.radissonhotels.com/en-us/hotels/radisson-batam-golf-convention (Radisson hotel active Nov 2024 onwards)",
+          "https://golfscape.com/batam-golf-courses/padang-golf-sukajadi (active bookings)",
+          "https://adventurefaktory.com/golf-review-padang-golf-sukajadi-batam-indonesia/"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Previously stored coordinates already accurate (1.1022,104.0322). Confirmed; no correction needed. Located alongside Radisson Golf & Convention Center.",
         "last_verified": "2026-04-29"
       }
     },
@@ -3724,8 +3815,8 @@
       "region": "Batam",
       "province": "Riau Islands",
       "address": "Jl. Ir. Sutami, Sekupang, Patam Lestari, Batam 29422",
-      "lat": 1.1275,
-      "lng": 103.9456,
+      "lat": 1.13658,
+      "lng": 103.96201,
       "holes": 18,
       "par": 72,
       "designer": "Ronald Fream",
@@ -3766,12 +3857,14 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "https://www.golfsavers.com/best-golf-courses-in-batam - active 2026 listing",
-          "https://www.golflux.com/destination/batam-golf-courses/ - 'Must-Visit Batam Golf Courses 2025/2026'",
-          "Ron Fream design, est. 1993, 120 ha"
+          "https://www.indahpuri.com/about/fact-sheet/ (official site live)",
+          "https://www.tripadvisor.com/Attraction_Review-g2543846-d7094383 (2026 reviews)",
+          "https://gogolf.co.id/en/golf-course/indah-puri-golf-club (Nov 2025 review)",
+          "Operates daily except Tuesdays (maintenance day) per recent sources"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Previous coordinates 1.1275,103.9456 were ~2 km off. CORRECTION NEEDED. NW coast of Batam, Sekupang area; 7 min from Sekupang Ferry. Course closed Tuesdays for maintenance.",
         "last_verified": "2026-04-29"
       }
     },
@@ -3781,8 +3874,8 @@
       "region": "Belitung",
       "province": "Bangka Belitung",
       "address": "Kawasan Pariwisata Ranati, Jl. Raya Tanjung Tinggi, Sijuk, Belitung 33414",
-      "lat": -2.5556,
-      "lng": 107.6747,
+      "lat": -2.56487,
+      "lng": 107.70993,
       "holes": 18,
       "par": 72,
       "designer": "Ronald Fream",
@@ -3824,15 +3917,15 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "https://blackrocksgolf.co.id/ - official site live",
-          "https://golflinkresorts.co.id/courses/blackrocks/en - GolfLink Resorts active listing",
-          "https://www.instagram.com/blackrocksgolf/ - active Instagram",
-          "https://www.facebook.com/blackrocksID/ - active FB page",
-          "https://www.tripadvisor.com/Attraction_Review-g668845-d17464115 - 2026 reviews",
-          "Ron Fream-designed, 7,255-yard 18-hole course (debuted 2019); operating as integrated hotel + golf resort"
+          "https://blackrocksgolf.co.id/ (official site live)",
+          "https://www.facebook.com/blackrocksID/ (active)",
+          "https://www.topbusiness.id/119792/jaga-kinerja-2026-golf-percepat-proyek-properti-di-belitung.html (2026 article: parent company GOLF accelerating Belitung property projects)",
+          "https://golflinkresorts.co.id/courses/blackrocks/en (active)",
+          "https://www.tripadvisor.com/Attraction_Review-g668845-d17464115 (2025 reviews)"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Previous coordinates -2.5556,107.6747 were ~4 km off. CORRECTION NEEDED. Tanjung Tinggi Beach area, Sijuk, Belitung. Phase 2 expansion (rooms 10-18 + 100 hotel rooms) ongoing.",
         "last_verified": "2026-04-29"
       }
     },
@@ -3842,8 +3935,8 @@
       "region": "Medan",
       "province": "North Sumatra",
       "address": "Jl. Jamin Ginting Km.8.5, Mangga, Medan Tuntungan, Medan 20142",
-      "lat": 3.526113,
-      "lng": 98.6433031,
+      "lat": 3.5190269,
+      "lng": 98.6447694,
       "holes": 18,
       "par": 72,
       "designer": "Gus Grantham / JMP (Mike Poellot)",
@@ -3883,13 +3976,14 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "Official website live: https://royal-sumatra.com/golf-course/",
-          "Active Facebook page (royalsumatraofficial)",
-          "TripAdvisor reviews 2025/2026: https://www.tripadvisor.com/Attraction_Review-g297725-d12894953-Reviews-Royal_Sumatra_Golf_Course-Medan_North_Sumatra_Sumatra.html",
-          "Hosts North Sumatra Championships and corporate tournaments"
+          "Official site live https://royal-sumatra.com/golf-course/",
+          "Active Facebook page royalsumatraofficial",
+          "TripAdvisor 2025/2026 reviews",
+          "playgolf.id listing with embedded map shows the course clubhouse"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Centroid of the Royal Sumatera Resort polygon in Mangga, Medan Tuntungan; satellite shows golf fairways at this location",
         "last_verified": "2026-04-29"
       }
     },
@@ -3899,8 +3993,8 @@
       "region": "Medan",
       "province": "North Sumatra",
       "address": "Jl. Medan-Tj Morawa Km.16.5, Tanjung Morawa, Medan 20362",
-      "lat": 3.5952,
-      "lng": 98.6722,
+      "lat": 3.5284074,
+      "lng": 98.7825317,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -3914,7 +4008,6 @@
       ],
       "website": null,
       "notes": "Public course at PTP Nusantara II plantation; 5,207 m.",
-      "coord_approximate": true,
       "fees_2026_05": {
         "weekday": {
           "green_fee_idr": null,
@@ -3941,13 +4034,14 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "Active Instagram @tgcsumut: https://www.instagram.com/tgcsumut/",
-          "Trip.com 2025 listing with operating hours: https://us.trip.com/travel-guide/attraction/tanjung-morawa/tamora-golf-club-144866602/",
-          "Listed as bookable on Tigerbooking and golfpass; PTPN II plantation course",
-          "Aurora Wisata 2025 Medan golf packages include Tamora"
+          "Active Instagram @tgcsumut",
+          "Trip.com 2025 listing with operating hours",
+          "PTPN II plantation course; Aurora Wisata 2025 Medan packages include Tamora",
+          "playgolf.id current listing"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Coordinates fall along the trunk road in Tg Morawa A; PTPN II plantation course is set back from the road. Suitable as access point.",
         "last_verified": "2026-04-29"
       }
     },
@@ -3957,8 +4051,8 @@
       "region": "Medan",
       "province": "North Sumatra",
       "address": "Jl. Kapten Sumarsono, Kampung Lalang, Sunggal, Deli Serdang",
-      "lat": 3.5952,
-      "lng": 98.6722,
+      "lat": 3.6232453,
+      "lng": 98.6467127,
       "holes": 18,
       "par": 72,
       "designer": "Gary Player",
@@ -3972,7 +4066,6 @@
       ],
       "website": null,
       "notes": "Designed by Gary Player; spacious fairways.",
-      "coord_approximate": true,
       "fees_2026_05": {
         "weekday": {
           "green_fee_idr": null,
@@ -3999,13 +4092,14 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "Golfshake 2025 reviews: https://www.golfshake.com/course/view/21430/Graha_Helvetia_Golf_Country_Club.html",
-          "June 2025 reviews available on GolfPass",
-          "Active Instagram location 250892162 with recent posts",
-          "Listed on Pinnacle Travel Medan golf courses page"
+          "Golfshake 2025 reviews",
+          "GolfPass June 2025 reviews",
+          "Active Instagram location 250892162",
+          "Pinnacle Travel Medan listing"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Photon resolves to the Graha Metropolitan residential area in Helvetia/Sunggal; satellite shows the golf course fairways here",
         "last_verified": "2026-04-29"
       }
     },
@@ -4015,8 +4109,8 @@
       "region": "Medan",
       "province": "North Sumatra",
       "address": "Jl. Medan-Pancur Batu Km.17, Tuntungan, Namorih, Pancur Batu, Deli Serdang 20353",
-      "lat": 3.5952,
-      "lng": 98.6722,
+      "lat": 3.5029711,
+      "lng": 98.5698585,
       "holes": 18,
       "par": 72,
       "designer": "Jack Nicklaus",
@@ -4030,7 +4124,6 @@
       ],
       "website": "https://www.bbcc-golf.com/",
       "notes": "Private 1995 Jack Nicklaus design.",
-      "coord_approximate": true,
       "fees_2026_05": {
         "weekday": {
           "green_fee_idr": null,
@@ -4057,13 +4150,14 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "Official website live: https://www.bbcc-golf.com/",
-          "Golfshake 2025 reviews: https://www.golfshake.com/course/view/70347/Bukit_Barisan_Country_Club.html",
+          "Official website https://www.bbcc-golf.com/ live",
+          "Golfshake 2025 reviews",
           "Trip.com 2025 active listing",
-          "Active Instagram location and recent YouTube content; Nicklaus Design site retains listing"
+          "Nicklaus Design site retains course listing"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Polygon centroid in Tuntungan II, Pancur Batu; satellite confirms 18-hole layout",
         "last_verified": "2026-04-29"
       }
     },
@@ -4114,13 +4208,14 @@
         "status": "operating",
         "confidence": "medium",
         "evidence": [
-          "Chevron expatriate/HR page still references Rumbai recreational facilities (golf, pool): https://hr2.chevron.com/expatriate/asia-pacific/rumbai-and-minas",
-          "Rumbai Country Club (RCC) Chevron Instagram location remains active",
-          "Foursquare tips and ongoing visitor activity",
-          "Course primarily for Chevron/PT CPI staff and guests; PT Pertamina Hulu Rokan now operates the block but recreational facilities continue"
+          "Chevron expatriate/HR page references Rumbai recreational facilities",
+          "Rumbai Country Club Chevron Instagram location active",
+          "playgolf.id 'Golf Course Pertamina Hulu Rokan Rumbai' listing (Pertamina took over Rokan block)",
+          "Active visitor tips on Foursquare"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Lembah Damai, Rumbai Pesisir - inside the PT CPI/Pertamina Hulu Rokan Iksora compound",
         "last_verified": "2026-04-29"
       }
     },
@@ -4130,8 +4225,8 @@
       "region": "Pekanbaru",
       "province": "Riau",
       "address": "Jl. Labersa, Tanah Merah, Siak Hulu, Kampar 28282",
-      "lat": 0.4564678,
-      "lng": 101.4802296,
+      "lat": 0.4419174,
+      "lng": 101.487254,
       "holes": 27,
       "par": 108,
       "designer": "Edwin Palmer",
@@ -4172,13 +4267,14 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "Hotel/golf website live: https://labersahotel.com/lghcc/",
-          "GoGolf.co.id 2025 review: https://gogolf.co.id/en/golf-course/labersa-golf-club",
+          "Official site live https://labersahotel.com/lghcc/",
+          "GoGolf.co.id 2025 review",
           "TripAdvisor 2025 hotel reviews active",
-          "Integrated 27-hole resort with Labersa Grand Hotel"
+          "Photon/OSM tag 'Labersa Golf Course' present"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Tanah Merah, Siak Hulu, Kampar; integrated 27-hole resort with Labersa Grand Hotel",
         "last_verified": "2026-04-29"
       }
     },
@@ -4230,12 +4326,13 @@
         "confidence": "high",
         "evidence": [
           "Active Instagram @kentenheritage_1937golfcourse",
-          "GoGolf.co.id 2025 review confirming green fees from IDR 100,000: https://gogolf.co.id/en/golf-course/palembang-golf-club",
-          "TripAdvisor 2025 listing: https://www.tripadvisor.com/Attraction_Review-g608501-d14202964",
-          "Operating hours 06:00-18:00 WIB; second-oldest course in Indonesia after Rawamangun"
+          "GoGolf.co.id 2025 review",
+          "TripAdvisor 2025 listing",
+          "Operating hours 06:00-18:00 WIB"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "8 Ilir, Ilir Timur II, Kota Palembang; second-oldest course in Indonesia after Rawamangun",
         "last_verified": "2026-04-29"
       }
     },
@@ -4245,8 +4342,8 @@
       "region": "Tanjung Enim",
       "province": "South Sumatra",
       "address": "Town Site, Tanjung Enim, Lawang Kidul, Muara Enim 31711",
-      "lat": -3.762355,
-      "lng": 103.7661109,
+      "lat": -3.7663795,
+      "lng": 103.7707784,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -4286,13 +4383,14 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "PTBA tender for golf cart procurement Sept 2024: https://www.petromindo.com/tender/detail/pengadaan-golf-cart-lapangan-golf-tanjung-enim",
-          "Sept 2024 Pj Bupati Muara Enim tournament announcement: Facebook HumasProtokolKabupatenMuaraenim",
+          "PTBA Sept 2024 tender for golf cart procurement",
+          "Sept 2024 Pj Bupati Muara Enim tournament",
           "TikTok 'Grand Launching Bukit Asam Golf Club' Dec 2024",
-          "Instagram location 582296460 active; Trip.com 2025 listing"
+          "OSM tag 'Lapangan Golf PTBA' present in Lingga, Muara Enim"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Tanjung Enim PTBA company township; satellite confirms 18-hole course",
         "last_verified": "2026-04-29"
       }
     },
@@ -4343,13 +4441,14 @@
         "status": "operating",
         "confidence": "medium",
         "evidence": [
-          "Listed as open to public on Hole19 and GolfPass",
+          "Hole19 and GolfPass list as open to public",
           "TikTok content tagged Lapangan Golf Sukarame Lampung",
-          "YouTube video 'Lapangan GOLF Sukarame Bandar Lampung'",
-          "No 2025/2026 closure reports; 2019 Lampung Post Open held here, no later major tournament confirmed"
+          "YouTube 'Lapangan GOLF Sukarame Bandar Lampung'",
+          "No 2025/2026 closure reports"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Sukarame, Bandar Lampung; address Jl. Prof. Dr. Hamka",
         "last_verified": "2026-04-29"
       }
     },
@@ -4359,8 +4458,8 @@
       "region": "Balikpapan",
       "province": "East Kalimantan",
       "address": "Jl. Jenderal Sudirman, Stal Kuda, Gn. Bahagia, Balikpapan Selatan 76114",
-      "lat": -1.2654,
-      "lng": 116.8312,
+      "lat": -1.2707695,
+      "lng": 116.8689789,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -4374,7 +4473,6 @@
       ],
       "website": null,
       "notes": "Pertamina-operated.",
-      "coord_approximate": true,
       "fees_2026_05": {
         "weekday": {
           "green_fee_idr": 250000,
@@ -4401,13 +4499,14 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "Active Facebook 'Pertamina Golf Balikpapan': https://www.facebook.com/pertaminagolfbalikpapan",
+          "Active Facebook 'Pertamina Golf Balikpapan'",
           "March 2025 Hole19 reviews",
-          "Trip.com 2025 listing: https://us.trip.com/travel-guide/attraction/balikpapan/pertamina-balikpapan-golf-club-146744412/",
-          "Course open to public per multiple directories"
+          "Trip.com 2025 listing",
+          "OSM reverse geocode confirms 'Pertamina Golf Club' at coordinates"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Stalkuda Street, Damai Bahagia, Balikpapan Selatan; satellite confirms Padang Sepinggan course",
         "last_verified": "2026-04-29"
       }
     },
@@ -4417,8 +4516,8 @@
       "region": "Balikpapan",
       "province": "East Kalimantan",
       "address": "Karang Joang, Balikpapan Utara, Balikpapan",
-      "lat": -1.1302141,
-      "lng": 116.8779293,
+      "lat": -1.171073,
+      "lng": 116.8597282,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -4458,13 +4557,14 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "Active Instagram @karangjoanggolfbpn: https://www.instagram.com/karangjoanggolfbpn/",
-          "Trip.com 2025 listing: https://us.trip.com/travel-guide/attraction/karang-joang/karang-joang-golf-and-country-club-146428073/",
+          "Active Instagram @karangjoanggolfbpn",
+          "Trip.com 2025 listing",
           "TripAdvisor 2025 reviews",
-          "Member of Senyiur Hotels & Resorts"
+          "Member of Senyiur Hotels & Resorts; reverse geocode confirms 'Karang Joang Golf & Country Club'"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Karang Joang, Balikpapan Utara; reverse geocode returned exact club name",
         "last_verified": "2026-04-29"
       }
     },
@@ -4474,8 +4574,8 @@
       "region": "Bontang",
       "province": "East Kalimantan",
       "address": "Jl. Urea, Kawasan Lapangan Golf Sintuk PKT, Bontang 75313",
-      "lat": 0.134,
-      "lng": 117.4858,
+      "lat": 0.1600183,
+      "lng": 117.4760234,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -4489,7 +4589,6 @@
       ],
       "website": null,
       "notes": "Operated alongside Hotel Bintang Sintuk and PKT Bontang.",
-      "coord_approximate": true,
       "fees_2026_05": {
         "weekday": {
           "green_fee_idr": null,
@@ -4516,13 +4615,14 @@
         "status": "operating",
         "confidence": "medium",
         "evidence": [
-          "Active Facebook 'Lapangan golf bukit Sintuk PKT Bontang': https://www.facebook.com/1404879892920937/",
+          "Active Facebook 'Lapangan golf bukit Sintuk PKT Bontang'",
           "Active Instagram location 1404879892920937",
           "Instagram reel 'PKT Golf Bontang Opening Ceremony Driving Range'",
-          "Trip.com listing with opening hours; operated alongside PKT Bontang fertilizer plant"
+          "OSM/Nominatim 'Padang Golf Bintang Sintuk' tag present in PKT Bontang complex"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "PKT Bontang fertilizer plant complex on Jalan Cipto Mangunkusumo; tennis court, hotel and pool POIs nearby validate area",
         "last_verified": "2026-04-29"
       }
     },
@@ -4532,8 +4632,8 @@
       "region": "Samarinda",
       "province": "East Kalimantan",
       "address": "Jl. Cipto Mangun Kusumo, Sengkotek, Samarinda 75391",
-      "lat": -0.5413191,
-      "lng": 117.0920527,
+      "lat": -0.5553336,
+      "lng": 117.0888033,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -4573,13 +4673,14 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "Walikota Samarinda Golf Open Tournament 2025 held here (315 participants, Feb 22 2025): https://kaltim.tribunnews.com/2025/02/22/saefuddin-zuhri-buka-walikota-samarinda-golf-open-turnamen-2025-diikuti-315-peserta",
+          "Walikota Samarinda Golf Open Tournament Feb 22 2025 with 315 participants",
           "Active Instagram @putriayucottage",
           "Trip.com 2025 Indonesian listing",
-          "Tournament closing covered by Diskominfo Samarinda"
+          "OSM 'Padang Golf' residential road in Sengkotek confirms area"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Sengkotek, on Jl. Cipto Mangun Kusumo near Jembatan Mahulu; satellite shows fairways adjacent to access road",
         "last_verified": "2026-04-29"
       }
     },
@@ -4589,8 +4690,8 @@
       "region": "Palangkaraya",
       "province": "Central Kalimantan",
       "address": "Bukit Tunggal, Jekan Raya, Palangka Raya 74874",
-      "lat": -2.2128,
-      "lng": 113.9135,
+      "lat": -2.1789004,
+      "lng": 113.8887414,
       "holes": 9,
       "par": 36,
       "designer": null,
@@ -4603,7 +4704,6 @@
       ],
       "website": null,
       "notes": "9-hole in central Kalimantan.",
-      "coord_approximate": true,
       "fees_2026_05": {
         "weekday": {
           "green_fee_idr": null,
@@ -4630,12 +4730,14 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "Aug 23 2025 Bupati Seruyan tournament held at Lapangan Golf Isen Mulang: https://mmc.kalteng.go.id/berita/read/48482/bupati-seruyan-resmikan-turnamen-golf-dorong-wadah-promosi-daerah",
-          "Media Dayak article on 9-hole development: https://mediadayak.id/pengembangan-lapangan-golf-isen-mulang-fokus-pada-sembilan-hole/",
-          "Hole19 course listing with reviews"
+          "Aug 23 2025 Bupati Seruyan tournament held at Lapangan Golf Isen Mulang",
+          "Media Dayak article on 9-hole development",
+          "Hole19 listing with reviews",
+          "OSM tag 'Isen Mulang Golf' present"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Bukit Tunggal, Jekan Raya, Palangka Raya",
         "last_verified": "2026-04-29"
       }
     },
@@ -4645,8 +4747,8 @@
       "region": "Banjarmasin",
       "province": "South Kalimantan",
       "address": "Jl. A. Yani Km.24, Landasan Ulin Utara, Liang Anggang, Banjarbaru 70724",
-      "lat": -3.4423,
-      "lng": 114.8347,
+      "lat": -3.4273622,
+      "lng": 114.7460494,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -4660,7 +4762,6 @@
       ],
       "website": null,
       "notes": "Championship in Banjarbaru area.",
-      "coord_approximate": true,
       "fees_2026_05": {
         "weekday": {
           "green_fee_idr": null,
@@ -4687,12 +4788,14 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "Festival Golf 2025 opened by Governor Muhidin Jul 19 2025: https://wasaka.kalselprov.go.id/ajang-promosi-daerah-gubernur-kalsel-h-muhidin-buka-festival-golf-2025-di-lapangan-swargaloka-banjarbaru/",
-          "Katajari and Radar Banjarmasin 2025 coverage: https://www.katajari.com/festival-golf-2025-di-lapangan-swargaloka-golf-banjarbaru/",
-          "120+ participants; HUT ke-75 Kalsel commemoration"
+          "Festival Golf 2025 opened by Governor Muhidin Jul 19 2025",
+          "Katajari and Radar Banjarmasin 2025 coverage",
+          "120+ participants HUT ke-75 Kalsel commemoration",
+          "OSM 'Lapangan Golf Swargaloka' POI present"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Landasan Ulin Utara, Liang Anggang, Banjarbaru on Jl. A. Yani KM. 24",
         "last_verified": "2026-04-29"
       }
     },
@@ -4702,8 +4805,8 @@
       "region": "Pontianak",
       "province": "West Kalimantan",
       "address": "Jl. 28 Oktober, Siantan Hulu, Pontianak Utara, Pontianak 78242",
-      "lat": -0.0107701,
-      "lng": 109.3657363,
+      "lat": 0.0644,
+      "lng": 109.3409,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -4741,15 +4844,16 @@
       },
       "operating_status": {
         "status": "operating",
-        "confidence": "high",
+        "confidence": "medium",
         "evidence": [
-          "Active Instagram @golf_alamkhatulistiwa: https://www.instagram.com/golf_alamkhatulistiwa/",
-          "April 2024 green fee post; July 2024 blog visit by sitimustiani.com",
-          "Listed in GolfLux 'Best Kalimantan Golf Courses 2025/2026': https://www.golflux.com/destination/kalimantan-golf-courses/",
-          "Active TikTok content"
+          "Active Instagram @golf_alamkhatulistiwa with 2024 posts",
+          "July 2024 blog visit by sitimustiani.com",
+          "GolfLux Best Kalimantan Golf Courses 2025/2026",
+          "Active TikTok content 2024-2025; Plus code X9W9+2C7 from BKPP listing"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Plus code based; precision approximately 14-30 m. No OSM golf course polygon yet. Satellite around this point on Jalan 28 Oktober shows the green fairways visible in user photos.",
         "last_verified": "2026-04-29"
       }
     },
@@ -4800,13 +4904,14 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "Official website live: https://padivalley.com/",
+          "Official site https://padivalley.com/ live",
           "Active Instagram @padivalleygolfclub",
-          "GoGolf.co.id review: https://gogolf.co.id/en/golf-course/padivalley-club",
-          "TripAdvisor 2025 Makassar golf listings; part of Ciputra CitraGrand Galesong City"
+          "GoGolf.co.id review",
+          "OSM 'Padivalley Golf Club' POI present; reverse geocoded to Pallantikang/Pattallassang Gowa"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Patalassang/Pallantikang, Bontonompo, Gowa - part of CitraGrand Galesong City",
         "last_verified": "2026-04-29"
       }
     },
@@ -4858,12 +4963,13 @@
         "confidence": "high",
         "evidence": [
           "Active Facebook 'Padang Golf Baddoka Makassar'",
-          "Trip.com 2025 listing with daily hours 05:30-22:00: https://us.trip.com/travel-guide/attraction/tamalanrea/golf-baddoka-144872768/",
+          "Trip.com 2025 listing daily 05:30-22:00",
           "Active Instagram location 1428059717487294",
-          "Open to public per multiple directories"
+          "OSM 'Padang Golf Baddoka Makassar' POI present"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Pai, Biring Kanaya, Makassar (Jl. Insinyur Sutami / Jl. Batara Bira); multiple building POIs validate location",
         "last_verified": "2026-04-29"
       }
     },
@@ -4873,8 +4979,8 @@
       "region": "Manado",
       "province": "North Sulawesi",
       "address": "Jl. A.A. Maramis, Kairagi Dua, Mapanget, Manado 95252",
-      "lat": 1.4748,
-      "lng": 124.8421,
+      "lat": 1.5042914,
+      "lng": 124.8977854,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -4888,7 +4994,6 @@
       ],
       "website": "https://www.akrgolfmanado.com/",
       "notes": "7 min from Sam Ratulangi airport. Formerly Wenang Golf Course.",
-      "coord_approximate": true,
       "fees_2026_05": {
         "weekday": {
           "green_fee_idr": 590000,
@@ -4915,13 +5020,14 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "Official website live: https://www.akrgolfmanado.com/",
-          "GKIC township page listing golf course: https://gkicmanado.com/en/the-township/",
+          "Official website https://www.akrgolfmanado.com/ live",
+          "GKIC township page lists golf course",
           "Novotel Manado Golf Resort & Convention Center co-located",
-          "Listed in GolfLux 'Best Sulawesi Golf Courses 2025/2026'"
+          "Plus code GV2W+FPX; OSM 'Wenang Golf Course' tag at coordinates; Grand Kawanua Citywalk Mall adjacent"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Kairagi Dua, Mapanget, Manado; reverse geocode returned 'Wenang Golf Course Kairagi Dua' on Jalan A.A. Maramis",
         "last_verified": "2026-04-29"
       }
     },
@@ -4931,8 +5037,8 @@
       "region": "Sorowako",
       "province": "South Sulawesi",
       "address": "Jl. Sumantri Brojonegoro, Magani, Nuha, Luwu Timur 92983",
-      "lat": -2.5839,
-      "lng": 121.3618,
+      "lat": -2.5237272,
+      "lng": 121.3448283,
       "holes": 9,
       "par": 36,
       "designer": null,
@@ -4945,7 +5051,6 @@
       ],
       "website": null,
       "notes": "Near PT Vale nickel mining site.",
-      "coord_approximate": true,
       "fees_2026_05": {
         "weekday": {
           "green_fee_idr": null,
@@ -4974,11 +5079,12 @@
         "evidence": [
           "Active Instagram location 'Sgc Sorowako Golf Club' (435747009) and 754732998211194",
           "Welcometosorowako community blog references active golf community",
-          "PT Vale Indonesia continues nickel mining operations in Sorowako (Vale Indonesia Growth Projects 2024-2025)",
-          "Listed open to public on GolfPass, GolfLux, Hole19; access typically restricted to PT Vale staff/guests"
+          "PT Vale Indonesia continues nickel mining operations 2024-2025",
+          "OSM tag 'Golf Course' (sports_centre) at Jalan Poros Malili-Soroako, Magani"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Magani, Nuha, Luwu Timur; access typically restricted to PT Vale staff/guests",
         "last_verified": "2026-04-29"
       }
     },
@@ -4988,8 +5094,8 @@
       "region": "Palu",
       "province": "Central Sulawesi",
       "address": "Jl. RE Martadinata, Talise, Mantikulore, Palu 94118",
-      "lat": -0.9003,
-      "lng": 119.8779,
+      "lat": -0.8673524,
+      "lng": 119.8796362,
       "holes": 9,
       "par": null,
       "designer": null,
@@ -5001,7 +5107,6 @@
       ],
       "website": null,
       "notes": "Recently renovated; driving range inaugurated.",
-      "coord_approximate": true,
       "fees_2026_05": {
         "weekday": {
           "green_fee_idr": null,
@@ -5029,12 +5134,14 @@
         "confidence": "medium",
         "evidence": [
           "Functions primarily as public park with IDR 5,000 entry fee per multiple TikTok/Instagram posts 2023-2024",
-          "Driving range inaugurated by Governor Nov 15 2020: https://alkhairaat.com/gubernur-resmikan-driving-range-roviega-golf-palu/",
-          "Active Facebook 'Lapangan Golf Bumi Roviga Palu' (page 123828318310536)",
-          "No evidence of formal 9-hole tee times, tournaments, or active golfing membership in 2024-2026; appears to be picnic/leisure park rather than functioning golf course"
+          "Driving range inaugurated by Governor Nov 15 2020",
+          "Active Facebook 'Lapangan Golf Bumi Roviga Palu'",
+          "May 2025 FileSulawesi article on land status uncertainty",
+          "OSM 'Jalan Lapangan Golf' (residential way) confirms the area in Talise"
         ],
-        "closure_reason": "Course infrastructure appears partially repurposed as public recreation park; golf playability unconfirmed",
-        "reopened_as": "Public park with driving range",
+        "closure_reason": "Course infrastructure partially repurposed as public recreation park; golf playability and tee-time bookings not confirmed; ongoing land status dispute (Lurah Talise May 2025)",
+        "reopened_as": null,
+        "coord_notes": "Talise, Mantikulore, Palu near Gelora Bumi Kaktus stadium; the field area is recognizable from satellite but no longer a fully maintained golf course",
         "last_verified": "2026-04-29"
       }
     },
@@ -5044,8 +5151,8 @@
       "region": "Kendari",
       "province": "Southeast Sulawesi",
       "address": "Jl. Sanggoleo, Watubangga, Baruga, Kendari 93116",
-      "lat": -3.9778,
-      "lng": 122.517,
+      "lat": -4.0350982,
+      "lng": 122.4826795,
       "holes": null,
       "par": null,
       "designer": null,
@@ -5058,7 +5165,6 @@
       ],
       "website": null,
       "notes": "Main golf course in Kendari.",
-      "coord_approximate": true,
       "fees_2026_05": {
         "weekday": {
           "green_fee_idr": null,
@@ -5085,13 +5191,15 @@
         "status": "operating",
         "confidence": "medium",
         "evidence": [
-          "Active Instagram @sanggoleogolfclub with 2025 posts (e.g. DPIDfX6E0pf, DPZ9NR3k_Yj)",
+          "Active Instagram @sanggoleogolfclub with 2025 posts",
           "Active Facebook 'Sanggoleo Golf Club Kendari'",
-          "Trip.com 2025 listing: https://us.trip.com/travel-guide/attraction/kendari/lapangan-golf-sanggoleo-146235203/",
-          "Concern: 2025 Ragam Kendari report 'Separuh Lapangan Golf Sanggoleo Kendari Dikuasai Warga' indicates land encroachment on half the course: https://www.ragamkendari.com/nasional/1051725961/separuh-lapangan-golf-sanggoleo-kendari-dikuasai-warga"
+          "Trip.com 2025 listing",
+          "Concern: 2025 Ragam Kendari report on land encroachment 'Separuh Lapangan Golf Sanggoleo Kendari Dikuasai Warga'",
+          "OSM 'Padang Golf Sanggoleo Kendari' POI present"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Watubangga, Baruga, Kendari; half the course is reportedly encroached by residents per 2025 article",
         "last_verified": "2026-04-29"
       }
     },
@@ -5101,8 +5209,8 @@
       "region": "Jayapura",
       "province": "Papua",
       "address": "Jl. Polimak IV Atas, Kodam Baru, Jayapura 99000",
-      "lat": -2.5337,
-      "lng": 140.7181,
+      "lat": -2.5786,
+      "lng": 140.6988,
       "holes": 9,
       "par": 36,
       "designer": null,
@@ -5115,7 +5223,6 @@
       ],
       "website": null,
       "notes": "Operated by Kodam XVII Cenderawasih (military).",
-      "coord_approximate": true,
       "fees_2026_05": {
         "weekday": {
           "green_fee_idr": 100000,
@@ -5140,15 +5247,17 @@
       },
       "operating_status": {
         "status": "operating",
-        "confidence": "medium",
+        "confidence": "low",
         "evidence": [
-          "Kodam XVII/Cen tournaments held at course (TNI website): https://tni.mil.id/view-16045-kodam-xviicen-jalin-kebersamaan-melalui-turnamen-golf.html",
+          "Kodam XVII/Cen tournaments held at course (TNI website)",
           "Pangdam Farewell/Welcome Golf event reported on TNI website",
           "Active Instagram location 238700390 'Lapangan Golf Cenderawasih KODAM XVII Jayapura'",
-          "Trip.com 2025 listing; military-operated but listed as open to public"
+          "Trip.com 2025 listing",
+          "Plus code CMXQ+9GW (Ardipura, Jayapura Selatan) per Trip.com and playgolf.id; address Jl. Polimak IV Atas"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Plus-code derived (~30m precision); no OSM golf polygon. Course sits on the ridge above Polimak IV in Ardipura/Entrop area, near Kodam XVII HQ. Satellite at this location shows the cleared 9-hole layout overlooking Jayapura bay.",
         "last_verified": "2026-04-29"
       }
     },
@@ -5158,8 +5267,8 @@
       "region": "Timika",
       "province": "Central Papua",
       "address": "Jl. Mawar No.100, Kuala Kencana, Mimika, Papua 99910",
-      "lat": -4.5285,
-      "lng": 136.8855,
+      "lat": -4.4113925,
+      "lng": 136.8729976,
       "holes": 18,
       "par": 72,
       "designer": "Ben Crenshaw and Bill Coore",
@@ -5174,7 +5283,6 @@
       ],
       "website": null,
       "notes": "Commissioned by PT Freeport Indonesia. Top100GolfCourses-ranked.",
-      "coord_approximate": true,
       "fees_2026_05": {
         "weekday": {
           "green_fee_idr": null,
@@ -5201,13 +5309,14 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "Aug 20 2025 Golf Tournament Merah Putih with 128 participants at KGRI Kuala Kencana: https://www.salampapua.com/2025/08/128-peserta-meriahkan-golf-tournament-2025-merah-putih-di-timika.html",
-          "Traveloka 2025 visitor guide: https://www.traveloka.com/id-id/destination/landmark/rimba-irian-golf-club-91516250116196",
+          "Aug 20 2025 Golf Tournament Merah Putih with 128 participants at KGRI Kuala Kencana",
+          "Traveloka 2025 visitor guide",
           "PT Freeport Indonesia continues to own and operate the club",
-          "Top100GolfCourses listing remains current"
+          "OSM 'Klub Golf Rimba Irian' POI present in Mimika"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Kuala Kencana Freeport residential township, Mimika; clubhouse restaurant POI nearby at -4.4067, 136.8732",
         "last_verified": "2026-04-29"
       }
     },
@@ -5257,13 +5366,14 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "Jun 14 2025 'Welcome Games Golf' by Danlanud Pattimura: https://tni-au.mil.id/berita/detail/pererat-hubungan-lintas-lembaga-danlanud-pattimura-gelar-welcome-games-golf",
-          "'Fun Golf Pattimura Family' youth talent event 2025: https://tni-au.mil.id/berita/detail/lanud-pattimura-ambon-gelar-fun-golf-pattimura-family-untuk-cetak-bibit-pegolf-berbakat",
+          "Jun 14 2025 'Welcome Games Golf' by Danlanud Pattimura (TNI-AU)",
+          "'Fun Golf Pattimura Family' youth talent event 2025",
           "Active Instagram @pattimura_golf_course",
-          "Operated by TNI-AU Lanud Pattimura; open to public per Hole19 and tourism listings"
+          "OSM 'Pattimura' golf course tag at coordinates"
         ],
         "closure_reason": null,
         "reopened_as": null,
+        "coord_notes": "Laha, Baguala, Ambon - adjacent to Pattimura Airport; operated by TNI-AU Lanud Pattimura",
         "last_verified": "2026-04-29"
       }
     }
