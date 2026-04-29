@@ -20,15 +20,18 @@
   <header class="topbar">
     <div class="brand">
       <span class="logo-dot"></span>
-      <h1>Indonesia Golf Club Map</h1>
-      <span class="subtitle">인도네시아 골프장 지도</span>
+      <h1>Indonesia Golf Club</h1>
     </div>
+    <nav class="tabs" role="tablist">
+      <button class="tab active" data-tab="map" role="tab" aria-selected="true">🗺️ 지도</button>
+      <button class="tab" data-tab="table" role="tab" aria-selected="false">📋 골프장 상세</button>
+    </nav>
     <div class="topbar-meta">
       <span class="counter"><strong id="visibleCount">0</strong> / <span id="totalCount">0</span> 개</span>
     </div>
   </header>
 
-  <main class="layout">
+  <main class="layout" id="mapView" data-view="map">
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-header">
         <input type="search" id="searchInput" placeholder="🔍 골프장 이름·지역·설계자 검색" autocomplete="off" />
@@ -72,6 +75,44 @@
       <div class="detail-content" id="detailContent"></div>
     </aside>
   </main>
+
+  <section class="table-view" id="tableView" hidden>
+    <div class="table-toolbar">
+      <input type="search" id="tableSearch" placeholder="🔍 검색 (이름·지역·설계자·주소)" autocomplete="off" />
+      <select id="tableStatusFilter">
+        <option value="operating-only">운영중만</option>
+        <option value="all">전체</option>
+        <option value="closed_temporary">임시 휴장</option>
+        <option value="closed_permanent">영구 폐장</option>
+        <option value="uncertain">불확실</option>
+      </select>
+      <select id="tableRegionFilter"><option value="all">모든 지역</option></select>
+      <span class="table-counter"><strong id="tableVisibleCount">0</strong>개 표시</span>
+      <button id="exportCsv" class="export-btn">📥 CSV 다운로드</button>
+    </div>
+    <div class="table-scroll">
+      <table class="course-table">
+        <thead>
+          <tr>
+            <th data-sort="name_en">골프장명 ▾</th>
+            <th data-sort="region">지역</th>
+            <th data-sort="province">주(Province)</th>
+            <th data-sort="status">운영상태</th>
+            <th data-sort="holes" class="num">홀</th>
+            <th data-sort="par" class="num">파</th>
+            <th data-sort="year_opened" class="num">개장</th>
+            <th data-sort="designer">설계자</th>
+            <th data-sort="weekday_fee" class="num">평일</th>
+            <th data-sort="weekend_fee" class="num">주말</th>
+            <th>설명</th>
+            <th>주소 / 연락</th>
+            <th>출처</th>
+          </tr>
+        </thead>
+        <tbody id="courseTableBody"></tbody>
+      </table>
+    </div>
+  </section>
 
   <footer class="footer">
     데이터 출처: APLGI · GolfPass · GolfAsian · 공식 골프장 사이트 ·

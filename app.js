@@ -425,6 +425,218 @@ function escapeHtml(s) {
     .replaceAll("'", '&#39;');
 }
 
+// === Tabs ===
+let tableSort = { key: 'region', dir: 'asc' };
+
+document.querySelectorAll('.tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.dataset.tab;
+    document.querySelectorAll('.tab').forEach(b => {
+      const active = b.dataset.tab === target;
+      b.classList.toggle('active', active);
+      b.setAttribute('aria-selected', active);
+    });
+    document.getElementById('mapView').hidden = target !== 'map';
+    document.getElementById('tableView').hidden = target !== 'table';
+    if (target === 'table') {
+      renderTable();
+      // Sync map filters into table when first opened
+      if (target === 'table' && !document.getElementById('tableRegionFilter').dataset.populated) {
+        populateTableRegions();
+      }
+    }
+    if (target === 'map' && map) setTimeout(() => map.invalidateSize(), 100);
+  });
+});
+
+function populateTableRegions() {
+  const sel = document.getElementById('tableRegionFilter');
+  const regions = [...new Set(allCourses.map(c => c.region))].sort();
+  regions.forEach(r => {
+    const opt = document.createElement('option');
+    opt.value = r;
+    opt.textContent = r;
+    sel.appendChild(opt);
+  });
+  sel.dataset.populated = '1';
+}
+
+document.getElementById('tableSearch').addEventListener('input', renderTable);
+document.getElementById('tableStatusFilter').addEventListener('change', renderTable);
+document.getElementById('tableRegionFilter').addEventListener('change', renderTable);
+
+document.querySelectorAll('.course-table th[data-sort]').forEach(th => {
+  th.addEventListener('click', () => {
+    const key = th.dataset.sort;
+    if (tableSort.key === key) {
+      tableSort.dir = tableSort.dir === 'asc' ? 'desc' : 'asc';
+    } else {
+      tableSort.key = key;
+      tableSort.dir = 'asc';
+    }
+    document.querySelectorAll('.course-table th').forEach(h => {
+      h.classList.remove('sort-asc', 'sort-desc');
+    });
+    th.classList.add(tableSort.dir === 'asc' ? 'sort-asc' : 'sort-desc');
+    renderTable();
+  });
+});
+
+function getTableRows() {
+  const search = (document.getElementById('tableSearch').value || '').trim().toLowerCase();
+  const statusF = document.getElementById('tableStatusFilter').value;
+  const regionF = document.getElementById('tableRegionFilter').value;
+
+  let rows = allCourses.filter(c => {
+    const status = c.operating_status?.status || 'operating';
+    if (statusF === 'operating-only' && status !== 'operating') return false;
+    if (statusF !== 'all' && statusF !== 'operating-only' && status !== statusF) return false;
+    if (regionF !== 'all' && c.region !== regionF) return false;
+    if (search) {
+      const hay = [c.name_en, c.region, c.province, c.designer, c.address]
+        .filter(Boolean).join(' ').toLowerCase();
+      if (!hay.includes(search)) return false;
+    }
+    return true;
+  });
+
+  // Sort
+  const k = tableSort.key;
+  const dir = tableSort.dir === 'asc' ? 1 : -1;
+  rows.sort((a, b) => {
+    let va, vb;
+    if (k === 'weekday_fee') {
+      va = a.fees_2026_05?.weekday?.green_fee_idr ?? a.fees_2026_05?.weekday?.guest_fee_idr ?? null;
+      vb = b.fees_2026_05?.weekday?.green_fee_idr ?? b.fees_2026_05?.weekday?.guest_fee_idr ?? null;
+    } else if (k === 'weekend_fee') {
+      va = a.fees_2026_05?.weekend?.green_fee_idr ?? a.fees_2026_05?.weekend?.guest_fee_idr ?? null;
+      vb = b.fees_2026_05?.weekend?.green_fee_idr ?? b.fees_2026_05?.weekend?.guest_fee_idr ?? null;
+    } else if (k === 'status') {
+      va = a.operating_status?.status || 'operating';
+      vb = b.operating_status?.status || 'operating';
+    } else {
+      va = a[k];
+      vb = b[k];
+    }
+    if (va == null && vb == null) return 0;
+    if (va == null) return 1;
+    if (vb == null) return -1;
+    if (typeof va === 'number' && typeof vb === 'number') return (va - vb) * dir;
+    return String(va).localeCompare(String(vb), 'ko') * dir;
+  });
+  return rows;
+}
+
+function renderTable() {
+  const rows = getTableRows();
+  document.getElementById('tableVisibleCount').textContent = rows.length;
+  const tbody = document.getElementById('courseTableBody');
+  tbody.innerHTML = rows.map(c => {
+    const status = c.operating_status?.status || 'operating';
+    const statusLabel = {
+      operating: '운영중',
+      closed_temporary: '임시 휴장',
+      closed_permanent: '영구 폐장',
+      uncertain: '불확실',
+    }[status] || status;
+    const f = c.fees_2026_05 || {};
+    const wd = f.weekday?.green_fee_idr ?? f.weekday?.guest_fee_idr;
+    const we = f.weekend?.green_fee_idr ?? f.weekend?.guest_fee_idr;
+    const wdUSD = f.weekday?.green_fee_usd;
+    const weUSD = f.weekend?.green_fee_usd;
+    const wdText = wd ? fmtIDR(wd) : (wdUSD ? fmtUSD(wdUSD) : '—');
+    const weText = we ? fmtIDR(we) : (weUSD ? fmtUSD(weUSD) : '—');
+
+    const idUrls = new Set((f.indonesian_sources || []).map(e => e?.url).filter(Boolean));
+    const sourcesHtml = (f.sources || []).slice(0, 4).map((u, i) => {
+      const lang = idUrls.has(u) ? 'ID' : 'EN';
+      return `<a href="${escapeHtml(u)}" target="_blank" rel="noopener" title="${escapeHtml(u)}">[${i + 1}]${lang}</a>`;
+    }).join('');
+
+    const designer = c.designer ? escapeHtml(c.designer.split(',')[0].trim().split('(')[0].trim()) : '—';
+    const matoaTag = c.id === 'matoa-nasional' ? '<span class="matoa-tag">★ Matoa</span>' : '';
+
+    const websiteLink = c.website ? `<a href="${escapeHtml(c.website)}" target="_blank" rel="noopener">웹</a>` : '';
+    const mapLink = `<a href="https://www.google.com/maps/search/?api=1&query=${c.lat},${c.lng}" target="_blank" rel="noopener">지도</a>`;
+
+    return `
+      <tr>
+        <td class="name">${escapeHtml(c.name_en)}${matoaTag}</td>
+        <td>${escapeHtml(c.region)}</td>
+        <td>${escapeHtml(c.province)}</td>
+        <td><span class="status-pill ${status}">${statusLabel}</span></td>
+        <td class="num">${c.holes ?? '—'}</td>
+        <td class="num">${c.par ?? '—'}</td>
+        <td class="num">${c.year_opened ?? '—'}</td>
+        <td>${designer}</td>
+        <td class="num fee">${wdText}</td>
+        <td class="num fee">${weText}</td>
+        <td class="notes">${escapeHtml(c.notes || '')}</td>
+        <td class="address">${escapeHtml(c.address || '')}<br>${websiteLink} ${mapLink}</td>
+        <td class="sources">${sourcesHtml || '—'}</td>
+      </tr>
+    `;
+  }).join('');
+}
+
+// === CSV Export ===
+document.getElementById('exportCsv').addEventListener('click', () => {
+  const rows = getTableRows();
+  const headers = [
+    '골프장명', '지역', '주', '운영상태', '홀', '파', '개장연도',
+    '설계자', '주소', '평일그린피(IDR)', '주말그린피(IDR)',
+    '평일USD', '주말USD', '캐디(IDR)', '카트(IDR)', '보험(IDR)',
+    '웹사이트', '위도', '경도', '특이사항', '요금메모',
+    '출처URL목록'
+  ];
+  const csvRows = rows.map(c => {
+    const f = c.fees_2026_05 || {};
+    const wd = f.weekday || {};
+    const we = f.weekend || {};
+    return [
+      c.name_en,
+      c.region,
+      c.province,
+      c.operating_status?.status || 'operating',
+      c.holes,
+      c.par,
+      c.year_opened,
+      c.designer,
+      c.address,
+      wd.green_fee_idr ?? wd.guest_fee_idr ?? '',
+      we.green_fee_idr ?? we.guest_fee_idr ?? '',
+      wd.green_fee_usd ?? '',
+      we.green_fee_usd ?? '',
+      f.caddy_idr ?? '',
+      f.cart_idr ?? '',
+      f.insurance_idr ?? '',
+      c.website ?? '',
+      c.lat,
+      c.lng,
+      c.notes ?? '',
+      f.notes ?? '',
+      (f.sources || []).join(' | ')
+    ].map(csvEscape).join(',');
+  });
+  const csv = '﻿' + [headers.join(','), ...csvRows].join('\r\n');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `indonesia-golf-clubs-${new Date().toISOString().slice(0, 10)}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+});
+
+function csvEscape(v) {
+  if (v == null) return '';
+  const s = String(v);
+  if (/[",\r\n]/.test(s)) return '"' + s.replaceAll('"', '""') + '"';
+  return s;
+}
+
 // === Boot ===
 initMap();
 loadData();

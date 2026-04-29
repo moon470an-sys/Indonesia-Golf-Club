@@ -48,6 +48,27 @@ a:hover { text-decoration: underline; }
   color: #6b7280;
   margin-left: 4px;
 }
+.tabs {
+  display: flex;
+  gap: 4px;
+  margin-left: 24px;
+}
+.tab {
+  background: transparent;
+  border: 1px solid transparent;
+  font-size: 13px;
+  font-weight: 500;
+  color: #64748b;
+  padding: 7px 14px;
+  border-radius: 7px;
+  transition: all 0.15s;
+}
+.tab:hover { background: #f1f5f9; color: #0f172a; }
+.tab.active {
+  background: #16a34a;
+  color: #ffffff;
+  font-weight: 600;
+}
 .topbar-meta { font-size: 13px; color: #475569; }
 .counter strong { color: #0f172a; font-weight: 600; }
 
@@ -501,6 +522,148 @@ a:hover { text-decoration: underline; }
 .fee-sources .lang-tag.en {
   background: #2563eb;
 }
+
+/* === Table View === */
+.table-view {
+  height: calc(100vh - 56px - 36px);
+  display: flex;
+  flex-direction: column;
+  background: #f8fafc;
+}
+.table-view[hidden] { display: none; }
+
+.table-toolbar {
+  padding: 12px 20px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.table-toolbar input[type="search"] {
+  flex: 1;
+  min-width: 200px;
+  max-width: 360px;
+  padding: 8px 12px;
+  font-size: 13px;
+  border: 1px solid #e5e7eb;
+  border-radius: 7px;
+  background: #f9fafb;
+}
+.table-toolbar input[type="search"]:focus {
+  outline: none;
+  border-color: #16a34a;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(22,163,74,0.1);
+}
+.table-toolbar select {
+  padding: 8px 10px;
+  font-size: 13px;
+  border: 1px solid #e5e7eb;
+  border-radius: 7px;
+  background: #ffffff;
+  color: #334155;
+  cursor: pointer;
+}
+.table-toolbar select:focus { outline: none; border-color: #16a34a; }
+.table-counter { color: #64748b; font-size: 13px; }
+.table-counter strong { color: #0f172a; }
+.export-btn {
+  margin-left: auto;
+  padding: 8px 14px;
+  font-size: 12.5px;
+  background: #0f172a;
+  color: #ffffff;
+  border: none;
+  border-radius: 7px;
+  font-weight: 500;
+  transition: background 0.15s;
+}
+.export-btn:hover { background: #1e293b; }
+
+.table-scroll {
+  flex: 1;
+  overflow: auto;
+  background: #ffffff;
+  margin: 0 20px 20px 20px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+}
+.course-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 12.5px;
+}
+.course-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #f8fafc;
+}
+.course-table th {
+  text-align: left;
+  padding: 11px 10px;
+  font-weight: 600;
+  font-size: 11.5px;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid #e5e7eb;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.1s;
+}
+.course-table th:hover { background: #e2e8f0; }
+.course-table th.sort-asc::after { content: " ▲"; color: #16a34a; }
+.course-table th.sort-desc::after { content: " ▼"; color: #16a34a; }
+.course-table th.num { text-align: right; }
+.course-table td {
+  padding: 10px;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: top;
+  color: #1f2937;
+  line-height: 1.45;
+}
+.course-table tbody tr:hover { background: #f9fafb; }
+.course-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.course-table td.name { font-weight: 600; color: #0f172a; min-width: 180px; }
+.course-table td.name .matoa-tag {
+  display: inline-block;
+  background: #fef3c7;
+  color: #92400e;
+  font-size: 10px;
+  padding: 1px 5px;
+  border-radius: 3px;
+  margin-left: 6px;
+  font-weight: 700;
+  vertical-align: middle;
+}
+.course-table td.fee { color: #064e3b; font-weight: 600; }
+.course-table td.notes { color: #475569; font-size: 12px; max-width: 280px; }
+.course-table td.address { color: #475569; font-size: 12px; max-width: 240px; }
+.course-table td.sources a {
+  color: #16a34a;
+  font-weight: 600;
+  margin-right: 6px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.course-table td.sources a:hover { text-decoration: underline; }
+.course-table .status-pill {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 11px;
+  border-radius: 999px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.course-table .status-pill.operating { background: #dcfce7; color: #166534; }
+.course-table .status-pill.closed_temporary { background: #fef9c3; color: #854d0e; }
+.course-table .status-pill.closed_permanent { background: #fee2e2; color: #991b1b; }
+.course-table .status-pill.uncertain { background: #f1f5f9; color: #475569; }
 
 /* === Footer === */
 .footer {
