@@ -478,8 +478,28 @@ a:hover { text-decoration: underline; }
 }
 .fee-sources a {
   color: #16a34a;
-  margin: 0 2px;
+  margin: 0 3px;
   font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+.fee-sources a:hover { text-decoration: underline; }
+.fee-sources .lang-tag {
+  display: inline-block;
+  font-size: 9px;
+  padding: 0 4px;
+  border-radius: 3px;
+  background: #dc2626;
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-left: 1px;
+  vertical-align: middle;
+}
+.fee-sources .lang-tag.en {
+  background: #2563eb;
 }
 
 /* === Footer === */

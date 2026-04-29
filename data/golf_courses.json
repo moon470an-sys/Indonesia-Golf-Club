@@ -247,12 +247,30 @@
         "currency": "IDR",
         "notes": "Padang Golf Halim (TNI AU). Mon-Thu non-member IDR 366,000; Friday IDR 377,000; Sat/Sun/Holiday IDR 696,000 (Sun PM 575,000). Caddie 18H IDR 25,000; Cart IDR 60,000/player; 9H twilight 60-110k. Special TNI/POLRI rates much lower (Rp50,000-200,000). All rates include 10% VAT. Active/retired TNI AU IDR 80,000 (caddy included). Rates appear to be 2024-2025 levels; 2026 may differ slightly.",
         "sources": [
-          "https://www.instagram.com/halimgolfcourse/"
+          "https://www.instagram.com/halimgolfcourse/",
+          "https://www.instagram.com/reel/DKqZ0HKzOL-/",
+          "https://www.instagram.com/halimgolfcourse/reel/C6NFvPnPzQe/"
         ],
         "last_verified": "2026-04-29",
         "based_on": "2024-2025 rates - 2026 may differ",
         "official_site_status": "dead",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/reel/DKqZ0HKzOL-/",
+            "type": "instagram_post",
+            "snippet": "Price list terbaru dari Halim Golf sudah rilis! Ada penawaran menarik untuk Open Booth, Otomotif, dan Prewedding. Cek yuk!",
+            "date": "2025-06-08",
+            "language": "id"
+          },
+          {
+            "url": "https://www.instagram.com/halimgolfcourse/reel/C6NFvPnPzQe/",
+            "type": "instagram_post",
+            "snippet": "Halim Golf Junior Academy. Start Price IDR 4.500.000. At Halim Golf Course. The Price Include: Golf uniform, Junior Academy max.5 kids 1 session/1 hour.",
+            "date": "2024-04-25",
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -310,12 +328,30 @@
         "sources": [
           "https://www.golfpangkalanjati.com/green",
           "https://www.golfpangkalanjati.com/",
-          "https://www.instagram.com/golfpangkalanjati/"
+          "https://www.instagram.com/golfpangkalanjati/",
+          "https://www.facebook.com/golfpangkalanjati/posts/special-rate-17-agustus-2025/1340676348058772/",
+          "https://www.facebook.com/golfpangkalanjati/posts/new-rate-in-junesingle-250ksharing-150kyuk-sahabatgolferajak-rekan-rekan-untuk-l/5566223450089456/"
         ],
         "last_verified": "2026-04-29",
         "based_on": "2025 rates - 2026 may differ",
         "official_site_status": "live",
-        "rates_visible_on_official": true
+        "rates_visible_on_official": true,
+        "indonesian_sources": [
+          {
+            "url": "https://www.facebook.com/golfpangkalanjati/posts/special-rate-17-agustus-2025/1340676348058772/",
+            "type": "facebook_post",
+            "snippet": "Special Rate 17 Agustus 2025",
+            "date": "2025-08-05",
+            "language": "id"
+          },
+          {
+            "url": "https://www.facebook.com/golfpangkalanjati/posts/new-rate-in-junesingle-250ksharing-150kyuk-sahabatgolferajak-rekan-rekan-untuk-l/5566223450089456/",
+            "type": "facebook_post",
+            "snippet": "New Rate In June. Single 250k. Sharing 150k. Yuk #SahabatGolfer Ajak rekan-rekan untuk #LetsSwingTogether di Padang Golf Pangkalan Jati ya~",
+            "date": "2022-06-06",
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -570,12 +606,22 @@
         "notes": "Tue-Fri: Guest 440,000; Public 490,000. Saturday morning IDR 1,295,000; Sat PM (after 12PM) IDR 745,000. Sunday/Holiday AM IDR 1,095,000; PM IDR 745,000. Includes Green Fee, Service Fee, sharing cart and taxes. Ladies Tue-Fri IDR 295,000. Site rates.htm not reachable;.",
         "sources": [
           "https://www.instagram.com/matoagolf/",
-          "https://www.facebook.com/p/Matoa-Nasional-Golf-Country-Club-100063613781012/"
+          "https://www.facebook.com/p/Matoa-Nasional-Golf-Country-Club-100063613781012/",
+          "https://www.instagram.com/matoagolf/p/CMCkxlKFU35/"
         ],
         "last_verified": "2026-04-29",
         "based_on": "2024-2025 rates - 2026 may differ",
         "official_site_status": "live",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/matoagolf/p/CMCkxlKFU35/",
+            "type": "instagram_post",
+            "snippet": "Matoa Nasional Golf Course (MNGC) adalah sebuah lapangan golf bertaraf championship 18-hole...",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -1017,12 +1063,30 @@
         "sources": [
           "https://www.rainbowhillsgolf.com/",
           "https://www.instagram.com/rainbowhillsgolf/",
-          "https://www.facebook.com/RainwbowHillsGolfClub/"
+          "https://www.facebook.com/RainwbowHillsGolfClub/",
+          "https://www.instagram.com/p/DNF8RkcT4W0/",
+          "https://www.instagram.com/p/DADhhuUTBbJ/"
         ],
         "last_verified": "2026-04-29",
         "based_on": "2025 rates - 2026 may differ",
         "official_site_status": "live",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/p/DNF8RkcT4W0/",
+            "type": "instagram_post",
+            "snippet": "RAINBOW HILLS GOLF CLUB - PRICE UPDATE! Yuk, atur jadwal tee time kamu sekarang! Mulai dari weekday santai sampai weekend seru, Rainbow Hills siap jadi pilihan terbaikmu!",
+            "date": "2025-08-08",
+            "language": "id"
+          },
+          {
+            "url": "https://www.instagram.com/p/DADhhuUTBbJ/",
+            "type": "instagram_post",
+            "snippet": "Yuk, ajak teman-temanmu bermain golf di Rainbow Hills! Dapatkan harga spesial mulai dari Rp790.000. Booking via Golfers Booking Apps sekarang juga!",
+            "date": "2024-09-18",
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -1147,12 +1211,30 @@
         "sources": [
           "https://www.permatasentulgolf.net/",
           "https://www.instagram.com/permatasentul_golfclub/",
-          "https://www.facebook.com/p/Permata-Sentul-Golf-100086037011589/"
+          "https://www.facebook.com/p/Permata-Sentul-Golf-100086037011589/",
+          "https://www.permatasentulgolf.net/layanan/",
+          "https://www.permatasentulgolf.net/golf-2/"
         ],
         "last_verified": "2026-04-29",
         "based_on": "2025-2026 rates",
         "official_site_status": "live",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://www.permatasentulgolf.net/layanan/",
+            "type": "official_site_id",
+            "snippet": "Pelayanan Permata Sentul Golf. Permata Sentul Golf adalah perusahaan yang bergerak dibidang jasa pariwisata dengan jenis usaha rekreasi dan hiburan umum...",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.permatasentulgolf.net/golf-2/",
+            "type": "official_site_id",
+            "snippet": "GOLF - Permata Sentul where hidden excitement is waiting.. Permata Sentul Golf adalah perusahaan yang bergerak dibidang jasa pariwisata...",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -1280,12 +1362,30 @@
           "https://jagorawi.com/green-fees/",
           "https://jagorawi.com/",
           "https://www.instagram.com/jagorawigolfcc/",
-          "https://www.facebook.com/jagorawigolfcc/"
+          "https://www.facebook.com/jagorawigolfcc/",
+          "https://jagorawi.com/blog/apa-itu-driving-range/",
+          "https://jagorawi.com/blog/les-golf-jakarta-bogor/"
         ],
         "last_verified": "2026-04-29",
         "based_on": "2024-2025 rates - 2026 may differ",
         "official_site_status": "live",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://jagorawi.com/blog/apa-itu-driving-range/",
+            "type": "official_site_id",
+            "snippet": "Apa Itu Driving Range? Panduan Lengkap Pemula. Rp 100.000 untuk 50 bola; Rp 170.000 untuk 100 bola. Promo weekday Rp 50.000 untuk 50 bola.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://jagorawi.com/blog/les-golf-jakarta-bogor/",
+            "type": "official_site_id",
+            "snippet": "Mau Ikut Les Golf di Jakarta & Bogor? Simak Panduan Memilih Pelatih dan Biayanya. Sesi privat dengan pelatih PGA kami mulai dari Rp 950.000 per pertemuan.",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -1408,12 +1508,22 @@
           "https://www.instagram.com/jababekagolf_official/",
           "https://www.facebook.com/jababekagolfcikarangofficial/",
           "https://www.tiktok.com/@jababeka_golf",
-          "https://www.youtube.com/@officialjababekagolfcikarang"
+          "https://www.youtube.com/@officialjababekagolfcikarang",
+          "https://www.instagram.com/p/DOFPlb2E3zl/"
         ],
         "last_verified": "2026-04-29",
         "based_on": "2024-2025 rates - 2026 may differ",
         "official_site_status": "live",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/p/DOFPlb2E3zl/",
+            "type": "instagram_post",
+            "snippet": "Jababeka Golf & Country Club - September Promo! Enjoy our MHC (My Home Club Apps) Special Rates this September 2025: Monday IDR 729K (Play Golf + Free Meal); Tue-Thu IDR 789K; Fri IDR 799K.",
+            "date": "2025-09-01",
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -1533,11 +1643,21 @@
         "sources": [
           "https://mnctourismindonesia.com/trumpgolflido",
           "https://www.instagram.com/trumpgolflido/",
-          "https://www.facebook.com/TrumpGolfLido/"
+          "https://www.facebook.com/TrumpGolfLido/",
+          "https://www.instagram.com/p/Cg_daE_vJ_G/"
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "live",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/p/Cg_daE_vJ_G/",
+            "type": "instagram_post",
+            "snippet": "Segera hadir, Trump International Golf Club Lido, lapangan golf yang dirancang oleh Ernie Els dengan 18 hole standar Championship kelas dunia di KEK MNC Lido City, Bogor.",
+            "date": "2022-08-08",
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -1657,11 +1777,28 @@
         "sources": [
           "https://www.parahyangangolf.com/green-fees",
           "https://www.instagram.com/parahyangangolf/",
-          "https://facebook.com/parahyangangolf"
+          "https://facebook.com/parahyangangolf",
+          "https://www.facebook.com/parahyangangolf"
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "live",
-        "rates_visible_on_official": true
+        "rates_visible_on_official": true,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/parahyangangolf/",
+            "type": "instagram_account",
+            "snippet": "Parahyangan Golf Bandung - World Class 18 Hole Championship Golf Course; akun resmi memuat caption Bahasa Indonesia (promo, undangan turnamen, paket weekday).",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.facebook.com/parahyangangolf",
+            "type": "facebook_page",
+            "snippet": "Halaman Facebook resmi Parahyangan Golf Bandung dengan posting promosi/event berbahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -1723,7 +1860,23 @@
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "live",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/mountainviewgolfbandung/",
+            "type": "instagram_account",
+            "snippet": "Mountain View Golf Bandung - akun resmi (Jl. Setra Dago Pakar Raya), caption posting promo/turnamen biasanya Bahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.instagram.com/mountainview_golf/",
+            "type": "instagram_account",
+            "snippet": "Mountain View Golf Club - akun resmi alternatif; mountainview.bdg@gmail.com; reservasi +62 811-2288-6089.",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -1782,13 +1935,38 @@
         "sources": [
           "https://dagoheritage1917.com/green_fees.php",
           "https://www.instagram.com/dagoheritage_1917/",
-          "https://www.instagram.com/reel/DFoij7RTOgQ/"
+          "https://www.instagram.com/reel/DFoij7RTOgQ/",
+          "https://www.instagram.com/p/C_cpdyXy2hx/",
+          "https://www.instagram.com/dagodriving/"
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "live",
         "rates_visible_on_official": true,
         "rate_post_dates": [
           "2025-02-04"
+        ],
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/dagoheritage_1917/",
+            "type": "instagram_account",
+            "snippet": "Dago Heritage 1917 - akun resmi Bandung. Caption posting promo (mis. 'golf nggak harus mahal! Di Dago Heritage 1917 Bandung...') berbahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.instagram.com/p/C_cpdyXy2hx/",
+            "type": "instagram_post",
+            "snippet": "golf nggak harus mahal! Di Dago Heritage 1917 Bandung ...",
+            "date": "2024-08-31",
+            "language": "id"
+          },
+          {
+            "url": "https://www.instagram.com/dagodriving/",
+            "type": "instagram_account",
+            "snippet": "Driving Range Dago Heritage 1917 - akun resmi driving range, posting promo & paket berbahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          }
         ]
       },
       "operating_status": {
@@ -1853,7 +2031,16 @@
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "live",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/jatinangornationalgolfresort/",
+            "type": "instagram_account",
+            "snippet": "Jatinangor National Golf & Resort - akun resmi; konten promo Stay & Play, paket meeting, dan event seringkali berbahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -1973,7 +2160,8 @@
         "sources": [
           "https://www.instagram.com/merapigolf/",
           "https://www.instagram.com/p/DETuVMRyef3/",
-          "https://www.instagram.com/p/DS4ZAF0Ekty/"
+          "https://www.instagram.com/p/DS4ZAF0Ekty/",
+          "https://www.instagram.com/p/DXJjmv3D03u/"
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "live",
@@ -1981,6 +2169,36 @@
         "rate_post_dates": [
           "2025-01-02",
           "2025-10-15"
+        ],
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/merapigolf/",
+            "type": "instagram_account",
+            "snippet": "Merapi Golf Yogyakarta - lapangan 18 hole dengan view Gunung Merapi; rate ditampilkan pada pinned post; reservasi +62 811-2845-181.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.instagram.com/p/DS4ZAF0Ekty/",
+            "type": "instagram_post",
+            "snippet": "GOLF RATE MERAPI GOLF 2026 - Senin-Kamis, Jumat, Sabtu & Hari Libur, Minggu (semua harga termasuk green fee, caddy, golf cart).",
+            "date": "2025-10-15",
+            "language": "id"
+          },
+          {
+            "url": "https://www.instagram.com/p/DETuVMRyef3/",
+            "type": "instagram_post",
+            "snippet": "Golf Rate 2025 - Merapi Golf Yogyakarta. Paket Joglosemar khusus pemain dari Yogya, Solo, Semarang Rp450.000 (Senin-Selasa).",
+            "date": "2025-01-02",
+            "language": "id"
+          },
+          {
+            "url": "https://www.instagram.com/p/DXJjmv3D03u/",
+            "type": "instagram_post",
+            "snippet": "Merapi Golf Yogyakarta, 14 April 2026 - update kondisi lapangan/promo harian.",
+            "date": "2026-04-14",
+            "language": "id"
+          }
         ]
       },
       "operating_status": {
@@ -2039,11 +2257,28 @@
         "notes": "9-hole course at Hyatt Regency Yogyakarta. Range IDR 409,000 - 509,000 per person. Bookings made directly at Bogey's Terrace. Caddy/cart not separately disclosed.",
         "sources": [
           "https://www.hyatt.com/hyatt-regency/en-US/yogya-hyatt-regency-yogyakarta/golf-course",
-          "https://www.instagram.com/hyattgolfcourse/"
+          "https://www.instagram.com/hyattgolfcourse/",
+          "https://www.instagram.com/p/DLKcYBkxGJy/"
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "live",
-        "rates_visible_on_official": true
+        "rates_visible_on_official": true,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/hyattgolfcourse/",
+            "type": "instagram_account",
+            "snippet": "Hyatt Regency Yogyakarta Golf - akun resmi 9-hole par 30; caption promo dan event sering berbahasa Indonesia (kombinasi dengan tagar bahasa Inggris).",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.instagram.com/p/DLKcYBkxGJy/",
+            "type": "instagram_post",
+            "snippet": "Golf Course Hyatt Regency, Yogyakarta. Fairway sempit, ... (review/highlight kondisi lapangan dalam Bahasa Indonesia).",
+            "date": "2025-06",
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -2101,11 +2336,52 @@
         "notes": "Indonesian Air Force-affiliated course, open to public. Monday IDR 325,000; Tue-Fri IDR 370,000; Sat-Sun & Holidays IDR 690,000. Junior rates IDR 240,000 (weekday) / IDR 390,000 (weekend). Rates last updated August 2025; 2026 update not separately confirmed.",
         "sources": [
           "https://www.instagram.com/padanggolfadisutjipto/",
-          "https://www.facebook.com/padanggolfadisutjipto/"
+          "https://www.facebook.com/padanggolfadisutjipto/",
+          "https://www.instagram.com/p/DS9Tw9iCfqz/",
+          "https://www.instagram.com/p/C0ie54Yvn0F/",
+          "https://www.instagram.com/p/C2TvxdrvMkE/",
+          "https://www.facebook.com/padanggolfadisutjipto/?locale=id_ID"
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "redirect",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/padanggolfadisutjipto/",
+            "type": "instagram_account",
+            "snippet": "Padang Golf Adisutjipto - lapangan golf di jantung Yogyakarta, kurang dari 5 menit dari bandara; reservasi 081225311415.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.instagram.com/p/DS9Tw9iCfqz/",
+            "type": "instagram_post",
+            "snippet": "GOLF RATE 2026 PADANG GOLF ADISUTJIPTO Berlaku mulai 1 Januari 2026 - rate-card Senin/Selasa-Jumat/Sabtu-Minggu & hari libur.",
+            "date": "2025-12-31",
+            "language": "id"
+          },
+          {
+            "url": "https://www.instagram.com/p/C0ie54Yvn0F/",
+            "type": "instagram_post",
+            "snippet": "Tarif Baru Padang Golf Adisutjipto, berlaku mulai per 1 Desember 2023 - daftar tarif weekday/weekend & junior.",
+            "date": "2023-12-06",
+            "language": "id"
+          },
+          {
+            "url": "https://www.instagram.com/p/C2TvxdrvMkE/",
+            "type": "instagram_post",
+            "snippet": "Golf Rate Padang Golf Adisutjipto berlaku 1 Februari 2024 - update tarif baru 2024.",
+            "date": "2024-01-30",
+            "language": "id"
+          },
+          {
+            "url": "https://www.facebook.com/padanggolfadisutjipto/?locale=id_ID",
+            "type": "facebook_page",
+            "snippet": "Padang Golf Adisutjipto - halaman Facebook resmi (locale id_ID) dengan posting tarif & event TNI AU Lanud Adisutjipto berbahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -2166,11 +2442,58 @@
         "sources": [
           "https://borobudur-golf.com",
           "https://www.instagram.com/borobudurgolf/",
-          "https://www.facebook.com/p/Borobudur-International-Golf-Country-Club-100063719451077/"
+          "https://www.facebook.com/p/Borobudur-International-Golf-Country-Club-100063719451077/",
+          "https://www.borobudur-golf.com/paket-meeting-murah-magelang/",
+          "https://www.borobudur-golf.com/driving-range-golf-magelang/",
+          "https://www.borobudur-golf.com/paket-weeding-on-the-green/"
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "live",
-        "rates_visible_on_official": true
+        "rates_visible_on_official": true,
+        "indonesian_sources": [
+          {
+            "url": "https://www.borobudur-golf.com/paket-meeting-murah-magelang/",
+            "type": "official_site_id",
+            "snippet": "Paket Meeting Murah di Magelang - Borobudur Golf - halaman dalam Bahasa Indonesia memuat penawaran paket meeting & golf.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.borobudur-golf.com/driving-range-golf-magelang/",
+            "type": "official_site_id",
+            "snippet": "Driving Range Golf Magelang - halaman Bahasa Indonesia memuat tarif driving range Rp 90.000/100 bola dan informasi fasilitas.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.borobudur-golf.com/paket-weeding-on-the-green/",
+            "type": "official_site_id",
+            "snippet": "Paket Wedding On The Green Murah - halaman Bahasa Indonesia, paket pernikahan di lapangan golf Borobudur.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://borobudur-golf.com",
+            "type": "official_site_id",
+            "snippet": "Promo Expatriate area Jateng DIY Rp 975.000, Segera hubungi marketing kami - homepage menampilkan tarif member/visitor weekday/weekend dalam Bahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.instagram.com/borobudurgolf/",
+            "type": "instagram_account",
+            "snippet": "Borobudur Golf's Restaurant - akun resmi Golf, Restaurant & Driving Range; konten promo dalam Bahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.facebook.com/p/Borobudur-International-Golf-Country-Club-100063719451077/",
+            "type": "facebook_page",
+            "snippet": "Halaman Facebook resmi Borobudur International Golf & Country Club, posting promo & event Bahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -2232,7 +2555,16 @@
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "none",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/gombelgolfid/",
+            "type": "instagram_account",
+            "snippet": "GOMBEL GOLF COURSE SEMARANG - akun resmi (840 followers, 50 posts); konten promo & info tarif menggunakan Bahasa Indonesia; booking via WhatsApp; gombelgolf.co@gmail.com.",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -2291,11 +2623,67 @@
         "sources": [
           "https://candigolf.id",
           "https://www.instagram.com/candigolf.id/",
-          "https://www.facebook.com/candigolf.id/"
+          "https://www.facebook.com/candigolf.id/",
+          "https://candigolf.id/candigolf-tempat-terbaik-untuk-menyatu-dengan-alam-dan-diri-sendiri/",
+          "https://candigolf.id/candigolf-harmoni-desain-lokasi-strategis-dan-fasilitas-unggulan-2/",
+          "https://candigolf.id/4-kriteria-hunian-mewah-ideal-di-semarang/",
+          "https://candigolf.id/prinsip-desain-biophilic-di-candigolf-mewujudkan-harmoni-alam-dan-hunian/",
+          "https://www.instagram.com/candigolfcountryclub.id/"
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "live",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://candigolf.id/candigolf-tempat-terbaik-untuk-menyatu-dengan-alam-dan-diri-sendiri/",
+            "type": "official_site_id",
+            "snippet": "Candigolf: Tempat Terbaik untuk Menyatu dengan Alam dan Diri Sendiri - artikel Bahasa Indonesia di situs resmi.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://candigolf.id/candigolf-harmoni-desain-lokasi-strategis-dan-fasilitas-unggulan-2/",
+            "type": "official_site_id",
+            "snippet": "Candigolf: Harmoni Desain, Lokasi Strategis, dan Fasilitas Unggulan - artikel Bahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://candigolf.id/4-kriteria-hunian-mewah-ideal-di-semarang/",
+            "type": "official_site_id",
+            "snippet": "4 Kriteria Hunian Mewah Ideal di Semarang - artikel Bahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://candigolf.id/prinsip-desain-biophilic-di-candigolf-mewujudkan-harmoni-alam-dan-hunian/",
+            "type": "official_site_id",
+            "snippet": "Prinsip Desain Biophilic di Candigolf: Mewujudkan Harmoni Alam dan Hunian - artikel Bahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.instagram.com/candigolf.id/",
+            "type": "instagram_account",
+            "snippet": "CANDIGOLF (@candigolf.id) - akun resmi 'Upward Living'; 8.093 followers; konten properti & golf neighborhood Bahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.instagram.com/candigolfcountryclub.id/",
+            "type": "instagram_account",
+            "snippet": "Candigolf Country Club - akun resmi country club, posting event & promo Bahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.facebook.com/candigolf.id/",
+            "type": "facebook_page",
+            "snippet": "Halaman Facebook resmi Candigolf, posting Bahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -2357,11 +2745,67 @@
         "sources": [
           "https://ciputragolf.com/promo-golf-surabaya/",
           "https://ciputragolf.com/promotions-2/",
-          "https://www.instagram.com/ciputragolfsurabaya/"
+          "https://www.instagram.com/ciputragolfsurabaya/",
+          "https://ciputragolf.com/lapangan-golf-surabaya/",
+          "https://ciputragolf.com/staycation-golf-surabaya/",
+          "https://ciputragolf.com/lapangan-golf-27-hole/",
+          "https://ciputragolf.com/membership-club-surabaya/",
+          "https://ciputragolf.com/family-club-surabaya/"
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "live",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://ciputragolf.com/lapangan-golf-surabaya/",
+            "type": "official_site_id",
+            "snippet": "Lapangan Golf Surabaya untuk Rekreasi & Event Eksklusif - halaman Bahasa Indonesia di situs resmi.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://ciputragolf.com/promo-golf-surabaya/",
+            "type": "official_site_id",
+            "snippet": "Promo Golf Surabaya Hemat di Ciputra Golf, Main Lebih Puas - halaman promo Bahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://ciputragolf.com/staycation-golf-surabaya/",
+            "type": "official_site_id",
+            "snippet": "Staycation Golf Surabaya: Relax, Play, Stay di Satu Tempat - halaman Bahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://ciputragolf.com/lapangan-golf-27-hole/",
+            "type": "official_site_id",
+            "snippet": "Lapangan Golf 27 Hole Surabaya: Lebih Fleksibel, Lebih Eksklusif - halaman Bahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://ciputragolf.com/membership-club-surabaya/",
+            "type": "official_site_id",
+            "snippet": "Membership Club Surabaya dengan Fasilitas Golf Eksklusif - halaman Bahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://ciputragolf.com/family-club-surabaya/",
+            "type": "official_site_id",
+            "snippet": "Family Club Surabaya untuk Weekend, Olahraga, dan Quality Time - halaman Bahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.instagram.com/ciputragolfsurabaya/",
+            "type": "instagram_account",
+            "snippet": "Ciputra Golf - akun resmi @ciputragolfsurabaya; posting promo & event Bahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -2420,11 +2864,44 @@
         "currency": "IDR",
         "notes": "Weekday 18-hole: Member IDR 365,000 / Guest IDR 580,000 / Visitor IDR 910,000 (9-hole: 245k/410k/675k respectively). Cart IDR 200,000. Membership IDR 7.5M weekday-only, IDR 11.5M full-week annual. Weekend visitor rate not publicly disclosed (rates published may date back to 2020 baseline; verify with club).",
         "sources": [
-          "https://www.facebook.com/bukitdarmogolfsby/"
+          "https://www.facebook.com/bukitdarmogolfsby/",
+          "https://www.instagram.com/bukitdarmogolf/",
+          "https://www.facebook.com/bukitdarmogolfsurabaya/",
+          "https://www.instagram.com/p/Cp97_9bB7-v/"
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "live",
-        "rates_visible_on_official": true
+        "rates_visible_on_official": true,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/bukitdarmogolf/",
+            "type": "instagram_account",
+            "snippet": "Bukit Darmo Golf Surabaya - akun resmi 9.436 followers; posting promo, turnamen, paket Ramadhan dengan caption Bahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.facebook.com/bukitdarmogolfsby/",
+            "type": "facebook_page",
+            "snippet": "Bukit Darmo Golf Surabaya New - halaman Facebook resmi; posting menu, paket, promo Bahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.facebook.com/bukitdarmogolfsurabaya/",
+            "type": "facebook_page",
+            "snippet": "Bukit Darmo Golf Surabaya - halaman Facebook tambahan dengan posting Bahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.instagram.com/p/Cp97_9bB7-v/",
+            "type": "instagram_post",
+            "snippet": "Bukit Darmo Golf Surabaya posting promo/event - caption Bahasa Indonesia.",
+            "date": "2023-03",
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -2489,7 +2966,23 @@
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "live",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/finnagolf/",
+            "type": "instagram_account",
+            "snippet": "Finna Fgccr - akun resmi (Golf Course, Resort, Restaurant, Exhibition, Camping Ground, Outbound); WhatsApp +62 889-0601-0118; caption Bahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.facebook.com/finnagolf/",
+            "type": "facebook_page",
+            "snippet": "Finna Golf - halaman Facebook resmi; posting paket dan promo Bahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -2554,7 +3047,23 @@
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "live",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/tamandayugolfresort/",
+            "type": "instagram_account",
+            "snippet": "Taman Dayu Golf Club & Resort - akun resmi 21K followers; 'Luxurious integrated mountain resort with the best Golf Course in East Java'; caption promo Bahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.facebook.com/taman.dayu",
+            "type": "facebook_page",
+            "snippet": "Halaman Facebook resmi Taman Dayu; posting promo & event Bahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -2613,11 +3122,28 @@
         "notes": "Visitor weekday IDR 590,000 / weekend IDR 770,000. Discount slots available off-peak. Arnold Palmer-designed 18-hole, par-72 in Dukuh Pakis. Caddy and cart not broken out separately in public sources.",
         "sources": [
           "https://golfgraha.com/home/about",
-          "https://www.instagram.com/golfgrahafamili/"
+          "https://www.instagram.com/golfgrahafamili/",
+          "https://www.facebook.com/GolfGraha/"
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "live",
-        "rates_visible_on_official": true
+        "rates_visible_on_official": true,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/golfgrahafamili/",
+            "type": "instagram_account",
+            "snippet": "Golf Graha Famili - akun resmi; posting promo green fee/turnamen sering berbahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.facebook.com/GolfGraha/",
+            "type": "facebook_page",
+            "snippet": "Golf Graha Famili & Club - halaman Facebook resmi Surabaya; posting promo Bahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -2676,11 +3202,28 @@
         "notes": "Public-facing weekday rate cited at IDR 330,000. Weekday packages: Monday Golf IDR 145,000; 9-hole IDR 150,000 (Tue-Fri); Happy Day IDR 190,000 (Wed/Thu, includes meal). Official rates page (arayagolf.com/golf-course/our-rates/) is image-only; weekend public rate not disclosed online. Bookable via Golf Master Club / Livin Sukha.",
         "sources": [
           "https://arayagolf.com/golf-course/our-rates/",
-          "https://www.instagram.com/arayagolfcourse/"
+          "https://www.instagram.com/arayagolfcourse/",
+          "https://www.facebook.com/pages/Araya-Golf/124522784280092"
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "live",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/arayagolfcourse/",
+            "type": "instagram_account",
+            "snippet": "Araya Golf - akun resmi (lapangan golf profesional di Malang); posting promo & event berbahasa Indonesia; +62341-3051188.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.facebook.com/pages/Araya-Golf/124522784280092",
+            "type": "facebook_page",
+            "snippet": "Araya Golf - halaman Facebook resmi; posting Bahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -2734,11 +3277,28 @@
         "currency": "IDR",
         "notes": "Local 18-hole course managed by PTPN (state plantation operator). Historical published rates: weekday IDR 125,000 / weekend IDR 150,000 (sourced 2014; not formally updated in public records). 2026 figures unverified; rates likely higher today. Limited online presence.",
         "sources": [
-          "https://www.instagram.com/glantangangolf_coursejember/"
+          "https://www.instagram.com/glantangangolf_coursejember/",
+          "https://www.instagram.com/ptpn1reg5_glantangan/"
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "none",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/glantangangolf_coursejember/",
+            "type": "instagram_account",
+            "snippet": "GGC (Glantangan Golf Course) - akun resmi kecil; caption Bahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.instagram.com/ptpn1reg5_glantangan/",
+            "type": "instagram_account",
+            "snippet": "Ptpni Glantangan - akun resmi PTPN1 Regional 5 (3.490 followers, 609 posts) untuk Wisata Agro Glantangan termasuk lapangan golf; konten Bahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -2795,11 +3355,28 @@
         "currency": "IDR",
         "notes": "Padang Golf Abdulrachman Saleh, located inside the TNI-AU (Indonesian Air Force) Abdul Rachman Saleh base in Singosari. Open to public. Reputed as the cheapest in the Malang region, but no specific 2026 IDR rate card published publicly. Contact via base for current rates.",
         "sources": [
-          "https://www.instagram.com/padang_golf_abd_saleh/"
+          "https://www.instagram.com/padang_golf_abd_saleh/",
+          "https://www.instagram.com/padang_golf_abdulrachman_saleh/"
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "none",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/padang_golf_abd_saleh/",
+            "type": "instagram_account",
+            "snippet": "ABD SALEH GOLF Course, Recreation & Sport - akun resmi: 18 holes, golf cars, professional caddies, driving range, café, pro shop di Singosari, Malang; WhatsApp 082333859566; caption Bahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.instagram.com/padang_golf_abdulrachman_saleh/",
+            "type": "instagram_account",
+            "snippet": "abd saleh golf course - akun resmi alternatif di Lanud Abd Saleh TNI AU, posting Bahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -2970,7 +3547,30 @@
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "live",
-        "rates_visible_on_official": true
+        "rates_visible_on_official": true,
+        "indonesian_sources": [
+          {
+            "url": "https://newkutagolf.co.id/golf",
+            "type": "official_site_id",
+            "snippet": "Hole names use Bahasa Indonesia ('Hati-Hati', 'Kapuk', 'Alang-Alang', 'Kamboja'); rate categories shown in IDR with 'Domestic & KIM's Holder' / 'Foreign Visitor' columns. Site is primarily English with embedded Indonesian terminology rather than separate /id/ page.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.instagram.com/newkutagolf/",
+            "type": "instagram_post",
+            "snippet": "Akun resmi @newkutagolf (Pecatu, Bali) - profil dwibahasa, posting promo dan event sering dalam Bahasa Indonesia, namun caption rate-card domestik tidak ter-index oleh search engine.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.facebook.com/@newkutagolf/",
+            "type": "facebook_post",
+            "snippet": "Halaman FB resmi New Kuta Golf, Bali (Denpasar) - posting bilingual Indonesian/English; rate cards untuk pegolf domestik dimuat sebagai grafis.",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -3032,7 +3632,23 @@
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "live",
-        "rates_visible_on_official": true
+        "rates_visible_on_official": true,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/handaragolfresort/",
+            "type": "instagram_post",
+            "snippet": "Akun @handaragolfresort ('Soul of the Mountain | Bali') - bio dan posting bilingual; promosi 'Stay & Play' dan tarif Iconic Gate (WNI Rp 20.000 / WNA Rp 30.000) dipublikasikan dalam Bahasa.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.facebook.com/handaragolfresortbali/",
+            "type": "facebook_post",
+            "snippet": "Halaman FB resmi Handara Golf & Resort Bali - posting promo bilingual termasuk paket Stay&Play dan tarif kamar 'untuk WNI atau domestik'.",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -3094,7 +3710,30 @@
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "live",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/bukitpandawagolf/",
+            "type": "instagram_post",
+            "snippet": "Akun @bukitpandawagolf - posting promo dan event sering dalam Bahasa Indonesia; tarif untuk pegolf lokal dan pemegang KITAS IDR 750.000 (Senin-Kamis) / IDR 850.000 (Jumat-Minggu) untuk 18 hole dipublikasikan via grafis IG.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.facebook.com/bukitpandawagolfandcountryclub/",
+            "type": "facebook_post",
+            "snippet": "Halaman FB resmi Bukit Pandawa Golf & Country Club - postingan promo dwibahasa, mencakup 'Sunset Golf' Rp 650.000-950.000 dan diskon 50% putaran kedua hari yang sama.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.bukitpandawagolf.com/news/promo/",
+            "type": "official_site_id",
+            "snippet": "Halaman /news/promo/ memuat banner 'Beginner Lesson Package' tanggal 2026-04-29; teks utama situs Inggris namun grafis promo memuat istilah 'Pegolf Lokal' dan 'Pemegang KITAS'.",
+            "date": "2026-04-29",
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -3211,7 +3850,30 @@
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "live",
-        "rates_visible_on_official": true
+        "rates_visible_on_official": true,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/lombokgolf/",
+            "type": "instagram_post",
+            "snippet": "Akun @lombokgolf (Lombokgolf Kosaido) - bio dan caption dwibahasa; tarif hari kerja Rp 1.250.000 net dan akhir pekan Rp 1.500.000 net per orang termasuk caddy, green fee, golf cart untuk WNI/KITAS.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.instagram.com/lombokgolfkosaidocountryclub/",
+            "type": "instagram_post",
+            "snippet": "Akun sekunder @lombokgolfkosaidocountryclub - postingan event dan promo dalam Bahasa Indonesia, mencakup penyewaan stik (Rp 550.000 premium / Rp 330.000 standar) dan sepatu Rp 220.000.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.facebook.com/p/Lombok-Golf-Kosaido-Country-Club-100081597821184/",
+            "type": "facebook_post",
+            "snippet": "Halaman FB resmi Lombok Golf Kosaido Country Club - posting promo dwibahasa termasuk paket harian dan sewa peralatan.",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -3274,7 +3936,23 @@
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "live",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://www.facebook.com/LombokGolf/",
+            "type": "facebook_post",
+            "snippet": "Halaman FB 'GEC Rinjani Country Club - Golf Course and Resort Hotel | Narmada' - 589 likes, posting periodik dalam Bahasa Indonesia tentang fasilitas resort dan turnamen lokal.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "http://www.lombok-golf.com/",
+            "type": "official_site_id",
+            "snippet": "Situs resmi lombok-golf.com (HTTP only) menampilkan navigasi Indonesia/Inggris tetapi tidak memuat tarif. Konten resort dan villa berbahasa campuran.",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "uncertain",
@@ -3395,7 +4073,23 @@
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "live",
-        "rates_visible_on_official": true
+        "rates_visible_on_official": true,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/ria.bintan/",
+            "type": "instagram_post",
+            "snippet": "Akun resmi @ria.bintan (Lagoi) - posting promo dan turnamen, sebagian caption dalam Bahasa Indonesia terutama untuk paket 'All In One Golf Escape' (twin-share Rp 1.740.000 Sun-Thu).",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.facebook.com/riabintan/",
+            "type": "facebook_post",
+            "snippet": "Halaman FB resmi Ria Bintan Golf Club - posting bilingual; promosi paket Stay&Play dan green fee dipublikasikan dalam Bahasa Indonesia juga.",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -3625,7 +4319,23 @@
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "live",
-        "rates_visible_on_official": true
+        "rates_visible_on_official": true,
+        "indonesian_sources": [
+          {
+            "url": "https://www.lagunagolfbintan.com/rates-memberships/",
+            "type": "official_site_id",
+            "snippet": "Halaman tarif resmi memuat harga dalam IDR untuk pegolf domestik yang booking online: weekday Rp 950.000, weekend Rp 1.350.000 (sudah termasuk green fee 18 hole, buggy share, caddy share, asuransi, air mineral, latihan, service charge).",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.facebook.com/LagunaGolfBintan/",
+            "type": "facebook_post",
+            "snippet": "Halaman FB resmi Laguna Golf Bintan (Lagoi) - posting promo periodik dwibahasa termasuk 'Membership 6 bulan IDR 7.900.000' dan 'Membership 1 tahun IDR 13.900.000'.",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -3683,11 +4393,35 @@
         "sources": [
           "https://batam.palmspringsgolf.co/",
           "https://www.instagram.com/palmspringsgolfbatam/",
-          "https://www.facebook.com/palmspringsbatam/"
+          "https://www.facebook.com/palmspringsbatam/",
+          "https://batam.palmspringsgolf.co/package-rates"
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "live",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/palmspringsgolfbatam/",
+            "type": "instagram_post",
+            "snippet": "Akun resmi @palmspringsgolfbatam ('The Premiere & The Biggest Golf Course in Batam, 27 Outstanding Holes') - caption sebagian Bahasa untuk turnamen lokal dan promo Lebaran/Imlek.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.facebook.com/palmspringsbatam/",
+            "type": "facebook_post",
+            "snippet": "Halaman FB resmi Palm Springs Golf & Country Club Batam Course - posting bilingual, promo paket lokal dan turnamen Sinar Mas Land sering dalam Bahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://batam.palmspringsgolf.co/package-rates",
+            "type": "official_site_id",
+            "snippet": "Halaman package-rates resmi dengan tarif IDR; teks utama Inggris namun harga rupiah ditampilkan untuk pegolf domestik.",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -3745,11 +4479,35 @@
         "sources": [
           "https://www.instagram.com/biccgolf/",
           "https://www.instagram.com/teringbaygolf/",
-          "https://www.facebook.com/batamislandcountryclub/"
+          "https://www.facebook.com/batamislandcountryclub/",
+          "https://www.instagram.com/biccgolf/reel/DOKo-0ekmjI/"
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "live",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/biccgolf/",
+            "type": "instagram_post",
+            "snippet": "Akun resmi @biccgolf (Batam Island Country Club, rebranding dari Tering Bay) - 1.899 followers, 266 posts, bio '#ATrueGolfersHaven Design Course by Greg Norman'. Caption turnamen dan event korporat sering dalam Bahasa.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.instagram.com/biccgolf/reel/DOKo-0ekmjI/",
+            "type": "instagram_post",
+            "snippet": "Reel 'BATAM ISLAND COUNTRY CLUB - GROUP TOURNAMENT' - caption Bahasa Indonesia untuk turnamen kelompok.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.facebook.com/batamislandcountryclub/",
+            "type": "facebook_post",
+            "snippet": "Halaman FB resmi Batam Island Country Club (Nongsa) - posting bilingual promo dan turnamen.",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -3808,7 +4566,16 @@
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "redirect",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://www.facebook.com/tamaringolfandfootgolfclub/",
+            "type": "facebook_post",
+            "snippet": "Halaman FB resmi 'Tamarin Golf & Footgolf Club' (Nongsa) - posting promo 9-hole, turnamen FootGolf Ruggedian, dan event korporat sebagian dalam Bahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -3867,11 +4634,43 @@
           "https://www.southlinks.golf/v1/about/membership/",
           "https://www.southlinks.golf/v1/japanese-customer/",
           "https://www.instagram.com/southlinks_batam/",
-          "https://www.facebook.com/southlinksgolf/"
+          "https://www.facebook.com/southlinksgolf/",
+          "https://www.instagram.com/southlinks_batam/p/C-mya7mPUhD/",
+          "https://www.instagram.com/driving.range_southlinks/"
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "live",
-        "rates_visible_on_official": true
+        "rates_visible_on_official": true,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/southlinks_batam/",
+            "type": "instagram_post",
+            "snippet": "Akun resmi @southlinks_batam - 12K followers; posting promo 'Stay & Play 2D1N package' dan tarif driving range (Rp 45.000-185.000) sering dalam Bahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.instagram.com/southlinks_batam/p/C-mya7mPUhD/",
+            "type": "instagram_post",
+            "snippet": "Postingan 'SouthLinks Promotion 2d1n play and stay package 2024' - caption bilingual mencantumkan harga IDR untuk pegolf domestik.",
+            "date": "2024-08-13",
+            "language": "id"
+          },
+          {
+            "url": "https://www.facebook.com/southlinksgolf/",
+            "type": "facebook_post",
+            "snippet": "Halaman FB resmi SouthLinks Country Club | Batam - posting promo senior (Sen-Jum diskon ~19%) dan tarif caddy Rp 220.000 dalam Bahasa.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.instagram.com/driving.range_southlinks/",
+            "type": "instagram_post",
+            "snippet": "Akun terpisah Driving Range SouthLinks - tarif 50 balls Rp 45.000 (Member) / Rp 60.000 (Non-Member), Unlimited Rp 140.000/Rp 185.000 dipublikasikan via grafis Bahasa.",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -3935,6 +4734,22 @@
         "rates_visible_on_official": true,
         "rate_post_dates": [
           "2025-02-04"
+        ],
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/padanggolfsukajadi/",
+            "type": "instagram_post",
+            "snippet": "Akun resmi @padanggolfsukajadi - 1.897 followers; caption turnamen lokal dan paket Radisson Golf & Convention Center Batam sebagian Bahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.facebook.com/padanggolfsukajadi/",
+            "type": "facebook_post",
+            "snippet": "Halaman FB resmi Padang Golf Sukajadi (Batam) - posting promo membership dan event dwibahasa termasuk diskon 10% F&B clubhouse.",
+            "date": null,
+            "language": "id"
+          }
         ]
       },
       "operating_status": {
@@ -3995,11 +4810,28 @@
           "https://www.indahpuri.com/events-packages/",
           "https://www.indahpuri.com/about/fact-sheet/",
           "https://www.instagram.com/indahpurigolf/",
-          "https://www.facebook.com/people/Indah-Puri-Golf-Resort-Batam/100063569504035/"
+          "https://www.facebook.com/people/Indah-Puri-Golf-Resort-Batam/100063569504035/",
+          "https://www.indahpuri.com/golf-package/2-days-1-night/"
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "live",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/indahpurigolf/",
+            "type": "instagram_post",
+            "snippet": "Akun resmi @indahpurigolf ('The Golfer's Paradise With breathtaking scenery and spectacular views') - 1.639 followers; posting promo paket 2D1N dengan Vista Hotel sebagian dalam Bahasa.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.indahpuri.com/golf-package/2-days-1-night/",
+            "type": "official_site_id",
+            "snippet": "Halaman paket 2D1N resmi - mencantumkan harga IDR berlaku sampai 31 Desember 2024 (perlu update); teks utama Inggris dengan harga rupiah.",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -4061,7 +4893,23 @@
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "live",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/blackrocksgolf/",
+            "type": "instagram_post",
+            "snippet": "Akun resmi @blackrocksgolf (Black Rocks Hotel & Golf Club, Belitung) - posting promo 'Sport Tourism Belitung' dan turnamen pemerintah daerah dalam Bahasa Indonesia.",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://blackrocksgolf.co.id/",
+            "type": "official_site_id",
+            "snippet": "Situs resmi blackrocksgolf.co.id - domain .co.id tetapi konten utama Inggris. Halaman membership.php memuat detail keanggotaan.",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -4472,11 +5320,28 @@
         "notes": "Affordable historic course. Green fees stated to start at IDR 100,000; caddy/cart combined IDR 100k-200k. Specific weekend rate not published. Considered one of Indonesia's best value courses.",
         "sources": [
           "https://www.instagram.com/kentenheritage_1937golfcourse/",
-          "https://www.instagram.com/palembang.golf/"
+          "https://www.instagram.com/palembang.golf/",
+          "https://www.instagram.com/official_kentengolfcourse/"
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "none",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/kentenheritage_1937golfcourse/",
+            "type": "instagram_post",
+            "snippet": "Akun resmi PALEMBANG GOLF CLUB / Kenten Heritage 1937 Golf Course - berbagai posting dalam Bahasa Indonesia tentang turnamen dan kegiatan klub",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.instagram.com/official_kentengolfcourse/",
+            "type": "instagram_post",
+            "snippet": "Akun Kenten Palembang dalam Bahasa Indonesia (?hl=id), berisi konten klub dan driving range",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -4649,7 +5514,23 @@
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "none",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/golfpadang/",
+            "type": "instagram_post",
+            "snippet": "Akun resmi Pertamina Golf Balikpapan (@golfpadang) - posting kegiatan dalam Bahasa Indonesia",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.facebook.com/pertaminagolfbalikpapan",
+            "type": "facebook_post",
+            "snippet": "Halaman Facebook Pertamina Golf Balikpapan - update kegiatan dan turnamen dalam Bahasa Indonesia",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -4709,7 +5590,23 @@
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "none",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/karangjoanggolfbpn/",
+            "type": "instagram_post",
+            "snippet": "Akun resmi Karang Joang Golf & Country Club - Member of Senyiur Hotels & Resorts; konten dalam Bahasa Indonesia",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.facebook.com/1843648718997631",
+            "type": "facebook_post",
+            "snippet": "Halaman Facebook Karang Joang Golf Country Club Balikpapan",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -4768,7 +5665,16 @@
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "live",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/hotelbintangsintuk/",
+            "type": "instagram_post",
+            "snippet": "Akun resmi Hotel Bintang Sintuk (PKT Bontang) - konten Bahasa Indonesia",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -4827,7 +5733,16 @@
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "none",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/putriayucottage/",
+            "type": "instagram_post",
+            "snippet": "Akun Putri Ayu Cottage & Golf - co-located dengan Mahulu Golf Course; posting dalam Bahasa Indonesia",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -4942,7 +5857,16 @@
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "none",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/lapangan_golfswargaloka/",
+            "type": "instagram_post",
+            "snippet": "Padang Golf Swargaloka - akun resmi (TNI AU heritage course Lanud Syamsudin Noor); konten Bahasa Indonesia",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -4998,13 +5922,37 @@
         "notes": "No public 2026 pricing. April 2024 IG post referenced green fee promo but rate not retrievable. Contact via IG @golf_alamkhatulistiwa.",
         "sources": [
           "https://www.instagram.com/golf_alamkhatulistiwa/",
-          "https://www.instagram.com/p/C5pWzrNvTh-/"
+          "https://www.instagram.com/p/C5pWzrNvTh-/",
+          "https://www.instagram.com/reel/DN0FsKLZB_s/"
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "none",
         "rates_visible_on_official": false,
         "rate_post_dates": [
           "2024-04-11"
+        ],
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/golf_alamkhatulistiwa/",
+            "type": "instagram_post",
+            "snippet": "Akun resmi Alam Khatulistiwa Golf Pontianak - posting dalam Bahasa Indonesia",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.instagram.com/p/C5pWzrNvTh-/",
+            "type": "instagram_post",
+            "snippet": "Green fee untuk 18 hole affordable banget di 290k, dan kalau baru pertama main dapat diskon 50% untuk 3x main / 2 bulan",
+            "date": "2024-04-11",
+            "language": "id"
+          },
+          {
+            "url": "https://www.instagram.com/reel/DN0FsKLZB_s/",
+            "type": "instagram_post",
+            "snippet": "Satu - satunya Lapangan 18 hole seluas 26 hektar dengan pemandangan pepohonan tropis dan hijau di Pontianak",
+            "date": "2025-08-26",
+            "language": "id"
+          }
         ]
       },
       "operating_status": {
@@ -5068,7 +6016,44 @@
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "live",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://padivalley.com",
+            "type": "official_site_id",
+            "snippet": "Situs Padivalley Golf Club - konten campuran Bahasa Indonesia/Inggris (mis. 'Silahkan lakukan reservasi Golf melalui form dibawah ini')",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://padivalley.com/golf-reservation",
+            "type": "official_site_id",
+            "snippet": "Halaman Reservasi Golf Padivalley - 'Silahkan lakukan reservasi Golf melalui form dibawah ini'",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.instagram.com/padivalleygolfclub/",
+            "type": "instagram_post",
+            "snippet": "Akun resmi Padivalley Golf Club & Resto - posting Bahasa Indonesia (turnamen, paket buka puasa)",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.facebook.com/padivalleygolfclub/",
+            "type": "facebook_post",
+            "snippet": "Halaman Facebook Padivalley Golf Club (locale id_ID)",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.tiktok.com/@padivalleygc",
+            "type": "tiktok_post",
+            "snippet": "Akun TikTok resmi Padivalley GC - konten Bahasa Indonesia",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -5126,7 +6111,16 @@
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "none",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://www.facebook.com/p/Padang-Golf-Baddoka-Makassar-100057286096237/",
+            "type": "facebook_post",
+            "snippet": "Halaman Padang Golf Baddoka Makassar - konten Bahasa Indonesia",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -5360,7 +6354,30 @@
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "none",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/sanggoleogolfclub/",
+            "type": "instagram_post",
+            "snippet": "Akun resmi Sanggoleo Golf Club Kendari - posting Bahasa Indonesia (#salamolahraga, kegiatan latihan member)",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.facebook.com/p/Sanggoleo-Golf-Club-Kendari-100065426711781/",
+            "type": "facebook_post",
+            "snippet": "Halaman Facebook Sanggoleo Golf Club Kendari - konten Bahasa Indonesia",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.threads.com/@sanggoleogolfclub",
+            "type": "instagram_post",
+            "snippet": "Akun Threads resmi Sanggoleo Golf Club Kendari",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -5420,7 +6437,16 @@
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "none",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://www.facebook.com/164200023641913",
+            "type": "facebook_post",
+            "snippet": "Halaman Facebook Lapangan Golf Cenderawasih KODAM XVII Jayapura",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -5481,7 +6507,16 @@
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "none",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://www.facebook.com/p/Klub-Golf-Rimba-Irian-100057663690815/",
+            "type": "facebook_post",
+            "snippet": "Halaman Klub Golf Rimba Irian (Freeport/Kuala Kencana) - konten Bahasa Indonesia",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",
@@ -5540,7 +6575,23 @@
         ],
         "last_verified": "2026-04-29",
         "official_site_status": "none",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "indonesian_sources": [
+          {
+            "url": "https://www.instagram.com/lanud_pattimura_ambon/",
+            "type": "instagram_post",
+            "snippet": "Akun resmi Lanud Pattimura Ambon (TNI AU) - konten Bahasa Indonesia termasuk kegiatan Fun Golf Pattimura Family",
+            "date": null,
+            "language": "id"
+          },
+          {
+            "url": "https://www.instagram.com/pattimura_golf_course/",
+            "type": "instagram_post",
+            "snippet": "Akun GolferAmbon (@pattimura_golf_course) - konten Bahasa Indonesia tentang aktivitas lapangan golf Lanud Pattimura",
+            "date": null,
+            "language": "id"
+          }
+        ]
       },
       "operating_status": {
         "status": "operating",

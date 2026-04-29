@@ -381,8 +381,12 @@ function renderFees(f) {
   if (f.insurance_idr != null) rows.push(`<tr><td>보험</td><td class="amt">${fmtIDR(f.insurance_idr)}</td></tr>`);
 
   const sources = (f.sources || []).filter(Boolean);
+  const idUrls = new Set((f.indonesian_sources || []).map(e => e?.url).filter(Boolean));
   const sourcesHtml = sources.length
-    ? `<div class="fee-sources">출처: ${sources.slice(0, 3).map((u, i) => `<a href="${escapeHtml(u)}" target="_blank" rel="noopener">[${i + 1}]</a>`).join(' ')}</div>`
+    ? `<div class="fee-sources">출처: ${sources.slice(0, 8).map((u, i) => {
+        const langTag = idUrls.has(u) ? '<span class="lang-tag">ID</span>' : '<span class="lang-tag en">EN</span>';
+        return `<a href="${escapeHtml(u)}" target="_blank" rel="noopener" title="${escapeHtml(u)}">[${i + 1}]${langTag}</a>`;
+      }).join(' ')}</div>`
     : '';
 
   const verifiedDate = f.last_verified ? `<span class="verified-date">확인일 ${escapeHtml(f.last_verified)}</span>` : '';
