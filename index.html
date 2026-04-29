@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>인도네시아 골프장 지도 | Indonesia Golf Club Map</title>
+  <meta name="description" content="인도네시아 전역 91개 골프장 위치와 정보를 한눈에 — 주소·홀 구성·설계자·부대시설" />
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin="" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo-dot"></span>
+      <h1>Indonesia Golf Club Map</h1>
+      <span class="subtitle">인도네시아 골프장 지도</span>
+    </div>
+    <div class="topbar-meta">
+      <span class="counter"><strong id="visibleCount">0</strong> / <span id="totalCount">0</span> 개</span>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <input type="search" id="searchInput" placeholder="🔍 골프장 이름·지역·설계자 검색" autocomplete="off" />
+      </div>
+
+      <div class="filters">
+        <div class="filter-group">
+          <label>지역</label>
+          <div class="chips" id="regionChips"></div>
+        </div>
+        <div class="filter-group">
+          <label>홀 수</label>
+          <div class="chips" id="holesChips">
+            <button class="chip active" data-holes="all">전체</button>
+            <button class="chip" data-holes="9">9홀</button>
+            <button class="chip" data-holes="18">18홀</button>
+            <button class="chip" data-holes="27+">27홀+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-list" id="courseList"></div>
+    </aside>
+
+    <section class="map-wrap">
+      <div id="map"></div>
+      <button class="sidebar-toggle" id="sidebarToggle" aria-label="사이드바 토글">☰</button>
+    </section>
+
+    <aside class="detail-panel" id="detailPanel" aria-hidden="true">
+      <button class="close-btn" id="closeDetail" aria-label="닫기">×</button>
+      <div class="detail-content" id="detailContent"></div>
+    </aside>
+  </main>
+
+  <footer class="footer">
+    데이터 출처: APLGI · GolfPass · GolfAsian · 공식 골프장 사이트 ·
+    지도: © OpenStreetMap contributors · 지오코딩: Nominatim ·
+    <a href="https://github.com/moon470an-sys/Indonesia-Golf-Club" target="_blank" rel="noopener">GitHub</a>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+          crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
