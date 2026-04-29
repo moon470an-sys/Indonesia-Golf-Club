@@ -168,6 +168,18 @@ function renderCourseList() {
     const parText = c.par ? `Par ${c.par}` : '';
     const designerBadge = c.designer ? `<span class="badge">${escapeHtml(c.designer.split(',')[0].trim().split('(')[0].trim())}</span>` : '';
 
+    // Fee preview (weekday green fee)
+    const f = c.fees_2026_05;
+    let feePreview = '';
+    if (f && f.weekday) {
+      const wd = f.weekday.green_fee_idr ?? f.weekday.guest_fee_idr ?? f.weekday.member_fee_idr;
+      if (wd != null) {
+        feePreview = `<span class="fee-badge">평일 ${fmtIDR(wd)}~</span>`;
+      } else if (f.weekday.green_fee_usd) {
+        feePreview = `<span class="fee-badge">평일 ${fmtUSD(f.weekday.green_fee_usd)}~</span>`;
+      }
+    }
+
     item.innerHTML = `
       <h4>${escapeHtml(c.name_en)}</h4>
       <div class="meta">
@@ -175,6 +187,7 @@ function renderCourseList() {
         ${holesText ? `<span>⛳ ${holesText}</span>` : ''}
         ${parText ? `<span>${parText}</span>` : ''}
         ${designerBadge}
+        ${feePreview}
       </div>
     `;
 
@@ -206,6 +219,7 @@ function showDetail(c) {
 
   const facilities = (c.facilities || []).map(f => `<li>${escapeHtml(f)}</li>`).join('');
   const approxTag = c.coord_approximate ? '<span class="approx-tag">좌표 근사</span>' : '';
+  const feesHtml = renderFees(c.fees_2026_05);
 
   content.innerHTML = `
     <h2 class="name">${escapeHtml(c.name_en)}${approxTag}</h2>
@@ -244,6 +258,8 @@ function showDetail(c) {
       <p>${escapeHtml(c.course_layout)}</p>
     </section>` : ''}
 
+    ${feesHtml}
+
     ${facilities ? `
     <section>
       <h3>부대시설</h3>
@@ -280,6 +296,84 @@ document.getElementById('closeDetail').addEventListener('click', () => {
 document.getElementById('sidebarToggle').addEventListener('click', () => {
   document.getElementById('sidebar').classList.toggle('open');
 });
+
+// === Fee Rendering ===
+function fmtIDR(n) {
+  if (n == null) return null;
+  const num = Number(n);
+  if (!isFinite(num)) return null;
+  if (num >= 1000000) return `Rp ${(num / 1000000).toFixed(num % 1000000 === 0 ? 0 : 2)}M`;
+  if (num >= 1000) return `Rp ${(num / 1000).toFixed(0)}K`;
+  return `Rp ${num.toLocaleString('ko-KR')}`;
+}
+function fmtUSD(n) {
+  if (n == null) return null;
+  return `$${Number(n).toLocaleString('en-US')}`;
+}
+
+function renderFees(f) {
+  if (!f) return '';
+
+  const isObject = v => v && typeof v === 'object' && !Array.isArray(v);
+  const wd = isObject(f.weekday) ? f.weekday : null;
+  const we = isObject(f.weekend) ? f.weekend : null;
+
+  const wdGreen = wd ? (wd.green_fee_idr ?? wd.guest_fee_idr ?? wd.member_fee_idr) : null;
+  const weGreen = we ? (we.green_fee_idr ?? we.guest_fee_idr ?? we.member_fee_idr) : null;
+  const wdUSD = wd ? wd.green_fee_usd : null;
+  const weUSD = we ? we.green_fee_usd : null;
+
+  const hasAny = wdGreen != null || weGreen != null || wdUSD != null || weUSD != null
+                 || f.caddy_idr != null || f.cart_idr != null || f.insurance_idr != null
+                 || f.twilight_idr != null;
+
+  if (!hasAny && !f.notes) return '';
+
+  const rows = [];
+  if (wdGreen != null || wdUSD != null) {
+    const idr = fmtIDR(wdGreen);
+    const usd = fmtUSD(wdUSD);
+    rows.push(`<tr><td>평일 그린피</td><td class="amt">${[idr, usd].filter(Boolean).join(' / ') || '—'}</td></tr>`);
+  }
+  if (weGreen != null || weUSD != null) {
+    const idr = fmtIDR(weGreen);
+    const usd = fmtUSD(weUSD);
+    rows.push(`<tr><td>주말 그린피</td><td class="amt">${[idr, usd].filter(Boolean).join(' / ') || '—'}</td></tr>`);
+  }
+  if (f.twilight_idr != null) rows.push(`<tr><td>트와일라잇</td><td class="amt">${fmtIDR(f.twilight_idr)}</td></tr>`);
+  if (f.caddy_idr != null) rows.push(`<tr><td>캐디피</td><td class="amt">${fmtIDR(f.caddy_idr)}</td></tr>`);
+  if (f.cart_idr != null) rows.push(`<tr><td>카트</td><td class="amt">${fmtIDR(f.cart_idr)}</td></tr>`);
+  if (f.insurance_idr != null) rows.push(`<tr><td>보험</td><td class="amt">${fmtIDR(f.insurance_idr)}</td></tr>`);
+
+  const sources = (f.sources || []).filter(Boolean);
+  const sourcesHtml = sources.length
+    ? `<div class="fee-sources">출처: ${sources.slice(0, 3).map((u, i) => `<a href="${escapeHtml(u)}" target="_blank" rel="noopener">[${i + 1}]</a>`).join(' ')}</div>`
+    : '';
+
+  const verifiedDate = f.last_verified ? `<span class="verified-date">확인일 ${escapeHtml(f.last_verified)}</span>` : '';
+  const basedOn = f.based_on ? `<div class="fee-warning">⚠ ${escapeHtml(f.based_on)}</div>` : '';
+  const notes = f.notes ? `<div class="fee-notes">${escapeHtml(f.notes)}</div>` : '';
+
+  if (rows.length === 0) {
+    // Notes-only fee section (for closed courses or member-only)
+    return `
+      <section class="fees-section">
+        <h3>이용금액 (2026년 5월) ${verifiedDate}</h3>
+        ${basedOn}
+        ${notes}
+        ${sourcesHtml}
+      </section>`;
+  }
+
+  return `
+    <section class="fees-section">
+      <h3>이용금액 (2026년 5월) ${verifiedDate}</h3>
+      ${basedOn}
+      <table class="fee-table">${rows.join('')}</table>
+      ${notes}
+      ${sourcesHtml}
+    </section>`;
+}
 
 // === Helpers ===
 function escapeHtml(s) {
