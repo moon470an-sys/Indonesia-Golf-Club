@@ -8,6 +8,7 @@ let currentFilter = {
   search: '',
   region: 'all',
   holes: 'all',
+  status: 'operating-only',
 };
 
 // === Init Map ===
@@ -37,7 +38,8 @@ async function loadData() {
     const res = await fetch('data/golf_courses.json');
     const doc = await res.json();
     allCourses = doc.courses.filter(c => c.lat != null && c.lng != null);
-    document.getElementById('totalCount').textContent = allCourses.length;
+    const operatingCount = allCourses.filter(c => (c.operating_status?.status || 'operating') === 'operating').length;
+    document.getElementById('totalCount').textContent = `${allCourses.length} (운영 ${operatingCount})`;
     renderRegionChips();
     applyFilter();
   } catch (e) {
@@ -84,6 +86,15 @@ document.getElementById('holesChips').addEventListener('click', e => {
   applyFilter();
 });
 
+// === Status filter ===
+document.getElementById('statusChips').addEventListener('click', e => {
+  if (!e.target.classList.contains('chip')) return;
+  document.querySelectorAll('#statusChips .chip').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  currentFilter.status = e.target.dataset.status;
+  applyFilter();
+});
+
 // === Search ===
 document.getElementById('searchInput').addEventListener('input', e => {
   currentFilter.search = e.target.value.trim().toLowerCase();
@@ -93,6 +104,10 @@ document.getElementById('searchInput').addEventListener('input', e => {
 // === Apply Filter ===
 function applyFilter() {
   filteredCourses = allCourses.filter(c => {
+    const status = c.operating_status?.status || 'operating';
+    if (currentFilter.status === 'operating-only' && status !== 'operating') return false;
+    if (currentFilter.status !== 'all' && currentFilter.status !== 'operating-only' && status !== currentFilter.status) return false;
+
     if (currentFilter.region !== 'all' && c.region !== currentFilter.region) return false;
     if (currentFilter.holes !== 'all') {
       const h = c.holes;
@@ -126,9 +141,11 @@ function renderMarkers() {
 
   filteredCourses.forEach(c => {
     const isMatoa = c.id === 'matoa-nasional';
+    const status = c.operating_status?.status || 'operating';
+    const statusClass = status === 'closed_temporary' ? ' closed' : (status === 'uncertain' ? ' uncertain' : '');
     const icon = L.divIcon({
       className: '',
-      html: `<div class="golf-marker${isMatoa ? ' matoa' : ''}"></div>`,
+      html: `<div class="golf-marker${isMatoa ? ' matoa' : ''}${statusClass}"></div>`,
       iconSize: [28, 28],
       iconAnchor: [14, 28],
       popupAnchor: [0, -28],
@@ -180,8 +197,14 @@ function renderCourseList() {
       }
     }
 
+    // Status badge
+    const status = c.operating_status?.status || 'operating';
+    let statusBadge = '';
+    if (status === 'closed_temporary') statusBadge = '<span class="status-badge closed">휴장</span>';
+    else if (status === 'uncertain') statusBadge = '<span class="status-badge uncertain">불확실</span>';
+
     item.innerHTML = `
-      <h4>${escapeHtml(c.name_en)}</h4>
+      <h4>${escapeHtml(c.name_en)} ${statusBadge}</h4>
       <div class="meta">
         <span>📍 ${escapeHtml(c.region)}</span>
         ${holesText ? `<span>⛳ ${holesText}</span>` : ''}
@@ -221,9 +244,21 @@ function showDetail(c) {
   const approxTag = c.coord_approximate ? '<span class="approx-tag">좌표 근사</span>' : '';
   const feesHtml = renderFees(c.fees_2026_05);
 
+  // Operating status banner
+  const opStatus = c.operating_status?.status || 'operating';
+  let statusBanner = '';
+  if (opStatus === 'closed_temporary') {
+    const reason = c.operating_status?.closure_reason || '리노베이션 / 임시 휴장';
+    const reopened = c.operating_status?.reopened_as ? ` (${escapeHtml(c.operating_status.reopened_as)})` : '';
+    statusBanner = `<div class="status-banner closed">⚠️ 임시 휴장 — ${escapeHtml(reason)}${reopened}</div>`;
+  } else if (opStatus === 'uncertain') {
+    statusBanner = `<div class="status-banner uncertain">❓ 운영 상태 불확실 — 사전 연락 권장</div>`;
+  }
+
   content.innerHTML = `
     <h2 class="name">${escapeHtml(c.name_en)}${approxTag}</h2>
     <div class="region-line">${escapeHtml(c.region)} · ${escapeHtml(c.province)}</div>
+    ${statusBanner}
 
     <div class="stats">
       <div class="stat">

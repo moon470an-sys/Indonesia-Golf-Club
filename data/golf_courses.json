@@ -3,7 +3,7 @@
     "title": "Indonesia Golf Courses Directory",
     "version": "1.0",
     "last_updated": "2026-04-29",
-    "total_courses": 98,
+    "total_courses": 90,
     "data_collection_status": "complete",
     "notes": [
       "Coordinates are best-estimates from address geocoding; verify before production map use.",
@@ -13,7 +13,8 @@
     ],
     "geocoding": "Nominatim (OpenStreetMap)",
     "fees_added": "2026-04-29",
-    "fees_matched": 91
+    "fees_matched": 91,
+    "status_verified": "2026-04-29"
   },
   "courses": [
     {
@@ -62,6 +63,18 @@
           "https://gogolf.co.id/en/gogolf-news/how-much-does-it-cost-to-play-golf-in-indonesia"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Official site has dedicated 2026 rate page: https://www.royalejakarta.com/golf-rate-2026/",
+          "Active on multiple booking platforms (golfscape, golfsavers, trip.com) with 2026 listings",
+          "Phone bookings active: +62-21-80888999"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -107,6 +120,18 @@
         "sources": [
           "https://www.golfpondokindah.com/index_sub.asp?fuseaction=green_fees"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Official site live: https://www.pondokindahgolf.co.id/",
+          "Active 2026 booking presence on Trip.com, GolfPass, Golftripz",
+          "Updated February 2026 listings on Wheree directory"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
         "last_verified": "2026-04-29"
       }
     },
@@ -154,6 +179,19 @@
         ],
         "last_verified": "2026-04-29",
         "based_on": "2025 rates - 2026 may differ"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Active Instagram @senayangolfclub with 422 posts, 26K followers and 2026 reels (e.g., reel DQ3DKD8kmP-)",
+          "Night Golf 17:00-23:00 actively promoted (Korea Herald / PRNewswire 2025 coverage)",
+          "Listed as operating daily 06:00-21:30 in February 2026 directories",
+          "Note: course was renovated/rebranded in 2012; no GBK redevelopment closure found"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -202,6 +240,18 @@
         ],
         "last_verified": "2026-04-29",
         "based_on": "2024-2025 rates - 2026 may differ"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Active Instagram @halimgolfcourse",
+          "Tripadvisor 2026 reviews; managed by TNI AU but open to public",
+          "Daily operations 05:00-18:00 (closed Mon morning for maintenance)"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -249,6 +299,18 @@
         ],
         "last_verified": "2026-04-29",
         "based_on": "2025 rates - 2026 may differ"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Official site live: https://www.golfpangkalanjati.com/",
+          "Trip.com 2026 ticket listing",
+          "Reported avg ~4,500 visitors/month; open to public"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -297,6 +359,18 @@
         ],
         "last_verified": "2026-04-29",
         "based_on": "2025 rates - 2026 may differ"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Active Instagram @cengkarenggolfclub",
+          "Tripadvisor 2026 + Traveloka 2026 booking pages live",
+          "Operating contacts current: cgc@cengkarenggolfclub.com / 021 55911111"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -349,6 +423,18 @@
         ],
         "last_verified": "2026-04-29",
         "based_on": "2025 rates - 2026 may differ"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Active Instagram @moderngolfandcountryclub and Facebook page",
+          "Official site has Rate Golf 2025 page: https://www.moderngolf.co.id/event-detail/Rate-Golf-2025",
+          "Bookable on BaiGolf, QGolf, GolfPass for 2025-2026"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -392,6 +478,18 @@
         "sources": [
           "https://www.gadingrayagolf.com/green_fees.html"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Traveloka 2025 promo bookings active",
+          "Golfshake 2025 and 2026 review listings",
+          "Listed as currently operating (12:00-18:00 hours noted)"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
         "last_verified": "2026-04-29"
       }
     },
@@ -439,6 +537,18 @@
         ],
         "last_verified": "2026-04-29",
         "based_on": "2024-2025 rates - 2026 may differ"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Active Facebook page (Matoa Nasional Golf & Country Club)",
+          "GolfTimes article May 2025: https://golftimes.id/2025/05/25/matoa-national-golf-course-harmoni-golf-dan-alam-di-selatan-jakarta/",
+          "Marriott International Jakarta Charity Golf Day 2025 hosted at venue"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -485,6 +595,18 @@
           "https://www.damaiindahgolf.com/index.asp?fuseaction=fee"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Official site live: https://pik.damaiindahgolf.com/ and https://www.damaiindahgolf.com/",
+          "Linktree (linktr.ee/damaiindahgolfofficial) active; bookable on golfscape and BaiGolf",
+          "Booking phone +62 21 5370285 current"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -529,6 +651,18 @@
         "sources": [
           "https://www.damaiindahgolf.com/index.asp?fuseaction=fee"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Official site live: https://www.damaiindahgolf.com/",
+          "Trip.com 2026 ticket page: https://us.trip.com/travel-guide/attraction/north-serpong/damai-indah-golf-bsd-course-61851779/",
+          "Airial.travel 2026 attraction listing; bookable on golfscape"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
         "last_verified": "2026-04-29"
       }
     },
@@ -580,6 +714,18 @@
         ],
         "last_verified": "2026-04-29",
         "based_on": "2025 rates - 2026 may differ"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Trip.com 2026 ticket listing live",
+          "Annual Playing Rights (APR) program currently offered",
+          "Listed across Hole19, GolfPass, Golftripz with current rate sheets"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -625,6 +771,18 @@
         ],
         "last_verified": "2026-04-29",
         "based_on": "2025 rates - 2026 may differ"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Official site live: https://emeralda-golfclub.com/",
+          "Active Instagram @emeralda_golf_club",
+          "Golfshake 2026 reviews: https://www.golfshake.com/course/view/21422/Emeralda_Golf_Country_Club.html"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -669,6 +827,18 @@
         "sources": [
           "https://gununggeulis.com/country-club/rates/"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Official site live: https://gununggeulis.com/country-club/",
+          "Active Facebook page; Tripadvisor 2025 listing",
+          "Bookable on golfscape and GoGolf with active reservation flow"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
         "last_verified": "2026-04-29"
       }
     },
@@ -717,6 +887,18 @@
         ],
         "last_verified": "2026-04-29",
         "based_on": "2025 rates - 2026 may differ"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Official site live: https://sentulhighlands.com/",
+          "Active Instagram @sentulhighlandsgolfclub",
+          "Hosted PB PGI National Amateur Championship May 2025; planned return 2026 (GolfTimes article)"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -763,6 +945,18 @@
         ],
         "last_verified": "2026-04-29",
         "based_on": "2025 rates - 2026 may differ"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Official site live: https://rainbowhillsgolf.com/",
+          "All three nines (Forest, Stone Hills, Mountain) listed as open to public on GolfPass",
+          "Cvent venue listing current; reservations: rsv@rainbowhillsgolf.com"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -812,6 +1006,18 @@
         ],
         "last_verified": "2026-04-29",
         "based_on": "2023-2025 rates - 2026 may differ"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Official site live: https://www.klubgolfbogorraya.com/ (updated within last weeks)",
+          "Active Instagram @klubgolfbogorraya",
+          "Novotel Bogor Golf Resort partnership active; reservations +62 811-9718-844"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -860,6 +1066,18 @@
         ],
         "last_verified": "2026-04-29",
         "based_on": "2025-2026 rates"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Official site live: https://www.permatasentulgolf.net/",
+          "Active Instagram @permatasentul_golfclub",
+          "IKPI partnership announcement; current 2025-2026 published green fee structure"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -907,6 +1125,18 @@
         ],
         "last_verified": "2026-04-29",
         "based_on": "2025-2026 rates"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Official site live: https://www.riverside-golf.com/",
+          "Active Instagram @riversidegolfclub and @bukitgolfriverside",
+          "Active Facebook page (Riverside Golf Club Cibubur); reservations: fo@riverside-golf.com"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -958,6 +1188,18 @@
         ],
         "last_verified": "2026-04-29",
         "based_on": "2024-2025 rates - 2026 may differ"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Official site live: https://jagorawi.com/",
+          "Active Instagram @jagorawigolfcc and Facebook page",
+          "Tripadvisor 2025 listing; 45-hole facility (Old, New, Z-Nine) active"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -1001,6 +1243,18 @@
         "sources": [
           "https://rancamayagolf.com/golf-rate/"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Official site live: https://rancamayagolf.com/ with current Golf Rate page",
+          "IAC Worldwide reciprocal listing active",
+          "Online reservation +62 817 1710 0009; Tripadvisor 2025 reviews"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
         "last_verified": "2026-04-29"
       }
     },
@@ -1048,6 +1302,18 @@
         ],
         "last_verified": "2026-04-29",
         "based_on": "2024-2025 rates - 2026 may differ"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Official site live: https://www.jababekagolf.co.id/",
+          "Active Instagram @jababekagolf_official and Facebook page",
+          "May 2025 reciprocal agreement signed with Tateshina Kogen CC (Japan); 2025 weekday/weekend rates published"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -1093,6 +1359,18 @@
           "https://www.golfpass.com/travel-advisor/courses/38257-palm-springs-golf-country-club-karawang-course",
           "https://playgolf.id/golf_courses/palm-spring-golf-karawang/"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Active Instagram @palmspringsgolf_karawang and @palm_springs_golf",
+          "Active Facebook page (palmspringsgolf.karawang)",
+          "Booking contacts current: 0822-1193-3648, 0857-7560-8559"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
         "last_verified": "2026-04-29"
       }
     },
@@ -1140,6 +1418,19 @@
           "https://www.trump.com/golf/lido-city-indonesia"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Officially opened 2024 (delayed from earlier target); Facebook post 'Now open' confirms",
+          "Active Instagram @trumpgolflido",
+          "AGIF March 2025 Milestone article + November 2025 honour: https://agif.asia/2025/11/honour-for-trump-international-golf-club-lido/",
+          "Named Best Golf Course Indonesia by World Golf Awards"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -1185,6 +1476,18 @@
           "https://www.golflux.com/destination/bogor/"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "Listed in current 2025/2026 Bogor golf directories (GolfLux, GoGolf)",
+          "9-hole heritage course (built 1935), also known as RSJMM Heritage Golf Field",
+          "No dedicated official site or recent social media verified within 6 months; no closure announcement found"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -1228,6 +1531,19 @@
         "sources": [
           "https://www.parahyangangolf.com/green-fees"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://www.parahyangangolf.com/ - official site with active green fees, promo, and tee booking pages",
+          "https://www.parahyangangolf.com/promo - active 'What's On' promotional events page",
+          "https://www.tripadvisor.com/Attraction_Review-g297704-d17328790 - 2026 reviews and visit information",
+          "GoGolf and Asia Golf Trail offer 2026 tee-time bookings"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
         "last_verified": "2026-04-29"
       }
     },
@@ -1276,6 +1592,20 @@
           "https://mountainviewgolfbandung.com/"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://mountainviewgolfbandung.com/ - active official site",
+          "https://www.instagram.com/mountainviewgolfbandung/ - active Instagram (78 posts)",
+          "https://resordagopakar.co.id/mountain-view-golf-club/ - listed on Resor Dago Pakar official site",
+          "https://www.tripadvisor.com/Attraction_Review-g297704-d3532305 - 2026 visitor reviews",
+          "Reservations active at +62 811-2288-6089"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -1321,51 +1651,20 @@
           "https://nuansaholiday.co.id/product/bandung-golf/"
         ],
         "last_verified": "2026-04-29"
-      }
-    },
-    {
-      "id": "bandung-giri-gahana",
-      "name_en": "Bandung Giri Gahana Golf & Resort",
-      "region": "Bandung",
-      "province": "West Java",
-      "address": "Jl. Raya Jatinangor, Cikeruh, Jatinangor, Sumedang 45363",
-      "lat": -6.9402,
-      "lng": 107.772,
-      "holes": 18,
-      "par": 72,
-      "designer": "Michael Coate",
-      "year_opened": 1989,
-      "course_layout": "Two 9s: Giri + Gahana; 7,176 yards",
-      "facilities": [
-        "Driving Range",
-        "Pro Shop",
-        "Restaurant",
-        "Resort Hotel",
-        "Clubhouse"
-      ],
-      "website": null,
-      "notes": "Bent Grass greens; cool highland setting.",
-      "fees_2026_05": {
-        "weekday": {
-          "green_fee_idr": 845500,
-          "guest_fee_idr": null,
-          "member_fee_idr": null
-        },
-        "weekend": {
-          "green_fee_idr": 1065500,
-          "guest_fee_idr": null,
-          "member_fee_idr": null
-        },
-        "twilight_idr": null,
-        "caddy_idr": null,
-        "cart_idr": null,
-        "insurance_idr": null,
-        "currency": "IDR",
-        "notes": "2025 rates carried into 2026 as published: Weekday IDR 845,500 - 955,500 / Weekend IDR 1,065,500 - 1,615,500 (varies by tee time and package). Stay-and-play 2D1N from IDR 4,200,000.",
-        "sources": [
-          "https://gogolf.co.id/en/golf-course/bandung-giri-gahana-golf-resort",
-          "https://en.gogolf.co.id/golf-course/bandung-giri-gahana-golf"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://dagoheritage1917.com/ - active official site",
+          "https://www.instagram.com/dagoheritage_1917/ - active Instagram",
+          "https://www.instagram.com/dagodriving/ - active driving range Instagram",
+          "Recent membership election event held February 15, 2026",
+          "https://us.trip.com/travel-guide/attraction/cibeunying-kaler/1917-heritage-dago-golf-course-58326644/ - active 2025 ticket sales",
+          "No evidence found of any heritage preservation lawsuit closure"
         ],
+        "closure_reason": null,
+        "reopened_as": null,
         "last_verified": "2026-04-29"
       }
     },
@@ -1413,6 +1712,19 @@
           "https://www.golfsavers.com/indonesia/bandung-golf-courses/jatinangor-national-golf-resort"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://www.jatinangorgolf.com/ - active official site",
+          "https://obgolf.co.id/dari-bgg-ke-jng/ - rebranding announcement March 2024",
+          "https://www.golfsavers.com/indonesia/bandung-golf-courses/jatinangor-national-golf-resort - active 2025/2026 listings",
+          "DUPLICATE FLAG: This is the same physical course as bandung-giri-gahana (same Sumedang/Jatinangor address). The team's suspicion was correct."
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -1457,6 +1769,20 @@
           "https://www.visitciaterhighlandresort.com/",
           "https://lapisbogor.co.id/artikel/asstro-highland-ciater-harga-tiket-masuk-daya-tarik-jam-buka/"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "uncertain",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.visitciaterhighlandresort.com/ - resort website confirms operation",
+          "Resort facilities listed include only a 'driving range' - NOT a full golf course",
+          "Multiple targeted searches for 'Ciater Highland' golf 9-hole/18-hole returned no full course",
+          "https://wisata.subang.go.id/view-ciater-highland-resort.jsp - official tourism listing mentions driving range only",
+          "CONCLUSION: Resort is operating, but a regulation 9- or 18-hole golf course at this property is not verifiable. Likely driving-range only."
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
         "last_verified": "2026-04-29"
       }
     },
@@ -1505,6 +1831,20 @@
           "https://www.getyourguide.com/yogyakarta-l349/yogyakarta-merapi-golf-course-cangkringan-t638379/"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://www.merapigc.co.id/ - active official site",
+          "https://www.instagram.com/merapigolf/ - active Instagram with 'GOLF RATE MERAPI GOLF 2026' post",
+          "https://www.instagram.com/p/DS4ZAF0Ekty/ - 2026 rate announcement post",
+          "https://www.tiktok.com/@merapi.golf - active TikTok",
+          "Bookings via +62 274 896176"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -1550,6 +1890,19 @@
           "https://thebudgetgolfer.com/yogyakarta-golf-guide-2026/"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://www.hyatt.com/hyatt-regency/en-US/yogya-hyatt-regency-yogyakarta/golf-course - active golf page",
+          "Hotel under renovation Aug 21 2025 - Dec 31 2026, but golf course remains OPEN",
+          "https://thebudgetgolfer.com/yogyakarta-golf-guide-2026/ - 2026 golf guide includes course",
+          "9-hole par-30 course at Hyatt Regency Yogyakarta operates throughout renovation"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -1594,6 +1947,20 @@
           "https://www.gelora.id/v/padanggolfadisutjipto",
           "https://berjogja.com/4-rekomendasi-tempat-main-golf-di-yogyakarta-lengkap-alamat-dan-tarif/"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://www.gelora.id/field/478?Date=20-Oct-2025 - active online booking platform with 2025-2026 dates",
+          "https://www.facebook.com/padanggolfadisutjipto/ - active Facebook",
+          "https://www.instagram.com/padanggolfadisutjipto/ - active Instagram",
+          "Confirmed open to public despite Indonesian Air Force affiliation",
+          "https://us.trip.com/travel-guide/attraction/depok/padang-golf-adisutjipto-147292914/ - 2025 ticket sales active"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
         "last_verified": "2026-04-29"
       }
     },
@@ -1641,6 +2008,22 @@
           "https://www.golfpass.com/travel-advisor/courses/38170-borobudur-international-golf-country-club"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://www.borobudur-golf.com/en/ - active official site",
+          "https://www.instagram.com/borobudurgolf/ - active Instagram",
+          "https://www.facebook.com/borobudurgolf/ - active Facebook",
+          "https://www.tripadvisor.com/Attraction_Review-g297709-d7263991 - 2026 reviews active",
+          "October 2024 Prabowo cabinet retreat used facility temporarily; caddies temporarily laid off due to remaining tents (merdeka.com news)",
+          "https://travel.kompas.com/read/2025/02/13/193042127 - February 2025 article about glamping facilities, normal operations confirmed",
+          "Bookings active via golfscape and direct phone +62 (0293) 313 758. No permanent closure."
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -1687,6 +2070,19 @@
           "https://www.traveloka.com/id-id/activities/indonesia/product/gombel-golf-semarang-2001925005778"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://www.instagram.com/gombelgolfid/ - active Instagram",
+          "https://www.traveloka.com/id-id/activities/indonesia/product/gombel-golf-semarang-2001925005778 - 2026 ticket sales active on Traveloka",
+          "Operating hours posted: Mon 12:00-19:00, Tue-Sun 05:30-19:00",
+          "https://visitjawatengah.jatengprov.go.id - listed as active Central Java tourist destination"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -1731,6 +2127,20 @@
           "https://us.trip.com/travel-guide/attraction/tembalang/candi-golf-club-144866825/",
           "https://candigolf.id/"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://candigolf.id/ - active official site",
+          "https://www.instagram.com/candigolfcountryclub.id/ - active Instagram",
+          "https://www.facebook.com/people/Graha-candi-golf-semarang/100068038901233/ - active Facebook",
+          "https://x.com/grahacandigolf - active X/Twitter",
+          "Operating hours: Mon 10:00-18:00, Tue-Sun 05:45-18:00"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
         "last_verified": "2026-04-29"
       }
     },
@@ -1780,6 +2190,20 @@
           "https://ciputragolf.com/promo-golf-surabaya/"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://ciputragolf.com/ - active official site",
+          "https://ciputragolf.com/promo-golf-surabaya/ - active promotional page",
+          "https://www.tripadvisor.com/Attraction_Review-g297715-d15363847 - 2026 reviews",
+          "https://www.agoda.com/ciputra-golf-club-hotel - 2026 hotel bookings active",
+          "Active 2026 rate card: weekday Rp235k-1,453k"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -1825,6 +2249,21 @@
           "http://bukitdarmogolf.com/rates-fee-and-membership/",
           "https://wisata.app/diary/88113"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://bukitdarmogolf.com/ - active official site",
+          "https://bukitdarmogolf.com/updates/ - active updates page",
+          "https://www.instagram.com/bukitdarmogolf/ - active Instagram",
+          "GM Challenge tournament scheduled January 30, 2026",
+          "Operating hours 05:00-22:00",
+          "https://id.trip.com/travel-guide/attraction/dukuhpakis/bukit-darmo-golf-surabaya-58270448/ - 2026 ticket info"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
         "last_verified": "2026-04-29"
       }
     },
@@ -1874,6 +2313,20 @@
           "https://gogolf.co.id/en/golf-course/finna-golf-and-country-club"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://finnagolf.com/ - active official site",
+          "https://finnagolf.com/golf-booking/ - active online golf booking",
+          "https://finnagolf.com/event/ - active events page (monthly tournaments, New Year event)",
+          "https://www.instagram.com/finnagolf/ - active Instagram",
+          "https://www.traveloka.com/en-en/hotel/indonesia/finna-golf--country-club-3000010003240 - 2026 deals active"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -1920,6 +2373,20 @@
           "https://www.golfcards.com/course/taman-dayu-golf-club-resort/",
           "https://gogolf.co.id/en/gogolf-news/how-much-does-it-cost-to-play-golf-in-indonesia"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://www.tamandayu.com/ - active official site",
+          "https://www.instagram.com/tamandayugolfresort/ - active Instagram",
+          "https://www.tripadvisor.com/Attraction_Review-g297711-d391664 - 2025-2026 reviews",
+          "https://www.tiket.com/en-us/hotel/indonesia/taman-dayu-golf-club-resort-212001575431011332 - active discounted bookings",
+          "https://nicklausdesign.com/course/tamandayu/ - listed in active Nicklaus Design portfolio"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
         "last_verified": "2026-04-29"
       }
     },
@@ -1968,6 +2435,19 @@
           "https://gogolf.co.id/en/golf-course/graha-famili-golf-country-club"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://www.golfgraha.com/ - active official site",
+          "https://www.instagram.com/golfgrahafamili/ - active Instagram",
+          "https://jatimreview.com/2025/08/rayakan-hut-ke-30-golf-graha-famili-surabaya-gelar-turnamen-berhadiah-hole-in-one-rp-2-miliar/ - August 2025 30th anniversary tournament with Rp 2 billion hole-in-one prize",
+          "Monthly traffic: 3,500-3,700 golfers; green fees Rp 590k weekday / Rp 770k weekend"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -2015,6 +2495,20 @@
           "https://malang-guidance.com/araya-golf-family-club-kota-malang/"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://arayagolf.com/ - active official site",
+          "https://www.instagram.com/arayagolfcourse/ - active Instagram",
+          "Hosting 2026 IJG (Indonesian Junior Golf) Series 5 tournament March 28-29, 2026",
+          "https://ijg.or.id/tournamentlist - tournament listing",
+          "https://golf1.co.id/araya-golf-family-club-memacu-adrenalin-di-kota-malang/ - active media coverage"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -2057,6 +2551,21 @@
           "https://us.trip.com/travel-guide/attraction/tempurejo/padang-golf-glantangan-144867458/",
           "https://www.instagram.com/glantangangolf_coursejember/"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.instagram.com/glantangangolf_coursejember/ - active Instagram",
+          "https://suluhnusantara.news/turnamen-golf-piala-bupati-jember-digelar-di-glantangan-akan-di-orbitkan-event-tiap-minggu/ - Piala Bupati Jember tournament held at Glantangan",
+          "Tournament held December 14, 2025 with ~120 participants",
+          "September 12, 2025 event also documented (Facebook)",
+          "https://us.trip.com/travel-guide/attraction/tempurejo/padang-glantangan-144867458/ - 2026 attraction listing",
+          "Older 2014 references no longer the only data; 2025 activity confirmed. No 2026 events specifically found yet."
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
         "last_verified": "2026-04-29"
       }
     },
@@ -2103,6 +2612,20 @@
           "https://golftimes.id/2025/01/02/tiga-tempat-golf-terbaik-di-malang-raya-untuk-pencinta-olahraga/"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://playgolf.id/golf_courses/abdul-rachman-saleh-padang-golf/ - listed as active, public access confirmed",
+          "https://golftimes.id/2025/01/02/tiga-tempat-golf-terbaik-di-malang-raya-untuk-pencinta-olahraga/ - January 2025 article naming it among top 3 Malang Raya courses",
+          "https://us.trip.com/travel-guide/attraction/singosari/abdul-rachman-saleh-padang-golf-144868268/ - 2025 ticket information",
+          "Public access confirmed despite Indonesian Air Force (TNI AU) base location",
+          "https://www.hole19golf.com/courses/padang-golf-abdulrachman-saleh - active course listing"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -2148,6 +2671,18 @@
           "https://adeevatours.com/bali-national-golf-green-fee/"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://www.tripadvisor.com/ - Bali National Golf Club active 2026 reviews",
+          "https://playgolfbali.com/ - listed as one of Play Golf Bali's four active clubs (with Bukit Pandawa, Handara, New Kuta)",
+          "https://golfscape.com/bali-golf-courses/bali-national-golf-club - bookable tee times"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -2191,6 +2726,20 @@
           "https://www.golfasian.com/golf-courses/indonesia-golf-courses/bali/nirwana-bali-golf-club/",
           "https://golfscape.com/bali-golf-courses/nirwana-bali-golf-club"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "closed_temporary",
+        "confidence": "high",
+        "evidence": [
+          "https://www.trump.com/golf/trump-international-golf-club-and-resort-bali - planned Phil Mickelson-designed 18-hole course",
+          "https://www.thejakartapost.com/indonesia/2022/12/09/playing-with-paradise-defunct-bali-golf-course-another-trump-fiasco.html - course closed since July 2017, transformed into 'Pitu Sunset Spots' beach cafe at Tanah Lot",
+          "https://www.scmp.com/news/asia/southeast-asia/article/3202722/ - workers laid off, reopening repeatedly delayed",
+          "https://www.australiangolfdigest.com.au/first-look-trump-golfs-indonesia-venture-nears-completion-and-an-aussie-is-in-charge-of-its-greens/ - construction nearing completion under MNC Land partnership",
+          "No confirmed 2026 reopening date as of April 2026"
+        ],
+        "closure_reason": "Closed July 2017 for redevelopment as Trump International Golf Club & Resort Bali (MNC Land + Trump Organization joint venture); Phil Mickelson redesign; protracted delays since 2017",
+        "reopened_as": "Trump International Golf Club & Resort Bali (planned, not yet open)",
         "last_verified": "2026-04-29"
       }
     },
@@ -2237,6 +2786,18 @@
           "https://easygolfbali.com/product/green-fees/new-kuta-golf/",
           "https://gobaligolf.com/new-kuta-golf-package/"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://newkutagolf.co.id/golf - official website active",
+          "https://pecatuindahresort.com/new-kuta-golf/ - Pecatu Indah Resort listing",
+          "https://www.tripadvisor.com/Attraction_Review-g1380108-d3521132 - 2026 reviews note partial renovation: ~5 temporary greens in play, clubhouse construction; course OPEN to public during renovation"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
         "last_verified": "2026-04-29"
       }
     },
@@ -2285,6 +2846,18 @@
           "https://www.handaragolfresort.com/golf/"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://www.klook.com/activity/83440-bali-golf-handara-new-kuta-golf-bali-national-golf-club/ - active Klook bookings 2026",
+          "https://playgolfbali.com/ - one of four active Play Golf Bali courses",
+          "Handara Golf & Resort Bali in Bedugul mountain region operating"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -2328,6 +2901,19 @@
           "https://baligolfers.com/tour/bukit-pandawa-golf-weekend-public-holiday-green-fee/",
           "https://easygolfbali.com/product/green-fees/bukit-pandawa-golf-country-club/"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://www.bukitpandawagolf.com/ - official website active",
+          "https://www.tripadvisor.com/Attraction_Review-g297697-d12253831 - 2026 reviews",
+          "https://www.viator.com/tours/Kuta/Bukit-Pandawa-Golf-and-Country-Club-Bali/d22290-92029P253 - active 2026 bookings",
+          "Par-3, 18-hole, opened 2016, operating normally"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
         "last_verified": "2026-04-29"
       }
     },
@@ -2374,6 +2960,19 @@
           "https://gogolf.co.id/en/golf-course/bali-beach-golf-course"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://balistarisland.com/bali-beach-golf-course-sanur/ - operating description",
+          "https://www.tripadvisor.com/Attraction_Review-g297700-d6607239 - 2026 reviews available",
+          "https://www.golfasian.com/golf-courses/indonesia-golf-courses/bali/bali-beach-golf-course/ - active listing",
+          "9-hole course; renovated 2010-2015 (lakes/greens upgrade 2004); confirmed operating with daily 7am tee-offs and night driving range"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -2417,6 +3016,19 @@
           "https://sirebeachgolfclub.com/golf-rates/",
           "https://www.lomboknetwork.net/tours-prices/golfing-in-lombok/kosaido-golf-lombok/"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://sirebeachgolfclub.com/ - official site live with current rates",
+          "https://sirebeachgolfclub.com/golf-rates/ - rates valid April 1, 2025 - March 31, 2026",
+          "https://www.tripadvisor.com/AttractionProductReview-g664667-d18974525 - 2026 reviews",
+          "Recovered from 2018 earthquake damage; now operating as Kosaido Country Club Lombok / Sire Beach Golf Club"
+        ],
+        "closure_reason": null,
+        "reopened_as": "Kosaido Country Club Lombok (rebrand)",
         "last_verified": "2026-04-29"
       }
     },
@@ -2466,6 +3078,20 @@
           "http://www.lombok-golf.com/"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "http://www.lombok-golf.com/ - official site active",
+          "https://www.golfsavers.com/indonesia/lombok-golf-courses/gec-rinjani-golf-resort - listed as bookable",
+          "https://www.lomboknetwork.net/tours-prices/golfing-in-lombok/gec-rinjani-golf/ - 2025 listing",
+          "https://www.facebook.com/LombokGolf/ - Facebook page active",
+          "Some travel sources show inconsistent activity; no confirmed closure"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -2506,6 +3132,20 @@
           "https://www.naiaresortsumbawa.com/kaleang-golf-course-west-sumbawa/",
           "https://www.hole19golf.com/indonesia/kaleang-golf-club-naia-resort-sumbawa"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.naiaresortsumbawa.com/kaleang-golf-course-west-sumbawa/ - listed as active by Naia Resort, 2km away",
+          "https://www.hole19golf.com/indonesia/kaleang-golf-club-naia-resort-sumbawa - course info available",
+          "https://www.trip.com/travel-guide/attraction/west-sumbawa-regency/kaleang-golf-course-amman-139724994 - operating hours listed",
+          "9-hole boutique course at Sekongkang, West Sumbawa; serves AMMAN mining community + Naia resort guests; 300,000 IDR for 9 holes",
+          "Limited online/social presence makes confirmation harder"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
         "last_verified": "2026-04-29"
       }
     },
@@ -2552,6 +3192,19 @@
           "https://www.riabintan.com/justgolf/"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://www.riabintan.com/ - official website active",
+          "https://www.tripadvisor.com/Attraction_Review-g1096248-d631781 - 2026 reviews",
+          "https://www.bintan-resorts.com/best-golf-courses-on-bintan-island/ - Ocean Course listed as flagship",
+          "Gary Player design, 18 holes, established 1998"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -2594,6 +3247,19 @@
           "https://riabintangolf.com/rates/",
           "https://www.riabintan.com/published-rates/"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://www.riabintan.com/ - operates two courses (Ocean + Forest 9)",
+          "https://riabintangolf.com/ - active booking site",
+          "https://www.bintan-resorts.com/best-golf-courses-on-bintan-island/ - Forest 9 listed as active",
+          "Gary Player-designed 9-hole forest companion to Ocean Course"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
         "last_verified": "2026-04-29"
       }
     },
@@ -2638,6 +3304,20 @@
           "https://www.bintan-resorts.com/golf/laguna-golf-bintan/"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "closed_temporary",
+        "confidence": "high",
+        "evidence": [
+          "https://en.wikipedia.org/wiki/Bintan_Lagoon_Resort - golf courses closed 2020 due to insolvency",
+          "https://www.where2golf.com/indonesia/bintan-lagoon-resort-sea-view-course/ - flagged as closed",
+          "https://www.hospitalitynet.org/announcement/41013764.html - Movenpick Resort & Spa Bintan Lagoon opening Q1 2026",
+          "https://www.travelandtourworld.com/news/article/movenpick-resort-and-spa-bintan-lagoon-opens-in-2026-... - resort relaunches 2026 mentioning 'access to two championship courses' but golf reopening not separately confirmed",
+          "https://www.ttgasia.com/2026/01/08/new-hotels-movenpick-resort-spa-bintan-lagoon - Jan 2026 announcement focuses on hotel facilities, not explicit golf reopening"
+        ],
+        "closure_reason": "Closed 2020 due to Bintan Lagoon Resort insolvency; resort hotel rebooted by Mövenpick (Accor) Q1 2026 but golf reopening not confirmed in 2026 launch materials",
+        "reopened_as": "Mövenpick Resort & Spa Bintan Lagoon (hotel only confirmed; golf TBD)",
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -2679,6 +3359,19 @@
         "sources": [
           "https://www.bintan-resorts.com/golf/laguna-golf-bintan/"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "closed_temporary",
+        "confidence": "high",
+        "evidence": [
+          "https://www.where2golf.com/indonesia/bintan-lagoon-resort-woodlands-course/ - flagged as closed",
+          "https://en.wikipedia.org/wiki/Bintan_Lagoon_Resort - both Sea View (Nicklaus) and Woodlands (Ian Baker-Finch) closed 2020",
+          "https://www.hospitalitynet.org/announcement/41013764.html - Mövenpick resort opens Q1 2026",
+          "https://www.ttgasia.com/2026/01/08/new-hotels-movenpick-resort-spa-bintan-lagoon - hotel-focused relaunch; no separate golf reopening announcement"
+        ],
+        "closure_reason": "Closed 2020 (insolvency); Mövenpick relaunched the resort in Q1 2026 but golf course reopening status uncertain in launch materials",
+        "reopened_as": "Mövenpick Resort & Spa Bintan Lagoon (hotel only confirmed; golf TBD)",
         "last_verified": "2026-04-29"
       }
     },
@@ -2724,6 +3417,19 @@
           "https://www.lagunagolfbintan.com/rates-memberships/",
           "https://www.golfsavers.com/indonesia/bintan-golf-courses/laguna-bintan-golf-club"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://www.lagunagolfbintan.com/ - official site active",
+          "https://www.banyantree.com/indonesia/bintan - Banyan Tree Bintan markets golf as feature",
+          "https://www.bintan-resorts.com/best-golf-courses-on-bintan-island/ - active listing",
+          "Banyan Tree / Angsana / Cassia / The Sanchaya resort cluster operates the 18-hole Greg Norman-designed course"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
         "last_verified": "2026-04-29"
       }
     },
@@ -2771,6 +3477,18 @@
           "https://batamgolfpackage.com/"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://www.golfsavers.com/best-golf-courses-in-batam - Best of Batam 2026 listing",
+          "https://batam-golf.com/batam-golf-paradise/palm-springs-golf-and-beach-resort/ - active listing",
+          "27 holes (Resort/Palm/Island nines); renovated 2002; among Batam's most-played"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -2816,6 +3534,18 @@
           "https://www.golfasian.com/golf-courses/indonesia-golf-courses/batam/tering-bay-golf-country-club/"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://www.golfsavers.com/best-golf-courses-in-batam - active 2026 listing",
+          "https://www.golflux.com/destination/batam-golf-courses/ - 2025/2026 'Must-Visit' selection",
+          "Greg Norman design, 18-hole par 72 on 167ha"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -2858,6 +3588,18 @@
           "https://en.gogolf.co.id/golf-course/tamarin-santana-golf-club",
           "https://www.golfsavers.com/indonesia/batam-island-golf-courses/tamarin-santana-golf-club"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://www.golfsavers.com/best-golf-courses-in-batam - active",
+          "https://www.asiagolftrail.com/indonesia/batam-island-golf-courses.html - listed",
+          "Jack Nicklaus-designed 9-hole par 36 in Nongsa Resorts area"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
         "last_verified": "2026-04-29"
       }
     },
@@ -2904,6 +3646,18 @@
           "https://golfscape.com/batam-golf-courses/southlinks-country-club"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://www.golfsavers.com/best-golf-courses-in-batam - active listing",
+          "https://www.traveloka.com/en-sg/explore/destination/7-best-golf-courses-in-batam-trp/322719 - 2026 'Best Golf Courses in Batam'",
+          "18-hole championship layout"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -2949,6 +3703,19 @@
           "https://batamgolfpackage.com/"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.golfsavers.com/best-golf-courses-in-batam - listed in 2026 Batam roster",
+          "https://www.asiagolftrail.com/indonesia/batam-island-golf-courses.html - active",
+          "https://www.golflux.com/destination/batam-golf-courses/ - 2025/2026 listing",
+          "18-hole, redeveloped/reopened 2009, water on 13 of 18 holes"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -2993,6 +3760,18 @@
           "https://golf-batam.com/",
           "https://batamgolfpackage.com/"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://www.golfsavers.com/best-golf-courses-in-batam - active 2026 listing",
+          "https://www.golflux.com/destination/batam-golf-courses/ - 'Must-Visit Batam Golf Courses 2025/2026'",
+          "Ron Fream design, est. 1993, 120 ha"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
         "last_verified": "2026-04-29"
       }
     },
@@ -3040,6 +3819,21 @@
           "https://www.golfasian.com/golf-courses/indonesia-golf-courses/jakarta/black-rocks-belitung/"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://blackrocksgolf.co.id/ - official site live",
+          "https://golflinkresorts.co.id/courses/blackrocks/en - GolfLink Resorts active listing",
+          "https://www.instagram.com/blackrocksgolf/ - active Instagram",
+          "https://www.facebook.com/blackrocksID/ - active FB page",
+          "https://www.tripadvisor.com/Attraction_Review-g668845-d17464115 - 2026 reviews",
+          "Ron Fream-designed, 7,255-yard 18-hole course (debuted 2019); operating as integrated hotel + golf resort"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -3083,6 +3877,19 @@
           "https://royal-sumatra.com/golf-course/",
           "https://www.aurorawisata.com/paket-golf-medan/"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Official website live: https://royal-sumatra.com/golf-course/",
+          "Active Facebook page (royalsumatraofficial)",
+          "TripAdvisor reviews 2025/2026: https://www.tripadvisor.com/Attraction_Review-g297725-d12894953-Reviews-Royal_Sumatra_Golf_Course-Medan_North_Sumatra_Sumatra.html",
+          "Hosts North Sumatra Championships and corporate tournaments"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
         "last_verified": "2026-04-29"
       }
     },
@@ -3129,6 +3936,19 @@
           "https://www.instagram.com/tgcsumut/"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Active Instagram @tgcsumut: https://www.instagram.com/tgcsumut/",
+          "Trip.com 2025 listing with operating hours: https://us.trip.com/travel-guide/attraction/tanjung-morawa/tamora-golf-club-144866602/",
+          "Listed as bookable on Tigerbooking and golfpass; PTPN II plantation course",
+          "Aurora Wisata 2025 Medan golf packages include Tamora"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -3173,6 +3993,19 @@
           "https://www.golfshake.com/course/view/21430/Graha_Helvetia_Golf_Country_Club.html",
           "https://www.aurorawisata.com/paket-golf-medan/"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Golfshake 2025 reviews: https://www.golfshake.com/course/view/21430/Graha_Helvetia_Golf_Country_Club.html",
+          "June 2025 reviews available on GolfPass",
+          "Active Instagram location 250892162 with recent posts",
+          "Listed on Pinnacle Travel Medan golf courses page"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
         "last_verified": "2026-04-29"
       }
     },
@@ -3219,6 +4052,19 @@
           "https://www.bbcc-golf.com/"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Official website live: https://www.bbcc-golf.com/",
+          "Golfshake 2025 reviews: https://www.golfshake.com/course/view/70347/Bukit_Barisan_Country_Club.html",
+          "Trip.com 2025 active listing",
+          "Active Instagram location and recent YouTube content; Nicklaus Design site retains listing"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -3262,6 +4108,19 @@
           "https://www.golflux.com/course/rumbai-golf-country-club/",
           "https://playgolf.id/golf_courses/golf-course-pertamina-hulu-rokan-rumbai/"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "Chevron expatriate/HR page still references Rumbai recreational facilities (golf, pool): https://hr2.chevron.com/expatriate/asia-pacific/rumbai-and-minas",
+          "Rumbai Country Club (RCC) Chevron Instagram location remains active",
+          "Foursquare tips and ongoing visitor activity",
+          "Course primarily for Chevron/PT CPI staff and guests; PT Pertamina Hulu Rokan now operates the block but recreational facilities continue"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
         "last_verified": "2026-04-29"
       }
     },
@@ -3308,6 +4167,19 @@
           "https://labersahotel.com/lghcc/"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Hotel/golf website live: https://labersahotel.com/lghcc/",
+          "GoGolf.co.id 2025 review: https://gogolf.co.id/en/golf-course/labersa-golf-club",
+          "TripAdvisor 2025 hotel reviews active",
+          "Integrated 27-hole resort with Labersa Grand Hotel"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -3351,6 +4223,19 @@
           "https://gogolf.co.id/en/golf-course/palembang-golf-club",
           "https://www.golfshake.com/course/view/74032/Palembang_Golf_Course.html"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Active Instagram @kentenheritage_1937golfcourse",
+          "GoGolf.co.id 2025 review confirming green fees from IDR 100,000: https://gogolf.co.id/en/golf-course/palembang-golf-club",
+          "TripAdvisor 2025 listing: https://www.tripadvisor.com/Attraction_Review-g608501-d14202964",
+          "Operating hours 06:00-18:00 WIB; second-oldest course in Indonesia after Rawamangun"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
         "last_verified": "2026-04-29"
       }
     },
@@ -3396,6 +4281,19 @@
           "https://www.golfpass.com/travel-advisor/courses/38361-bukit-asam-golf-club"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "PTBA tender for golf cart procurement Sept 2024: https://www.petromindo.com/tender/detail/pengadaan-golf-cart-lapangan-golf-tanjung-enim",
+          "Sept 2024 Pj Bupati Muara Enim tournament announcement: Facebook HumasProtokolKabupatenMuaraenim",
+          "TikTok 'Grand Launching Bukit Asam Golf Club' Dec 2024",
+          "Instagram location 582296460 active; Trip.com 2025 listing"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -3439,6 +4337,19 @@
           "https://www.golfpass.com/travel-advisor/courses/38253-padang-golf-sukarame",
           "https://greenfee365.com/golf-course/padang-golf-sukarame"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "Listed as open to public on Hole19 and GolfPass",
+          "TikTok content tagged Lapangan Golf Sukarame Lampung",
+          "YouTube video 'Lapangan GOLF Sukarame Bandar Lampung'",
+          "No 2025/2026 closure reports; 2019 Lampung Post Open held here, no later major tournament confirmed"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
         "last_verified": "2026-04-29"
       }
     },
@@ -3485,6 +4396,19 @@
           "https://www.facebook.com/pertaminagolfbalikpapan"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Active Facebook 'Pertamina Golf Balikpapan': https://www.facebook.com/pertaminagolfbalikpapan",
+          "March 2025 Hole19 reviews",
+          "Trip.com 2025 listing: https://us.trip.com/travel-guide/attraction/balikpapan/pertamina-balikpapan-golf-club-146744412/",
+          "Course open to public per multiple directories"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -3528,6 +4452,19 @@
           "https://gran.senyiurhotels.com/service/detail/5",
           "https://www.instagram.com/karangjoanggolfbpn/"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Active Instagram @karangjoanggolfbpn: https://www.instagram.com/karangjoanggolfbpn/",
+          "Trip.com 2025 listing: https://us.trip.com/travel-guide/attraction/karang-joang/karang-joang-golf-and-country-club-146428073/",
+          "TripAdvisor 2025 reviews",
+          "Member of Senyiur Hotels & Resorts"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
         "last_verified": "2026-04-29"
       }
     },
@@ -3574,6 +4511,19 @@
           "https://www.hole19golf.com/courses/bukit-sintuk-bintang-golf-course"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "Active Facebook 'Lapangan golf bukit Sintuk PKT Bontang': https://www.facebook.com/1404879892920937/",
+          "Active Instagram location 1404879892920937",
+          "Instagram reel 'PKT Golf Bontang Opening Ceremony Driving Range'",
+          "Trip.com listing with opening hours; operated alongside PKT Bontang fertilizer plant"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -3618,6 +4568,19 @@
           "https://renangloka.com/pool/mahulu-golf-course-and-putri-ayu-inn-cottages/"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Walikota Samarinda Golf Open Tournament 2025 held here (315 participants, Feb 22 2025): https://kaltim.tribunnews.com/2025/02/22/saefuddin-zuhri-buka-walikota-samarinda-golf-open-turnamen-2025-diikuti-315-peserta",
+          "Active Instagram @putriayucottage",
+          "Trip.com 2025 Indonesian listing",
+          "Tournament closing covered by Diskominfo Samarinda"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -3661,6 +4624,18 @@
           "https://www.golflux.com/course/isen-mulang-golf-club/",
           "https://sisparnas.com/p/11119"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Aug 23 2025 Bupati Seruyan tournament held at Lapangan Golf Isen Mulang: https://mmc.kalteng.go.id/berita/read/48482/bupati-seruyan-resmikan-turnamen-golf-dorong-wadah-promosi-daerah",
+          "Media Dayak article on 9-hole development: https://mediadayak.id/pengembangan-lapangan-golf-isen-mulang-fokus-pada-sembilan-hole/",
+          "Hole19 course listing with reviews"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
         "last_verified": "2026-04-29"
       }
     },
@@ -3707,6 +4682,18 @@
           "https://www.instagram.com/lapangan_golfswargaloka/"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Festival Golf 2025 opened by Governor Muhidin Jul 19 2025: https://wasaka.kalselprov.go.id/ajang-promosi-daerah-gubernur-kalsel-h-muhidin-buka-festival-golf-2025-di-lapangan-swargaloka-banjarbaru/",
+          "Katajari and Radar Banjarmasin 2025 coverage: https://www.katajari.com/festival-golf-2025-di-lapangan-swargaloka-golf-banjarbaru/",
+          "120+ participants; HUT ke-75 Kalsel commemoration"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -3750,6 +4737,19 @@
           "https://www.instagram.com/p/C5pWzrNvTh-/",
           "https://www.golflux.com/course/alam-khatulistiwa-golf/"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Active Instagram @golf_alamkhatulistiwa: https://www.instagram.com/golf_alamkhatulistiwa/",
+          "April 2024 green fee post; July 2024 blog visit by sitimustiani.com",
+          "Listed in GolfLux 'Best Kalimantan Golf Courses 2025/2026': https://www.golflux.com/destination/kalimantan-golf-courses/",
+          "Active TikTok content"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
         "last_verified": "2026-04-29"
       }
     },
@@ -3795,6 +4795,19 @@
           "https://padivalley.com/golf-reservation"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Official website live: https://padivalley.com/",
+          "Active Instagram @padivalleygolfclub",
+          "GoGolf.co.id review: https://gogolf.co.id/en/golf-course/padivalley-club",
+          "TripAdvisor 2025 Makassar golf listings; part of Ciputra CitraGrand Galesong City"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -3838,6 +4851,19 @@
           "https://www.tiktok.com/@aandermawannn/video/7402748548787277061",
           "https://www.hole19golf.com/courses/padang-golf-baddoka-makassar"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Active Facebook 'Padang Golf Baddoka Makassar'",
+          "Trip.com 2025 listing with daily hours 05:30-22:00: https://us.trip.com/travel-guide/attraction/tamalanrea/golf-baddoka-144872768/",
+          "Active Instagram location 1428059717487294",
+          "Open to public per multiple directories"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
         "last_verified": "2026-04-29"
       }
     },
@@ -3884,6 +4910,19 @@
           "https://www.golflux.com/course/akr-grand-kawanua-golf-club/"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Official website live: https://www.akrgolfmanado.com/",
+          "GKIC township page listing golf course: https://gkicmanado.com/en/the-township/",
+          "Novotel Manado Golf Resort & Convention Center co-located",
+          "Listed in GolfLux 'Best Sulawesi Golf Courses 2025/2026'"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -3928,6 +4967,19 @@
           "https://welcometosorowako.wordpress.com/hobikomunitas/"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "Active Instagram location 'Sgc Sorowako Golf Club' (435747009) and 754732998211194",
+          "Welcometosorowako community blog references active golf community",
+          "PT Vale Indonesia continues nickel mining operations in Sorowako (Vale Indonesia Growth Projects 2024-2025)",
+          "Listed open to public on GolfPass, GolfLux, Hole19; access typically restricted to PT Vale staff/guests"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -3970,6 +5022,19 @@
           "https://www.tiktok.com/@soalpalu/video/7219970790194695450",
           "https://idalamat.com/alamat/740851/lapangan-golf-bumi-roviega-palu-sulawesi-tengah"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "uncertain",
+        "confidence": "medium",
+        "evidence": [
+          "Functions primarily as public park with IDR 5,000 entry fee per multiple TikTok/Instagram posts 2023-2024",
+          "Driving range inaugurated by Governor Nov 15 2020: https://alkhairaat.com/gubernur-resmikan-driving-range-roviega-golf-palu/",
+          "Active Facebook 'Lapangan Golf Bumi Roviga Palu' (page 123828318310536)",
+          "No evidence of formal 9-hole tee times, tournaments, or active golfing membership in 2024-2026; appears to be picnic/leisure park rather than functioning golf course"
+        ],
+        "closure_reason": "Course infrastructure appears partially repurposed as public recreation park; golf playability unconfirmed",
+        "reopened_as": "Public park with driving range",
         "last_verified": "2026-04-29"
       }
     },
@@ -4015,6 +5080,19 @@
           "https://www.instagram.com/sanggoleogolfclub/"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "Active Instagram @sanggoleogolfclub with 2025 posts (e.g. DPIDfX6E0pf, DPZ9NR3k_Yj)",
+          "Active Facebook 'Sanggoleo Golf Club Kendari'",
+          "Trip.com 2025 listing: https://us.trip.com/travel-guide/attraction/kendari/lapangan-golf-sanggoleo-146235203/",
+          "Concern: 2025 Ragam Kendari report 'Separuh Lapangan Golf Sanggoleo Kendari Dikuasai Warga' indicates land encroachment on half the course: https://www.ragamkendari.com/nasional/1051725961/separuh-lapangan-golf-sanggoleo-kendari-dikuasai-warga"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -4058,6 +5136,19 @@
           "https://www.golfpass.com/travel-advisor/courses/38311-cenderawasih-golf-club",
           "https://www.golflux.com/course/cenderawasih-golf-club/"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "Kodam XVII/Cen tournaments held at course (TNI website): https://tni.mil.id/view-16045-kodam-xviicen-jalin-kebersamaan-melalui-turnamen-golf.html",
+          "Pangdam Farewell/Welcome Golf event reported on TNI website",
+          "Active Instagram location 238700390 'Lapangan Golf Cenderawasih KODAM XVII Jayapura'",
+          "Trip.com 2025 listing; military-operated but listed as open to public"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
         "last_verified": "2026-04-29"
       }
     },
@@ -4105,6 +5196,19 @@
           "https://thegolfcourses.com/club/klub-golf-rimba-irian"
         ],
         "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Aug 20 2025 Golf Tournament Merah Putih with 128 participants at KGRI Kuala Kencana: https://www.salampapua.com/2025/08/128-peserta-meriahkan-golf-tournament-2025-merah-putih-di-timika.html",
+          "Traveloka 2025 visitor guide: https://www.traveloka.com/id-id/destination/landmark/rimba-irian-golf-club-91516250116196",
+          "PT Freeport Indonesia continues to own and operate the club",
+          "Top100GolfCourses listing remains current"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "last_verified": "2026-04-29"
       }
     },
     {
@@ -4147,6 +5251,19 @@
           "https://www.golflux.com/course/pattimura-golf-course/",
           "https://www.instagram.com/pattimura_golf_course/"
         ],
+        "last_verified": "2026-04-29"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "Jun 14 2025 'Welcome Games Golf' by Danlanud Pattimura: https://tni-au.mil.id/berita/detail/pererat-hubungan-lintas-lembaga-danlanud-pattimura-gelar-welcome-games-golf",
+          "'Fun Golf Pattimura Family' youth talent event 2025: https://tni-au.mil.id/berita/detail/lanud-pattimura-ambon-gelar-fun-golf-pattimura-family-untuk-cetak-bibit-pegolf-berbakat",
+          "Active Instagram @pattimura_golf_course",
+          "Operated by TNI-AU Lanud Pattimura; open to public per Hole19 and tourism listings"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
         "last_verified": "2026-04-29"
       }
     }

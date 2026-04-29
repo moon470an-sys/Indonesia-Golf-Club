@@ -168,6 +168,41 @@ a:hover { text-decoration: underline; }
   border-radius: 4px;
   font-weight: 600;
 }
+.course-item .status-badge {
+  display: inline-block;
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+.course-item .status-badge.closed {
+  background: #f1f5f9;
+  color: #475569;
+}
+.course-item .status-badge.uncertain {
+  background: #fef9c3;
+  color: #854d0e;
+}
+.status-banner {
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin: 12px 0 16px 0;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.status-banner.closed {
+  background: #f1f5f9;
+  color: #334155;
+  border-left: 3px solid #64748b;
+}
+.status-banner.uncertain {
+  background: #fef9c3;
+  color: #713f12;
+  border-left: 3px solid #ca8a04;
+}
 
 /* === Map === */
 .map-wrap {
@@ -213,6 +248,14 @@ a:hover { text-decoration: underline; }
 }
 .golf-marker.matoa {
   background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+.golf-marker.closed {
+  background: linear-gradient(135deg, #94a3b8, #64748b);
+  opacity: 0.7;
+}
+.golf-marker.uncertain {
+  background: linear-gradient(135deg, #fbbf24, #d97706);
+  opacity: 0.85;
 }
 
 /* Cluster customization */
