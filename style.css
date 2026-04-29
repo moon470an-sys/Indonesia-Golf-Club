@@ -665,6 +665,85 @@ a:hover { text-decoration: underline; }
 .course-table .status-pill.closed_permanent { background: #fee2e2; color: #991b1b; }
 .course-table .status-pill.uncertain { background: #f1f5f9; color: #475569; }
 
+/* === Membership Section === */
+.membership-section {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+}
+.membership-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  color: #1e3a8a !important;
+}
+.member-status-pill {
+  display: inline-block;
+  font-size: 10.5px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.member-status-pill.true { background: #dcfce7; color: #166534; }
+.member-status-pill.by_invitation_only { background: #fae8ff; color: #86198f; }
+.member-status-pill.employees_only { background: #fef3c7; color: #92400e; }
+.member-status-pill.military_personnel { background: #e0e7ff; color: #3730a3; }
+.member-status-pill.members_only { background: #cffafe; color: #155e75; }
+.member-status-pill.unknown,
+.member-status-pill\["false"\],
+.member-status-pill.false { background: #f1f5f9; color: #475569; }
+.member-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 6px 0 8px 0;
+}
+.member-table th {
+  background: #dbeafe;
+  font-size: 11px;
+  text-align: left;
+  padding: 6px 10px;
+  color: #1e3a8a;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+.member-table td {
+  padding: 7px 10px;
+  font-size: 12.5px;
+  color: #1f2937;
+  border-bottom: 1px solid #dbeafe;
+  vertical-align: top;
+}
+.member-table td:first-child {
+  font-weight: 500;
+  color: #0f172a;
+  width: 38%;
+}
+.member-table tr:last-child td { border-bottom: none; }
+.muted { color: #94a3b8; font-style: italic; font-size: 11.5px; }
+.membership-section.minimal {
+  padding: 10px 14px;
+}
+.membership-section.minimal p {
+  margin: 4px 0 0 0;
+  font-size: 12.5px;
+}
+
+/* Table view - membership cell */
+.course-table td .member-amt {
+  color: #1e3a8a;
+  font-weight: 600;
+}
+.course-table td .member-status-pill {
+  font-size: 10px;
+  padding: 1px 7px;
+}
+
 /* === Footer === */
 .footer {
   height: 36px;

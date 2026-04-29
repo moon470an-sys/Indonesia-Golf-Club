@@ -243,6 +243,7 @@ function showDetail(c) {
   const facilities = (c.facilities || []).map(f => `<li>${escapeHtml(f)}</li>`).join('');
   const approxTag = c.coord_approximate ? '<span class="approx-tag">좌표 근사</span>' : '';
   const feesHtml = renderFees(c.fees_2026_05);
+  const membershipHtml = renderMembership(c.membership);
 
   // Operating status banner
   const opStatus = c.operating_status?.status || 'operating';
@@ -295,6 +296,8 @@ function showDetail(c) {
 
     ${feesHtml}
 
+    ${membershipHtml}
+
     ${facilities ? `
     <section>
       <h3>부대시설</h3>
@@ -331,6 +334,93 @@ document.getElementById('closeDetail').addEventListener('click', () => {
 document.getElementById('sidebarToggle').addEventListener('click', () => {
   document.getElementById('sidebar').classList.toggle('open');
 });
+
+// === Membership Rendering ===
+function fmtMoney(amt, cur) {
+  if (amt == null) return null;
+  const c = (cur || 'IDR').toUpperCase();
+  if (c === 'USD') return `$${Number(amt).toLocaleString('en-US')}`;
+  if (c === 'SGD') return `S$${Number(amt).toLocaleString('en-US')}`;
+  if (c === 'IDR') return fmtIDR(amt);
+  return `${amt} ${c}`;
+}
+
+const MEMBERSHIP_AVAIL_LABEL = {
+  'true': '회원 모집 중',
+  true: '회원 모집 중',
+  'false': '없음',
+  false: '없음',
+  'by_invitation_only': '초대제 (비공개)',
+  'employees_only': '직원 전용',
+  'military_personnel': '군인 전용',
+  'members_only': '회원 전용',
+  'unknown': '정보 없음',
+};
+
+function renderMembership(m) {
+  if (!m || typeof m !== 'object') return '';
+  const avail = m.available;
+  const cats = Array.isArray(m.categories) ? m.categories : [];
+
+  const availLabel = MEMBERSHIP_AVAIL_LABEL[avail] ?? '정보 없음';
+
+  // Build category rows
+  const catRows = cats.map(cat => {
+    if (!cat || typeof cat !== 'object') return '';
+    const init = cat.initiation_fee || {};
+    const ann = cat.annual_fee || {};
+    const mon = cat.monthly_fee || {};
+    const dep = cat.refundable_deposit || {};
+    const initT = fmtMoney(init.amount, init.currency);
+    const annT = fmtMoney(ann.amount, ann.currency);
+    const monT = fmtMoney(mon.amount, mon.currency);
+    const depT = fmtMoney(dep.amount, dep.currency);
+    const term = cat.term_years ? `${cat.term_years}년` : '';
+    const detail = [
+      initT ? `가입비 ${initT}` : null,
+      annT ? `연회비 ${annT}` : null,
+      monT ? `월회비 ${monT}` : null,
+      depT ? `예치금 ${depT}` : null,
+      term,
+    ].filter(Boolean).join(' · ');
+    if (!cat.name && !detail) return '';
+    return `<tr>
+      <td>${escapeHtml(cat.name || '—')}</td>
+      <td>${detail || '<span class="muted">비공개</span>'}</td>
+    </tr>`;
+  }).filter(Boolean).join('');
+
+  const sources = (m.sources || []).filter(Boolean);
+  const sourcesHtml = sources.length
+    ? `<div class="fee-sources">출처: ${sources.slice(0, 4).map((u, i) =>
+        `<a href="${escapeHtml(u)}" target="_blank" rel="noopener" title="${escapeHtml(u)}">[${i + 1}]</a>`
+      ).join(' ')}</div>`
+    : '';
+
+  const notes = m.notes ? `<div class="fee-notes">${escapeHtml(m.notes)}</div>` : '';
+  const verifiedDate = m.last_verified ? `<span class="verified-date">확인일 ${escapeHtml(m.last_verified)}</span>` : '';
+
+  if (catRows) {
+    return `
+      <section class="membership-section">
+        <h3>회원권 (멤버십) <span class="member-status-pill ${avail}">${availLabel}</span> ${verifiedDate}</h3>
+        <table class="member-table">
+          <thead><tr><th>등급</th><th>비용</th></tr></thead>
+          <tbody>${catRows}</tbody>
+        </table>
+        ${notes}
+        ${sourcesHtml}
+      </section>`;
+  }
+
+  // No priced categories — show status only
+  return `
+    <section class="membership-section minimal">
+      <h3>회원권 (멤버십) <span class="member-status-pill ${avail}">${availLabel}</span></h3>
+      ${notes || '<p class="muted">공개된 가입비·연회비 정보가 없습니다. 회원권 문의는 클럽으로 직접 연락이 필요합니다.</p>'}
+      ${sourcesHtml}
+    </section>`;
+}
 
 // === Fee Rendering ===
 function fmtIDR(n) {
@@ -511,6 +601,9 @@ function getTableRows() {
     } else if (k === 'weekend_fee') {
       va = a.fees_2026_05?.weekend?.green_fee_idr ?? a.fees_2026_05?.weekend?.guest_fee_idr ?? null;
       vb = b.fees_2026_05?.weekend?.green_fee_idr ?? b.fees_2026_05?.weekend?.guest_fee_idr ?? null;
+    } else if (k === 'membership_fee') {
+      va = lowestMembershipFee(a.membership);
+      vb = lowestMembershipFee(b.membership);
     } else if (k === 'status') {
       va = a.operating_status?.status || 'operating';
       vb = b.operating_status?.status || 'operating';
@@ -525,6 +618,52 @@ function getTableRows() {
     return String(va).localeCompare(String(vb), 'ko') * dir;
   });
   return rows;
+}
+
+function lowestMembershipFee(m) {
+  if (!m || !Array.isArray(m.categories)) return null;
+  let lowest = null;
+  for (const cat of m.categories) {
+    if (!cat || typeof cat !== 'object') continue;
+    const init = (cat.initiation_fee || {});
+    const ann = (cat.annual_fee || {});
+    // Convert USD/SGD to approximate IDR for sorting (rough rates)
+    const toIDR = (amt, cur) => {
+      if (amt == null) return null;
+      const c = (cur || 'IDR').toUpperCase();
+      if (c === 'USD') return amt * 16200;
+      if (c === 'SGD') return amt * 12000;
+      return amt;
+    };
+    for (const v of [toIDR(init.amount, init.currency), toIDR(ann.amount, ann.currency)]) {
+      if (v != null && (lowest == null || v < lowest)) lowest = v;
+    }
+  }
+  return lowest;
+}
+
+function membershipCellText(m) {
+  if (!m) return '—';
+  const cats = Array.isArray(m.categories) ? m.categories : [];
+  // Find first category with any disclosed price
+  for (const cat of cats) {
+    if (!cat) continue;
+    const init = cat.initiation_fee || {};
+    const ann = cat.annual_fee || {};
+    if (init.amount != null) {
+      return `<span class="member-amt">가입 ${fmtMoney(init.amount, init.currency)}</span>`;
+    }
+    if (ann.amount != null) {
+      return `<span class="member-amt">연 ${fmtMoney(ann.amount, ann.currency)}</span>`;
+    }
+  }
+  // No prices — show status badge
+  const avail = m.available;
+  const label = MEMBERSHIP_AVAIL_LABEL[avail];
+  if (label && avail !== 'unknown' && avail !== false) {
+    return `<span class="member-status-pill ${avail}">${label}</span>`;
+  }
+  return '<span class="muted">비공개</span>';
 }
 
 function renderTable() {
@@ -571,6 +710,7 @@ function renderTable() {
         <td>${designer}</td>
         <td class="num fee">${wdText}</td>
         <td class="num fee">${weText}</td>
+        <td class="num">${membershipCellText(c.membership)}</td>
         <td class="notes">${escapeHtml(c.notes || '')}</td>
         <td class="address">${escapeHtml(c.address || '')}<br>${websiteLink} ${mapLink}</td>
         <td class="sources">${sourcesHtml || '—'}</td>
@@ -587,12 +727,25 @@ document.getElementById('exportCsv').addEventListener('click', () => {
     '설계자', '주소', '평일그린피(IDR)', '주말그린피(IDR)',
     '평일USD', '주말USD', '캐디(IDR)', '카트(IDR)', '보험(IDR)',
     '웹사이트', '위도', '경도', '특이사항', '요금메모',
-    '출처URL목록'
+    '멤버십가입가능', '멤버십카테고리', '멤버십최저비용(IDR환산)',
+    '멤버십메모', '출처URL목록'
   ];
   const csvRows = rows.map(c => {
     const f = c.fees_2026_05 || {};
     const wd = f.weekday || {};
     const we = f.weekend || {};
+    const m = c.membership || {};
+    const cats = (m.categories || []).map(cat => {
+      const init = cat.initiation_fee || {};
+      const ann = cat.annual_fee || {};
+      const parts = [cat.name];
+      if (init.amount) parts.push(`가입 ${init.amount} ${init.currency || 'IDR'}`);
+      if (ann.amount) parts.push(`연 ${ann.amount} ${ann.currency || 'IDR'}`);
+      return parts.join(' / ');
+    }).join(' || ');
+    const lowest = lowestMembershipFee(m);
+    const memberSources = (m.sources || []).join(' | ');
+    const allSources = [...(f.sources || []), ...(m.sources || [])];
     return [
       c.name_en,
       c.region,
@@ -615,7 +768,11 @@ document.getElementById('exportCsv').addEventListener('click', () => {
       c.lng,
       c.notes ?? '',
       f.notes ?? '',
-      (f.sources || []).join(' | ')
+      m.available ?? '',
+      cats,
+      lowest ?? '',
+      m.notes ?? '',
+      [...new Set(allSources)].join(' | ')
     ].map(csvEscape).join(',');
   });
   const csv = '﻿' + [headers.join(','), ...csvRows].join('\r\n');

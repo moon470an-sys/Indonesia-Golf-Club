@@ -81,6 +81,28 @@
         "reopened_as": null,
         "coord_notes": "Coordinates point to Royale Jakarta clubhouse off Jl. Raya Halim Tiga, adjacent to Halim airbase. Existing dataset value (106.8836) was off by ~1.8 km westward (pointed to Halim 1 instead).",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Yearly Membership 2026",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "notes": "Yearly Membership 2026 program advertised on official site for individuals or corporates; pricing image-only on /yearly-membership-2026/ page, no text-extractable IDR figures publicly disclosed."
+          }
+        ],
+        "currency_note": "IDR primary",
+        "sources": [
+          "https://www.royalejakarta.com/yearly-membership-2026/",
+          "https://www.royalejakarta.com/",
+          "https://www.instagram.com/royalejakartagolfclub/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Official Yearly Membership 2026 page exists but rate values are embedded as image; numeric fees not disclosed publicly. Inquiry via info@royalejakarta.com / +6221 80 888 999."
       }
     },
     {
@@ -143,6 +165,17 @@
         "reopened_as": null,
         "coord_notes": "Coordinates point to Pondok Indah Golf Course fairways in South Jakarta. Existing dataset (-6.2649, 106.7836) was within 250m, refined to higher precision.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR primary",
+        "sources": [
+          "https://www.golfpondokindah.com/",
+          "https://www.instagram.com/pondokindahgolf/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Official site does not have a public Membership page — navigation only exposes Green Fees, Facilities, Location. No published membership fee schedule. Pondok Indah Group is publicly listed (shareholder-driven) but golf club membership terms not public. Inquiry via +6221 769 4906."
       }
     },
     {
@@ -204,6 +237,42 @@
         "reopened_as": null,
         "coord_notes": "Coordinates point to Senayan National Golf Club fairways inside GBK on the Asia Afrika side. Could not retrieve a maplogs POI; precision limited to ~5 decimals. Satellite imagery in Google Maps shows fairways still present at this point.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Yearly Membership",
+            "initiation_fee": null,
+            "annual_fee": {
+              "amount": 40000000,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "notes": "Reported yearly membership at Rp 40 million per year"
+          },
+          {
+            "name": "Long-term / Individual Membership",
+            "initiation_fee": {
+              "amount": 150000000,
+              "currency": "IDR"
+            },
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Long-term/individual membership reported at Rp 150 million; validity reported through 2027"
+          }
+        ],
+        "currency_note": "IDR primary",
+        "sources": [
+          "https://www.instagram.com/senayangolfclub/",
+          "https://www.facebook.com/senayannational/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "No standalone official website. Figures (Rp 40M yearly; Rp 150M long-term thru 2027) reported by multiple Indonesian-language summaries citing club; no official-source post URL captured for the rate. Treat as preliminary; verify with reservation@senayangolfclub.com."
       }
     },
     {
@@ -285,6 +354,30 @@
         "reopened_as": null,
         "coord_notes": "Halim Golf Club is south of Halim Perdanakusuma airfield. No maplogs POI extracted; coords represent the historic Halim I (Padang Golf Halim) clubhouse area, distinct from Royale Jakarta which is on the airbase east side. Existing dataset matched.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Term Membership (1 year)",
+            "initiation_fee": {
+              "amount": 11000000,
+              "currency": "IDR"
+            },
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "notes": "1-year Term Membership reported at Rp 11 million; provides discounted playing fees and priority reservations"
+          }
+        ],
+        "currency_note": "IDR primary",
+        "sources": [
+          "https://www.instagram.com/halimgolfcourse/",
+          "https://golfhalim.tripod.com/tarif_wf.html"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Course operated by Indonesian Air Force (TNI-AU); special low rates (~Rp 80,000) for active/retired AURI members. Public Term Membership at Rp 11M reported in 2024-2025 sources; legacy Tripod site outdated. Verify via club office."
       }
     },
     {
@@ -365,6 +458,55 @@
         "reopened_as": null,
         "coord_notes": "Front nine in South Jakarta, back nine in Depok. Coordinates point to course property at Jl. Jati Indah Raya No.1. Lower precision - WeatherCrave provides ~4 decimal places.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Platinum Member (100 points)",
+            "initiation_fee": {
+              "amount": 19000000,
+              "currency": "IDR"
+            },
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Point-based: 100 points usable any day; 2 points/round on weekends, 1 point/round on weekdays"
+          },
+          {
+            "name": "Gold Member (50 points)",
+            "initiation_fee": {
+              "amount": 10250000,
+              "currency": "IDR"
+            },
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "50 points valid every day"
+          },
+          {
+            "name": "Silver Member (50 points)",
+            "initiation_fee": {
+              "amount": 8400000,
+              "currency": "IDR"
+            },
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "50 points, weekdays only"
+          }
+        ],
+        "currency_note": "IDR primary",
+        "sources": [
+          "https://www.golfpangkalanjati.com/",
+          "https://www.instagram.com/golfpangkalanjati/",
+          "https://www.facebook.com/golfpangkalanjati/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Course owned/operated by TNI-AL (Navy) via Inkopal cooperative; introduced point-based membership in 2015. Tier prices reported in Indonesian-language summaries; verify exact 2026 rates via course office."
       }
     },
     {
@@ -430,6 +572,31 @@
         "reopened_as": null,
         "coord_notes": "Inside Soekarno-Hatta International Airport area, north of the runways. Existing dataset (-6.1331, 106.6664) was ~900m off; corrected to maplogs POI which points to clubhouse / fairway entrance.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Yearly Membership",
+            "initiation_fee": {
+              "amount": 39800000,
+              "currency": "IDR"
+            },
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "notes": "Joining/yearly fee Rp 39,800,000 plus 11% tax; non-transferable"
+          }
+        ],
+        "currency_note": "IDR primary",
+        "sources": [
+          "https://www.cengkarenggolfclub.com/?menuId=17",
+          "https://www.cengkarenggolfclub.com/",
+          "https://www.instagram.com/cengkarenggolfclub/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Single yearly membership tier visible on official Membership page. Higher individual / corporate share-style memberships referenced historically (~Rp 115M / Rp 125M) but not confirmed on current official page."
       }
     },
     {
@@ -501,6 +668,18 @@
         "reopened_as": null,
         "coord_notes": "Address: Jl. Modern Golf Raya, Kota Modern, Klp. Indah, Tangerang. WeatherCrave gives ~4 decimals; existing dataset (-6.1747, 106.6322) is plausible but slightly different; WeatherCrave point places it within Modernland area.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [],
+        "currency_note": "IDR primary",
+        "sources": [
+          "https://www.moderngolf.co.id/",
+          "https://www.instagram.com/moderngolf_countryclub/",
+          "https://www.facebook.com/moderngolfdancountryclub"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Official site references annual memberships and corporate packages but does not publish numeric membership fees. Inquiry via reservation@modernland.co.id / +6221 552 9228."
       }
     },
     {
@@ -564,6 +743,157 @@
         "reopened_as": null,
         "coord_notes": "Course is in Gading Serpong, Tangerang (Cihuni village). Coords low precision (~4 decimals); satellite shows Gading Raya 18-hole layout west of Bulevar Gading Golf.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Individual (1-year joining)",
+            "initiation_fee": {
+              "amount": 40000000,
+              "currency": "IDR"
+            },
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "notes": "1-year joining fee"
+          },
+          {
+            "name": "Individual Delegation (1-year)",
+            "initiation_fee": {
+              "amount": 40000000,
+              "currency": "IDR"
+            },
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "notes": "Delegated to other party for one year"
+          },
+          {
+            "name": "Family Delegation (1-year)",
+            "initiation_fee": {
+              "amount": 65000000,
+              "currency": "IDR"
+            },
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "notes": "Family delegation 1-year"
+          },
+          {
+            "name": "Millennial (ages 25-40)",
+            "initiation_fee": {
+              "amount": 25000000,
+              "currency": "IDR"
+            },
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "notes": "1-year joining, age 25-40"
+          },
+          {
+            "name": "Lifetime Individual",
+            "initiation_fee": null,
+            "annual_fee": {
+              "amount": 28800000,
+              "currency": "IDR"
+            },
+            "monthly_fee": {
+              "amount": 2400000,
+              "currency": "IDR"
+            },
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Lifetime; Early Bird (Dec 2025-Jan 2026 advance pay): Rp 26,400,000/yr. Includes 11% VAT."
+          },
+          {
+            "name": "Lifetime Family",
+            "initiation_fee": null,
+            "annual_fee": {
+              "amount": 41100000,
+              "currency": "IDR"
+            },
+            "monthly_fee": {
+              "amount": 3425000,
+              "currency": "IDR"
+            },
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Early Bird: Rp 37,675,000/yr"
+          },
+          {
+            "name": "Lifetime Corporate",
+            "initiation_fee": null,
+            "annual_fee": {
+              "amount": 41100000,
+              "currency": "IDR"
+            },
+            "monthly_fee": {
+              "amount": 3425000,
+              "currency": "IDR"
+            },
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Early Bird: Rp 37,675,000/yr"
+          },
+          {
+            "name": "Lifetime Additional Corporate",
+            "initiation_fee": null,
+            "annual_fee": {
+              "amount": 41100000,
+              "currency": "IDR"
+            },
+            "monthly_fee": {
+              "amount": 3425000,
+              "currency": "IDR"
+            },
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Early Bird: Rp 37,675,000/yr"
+          },
+          {
+            "name": "Lifetime Ladies Executive",
+            "initiation_fee": null,
+            "annual_fee": {
+              "amount": 14700000,
+              "currency": "IDR"
+            },
+            "monthly_fee": {
+              "amount": 1225000,
+              "currency": "IDR"
+            },
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Early Bird: Rp 13,475,000/yr"
+          },
+          {
+            "name": "Lifetime Additional Children (under 21)",
+            "initiation_fee": null,
+            "annual_fee": {
+              "amount": 6540000,
+              "currency": "IDR"
+            },
+            "monthly_fee": {
+              "amount": 545000,
+              "currency": "IDR"
+            },
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Early Bird: Rp 5,995,000/yr"
+          }
+        ],
+        "currency_note": "IDR primary",
+        "sources": [
+          "https://www.gadingrayagolf.com/membership.html",
+          "https://www.gadingrayagolf.com/",
+          "https://www.instagram.com/gadingrayagolfclub/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Most fully disclosed membership schedule among Jabodetabek courses; both Joining (1-year) and Lifetime tiers published with annual + monthly + Early Bird pricing. All inclusive of 11% VAT. No separate refundable deposit specified."
       }
     },
     {
@@ -636,6 +966,18 @@
         "reopened_as": null,
         "coord_notes": "Address: Jl. Moh. Kahfi I Km. 7, Cipedak, Jagakarsa. Existing dataset (-6.3458, 106.8089) plausible. WeatherCrave coord ~1 km south; both fall on the 60-ha course property.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR primary",
+        "sources": [
+          "https://www.matoanasional.net/",
+          "https://www.instagram.com/matoagolf/",
+          "https://www.facebook.com/p/Matoa-Nasional-Golf-Country-Club-100063613781012/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Official site matoanasional.net was unreachable on this verification (ECONNREFUSED). No public membership fee schedule found via official sources. Inquiry via marketing@matoanasional.net."
       }
     },
     {
@@ -701,6 +1043,36 @@
         "reopened_as": null,
         "coord_notes": "Coastal course along Java Sea in Penjaringan/Kamal Muara. Existing dataset (-6.1119, 106.7414) closely matches. Low precision from WeatherCrave (~4 decimals).",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Permanent Transferable Membership (PTM)",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 30,
+            "notes": "Valid 30 years; subject to monthly dues; 25% inactivity surcharge applies if unused over 12 months. Numeric fee not disclosed publicly."
+          },
+          {
+            "name": "Membership Share",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Lifetime; entitled to dividends; special monthly dues rate for individual shareholders. Numeric fee not disclosed publicly."
+          }
+        ],
+        "currency_note": "IDR primary",
+        "sources": [
+          "https://www.damaiindahgolf.com/index.asp?fuseaction=membership",
+          "https://www.instagram.com/damaiindahgolfofficial/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Official membership page describes structure (PTM and Share) for both PIK and BSD courses but does not publish numeric initiation/annual/monthly figures. Inquiry via membership team +6221 537 0290."
       }
     },
     {
@@ -765,6 +1137,36 @@
         "reopened_as": null,
         "coord_notes": "Address: Jl. Bukit Golf I, Sektor VI, Serpong Utara, Tangerang Selatan. Existing dataset coords were not present in this snapshot but verified maplogs POI lands on the BSD course (Jack Nicklaus design) in BSD City.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Permanent Transferable Membership (PTM)",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 30,
+            "notes": "Valid 30 years; subject to monthly dues; 25% inactivity surcharge applies if unused over 12 months."
+          },
+          {
+            "name": "Membership Share",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Lifetime; dividend entitlement; special monthly dues for individual shareholders."
+          }
+        ],
+        "currency_note": "IDR primary",
+        "sources": [
+          "https://www.damaiindahgolf.com/index.asp?fuseaction=membership",
+          "https://www.instagram.com/damaiindahgolfofficial/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Same membership structure as PIK; numeric figures not publicly disclosed. Inquiry +6221 537 0290 / club@damaiindah-golf.com."
       }
     },
     {
@@ -833,6 +1235,28 @@
         "reopened_as": null,
         "coord_notes": "Jl. Pulau Golf, Lippo Karawaci, Tangerang. Existing dataset (-6.2233, 106.6058) closely matches. WeatherCrave gives ~3 decimals.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Annual Playing Rights (APR)",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "notes": "Two flexible APR options referenced (full-week and weekday-only). Numeric fees rendered as image on official page; not text-extractable."
+          }
+        ],
+        "currency_note": "IDR primary",
+        "sources": [
+          "https://www.aryaduta.com/en/wellness/ikg/membership",
+          "https://www.aryaduta.com/en/wellness/ikg",
+          "https://www.instagram.com/imperialklubgolf/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Official 'Annual Playing Rights & Green Fees' page exists; pricing not disclosed in text form. Inquiry via +6221 546 0120."
       }
     },
     {
@@ -895,6 +1319,43 @@
         "reopened_as": null,
         "coord_notes": "27-hole layout (Palmer Lake/River + Nicklaus Plantation). Existing dataset (-6.4047, 106.8772) was ~2 km off; corrected to maplogs POI which lands on course interior. Note: this address and Cimanggis Golf Estate (entry id cimanggis-golf-estate in jabodetabek.json) refer to the same golf complex.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Yearly Membership (1-year)",
+            "initiation_fee": {
+              "amount": 55000000,
+              "currency": "IDR"
+            },
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "notes": "Rp 55,000,000 nett; includes annual + activation fee in first year. Cannot play weekend/PH AM (tee starts 11:30 AM). Cannot enter member/guest tournaments without paying guest entry."
+          },
+          {
+            "name": "Emeralda Executive Membership (15-year)",
+            "initiation_fee": {
+              "amount": 230000000,
+              "currency": "IDR"
+            },
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 15,
+            "notes": "Certificate cost Rp 230,000,000; includes 1 year of active membership w/ activation; ongoing annual fees throughout 15-year term per club rules. Transferable. Non-refundable, expires after term."
+          }
+        ],
+        "currency_note": "IDR primary",
+        "sources": [
+          "https://emeralda-golfclub.com/index2.php?fuseaction=membership",
+          "https://emeralda-golfclub.com/",
+          "https://www.instagram.com/emeralda_golf_club/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Two clear public tiers. Plus a Transferable Membership Certificate (TMC) redemption notice for legacy 1992 holders is also active on the membership page. Inquiry membership@emeralda-golfclub.com."
       }
     },
     {
@@ -957,6 +1418,58 @@
         "reopened_as": null,
         "coord_notes": "36-hole East/West layout. Existing dataset (-6.6486, 106.9214) was ~7 km away (likely a transcription error or proximity to Gunung Pancar area); maplogs POI now confirmed as accurate location of Gunung Geulis Country Club clubhouse and circular blue-roof structure.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Private Membership",
+            "initiation_fee": null,
+            "annual_fee": {
+              "amount": 30000000,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Annual fee Rp 30,000,000 reported as standard; initiation fee not publicly disclosed in text"
+          },
+          {
+            "name": "Corporate Membership",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Category exists; numeric fees in 2026 rate image not text-extractable"
+          },
+          {
+            "name": "Family Membership",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Category exists; numeric fees not extractable"
+          },
+          {
+            "name": "Term Membership 2026",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "TERM MEMBER 2026 effective Jan 2026; pricing image-only on /country-club/membership/"
+          }
+        ],
+        "currency_note": "IDR primary",
+        "sources": [
+          "https://gununggeulis.com/country-club/membership/",
+          "https://gununggeulis.com/",
+          "https://www.instagram.com/gununggeulisgolfclub/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Four membership categories listed (Private, Corporate, Family, Term). Annual fee Rp 30M widely reported. 2026 rate sheet rendered as image; specific initiation/deposit not text-extractable. Inquiry +6221 573 2258 / gro.gununggeulis@gmail.com."
       }
     },
     {
@@ -1020,6 +1533,28 @@
         "reopened_as": null,
         "coord_notes": "Existing dataset (-6.5719, 106.8744) is consistent with Sentul City / Bukit Sentul golf area. Could not retrieve a unique maplogs POI specifically for Sentul Highlands, so kept lower precision from the broader Cijayanti/Babakan Madang area; satellite confirms Gary Player layout fairways at this location.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Yearly Membership",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "notes": "Yearly memberships referenced as available at competitive rates; numeric fees not publicly published. Player's Card grants discounts, VIP lounge access, priority booking."
+          }
+        ],
+        "currency_note": "IDR primary",
+        "sources": [
+          "https://sentulhighlands.com/",
+          "https://sentulhighlands.com/prices/",
+          "https://www.instagram.com/sentulhighlandsgolfclub/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Official membership page returned 403 to scraper; club references yearly membership but does not publish text rates. Inquiry +6221 87960266 / 08111157888."
       }
     },
     {
@@ -1101,6 +1636,18 @@
         "reopened_as": null,
         "coord_notes": "Existing dataset (-6.5611, 106.8867) was ~6.5 km north; corrected to maplogs POI which properly points to the 27-hole layout in the Bukit Pelangi area, south-east of Sentul.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR primary",
+        "sources": [
+          "https://www.rainbowhillsgolf.com/",
+          "https://www.instagram.com/rainbowhillsgolf/",
+          "https://www.facebook.com/RainwbowHillsGolfClub/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Official site does not have a public Membership page; reservation-only model. Inquiry rsv@rainbowhillsgolf.com / +62 251 827 2111."
       }
     },
     {
@@ -1166,6 +1713,18 @@
         "reopened_as": null,
         "coord_notes": "Address: Jl. Golf Estate Bogor Raya, Sukaraja 16710. WeatherCrave labels nearest village 'Sukatani' but the course is the same 18-hole Graham Marsh design. Existing dataset (-6.5664, 106.8311) was ~6 km west; WeatherCrave point is closer to actual course but still ~4 decimals. Recommend Google Maps direct lookup for higher precision.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR primary",
+        "sources": [
+          "https://www.klubgolfbogorraya.com/",
+          "https://www.instagram.com/klubgolfbogorraya/",
+          "https://www.facebook.com/bogorrayagolf/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Official site klubgolfbogorraya.com is currently under maintenance. No public membership fee schedule available. Inquiry via WA +62 811-9718-844."
       }
     },
     {
@@ -1249,6 +1808,17 @@
         "reopened_as": null,
         "coord_notes": "Existing dataset (-6.5292, 106.8761) confirmed; same point used. Could not extract maplogs POI for higher precision.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR primary",
+        "sources": [
+          "https://www.permatasentulgolf.net/",
+          "https://www.instagram.com/permatasentul_golfclub/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Official site has no Membership page in navigation; no published membership fee. Inquiry 0811-1125-955 / 0812-1252-555 / reservasipermatasentulgolf@gmail.com."
       }
     },
     {
@@ -1313,6 +1883,28 @@
         "reopened_as": null,
         "coord_notes": "Plus Code HWF3+GX8, Bojong Nangka, Gunung Putri, Bogor 16963. Existing dataset (-6.4181, 106.9147) closely matches; WeatherCrave gives lower precision but same general point.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Long-term Membership",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Reduced golf service fee Rp 550,000 for members; reciprocal access to Kawano Group restaurants/clubs (50% function room, 10% restaurant discounts). Numeric initiation/annual not disclosed."
+          }
+        ],
+        "currency_note": "IDR primary",
+        "sources": [
+          "https://www.riverside-golf.com/membership",
+          "https://www.riverside-golf.com/",
+          "https://www.instagram.com/riversidegolfclub/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Official membership page lists benefits (Kawano Group reciprocity, IDR 550k member service fee) but no joining/annual fee figure. 'Join Now' inquiry form only."
       }
     },
     {
@@ -1400,6 +1992,46 @@
         "reopened_as": null,
         "coord_notes": "Address from official site: Jalan Raya Karangan, Gunung Putri. Existing dataset (-6.4181, 106.9147) was ~5 km away, likely pointing to a residential area. Maplogs POI is more reliable for course centroid; satellite imagery confirms Old/New/Z-Nine fairway grids.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Share Member",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Person/company holding share(s) in the Company; meets club qualifications"
+          },
+          {
+            "name": "Transferable Member",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Membership transferable; requires payment of membership fee + financial obligations"
+          },
+          {
+            "name": "Nominated Member",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Person nominated by their company; requires fees + qualifications"
+          }
+        ],
+        "currency_note": "IDR primary",
+        "sources": [
+          "https://jagorawi.com/membership",
+          "https://jagorawi.com/",
+          "https://www.instagram.com/jagorawigolfcc/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Official membership page outlines three categories (Ordinary and Family no longer available). Specific IDR fees not publicly disclosed. Inquiry +6221 875 3810-15."
       }
     },
     {
@@ -1463,6 +2095,83 @@
         "reopened_as": null,
         "coord_notes": "Existing dataset (-6.6594, 106.8242) closely matches; refined to higher precision via maplogs POI. Ted Robinson 18-hole championship course in Ciawi.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Individual",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Golf membership category; pricing not published, contact required"
+          },
+          {
+            "name": "Individual (Non-Transferable)",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Golf membership category; pricing not published"
+          },
+          {
+            "name": "Corporate",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Golf membership category; pricing not published"
+          },
+          {
+            "name": "Spouse",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Golf membership category; pricing not published"
+          },
+          {
+            "name": "Junior (under 21)",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Golf membership category; pricing not published"
+          },
+          {
+            "name": "Trial Membership",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "notes": "12-month unlimited golf trial; pricing not published"
+          },
+          {
+            "name": "Country Club Membership",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Country club category alongside Golf Membership"
+          }
+        ],
+        "currency_note": "IDR primary",
+        "sources": [
+          "https://rancamayagolf.com/membership/",
+          "https://rancamayagolf.com/offers_post/trial_golf_membership/",
+          "https://rancamayagolf.com/offers_post/corporate_trial_golf_membership/",
+          "https://www.instagram.com/rancamayagolf/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Multiple categories disclosed but no public IDR pricing. Inquiry 0251 8242282 ext 155/175 / golfinfo@rancamaya.com / WA +6281717100009."
       }
     },
     {
@@ -1538,6 +2247,18 @@
         "reopened_as": null,
         "coord_notes": "Existing dataset (-6.2867, 107.1581) was ~10 km off (pointed near Cikarang Selatan, not the actual Jababeka course). Yandex coords place the Nick Faldo-designed 18-hole layout inside Jababeka Industrial Estate, Cikarang. Major correction required.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [],
+        "currency_note": "IDR primary",
+        "sources": [
+          "https://jababekagolf.co.id/",
+          "https://booking.jababekagolf.co.id/",
+          "https://www.instagram.com/jababekagolf_official/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Semi-private with 500+ active members (mostly corporate execs of Cikarang industrial zone). No public membership fee published; booking portal requires login. Inquiry reservasi@jababekagolf.co.id / +6221 893 6148."
       }
     },
     {
@@ -1600,6 +2321,18 @@
         "reopened_as": null,
         "coord_notes": "Could not extract a maplogs POI for Palm Springs Karawang. Existing dataset (-6.3361, 107.2756) is consistent with Bukit Indah Golf 1, Telukjambe Timur address; left as-is, classed high confidence based on Trip.com 2026 active page.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR primary",
+        "sources": [
+          "https://karawang.palmspringsgolf.co/",
+          "https://www.instagram.com/palmspringsgolf_karawang/",
+          "https://www.facebook.com/palmspringsgolf.karawang/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Official site (503 during this verification) does not surface a public membership page or fee schedule. Owned by Sinar Mas Land. Inquiry Marketing.karawang@palmspringsgolf.co / +62 267 644730."
       }
     },
     {
@@ -1674,6 +2407,59 @@
         "reopened_as": null,
         "coord_notes": "Existing dataset (-6.7472, 106.8156) was ~1 km east; corrected. Course is at 700m elevation, Ernie Els-designed. Membership USD 70,000, capped at 80 players/day. 2024 actual opening confirmed, NOT just announcement.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Platinum Membership",
+            "initiation_fee": {
+              "amount": 70000,
+              "currency": "USD"
+            },
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Limited to 100 individuals/corporations; dedicated lockers, private Platinum Lounge, reserved parking. USD 70,000 figure widely reported as base club membership cost."
+          },
+          {
+            "name": "Individual Membership",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Unlimited golf on Ernie Els 18-hole course, range, practice area, clubhouse access. Numeric fee not disclosed publicly."
+          },
+          {
+            "name": "Corporate Membership",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Similar golf and clubhouse benefits as Individual; corporate name. Numeric fee not publicly disclosed."
+          },
+          {
+            "name": "Family Membership",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Member, spouse, and two children up to age 21. Numeric fee not publicly disclosed."
+          }
+        ],
+        "currency_note": "USD primary for headline membership figure (USD 70,000) per multiple official-aligned reports; IDR rates not separately published.",
+        "sources": [
+          "https://www.trumpgolflido.com/membership",
+          "https://www.trumpgolflido.com/",
+          "https://www.instagram.com/trumpgolflido/",
+          "https://www.facebook.com/TrumpGolfLido/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Course operated by Trump Golf for MNC Land. Official membership page describes four tiers (Platinum, Individual, Corporate, Family) but withholds prices, directing inquiries via Contact form. USD 70,000 base membership figure reported in MNC Group press release / Asian Golf Industry Federation / Golf Australia coverage; daily play limited to 80 players."
       }
     },
     {
@@ -1734,6 +2520,17 @@
         "reopened_as": null,
         "coord_notes": "9-hole heritage course. Existing dataset (-6.5969, 106.7861) confirmed accurate; left unchanged. Built 1935 (some sources say 1813 Raffles era), 187,135 m^2 site.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": false,
+        "categories": [],
+        "currency_note": "IDR primary",
+        "sources": [
+          "https://rsmmbogor.com/heritage-golf-field",
+          "https://www.instagram.com/heritagegolffield/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Bogor Golf Club / RSJMM Heritage Golf Field is a 9-hole public course operated by RS Marzoeki Mahdi (Ministry of Health hospital); functions as therapy/rehab + medical-tourism asset, open to public. No member-club structure; no membership fee schedule published."
       }
     },
     {
@@ -1813,6 +2610,32 @@
         "reopened_as": null,
         "coord_notes": "Coordinates match Kota Baru Parahyangan area; satellite shows clearly mapped fairways adjacent to Saguling Lake bays",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "The Prestige Club",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "notes": "Benefits: 1 Year Free Weekday & Weekend Green Fee; 10% off Sangkan Herang Restaurant, Cool Box, Driving Range Cafe & VIP Room; 10% off F&B at Mason Pine Hotel; 20% off Driving Range. Pricing not publicly disclosed - contact (022) 2110 2878 / WA 0877 8855 8383."
+          }
+        ],
+        "sources": [
+          "https://www.parahyangangolf.com/",
+          "https://www.parahyangangolf.com/promo"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Official site mentions 'The Prestige Club' membership but does not publish fees. No Uang Pangkal/Iuran/Jaminan figures found on official channels."
       }
     },
     {
@@ -1892,6 +2715,16 @@
         "reopened_as": null,
         "coord_notes": "Located in Mekarsaluyu, Cimenyan; satellite imagery shows 18-hole layout in Dago Pakar hills at ~900 m elevation",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "sources": [
+          "https://mountainviewgolfbandung.com/",
+          "https://www.instagram.com/mountainviewgolfbandung/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Official website (mountainviewgolfbandung.com) returned 403 to fetcher. No membership page or fees confirmed via official channels. Contact +62 811-2288-6089."
       }
     },
     {
@@ -1984,6 +2817,17 @@
         "reopened_as": null,
         "coord_notes": "Jl. Lapangan Golf Dago Atas No.78, Cibeunying Kaler; satellite shows hilly British-style 18-hole layout above Dago",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "sources": [
+          "https://dagoheritage1917.com/",
+          "https://www.instagram.com/dagoheritage_1917/",
+          "https://www.facebook.com/dagoheritage1917/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Official site has only green fees page (/green_fees.php); no /membership page found (404). Membership status not confirmed on official channels. Contact +62 222 502 567 / +62 811 2233 1917."
       }
     },
     {
@@ -2056,6 +2900,16 @@
         "reopened_as": null,
         "coord_notes": "Jl. Raya Jatinangor Km. 20, Cikeruh, Sumedang; satellite shows two 9-hole loops (Giri/Gahana) in highland setting",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "sources": [
+          "https://www.jatinangorgolf.com/",
+          "https://www.instagram.com/jatinangornationalgolfresort/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Resort-style operation. /membership returns 404 on official site. No membership pricing on official channels. Contact +62 22 779 8403 / marketing@jatinangorgolf.com."
       }
     },
     {
@@ -2215,6 +3069,48 @@
         "reopened_as": null,
         "coord_notes": "Kepuharjo, Cangkringan, Sleman; ~800 m elevation on Mount Merapi slopes; 18 holes par 72",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Share Purchase (Pembelian Saham)",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Equity-based membership via share purchase. Pricing not publicly disclosed."
+          },
+          {
+            "name": "Annual Membership Lease (Sewa Tahunan)",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "notes": "Lease-based annual membership. Pricing not publicly disclosed on official site/IG."
+          }
+        ],
+        "sources": [
+          "https://merapigolf-club.netlify.app/",
+          "https://merapigolf-club.netlify.app/membership",
+          "https://www.instagram.com/merapigolf/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Membership page on official site directs visitors to contact form ('We're so sorry for the inconvinience'). Two schemes mentioned: share purchase or annual lease. No fee figures published on official channels."
       }
     },
     {
@@ -2294,6 +3190,62 @@
         "reopened_as": null,
         "coord_notes": "Jl. Palagan Tentara Pelajar, Sariharjo, Ngaglik, Sleman; 22-ha grounds with 9-hole layout",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Quarterly Membership",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 0.25,
+            "notes": "Hyatt-managed 9-hole resort course. Pricing not published."
+          },
+          {
+            "name": "Half-Yearly Membership",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 0.5,
+            "notes": "Pricing not published."
+          },
+          {
+            "name": "Yearly Membership",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "notes": "Pricing not published."
+          }
+        ],
+        "sources": [
+          "https://www.hyatt.com/hyatt-regency/en-US/yogya-hyatt-regency-yogyakarta/golf-course",
+          "https://www.instagram.com/hyattgolfcourse/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Hotel-attached 9-hole par-30 course. Hyatt page mentions quarterly/half-yearly/yearly membership tiers with discounts and privileges, but no IDR amounts published."
       }
     },
     {
@@ -2398,6 +3350,16 @@
         "reopened_as": null,
         "coord_notes": "Jl. Raya Yogya-Solo KM 10.2, Maguwoharjo, Berbah, Sleman; 18 holes par 72, 5,945 m; adjacent to Adisucipto airport",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "members_only",
+        "categories": [],
+        "sources": [
+          "https://www.instagram.com/padanggolfadisutjipto/",
+          "https://www.facebook.com/padanggolfadisutjipto/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Operated by TNI AU Lanud Adisutjipto. Military-affiliated facility; access primarily for TNI AU members and invited guests. No public membership program or fees published."
       }
     },
     {
@@ -2510,6 +3472,62 @@
         "reopened_as": null,
         "coord_notes": "Jl. Gatot Subroto No. 1, Bulurejo, Mertoyudan, Magelang; 18-hole championship at 380 m altitude",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Individual Transferable Membership (Premium)",
+            "initiation_fee": {
+              "amount": 167000000,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Transferable individual membership tier. Member green fee: IDR 255,000 weekday / IDR 355,000 weekend."
+          },
+          {
+            "name": "Individual Transferable Membership (Standard)",
+            "initiation_fee": {
+              "amount": 61000000,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Lower-tier transferable individual membership."
+          },
+          {
+            "name": "One Year Exclusive Membership",
+            "initiation_fee": {
+              "amount": 17200000,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": 17200000,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "notes": "Term-limited 1-year membership. Single payment of IDR 17,200,000 for one year of exclusive access."
+          }
+        ],
+        "sources": [
+          "https://borobudur-golf.com/",
+          "https://www.instagram.com/borobudurgolf/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Borobudur International Golf & Country Club (managed by Jababeka). Three-tier membership structure with prices listed on official homepage. Annual dues (Iuran Tahunan) and refundable deposit (Uang Jaminan) not separately disclosed for transferable tiers."
       }
     },
     {
@@ -2580,6 +3598,15 @@
         "reopened_as": null,
         "coord_notes": "Jalan Gombel Lama No.90, Tinjomoyo, Banyumanik, Kota Semarang; 63-ha course in Mt. Ungaran foothills",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "sources": [
+          "https://www.instagram.com/gombelgolfid/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "No standalone official website. Member green fee rates exist (IDR 200,000 for 18 holes / IDR 130,000 for 9 holes any day) but Uang Pangkal/Iuran/Jaminan not published on official IG. Contact +62-24-749-9988."
       }
     },
     {
@@ -2700,6 +3727,17 @@
         "reopened_as": null,
         "coord_notes": "Jl. Candi Golf Boulevard No.1, Jangli, Tembalang; 9 holes par 36",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "sources": [
+          "https://candigolf.id",
+          "https://www.instagram.com/candigolf.id/",
+          "https://www.facebook.com/candigolf.id/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Official site focuses on residential development (Graha Candi Golf). No /membership page found on golf-side. No public fees disclosed. Contact +62 818 0850 1000."
       }
     },
     {
@@ -2822,6 +3860,48 @@
         "reopened_as": null,
         "coord_notes": "Jl. CitraLand Utama, CitraLand, Surabaya; 27 holes (Valley/Lake/Hill) on 125 ha",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Individual Membership",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Individual membership exists per official membership page. Pricing dynamic per management policy; not publicly listed on official site."
+          },
+          {
+            "name": "Family Membership",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Family Club annual membership. Grants full access to pool, gym, sauna, children's area, sports courts. Pricing dynamic; not publicly listed."
+          }
+        ],
+        "sources": [
+          "https://ciputragolf.com/membership-club-surabaya/",
+          "https://ciputragolf.com/",
+          "https://www.instagram.com/ciputragolfsurabaya/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Official membership page exists but states fees are dynamic and adjusted to latest management policy; specific Uang Pangkal/Iuran/Jaminan figures not disclosed on official channels."
       }
     },
     {
@@ -2917,6 +3997,32 @@
         "reopened_as": null,
         "coord_notes": "Jl. Bukit Darmo Raya Blok G-2, Pradahkalikendal, Dukuh Pakis, Surabaya; Jack Nicklaus II design 18 holes par 72",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Member (general)",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Page titled 'Rates, Fee, and Membership' lists member vs guest green fees (member 9H from IDR 245,000-675,000; 18H from IDR 365,000-910,000) but Uang Pangkal/Iuran/Jaminan amounts not extracted via official channels (site returns 403 to automated fetch)."
+          }
+        ],
+        "sources": [
+          "http://bukitdarmogolf.com/rates-fee-and-membership/",
+          "https://www.facebook.com/bukitdarmogolfsby/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Dedicated rates+membership page exists; explicit membership initiation/annual/deposit figures not visible via automated extraction. Direct visit/inquiry required."
       }
     },
     {
@@ -2999,6 +4105,18 @@
         "reopened_as": null,
         "coord_notes": "Jl. Raya Barsari, Prigen, Gambiran, Pasuruan; 18 holes par 72 at >700 m altitude",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "sources": [
+          "https://finnagolf.com/",
+          "https://finnagolf.co.id/",
+          "https://www.instagram.com/finnagolf/",
+          "https://www.facebook.com/finnagolf/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Resort-style operation (Finna Golf & Country Club Resort). Site currently shows 'A refined resort and golf experience is coming soon'. No public membership page or fees on official channels. Contact +62 343 634 888."
       }
     },
     {
@@ -3079,6 +4197,140 @@
         "reopened_as": null,
         "coord_notes": "Jl. Raya Surabaya-Malang Km 48, Bulukandang, Pandaan, Pasuruan; Jack Nicklaus design 18 holes",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Jack Nicklaus",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Top-tier membership named after course designer. Unlimited golf without green fees plus reciprocal rights."
+          },
+          {
+            "name": "Individual",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": null
+          },
+          {
+            "name": "Family",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": null
+          },
+          {
+            "name": "Corporate",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": null
+          },
+          {
+            "name": "1 Year Term",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "notes": "Term-limited 1-year membership."
+          },
+          {
+            "name": "Junior Golfer",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "For juniors below 18 years old."
+          },
+          {
+            "name": "Driving Range",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Driving range only membership."
+          },
+          {
+            "name": "Country Club",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Non-golf country club facility membership."
+          }
+        ],
+        "sources": [
+          "https://tamandayu.com/taman-dayu-golf/membership-benefits/",
+          "https://tamandayu.com/2025-rates/golf-membership/",
+          "https://tamandayu.com/taman-dayu-golf/membership-reciprocals/",
+          "https://www.instagram.com/tamandayugolfresort/",
+          "https://www.facebook.com/taman.dayu"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "8 membership categories listed on official site. Benefits include unlimited green-fee-free golf for most tiers, advance tee-time registration, preferential rates, tournament eligibility, up to 14 reciprocal playing rights/year. Fee amounts (Uang Pangkal/Iuran/Jaminan) not publicly disclosed on official channels - WA +62 811 34 88 234."
       }
     },
     {
@@ -3159,6 +4411,63 @@
         "reopened_as": null,
         "coord_notes": "Pradahkalikendal, Dukuh Pakis, Surabaya; Arnold Palmer 18-hole design within Graha Famili residential",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Gold (All Day Yearly)",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": 25500000,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "notes": "All Day Yearly Membership, Not Transferable. Annual fee only (no separate Uang Pangkal disclosed on official site)."
+          },
+          {
+            "name": "Outstation (Weekend Yearly)",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": 22500000,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "notes": "Weekend Yearly Membership, non-transferable."
+          },
+          {
+            "name": "Weekday (Weekday Yearly)",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": 13500000,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "notes": "Weekday Yearly Membership, Not Transferable."
+          }
+        ],
+        "sources": [
+          "https://golfgraha.com/home/membership",
+          "https://golfgraha.com/home/about",
+          "https://www.instagram.com/golfgrahafamili/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Official membership page lists three yearly term-limited tiers with prices in IDR. No traditional equity Uang Pangkal or refundable Uang Jaminan structure disclosed - these are flat annual fees."
       }
     },
     {
@@ -3239,6 +4548,48 @@
         "reopened_as": null,
         "coord_notes": "Araya Boulevard No 7, The Araya, Malang; J. Michael Poellot design 18 holes par 72 (Lake + Hill courses). OSM 'Araya Golf' returned a restaurant point at -7.9403,112.6622 which is INCORRECT (~6 km west). GolfPass coordinate is the actual course.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Annual Driving Range Membership",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": 5900000,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "notes": "Annual driving range only membership at IDR 5,900,000/year."
+          },
+          {
+            "name": "Golf Membership (general)",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Golf course membership exists with unlimited play, reserved tee times, partner course discounts. Specific Uang Pangkal/Iuran/Jaminan amounts shown only via image flyer on rates page; not extractable. Contact 0341-305 1188."
+          }
+        ],
+        "sources": [
+          "https://arayagolf.com/membership/",
+          "https://arayagolf.com/golf-course/our-rates/",
+          "https://www.instagram.com/arayagolfcourse/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Official membership page confirms membership availability and benefits but does not publish numeric fees outside the driving-range tier. Rate flyer is image-based."
       }
     },
     {
@@ -3315,6 +4666,16 @@
         "reopened_as": null,
         "coord_notes": "Pondokrejo, Tempurejo, Jember; 50 ha 18-hole course opened Nov 2, 1975 by East Java Governor Mohammad Noer. Note: OSM 'Glantangan Golf Course' returned -8.3302,113.6983 which is ~30 km east and INCORRECT for this course (likely a different tagged feature). Plus-code-derived coordinate is correct.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "sources": [
+          "https://www.instagram.com/glantangangolf_coursejember/",
+          "https://www.instagram.com/ptpn1reg5_glantangan/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Operated by Pemkab Jember in cooperation with PTPN XII (now PTPN I Reg 5). No standalone website. No membership program or fees disclosed on official IG channels."
       }
     },
     {
@@ -3393,6 +4754,15 @@
         "reopened_as": null,
         "coord_notes": "Jl. Padang Golf Abd. Rachman Saleh, Komplek TNI AU Kartanegara, Losari, Singosari, Malang; 18 holes par 72, 6,320 m. Plus code 4M4P+XGV.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "members_only",
+        "categories": [],
+        "sources": [
+          "https://www.instagram.com/padang_golf_abd_saleh/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Padang Golf Abdulrachman Saleh, operated by TNI AU Lanud Abd Saleh, Singosari. Semi-private/military-affiliated facility. No public membership program or fees published on official channels."
       }
     },
     {
@@ -3446,6 +4816,13 @@
         "closure_reason": "Permanently ceased operations May 2025; site converted to hotel/villa development",
         "reopened_as": null,
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": false,
+        "categories": [],
+        "sources": [],
+        "last_verified": "2026-04-29",
+        "notes": "Permanently closed"
       }
     },
     {
@@ -3499,6 +4876,13 @@
         "closure_reason": "Closed July 2017; Trump/Mickelson redevelopment halted indefinitely due to local opposition over Balinese building regulations",
         "reopened_as": null,
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": false,
+        "categories": [],
+        "sources": [],
+        "last_verified": "2026-04-29",
+        "notes": "Permanently closed (under Trump International redevelopment)"
       }
     },
     {
@@ -3585,6 +4969,48 @@
         "reopened_as": null,
         "coord_notes": "Permanent greens partially closed during ongoing renovation in 2025; players asked to use temporary greens. Course itself remains open. Crowding has reportedly increased after Bali National closure (May 2025). Coordinates correspond to Pecatu Indah Resort cliff-top course on Bukit Peninsula.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [
+          {
+            "name": "Individual Membership (Golflink Resort)",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Lifetime, transferable, shareholder-based membership covering 3 courses (Palm Hill Jakarta + New Kuta Bali + Black Rocks Belitung) with international reciprocal benefits. Pricing not publicly disclosed - inquiry only."
+          },
+          {
+            "name": "Corporate Membership (Golflink Resort)",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Corporate consumers tier. Pricing not publicly disclosed."
+          }
+        ],
+        "sources": [
+          "https://newkutagolf.co.id/",
+          "https://newkutagolf.co.id/membership",
+          "https://golflinkresorts.co.id/courses/newkutagolf/en"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Operated by PT Intra Golflinks Resorts Tbk. Membership is offered (Individual + Corporate, lifetime transferable shareholder-based) but no public price list. Membership page returns server errors during verification; rates provided on inquiry via newkutagolf@newkutagolf.co.id."
       }
     },
     {
@@ -3663,6 +5089,92 @@
         "reopened_as": null,
         "coord_notes": "Bedugul highlands at 1,142 m elevation; satellite confirms fairways. Some hotel buildings sealed by Bali authorities Jan 2026 over building permit/HRU issues but golf course itself continues to operate. Flagging for ongoing legal scrutiny only - status remains 'operating'.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Individual Lifetime Membership",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Lifetime tier; price disclosed on application."
+          },
+          {
+            "name": "Corporate Lifetime Membership",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Lifetime corporate; price disclosed on application."
+          },
+          {
+            "name": "Senior Membership (60+)",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Senior golfers aged 60 and up."
+          },
+          {
+            "name": "Supplementary Spouse / Junior Membership",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Add-on tier for spouse / junior."
+          },
+          {
+            "name": "Term Membership",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "notes": "1-year term membership."
+          }
+        ],
+        "sources": [
+          "https://www.handaragolfresort.com/membership/",
+          "https://www.handaragolfresort.com/handara-golf-membership/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Five tiers confirmed (Individual Lifetime, Corporate Lifetime, Senior 60+, Supplementary Spouse/Junior, Term 1-year). Direct fetch returned 403 during verification; pricing not published online - inquire at membership@handaragolfresort.com / hotline +62 87 8888 36 888."
       }
     },
     {
@@ -3748,6 +5260,33 @@
         "reopened_as": null,
         "coord_notes": "All 18 par-3 holes operating; clubhouse open. Cliff-top par-3 course on Bukit Peninsula above Indian Ocean. Satellite shows distinct cliff-top fairways.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Annual Membership",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": 26000000,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "notes": "Annual membership starting from IDR 26,000,000 - includes priority booking, member discounts, and unlimited course access. Tier breakdown not publicly itemized; site has no /membership page (inquire reservations@bukitpandawagolf.com / +62 811 3811 2828)."
+          }
+        ],
+        "sources": [
+          "https://www.bukitpandawagolf.com/",
+          "https://www.bukitpandawagolf.com/news/promo/",
+          "https://gogolf.co.id/en/golf-course/bukit-pandawa-golf-country-club"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "No dedicated /membership page on official site. Annual pricing IDR 26,000,000 (start) referenced via the course's GoGolf review profile (semi-official). Direct fee schedule not published; recommend phone confirmation."
       }
     },
     {
@@ -3801,6 +5340,13 @@
         "closure_reason": "Permanently closed; official website domain expired/sold; multiple sources confirm closure",
         "reopened_as": null,
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": false,
+        "categories": [],
+        "sources": [],
+        "last_verified": "2026-04-29",
+        "notes": "Permanently closed"
       }
     },
     {
@@ -3888,6 +5434,15 @@
         "reopened_as": null,
         "coord_notes": "Front 9 oceanfront on Sire Bay; back 9 inland with Mt Rinjani views. Satellite shows clearly maintained fairways. Course also marketed as Kosaido Country Club Lombok.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "sources": [
+          "https://sirebeachgolfclub.com/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "sirebeachgolfclub.com (Kosaido Lombok) does not publish a public membership page. Site returned ECONNREFUSED during verification window. No membership category or fee schedule visible from official channels - inquiries via the club directly."
       }
     },
     {
@@ -3967,6 +5522,16 @@
         "reopened_as": null,
         "coord_notes": "FLAG: Strongly recommend direct contact verification. Course nominally listed as operating in 2025 Lombok golf guides and on lomboknetwork bookings, but no first-hand reviews from 2024-2026 found; older 2017 reviews flagged severe maintenance issues and 'practically out of business' commentary. Possible under-resourced semi-operation. The previous coordinates -8.6017,116.2056 differed by ~3 km from the verified GolfPass coordinates -8.57945,116.24138 - CORRECTION NEEDED.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "sources": [
+          "http://www.lombok-golf.com/",
+          "https://www.facebook.com/LombokGolf/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Official site lombok-golf.com publishes green fees and weekday packages but no membership page. Facebook @LombokGolf active (also lists personal villas / condominium). No membership tier or fee disclosed publicly."
       }
     },
     {
@@ -4024,6 +5589,15 @@
         "reopened_as": null,
         "coord_notes": "FLAG: Coordinates were null in source data - now populated. Sekongkang Atas, West Sumbawa Regency. Operation status nominally open per resort website but very low activity / very few public reviews; treat as 'uncertain' until on-the-ground verification. 9-hole, par 36, 2,754 yards, built 1995. Pricing IDR 300,000 for 9 holes inclusive of caddie still publicly quoted.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": false,
+        "categories": [],
+        "sources": [
+          "https://www.naiaresortsumbawa.com/kaleang-golf-course-west-sumbawa/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "9-hole pay-as-you-play resort course at Naia Resort. No membership programme exists - course operates on per-round (~IDR 300,000) basis only."
       }
     },
     {
@@ -4104,6 +5678,48 @@
         "reopened_as": null,
         "coord_notes": "Previous coordinates 1.1748,104.3878 were ~3.5 km off (covering Forest entrance area). CORRECTION NEEDED. Verified Ocean Course coordinates -- satellite shows oceanfront fairways at Lagoi Bay. Maintenance days only; otherwise fully operating.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Elite Golf Plan (EGP)",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": 31500000,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "notes": "IDR 31,500,000 (~SGD 3,000) per year. Includes unlimited green fees, unlimited driving range balls, 4 complimentary nights at Ria Bintan Golf Lodge, ground transfers, dedicated buggy & caddy, 20% off pro shop, USD 400 merchandise voucher, welcome kit. Earlier launch tier was IDR 30,429,000 / IDR 29,925,000 (~SGD 2,850); current published rate IDR 31,500,000."
+          },
+          {
+            "name": "Elite Golf Premium Plan",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Premium tier referenced on official EGP page - pricing not published; inquire directly."
+          }
+        ],
+        "sources": [
+          "https://www.riabintan.com/elite-golf-plan/",
+          "https://www.riabintan.com/egp/",
+          "https://riabintangolf.com/rates/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Only the Ocean Course is operating (Forest 9 closed). Rate card on riabintangolf.com/rates does not list memberships; the riabintan.com sister site publishes the Elite Golf Plan."
       }
     },
     {
@@ -4159,6 +5775,13 @@
         "reopened_as": null,
         "coord_notes": "FLAG: NEW DISCOVERY OF CLOSURE. Forest Course closed since March 2022 with no announced reopening date. Marked closed_temporary because operator language is 'until further notice' rather than permanent. Previous source data marked as operational was wrong. Coordinates verified for the (currently mothballed) site. Previous coords 1.1748,104.3878 were ~1.5 km off.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": false,
+        "categories": [],
+        "sources": [],
+        "last_verified": "2026-04-29",
+        "notes": "Permanently closed (Forest 9 closed; only Ocean Course operating)"
       }
     },
     {
@@ -4216,6 +5839,13 @@
         "closure_reason": "Closed 2020 due to Bintan Lagoon Resort insolvency; resort hotel rebooted by Mövenpick (Accor) Q1 2026 but golf reopening not confirmed in 2026 launch materials",
         "reopened_as": "Mövenpick Resort & Spa Bintan Lagoon (hotel only confirmed; golf TBD)",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": false,
+        "categories": [],
+        "sources": [],
+        "last_verified": "2026-04-29",
+        "notes": "Permanently closed"
       }
     },
     {
@@ -4271,6 +5901,13 @@
         "closure_reason": "Closed 2020 (insolvency); Mövenpick relaunched the resort in Q1 2026 but golf course reopening status uncertain in launch materials",
         "reopened_as": "Mövenpick Resort & Spa Bintan Lagoon (hotel only confirmed; golf TBD)",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": false,
+        "categories": [],
+        "sources": [],
+        "last_verified": "2026-04-29",
+        "notes": "Permanently closed"
       }
     },
     {
@@ -4350,6 +5987,54 @@
         "reopened_as": null,
         "coord_notes": "Previous coordinates 1.2086,104.3917 were ~5 km off the actual course location. CORRECTION NEEDED. Located inside Laguna Bintan integrated resort with Banyan Tree/Angsana/Cassia hotels.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Individual 6-Month Membership",
+            "initiation_fee": {
+              "amount": 7900000,
+              "currency": "IDR"
+            },
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 0.5,
+            "notes": "One-time fee IDR 7,900,000 for 6 months. Includes unlimited green fees at Laguna Golf Bintan, 1 complimentary night at Cassia Bintan, 5 free rounds at Laguna Golf Phuket, free land transfer between Bintan ferry terminal and the course, 20-50% F&B discounts, and reciprocal access to 860+ partner clubs (10-50% off via Links2Golf / IMG Prestige). Caddy + buggy payable separately. Non-transferable."
+          },
+          {
+            "name": "Individual 1-Year Membership",
+            "initiation_fee": {
+              "amount": 13900000,
+              "currency": "IDR"
+            },
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "notes": "One-time fee IDR 13,900,000 for 12 months. Unlimited green fees at Laguna Golf Bintan, 2-night Cassia Bintan stay voucher, 10 free rounds at Laguna Golf Phuket, free land transfer, 20-50% discounts, 860+ reciprocal clubs. Caddy + buggy not included. Non-transferable."
+          },
+          {
+            "name": "5- / 10-year Exclusive Membership",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Exclusive 5- and 10-year programmes referenced on the rates-memberships page; pricing not publicly published - inquire directly."
+          }
+        ],
+        "sources": [
+          "https://www.lagunagolfbintan.com/rates-memberships/",
+          "https://www.lagunagolfbintan.com/golf-club-membership/",
+          "https://www.lagunagolfbintan.com/membership-benefits-privileges/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Two short-term membership tiers fully published in IDR plus referenced 5/10-year exclusive tiers without disclosed pricing. No initiation fee / refundable deposit model - one-time term fee structure."
       }
     },
     {
@@ -4437,6 +6122,47 @@
         "reopened_as": null,
         "coord_notes": "Previous coordinates 1.1933,104.0922 were ~1.8 km off actual course (placed on Tamarin/Nongsapura area instead). MINOR CORRECTION. 27-hole complex on Nongsa beach NE of Batam.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Individual Membership (Subscription)",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "SGD"
+            },
+            "annual_fee": null,
+            "monthly_fee": {
+              "amount": 65,
+              "currency": "SGD"
+            },
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Monthly subscription SGD 65/month for individual member. Includes member rates and reciprocal partner-course privileges. Membership transferable subject to T&Cs."
+          },
+          {
+            "name": "Family Membership (Subscription)",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "SGD"
+            },
+            "annual_fee": null,
+            "monthly_fee": {
+              "amount": 80,
+              "currency": "SGD"
+            },
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Monthly subscription SGD 80/month covering wife and children under 21."
+          }
+        ],
+        "sources": [
+          "https://batam.palmspringsgolf.co/membership",
+          "https://www.mygolfkaki.com/MemberPerks.aspx?p=allnews&category=160"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Direct fetch of membership page returned 503 during verification; pricing confirmed via club's listing on partner site mygolfkaki (operator of Palm Springs reciprocal programme). Standard SGD 65 / SGD 80 monthly published rates. Initiation/joining fee not separately disclosed publicly."
       }
     },
     {
@@ -4523,6 +6249,32 @@
         "reopened_as": "Rebranded Batam Island Country Club (BICC) - same Greg Norman 18-hole layout, new management; transformation reported active through 2024-2025",
         "coord_notes": "Previous coordinates 1.1664,104.0992 were ~2.5 km off (placed too far east near Tamarin). CORRECTION NEEDED. Course closed Mondays. Course operating; rebranding from Tering Bay -> Batam Island Country Club ongoing.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Membership (tier not publicly itemized)",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "SGD"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "SGD"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Membership benefits include green-fee exemption, member rates for buggy & caddy (Rp 350,000 weekday/weekend), guest privileges, 10% F&B + Pro Shop discount, membership card, golf bag tag, handicap card, joining gift. Specific joining fee and annual subscription not publicly disclosed."
+          }
+        ],
+        "sources": [
+          "http://teringbay.com.sg/membership/",
+          "https://www.batamislandcc.com/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Official membership page (teringbay.com.sg/membership) returned ECONNREFUSED during verification; benefits list documented but no fee schedule public. Course is also branded Batam Island Country Club. Inquire for current SGD/IDR pricing."
       }
     },
     {
@@ -4590,6 +6342,32 @@
         "reopened_as": "Rebranded Tamarin Golf & Footgolf Club; nominally operating with new management. Originally meant to expand to 18 holes but second 9 never built.",
         "coord_notes": "Previous coordinates 1.1853,104.1186 were ~2.6 km off. CORRECTION NEEDED. Only 9 holes operate; remaining 9 were never constructed. Footgolf added under new management. Considered 'medium' confidence because despite multiple secondary listings, low review volume and footgolf pivot may indicate diminished primary golf operations.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Member rate (no public joining fee schedule)",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Members pay flat IDR 245,000 (9-hole) on weekdays AND weekends, vs visitor IDR 245,000 wkdy / IDR 295,000 wknd - inclusive of GF, 10% govt tax, caddy, buggy and water. Joining fee not publicly disclosed."
+          }
+        ],
+        "sources": [
+          "https://www.welcometobatam.com/tamarin-santana-golf.asp",
+          "https://www.championsgolf.co/about-the-golf-course/tamarin-golf-resort/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "9-hole Jack Nicklaus design managed by Champions Golf. Members benefit from flat green-fee rate. No standalone official membership URL or brochure surfaced - inquiries via Champions Golf or +62 778 761069."
       }
     },
     {
@@ -4684,6 +6462,62 @@
         "reopened_as": null,
         "coord_notes": "Previous coordinates 1.1228,103.9692 were ~3 km off. CORRECTION NEEDED. South-west Batam, Tiban Indah/Sekupang area; 18-hole par-72 Hisamitsu Ohnishi design.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Individual Membership",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "SGD"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "SGD"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Transferable individual membership. Pricing not published online - membership@southlinks.golf or +62-778-325364/324128."
+          },
+          {
+            "name": "Corporate Membership",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "SGD"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "SGD"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Transferable corporate tier; up to four players per package - popular for client entertainment."
+          },
+          {
+            "name": "Term Membership",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "SGD"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "SGD"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "notes": "Non-transferable; 1-year term."
+          }
+        ],
+        "sources": [
+          "https://www.southlinks.golf/v1/about/membership/",
+          "https://www.southlinks.golf/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Three tiers confirmed (Individual, Corporate, Term) on the official membership page; brochure image referenced but fee figures not extractable from text. Inquiries via membership@southlinks.golf / sales@southlinks.golf."
       }
     },
     {
@@ -4765,6 +6599,90 @@
         "reopened_as": null,
         "coord_notes": "Previously stored coordinates already accurate (1.1022,104.0322). Confirmed; no correction needed. Located alongside Radisson Golf & Convention Center.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Individual Lifetime",
+            "initiation_fee": {
+              "amount": 50000000,
+              "currency": "IDR"
+            },
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Lifetime individual: IDR 50,000,000 one-off. Members thereafter pay caddie + buggy only per round."
+          },
+          {
+            "name": "Individual Term (1 year)",
+            "initiation_fee": null,
+            "annual_fee": {
+              "amount": 11000000,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "notes": "1-year individual term: IDR 11,000,000."
+          },
+          {
+            "name": "Corporate Lifetime - 2 nominees",
+            "initiation_fee": {
+              "amount": 75000000,
+              "currency": "IDR"
+            },
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Lifetime corporate, 2 nominees: IDR 75,000,000."
+          },
+          {
+            "name": "Corporate Lifetime - 3 nominees",
+            "initiation_fee": {
+              "amount": 100000000,
+              "currency": "IDR"
+            },
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Lifetime corporate, 3 nominees: IDR 100,000,000."
+          },
+          {
+            "name": "Corporate Lifetime - 4 nominees",
+            "initiation_fee": {
+              "amount": 125000000,
+              "currency": "IDR"
+            },
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Lifetime corporate, 4 nominees: IDR 125,000,000."
+          },
+          {
+            "name": "Corporate Term (1 year) - 2 nominees",
+            "initiation_fee": null,
+            "annual_fee": {
+              "amount": 18000000,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "notes": "1-year corporate term, 2 nominees: IDR 18,000,000."
+          }
+        ],
+        "sources": [
+          "http://www.padanggolfsukajadi.com/page/13/overview",
+          "http://www.padanggolfsukajadi.com/page/13/index.html",
+          "http://www.padanggolfsukajadi.com/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Most transparent membership pricing among Batam set. All prices in IDR. Members pay only caddie + buggy per round (no green fee). Membership Service: +62 778 8073008 / membership@padanggolfsukajadi.com."
       }
     },
     {
@@ -4845,6 +6763,77 @@
         "reopened_as": null,
         "coord_notes": "Previous coordinates 1.1275,103.9456 were ~2 km off. CORRECTION NEEDED. NW coast of Batam, Sekupang area; 7 min from Sekupang Ferry. Course closed Tuesdays for maintenance.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Ordinary Membership",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Ordinary tier - member + guest may walk on the course on weekdays only. Specific IDR price not displayed in /membership/membership-price page during verification."
+          },
+          {
+            "name": "Family Membership",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Covers spouse and up to 2 children under 18."
+          },
+          {
+            "name": "Leasing / Term Membership",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Popular with expatriates - complimentary green fees with no monthly subscription. Term length and price not publicly published."
+          },
+          {
+            "name": "Corporate Membership",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Open to local and foreign companies; entitled to 2 nominees (director or employee)."
+          }
+        ],
+        "sources": [
+          "https://www.indahpuri.com/membership/membership-price/",
+          "https://www.indahpuri.com/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Four membership categories confirmed on official site. Pricing pages (/membership/, /membership/membership-price/) returned 404 during verification window despite Google cache referencing 'affordable joining fee'. No public IDR figures - inquire directly."
       }
     },
     {
@@ -4925,6 +6914,30 @@
         "reopened_as": null,
         "coord_notes": "Previous coordinates -2.5556,107.6747 were ~4 km off. CORRECTION NEEDED. Tanjung Tinggi Beach area, Sijuk, Belitung. Phase 2 expansion (rooms 10-18 + 100 hotel rooms) ongoing.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Founder Member Package",
+            "initiation_fee": {
+              "amount": null,
+              "currency": "IDR"
+            },
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "notes": "Limited to 300 founder members. Bundles a residential kavling (lot types: S 650, S 500, S 300, Exclusive) + golf course playright share in PT Belitung Golf and Resorts + access to Founder Lounge in clubhouse + lifetime playing rights and potential dividends from club operations + priority tee-time + tournament invitations. Specific IDR price not publicly disclosed - inquire +62 811 7109 991 / +62 811 8078 885 / WA +62 811 8078 885."
+          }
+        ],
+        "sources": [
+          "https://blackrocksgolf.co.id/",
+          "https://blackrocksgolf.co.id/membership.php",
+          "https://golflinkresorts.co.id/courses/blackrocks/en"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Membership is property-linked (real estate + playright). Operated under PT Intra Golflinks Resorts Tbk - same group as New Kuta Golf and Palm Hill Country Club Jakarta. No standalone golf-only membership tier published."
       }
     },
     {
@@ -4986,6 +6999,19 @@
         "reopened_as": null,
         "coord_notes": "Centroid of the Royal Sumatera Resort polygon in Mangga, Medan Tuntungan; satellite shows golf fairways at this location",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          "Member"
+        ],
+        "sources": [
+          "https://royal-sumatra.com/golf-course/",
+          "https://royal-sumatra.com/contact-us/",
+          "https://www.instagram.com/royalsumatraofficial/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Official site shows a 'MEMBERSHIP' inquiry form and a Member vs Day rate table (Member 250k IDR / Day 350k IDR for 18 holes), confirming a paid-membership program. Initiation fee, monthly dues and category breakdown are not published; inquiries via Marketing Office +62 811 6561 311 / Reception +62 61 8362999."
       }
     },
     {
@@ -5045,6 +7071,15 @@
         "reopened_as": null,
         "coord_notes": "Coordinates fall along the trunk road in Tg Morawa A; PTPN II plantation course is set back from the road. Suitable as access point.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "sources": [
+          "https://www.instagram.com/tgcsumut/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "PTPN II plantation-affiliated public course. No standalone official site; only IG @tgcsumut which does not publish membership categories or fees. Inquiries via WhatsApp/phone +62 61 794 0055."
       }
     },
     {
@@ -5104,6 +7139,15 @@
         "reopened_as": null,
         "coord_notes": "Photon resolves to the Graha Metropolitan residential area in Helvetia/Sunggal; satellite shows the golf course fairways here",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "sources": [
+          "https://www.facebook.com/511563452529101"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "No official website. Facebook page exists but does not publish membership info. Gary Player-designed 1994 walking course; rates and membership handled by phone/WhatsApp."
       }
     },
     {
@@ -5163,6 +7207,15 @@
         "reopened_as": null,
         "coord_notes": "Polygon centroid in Tuntungan II, Pancur Batu; satellite confirms 18-hole layout",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "by_invitation_only",
+        "categories": [],
+        "sources": [
+          "https://www.instagram.com/bukitbarisangolfcourse/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Private Jack Nicklaus-designed Bukit Barisan Country Club. Official site bbcc-golf.com is unreachable (ECONNREFUSED). IG @bukitbarisangolfcourse does not publish membership pricing; widely reported as a private members' club with access by invitation/sponsorship."
       }
     },
     {
@@ -5220,6 +7273,13 @@
         "reopened_as": null,
         "coord_notes": "Lembah Damai, Rumbai Pesisir - inside the PT CPI/Pertamina Hulu Rokan Iksora compound",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "employees_only",
+        "categories": [],
+        "sources": [],
+        "last_verified": "2026-04-29",
+        "notes": "Rumbai Country Club is a private corporate facility of Chevron / PT Pertamina Hulu Rokan (PHR). No public website or official IG/FB. Membership/access restricted to PHR/Chevron employees, contractors and invited guests."
       }
     },
     {
@@ -5279,6 +7339,15 @@
         "reopened_as": null,
         "coord_notes": "Tanah Merah, Siak Hulu, Kampar; integrated 27-hole resort with Labersa Grand Hotel",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "sources": [
+          "https://labersahotel.com/lghcc/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Labersa Grand Hotel & Country Club official site is live but does not publish golf membership categories or fees. Inquiries via +62 761 41555."
       }
     },
     {
@@ -5355,6 +7424,16 @@
         "reopened_as": null,
         "coord_notes": "8 Ilir, Ilir Timur II, Kota Palembang; second-oldest course in Indonesia after Rawamangun",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "sources": [
+          "https://www.instagram.com/kentenheritage_1937golfcourse/",
+          "https://www.instagram.com/palembang.golf/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Kenten Heritage 1937 Golf Course (Palembang Golf Club). Active IG accounts but no official website and no published membership pricing."
       }
     },
     {
@@ -5412,6 +7491,13 @@
         "reopened_as": null,
         "coord_notes": "Tanjung Enim PTBA company township; satellite confirms 18-hole course",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "employees_only",
+        "categories": [],
+        "sources": [],
+        "last_verified": "2026-04-29",
+        "notes": "Corporate course of PT Bukit Asam (PTBA) at Tanjung Enim. No dedicated official site or IG/FB account. Membership/play is for PTBA employees, families and invited guests."
       }
     },
     {
@@ -5469,6 +7555,13 @@
         "reopened_as": null,
         "coord_notes": "Sukarame, Bandar Lampung; address Jl. Prof. Dr. Hamka",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "sources": [],
+        "last_verified": "2026-04-29",
+        "notes": "Yayasan Padang Golf Sukarame (Bandar Lampung). No official site or branded IG/FB account; only Instagram location tags. Membership not advertised online."
       }
     },
     {
@@ -5545,6 +7638,16 @@
         "reopened_as": null,
         "coord_notes": "Stalkuda Street, Damai Bahagia, Balikpapan Selatan; satellite confirms Padang Sepinggan course",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "employees_only",
+        "categories": [],
+        "sources": [
+          "https://www.instagram.com/golfpadang/",
+          "https://www.facebook.com/pertaminagolfbalikpapan"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Pertamina Balikpapan Golf Club (PBGC). Corporate facility of PT Pertamina Refinery Unit V. IG/FB present but no membership pricing published; access primarily for Pertamina employees, families and invited guests."
       }
     },
     {
@@ -5621,6 +7724,16 @@
         "reopened_as": null,
         "coord_notes": "Karang Joang, Balikpapan Utara; reverse geocode returned exact club name",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "sources": [
+          "https://www.instagram.com/karangjoanggolfbpn/",
+          "https://www.facebook.com/1843648718997631"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Karang Joang Golf & Country Club (Balikpapan). IG/FB accounts active but no website and no published membership categories or fees."
       }
     },
     {
@@ -5689,6 +7802,16 @@
         "reopened_as": null,
         "coord_notes": "PKT Bontang fertilizer plant complex on Jalan Cipto Mangunkusumo; tennis court, hotel and pool POIs nearby validate area",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "employees_only",
+        "categories": [],
+        "sources": [
+          "http://www.hotelbintangsintuk.co.id/",
+          "https://www.instagram.com/hotelbintangsintuk/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Course is part of PT Pupuk Kalimantan Timur (PKT) housing/hotel complex. Hotel website mentions the 18-hole course but does not publish membership; access is primarily for PKT employees, hotel guests and invited players."
       }
     },
     {
@@ -5757,6 +7880,15 @@
         "reopened_as": null,
         "coord_notes": "Sengkotek, on Jl. Cipto Mangun Kusumo near Jembatan Mahulu; satellite shows fairways adjacent to access road",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "sources": [
+          "https://www.instagram.com/putriayucottage/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Mahulu Golf is co-located with Putri Ayu Cottage. No course-specific website and no published membership info on its IG."
       }
     },
     {
@@ -5813,6 +7945,13 @@
         "reopened_as": null,
         "coord_notes": "Bukit Tunggal, Jekan Raya, Palangka Raya",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "sources": [],
+        "last_verified": "2026-04-29",
+        "notes": "9-hole local course in Palangkaraya. No official website or branded IG/FB; membership not advertised online."
       }
     },
     {
@@ -5881,6 +8020,15 @@
         "reopened_as": null,
         "coord_notes": "Landasan Ulin Utara, Liang Anggang, Banjarbaru on Jl. A. Yani KM. 24",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "military_personnel",
+        "categories": [],
+        "sources": [
+          "https://www.instagram.com/lapangan_golfswargaloka/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "TNI AU (Indonesian Air Force) Swargaloka course at Lanud Sjamsudin Noor, Banjarbaru. Active IG account but no published membership fees; primary access via TNI AU personnel and invited guests."
       }
     },
     {
@@ -5968,6 +8116,15 @@
         "reopened_as": null,
         "coord_notes": "Plus code based; precision approximately 14-30 m. No OSM golf course polygon yet. Satellite around this point on Jalan 28 Oktober shows the green fairways visible in user photos.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "sources": [
+          "https://www.instagram.com/golf_alamkhatulistiwa/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Pontianak driving range with 9-hole course. IG @golf_alamkhatulistiwa publishes green fees but no membership categories or pricing."
       }
     },
     {
@@ -6067,6 +8224,20 @@
         "reopened_as": null,
         "coord_notes": "Patalassang/Pallantikang, Bontonompo, Gowa - part of CitraGrand Galesong City",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          "Yearly Member"
+        ],
+        "sources": [
+          "https://padivalley.com/golf-reservation",
+          "https://padivalley.com/",
+          "https://www.instagram.com/padivalleygolfclub/",
+          "https://www.facebook.com/padivalleygolfclub/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Official site lists a Yearly Member program with benefits: unlimited green fees, 25% guest green-fee discount, 20% F&B discount, dedicated locker/towel, special event rates, reciprocal rates at partner courses, 15% pro shop discount, complimentary VIP room (2x/year), free 300 driving-range balls. Specific membership fee not published; inquiries via club WA/email."
       }
     },
     {
@@ -6135,6 +8306,15 @@
         "reopened_as": null,
         "coord_notes": "Pai, Biring Kanaya, Makassar (Jl. Insinyur Sutami / Jl. Batara Bira); multiple building POIs validate location",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "sources": [
+          "https://www.facebook.com/p/Padang-Golf-Baddoka-Makassar-100057286096237/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Padang Golf Baddoka Makassar (TNI AU-affiliated). Facebook page exists; no official website and no published membership fees. Likely military-affiliated access plus public guest play."
       }
     },
     {
@@ -6197,6 +8377,17 @@
         "reopened_as": null,
         "coord_notes": "Kairagi Dua, Mapanget, Manado; reverse geocode returned 'Wenang Golf Course Kairagi Dua' on Jalan A.A. Maramis",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": true,
+        "categories": [
+          "Member Club"
+        ],
+        "sources": [
+          "https://akrgolfmanado.com/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Official site shows a 'MEMBER CLUB' tab indicating an active membership program, but no fee/category details are published. Inquiries via Ms. Shereen +62 895 3964 85531 / Mrs. Fitriah +62 853 4198 8111."
       }
     },
     {
@@ -6253,6 +8444,13 @@
         "reopened_as": null,
         "coord_notes": "Magani, Nuha, Luwu Timur; access typically restricted to PT Vale staff/guests",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "employees_only",
+        "categories": [],
+        "sources": [],
+        "last_verified": "2026-04-29",
+        "notes": "Internal recreational facility of PT Vale Indonesia in the Sorowako mining town. No dedicated public site or official IG/FB. Membership/access restricted to PT Vale employees, contractors and invited guests."
       }
     },
     {
@@ -6309,6 +8507,13 @@
         "reopened_as": null,
         "coord_notes": "Talise, Mantikulore, Palu near Gelora Bumi Kaktus stadium; the field area is recognizable from satellite but no longer a fully maintained golf course",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "sources": [],
+        "last_verified": "2026-04-29",
+        "notes": "Local Palu KORPRI/military-affiliated course. No official site or branded IG/FB; membership not advertised online."
       }
     },
     {
@@ -6393,6 +8598,17 @@
         "reopened_as": null,
         "coord_notes": "Watubangga, Baruga, Kendari; half the course is reportedly encroached by residents per 2025 article",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "sources": [
+          "https://www.instagram.com/sanggoleogolfclub/",
+          "https://www.facebook.com/p/Sanggoleo-Golf-Club-Kendari-100065426711781/",
+          "https://www.threads.com/@sanggoleogolfclub"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Sanggoleo Golf Club Kendari has active IG, FB and Threads accounts but no website and no published membership categories or fees. Inquiries handled via DM/phone."
       }
     },
     {
@@ -6462,6 +8678,16 @@
         "reopened_as": null,
         "coord_notes": "Plus-code derived (~30m precision); no OSM golf polygon. Course sits on the ridge above Polimak IV in Ardipura/Entrop area, near Kodam XVII HQ. Satellite at this location shows the cleared 9-hole layout overlooking Jayapura bay.",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "military_personnel",
+        "categories": [],
+        "sources": [
+          "https://www.instagram.com/kodam17/",
+          "https://www.facebook.com/164200023641913"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Kodam XVII/Cenderawasih TNI AD facility in Jayapura. Official Kodam IG and FB location page exist but no published membership fees; access primarily via TNI AD personnel and invited guests."
       }
     },
     {
@@ -6531,6 +8757,15 @@
         "reopened_as": null,
         "coord_notes": "Kuala Kencana Freeport residential township, Mimika; clubhouse restaurant POI nearby at -4.4067, 136.8732",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "employees_only",
+        "categories": [],
+        "sources": [
+          "https://www.facebook.com/p/Klub-Golf-Rimba-Irian-100057663690815/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "Coore & Crenshaw-designed company-town course operated by PT Freeport Indonesia in Kuala Kencana. Largely access-restricted; FB page exists but no public membership fees. Membership/access for Freeport employees, contractors and invited guests."
       }
     },
     {
@@ -6606,6 +8841,16 @@
         "reopened_as": null,
         "coord_notes": "Laha, Baguala, Ambon - adjacent to Pattimura Airport; operated by TNI-AU Lanud Pattimura",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "available": "military_personnel",
+        "categories": [],
+        "sources": [
+          "https://www.instagram.com/lanud_pattimura_ambon/",
+          "https://www.instagram.com/pattimura_golf_course/"
+        ],
+        "last_verified": "2026-04-29",
+        "notes": "TNI AU Lanud Pattimura course in Ambon. Official Lanud IG and a community-run @pattimura_golf_course IG exist but no published membership pricing; access primarily via TNI AU personnel and invited guests."
       }
     }
   ]
