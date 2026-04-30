@@ -961,12 +961,38 @@ function renderTable() {
       const h = getHost(u);
       return h && (h === officialHost || h.endsWith('.' + officialHost));
     };
+    // Dedupe by hostname (so the same site doesn't appear twice from different paths)
     const officialLinks = [];
-    if (c.website) officialLinks.push(c.website);
+    const seenOfficialHosts = new Set();
+    const tryAddOfficial = (u) => {
+      const h = getHost(u);
+      if (!h || seenOfficialHosts.has(h)) return;
+      seenOfficialHosts.add(h);
+      officialLinks.push(u);
+    };
+    if (c.website) tryAddOfficial(c.website);
     for (const u of uniqueSources) {
-      if (matchesOfficial(u) && u !== c.website && officialLinks.length < 3) officialLinks.push(u);
+      if (matchesOfficial(u) && officialLinks.length < 3) tryAddOfficial(u);
     }
-    const snsLinks = uniqueSources.filter(isSnsUrl).slice(0, 4);
+    // SNS: dedupe by hostname+account-path so multiple posts from same account don't repeat
+    const snsKey = (u) => {
+      try {
+        const url = new URL(u);
+        const host = url.hostname.replace(/^www\./, '').toLowerCase();
+        const path = url.pathname.split('/').filter(Boolean).slice(0, 1).join('/');
+        return path ? `${host}/${path}` : host;
+      } catch (e) { return u; }
+    };
+    const snsLinks = [];
+    const seenSnsKeys = new Set();
+    for (const u of uniqueSources) {
+      if (!isSnsUrl(u)) continue;
+      const key = snsKey(u);
+      if (seenSnsKeys.has(key)) continue;
+      seenSnsKeys.add(key);
+      snsLinks.push(u);
+      if (snsLinks.length >= 4) break;
+    }
 
     const officialHtml = officialLinks.length
       ? officialLinks.map((u, i) => {
