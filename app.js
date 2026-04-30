@@ -908,15 +908,42 @@ function renderTable() {
     const sunAmCell = cellHtml(sunSlots.am, weFallback, weUsd);
     const sunPmCell = cellHtml(sunSlots.pm, weFallback, weUsd);
 
-    const idUrls = new Set((f.indonesian_sources || []).map(e => e?.url).filter(Boolean));
-    const sourcesHtml = (f.sources || []).slice(0, 4).map((u, i) => {
-      const lang = idUrls.has(u) ? 'ID' : 'EN';
-      return `<a href="${escapeHtml(u)}" target="_blank" rel="noopener" title="${escapeHtml(u)}">[${i + 1}]${lang}</a>`;
-    }).join('');
+    const SNS_HOSTS = ['instagram.com', 'facebook.com', 'fb.com', 'tiktok.com', 'youtube.com', 'youtu.be', 'twitter.com', 'x.com', 'linkedin.com'];
+    const isSnsUrl = u => SNS_HOSTS.some(h => u.includes(h));
+    const allSources = (f.sources || []).concat((c.membership?.sources || []), (c.operating_status?.evidence || []).filter(s => typeof s === 'string' && s.startsWith('http'))).filter(Boolean);
+    const uniqueSources = [...new Set(allSources)];
+
+    const officialLinks = [];
+    if (c.website) officialLinks.push(c.website);
+    for (const u of uniqueSources) {
+      if (!isSnsUrl(u) && u !== c.website && officialLinks.length < 3) officialLinks.push(u);
+    }
+    const snsLinks = uniqueSources.filter(isSnsUrl).slice(0, 4);
+
+    const officialHtml = officialLinks.length
+      ? officialLinks.map((u, i) => {
+          let label = '공식';
+          try { label = new URL(u).hostname.replace(/^www\./, ''); } catch (e) {}
+          return `<a href="${escapeHtml(u)}" target="_blank" rel="noopener" title="${escapeHtml(u)}">${escapeHtml(label)}</a>`;
+        }).join('<br>')
+      : '<span class="muted">—</span>';
+
+    const snsLabel = u => {
+      const lu = u.toLowerCase();
+      if (lu.includes('instagram.com')) return 'IG';
+      if (lu.includes('facebook.com') || lu.includes('fb.com')) return 'FB';
+      if (lu.includes('tiktok.com')) return 'TT';
+      if (lu.includes('youtube.com') || lu.includes('youtu.be')) return 'YT';
+      if (lu.includes('twitter.com') || lu.includes('x.com')) return 'X';
+      if (lu.includes('linkedin.com')) return 'LI';
+      return 'SNS';
+    };
+    const snsHtml = snsLinks.length
+      ? snsLinks.map(u => `<a class="sns-pill" href="${escapeHtml(u)}" target="_blank" rel="noopener" title="${escapeHtml(u)}">${snsLabel(u)}</a>`).join(' ')
+      : '<span class="muted">—</span>';
 
     const matoaTag = c.id === 'matoa-nasional' ? '<span class="matoa-tag">★ Matoa</span>' : '';
 
-    const websiteLink = c.website ? `<a href="${escapeHtml(c.website)}" target="_blank" rel="noopener">웹지도</a>` : '';
     const mapLink = `<a href="https://www.google.com/maps/search/?api=1&query=${c.lat},${c.lng}" target="_blank" rel="noopener">지도</a>`;
 
     return `
@@ -934,8 +961,9 @@ function renderTable() {
         <td class="num fee fee-premium">${sunAmCell}</td>
         <td class="num fee">${sunPmCell}</td>
         <td class="num">${membershipCellText(c.membership)}</td>
-        <td class="address">${escapeHtml(c.address || '')}<br>${websiteLink} ${mapLink}</td>
-        <td class="sources">${sourcesHtml || '—'}</td>
+        <td class="address">${escapeHtml(c.address || '')}<br>${mapLink}</td>
+        <td class="sources official-links">${officialHtml}</td>
+        <td class="sources sns-links">${snsHtml}</td>
       </tr>
     `;
   }).join('');
