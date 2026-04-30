@@ -756,9 +756,7 @@ function renderTable() {
         <td>${escapeHtml(c.province)}</td>
         <td><span class="status-pill ${status}">${statusLabel}</span></td>
         <td class="num">${c.holes ?? '—'}</td>
-        <td class="num">${c.par ?? '—'}</td>
         <td class="num">${c.year_opened ?? '—'}</td>
-        <td>${designer}</td>
         <td class="num fee">${wdText}</td>
         <td class="num fee">${weText}</td>
         <td class="num">${membershipCellText(c.membership)}</td>
