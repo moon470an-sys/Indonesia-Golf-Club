@@ -442,15 +442,26 @@ function renderFees(f) {
   const isObject = v => v && typeof v === 'object' && !Array.isArray(v);
   const wd = isObject(f.weekday) ? f.weekday : null;
   const we = isObject(f.weekend) ? f.weekend : null;
+  const anc = isObject(f.ancillary) ? f.ancillary : {};
 
   const wdGreen = wd ? (wd.green_fee_idr ?? wd.guest_fee_idr ?? wd.member_fee_idr) : null;
   const weGreen = we ? (we.green_fee_idr ?? we.guest_fee_idr ?? we.member_fee_idr) : null;
   const wdUSD = wd ? wd.green_fee_usd : null;
   const weUSD = we ? we.green_fee_usd : null;
 
+  // Coalesce ancillary from new schema (anc.*) or legacy top-level (f.*)
+  const caddy = anc.caddy_idr ?? f.caddy_idr;
+  const cart = anc.cart_idr ?? f.cart_idr;
+  const insurance = anc.insurance_idr ?? f.insurance_idr;
+  const taxPct = anc.tax_pct ?? f.tax_pct;
+  const taxIncluded = anc.tax_included ?? f.tax_included;
+  const rateIncludes = f.rate_includes;
+
+  const fmtFee = v => (typeof v === 'number') ? fmtIDR(v) : (v ? String(v) : null);
+
   const hasAny = wdGreen != null || weGreen != null || wdUSD != null || weUSD != null
-                 || f.caddy_idr != null || f.cart_idr != null || f.insurance_idr != null
-                 || f.twilight_idr != null;
+                 || caddy != null || cart != null || insurance != null
+                 || f.twilight_idr != null || isObject(f.schedule_detailed);
 
   if (!hasAny && !f.notes) return '';
 
@@ -466,9 +477,37 @@ function renderFees(f) {
     rows.push(`<tr><td>주말 그린피</td><td class="amt">${[idr, usd].filter(Boolean).join(' / ') || '—'}</td></tr>`);
   }
   if (f.twilight_idr != null) rows.push(`<tr><td>트와일라잇</td><td class="amt">${fmtIDR(f.twilight_idr)}</td></tr>`);
-  if (f.caddy_idr != null) rows.push(`<tr><td>캐디피</td><td class="amt">${fmtIDR(f.caddy_idr)}</td></tr>`);
-  if (f.cart_idr != null) rows.push(`<tr><td>카트</td><td class="amt">${fmtIDR(f.cart_idr)}</td></tr>`);
-  if (f.insurance_idr != null) rows.push(`<tr><td>보험</td><td class="amt">${fmtIDR(f.insurance_idr)}</td></tr>`);
+  if (caddy != null) rows.push(`<tr><td>캐디피</td><td class="amt">${fmtFee(caddy)}</td></tr>`);
+  if (cart != null) rows.push(`<tr><td>카트</td><td class="amt">${fmtFee(cart)}</td></tr>`);
+  if (insurance != null) rows.push(`<tr><td>보험</td><td class="amt">${fmtFee(insurance)}</td></tr>`);
+  if (taxPct != null) rows.push(`<tr><td>세금(PPN)</td><td class="amt">${taxPct}%${taxIncluded ? ' (포함)' : ''}</td></tr>`);
+  if (rateIncludes) rows.push(`<tr><td>요금 구성</td><td class="amt note-cell">${escapeHtml(rateIncludes)}</td></tr>`);
+
+  const detailed = f.schedule_detailed;
+  let detailedHtml = '';
+  if (isObject(detailed)) {
+    const slotLabels = { weekday: '평일', weekend_saturday: '토요일', weekend_sunday: '일요일', public_holiday: '공휴일' };
+    const blocks = [];
+    for (const [slot, slotLabel] of Object.entries(slotLabels)) {
+      const slotData = detailed[slot];
+      if (!isObject(slotData)) continue;
+      const lines = [];
+      const flatten = (obj, prefix = '') => {
+        for (const [k, v] of Object.entries(obj)) {
+          if (typeof v === 'number') {
+            lines.push(`<li><span class="seg-key">${escapeHtml(prefix + k)}</span><span class="seg-val">${fmtIDR(v)}</span></li>`);
+          } else if (typeof v === 'string') {
+            lines.push(`<li><span class="seg-key">${escapeHtml(prefix + k)}</span><span class="seg-val">${escapeHtml(v)}</span></li>`);
+          } else if (isObject(v)) {
+            flatten(v, prefix ? `${prefix}${k} / ` : `${k} / `);
+          }
+        }
+      };
+      flatten(slotData);
+      if (lines.length) blocks.push(`<div class="slot-block"><h4>${slotLabel}</h4><ul class="slot-list">${lines.join('')}</ul></div>`);
+    }
+    if (blocks.length) detailedHtml = `<details class="schedule-detailed"><summary>상세 시간/세그먼트별 요율</summary>${blocks.join('')}</details>`;
+  }
 
   const sources = (f.sources || []).filter(Boolean);
   const idUrls = new Set((f.indonesian_sources || []).map(e => e?.url).filter(Boolean));
@@ -489,6 +528,7 @@ function renderFees(f) {
       <section class="fees-section">
         <h3>이용금액 (2026년 5월) ${verifiedDate}</h3>
         ${basedOn}
+        ${detailedHtml}
         ${notes}
         ${sourcesHtml}
       </section>`;
@@ -499,6 +539,7 @@ function renderFees(f) {
       <h3>이용금액 (2026년 5월) ${verifiedDate}</h3>
       ${basedOn}
       <table class="fee-table">${rows.join('')}</table>
+      ${detailedHtml}
       ${notes}
       ${sourcesHtml}
     </section>`;
