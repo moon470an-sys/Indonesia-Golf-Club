@@ -1244,13 +1244,13 @@
       "notes": "60-ha tropical landscape in S. Jakarta; 8 km from city center. ⭐ Project subject.",
       "fees_2026_05": {
         "weekday": {
-          "green_fee_idr": 490000,
-          "guest_fee_idr": 490000,
-          "member_fee_idr": 440000
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
         },
         "weekend": {
-          "green_fee_idr": 1295000,
-          "guest_fee_idr": 1295000,
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
           "member_fee_idr": null
         },
         "twilight_idr": 745000,
@@ -1258,13 +1258,13 @@
         "cart_idr": null,
         "insurance_idr": null,
         "currency": "IDR",
-        "notes": "Tue-Fri: Guest 440,000; Public 490,000. Saturday morning IDR 1,295,000; Sat PM (after 12PM) IDR 745,000. Sunday/Holiday AM IDR 1,095,000; PM IDR 745,000. Includes Green Fee, Service Fee, sharing cart and taxes. Ladies Tue-Fri IDR 295,000. Site rates.htm not reachable;.",
+        "notes": "Course is closed_temporary. Prior pricing data cleared 2026-04-30.",
         "sources": [
           "https://www.instagram.com/matoagolf/",
           "https://www.facebook.com/p/Matoa-Nasional-Golf-Country-Club-100063613781012/",
           "https://www.instagram.com/matoagolf/p/CMCkxlKFU35/"
         ],
-        "last_verified": "2026-04-29",
+        "last_verified": "2026-04-30",
         "based_on": "2024-2025 rates - 2026 may differ",
         "official_site_status": "live",
         "rates_visible_on_official": false,
@@ -1276,7 +1276,11 @@
             "date": null,
             "language": "id"
           }
-        ]
+        ],
+        "schedule_detailed": {},
+        "ancillary": {},
+        "rate_includes": null,
+        "confidence": "n/a"
       },
       "operating_status": {
         "status": "closed_temporary",
@@ -1305,8 +1309,8 @@
           "https://www.instagram.com/matoagolf/",
           "https://www.facebook.com/p/Matoa-Nasional-Golf-Country-Club-100063613781012/"
         ],
-        "last_verified": "2026-04-29",
-        "notes": "Official site matoanasional.net was unreachable on this verification (ECONNREFUSED). No public membership fee schedule found via official sources. Inquiry via marketing@matoanasional.net."
+        "last_verified": "2026-04-30",
+        "notes": "Course is closed_temporary. Prior membership pricing data cleared 2026-04-30."
       }
     },
     {
@@ -3972,11 +3976,15 @@
         "cart_idr": null,
         "insurance_idr": null,
         "currency": "IDR",
-        "notes": "Ciater Highland Resort is primarily a tea-plantation/glamping resort (entry IDR 15,000; golf-cart sightseeing IDR 25,000/person). No regulation 18-hole golf course operating; only a driving range. Public 2026 green fee data not available. Possibly not a competitive golf course.",
+        "notes": "Course is closed_temporary. Prior pricing data cleared 2026-04-30.",
         "sources": [],
-        "last_verified": "2026-04-29",
+        "last_verified": "2026-04-30",
         "official_site_status": "none",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "schedule_detailed": {},
+        "ancillary": {},
+        "rate_includes": null,
+        "confidence": "n/a"
       },
       "operating_status": {
         "status": "closed_temporary",
@@ -3993,6 +4001,11 @@
         "reopened_as": null,
         "coord_notes": "No golf course feature visible on satellite at the resort coordinates; coordinates set to null because no real fairway/green can be verified",
         "last_verified": "2026-04-29"
+      },
+      "membership": {
+        "categories": [],
+        "notes": "Course is closed_temporary. Prior membership pricing data cleared 2026-04-30.",
+        "last_verified": "2026-04-30"
       }
     },
     {
@@ -5750,11 +5763,11 @@
       "notes": "7,166 yards back tees. Once ranked top 5 worldwide by Fortune.",
       "fees_2026_05": {
         "weekday": {
-          "green_fee_idr": 2300000,
+          "green_fee_idr": null,
           "green_fee_usd": null
         },
         "weekend": {
-          "green_fee_idr": 2300000,
+          "green_fee_idr": null,
           "green_fee_usd": null
         },
         "twilight_idr": null,
@@ -5762,11 +5775,15 @@
         "cart_idr": "included",
         "insurance_idr": "included",
         "currency": "IDR",
-        "notes": "Single 18-hole rate IDR 2,100,000-2,300,000 for both weekday and weekend, inclusive of caddie (1 per player), shared cart, mineral water, taxes. Caddy tip not included. Club rental Rp 300,000; shoe rental Rp 100,000.",
+        "notes": "Course is closed_permanent. Prior pricing data cleared 2026-04-30.",
         "sources": [],
-        "last_verified": "2026-04-29",
+        "last_verified": "2026-04-30",
         "official_site_status": "none",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "schedule_detailed": {},
+        "ancillary": {},
+        "rate_includes": null,
+        "confidence": "n/a"
       },
       "operating_status": {
         "status": "closed_permanent",
@@ -5782,8 +5799,8 @@
         "available": false,
         "categories": [],
         "sources": [],
-        "last_verified": "2026-04-29",
-        "notes": "Permanently closed"
+        "last_verified": "2026-04-30",
+        "notes": "Course is closed_permanent. Prior membership pricing data cleared 2026-04-30."
       }
     },
     {
@@ -5822,11 +5839,15 @@
         "cart_idr": null,
         "insurance_idr": null,
         "currency": null,
-        "notes": "Course CLOSED for extensive renovation; reportedly being taken over by Trump International. No published 2026 visitor green fee. Set fees to null.",
+        "notes": "Course is closed_permanent. Prior pricing data cleared 2026-04-30.",
         "sources": [],
-        "last_verified": "2026-04-29",
+        "last_verified": "2026-04-30",
         "official_site_status": "none",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "schedule_detailed": {},
+        "ancillary": {},
+        "rate_includes": null,
+        "confidence": "n/a"
       },
       "operating_status": {
         "status": "closed_permanent",
@@ -5842,8 +5863,8 @@
         "available": false,
         "categories": [],
         "sources": [],
-        "last_verified": "2026-04-29",
-        "notes": "Permanently closed (under Trump International redevelopment)"
+        "last_verified": "2026-04-30",
+        "notes": "Course is closed_permanent. Prior membership pricing data cleared 2026-04-30."
       }
     },
     {
@@ -6259,11 +6280,11 @@
       "notes": "Sanur's only golf course; adjacent to Inna Grand Bali Beach Hotel.",
       "fees_2026_05": {
         "weekday": {
-          "green_fee_idr": 1385000,
+          "green_fee_idr": null,
           "green_fee_usd": null
         },
         "weekend": {
-          "green_fee_idr": 1385000,
+          "green_fee_idr": null,
           "green_fee_usd": null
         },
         "twilight_idr": null,
@@ -6271,11 +6292,15 @@
         "cart_idr": null,
         "insurance_idr": "included",
         "currency": "IDR",
-        "notes": "9-hole course; foreign visitors IDR 1,080,000-1,385,000 (18 holes = 9 played twice IDR 1,385,000). Indonesian resident rate IDR 500,000 (9 holes) / IDR 660,000 (18). Min booking 2 golfers. Club rental IDR 350,000 (9H) / IDR 450,000 (18H).",
+        "notes": "Course is closed_permanent. Prior pricing data cleared 2026-04-30.",
         "sources": [],
-        "last_verified": "2026-04-29",
+        "last_verified": "2026-04-30",
         "official_site_status": "none",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "schedule_detailed": {},
+        "ancillary": {},
+        "rate_includes": null,
+        "confidence": "n/a"
       },
       "operating_status": {
         "status": "closed_permanent",
@@ -6291,8 +6316,8 @@
         "available": false,
         "categories": [],
         "sources": [],
-        "last_verified": "2026-04-29",
-        "notes": "Permanently closed"
+        "last_verified": "2026-04-30",
+        "notes": "Course is closed_permanent. Prior membership pricing data cleared 2026-04-30."
       }
     },
     {
@@ -6725,11 +6750,11 @@
       "notes": "Companion 9 to Ocean Course.",
       "fees_2026_05": {
         "weekday": {
-          "green_fee_idr": 1465000,
+          "green_fee_idr": null,
           "green_fee_usd": null
         },
         "weekend": {
-          "green_fee_idr": 1990000,
+          "green_fee_idr": null,
           "green_fee_usd": null
         },
         "twilight_idr": null,
@@ -6737,11 +6762,15 @@
         "cart_idr": "included",
         "insurance_idr": "included",
         "currency": "IDR/SGD",
-        "notes": "Forest 9 - same rate card as Ocean Course. International: Wkdy IDR 1,465,000 (SGD 147); Wknd IDR 1,990,000 (SGD 199). 9-hole and twilight options available at reduced rates. Domestic/KITAS rate ~25-30% lower.",
+        "notes": "Course is closed_temporary. Prior pricing data cleared 2026-04-30.",
         "sources": [],
-        "last_verified": "2026-04-29",
+        "last_verified": "2026-04-30",
         "official_site_status": "live",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "schedule_detailed": {},
+        "ancillary": {},
+        "rate_includes": null,
+        "confidence": "n/a"
       },
       "operating_status": {
         "status": "closed_temporary",
@@ -6760,8 +6789,8 @@
         "available": false,
         "categories": [],
         "sources": [],
-        "last_verified": "2026-04-29",
-        "notes": "Permanently closed (Forest 9 closed; only Ocean Course operating)"
+        "last_verified": "2026-04-30",
+        "notes": "Course is closed_temporary. Prior membership pricing data cleared 2026-04-30."
       }
     },
     {
@@ -6800,11 +6829,15 @@
         "cart_idr": null,
         "insurance_idr": null,
         "currency": null,
-        "notes": "CLOSED since 2020 with Bintan Lagoon Resort insolvency. Resort relaunched as Movenpick Bintan Lagoon; golf reopening status uncertain. No published green fee.",
+        "notes": "Course is closed_temporary. Prior pricing data cleared 2026-04-30.",
         "sources": [],
-        "last_verified": "2026-04-29",
+        "last_verified": "2026-04-30",
         "official_site_status": "none",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "schedule_detailed": {},
+        "ancillary": {},
+        "rate_includes": null,
+        "confidence": "n/a"
       },
       "operating_status": {
         "status": "closed_temporary",
@@ -6824,8 +6857,8 @@
         "available": false,
         "categories": [],
         "sources": [],
-        "last_verified": "2026-04-29",
-        "notes": "Permanently closed"
+        "last_verified": "2026-04-30",
+        "notes": "Course is closed_temporary. Prior membership pricing data cleared 2026-04-30."
       }
     },
     {
@@ -6863,11 +6896,15 @@
         "cart_idr": null,
         "insurance_idr": null,
         "currency": null,
-        "notes": "CLOSED since 2020 with Bintan Lagoon Resort insolvency. Future of golf operations uncertain post Movenpick rebrand. No published green fee.",
+        "notes": "Course is closed_temporary. Prior pricing data cleared 2026-04-30.",
         "sources": [],
-        "last_verified": "2026-04-29",
+        "last_verified": "2026-04-30",
         "official_site_status": "none",
-        "rates_visible_on_official": false
+        "rates_visible_on_official": false,
+        "schedule_detailed": {},
+        "ancillary": {},
+        "rate_includes": null,
+        "confidence": "n/a"
       },
       "operating_status": {
         "status": "closed_temporary",
@@ -6886,8 +6923,8 @@
         "available": false,
         "categories": [],
         "sources": [],
-        "last_verified": "2026-04-29",
-        "notes": "Permanently closed"
+        "last_verified": "2026-04-30",
+        "notes": "Course is closed_temporary. Prior membership pricing data cleared 2026-04-30."
       }
     },
     {
