@@ -526,8 +526,13 @@ document.querySelectorAll('.tab').forEach(btn => {
       b.classList.toggle('active', active);
       b.setAttribute('aria-selected', active);
     });
-    document.getElementById('mapView').hidden = target !== 'map';
-    document.getElementById('tableView').hidden = target !== 'table';
+    const mapView = document.getElementById('mapView');
+    const tableView = document.getElementById('tableView');
+    const showMap = target === 'map';
+    mapView.hidden = !showMap;
+    tableView.hidden = showMap;
+    mapView.style.display = showMap ? '' : 'none';
+    tableView.style.display = showMap ? 'none' : '';
     if (target === 'table') {
       renderTable();
       // Sync map filters into table when first opened
@@ -795,5 +800,6 @@ function csvEscape(v) {
 }
 
 // === Boot ===
+document.getElementById('tableView').style.display = 'none';
 initMap();
 loadData();

@@ -78,6 +78,7 @@ a:hover { text-decoration: underline; }
   height: calc(100vh - 56px - 36px);
   position: relative;
 }
+.layout[hidden] { display: none; }
 
 /* === Sidebar === */
 .sidebar {
