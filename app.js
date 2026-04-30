@@ -731,6 +731,13 @@ function getTableRows() {
     } else if (k === 'membership_fee') {
       va = lowestMembershipFee(a.membership);
       vb = lowestMembershipFee(b.membership);
+    } else if (k === 'membership_type') {
+      const firstName = mm => {
+        const cats = Array.isArray(mm?.categories) ? mm.categories.filter(c => c && c.name) : [];
+        return cats.length ? cats[0].name : (mm?.available || '');
+      };
+      va = firstName(a.membership);
+      vb = firstName(b.membership);
     } else if (k === 'status') {
       va = a.operating_status?.status || 'operating';
       vb = b.operating_status?.status || 'operating';
@@ -772,7 +779,6 @@ function lowestMembershipFee(m) {
 function membershipCellText(m) {
   if (!m) return '—';
   const cats = Array.isArray(m.categories) ? m.categories : [];
-  // Find first category with any disclosed price
   for (const cat of cats) {
     if (!cat) continue;
     const init = cat.initiation_fee || {};
@@ -784,12 +790,47 @@ function membershipCellText(m) {
       return `<span class="member-amt">연 ${fmtMoney(ann.amount, ann.currency)}</span>`;
     }
   }
-  // No prices — show status badge
   const avail = m.available;
   const label = MEMBERSHIP_AVAIL_LABEL[avail];
   if (label && avail !== 'unknown' && avail !== false) {
     return `<span class="member-status-pill ${avail}">${label}</span>`;
   }
+  return '<span class="muted">비공개</span>';
+}
+
+function membershipTypeCell(m) {
+  if (!m) return '<span class="muted">—</span>';
+  const cats = Array.isArray(m.categories) ? m.categories.filter(c => c && typeof c === 'object') : [];
+  if (cats.length) {
+    const names = cats.map(c => c.name || '').filter(Boolean);
+    if (names.length) {
+      const visible = names.slice(0, 3).map(n => escapeHtml(n)).join(', ');
+      const more = names.length > 3 ? ` <span class="muted">+${names.length - 3}</span>` : '';
+      return `<span class="member-type-list" title="${escapeHtml(names.join(' · '))}">${visible}${more}</span>`;
+    }
+  }
+  const avail = m.available;
+  const label = MEMBERSHIP_AVAIL_LABEL[avail];
+  if (label && avail !== 'unknown' && avail !== false) {
+    return `<span class="member-status-pill ${avail}">${label}</span>`;
+  }
+  return '<span class="muted">비공개</span>';
+}
+
+function membershipAmountCell(m) {
+  if (!m) return '<span class="muted">—</span>';
+  const cats = Array.isArray(m.categories) ? m.categories.filter(c => c && typeof c === 'object') : [];
+  const parts = [];
+  for (const cat of cats) {
+    const init = cat.initiation_fee || {};
+    const ann = cat.annual_fee || {};
+    const mo = cat.monthly_fee || {};
+    if (init.amount != null) parts.push(`<span class="member-amt">가입 ${fmtMoney(init.amount, init.currency)}</span>`);
+    if (ann.amount != null) parts.push(`<span class="member-amt">연 ${fmtMoney(ann.amount, ann.currency)}</span>`);
+    if (mo.amount != null) parts.push(`<span class="member-amt">월 ${fmtMoney(mo.amount, mo.currency)}</span>`);
+    if (parts.length >= 3) break;
+  }
+  if (parts.length) return parts.slice(0, 3).join('<br>');
   return '<span class="muted">비공개</span>';
 }
 
@@ -960,7 +1001,8 @@ function renderTable() {
         <td class="num fee">${satPmCell}</td>
         <td class="num fee fee-premium">${sunAmCell}</td>
         <td class="num fee">${sunPmCell}</td>
-        <td class="num">${membershipCellText(c.membership)}</td>
+        <td class="member-type">${membershipTypeCell(c.membership)}</td>
+        <td class="num member-amount">${membershipAmountCell(c.membership)}</td>
         <td class="address">${escapeHtml(c.address || '')}<br>${mapLink}</td>
         <td class="sources official-links">${officialHtml}</td>
         <td class="sources sns-links">${snsHtml}</td>
