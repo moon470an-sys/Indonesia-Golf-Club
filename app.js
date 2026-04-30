@@ -954,10 +954,17 @@ function renderTable() {
     const allSources = (f.sources || []).concat((c.membership?.sources || []), (c.operating_status?.evidence || []).filter(s => typeof s === 'string' && s.startsWith('http'))).filter(Boolean);
     const uniqueSources = [...new Set(allSources)];
 
+    const getHost = u => { try { return new URL(u).hostname.replace(/^www\./, '').toLowerCase(); } catch (e) { return null; } };
+    const officialHost = c.website ? getHost(c.website) : null;
+    const matchesOfficial = u => {
+      if (!officialHost) return false;
+      const h = getHost(u);
+      return h && (h === officialHost || h.endsWith('.' + officialHost));
+    };
     const officialLinks = [];
     if (c.website) officialLinks.push(c.website);
     for (const u of uniqueSources) {
-      if (!isSnsUrl(u) && u !== c.website && officialLinks.length < 3) officialLinks.push(u);
+      if (matchesOfficial(u) && u !== c.website && officialLinks.length < 3) officialLinks.push(u);
     }
     const snsLinks = uniqueSources.filter(isSnsUrl).slice(0, 4);
 
