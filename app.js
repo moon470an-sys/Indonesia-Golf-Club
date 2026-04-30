@@ -48,33 +48,35 @@ async function loadData() {
   }
 }
 
-// === Region Chips ===
+// === Region Dropdown ===
 function renderRegionChips() {
   const regions = [...new Set(allCourses.map(c => c.region))].sort();
   const container = document.getElementById('regionChips');
   container.innerHTML = '';
 
-  const allBtn = document.createElement('button');
-  allBtn.className = 'chip active';
-  allBtn.dataset.region = 'all';
-  allBtn.textContent = '전체';
-  container.appendChild(allBtn);
+  const select = document.createElement('select');
+  select.id = 'regionSelect';
+  select.className = 'region-select';
+
+  const allOpt = document.createElement('option');
+  allOpt.value = 'all';
+  allOpt.textContent = '전체 지역';
+  select.appendChild(allOpt);
 
   regions.forEach(r => {
-    const btn = document.createElement('button');
-    btn.className = 'chip';
-    btn.dataset.region = r;
-    btn.textContent = r;
-    container.appendChild(btn);
+    const opt = document.createElement('option');
+    opt.value = r;
+    opt.textContent = r;
+    select.appendChild(opt);
   });
 
-  container.addEventListener('click', e => {
-    if (!e.target.classList.contains('chip')) return;
-    container.querySelectorAll('.chip').forEach(b => b.classList.remove('active'));
-    e.target.classList.add('active');
-    currentFilter.region = e.target.dataset.region;
+  select.value = currentFilter.region || 'all';
+  select.addEventListener('change', () => {
+    currentFilter.region = select.value;
     applyFilter();
   });
+
+  container.appendChild(select);
 }
 
 // === Holes filter ===

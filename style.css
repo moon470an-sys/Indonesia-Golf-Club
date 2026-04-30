@@ -126,6 +126,19 @@ a:hover { text-decoration: underline; }
   margin-bottom: 6px;
 }
 .chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.region-select {
+  width: 100%;
+  padding: 7px 10px;
+  font-size: 13px;
+  border: 1px solid #e5e7eb;
+  border-radius: 7px;
+  background: #ffffff;
+  color: #1f2937;
+  cursor: pointer;
+  font-family: inherit;
+}
+.region-select:hover { border-color: #16a34a; }
+.region-select:focus { outline: none; border-color: #16a34a; box-shadow: 0 0 0 2px rgba(22,163,74,0.15); }
 .chip {
   padding: 5px 11px;
   font-size: 12px;
