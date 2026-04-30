@@ -1020,6 +1020,33 @@ function renderTable() {
 
     const mapLink = `<a href="https://www.google.com/maps/search/?api=1&query=${c.lat},${c.lng}" target="_blank" rel="noopener">지도</a>`;
 
+    // GoGolf reference sub-row (when present)
+    let gogolfRowHtml = '';
+    const gg = c.fees_gogolf_reference;
+    if (gg && gg.schedule) {
+      const sch = gg.schedule;
+      const ggCell = (v) => v != null ? fmtIDR(v) : '<span class="muted">—</span>';
+      const ggSrc = gg.source_url ? `<a href="${escapeHtml(gg.source_url)}" target="_blank" rel="noopener" title="${escapeHtml(gg.source_url)}">gogolf.co.id</a>` : '';
+      const ggMember = gg.member_rate_idr != null ? `<span class="member-amt">멤버 ${fmtIDR(gg.member_rate_idr)}</span>` : '<span class="muted">—</span>';
+      const ggCaddy = gg.ancillary?.caddy_idr != null ? `캐디 ${fmtIDR(gg.ancillary.caddy_idr)}` : '';
+      const ggCart = gg.ancillary?.cart_idr != null ? `카트 ${fmtIDR(gg.ancillary.cart_idr)}` : '';
+      const ggExtras = [ggCaddy, ggCart].filter(Boolean).join(' · ');
+      gogolfRowHtml = `
+        <tr class="gogolf-ref-row">
+          <td class="gogolf-label" colspan="6">↳ <span class="gogolf-tag">GoGolf 참고</span> ${ggExtras ? `<span class="gogolf-extras">${ggExtras}</span>` : ''}</td>
+          <td class="num fee gogolf-fee">${ggCell(sch.weekday?.am)}</td>
+          <td class="num fee gogolf-fee">${ggCell(sch.weekday?.pm)}</td>
+          <td class="num fee gogolf-fee">${ggCell(sch.saturday?.am)}</td>
+          <td class="num fee gogolf-fee">${ggCell(sch.saturday?.pm)}</td>
+          <td class="num fee gogolf-fee">${ggCell(sch.sunday?.am)}</td>
+          <td class="num fee gogolf-fee">${ggCell(sch.sunday?.pm)}</td>
+          <td class="member-type"><span class="muted">—</span></td>
+          <td class="num member-amount">${ggMember}</td>
+          <td class="address gogolf-disclaimer" colspan="3">${ggSrc} <span class="gogolf-note">${escapeHtml(gg.disclaimer || '참고용 비공식 가격')}</span></td>
+        </tr>
+      `;
+    }
+
     return `
       <tr>
         <td class="name">${escapeHtml(c.name_en)}${matoaTag}</td>
@@ -1039,7 +1066,7 @@ function renderTable() {
         <td class="address">${escapeHtml(c.address || '')}<br>${mapLink}</td>
         <td class="sources official-links">${officialHtml}</td>
         <td class="sources sns-links">${snsHtml}</td>
-      </tr>
+      </tr>${gogolfRowHtml}
     `;
   }).join('');
 }

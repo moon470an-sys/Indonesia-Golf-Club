@@ -164,6 +164,32 @@
         "notes": "Three tiers: Founder, Nominee, Yearly. Yearly 2026 intake actively running. No public pricing on web/SNS. Inquire info@royalejakarta.com.",
         "confidence": "low",
         "last_verified": "2026-04-30"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/golf-course/royale-jakarta-golf-club",
+        "schedule": {
+          "weekday": {
+            "am": 791000,
+            "pm": 791000
+          },
+          "saturday": {
+            "am": 2019000,
+            "pm": 1325000
+          },
+          "sunday": {
+            "am": 1435000,
+            "pm": 1199000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": null,
+        "notes": "Founder col Tue-Thu used as weekday; incl GF + cart + 10% tax",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -259,6 +285,32 @@
         "notes": "No new memberships from club itself; joining via secondary-market transfer. Active resale market with quoted prices reaching IDR 1.5B. Annual dues not public. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "medium",
         "last_verified": "2026-04-30"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/golf-course/pondok-indah-golf-course",
+        "schedule": {
+          "weekday": {
+            "am": 1618000,
+            "pm": 1618000
+          },
+          "saturday": {
+            "am": 3968000,
+            "pm": 3688000
+          },
+          "sunday": {
+            "am": 3688000,
+            "pm": 3418000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": 710000,
+        "notes": "Visitor 18H; member 18H AM",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -349,6 +401,32 @@
         "sources": [],
         "last_verified": "2026-04-30",
         "notes": "No standalone official website. Figures (Rp 40M yearly; Rp 150M long-term thru 2027) reported by multiple Indonesian-language summaries citing club; no official-source post URL captured for the rate. Treat as preliminary; verify with reservation@senayangolfclub.com. [Aggregator-sourced pricing cleared 2026-04-30]"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/golf-course/senayan-national-golf-club",
+        "schedule": {
+          "weekday": {
+            "am": 955000,
+            "pm": 710000
+          },
+          "saturday": {
+            "am": 2250000,
+            "pm": 1560000
+          },
+          "sunday": {
+            "am": 1655000,
+            "pm": 1075000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": 830000,
+        "notes": "Tue-Thu visitor; member Tue-Thu AM",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -435,6 +513,32 @@
         "sources": [],
         "last_verified": "2026-04-30",
         "notes": "Course operated by Indonesian Air Force (TNI-AU); special low rates (~Rp 80,000) for active/retired AURI members. Public Term Membership at Rp 11M reported in 2024-2025 sources; legacy Tripod site outdated. Verify via club office. [Aggregator-sourced pricing cleared 2026-04-30]"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/en/golf-course/halim-i-golf-course",
+        "schedule": {
+          "weekday": {
+            "am": 366000,
+            "pm": null
+          },
+          "saturday": {
+            "am": 696000,
+            "pm": 696000
+          },
+          "sunday": {
+            "am": 696000,
+            "pm": 575000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": 25000,
+          "cart_idr": 60000
+        },
+        "member_rate_idr": 200000,
+        "notes": "Mon-Thu visitor; caddy 18H 25k; cart 60k/player",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -542,6 +646,32 @@
         ],
         "last_verified": "2026-04-30",
         "notes": "Course owned/operated by TNI-AL (Navy) via Inkopal cooperative; introduced point-based membership in 2015. Tier prices reported in Indonesian-language summaries; verify exact 2026 rates via course office."
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/golf-course/padang-golf-pangkalan-jati",
+        "schedule": {
+          "weekday": {
+            "am": 420000,
+            "pm": 420000
+          },
+          "saturday": {
+            "am": 1165000,
+            "pm": 1015000
+          },
+          "sunday": {
+            "am": null,
+            "pm": 915000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": null,
+        "notes": "Tue-Fri visitor; green fee only",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -627,6 +757,32 @@
         "sources": [],
         "last_verified": "2026-04-30",
         "notes": "Single yearly membership tier visible on official Membership page. Higher individual / corporate share-style memberships referenced historically (~Rp 115M / Rp 125M) but not confirmed on current official page. [Aggregator-sourced pricing cleared 2026-04-30]"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/golf-course/cengkareng-golf-club",
+        "schedule": {
+          "weekday": {
+            "am": 638000,
+            "pm": 538000
+          },
+          "saturday": {
+            "am": 2280000,
+            "pm": 1180000
+          },
+          "sunday": {
+            "am": 1990000,
+            "pm": 1180000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": 555000
+        },
+        "member_rate_idr": 180000,
+        "notes": "Cart 555k/unit additional",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -703,6 +859,32 @@
         ],
         "last_verified": "2026-04-30",
         "notes": "Official site references annual memberships and corporate packages but does not publish numeric membership fees. Inquiry via reservation@modernland.co.id / +6221 552 9228."
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/golf-course/modern-golf-country-club",
+        "schedule": {
+          "weekday": {
+            "am": 495000,
+            "pm": 495000
+          },
+          "saturday": {
+            "am": 1233000,
+            "pm": 795000
+          },
+          "sunday": {
+            "am": 1233000,
+            "pm": 795000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": null,
+        "notes": "Range upper for AM, lower for PM",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -957,6 +1139,32 @@
         ],
         "last_verified": "2026-04-30",
         "notes": "Most fully disclosed membership schedule among Jabodetabek courses; both Joining (1-year) and Lifetime tiers published with annual + monthly + Early Bird pricing. All inclusive of 11% VAT. No separate refundable deposit specified."
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/golf-course/gading-raya-padang-golf",
+        "schedule": {
+          "weekday": {
+            "am": 800000,
+            "pm": 660000
+          },
+          "saturday": {
+            "am": 2000000,
+            "pm": 1500000
+          },
+          "sunday": {
+            "am": 2000000,
+            "pm": 1350000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": 260000,
+          "cart_idr": 190000
+        },
+        "member_rate_idr": 180000,
+        "notes": "Member twilight 180k; cart sharing 190k",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -1207,6 +1415,32 @@
         "notes": "Single Damai Indah Golf entity covers PIK + BSD with shared system. New share market closed. Active routes: secondary-market PTM or Rental.",
         "confidence": "medium",
         "last_verified": "2026-04-30"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/golf-course/damai-indah-golf-pik",
+        "schedule": {
+          "weekday": {
+            "am": 1034000,
+            "pm": 1034000
+          },
+          "saturday": {
+            "am": 2494000,
+            "pm": 2494000
+          },
+          "sunday": {
+            "am": 2379000,
+            "pm": 2225000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": 300000
+        },
+        "member_rate_idr": null,
+        "notes": "Cart 300k/unit additional",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -1361,6 +1595,32 @@
         "notes": "Same as PIK — single DIG entity covers both courses. Primary share market closed.",
         "confidence": "medium",
         "last_verified": "2026-04-30"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/golf-course/damai-indah-golf-bsd",
+        "schedule": {
+          "weekday": {
+            "am": 760000,
+            "pm": 760000
+          },
+          "saturday": {
+            "am": 2131000,
+            "pm": 2131000
+          },
+          "sunday": {
+            "am": 1983000,
+            "pm": 1625000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": 300000
+        },
+        "member_rate_idr": 650000,
+        "notes": "Member weekday 650k",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -1467,6 +1727,32 @@
         "notes": "APR (Annual Playing Rights) subscription model, no equity/initiation tier. Sold direct by Aryaduta/Lippo Group. Open intake. No secondary market needed (non-transferable).",
         "confidence": "high",
         "last_verified": "2026-04-30"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/golf-course/imperial-klub-golf",
+        "schedule": {
+          "weekday": {
+            "am": 1048000,
+            "pm": 588000
+          },
+          "saturday": {
+            "am": 2448000,
+            "pm": 1748000
+          },
+          "sunday": {
+            "am": 2248000,
+            "pm": 1548000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": 268000
+        },
+        "member_rate_idr": null,
+        "notes": "Friday upper as weekday AM; sunset 588k",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -1608,6 +1894,32 @@
         ],
         "last_verified": "2026-04-30",
         "notes": "Two clear public tiers. Plus a Transferable Membership Certificate (TMC) redemption notice for legacy 1992 holders is also active on the membership page. Inquiry membership@emeralda-golfclub.com."
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/golf-course/emeralda-golf-club",
+        "schedule": {
+          "weekday": {
+            "am": 1488000,
+            "pm": 1488000
+          },
+          "saturday": {
+            "am": 3788000,
+            "pm": 2988000
+          },
+          "sunday": {
+            "am": 3088000,
+            "pm": 2288000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": 1288000,
+        "notes": "Tue-Fri visitor; member same",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -1772,6 +2084,32 @@
         ],
         "last_verified": "2026-04-30",
         "notes": "Four membership categories listed (Private, Corporate, Family, Term). Annual fee Rp 30M widely reported. 2026 rate sheet rendered as image; specific initiation/deposit not text-extractable. Inquiry +6221 573 2258 / gro.gununggeulis@gmail.com."
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/golf-course/gunung-geulis-golf-country-club",
+        "schedule": {
+          "weekday": {
+            "am": 1050000,
+            "pm": 1050000
+          },
+          "saturday": {
+            "am": 2300000,
+            "pm": 2300000
+          },
+          "sunday": {
+            "am": 1600000,
+            "pm": 1600000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": null,
+        "notes": "Range low used; GoGolf app rates lower",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -1870,6 +2208,32 @@
         "notes": "Active intake of 'The Player's Card'. Initiation/deposit not publicly disclosed; figures sourced from GoGolf review summary.",
         "confidence": "medium",
         "last_verified": "2026-04-30"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/golf-course/sentul-highlands-golf-club",
+        "schedule": {
+          "weekday": {
+            "am": 833000,
+            "pm": 683000
+          },
+          "saturday": {
+            "am": 2060000,
+            "pm": 1500000
+          },
+          "sunday": {
+            "am": 1650000,
+            "pm": 858000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": null,
+        "notes": "Friday upper as weekday AM",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -1952,6 +2316,32 @@
         "notes": "Only Lifetime tier mentioned. No fee structure published.",
         "confidence": "low",
         "last_verified": "2026-04-30"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/golf-course/rainbow-hills-golf-club",
+        "schedule": {
+          "weekday": {
+            "am": 995000,
+            "pm": 995000
+          },
+          "saturday": {
+            "am": 2445000,
+            "pm": 1730000
+          },
+          "sunday": {
+            "am": 2230000,
+            "pm": 1570000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": null,
+        "notes": "2026 publish rate",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -2069,6 +2459,32 @@
         "notes": "4 tiers confirmed; annual dues mentioned (annually or quarterly billable) but no IDR amounts published. NOTE: IG Highlights '18067291382629609' on @klubgolfbogorraya is 'Rates 2026' green-fee data, not membership.",
         "confidence": "medium",
         "last_verified": "2026-04-30"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/en/golf-course/bogor-raya-golf-club",
+        "schedule": {
+          "weekday": {
+            "am": 1235000,
+            "pm": 1045000
+          },
+          "saturday": {
+            "am": 3525000,
+            "pm": 2225000
+          },
+          "sunday": {
+            "am": 2935000,
+            "pm": 1825000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": null,
+        "notes": "Standard visitor 2025",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -2142,6 +2558,32 @@
         ],
         "last_verified": "2026-04-30",
         "notes": "Official site has no Membership page in navigation; no published membership fee. Inquiry 0811-1125-955 / 0812-1252-555 / reservasipermatasentulgolf@gmail.com."
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/golf-course/permata-sentul-golf-club",
+        "schedule": {
+          "weekday": {
+            "am": 708000,
+            "pm": 588000
+          },
+          "saturday": {
+            "am": 1948000,
+            "pm": 1048000
+          },
+          "sunday": {
+            "am": 1408000,
+            "pm": 928000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": 648000,
+        "notes": "Member weekday AM 648k",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -2259,6 +2701,32 @@
         ],
         "last_verified": "2026-04-30",
         "notes": "Official membership page lists benefits (Kawano Group reciprocity, IDR 550k member service fee) but no joining/annual fee figure. 'Join Now' inquiry form only."
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/golf-course/riverside-golf-club",
+        "schedule": {
+          "weekday": {
+            "am": 750000,
+            "pm": 750000
+          },
+          "saturday": {
+            "am": 2275000,
+            "pm": 1275000
+          },
+          "sunday": {
+            "am": 1875000,
+            "pm": 1005000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": 575000,
+        "notes": "Guest-of-member 575k weekday",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -2408,6 +2876,32 @@
         "notes": "5 legacy categories; Family/Ordinary closed to new entrants. Active intake: Share, Transferable, Nominated Corporate. No public pricing — must contact +62-21-875-3810.",
         "confidence": "low",
         "last_verified": "2026-04-30"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/golf-course/jagorawi-golf-country-club",
+        "schedule": {
+          "weekday": {
+            "am": 550000,
+            "pm": 550000
+          },
+          "saturday": {
+            "am": 1495000,
+            "pm": null
+          },
+          "sunday": {
+            "am": 1495000,
+            "pm": null
+          }
+        },
+        "ancillary": {
+          "caddy_idr": 100000,
+          "cart_idr": 250000
+        },
+        "member_rate_idr": null,
+        "notes": "Visitor 405-550k wkdy; cart 250k wknd",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -2578,6 +3072,32 @@
         "notes": "Lifetime program OPEN with 'special price' advertised. Member GF IDR 320k weekday / 335k weekend incl. cart+caddie+GF. Pricing details only via membership dept (+62-251-8242282).",
         "confidence": "low",
         "last_verified": "2026-04-30"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/golf-course/rancamaya-golf-country-club",
+        "schedule": {
+          "weekday": {
+            "am": 1150000,
+            "pm": 960000
+          },
+          "saturday": {
+            "am": 3030000,
+            "pm": 1760000
+          },
+          "sunday": {
+            "am": 2460000,
+            "pm": 1760000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": null,
+        "notes": "Tue-Fri visitor",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -2691,6 +3211,32 @@
         "notes": "Semi-private with 500+ active members (Cikarang corporate execs). 4 categories confirmed. Inquiry: reservasi@jababekagolf.co.id / +62 857 1095 3112.",
         "confidence": "medium",
         "last_verified": "2026-04-30"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/golf-course/jababeka-golf",
+        "schedule": {
+          "weekday": {
+            "am": 575000,
+            "pm": 575000
+          },
+          "saturday": {
+            "am": 1750000,
+            "pm": 1200000
+          },
+          "sunday": {
+            "am": 1750000,
+            "pm": 1200000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": null,
+        "notes": "Weekend range 1.2-1.75M",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -2896,6 +3442,32 @@
         "sources": [],
         "last_verified": "2026-04-30",
         "notes": "Course operated by Trump Golf for MNC Land. Official membership page describes four tiers (Platinum, Individual, Corporate, Family) but withholds prices, directing inquiries via Contact form. USD 70,000 base membership figure reported in MNC Group press release / Asian Golf Industry Federation / Golf Australia coverage; daily play limited to 80 players. [Aggregator-sourced pricing cleared 2026-04-30]"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/golf-course/klub-golf-lido-bogor",
+        "schedule": {
+          "weekday": {
+            "am": 375000,
+            "pm": 375000
+          },
+          "saturday": {
+            "am": 947000,
+            "pm": 947000
+          },
+          "sunday": {
+            "am": 947000,
+            "pm": 947000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": null,
+        "notes": "Pre-Trump rebrand 'Klub Golf Lido'",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -3067,6 +3639,32 @@
         ],
         "last_verified": "2026-04-30",
         "notes": "Official site mentions 'The Prestige Club' membership but does not publish fees. No Uang Pangkal/Iuran/Jaminan figures found on official channels."
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/golf-course/parahyangan-bandung-golf-course",
+        "schedule": {
+          "weekday": {
+            "am": 948000,
+            "pm": 948000
+          },
+          "saturday": {
+            "am": 2548000,
+            "pm": 1700000
+          },
+          "sunday": {
+            "am": 2288000,
+            "pm": 1450000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": null,
+        "notes": "2026 publish rate",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -3289,6 +3887,32 @@
         "notes": "Owned by PGB (Perkumpulan Golf Bandung), the 1917 founding club. GoGolf publishes 3 tiers but doesn't split init vs annual vs deposit; figures mapped best-effort.",
         "confidence": "medium",
         "last_verified": "2026-04-30"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/golf-course/pgb-dago-endah-golf-bandung",
+        "schedule": {
+          "weekday": {
+            "am": 512900,
+            "pm": 435185
+          },
+          "saturday": {
+            "am": 951723,
+            "pm": 812148
+          },
+          "sunday": {
+            "am": 819530,
+            "pm": 706394
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": 248400,
+        "notes": "Tue-Fri visitor; member 248.4k",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -3388,6 +4012,32 @@
         ],
         "last_verified": "2026-04-30",
         "notes": "Resort-style operation. /membership returns 404 on official site. No membership pricing on official channels. Contact +62 22 779 8403 / marketing@jatinangorgolf.com."
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/golf-course/jatinangor-national-golf-resort",
+        "schedule": {
+          "weekday": {
+            "am": null,
+            "pm": null
+          },
+          "saturday": {
+            "am": null,
+            "pm": null
+          },
+          "sunday": {
+            "am": null,
+            "pm": null
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": null,
+        "notes": "GoGolf review notes rates not officially listed",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -3550,6 +4200,32 @@
         "notes": "Two schemes (share purchase, annual rental). Pricing requires direct contact +62 811 2845 181. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "medium",
         "last_verified": "2026-04-30"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/golf-course/merapi-golf-mountain-resort",
+        "schedule": {
+          "weekday": {
+            "am": 687500,
+            "pm": 687500
+          },
+          "saturday": {
+            "am": 1347500,
+            "pm": 1347500
+          },
+          "sunday": {
+            "am": 1237500,
+            "pm": 1237500
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": 100000
+        },
+        "member_rate_idr": 450000,
+        "notes": "Mon-Thu 687.5k; Fri 1.0175M; +10% tax",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -3966,6 +4642,32 @@
         "sources": [],
         "last_verified": "2026-04-30",
         "notes": "No standalone official website. Member green fee rates exist (IDR 200,000 for 18 holes / IDR 130,000 for 9 holes any day) but Uang Pangkal/Iuran/Jaminan not published on official IG. Contact +62-24-749-9988. [Aggregator-sourced pricing cleared 2026-04-30]"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/golf-course/gombel-golf",
+        "schedule": {
+          "weekday": {
+            "am": 375000,
+            "pm": 375000
+          },
+          "saturday": {
+            "am": 800000,
+            "pm": 800000
+          },
+          "sunday": {
+            "am": 700000,
+            "pm": 700000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": 200000,
+        "notes": "18H rates; member 18H 200k",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -4191,6 +4893,32 @@
         "notes": "Family Club annual pricing confirmed via GoGolf review. Golf-specific tier kept off official site.",
         "confidence": "medium",
         "last_verified": "2026-04-30"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/en/golf-course/ciputra-golf",
+        "schedule": {
+          "weekday": {
+            "am": 235000,
+            "pm": 1453000
+          },
+          "saturday": {
+            "am": 260000,
+            "pm": 2328000
+          },
+          "sunday": {
+            "am": 260000,
+            "pm": 1918000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": null,
+        "notes": "GoGolf publishes ranges only; low/high used as AM/PM",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -4333,6 +5061,32 @@
         "notes": "7 published tiers, all 1-year (or 2-yr corporate), non-transferable. No initiation/deposit. No active resale market (non-transferable annual). [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "high",
         "last_verified": "2026-04-30"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/golf-course/bukit-darmo-golf",
+        "schedule": {
+          "weekday": {
+            "am": 485000,
+            "pm": 725000
+          },
+          "saturday": {
+            "am": 635000,
+            "pm": 935000
+          },
+          "sunday": {
+            "am": 635000,
+            "pm": 935000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": 7500000,
+        "notes": "Member rate is annual Weekday Membership",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -4408,6 +5162,32 @@
         ],
         "last_verified": "2026-04-30",
         "notes": "Resort-style operation (Finna Golf & Country Club Resort). Site currently shows 'A refined resort and golf experience is coming soon'. No public membership page or fees on official channels. Contact +62 343 634 888."
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/en/golf-course/finna-golf-and-country-club",
+        "schedule": {
+          "weekday": {
+            "am": 495000,
+            "pm": 495000
+          },
+          "saturday": {
+            "am": 660000,
+            "pm": 660000
+          },
+          "sunday": {
+            "am": 660000,
+            "pm": 660000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": null,
+        "notes": "Nett incl GF+caddy+buggy",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -4602,6 +5382,32 @@
         ],
         "last_verified": "2026-04-30",
         "notes": "8 membership categories listed on official site. Benefits include unlimited green-fee-free golf for most tiers, advance tee-time registration, preferential rates, tournament eligibility, up to 14 reciprocal playing rights/year. Fee amounts (Uang Pangkal/Iuran/Jaminan) not publicly disclosed on official channels - WA +62 811 34 88 234."
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/en/golf-course/taman-dayu-golf-club",
+        "schedule": {
+          "weekday": {
+            "am": 740000,
+            "pm": 930000
+          },
+          "saturday": {
+            "am": 950000,
+            "pm": 1900000
+          },
+          "sunday": {
+            "am": 950000,
+            "pm": 1900000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": 210000,
+          "cart_idr": 200000
+        },
+        "member_rate_idr": null,
+        "notes": "Range low/high as AM/PM",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -4720,6 +5526,32 @@
         ],
         "last_verified": "2026-04-30",
         "notes": "Official membership page lists three yearly term-limited tiers with prices in IDR. No traditional equity Uang Pangkal or refundable Uang Jaminan structure disclosed - these are flat annual fees."
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/en/golf-course/graha-famili-golf-country-club",
+        "schedule": {
+          "weekday": {
+            "am": 590000,
+            "pm": 590000
+          },
+          "saturday": {
+            "am": 770000,
+            "pm": 770000
+          },
+          "sunday": {
+            "am": 770000,
+            "pm": 770000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": 2250000,
+        "notes": "Member is monthly all-day",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -5202,6 +6034,32 @@
         "notes": "Operated by PT Intra Golflink Resorts Tbk. Lifetime transferable shareholder-based. Course renovation underway with temporary greens; play continues. Inquire newkutagolf@newkutagolf.co.id.",
         "confidence": "medium",
         "last_verified": "2026-04-30"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/en/golf-course/new-kuta-golf",
+        "schedule": {
+          "weekday": {
+            "am": 1900000,
+            "pm": 1900000
+          },
+          "saturday": {
+            "am": 2000000,
+            "pm": 2000000
+          },
+          "sunday": {
+            "am": 2000000,
+            "pm": 2000000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": null,
+        "notes": "All-inclusive (~USD130 wkdy / 135 wknd)",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -5331,6 +6189,32 @@
         "notes": "5 tiers confirmed. ALERT: Bali DPRD Pansus TRAP issued formal recommendations 2026-04-06 (return expired SHGB to state, hydrology controls, steep-slope construction limits); presidential suite + ~40 rooms sealed Jan 22 2026; managing director hearing Feb 4 2026; court hearing Feb 28 2026. Golf course operating; legal uncertainty could affect future membership viability.",
         "confidence": "low",
         "last_verified": "2026-04-30"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/en/golf-course/bali-handara-golf-resort",
+        "schedule": {
+          "weekday": {
+            "am": 2000000,
+            "pm": 950000
+          },
+          "saturday": {
+            "am": 2000000,
+            "pm": 950000
+          },
+          "sunday": {
+            "am": 2000000,
+            "pm": 950000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": 200000,
+          "cart_idr": 300000
+        },
+        "member_rate_idr": null,
+        "notes": "Sunset (after 14:00) Rp950k as PM proxy; rider 300k wkdy / 600k wknd",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -5419,6 +6303,32 @@
         ],
         "last_verified": "2026-04-30",
         "notes": "No dedicated /membership page on official site. Annual pricing IDR 26,000,000 (start) referenced via the course's GoGolf review profile (semi-official). Direct fee schedule not published; recommend phone confirmation."
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/en/golf-course/bukit-pandawa-golf-country-club",
+        "schedule": {
+          "weekday": {
+            "am": 1600000,
+            "pm": 1600000
+          },
+          "saturday": {
+            "am": 1700000,
+            "pm": 1700000
+          },
+          "sunday": {
+            "am": 1700000,
+            "pm": 1700000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": 26000000,
+        "notes": "International non-resident; local 950k/1.1M; KITAS 750k/850k",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -5554,6 +6464,32 @@
         ],
         "last_verified": "2026-04-30",
         "notes": "sirebeachgolfclub.com (Kosaido Lombok) does not publish a public membership page. Site returned ECONNREFUSED during verification window. No membership category or fee schedule visible from official channels - inquiries via the club directly."
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/en/golf-course/lombok-golf-kosaido",
+        "schedule": {
+          "weekday": {
+            "am": 1485000,
+            "pm": 1485000
+          },
+          "saturday": {
+            "am": 1485000,
+            "pm": 1485000
+          },
+          "sunday": {
+            "am": 1485000,
+            "pm": 1485000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": 150000,
+          "cart_idr": null
+        },
+        "member_rate_idr": 1000000,
+        "notes": "Local/KITAS ~1M (member proxy); incl caddie + tax + transfers",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -5641,6 +6577,32 @@
         ],
         "last_verified": "2026-04-30",
         "notes": "Official site lombok-golf.com publishes green fees and weekday packages but no membership page. Facebook @LombokGolf active (also lists personal villas / condominium). No membership tier or fee disclosed publicly."
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/en/golf-lombok",
+        "schedule": {
+          "weekday": {
+            "am": 1050000,
+            "pm": 1050000
+          },
+          "saturday": {
+            "am": 1450000,
+            "pm": 1450000
+          },
+          "sunday": {
+            "am": 1450000,
+            "pm": 1450000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": null,
+        "notes": "From regional aggregate page",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -5866,6 +6828,32 @@
         "notes": "Both Standard and Premium EGP actively promoted. No initiation, no deposit, no monthly dues. Inquire membership@riabintan.com.",
         "confidence": "high",
         "last_verified": "2026-04-30"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/en/golf-course/ria-bintan-golf-club",
+        "schedule": {
+          "weekday": {
+            "am": 1465000,
+            "pm": 940000
+          },
+          "saturday": {
+            "am": 1990000,
+            "pm": 1105000
+          },
+          "sunday": {
+            "am": 1990000,
+            "pm": 1105000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": null,
+        "notes": "International 18H; PM=9H/twilight; dom/KITAS 1.1M/1.45M",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -6201,6 +7189,32 @@
         ],
         "last_verified": "2026-04-30",
         "notes": "Two short-term membership tiers fully published in IDR plus referenced 5/10-year exclusive tiers without disclosed pricing. No initiation fee / refundable deposit model - one-time term fee structure."
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/en/golf-course/laguna-golf-bintan",
+        "schedule": {
+          "weekday": {
+            "am": 1600000,
+            "pm": 1000000
+          },
+          "saturday": {
+            "am": 2250000,
+            "pm": 1370000
+          },
+          "sunday": {
+            "am": 2250000,
+            "pm": 1370000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": null,
+        "notes": "PM=9H rates; bundled cart/caddy/insurance",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -6308,6 +7322,32 @@
         "notes": "Sinar Mas-affiliated. Open subscription model; no initiation fee/deposit publicly disclosed. No active resale (monthly recurring, no equity).",
         "confidence": "high",
         "last_verified": "2026-04-30"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/en/golf-course/palm-springs-golf-beach-resort",
+        "schedule": {
+          "weekday": {
+            "am": 850000,
+            "pm": 800000
+          },
+          "saturday": {
+            "am": 1600000,
+            "pm": 1600000
+          },
+          "sunday": {
+            "am": 1400000,
+            "pm": 1200000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": 360000,
+        "notes": "Intl visitor; domestic Wkdy 950k/Sat 1.55M/Sun 1.36M",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -6396,6 +7436,32 @@
         "notes": "Rebranded 2024 from Tering Bay to Batam Island Country Club (PT Megah Beverly Sejahtera, Townland-led). Membership programme being relaunched under new name; numeric pricing not yet published. Phone +62 853-8866-6883. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://en.gogolf.co.id/golf-course/tering-bay-golf",
+        "schedule": {
+          "weekday": {
+            "am": 950000,
+            "pm": 950000
+          },
+          "saturday": {
+            "am": 1350000,
+            "pm": 1350000
+          },
+          "sunday": {
+            "am": 1350000,
+            "pm": 1350000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": null,
+        "notes": "Package incl caddy/buggy/tax/water/ferry",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -6477,6 +7543,32 @@
         "notes": "Only Jack Nicklaus 9-hole on Batam (second 9 never built). Rebranded 'Tamarin Golf & Footgolf Club' under Champions Golf management. No public membership brochure. Inquire +62 778 761069. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/en/golf-course/tamarin-santana-golf-club",
+        "schedule": {
+          "weekday": {
+            "am": 245000,
+            "pm": 245000
+          },
+          "saturday": {
+            "am": 295000,
+            "pm": 295000
+          },
+          "sunday": {
+            "am": 295000,
+            "pm": 295000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": 245000,
+        "notes": "9H rates",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -6585,6 +7677,32 @@
         "notes": "3 tiers confirmed; pricing locked in image brochure. Inquire membership@southlinks.golf / +62-778-325364.",
         "confidence": "medium",
         "last_verified": "2026-04-30"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/en/golf-course/southlinks-golf-and-country-club",
+        "schedule": {
+          "weekday": {
+            "am": 1100000,
+            "pm": 720000
+          },
+          "saturday": {
+            "am": 1750000,
+            "pm": 950000
+          },
+          "sunday": {
+            "am": 1750000,
+            "pm": 950000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": 220000,
+          "cart_idr": null
+        },
+        "member_rate_idr": 325000,
+        "notes": "AM=18H, PM=9H; member 18H 325k",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -6753,6 +7871,32 @@
         ],
         "last_verified": "2026-04-30",
         "notes": "Most transparent membership pricing among Batam set. All prices in IDR. Members pay only caddie + buggy per round (no green fee). Membership Service: +62 778 8073008 / membership@padanggolfsukajadi.com."
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/golf-course/padang-golf-sukajadi",
+        "schedule": {
+          "weekday": {
+            "am": 950000,
+            "pm": 950000
+          },
+          "saturday": {
+            "am": 1350000,
+            "pm": 600000
+          },
+          "sunday": {
+            "am": 1350000,
+            "pm": 600000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": 310000,
+        "notes": "PM=9H weekend; member 18H 310k",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -7424,6 +8568,32 @@
         ],
         "last_verified": "2026-04-30",
         "notes": "Labersa Grand Hotel & Country Club official site is live but does not publish golf membership categories or fees. Inquiries via +62 761 41555."
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/en/golf-course/labersa-golf-club",
+        "schedule": {
+          "weekday": {
+            "am": 880000,
+            "pm": 600000
+          },
+          "saturday": {
+            "am": 1100000,
+            "pm": 750000
+          },
+          "sunday": {
+            "am": 1100000,
+            "pm": 750000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": null,
+        "notes": "Range high=AM, low=PM",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -7492,6 +8662,32 @@
         "sources": [],
         "last_verified": "2026-04-30",
         "notes": "Kenten Heritage 1937 Golf Course (Palembang Golf Club). Active IG accounts but no official website and no published membership pricing. [Aggregator-sourced pricing cleared 2026-04-30]"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/en/golf-course/palembang-golf-club",
+        "schedule": {
+          "weekday": {
+            "am": 100000,
+            "pm": null
+          },
+          "saturday": {
+            "am": null,
+            "pm": null
+          },
+          "sunday": {
+            "am": null,
+            "pm": null
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": null,
+        "notes": "Only 'from 100k' published; no AM/PM split",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -8192,6 +9388,32 @@
         "notes": "First international-standard course in Sulawesi (CitraGrand Galesong / Ciputra Group). Per-category breakdown not separately broken; GoGolf cites IDR 30M-121M init range. Refundable deposit/term/resale not disclosed. Inquiry: WA +62 812-4284-4640.",
         "confidence": "medium",
         "last_verified": "2026-04-30"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/en/golf-course/padivalley-golf-club",
+        "schedule": {
+          "weekday": {
+            "am": 460000,
+            "pm": 600000
+          },
+          "saturday": {
+            "am": 790000,
+            "pm": 1150000
+          },
+          "sunday": {
+            "am": 640000,
+            "pm": 900000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": 235000,
+        "notes": "Range low/high as AM/PM; member 18H 235k",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -8978,6 +10200,32 @@
         "notes": "Open intake (trial + annual options publicly advertised). Indonesia's oldest golf club (1872).",
         "confidence": "high",
         "last_verified": "2026-04-30"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/golf-course/jakarta-golf-club",
+        "schedule": {
+          "weekday": {
+            "am": 445000,
+            "pm": 445000
+          },
+          "saturday": {
+            "am": null,
+            "pm": null
+          },
+          "sunday": {
+            "am": null,
+            "pm": null
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": null,
+        "notes": "Tue-Fri 445k; weekend not published on GoGolf",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -9046,6 +10294,32 @@
         "notes": "Newly added 2026-04-30; membership not yet audited. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/golf-course/pondok-cabe-golf-club",
+        "schedule": {
+          "weekday": {
+            "am": 250000,
+            "pm": 250000
+          },
+          "saturday": {
+            "am": 575000,
+            "pm": 575000
+          },
+          "sunday": {
+            "am": 575000,
+            "pm": 575000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": 225000
+        },
+        "member_rate_idr": null,
+        "notes": "Cart 190k wkdy / 225k wknd 18H",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -9111,6 +10385,32 @@
         "notes": "Newly added 2026-04-30; membership not yet audited. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/golf-course/permata-krakatau-golf-course",
+        "schedule": {
+          "weekday": {
+            "am": 165000,
+            "pm": 165000
+          },
+          "saturday": {
+            "am": 300000,
+            "pm": 300000
+          },
+          "sunday": {
+            "am": 300000,
+            "pm": 300000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": 30000,
+          "cart_idr": null
+        },
+        "member_rate_idr": null,
+        "notes": "Listed as Permata Krakatau; weekday 115-165k",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -9176,6 +10476,32 @@
         "notes": "Newly added 2026-04-30; membership not yet audited. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/golf-course/bandung-giri-gahana-golf",
+        "schedule": {
+          "weekday": {
+            "am": 965500,
+            "pm": 855500
+          },
+          "saturday": {
+            "am": 1735500,
+            "pm": 1515500
+          },
+          "sunday": {
+            "am": 1515500,
+            "pm": 1185500
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": null,
+        "notes": "2026 publish rate",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -9795,6 +11121,32 @@
         "notes": "Newly added 2026-04-30; membership not yet audited. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/en/golf-course/ahmad-yani-golf-club-surabaya",
+        "schedule": {
+          "weekday": {
+            "am": 200000,
+            "pm": 200000
+          },
+          "saturday": {
+            "am": 250000,
+            "pm": 250000
+          },
+          "sunday": {
+            "am": 250000,
+            "pm": 250000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": 175000,
+          "cart_idr": null
+        },
+        "member_rate_idr": null,
+        "notes": "18H walking; caddy 150-200k",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -9872,6 +11224,32 @@
         "notes": "Newly added 2026-04-30; membership not yet audited.",
         "confidence": "low",
         "last_verified": "2026-04-30"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/en/golf-course/pakuwon-golf-family-club",
+        "schedule": {
+          "weekday": {
+            "am": 475000,
+            "pm": 475000
+          },
+          "saturday": {
+            "am": 475000,
+            "pm": 475000
+          },
+          "sunday": {
+            "am": 475000,
+            "pm": 475000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": null,
+        "notes": "475k for 2 players (per pair); range 500k-1M",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
@@ -11226,6 +12604,32 @@
         "notes": "PT Timah Bukit Girimaya. Membership offered but tier details not published. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "medium",
         "last_verified": "2026-04-30"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/en/golf-course/padang-golf-bukit-intan",
+        "schedule": {
+          "weekday": {
+            "am": 1000000,
+            "pm": 1000000
+          },
+          "saturday": {
+            "am": 2000000,
+            "pm": 2000000
+          },
+          "sunday": {
+            "am": 2000000,
+            "pm": 2000000
+          }
+        },
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "member_rate_idr": null,
+        "notes": "Range 1-2M (low=wkdy, high=wknd)",
+        "last_verified": "2026-04-30",
+        "confidence": "low",
+        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       }
     },
     {
