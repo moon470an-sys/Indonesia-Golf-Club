@@ -705,6 +705,46 @@ a:hover { text-decoration: underline; }
   vertical-align: middle;
 }
 .course-table td.fee { color: #064e3b; font-weight: 600; }
+.course-table td.fee-detail {
+  font-size: 11px;
+  color: #1f2937;
+  vertical-align: top;
+  min-width: 200px;
+  max-width: 280px;
+  padding: 6px 8px;
+}
+.course-table td.fee-detail .fee-line-hdr {
+  font-weight: 700;
+  color: #15803d;
+  margin-top: 4px;
+  margin-bottom: 2px;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.course-table td.fee-detail .fee-line-hdr:first-child { margin-top: 0; }
+.course-table td.fee-detail .fee-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 1px 0;
+  border-bottom: 1px dotted #e5e7eb;
+}
+.course-table td.fee-detail .fee-line:last-child { border-bottom: 0; }
+.course-table td.fee-detail .fee-key {
+  color: #6b7280;
+  font-size: 10.5px;
+  word-break: break-word;
+}
+.course-table td.fee-detail .fee-val {
+  color: #064e3b;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.course-table td.fee-detail .fee-val-only {
+  color: #064e3b;
+  font-weight: 600;
+}
 .course-table td.notes { color: #475569; font-size: 12px; max-width: 280px; }
 .course-table td.address { color: #475569; font-size: 12px; max-width: 240px; }
 .course-table td.sources a {

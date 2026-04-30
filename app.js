@@ -717,6 +717,44 @@ function membershipCellText(m) {
   return '<span class="muted">비공개</span>';
 }
 
+function flattenSlotToLines(slot) {
+  if (!slot || typeof slot !== 'object') return [];
+  const lines = [];
+  const walk = (obj, prefix = '') => {
+    for (const [k, v] of Object.entries(obj)) {
+      const label = prefix ? `${prefix} / ${k}` : k;
+      if (typeof v === 'number') {
+        lines.push({ label, val: fmtIDR(v) });
+      } else if (typeof v === 'string') {
+        lines.push({ label, val: v });
+      } else if (typeof v === 'boolean') {
+        lines.push({ label, val: v ? '✓' : '✗' });
+      } else if (v && typeof v === 'object' && !Array.isArray(v)) {
+        walk(v, label);
+      }
+    }
+  };
+  walk(slot);
+  return lines;
+}
+
+function renderRateCell(slots, fallbackIdr, fallbackUsd) {
+  // slots: array of [label, slotData] tuples
+  const lines = [];
+  for (const [hdr, data] of slots) {
+    const slotLines = flattenSlotToLines(data);
+    if (!slotLines.length) continue;
+    if (hdr) lines.push(`<div class="fee-line-hdr">${hdr}</div>`);
+    for (const ln of slotLines) {
+      lines.push(`<div class="fee-line"><span class="fee-key">${escapeHtml(ln.label)}</span><span class="fee-val">${escapeHtml(ln.val)}</span></div>`);
+    }
+  }
+  if (lines.length) return lines.join('');
+  if (fallbackIdr) return `<div class="fee-val-only">${fmtIDR(fallbackIdr)}</div>`;
+  if (fallbackUsd) return `<div class="fee-val-only">${fmtUSD(fallbackUsd)}</div>`;
+  return '—';
+}
+
 function renderTable() {
   const rows = getTableRows();
   document.getElementById('tableVisibleCount').textContent = rows.length;
@@ -730,12 +768,14 @@ function renderTable() {
       uncertain: '불확실',
     }[status] || status;
     const f = c.fees_2026_05 || {};
-    const wd = f.weekday?.green_fee_idr ?? f.weekday?.guest_fee_idr;
-    const we = f.weekend?.green_fee_idr ?? f.weekend?.guest_fee_idr;
-    const wdUSD = f.weekday?.green_fee_usd;
-    const weUSD = f.weekend?.green_fee_usd;
-    const wdText = wd ? fmtIDR(wd) : (wdUSD ? fmtUSD(wdUSD) : '—');
-    const weText = we ? fmtIDR(we) : (weUSD ? fmtUSD(weUSD) : '—');
+    const sd = f.schedule_detailed || {};
+    const wdFallback = f.weekday?.green_fee_idr ?? f.weekday?.guest_fee_idr;
+    const weFallback = f.weekend?.green_fee_idr ?? f.weekend?.guest_fee_idr;
+    const wdHtml = renderRateCell([['', sd.weekday]], wdFallback, f.weekday?.green_fee_usd);
+    const weHtml = renderRateCell(
+      [['토요일', sd.weekend_saturday], ['일요일', sd.weekend_sunday], ['공휴일', sd.public_holiday]],
+      weFallback, f.weekend?.green_fee_usd
+    );
 
     const idUrls = new Set((f.indonesian_sources || []).map(e => e?.url).filter(Boolean));
     const sourcesHtml = (f.sources || []).slice(0, 4).map((u, i) => {
@@ -743,10 +783,9 @@ function renderTable() {
       return `<a href="${escapeHtml(u)}" target="_blank" rel="noopener" title="${escapeHtml(u)}">[${i + 1}]${lang}</a>`;
     }).join('');
 
-    const designer = c.designer ? escapeHtml(c.designer.split(',')[0].trim().split('(')[0].trim()) : '—';
     const matoaTag = c.id === 'matoa-nasional' ? '<span class="matoa-tag">★ Matoa</span>' : '';
 
-    const websiteLink = c.website ? `<a href="${escapeHtml(c.website)}" target="_blank" rel="noopener">웹</a>` : '';
+    const websiteLink = c.website ? `<a href="${escapeHtml(c.website)}" target="_blank" rel="noopener">웹지도</a>` : '';
     const mapLink = `<a href="https://www.google.com/maps/search/?api=1&query=${c.lat},${c.lng}" target="_blank" rel="noopener">지도</a>`;
 
     return `
@@ -757,8 +796,8 @@ function renderTable() {
         <td><span class="status-pill ${status}">${statusLabel}</span></td>
         <td class="num">${c.holes ?? '—'}</td>
         <td class="num">${c.year_opened ?? '—'}</td>
-        <td class="num fee">${wdText}</td>
-        <td class="num fee">${weText}</td>
+        <td class="fee-detail">${wdHtml}</td>
+        <td class="fee-detail">${weHtml}</td>
         <td class="num">${membershipCellText(c.membership)}</td>
         <td class="address">${escapeHtml(c.address || '')}<br>${websiteLink} ${mapLink}</td>
         <td class="sources">${sourcesHtml || '—'}</td>
