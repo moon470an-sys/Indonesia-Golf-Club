@@ -155,7 +155,10 @@ function renderMarkers() {
 
     const marker = L.marker([c.lat, c.lng], { icon })
       .bindTooltip(c.name_en, { direction: 'top', offset: [0, -24] })
-      .on('click', () => showDetail(c));
+      .on('click', () => {
+        const url = `https://www.google.com/maps/search/?api=1&query=${c.lat},${c.lng}`;
+        window.open(url, '_blank', 'noopener');
+      });
 
     markers[c.id] = marker;
     markerCluster.addLayer(marker);
