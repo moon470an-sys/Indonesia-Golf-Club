@@ -344,10 +344,10 @@ document.getElementById('sidebarToggle').addEventListener('click', () => {
 function fmtMoney(amt, cur) {
   if (amt == null) return null;
   const c = (cur || 'IDR').toUpperCase();
-  if (c === 'USD') return `$${Number(amt).toLocaleString('en-US')}`;
-  if (c === 'SGD') return `S$${Number(amt).toLocaleString('en-US')}`;
+  if (c === 'USD') return fmtK(amt, '$');
+  if (c === 'SGD') return fmtK(amt, 'S$');
   if (c === 'IDR') return fmtIDR(amt);
-  return `${amt} ${c}`;
+  return fmtK(amt, '') + ' ' + c;
 }
 
 const MEMBERSHIP_AVAIL_LABEL = {
@@ -428,17 +428,22 @@ function renderMembership(m) {
 }
 
 // === Fee Rendering ===
-function fmtIDR(n) {
-  if (n == null) return null;
+function fmtK(n, prefix) {
   const num = Number(n);
   if (!isFinite(num)) return null;
-  if (num >= 1000000) return `Rp ${(num / 1000000).toFixed(num % 1000000 === 0 ? 0 : 2)}M`;
-  if (num >= 1000) return `Rp ${(num / 1000).toFixed(0)}K`;
-  return `Rp ${num.toLocaleString('ko-KR')}`;
+  if (num === 0) return `${prefix}0K`;
+  const inK = num / 1000;
+  // Show 1 decimal if not a clean integer in K, otherwise no decimal
+  const rounded = Math.abs(inK - Math.round(inK)) < 0.05 ? Math.round(inK) : Math.round(inK * 10) / 10;
+  return `${prefix}${rounded.toLocaleString('en-US')}K`;
+}
+function fmtIDR(n) {
+  if (n == null) return null;
+  return fmtK(n, 'Rp ');
 }
 function fmtUSD(n) {
   if (n == null) return null;
-  return `$${Number(n).toLocaleString('en-US')}`;
+  return fmtK(n, '$');
 }
 
 function renderFees(f) {
