@@ -86,23 +86,44 @@
         "available": true,
         "categories": [
           {
+            "name": "Founder Membership",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "transferable": null,
+            "notes": "Top-tier elite access with private Founder Lounge, sauna. Pricing private. Member-discount column on GF table (e.g. weekday IDR 601,000 vs non-Founder IDR 741,000)."
+          },
+          {
+            "name": "Nominee Membership",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "transferable": null,
+            "notes": "Tied to Founder member's nomination; same Founder Lounge access. Pricing private."
+          },
+          {
             "name": "Yearly Membership 2026",
             "initiation_fee": null,
             "annual_fee": null,
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": 1,
-            "notes": "Yearly Membership 2026 program advertised on official site for individuals or corporates; pricing image-only on /yearly-membership-2026/ page, no text-extractable IDR figures publicly disclosed."
+            "transferable": false,
+            "notes": "Capped at 100 individuals/corporates. Priority tee time + members-only lounge. 2026 intake banner currently active. No public price."
           }
         ],
         "currency_note": "IDR primary",
         "sources": [
           "https://www.royalejakarta.com/yearly-membership-2026/",
-          "https://www.royalejakarta.com/",
-          "https://www.instagram.com/royalejakartagolfclub/"
+          "https://www.royalejakarta.com/founder-lounge/"
         ],
-        "last_verified": "2026-04-29",
-        "notes": "Official Yearly Membership 2026 page exists but rate values are embedded as image; numeric fees not disclosed publicly. Inquiry via info@royalejakarta.com / +6221 80 888 999."
+        "notes": "Three tiers: Founder, Nominee, Yearly. Yearly 2026 intake actively running. No public pricing on web/SNS. Inquire info@royalejakarta.com.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
       }
     },
     {
@@ -167,15 +188,44 @@
         "last_verified": "2026-04-30"
       },
       "membership": {
-        "available": "unknown",
-        "categories": [],
+        "available": "members_only",
+        "categories": [
+          {
+            "name": "Transferable / Share Membership (face value)",
+            "initiation_fee": {
+              "amount": 70000000,
+              "currency": "IDR"
+            },
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "transferable": true,
+            "notes": "Original face-value initiation ~IDR 70 million per Republika archive. Transferable, can be rented/sold/inherited. New direct-from-club intake effectively closed; access via secondary market."
+          },
+          {
+            "name": "Resale market quote (secondary)",
+            "initiation_fee": {
+              "amount": 1500000000,
+              "currency": "IDR"
+            },
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "transferable": true,
+            "notes": "Republika reported PIGC member cards transacting at ~IDR 1.5 billion on secondary market. Quote is several years old; current resale likely similar order of magnitude but not freshly verified for 2026."
+          }
+        ],
         "currency_note": "IDR primary",
         "sources": [
+          "https://ameera.republika.co.id/berita/n5at54/investasi-keanggotaan-golf-mulai-dilirik",
           "https://www.golfpondokindah.com/",
-          "https://www.instagram.com/pondokindahgolf/"
+          "https://propcongolf.com/membership/10-home/our-favourite-links/86-pondok-indah-golf-course"
         ],
-        "last_verified": "2026-04-29",
-        "notes": "Official site does not have a public Membership page — navigation only exposes Green Fees, Facilities, Location. No published membership fee schedule. Pondok Indah Group is publicly listed (shareholder-driven) but golf club membership terms not public. Inquiry via +6221 769 4906."
+        "notes": "No new memberships from club itself; joining via secondary-market transfer. Active resale market with quoted prices reaching IDR 1.5B. Annual dues not public.",
+        "confidence": "medium",
+        "last_verified": "2026-04-30"
       }
     },
     {
@@ -678,7 +728,7 @@
           "https://www.instagram.com/moderngolf_countryclub/",
           "https://www.facebook.com/moderngolfdancountryclub"
         ],
-        "last_verified": "2026-04-29",
+        "last_verified": "2026-04-30",
         "notes": "Official site references annual memberships and corporate packages but does not publish numeric membership fees. Inquiry via reservation@modernland.co.id / +6221 552 9228."
       }
     },
@@ -1049,8 +1099,18 @@
         "last_verified": "2026-04-30"
       },
       "membership": {
-        "available": true,
+        "available": "members_only",
         "categories": [
+          {
+            "name": "Membership Share (CLOSED to new entrants)",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "transferable": true,
+            "notes": "Lifetime validity. Official site explicitly: 'At this time DIG not selling new share membership' — primary market CLOSED."
+          },
           {
             "name": "Permanent Transferable Membership (PTM)",
             "initiation_fee": null,
@@ -1058,25 +1118,28 @@
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": 30,
-            "notes": "Valid 30 years; subject to monthly dues; 25% inactivity surcharge applies if unused over 12 months. Numeric fee not disclosed publicly."
+            "transferable": true,
+            "notes": "Valid 30 years from certificate; transferable. Pricing private."
           },
           {
-            "name": "Membership Share",
+            "name": "Rental Membership",
             "initiation_fee": null,
             "annual_fee": null,
             "monthly_fee": null,
             "refundable_deposit": null,
-            "term_years": null,
-            "notes": "Lifetime; entitled to dividends; special monthly dues rate for individual shareholders. Numeric fee not disclosed publicly."
+            "term_years": 1,
+            "transferable": false,
+            "notes": "Minimum 1-year term; leased."
           }
         ],
         "currency_note": "IDR primary",
         "sources": [
           "https://www.damaiindahgolf.com/index.asp?fuseaction=membership",
-          "https://www.instagram.com/damaiindahgolfofficial/"
+          "https://pik.damaiindahgolf.com/"
         ],
-        "last_verified": "2026-04-29",
-        "notes": "Official membership page describes structure (PTM and Share) for both PIK and BSD courses but does not publish numeric initiation/annual/monthly figures. Inquiry via membership team +6221 537 0290."
+        "notes": "Single Damai Indah Golf entity covers PIK + BSD with shared system. New share market closed. Active routes: secondary-market PTM or Rental.",
+        "confidence": "medium",
+        "last_verified": "2026-04-30"
       }
     },
     {
@@ -1143,8 +1206,18 @@
         "last_verified": "2026-04-30"
       },
       "membership": {
-        "available": true,
+        "available": "members_only",
         "categories": [
+          {
+            "name": "Membership Share (CLOSED)",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "transferable": true,
+            "notes": "Lifetime; new shares NOT being sold (same shared system as PIK)."
+          },
           {
             "name": "Permanent Transferable Membership (PTM)",
             "initiation_fee": null,
@@ -1152,25 +1225,27 @@
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": 30,
-            "notes": "Valid 30 years; subject to monthly dues; 25% inactivity surcharge applies if unused over 12 months."
+            "transferable": true,
+            "notes": "30-year term; transferable. Pricing private."
           },
           {
-            "name": "Membership Share",
+            "name": "Rental Membership",
             "initiation_fee": null,
             "annual_fee": null,
             "monthly_fee": null,
             "refundable_deposit": null,
-            "term_years": null,
-            "notes": "Lifetime; dividend entitlement; special monthly dues for individual shareholders."
+            "term_years": 1,
+            "transferable": false,
+            "notes": "Minimum 1 year."
           }
         ],
         "currency_note": "IDR primary",
         "sources": [
-          "https://www.damaiindahgolf.com/index.asp?fuseaction=membership",
-          "https://www.instagram.com/damaiindahgolfofficial/"
+          "https://www.damaiindahgolf.com/index.asp?fuseaction=membership"
         ],
-        "last_verified": "2026-04-29",
-        "notes": "Same membership structure as PIK; numeric figures not publicly disclosed. Inquiry +6221 537 0290 / club@damaiindah-golf.com."
+        "notes": "Same as PIK — single DIG entity covers both courses. Primary share market closed.",
+        "confidence": "medium",
+        "last_verified": "2026-04-30"
       }
     },
     {
@@ -1244,23 +1319,41 @@
         "available": true,
         "categories": [
           {
-            "name": "Annual Playing Rights (APR)",
+            "name": "One Year Individual APR (Annual Playing Rights)",
             "initiation_fee": null,
-            "annual_fee": null,
+            "annual_fee": {
+              "amount": 29800000,
+              "currency": "IDR"
+            },
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": 1,
-            "notes": "Two flexible APR options referenced (full-week and weekday-only). Numeric fees rendered as image on official page; not text-extractable."
+            "transferable": false,
+            "notes": "IDR 29,800,000 grants unlimited green fee for 12 months (incl. weekends/holidays). Single up-front payment, non-refundable, non-transferable."
+          },
+          {
+            "name": "One Year Weekday Only APR",
+            "initiation_fee": null,
+            "annual_fee": {
+              "amount": 15800000,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "transferable": false,
+            "notes": "IDR 15,800,000 grants unlimited weekday green fees (Mon-Fri); excludes weekends/holidays."
           }
         ],
         "currency_note": "IDR primary",
         "sources": [
           "https://www.aryaduta.com/en/wellness/ikg/membership",
-          "https://www.aryaduta.com/en/wellness/ikg",
-          "https://www.instagram.com/imperialklubgolf/"
+          "https://imperialklubgolf.com/membership.html",
+          "https://gogolf.co.id/en/golf-course/imperial-klub-golf-lippo-karawaci"
         ],
-        "last_verified": "2026-04-29",
-        "notes": "Official 'Annual Playing Rights & Green Fees' page exists; pricing not disclosed in text form. Inquiry via +6221 546 0120."
+        "notes": "APR (Annual Playing Rights) subscription model, no equity/initiation tier. Sold direct by Aryaduta/Lippo Group. Open intake. No secondary market needed (non-transferable).",
+        "confidence": "high",
+        "last_verified": "2026-04-30"
       }
     },
     {
@@ -1542,23 +1635,40 @@
         "available": true,
         "categories": [
           {
-            "name": "Yearly Membership",
+            "name": "The Player's Card - Individual",
             "initiation_fee": null,
-            "annual_fee": null,
+            "annual_fee": {
+              "amount": 35000000,
+              "currency": "IDR"
+            },
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": 1,
-            "notes": "Yearly memberships referenced as available at competitive rates; numeric fees not publicly published. Player's Card grants discounts, VIP lounge access, priority booking."
+            "transferable": null,
+            "notes": "IDR 35,000,000/year for one person. VIP lounge access, priority booking, service discounts. Initiation/deposit not publicly disclosed."
+          },
+          {
+            "name": "The Player's Card - Corporate (4 persons)",
+            "initiation_fee": null,
+            "annual_fee": {
+              "amount": 120000000,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "transferable": null,
+            "notes": "IDR 120,000,000/year for up to 4 people. Same Player's Card benefits."
           }
         ],
-        "currency_note": "IDR primary",
+        "currency_note": "IDR",
         "sources": [
-          "https://sentulhighlands.com/",
-          "https://sentulhighlands.com/prices/",
-          "https://www.instagram.com/sentulhighlandsgolfclub/"
+          "https://sentulhighlands.com/membership/",
+          "https://gogolf.co.id/en/golf-course/sentul-highlands-golf-club"
         ],
-        "last_verified": "2026-04-29",
-        "notes": "Official membership page returned 403 to scraper; club references yearly membership but does not publish text rates. Inquiry +6221 87960266 / 08111157888."
+        "notes": "Active intake of 'The Player's Card'. Initiation/deposit not publicly disclosed; figures sourced from GoGolf review summary.",
+        "confidence": "medium",
+        "last_verified": "2026-04-30"
       }
     },
     {
@@ -1642,16 +1752,27 @@
         "last_verified": "2026-04-30"
       },
       "membership": {
-        "available": "unknown",
-        "categories": [],
-        "currency_note": "IDR primary",
-        "sources": [
-          "https://www.rainbowhillsgolf.com/",
-          "https://www.instagram.com/rainbowhillsgolf/",
-          "https://www.facebook.com/RainwbowHillsGolfClub/"
+        "available": true,
+        "categories": [
+          {
+            "name": "Lifetime Membership",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "transferable": null,
+            "notes": "Single tier. Benefits: priority booking, exclusive discounts, VIP access, tournament invitations. No IDR amounts published; inquire +62 251 827 2111."
+          }
         ],
-        "last_verified": "2026-04-29",
-        "notes": "Official site does not have a public Membership page; reservation-only model. Inquiry rsv@rainbowhillsgolf.com / +62 251 827 2111."
+        "currency_note": "IDR",
+        "sources": [
+          "https://rainbowhillsgolf.com/",
+          "https://gogolf.co.id/en/golf-course/rainbow-hills-golf-club"
+        ],
+        "notes": "Only Lifetime tier mentioned. No fee structure published.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
       }
     },
     {
@@ -1719,16 +1840,56 @@
         "last_verified": "2026-04-30"
       },
       "membership": {
-        "available": "unknown",
-        "categories": [],
-        "currency_note": "IDR primary",
-        "sources": [
-          "https://www.klubgolfbogorraya.com/",
-          "https://www.instagram.com/klubgolfbogorraya/",
-          "https://www.facebook.com/bogorrayagolf/"
+        "available": true,
+        "categories": [
+          {
+            "name": "Premier",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "transferable": null,
+            "notes": "Lifetime access, unlimited golf, priority booking. Pricing not disclosed."
+          },
+          {
+            "name": "Family",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "transferable": null,
+            "notes": "Lifetime; covers spouse + children under 21."
+          },
+          {
+            "name": "Corporate",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "transferable": true,
+            "notes": "Lifetime, transferable for business use."
+          },
+          {
+            "name": "Annual",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "transferable": null,
+            "notes": "1-year commitment; full golf access. 15% first-year discount has been promoted."
+          }
         ],
-        "last_verified": "2026-04-29",
-        "notes": "Official site klubgolfbogorraya.com is currently under maintenance. No public membership fee schedule available. Inquiry via WA +62 811-9718-844."
+        "currency_note": "IDR",
+        "sources": [
+          "https://www.klubgolfbogorraya.com/pages/membership.php"
+        ],
+        "notes": "4 tiers confirmed; annual dues mentioned (annually or quarterly billable) but no IDR amounts published. NOTE: IG Highlights '18067291382629609' on @klubgolfbogorraya is 'Rates 2026' green-fee data, not membership.",
+        "confidence": "medium",
+        "last_verified": "2026-04-30"
       }
     },
     {
@@ -1821,7 +1982,7 @@
           "https://www.permatasentulgolf.net/",
           "https://www.instagram.com/permatasentul_golfclub/"
         ],
-        "last_verified": "2026-04-29",
+        "last_verified": "2026-04-30",
         "notes": "Official site has no Membership page in navigation; no published membership fee. Inquiry 0811-1125-955 / 0812-1252-555 / reservasipermatasentulgolf@gmail.com."
       }
     },
@@ -1907,7 +2068,7 @@
           "https://www.riverside-golf.com/",
           "https://www.instagram.com/riversidegolfclub/"
         ],
-        "last_verified": "2026-04-29",
+        "last_verified": "2026-04-30",
         "notes": "Official membership page lists benefits (Kawano Group reciprocity, IDR 550k member service fee) but no joining/annual fee figure. 'Join Now' inquiry form only."
       }
     },
@@ -2007,35 +2168,58 @@
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": null,
-            "notes": "Person/company holding share(s) in the Company; meets club qualifications"
+            "transferable": null,
+            "notes": "Equity-style; person or company-appointed individual holding share(s). Pricing private."
           },
           {
-            "name": "Transferable Member",
+            "name": "Transferable Member (Private & Corporate)",
             "initiation_fee": null,
             "annual_fee": null,
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": null,
-            "notes": "Membership transferable; requires payment of membership fee + financial obligations"
+            "transferable": true,
+            "notes": "Transferable; private or corporate appointee. Pricing private."
           },
           {
-            "name": "Nominated Member",
+            "name": "Nominated Corporate Member",
             "initiation_fee": null,
             "annual_fee": null,
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": null,
-            "notes": "Person nominated by their company; requires fees + qualifications"
+            "transferable": null,
+            "notes": "Company-appointed individual under corporate sponsorship."
+          },
+          {
+            "name": "Family Member (CLOSED to new entrants)",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "transferable": null,
+            "notes": "Marked 'Not available anymore' on official membership page."
+          },
+          {
+            "name": "Ordinary Member (CLOSED)",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "transferable": false,
+            "notes": "Lifetime, non-transferable. Marked 'No Longer Available'."
           }
         ],
         "currency_note": "IDR primary",
         "sources": [
           "https://jagorawi.com/membership",
-          "https://jagorawi.com/",
-          "https://www.instagram.com/jagorawigolfcc/"
+          "https://jagorawi.com/contact-us"
         ],
-        "last_verified": "2026-04-29",
-        "notes": "Official membership page outlines three categories (Ordinary and Family no longer available). Specific IDR fees not publicly disclosed. Inquiry +6221 875 3810-15."
+        "notes": "5 legacy categories; Family/Ordinary closed to new entrants. Active intake: Share, Transferable, Nominated Corporate. No public pricing — must contact +62-21-875-3810.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
       }
     },
     {
@@ -2104,78 +2288,67 @@
         "available": true,
         "categories": [
           {
-            "name": "Individual",
+            "name": "Individual Lifetime Member",
             "initiation_fee": null,
             "annual_fee": null,
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": null,
-            "notes": "Golf membership category; pricing not published, contact required"
+            "transferable": null,
+            "notes": "Lifetime, age 21+. Currently advertised at 'special price'. No public IDR figure."
           },
           {
-            "name": "Individual (Non-Transferable)",
+            "name": "Spouse Member",
             "initiation_fee": null,
             "annual_fee": null,
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": null,
-            "notes": "Golf membership category; pricing not published"
+            "transferable": null,
+            "notes": "Add-on tied to primary lifetime member."
           },
           {
-            "name": "Corporate",
+            "name": "Junior Member",
             "initiation_fee": null,
             "annual_fee": null,
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": null,
-            "notes": "Golf membership category; pricing not published"
+            "transferable": null,
+            "notes": "Junior category; price not published."
           },
           {
-            "name": "Spouse",
+            "name": "Corporate Member",
             "initiation_fee": null,
             "annual_fee": null,
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": null,
-            "notes": "Golf membership category; pricing not published"
+            "transferable": null,
+            "notes": "Corporate tier."
           },
           {
-            "name": "Junior (under 21)",
-            "initiation_fee": null,
-            "annual_fee": null,
-            "monthly_fee": null,
-            "refundable_deposit": null,
-            "term_years": null,
-            "notes": "Golf membership category; pricing not published"
-          },
-          {
-            "name": "Trial Membership",
-            "initiation_fee": null,
+            "name": "R Hotel Rancamaya Platinum Card (hotel benefit, not golf membership)",
+            "initiation_fee": {
+              "amount": 5000000,
+              "currency": "IDR"
+            },
             "annual_fee": null,
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": 1,
-            "notes": "12-month unlimited golf trial; pricing not published"
-          },
-          {
-            "name": "Country Club Membership",
-            "initiation_fee": null,
-            "annual_fee": null,
-            "monthly_fee": null,
-            "refundable_deposit": null,
-            "term_years": null,
-            "notes": "Country club category alongside Golf Membership"
+            "transferable": false,
+            "notes": "IDR 5,000,000 for golf members; IDR 6,000,000 for non-golf. Hotel-tied benefit card, NOT a golf membership — listed for completeness."
           }
         ],
         "currency_note": "IDR primary",
         "sources": [
-          "https://rancamayagolf.com/membership/",
-          "https://rancamayagolf.com/offers_post/trial_golf_membership/",
-          "https://rancamayagolf.com/offers_post/corporate_trial_golf_membership/",
-          "https://www.instagram.com/rancamayagolf/"
+          "https://rancamayagolf.com/",
+          "https://rhotelrancamaya.com/detail-offers/?id=10074"
         ],
-        "last_verified": "2026-04-29",
-        "notes": "Multiple categories disclosed but no public IDR pricing. Inquiry 0251 8242282 ext 155/175 / golfinfo@rancamaya.com / WA +6281717100009."
+        "notes": "Lifetime program OPEN with 'special price' advertised. Member GF IDR 320k weekday / 335k weekend incl. cart+caddie+GF. Pricing details only via membership dept (+62-251-8242282).",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
       }
     },
     {
@@ -2254,15 +2427,56 @@
       },
       "membership": {
         "available": true,
-        "categories": [],
-        "currency_note": "IDR primary",
-        "sources": [
-          "https://jababekagolf.co.id/",
-          "https://booking.jababekagolf.co.id/",
-          "https://www.instagram.com/jababekagolf_official/"
+        "categories": [
+          {
+            "name": "Individual",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "transferable": null,
+            "notes": "Category exists; pricing not disclosed."
+          },
+          {
+            "name": "Family",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "transferable": null,
+            "notes": "Pricing not disclosed."
+          },
+          {
+            "name": "Corporate",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "transferable": null,
+            "notes": "Pricing not disclosed."
+          },
+          {
+            "name": "Executive One Year",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "transferable": null,
+            "notes": "1-year executive tier."
+          }
         ],
-        "last_verified": "2026-04-29",
-        "notes": "Semi-private with 500+ active members (mostly corporate execs of Cikarang industrial zone). No public membership fee published; booking portal requires login. Inquiry reservasi@jababekagolf.co.id / +6221 893 6148."
+        "currency_note": "IDR",
+        "sources": [
+          "https://www.jababekagolf.co.id/",
+          "https://gogolf.co.id/en/golf-course/jababeka-golf-country-club"
+        ],
+        "notes": "Semi-private with 500+ active members (Cikarang corporate execs). 4 categories confirmed. Inquiry: reservasi@jababekagolf.co.id / +62 857 1095 3112.",
+        "confidence": "medium",
+        "last_verified": "2026-04-30"
       }
     },
     {
@@ -2327,16 +2541,37 @@
         "last_verified": "2026-04-30"
       },
       "membership": {
-        "available": "unknown",
-        "categories": [],
+        "available": true,
+        "categories": [
+          {
+            "name": "Weekdays Membership",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "transferable": false,
+            "notes": "Free GF on weekdays only; other charges apply. 1-year, non-refundable, non-transferable."
+          },
+          {
+            "name": "Daily Membership",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "transferable": false,
+            "notes": "Free GF every day incl. weekends/holidays; 1-year non-refundable non-transferable."
+          }
+        ],
         "currency_note": "IDR primary",
         "sources": [
-          "https://karawang.palmspringsgolf.co/",
-          "https://www.instagram.com/palmspringsgolf_karawang/",
-          "https://www.facebook.com/palmspringsgolf.karawang/"
+          "https://karawang.palmspringsgolf.co/membership",
+          "https://lepremierdeltamas.com/golf"
         ],
-        "last_verified": "2026-04-29",
-        "notes": "Official site (503 during this verification) does not surface a public membership page or fee schedule. Owned by Sinar Mas Land. Inquiry Marketing.karawang@palmspringsgolf.co / +62 267 644730."
+        "notes": "Sinar Mas Land owned. Annual subscription (APR-style), no equity. Two tiers (Weekdays/Daily). Pricing inquiry-only (Marketing.karawang@palmspringsgolf.co).",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
       }
     },
     {
@@ -2639,7 +2874,7 @@
           "https://www.parahyangangolf.com/",
           "https://www.parahyangangolf.com/promo"
         ],
-        "last_verified": "2026-04-29",
+        "last_verified": "2026-04-30",
         "notes": "Official site mentions 'The Prestige Club' membership but does not publish fees. No Uang Pangkal/Iuran/Jaminan figures found on official channels."
       }
     },
@@ -2728,7 +2963,7 @@
           "https://mountainviewgolfbandung.com/",
           "https://www.instagram.com/mountainviewgolfbandung/"
         ],
-        "last_verified": "2026-04-29",
+        "last_verified": "2026-04-30",
         "notes": "Official website (mountainviewgolfbandung.com) returned 403 to fetcher. No membership page or fees confirmed via official channels. Contact +62 811-2288-6089."
       }
     },
@@ -2824,15 +3059,56 @@
         "last_verified": "2026-04-30"
       },
       "membership": {
-        "available": "unknown",
-        "categories": [],
-        "sources": [
-          "https://dagoheritage1917.com/",
-          "https://www.instagram.com/dagoheritage_1917/",
-          "https://www.facebook.com/dagoheritage1917/"
+        "available": true,
+        "categories": [
+          {
+            "name": "Regular Membership",
+            "initiation_fee": {
+              "amount": 12496000,
+              "currency": "IDR"
+            },
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "transferable": null,
+            "notes": "Single fee figure published; GoGolf does not break out initiation vs annual. Member GF IDR 248,400/round."
+          },
+          {
+            "name": "Share-Lease Membership",
+            "initiation_fee": null,
+            "annual_fee": {
+              "amount": 11347600,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "transferable": null,
+            "notes": "Rental/share-lease scheme — periodic membership fee."
+          },
+          {
+            "name": "Family Membership",
+            "initiation_fee": {
+              "amount": 3329920,
+              "currency": "IDR"
+            },
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "transferable": null,
+            "notes": "Family add-on; unclear whether annual or one-time."
+          }
         ],
-        "last_verified": "2026-04-29",
-        "notes": "Official site has only green fees page (/green_fees.php); no /membership page found (404). Membership status not confirmed on official channels. Contact +62 222 502 567 / +62 811 2233 1917."
+        "currency_note": "IDR",
+        "sources": [
+          "https://gogolf.co.id/en/golf-course/pgb-dago-endah-golf",
+          "https://www.dagoheritage1917.com/"
+        ],
+        "notes": "Owned by PGB (Perkumpulan Golf Bandung), the 1917 founding club. GoGolf publishes 3 tiers but doesn't split init vs annual vs deposit; figures mapped best-effort.",
+        "confidence": "medium",
+        "last_verified": "2026-04-30"
       }
     },
     {
@@ -2913,7 +3189,7 @@
           "https://www.jatinangorgolf.com/",
           "https://www.instagram.com/jatinangornationalgolfresort/"
         ],
-        "last_verified": "2026-04-29",
+        "last_verified": "2026-04-30",
         "notes": "Resort-style operation. /membership returns 404 on official site. No membership pricing on official channels. Contact +62 22 779 8403 / marketing@jatinangorgolf.com."
       }
     },
@@ -3079,43 +3355,34 @@
         "available": true,
         "categories": [
           {
-            "name": "Share Purchase (Pembelian Saham)",
-            "initiation_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
-            "annual_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
+            "name": "Share Purchase (Sertifikat)",
+            "initiation_fee": null,
+            "annual_fee": null,
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": null,
-            "notes": "Equity-based membership via share purchase. Pricing not publicly disclosed."
+            "transferable": true,
+            "notes": "Sertifikat ownership, transferable. No public IDR figure."
           },
           {
-            "name": "Annual Membership Lease (Sewa Tahunan)",
-            "initiation_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
-            "annual_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
+            "name": "Annual Rental Membership",
+            "initiation_fee": null,
+            "annual_fee": null,
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": 1,
-            "notes": "Lease-based annual membership. Pricing not publicly disclosed on official site/IG."
+            "transferable": false,
+            "notes": "Annual rental scheme. No public IDR figure. Member GF from IDR 350,000."
           }
         ],
+        "currency_note": "IDR",
         "sources": [
-          "https://merapigolf-club.netlify.app/",
-          "https://merapigolf-club.netlify.app/membership",
-          "https://www.instagram.com/merapigolf/"
+          "https://www.merapigc.co.id/",
+          "https://gogolf.co.id/en/golf-course/merapi-golf-mountain-resort"
         ],
-        "last_verified": "2026-04-29",
-        "notes": "Membership page on official site directs visitors to contact form ('We're so sorry for the inconvinience'). Two schemes mentioned: share purchase or annual lease. No fee figures published on official channels."
+        "notes": "Two schemes (share purchase, annual rental). Pricing requires direct contact +62 811 2845 181.",
+        "confidence": "medium",
+        "last_verified": "2026-04-30"
       }
     },
     {
@@ -3197,60 +3464,46 @@
         "last_verified": "2026-04-30"
       },
       "membership": {
-        "available": true,
+        "available": "unknown",
         "categories": [
           {
             "name": "Quarterly Membership",
-            "initiation_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
-            "annual_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
+            "initiation_fee": null,
+            "annual_fee": null,
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": 0.25,
-            "notes": "Hyatt-managed 9-hole resort course. Pricing not published."
+            "transferable": null,
+            "notes": "3-month tier; pricing not published."
           },
           {
             "name": "Half-Yearly Membership",
-            "initiation_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
-            "annual_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
+            "initiation_fee": null,
+            "annual_fee": null,
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": 0.5,
-            "notes": "Pricing not published."
+            "transferable": null,
+            "notes": "6-month tier; pricing not published."
           },
           {
             "name": "Yearly Membership",
-            "initiation_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
-            "annual_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
+            "initiation_fee": null,
+            "annual_fee": null,
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": 1,
-            "notes": "Pricing not published."
+            "transferable": null,
+            "notes": "1-year tier; pricing not published."
           }
         ],
+        "currency_note": "IDR (not disclosed)",
         "sources": [
-          "https://www.hyatt.com/hyatt-regency/en-US/yogya-hyatt-regency-yogyakarta/golf-course",
-          "https://www.instagram.com/hyattgolfcourse/"
+          "https://www.hyatt.com/hyatt-regency/en-US/yogya-hyatt-regency-yogyakarta/golf-course"
         ],
-        "last_verified": "2026-04-29",
-        "notes": "Hotel-attached 9-hole par-30 course. Hyatt page mentions quarterly/half-yearly/yearly membership tiers with discounts and privileges, but no IDR amounts published."
+        "notes": "Hotel-attached 9-hole. Hotel-wide renovation Aug 2025-Dec 2026; recreational facilities incl. golf remain open. No 2026 promo posts visible. Inquire +62 274 869123.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
       }
     },
     {
@@ -3610,7 +3863,7 @@
         "sources": [
           "https://www.instagram.com/gombelgolfid/"
         ],
-        "last_verified": "2026-04-29",
+        "last_verified": "2026-04-30",
         "notes": "No standalone official website. Member green fee rates exist (IDR 200,000 for 18 holes / IDR 130,000 for 9 holes any day) but Uang Pangkal/Iuran/Jaminan not published on official IG. Contact +62-24-749-9988."
       }
     },
@@ -3741,7 +3994,7 @@
           "https://www.instagram.com/candigolf.id/",
           "https://www.facebook.com/candigolf.id/"
         ],
-        "last_verified": "2026-04-29",
+        "last_verified": "2026-04-30",
         "notes": "Official site focuses on residential development (Graha Candi Golf). No /membership page found on golf-side. No public fees disclosed. Contact +62 818 0850 1000."
       }
     },
@@ -3870,43 +4123,64 @@
         "available": true,
         "categories": [
           {
-            "name": "Individual Membership",
-            "initiation_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
+            "name": "Family Club - Individual",
+            "initiation_fee": null,
             "annual_fee": {
-              "amount": null,
+              "amount": 7875000,
               "currency": "IDR"
             },
             "monthly_fee": null,
             "refundable_deposit": null,
-            "term_years": null,
-            "notes": "Individual membership exists per official membership page. Pricing dynamic per management policy; not publicly listed on official site."
+            "term_years": 1,
+            "transferable": null,
+            "notes": "Annual Family Club individual; access to pool, gym, sauna, sports courts."
           },
           {
-            "name": "Family Membership",
-            "initiation_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
+            "name": "Family Club - Couple",
+            "initiation_fee": null,
             "annual_fee": {
-              "amount": null,
+              "amount": 11100000,
               "currency": "IDR"
             },
             "monthly_fee": null,
             "refundable_deposit": null,
+            "term_years": 1,
+            "transferable": null,
+            "notes": "Annual Couple."
+          },
+          {
+            "name": "Family Club - Family",
+            "initiation_fee": null,
+            "annual_fee": {
+              "amount": 14175000,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "transferable": null,
+            "notes": "Annual Family."
+          },
+          {
+            "name": "Golf Membership (Individual / Family)",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
             "term_years": null,
-            "notes": "Family Club annual membership. Grants full access to pool, gym, sauna, children's area, sports courts. Pricing dynamic; not publicly listed."
+            "transferable": null,
+            "notes": "Separate golf-specific tier exists. Pricing dynamic per management policy, not published. Inquiry-only."
           }
         ],
+        "currency_note": "Family Club tiers in IDR confirmed; golf-only tier inquiry-only",
         "sources": [
           "https://ciputragolf.com/membership-club-surabaya/",
-          "https://ciputragolf.com/",
-          "https://www.instagram.com/ciputragolfsurabaya/"
+          "https://ciputragolf.com/family-club-surabaya/",
+          "https://gogolf.co.id/en/golf-course/ciputra-golf"
         ],
-        "last_verified": "2026-04-29",
-        "notes": "Official membership page exists but states fees are dynamic and adjusted to latest management policy; specific Uang Pangkal/Iuran/Jaminan figures not disclosed on official channels."
+        "notes": "Family Club annual pricing confirmed via GoGolf review. Golf-specific tier kept off official site.",
+        "confidence": "medium",
+        "last_verified": "2026-04-30"
       }
     },
     {
@@ -4007,27 +4281,105 @@
         "available": true,
         "categories": [
           {
-            "name": "Member (general)",
-            "initiation_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
+            "name": "Weekday Membership",
+            "initiation_fee": null,
             "annual_fee": {
-              "amount": null,
+              "amount": 7500000,
               "currency": "IDR"
             },
             "monthly_fee": null,
             "refundable_deposit": null,
-            "term_years": null,
-            "notes": "Page titled 'Rates, Fee, and Membership' lists member vs guest green fees (member 9H from IDR 245,000-675,000; 18H from IDR 365,000-910,000) but Uang Pangkal/Iuran/Jaminan amounts not extracted via official channels (site returns 403 to automated fetch)."
+            "term_years": 1,
+            "transferable": false,
+            "notes": "Weekday-only annual access. Member 18H weekday GF IDR 365,000."
+          },
+          {
+            "name": "Weekend Membership",
+            "initiation_fee": null,
+            "annual_fee": {
+              "amount": 11500000,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "transferable": false,
+            "notes": "Weekend annual."
+          },
+          {
+            "name": "Adult All-Day Membership",
+            "initiation_fee": null,
+            "annual_fee": {
+              "amount": 19000000,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "transferable": false,
+            "notes": "All-day adult."
+          },
+          {
+            "name": "Junior Membership (under 17)",
+            "initiation_fee": null,
+            "annual_fee": {
+              "amount": 5500000,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "transferable": false,
+            "notes": "Juniors below 17."
+          },
+          {
+            "name": "Couple Membership (2 persons)",
+            "initiation_fee": null,
+            "annual_fee": {
+              "amount": 25000000,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "transferable": false,
+            "notes": "2-person couple."
+          },
+          {
+            "name": "Ladies All-Day Membership",
+            "initiation_fee": null,
+            "annual_fee": {
+              "amount": 15000000,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "transferable": false,
+            "notes": "All-day ladies."
+          },
+          {
+            "name": "Corporate Membership (2-year package)",
+            "initiation_fee": null,
+            "annual_fee": {
+              "amount": 19950000,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 2,
+            "transferable": false,
+            "notes": "2-year corporate package IDR 39,900,000 total (IDR 19,950,000 annualized)."
           }
         ],
+        "currency_note": "IDR primary; flat annual fee structure (no initiation, no deposit)",
         "sources": [
           "http://bukitdarmogolf.com/rates-fee-and-membership/",
-          "https://www.facebook.com/bukitdarmogolfsby/"
+          "https://gogolf.co.id/en/golf-course/bukit-darmo-golf"
         ],
-        "last_verified": "2026-04-29",
-        "notes": "Dedicated rates+membership page exists; explicit membership initiation/annual/deposit figures not visible via automated extraction. Direct visit/inquiry required."
+        "notes": "7 published tiers, all 1-year (or 2-yr corporate), non-transferable. No initiation/deposit. No active resale market (non-transferable annual).",
+        "confidence": "high",
+        "last_verified": "2026-04-30"
       }
     },
     {
@@ -4121,7 +4473,7 @@
           "https://www.instagram.com/finnagolf/",
           "https://www.facebook.com/finnagolf/"
         ],
-        "last_verified": "2026-04-29",
+        "last_verified": "2026-04-30",
         "notes": "Resort-style operation (Finna Golf & Country Club Resort). Site currently shows 'A refined resort and golf experience is coming soon'. No public membership page or fees on official channels. Contact +62 343 634 888."
       }
     },
@@ -4335,7 +4687,7 @@
           "https://www.instagram.com/tamandayugolfresort/",
           "https://www.facebook.com/taman.dayu"
         ],
-        "last_verified": "2026-04-29",
+        "last_verified": "2026-04-30",
         "notes": "8 membership categories listed on official site. Benefits include unlimited green-fee-free golf for most tiers, advance tee-time registration, preferential rates, tournament eligibility, up to 14 reciprocal playing rights/year. Fee amounts (Uang Pangkal/Iuran/Jaminan) not publicly disclosed on official channels - WA +62 811 34 88 234."
       }
     },
@@ -4680,7 +5032,7 @@
           "https://www.instagram.com/glantangangolf_coursejember/",
           "https://www.instagram.com/ptpn1reg5_glantangan/"
         ],
-        "last_verified": "2026-04-29",
+        "last_verified": "2026-04-30",
         "notes": "Operated by Pemkab Jember in cooperation with PTPN XII (now PTPN I Reg 5). No standalone website. No membership program or fees disclosed on official IG channels."
       }
     },
@@ -4978,46 +5330,37 @@
         "last_verified": "2026-04-30"
       },
       "membership": {
-        "available": "unknown",
+        "available": true,
         "categories": [
           {
             "name": "Individual Membership (Golflink Resort)",
-            "initiation_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
-            "annual_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
+            "initiation_fee": null,
+            "annual_fee": null,
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": null,
-            "notes": "Lifetime, transferable, shareholder-based membership covering 3 courses (Palm Hill Jakarta + New Kuta Bali + Black Rocks Belitung) with international reciprocal benefits. Pricing not publicly disclosed - inquiry only."
+            "transferable": true,
+            "notes": "Lifetime, transferable, shareholder-based. Covers 3 courses (Palm Hill Sentul + New Kuta Bali + Black Rocks Belitung) with international reciprocals. Pricing inquiry-only."
           },
           {
             "name": "Corporate Membership (Golflink Resort)",
-            "initiation_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
-            "annual_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
+            "initiation_fee": null,
+            "annual_fee": null,
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": null,
-            "notes": "Corporate consumers tier. Pricing not publicly disclosed."
+            "transferable": true,
+            "notes": "Corporate tier; pricing inquiry-only."
           }
         ],
+        "currency_note": "IDR/USD (not disclosed)",
         "sources": [
-          "https://newkutagolf.co.id/",
           "https://newkutagolf.co.id/membership",
           "https://golflinkresorts.co.id/courses/newkutagolf/en"
         ],
-        "last_verified": "2026-04-29",
-        "notes": "Operated by PT Intra Golflinks Resorts Tbk. Membership is offered (Individual + Corporate, lifetime transferable shareholder-based) but no public price list. Membership page returns server errors during verification; rates provided on inquiry via newkutagolf@newkutagolf.co.id."
+        "notes": "Operated by PT Intra Golflink Resorts Tbk. Lifetime transferable shareholder-based. Course renovation underway with temporary greens; play continues. Inquire newkutagolf@newkutagolf.co.id.",
+        "confidence": "medium",
+        "last_verified": "2026-04-30"
       }
     },
     {
@@ -5103,86 +5446,64 @@
         "categories": [
           {
             "name": "Individual Lifetime Membership",
-            "initiation_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
-            "annual_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
+            "initiation_fee": null,
+            "annual_fee": null,
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": null,
-            "notes": "Lifetime tier; price disclosed on application."
+            "transferable": null,
+            "notes": "Lifetime tier. Pricing inquiry-only. Per GoGolf, lifetime program reportedly closed pre-2017 with new applications variable."
           },
           {
             "name": "Corporate Lifetime Membership",
-            "initiation_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
-            "annual_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
+            "initiation_fee": null,
+            "annual_fee": null,
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": null,
-            "notes": "Lifetime corporate; price disclosed on application."
+            "transferable": null,
+            "notes": "Corporate lifetime; pricing inquiry-only."
           },
           {
             "name": "Senior Membership (60+)",
-            "initiation_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
-            "annual_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
+            "initiation_fee": null,
+            "annual_fee": null,
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": null,
-            "notes": "Senior golfers aged 60 and up."
+            "transferable": null,
+            "notes": "Age 60+; pricing inquiry-only."
           },
           {
             "name": "Supplementary Spouse / Junior Membership",
-            "initiation_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
-            "annual_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
+            "initiation_fee": null,
+            "annual_fee": null,
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": null,
-            "notes": "Add-on tier for spouse / junior."
+            "transferable": null,
+            "notes": "Add-on for spouse/junior; pricing inquiry-only."
           },
           {
-            "name": "Term Membership",
-            "initiation_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
-            "annual_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
+            "name": "Term Membership (1-year)",
+            "initiation_fee": null,
+            "annual_fee": null,
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": 1,
-            "notes": "1-year term membership."
+            "transferable": null,
+            "notes": "1-year term."
           }
         ],
+        "currency_note": "IDR/USD (not disclosed)",
         "sources": [
           "https://www.handaragolfresort.com/membership/",
-          "https://www.handaragolfresort.com/handara-golf-membership/"
+          "https://www.archyde.com/bali-handara-golf-resort-faces-legal-scrutiny-over-planning-and-environmental-violations/",
+          "https://www.balipost.com/news/2026/04/06/540498/Pelanggaran-Tata-Ruang-Bali-Handara"
         ],
-        "last_verified": "2026-04-29",
-        "notes": "Five tiers confirmed (Individual Lifetime, Corporate Lifetime, Senior 60+, Supplementary Spouse/Junior, Term 1-year). Direct fetch returned 403 during verification; pricing not published online - inquire at membership@handaragolfresort.com / hotline +62 87 8888 36 888."
+        "notes": "5 tiers confirmed. ALERT: Bali DPRD Pansus TRAP issued formal recommendations 2026-04-06 (return expired SHGB to state, hydrology controls, steep-slope construction limits); presidential suite + ~40 rooms sealed Jan 22 2026; managing director hearing Feb 4 2026; court hearing Feb 28 2026. Golf course operating; legal uncertainty could affect future membership viability.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
       }
     },
     {
@@ -5449,7 +5770,7 @@
         "sources": [
           "https://sirebeachgolfclub.com/"
         ],
-        "last_verified": "2026-04-29",
+        "last_verified": "2026-04-30",
         "notes": "sirebeachgolfclub.com (Kosaido Lombok) does not publish a public membership page. Site returned ECONNREFUSED during verification window. No membership category or fee schedule visible from official channels - inquiries via the club directly."
       }
     },
@@ -5691,11 +6012,8 @@
         "available": true,
         "categories": [
           {
-            "name": "Elite Golf Plan (EGP)",
-            "initiation_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
+            "name": "Elite Golf Plan (EGP) - Standard",
+            "initiation_fee": null,
             "annual_fee": {
               "amount": 31500000,
               "currency": "IDR"
@@ -5703,31 +6021,32 @@
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": 1,
-            "notes": "IDR 31,500,000 (~SGD 3,000) per year. Includes unlimited green fees, unlimited driving range balls, 4 complimentary nights at Ria Bintan Golf Lodge, ground transfers, dedicated buggy & caddy, 20% off pro shop, USD 400 merchandise voucher, welcome kit. Earlier launch tier was IDR 30,429,000 / IDR 29,925,000 (~SGD 2,850); current published rate IDR 31,500,000."
+            "transferable": false,
+            "notes": "1-year. IDR 31,500,000 (~SGD 3,000)/year. Unlimited GF, unlimited driving range, 4 nights at Ria Bintan Golf Lodge, dedicated buggy & caddy, 20% Pro Shop discount, USD 400 merchandise voucher. Capped at first 50 sign-ups originally."
           },
           {
-            "name": "Elite Golf Premium Plan",
-            "initiation_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
+            "name": "Elite Golf Plan Premium",
+            "initiation_fee": null,
             "annual_fee": {
-              "amount": null,
+              "amount": 31500000,
               "currency": "IDR"
             },
             "monthly_fee": null,
             "refundable_deposit": null,
-            "term_years": null,
-            "notes": "Premium tier referenced on official EGP page - pricing not published; inquire directly."
+            "term_years": 1,
+            "transferable": false,
+            "notes": "Premium: same headline IDR 31,500,000 (SGD 3,000)/year. Adds 6 nights lodge stay w/ breakfast for 2, airport transfers + executive lounge, 30% merchandise / 20% dining discount, VIP locker access, limited-edition umbrella."
           }
         ],
+        "currency_note": "IDR with SGD reference (SGD 3,000)",
         "sources": [
           "https://www.riabintan.com/elite-golf-plan/",
-          "https://www.riabintan.com/egp/",
-          "https://riabintangolf.com/rates/"
+          "https://www.riabintan.com/egp-premium/",
+          "https://www.bintan-resorts.com/ria-bintan-golf-club-launches-new-elite-golf-plan-membership-drive/"
         ],
-        "last_verified": "2026-04-29",
-        "notes": "Only the Ocean Course is operating (Forest 9 closed). Rate card on riabintangolf.com/rates does not list memberships; the riabintan.com sister site publishes the Elite Golf Plan."
+        "notes": "Both Standard and Premium EGP actively promoted. No initiation, no deposit, no monthly dues. Inquire membership@riabintan.com.",
+        "confidence": "high",
+        "last_verified": "2026-04-30"
       }
     },
     {
@@ -6136,10 +6455,7 @@
         "categories": [
           {
             "name": "Individual Membership (Subscription)",
-            "initiation_fee": {
-              "amount": null,
-              "currency": "SGD"
-            },
+            "initiation_fee": null,
             "annual_fee": null,
             "monthly_fee": {
               "amount": 65,
@@ -6147,14 +6463,12 @@
             },
             "refundable_deposit": null,
             "term_years": null,
-            "notes": "Monthly subscription SGD 65/month for individual member. Includes member rates and reciprocal partner-course privileges. Membership transferable subject to T&Cs."
+            "transferable": true,
+            "notes": "SGD 65/month subscription. Member rates + reciprocal partner-course privileges (mygolfkaki network). Transferable subject to T&C."
           },
           {
             "name": "Family Membership (Subscription)",
-            "initiation_fee": {
-              "amount": null,
-              "currency": "SGD"
-            },
+            "initiation_fee": null,
             "annual_fee": null,
             "monthly_fee": {
               "amount": 80,
@@ -6162,15 +6476,18 @@
             },
             "refundable_deposit": null,
             "term_years": null,
-            "notes": "Monthly subscription SGD 80/month covering wife and children under 21."
+            "transferable": true,
+            "notes": "SGD 80/month covering wife and children under 21."
           }
         ],
+        "currency_note": "SGD subscription (targeted at Singapore-based golfers)",
         "sources": [
           "https://batam.palmspringsgolf.co/membership",
           "https://www.mygolfkaki.com/MemberPerks.aspx?p=allnews&category=160"
         ],
-        "last_verified": "2026-04-29",
-        "notes": "Direct fetch of membership page returned 503 during verification; pricing confirmed via club's listing on partner site mygolfkaki (operator of Palm Springs reciprocal programme). Standard SGD 65 / SGD 80 monthly published rates. Initiation/joining fee not separately disclosed publicly."
+        "notes": "Sinar Mas-affiliated. Open subscription model; no initiation fee/deposit publicly disclosed. No active resale (monthly recurring, no equity).",
+        "confidence": "high",
+        "last_verified": "2026-04-30"
       }
     },
     {
@@ -6264,26 +6581,23 @@
         "categories": [
           {
             "name": "Membership (tier not publicly itemized)",
-            "initiation_fee": {
-              "amount": null,
-              "currency": "SGD"
-            },
-            "annual_fee": {
-              "amount": null,
-              "currency": "SGD"
-            },
+            "initiation_fee": null,
+            "annual_fee": null,
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": null,
-            "notes": "Membership benefits include green-fee exemption, member rates for buggy & caddy (Rp 350,000 weekday/weekend), guest privileges, 10% F&B + Pro Shop discount, membership card, golf bag tag, handicap card, joining gift. Specific joining fee and annual subscription not publicly disclosed."
+            "transferable": null,
+            "notes": "Benefits: GF exemption, member buggy & caddy rate (IDR 350,000 wkdy/wknd), guest privileges, 10% F&B + Pro Shop discount, member card, golf bag tag, handicap card, joining gift. Specific joining/annual/deposit not publicly disclosed under either Tering Bay or rebranded BICC. New batamislandcc.com /ProductPage exists but pricing not loaded."
           }
         ],
+        "currency_note": "IDR/SGD — pricing not public",
         "sources": [
-          "http://teringbay.com.sg/membership/",
-          "https://www.batamislandcc.com/"
+          "https://www.batamislandcc.com/",
+          "https://www.iacworldwide.com/clubs/tering-bay-golf-country-club/"
         ],
-        "last_verified": "2026-04-29",
-        "notes": "Official membership page (teringbay.com.sg/membership) returned ECONNREFUSED during verification; benefits list documented but no fee schedule public. Course is also branded Batam Island Country Club. Inquire for current SGD/IDR pricing."
+        "notes": "Rebranded 2024 from Tering Bay to Batam Island Country Club (PT Megah Beverly Sejahtera, Townland-led). Membership programme being relaunched under new name; numeric pricing not yet published. Phone +62 853-8866-6883.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
       }
     },
     {
@@ -6357,26 +6671,23 @@
         "categories": [
           {
             "name": "Member rate (no public joining fee schedule)",
-            "initiation_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
-            "annual_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
+            "initiation_fee": null,
+            "annual_fee": null,
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": null,
-            "notes": "Members pay flat IDR 245,000 (9-hole) on weekdays AND weekends, vs visitor IDR 245,000 wkdy / IDR 295,000 wknd - inclusive of GF, 10% govt tax, caddy, buggy and water. Joining fee not publicly disclosed."
+            "transferable": null,
+            "notes": "Members benefit from IDR 245,000 (9H) flat wkdy/wknd vs visitor IDR 245k-295k wkdy / 295k wknd; 18H package IDR 455,000. Joining fee not publicly disclosed."
           }
         ],
+        "currency_note": "IDR",
         "sources": [
           "https://www.welcometobatam.com/tamarin-santana-golf.asp",
           "https://www.championsgolf.co/about-the-golf-course/tamarin-golf-resort/"
         ],
-        "last_verified": "2026-04-29",
-        "notes": "9-hole Jack Nicklaus design managed by Champions Golf. Members benefit from flat green-fee rate. No standalone official membership URL or brochure surfaced - inquiries via Champions Golf or +62 778 761069."
+        "notes": "Only Jack Nicklaus 9-hole on Batam (second 9 never built). Rebranded 'Tamarin Golf & Footgolf Club' under Champions Golf management. No public membership brochure. Inquire +62 778 761069.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
       }
     },
     {
@@ -6477,56 +6788,43 @@
         "categories": [
           {
             "name": "Individual Membership",
-            "initiation_fee": {
-              "amount": null,
-              "currency": "SGD"
-            },
-            "annual_fee": {
-              "amount": null,
-              "currency": "SGD"
-            },
+            "initiation_fee": null,
+            "annual_fee": null,
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": null,
-            "notes": "Transferable individual membership. Pricing not published online - membership@southlinks.golf or +62-778-325364/324128."
+            "transferable": true,
+            "notes": "Transferable. Member rates: 9H IDR ~225,000 / 18H IDR ~325,000 (per gogolf.co.id). Joining/subscription not published; brochure image-only."
           },
           {
             "name": "Corporate Membership",
-            "initiation_fee": {
-              "amount": null,
-              "currency": "SGD"
-            },
-            "annual_fee": {
-              "amount": null,
-              "currency": "SGD"
-            },
+            "initiation_fee": null,
+            "annual_fee": null,
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": null,
-            "notes": "Transferable corporate tier; up to four players per package - popular for client entertainment."
+            "transferable": true,
+            "notes": "Transferable corporate tier; up to 4 players per package. Popular for client entertainment."
           },
           {
             "name": "Term Membership",
-            "initiation_fee": {
-              "amount": null,
-              "currency": "SGD"
-            },
-            "annual_fee": {
-              "amount": null,
-              "currency": "SGD"
-            },
+            "initiation_fee": null,
+            "annual_fee": null,
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": 1,
+            "transferable": false,
             "notes": "Non-transferable; 1-year term."
           }
         ],
+        "currency_note": "Likely IDR or SGD; figures not published",
         "sources": [
           "https://www.southlinks.golf/v1/about/membership/",
-          "https://www.southlinks.golf/"
+          "https://gogolf.co.id/en/golf-course/southlinks-golf-and-country-club"
         ],
-        "last_verified": "2026-04-29",
-        "notes": "Three tiers confirmed (Individual, Corporate, Term) on the official membership page; brochure image referenced but fee figures not extractable from text. Inquiries via membership@southlinks.golf / sales@southlinks.golf."
+        "notes": "3 tiers confirmed; pricing locked in image brochure. Inquire membership@southlinks.golf / +62-778-325364.",
+        "confidence": "medium",
+        "last_verified": "2026-04-30"
       }
     },
     {
@@ -6778,71 +7076,53 @@
         "categories": [
           {
             "name": "Ordinary Membership",
-            "initiation_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
-            "annual_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
+            "initiation_fee": null,
+            "annual_fee": null,
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": null,
-            "notes": "Ordinary tier - member + guest may walk on the course on weekdays only. Specific IDR price not displayed in /membership/membership-price page during verification."
+            "transferable": null,
+            "notes": "Member + guest may walk on weekdays only. Specific IDR not displayed; /membership/membership-price/ returned 404."
           },
           {
             "name": "Family Membership",
-            "initiation_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
-            "annual_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
+            "initiation_fee": null,
+            "annual_fee": null,
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": null,
+            "transferable": null,
             "notes": "Covers spouse and up to 2 children under 18."
           },
           {
             "name": "Leasing / Term Membership",
-            "initiation_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
-            "annual_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
+            "initiation_fee": null,
+            "annual_fee": null,
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": null,
-            "notes": "Popular with expatriates - complimentary green fees with no monthly subscription. Term length and price not publicly published."
+            "transferable": false,
+            "notes": "Popular with expatriates — complimentary green fees with no monthly subscription. Term/price not publicly published."
           },
           {
             "name": "Corporate Membership",
-            "initiation_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
-            "annual_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
+            "initiation_fee": null,
+            "annual_fee": null,
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": null,
-            "notes": "Open to local and foreign companies; entitled to 2 nominees (director or employee)."
+            "transferable": true,
+            "notes": "Open to local and foreign companies; entitled to 2 nominees."
           }
         ],
+        "currency_note": "IDR (and SGD for SG-based leasing)",
         "sources": [
           "https://www.indahpuri.com/membership/membership-price/",
-          "https://www.indahpuri.com/"
+          "https://www.indahpuri.com/membership/reciprocal-updates/"
         ],
-        "last_verified": "2026-04-29",
-        "notes": "Four membership categories confirmed on official site. Pricing pages (/membership/, /membership/membership-price/) returned 404 during verification window despite Google cache referencing 'affordable joining fee'. No public IDR figures - inquire directly."
+        "notes": "4 tiers confirmed. Pricing pages 404 during verification despite Google cache referencing 'affordable joining fee'. Inquire marketing@indahpuri.com / +62 778 323 702-3.",
+        "confidence": "medium",
+        "last_verified": "2026-04-30"
       }
     },
     {
@@ -6928,25 +7208,24 @@
         "available": true,
         "categories": [
           {
-            "name": "Founder Member Package",
-            "initiation_fee": {
-              "amount": null,
-              "currency": "IDR"
-            },
+            "name": "Founder Member Package (real-estate-linked)",
+            "initiation_fee": null,
             "annual_fee": null,
             "monthly_fee": null,
             "refundable_deposit": null,
             "term_years": null,
-            "notes": "Limited to 300 founder members. Bundles a residential kavling (lot types: S 650, S 500, S 300, Exclusive) + golf course playright share in PT Belitung Golf and Resorts + access to Founder Lounge in clubhouse + lifetime playing rights and potential dividends from club operations + priority tee-time + tournament invitations. Specific IDR price not publicly disclosed - inquire +62 811 7109 991 / +62 811 8078 885 / WA +62 811 8078 885."
+            "transferable": null,
+            "notes": "Limited to 300 founder members. Property-linked: residential kavling (S 650, S 500, S 300, Exclusive) bundled with golf-course playright share in PT Belitung Golf and Resorts. Lifetime playing rights, potential dividends, priority tee-time, tournament invitations. Specific IDR not publicly disclosed — inquire +62 811 7109 991 / WA +62 811 8078 885. No standalone golf-only tier."
           }
         ],
+        "currency_note": "IDR (real-estate-linked)",
         "sources": [
-          "https://blackrocksgolf.co.id/",
           "https://blackrocksgolf.co.id/membership.php",
           "https://golflinkresorts.co.id/courses/blackrocks/en"
         ],
-        "last_verified": "2026-04-29",
-        "notes": "Membership is property-linked (real estate + playright). Operated under PT Intra Golflinks Resorts Tbk - same group as New Kuta Golf and Palm Hill Country Club Jakarta. No standalone golf-only membership tier published."
+        "notes": "Operated by PT Intra Golflink Resorts Tbk (parent ticker GOLF) — same group as New Kuta and Palm Hill Sentul. Property-linked equity. No public resale market.",
+        "confidence": "medium",
+        "last_verified": "2026-04-30"
       }
     },
     {
@@ -7012,15 +7291,25 @@
       "membership": {
         "available": true,
         "categories": [
-          "Member"
+          {
+            "name": "Member (rate-only data)",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "transferable": null,
+            "notes": "Per-round member rate IDR 250,000 vs Day rate IDR 350,000 (18H). Initiation/monthly dues/categories not published. Inquire Marketing +62 811 6561 311."
+          }
         ],
+        "currency_note": "IDR",
         "sources": [
           "https://royal-sumatra.com/golf-course/",
-          "https://royal-sumatra.com/contact-us/",
-          "https://www.instagram.com/royalsumatraofficial/"
+          "https://royal-sumatra.com/contact-us/"
         ],
-        "last_verified": "2026-04-29",
-        "notes": "Official site shows a 'MEMBERSHIP' inquiry form and a Member vs Day rate table (Member 250k IDR / Day 350k IDR for 18 holes), confirming a paid-membership program. Initiation fee, monthly dues and category breakdown are not published; inquiries via Marketing Office +62 811 6561 311 / Reception +62 61 8362999."
+        "notes": "300-ha residential & golf resort. Membership inquiry form on official site confirms paid programme exists; tiered breakdown not public.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
       }
     },
     {
@@ -7087,7 +7376,7 @@
         "sources": [
           "https://www.instagram.com/tgcsumut/"
         ],
-        "last_verified": "2026-04-29",
+        "last_verified": "2026-04-30",
         "notes": "PTPN II plantation-affiliated public course. No standalone official site; only IG @tgcsumut which does not publish membership categories or fees. Inquiries via WhatsApp/phone +62 61 794 0055."
       }
     },
@@ -7155,7 +7444,7 @@
         "sources": [
           "https://www.facebook.com/511563452529101"
         ],
-        "last_verified": "2026-04-29",
+        "last_verified": "2026-04-30",
         "notes": "No official website. Facebook page exists but does not publish membership info. Gary Player-designed 1994 walking course; rates and membership handled by phone/WhatsApp."
       }
     },
@@ -7223,7 +7512,7 @@
         "sources": [
           "https://www.instagram.com/bukitbarisangolfcourse/"
         ],
-        "last_verified": "2026-04-29",
+        "last_verified": "2026-04-30",
         "notes": "Private Jack Nicklaus-designed Bukit Barisan Country Club. Official site bbcc-golf.com is unreachable (ECONNREFUSED). IG @bukitbarisangolfcourse does not publish membership pricing; widely reported as a private members' club with access by invitation/sponsorship."
       }
     },
@@ -7356,7 +7645,7 @@
         "sources": [
           "https://labersahotel.com/lghcc/"
         ],
-        "last_verified": "2026-04-29",
+        "last_verified": "2026-04-30",
         "notes": "Labersa Grand Hotel & Country Club official site is live but does not publish golf membership categories or fees. Inquiries via +62 761 41555."
       }
     },
@@ -7443,7 +7732,7 @@
           "https://www.instagram.com/kentenheritage_1937golfcourse/",
           "https://www.instagram.com/palembang.golf/"
         ],
-        "last_verified": "2026-04-29",
+        "last_verified": "2026-04-30",
         "notes": "Kenten Heritage 1937 Golf Course (Palembang Golf Club). Active IG accounts but no official website and no published membership pricing."
       }
     },
@@ -7571,7 +7860,7 @@
         "available": "unknown",
         "categories": [],
         "sources": [],
-        "last_verified": "2026-04-29",
+        "last_verified": "2026-04-30",
         "notes": "Yayasan Padang Golf Sukarame (Bandar Lampung). No official site or branded IG/FB account; only Instagram location tags. Membership not advertised online."
       }
     },
@@ -7737,14 +8026,16 @@
         "last_verified": "2026-04-30"
       },
       "membership": {
-        "available": "unknown",
+        "available": true,
         "categories": [],
+        "currency_note": "IDR",
         "sources": [
           "https://www.instagram.com/karangjoanggolfbpn/",
-          "https://www.facebook.com/1843648718997631"
+          "https://gran.senyiurhotels.com/service/detail/5"
         ],
-        "last_verified": "2026-04-29",
-        "notes": "Karang Joang Golf & Country Club (Balikpapan). IG/FB accounts active but no website and no published membership categories or fees."
+        "notes": "CORRECTION: Privately owned by Senyiur Hotels & Resorts (designed by H.M. Jos Soetomo, opened 1997, 6,125 yards) — NOT a Pertamina/PTBA/military course. Open to public; Gran Senyiur hotel guests get 50% green-fee discount. No public membership pricing. Phone +62 542-566-5846.",
+        "confidence": "medium",
+        "last_verified": "2026-04-30"
       }
     },
     {
@@ -7898,7 +8189,7 @@
         "sources": [
           "https://www.instagram.com/putriayucottage/"
         ],
-        "last_verified": "2026-04-29",
+        "last_verified": "2026-04-30",
         "notes": "Mahulu Golf is co-located with Putri Ayu Cottage. No course-specific website and no published membership info on its IG."
       }
     },
@@ -7961,7 +8252,7 @@
         "available": "unknown",
         "categories": [],
         "sources": [],
-        "last_verified": "2026-04-29",
+        "last_verified": "2026-04-30",
         "notes": "9-hole local course in Palangkaraya. No official website or branded IG/FB; membership not advertised online."
       }
     },
@@ -8134,7 +8425,7 @@
         "sources": [
           "https://www.instagram.com/golf_alamkhatulistiwa/"
         ],
-        "last_verified": "2026-04-29",
+        "last_verified": "2026-04-30",
         "notes": "Pontianak driving range with 9-hole course. IG @golf_alamkhatulistiwa publishes green fees but no membership categories or pricing."
       }
     },
@@ -8239,16 +8530,33 @@
       "membership": {
         "available": true,
         "categories": [
-          "Yearly Member"
+          {
+            "name": "Individual / Couple / Junior / Corporate / Extended Corporate / 1-Year Term (range)",
+            "initiation_fee": {
+              "amount_min": 30000000,
+              "amount_max": 121000000,
+              "currency": "IDR"
+            },
+            "annual_fee": {
+              "amount": 13200000,
+              "currency": "IDR"
+            },
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "transferable": null,
+            "notes": "Registration/initiation fee IDR 30,000,000 to IDR 121,000,000 depending on category; annual fee approx IDR 13,200,000. 6 named categories: Individual, Couple, Junior, Corporate, Extended Corporate, plus 1-Year Term tier. Member GF IDR 175,000 (9H) / IDR 235,000 (18H). Benefits: 6 free weekday rounds/yr, 300 driving-range balls/day, 25% guest GF discount, 20% F&B, 15% pro shop, free locker/towel, complimentary VIP room 2x/yr, reciprocal partner-course rates."
+          }
         ],
+        "currency_note": "IDR primary",
         "sources": [
-          "https://padivalley.com/golf-reservation",
           "https://padivalley.com/",
-          "https://www.instagram.com/padivalleygolfclub/",
-          "https://www.facebook.com/padivalleygolfclub/"
+          "https://gogolf.co.id/en/golf-course/padivalley-golf-club",
+          "https://en.gogolf.co.id/golf-course/padivalley-golf-club"
         ],
-        "last_verified": "2026-04-29",
-        "notes": "Official site lists a Yearly Member program with benefits: unlimited green fees, 25% guest green-fee discount, 20% F&B discount, dedicated locker/towel, special event rates, reciprocal rates at partner courses, 15% pro shop discount, complimentary VIP room (2x/year), free 300 driving-range balls. Specific membership fee not published; inquiries via club WA/email."
+        "notes": "First international-standard course in Sulawesi (CitraGrand Galesong / Ciputra Group). Per-category breakdown not separately broken; GoGolf cites IDR 30M-121M init range. Refundable deposit/term/resale not disclosed. Inquiry: WA +62 812-4284-4640.",
+        "confidence": "medium",
+        "last_verified": "2026-04-30"
       }
     },
     {
@@ -8319,13 +8627,16 @@
         "last_verified": "2026-04-30"
       },
       "membership": {
-        "available": "unknown",
+        "available": "military_personnel",
         "categories": [],
+        "currency_note": "IDR",
         "sources": [
-          "https://www.facebook.com/p/Padang-Golf-Baddoka-Makassar-100057286096237/"
+          "https://lantamal6-koarmada2.tnial.mil.id/lantamal-vi-makassar-olahraga-rutin-sambil-menikmati-panorama-lapangan-golf-baddoka/",
+          "https://tni.mil.id/view-247860-turnamen-golf-hut-tni-ke-79-tahun-2024-dan-farewell-golf-di-padang-golf-baddoka-lantamal-vi.html"
         ],
-        "last_verified": "2026-04-29",
-        "notes": "Padang Golf Baddoka Makassar (TNI AU-affiliated). Facebook page exists; no official website and no published membership fees. Likely military-affiliated access plus public guest play."
+        "notes": "TNI AL (Indonesian Navy) facility — Faswatpers of Lantamal VI Makassar; Persatuan Golf TNI Angkatan Laut (PGAL) Makassar plays here. Designed by Ronald Fream, opened 1969. Public guest play accepted (TikTok 2024: 18H IDR 300,000, caddy 150-200k, cart 300k). Membership presumed limited to TNI AL/Lantamal VI personnel; public players pay daily GF only. CORRECTION: prior data may have implied TNI AU; evidence consistently confirms TNI AL.",
+        "confidence": "high",
+        "last_verified": "2026-04-30"
       }
     },
     {
@@ -8392,13 +8703,25 @@
       "membership": {
         "available": true,
         "categories": [
-          "Member Club"
+          {
+            "name": "Member Club (unspecified tier)",
+            "initiation_fee": null,
+            "annual_fee": null,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": null,
+            "transferable": null,
+            "notes": "Official site exposes 'MEMBER CLUB' tab confirming program exists; no IDR figures, categories, deposit, term, or resale published. Inquire Ms. Shereen +62 895-3964-85531."
+          }
         ],
+        "currency_note": "IDR",
         "sources": [
-          "https://akrgolfmanado.com/"
+          "https://www.akrgolfmanado.com/",
+          "https://www.akrland.com/id/manado"
         ],
-        "last_verified": "2026-04-29",
-        "notes": "Official site shows a 'MEMBER CLUB' tab indicating an active membership program, but no fee/category details are published. Inquiries via Ms. Shereen +62 895 3964 85531 / Mrs. Fitriah +62 853 4198 8111."
+        "notes": "Operated by AKR Land within Grand Kawanua International City (formerly Wenang Golf Course 1978). Current rates effective Dec 1, 2024. NOTE: AKR Land has been embroiled in legal disputes (PN Manado seized GKIC marketing office 2023) — membership stability may be affected.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
       }
     },
     {
@@ -8613,13 +8936,15 @@
       "membership": {
         "available": "unknown",
         "categories": [],
+        "currency_note": "IDR",
         "sources": [
-          "https://www.instagram.com/sanggoleogolfclub/",
-          "https://www.facebook.com/p/Sanggoleo-Golf-Club-Kendari-100065426711781/",
-          "https://www.threads.com/@sanggoleogolfclub"
+          "https://kendarinews.com/2021/08/19/separuh-lapangan-golf-sanggoleo-kendari-dikuasai-warga/",
+          "https://sultra.bpk.go.id/wp-content/uploads/2020/07/Renovasi-Lapangan-Golf-Sanggoleo.pdf",
+          "https://golftimes.id/2023/01/19/lapangan-golf-sanggoleo-jadi-andalan-pemain-untuk-nikmati-sunset/"
         ],
-        "last_verified": "2026-04-29",
-        "notes": "Sanggoleo Golf Club Kendari has active IG, FB and Threads accounts but no website and no published membership categories or fees. Inquiries handled via DM/phone."
+        "notes": "Asset of Pemerintah Provinsi Sulawesi Tenggara. Originally 35 ha 18-hole, REDUCED to 24.5 ha 9-hole due to Mahkamah Agung ruling that 10.5 ha is owned by Keluarga Sangga Kalenggo (controlled by residents per 2021 Kendari News). Open to public (Rp 10,000 entry); used by PGI Sultra and Korem 143/HO for tournaments. Membership not advertised online.",
+        "confidence": "medium",
+        "last_verified": "2026-04-30"
       }
     },
     {
