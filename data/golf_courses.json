@@ -10244,8 +10244,8 @@
       "region": "Tangerang Selatan",
       "province": "Banten",
       "address": "Pamulang, South Tangerang",
-      "lat": -6.3389,
-      "lng": 106.7567,
+      "lat": -6.3541161,
+      "lng": 106.7641624,
       "holes": 18,
       "par": 72,
       "designer": "Thomson, Wolveridge & Associates",
@@ -10289,11 +10289,12 @@
         "confidence": "medium",
         "evidence": [
           "https://www.instagram.com/pondokcabegolf/",
-          "https://gogolf.co.id/en/golf-course/pondok-cabe-golf-club"
+          "https://gogolf.co.id/en/golf-course/pondok-cabe-golf-club",
+          "2026-04-30 coordinate correction: -6.3389,106.7567 -> -6.3541161,106.7641624 (Plus code JPVQ+JW). Stored ~1.8km NW of actual course at Pamulang"
         ],
         "closure_reason": null,
         "reopened_as": null,
-        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Wahana Kridatama (Pertamina-affiliated).",
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Wahana Kridatama (Pertamina-affiliated). | 2026-04-30 corrected: Stored ~1.8km NW of actual course at Pamulang (Plus code JPVQ+JW)",
         "last_verified": "2026-04-30"
       },
       "membership": {
@@ -10338,8 +10339,8 @@
       "region": "Cilegon",
       "province": "Banten",
       "address": "Cilegon, Banten",
-      "lat": -6.0167,
-      "lng": 106.0531,
+      "lat": -6.0013788,
+      "lng": 106.0433705,
       "holes": 18,
       "par": 72,
       "designer": "Alex Kandou",
@@ -10380,11 +10381,12 @@
         "confidence": "medium",
         "evidence": [
           "https://www.instagram.com/krakataugolf/",
-          "https://www.golfpass.com/travel-advisor/courses/38262-royale-krakatau-golf-country-club"
+          "https://www.golfpass.com/travel-advisor/courses/38262-royale-krakatau-golf-country-club",
+          "2026-04-30 coordinate correction: -6.0167,106.0531 -> -6.0013788,106.0433705 (Plus code X2W3+R4). Stored ~2km SE of actual course"
         ],
         "closure_reason": null,
         "reopened_as": null,
-        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Krakatau Sarana Properti (Krakatau Steel SOE group).",
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Krakatau Sarana Properti (Krakatau Steel SOE group). | 2026-04-30 corrected: Stored ~2km SE of actual course (Plus code X2W3+R4)",
         "last_verified": "2026-04-30"
       },
       "membership": {
@@ -10429,8 +10431,8 @@
       "region": "Sumedang",
       "province": "West Java",
       "address": "Jatinangor, Sumedang",
-      "lat": -6.9269,
-      "lng": 107.7711,
+      "lat": -6.9120064,
+      "lng": 107.7628791,
       "holes": 18,
       "par": 72,
       "designer": "Michael Coates & Associates",
@@ -10471,11 +10473,12 @@
         "confidence": "medium",
         "evidence": [
           "https://gogolf.co.id/en/golf-course/bandung-giri-gahana-golf-resort",
-          "https://www.tripadvisor.com/Attraction_Review-g297704-d3319982-Reviews-Giri_Gahana_Golf_Resort-Bandung_West_Java_Java.html"
+          "https://www.tripadvisor.com/Attraction_Review-g297704-d3319982-Reviews-Giri_Gahana_Golf_Resort-Bandung_West_Java_Java.html",
+          "2026-04-30 coordinate correction: -6.9269,107.7711 -> -6.9120064,107.7628791 (Plus code 24RP+M9). Stored ~1.8km SE of actual"
         ],
         "closure_reason": null,
         "reopened_as": null,
-        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Langen Kridha Pratyangga Tbk.",
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Langen Kridha Pratyangga Tbk. | 2026-04-30 corrected: Stored ~1.8km SE of actual (Plus code 24RP+M9)",
         "last_verified": "2026-04-30"
       },
       "membership": {
@@ -10520,8 +10523,8 @@
       "region": "Bandung",
       "province": "West Java",
       "address": "Margahayu, Bandung",
-      "lat": -6.975,
-      "lng": 107.5681,
+      "lat": -6.980684,
+      "lng": 107.586197,
       "holes": 18,
       "par": null,
       "designer": null,
@@ -10560,11 +10563,12 @@
         "confidence": "medium",
         "evidence": [
           "https://www.instagram.com/padanggolfsulaimann/",
-          "https://www.tni-au.mil.id/berita/detail/danlanud-sulaiman-dukung-olahraga-golf-kabupaten-bandung"
+          "https://www.tni-au.mil.id/berita/detail/danlanud-sulaiman-dukung-olahraga-golf-kabupaten-bandung",
+          "2026-04-30 coordinate correction: -6.975,107.5681 -> -6.980684,107.586197 (Plus code 24X3+34). Stored ~2km west of actual; corrected to Lanud Sulaiman base"
         ],
         "closure_reason": null,
         "reopened_as": null,
-        "coord_notes": "Approx. coords from research; verify if deploying. Operator: TNI AU Lanud Sulaiman.",
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: TNI AU Lanud Sulaiman. | 2026-04-30 corrected: Stored ~2km west of actual; corrected to Lanud Sulaiman base (Plus code 24X3+34)",
         "last_verified": "2026-04-30"
       },
       "membership": {
@@ -10583,8 +10587,8 @@
       "region": "Cirebon",
       "province": "West Java",
       "address": "Talun (Ciperna), Cirebon",
-      "lat": -6.7711,
-      "lng": 108.535,
+      "lat": -6.7747904,
+      "lng": 108.5236276,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -10623,11 +10627,12 @@
         "confidence": "medium",
         "evidence": [
           "https://www.instagram.com/royalcirebongolfofficial/",
-          "https://www.gatra.com/news-551664-gaya-hidup-lapangan-golf-royal-cirebon-golf-resmi-diluncurkan.html"
+          "https://www.gatra.com/news-551664-gaya-hidup-lapangan-golf-royal-cirebon-golf-resmi-diluncurkan.html",
+          "2026-04-30 coordinate correction: -6.7711,108.535 -> -6.7747904,108.5236276 (Plus code 6GGF+3F). Stored ~1.5km east of actual Padang Golf Ciperna"
         ],
         "closure_reason": null,
         "reopened_as": null,
-        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Saranagraha Adisentosa.",
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Saranagraha Adisentosa. | 2026-04-30 corrected: Stored ~1.5km east of actual Padang Golf Ciperna (Plus code 6GGF+3F)",
         "last_verified": "2026-04-30"
       },
       "membership": {
@@ -10646,8 +10651,8 @@
       "region": "Garut",
       "province": "West Java",
       "address": "Cilawu, Garut",
-      "lat": -7.2575,
-      "lng": 107.9264,
+      "lat": -7.2520908,
+      "lng": 107.9033935,
       "holes": 9,
       "par": null,
       "designer": "Denis Gerard Mulder (Dutch colonial)",
@@ -10685,11 +10690,12 @@
         "confidence": "medium",
         "evidence": [
           "https://gogolf.co.id/en/gogolf-news/ngamplang-flamboyan-golf-course",
-          "https://www.golfpass.com/travel-advisor/courses/38326-ngamplang-golf-course"
+          "https://www.golfpass.com/travel-advisor/courses/38326-ngamplang-golf-course",
+          "2026-04-30 coordinate correction: -7.2575,107.9264 -> -7.2520908,107.9033935 (Plus code PWX3+59). Stored ~2.6km east of actual at Cilawu, Garut"
         ],
         "closure_reason": null,
         "reopened_as": null,
-        "coord_notes": "Approx. coords from research; verify if deploying. Operator: Pemkab Garut / local management.",
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: Pemkab Garut / local management. | 2026-04-30 corrected: Stored ~2.6km east of actual at Cilawu, Garut (Plus code PWX3+59)",
         "last_verified": "2026-04-30"
       },
       "membership": {
@@ -10768,8 +10774,8 @@
       "region": "Banyumas",
       "province": "Central Java",
       "address": "Purwokerto, Banyumas",
-      "lat": -7.4197,
-      "lng": 109.2306,
+      "lat": -7.4140079,
+      "lng": 109.2471135,
       "holes": 9,
       "par": null,
       "designer": null,
@@ -10807,11 +10813,12 @@
         "confidence": "medium",
         "evidence": [
           "http://dinporabudpar.banyumaskab.go.id/view-sarana/32/wijaya-kusuma-golf-course?slg=olahraga",
-          "https://www.hole19golf.com/indonesia/padang-golf-wijayakusuma"
+          "https://www.hole19golf.com/indonesia/padang-golf-wijayakusuma",
+          "2026-04-30 coordinate correction: -7.4197,109.2306 -> -7.4140079,109.2471135 (Plus code HHC6+HF). Stored ~2km SW of actual at Bancarkembar, Purwokerto"
         ],
         "closure_reason": null,
         "reopened_as": null,
-        "coord_notes": "Approx. coords from research; verify if deploying. Operator: TNI AD Korem 071/Wijayakusuma.",
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: TNI AD Korem 071/Wijayakusuma. | 2026-04-30 corrected: Stored ~2km SW of actual at Bancarkembar, Purwokerto (Plus code HHC6+HF)",
         "last_verified": "2026-04-30"
       },
       "membership": {
@@ -10830,8 +10837,8 @@
       "region": "Banjarnegara",
       "province": "Central Java",
       "address": "Banjarnegara, Central Java",
-      "lat": -7.3789,
-      "lng": 109.7211,
+      "lat": -7.3910151,
+      "lng": 109.5977828,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -10869,11 +10876,12 @@
         "confidence": "medium",
         "evidence": [
           "https://www.instagram.com/banjarnegaragolf/",
-          "https://golftimes.id/2025/10/06/lapangan-golf-mrica-permata-hijau-di-jantung-banjarnegara/"
+          "https://golftimes.id/2025/10/06/lapangan-golf-mrica-permata-hijau-di-jantung-banjarnegara/",
+          "2026-04-30 coordinate correction: -7.3789,109.7211 -> -7.3910151,109.5977828 (Plus code JH6X+22). Stored longitude 109.7211 was ~14km east; correct location at Wanadadi near Mrica reservoir/PB Soedirman dam"
         ],
         "closure_reason": null,
         "reopened_as": null,
-        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT PLN Indonesia Power UBP Mrica.",
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT PLN Indonesia Power UBP Mrica. | 2026-04-30 corrected: Stored longitude 109.7211 was ~14km east; correct location at Wanadadi near Mrica reservoir/PB Soedirman dam (Plus code JH6X+22)",
         "last_verified": "2026-04-30"
       },
       "membership": {
@@ -10892,8 +10900,8 @@
       "region": "Cilacap",
       "province": "Central Java",
       "address": "Jeruklegi, Cilacap",
-      "lat": -7.6322,
-      "lng": 109.0008,
+      "lat": -7.6373333,
+      "lng": 109.0317988,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -10932,11 +10940,12 @@
         "confidence": "medium",
         "evidence": [
           "https://www.instagram.com/tritihgolf/",
-          "https://playgolf.id/golf_courses/pertamina-tritih-golf-and-country-club-cilacap/"
+          "https://playgolf.id/golf_courses/pertamina-tritih-golf-and-country-club-cilacap/",
+          "2026-04-30 coordinate correction: -7.6322,109.0008 -> -7.6373333,109.0317988 (Plus code 94XX+W2). Stored ~3.5km west of actual at Pasren Tritih Lor"
         ],
         "closure_reason": null,
         "reopened_as": null,
-        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Pertamina (Persero) Refinery Unit IV Cilacap.",
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Pertamina (Persero) Refinery Unit IV Cilacap. | 2026-04-30 corrected: Stored ~3.5km west of actual at Pasren Tritih Lor (Plus code 94XX+W2)",
         "last_verified": "2026-04-30"
       },
       "membership": {
@@ -11016,8 +11025,8 @@
       "region": "Semarang",
       "province": "Central Java",
       "address": "Mijen, Semarang",
-      "lat": -7.0408,
-      "lng": 110.3247,
+      "lat": -7.029085,
+      "lng": 110.3268207,
       "holes": 18,
       "par": null,
       "designer": null,
@@ -11053,11 +11062,12 @@
         "confidence": "high",
         "evidence": [
           "https://www.instagram.com/blackeagle.golf/",
-          "https://www.suaramerdeka.com/olahraga/0415959347/black-eagle-golf-course-destinasi-golf-premium-terbaru-di-semarang-telah-dibuka"
+          "https://www.suaramerdeka.com/olahraga/0415959347/black-eagle-golf-course-destinasi-golf-premium-terbaru-di-semarang-telah-dibuka",
+          "2026-04-30 coordinate correction: -7.0408,110.3247 -> -7.029085,110.3268207 (Plus code X8RG+62). Stored ~1.3km south of actual at BSB City Mijen"
         ],
         "closure_reason": null,
         "reopened_as": null,
-        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Aman Raga Golf Abadi (BSB City).",
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Aman Raga Golf Abadi (BSB City). | 2026-04-30 corrected: Stored ~1.3km south of actual at BSB City Mijen (Plus code X8RG+62)",
         "last_verified": "2026-04-30"
       },
       "membership": {
@@ -11268,8 +11278,8 @@
       "region": "Magetan/Madiun",
       "province": "East Java",
       "address": "Maospati, Magetan",
-      "lat": -7.6058,
-      "lng": 111.4244,
+      "lat": -7.6142593,
+      "lng": 111.4563417,
       "holes": 9,
       "par": null,
       "designer": null,
@@ -11308,11 +11318,12 @@
         "confidence": "medium",
         "evidence": [
           "https://us.trip.com/travel-guide/attraction/maospati/lapangan-golf-lanud-iswahyudi-144866577/",
-          "https://playgolf.id/golf_courses/lapangan-golf-lanud-iswahyudi/"
+          "https://playgolf.id/golf_courses/lapangan-golf-lanud-iswahyudi/",
+          "2026-04-30 coordinate correction: -7.6058,111.4244 -> -7.6142593,111.4563417 (Plus code 99X3+8X). Stored ~3.5km west of actual; corrected to Bakung, Maospati, Magetan"
         ],
         "closure_reason": null,
         "reopened_as": null,
-        "coord_notes": "Approx. coords from research; verify if deploying. Operator: TNI AU Lanud Iswahjudi.",
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: TNI AU Lanud Iswahjudi. | 2026-04-30 corrected: Stored ~3.5km west of actual; corrected to Bakung, Maospati, Magetan (Plus code 99X3+8X)",
         "last_verified": "2026-04-30"
       },
       "membership": {
@@ -11392,8 +11403,8 @@
       "region": "Lhokseumawe",
       "province": "Aceh",
       "address": "Lhokseumawe, Aceh",
-      "lat": 5.2236,
-      "lng": 96.9789,
+      "lat": 5.2217383,
+      "lng": 97.0393561,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -11432,11 +11443,12 @@
         "confidence": "medium",
         "evidence": [
           "https://www.golfpass.com/travel-advisor/courses/38321-arun-golf-club",
-          "https://www.golflux.com/course/arun-golf-club/"
+          "https://www.golflux.com/course/arun-golf-club/",
+          "2026-04-30 coordinate correction: 5.2236,96.9789 -> 5.2217383,97.0393561 (Plus code 62GR+5H). Stored longitude was ~7km too far west; correct at Batuphat, Muara Satu, Lhokseumawe (OSM way 297313748)"
         ],
         "closure_reason": null,
         "reopened_as": null,
-        "coord_notes": "Approx. coords from research; verify if deploying. Operator: Perta Arun Gas (Pertamina subsidiary).",
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: Perta Arun Gas (Pertamina subsidiary). | 2026-04-30 corrected: Stored longitude was ~7km too far west; correct at Batuphat, Muara Satu, Lhokseumawe (OSM way 297313748) (Plus code 62GR+5H)",
         "last_verified": "2026-04-30"
       },
       "membership": {
@@ -11455,8 +11467,8 @@
       "region": "Aceh Besar",
       "province": "Aceh",
       "address": "Lhoknga, Aceh Besar",
-      "lat": 5.4716,
-      "lng": 95.239,
+      "lat": 5.4793,
+      "lng": 95.237,
       "holes": 9,
       "par": null,
       "designer": null,
@@ -11492,11 +11504,12 @@
         "confidence": "medium",
         "evidence": [
           "https://acehprov.go.id/berita/kategori/olahraga/gubernur-tinjau-revitalisasi-lapangan-golf-lhoknga",
-          "https://seputaraceh.id/2024/08/28/venue-woodball-pon-xxi-2024-dipindahkan-ke-lapangan-golf-lampuuk/"
+          "https://seputaraceh.id/2024/08/28/venue-woodball-pon-xxi-2024-dipindahkan-ke-lapangan-golf-lampuuk/",
+          "2026-04-30 coordinate correction: 5.4716,95.239 -> 5.4793,95.237 (Plus code CQ6F+G7). Stored ~900m south of OSM Lapangan Golf Lhoknga centroid (OSM way 304300802)"
         ],
         "closure_reason": null,
         "reopened_as": null,
-        "coord_notes": "Approx. coords from research; verify if deploying. Operator: Aceh Provincial Tourism Office (Disbudpar Aceh).",
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: Aceh Provincial Tourism Office (Disbudpar Aceh). | 2026-04-30 corrected: Stored ~900m south of OSM Lapangan Golf Lhoknga centroid (OSM way 304300802) (Plus code CQ6F+G7)",
         "last_verified": "2026-04-30"
       },
       "membership": {
@@ -11515,8 +11528,8 @@
       "region": "Batu Bara",
       "province": "North Sumatra",
       "address": "Sei Suka, Batu Bara Regency",
-      "lat": 3.3556,
-      "lng": 99.4583,
+      "lat": 3.3130253,
+      "lng": 99.3356239,
       "holes": 9,
       "par": null,
       "designer": null,
@@ -11555,11 +11568,12 @@
         "confidence": "medium",
         "evidence": [
           "https://www.golflux.com/course/inalum-golf-club/",
-          "https://playgolf.id/golf_courses/inalum-golf-course/"
+          "https://playgolf.id/golf_courses/inalum-golf-course/",
+          "2026-04-30 coordinate correction: 3.3556,99.4583 -> 3.3130253,99.3356239 (Plus code 889W+Q5). Stored was at Inalum smelter site (Kuala Tanjung); golf course is ~14km west at Perumahan Inalum, Tanjung Gading"
         ],
         "closure_reason": null,
         "reopened_as": null,
-        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Indonesia Asahan Aluminium (PT INALUM, MIND ID SOE).",
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Indonesia Asahan Aluminium (PT INALUM, MIND ID SOE). | 2026-04-30 corrected: Stored was at Inalum smelter site (Kuala Tanjung); golf course is ~14km west at Perumahan Inalum, Tanjung Gading (Plus code 889W+Q5)",
         "last_verified": "2026-04-30"
       },
       "membership": {
@@ -11578,8 +11592,8 @@
       "region": "Toba Samosir",
       "province": "North Sumatra",
       "address": "Pintu Pohan Meranti, Toba Samosir",
-      "lat": 2.4131,
-      "lng": 99.2425,
+      "lat": 2.5183837,
+      "lng": 99.2612144,
       "holes": 9,
       "par": null,
       "designer": null,
@@ -11618,11 +11632,12 @@
         "confidence": "medium",
         "evidence": [
           "https://playgolf.id/golf_courses/inalum-golf-club-paritohan-course/",
-          "https://www.inalum.id/en/career/employee-walfare-facilities"
+          "https://www.inalum.id/en/career/employee-walfare-facilities",
+          "2026-04-30 coordinate correction: 2.4131,99.2425 -> 2.5183837,99.2612144 (Plus code GFFV+J3). Stored ~12km south; OSM Lapangan Golf Inalum (way 602689182) at Pintu Pohan Meranti, Toba Samosir"
         ],
         "closure_reason": null,
         "reopened_as": null,
-        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Indonesia Asahan Aluminium (PT INALUM, MIND ID SOE).",
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Indonesia Asahan Aluminium (PT INALUM, MIND ID SOE). | 2026-04-30 corrected: Stored ~12km south; OSM Lapangan Golf Inalum (way 602689182) at Pintu Pohan Meranti, Toba Samosir (Plus code GFFV+J3)",
         "last_verified": "2026-04-30"
       },
       "membership": {
