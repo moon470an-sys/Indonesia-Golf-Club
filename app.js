@@ -137,6 +137,52 @@ function applyFilter() {
 }
 
 // === Render Markers ===
+function buildMarkerPopupHtml(c) {
+  const status = c.operating_status?.status || 'operating';
+  const statusLabel = { operating: '운영중', closed_temporary: '임시 휴장', closed_permanent: '영구 폐장', uncertain: '불확실' }[status] || status;
+  const f = c.fees_2026_05 || {};
+  const wd = f.weekday?.green_fee_idr ?? f.weekday?.guest_fee_idr ?? f.weekday?.member_fee_idr;
+  const we = f.weekend?.green_fee_idr ?? f.weekend?.guest_fee_idr ?? f.weekend?.member_fee_idr;
+  const wdUSD = f.weekday?.green_fee_usd;
+  const weUSD = f.weekend?.green_fee_usd;
+  const fmtFee = (idr, usd) => idr ? fmtIDR(idr) : (usd ? fmtUSD(usd) : '—');
+
+  const designer = c.designer ? escapeHtml(c.designer.split(',')[0].trim().split('(')[0].trim()) : null;
+  const m = c.membership || {};
+  let membershipLine = '';
+  if (m.available === true || m.available === 'true') membershipLine = '회원 모집 중';
+  else if (m.available === 'employees_only') membershipLine = '직원 전용';
+  else if (m.available === 'military_personnel') membershipLine = '군 전용';
+  else if (m.available === 'by_invitation_only') membershipLine = '초대제';
+  else if (m.available === 'members_only') membershipLine = '멤버 전용 (양도시장)';
+  else if (m.available === false) membershipLine = '없음';
+
+  const matoaTag = c.id === 'matoa-nasional' ? ' <span class="matoa-tag">★</span>' : '';
+  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${c.lat},${c.lng}`;
+  const websiteLink = c.website ? `<a href="${escapeHtml(c.website)}" target="_blank" rel="noopener">공식 웹사이트</a>` : '';
+  const mapsLink = `<a href="${mapsUrl}" target="_blank" rel="noopener">구글 지도</a>`;
+
+  const rows = [
+    ['지역', `${escapeHtml(c.region || '—')}, ${escapeHtml(c.province || '—')}`],
+    ['운영', `<span class="popup-status ${status}">${statusLabel}</span>`],
+    ['홀/파', `${c.holes ?? '—'}홀${c.par ? ` · Par ${c.par}` : ''}`],
+    ['개장', c.year_opened ? `${c.year_opened}년` : '—'],
+    ['설계자', designer || '—'],
+    ['평일/주말', `${fmtFee(wd, wdUSD)} / ${fmtFee(we, weUSD)}`],
+    membershipLine ? ['멤버십', membershipLine] : null,
+  ].filter(Boolean);
+
+  return `
+    <div class="marker-popup">
+      <div class="popup-name">${escapeHtml(c.name_en)}${matoaTag}</div>
+      ${c.address ? `<div class="popup-addr">${escapeHtml(c.address)}</div>` : ''}
+      <table class="popup-table">${rows.map(([k, v]) => `<tr><th>${k}</th><td>${v}</td></tr>`).join('')}</table>
+      <div class="popup-links">${[websiteLink, mapsLink].filter(Boolean).join(' · ')}</div>
+      <button class="popup-detail-btn" data-detail-id="${escapeHtml(c.id)}">상세 정보 →</button>
+    </div>
+  `;
+}
+
 function renderMarkers() {
   markerCluster.clearLayers();
   markers = {};
@@ -155,10 +201,7 @@ function renderMarkers() {
 
     const marker = L.marker([c.lat, c.lng], { icon })
       .bindTooltip(c.name_en, { direction: 'top', offset: [0, -24] })
-      .on('click', () => {
-        const url = `https://www.google.com/maps/search/?api=1&query=${c.lat},${c.lng}`;
-        window.open(url, '_blank', 'noopener');
-      });
+      .bindPopup(buildMarkerPopupHtml(c), { minWidth: 280, maxWidth: 320, className: 'course-popup' });
 
     markers[c.id] = marker;
     markerCluster.addLayer(marker);
@@ -333,6 +376,18 @@ document.getElementById('closeDetail').addEventListener('click', () => {
   panel.classList.remove('open');
   panel.setAttribute('aria-hidden', 'true');
   document.querySelectorAll('.course-item').forEach(el => el.classList.remove('active'));
+});
+
+// Wire up the "상세 정보" button inside marker popups
+document.addEventListener('click', e => {
+  const btn = e.target.closest('.popup-detail-btn');
+  if (!btn) return;
+  const id = btn.dataset.detailId;
+  const c = allCourses.find(x => x.id === id);
+  if (c) {
+    showDetail(c);
+    if (map) map.closePopup();
+  }
 });
 
 // === Mobile sidebar toggle ===
