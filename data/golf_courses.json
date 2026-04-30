@@ -29,7 +29,7 @@
       "holes": 27,
       "par": 72,
       "designer": "Robert Moore (JMP Group)",
-      "year_opened": null,
+      "year_opened": 2008,
       "course_layout": "27 holes - North/South/West (each 9)",
       "facilities": [
         "Driving Range (300m)",
@@ -482,7 +482,7 @@
       "holes": 18,
       "par": 72,
       "designer": null,
-      "year_opened": null,
+      "year_opened": 1971,
       "course_layout": null,
       "facilities": [
         "Driving Range",
@@ -881,7 +881,7 @@
       "holes": 18,
       "par": 72,
       "designer": "Peter Thomson",
-      "year_opened": null,
+      "year_opened": 1998,
       "course_layout": null,
       "facilities": [
         "Driving Range",
@@ -1232,7 +1232,7 @@
       "holes": 18,
       "par": 72,
       "designer": "B. Hasan, B. Santoso & Associates with Thompson, Wolveridge & Perrett",
-      "year_opened": null,
+      "year_opened": 1995,
       "course_layout": null,
       "facilities": [
         "Driving Range",
@@ -1320,7 +1320,7 @@
       "holes": 18,
       "par": 72,
       "designer": "Robert Trent Jones Jr.",
-      "year_opened": null,
+      "year_opened": 1992,
       "course_layout": null,
       "facilities": [
         "Driving Range (floating targets)",
@@ -1784,7 +1784,7 @@
       "holes": 27,
       "par": 72,
       "designer": "Arnold Palmer (Lake & River); Jack Nicklaus (Plantation)",
-      "year_opened": null,
+      "year_opened": 1994,
       "course_layout": "27 holes: Lake (Palmer), River (Palmer), Plantation (Nicklaus)",
       "facilities": [
         "Driving Range",
@@ -1926,7 +1926,7 @@
       "holes": 36,
       "par": 72,
       "designer": "Thomson, Wolveridge & Perrett",
-      "year_opened": null,
+      "year_opened": 1992,
       "course_layout": "36 holes - East Course + West Course",
       "facilities": [
         "Driving Range",
@@ -2226,7 +2226,7 @@
       "holes": 27,
       "par": 72,
       "designer": "J. Michael Poellot; Robert Moore Jr. (Stone Hills)",
-      "year_opened": null,
+      "year_opened": 1995,
       "course_layout": "27 holes - includes Stone Hills 9 (2015)",
       "facilities": [
         "Driving Range",
@@ -2732,7 +2732,7 @@
       "holes": 45,
       "par": 72,
       "designer": null,
-      "year_opened": null,
+      "year_opened": 1979,
       "course_layout": "Old Course (18) / New Course (18) / Z-Nine (9)",
       "facilities": [
         "Driving Range",
@@ -2882,7 +2882,7 @@
       "holes": 18,
       "par": 72,
       "designer": "Ted Robinson",
-      "year_opened": null,
+      "year_opened": 1995,
       "course_layout": null,
       "facilities": [
         "Driving Range",
@@ -3054,7 +3054,7 @@
       "holes": 18,
       "par": 72,
       "designer": "Nick Faldo",
-      "year_opened": null,
+      "year_opened": 1996,
       "course_layout": null,
       "facilities": [
         "Driving Range",
@@ -3440,7 +3440,7 @@
       "holes": 9,
       "par": 36,
       "designer": null,
-      "year_opened": null,
+      "year_opened": 1935,
       "course_layout": "9-hole heritage",
       "facilities": [
         "Pro Shop",
@@ -3620,7 +3620,7 @@
       "holes": 18,
       "par": 72,
       "designer": null,
-      "year_opened": null,
+      "year_opened": 1995,
       "course_layout": "5,583 m back tees",
       "facilities": [
         "Driving Range",
@@ -3846,7 +3846,7 @@
       "holes": 18,
       "par": 72,
       "designer": "Thomson Perrett",
-      "year_opened": null,
+      "year_opened": 1989,
       "course_layout": "Two nines, 7,176 yards back tees",
       "facilities": [
         "Driving Range",
@@ -4006,7 +4006,7 @@
       "holes": 18,
       "par": 72,
       "designer": "Thomson, Wolveridge & Perrett",
-      "year_opened": null,
+      "year_opened": 1994,
       "course_layout": "Highland at ~800m elevation on Mt Merapi slopes",
       "facilities": [
         "Driving Range",
@@ -4119,7 +4119,7 @@
       "holes": 9,
       "par": 30,
       "designer": "Fisette Golf Design",
-      "year_opened": null,
+      "year_opened": 1997,
       "course_layout": "9 holes (6 par-3s, 3 par-4s); 1,835 yards",
       "facilities": [
         "Hotel",
@@ -4662,7 +4662,7 @@
       "holes": 27,
       "par": 108,
       "designer": "Andy Dye III (Dye Design)",
-      "year_opened": null,
+      "year_opened": 1995,
       "course_layout": "3 nines: Valley/Lake/Hill (each par 36); 9,145 m total",
       "facilities": [
         "Driving Range",
@@ -5459,7 +5459,7 @@
       "holes": 18,
       "par": 72,
       "designer": "J. Michael Poellot",
-      "year_opened": null,
+      "year_opened": 2002,
       "course_layout": "Lake Course (front 9) + Hill Course (back 9)",
       "facilities": [
         "Driving Range",
@@ -5579,7 +5579,7 @@
       "holes": 18,
       "par": null,
       "designer": null,
-      "year_opened": null,
+      "year_opened": 1975,
       "course_layout": "18-hole amid agricultural scenery",
       "facilities": [
         "Clubhouse"
@@ -5658,7 +5658,7 @@
       "holes": 18,
       "par": 72,
       "designer": null,
-      "year_opened": null,
+      "year_opened": 1973,
       "course_layout": "18 holes, 6,320 m",
       "facilities": [
         "Driving Range",
@@ -5737,7 +5737,7 @@
       "holes": 18,
       "par": 72,
       "designer": "Nelson & Haworth (2013 redesign)",
-      "year_opened": null,
+      "year_opened": 1991,
       "course_layout": "Hole 17 island green, hole 18 lakeside",
       "facilities": [
         "Bali Island Golf Academy",
@@ -5797,7 +5797,7 @@
       "holes": 18,
       "par": 72,
       "designer": "Greg Norman",
-      "year_opened": null,
+      "year_opened": 1997,
       "course_layout": "5 oceanside holes; 3 cliff-to-cliff tees; 8 in rice terraces",
       "facilities": [
         "Balinese Clubhouse",
@@ -5857,7 +5857,7 @@
       "holes": 18,
       "par": 72,
       "designer": null,
-      "year_opened": null,
+      "year_opened": 2007,
       "course_layout": "Cliff-side links style on 85-ha",
       "facilities": [
         "Driving Range",
@@ -6306,7 +6306,7 @@
       "holes": 18,
       "par": 72,
       "designer": "Peter Thomson, Wolveridge & Perrett",
-      "year_opened": null,
+      "year_opened": 2001,
       "course_layout": "Front 9 oceanfront; back 9 inland with Mt Rinjani views; 6,245 m",
       "facilities": [
         "Driving Range",
@@ -6397,7 +6397,7 @@
       "holes": 18,
       "par": 72,
       "designer": "Jack Nicklaus",
-      "year_opened": null,
+      "year_opened": 1993,
       "course_layout": "Two contrasting 9s; 6,989 yards; 500m elevation",
       "facilities": [
         "Driving Range",
@@ -6486,7 +6486,7 @@
       "holes": 9,
       "par": null,
       "designer": null,
-      "year_opened": null,
+      "year_opened": 1995,
       "course_layout": "9-hole at Naia Resort",
       "facilities": [
         "Resort",
@@ -6901,7 +6901,7 @@
       "holes": 18,
       "par": 72,
       "designer": "Greg Norman; Paul Jansen (2016 redesign)",
-      "year_opened": null,
+      "year_opened": 1998,
       "course_layout": "60-ha through jungle, lagoons, sea, rocks",
       "facilities": [
         "Driving Range",
@@ -7036,7 +7036,7 @@
       "holes": 27,
       "par": 72,
       "designer": "Larry Nelson (Nelson & Haworth)",
-      "year_opened": null,
+      "year_opened": 1989,
       "course_layout": "3 9-hole courses: Island/Resort/Palm",
       "facilities": [
         "Driving Range",
@@ -7268,7 +7268,7 @@
       "holes": 9,
       "par": 36,
       "designer": "Jack Nicklaus",
-      "year_opened": null,
+      "year_opened": 1995,
       "course_layout": "9-hole over 60 ha",
       "facilities": [
         "Practice Area",
@@ -7665,7 +7665,7 @@
       "holes": 18,
       "par": 72,
       "designer": "Ronald Fream",
-      "year_opened": null,
+      "year_opened": 1993,
       "course_layout": "Coastal + lake/jungle holes",
       "facilities": [
         "Driving Range",
@@ -7887,7 +7887,7 @@
       "holes": 18,
       "par": 72,
       "designer": "Gus Grantham / JMP (Mike Poellot)",
-      "year_opened": null,
+      "year_opened": 1998,
       "course_layout": null,
       "facilities": [
         "Driving Range",
@@ -7988,7 +7988,7 @@
       "holes": 18,
       "par": 72,
       "designer": null,
-      "year_opened": null,
+      "year_opened": 1972,
       "course_layout": null,
       "facilities": [
         "Driving Range",
@@ -8227,7 +8227,7 @@
       "holes": 18,
       "par": 72,
       "designer": null,
-      "year_opened": null,
+      "year_opened": 1985,
       "course_layout": null,
       "facilities": [
         "Driving Range",
@@ -8547,7 +8547,7 @@
       "holes": 18,
       "par": 72,
       "designer": null,
-      "year_opened": null,
+      "year_opened": 1992,
       "course_layout": "5,697 yards",
       "facilities": [
         "Driving Range",
@@ -8624,7 +8624,7 @@
       "holes": 18,
       "par": 72,
       "designer": null,
-      "year_opened": null,
+      "year_opened": 1978,
       "course_layout": "Padang Sepinggan; 6,135 m, slope 134",
       "facilities": [
         "Driving Range",
@@ -9018,7 +9018,7 @@
       "holes": 18,
       "par": 72,
       "designer": null,
-      "year_opened": 1972,
+      "year_opened": 1967,
       "course_layout": "6,016 m",
       "facilities": [
         "Driving Range",
@@ -9167,7 +9167,7 @@
       "holes": 18,
       "par": 72,
       "designer": null,
-      "year_opened": null,
+      "year_opened": 2015,
       "course_layout": "6,617 yards, slope 142, rating 75.5",
       "facilities": [
         "Driving Range",
@@ -9475,7 +9475,7 @@
       "holes": 9,
       "par": 36,
       "designer": null,
-      "year_opened": null,
+      "year_opened": 1978,
       "course_layout": "9 holes in rainforest/mountains",
       "facilities": [
         "Driving Range",
@@ -10103,7 +10103,7 @@
       "holes": 18,
       "par": 72,
       "designer": "Thomson, Wolveridge & Associates",
-      "year_opened": null,
+      "year_opened": 1989,
       "course_layout": null,
       "facilities": [],
       "website": null,
@@ -10389,7 +10389,7 @@
       "holes": 18,
       "par": null,
       "designer": null,
-      "year_opened": null,
+      "year_opened": 1994,
       "course_layout": null,
       "facilities": [],
       "website": null,
@@ -10476,7 +10476,7 @@
       "holes": 18,
       "par": 72,
       "designer": null,
-      "year_opened": null,
+      "year_opened": 2018,
       "course_layout": null,
       "facilities": [],
       "website": null,
@@ -10638,7 +10638,7 @@
       "holes": 18,
       "par": 72,
       "designer": "Nick Faldo (renovation)",
-      "year_opened": null,
+      "year_opened": 1951,
       "course_layout": null,
       "facilities": [],
       "website": null,
@@ -10859,7 +10859,7 @@
       "holes": 18,
       "par": 72,
       "designer": null,
-      "year_opened": null,
+      "year_opened": 2000,
       "course_layout": null,
       "facilities": [],
       "website": null,
@@ -12036,7 +12036,7 @@
       "holes": 9,
       "par": null,
       "designer": null,
-      "year_opened": null,
+      "year_opened": 2025,
       "course_layout": null,
       "facilities": [],
       "website": null,
@@ -12173,7 +12173,7 @@
       "holes": 9,
       "par": null,
       "designer": null,
-      "year_opened": null,
+      "year_opened": 1988,
       "course_layout": null,
       "facilities": [],
       "website": null,
@@ -12520,7 +12520,7 @@
       "holes": 18,
       "par": null,
       "designer": null,
-      "year_opened": null,
+      "year_opened": 1960,
       "course_layout": null,
       "facilities": [],
       "website": null,
@@ -12893,7 +12893,7 @@
       "holes": 9,
       "par": null,
       "designer": null,
-      "year_opened": null,
+      "year_opened": 1985,
       "course_layout": null,
       "facilities": [],
       "website": null,
@@ -13391,7 +13391,7 @@
       "holes": 18,
       "par": 72,
       "designer": null,
-      "year_opened": null,
+      "year_opened": 2015,
       "course_layout": null,
       "facilities": [],
       "website": "https://www.paradisehotelgolfresort.net/",
@@ -13542,7 +13542,7 @@
       "holes": null,
       "par": null,
       "designer": null,
-      "year_opened": null,
+      "year_opened": 2023,
       "course_layout": null,
       "facilities": [],
       "website": null,
