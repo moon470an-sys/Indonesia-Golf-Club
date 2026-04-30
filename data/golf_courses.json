@@ -2,8 +2,8 @@
   "metadata": {
     "title": "Indonesia Golf Courses Directory",
     "version": "1.0",
-    "last_updated": "2026-04-29",
-    "total_courses": 90,
+    "last_updated": "2026-04-30",
+    "total_courses": 137,
     "data_collection_status": "complete",
     "notes": [
       "Coordinates are best-estimates from address geocoding; verify before production map use.",
@@ -9940,6 +9940,3114 @@
         ],
         "last_verified": "2026-04-29",
         "notes": "TNI AU Lanud Pattimura course in Ambon. Official Lanud IG and a community-run @pattimura_golf_course IG exist but no published membership pricing; access primarily via TNI AU personnel and invited guests."
+      }
+    },
+    {
+      "id": "jakarta-golf-club-rawamangun",
+      "name_en": "Jakarta Golf Club (Rawamangun)",
+      "region": "Jakarta",
+      "province": "DKI Jakarta",
+      "address": "Rawamangun, East Jakarta",
+      "lat": -6.1976,
+      "lng": 106.88,
+      "holes": 18,
+      "par": 72,
+      "designer": "Tom Simpson (1934 layout)",
+      "year_opened": 1872,
+      "course_layout": null,
+      "facilities": [],
+      "website": "https://jakartagolfclub.org/",
+      "notes": "Indonesia's oldest golf club (since 1872, moved to Rawamangun 1934). Hosts the Indonesia Open.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://jakartagolfclub.org/",
+          "https://www.golfpass.com/travel-advisor/courses/38219-jakarta-golf-club",
+          "https://gogolf.co.id/en/golf-course/jakarta-golf-club"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://jakartagolfclub.org/",
+          "https://www.golfpass.com/travel-advisor/courses/38219-jakarta-golf-club",
+          "https://gogolf.co.id/en/golf-course/jakarta-golf-club"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: Jakarta Golf Club (member-owned).",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://jakartagolfclub.org/",
+          "https://www.golfpass.com/travel-advisor/courses/38219-jakarta-golf-club",
+          "https://gogolf.co.id/en/golf-course/jakarta-golf-club"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "pondok-cabe-golf",
+      "name_en": "Pondok Cabe Golf & Country Club",
+      "region": "Tangerang Selatan",
+      "province": "Banten",
+      "address": "Pamulang, South Tangerang",
+      "lat": -6.3389,
+      "lng": 106.7567,
+      "holes": 18,
+      "par": 72,
+      "designer": "Thomson, Wolveridge & Associates",
+      "year_opened": null,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "18-hole 6,260m par-72 course adjacent to Pondok Cabe Airfield; published Tue-Sun operating hours.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://www.instagram.com/pondokcabegolf/",
+          "https://gogolf.co.id/en/golf-course/pondok-cabe-golf-club"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.instagram.com/pondokcabegolf/",
+          "https://gogolf.co.id/en/golf-course/pondok-cabe-golf-club"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Wahana Kridatama (Pertamina-affiliated).",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://www.instagram.com/pondokcabegolf/",
+          "https://gogolf.co.id/en/golf-course/pondok-cabe-golf-club"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "royale-krakatau-cilegon",
+      "name_en": "Royale Krakatau Golf & Country Club",
+      "region": "Cilegon",
+      "province": "Banten",
+      "address": "Cilegon, Banten",
+      "lat": -6.0167,
+      "lng": 106.0531,
+      "holes": 18,
+      "par": 72,
+      "designer": "Alex Kandou",
+      "year_opened": 1975,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "SOE-operated 18-hole, par-72 course inside Krakatau Steel complex.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://www.instagram.com/krakataugolf/",
+          "https://www.golfpass.com/travel-advisor/courses/38262-royale-krakatau-golf-country-club"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.instagram.com/krakataugolf/",
+          "https://www.golfpass.com/travel-advisor/courses/38262-royale-krakatau-golf-country-club"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Krakatau Sarana Properti (Krakatau Steel SOE group).",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://www.instagram.com/krakataugolf/",
+          "https://www.golfpass.com/travel-advisor/courses/38262-royale-krakatau-golf-country-club"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "bandung-giri-gahana",
+      "name_en": "Bandung Giri Gahana Golf & Resort",
+      "region": "Sumedang",
+      "province": "West Java",
+      "address": "Jatinangor, Sumedang",
+      "lat": -6.9269,
+      "lng": 107.7711,
+      "holes": 18,
+      "par": 72,
+      "designer": "Michael Coates & Associates",
+      "year_opened": 1989,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "18-hole highland course at 900m altitude with attached resort hotel. Distinct from Jatinangor National.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://gogolf.co.id/en/golf-course/bandung-giri-gahana-golf-resort",
+          "https://www.tripadvisor.com/Attraction_Review-g297704-d3319982-Reviews-Giri_Gahana_Golf_Resort-Bandung_West_Java_Java.html"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://gogolf.co.id/en/golf-course/bandung-giri-gahana-golf-resort",
+          "https://www.tripadvisor.com/Attraction_Review-g297704-d3319982-Reviews-Giri_Gahana_Golf_Resort-Bandung_West_Java_Java.html"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Langen Kridha Pratyangga Tbk.",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://gogolf.co.id/en/golf-course/bandung-giri-gahana-golf-resort",
+          "https://www.tripadvisor.com/Attraction_Review-g297704-d3319982-Reviews-Giri_Gahana_Golf_Resort-Bandung_West_Java_Java.html"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "padang-golf-lanud-sulaiman",
+      "name_en": "Padang Golf Lanud Sulaiman",
+      "region": "Bandung",
+      "province": "West Java",
+      "address": "Margahayu, Bandung",
+      "lat": -6.975,
+      "lng": 107.5681,
+      "holes": 18,
+      "par": null,
+      "designer": null,
+      "year_opened": null,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "TNI-AU 18-hole course at Sulaiman Air Force Base; hosted Golfinity Pro-Am Tournament September 2025.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://www.instagram.com/padanggolfsulaimann/",
+          "https://www.tni-au.mil.id/berita/detail/danlanud-sulaiman-dukung-olahraga-golf-kabupaten-bandung"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.instagram.com/padanggolfsulaimann/",
+          "https://www.tni-au.mil.id/berita/detail/danlanud-sulaiman-dukung-olahraga-golf-kabupaten-bandung"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: TNI AU Lanud Sulaiman.",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://www.instagram.com/padanggolfsulaimann/",
+          "https://www.tni-au.mil.id/berita/detail/danlanud-sulaiman-dukung-olahraga-golf-kabupaten-bandung"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "royal-cirebon-golf",
+      "name_en": "Royal Cirebon Golf & Country Club",
+      "region": "Cirebon",
+      "province": "West Java",
+      "address": "Talun (Ciperna), Cirebon",
+      "lat": -6.7711,
+      "lng": 108.535,
+      "holes": 18,
+      "par": 72,
+      "designer": null,
+      "year_opened": null,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "18-hole, par-72, 5,970m course on Jl. Cirebon-Cilimus.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://www.instagram.com/royalcirebongolfofficial/",
+          "https://www.gatra.com/news-551664-gaya-hidup-lapangan-golf-royal-cirebon-golf-resmi-diluncurkan.html"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.instagram.com/royalcirebongolfofficial/",
+          "https://www.gatra.com/news-551664-gaya-hidup-lapangan-golf-royal-cirebon-golf-resmi-diluncurkan.html"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Saranagraha Adisentosa.",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://www.instagram.com/royalcirebongolfofficial/",
+          "https://www.gatra.com/news-551664-gaya-hidup-lapangan-golf-royal-cirebon-golf-resmi-diluncurkan.html"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "ngamplang-garut",
+      "name_en": "Lapangan Golf Ngamplang (Flamboyan)",
+      "region": "Garut",
+      "province": "West Java",
+      "address": "Cilawu, Garut",
+      "lat": -7.2575,
+      "lng": 107.9264,
+      "holes": 9,
+      "par": null,
+      "designer": "Denis Gerard Mulder (Dutch colonial)",
+      "year_opened": 1912,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "Operating heritage 9-hole course (since 1912, one of Indonesia's oldest).",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://gogolf.co.id/en/gogolf-news/ngamplang-flamboyan-golf-course",
+          "https://www.golfpass.com/travel-advisor/courses/38326-ngamplang-golf-course"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://gogolf.co.id/en/gogolf-news/ngamplang-flamboyan-golf-course",
+          "https://www.golfpass.com/travel-advisor/courses/38326-ngamplang-golf-course"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: Pemkab Garut / local management.",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://gogolf.co.id/en/gogolf-news/ngamplang-flamboyan-golf-course",
+          "https://www.golfpass.com/travel-advisor/courses/38326-ngamplang-golf-course"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "tidar-golf-magelang",
+      "name_en": "Tidar Golf Course",
+      "region": "Magelang",
+      "province": "Central Java",
+      "address": "Gunung Tidar, Magelang",
+      "lat": -7.4869,
+      "lng": 110.22,
+      "holes": 18,
+      "par": 72,
+      "designer": "Nick Faldo (renovation)",
+      "year_opened": null,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "18-hole par-72 military-affiliated course at Gunung Tidar (Akmil Magelang). Distinct from Borobudur Magelang.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://id.trip.com/travel-guide/attraction/magelang-city/tidar-golf-course-147153809/",
+          "https://www.golflux.com/course/tidar-golf-course/"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://id.trip.com/travel-guide/attraction/magelang-city/tidar-golf-course-147153809/",
+          "https://www.golflux.com/course/tidar-golf-course/"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: TNI AD Akademi Militer Magelang.",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://id.trip.com/travel-guide/attraction/magelang-city/tidar-golf-course-147153809/",
+          "https://www.golflux.com/course/tidar-golf-course/"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "wijayakusuma-purwokerto",
+      "name_en": "Padang Golf Wijayakusuma",
+      "region": "Banyumas",
+      "province": "Central Java",
+      "address": "Purwokerto, Banyumas",
+      "lat": -7.4197,
+      "lng": 109.2306,
+      "holes": 9,
+      "par": null,
+      "designer": null,
+      "year_opened": null,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "Banyumas regency tourism office lists it as operating; 9-hole military-linked course.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "http://dinporabudpar.banyumaskab.go.id/view-sarana/32/wijaya-kusuma-golf-course?slg=olahraga",
+          "https://www.hole19golf.com/indonesia/padang-golf-wijayakusuma"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "http://dinporabudpar.banyumaskab.go.id/view-sarana/32/wijaya-kusuma-golf-course?slg=olahraga",
+          "https://www.hole19golf.com/indonesia/padang-golf-wijayakusuma"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: TNI AD Korem 071/Wijayakusuma.",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "http://dinporabudpar.banyumaskab.go.id/view-sarana/32/wijaya-kusuma-golf-course?slg=olahraga",
+          "https://www.hole19golf.com/indonesia/padang-golf-wijayakusuma"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "mrica-banjarnegara",
+      "name_en": "Mrica Indah Golf Club",
+      "region": "Banjarnegara",
+      "province": "Central Java",
+      "address": "Banjarnegara, Central Java",
+      "lat": -7.3789,
+      "lng": 109.7211,
+      "holes": 18,
+      "par": 72,
+      "designer": null,
+      "year_opened": 1989,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "PLN-owned 18-hole course adjacent to Mrica Reservoir. October 2025 GolfTimes feature.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://www.instagram.com/banjarnegaragolf/",
+          "https://golftimes.id/2025/10/06/lapangan-golf-mrica-permata-hijau-di-jantung-banjarnegara/"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.instagram.com/banjarnegaragolf/",
+          "https://golftimes.id/2025/10/06/lapangan-golf-mrica-permata-hijau-di-jantung-banjarnegara/"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT PLN Indonesia Power UBP Mrica.",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://www.instagram.com/banjarnegaragolf/",
+          "https://golftimes.id/2025/10/06/lapangan-golf-mrica-permata-hijau-di-jantung-banjarnegara/"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "pertamina-tritih-cilacap",
+      "name_en": "Pertamina Tritih Golf & Country Club",
+      "region": "Cilacap",
+      "province": "Central Java",
+      "address": "Jeruklegi, Cilacap",
+      "lat": -7.6322,
+      "lng": 109.0008,
+      "holes": 18,
+      "par": 72,
+      "designer": null,
+      "year_opened": null,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "Pertamina-owned 18-hole course in Cilacap, public access.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://www.instagram.com/tritihgolf/",
+          "https://playgolf.id/golf_courses/pertamina-tritih-golf-and-country-club-cilacap/"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.instagram.com/tritihgolf/",
+          "https://playgolf.id/golf_courses/pertamina-tritih-golf-and-country-club-cilacap/"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Pertamina (Persero) Refinery Unit IV Cilacap.",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://www.instagram.com/tritihgolf/",
+          "https://playgolf.id/golf_courses/pertamina-tritih-golf-and-country-club-cilacap/"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "adi-soemarmo-solo",
+      "name_en": "Padang Golf Adi Soemarmo",
+      "region": "Boyolali (Solo)",
+      "province": "Central Java",
+      "address": "Ngemplak, Boyolali",
+      "lat": -7.5161,
+      "lng": 110.7569,
+      "holes": 9,
+      "par": null,
+      "designer": null,
+      "year_opened": 1985,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "Air force-linked course at Lanud Adi Soemarmo, Solo. Distinct from Adisutjipto in Yogya.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://www.instagram.com/padang_golfsmo/",
+          "https://playgolf.id/golf_courses/padang-golf-adi-soemarmo/"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.instagram.com/padang_golfsmo/",
+          "https://playgolf.id/golf_courses/padang-golf-adi-soemarmo/"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: TNI AU Lanud Adi Soemarmo.",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://www.instagram.com/padang_golfsmo/",
+          "https://playgolf.id/golf_courses/padang-golf-adi-soemarmo/"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "black-eagle-bsb-semarang",
+      "name_en": "Black Eagle Golf Course (BSB City)",
+      "region": "Semarang",
+      "province": "Central Java",
+      "address": "Mijen, Semarang",
+      "lat": -7.0408,
+      "lng": 110.3247,
+      "holes": 18,
+      "par": null,
+      "designer": null,
+      "year_opened": 2025,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "Newly opened (9 holes since 2025, full 18 in March 2026); IDR 300B investment inside BSB City Semarang.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://www.instagram.com/blackeagle.golf/",
+          "https://www.suaramerdeka.com/olahraga/0415959347/black-eagle-golf-course-destinasi-golf-premium-terbaru-di-semarang-telah-dibuka"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://www.instagram.com/blackeagle.golf/",
+          "https://www.suaramerdeka.com/olahraga/0415959347/black-eagle-golf-course-destinasi-golf-premium-terbaru-di-semarang-telah-dibuka"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Aman Raga Golf Abadi (BSB City).",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://www.instagram.com/blackeagle.golf/",
+          "https://www.suaramerdeka.com/olahraga/0415959347/black-eagle-golf-course-destinasi-golf-premium-terbaru-di-semarang-telah-dibuka"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "ahmad-yani-surabaya",
+      "name_en": "Ahmad Yani Golf Club (Yani Golf Reborn)",
+      "region": "Surabaya",
+      "province": "East Java",
+      "address": "Gunungsari, Surabaya",
+      "lat": -7.3094,
+      "lng": 112.7236,
+      "holes": 18,
+      "par": 72,
+      "designer": null,
+      "year_opened": 1898,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "Surabaya's oldest course (1898), 18-hole par-72 cultural-heritage site recently revitalized as 'Yani Golf Reborn'.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://www.instagram.com/yanigolf_surabaya/",
+          "https://gogolf.co.id/en/golf-course/ahmad-yani-golf-club-surabaya",
+          "https://www.otoplus-online.com/post/yani-golf-reborn-upaya-selamatkan-cagar-budaya-surabaya"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.instagram.com/yanigolf_surabaya/",
+          "https://gogolf.co.id/en/golf-course/ahmad-yani-golf-club-surabaya",
+          "https://www.otoplus-online.com/post/yani-golf-reborn-upaya-selamatkan-cagar-budaya-surabaya"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: TNI AD Kodam V/Brawijaya.",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://www.instagram.com/yanigolf_surabaya/",
+          "https://gogolf.co.id/en/golf-course/ahmad-yani-golf-club-surabaya",
+          "https://www.otoplus-online.com/post/yani-golf-reborn-upaya-selamatkan-cagar-budaya-surabaya"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "pakuwon-golf-surabaya",
+      "name_en": "Pakuwon Golf & Family Club",
+      "region": "Surabaya",
+      "province": "East Java",
+      "address": "Pakuwon Indah, West Surabaya",
+      "lat": -7.2872,
+      "lng": 112.6678,
+      "holes": 18,
+      "par": null,
+      "designer": "Thomson & Wolveridge",
+      "year_opened": null,
+      "course_layout": null,
+      "facilities": [],
+      "website": "https://pakuwongolf.com/",
+      "notes": "18-hole course owned by Pakuwon Group with night golf and online tee-time booking.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://pakuwongolf.com/",
+          "https://gogolf.co.id/en/golf-course/pakuwon-golf-family-club"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://pakuwongolf.com/",
+          "https://gogolf.co.id/en/golf-course/pakuwon-golf-family-club"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Pakuwon Jati Tbk.",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://pakuwongolf.com/",
+          "https://gogolf.co.id/en/golf-course/pakuwon-golf-family-club"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "iswahyudi-madiun",
+      "name_en": "Iswahyudi Golf Club (Lanud Iswahjudi)",
+      "region": "Magetan/Madiun",
+      "province": "East Java",
+      "address": "Maospati, Magetan",
+      "lat": -7.6058,
+      "lng": 111.4244,
+      "holes": 9,
+      "par": null,
+      "designer": null,
+      "year_opened": 2001,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "TNI-AU course at Iswahjudi Air Base; April 2024 Fun Golf Tournament confirms operation.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://us.trip.com/travel-guide/attraction/maospati/lapangan-golf-lanud-iswahyudi-144866577/",
+          "https://playgolf.id/golf_courses/lapangan-golf-lanud-iswahyudi/"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://us.trip.com/travel-guide/attraction/maospati/lapangan-golf-lanud-iswahyudi-144866577/",
+          "https://playgolf.id/golf_courses/lapangan-golf-lanud-iswahyudi/"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: TNI AU Lanud Iswahjudi.",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://us.trip.com/travel-guide/attraction/maospati/lapangan-golf-lanud-iswahyudi-144866577/",
+          "https://playgolf.id/golf_courses/lapangan-golf-lanud-iswahyudi/"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "dhoho-kediri",
+      "name_en": "Dhoho Golf Club (Surya Dhoho)",
+      "region": "Kediri",
+      "province": "East Java",
+      "address": "Kediri, East Java",
+      "lat": -7.75,
+      "lng": 112.0083,
+      "holes": 27,
+      "par": 72,
+      "designer": "Brian Curley (Curley-Wagner)",
+      "year_opened": 2025,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "Front 9 open since autumn 2025; back 9 opening Q2 2026. Brand-new mountain destination near Dhoho Kediri International Airport.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://www.golfcoursearchitecture.net/content/construction-complete-on-new-dhoho-golf-course-in-indonesia",
+          "https://www.firstcallgolf.com/design-notes/feature/2026-04-26/brian-curley-debuts-indonesias-dhoho",
+          "https://asiagolfjourney.com/dhoho-surya-golf-course-opens-in-kediri-indonesias-newest-mountain-golf-destination/"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://www.golfcoursearchitecture.net/content/construction-complete-on-new-dhoho-golf-course-in-indonesia",
+          "https://www.firstcallgolf.com/design-notes/feature/2026-04-26/brian-curley-debuts-indonesias-dhoho",
+          "https://asiagolfjourney.com/dhoho-surya-golf-course-opens-in-kediri-indonesias-newest-mountain-golf-destination/"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: Surya Dhoho destination (Gudang Garam group affiliated).",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://www.golfcoursearchitecture.net/content/construction-complete-on-new-dhoho-golf-course-in-indonesia",
+          "https://www.firstcallgolf.com/design-notes/feature/2026-04-26/brian-curley-debuts-indonesias-dhoho",
+          "https://asiagolfjourney.com/dhoho-surya-golf-course-opens-in-kediri-indonesias-newest-mountain-golf-destination/"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "arun-lhokseumawe",
+      "name_en": "Arun Golf Club",
+      "region": "Lhokseumawe",
+      "province": "Aceh",
+      "address": "Lhokseumawe, Aceh",
+      "lat": 5.2236,
+      "lng": 96.9789,
+      "holes": 18,
+      "par": 72,
+      "designer": null,
+      "year_opened": 1978,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "Built 1978 in former PT Arun NGL community site, par 72; daily 08:00-18:00.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://www.golfpass.com/travel-advisor/courses/38321-arun-golf-club",
+          "https://www.golflux.com/course/arun-golf-club/"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.golfpass.com/travel-advisor/courses/38321-arun-golf-club",
+          "https://www.golflux.com/course/arun-golf-club/"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: Perta Arun Gas (Pertamina subsidiary).",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://www.golfpass.com/travel-advisor/courses/38321-arun-golf-club",
+          "https://www.golflux.com/course/arun-golf-club/"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "lhoknga-aceh",
+      "name_en": "Lhoknga (Seulawah) Golf Course",
+      "region": "Aceh Besar",
+      "province": "Aceh",
+      "address": "Lhoknga, Aceh Besar",
+      "lat": 5.4716,
+      "lng": 95.239,
+      "holes": 9,
+      "par": null,
+      "designer": null,
+      "year_opened": 1980,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "Rebuilt post-tsunami in 2016; hosted PON XXI 2024 woodball events; 9 holes operating, additional 9 under reconstruction.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://acehprov.go.id/berita/kategori/olahraga/gubernur-tinjau-revitalisasi-lapangan-golf-lhoknga",
+          "https://seputaraceh.id/2024/08/28/venue-woodball-pon-xxi-2024-dipindahkan-ke-lapangan-golf-lampuuk/"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://acehprov.go.id/berita/kategori/olahraga/gubernur-tinjau-revitalisasi-lapangan-golf-lhoknga",
+          "https://seputaraceh.id/2024/08/28/venue-woodball-pon-xxi-2024-dipindahkan-ke-lapangan-golf-lampuuk/"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: Aceh Provincial Tourism Office (Disbudpar Aceh).",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://acehprov.go.id/berita/kategori/olahraga/gubernur-tinjau-revitalisasi-lapangan-golf-lhoknga",
+          "https://seputaraceh.id/2024/08/28/venue-woodball-pon-xxi-2024-dipindahkan-ke-lapangan-golf-lampuuk/"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "inalum-tanjung-gading",
+      "name_en": "Inalum Golf Club (Tanjung Gading)",
+      "region": "Batu Bara",
+      "province": "North Sumatra",
+      "address": "Sei Suka, Batu Bara Regency",
+      "lat": 3.3556,
+      "lng": 99.4583,
+      "holes": 9,
+      "par": null,
+      "designer": null,
+      "year_opened": 1985,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "9-hole course at Inalum employee residential complex in Tanjung Gading near Kuala Tanjung smelter.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://www.golflux.com/course/inalum-golf-club/",
+          "https://playgolf.id/golf_courses/inalum-golf-course/"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.golflux.com/course/inalum-golf-club/",
+          "https://playgolf.id/golf_courses/inalum-golf-course/"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Indonesia Asahan Aluminium (PT INALUM, MIND ID SOE).",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://www.golflux.com/course/inalum-golf-club/",
+          "https://playgolf.id/golf_courses/inalum-golf-course/"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "inalum-paritohan",
+      "name_en": "Inalum Golf Club (Paritohan)",
+      "region": "Toba Samosir",
+      "province": "North Sumatra",
+      "address": "Pintu Pohan Meranti, Toba Samosir",
+      "lat": 2.4131,
+      "lng": 99.2425,
+      "holes": 9,
+      "par": null,
+      "designer": null,
+      "year_opened": 1983,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "Separate 9-hole course at Paritohan housing complex serving Inalum hydroelectric plant employees.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://playgolf.id/golf_courses/inalum-golf-club-paritohan-course/",
+          "https://www.inalum.id/en/career/employee-walfare-facilities"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://playgolf.id/golf_courses/inalum-golf-club-paritohan-course/",
+          "https://www.inalum.id/en/career/employee-walfare-facilities"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Indonesia Asahan Aluminium (PT INALUM, MIND ID SOE).",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://playgolf.id/golf_courses/inalum-golf-club-paritohan-course/",
+          "https://www.inalum.id/en/career/employee-walfare-facilities"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "ptpn-iv-pabatu",
+      "name_en": "Lapangan Golf PTPN IV Pabatu",
+      "region": "Tebing Tinggi",
+      "province": "North Sumatra",
+      "address": "Pabatu Estate, Serdang Bedagai",
+      "lat": 3.2828,
+      "lng": 99.1672,
+      "holes": 9,
+      "par": null,
+      "designer": null,
+      "year_opened": null,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "Active palm-oil-plantation-owned course; opened to public as recreational destination.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://www.trip.com/travel-guide/attraction/penonggol/lapangan-golf-ptpn-iv-pabatu-144860067",
+          "https://www.timesumut.com/wisata/105212181953/lapang-golf-tebing-tinggi-pabatu-sumatera-utara-dibuka-sebagai-destinasi-wisata-terbaru-bagi-warga"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.trip.com/travel-guide/attraction/penonggol/lapangan-golf-ptpn-iv-pabatu-144860067",
+          "https://www.timesumut.com/wisata/105212181953/lapang-golf-tebing-tinggi-pabatu-sumatera-utara-dibuka-sebagai-destinasi-wisata-terbaru-bagi-warga"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Perkebunan Nusantara IV (PTPN IV, SOE).",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://www.trip.com/travel-guide/attraction/penonggol/lapangan-golf-ptpn-iv-pabatu-144860067",
+          "https://www.timesumut.com/wisata/105212181953/lapang-golf-tebing-tinggi-pabatu-sumatera-utara-dibuka-sebagai-destinasi-wisata-terbaru-bagi-warga"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "tenera-bah-jambi",
+      "name_en": "Tenera Golf Club (PTPN IV Bah Jambi)",
+      "region": "Simalungun",
+      "province": "North Sumatra",
+      "address": "Bah Jambi Estate, Simalungun",
+      "lat": 2.9881,
+      "lng": 99.2198,
+      "holes": 18,
+      "par": null,
+      "designer": null,
+      "year_opened": null,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "18-hole SOE plantation course at PTPN IV Bah Jambi near Pematangsiantar.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://www.golfpass.com/travel-advisor/courses/38351-tenera-golf-club",
+          "https://id.trip.com/travel-guide/attraction/simalungun-regency/lapangan-golf-tenera-137386943/"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.golfpass.com/travel-advisor/courses/38351-tenera-golf-club",
+          "https://id.trip.com/travel-guide/attraction/simalungun-regency/lapangan-golf-tenera-137386943/"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Perkebunan Nusantara IV (PTPN IV) Bah Jambi Estate.",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://www.golfpass.com/travel-advisor/courses/38351-tenera-golf-club",
+          "https://id.trip.com/travel-guide/attraction/simalungun-regency/lapangan-golf-tenera-137386943/"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "anai-resort",
+      "name_en": "Anai Golf & Mountain Resort",
+      "region": "Padang Pariaman",
+      "province": "West Sumatra",
+      "address": "Padang Pariaman / Padang Panjang",
+      "lat": -0.4625,
+      "lng": 100.3539,
+      "holes": 18,
+      "par": 73,
+      "designer": "Thomson, Perrett & Wolveridge",
+      "year_opened": 1993,
+      "course_layout": null,
+      "facilities": [],
+      "website": "https://ws-tourism.com/anai-golf-mountain-resort/",
+      "notes": "Par-73, 6,270-yard mountain forest course at base of Mount Tandikat; resort attached.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://www.golfpass.com/travel-advisor/courses/38316-anai-golf-mountain-resort",
+          "https://www.golflux.com/course/anai-golf-and-mountain-resort/"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.golfpass.com/travel-advisor/courses/38316-anai-golf-mountain-resort",
+          "https://www.golflux.com/course/anai-golf-and-mountain-resort/"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: Anai Resort (private).",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://www.golfpass.com/travel-advisor/courses/38316-anai-golf-mountain-resort",
+          "https://www.golflux.com/course/anai-golf-and-mountain-resort/"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "wirabraja-padang",
+      "name_en": "Lapangan Golf Wirabraja Ulu Gadut",
+      "region": "Padang",
+      "province": "West Sumatra",
+      "address": "Lubuk Kilangan, Padang",
+      "lat": -0.9514,
+      "lng": 100.4339,
+      "holes": 18,
+      "par": null,
+      "designer": null,
+      "year_opened": null,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "18-hole hillside course in Lubuk Kilangan ~30 min from central Padang. Wirabraja branding linked to TNI AD Kodam.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://us.trip.com/travel-guide/attraction/padang/lapangan-golf-wirabraja-ulu-gadut-144873842/",
+          "https://westsumatra360.com/akhir-pekan-menyenangkan-dengan-bermain-golf-di-kota-padang/"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://us.trip.com/travel-guide/attraction/padang/lapangan-golf-wirabraja-ulu-gadut-144873842/",
+          "https://westsumatra360.com/akhir-pekan-menyenangkan-dengan-bermain-golf-di-kota-padang/"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: Kodam I/Bukit Barisan (TNI AD).",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://us.trip.com/travel-guide/attraction/padang/lapangan-golf-wirabraja-ulu-gadut-144873842/",
+          "https://westsumatra360.com/akhir-pekan-menyenangkan-dengan-bermain-golf-di-kota-padang/"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "lanud-sutan-sjahrir",
+      "name_en": "Lapangan Golf Lanud Sutan Sjahrir (Tabing)",
+      "region": "Padang",
+      "province": "West Sumatra",
+      "address": "Tabing, Padang",
+      "lat": -0.879,
+      "lng": 100.3525,
+      "holes": 9,
+      "par": null,
+      "designer": null,
+      "year_opened": null,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "TNI AU airbase course; new Par-3 practice range opened July 2025.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://tni-au.mil.id/berita/detail/par-3-practice-range-tabing-driving-range-resmi-dibuka-wujud-komitmen-komandan-lanud-sutan-sjahrir-majukan-olahraga-golf-sumbar",
+          "https://www.instagram.com/tabing_driving_range/"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://tni-au.mil.id/berita/detail/par-3-practice-range-tabing-driving-range-resmi-dibuka-wujud-komitmen-komandan-lanud-sutan-sjahrir-majukan-olahraga-golf-sumbar",
+          "https://www.instagram.com/tabing_driving_range/"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: TNI AU Lanud Sutan Sjahrir.",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://tni-au.mil.id/berita/detail/par-3-practice-range-tabing-driving-range-resmi-dibuka-wujud-komitmen-komandan-lanud-sutan-sjahrir-majukan-olahraga-golf-sumbar",
+          "https://www.instagram.com/tabing_driving_range/"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "phr-dumai",
+      "name_en": "Golf Course Pertamina Hulu Rokan Dumai (formerly Chevron Dumai)",
+      "region": "Dumai",
+      "province": "Riau",
+      "address": "Bukit Timah, Dumai",
+      "lat": 1.6783,
+      "lng": 101.433,
+      "holes": 9,
+      "par": null,
+      "designer": null,
+      "year_opened": null,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "Former Chevron Dumai company course; transitioned to PHR/Pertamina post-2021. Distinct from Pekanbaru Rumbai PHR course.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://www.golflux.com/course/chevron-dumai-golf-course/",
+          "https://www.golfpass.com/travel-advisor/courses/38353-chevron-dumai-golf-course"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.golflux.com/course/chevron-dumai-golf-course/",
+          "https://www.golfpass.com/travel-advisor/courses/38353-chevron-dumai-golf-course"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Pertamina Hulu Rokan.",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://www.golflux.com/course/chevron-dumai-golf-course/",
+          "https://www.golfpass.com/travel-advisor/courses/38353-chevron-dumai-golf-course"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "simpang-tiga-pekanbaru",
+      "name_en": "Simpang Tiga Golf Club (Pagosita)",
+      "region": "Pekanbaru",
+      "province": "Riau",
+      "address": "Sidomulyo Timur, Pekanbaru",
+      "lat": 0.4708,
+      "lng": 101.4503,
+      "holes": 9,
+      "par": null,
+      "designer": null,
+      "year_opened": null,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "9-hole air force base course at Lanud Roesmin Nurjadin in central Pekanbaru. Distinct from Labersa and PHR Rumbai.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://www.golfpass.com/travel-advisor/courses/38357-simpang-tiga-golf-club",
+          "https://roesminnurjadin.tni-au.mil.id/2014/01/03/perwira-lanud-rsn-giat-berlatih-golf/"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.golfpass.com/travel-advisor/courses/38357-simpang-tiga-golf-club",
+          "https://roesminnurjadin.tni-au.mil.id/2014/01/03/perwira-lanud-rsn-giat-berlatih-golf/"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: TNI AU Lanud Roesmin Nurjadin.",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://www.golfpass.com/travel-advisor/courses/38357-simpang-tiga-golf-club",
+          "https://roesminnurjadin.tni-au.mil.id/2014/01/03/perwira-lanud-rsn-giat-berlatih-golf/"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "perkumpulan-golf-jambi",
+      "name_en": "Perkumpulan Golf Jambi (Telanaipura)",
+      "region": "Jambi",
+      "province": "Jambi",
+      "address": "Telanaipura, Jambi",
+      "lat": -1.5966,
+      "lng": 103.5739,
+      "holes": 9,
+      "par": null,
+      "designer": null,
+      "year_opened": 1978,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "Built 1978; located Jl. Jend. A. Thalib, Pematang Sulur, Telanaipura.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://www.golfpass.com/travel-advisor/courses/38341-perkumpulan-golf-jambi",
+          "https://www.golflux.com/course/perkumpulan-golf-jambi/"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.golfpass.com/travel-advisor/courses/38341-perkumpulan-golf-jambi",
+          "https://www.golflux.com/course/perkumpulan-golf-jambi/"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: Perkumpulan Golf Jambi (members association).",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://www.golfpass.com/travel-advisor/courses/38341-perkumpulan-golf-jambi",
+          "https://www.golflux.com/course/perkumpulan-golf-jambi/"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "bajubang-jambi",
+      "name_en": "Lapangan Golf Bajubang",
+      "region": "Batanghari",
+      "province": "Jambi",
+      "address": "Bajubang, Batanghari",
+      "lat": -1.6772,
+      "lng": 103.0419,
+      "holes": 18,
+      "par": null,
+      "designer": null,
+      "year_opened": 1930,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "Historic Dutch-era oil-camp course (~1930s); 18 holes; in active community use.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://www.hole19golf.com/courses/bajubang-golf-course",
+          "https://us.trip.com/travel-guide/attraction/bajubang/bajubang-golf-course-144862698/"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.hole19golf.com/courses/bajubang-golf-course",
+          "https://us.trip.com/travel-guide/attraction/bajubang/bajubang-golf-course-144862698/"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Pertamina (former NIAM/PERMIRI oil exploration site).",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://www.hole19golf.com/courses/bajubang-golf-course",
+          "https://us.trip.com/travel-guide/attraction/bajubang/bajubang-golf-course-144862698/"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "merah-putih-bengkulu",
+      "name_en": "Lapangan Golf Merah Putih (Polda Bengkulu)",
+      "region": "Bengkulu",
+      "province": "Bengkulu",
+      "address": "Lingkar Barat, Gading Cempaka, Bengkulu",
+      "lat": -3.829,
+      "lng": 102.2829,
+      "holes": null,
+      "par": null,
+      "designer": null,
+      "year_opened": 2025,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "Newly inaugurated 2025-07-05 by Governor Helmi Hasan. 60-hectare facility under Polda Bengkulu.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://golftimes.id/2025/07/05/lapangan-golf-merah-putih-diresmikan-bengkulu-punya-ikon-baru-wisata-olahraga/",
+          "https://www.facebook.com/mediacenterpemprovbengkulu/posts/gubernur-bengkulu-helmi-hasan-meresmikan-lapangan-golf-merah-putih-yang-terletak/1178595537646366/"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://golftimes.id/2025/07/05/lapangan-golf-merah-putih-diresmikan-bengkulu-punya-ikon-baru-wisata-olahraga/",
+          "https://www.facebook.com/mediacenterpemprovbengkulu/posts/gubernur-bengkulu-helmi-hasan-meresmikan-lapangan-golf-merah-putih-yang-terletak/1178595537646366/"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: Polda Bengkulu.",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://golftimes.id/2025/07/05/lapangan-golf-merah-putih-diresmikan-bengkulu-punya-ikon-baru-wisata-olahraga/",
+          "https://www.facebook.com/mediacenterpemprovbengkulu/posts/gubernur-bengkulu-helmi-hasan-meresmikan-lapangan-golf-merah-putih-yang-terletak/1178595537646366/"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "agromuko-mukomuko",
+      "name_en": "Lapangan Golf Agromuko",
+      "region": "Mukomuko",
+      "province": "Bengkulu",
+      "address": "Air Dikit, Mukomuko",
+      "lat": -2.735,
+      "lng": 101.15,
+      "holes": 18,
+      "par": 72,
+      "designer": null,
+      "year_opened": null,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "18-hole par-72 course on Agro Muko palm/rubber estate at Teruntung, Mukomuko. Length 5,467 yards.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://www.golfpass.com/travel-advisor/courses/42533-lapangan-golf",
+          "https://www.hole19golf.com/courses/agro-muko-golf-course"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.golfpass.com/travel-advisor/courses/42533-lapangan-golf",
+          "https://www.hole19golf.com/courses/agro-muko-golf-course"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Agro Muko (SIPEF group).",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://www.golfpass.com/travel-advisor/courses/42533-lapangan-golf",
+          "https://www.hole19golf.com/courses/agro-muko-golf-course"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "pertamina-pendopo",
+      "name_en": "Lapangan Golf PT Pertamina Pendopo",
+      "region": "Pendopo",
+      "province": "South Sumatra",
+      "address": "Pendopo, PALI Regency",
+      "lat": -3.4583,
+      "lng": 103.79,
+      "holes": 18,
+      "par": null,
+      "designer": null,
+      "year_opened": null,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "Historic 18-hole 60-ha hilly course at PT Pertamina Pendopo oil field.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://www.hole19golf.com/courses/lapangan-golf-pt-pertamina-pendopo",
+          "https://kabarserasan.com/2016/05/16/lapangan-golf-pertamina-pendopo-di-kenal-sampai-ke-manca-negara/"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.hole19golf.com/courses/lapangan-golf-pt-pertamina-pendopo",
+          "https://kabarserasan.com/2016/05/16/lapangan-golf-pertamina-pendopo-di-kenal-sampai-ke-manca-negara/"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Pertamina EP Asset 2 - Pendopo Field.",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://www.hole19golf.com/courses/lapangan-golf-pt-pertamina-pendopo",
+          "https://kabarserasan.com/2016/05/16/lapangan-golf-pertamina-pendopo-di-kenal-sampai-ke-manca-negara/"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "pertamina-prabumulih",
+      "name_en": "Lapangan Golf PT Pertamina Prabumulih",
+      "region": "Prabumulih",
+      "province": "South Sumatra",
+      "address": "Patih Galung, Prabumulih Barat",
+      "lat": -3.4309,
+      "lng": 104.235,
+      "holes": 18,
+      "par": null,
+      "designer": null,
+      "year_opened": null,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "18-hole Pertamina-owned course at Jl. Jend. Sudirman, Prabumulih.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://www.hole19golf.com/courses/lapangan-golf-pt-pertamina-prabumulih",
+          "https://id.top10place.com/lapangan-golf-pertamina-1480721140.html"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.hole19golf.com/courses/lapangan-golf-pt-pertamina-prabumulih",
+          "https://id.top10place.com/lapangan-golf-pertamina-1480721140.html"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Pertamina EP Asset 2 - Prabumulih.",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://www.hole19golf.com/courses/lapangan-golf-pt-pertamina-prabumulih",
+          "https://id.top10place.com/lapangan-golf-pertamina-1480721140.html"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "pusri-palembang",
+      "name_en": "Lapangan Golf PT Pusri (Patra Jaya)",
+      "region": "Palembang",
+      "province": "South Sumatra",
+      "address": "Pusri Palembang complex, Sungai Musi",
+      "lat": -2.9667,
+      "lng": 104.7942,
+      "holes": null,
+      "par": null,
+      "designer": null,
+      "year_opened": null,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "Pusri company course at Pusri Palembang complex on Sungai Musi.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://www.facebook.com/pages/Lapangan%20Golf%20Pt%20Pusri%20Palembang/209906416548141/",
+          "https://www.instagram.com/explore/locations/209906416548141/lapangan-golf-pt-pusri-palembang/"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.facebook.com/pages/Lapangan%20Golf%20Pt%20Pusri%20Palembang/209906416548141/",
+          "https://www.instagram.com/explore/locations/209906416548141/lapangan-golf-pt-pusri-palembang/"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Pupuk Sriwidjaja Palembang (Pusri SOE).",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://www.facebook.com/pages/Lapangan%20Golf%20Pt%20Pusri%20Palembang/209906416548141/",
+          "https://www.instagram.com/explore/locations/209906416548141/lapangan-golf-pt-pusri-palembang/"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "bagus-kuning-plaju",
+      "name_en": "Bagus Kuning Golf Course",
+      "region": "Palembang",
+      "province": "South Sumatra",
+      "address": "Plaju, Palembang",
+      "lat": -2.9966,
+      "lng": 104.8264,
+      "holes": 9,
+      "par": null,
+      "designer": null,
+      "year_opened": null,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "9-hole course in Plaju district associated with Pertamina refinery community.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://www.instagram.com/baguskuning.golfcourse/"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.instagram.com/baguskuning.golfcourse/"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: Pertamina (Plaju refinery community).",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://www.instagram.com/baguskuning.golfcourse/"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "bukit-intan-pangkalpinang",
+      "name_en": "Bukit Intan Golf Course (Girimaya)",
+      "region": "Pangkalpinang",
+      "province": "Bangka Belitung",
+      "address": "Girimaya, Pangkalpinang",
+      "lat": -2.13,
+      "lng": 106.1311,
+      "holes": 18,
+      "par": null,
+      "designer": null,
+      "year_opened": null,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "18-hole tin-mining-SOE course on Bukit Girimaya hills, 10 min from Depati Amir Airport.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://gogolf.co.id/en/golf-course/bukit-intan-golf-course",
+          "https://www.golfpass.com/travel-advisor/courses/38173-bukit-intan-golf-course-girimaya"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://gogolf.co.id/en/golf-course/bukit-intan-golf-course",
+          "https://www.golfpass.com/travel-advisor/courses/38173-bukit-intan-golf-course-girimaya"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Timah Tbk (MIND ID SOE).",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://gogolf.co.id/en/golf-course/bukit-intan-golf-course",
+          "https://www.golfpass.com/travel-advisor/courses/38173-bukit-intan-golf-course-girimaya"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "bebute-belitung",
+      "name_en": "Bebute Golf Course (Belitung Golf Club)",
+      "region": "Belitung",
+      "province": "Bangka Belitung",
+      "address": "Sijuk, Belitung",
+      "lat": -2.5667,
+      "lng": 107.7,
+      "holes": 9,
+      "par": null,
+      "designer": null,
+      "year_opened": null,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "9-hole coastal course at Ds Bebute, Sijuk. Separate from Black Rocks resort course.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://www.golfpass.com/travel-advisor/courses/38331-bebute-golf-course",
+          "https://www.golflux.com/course/bebute-golf-course/"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.golfpass.com/travel-advisor/courses/38331-bebute-golf-course",
+          "https://www.golflux.com/course/bebute-golf-course/"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: Belitung Golf Club / private.",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://www.golfpass.com/travel-advisor/courses/38331-bebute-golf-course",
+          "https://www.golflux.com/course/bebute-golf-course/"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "eltari-kupang",
+      "name_en": "Eltari Golf Course (Padang Golf El Tari)",
+      "region": "Kupang",
+      "province": "East Nusa Tenggara",
+      "address": "Penfui, Kupang",
+      "lat": -10.1717,
+      "lng": 123.6717,
+      "holes": 9,
+      "par": null,
+      "designer": null,
+      "year_opened": 1990,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "9-hole course built 1990 at Lanud El Tari air base. Open to public, hosts regular monthly tournaments by TNI AU.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://www.golflux.com/course/eltari-golf-course/",
+          "https://www.golfpass.com/travel-advisor/courses/38327-eltari-golf-course",
+          "https://tni-au.mil.id/berita/detail/menjaga-sinergitas-lanud-el-tari-dan-polda-ntt-golf-bersama"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.golflux.com/course/eltari-golf-course/",
+          "https://www.golfpass.com/travel-advisor/courses/38327-eltari-golf-course",
+          "https://tni-au.mil.id/berita/detail/menjaga-sinergitas-lanud-el-tari-dan-polda-ntt-golf-bersama"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: TNI AU Lanud El Tari.",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://www.golflux.com/course/eltari-golf-course/",
+          "https://www.golfpass.com/travel-advisor/courses/38327-eltari-golf-course",
+          "https://tni-au.mil.id/berita/detail/menjaga-sinergitas-lanud-el-tari-dan-polda-ntt-golf-bersama"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "kpc-sangatta",
+      "name_en": "Lapangan Golf PT KPC (Kaltim Prima Coal)",
+      "region": "Sangatta",
+      "province": "East Kalimantan",
+      "address": "Sangatta Utara, East Kutai",
+      "lat": 0.4842,
+      "lng": 117.5447,
+      "holes": 18,
+      "par": 72,
+      "designer": null,
+      "year_opened": null,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "Company course at PT KPC coal mining complex; 18 holes par 72, 6,589 yards.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://playgolf.id/golf_courses/lapangan-golf-pt-kpc/",
+          "https://www.trip.com/travel-guide/attraction/singa-gembara/lapangan-golf-pt-kpc-146584252/"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://playgolf.id/golf_courses/lapangan-golf-pt-kpc/",
+          "https://www.trip.com/travel-guide/attraction/singa-gembara/lapangan-golf-pt-kpc-146584252/"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Kaltim Prima Coal (Bumi Resources subsidiary).",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://playgolf.id/golf_courses/lapangan-golf-pt-kpc/",
+          "https://www.trip.com/travel-guide/attraction/singa-gembara/lapangan-golf-pt-kpc-146584252/"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "badak-ngl-bontang",
+      "name_en": "PT Badak NGL Golf Course",
+      "region": "Bontang",
+      "province": "East Kalimantan",
+      "address": "Satimpo, South Bontang",
+      "lat": 0.1133,
+      "lng": 117.4847,
+      "holes": 18,
+      "par": null,
+      "designer": null,
+      "year_opened": null,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "Originally 9-hole, expanded to 18-hole championship course. DISTINCT from Hotel Bintang Sintuk PKT Bontang.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://www.golfpass.com/travel-advisor/courses/38337-pt-badak-ngl-golf-course",
+          "https://www.instagram.com/badaklnggolf/"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.golfpass.com/travel-advisor/courses/38337-pt-badak-ngl-golf-course",
+          "https://www.instagram.com/badaklnggolf/"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Badak NGL.",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://www.golfpass.com/travel-advisor/courses/38337-pt-badak-ngl-golf-course",
+          "https://www.instagram.com/badaklnggolf/"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "tarakan-golf-club",
+      "name_en": "Tarakan Golf Club",
+      "region": "Tarakan",
+      "province": "North Kalimantan",
+      "address": "Pamusian, Tarakan Tengah",
+      "lat": 3.3033,
+      "lng": 117.6336,
+      "holes": 9,
+      "par": null,
+      "designer": null,
+      "year_opened": null,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "9-hole course originally owned by Pertamina, ownership transitioned to local government. Fills North Kalimantan gap.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://www.golfpass.com/travel-advisor/courses/38338-tarakan-golf-club"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.golfpass.com/travel-advisor/courses/38338-tarakan-golf-club"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: City of Tarakan (formerly Pertamina).",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://www.golfpass.com/travel-advisor/courses/38338-tarakan-golf-club"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "tanjung-tabalong",
+      "name_en": "Tanjung Golf Club (Pertamina EP)",
+      "region": "Tabalong",
+      "province": "South Kalimantan",
+      "address": "Murung Pudak, Tabalong",
+      "lat": -2.1683,
+      "lng": 115.3917,
+      "holes": null,
+      "par": null,
+      "designer": null,
+      "year_opened": null,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "Confirmed operating; tournament Nov 30 - Dec 1, 2024. Sole golf icon in Tabalong per Pertamina Field Manager.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://www.golfpass.com/travel-advisor/courses/38360-tanjung-golf-club",
+          "https://tvtabalong.com/turnamen-golf-meriahkan-hut-ke-59-tabalong-ratusan-pegolf-berpartisipasi/"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.golfpass.com/travel-advisor/courses/38360-tanjung-golf-club",
+          "https://tvtabalong.com/turnamen-golf-meriahkan-hut-ke-59-tabalong-ratusan-pegolf-berpartisipasi/"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: Pertamina EP Tanjung Field.",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://www.golfpass.com/travel-advisor/courses/38360-tanjung-golf-club",
+          "https://tvtabalong.com/turnamen-golf-meriahkan-hut-ke-59-tabalong-ratusan-pegolf-berpartisipasi/"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "gorontalo-yosonegoro",
+      "name_en": "Gorontalo Golf Yosonegoro",
+      "region": "Limboto",
+      "province": "Gorontalo",
+      "address": "Limboto Barat, Kabupaten Gorontalo",
+      "lat": 0.6219,
+      "lng": 122.9622,
+      "holes": 9,
+      "par": 36,
+      "designer": null,
+      "year_opened": null,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "9 holes par 36, 2,778 yards. Reactivated by Pemprov-Pemkab cooperation September 2025. Only golf facility in Gorontalo Province.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://playgolf.id/golf_courses/lapangan-golf-gorontalo/",
+          "https://coolturnesia.com/coolturnesia/berita/detail/lapangan-golf-yosonegoro-akan-kembali-hidup-pemprovpemkab-gorontalo-sepakat-kelola-bersama"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://playgolf.id/golf_courses/lapangan-golf-gorontalo/",
+          "https://coolturnesia.com/coolturnesia/berita/detail/lapangan-golf-yosonegoro-akan-kembali-hidup-pemprovpemkab-gorontalo-sepakat-kelola-bersama"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: Pemprov Gorontalo (Dispora).",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://playgolf.id/golf_courses/lapangan-golf-gorontalo/",
+          "https://coolturnesia.com/coolturnesia/berita/detail/lapangan-golf-yosonegoro-akan-kembali-hidup-pemprovpemkab-gorontalo-sepakat-kelola-bersama"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "paradise-likupang",
+      "name_en": "Paradise Golf Club (Likupang)",
+      "region": "Likupang",
+      "province": "North Sulawesi",
+      "address": "Maen, East Likupang, North Minahasa",
+      "lat": 1.6856,
+      "lng": 125.0533,
+      "holes": 18,
+      "par": 72,
+      "designer": null,
+      "year_opened": null,
+      "course_layout": null,
+      "facilities": [],
+      "website": "https://www.paradisehotelgolfresort.net/",
+      "notes": "18-hole, par 72, 6,991 yards beach-view course in Likupang KEK. Active in 2025 with hotel renovations.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://www.paradisehotelgolfresort.net/",
+          "https://www.golfpass.com/travel-advisor/courses/38315-paradise-golf-club"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.paradisehotelgolfresort.net/",
+          "https://www.golfpass.com/travel-advisor/courses/38315-paradise-golf-club"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: Casabaio Likupang Paradise Resort (KEK Likupang).",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://www.paradisehotelgolfresort.net/",
+          "https://www.golfpass.com/travel-advisor/courses/38315-paradise-golf-club"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "antam-mekongga-pomalaa",
+      "name_en": "Antam Mekongga Golf Club (Pomalaa)",
+      "region": "Kolaka",
+      "province": "Southeast Sulawesi",
+      "address": "Pomalaa, Kolaka",
+      "lat": -4.1842,
+      "lng": 121.6172,
+      "holes": 18,
+      "par": 72,
+      "designer": null,
+      "year_opened": null,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "18-hole par 72, 5,696 yards. Hosted Porprov XIV Sulawesi Tenggara 2022. Distinct from Sanggoleo Kendari.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://playgolf.id/golf_courses/antam-mekongga-golf-club/",
+          "https://sultra.antaranews.com/berita/425565/amgc-pomalaa-jadi-arena-golf-porprov-xiv-sulawesi-tenggara-2022"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://playgolf.id/golf_courses/antam-mekongga-golf-club/",
+          "https://sultra.antaranews.com/berita/425565/amgc-pomalaa-jadi-arena-golf-porprov-xiv-sulawesi-tenggara-2022"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Antam Tbk (UBPN Sultra).",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://playgolf.id/golf_courses/antam-mekongga-golf-club/",
+          "https://sultra.antaranews.com/berita/425565/amgc-pomalaa-jadi-arena-golf-porprov-xiv-sulawesi-tenggara-2022"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      }
+    },
+    {
+      "id": "koarmada-iii-sorong",
+      "name_en": "Lapangan Golf Mini Koarmada III",
+      "region": "Sorong",
+      "province": "Southwest Papua",
+      "address": "Katapop, Kabupaten Sorong",
+      "lat": -0.9325,
+      "lng": 131.2611,
+      "holes": null,
+      "par": null,
+      "designer": null,
+      "year_opened": null,
+      "course_layout": null,
+      "facilities": [],
+      "website": null,
+      "notes": "Mini golf field (~1 hectare) at Mako Koarmada III HQ. Hosted first TNI AL Koarmada III golf tournament.",
+      "fees_2026_05": {
+        "currency_primary": "IDR",
+        "rate_includes": "Not deeply audited yet — see sources",
+        "schedule_detailed": {},
+        "ancillary": {
+          "tax_pct": 11
+        },
+        "weekday": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "weekend": {
+          "green_fee_idr": null,
+          "guest_fee_idr": null,
+          "member_fee_idr": null
+        },
+        "sources": [
+          "https://www.kompas.tv/regional/276266/perdana-tni-al-koarmada-iii-gelar-turnamen-golf-di-sorong",
+          "https://peloporwiratama.co.id/2023/09/22/silahturahmi-bersama-insan-pers-pangkoarmada-iii-ajak-main-golf/"
+        ],
+        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
+      },
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.kompas.tv/regional/276266/perdana-tni-al-koarmada-iii-gelar-turnamen-golf-di-sorong",
+          "https://peloporwiratama.co.id/2023/09/22/silahturahmi-bersama-insan-pers-pangkoarmada-iii-ajak-main-golf/"
+        ],
+        "closure_reason": null,
+        "reopened_as": null,
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: TNI AL Komando Armada III.",
+        "last_verified": "2026-04-30"
+      },
+      "membership": {
+        "available": "unknown",
+        "categories": [],
+        "currency_note": "IDR (assumed)",
+        "sources": [
+          "https://www.kompas.tv/regional/276266/perdana-tni-al-koarmada-iii-gelar-turnamen-golf-di-sorong",
+          "https://peloporwiratama.co.id/2023/09/22/silahturahmi-bersama-insan-pers-pangkoarmada-iii-ajak-main-golf/"
+        ],
+        "notes": "Newly added 2026-04-30; membership not yet audited.",
+        "confidence": "low",
+        "last_verified": "2026-04-30"
       }
     }
   ]
