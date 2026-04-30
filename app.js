@@ -759,7 +759,6 @@ function renderTable() {
         <td class="num fee">${wdText}</td>
         <td class="num fee">${weText}</td>
         <td class="num">${membershipCellText(c.membership)}</td>
-        <td class="notes">${escapeHtml(c.notes || '')}</td>
         <td class="address">${escapeHtml(c.address || '')}<br>${websiteLink} ${mapLink}</td>
         <td class="sources">${sourcesHtml || '—'}</td>
       </tr>
