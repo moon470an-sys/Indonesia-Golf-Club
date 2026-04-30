@@ -791,8 +791,8 @@
       "region": "Tangerang",
       "province": "Banten",
       "address": "Jl. Modern Golf Raya No.99, Klp. Indah, Kota Tangerang, Banten 15117",
-      "lat": -6.2,
-      "lng": 106.65,
+      "lat": -6.18638,
+      "lng": 106.64198,
       "holes": 18,
       "par": 72,
       "designer": "Peter Thomson",
@@ -843,11 +843,12 @@
           "Active Instagram @moderngolfandcountryclub (6.2K followers)",
           "Official site has Rate Golf 2025 page: https://www.moderngolf.co.id/event-detail/Rate-Golf-2025",
           "BaiGolf, QGolf, GolfPass active 2025-2026 bookings",
-          "Novotel Tangerang 2025 partnership listing"
+          "Novotel Tangerang 2025 partnership listing",
+          "2026-04-30 coordinate correction: -6.2,106.65 -> -6.18638,106.64198 (Plus code 5P9G+8H). Refined from rounded -6.2,106.65"
         ],
         "closure_reason": null,
         "reopened_as": null,
-        "coord_notes": "Address: Jl. Modern Golf Raya, Kota Modern, Klp. Indah, Tangerang. WeatherCrave gives ~4 decimals; existing dataset (-6.1747, 106.6322) is plausible but slightly different; WeatherCrave point places it within Modernland area.",
+        "coord_notes": "Address: Jl. Modern Golf Raya, Kota Modern, Klp. Indah, Tangerang. WeatherCrave gives ~4 decimals; existing dataset (-6.1747, 106.6322) is plausible but slightly different; WeatherCrave point places it within Modernland area. | 2026-04-30 corrected: Refined from rounded -6.2,106.65 (Plus code 5P9G+8H)",
         "last_verified": "2026-04-30"
       },
       "membership": {
@@ -893,8 +894,8 @@
       "region": "Tangerang",
       "province": "Banten",
       "address": "Bulevar Gading Golf, Jl. Gading Serpong, Tangerang 15826",
-      "lat": -6.25,
-      "lng": 106.64,
+      "lat": -6.24668,
+      "lng": 106.63398,
       "holes": 18,
       "par": 72,
       "designer": "Graham Marsh",
@@ -983,11 +984,12 @@
           "Official site live: https://www.gadingrayagolf.com/",
           "WeatherCrave golf-15768 (Cihuni) active",
           "Traveloka 2025 promo + Golfshake 2025/2026 reviews",
-          "Active Facebook page; phone +62 21 546 7668"
+          "Active Facebook page; phone +62 21 546 7668",
+          "2026-04-30 coordinate correction: -6.25,106.64 -> -6.24668,106.63398 (Plus code P49C+76). Refined from rounded -6.25,106.64"
         ],
         "closure_reason": null,
         "reopened_as": null,
-        "coord_notes": "Course is in Gading Serpong, Tangerang (Cihuni village). Coords low precision (~4 decimals); satellite shows Gading Raya 18-hole layout west of Bulevar Gading Golf.",
+        "coord_notes": "Course is in Gading Serpong, Tangerang (Cihuni village). Coords low precision (~4 decimals); satellite shows Gading Raya 18-hole layout west of Bulevar Gading Golf. | 2026-04-30 corrected: Refined from rounded -6.25,106.64 (Plus code P49C+76)",
         "last_verified": "2026-04-30"
       },
       "membership": {
@@ -1173,8 +1175,8 @@
       "region": "Jakarta",
       "province": "DKI Jakarta",
       "address": "Jl. Moh. Kahfi I Km. 7, Ciganjur, Cipedak, Jagakarsa, Jakarta Selatan 12630",
-      "lat": -6.36,
-      "lng": 106.8,
+      "lat": -6.34925,
+      "lng": 106.81188,
       "holes": 18,
       "par": 72,
       "designer": "B. Hasan, B. Santoso & Associates with Thompson, Wolveridge & Perrett",
@@ -1239,11 +1241,12 @@
           "GolfPass page has zero reviews — no recent player activity (https://www.golfpass.com/travel-advisor/courses/38231-matoa-nasional-golf-course)",
           "No 2024-2026 tournaments traceable to Matoa; PB PGI 2025 Kejurnas Amatir was at Sentul Highlands instead",
           "matoanasional.net resolves but rates/booking endpoints unreachable",
-          "User-reported (2026-04-30) on-site observation: not currently operating"
+          "User-reported (2026-04-30) on-site observation: not currently operating",
+          "2026-04-30 coordinate correction: -6.36,106.8 -> -6.34925,106.81188 (Plus code MRR5+R3). Refined from rounded -6.36,106.8"
         ],
         "closure_reason": "BOT contract expired 2021; TNI AU/INKOPAU forcibly closed entrance over land-rights dispute with PT SAS. Site reportedly deserted/unmaintained as of July 2024. No evidence of redevelopment, but no resumed operations either.",
         "reopened_as": null,
-        "coord_notes": "Address: Jl. Moh. Kahfi I Km. 7, Cipedak, Jagakarsa. Existing dataset (-6.3458, 106.8089) plausible. WeatherCrave coord ~1 km south; both fall on the 60-ha course property.",
+        "coord_notes": "Address: Jl. Moh. Kahfi I Km. 7, Cipedak, Jagakarsa. Existing dataset (-6.3458, 106.8089) plausible. WeatherCrave coord ~1 km south; both fall on the 60-ha course property. | 2026-04-30 corrected: Refined from rounded -6.36,106.8 (Plus code MRR5+R3)",
         "last_verified": "2026-04-30"
       },
       "membership": {
@@ -1265,8 +1268,8 @@
       "region": "Jakarta",
       "province": "DKI Jakarta",
       "address": "Jl. Marina Indah Raya, Kapuk Muara, Penjaringan, Jakarta Utara 14460",
-      "lat": -6.12,
-      "lng": 106.74,
+      "lat": -6.10994,
+      "lng": 106.74288,
       "holes": 18,
       "par": 72,
       "designer": "Robert Trent Jones Jr.",
@@ -1366,11 +1369,12 @@
           "Official site live: https://pik.damaiindahgolf.com/ + main https://www.damaiindahgolf.com/",
           "WeatherCrave golf-3289 active (Kamal Muara)",
           "Linktree active; bookable on golfscape and BaiGolf",
-          "Booking phone +62 21 5370285 current"
+          "Booking phone +62 21 5370285 current",
+          "2026-04-30 coordinate correction: -6.12,106.74 -> -6.10994,106.74288 (Plus code VR2P+W8). Refined from rounded -6.12,106.74"
         ],
         "closure_reason": null,
         "reopened_as": null,
-        "coord_notes": "Coastal course along Java Sea in Penjaringan/Kamal Muara. Existing dataset (-6.1119, 106.7414) closely matches. Low precision from WeatherCrave (~4 decimals).",
+        "coord_notes": "Coastal course along Java Sea in Penjaringan/Kamal Muara. Existing dataset (-6.1119, 106.7414) closely matches. Low precision from WeatherCrave (~4 decimals). | 2026-04-30 corrected: Refined from rounded -6.12,106.74 (Plus code VR2P+W8)",
         "last_verified": "2026-04-30"
       },
       "membership": {
@@ -1629,8 +1633,8 @@
       "region": "Tangerang",
       "province": "Banten",
       "address": "Jl. Permata Sari Lippo Karawaci, Bencongan, Kelapa Dua, Tangerang 15810",
-      "lat": -6.23,
-      "lng": 106.6,
+      "lat": -6.21889,
+      "lng": 106.59849,
       "holes": 18,
       "par": 72,
       "designer": "Desmond Muirhead",
@@ -1683,11 +1687,12 @@
           "Trip.com 2026 listing (id 50641164)",
           "WeatherCrave golf-15780 (Bencongan) active",
           "Annual Playing Rights program offered; Aryaduta wellness page",
-          "Tripadvisor 2025 reviews; Hole19 and GolfTripz active"
+          "Tripadvisor 2025 reviews; Hole19 and GolfTripz active",
+          "2026-04-30 coordinate correction: -6.23,106.6 -> -6.21889,106.59849 (Plus code 5P5C+7P). Refined from rounded -6.23,106.6"
         ],
         "closure_reason": null,
         "reopened_as": null,
-        "coord_notes": "Jl. Pulau Golf, Lippo Karawaci, Tangerang. Existing dataset (-6.2233, 106.6058) closely matches. WeatherCrave gives ~3 decimals.",
+        "coord_notes": "Jl. Pulau Golf, Lippo Karawaci, Tangerang. Existing dataset (-6.2233, 106.6058) closely matches. WeatherCrave gives ~3 decimals. | 2026-04-30 corrected: Refined from rounded -6.23,106.6 (Plus code 5P5C+7P)",
         "last_verified": "2026-04-30"
       },
       "membership": {
@@ -2118,8 +2123,8 @@
       "region": "Bogor",
       "province": "West Java",
       "address": "Jl. Sumur Batu Bukit Sentul, Babakan Madang, Sentul City, Bogor 16810",
-      "lat": -6.57,
-      "lng": 106.88,
+      "lat": -6.57826,
+      "lng": 106.87797,
       "holes": 18,
       "par": 72,
       "designer": "Gary Player",
@@ -2164,11 +2169,12 @@
           "Official site live: https://sentulhighlands.com/",
           "Active Instagram @sentulhighlandsgolfclub",
           "PB PGI National Amateur Championship hosted May 2025; planned return 2026",
-          "Topgolf Sentul Highlands store page active"
+          "Topgolf Sentul Highlands store page active",
+          "2026-04-30 coordinate correction: -6.57,106.88 -> -6.57826,106.87797 (Plus code 96VM+5C). Refined from rounded -6.57,106.88"
         ],
         "closure_reason": null,
         "reopened_as": null,
-        "coord_notes": "Existing dataset (-6.5719, 106.8744) is consistent with Sentul City / Bukit Sentul golf area. Could not retrieve a unique maplogs POI specifically for Sentul Highlands, so kept lower precision from the broader Cijayanti/Babakan Madang area; satellite confirms Gary Player layout fairways at this location.",
+        "coord_notes": "Existing dataset (-6.5719, 106.8744) is consistent with Sentul City / Bukit Sentul golf area. Could not retrieve a unique maplogs POI specifically for Sentul Highlands, so kept lower precision from the broader Cijayanti/Babakan Madang area; satellite confirms Gary Player layout fairways at this location. | 2026-04-30 corrected: Refined from rounded -6.57,106.88 (Plus code 96VM+5C)",
         "last_verified": "2026-04-30"
       },
       "membership": {
@@ -2350,8 +2356,8 @@
       "region": "Bogor",
       "province": "West Java",
       "address": "Golf Estate Bogor Raya, Sukaraja, Bogor 16710",
-      "lat": -6.6,
-      "lng": 106.84,
+      "lat": -6.55687,
+      "lng": 106.85148,
       "holes": 18,
       "par": 71,
       "designer": "Graham V. Marsh",
@@ -2401,11 +2407,12 @@
           "Tripadvisor 2026 reviews page active",
           "WeatherCrave golf-8296 (Sukatani) active",
           "Reservations +62 811-9718-844; Novotel/Ibis Style co-located",
-          "NOTE: official site https://www.klubgolfbogorraya.com/ currently displays scheduled-maintenance notice (not a closure indicator)"
+          "NOTE: official site https://www.klubgolfbogorraya.com/ currently displays scheduled-maintenance notice (not a closure indicator)",
+          "2026-04-30 coordinate correction: -6.6,106.84 -> -6.55687,106.85148 (Plus code 96X4+R8). Refined from rounded -6.6,106.84 (~5km north)"
         ],
         "closure_reason": null,
         "reopened_as": null,
-        "coord_notes": "Address: Jl. Golf Estate Bogor Raya, Sukaraja 16710. WeatherCrave labels nearest village 'Sukatani' but the course is the same 18-hole Graham Marsh design. Existing dataset (-6.5664, 106.8311) was ~6 km west; WeatherCrave point is closer to actual course but still ~4 decimals. Recommend Google Maps direct lookup for higher precision.",
+        "coord_notes": "Address: Jl. Golf Estate Bogor Raya, Sukaraja 16710. WeatherCrave labels nearest village 'Sukatani' but the course is the same 18-hole Graham Marsh design. Existing dataset (-6.5664, 106.8311) was ~6 km west; WeatherCrave point is closer to actual course but still ~4 decimals. Recommend Google Maps direct lookup for higher precision. | 2026-04-30 corrected: Refined from rounded -6.6,106.84 (~5km north) (Plus code 96X4+R8)",
         "last_verified": "2026-04-30"
       },
       "membership": {
@@ -2592,8 +2599,8 @@
       "region": "Bogor",
       "province": "West Java",
       "address": "Jl. Bukit Golf Riverside, Bojong Nangka, Gunung Putri, Bogor 16965",
-      "lat": -6.42,
-      "lng": 106.9,
+      "lat": -6.42969,
+      "lng": 106.9056,
       "holes": 18,
       "par": 72,
       "designer": "Greg Norman (Bob Harrison lead)",
@@ -2674,11 +2681,12 @@
           "Official site live: https://www.riverside-golf.com/",
           "Active Instagram @riversidegolfclub and @bukitgolfriverside",
           "WeatherCrave golf-17568 (Bojong Nangka) active",
-          "Tripadvisor 2025 reviews; Compass Club partner listing"
+          "Tripadvisor 2025 reviews; Compass Club partner listing",
+          "2026-04-30 coordinate correction: -6.42,106.9 -> -6.42969,106.9056 (Plus code H6CR+2P). Refined from rounded -6.42,106.9"
         ],
         "closure_reason": null,
         "reopened_as": null,
-        "coord_notes": "Plus Code HWF3+GX8, Bojong Nangka, Gunung Putri, Bogor 16963. Existing dataset (-6.4181, 106.9147) closely matches; WeatherCrave gives lower precision but same general point.",
+        "coord_notes": "Plus Code HWF3+GX8, Bojong Nangka, Gunung Putri, Bogor 16963. Existing dataset (-6.4181, 106.9147) closely matches; WeatherCrave gives lower precision but same general point. | 2026-04-30 corrected: Refined from rounded -6.42,106.9 (Plus code H6CR+2P)",
         "last_verified": "2026-04-30"
       },
       "membership": {
@@ -5662,8 +5670,8 @@
       "region": "Jember",
       "province": "East Java",
       "address": "Pondokrejo, Tempurejo, Jember 68173",
-      "lat": -8.30288,
-      "lng": 113.40084,
+      "lat": -8.33117,
+      "lng": 113.69671,
       "holes": 18,
       "par": null,
       "designer": null,
@@ -5705,11 +5713,12 @@
           "https://kabarbaik.co/bantu-tingkatkan-potensi-daerah-yasa-gelar-event-golf-di-glantangan-jember/ - YASA event Sept 13, 2025 (120 participants)",
           "https://us.trip.com/travel-guide/attraction/tempurejo/padang-golf-glantangan-144867458/ - 2026 attraction listing",
           "https://www.hole19golf.com/courses/padang-golf-glantangan - active course info with Plus Code MMCX+QMW",
-          "Multiple 2025 tournaments confirm active operation; 2014 references no longer the only data"
+          "Multiple 2025 tournaments confirm active operation; 2014 references no longer the only data",
+          "2026-04-30 coordinate correction: -8.30288,113.40084 -> -8.33117,113.69671 (Plus code M9PM+5). Stored 113.40084 was ~33km too far west; correct location is Pondokrejo, Tempurejo, Jember"
         ],
         "closure_reason": null,
         "reopened_as": null,
-        "coord_notes": "Pondokrejo, Tempurejo, Jember; 50 ha 18-hole course opened Nov 2, 1975 by East Java Governor Mohammad Noer. Note: OSM 'Glantangan Golf Course' returned -8.3302,113.6983 which is ~30 km east and INCORRECT for this course (likely a different tagged feature). Plus-code-derived coordinate is correct.",
+        "coord_notes": "Pondokrejo, Tempurejo, Jember; 50 ha 18-hole course opened Nov 2, 1975 by East Java Governor Mohammad Noer. Note: OSM 'Glantangan Golf Course' returned -8.3302,113.6983 which is ~30 km east and INCORRECT for this course (likely a different tagged feature). Plus-code-derived coordinate is correct. | 2026-04-30 corrected: Stored 113.40084 was ~33km too far west; correct location is Pondokrejo, Tempurejo, Jember (Plus code M9PM+5)",
         "last_verified": "2026-04-30"
       },
       "membership": {
@@ -12188,8 +12197,8 @@
       "region": "Bengkulu",
       "province": "Bengkulu",
       "address": "Lingkar Barat, Gading Cempaka, Bengkulu",
-      "lat": -3.829,
-      "lng": 102.2829,
+      "lat": -3.825,
+      "lng": 102.305,
       "holes": null,
       "par": null,
       "designer": null,
@@ -12225,11 +12234,12 @@
         "confidence": "high",
         "evidence": [
           "https://golftimes.id/2025/07/05/lapangan-golf-merah-putih-diresmikan-bengkulu-punya-ikon-baru-wisata-olahraga/",
-          "https://www.facebook.com/mediacenterpemprovbengkulu/posts/gubernur-bengkulu-helmi-hasan-meresmikan-lapangan-golf-merah-putih-yang-terletak/1178595537646366/"
+          "https://www.facebook.com/mediacenterpemprovbengkulu/posts/gubernur-bengkulu-helmi-hasan-meresmikan-lapangan-golf-merah-putih-yang-terletak/1178595537646366/",
+          "2026-04-30 coordinate correction: -3.829,102.2829 -> -3.825,102.305 (Plus code 575X+GR2). Stored 102.2829 was ~2.5km too far west (offshore); correct at Lingkar Barat, Gading Cempaka"
         ],
         "closure_reason": null,
         "reopened_as": null,
-        "coord_notes": "Approx. coords from research; verify if deploying. Operator: Polda Bengkulu.",
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: Polda Bengkulu. | 2026-04-30 corrected: Stored 102.2829 was ~2.5km too far west (offshore); correct at Lingkar Barat, Gading Cempaka (Plus code 575X+GR2)",
         "last_verified": "2026-04-30"
       },
       "membership": {
@@ -12489,8 +12499,8 @@
       "region": "Palembang",
       "province": "South Sumatra",
       "address": "Plaju, Palembang",
-      "lat": -2.9966,
-      "lng": 104.8264,
+      "lat": -2.995,
+      "lng": 104.809,
       "holes": 9,
       "par": null,
       "designer": null,
@@ -12526,11 +12536,12 @@
         "status": "operating",
         "confidence": "medium",
         "evidence": [
-          "https://www.instagram.com/baguskuning.golfcourse/"
+          "https://www.instagram.com/baguskuning.golfcourse/",
+          "2026-04-30 coordinate correction: -2.9966,104.8264 -> -2.995,104.809 (Plus code 2R52+WHR). Stored 104.8264 was ~2km too far east; correct at Jl. D.I. Panjaitan, Tangga Takat, Plaju"
         ],
         "closure_reason": null,
         "reopened_as": null,
-        "coord_notes": "Approx. coords from research; verify if deploying. Operator: Pertamina (Plaju refinery community).",
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: Pertamina (Plaju refinery community). | 2026-04-30 corrected: Stored 104.8264 was ~2km too far east; correct at Jl. D.I. Panjaitan, Tangga Takat, Plaju (Plus code 2R52+WHR)",
         "last_verified": "2026-04-30"
       },
       "membership": {
@@ -13003,8 +13014,8 @@
       "region": "Limboto",
       "province": "Gorontalo",
       "address": "Limboto Barat, Kabupaten Gorontalo",
-      "lat": 0.6219,
-      "lng": 122.9622,
+      "lat": 0.6307,
+      "lng": 122.931,
       "holes": 9,
       "par": 36,
       "designer": null,
@@ -13043,11 +13054,12 @@
         "confidence": "medium",
         "evidence": [
           "https://playgolf.id/golf_courses/lapangan-golf-gorontalo/",
-          "https://coolturnesia.com/coolturnesia/berita/detail/lapangan-golf-yosonegoro-akan-kembali-hidup-pemprovpemkab-gorontalo-sepakat-kelola-bersama"
+          "https://coolturnesia.com/coolturnesia/berita/detail/lapangan-golf-yosonegoro-akan-kembali-hidup-pemprovpemkab-gorontalo-sepakat-kelola-bersama",
+          "2026-04-30 coordinate correction: 0.6219,122.9622 -> 0.6307,122.931 (Plus code JWJJ+79X). Stored 122.9622 was ~3.5km too far east; correct at Jl. Trans Sulawesi, Yosonegoro, Limboto"
         ],
         "closure_reason": null,
         "reopened_as": null,
-        "coord_notes": "Approx. coords from research; verify if deploying. Operator: Pemprov Gorontalo (Dispora).",
+        "coord_notes": "Approx. coords from research; verify if deploying. Operator: Pemprov Gorontalo (Dispora). | 2026-04-30 corrected: Stored 122.9622 was ~3.5km too far east; correct at Jl. Trans Sulawesi, Yosonegoro, Limboto (Plus code JWJJ+79X)",
         "last_verified": "2026-04-30"
       },
       "membership": {
