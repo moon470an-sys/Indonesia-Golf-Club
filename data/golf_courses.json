@@ -9821,9 +9821,9 @@
       "name_en": "Cenderawasih Golf Club (Sentani/Jayapura)",
       "region": "Jayapura",
       "province": "Papua",
-      "address": "Jl. Polimak IV Atas, Kodam Baru, Jayapura 99000",
-      "lat": -2.5786,
-      "lng": 140.6988,
+      "address": "Jl. Polimak IV Atas, Ardipura, Jayapura Selatan, Jayapura 99221",
+      "lat": -2.5515,
+      "lng": 140.6888,
       "holes": 9,
       "par": 36,
       "designer": null,
@@ -9872,17 +9872,18 @@
       },
       "operating_status": {
         "status": "operating",
-        "confidence": "low",
+        "confidence": "medium",
         "evidence": [
           "Kodam XVII/Cen tournaments held at course (TNI website)",
           "Pangdam Farewell/Welcome Golf event reported on TNI website",
           "Active Instagram location 238700390 'Lapangan Golf Cenderawasih KODAM XVII Jayapura'",
           "Trip.com 2025 listing",
-          "Plus code CMXQ+9GW (Ardipura, Jayapura Selatan) per Trip.com and playgolf.id; address Jl. Polimak IV Atas"
+          "Plus code CMXQ+9GW (Ardipura, Jayapura Selatan) per Trip.com and playgolf.id; address Jl. Polimak IV Atas",
+          "2026-04-30 coordinate correction: previous lat/lng (-2.5786, 140.6988) was ~3 km SSE of the actual course — moved to Plus code CMXQ+9GW (~-2.5515, 140.6888) per playgolf.id and trip.com listings; course sits on ridge in Ardipura, Jayapura Selatan adjacent to Makodam XVII HQ. Recent 8 June 2024 Kodam HUT 61 tournament confirmed operating."
         ],
         "closure_reason": null,
         "reopened_as": null,
-        "coord_notes": "Plus-code derived (~30m precision); no OSM golf polygon. Course sits on the ridge above Polimak IV in Ardipura/Entrop area, near Kodam XVII HQ. Satellite at this location shows the cleared 9-hole layout overlooking Jayapura bay.",
+        "coord_notes": "Plus code CMXQ+9GW (Ardipura, Jayapura Selatan). Course on the ridge above Polimak/Entrop overlooking Jayapura bay, adjacent to Kodam XVII HQ. NOT in Sentani — Sentani is ~35km west near the airport, no golf course there.",
         "last_verified": "2026-04-30"
       },
       "membership": {
