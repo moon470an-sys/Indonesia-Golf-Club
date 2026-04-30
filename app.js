@@ -704,9 +704,25 @@ function getTableRows() {
   // Sort
   const k = tableSort.key;
   const dir = tableSort.dir === 'asc' ? 1 : -1;
+  const slotMap = {
+    weekday_am:    ['weekday', 'am'],
+    weekday_pm:    ['weekday', 'pm'],
+    saturday_am:   ['weekend_saturday', 'am'],
+    saturday_pm:   ['weekend_saturday', 'pm'],
+    sunday_am:     ['weekend_sunday', 'am'],
+    sunday_pm:     ['weekend_sunday', 'pm'],
+  };
   rows.sort((a, b) => {
     let va, vb;
-    if (k === 'weekday_fee') {
+    if (slotMap[k]) {
+      const [slot, half] = slotMap[k];
+      const fa = extractAmPm(a.fees_2026_05?.schedule_detailed?.[slot]);
+      const fb = extractAmPm(b.fees_2026_05?.schedule_detailed?.[slot]);
+      const fallbackA = slot === 'weekday' ? (a.fees_2026_05?.weekday?.green_fee_idr ?? a.fees_2026_05?.weekday?.guest_fee_idr) : (a.fees_2026_05?.weekend?.green_fee_idr ?? a.fees_2026_05?.weekend?.guest_fee_idr);
+      const fallbackB = slot === 'weekday' ? (b.fees_2026_05?.weekday?.green_fee_idr ?? b.fees_2026_05?.weekday?.guest_fee_idr) : (b.fees_2026_05?.weekend?.green_fee_idr ?? b.fees_2026_05?.weekend?.guest_fee_idr);
+      va = fa[half] ?? fallbackA ?? null;
+      vb = fb[half] ?? fallbackB ?? null;
+    } else if (k === 'weekday_fee') {
       va = a.fees_2026_05?.weekday?.green_fee_idr ?? a.fees_2026_05?.weekday?.guest_fee_idr ?? null;
       vb = b.fees_2026_05?.weekday?.green_fee_idr ?? b.fees_2026_05?.weekday?.guest_fee_idr ?? null;
     } else if (k === 'weekend_fee') {
@@ -777,6 +793,49 @@ function membershipCellText(m) {
   return '<span class="muted">비공개</span>';
 }
 
+function extractAmPm(slotData) {
+  if (!slotData || typeof slotData !== 'object') return { am: null, pm: null };
+  const amVals = [], pmVals = [], allDayVals = [];
+  const findNumeric = (obj) => {
+    if (typeof obj === 'number') return [obj];
+    if (!obj || typeof obj !== 'object' || Array.isArray(obj)) return [];
+    const out = [];
+    for (const k of ['visitor', 'visitor_18h', 'visitor_min', 'visitor_max', 'green_fee_idr', 'guest_fee_idr', 'all_inclusive']) {
+      if (typeof obj[k] === 'number') out.push(obj[k]);
+    }
+    if (out.length) return out;
+    for (const [k, v] of Object.entries(obj)) {
+      if (k.toLowerCase().includes('visitor') && typeof v === 'number') out.push(v);
+    }
+    if (out.length) return out;
+    for (const v of Object.values(obj)) {
+      if (typeof v === 'number') out.push(v);
+    }
+    return out;
+  };
+  const walk = (obj, depth = 0) => {
+    if (depth > 5 || !obj || typeof obj !== 'object' || Array.isArray(obj)) return;
+    for (const [k, v] of Object.entries(obj)) {
+      const lk = k.toLowerCase();
+      const isAm = lk.includes('morning') || lk.endsWith('_am') || lk === 'am';
+      const isPm = lk.includes('afternoon') || lk.endsWith('_pm') || lk === 'pm' || lk.includes('twilight') || lk.includes('sunset');
+      const isAllDay = lk.includes('all_day');
+      if (isAm) amVals.push(...findNumeric(v));
+      else if (isPm) pmVals.push(...findNumeric(v));
+      else if (isAllDay) allDayVals.push(...findNumeric(v));
+      else if (v && typeof v === 'object' && !Array.isArray(v)) walk(v, depth + 1);
+      else if (typeof v === 'number') allDayVals.push(v);
+    }
+  };
+  walk(slotData);
+  const max = arr => arr.length ? Math.max(...arr) : null;
+  const allDay = max(allDayVals);
+  return {
+    am: max(amVals) ?? allDay,
+    pm: max(pmVals) ?? allDay,
+  };
+}
+
 function flattenSlotToLines(slot) {
   if (!slot || typeof slot !== 'object') return [];
   const lines = [];
@@ -829,13 +888,25 @@ function renderTable() {
     }[status] || status;
     const f = c.fees_2026_05 || {};
     const sd = f.schedule_detailed || {};
+    const wdSlots = extractAmPm(sd.weekday);
+    const satSlots = extractAmPm(sd.weekend_saturday);
+    const sunSlots = extractAmPm(sd.weekend_sunday);
     const wdFallback = f.weekday?.green_fee_idr ?? f.weekday?.guest_fee_idr;
     const weFallback = f.weekend?.green_fee_idr ?? f.weekend?.guest_fee_idr;
-    const wdHtml = renderRateCell([['', sd.weekday]], wdFallback, f.weekday?.green_fee_usd);
-    const weHtml = renderRateCell(
-      [['토요일', sd.weekend_saturday], ['일요일', sd.weekend_sunday], ['공휴일', sd.public_holiday]],
-      weFallback, f.weekend?.green_fee_usd
-    );
+    const wdUsd = f.weekday?.green_fee_usd;
+    const weUsd = f.weekend?.green_fee_usd;
+    const cellHtml = (idr, fallbackIdr, fallbackUsd) => {
+      if (idr != null) return fmtIDR(idr);
+      if (fallbackIdr != null) return `<span class="fee-fallback">${fmtIDR(fallbackIdr)}</span>`;
+      if (fallbackUsd != null) return `<span class="fee-fallback">${fmtUSD(fallbackUsd)}</span>`;
+      return '<span class="muted">—</span>';
+    };
+    const wdAmCell = cellHtml(wdSlots.am, wdFallback, wdUsd);
+    const wdPmCell = cellHtml(wdSlots.pm, wdFallback, wdUsd);
+    const satAmCell = cellHtml(satSlots.am, weFallback, weUsd);
+    const satPmCell = cellHtml(satSlots.pm, weFallback, weUsd);
+    const sunAmCell = cellHtml(sunSlots.am, weFallback, weUsd);
+    const sunPmCell = cellHtml(sunSlots.pm, weFallback, weUsd);
 
     const idUrls = new Set((f.indonesian_sources || []).map(e => e?.url).filter(Boolean));
     const sourcesHtml = (f.sources || []).slice(0, 4).map((u, i) => {
@@ -856,8 +927,12 @@ function renderTable() {
         <td><span class="status-pill ${status}">${statusLabel}</span></td>
         <td class="num">${c.holes ?? '—'}</td>
         <td class="num">${c.year_opened ?? '—'}</td>
-        <td class="fee-detail">${wdHtml}</td>
-        <td class="fee-detail">${weHtml}</td>
+        <td class="num fee">${wdAmCell}</td>
+        <td class="num fee">${wdPmCell}</td>
+        <td class="num fee fee-premium">${satAmCell}</td>
+        <td class="num fee">${satPmCell}</td>
+        <td class="num fee fee-premium">${sunAmCell}</td>
+        <td class="num fee">${sunPmCell}</td>
         <td class="num">${membershipCellText(c.membership)}</td>
         <td class="address">${escapeHtml(c.address || '')}<br>${websiteLink} ${mapLink}</td>
         <td class="sources">${sourcesHtml || '—'}</td>

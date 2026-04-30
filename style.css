@@ -780,7 +780,11 @@ a:hover { text-decoration: underline; }
   font-weight: 700;
   vertical-align: middle;
 }
-.course-table td.fee { color: #064e3b; font-weight: 600; }
+.course-table td.fee { color: #064e3b; font-weight: 600; font-size: 12px; }
+.course-table td.fee.fee-premium { background: rgba(254, 243, 199, 0.45); }
+.course-table th.num { line-height: 1.25; vertical-align: bottom; }
+.course-table td.fee .fee-fallback { color: #6b7280; font-weight: 500; font-style: italic; }
+.course-table td.fee .muted { color: #9ca3af; font-weight: 400; }
 .course-table td.fee-detail {
   font-size: 11px;
   color: #1f2937;
