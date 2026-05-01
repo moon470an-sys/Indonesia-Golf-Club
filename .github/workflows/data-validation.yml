@@ -1,0 +1,123 @@
+name: data-validation
+
+# Repository note: this repo's tree corresponds to the local "site/" folder.
+# validate_data.py and check_sources.py both use Path(__file__).parent as ROOT,
+# so running them with `python validate_data.py` from the repo root works.
+# The optional sibling `../golf_data/` directory does not exist in CI;
+# validate_data.py now handles that case gracefully (skipped, not failed).
+
+on:
+  schedule:
+    # Every Monday at 02:00 UTC
+    - cron: "0 2 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  static-validation:
+    name: Static data validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run validate_data.py
+        id: validate
+        run: python validate_data.py
+
+      - name: Upload validation_raw.md (always)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: validation_raw
+          path: validation_raw.md
+          if-no-files-found: warn
+
+      - name: Open or update issue on CRITICAL findings
+        if: failure()
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: "[data-validation] CRITICAL issues detected"
+          content-filepath: validation_raw.md
+          labels: |
+            data-quality
+            automated
+
+  live-url-check:
+    name: Live source URL check
+    runs-on: ubuntu-latest
+    # Independent of static-validation; we want URL telemetry even if static fails.
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run check_sources.py (8 workers for CI)
+        run: python check_sources.py --workers 8
+
+      - name: Upload url_check_report.json
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: url_check_report
+          path: url_check_report.json
+          if-no-files-found: warn
+
+      - name: Summarise URL check report
+        if: always()
+        env:
+          HARD_404_THRESHOLD: "25"
+        run: |
+          python - <<'PY'
+          import json, os, sys
+          from collections import Counter
+          from pathlib import Path
+
+          report_path = Path("url_check_report.json")
+          if not report_path.exists():
+              print("::warning::url_check_report.json not produced; skipping summary")
+              sys.exit(0)
+
+          with report_path.open(encoding="utf-8") as f:
+              data = json.load(f)
+
+          # The report may be a list of result rows OR a dict wrapping them.
+          if isinstance(data, dict):
+              rows = data.get("results") or data.get("rows") or data.get("checks") or []
+          else:
+              rows = data
+
+          status_counts = Counter()
+          hard_404 = 0
+          for r in rows:
+              if not isinstance(r, dict):
+                  continue
+              code = r.get("status") or r.get("status_code") or r.get("http_status")
+              status_counts[str(code)] += 1
+              # "HARD-404" = an actual 404 from the server (not a soft / redirected one)
+              if code == 404 or str(code) == "404":
+                  hard_404 += 1
+
+          total = sum(status_counts.values())
+          print(f"Total URLs checked: {total}")
+          print("Status distribution:")
+          for k, v in sorted(status_counts.items(), key=lambda kv: (-kv[1], kv[0])):
+              print(f"  {k}: {v}")
+          print(f"HARD-404 count: {hard_404}")
+
+          threshold = int(os.environ.get("HARD_404_THRESHOLD", "25"))
+          if hard_404 > threshold:
+              print(f"::warning::HARD-404 count {hard_404} exceeds threshold {threshold}")
+          PY

@@ -11,6 +11,7 @@ Site data validator. Checks all JSON data files for:
 Usage: python validate_data.py [--strict]
 Exits with code 1 if any CRITICAL issue found.
 """
+import datetime
 import json
 import re
 import statistics
@@ -233,6 +234,10 @@ def validate_5y_financials():
 def validate_course_financials():
     files = ["financials_jabodetabek.json", "financials_bali_resort.json",
              "financials_java.json", "financials_outer.json"]
+    if not GOLF_DATA.exists():
+        report("info", "golf_data/", "root",
+               f"optional parent dir '{GOLF_DATA}' not present — skipping course-level financials checks")
+        return
     for f in files:
         fp = GOLF_DATA / f
         if not fp.exists():
@@ -275,6 +280,10 @@ def validate_course_financials():
 def validate_fees():
     files = ["fees_jabodetabek.json", "fees_bali_resort.json",
              "fees_java.json", "fees_outer.json"]
+    if not GOLF_DATA.exists():
+        report("info", "golf_data/", "root",
+               f"optional parent dir '{GOLF_DATA}' not present — skipping course-level fees checks")
+        return
     for f in files:
         fp = GOLF_DATA / f
         if not fp.exists():
@@ -391,7 +400,7 @@ def main():
     with open(out, "w", encoding="utf-8") as f:
         f.write("# 데이터 재검증 리포트 (raw — 자동생성)\n\n")
         f.write("> 사람이 정리한 분석본은 VALIDATION_REPORT.md를 참조하세요.\n\n")
-        f.write(f"실행일: 2026-05-01\n\n")
+        f.write(f"실행일: {datetime.date.today().isoformat()}\n\n")
         f.write(f"- **CRITICAL**: {len(issues['critical'])}\n")
         f.write(f"- **WARNING**: {len(issues['warning'])}\n")
         f.write(f"- **INFO**: {len(issues['info'])}\n\n")

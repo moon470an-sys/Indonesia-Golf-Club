@@ -5,8 +5,9 @@
     "last_updated": "2026-05-01",
     "scope": "FY2020-FY2024 audited data for IDX/NYSE/SGX listed parents of Indonesian golf courses",
     "currency_notes": "All revenue/profit/asset figures in fiscal-year native currency. Non-IDR tickers (AMMN/FCX/B58) include _idr_equiv at year-end BI rates (2020=14050, 2021=14252, 2022=15592, 2023=15397, 2024=16157).",
-    "upgrade_pass": "2026-05-01: PIPG/DMIG/GOLF/B58 upgraded via PDF parsing (pdftotext, PyMuPDF, Wayback Machine). AMMN FY2020 corrected via IPO prospectus.",
-    "upgrade_pass_2": "2026-05-01: Added DILD (Graha Famili), PWON (Pakuwon Golf Surabaya), BN4 (Keppel — Ria Bintan JV)"
+    "upgrade_pass": "2026-05-01: PIPG/DMIG/GOLF/B58 upgraded via PDF parsing (pdftotext, PyMuPDF, Wayback Machine). AMMN FY2020 corrected via IPO prospectus.; 2026-05-01 (NCI fix): FY2020 total_equity for BSDE/BKSL/ELTY/DILD/PWON now reports consolidated equity = parent + NCI; added total_equity_parent and non_controlling_interests fields. total_liabilities corrected to consolidated audited figures from primary IDX/IR PDFs.",
+    "upgrade_pass_2": "2026-05-01: Added DILD (Graha Famili), PWON (Pakuwon Golf Surabaya), BN4 (Keppel — Ria Bintan JV)",
+    "upgrade_pass_3": "2026-05-01: Added BKDP (bukit-darmo direct operator) and CTRA (Ciputra group, multi-course township amenity)"
   },
   "companies": [
     {
@@ -21,8 +22,8 @@
           "net_profit": 480326252284,
           "ebitda": null,
           "total_assets": 60862926586750,
-          "total_liabilities": 17102919124880,
-          "total_equity": 30119334419012,
+          "total_liabilities": 26391824111326,
+          "total_equity": 34471102475424,
           "eps": 13.29,
           "dividend_per_share": 0,
           "employees": null,
@@ -41,7 +42,9 @@
               "date_published": "2021-05",
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "total_equity_parent": 30119334418612,
+          "non_controlling_interests": 4351768056812
         },
         "2021": {
           "revenue": 7654802250986,
@@ -428,8 +431,8 @@
           "net_profit": -556301782629,
           "ebitda": null,
           "total_assets": 18371229973821,
-          "total_liabilities": 4040174427929,
-          "total_equity": 8734595948065,
+          "total_liabilities": 8121131006426,
+          "total_equity": 10250098967395,
           "eps": -4,
           "dividend_per_share": 0,
           "employees": null,
@@ -447,8 +450,18 @@
               "publisher": "Indopremier",
               "date_published": "2021-06-28",
               "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://www.sentulcity.co.id/files/media/uploaded-files/investor/laporan-keuangan/2020/laporan-keuangan-tahunan-31-desember-2020-pt-sentul-city-tbk.pdf",
+              "title": "Laporan Keuangan Tahunan 31 Desember 2020 PT Sentul City Tbk (Audited)",
+              "publisher": "PT Sentul City Tbk",
+              "date_published": "2021",
+              "date_accessed": "2026-05-01",
+              "section": "Laporan Posisi Keuangan Konsolidasian, Eksibit A/1-A/3"
             }
-          ]
+          ],
+          "total_equity_parent": 8734595948065,
+          "non_controlling_interests": 1515503019330
         },
         "2021": {
           "revenue": 910709348365,
@@ -557,9 +570,9 @@
           "operating_profit": null,
           "net_profit": -326350000000,
           "ebitda": -127500000000,
-          "total_assets": 11823400000000,
-          "total_liabilities": 1469600000000,
-          "total_equity": 7271300000000,
+          "total_assets": 11823436000000,
+          "total_liabilities": 3387644000000,
+          "total_equity": 8435792000000,
           "eps": -3,
           "dividend_per_share": 0,
           "employees": null,
@@ -577,8 +590,18 @@
               "publisher": "Bisnis.com",
               "date_published": "2021-11-08",
               "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://bakrieland.com/assets/bakrieland-files/financialreports/63106fbb5c77e.pdf",
+              "title": "PT Bakrieland Development Tbk - Consolidated Financial Statements 31 December 2021 and 2020 (FY2020 audited comparative)",
+              "publisher": "PT Bakrieland Development Tbk",
+              "date_published": "2022",
+              "date_accessed": "2026-05-01",
+              "section": "Laporan Posisi Keuangan Konsolidasian (FY2020 audited comparative; figures in million Rp)"
             }
-          ]
+          ],
+          "total_equity_parent": 7271269000000,
+          "non_controlling_interests": 1164523000000
         },
         "2021": {
           "revenue": 784410000000,
@@ -2642,8 +2665,8 @@
           "net_profit": 76766474625,
           "ebitda": 775934487964,
           "total_assets": 15701872562921,
-          "total_liabilities": 5033602133730,
-          "total_equity": 5199894585961,
+          "total_liabilities": 9652623140002,
+          "total_equity": 6049249422919,
           "eps": 3,
           "dividend_per_share": 0,
           "employees": 1478,
@@ -2661,8 +2684,18 @@
               "publisher": "StockAnalysis",
               "date_published": null,
               "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://investor.intiland.com/wp-content/uploads/2020/06/Laporan-Keuangan-Konsolidasian-Intiland-Development-per-31-Maret-2021.pdf",
+              "title": "PT Intiland Development Tbk - Consolidated FS as of 31 March 2021 and 31 December 2020 (FY2020 audited comparative)",
+              "publisher": "PT Intiland Development Tbk",
+              "date_published": "2021",
+              "date_accessed": "2026-05-01",
+              "section": "Laporan Posisi Keuangan Konsolidasian (FY2020 audited comparative on pp.1-2; original FY2020 audited PDF is image-scanned)"
             }
-          ]
+          ],
+          "total_equity_parent": 5199894585961,
+          "non_controlling_interests": 849354836958
         },
         "2021": {
           "revenue": 2628631841339,
@@ -2772,8 +2805,8 @@
           "net_profit": 929918580000,
           "ebitda": 1425943791000,
           "total_assets": 26458805377000,
-          "total_liabilities": 3944018454000,
-          "total_equity": 14635479007000,
+          "total_liabilities": 8860110106000,
+          "total_equity": 17598695271000,
           "eps": null,
           "dividend_per_share": 0,
           "employees": null,
@@ -2784,8 +2817,18 @@
               "publisher": "Carisaham",
               "date_published": "2025",
               "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://www.idx.co.id/StaticData/NewsAndAnnouncement/ANNOUNCEMENTSTOCK/From_EREP/202004/20210412070356-24201-0/PT%20Pakuwon%20Jati%20Tbk%20-%2031%20Desember%202020%20(FINAL).pdf",
+              "title": "PT Pakuwon Jati Tbk dan Entitas Anak - Laporan Keuangan Konsolidasian 31 Desember 2020 (Audited, Final)",
+              "publisher": "Indonesia Stock Exchange (IDX EREP filing)",
+              "date_published": "2021-04-12",
+              "date_accessed": "2026-05-01",
+              "section": "Laporan Posisi Keuangan Konsolidasian (figures in Rp '000)"
             }
-          ]
+          ],
+          "total_equity_parent": 14635479007000,
+          "non_controlling_interests": 2963216264000
         },
         "2021": {
           "revenue": 5713273000000,
@@ -3019,6 +3062,252 @@
       },
       "summary_note": "Ria Bintan Ocean+Forest 50% JV 파트너 (살림과 합작). Vision 2030/SembCorp Marine 분사로 FY2020-22(KCL)와 FY2023-24(자산경량화 후 Keppel Ltd) 비교 시 자산·인력 급감(직원 17,238→5,249). FY2023 순이익 S$4.1B는 분사 일회성 이익. 골프는 비중 작음.",
       "data_quality": "medium",
+      "last_verified": "2026-05-01"
+    },
+    {
+      "ticker": "BKDP",
+      "exchange": "IDX",
+      "company_name": "PT Bukit Darmo Property Tbk",
+      "currency": "IDR",
+      "yearly": {
+        "2020": {
+          "revenue": 19560000000,
+          "operating_profit": null,
+          "net_profit": -31050000000,
+          "ebitda": null,
+          "total_assets": 790840000000,
+          "total_liabilities": 309480000000,
+          "total_equity": 481360000000,
+          "eps": null,
+          "dividend_per_share": 0,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://carisaham.com/emiten/profile/BKDP",
+              "title": "BKDP Profile",
+              "publisher": "Carisaham",
+              "date_published": "2025",
+              "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://www.idx.co.id/StaticData/NewsAndAnnouncement/ANNOUNCEMENTSTOCK/From_EREP/202106/47bd161978_f962b48ffc.pdf",
+              "title": "BKDP Laporan Tahunan 2020 - Survive To Thrive",
+              "publisher": "IDX EREP",
+              "date_published": "2021-06",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2021": {
+          "revenue": 23402000000,
+          "operating_profit": -29177000000,
+          "net_profit": -36251000000,
+          "ebitda": -8462000000,
+          "total_assets": 774140000000,
+          "total_liabilities": 327576000000,
+          "total_equity": 446564000000,
+          "eps": -4.82,
+          "dividend_per_share": 0,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/BKDP/financials/",
+              "title": "BKDP Financials",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2022": {
+          "revenue": 26036000000,
+          "operating_profit": -26280000000,
+          "net_profit": -33004000000,
+          "ebitda": -5810000000,
+          "total_assets": 756500000000,
+          "total_liabilities": 343254000000,
+          "total_equity": 413246000000,
+          "eps": -4.39,
+          "dividend_per_share": 0,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/BKDP/financials/",
+              "title": "BKDP Financials",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2023": {
+          "revenue": 31211000000,
+          "operating_profit": -29610000000,
+          "net_profit": -34591000000,
+          "ebitda": -9180000000,
+          "total_assets": 758239000000,
+          "total_liabilities": 376331000000,
+          "total_equity": 381907000000,
+          "eps": -4.6,
+          "dividend_per_share": 0,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/BKDP/financials/",
+              "title": "BKDP Financials",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2024": {
+          "revenue": 30520000000,
+          "operating_profit": -30586000000,
+          "net_profit": -35914000000,
+          "ebitda": -10856000000,
+          "total_assets": 752245000000,
+          "total_liabilities": 406482000000,
+          "total_equity": 345763000000,
+          "eps": -4.78,
+          "dividend_per_share": 0,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/BKDP/financials/",
+              "title": "BKDP Financials",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        }
+      },
+      "summary_note": "Bukit Darmo Surabaya 골프코스(Jack Nicklaus II, 1995) 직접 운영사. 매출 Rp 20-30B 수준 초소형 emiten. 5년 연속 영업/순손실, 자본잠식 진행 중(자본 Rp 481B→346B). 무배당.",
+      "data_quality": "medium",
+      "last_verified": "2026-05-01"
+    },
+    {
+      "ticker": "CTRA",
+      "exchange": "IDX",
+      "company_name": "PT Ciputra Development Tbk",
+      "currency": "IDR",
+      "yearly": {
+        "2020": {
+          "revenue": 8070737000000,
+          "operating_profit": 2648089000000,
+          "net_profit": 1320754000000,
+          "ebitda": null,
+          "total_assets": 39255187000000,
+          "total_liabilities": 23923059000000,
+          "total_equity": 15332128000000,
+          "eps": null,
+          "dividend_per_share": 8,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://www.idx.co.id/StaticData/NewsAndAnnouncement/ANNOUNCEMENTSTOCK/From_EREP/202004/20210415132757-24422-0/Ciputra%20Development_Billingual_31_Des_2020.pdf",
+              "title": "PT Ciputra Development Tbk Laporan Keuangan 31 Des 2020",
+              "publisher": "IDX EREP",
+              "date_published": "2021-04-15",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2021": {
+          "revenue": 9729651000000,
+          "operating_profit": 3328077000000,
+          "net_profit": 1735329000000,
+          "ebitda": 3637140000000,
+          "total_assets": 40668411000000,
+          "total_liabilities": 21274214000000,
+          "total_equity": 19394197000000,
+          "eps": 93.62,
+          "dividend_per_share": 8.5,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/CTRA/financials/",
+              "title": "CTRA Financials",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2022": {
+          "revenue": 9126799000000,
+          "operating_profit": 3057323000000,
+          "net_profit": 1862403000000,
+          "ebitda": 3398426000000,
+          "total_assets": 42032615000000,
+          "total_liabilities": 21017685000000,
+          "total_equity": 21014930000000,
+          "eps": 100.48,
+          "dividend_per_share": 14,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/CTRA/financials/",
+              "title": "CTRA Financials",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2023": {
+          "revenue": 9245032000000,
+          "operating_profit": 2932834000000,
+          "net_profit": 1846087000000,
+          "ebitda": 3288090000000,
+          "total_assets": 44115215000000,
+          "total_liabilities": 21490499000000,
+          "total_equity": 22624716000000,
+          "eps": 99.6,
+          "dividend_per_share": 15,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://ciputradevelopment.com/wp-content/uploads/2023/05/Laporan-Keuangan-Audit-31-Des-2023_CTRA_01042024.pdf",
+              "title": "CTRA Laporan Keuangan Audit 31 Des 2023",
+              "publisher": "Company IR",
+              "date_published": "2024-04-01",
+              "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://stockanalysis.com/quote/idx/CTRA/financials/",
+              "title": "CTRA Financials",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2024": {
+          "revenue": 11187565000000,
+          "operating_profit": 3446378000000,
+          "net_profit": 2126288000000,
+          "ebitda": 3822494000000,
+          "total_assets": 47022702000000,
+          "total_liabilities": 22407372000000,
+          "total_equity": 24615330000000,
+          "eps": 114.71,
+          "dividend_per_share": 21,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/CTRA/financials/",
+              "title": "CTRA Financials",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        }
+      },
+      "summary_note": "Ciputra Surabaya · Taman Dayu Pasuruan 등 다수 township 골프장. 매출 Rp 8.07T→11.19T(+39%), 순이익 Rp 1.32T→2.13T(+61%), 배당 Rp 8→21(+163%) 5년 안정 성장.",
+      "data_quality": "high",
       "last_verified": "2026-05-01"
     }
   ]

@@ -5063,7 +5063,7 @@
         "currency": "IDR",
         "notes": "Visitor weekday IDR 850,000 / weekend & holiday IDR 1,750,000. Member weekday IDR 255,000 / weekend IDR 355,000. Twin-share cart included; single cart upgrade IDR 150,000.",
         "sources": [
-          "https://www.borobudur-golf.com/rates/",
+          "https://web.archive.org/web/20240713134223/https://www.borobudur-golf.com/rates/ (wayback snapshot 2024-07-13)",
           "https://www.golfpass.com/travel-advisor/courses/38170-borobudur-international-golf-country-club"
         ],
         "last_verified": "2026-04-29"
@@ -5528,8 +5528,8 @@
         "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       },
       "financials": {
-        "operating_company": "PT Ciputra Surya (merged into PT Ciputra Development Tbk in 2017); golf operated within CitraLand Surabaya",
-        "parent_group": "Ciputra Group",
+        "operating_company": "PT Ciputra Surya Tbk (CTRS, Ciputra subsidiary)",
+        "parent_group": "PT Ciputra Development Tbk (Ciputra Group)",
         "idx_ticker": "CTRA",
         "listed_status": "subsidiary-of-listed",
         "revenue_idr": 11190000000000,
@@ -5592,7 +5592,7 @@
         "currency": "IDR",
         "notes": "18-hole course designed by Jack Nicklaus II (1995). Visitor 18h: Saturday AM Rp 975,000 / Sat PM Rp 775,000 / Sun AM Rp 875,000 / Sun PM Rp 675,000. Weekday visitor Rp 910,000 (member 365k / guest 580k). 9h weekday: Member 245k / Guest 410k / Visitor 675k. Weekend range Rp 635,000-935,000 (gogolf.co.id). Cart Rp 200,000. BCA cardholder cashback up to Rp 1M / 15% promo. Membership tiers: weekday 7.5M / full-week 11.5M / adult all-day 19M / corporate 39.9M (2yr).",
         "sources": [
-          "http://bukitdarmogolf.com/rates-fee-and-membership/",
+          "https://web.archive.org/web/20211230075448/http://bukitdarmogolf.com/rates-fee-and-membership/ (wayback snapshot 2021-12-30)",
           "https://gogolf.co.id/en/golf-course/bukit-darmo-golf",
           "https://id.trip.com/travel-guide/attraction/dukuhpakis/bukit-darmo-golf-surabaya-58270448/",
           "https://www.bca.co.id/en/promo-bca/2022/07/15/02/59/golf-course"
@@ -5721,8 +5721,8 @@
         "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       },
       "financials": {
-        "operating_company": "PT Adhibaladika Agung (developer/operator of Bukit Darmo Golf community)",
-        "parent_group": "PT Bukit Darmo Property Tbk (originally founded 1989 as PT Adhibaladika)",
+        "operating_company": "PT Bukit Darmo Property Tbk",
+        "parent_group": "PT Bukit Darmo Property Tbk (Sumampow Family)",
         "idx_ticker": "BKDP",
         "listed_status": "listed",
         "revenue_idr": null,
@@ -6089,7 +6089,7 @@
       },
       "financials": {
         "operating_company": "PT Ciputra Development Tbk (project portfolio asset 'The Taman Dayu')",
-        "parent_group": "Ciputra Group",
+        "parent_group": "PT Ciputra Development Tbk (Ciputra Group)",
         "idx_ticker": "CTRA",
         "listed_status": "subsidiary-of-listed",
         "revenue_idr": 11190000000000,
@@ -7835,7 +7835,7 @@
         "ownership_notes": "Bintan Lagoon Resort is privately owned (separately from Gallant Venture's PT Bintan Resort Cakrawala which manages the broader Bintan Resorts enclave). Hotel underwent post-COVID renovation and now operates as Mövenpick Resort & Spa Bintan Lagoon under Accor.",
         "sources": [
           "https://en.wikipedia.org/wiki/Bintan_Lagoon_Resort",
-          "https://movenpick.accor.com/en/asia/indonesia/bintan/movenpick-resort-and-spa-bintan-lagoon.html",
+          "https://web.archive.org/web/20260409070320/https://movenpick.accor.com/en/asia/indonesia/bintan/movenpick-resort-and-spa-bintan-lagoon.html (wayback snapshot 2026-04-09)",
           "https://www.where2golf.com/indonesia/bintan-lagoon-resort-sea-view-course/",
           "https://www.travelweekly-asia.com/Travel-News/Resorts/Mvenpick-adds-Bintan-to-its-resort-portfolio"
         ],
@@ -8882,7 +8882,7 @@
         "currency": "IDR/SGD",
         "notes": "Indah Puri Golf Resort, Sekupang, Batam. Weekday Rp 850,000 (already known). Weekend rate via aggregators SGD 120 nett/pax (~Rp 1,350,000 at ~Rp 11,250/SGD). Older IDR weekend Rp 770k-850k likely refers to local/member or pre-pandemic; current visitor weekend aligns with SGD 120 package. Includes twin-shared buggy, caddy, insurance.",
         "sources": [
-          "https://www.indahpuri.com/golfing-fees/",
+          "https://web.archive.org/web/20200216210617/http://www.indahpuri.com:80/golfing-fees/ (wayback snapshot 2020-02-16)",
           "https://batamgolfpackage.com/",
           "https://www.golfasian.com/golf-courses/indonesia-golf-courses/batam/indah-puri-golf-resort/"
         ],
@@ -8892,7 +8892,7 @@
         "status": "operating",
         "confidence": "high",
         "evidence": [
-          "https://www.indahpuri.com/about/fact-sheet/ (official site live)",
+          "https://web.archive.org/web/20240625033440/https://www.indahpuri.com/about/fact-sheet/ (official site live) [wayback snapshot 2024-06-25]",
           "https://www.tripadvisor.com/Attraction_Review-g2543846-d7094383 (2026 reviews)",
           "Operates daily except Tuesdays (maintenance day) per recent sources"
         ],
@@ -8947,8 +8947,8 @@
         ],
         "currency_note": "IDR (and SGD for SG-based leasing)",
         "sources": [
-          "https://www.indahpuri.com/membership/membership-price/",
-          "https://www.indahpuri.com/membership/reciprocal-updates/"
+          "https://web.archive.org/web/20200216204049/http://www.indahpuri.com:80/membership/membership-price/ (wayback snapshot 2020-02-16)",
+          "https://web.archive.org/web/20200216210353/http://www.indahpuri.com:80/membership/reciprocal-updates/ (wayback snapshot 2020-02-16)"
         ],
         "notes": "4 tiers confirmed. Pricing pages 404 during verification despite Google cache referencing 'affordable joining fee'. Inquire marketing@indahpuri.com / +62 778 323 702-3.",
         "confidence": "medium",
@@ -8973,7 +8973,7 @@
         "recent_news": "PT Kapital Inti Graha announced Rp 1.6 trillion budget for development of Indah Puri (golf, tourism, modern attractions) per Batamline reporting.",
         "ownership_notes": "Ron Fream-designed course opened 1993 on a 90-hectare estate in Sekupang. Ownership transferred to PT Kapital Inti Graha (Jimmy Sukanto) as PMDN domestic investment. Original investment plan ~Rp 1.6T for resort/tourism development. Privately held; not listed.",
         "sources": [
-          "https://www.indahpuri.com/about/fact-sheet/",
+          "https://web.archive.org/web/20240625033440/https://www.indahpuri.com/about/fact-sheet/ (wayback snapshot 2024-06-25)",
           "https://batamline.com/tag/pt-kapital-inti-graha/",
           "https://www.iacworldwide.com/clubs/indah-puri-golf-resort/"
         ],
@@ -10943,7 +10943,7 @@
         "ownership_notes": "AKRA FY2024 consolidated: revenue Rp 38.73T (-7.98% YoY), net profit Rp 2.23T (-19.97% YoY), total assets Rp 33.11T. Course is amenity inside 180-250 ha satellite city; not separately disclosed.",
         "sources": [
           "https://www.idnfinancials.com/news/53270/akras-profit-down-1997-in-2024",
-          "https://akrland.com/en/projects/manado/akr-gkic-grand-kawanua-international-city/",
+          "https://web.archive.org/web/20251008103108/https://akrland.com/en/projects/manado/akr-gkic-grand-kawanua-international-city/ (wayback snapshot 2025-10-08)",
           "https://www.berita-bisnis.com/berbekal-rp-3-triliun-akr-land-development-kembangkan-lagi-grand-kawanua-manado/"
         ],
         "last_verified": "2026-05-01"
