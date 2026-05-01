@@ -1,10 +1,12 @@
 {
   "metadata": {
     "title": "5-Year Financial History for Golf-Related Listed Companies",
-    "version": "1.0",
+    "version": "1.1",
     "last_updated": "2026-05-01",
     "scope": "FY2020-FY2024 audited data for IDX/NYSE/SGX listed parents of Indonesian golf courses",
-    "currency_notes": "All revenue/profit/asset figures in fiscal-year native currency. Non-IDR tickers (AMMN/FCX/B58) include _idr_equiv at year-end BI rates (2020=14050, 2021=14252, 2022=15592, 2023=15397, 2024=16157)."
+    "currency_notes": "All revenue/profit/asset figures in fiscal-year native currency. Non-IDR tickers (AMMN/FCX/B58) include _idr_equiv at year-end BI rates (2020=14050, 2021=14252, 2022=15592, 2023=15397, 2024=16157).",
+    "upgrade_pass": "2026-05-01: PIPG/DMIG/GOLF/B58 upgraded via PDF parsing (pdftotext, PyMuPDF, Wayback Machine). AMMN FY2020 corrected via IPO prospectus.",
+    "upgrade_pass_2": "2026-05-01: Added DILD (Graha Famili), PWON (Pakuwon Golf Surabaya), BN4 (Keppel — Ria Bintan JV)"
   },
   "companies": [
     {
@@ -13,11 +15,132 @@
       "company_name": "PT Bumi Serpong Damai Tbk",
       "currency": "IDR",
       "yearly": {
-        "2020": {"revenue": 6180589086059, "operating_profit": 1982300000000, "net_profit": 480326252284, "ebitda": null, "total_assets": 60862926586750, "total_liabilities": 17102919124880, "total_equity": 30119334419012, "eps": 13.29, "dividend_per_share": 0, "employees": null, "sources": [{"url": "https://www.indopremier.com/ipotnews/newsDetail.php?news_id=382101&group_news=RESEARCHNEWS", "title": "Financial Statements Full Year 2020 of BSDE", "publisher": "Indopremier", "date_published": null, "date_accessed": "2026-05-01"}, {"url": "https://www.bsdcity.com/app/uploads/2021/05/Annual-Reports-BSDE-2020.pdf", "title": "BSDE Annual Report 2020", "publisher": "Company IR", "date_published": "2021-05", "date_accessed": "2026-05-01"}]},
-        "2021": {"revenue": 7654802250986, "operating_profit": 2629154000000, "net_profit": 1348623038141, "ebitda": 3051697000000, "total_assets": 61469712165656, "total_liabilities": 25575995000000, "total_equity": 35893717000000, "eps": 64.49, "dividend_per_share": 0, "employees": null, "sources": [{"url": "https://stockanalysis.com/quote/idx/BSDE/financials/", "title": "BSDE Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}, {"url": "https://carisaham.com/emiten/profile/BSDE/financial", "title": "BSDE Financial History", "publisher": "Carisaham", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2022": {"revenue": 10235479955727, "operating_profit": 4039314000000, "net_profit": 2433146905387, "ebitda": 4480820000000, "total_assets": 64999403480787, "total_liabilities": 26953967000000, "total_equity": 38045436000000, "eps": 116.34, "dividend_per_share": 0, "employees": null, "sources": [{"url": "https://stockanalysis.com/quote/idx/BSDE/financials/", "title": "BSDE Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2023": {"revenue": 11539141250155, "operating_profit": 3298781000000, "net_profit": 1945467441301, "ebitda": 3857033000000, "total_assets": 66827648486393, "total_liabilities": 25626062000000, "total_equity": 41201586000000, "eps": 93.02, "dividend_per_share": 0, "employees": null, "sources": [{"url": "https://stockanalysis.com/quote/idx/BSDE/financials/", "title": "BSDE Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2024": {"revenue": 13796572149000, "operating_profit": 4874328000000, "net_profit": 4359063784000, "ebitda": 5620919000000, "total_assets": 76023348887000, "total_liabilities": 28704021000000, "total_equity": 47319328000000, "eps": 208.43, "dividend_per_share": 0, "employees": null, "sources": [{"url": "https://www.bsdcity.com/app/uploads/2025/05/BSDE-Annual-Report-2024-1.pdf", "title": "BSDE Annual Report 2024", "publisher": "Company IR (BSD City)", "date_published": "2025-05-01", "date_accessed": "2026-05-01"}, {"url": "https://stockanalysis.com/quote/idx/BSDE/financials/", "title": "BSDE Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]}
+        "2020": {
+          "revenue": 6180589086059,
+          "operating_profit": 1982300000000,
+          "net_profit": 480326252284,
+          "ebitda": null,
+          "total_assets": 60862926586750,
+          "total_liabilities": 17102919124880,
+          "total_equity": 30119334419012,
+          "eps": 13.29,
+          "dividend_per_share": 0,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://www.indopremier.com/ipotnews/newsDetail.php?news_id=382101&group_news=RESEARCHNEWS",
+              "title": "Financial Statements Full Year 2020 of BSDE",
+              "publisher": "Indopremier",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://www.bsdcity.com/app/uploads/2021/05/Annual-Reports-BSDE-2020.pdf",
+              "title": "BSDE Annual Report 2020",
+              "publisher": "Company IR",
+              "date_published": "2021-05",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2021": {
+          "revenue": 7654802250986,
+          "operating_profit": 2629154000000,
+          "net_profit": 1348623038141,
+          "ebitda": 3051697000000,
+          "total_assets": 61469712165656,
+          "total_liabilities": 25575995000000,
+          "total_equity": 35893717000000,
+          "eps": 64.49,
+          "dividend_per_share": 0,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/BSDE/financials/",
+              "title": "BSDE Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://carisaham.com/emiten/profile/BSDE/financial",
+              "title": "BSDE Financial History",
+              "publisher": "Carisaham",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2022": {
+          "revenue": 10235479955727,
+          "operating_profit": 4039314000000,
+          "net_profit": 2433146905387,
+          "ebitda": 4480820000000,
+          "total_assets": 64999403480787,
+          "total_liabilities": 26953967000000,
+          "total_equity": 38045436000000,
+          "eps": 116.34,
+          "dividend_per_share": 0,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/BSDE/financials/",
+              "title": "BSDE Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2023": {
+          "revenue": 11539141250155,
+          "operating_profit": 3298781000000,
+          "net_profit": 1945467441301,
+          "ebitda": 3857033000000,
+          "total_assets": 66827648486393,
+          "total_liabilities": 25626062000000,
+          "total_equity": 41201586000000,
+          "eps": 93.02,
+          "dividend_per_share": 0,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/BSDE/financials/",
+              "title": "BSDE Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2024": {
+          "revenue": 13796572149000,
+          "operating_profit": 4874328000000,
+          "net_profit": 4359063784000,
+          "ebitda": 5620919000000,
+          "total_assets": 76023348887000,
+          "total_liabilities": 28704021000000,
+          "total_equity": 47319328000000,
+          "eps": 208.43,
+          "dividend_per_share": 0,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://www.bsdcity.com/app/uploads/2025/05/BSDE-Annual-Report-2024-1.pdf",
+              "title": "BSDE Annual Report 2024",
+              "publisher": "Company IR (BSD City)",
+              "date_published": "2025-05-01",
+              "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://stockanalysis.com/quote/idx/BSDE/financials/",
+              "title": "BSDE Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        }
       },
       "summary_note": "Strong revenue rebound from COVID lows (Rp 6.2T in 2020 to Rp 13.8T in 2024); net profit up ~9x. SMDM (Rancamaya) acquired Oct 2024 for Rp 2.33T.",
       "data_quality": "high",
@@ -29,14 +152,138 @@
       "company_name": "PT Damai Indah Golf Tbk",
       "currency": "IDR",
       "yearly": {
-        "2020": {"revenue": 123300000000, "operating_profit": null, "net_profit": 20800000000, "ebitda": null, "total_assets": null, "total_liabilities": null, "total_equity": null, "eps": null, "dividend_per_share": 0, "employees": null, "sources": [{"url": "https://www.idnfinancials.com/archive/id/news/46848/DMIG-abstains-from-dividend-distribution-three-years-in-a-row", "title": "DMIG abstains from dividend distribution three years in a row", "publisher": "IDNFinancials", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2021": {"revenue": 139660000000, "operating_profit": 32180000000, "net_profit": 37540000000, "ebitda": null, "total_assets": null, "total_liabilities": null, "total_equity": null, "eps": null, "dividend_per_share": 0, "employees": null, "sources": [{"url": "https://www.damaiindahgolf.com/documents/2023_Laporan_Tahunan_2022_rev.pdf", "title": "DMIG Laporan Tahunan 2022", "publisher": "Company IR", "date_published": "2023", "date_accessed": "2026-05-01"}]},
-        "2022": {"revenue": 186454429896, "operating_profit": 52870000000, "net_profit": null, "ebitda": null, "total_assets": null, "total_liabilities": null, "total_equity": null, "eps": null, "dividend_per_share": 0, "employees": null, "sources": [{"url": "https://www.damaiindahgolf.com/documents/2023_Laporan_Tahunan_2022_rev.pdf", "title": "DMIG Laporan Tahunan 2022", "publisher": "Company IR", "date_published": "2023", "date_accessed": "2026-05-01"}]},
-        "2023": {"revenue": 177580000000, "operating_profit": null, "net_profit": 60170000000, "ebitda": null, "total_assets": 653530000000, "total_liabilities": null, "total_equity": null, "eps": null, "dividend_per_share": 0, "employees": null, "sources": [{"url": "https://www.damaiindahgolf.com/documents/2024_Laporan_Tahunan_2023_ENG.pdf", "title": "DMIG 2023 Annual Report", "publisher": "Company IR", "date_published": "2024", "date_accessed": "2026-05-01"}]},
-        "2024": {"revenue": 197990000000, "operating_profit": null, "net_profit": 67570000000, "ebitda": null, "total_assets": null, "total_liabilities": null, "total_equity": null, "eps": null, "dividend_per_share": 13510000000, "employees": null, "sources": [{"url": "https://www.idnfinancials.com/news/53569/golf-records-12-profit-growth-in-2024", "title": "DMIG records 12% profit growth in 2024", "publisher": "IDNFinancials", "date_published": null, "date_accessed": "2026-05-01"}, {"url": "https://www.idnfinancials.com/news/55523/golf-distributes-cash-dividend-of-idr-13-51-billion", "title": "DMIG distributes cash dividend of IDR 13.51 billion", "publisher": "IDNFinancials", "date_published": null, "date_accessed": "2026-05-01"}]}
+        "2020": {
+          "revenue": 123308738612,
+          "operating_profit": 8234226760,
+          "net_profit": 20809665242,
+          "ebitda": 26071365008,
+          "total_assets": 532513096515,
+          "total_liabilities": 193790553646,
+          "total_equity": 338722542869,
+          "eps": 9937758,
+          "dividend_per_share": 4968879,
+          "employees": 198,
+          "sources": [
+            {
+              "url": "https://www.damaiindahgolf.com/documents/2021_LAP_TAHUNAN_2020.pdf",
+              "title": "DMIG Laporan Tahunan 2020",
+              "publisher": "Company IR",
+              "date_published": "2021",
+              "date_accessed": "2026-05-01",
+              "page": "p.7-9 audited FS; Note 11 depreciation"
+            }
+          ]
+        },
+        "2021": {
+          "revenue": 139668124665,
+          "operating_profit": 32814968501,
+          "net_profit": 37541483140,
+          "ebitda": 48416270807,
+          "total_assets": 565056256282,
+          "total_liabilities": 196380473330,
+          "total_equity": 368675782952,
+          "eps": 17928000,
+          "dividend_per_share": 8964060,
+          "employees": 194,
+          "sources": [
+            {
+              "url": "https://www.damaiindahgolf.com/documents/2022_LAP_TAHUNAN_2021.pdf",
+              "title": "DMIG Laporan Tahunan 2021",
+              "publisher": "Company IR",
+              "date_published": "2022",
+              "date_accessed": "2026-05-01",
+              "page": "p.13, 17-20"
+            },
+            {
+              "url": "https://www.damaiindahgolf.com/documents/2022_Laporan_Keuangan.pdf",
+              "title": "DMIG FY2021 Audited FS",
+              "publisher": "Company IR",
+              "date_published": "2022",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2022": {
+          "revenue": 186454207000,
+          "operating_profit": 52873000000,
+          "net_profit": 53028783508,
+          "ebitda": 69440296704,
+          "total_assets": 632512690607,
+          "total_liabilities": 228107000000,
+          "total_equity": 404406330151,
+          "eps": 25324000,
+          "dividend_per_share": 12662078,
+          "employees": 207,
+          "sources": [
+            {
+              "url": "https://www.damaiindahgolf.com/documents/2023_Laporan_Tahunan_2022_rev.pdf",
+              "title": "DMIG Laporan Tahunan 2022",
+              "publisher": "Company IR",
+              "date_published": "2023",
+              "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://www.damaiindahgolf.com/documents/2022_Laporan_Keuangan.pdf",
+              "title": "DMIG FY2022 Audited FS",
+              "publisher": "Company IR",
+              "date_published": "2023",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2023": {
+          "revenue": 244986267834,
+          "operating_profit": 76537335834,
+          "net_profit": 71268571841,
+          "ebitda": 102435537407,
+          "total_assets": 653535367732,
+          "total_liabilities": 203846840085,
+          "total_equity": 449688527647,
+          "eps": 34034657,
+          "dividend_per_share": 17017328,
+          "employees": 207,
+          "sources": [
+            {
+              "url": "https://www.damaiindahgolf.com/documents/2024_Laporan_Tahunan_2023_INA.pdf",
+              "title": "DMIG Laporan Tahunan 2023",
+              "publisher": "Company IR",
+              "date_published": "2024",
+              "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://www.damaiindahgolf.com/documents/2023_Financial_Statement.pdf",
+              "title": "DMIG FY2023 Audited FS",
+              "publisher": "Company IR",
+              "date_published": "2024",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2024": {
+          "revenue": 253102440194,
+          "operating_profit": 78926666604,
+          "net_profit": 82404512711,
+          "ebitda": 107136639720,
+          "total_assets": 690534136219,
+          "total_liabilities": 187722459859,
+          "total_equity": 502811676360,
+          "eps": 39352680,
+          "dividend_per_share": null,
+          "employees": 198,
+          "sources": [
+            {
+              "url": "https://www.damaiindahgolf.com/documents/2025_Laporan_Tahunan_2024_INA.pdf",
+              "title": "DMIG Laporan Tahunan 2024",
+              "publisher": "Company IR",
+              "date_published": "2025",
+              "date_accessed": "2026-05-01",
+              "page": "p.14, 19, 20, 51-52, 79"
+            }
+          ]
+        }
       },
-      "summary_note": "Indonesia's only pure-play golf operator IDX-listed (BSD + PIK). Recovered from COVID; revenue 123B→198B (5y), net profit 21B→68B. Balance sheet small (~650B). Note: balance sheet data extracted only for 2023.",
-      "data_quality": "partial",
+      "summary_note": "인도네시아 유일 순수 골프장 상장사. PyMuPDF로 10개 PDF 파싱. 매출 Rp 123B→253B(+105%), 순이익 21B→82B(+296%). 사업라인 분리(골프51%/회비18%/F&B20%). 2024 Mandiri Indonesia Open 개최(PIK).",
+      "data_quality": "high",
       "last_verified": "2026-05-01"
     },
     {
@@ -45,11 +292,125 @@
       "company_name": "PT MNC Land Tbk",
       "currency": "IDR",
       "yearly": {
-        "2020": {"revenue": 678039010000, "operating_profit": null, "net_profit": 310349134000, "ebitda": null, "total_assets": 29427611990774, "total_liabilities": 5446998955454, "total_equity": 23020643325187, "eps": null, "dividend_per_share": null, "employees": null, "sources": [{"url": "https://carisaham.com/emiten/profile/KPIG", "title": "KPIG Financial History", "publisher": "Carisaham", "date_published": null, "date_accessed": "2026-05-01"}, {"url": "https://stockviz.com/en/KPIG.JK/net-income", "title": "PT MNC Land Tbk Net Income", "publisher": "StockViz", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2021": {"revenue": 699975340000, "operating_profit": 111450000000, "net_profit": 195862601000, "ebitda": 182055000000, "total_assets": 30912009095198, "total_liabilities": 6440802000000, "total_equity": 24471207000000, "eps": 2.43, "dividend_per_share": null, "employees": null, "sources": [{"url": "https://stockanalysis.com/quote/idx/KPIG/financials/", "title": "KPIG Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2022": {"revenue": 1121876641000, "operating_profit": 126385000000, "net_profit": 177771540000, "ebitda": 190132000000, "total_assets": 31955760446155, "total_liabilities": 6468100000000, "total_equity": 25487661000000, "eps": 2.09, "dividend_per_share": null, "employees": null, "sources": [{"url": "https://stockanalysis.com/quote/idx/KPIG/financials/", "title": "KPIG Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2023": {"revenue": 1421006434000, "operating_profit": 135473000000, "net_profit": 329809865000, "ebitda": 207713000000, "total_assets": 33475139357523, "total_liabilities": 6721229000000, "total_equity": 26753911000000, "eps": 3.69, "dividend_per_share": null, "employees": null, "sources": [{"url": "https://stockanalysis.com/quote/idx/KPIG/financials/", "title": "KPIG Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2024": {"revenue": 1770144398000, "operating_profit": 129385000000, "net_profit": 658629034000, "ebitda": 270442000000, "total_assets": 35827499061000, "total_liabilities": 7312392000000, "total_equity": 28515107000000, "eps": 6.75, "dividend_per_share": null, "employees": null, "sources": [{"url": "https://www.inews.id/finance/bisnis/naik-246-persen-mnc-land-cetak-pendapatan-rp177-triliun-di-2024", "title": "MNC Land Cetak Pendapatan Rp1,77T di 2024", "publisher": "iNews", "date_published": "2025-04-08", "date_accessed": "2026-05-01"}, {"url": "https://stockanalysis.com/quote/idx/KPIG/financials/", "title": "KPIG Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]}
+        "2020": {
+          "revenue": 678039010000,
+          "operating_profit": null,
+          "net_profit": 310349134000,
+          "ebitda": null,
+          "total_assets": 29427611990774,
+          "total_liabilities": 5446998955454,
+          "total_equity": 23020643325187,
+          "eps": null,
+          "dividend_per_share": null,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://carisaham.com/emiten/profile/KPIG",
+              "title": "KPIG Financial History",
+              "publisher": "Carisaham",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://stockviz.com/en/KPIG.JK/net-income",
+              "title": "PT MNC Land Tbk Net Income",
+              "publisher": "StockViz",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2021": {
+          "revenue": 699975340000,
+          "operating_profit": 111450000000,
+          "net_profit": 195862601000,
+          "ebitda": 182055000000,
+          "total_assets": 30912009095198,
+          "total_liabilities": 6440802000000,
+          "total_equity": 24471207000000,
+          "eps": 2.43,
+          "dividend_per_share": null,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/KPIG/financials/",
+              "title": "KPIG Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2022": {
+          "revenue": 1121876641000,
+          "operating_profit": 126385000000,
+          "net_profit": 177771540000,
+          "ebitda": 190132000000,
+          "total_assets": 31955760446155,
+          "total_liabilities": 6468100000000,
+          "total_equity": 25487661000000,
+          "eps": 2.09,
+          "dividend_per_share": null,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/KPIG/financials/",
+              "title": "KPIG Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2023": {
+          "revenue": 1421006434000,
+          "operating_profit": 135473000000,
+          "net_profit": 329809865000,
+          "ebitda": 207713000000,
+          "total_assets": 33475139357523,
+          "total_liabilities": 6721229000000,
+          "total_equity": 26753911000000,
+          "eps": 3.69,
+          "dividend_per_share": null,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/KPIG/financials/",
+              "title": "KPIG Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2024": {
+          "revenue": 1770144398000,
+          "operating_profit": 129385000000,
+          "net_profit": 658629034000,
+          "ebitda": 270442000000,
+          "total_assets": 35827499061000,
+          "total_liabilities": 7312392000000,
+          "total_equity": 28515107000000,
+          "eps": 6.75,
+          "dividend_per_share": null,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://www.inews.id/finance/bisnis/naik-246-persen-mnc-land-cetak-pendapatan-rp177-triliun-di-2024",
+              "title": "MNC Land Cetak Pendapatan Rp1,77T di 2024",
+              "publisher": "iNews",
+              "date_published": "2025-04-08",
+              "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://stockanalysis.com/quote/idx/KPIG/financials/",
+              "title": "KPIG Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        }
       },
       "summary_note": "Strong growth driven by Lido City/Trump golf development; revenue Rp 678B→1.77T (~2.6x). Net profit jumped to Rp 659B in 2024 (+96% YoY).",
       "data_quality": "high",
@@ -61,11 +422,125 @@
       "company_name": "PT Sentul City Tbk",
       "currency": "IDR",
       "yearly": {
-        "2020": {"revenue": 451847226952, "operating_profit": null, "net_profit": -556301782629, "ebitda": null, "total_assets": 18371229973821, "total_liabilities": 4040174427929, "total_equity": 8734595948065, "eps": -4, "dividend_per_share": 0, "employees": null, "sources": [{"url": "https://carisaham.com/emiten/profile/BKSL/financial", "title": "BKSL Financial History", "publisher": "Carisaham", "date_published": null, "date_accessed": "2026-05-01"}, {"url": "https://www.indopremier.com/ipotgo/newsDetail.php?jdl=Financial_Statements_Full_Year_2020_of_BKSL&news_id=385420&group_news=RESEARCHNEWS", "title": "Financial Statements Full Year 2020 of BKSL", "publisher": "Indopremier", "date_published": "2021-06-28", "date_accessed": "2026-05-01"}]},
-        "2021": {"revenue": 910709348365, "operating_profit": 378257000000, "net_profit": 261472609470, "ebitda": 389995000000, "total_assets": 16654989338161, "total_liabilities": 6168940000000, "total_equity": 10486050000000, "eps": 3.90, "dividend_per_share": 0, "employees": null, "sources": [{"url": "https://stockanalysis.com/quote/idx/BKSL/financials/", "title": "BKSL Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2022": {"revenue": 672838000000, "operating_profit": 257986000000, "net_profit": -163159000000, "ebitda": 270629000000, "total_assets": 16721760263807, "total_liabilities": 6398549000000, "total_equity": 10323211000000, "eps": -2.43, "dividend_per_share": 0, "employees": null, "sources": [{"url": "https://stockanalysis.com/quote/idx/BKSL/financials/", "title": "BKSL Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2023": {"revenue": 1720160600872, "operating_profit": 469603000000, "net_profit": 332300775467, "ebitda": 486001000000, "total_assets": 19886877883420, "total_liabilities": 4745795000000, "total_equity": 15141083000000, "eps": 2.20, "dividend_per_share": 0, "employees": null, "sources": [{"url": "https://stockanalysis.com/quote/idx/BKSL/financials/", "title": "BKSL Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2024": {"revenue": 744068397000, "operating_profit": 36885000000, "net_profit": 17355010000, "ebitda": 54698000000, "total_assets": 21188290505000, "total_liabilities": 6034271000000, "total_equity": 15154020000000, "eps": 0.10, "dividend_per_share": 0, "employees": null, "sources": [{"url": "https://stockanalysis.com/quote/idx/BKSL/financials/", "title": "BKSL Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}, {"url": "https://www.liputan6.com/saham/read/5853709/cetak-pendapatan-rp-34-triliun-tahun-ini-bksl-pede-properti-tumbuh-positif-di-2025", "title": "BKSL Marketing Sales Rp 3.4T 2024", "publisher": "Liputan6", "date_published": "2025-01-15", "date_accessed": "2026-05-01"}]}
+        "2020": {
+          "revenue": 451847226952,
+          "operating_profit": null,
+          "net_profit": -556301782629,
+          "ebitda": null,
+          "total_assets": 18371229973821,
+          "total_liabilities": 4040174427929,
+          "total_equity": 8734595948065,
+          "eps": -4,
+          "dividend_per_share": 0,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://carisaham.com/emiten/profile/BKSL/financial",
+              "title": "BKSL Financial History",
+              "publisher": "Carisaham",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://www.indopremier.com/ipotgo/newsDetail.php?jdl=Financial_Statements_Full_Year_2020_of_BKSL&news_id=385420&group_news=RESEARCHNEWS",
+              "title": "Financial Statements Full Year 2020 of BKSL",
+              "publisher": "Indopremier",
+              "date_published": "2021-06-28",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2021": {
+          "revenue": 910709348365,
+          "operating_profit": 378257000000,
+          "net_profit": 261472609470,
+          "ebitda": 389995000000,
+          "total_assets": 16654989338161,
+          "total_liabilities": 6168940000000,
+          "total_equity": 10486050000000,
+          "eps": 3.9,
+          "dividend_per_share": 0,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/BKSL/financials/",
+              "title": "BKSL Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2022": {
+          "revenue": 672838000000,
+          "operating_profit": 257986000000,
+          "net_profit": -163159000000,
+          "ebitda": 270629000000,
+          "total_assets": 16721760263807,
+          "total_liabilities": 6398549000000,
+          "total_equity": 10323211000000,
+          "eps": -2.43,
+          "dividend_per_share": 0,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/BKSL/financials/",
+              "title": "BKSL Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2023": {
+          "revenue": 1720160600872,
+          "operating_profit": 469603000000,
+          "net_profit": 332300775467,
+          "ebitda": 486001000000,
+          "total_assets": 19886877883420,
+          "total_liabilities": 4745795000000,
+          "total_equity": 15141083000000,
+          "eps": 2.2,
+          "dividend_per_share": 0,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/BKSL/financials/",
+              "title": "BKSL Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2024": {
+          "revenue": 744068397000,
+          "operating_profit": 36885000000,
+          "net_profit": 17355010000,
+          "ebitda": 54698000000,
+          "total_assets": 21188290505000,
+          "total_liabilities": 6034271000000,
+          "total_equity": 15154020000000,
+          "eps": 0.1,
+          "dividend_per_share": 0,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/BKSL/financials/",
+              "title": "BKSL Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://www.liputan6.com/saham/read/5853709/cetak-pendapatan-rp-34-triliun-tahun-ini-bksl-pede-properti-tumbuh-positif-di-2025",
+              "title": "BKSL Marketing Sales Rp 3.4T 2024",
+              "publisher": "Liputan6",
+              "date_published": "2025-01-15",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        }
       },
       "summary_note": "Volatile: COVID losses (2020), recovery (2021), losses (2022), spike (2023), thin profit (2024). Revenue Rp 1.72T (2023) dropped to Rp 744B (2024). Total assets Rp 21.2T.",
       "data_quality": "high",
@@ -77,11 +552,118 @@
       "company_name": "PT Bakrieland Development Tbk",
       "currency": "IDR",
       "yearly": {
-        "2020": {"revenue": 616210000000, "operating_profit": null, "net_profit": -326350000000, "ebitda": -127500000000, "total_assets": 11823400000000, "total_liabilities": 1469600000000, "total_equity": 7271300000000, "eps": -3, "dividend_per_share": 0, "employees": null, "sources": [{"url": "https://carisaham.com/emiten/profile/ELTY/financial", "title": "ELTY Financial History", "publisher": "Carisaham", "date_published": null, "date_accessed": "2026-05-01"}, {"url": "https://market.bisnis.com/read/20211108/192/1463499/divestasi-entitas-bikin-rugi-bersih-bakrieland-development-elty-menyusut", "title": "Divestasi Entitas ELTY", "publisher": "Bisnis.com", "date_published": "2021-11-08", "date_accessed": "2026-05-01"}]},
-        "2021": {"revenue": 784410000000, "operating_profit": -116294000000, "net_profit": -201910000000, "ebitda": -2196000000, "total_assets": 11681203000000, "total_liabilities": 3533568000000, "total_equity": 8147635000000, "eps": -4.64, "dividend_per_share": 0, "employees": null, "sources": [{"url": "https://stockanalysis.com/quote/idx/ELTY/financials/", "title": "ELTY Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2022": {"revenue": 1011006000000, "operating_profit": -17950000000, "net_profit": -245309000000, "ebitda": 90961000000, "total_assets": 9913459000000, "total_liabilities": 2671612000000, "total_equity": 7241847000000, "eps": -5.64, "dividend_per_share": 0, "employees": null, "sources": [{"url": "https://stockanalysis.com/quote/idx/ELTY/financials/", "title": "ELTY Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2023": {"revenue": 1227355000000, "operating_profit": -183152000000, "net_profit": -1079192000000, "ebitda": -109298000000, "total_assets": 8639053000000, "total_liabilities": 2507808000000, "total_equity": 6131245000000, "eps": -24.80, "dividend_per_share": 0, "employees": null, "sources": [{"url": "https://stockanalysis.com/quote/idx/ELTY/financials/", "title": "ELTY Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2024": {"revenue": 1208198000000, "operating_profit": 75117000000, "net_profit": -68528000000, "ebitda": 146548000000, "total_assets": 8742017000000, "total_liabilities": 2717802000000, "total_equity": 6024215000000, "eps": -1.57, "dividend_per_share": 0, "employees": null, "sources": [{"url": "https://stockanalysis.com/quote/idx/ELTY/financials/", "title": "ELTY Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]}
+        "2020": {
+          "revenue": 616210000000,
+          "operating_profit": null,
+          "net_profit": -326350000000,
+          "ebitda": -127500000000,
+          "total_assets": 11823400000000,
+          "total_liabilities": 1469600000000,
+          "total_equity": 7271300000000,
+          "eps": -3,
+          "dividend_per_share": 0,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://carisaham.com/emiten/profile/ELTY/financial",
+              "title": "ELTY Financial History",
+              "publisher": "Carisaham",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://market.bisnis.com/read/20211108/192/1463499/divestasi-entitas-bikin-rugi-bersih-bakrieland-development-elty-menyusut",
+              "title": "Divestasi Entitas ELTY",
+              "publisher": "Bisnis.com",
+              "date_published": "2021-11-08",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2021": {
+          "revenue": 784410000000,
+          "operating_profit": -116294000000,
+          "net_profit": -201910000000,
+          "ebitda": -2196000000,
+          "total_assets": 11681203000000,
+          "total_liabilities": 3533568000000,
+          "total_equity": 8147635000000,
+          "eps": -4.64,
+          "dividend_per_share": 0,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/ELTY/financials/",
+              "title": "ELTY Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2022": {
+          "revenue": 1011006000000,
+          "operating_profit": -17950000000,
+          "net_profit": -245309000000,
+          "ebitda": 90961000000,
+          "total_assets": 9913459000000,
+          "total_liabilities": 2671612000000,
+          "total_equity": 7241847000000,
+          "eps": -5.64,
+          "dividend_per_share": 0,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/ELTY/financials/",
+              "title": "ELTY Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2023": {
+          "revenue": 1227355000000,
+          "operating_profit": -183152000000,
+          "net_profit": -1079192000000,
+          "ebitda": -109298000000,
+          "total_assets": 8639053000000,
+          "total_liabilities": 2507808000000,
+          "total_equity": 6131245000000,
+          "eps": -24.8,
+          "dividend_per_share": 0,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/ELTY/financials/",
+              "title": "ELTY Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2024": {
+          "revenue": 1208198000000,
+          "operating_profit": 75117000000,
+          "net_profit": -68528000000,
+          "ebitda": 146548000000,
+          "total_assets": 8742017000000,
+          "total_liabilities": 2717802000000,
+          "total_equity": 6024215000000,
+          "eps": -1.57,
+          "dividend_per_share": 0,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/ELTY/financials/",
+              "title": "ELTY Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        }
       },
       "summary_note": "5년 연속 적자. 매출은 Rp 616B→1.21T 두 배. 2024년 영업이익 첫 흑자 전환(75B). 자산 Rp 11.8T→8.7T 축소.",
       "data_quality": "high",
@@ -93,11 +675,118 @@
       "company_name": "PT Modernland Realty Tbk",
       "currency": "IDR",
       "yearly": {
-        "2020": {"revenue": 731500000000, "operating_profit": -1213100000000, "net_profit": -1763900000000, "ebitda": -1138000000000, "total_assets": 14850000000000, "total_liabilities": 10629800000000, "total_equity": 4220200000000, "eps": -141.11, "dividend_per_share": 0, "employees": null, "sources": [{"url": "https://www.indopremier.com/ipotnews/newsDetail.php?jdl=Financial+Statements+Full+Year+2020+of+MDLN&news_id=384539&group_news=RESEARCHNEWS", "title": "Financial Statements Full Year 2020 of MDLN", "publisher": "Indopremier", "date_published": "2021-05-11", "date_accessed": "2026-05-01"}]},
-        "2021": {"revenue": 2008646000000, "operating_profit": 963797000000, "net_profit": -41994000000, "ebitda": 1030464000000, "total_assets": 14539539000000, "total_liabilities": 10355441000000, "total_equity": 4184098000000, "eps": -3.40, "dividend_per_share": 0, "employees": 887, "sources": [{"url": "https://stockanalysis.com/quote/idx/MDLN/financials/", "title": "MDLN Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2022": {"revenue": 1098860000000, "operating_profit": 116864000000, "net_profit": 20171000000, "ebitda": 179988000000, "total_assets": 13528169000000, "total_liabilities": 9302635000000, "total_equity": 4225533000000, "eps": 1.63, "dividend_per_share": 0, "employees": 874, "sources": [{"url": "https://stockanalysis.com/quote/idx/MDLN/financials/", "title": "MDLN Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2023": {"revenue": 1152308000000, "operating_profit": 101316000000, "net_profit": -101974000000, "ebitda": 162490000000, "total_assets": 13688938000000, "total_liabilities": 9572111000000, "total_equity": 4116827000000, "eps": -8.25, "dividend_per_share": 0, "employees": 411, "sources": [{"url": "https://stockanalysis.com/quote/idx/MDLN/financials/", "title": "MDLN Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2024": {"revenue": 1017570000000, "operating_profit": -20448000000, "net_profit": -690272000000, "ebitda": 40365000000, "total_assets": 13561474000000, "total_liabilities": 10108095000000, "total_equity": 3453379000000, "eps": -57.78, "dividend_per_share": 0, "employees": 947, "sources": [{"url": "https://stockanalysis.com/quote/idx/MDLN/financials/", "title": "MDLN Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}, {"url": "https://propertytimes.id/modernland-realty-bukukan-pendapatan-lebih-dari-rp-1-triliun-di-tahun-2024/", "title": "MDLN Pendapatan Rp 1T 2024", "publisher": "Property Times", "date_published": "2025-04-15", "date_accessed": "2026-05-01"}]}
+        "2020": {
+          "revenue": 731500000000,
+          "operating_profit": -1213100000000,
+          "net_profit": -1763900000000,
+          "ebitda": -1138000000000,
+          "total_assets": 14850000000000,
+          "total_liabilities": 10629800000000,
+          "total_equity": 4220200000000,
+          "eps": -141.11,
+          "dividend_per_share": 0,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://www.indopremier.com/ipotnews/newsDetail.php?jdl=Financial+Statements+Full+Year+2020+of+MDLN&news_id=384539&group_news=RESEARCHNEWS",
+              "title": "Financial Statements Full Year 2020 of MDLN",
+              "publisher": "Indopremier",
+              "date_published": "2021-05-11",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2021": {
+          "revenue": 2008646000000,
+          "operating_profit": 963797000000,
+          "net_profit": -41994000000,
+          "ebitda": 1030464000000,
+          "total_assets": 14539539000000,
+          "total_liabilities": 10355441000000,
+          "total_equity": 4184098000000,
+          "eps": -3.4,
+          "dividend_per_share": 0,
+          "employees": 887,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/MDLN/financials/",
+              "title": "MDLN Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2022": {
+          "revenue": 1098860000000,
+          "operating_profit": 116864000000,
+          "net_profit": 20171000000,
+          "ebitda": 179988000000,
+          "total_assets": 13528169000000,
+          "total_liabilities": 9302635000000,
+          "total_equity": 4225533000000,
+          "eps": 1.63,
+          "dividend_per_share": 0,
+          "employees": 874,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/MDLN/financials/",
+              "title": "MDLN Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2023": {
+          "revenue": 1152308000000,
+          "operating_profit": 101316000000,
+          "net_profit": -101974000000,
+          "ebitda": 162490000000,
+          "total_assets": 13688938000000,
+          "total_liabilities": 9572111000000,
+          "total_equity": 4116827000000,
+          "eps": -8.25,
+          "dividend_per_share": 0,
+          "employees": 411,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/MDLN/financials/",
+              "title": "MDLN Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2024": {
+          "revenue": 1017570000000,
+          "operating_profit": -20448000000,
+          "net_profit": -690272000000,
+          "ebitda": 40365000000,
+          "total_assets": 13561474000000,
+          "total_liabilities": 10108095000000,
+          "total_equity": 3453379000000,
+          "eps": -57.78,
+          "dividend_per_share": 0,
+          "employees": 947,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/MDLN/financials/",
+              "title": "MDLN Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://propertytimes.id/modernland-realty-bukukan-pendapatan-lebih-dari-rp-1-triliun-di-tahun-2024/",
+              "title": "MDLN Pendapatan Rp 1T 2024",
+              "publisher": "Property Times",
+              "date_published": "2025-04-15",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        }
       },
       "summary_note": "Modern Golf 모회사. 변동성 심함. 2024 골프장+클럽하우스 레스토랑 세그먼트 매출 Rp 74.3B 별도 공시 (희귀 사례).",
       "data_quality": "high",
@@ -109,11 +798,118 @@
       "company_name": "PT Kawasan Industri Jababeka Tbk",
       "currency": "IDR",
       "yearly": {
-        "2020": {"revenue": 2396100000000, "operating_profit": 495100000000, "net_profit": -47800000000, "ebitda": 515800000000, "total_assets": 12200200000000, "total_liabilities": 5940000000000, "total_equity": 6260300000000, "eps": -2.30, "dividend_per_share": 0, "employees": null, "sources": [{"url": "https://www.indopremier.com/ipotnews/newsDetail.php?jdl=Financial_Statements_Full_Year_2020_of_KIJA&news_id=382100&group_news=RESEARCHNEWS", "title": "Financial Statements Full Year 2020 of KIJA", "publisher": "Indopremier", "date_published": "2021-04-01", "date_accessed": "2026-05-01"}]},
-        "2021": {"revenue": 2490256000000, "operating_profit": 544853000000, "net_profit": -5165000000, "ebitda": 696073000000, "total_assets": 12292090000000, "total_liabilities": 5920080000000, "total_equity": 6372010000000, "eps": -0.25, "dividend_per_share": 0, "employees": 736, "sources": [{"url": "https://stockanalysis.com/quote/idx/KIJA/financials/", "title": "KIJA Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2022": {"revenue": 2747185000000, "operating_profit": 986474000000, "net_profit": -64035000000, "ebitda": 1143447000000, "total_assets": 13110459000000, "total_liabilities": 6605084000000, "total_equity": 6505376000000, "eps": -3.12, "dividend_per_share": 0, "employees": 747, "sources": [{"url": "https://stockanalysis.com/quote/idx/KIJA/financials/", "title": "KIJA Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2023": {"revenue": 3299597000000, "operating_profit": 728477000000, "net_profit": 305576000000, "ebitda": 903080000000, "total_assets": 12947435000000, "total_liabilities": 6016058000000, "total_equity": 6931377000000, "eps": 14.88, "dividend_per_share": 0, "employees": 736, "sources": [{"url": "https://stockanalysis.com/quote/idx/KIJA/financials/", "title": "KIJA Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2024": {"revenue": 4602648000000, "operating_profit": 1363016000000, "net_profit": 363308000000, "ebitda": 1547501000000, "total_assets": 14017356000000, "total_liabilities": 6478399000000, "total_equity": 7538957000000, "eps": 17.69, "dividend_per_share": 1.792, "employees": 723, "sources": [{"url": "https://stockanalysis.com/quote/idx/KIJA/financials/", "title": "KIJA Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}, {"url": "https://stockwatch.id/lampaui-target-kija-raih-penjualan-pemasaran-rp319-triliun-di-2024/", "title": "KIJA Penjualan Pemasaran Rp 3.19T 2024", "publisher": "StockWatch", "date_published": "2025-02-15", "date_accessed": "2026-05-01"}]}
+        "2020": {
+          "revenue": 2396100000000,
+          "operating_profit": 495100000000,
+          "net_profit": -47800000000,
+          "ebitda": 515800000000,
+          "total_assets": 12200200000000,
+          "total_liabilities": 5940000000000,
+          "total_equity": 6260300000000,
+          "eps": -2.3,
+          "dividend_per_share": 0,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://www.indopremier.com/ipotnews/newsDetail.php?jdl=Financial_Statements_Full_Year_2020_of_KIJA&news_id=382100&group_news=RESEARCHNEWS",
+              "title": "Financial Statements Full Year 2020 of KIJA",
+              "publisher": "Indopremier",
+              "date_published": "2021-04-01",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2021": {
+          "revenue": 2490256000000,
+          "operating_profit": 544853000000,
+          "net_profit": -5165000000,
+          "ebitda": 696073000000,
+          "total_assets": 12292090000000,
+          "total_liabilities": 5920080000000,
+          "total_equity": 6372010000000,
+          "eps": -0.25,
+          "dividend_per_share": 0,
+          "employees": 736,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/KIJA/financials/",
+              "title": "KIJA Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2022": {
+          "revenue": 2747185000000,
+          "operating_profit": 986474000000,
+          "net_profit": -64035000000,
+          "ebitda": 1143447000000,
+          "total_assets": 13110459000000,
+          "total_liabilities": 6605084000000,
+          "total_equity": 6505376000000,
+          "eps": -3.12,
+          "dividend_per_share": 0,
+          "employees": 747,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/KIJA/financials/",
+              "title": "KIJA Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2023": {
+          "revenue": 3299597000000,
+          "operating_profit": 728477000000,
+          "net_profit": 305576000000,
+          "ebitda": 903080000000,
+          "total_assets": 12947435000000,
+          "total_liabilities": 6016058000000,
+          "total_equity": 6931377000000,
+          "eps": 14.88,
+          "dividend_per_share": 0,
+          "employees": 736,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/KIJA/financials/",
+              "title": "KIJA Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2024": {
+          "revenue": 4602648000000,
+          "operating_profit": 1363016000000,
+          "net_profit": 363308000000,
+          "ebitda": 1547501000000,
+          "total_assets": 14017356000000,
+          "total_liabilities": 6478399000000,
+          "total_equity": 7538957000000,
+          "eps": 17.69,
+          "dividend_per_share": 1.792,
+          "employees": 723,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/KIJA/financials/",
+              "title": "KIJA Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://stockwatch.id/lampaui-target-kija-raih-penjualan-pemasaran-rp319-triliun-di-2024/",
+              "title": "KIJA Penjualan Pemasaran Rp 3.19T 2024",
+              "publisher": "StockWatch",
+              "date_published": "2025-02-15",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        }
       },
       "summary_note": "만성 적자에서 흑자 전환 — 2023부터 흑자, 2024 매출 Rp 4.6T 사상 최대. 2024 첫 배당 Rp 1.792.",
       "data_quality": "high",
@@ -125,11 +921,118 @@
       "company_name": "PT Metropolitan Land Tbk",
       "currency": "IDR",
       "yearly": {
-        "2020": {"revenue": 1110700000000, "operating_profit": 314500000000, "net_profit": 272300000000, "ebitda": 363700000000, "total_assets": 5932500000000, "total_liabilities": 1855500000000, "total_equity": 4076900000000, "eps": 35.36, "dividend_per_share": 6.300, "employees": null, "sources": [{"url": "https://www.indopremier.com/ipotnews/newsDetail.php?jdl=Financial_Statements_Full_Year_2020_of_MTLA&news_id=382379&group_news=RESEARCHNEWS", "title": "Financial Statements Full Year 2020 of MTLA", "publisher": "Indopremier", "date_published": "2021-04-08", "date_accessed": "2026-05-01"}]},
-        "2021": {"revenue": 1199074000000, "operating_profit": 350816000000, "net_profit": 372017000000, "ebitda": 411455000000, "total_assets": 6409548000000, "total_liabilities": 2003374000000, "total_equity": 4406174000000, "eps": 48.60, "dividend_per_share": 7.110, "employees": 515, "sources": [{"url": "https://stockanalysis.com/quote/idx/MTLA/financials/", "title": "MTLA Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2022": {"revenue": 1384828000000, "operating_profit": 444977000000, "net_profit": 395310000000, "ebitda": 514840000000, "total_assets": 6735895000000, "total_liabilities": 1981223000000, "total_equity": 4754672000000, "eps": 51.64, "dividend_per_share": 8.500, "employees": 448, "sources": [{"url": "https://stockanalysis.com/quote/idx/MTLA/financials/", "title": "MTLA Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2023": {"revenue": 1704996000000, "operating_profit": 554359000000, "net_profit": 417602000000, "ebitda": 635045000000, "total_assets": 7220711000000, "total_liabilities": 2071569000000, "total_equity": 5149142000000, "eps": 54.55, "dividend_per_share": 10.300, "employees": 427, "sources": [{"url": "https://stockanalysis.com/quote/idx/MTLA/financials/", "title": "MTLA Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2024": {"revenue": 2020780000000, "operating_profit": 574484000000, "net_profit": 469250000000, "ebitda": 666194000000, "total_assets": 7435493000000, "total_liabilities": 1845588000000, "total_equity": 5589905000000, "eps": 61.30, "dividend_per_share": 10.910, "employees": 439, "sources": [{"url": "https://stockanalysis.com/quote/idx/MTLA/financials/", "title": "MTLA Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}, {"url": "https://ivoox.id/metland-mtla-bagikan-dividen-rp-86-12-miliar-laba-bersih-2024-tembus-rp-469-miliar", "title": "MTLA Laba Bersih 2024 Rp 469M", "publisher": "Ivoox Indonesia", "date_published": "2025-04-15", "date_accessed": "2026-05-01"}]}
+        "2020": {
+          "revenue": 1110700000000,
+          "operating_profit": 314500000000,
+          "net_profit": 272300000000,
+          "ebitda": 363700000000,
+          "total_assets": 5932500000000,
+          "total_liabilities": 1855500000000,
+          "total_equity": 4076900000000,
+          "eps": 35.36,
+          "dividend_per_share": 6.3,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://www.indopremier.com/ipotnews/newsDetail.php?jdl=Financial_Statements_Full_Year_2020_of_MTLA&news_id=382379&group_news=RESEARCHNEWS",
+              "title": "Financial Statements Full Year 2020 of MTLA",
+              "publisher": "Indopremier",
+              "date_published": "2021-04-08",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2021": {
+          "revenue": 1199074000000,
+          "operating_profit": 350816000000,
+          "net_profit": 372017000000,
+          "ebitda": 411455000000,
+          "total_assets": 6409548000000,
+          "total_liabilities": 2003374000000,
+          "total_equity": 4406174000000,
+          "eps": 48.6,
+          "dividend_per_share": 7.11,
+          "employees": 515,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/MTLA/financials/",
+              "title": "MTLA Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2022": {
+          "revenue": 1384828000000,
+          "operating_profit": 444977000000,
+          "net_profit": 395310000000,
+          "ebitda": 514840000000,
+          "total_assets": 6735895000000,
+          "total_liabilities": 1981223000000,
+          "total_equity": 4754672000000,
+          "eps": 51.64,
+          "dividend_per_share": 8.5,
+          "employees": 448,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/MTLA/financials/",
+              "title": "MTLA Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2023": {
+          "revenue": 1704996000000,
+          "operating_profit": 554359000000,
+          "net_profit": 417602000000,
+          "ebitda": 635045000000,
+          "total_assets": 7220711000000,
+          "total_liabilities": 2071569000000,
+          "total_equity": 5149142000000,
+          "eps": 54.55,
+          "dividend_per_share": 10.3,
+          "employees": 427,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/MTLA/financials/",
+              "title": "MTLA Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2024": {
+          "revenue": 2020780000000,
+          "operating_profit": 574484000000,
+          "net_profit": 469250000000,
+          "ebitda": 666194000000,
+          "total_assets": 7435493000000,
+          "total_liabilities": 1845588000000,
+          "total_equity": 5589905000000,
+          "eps": 61.3,
+          "dividend_per_share": 10.91,
+          "employees": 439,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/MTLA/financials/",
+              "title": "MTLA Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://ivoox.id/metland-mtla-bagikan-dividen-rp-86-12-miliar-laba-bersih-2024-tembus-rp-469-miliar",
+              "title": "MTLA Laba Bersih 2024 Rp 469M",
+              "publisher": "Ivoox Indonesia",
+              "date_published": "2025-04-15",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        }
       },
       "summary_note": "5년 연속 흑자, 가장 안정적. 매출 Rp 1.11T→2.02T (+82%), 순이익 272B→469B. 배당 Rp 6.30→10.91 꾸준한 성장.",
       "data_quality": "high",
@@ -141,11 +1044,118 @@
       "company_name": "PT Suryamas Dutamakmur Tbk",
       "currency": "IDR",
       "yearly": {
-        "2020": {"revenue": 386500000000, "operating_profit": 36000000000, "net_profit": -818400000, "ebitda": 57200000000, "total_assets": 3201900000000, "total_liabilities": 553900000000, "total_equity": 2648000000000, "eps": -0.17, "dividend_per_share": 0, "employees": null, "sources": [{"url": "https://www.indopremier.com/ipotnews/newsDetail.php?jdl=Financial_Statements_Full_Year_2020_of_SMDM&news_id=381833&group_news=RESEARCHNEWS", "title": "Financial Statements Full Year 2020 of SMDM", "publisher": "Indopremier", "date_published": "2021-03-25", "date_accessed": "2026-05-01"}]},
-        "2021": {"revenue": 567052000000, "operating_profit": 139871000000, "net_profit": 101272000000, "ebitda": 152934000000, "total_assets": 3303512000000, "total_liabilities": 523995000000, "total_equity": 2779516000000, "eps": 21.17, "dividend_per_share": 0, "employees": 363, "sources": [{"url": "https://stockanalysis.com/quote/idx/SMDM/financials/", "title": "SMDM Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2022": {"revenue": 566403000000, "operating_profit": 196874000000, "net_profit": 163777000000, "ebitda": 209950000000, "total_assets": 3423278000000, "total_liabilities": 463974000000, "total_equity": 2959305000000, "eps": 34.23, "dividend_per_share": 0, "employees": 285, "sources": [{"url": "https://stockanalysis.com/quote/idx/SMDM/financials/", "title": "SMDM Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2023": {"revenue": 496498000000, "operating_profit": 115421000000, "net_profit": 104238000000, "ebitda": 127780000000, "total_assets": 3534589000000, "total_liabilities": 476255000000, "total_equity": 3058334000000, "eps": 21.79, "dividend_per_share": 0, "employees": 274, "sources": [{"url": "https://stockanalysis.com/quote/idx/SMDM/financials/", "title": "SMDM Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2024": {"revenue": 694045000000, "operating_profit": 148817000000, "net_profit": 123778000000, "ebitda": 161944000000, "total_assets": 3462272000000, "total_liabilities": 251618000000, "total_equity": 3210654000000, "eps": 25.94, "dividend_per_share": 0, "employees": 262, "sources": [{"url": "https://stockanalysis.com/quote/idx/SMDM/financials/", "title": "SMDM Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}, {"url": "https://www.idnfinancials.com/news/51254/acquisition-concluded-bsde-officially-claims-91-99-of-smdm", "title": "BSDE acquires 91.99% of SMDM", "publisher": "IDNFinancials", "date_published": "2024-10-23", "date_accessed": "2026-05-01"}]}
+        "2020": {
+          "revenue": 386500000000,
+          "operating_profit": 36000000000,
+          "net_profit": -818400000,
+          "ebitda": 57200000000,
+          "total_assets": 3201900000000,
+          "total_liabilities": 553900000000,
+          "total_equity": 2648000000000,
+          "eps": -0.17,
+          "dividend_per_share": 0,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://www.indopremier.com/ipotnews/newsDetail.php?jdl=Financial_Statements_Full_Year_2020_of_SMDM&news_id=381833&group_news=RESEARCHNEWS",
+              "title": "Financial Statements Full Year 2020 of SMDM",
+              "publisher": "Indopremier",
+              "date_published": "2021-03-25",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2021": {
+          "revenue": 567052000000,
+          "operating_profit": 139871000000,
+          "net_profit": 101272000000,
+          "ebitda": 152934000000,
+          "total_assets": 3303512000000,
+          "total_liabilities": 523995000000,
+          "total_equity": 2779516000000,
+          "eps": 21.17,
+          "dividend_per_share": 0,
+          "employees": 363,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/SMDM/financials/",
+              "title": "SMDM Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2022": {
+          "revenue": 566403000000,
+          "operating_profit": 196874000000,
+          "net_profit": 163777000000,
+          "ebitda": 209950000000,
+          "total_assets": 3423278000000,
+          "total_liabilities": 463974000000,
+          "total_equity": 2959305000000,
+          "eps": 34.23,
+          "dividend_per_share": 0,
+          "employees": 285,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/SMDM/financials/",
+              "title": "SMDM Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2023": {
+          "revenue": 496498000000,
+          "operating_profit": 115421000000,
+          "net_profit": 104238000000,
+          "ebitda": 127780000000,
+          "total_assets": 3534589000000,
+          "total_liabilities": 476255000000,
+          "total_equity": 3058334000000,
+          "eps": 21.79,
+          "dividend_per_share": 0,
+          "employees": 274,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/SMDM/financials/",
+              "title": "SMDM Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2024": {
+          "revenue": 694045000000,
+          "operating_profit": 148817000000,
+          "net_profit": 123778000000,
+          "ebitda": 161944000000,
+          "total_assets": 3462272000000,
+          "total_liabilities": 251618000000,
+          "total_equity": 3210654000000,
+          "eps": 25.94,
+          "dividend_per_share": 0,
+          "employees": 262,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/SMDM/financials/",
+              "title": "SMDM Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://www.idnfinancials.com/news/51254/acquisition-concluded-bsde-officially-claims-91-99-of-smdm",
+              "title": "BSDE acquires 91.99% of SMDM",
+              "publisher": "IDNFinancials",
+              "date_published": "2024-10-23",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        }
       },
       "summary_note": "Rancamaya 모회사. 2024년 10월 BSDE에 91.99% 인수(Rp 2.33T). 매출 Rp 387B→694B, 순이익 -0.8B→123.8B 회복.",
       "data_quality": "high",
@@ -157,11 +1167,125 @@
       "company_name": "PT Lippo Karawaci Tbk",
       "currency": "IDR",
       "yearly": {
-        "2020": {"revenue": 11966300000000, "operating_profit": -4962400000000, "net_profit": -8891100000000, "ebitda": -3284900000000, "total_assets": 51865500000000, "total_liabilities": 28291800000000, "total_equity": 23573700000000, "eps": -125.40, "dividend_per_share": 0, "employees": null, "sources": [{"url": "https://www.indopremier.com/ipotnews/newsDetail.php?jdl=Financial+Statements+Full+Year+2020+of+LPKR&news_id=383830&group_news=RESEARCHNEWS", "title": "Financial Statements Full Year 2020 of LPKR", "publisher": "Indopremier", "date_published": "2021-05-11", "date_accessed": "2026-05-01"}, {"url": "https://voi.id/en/economy/52737", "title": "LPKR Loss Rp 8.89T 2020", "publisher": "VOI.id", "date_published": "2021-05-12", "date_accessed": "2026-05-01"}]},
-        "2021": {"revenue": 16138531000000, "operating_profit": 796408000000, "net_profit": -1602894000000, "ebitda": 4682144000000, "total_assets": 52080936000000, "total_liabilities": 29594927000000, "total_equity": 22486009000000, "eps": -22.65, "dividend_per_share": 0, "employees": 13233, "sources": [{"url": "https://stockanalysis.com/quote/idx/LPKR/financials/", "title": "LPKR Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2022": {"revenue": 14674086000000, "operating_profit": 1342867000000, "net_profit": -2692075000000, "ebitda": 3359871000000, "total_assets": 49870897000000, "total_liabilities": 30731006000000, "total_equity": 19139891000000, "eps": -38.00, "dividend_per_share": 0, "employees": 14947, "sources": [{"url": "https://stockanalysis.com/quote/idx/LPKR/financials/", "title": "LPKR Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2023": {"revenue": 16702038000000, "operating_profit": 2354897000000, "net_profit": 50140000000, "ebitda": 2985457000000, "total_assets": 49570824000000, "total_liabilities": 29964393000000, "total_equity": 19606431000000, "eps": 0.71, "dividend_per_share": 0, "employees": 15549, "sources": [{"url": "https://stockanalysis.com/quote/idx/LPKR/financials/", "title": "LPKR Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2024": {"revenue": 11347979000000, "operating_profit": 1389947000000, "net_profit": 18746045000000, "ebitda": 1676764000000, "total_assets": 53783859000000, "total_liabilities": 22836790000000, "total_equity": 30947069000000, "eps": 264.49, "dividend_per_share": 0, "employees": 1708, "sources": [{"url": "https://stockanalysis.com/quote/idx/LPKR/financials/", "title": "LPKR Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}, {"url": "https://www.idxchannel.com/market-news/lippo-karawaci-lpkr-raup-laba-rp187-triliun-pada-2024-ini-kata-john-riady", "title": "LPKR Laba Rp 18.7T 2024", "publisher": "IDX Channel", "date_published": "2025-04-01", "date_accessed": "2026-05-01"}]}
+        "2020": {
+          "revenue": 11966300000000,
+          "operating_profit": -4962400000000,
+          "net_profit": -8891100000000,
+          "ebitda": -3284900000000,
+          "total_assets": 51865500000000,
+          "total_liabilities": 28291800000000,
+          "total_equity": 23573700000000,
+          "eps": -125.4,
+          "dividend_per_share": 0,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://www.indopremier.com/ipotnews/newsDetail.php?jdl=Financial+Statements+Full+Year+2020+of+LPKR&news_id=383830&group_news=RESEARCHNEWS",
+              "title": "Financial Statements Full Year 2020 of LPKR",
+              "publisher": "Indopremier",
+              "date_published": "2021-05-11",
+              "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://voi.id/en/economy/52737",
+              "title": "LPKR Loss Rp 8.89T 2020",
+              "publisher": "VOI.id",
+              "date_published": "2021-05-12",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2021": {
+          "revenue": 16138531000000,
+          "operating_profit": 796408000000,
+          "net_profit": -1602894000000,
+          "ebitda": 4682144000000,
+          "total_assets": 52080936000000,
+          "total_liabilities": 29594927000000,
+          "total_equity": 22486009000000,
+          "eps": -22.65,
+          "dividend_per_share": 0,
+          "employees": 13233,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/LPKR/financials/",
+              "title": "LPKR Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2022": {
+          "revenue": 14674086000000,
+          "operating_profit": 1342867000000,
+          "net_profit": -2692075000000,
+          "ebitda": 3359871000000,
+          "total_assets": 49870897000000,
+          "total_liabilities": 30731006000000,
+          "total_equity": 19139891000000,
+          "eps": -38.0,
+          "dividend_per_share": 0,
+          "employees": 14947,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/LPKR/financials/",
+              "title": "LPKR Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2023": {
+          "revenue": 16702038000000,
+          "operating_profit": 2354897000000,
+          "net_profit": 50140000000,
+          "ebitda": 2985457000000,
+          "total_assets": 49570824000000,
+          "total_liabilities": 29964393000000,
+          "total_equity": 19606431000000,
+          "eps": 0.71,
+          "dividend_per_share": 0,
+          "employees": 15549,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/LPKR/financials/",
+              "title": "LPKR Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2024": {
+          "revenue": 11347979000000,
+          "operating_profit": 1389947000000,
+          "net_profit": 18746045000000,
+          "ebitda": 1676764000000,
+          "total_assets": 53783859000000,
+          "total_liabilities": 22836790000000,
+          "total_equity": 30947069000000,
+          "eps": 264.49,
+          "dividend_per_share": 0,
+          "employees": 1708,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/LPKR/financials/",
+              "title": "LPKR Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://www.idxchannel.com/market-news/lippo-karawaci-lpkr-raup-laba-rp187-triliun-pada-2024-ini-kata-john-riady",
+              "title": "LPKR Laba Rp 18.7T 2024",
+              "publisher": "IDX Channel",
+              "date_published": "2025-04-01",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        }
       },
       "summary_note": "Imperial Klub 모회사. 2024 순이익 Rp 18.75T는 SILO(Siloam) 분리매각 일회성 이익. 직원수 15,549→1,708 급감(분리 반영).",
       "data_quality": "high",
@@ -173,11 +1297,118 @@
       "company_name": "PT Summarecon Agung Tbk",
       "currency": "IDR",
       "yearly": {
-        "2020": {"revenue": 5030000000000, "operating_profit": 1275900000000, "net_profit": 179800000000, "ebitda": 1341800000000, "total_assets": 24922500000000, "total_liabilities": 15836800000000, "total_equity": 9085700000000, "eps": 12.49, "dividend_per_share": null, "employees": null, "sources": [{"url": "https://www.indopremier.com/ipotnews/newsDetail.php?news_id=382336&group_news=RESEARCHNEWS", "title": "Financial Statements Full Year 2020 of SMRA", "publisher": "Indopremier", "date_published": "2021-04-15", "date_accessed": "2026-05-01"}]},
-        "2021": {"revenue": 5567913000000, "operating_profit": 1557681000000, "net_profit": 323709000000, "ebitda": 1821297000000, "total_assets": 26049717000000, "total_liabilities": 14819494000000, "total_equity": 11230223000000, "eps": 20.82, "dividend_per_share": null, "employees": 2446, "sources": [{"url": "https://stockanalysis.com/quote/idx/SMRA/financials/", "title": "SMRA Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2022": {"revenue": 5719396000000, "operating_profit": 1708418000000, "net_profit": 625377000000, "ebitda": 1966074000000, "total_assets": 28433575000000, "total_liabilities": 16683534000000, "total_equity": 11750041000000, "eps": 37.88, "dividend_per_share": 6, "employees": 2477, "sources": [{"url": "https://stockanalysis.com/quote/idx/SMRA/financials/", "title": "SMRA Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2023": {"revenue": 6658783000000, "operating_profit": 1911672000000, "net_profit": 765970000000, "ebitda": 2174352000000, "total_assets": 31168375000000, "total_liabilities": 18865313000000, "total_equity": 12303062000000, "eps": 46.40, "dividend_per_share": 7, "employees": 2541, "sources": [{"url": "https://stockanalysis.com/quote/idx/SMRA/financials/", "title": "SMRA Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2024": {"revenue": 10623400000000, "operating_profit": 3732400000000, "net_profit": 1373400000000, "ebitda": 3811900000000, "total_assets": 33534100000000, "total_liabilities": 19701600000000, "total_equity": 13832500000000, "eps": 83.24, "dividend_per_share": 9, "employees": 2637, "sources": [{"url": "https://www.indopremier.com/ipotnews/newsDetail.php?news_id=460389", "title": "Financial Statements Full Year 2024 of SMRA", "publisher": "Indopremier", "date_published": "2025-03-15", "date_accessed": "2026-05-01"}, {"url": "https://investasi.kontan.co.id/news/laba-bersih-summarecon-agung-smra-naik-7929-ke-rp-137-triliun-di-tahun-2024", "title": "SMRA Laba Bersih +79% 2024", "publisher": "Kontan", "date_published": "2025-03-15", "date_accessed": "2026-05-01"}]}
+        "2020": {
+          "revenue": 5030000000000,
+          "operating_profit": 1275900000000,
+          "net_profit": 179800000000,
+          "ebitda": 1341800000000,
+          "total_assets": 24922500000000,
+          "total_liabilities": 15836800000000,
+          "total_equity": 9085700000000,
+          "eps": 12.49,
+          "dividend_per_share": null,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://www.indopremier.com/ipotnews/newsDetail.php?news_id=382336&group_news=RESEARCHNEWS",
+              "title": "Financial Statements Full Year 2020 of SMRA",
+              "publisher": "Indopremier",
+              "date_published": "2021-04-15",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2021": {
+          "revenue": 5567913000000,
+          "operating_profit": 1557681000000,
+          "net_profit": 323709000000,
+          "ebitda": 1821297000000,
+          "total_assets": 26049717000000,
+          "total_liabilities": 14819494000000,
+          "total_equity": 11230223000000,
+          "eps": 20.82,
+          "dividend_per_share": null,
+          "employees": 2446,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/SMRA/financials/",
+              "title": "SMRA Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2022": {
+          "revenue": 5719396000000,
+          "operating_profit": 1708418000000,
+          "net_profit": 625377000000,
+          "ebitda": 1966074000000,
+          "total_assets": 28433575000000,
+          "total_liabilities": 16683534000000,
+          "total_equity": 11750041000000,
+          "eps": 37.88,
+          "dividend_per_share": 6,
+          "employees": 2477,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/SMRA/financials/",
+              "title": "SMRA Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2023": {
+          "revenue": 6658783000000,
+          "operating_profit": 1911672000000,
+          "net_profit": 765970000000,
+          "ebitda": 2174352000000,
+          "total_assets": 31168375000000,
+          "total_liabilities": 18865313000000,
+          "total_equity": 12303062000000,
+          "eps": 46.4,
+          "dividend_per_share": 7,
+          "employees": 2541,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/SMRA/financials/",
+              "title": "SMRA Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2024": {
+          "revenue": 10623400000000,
+          "operating_profit": 3732400000000,
+          "net_profit": 1373400000000,
+          "ebitda": 3811900000000,
+          "total_assets": 33534100000000,
+          "total_liabilities": 19701600000000,
+          "total_equity": 13832500000000,
+          "eps": 83.24,
+          "dividend_per_share": 9,
+          "employees": 2637,
+          "sources": [
+            {
+              "url": "https://www.indopremier.com/ipotnews/newsDetail.php?news_id=460389",
+              "title": "Financial Statements Full Year 2024 of SMRA",
+              "publisher": "Indopremier",
+              "date_published": "2025-03-15",
+              "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://investasi.kontan.co.id/news/laba-bersih-summarecon-agung-smra-naik-7929-ke-rp-137-triliun-di-tahun-2024",
+              "title": "SMRA Laba Bersih +79% 2024",
+              "publisher": "Kontan",
+              "date_published": "2025-03-15",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        }
       },
       "summary_note": "Gading Raya 모회사. COVID 직격 후 강한 회복 — 매출 Rp 5T→10.6T(+111%), 순이익 180B→1.37T(+664%). 2024 산업단지 매각 효과.",
       "data_quality": "high",
@@ -189,11 +1420,111 @@
       "company_name": "PT Metropolitan Kentjana Tbk",
       "currency": "IDR",
       "yearly": {
-        "2020": {"revenue": 1083000000000, "operating_profit": null, "net_profit": 231100000000, "ebitda": null, "total_assets": 7622900000000, "total_liabilities": 2015600000000, "total_equity": 5607300000000, "eps": null, "dividend_per_share": 158.20, "employees": null, "sources": [{"url": "https://www.idnfinancials.com/mkpi/pt-metropolitan-kentjana-tbk", "title": "MKPI 2020 archived statement", "publisher": "IDNFinancials", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2021": {"revenue": 1318001000000, "operating_profit": 440296000000, "net_profit": 324753000000, "ebitda": 719413000000, "total_assets": 7994282000000, "total_liabilities": 2157945000000, "total_equity": 5836337000000, "eps": 342.50, "dividend_per_share": 106, "employees": 926, "sources": [{"url": "https://stockanalysis.com/quote/idx/MKPI/financials/", "title": "MKPI Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2022": {"revenue": 1950932000000, "operating_profit": 831964000000, "net_profit": 701360000000, "ebitda": 1166453000000, "total_assets": 8155939000000, "total_liabilities": 1726322000000, "total_equity": 6429617000000, "eps": 739.68, "dividend_per_share": 117, "employees": 920, "sources": [{"url": "https://stockanalysis.com/quote/idx/MKPI/financials/", "title": "MKPI Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2023": {"revenue": 2327213000000, "operating_profit": 1000572000000, "net_profit": 844438000000, "ebitda": 1340878000000, "total_assets": 8388738000000, "total_liabilities": 1537408000000, "total_equity": 6851331000000, "eps": 890.58, "dividend_per_share": 445, "employees": 901, "sources": [{"url": "https://stockanalysis.com/quote/idx/MKPI/financials/", "title": "MKPI Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2024": {"revenue": 2482562000000, "operating_profit": 1133299000000, "net_profit": 985661000000, "ebitda": 1459964000000, "total_assets": 8939525000000, "total_liabilities": 1606773000000, "total_equity": 7332752000000, "eps": 1039.51, "dividend_per_share": 535, "employees": 905, "sources": [{"url": "https://www.indopremier.com/ipotnews/newsDetail.php?jdl=Financial_Statements_Full_Year_2024_of_MKPI&news_id=461167", "title": "Financial Statements Full Year 2024 of MKPI", "publisher": "Indopremier", "date_published": "2025-03-31", "date_accessed": "2026-05-01"}]}
+        "2020": {
+          "revenue": 1083000000000,
+          "operating_profit": null,
+          "net_profit": 231100000000,
+          "ebitda": null,
+          "total_assets": 7622900000000,
+          "total_liabilities": 2015600000000,
+          "total_equity": 5607300000000,
+          "eps": null,
+          "dividend_per_share": 158.2,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://www.idnfinancials.com/mkpi/pt-metropolitan-kentjana-tbk",
+              "title": "MKPI 2020 archived statement",
+              "publisher": "IDNFinancials",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2021": {
+          "revenue": 1318001000000,
+          "operating_profit": 440296000000,
+          "net_profit": 324753000000,
+          "ebitda": 719413000000,
+          "total_assets": 7994282000000,
+          "total_liabilities": 2157945000000,
+          "total_equity": 5836337000000,
+          "eps": 342.5,
+          "dividend_per_share": 106,
+          "employees": 926,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/MKPI/financials/",
+              "title": "MKPI Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2022": {
+          "revenue": 1950932000000,
+          "operating_profit": 831964000000,
+          "net_profit": 701360000000,
+          "ebitda": 1166453000000,
+          "total_assets": 8155939000000,
+          "total_liabilities": 1726322000000,
+          "total_equity": 6429617000000,
+          "eps": 739.68,
+          "dividend_per_share": 117,
+          "employees": 920,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/MKPI/financials/",
+              "title": "MKPI Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2023": {
+          "revenue": 2327213000000,
+          "operating_profit": 1000572000000,
+          "net_profit": 844438000000,
+          "ebitda": 1340878000000,
+          "total_assets": 8388738000000,
+          "total_liabilities": 1537408000000,
+          "total_equity": 6851331000000,
+          "eps": 890.58,
+          "dividend_per_share": 445,
+          "employees": 901,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/MKPI/financials/",
+              "title": "MKPI Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2024": {
+          "revenue": 2482562000000,
+          "operating_profit": 1133299000000,
+          "net_profit": 985661000000,
+          "ebitda": 1459964000000,
+          "total_assets": 8939525000000,
+          "total_liabilities": 1606773000000,
+          "total_equity": 7332752000000,
+          "eps": 1039.51,
+          "dividend_per_share": 535,
+          "employees": 905,
+          "sources": [
+            {
+              "url": "https://www.indopremier.com/ipotnews/newsDetail.php?jdl=Financial_Statements_Full_Year_2024_of_MKPI&news_id=461167",
+              "title": "Financial Statements Full Year 2024 of MKPI",
+              "publisher": "Indopremier",
+              "date_published": "2025-03-31",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        }
       },
       "summary_note": "Pondok Indah Group 자매사 (몰/오피스/주거 — 골프장 운영 NOT). 5년 연속 안정적 흑자. 매출 Rp 1.08T→2.48T(+129%), 배당 Rp 158→535 급성장.",
       "data_quality": "high",
@@ -205,11 +1536,118 @@
       "company_name": "PT Bukit Asam Tbk",
       "currency": "IDR",
       "yearly": {
-        "2020": {"revenue": 17325200000000, "operating_profit": 2520400000000, "net_profit": 2386800000000, "ebitda": 3551400000000, "total_assets": 24056800000000, "total_liabilities": 7117600000000, "total_equity": 16939200000000, "eps": 207.55, "dividend_per_share": null, "employees": null, "sources": [{"url": "https://www.indopremier.com/ipotnews/newsDetail.php?news_id=381363", "title": "Financial Statements Full Year 2020 of PTBA", "publisher": "Indopremier", "date_published": "2021-03", "date_accessed": "2026-05-01"}]},
-        "2021": {"revenue": 29261468000000, "operating_profit": 9959147000000, "net_profit": 7909113000000, "ebitda": 10772971000000, "total_assets": 36123703000000, "total_liabilities": 11869979000000, "total_equity": 24253724000000, "eps": 701.91, "dividend_per_share": 74.69, "employees": 1827, "sources": [{"url": "https://stockanalysis.com/quote/idx/PTBA/financials/", "title": "PTBA Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2022": {"revenue": 42648590000000, "operating_profit": 14936106000000, "net_profit": 12567582000000, "ebitda": 16000730000000, "total_assets": 45359207000000, "total_liabilities": 16443161000000, "total_equity": 28916046000000, "eps": 1094.05, "dividend_per_share": 688.52, "employees": 1599, "sources": [{"url": "https://stockanalysis.com/quote/idx/PTBA/financials/", "title": "PTBA Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2023": {"revenue": 38488867000000, "operating_profit": 7265915000000, "net_profit": 6105856000000, "ebitda": 8588575000000, "total_assets": 38765189000000, "total_liabilities": 17201993000000, "total_equity": 21563196000000, "eps": 531.54, "dividend_per_share": 1094.05, "employees": 1561, "sources": [{"url": "https://stockanalysis.com/quote/idx/PTBA/financials/", "title": "PTBA Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2024": {"revenue": 42764968000000, "operating_profit": 5530930000000, "net_profit": 5103720000000, "ebitda": 6610692000000, "total_assets": 41785576000000, "total_liabilities": 19141764000000, "total_equity": 22643812000000, "eps": 443.51, "dividend_per_share": 397.71, "employees": 1683, "sources": [{"url": "https://stockanalysis.com/quote/idx/PTBA/financials/", "title": "PTBA Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}, {"url": "https://www.ptba.co.id/uploads/ptba_laporan_tahunan/20250430114045-2025-04-30ptba_laporan_tahunan113945.pdf", "title": "PTBA Laporan Tahunan 2024", "publisher": "Company IR", "date_published": "2025-04-30", "date_accessed": "2026-05-01"}]}
+        "2020": {
+          "revenue": 17325200000000,
+          "operating_profit": 2520400000000,
+          "net_profit": 2386800000000,
+          "ebitda": 3551400000000,
+          "total_assets": 24056800000000,
+          "total_liabilities": 7117600000000,
+          "total_equity": 16939200000000,
+          "eps": 207.55,
+          "dividend_per_share": null,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://www.indopremier.com/ipotnews/newsDetail.php?news_id=381363",
+              "title": "Financial Statements Full Year 2020 of PTBA",
+              "publisher": "Indopremier",
+              "date_published": "2021-03",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2021": {
+          "revenue": 29261468000000,
+          "operating_profit": 9959147000000,
+          "net_profit": 7909113000000,
+          "ebitda": 10772971000000,
+          "total_assets": 36123703000000,
+          "total_liabilities": 11869979000000,
+          "total_equity": 24253724000000,
+          "eps": 701.91,
+          "dividend_per_share": 74.69,
+          "employees": 1827,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/PTBA/financials/",
+              "title": "PTBA Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2022": {
+          "revenue": 42648590000000,
+          "operating_profit": 14936106000000,
+          "net_profit": 12567582000000,
+          "ebitda": 16000730000000,
+          "total_assets": 45359207000000,
+          "total_liabilities": 16443161000000,
+          "total_equity": 28916046000000,
+          "eps": 1094.05,
+          "dividend_per_share": 688.52,
+          "employees": 1599,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/PTBA/financials/",
+              "title": "PTBA Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2023": {
+          "revenue": 38488867000000,
+          "operating_profit": 7265915000000,
+          "net_profit": 6105856000000,
+          "ebitda": 8588575000000,
+          "total_assets": 38765189000000,
+          "total_liabilities": 17201993000000,
+          "total_equity": 21563196000000,
+          "eps": 531.54,
+          "dividend_per_share": 1094.05,
+          "employees": 1561,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/PTBA/financials/",
+              "title": "PTBA Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2024": {
+          "revenue": 42764968000000,
+          "operating_profit": 5530930000000,
+          "net_profit": 5103720000000,
+          "ebitda": 6610692000000,
+          "total_assets": 41785576000000,
+          "total_liabilities": 19141764000000,
+          "total_equity": 22643812000000,
+          "eps": 443.51,
+          "dividend_per_share": 397.71,
+          "employees": 1683,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/PTBA/financials/",
+              "title": "PTBA Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://www.ptba.co.id/uploads/ptba_laporan_tahunan/20250430114045-2025-04-30ptba_laporan_tahunan113945.pdf",
+              "title": "PTBA Laporan Tahunan 2024",
+              "publisher": "Company IR",
+              "date_published": "2025-04-30",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        }
       },
       "summary_note": "국영 석탄. 2020 COVID 저점 → 2021-22 에너지 위기로 폭발(순이익 12.6T 사상최대) → 2023-24 정상화. Bukit Asam 골프장은 2024 그랜드 런칭.",
       "data_quality": "high",
@@ -221,11 +1659,118 @@
       "company_name": "PT AKR Corporindo Tbk",
       "currency": "IDR",
       "yearly": {
-        "2020": {"revenue": 17715900000000, "operating_profit": 1257900000000, "net_profit": 924900000000, "ebitda": 1638500000000, "total_assets": 18683600000000, "total_liabilities": 8127200000000, "total_equity": 10556400000000, "eps": 231.23, "dividend_per_share": null, "employees": null, "sources": [{"url": "https://www.indopremier.com/ipotnews/newsDetail.php?news_id=381829", "title": "Financial Statements Full Year 2020 of AKRA", "publisher": "Indopremier", "date_published": "2021-03", "date_accessed": "2026-05-01"}]},
-        "2021": {"revenue": 25707069000000, "operating_profit": 1446272000000, "net_profit": 1111614000000, "ebitda": 1803197000000, "total_assets": 23508586000000, "total_liabilities": 12209621000000, "total_equity": 11298965000000, "eps": 56.32, "dividend_per_share": 27, "employees": 1986, "sources": [{"url": "https://stockanalysis.com/quote/idx/AKRA/financials/", "title": "AKRA Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2022": {"revenue": 47539987000000, "operating_profit": 3125695000000, "net_profit": 2403335000000, "ebitda": 3504157000000, "total_assets": 27187608000000, "total_liabilities": 14032797000000, "total_equity": 13154811000000, "eps": 121.77, "dividend_per_share": 42, "employees": 1886, "sources": [{"url": "https://stockanalysis.com/quote/idx/AKRA/financials/", "title": "AKRA Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2023": {"revenue": 42086952000000, "operating_profit": 3539627000000, "net_profit": 2780350000000, "ebitda": 3931652000000, "total_assets": 30296572000000, "total_liabilities": 16253614000000, "total_equity": 14042958000000, "eps": 140.87, "dividend_per_share": 125, "employees": 1994, "sources": [{"url": "https://stockanalysis.com/quote/idx/AKRA/financials/", "title": "AKRA Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2024": {"revenue": 38729493000000, "operating_profit": 2561042000000, "net_profit": 2225118000000, "ebitda": 2977386000000, "total_assets": 33108684000000, "total_liabilities": 18484692000000, "total_equity": 14623992000000, "eps": 112.73, "dividend_per_share": 100, "employees": 2074, "sources": [{"url": "https://stockanalysis.com/quote/idx/AKRA/financials/", "title": "AKRA Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}, {"url": "https://www.idnfinancials.com/news/53270/akras-profit-down-1997-in-2024", "title": "AKRA profit down 19.97% in 2024", "publisher": "IDNFinancials", "date_published": "2025-03-31", "date_accessed": "2026-05-01"}]}
+        "2020": {
+          "revenue": 17715900000000,
+          "operating_profit": 1257900000000,
+          "net_profit": 924900000000,
+          "ebitda": 1638500000000,
+          "total_assets": 18683600000000,
+          "total_liabilities": 8127200000000,
+          "total_equity": 10556400000000,
+          "eps": 231.23,
+          "dividend_per_share": null,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://www.indopremier.com/ipotnews/newsDetail.php?news_id=381829",
+              "title": "Financial Statements Full Year 2020 of AKRA",
+              "publisher": "Indopremier",
+              "date_published": "2021-03",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2021": {
+          "revenue": 25707069000000,
+          "operating_profit": 1446272000000,
+          "net_profit": 1111614000000,
+          "ebitda": 1803197000000,
+          "total_assets": 23508586000000,
+          "total_liabilities": 12209621000000,
+          "total_equity": 11298965000000,
+          "eps": 56.32,
+          "dividend_per_share": 27,
+          "employees": 1986,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/AKRA/financials/",
+              "title": "AKRA Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2022": {
+          "revenue": 47539987000000,
+          "operating_profit": 3125695000000,
+          "net_profit": 2403335000000,
+          "ebitda": 3504157000000,
+          "total_assets": 27187608000000,
+          "total_liabilities": 14032797000000,
+          "total_equity": 13154811000000,
+          "eps": 121.77,
+          "dividend_per_share": 42,
+          "employees": 1886,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/AKRA/financials/",
+              "title": "AKRA Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2023": {
+          "revenue": 42086952000000,
+          "operating_profit": 3539627000000,
+          "net_profit": 2780350000000,
+          "ebitda": 3931652000000,
+          "total_assets": 30296572000000,
+          "total_liabilities": 16253614000000,
+          "total_equity": 14042958000000,
+          "eps": 140.87,
+          "dividend_per_share": 125,
+          "employees": 1994,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/AKRA/financials/",
+              "title": "AKRA Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2024": {
+          "revenue": 38729493000000,
+          "operating_profit": 2561042000000,
+          "net_profit": 2225118000000,
+          "ebitda": 2977386000000,
+          "total_assets": 33108684000000,
+          "total_liabilities": 18484692000000,
+          "total_equity": 14623992000000,
+          "eps": 112.73,
+          "dividend_per_share": 100,
+          "employees": 2074,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/AKRA/financials/",
+              "title": "AKRA Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://www.idnfinancials.com/news/53270/akras-profit-down-1997-in-2024",
+              "title": "AKRA profit down 19.97% in 2024",
+              "publisher": "IDNFinancials",
+              "date_published": "2025-03-31",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        }
       },
       "summary_note": "Grand Kawanua Manado 모회사. 석유/화학 유통 + JIIPE 산업단지. 2022-23 산업단지 매각으로 매출 Rp 47.5T 정점 → 2024 정상화.",
       "data_quality": "high",
@@ -237,11 +1782,118 @@
       "company_name": "PT Vale Indonesia Tbk",
       "currency": "IDR",
       "yearly": {
-        "2020": {"revenue": 10744035000000, "operating_profit": null, "net_profit": 1163340000000, "ebitda": null, "total_assets": 32554850000000, "total_liabilities": 4171445000000, "total_equity": 28381400000000, "eps": null, "dividend_per_share": null, "employees": 3006, "sources": [{"url": "https://vale.com/documents/44618/1371772/PT+Vale+Indonesia+Tbk+-+Sustainability+Report+2020.pdf", "title": "Vale Indonesia 2020 Sustainability Report", "publisher": "Company IR", "date_published": "2021", "date_accessed": "2026-05-01"}]},
-        "2021": {"revenue": 13586958000000, "operating_profit": 3145698000000, "net_profit": 2362982000000, "ebitda": 5371806000000, "total_assets": 35245196000000, "total_liabilities": 4537409000000, "total_equity": 30702808000000, "eps": 285.04, "dividend_per_share": 47.30, "employees": 2966, "sources": [{"url": "https://stockanalysis.com/quote/idx/INCO/financials/", "title": "INCO Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2022": {"revenue": 18383017000000, "operating_profit": 4255362000000, "net_profit": 3124323000000, "ebitda": 6792679000000, "total_assets": 41443536000000, "total_liabilities": 4729676000000, "total_equity": 36719160000000, "eps": 311.84, "dividend_per_share": null, "employees": 2934, "sources": [{"url": "https://stockanalysis.com/quote/idx/INCO/financials/", "title": "INCO Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2023": {"revenue": 18969190000000, "operating_profit": 4698393000000, "net_profit": 4223961000000, "ebitda": 7296653000000, "total_assets": 45051522000000, "total_liabilities": 5564801000000, "total_equity": 39495405000000, "eps": 461.91, "dividend_per_share": 89.61, "employees": 3023, "sources": [{"url": "https://stockanalysis.com/quote/idx/INCO/financials/", "title": "INCO Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2024": {"revenue": 15354941000000, "operating_profit": 1003189000000, "net_profit": 933307000000, "ebitda": 3578741000000, "total_assets": 51330789000000, "total_liabilities": 7169676000000, "total_equity": 44161081000000, "eps": 161.57, "dividend_per_share": null, "employees": 3038, "sources": [{"url": "https://vale.com/documents/44618/1371772/PT+Vale+Indonesia+Tbk+-+Laporan+Tahunan+2024.pdf", "title": "INCO Annual Report 2024", "publisher": "Company IR", "date_published": "2025", "date_accessed": "2026-05-01"}, {"url": "https://algoresearch.id/insight/content/2025/02/27/inco-2024-net-profit-down-79-yoy-below-expectations", "title": "INCO 2024 Net Profit -79% YoY", "publisher": "AlgoResearch", "date_published": "2025-02-27", "date_accessed": "2026-05-01"}]}
+        "2020": {
+          "revenue": 10744035000000,
+          "operating_profit": null,
+          "net_profit": 1163340000000,
+          "ebitda": null,
+          "total_assets": 32554850000000,
+          "total_liabilities": 4171445000000,
+          "total_equity": 28381400000000,
+          "eps": null,
+          "dividend_per_share": null,
+          "employees": 3006,
+          "sources": [
+            {
+              "url": "https://vale.com/documents/44618/1371772/PT+Vale+Indonesia+Tbk+-+Sustainability+Report+2020.pdf",
+              "title": "Vale Indonesia 2020 Sustainability Report",
+              "publisher": "Company IR",
+              "date_published": "2021",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2021": {
+          "revenue": 13586958000000,
+          "operating_profit": 3145698000000,
+          "net_profit": 2362982000000,
+          "ebitda": 5371806000000,
+          "total_assets": 35245196000000,
+          "total_liabilities": 4537409000000,
+          "total_equity": 30702808000000,
+          "eps": 285.04,
+          "dividend_per_share": 47.3,
+          "employees": 2966,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/INCO/financials/",
+              "title": "INCO Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2022": {
+          "revenue": 18383017000000,
+          "operating_profit": 4255362000000,
+          "net_profit": 3124323000000,
+          "ebitda": 6792679000000,
+          "total_assets": 41443536000000,
+          "total_liabilities": 4729676000000,
+          "total_equity": 36719160000000,
+          "eps": 311.84,
+          "dividend_per_share": null,
+          "employees": 2934,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/INCO/financials/",
+              "title": "INCO Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2023": {
+          "revenue": 18969190000000,
+          "operating_profit": 4698393000000,
+          "net_profit": 4223961000000,
+          "ebitda": 7296653000000,
+          "total_assets": 45051522000000,
+          "total_liabilities": 5564801000000,
+          "total_equity": 39495405000000,
+          "eps": 461.91,
+          "dividend_per_share": 89.61,
+          "employees": 3023,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/INCO/financials/",
+              "title": "INCO Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2024": {
+          "revenue": 15354941000000,
+          "operating_profit": 1003189000000,
+          "net_profit": 933307000000,
+          "ebitda": 3578741000000,
+          "total_assets": 51330789000000,
+          "total_liabilities": 7169676000000,
+          "total_equity": 44161081000000,
+          "eps": 161.57,
+          "dividend_per_share": null,
+          "employees": 3038,
+          "sources": [
+            {
+              "url": "https://vale.com/documents/44618/1371772/PT+Vale+Indonesia+Tbk+-+Laporan+Tahunan+2024.pdf",
+              "title": "INCO Annual Report 2024",
+              "publisher": "Company IR",
+              "date_published": "2025",
+              "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://algoresearch.id/insight/content/2025/02/27/inco-2024-net-profit-down-79-yoy-below-expectations",
+              "title": "INCO 2024 Net Profit -79% YoY",
+              "publisher": "AlgoResearch",
+              "date_published": "2025-02-27",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        }
       },
       "summary_note": "Sorowako 골프장 모회사. USD 보고를 BI 환율로 IDR 환산. 2024 니켈가격 폭락으로 순이익 -79% YoY. 직원 ~3,040명 (Sorowako 광산촌).",
       "data_quality": "high",
@@ -254,13 +1906,124 @@
       "currency": "IDR",
       "listing_date": "2024-07-08",
       "yearly": {
-        "2021": {"revenue": 72658242193, "operating_profit": null, "net_profit": -32041004, "ebitda": 2550846390, "total_assets": 561402385613, "total_liabilities": 224707037083, "total_equity": 336695348530, "eps": null, "dividend_per_share": null, "employees": null, "sources": [{"url": "https://carisaham.com/emiten/profile/GOLF", "title": "GOLF Financial Profile", "publisher": "Carisaham", "date_published": null, "date_accessed": "2026-05-01"}, {"url": "https://e-ipo.co.id/en/ipo/309", "title": "GOLF IPO Prospectus", "publisher": "e-ipo.co.id", "date_published": "2024-07", "date_accessed": "2026-05-01"}]},
-        "2022": {"revenue": 111630826260, "operating_profit": null, "net_profit": 25533501208, "ebitda": 35740061226, "total_assets": 625541657891, "total_liabilities": 265147628908, "total_equity": 360394028983, "eps": null, "dividend_per_share": null, "employees": 249, "sources": [{"url": "https://carisaham.com/emiten/profile/GOLF", "title": "GOLF Financial Profile", "publisher": "Carisaham", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2023": {"revenue": 177582018034, "operating_profit": null, "net_profit": 60176060893, "ebitda": 72883518829, "total_assets": 7764540357254, "total_liabilities": 183290463391, "total_equity": 7581249893863, "eps": null, "dividend_per_share": null, "employees": 252, "sources": [{"url": "https://carisaham.com/emiten/profile/GOLF", "title": "GOLF Financial Profile", "publisher": "Carisaham", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2024": {"revenue": 197993815000, "operating_profit": null, "net_profit": 67574994000, "ebitda": 82373095000, "total_assets": 8637499132000, "total_liabilities": 657204940000, "total_equity": 7980294192000, "eps": null, "dividend_per_share": null, "employees": 423, "sources": [{"url": "https://www.idnfinancials.com/news/53569/golf-records-12-profit-growth-in-2024", "title": "GOLF records 12% profit growth in 2024", "publisher": "IDNFinancials", "date_published": "2025-03", "date_accessed": "2026-05-01"}, {"url": "https://cdn.golflinkresorts.co.id/investor/3/2/Laporan_Tahunan_Terintegrasi_2024_GOLF.pdf", "title": "GOLF 2024 Integrated Annual Report", "publisher": "Company IR", "date_published": "2025", "date_accessed": "2026-05-01"}]}
+        "2020": {
+          "revenue": null,
+          "operating_profit": null,
+          "net_profit": null,
+          "ebitda": null,
+          "total_assets": null,
+          "total_liabilities": null,
+          "total_equity": null,
+          "eps": null,
+          "dividend_per_share": null,
+          "employees": null,
+          "sources": [],
+          "_note": "Structurally unavailable. IPO prospectus filed June 2024 contains only OJK-mandated 3-year audit (2021/2022/2023) per POJK 7/2017. No FY2020 financial filing exists publicly for PT Intra GolfLink Resorts Tbk."
+        },
+        "2021": {
+          "revenue": 72658242193,
+          "operating_profit": -505271075,
+          "net_profit": -32041004,
+          "ebitda": null,
+          "total_assets": 561402385613,
+          "total_liabilities": 224236605619,
+          "total_equity": 337165779994,
+          "eps": -0.002,
+          "dividend_per_share": 0,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://golflinkresorts.co.id/investor/download/2/Prospektus+Final+PT+Intra+Golflink+Resorts+Tbk.pdf",
+              "title": "GOLF IPO Prospectus (Section IV)",
+              "publisher": "Company IR / IDX",
+              "date_published": "2024-06",
+              "date_accessed": "2026-05-01",
+              "page": "Body p.22-25"
+            }
+          ]
+        },
+        "2022": {
+          "revenue": 111630826260,
+          "operating_profit": 32264940858,
+          "net_profit": 25533501208,
+          "ebitda": 35740061226,
+          "total_assets": 625541657891,
+          "total_liabilities": 264677045533,
+          "total_equity": 360864612358,
+          "eps": 1456,
+          "dividend_per_share": 0,
+          "employees": 225,
+          "sources": [
+            {
+              "url": "https://golflinkresorts.co.id/investor/download/2/Prospektus+Final+PT+Intra+Golflink+Resorts+Tbk.pdf",
+              "title": "GOLF IPO Prospectus",
+              "publisher": "Company IR",
+              "date_published": "2024-06",
+              "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://cdn.golflinkresorts.co.id/investor/3/2/Laporan_Tahunan_Terintegrasi_2024_GOLF.pdf",
+              "title": "GOLF 2024 Integrated AR",
+              "publisher": "Company IR",
+              "date_published": "2025",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2023": {
+          "revenue": 177582018034,
+          "operating_profit": 71448309127,
+          "net_profit": 60176060893,
+          "ebitda": 72883518829,
+          "total_assets": 7764540357254,
+          "total_liabilities": 182797540719,
+          "total_equity": 7581742816535,
+          "eps": 3431,
+          "dividend_per_share": 1641945,
+          "employees": 249,
+          "sources": [
+            {
+              "url": "https://golflinkresorts.co.id/investor/download/3/Final+Report+PT+Intra+Golflink+Resorts+and+Subsidiaries+Dec+31%2C+2023+%28Reissue+1+230424%29.pdf",
+              "title": "GOLF FY2023 Audited FS (Reissue)",
+              "publisher": "Company IR",
+              "date_published": "2024-04",
+              "date_accessed": "2026-05-01"
+            }
+          ],
+          "_note": "FY2023 자산 폭증 (Rp 625B→7.76T)은 고정자산 재평가 +Rp 6.68T (OCI 인식). 자회사 통합 아님."
+        },
+        "2024": {
+          "revenue": 197993814652,
+          "operating_profit": 72469171724,
+          "net_profit": 67574993523,
+          "ebitda": 88600000000,
+          "total_assets": 8637499132483,
+          "total_liabilities": 656711721232,
+          "total_equity": 7980787411251,
+          "eps": 3896,
+          "dividend_per_share": 0,
+          "employees": 252,
+          "sources": [
+            {
+              "url": "https://golflinkresorts.co.id/investor/download/30/Final_Audit_Laporan_Keuangan_Konsolidasian_PT_Intra_Golflink_Resorts_Tbk_dan_Entitas_Anak.pdf",
+              "title": "GOLF FY2024 Audited FS",
+              "publisher": "Company IR",
+              "date_published": "2025",
+              "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://cdn.golflinkresorts.co.id/investor/3/2/Laporan_Tahunan_Terintegrasi_2024_GOLF.pdf",
+              "title": "GOLF 2024 Integrated AR",
+              "publisher": "Company IR",
+              "date_published": "2025",
+              "date_accessed": "2026-05-01",
+              "page": "p.7-9"
+            }
+          ]
+        }
       },
-      "summary_note": "Black Rocks Belitung 운영사. 2024년 7월 IDX 신규 상장. 매출 73B→198B (+172%). 2023 자산 급증(561B→7.76T)은 IPO 직전 자회사 통합(New Kuta+Palm Hill+Black Rocks).",
-      "data_quality": "partial",
+      "summary_note": "Black Rocks Belitung 운영(48.07% 관계회사, 비연결). 자회사: New Kuta Bali(매출 91B), Palm Hill Sentul(105B). 2024 매출 Rp 198B (golf 47% + 부동산 34% + F&B 14%). EBITDA margin 44.7%. FY2020은 OJK 규정상 미공개(IPO 프로스펙터스 3년 한정).",
+      "data_quality": "high",
       "last_verified": "2026-05-01"
     },
     {
@@ -270,14 +2033,154 @@
       "currency": "USD",
       "listing_date": "2023-07-07",
       "yearly": {
-        "2020": {"revenue": 1003000000, "revenue_idr_equiv": 14092150000000, "operating_profit": null, "net_profit": 86000000, "net_profit_idr_equiv": 1208300000000, "ebitda": null, "total_assets": null, "total_liabilities": null, "total_equity": null, "eps": null, "dividend_per_share": null, "employees": null, "sources": [{"url": "https://simplywall.st/stocks/id/materials/idx-ammn", "title": "Amman Mineral past performance", "publisher": "Simply Wall St", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2021": {"revenue": 1299000000, "revenue_idr_equiv": 18513348000000, "operating_profit": 557080000, "net_profit": 317040000, "net_profit_idr_equiv": 4519494080000, "ebitda": 686520000, "ebitda_idr_equiv": 9785883040000, "total_assets": 5203000000, "total_assets_idr_equiv": 74153356000000, "total_liabilities": 2708000000, "total_liabilities_idr_equiv": 38594416000000, "total_equity": 2495000000, "total_equity_idr_equiv": 35558940000000, "eps": null, "dividend_per_share": null, "employees": null, "sources": [{"url": "https://stockanalysis.com/quote/idx/AMMN/financials/", "title": "AMMN Income Statement", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2022": {"revenue": 2830000000, "revenue_idr_equiv": 44125360000000, "operating_profit": 1527000000, "net_profit": 1093000000, "net_profit_idr_equiv": 17042056000000, "ebitda": 1682000000, "ebitda_idr_equiv": 26225744000000, "total_assets": 6499000000, "total_assets_idr_equiv": 101333608000000, "total_liabilities": 2890000000, "total_liabilities_idr_equiv": 45060880000000, "total_equity": 3609000000, "total_equity_idr_equiv": 56270728000000, "eps": 0.02, "dividend_per_share": null, "employees": null, "sources": [{"url": "https://stockanalysis.com/quote/idx/AMMN", "title": "AMMN Financial Data", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}, {"url": "https://www.idx.co.id/Media/ubefndld/45_ammn-prospektus-ipo-2023.pdf", "title": "AMMN IPO Prospectus 2023", "publisher": "IDX", "date_published": "2023-07", "date_accessed": "2026-05-01"}]},
-        "2023": {"revenue": 2033000000, "revenue_idr_equiv": 31302101000000, "operating_profit": 767230000, "net_profit": 252140000, "net_profit_idr_equiv": 3882700580000, "ebitda": 943920000, "ebitda_idr_equiv": 14533321440000, "total_assets": 9097000000, "total_assets_idr_equiv": 140116829000000, "total_liabilities": 4462000000, "total_liabilities_idr_equiv": 68701414000000, "total_equity": 4636000000, "total_equity_idr_equiv": 71396092000000, "eps": null, "dividend_per_share": null, "employees": null, "sources": [{"url": "https://stockanalysis.com/quote/idx/AMMN", "title": "AMMN Financial Data", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2024": {"revenue": 2664000000, "revenue_idr_equiv": 43042248000000, "operating_profit": 1185000000, "net_profit": 636900000, "net_profit_idr_equiv": 10290423300000, "ebitda": 1431000000, "ebitda_idr_equiv": 23120667000000, "total_assets": 11121000000, "total_assets_idr_equiv": 179681397000000, "total_liabilities": 5873000000, "total_liabilities_idr_equiv": 94890061000000, "total_equity": 5248000000, "total_equity_idr_equiv": 84791936000000, "eps": 0.01, "dividend_per_share": null, "employees": null, "sources": [{"url": "https://www.amman.co.id/press-release/amman-full-year-2024-earnings-results", "title": "Amman FY2024 Earnings Press Release", "publisher": "Company IR", "date_published": "2025", "date_accessed": "2026-05-01"}]}
+        "2020": {
+          "revenue": 1003106000,
+          "revenue_idr_equiv": 14093639300000,
+          "operating_profit": 265925000,
+          "operating_profit_idr_equiv": 3736246250000,
+          "net_profit": 86319000,
+          "net_profit_idr_equiv": 1212782950000,
+          "ebitda": 465558000,
+          "ebitda_idr_equiv": 6541089900000,
+          "total_assets": 4758556000,
+          "total_assets_idr_equiv": 66857711800000,
+          "total_liabilities": 2603559000,
+          "total_liabilities_idr_equiv": 36573004950000,
+          "total_equity": 2154997000,
+          "total_equity_idr_equiv": 30277706850000,
+          "eps": 0.00167,
+          "dividend_per_share": 0,
+          "employees": 3221,
+          "sources": [
+            {
+              "url": "https://www.idx.co.id/Media/ubefndld/45_ammn-prospektus-ipo-2023.pdf",
+              "title": "AMMN IPO Prospectus (audited 2020-2022)",
+              "publisher": "IDX / Company IR",
+              "date_published": "2023-07-03",
+              "date_accessed": "2026-05-01",
+              "page": "Bab I-5 p.xxi-xxii (summary), Bab IV p.24-30 (detail), Bab XII p.167 (employees)"
+            }
+          ],
+          "_note": "Audited by KAP Mirawati Sensi Idris (Moore Global), unqualified opinion, signed 2023-04-27. Net profit shown is parent-attributable (consolidated NCI: USD 29,764,000). Production: 293.9 Mlbs Cu / 132.1 Koz Au / 813.4 Koz Ag."
+        },
+        "2021": {
+          "revenue": 1299000000,
+          "revenue_idr_equiv": 18513348000000,
+          "operating_profit": 557080000,
+          "net_profit": 317040000,
+          "net_profit_idr_equiv": 4519494080000,
+          "ebitda": 686520000,
+          "ebitda_idr_equiv": 9785883040000,
+          "total_assets": 5203000000,
+          "total_assets_idr_equiv": 74153356000000,
+          "total_liabilities": 2708000000,
+          "total_liabilities_idr_equiv": 38594416000000,
+          "total_equity": 2495000000,
+          "total_equity_idr_equiv": 35558940000000,
+          "eps": null,
+          "dividend_per_share": null,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/AMMN/financials/",
+              "title": "AMMN Income Statement",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2022": {
+          "revenue": 2830000000,
+          "revenue_idr_equiv": 44125360000000,
+          "operating_profit": 1527000000,
+          "net_profit": 1093000000,
+          "net_profit_idr_equiv": 17042056000000,
+          "ebitda": 1682000000,
+          "ebitda_idr_equiv": 26225744000000,
+          "total_assets": 6499000000,
+          "total_assets_idr_equiv": 101333608000000,
+          "total_liabilities": 2890000000,
+          "total_liabilities_idr_equiv": 45060880000000,
+          "total_equity": 3609000000,
+          "total_equity_idr_equiv": 56270728000000,
+          "eps": 0.02,
+          "dividend_per_share": null,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/AMMN",
+              "title": "AMMN Financial Data",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://www.idx.co.id/Media/ubefndld/45_ammn-prospektus-ipo-2023.pdf",
+              "title": "AMMN IPO Prospectus 2023",
+              "publisher": "IDX",
+              "date_published": "2023-07",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2023": {
+          "revenue": 2033000000,
+          "revenue_idr_equiv": 31302101000000,
+          "operating_profit": 767230000,
+          "net_profit": 252140000,
+          "net_profit_idr_equiv": 3882700580000,
+          "ebitda": 943920000,
+          "ebitda_idr_equiv": 14533321440000,
+          "total_assets": 9097000000,
+          "total_assets_idr_equiv": 140116829000000,
+          "total_liabilities": 4462000000,
+          "total_liabilities_idr_equiv": 68701414000000,
+          "total_equity": 4636000000,
+          "total_equity_idr_equiv": 71396092000000,
+          "eps": null,
+          "dividend_per_share": null,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/AMMN",
+              "title": "AMMN Financial Data",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2024": {
+          "revenue": 2664000000,
+          "revenue_idr_equiv": 43042248000000,
+          "operating_profit": 1185000000,
+          "net_profit": 636900000,
+          "net_profit_idr_equiv": 10290423300000,
+          "ebitda": 1431000000,
+          "ebitda_idr_equiv": 23120667000000,
+          "total_assets": 11121000000,
+          "total_assets_idr_equiv": 179681397000000,
+          "total_liabilities": 5873000000,
+          "total_liabilities_idr_equiv": 94890061000000,
+          "total_equity": 5248000000,
+          "total_equity_idr_equiv": 84791936000000,
+          "eps": 0.01,
+          "dividend_per_share": null,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://www.amman.co.id/press-release/amman-full-year-2024-earnings-results",
+              "title": "Amman FY2024 Earnings Press Release",
+              "publisher": "Company IR",
+              "date_published": "2025",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        }
       },
-      "summary_note": "Kaleang Sumbawa(구 Newmont 코스) 모회사. USD 보고. 2023년 7월 IPO. 매출 USD 1.0B→2.66B(5y, +166%). 2020-2024 자산 USD 5.2B→11.1B 두 배.",
-      "data_quality": "medium",
+      "summary_note": "Kaleang Sumbawa(구 Newmont 코스) 모회사. USD 보고. 2023.07 IPO. FY2020은 IPO 프로스펙터스에서 audited 풀세트 추출 (Simply Wall St 추정 → 정확값 정정). 매출 USD 1.0B→2.66B, 자산 USD 4.76B→11.12B.",
+      "data_quality": "high",
       "last_verified": "2026-05-01"
     },
     {
@@ -286,14 +2189,119 @@
       "company_name": "PT Pondok Indah Padang Golf Tbk",
       "currency": "IDR",
       "yearly": {
-        "2020": {"revenue": null, "operating_profit": null, "net_profit": null, "ebitda": null, "total_assets": 255690000000, "total_liabilities": 233080000000, "total_equity": 22610000000, "eps": null, "dividend_per_share": null, "employees": null, "sources": [{"url": "http://www.golfpondokindah.com/document/2022_Sustanability_Report.pdf", "title": "PIPG 2022 Sustainability Report", "publisher": "Company IR", "date_published": "2023", "date_accessed": "2026-05-01"}]},
-        "2021": {"revenue": null, "operating_profit": null, "net_profit": null, "ebitda": null, "total_assets": 272750000000, "total_liabilities": 237090000000, "total_equity": 35660000000, "eps": null, "dividend_per_share": null, "employees": null, "sources": [{"url": "http://www.golfpondokindah.com/document/2022_Sustanability_Report.pdf", "title": "PIPG 2022 Sustainability Report", "publisher": "Company IR", "date_published": "2023", "date_accessed": "2026-05-01"}]},
-        "2022": {"revenue": 70150000000, "operating_profit": null, "net_profit": null, "ebitda": null, "total_assets": 296670000000, "total_liabilities": 251710000000, "total_equity": 44960000000, "eps": null, "dividend_per_share": null, "employees": null, "sources": [{"url": "https://www.golfpondokindah.com/document/2022_Annual_Report.pdf", "title": "PIPG 2022 Annual Report", "publisher": "Company IR", "date_published": "2023", "date_accessed": "2026-05-01"}]},
-        "2023": {"revenue": null, "operating_profit": null, "net_profit": null, "ebitda": null, "total_assets": null, "total_liabilities": null, "total_equity": null, "eps": null, "dividend_per_share": null, "employees": null, "sources": [{"url": "https://www.golfpondokindah.com/document/2023_Annual_Report.pdf", "title": "PIPG 2023 Annual Report (PDF binary - manual extraction needed)", "publisher": "Company IR", "date_published": "2024", "date_accessed": "2026-05-01"}]},
-        "2024": {"revenue": null, "operating_profit": null, "net_profit": null, "ebitda": null, "total_assets": null, "total_liabilities": null, "total_equity": null, "eps": null, "dividend_per_share": null, "employees": null, "sources": [{"url": "https://www.golfpondokindah.com/document/2024_Annual_Report.pdf", "title": "PIPG 2024 Annual Report (PDF binary - manual extraction needed)", "publisher": "Company IR", "date_published": "2025", "date_accessed": "2026-05-01"}]}
+        "2020": {
+          "revenue": 111672657675,
+          "operating_profit": 17981849967,
+          "net_profit": 23071858903,
+          "ebitda": 31305649829,
+          "total_assets": 307326569619,
+          "total_liabilities": 51637331812,
+          "total_equity": 255689237807,
+          "eps": 17761246,
+          "dividend_per_share": 12600000,
+          "employees": 253,
+          "sources": [
+            {
+              "url": "http://www.golfpondokindah.com/document/2020_Annual_Report.pdf",
+              "title": "PIPG Laporan Tahunan 2020",
+              "publisher": "Company IR",
+              "date_published": "2021",
+              "date_accessed": "2026-05-01",
+              "page": "p.9, 43, 72"
+            }
+          ]
+        },
+        "2021": {
+          "revenue": 134430612405,
+          "operating_profit": 30435552479,
+          "net_profit": 33029508846,
+          "ebitda": 43375211779,
+          "total_assets": 335100050447,
+          "total_liabilities": 62350595288,
+          "total_equity": 272749455159,
+          "eps": 25426874,
+          "dividend_per_share": 14652000,
+          "employees": 247,
+          "sources": [
+            {
+              "url": "http://www.golfpondokindah.com/document/2021_Annual_Report.pdf",
+              "title": "PIPG Laporan Tahunan 2021",
+              "publisher": "Company IR",
+              "date_published": "2022",
+              "date_accessed": "2026-05-01",
+              "page": "p.10-11, 43-44, 80"
+            }
+          ]
+        },
+        "2022": {
+          "revenue": 162573493394,
+          "operating_profit": 42572546838,
+          "net_profit": 42297244404,
+          "ebitda": 55900086261,
+          "total_assets": 372381898342,
+          "total_liabilities": 75709136364,
+          "total_equity": 296672761978,
+          "eps": 32561389,
+          "dividend_per_share": 15984000,
+          "employees": 266,
+          "sources": [
+            {
+              "url": "https://www.golfpondokindah.com/document/2022_Annual_Report.pdf",
+              "title": "PIPG Laporan Tahunan 2022",
+              "publisher": "Company IR",
+              "date_published": "2023",
+              "date_accessed": "2026-05-01",
+              "page": "p.10-11, 43-44"
+            }
+          ]
+        },
+        "2023": {
+          "revenue": 203092322067,
+          "operating_profit": 53814730325,
+          "net_profit": 52475087302,
+          "ebitda": 68551194052,
+          "total_assets": 413995783521,
+          "total_liabilities": 85801544023,
+          "total_equity": 328194239498,
+          "eps": 40396526,
+          "dividend_per_share": 20200000,
+          "employees": 258,
+          "sources": [
+            {
+              "url": "https://www.golfpondokindah.com/document/2023_Annual_Report.pdf",
+              "title": "PIPG Laporan Tahunan 2023",
+              "publisher": "Company IR",
+              "date_published": "2024",
+              "date_accessed": "2026-05-01",
+              "page": "p.10-13, 43-46, 77"
+            }
+          ]
+        },
+        "2024": {
+          "revenue": 197570521436,
+          "operating_profit": 53451361547,
+          "net_profit": 55903815772,
+          "ebitda": 70666886291,
+          "total_assets": 446060061475,
+          "total_liabilities": 88175251972,
+          "total_equity": 357884809503,
+          "eps": 43036040,
+          "dividend_per_share": 20200000,
+          "employees": 254,
+          "sources": [
+            {
+              "url": "https://www.golfpondokindah.com/document/2024_Annual_Report.pdf",
+              "title": "PIPG Laporan Tahunan 2024",
+              "publisher": "Company IR",
+              "date_published": "2025",
+              "date_accessed": "2026-05-01",
+              "page": "p.10-11, 41-44, 59, 77"
+            }
+          ]
+        }
       },
-      "summary_note": "Pondok Indah Golf Course 운영사. OJK 등록 Tbk이지만 IDX 미상장(POJK 3/2021 mandate 미이행). 연차보고서 PDF가 이미지 인코딩으로 자동 추출 불가 — 2020-2022 BS 일부만 확보. 매출/순이익은 수동 PDF 검토 필요.",
-      "data_quality": "low",
+      "summary_note": "Pondok Indah Golf 운영사. PDF 직접 파싱(pdftotext)으로 완성. 매출 Rp 111.7B→197.6B(+77%), 순이익 23.1B→55.9B(+142%). 단 1,299주 발행으로 EPS Rp 4천만대. 5년 연속 배당. OJK Tbk이지만 IDX 미상장(POJK 3/2021).",
+      "data_quality": "high",
       "last_verified": "2026-05-01"
     },
     {
@@ -302,11 +2310,164 @@
       "company_name": "Freeport-McMoRan Inc",
       "currency": "USD",
       "yearly": {
-        "2020": {"revenue": 14198000000, "revenue_idr_equiv": 199481900000000, "operating_profit": null, "net_profit": 599000000, "net_profit_idr_equiv": 8415950000000, "ebitda": 3935000000, "ebitda_idr_equiv": 55286750000000, "total_assets": 42140000000, "total_assets_idr_equiv": 592067000000000, "total_liabilities": null, "total_equity": null, "eps": null, "dividend_per_share": 0, "employees": 24500, "sources": [{"url": "https://companiesmarketcap.com/freeport-mcmoran/total-assets/", "title": "FCX Total Assets History", "publisher": "Companies Market Cap", "date_published": null, "date_accessed": "2026-05-01"}, {"url": "https://stockanalysis.com/stocks/fcx/employees/", "title": "FCX Employees", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2021": {"revenue": 22845000000, "revenue_idr_equiv": 325587140000000, "operating_profit": 8366000000, "operating_profit_idr_equiv": 119231432000000, "net_profit": 4306000000, "net_profit_idr_equiv": 61369112000000, "ebitda": 10364000000, "ebitda_idr_equiv": 147707728000000, "total_assets": 48022000000, "total_assets_idr_equiv": 684409544000000, "total_liabilities": 25003000000, "total_liabilities_idr_equiv": 356342756000000, "total_equity": 23019000000, "total_equity_idr_equiv": 328066788000000, "eps": 2.90, "dividend_per_share": 0.375, "employees": 24700, "sources": [{"url": "https://stockanalysis.com/stocks/fcx/financials/", "title": "FCX Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}, {"url": "https://www.sec.gov/Archives/edgar/data/831259", "title": "FCX SEC EDGAR 10-K filings", "publisher": "SEC EDGAR", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2022": {"revenue": 22780000000, "revenue_idr_equiv": 355177760000000, "operating_profit": 7037000000, "operating_profit_idr_equiv": 109720904000000, "net_profit": 3468000000, "net_profit_idr_equiv": 54071056000000, "ebitda": 9056000000, "ebitda_idr_equiv": 141201152000000, "total_assets": 51093000000, "total_assets_idr_equiv": 796641756000000, "total_liabilities": 26222000000, "total_liabilities_idr_equiv": 408813424000000, "total_equity": 24871000000, "total_equity_idr_equiv": 387728132000000, "eps": 2.39, "dividend_per_share": 0.60, "employees": 25600, "sources": [{"url": "https://stockanalysis.com/stocks/fcx", "title": "FCX Financial Data", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2023": {"revenue": 22855000000, "revenue_idr_equiv": 351912335000000, "operating_profit": 6225000000, "operating_profit_idr_equiv": 95846325000000, "net_profit": 1848000000, "net_profit_idr_equiv": 28453656000000, "ebitda": 8293000000, "ebitda_idr_equiv": 127686421000000, "total_assets": 52506000000, "total_assets_idr_equiv": 808439082000000, "total_liabilities": 25196000000, "total_liabilities_idr_equiv": 387932212000000, "total_equity": 27310000000, "total_equity_idr_equiv": 420507870000000, "eps": 1.28, "dividend_per_share": 0.60, "employees": 27200, "sources": [{"url": "https://stockanalysis.com/stocks/fcx", "title": "FCX Financial Data", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2024": {"revenue": 25455000000, "revenue_idr_equiv": 411275235000000, "operating_profit": 6864000000, "operating_profit_idr_equiv": 110901648000000, "net_profit": 1889000000, "net_profit_idr_equiv": 30520573000000, "ebitda": 9105000000, "ebitda_idr_equiv": 147109485000000, "total_assets": 54848000000, "total_assets_idr_equiv": 886175936000000, "total_liabilities": 26070000000, "total_liabilities_idr_equiv": 421212990000000, "total_equity": 28778000000, "total_equity_idr_equiv": 464946946000000, "eps": 1.30, "dividend_per_share": 0.60, "employees": 28500, "sources": [{"url": "https://www.sec.gov/Archives/edgar/data/831259/000083125925000006/fcx-20241231.htm", "title": "FCX 10-K Annual Report 2024", "publisher": "SEC EDGAR", "date_published": "2025-02", "date_accessed": "2026-05-01"}, {"url": "https://s22.q4cdn.com/529358580/files/doc_financials/annual/AR_2024.pdf", "title": "FCX Annual Report 2024 PDF", "publisher": "Company IR", "date_published": "2025", "date_accessed": "2026-05-01"}]}
+        "2020": {
+          "revenue": 14198000000,
+          "revenue_idr_equiv": 199481900000000,
+          "operating_profit": null,
+          "net_profit": 599000000,
+          "net_profit_idr_equiv": 8415950000000,
+          "ebitda": 3935000000,
+          "ebitda_idr_equiv": 55286750000000,
+          "total_assets": 42140000000,
+          "total_assets_idr_equiv": 592067000000000,
+          "total_liabilities": null,
+          "total_equity": null,
+          "eps": null,
+          "dividend_per_share": 0,
+          "employees": 24500,
+          "sources": [
+            {
+              "url": "https://companiesmarketcap.com/freeport-mcmoran/total-assets/",
+              "title": "FCX Total Assets History",
+              "publisher": "Companies Market Cap",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://stockanalysis.com/stocks/fcx/employees/",
+              "title": "FCX Employees",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2021": {
+          "revenue": 22845000000,
+          "revenue_idr_equiv": 325587140000000,
+          "operating_profit": 8366000000,
+          "operating_profit_idr_equiv": 119231432000000,
+          "net_profit": 4306000000,
+          "net_profit_idr_equiv": 61369112000000,
+          "ebitda": 10364000000,
+          "ebitda_idr_equiv": 147707728000000,
+          "total_assets": 48022000000,
+          "total_assets_idr_equiv": 684409544000000,
+          "total_liabilities": 25003000000,
+          "total_liabilities_idr_equiv": 356342756000000,
+          "total_equity": 23019000000,
+          "total_equity_idr_equiv": 328066788000000,
+          "eps": 2.9,
+          "dividend_per_share": 0.375,
+          "employees": 24700,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/stocks/fcx/financials/",
+              "title": "FCX Financial Statements",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://www.sec.gov/Archives/edgar/data/831259",
+              "title": "FCX SEC EDGAR 10-K filings",
+              "publisher": "SEC EDGAR",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2022": {
+          "revenue": 22780000000,
+          "revenue_idr_equiv": 355177760000000,
+          "operating_profit": 7037000000,
+          "operating_profit_idr_equiv": 109720904000000,
+          "net_profit": 3468000000,
+          "net_profit_idr_equiv": 54071056000000,
+          "ebitda": 9056000000,
+          "ebitda_idr_equiv": 141201152000000,
+          "total_assets": 51093000000,
+          "total_assets_idr_equiv": 796641756000000,
+          "total_liabilities": 26222000000,
+          "total_liabilities_idr_equiv": 408813424000000,
+          "total_equity": 24871000000,
+          "total_equity_idr_equiv": 387728132000000,
+          "eps": 2.39,
+          "dividend_per_share": 0.6,
+          "employees": 25600,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/stocks/fcx",
+              "title": "FCX Financial Data",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2023": {
+          "revenue": 22855000000,
+          "revenue_idr_equiv": 351912335000000,
+          "operating_profit": 6225000000,
+          "operating_profit_idr_equiv": 95846325000000,
+          "net_profit": 1848000000,
+          "net_profit_idr_equiv": 28453656000000,
+          "ebitda": 8293000000,
+          "ebitda_idr_equiv": 127686421000000,
+          "total_assets": 52506000000,
+          "total_assets_idr_equiv": 808439082000000,
+          "total_liabilities": 25196000000,
+          "total_liabilities_idr_equiv": 387932212000000,
+          "total_equity": 27310000000,
+          "total_equity_idr_equiv": 420507870000000,
+          "eps": 1.28,
+          "dividend_per_share": 0.6,
+          "employees": 27200,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/stocks/fcx",
+              "title": "FCX Financial Data",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2024": {
+          "revenue": 25455000000,
+          "revenue_idr_equiv": 411275235000000,
+          "operating_profit": 6864000000,
+          "operating_profit_idr_equiv": 110901648000000,
+          "net_profit": 1889000000,
+          "net_profit_idr_equiv": 30520573000000,
+          "ebitda": 9105000000,
+          "ebitda_idr_equiv": 147109485000000,
+          "total_assets": 54848000000,
+          "total_assets_idr_equiv": 886175936000000,
+          "total_liabilities": 26070000000,
+          "total_liabilities_idr_equiv": 421212990000000,
+          "total_equity": 28778000000,
+          "total_equity_idr_equiv": 464946946000000,
+          "eps": 1.3,
+          "dividend_per_share": 0.6,
+          "employees": 28500,
+          "sources": [
+            {
+              "url": "https://www.sec.gov/Archives/edgar/data/831259/000083125925000006/fcx-20241231.htm",
+              "title": "FCX 10-K Annual Report 2024",
+              "publisher": "SEC EDGAR",
+              "date_published": "2025-02",
+              "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://s22.q4cdn.com/529358580/files/doc_financials/annual/AR_2024.pdf",
+              "title": "FCX Annual Report 2024 PDF",
+              "publisher": "Company IR",
+              "date_published": "2025",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        }
       },
       "summary_note": "Rimba Irian Timika 운영(PTFI 자회사). USD 보고. 인도네시아 사업(Grasberg)이 매출의 ~50%. 직원 24,500→28,500명 증가. IDR 환산값은 BI 연말 환율 기준.",
       "data_quality": "high",
@@ -318,13 +2479,545 @@
       "company_name": "Banyan Group Holdings Limited (formerly Banyan Tree Holdings)",
       "currency": "SGD",
       "yearly": {
-        "2020": {"revenue": null, "operating_profit": -35100000, "net_profit": null, "ebitda": null, "total_assets": null, "total_liabilities": null, "total_equity": null, "eps": null, "dividend_per_share": null, "employees": null, "sources": [{"url": "https://www.banyantreegroup.com/PDF/Financial_Results/2020/Q4/SGXNet-FY20-v11.pdf", "title": "Banyan Tree FY2020 SGXNet Results", "publisher": "Company IR", "date_published": "2021", "date_accessed": "2026-05-01"}]},
-        "2021": {"revenue": 221230000, "revenue_idr_equiv": 2330224590000, "operating_profit": -22650000, "operating_profit_idr_equiv": -238572450000, "net_profit": -55190000, "net_profit_idr_equiv": -581315070000, "ebitda": -1460000, "ebitda_idr_equiv": -15378180000, "total_assets": 1424000000, "total_assets_idr_equiv": 14999392000000, "total_liabilities": 885500000, "total_liabilities_idr_equiv": 9326881500000, "total_equity": 538090000, "total_equity_idr_equiv": 5667662970000, "eps": -0.07, "dividend_per_share": null, "employees": null, "sources": [{"url": "https://stockanalysis.com/quote/sgx/B58/financials/", "title": "B58 Financial Statements", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2022": {"revenue": 271330000, "revenue_idr_equiv": 3151080960000, "operating_profit": -1600000, "operating_profit_idr_equiv": -18584000000, "net_profit": 770000, "net_profit_idr_equiv": 8941240000, "ebitda": 20700000, "ebitda_idr_equiv": 240368400000, "total_assets": 1357000000, "total_assets_idr_equiv": 15757484000000, "total_liabilities": 824170000, "total_liabilities_idr_equiv": 9568750420000, "total_equity": 533150000, "total_equity_idr_equiv": 6190736900000, "eps": 0.00, "dividend_per_share": null, "employees": null, "sources": [{"url": "https://stockanalysis.com/quote/sgx/B58", "title": "B58 Financial Data", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2023": {"revenue": 327910000, "revenue_idr_equiv": 3827587120000, "operating_profit": 18360000, "operating_profit_idr_equiv": 214303920000, "net_profit": 31710000, "net_profit_idr_equiv": 370139920000, "ebitda": 38100000, "ebitda_idr_equiv": 444703200000, "total_assets": 1732000000, "total_assets_idr_equiv": 20215504000000, "total_liabilities": 966800000, "total_liabilities_idr_equiv": 11284889600000, "total_equity": 764940000, "total_equity_idr_equiv": 8928379680000, "eps": 0.04, "dividend_per_share": 0.012, "employees": null, "sources": [{"url": "https://stockanalysis.com/quote/sgx/B58", "title": "B58 Financial Data", "publisher": "StockAnalysis", "date_published": null, "date_accessed": "2026-05-01"}]},
-        "2024": {"revenue": 380640000, "revenue_idr_equiv": 4514390400000, "operating_profit": 37620000, "operating_profit_idr_equiv": 446173200000, "net_profit": 42100000, "net_profit_idr_equiv": 499306000000, "ebitda": 61350000, "ebitda_idr_equiv": 727611000000, "total_assets": 1839000000, "total_assets_idr_equiv": 21810540000000, "total_liabilities": 1009000000, "total_liabilities_idr_equiv": 11966740000000, "total_equity": 830950000, "total_equity_idr_equiv": 9855067000000, "eps": 0.05, "dividend_per_share": 0.013, "employees": null, "sources": [{"url": "https://www.groupbanyan.com/sites/btg/files/2025-02/BTHL_SGXNet_FY2024%20Results%20Final.pdf", "title": "Banyan Group FY2024 Results", "publisher": "Company IR", "date_published": "2025-02", "date_accessed": "2026-05-01"}, {"url": "https://www.groupbanyan.com/sites/btg/files/2025-03/BANYANGROUP_AR2024.pdf", "title": "Banyan Group Annual Report 2024", "publisher": "Company IR", "date_published": "2025-03", "date_accessed": "2026-05-01"}]}
+        "2020": {
+          "revenue": 157800000,
+          "revenue_idr_equiv": 1679623200000,
+          "operating_profit": -35100000,
+          "operating_profit_idr_equiv": -373604400000,
+          "net_profit": -102500000,
+          "net_profit_idr_equiv": -1091010000000,
+          "ebitda": null,
+          "total_assets": 1578700000,
+          "total_assets_idr_equiv": 16800862800000,
+          "total_liabilities": 951100000,
+          "total_liabilities_idr_equiv": 10122300400000,
+          "total_equity": 627600000,
+          "total_equity_idr_equiv": 6680174400000,
+          "eps": -0.13,
+          "dividend_per_share": 0,
+          "employees": 7800,
+          "sources": [
+            {
+              "url": "https://web.archive.org/web/2021id_/https://www.banyantreegroup.com/PDF/Annual_Reports/2020/BTH_AR2020.pdf",
+              "title": "Banyan Tree FY2020 Annual Report (Wayback)",
+              "publisher": "Company IR via Wayback Machine",
+              "date_published": "2021",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2021": {
+          "revenue": 221230000,
+          "revenue_idr_equiv": 2330224590000,
+          "operating_profit": 4500000,
+          "operating_profit_idr_equiv": 47398500000,
+          "net_profit": -55190000,
+          "net_profit_idr_equiv": -581315070000,
+          "ebitda": -1460000,
+          "ebitda_idr_equiv": -15378180000,
+          "total_assets": 1423600000,
+          "total_assets_idr_equiv": 14994778800000,
+          "total_liabilities": 885500000,
+          "total_liabilities_idr_equiv": 9326881500000,
+          "total_equity": 538100000,
+          "total_equity_idr_equiv": 5667687300000,
+          "eps": -0.07,
+          "dividend_per_share": 0,
+          "employees": 7400,
+          "sources": [
+            {
+              "url": "https://web.archive.org/web/2022id_/https://www.banyantreegroup.com/PDF/Annual_Reports/2021/BTH_AR2021.pdf",
+              "title": "Banyan Tree FY2021 Annual Report (Wayback)",
+              "publisher": "Company IR",
+              "date_published": "2022",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2022": {
+          "revenue": 271330000,
+          "revenue_idr_equiv": 3151080960000,
+          "operating_profit": 41700000,
+          "operating_profit_idr_equiv": 484220400000,
+          "net_profit": 770000,
+          "net_profit_idr_equiv": 8941240000,
+          "ebitda": 20700000,
+          "ebitda_idr_equiv": 240368400000,
+          "total_assets": 1357300000,
+          "total_assets_idr_equiv": 15762767600000,
+          "total_liabilities": 824170000,
+          "total_liabilities_idr_equiv": 9568750420000,
+          "total_equity": 533100000,
+          "total_equity_idr_equiv": 6190277200000,
+          "eps": 0.0,
+          "dividend_per_share": 0,
+          "employees": 8430,
+          "sources": [
+            {
+              "url": "https://web.archive.org/web/2023id_/https://www.banyantreegroup.com/PDF/Annual_Reports/2022/BTH_AR2022.pdf",
+              "title": "Banyan Tree FY2022 Annual Report (Wayback)",
+              "publisher": "Company IR",
+              "date_published": "2023",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2023": {
+          "revenue": 327910000,
+          "revenue_idr_equiv": 3827587120000,
+          "operating_profit": 90100000,
+          "operating_profit_idr_equiv": 1051647200000,
+          "net_profit": 31710000,
+          "net_profit_idr_equiv": 370139712000,
+          "ebitda": 38100000,
+          "ebitda_idr_equiv": 444703200000,
+          "total_assets": 1731700000,
+          "total_assets_idr_equiv": 20212401200000,
+          "total_liabilities": 966800000,
+          "total_liabilities_idr_equiv": 11284889600000,
+          "total_equity": 764900000,
+          "total_equity_idr_equiv": 8927975800000,
+          "eps": 0.04,
+          "dividend_per_share": 0.012,
+          "employees": 10000,
+          "sources": [
+            {
+              "url": "https://www.groupbanyan.com/sites/btg/files/2024-03/BTHL_AR_2023.pdf",
+              "title": "Banyan Group FY2023 Annual Report",
+              "publisher": "Company IR",
+              "date_published": "2024-03",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2024": {
+          "revenue": 380640000,
+          "revenue_idr_equiv": 4514390400000,
+          "operating_profit": 103200000,
+          "operating_profit_idr_equiv": 1223952000000,
+          "net_profit": 42100000,
+          "net_profit_idr_equiv": 499306000000,
+          "ebitda": 61350000,
+          "ebitda_idr_equiv": 727611000000,
+          "total_assets": 1839500000,
+          "total_assets_idr_equiv": 21810470000000,
+          "total_liabilities": 1009000000,
+          "total_liabilities_idr_equiv": 11966740000000,
+          "total_equity": 830900000,
+          "total_equity_idr_equiv": 9854474000000,
+          "eps": 0.05,
+          "dividend_per_share": 0.013,
+          "employees": 13000,
+          "sources": [
+            {
+              "url": "https://www.groupbanyan.com/sites/btg/files/2025-03/BANYANGROUP_AR2024.pdf",
+              "title": "Banyan Group FY2024 Annual Report",
+              "publisher": "Company IR",
+              "date_published": "2025-03",
+              "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://www.groupbanyan.com/sites/btg/files/2025-02/BTHL_SGXNet_FY2024%20Results%20Final.pdf",
+              "title": "FY2024 SGXNet Results",
+              "publisher": "SGX/Company IR",
+              "date_published": "2025-02",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        }
       },
-      "summary_note": "Laguna Bintan 운영. SGD 보고. 2024년 사명 변경(Banyan Tree→Banyan Group). 코로나 회복: 매출 S$221M→S$381M, 적자→흑자(S$42.1M).",
+      "summary_note": "Laguna Bintan 운영. Wayback Machine으로 403 우회 성공, 9개 PDF 파싱. 2024 사명 변경(BTH→Banyan Group). COVID 회복: 매출 S$157.8M→380.6M(+141%), -S$102.5M→+42.1M. Bintan 세그먼트 별도공시 있으나 Laguna Golf는 'Design & Other Services'(S$12.4M FY2024)에 통합.",
+      "data_quality": "high",
+      "last_verified": "2026-05-01"
+    },
+    {
+      "ticker": "DILD",
+      "exchange": "IDX",
+      "company_name": "PT Intiland Development Tbk",
+      "currency": "IDR",
+      "yearly": {
+        "2020": {
+          "revenue": 2891388396351,
+          "operating_profit": null,
+          "net_profit": 76766474625,
+          "ebitda": 775934487964,
+          "total_assets": 15701872562921,
+          "total_liabilities": 5033602133730,
+          "total_equity": 5199894585961,
+          "eps": 3,
+          "dividend_per_share": 0,
+          "employees": 1478,
+          "sources": [
+            {
+              "url": "https://carisaham.com/emiten/profile/DILD",
+              "title": "DILD Profile",
+              "publisher": "Carisaham",
+              "date_published": "2025",
+              "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://stockanalysis.com/quote/idx/DILD/employees/",
+              "title": "DILD Employees",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2021": {
+          "revenue": 2628631841339,
+          "operating_profit": 667007000000,
+          "net_profit": 13137000000,
+          "ebitda": 785374000000,
+          "total_assets": 16460005000000,
+          "total_liabilities": 10412628000000,
+          "total_equity": 6047377000000,
+          "eps": 1.27,
+          "dividend_per_share": 0,
+          "employees": 1436,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/DILD/financials/",
+              "title": "DILD Financials",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2022": {
+          "revenue": 3148755000000,
+          "operating_profit": 969226000000,
+          "net_profit": -98844000000,
+          "ebitda": 1085455000000,
+          "total_assets": 16351848000000,
+          "total_liabilities": 10136195000000,
+          "total_equity": 6215653000000,
+          "eps": -9.54,
+          "dividend_per_share": 0,
+          "employees": 1336,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/DILD/financials/",
+              "title": "DILD Financials",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2023": {
+          "revenue": 3906826000000,
+          "operating_profit": 1270469000000,
+          "net_profit": 174108000000,
+          "ebitda": 1391619000000,
+          "total_assets": 14603908000000,
+          "total_liabilities": 8064727000000,
+          "total_equity": 6539181000000,
+          "eps": 16.8,
+          "dividend_per_share": 0,
+          "employees": 1288,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/DILD/financials/",
+              "title": "DILD Financials",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2024": {
+          "revenue": 2553285000000,
+          "operating_profit": 454231000000,
+          "net_profit": 174766000000,
+          "ebitda": 583362000000,
+          "total_assets": 13703553000000,
+          "total_liabilities": 6956641000000,
+          "total_equity": 6746912000000,
+          "eps": 16.86,
+          "dividend_per_share": 0,
+          "employees": 1224,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/DILD/financials/",
+              "title": "DILD Financials",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://voi.id/en/economy/485324",
+              "title": "Intiland 2024 AGM Resolutions",
+              "publisher": "VOI.id",
+              "date_published": "2025-04",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        }
+      },
+      "summary_note": "Graha Famili 수라바야 운영(자회사 PT Grande Famili View). 매출 Rp 2.89T(2020) → 2.55T(2024). 2023 정점(3.91T) 후 하락. 5년 무배당.",
+      "data_quality": "high",
+      "last_verified": "2026-05-01"
+    },
+    {
+      "ticker": "PWON",
+      "exchange": "IDX",
+      "company_name": "PT Pakuwon Jati Tbk",
+      "currency": "IDR",
+      "yearly": {
+        "2020": {
+          "revenue": 3977211311000,
+          "operating_profit": null,
+          "net_profit": 929918580000,
+          "ebitda": 1425943791000,
+          "total_assets": 26458805377000,
+          "total_liabilities": 3944018454000,
+          "total_equity": 14635479007000,
+          "eps": null,
+          "dividend_per_share": 0,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://carisaham.com/emiten/profile/PWON",
+              "title": "PWON Profile",
+              "publisher": "Carisaham",
+              "date_published": "2025",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2021": {
+          "revenue": 5713273000000,
+          "operating_profit": 2269895000000,
+          "net_profit": 1382548000000,
+          "ebitda": 2916291000000,
+          "total_assets": 28866081000000,
+          "total_liabilities": 9687643000000,
+          "total_equity": 19178438000000,
+          "eps": 28.71,
+          "dividend_per_share": 4.0,
+          "employees": 2670,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/PWON/financials/",
+              "title": "PWON Financials",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2022": {
+          "revenue": 5987433000000,
+          "operating_profit": 2601974000000,
+          "net_profit": 1538835000000,
+          "ebitda": 3271634000000,
+          "total_assets": 30602180000000,
+          "total_liabilities": 9883904000000,
+          "total_equity": 20718276000000,
+          "eps": 31.95,
+          "dividend_per_share": 6.5,
+          "employees": 2816,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/PWON/financials/",
+              "title": "PWON Financials",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2023": {
+          "revenue": 6200438000000,
+          "operating_profit": 2660291000000,
+          "net_profit": 2105210000000,
+          "ebitda": 3357671000000,
+          "total_assets": 32710787000000,
+          "total_liabilities": 9915453000000,
+          "total_equity": 22795334000000,
+          "eps": 43.71,
+          "dividend_per_share": 9.0,
+          "employees": 3030,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/PWON/financials/",
+              "title": "PWON Financials",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2024": {
+          "revenue": 6670809000000,
+          "operating_profit": 2900946000000,
+          "net_profit": 2074731000000,
+          "ebitda": 3579652000000,
+          "total_assets": 35371085000000,
+          "total_liabilities": 10629088000000,
+          "total_equity": 24741997000000,
+          "eps": 43.08,
+          "dividend_per_share": 13.0,
+          "employees": 3303,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/idx/PWON/financials/",
+              "title": "PWON Financials",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://www.pakuwonjati.com/upload/2025/03/67e2a8c53b6fd-pwon-fy2024.pdf",
+              "title": "PWON FY2024 Financial Report",
+              "publisher": "Pakuwon Jati IR",
+              "date_published": "2025-03",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        }
+      },
+      "summary_note": "Pakuwon Golf & Family Club 수라바야 운영. 매출 Rp 3.98T→6.67T(+68%), 순이익 930B→2.07T(+123%). 배당 0→13 IDR/주 5년 일관 증가. 5년 모두 흑자.",
+      "data_quality": "high",
+      "last_verified": "2026-05-01"
+    },
+    {
+      "ticker": "BN4",
+      "foreign_ticker": "SGX:BN4",
+      "exchange": "SGX",
+      "company_name": "Keppel Ltd (formerly Keppel Corporation)",
+      "currency": "SGD",
+      "yearly": {
+        "2020": {
+          "revenue": 6574000000,
+          "revenue_idr_equiv": 69969456000000,
+          "operating_profit": 8000000,
+          "net_profit": -506000000,
+          "net_profit_idr_equiv": -5385864000000,
+          "ebitda": null,
+          "total_assets": null,
+          "total_liabilities": null,
+          "total_equity": null,
+          "eps": -0.278,
+          "dividend_per_share": 0.1,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://www.keppel.com/en/media/media-releases-sgx-filings/keppel-reports-s506-million-net-loss-for-fy-2020-mainly-due-to-offshore--marine-impairments/",
+              "title": "Keppel reports S$506m net loss for FY2020",
+              "publisher": "Keppel Corporation",
+              "date_published": "2021-02-25",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2021": {
+          "revenue": 6611000000,
+          "revenue_idr_equiv": 69633663000000,
+          "operating_profit": 245300000,
+          "net_profit": 1010000000,
+          "net_profit_idr_equiv": 10638330000000,
+          "ebitda": 525770000,
+          "total_assets": 32323000000,
+          "total_assets_idr_equiv": 340436859000000,
+          "total_liabilities": 19882000000,
+          "total_equity": 12441000000,
+          "eps": 0.56,
+          "dividend_per_share": 0.33,
+          "employees": 16393,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/sgx/BN4/financials/",
+              "title": "Keppel BN4 Financials",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2022": {
+          "revenue": 6620000000,
+          "revenue_idr_equiv": 76871440000000,
+          "operating_profit": 377390000,
+          "net_profit": 932810000,
+          "net_profit_idr_equiv": 10832049720000,
+          "ebitda": 541070000,
+          "total_assets": 31065000000,
+          "total_assets_idr_equiv": 360726780000000,
+          "total_liabilities": 19152000000,
+          "total_equity": 11913000000,
+          "eps": 0.52,
+          "dividend_per_share": 0.33,
+          "employees": 17238,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/sgx/BN4/financials/",
+              "title": "Keppel BN4 Financials",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2023": {
+          "revenue": 6966000000,
+          "revenue_idr_equiv": 81303152000000,
+          "operating_profit": 841260000,
+          "net_profit": 4105000000,
+          "net_profit_idr_equiv": 47913560000000,
+          "ebitda": 1025000000,
+          "total_assets": 26838000000,
+          "total_assets_idr_equiv": 313292136000000,
+          "total_liabilities": 15821000000,
+          "total_equity": 11017000000,
+          "eps": 2.28,
+          "dividend_per_share": 0.34,
+          "employees": 12245,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/sgx/BN4/financials/",
+              "title": "Keppel BN4 Financials",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        },
+        "2024": {
+          "revenue": 5784000000,
+          "revenue_idr_equiv": 68598240000000,
+          "operating_profit": 731600000,
+          "net_profit": 974210000,
+          "net_profit_idr_equiv": 11553930600000,
+          "ebitda": 791060000,
+          "total_assets": 27658000000,
+          "total_assets_idr_equiv": 327983480000000,
+          "total_liabilities": 16233000000,
+          "total_equity": 11426000000,
+          "eps": 0.52,
+          "dividend_per_share": 0.34,
+          "employees": 5249,
+          "sources": [
+            {
+              "url": "https://stockanalysis.com/quote/sgx/BN4/financials/",
+              "title": "Keppel BN4 Financials",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            },
+            {
+              "url": "https://www.keppel.com/file/media/2025/Mar/28-mar-kcl/1-keppel-ltd-annual-report-2024.pdf",
+              "title": "Keppel Ltd Annual Report 2024",
+              "publisher": "Keppel Ltd",
+              "date_published": "2025-03-28",
+              "date_accessed": "2026-05-01"
+            }
+          ]
+        }
+      },
+      "summary_note": "Ria Bintan Ocean+Forest 50% JV 파트너 (살림과 합작). Vision 2030/SembCorp Marine 분사로 FY2020-22(KCL)와 FY2023-24(자산경량화 후 Keppel Ltd) 비교 시 자산·인력 급감(직원 17,238→5,249). FY2023 순이익 S$4.1B는 분사 일회성 이익. 골프는 비중 작음.",
       "data_quality": "medium",
       "last_verified": "2026-05-01"
     }

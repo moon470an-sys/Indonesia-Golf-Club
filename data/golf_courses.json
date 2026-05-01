@@ -6254,8 +6254,8 @@
         "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       },
       "financials": {
-        "operating_company": "PT Grande Famili View (subsidiary of PT Intiland Development Tbk)",
-        "parent_group": "Intiland Group (NOT Pakuwon Jati as hinted in brief)",
+        "operating_company": "PT Grande Famili View (Intiland subsidiary)",
+        "parent_group": "PT Intiland Development Tbk (Intiland Group)",
         "idx_ticker": "DILD",
         "listed_status": "subsidiary-of-listed",
         "revenue_idr": 2550000000000,
@@ -7633,10 +7633,10 @@
       },
       "financials": {
         "operating_company": "PT Ria Bintan (JV Keppel Land Ltd 50% + Salim Group 50%)",
-        "parent_group": "Keppel Ltd (Singapore) and Salim Group (Indonesia)",
+        "parent_group": "Keppel Ltd 50% + Salim Group 50% JV",
         "idx_ticker": null,
-        "foreign_ticker": "SGX:BN4 (Keppel Ltd)",
-        "listed_status": "joint-venture (Keppel listed SGX; Salim private holding via First Pacific HKG:0142)",
+        "foreign_ticker": "SGX:BN4",
+        "listed_status": "joint-venture",
         "revenue_idr": null,
         "revenue_year": null,
         "net_profit_idr": null,
@@ -7721,10 +7721,10 @@
       },
       "financials": {
         "operating_company": "PT Ria Bintan (JV Keppel Land Ltd 50% + Salim Group 50%)",
-        "parent_group": "Keppel Ltd (Singapore) and Salim Group (Indonesia)",
+        "parent_group": "Keppel Ltd 50% + Salim Group 50% JV",
         "idx_ticker": null,
-        "foreign_ticker": "SGX:BN4 (Keppel Ltd)",
-        "listed_status": "joint-venture (Keppel listed SGX; Salim private holding via First Pacific HKG:0142)",
+        "foreign_ticker": "SGX:BN4",
+        "listed_status": "joint-venture",
         "revenue_idr": null,
         "revenue_year": null,
         "net_profit_idr": null,
@@ -12724,6 +12724,12 @@
         "last_verified": "2026-04-30",
         "confidence": "low",
         "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
+      },
+      "financials": {
+        "idx_ticker": "PWON",
+        "parent_group": "PT Pakuwon Jati Tbk (Pakuwon Group)",
+        "operating_company": "PT Pakuwon Jati Tbk",
+        "listed_status": "listed"
       }
     },
     {
