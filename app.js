@@ -1079,6 +1079,39 @@ function renderRateCell(slots, fallbackIdr, fallbackUsd) {
   return '—';
 }
 
+// === Source labeler (categorize URL → human label + kind for color) ===
+function getHostname(url) {
+  try { return new URL(url).hostname.replace(/^www\./, '').toLowerCase(); }
+  catch (e) { return null; }
+}
+function labelSource(url, courseWebsite) {
+  const host = getHostname(url) || url;
+  // Official site match
+  if (courseWebsite) {
+    const wh = getHostname(courseWebsite);
+    if (wh && (host === wh || host.endsWith('.' + wh) || wh.endsWith('.' + host))) {
+      return { label: '공식', kind: 'official', host, url };
+    }
+  }
+  if (host.includes('qaccess.asia')) return { label: 'Q-Access', kind: 'qaccess', host, url };
+  if (host.includes('gogolf')) return { label: 'GoGolf', kind: 'gogolf', host, url };
+  if (host.includes('playgolf')) return { label: 'playgolf.id', kind: 'playgolf', host, url };
+  if (host.includes('golfsavers')) return { label: 'GolfSavers', kind: 'aggregator', host, url };
+  if (host.includes('golfasian')) return { label: 'GolfAsian', kind: 'aggregator', host, url };
+  if (host.includes('golfpass')) return { label: 'GolfPass', kind: 'aggregator', host, url };
+  if (host.includes('golflux')) return { label: 'GolfLux', kind: 'aggregator', host, url };
+  if (host.includes('hole19')) return { label: 'Hole19', kind: 'aggregator', host, url };
+  if (host.includes('greenfee365')) return { label: 'GreenFee365', kind: 'aggregator', host, url };
+  if (host.includes('golfshake')) return { label: 'Golfshake', kind: 'aggregator', host, url };
+  if (host.includes('klook') || host.includes('traveloka') || host.includes('agoda') || host.includes('tiket.com') || host.includes('trip.com')) return { label: '예약', kind: 'booking', host, url };
+  if (host.includes('facebook') || host === 'fb.com' || host.includes('instagram') || host.includes('twitter') || host === 'x.com' || host.includes('tiktok') || host.includes('threads')) return { label: 'SNS', kind: 'sns', host, url };
+  if (host.includes('idnfinancials') || host.includes('kontan') || host.includes('bisnis') || host.includes('kompas') || host.includes('detik') || host.includes('tempo.co') || host.includes('tribun') || host.includes('liputan6') || host.includes('voi.id') || host.includes('cnbcindonesia') || host.includes('jawapos') || host.includes('suaramerdeka') || host.includes('antaranews') || host.includes('golftimes') || host.includes('obgolf') || host.includes('xplorewisata') || host.includes('antorij')) return { label: '뉴스/매거진', kind: 'news', host, url };
+  if (host.includes('idx.co.id') || host.includes('ojk.go.id') || host.includes('sec.gov') || host.includes('sgx.com')) return { label: '공시', kind: 'official', host, url };
+  if (host.includes('archive.org') || host.includes('wayback')) return { label: 'Wayback', kind: 'archive', host, url };
+  if (host.includes('tni-au.mil') || host.includes('tniad') || host.includes('tnial') || host.endsWith('.mil.id') || host.endsWith('.go.id')) return { label: '관공서', kind: 'gov', host, url };
+  return { label: host, kind: 'other', host, url };
+}
+
 function renderTable() {
   const rows = getTableRows();
   document.getElementById('tableVisibleCount').textContent = rows.length;
@@ -1200,36 +1233,94 @@ function renderTable() {
       ? `<span class="rev-cell">${fmtBigIDR(revIdr)}${revYearLabel}</span>`
       : '<span class="muted">—</span>';
 
-    // GoGolf reference sub-row (when present)
-    let gogolfRowHtml = '';
-    const gg = c.fees_gogolf_reference;
-    if (gg && gg.schedule) {
-      const sch = gg.schedule;
-      const ggCell = (v) => v != null ? fmtIDR(v) : '<span class="muted">—</span>';
-      const ggSrc = gg.source_url ? `<a href="${escapeHtml(gg.source_url)}" target="_blank" rel="noopener" title="${escapeHtml(gg.source_url)}">gogolf.co.id</a>` : '';
-      const ggMember = gg.member_rate_idr != null ? `<span class="member-amt">멤버 ${fmtIDR(gg.member_rate_idr)}</span>` : '<span class="muted">—</span>';
-      const ggCaddy = gg.ancillary?.caddy_idr != null ? `캐디 ${fmtIDR(gg.ancillary.caddy_idr)}` : '';
-      const ggCart = gg.ancillary?.cart_idr != null ? `카트 ${fmtIDR(gg.ancillary.cart_idr)}` : '';
-      const ggExtras = [ggCaddy, ggCart].filter(Boolean).join(' · ');
-      gogolfRowHtml = `
-        <tr class="gogolf-ref-row">
-          <td class="gogolf-label" colspan="6">↳ <span class="gogolf-tag">GoGolf 참고</span> ${ggExtras ? `<span class="gogolf-extras">${ggExtras}</span>` : ''}</td>
-          <td class="num fee gogolf-fee">${ggCell(sch.weekday?.am)}</td>
-          <td class="num fee gogolf-fee">${ggCell(sch.weekday?.pm)}</td>
-          <td class="num fee gogolf-fee">${ggCell(sch.saturday?.am)}</td>
-          <td class="num fee gogolf-fee">${ggCell(sch.saturday?.pm)}</td>
-          <td class="num fee gogolf-fee">${ggCell(sch.sunday?.am)}</td>
-          <td class="num fee gogolf-fee">${ggCell(sch.sunday?.pm)}</td>
-          <td class="member-type"><span class="muted">—</span></td>
-          <td class="num member-amount">${ggMember}</td>
-          <td class="address gogolf-disclaimer" colspan="3">${ggSrc} <span class="gogolf-note">${escapeHtml(gg.disclaimer || '참고용 비공식 가격')}</span></td>
+    // === Build per-source attribution rows ===
+    // 1) Categorize all primary fee sources (deduped by hostname)
+    const primarySources = (f.sources || []).filter(s => typeof s === 'string' && /^https?:/.test(s));
+    const labeledPrimary = [];
+    const seenSrcHosts = new Set();
+    for (const u of primarySources) {
+      const info = labelSource(u, c.website);
+      if (seenSrcHosts.has(info.host)) continue;
+      seenSrcHosts.add(info.host);
+      labeledPrimary.push(info);
+    }
+    // 2) Identify the lead source for the primary row (prefer 공식 → 공시 → Q-Access → 그 외)
+    const kindRank = { official: 0, qaccess: 1, playgolf: 2, gogolf: 3, aggregator: 4, news: 5, sns: 6, gov: 7, archive: 8, booking: 9, other: 10 };
+    labeledPrimary.sort((a, b) => (kindRank[a.kind] ?? 99) - (kindRank[b.kind] ?? 99));
+    const leadSource = labeledPrimary[0] || null;
+    const otherSources = labeledPrimary.slice(1);
+
+    const leadPill = leadSource
+      ? `<a class="src-pill src-${leadSource.kind}" href="${escapeHtml(leadSource.url)}" target="_blank" rel="noopener" title="${escapeHtml(leadSource.url)}">${escapeHtml(leadSource.label)}</a>`
+      : '';
+
+    // 3) Sub-row for each additional primary source (same rates, attribution differs)
+    const sameRateBadge = '<span class="src-rate-badge">동일</span>';
+    const fmtAncillary = () => {
+      const parts = [];
+      if (f.caddy_idr != null) parts.push(`캐디 ${typeof f.caddy_idr === 'number' ? fmtIDR(f.caddy_idr) : escapeHtml(String(f.caddy_idr))}`);
+      if (f.cart_idr != null)  parts.push(`카트 ${typeof f.cart_idr === 'number' ? fmtIDR(f.cart_idr) : escapeHtml(String(f.cart_idr))}`);
+      return parts.length ? `<span class="src-ancillary">${parts.join(' · ')}</span>` : '';
+    };
+    const ancillaryHtml = fmtAncillary();
+
+    let sourceRowsHtml = '';
+    for (const src of otherSources) {
+      sourceRowsHtml += `
+        <tr class="src-row src-row-${src.kind}">
+          <td class="src-label" colspan="6">↳ <span class="src-pill src-${src.kind}">${escapeHtml(src.label)}</span> <a class="src-link" href="${escapeHtml(src.url)}" target="_blank" rel="noopener" title="${escapeHtml(src.url)}">${escapeHtml(src.host)}</a> ${sameRateBadge}</td>
+          <td class="num fee src-fee">${wdAmCell}</td>
+          <td class="num fee src-fee">${wdPmCell}</td>
+          <td class="num fee fee-premium src-fee">${satAmCell}</td>
+          <td class="num fee src-fee">${satPmCell}</td>
+          <td class="num fee fee-premium src-fee">${sunAmCell}</td>
+          <td class="num fee src-fee">${sunPmCell}</td>
+          <td colspan="8" class="src-extras muted">${ancillaryHtml || '<span class="muted">cross-verified</span>'}</td>
         </tr>
       `;
     }
 
+    // 4) GoGolf reference sub-row (when present, with potentially different rates)
+    let gogolfRowHtml = '';
+    const gg = c.fees_gogolf_reference;
+    if (gg && gg.schedule) {
+      const sch = gg.schedule;
+      const hasAnyGgRate = ['weekday','saturday','sunday'].some(k => {
+        const s = sch[k] || {};
+        return (typeof s.am === 'number') || (typeof s.pm === 'number');
+      });
+      if (hasAnyGgRate || gg.member_rate_idr != null || gg.ancillary?.caddy_idr != null || gg.ancillary?.cart_idr != null) {
+        const ggCell = (v) => v != null ? fmtIDR(v) : '<span class="muted">—</span>';
+        const ggHost = gg.source_url ? (getHostname(gg.source_url) || 'GoGolf') : 'GoGolf';
+        const ggKind = ggHost.includes('playgolf') ? 'playgolf' : (ggHost.includes('gogolf') ? 'gogolf' : 'aggregator');
+        const ggLabel = ggHost.includes('playgolf') ? 'playgolf.id' : (ggHost.includes('gogolf') ? 'GoGolf' : ggHost);
+        const ggSrc = gg.source_url
+          ? `<a class="src-pill src-${ggKind}" href="${escapeHtml(gg.source_url)}" target="_blank" rel="noopener" title="${escapeHtml(gg.source_url)}">${escapeHtml(ggLabel)} 참고</a>`
+          : `<span class="src-pill src-${ggKind}">${escapeHtml(ggLabel)} 참고</span>`;
+        const ggMember = gg.member_rate_idr != null ? `<span class="member-amt">멤버 ${fmtIDR(gg.member_rate_idr)}</span>` : '<span class="muted">—</span>';
+        const ggCaddy = gg.ancillary?.caddy_idr != null ? `캐디 ${fmtIDR(gg.ancillary.caddy_idr)}` : '';
+        const ggCart = gg.ancillary?.cart_idr != null ? `카트 ${fmtIDR(gg.ancillary.cart_idr)}` : '';
+        const ggExtras = [ggCaddy, ggCart].filter(Boolean).join(' · ');
+        gogolfRowHtml = `
+          <tr class="src-row gogolf-ref-row src-row-${ggKind}">
+            <td class="src-label" colspan="6">↳ ${ggSrc} ${ggExtras ? `<span class="src-ancillary">${ggExtras}</span>` : ''}</td>
+            <td class="num fee gogolf-fee">${ggCell(sch.weekday?.am)}</td>
+            <td class="num fee gogolf-fee">${ggCell(sch.weekday?.pm)}</td>
+            <td class="num fee gogolf-fee">${ggCell(sch.saturday?.am)}</td>
+            <td class="num fee gogolf-fee">${ggCell(sch.saturday?.pm)}</td>
+            <td class="num fee gogolf-fee">${ggCell(sch.sunday?.am)}</td>
+            <td class="num fee gogolf-fee">${ggCell(sch.sunday?.pm)}</td>
+            <td class="member-type"><span class="muted">—</span></td>
+            <td class="num member-amount">${ggMember}</td>
+            <td colspan="6" class="address gogolf-disclaimer"><span class="gogolf-note">${escapeHtml(gg.disclaimer || '참고용 비공식 가격')}</span></td>
+          </tr>
+        `;
+      }
+    }
+
     return `
-      <tr>
-        <td class="name">${escapeHtml(c.name_en)}${matoaTag}</td>
+      <tr class="primary-rate-row">
+        <td class="name">${escapeHtml(c.name_en)}${matoaTag}${leadPill ? ` <span class="lead-source-wrap">${leadPill}</span>` : ''}</td>
         <td>${escapeHtml(c.region)}</td>
         <td>${escapeHtml(c.province)}</td>
         <td><span class="status-pill ${status}">${statusLabel}</span></td>
@@ -1249,7 +1340,7 @@ function renderTable() {
         <td class="address">${escapeHtml(c.address || '')}<br>${mapLink}</td>
         <td class="sources official-links">${officialHtml}</td>
         <td class="sources sns-links">${snsHtml}</td>
-      </tr>${gogolfRowHtml}
+      </tr>${sourceRowsHtml}${gogolfRowHtml}
     `;
   }).join('');
 }
