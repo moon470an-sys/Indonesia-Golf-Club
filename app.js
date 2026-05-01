@@ -525,9 +525,8 @@ function renderFinancials(fin) {
   if (op) rows.push(['운영법인', escapeHtml(op)]);
   if (parent) rows.push(['모회사·기업집단', escapeHtml(parent)]);
   if (ticker) {
-    const tickerHtml = fin.idx_ticker
-      ? `<span class="ticker-pill idx">${escapeHtml(fin.idx_ticker)}</span>`
-      : `<span class="ticker-pill foreign">${escapeHtml(fin.foreign_ticker)}</span>`;
+    const cls = fin.idx_ticker ? 'idx' : 'foreign';
+    const tickerHtml = `<span class="ticker-pill ${cls} ticker-clickable" data-ticker="${escapeHtml(ticker)}" title="클릭하면 5년 재무 그래프 보기">${escapeHtml(ticker)}</span>`;
     rows.push(['상장 티커', tickerHtml]);
   }
   rows.push(['상장 구분', `<span class="listed-status ${escapeHtml(status)}">${escapeHtml(statusLabel)}</span>`]);
@@ -1193,7 +1192,7 @@ function renderTable() {
       : '<span class="muted">—</span>';
     const ticker = fin.idx_ticker || fin.foreign_ticker;
     const tickerCell = ticker
-      ? `<span class="ticker-pill ${fin.idx_ticker ? 'idx' : 'foreign'}">${escapeHtml(ticker)}</span>`
+      ? `<span class="ticker-pill ${fin.idx_ticker ? 'idx' : 'foreign'} ticker-clickable" data-ticker="${escapeHtml(ticker)}" title="클릭하면 5년 재무 그래프 보기">${escapeHtml(ticker)}</span>`
       : '<span class="muted">—</span>';
     const revIdr = fin.revenue_idr ?? fin.revenue_idr_h1;
     const revYearLabel = fin.revenue_idr_h1 != null && fin.revenue_idr == null ? ' (H1)' : '';
@@ -1329,6 +1328,312 @@ function csvEscape(v) {
   if (/[",\r\n]/.test(s)) return '"' + s.replaceAll('"', '""') + '"';
   return s;
 }
+
+// === Ticker Financials Modal ===
+let financialsByTicker = null;
+let activeCharts = [];
+
+async function loadFinancialsIfNeeded() {
+  if (financialsByTicker) return financialsByTicker;
+  try {
+    const res = await fetch('data/company_financials_5y.json');
+    if (!res.ok) throw new Error('not found');
+    const doc = await res.json();
+    const arr = Array.isArray(doc) ? doc : (doc.companies || doc.tickers || []);
+    financialsByTicker = {};
+    arr.forEach(c => { if (c.ticker) financialsByTicker[c.ticker.toUpperCase()] = c; });
+    return financialsByTicker;
+  } catch (e) {
+    console.warn('5-year financials not available:', e);
+    financialsByTicker = {};
+    return financialsByTicker;
+  }
+}
+
+function destroyActiveCharts() {
+  activeCharts.forEach(ch => { try { ch.destroy(); } catch (e) {} });
+  activeCharts = [];
+}
+
+function fmtCompactIDR(n) {
+  if (n == null || !isFinite(n)) return null;
+  const abs = Math.abs(n);
+  const sign = n < 0 ? '-' : '';
+  if (abs >= 1e12) return `${sign}Rp ${(abs/1e12).toFixed(2).replace(/\.?0+$/, '')}T`;
+  if (abs >= 1e9)  return `${sign}Rp ${(abs/1e9).toFixed(2).replace(/\.?0+$/, '')}B`;
+  if (abs >= 1e6)  return `${sign}Rp ${(abs/1e6).toFixed(0)}M`;
+  return `${sign}Rp ${abs.toLocaleString('en-US')}`;
+}
+function fmtCompact(n, prefix) {
+  if (n == null || !isFinite(n)) return null;
+  const abs = Math.abs(n);
+  const sign = n < 0 ? '-' : '';
+  if (abs >= 1e12) return `${sign}${prefix}${(abs/1e12).toFixed(2).replace(/\.?0+$/, '')}T`;
+  if (abs >= 1e9)  return `${sign}${prefix}${(abs/1e9).toFixed(2).replace(/\.?0+$/, '')}B`;
+  if (abs >= 1e6)  return `${sign}${prefix}${(abs/1e6).toFixed(0)}M`;
+  return `${sign}${prefix}${abs.toLocaleString('en-US')}`;
+}
+
+function renderTickerModal(ticker) {
+  const overlay = document.getElementById('tickerModal');
+  const titleEl = document.getElementById('tickerModalTitle');
+  const subtitleEl = document.getElementById('tickerModalSubtitle');
+  const bodyEl = document.getElementById('tickerModalBody');
+
+  destroyActiveCharts();
+
+  const data = financialsByTicker?.[ticker.toUpperCase()];
+
+  titleEl.innerHTML = `<span class="ticker-badge">${escapeHtml(ticker)}</span> <span>${escapeHtml(data?.company_name || '')}</span>`;
+  subtitleEl.textContent = data?.exchange ? `${data.exchange}${data.currency ? ` · ${data.currency}` : ''}` : '';
+
+  if (!data) {
+    bodyEl.innerHTML = `
+      <p style="color:#64748b">티커 <strong>${escapeHtml(ticker)}</strong>의 5년치 상세 재무 데이터가 아직 준비되지 않았습니다. (조사 진행 중)</p>
+      <p style="color:#94a3b8; font-size:12px">데이터가 추가되면 매출/순이익/총자산 5년 추이 그래프와 표를 이 위치에서 확인할 수 있습니다.</p>
+    `;
+    overlay.hidden = false;
+    return;
+  }
+
+  const yearly = data.yearly || {};
+  const years = Object.keys(yearly).sort();
+  const currency = (data.currency || 'IDR').toUpperCase();
+  const isIDR = currency === 'IDR';
+  const fmtMain = isIDR ? fmtCompactIDR : (n) => fmtCompact(n, currency === 'USD' ? '$' : currency === 'SGD' ? 'S$' : currency + ' ');
+  const idrEquiv = !isIDR;
+  const fmtForCell = (v, idrEqV) => {
+    if (v == null) return '<span class="na">—</span>';
+    const main = fmtMain(v) || '—';
+    const sub = (idrEqV != null) ? `<br><span style="color:#94a3b8;font-size:10px">${fmtCompactIDR(idrEqV)}</span>` : '';
+    return (v < 0 ? '<span class="neg">' + main + '</span>' : main) + sub;
+  };
+
+  // Metric rows
+  const metrics = [
+    { key: 'revenue', label: '매출' },
+    { key: 'operating_profit', label: '영업이익' },
+    { key: 'net_profit', label: '순이익' },
+    { key: 'ebitda', label: 'EBITDA' },
+    { key: 'total_assets', label: '총자산' },
+    { key: 'total_liabilities', label: '총부채' },
+    { key: 'total_equity', label: '자기자본' },
+    { key: 'eps', label: 'EPS' },
+    { key: 'dividend_per_share', label: 'DPS' },
+    { key: 'employees', label: '직원수' },
+  ];
+
+  const getMetricValue = (yr, key) => {
+    const y = yearly[yr] || {};
+    // Try various key conventions
+    return y[key] ?? y[key + '_idr'] ?? null;
+  };
+  const getIdrEquiv = (yr, key) => {
+    const y = yearly[yr] || {};
+    return y[key + '_idr_equiv'] ?? null;
+  };
+
+  let tableRows = '';
+  metrics.forEach(m => {
+    const cells = years.map(yr => {
+      const v = getMetricValue(yr, m.key);
+      const idrEqV = idrEquiv ? getIdrEquiv(yr, m.key) : null;
+      let html;
+      if (v == null) html = '<td class="na">—</td>';
+      else if (m.key === 'employees') html = `<td>${Number(v).toLocaleString('en-US')}</td>`;
+      else if (m.key === 'eps' || m.key === 'dividend_per_share') {
+        const main = isIDR ? `Rp ${Number(v).toLocaleString('en-US')}` : `${fmtMain(v)}`;
+        html = `<td>${v < 0 ? '<span class="neg">'+main+'</span>' : main}</td>`;
+      }
+      else html = `<td>${fmtForCell(v, idrEqV)}</td>`;
+      return html;
+    }).join('');
+    tableRows += `<tr><td class="metric-col">${m.label}</td>${cells}</tr>`;
+  });
+
+  const qualityClass = data.data_quality || 'medium';
+  const summaryNote = data.summary_note ? `<div class="fin5y-summary">📊 ${escapeHtml(data.summary_note)}</div>` : '';
+
+  // Collect all sources from all years
+  const allSources = [];
+  const seenUrls = new Set();
+  years.forEach(yr => {
+    (yearly[yr]?.sources || []).forEach(s => {
+      const url = (typeof s === 'string') ? s : s?.url;
+      if (!url || seenUrls.has(url)) return;
+      seenUrls.add(url);
+      allSources.push(typeof s === 'object' ? s : { url, title: null, publisher: null });
+    });
+  });
+  const sourceLinks = allSources.length
+    ? allSources.slice(0, 30).map(s => {
+        const label = s.publisher || (() => { try { return new URL(s.url).hostname.replace(/^www\./,''); } catch { return s.url; } })();
+        return `<a class="fin-src" href="${escapeHtml(s.url)}" target="_blank" rel="noopener" title="${escapeHtml(s.title || s.url)}">${escapeHtml(label)}${s.date_published ? ` <span class="src-date">${escapeHtml(s.date_published)}</span>` : ''}</a>`;
+      }).join(' ')
+    : '<span class="muted">출처 정보 없음</span>';
+
+  bodyEl.innerHTML = `
+    <h3>📈 5년 재무 요약 <span class="fin5y-quality ${qualityClass}">${escapeHtml(qualityClass.toUpperCase())}</span></h3>
+    ${summaryNote}
+    <div class="fin5y-charts">
+      <div class="chart-card">
+        <h4>매출 (Revenue)</h4>
+        <canvas id="chart-revenue"></canvas>
+      </div>
+      <div class="chart-card">
+        <h4>순이익 (Net Profit)</h4>
+        <canvas id="chart-netprofit"></canvas>
+      </div>
+      <div class="chart-card">
+        <h4>총자산 (Total Assets)</h4>
+        <canvas id="chart-assets"></canvas>
+      </div>
+      <div class="chart-card">
+        <h4>자산 vs 부채 vs 자본</h4>
+        <canvas id="chart-balance"></canvas>
+      </div>
+    </div>
+    <h3>📋 연도별 상세 (${escapeHtml(currency)})</h3>
+    <table class="fin5y-table">
+      <thead>
+        <tr><th class="metric-col">항목</th>${years.map(y => `<th>${y}</th>`).join('')}</tr>
+      </thead>
+      <tbody>${tableRows}</tbody>
+    </table>
+    <h3>🔗 출처 (전 연도 통합)</h3>
+    <div class="fin-sources">${sourceLinks}</div>
+    <p style="font-size:11px;color:#94a3b8;margin-top:14px">확인일 ${escapeHtml(data.last_verified || '2026-05-01')} · 단위 ${isIDR ? 'IDR (T=조, B=십억, M=백만)' : escapeHtml(currency)}${idrEquiv ? ' · 작은 숫자는 IDR 환산값' : ''}</p>
+  `;
+
+  overlay.hidden = false;
+
+  // Render charts after DOM insertion
+  if (window.Chart) {
+    const colors = {
+      revenue: '#0284c7',
+      netprofit: '#16a34a',
+      assets: '#7c3aed',
+    };
+    const mkLineChart = (id, key, color, label) => {
+      const canvas = document.getElementById(id);
+      if (!canvas) return;
+      const dataPts = years.map(yr => {
+        const v = getMetricValue(yr, key);
+        const eq = idrEquiv ? getIdrEquiv(yr, key) : null;
+        return idrEquiv && eq != null ? eq : v;
+      });
+      const ch = new Chart(canvas, {
+        type: 'bar',
+        data: {
+          labels: years,
+          datasets: [{
+            label,
+            data: dataPts,
+            backgroundColor: color + '88',
+            borderColor: color,
+            borderWidth: 2,
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => {
+                  const v = ctx.parsed.y;
+                  return idrEquiv ? `${label}: ${fmtCompactIDR(v)}` : `${label}: ${fmtMain(v)}`;
+                }
+              }
+            }
+          },
+          scales: {
+            y: {
+              ticks: {
+                callback: (v) => idrEquiv ? fmtCompactIDR(v) : fmtMain(v),
+                font: { size: 10 },
+              }
+            },
+            x: { ticks: { font: { size: 11 } } }
+          }
+        }
+      });
+      activeCharts.push(ch);
+    };
+    mkLineChart('chart-revenue', 'revenue', colors.revenue, '매출');
+    mkLineChart('chart-netprofit', 'net_profit', colors.netprofit, '순이익');
+    mkLineChart('chart-assets', 'total_assets', colors.assets, '총자산');
+
+    // Stacked balance chart
+    const balCanvas = document.getElementById('chart-balance');
+    if (balCanvas) {
+      const liabPts = years.map(yr => {
+        const v = getMetricValue(yr, 'total_liabilities');
+        const eq = idrEquiv ? getIdrEquiv(yr, 'total_liabilities') : null;
+        return idrEquiv && eq != null ? eq : v;
+      });
+      const eqPts = years.map(yr => {
+        const v = getMetricValue(yr, 'total_equity');
+        const eq = idrEquiv ? getIdrEquiv(yr, 'total_equity') : null;
+        return idrEquiv && eq != null ? eq : v;
+      });
+      const balCh = new Chart(balCanvas, {
+        type: 'bar',
+        data: {
+          labels: years,
+          datasets: [
+            { label: '부채', data: liabPts, backgroundColor: '#f59e0b88', borderColor: '#f59e0b', borderWidth: 2, stack: 'b' },
+            { label: '자본', data: eqPts, backgroundColor: '#16a34a88', borderColor: '#16a34a', borderWidth: 2, stack: 'b' },
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom', labels: { font: { size: 10 } } },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `${ctx.dataset.label}: ${idrEquiv ? fmtCompactIDR(ctx.parsed.y) : fmtMain(ctx.parsed.y)}`
+              }
+            }
+          },
+          scales: {
+            y: {
+              stacked: true,
+              ticks: { callback: v => idrEquiv ? fmtCompactIDR(v) : fmtMain(v), font: { size: 10 } }
+            },
+            x: { stacked: true, ticks: { font: { size: 11 } } }
+          }
+        }
+      });
+      activeCharts.push(balCh);
+    }
+  }
+}
+
+document.getElementById('closeTickerModal').addEventListener('click', () => {
+  document.getElementById('tickerModal').hidden = true;
+  destroyActiveCharts();
+});
+document.getElementById('tickerModal').addEventListener('click', (e) => {
+  if (e.target.id === 'tickerModal') {
+    e.currentTarget.hidden = true;
+    destroyActiveCharts();
+  }
+});
+
+// Click delegation for ticker pills
+document.addEventListener('click', async (e) => {
+  const t = e.target.closest('.ticker-clickable');
+  if (!t) return;
+  e.preventDefault();
+  e.stopPropagation();
+  const ticker = t.dataset.ticker;
+  if (!ticker) return;
+  await loadFinancialsIfNeeded();
+  renderTickerModal(ticker);
+});
 
 // === Boot ===
 document.getElementById('tableView').style.display = 'none';

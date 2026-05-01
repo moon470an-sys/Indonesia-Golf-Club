@@ -128,10 +128,25 @@
     <a href="https://github.com/moon470an-sys/Indonesia-Golf-Club" target="_blank" rel="noopener">GitHub</a>
   </footer>
 
+  <!-- Ticker financials modal -->
+  <div class="modal-overlay" id="tickerModal" hidden>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="tickerModalTitle">
+      <button class="modal-close" id="closeTickerModal" aria-label="닫기">×</button>
+      <header class="modal-header">
+        <h2 id="tickerModalTitle">—</h2>
+        <div class="modal-subtitle" id="tickerModalSubtitle"></div>
+      </header>
+      <div class="modal-body" id="tickerModalBody">
+        <p style="text-align:center; color:#94a3b8;">로딩 중...</p>
+      </div>
+    </div>
+  </div>
+
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
           integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
           crossorigin=""></script>
   <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
