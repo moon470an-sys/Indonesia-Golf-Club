@@ -1796,7 +1796,8 @@
         "last_verified": "2026-04-30",
         "confidence": "low",
         "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
-      }
+      },
+      "financials": {}
     },
     {
       "id": "imperial-klub",
@@ -3259,7 +3260,8 @@
         "last_verified": "2026-04-30",
         "confidence": "low",
         "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
-      }
+      },
+      "financials": {}
     },
     {
       "id": "rancamaya",
@@ -6649,7 +6651,8 @@
         "sources": [],
         "last_verified": "2026-04-30",
         "notes": "Course is closed_permanent. Prior membership pricing data cleared 2026-04-30."
-      }
+      },
+      "financials": {}
     },
     {
       "id": "nirwana-bali",
@@ -6711,7 +6714,8 @@
         "sources": [],
         "last_verified": "2026-04-30",
         "notes": "Course is closed_permanent. Prior membership pricing data cleared 2026-04-30."
-      }
+      },
+      "financials": {}
     },
     {
       "id": "new-kuta",
@@ -6830,7 +6834,8 @@
         "last_verified": "2026-04-30",
         "confidence": "low",
         "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
-      }
+      },
+      "financials": {}
     },
     {
       "id": "handara-bali",
@@ -6980,7 +6985,8 @@
         "last_verified": "2026-04-30",
         "confidence": "low",
         "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
-      }
+      },
+      "financials": {}
     },
     {
       "id": "bukit-pandawa",
@@ -7090,7 +7096,8 @@
         "last_verified": "2026-04-30",
         "confidence": "low",
         "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
-      }
+      },
+      "financials": {}
     },
     {
       "id": "bali-beach-sanur",
@@ -8058,7 +8065,7 @@
         "operating_company": "Laguna Golf Bintan (operated under Laguna Resorts & Hotels PCL; co-located with Banyan Tree Bintan, Angsana Bintan, Cassia Bintan)",
         "parent_group": "Banyan Group (Banyan Tree Holdings Ltd)",
         "idx_ticker": null,
-        "foreign_ticker": "SGX:B58 (Banyan Tree Holdings); SET:LRH (Laguna Resorts & Hotels PCL, Thailand sub)",
+        "foreign_ticker": "SGX:B58",
         "listed_status": "subsidiary-of-listed",
         "revenue_idr": null,
         "revenue_year": "2024",
@@ -11671,7 +11678,8 @@
         "last_verified": "2026-04-30",
         "confidence": "low",
         "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
-      }
+      },
+      "financials": {}
     },
     {
       "id": "pondok-cabe-golf",
@@ -11766,7 +11774,8 @@
         "last_verified": "2026-04-30",
         "confidence": "low",
         "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
-      }
+      },
+      "financials": {}
     },
     {
       "id": "royale-krakatau-cilegon",
@@ -11858,7 +11867,8 @@
         "last_verified": "2026-04-30",
         "confidence": "low",
         "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
-      }
+      },
+      "financials": {}
     },
     {
       "id": "bandung-giri-gahana",
@@ -12033,7 +12043,8 @@
         "notes": "TNI AU Lanud Sulaiman. Public play accepted; military rates internal. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "royal-cirebon-golf",
@@ -12097,7 +12108,8 @@
         "notes": "Newly added 2026-04-30; membership not yet audited. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "ngamplang-garut",
@@ -12160,7 +12172,8 @@
         "notes": "Heritage 1912 community recreation course; no formal membership tier published. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "tidar-golf-magelang",
@@ -12220,7 +12233,8 @@
         "notes": "Newly added 2026-04-30; membership not yet audited. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "wijayakusuma-purwokerto",
@@ -12283,7 +12297,8 @@
         "notes": "TNI AD Korem 071 Wijayakusuma. Local recreational. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "mrica-banjarnegara",
@@ -12346,7 +12361,8 @@
         "notes": "Newly added 2026-04-30; membership not yet audited. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "pertamina-tritih-cilacap",
@@ -12410,7 +12426,8 @@
         "notes": "Newly added 2026-04-30; membership not yet audited. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "adi-soemarmo-solo",
@@ -12471,7 +12488,8 @@
         "notes": "TNI AU Lanud Adi Soemarmo. Public visitors accepted. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "black-eagle-bsb-semarang",
@@ -12532,7 +12550,8 @@
         "notes": "Newly added 2026-04-30; membership not yet audited. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "ahmad-yani-surabaya",
@@ -12621,7 +12640,8 @@
         "last_verified": "2026-04-30",
         "confidence": "low",
         "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
-      }
+      },
+      "financials": {}
     },
     {
       "id": "pakuwon-golf-surabaya",
@@ -12794,7 +12814,8 @@
         "notes": "TNI AU Lanud Iswahjudi. Public visitors accepted. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "dhoho-kediri",
@@ -12855,7 +12876,8 @@
         "notes": "Newly added 2026-04-30; membership not yet audited. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "arun-lhokseumawe",
@@ -12919,7 +12941,8 @@
         "notes": "Pertamina Perta Arun Gas employee facility; walk-ins accepted at PlayGolf-listed visitor rate. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "medium",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "lhoknga-aceh",
@@ -12980,7 +13003,8 @@
         "notes": "Newly added 2026-04-30; membership not yet audited. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "inalum-tanjung-gading",
@@ -13044,7 +13068,8 @@
         "notes": "PT Inalum employee welfare facility (Tanjung Gading). [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "medium",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "inalum-paritohan",
@@ -13108,7 +13133,8 @@
         "notes": "PT Inalum hydroelectric Paritohan; primarily employees. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "medium",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "ptpn-iv-pabatu",
@@ -13168,7 +13194,8 @@
         "notes": "PTPN IV plantation employee facility. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "tenera-bah-jambi",
@@ -13228,7 +13255,8 @@
         "notes": "PTPN IV Bah Jambi plantation course. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "anai-resort",
@@ -13289,7 +13317,8 @@
         "notes": "Newly added 2026-04-30; membership not yet audited. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "wirabraja-padang",
@@ -13361,7 +13390,8 @@
         "notes": "TNI AD Korem 032 Wirabraja. Annual unlimited IDR 12M. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "high",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "lanud-sutan-sjahrir",
@@ -13421,7 +13451,8 @@
         "notes": "TNI AU. Driving range only (Par-3 practice). [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "high",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "phr-dumai",
@@ -13481,7 +13512,8 @@
         "notes": "Pertamina Hulu Rokan Dumai (formerly Chevron). Internal facility. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "simpang-tiga-pekanbaru",
@@ -13544,7 +13576,8 @@
         "notes": "Newly added 2026-04-30; membership not yet audited. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "perkumpulan-golf-jambi",
@@ -13604,7 +13637,8 @@
         "notes": "Semi-private community golf association (Telanaipura). Tel +62-741-22267. Tiers not published. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "bajubang-jambi",
@@ -13664,7 +13698,8 @@
         "notes": "Pertamina EP Bajubang Field internal recreation. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "merah-putih-bengkulu",
@@ -13725,7 +13760,8 @@
         "notes": "Polda Bengkulu managed; community/tourism positioned. No published membership scheme yet (course opened July 2025). [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "agromuko-mukomuko",
@@ -13785,7 +13821,8 @@
         "notes": "PT Agromuko (SIPEF) palm oil estate course. Estate staff primarily. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "pertamina-pendopo",
@@ -13845,7 +13882,8 @@
         "notes": "Pertamina EP Pendopo Field recreation course. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "pertamina-prabumulih",
@@ -13906,7 +13944,8 @@
         "notes": "Pertamina EP Prabumulih Field. Visitors at modest rate. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "medium",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "pusri-palembang",
@@ -13966,7 +14005,8 @@
         "notes": "PT Pusri (Pupuk Indonesia SOE) Patra Jaya facility. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "bagus-kuning-plaju",
@@ -14027,7 +14067,8 @@
         "notes": "Pertamina RU III Plaju refinery course; visitors accepted. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "medium",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "bukit-intan-pangkalpinang",
@@ -14117,7 +14158,8 @@
         "last_verified": "2026-04-30",
         "confidence": "low",
         "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
-      }
+      },
+      "financials": {}
     },
     {
       "id": "bebute-belitung",
@@ -14177,7 +14219,8 @@
         "notes": "Public 9H coastal course Sijuk, Belitung. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "eltari-kupang",
@@ -14238,7 +14281,8 @@
         "notes": "TNI AU Lanud El Tari. Open to public; rates not disclosed. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "kpc-sangatta",
@@ -14302,7 +14346,8 @@
         "notes": "PT Kaltim Prima Coal company course; visitors accepted at posted rates. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "medium",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "badak-ngl-bontang",
@@ -14362,7 +14407,8 @@
         "notes": "PT Badak NGL company course. 'Very affordable' per Hole19 but no figures published. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "tarakan-golf-club",
@@ -14421,7 +14467,8 @@
         "notes": "Public 9H course; ownership transitioned to Tarakan city from Pertamina. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "tanjung-tabalong",
@@ -14481,7 +14528,8 @@
         "notes": "Pertamina EP Tanjung Field. Tournament venue but no public rate. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "gorontalo-yosonegoro",
@@ -14545,7 +14593,8 @@
         "notes": "Public regional course. Reactivated September 2025. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "medium",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "paradise-likupang",
@@ -14609,7 +14658,8 @@
         "notes": "Public resort course (KEK Likupang). Direct contact +62 431 894 1802.",
         "confidence": "low",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "antam-mekongga-pomalaa",
@@ -14672,7 +14722,8 @@
         "notes": "PT Antam Pomalaa company course. Public access per PlayGolf.id listing. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "medium",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     },
     {
       "id": "koarmada-iii-sorong",
@@ -14732,7 +14783,8 @@
         "notes": "TNI AL Koarmada III mini facility. NOT a commercial course. [Aggregator-sourced pricing cleared 2026-04-30]",
         "confidence": "low",
         "last_verified": "2026-04-30"
-      }
+      },
+      "financials": {}
     }
   ]
 }

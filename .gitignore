@@ -4,3 +4,7 @@ __pycache__/
 .vscode/
 .idea/
 node_modules/
+
+url_check_report.json
+validation_raw.md
+tmp/
