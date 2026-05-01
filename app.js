@@ -1509,10 +1509,15 @@ function renderTickerModal(ticker) {
 
   // Render charts after DOM insertion
   if (window.Chart) {
+    const isDark = document.documentElement.dataset.theme === 'dark';
+    const gridColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(10,31,23,0.08)';
+    const tickColor = isDark ? '#a8b3ac' : '#5b6d63';
+    Chart.defaults.color = tickColor;
+    Chart.defaults.borderColor = gridColor;
     const colors = {
-      revenue: '#0284c7',
-      netprofit: '#16a34a',
-      assets: '#7c3aed',
+      revenue: isDark ? '#60a5fa' : '#0d6e4d',
+      netprofit: isDark ? '#34d399' : '#16a34a',
+      assets: isDark ? '#a78bfa' : '#7c3aed',
     };
     const mkLineChart = (id, key, color, label) => {
       const canvas = document.getElementById(id);
@@ -1553,9 +1558,11 @@ function renderTickerModal(ticker) {
               ticks: {
                 callback: (v) => idrEquiv ? fmtCompactIDR(v) : fmtMain(v),
                 font: { size: 10 },
-              }
+                color: tickColor,
+              },
+              grid: { color: gridColor },
             },
-            x: { ticks: { font: { size: 11 } } }
+            x: { ticks: { font: { size: 11 }, color: tickColor }, grid: { color: gridColor } }
           }
         }
       });
@@ -1583,15 +1590,15 @@ function renderTickerModal(ticker) {
         data: {
           labels: years,
           datasets: [
-            { label: '부채', data: liabPts, backgroundColor: '#f59e0b88', borderColor: '#f59e0b', borderWidth: 2, stack: 'b' },
-            { label: '자본', data: eqPts, backgroundColor: '#16a34a88', borderColor: '#16a34a', borderWidth: 2, stack: 'b' },
+            { label: '부채', data: liabPts, backgroundColor: isDark ? '#fbbf2488' : '#b8924a88', borderColor: isDark ? '#fbbf24' : '#b8924a', borderWidth: 2, stack: 'b' },
+            { label: '자본', data: eqPts, backgroundColor: isDark ? '#34d39988' : '#0d6e4d88', borderColor: isDark ? '#34d399' : '#0d6e4d', borderWidth: 2, stack: 'b' },
           ]
         },
         options: {
           responsive: true,
           maintainAspectRatio: false,
           plugins: {
-            legend: { position: 'bottom', labels: { font: { size: 10 } } },
+            legend: { position: 'bottom', labels: { font: { size: 10 }, color: tickColor } },
             tooltip: {
               callbacks: {
                 label: (ctx) => `${ctx.dataset.label}: ${idrEquiv ? fmtCompactIDR(ctx.parsed.y) : fmtMain(ctx.parsed.y)}`
@@ -1601,9 +1608,10 @@ function renderTickerModal(ticker) {
           scales: {
             y: {
               stacked: true,
-              ticks: { callback: v => idrEquiv ? fmtCompactIDR(v) : fmtMain(v), font: { size: 10 } }
+              ticks: { callback: v => idrEquiv ? fmtCompactIDR(v) : fmtMain(v), font: { size: 10 }, color: tickColor },
+              grid: { color: gridColor },
             },
-            x: { stacked: true, ticks: { font: { size: 11 } } }
+            x: { stacked: true, ticks: { font: { size: 11 }, color: tickColor }, grid: { color: gridColor } }
           }
         }
       });
@@ -1633,6 +1641,34 @@ document.addEventListener('click', async (e) => {
   if (!ticker) return;
   await loadFinancialsIfNeeded();
   renderTickerModal(ticker);
+});
+
+// === Theme toggle ===
+const SUN_ICON = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>';
+const MOON_ICON = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
+
+function applyTheme(mode) {
+  document.documentElement.dataset.theme = mode;
+  const tg = document.getElementById('themeToggle');
+  if (tg) tg.innerHTML = mode === 'dark' ? SUN_ICON : MOON_ICON;
+  try { localStorage.setItem('theme', mode); } catch (e) {}
+  // Re-render any open ticker chart so axis colors stay readable
+  if (financialsByTicker && document.getElementById('tickerModal') && !document.getElementById('tickerModal').hidden) {
+    const t = document.getElementById('tickerModalTitle')?.querySelector('.ticker-badge')?.textContent;
+    if (t) renderTickerModal(t);
+  }
+}
+
+(function initTheme(){
+  let saved = null;
+  try { saved = localStorage.getItem('theme'); } catch (e) {}
+  const prefers = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  applyTheme(saved || (prefers ? 'dark' : 'light'));
+})();
+
+document.getElementById('themeToggle')?.addEventListener('click', () => {
+  const cur = document.documentElement.dataset.theme || 'light';
+  applyTheme(cur === 'dark' ? 'light' : 'dark');
 });
 
 // === Boot ===

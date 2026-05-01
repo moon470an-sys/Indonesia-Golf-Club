@@ -20,15 +20,19 @@
 <body>
   <header class="topbar">
     <div class="brand">
-      <span class="logo-dot"></span>
+      <span class="logo-dot" aria-hidden="true"></span>
       <h1>Indonesia Golf Club</h1>
+      <span class="subtitle">137 Courses · 25 Listed Companies</span>
     </div>
     <nav class="tabs" role="tablist">
-      <button class="tab active" data-tab="map" role="tab" aria-selected="true">🗺️ 지도</button>
-      <button class="tab" data-tab="table" role="tab" aria-selected="false">📋 골프장 상세</button>
+      <button class="tab active" data-tab="map" role="tab" aria-selected="true">지도</button>
+      <button class="tab" data-tab="table" role="tab" aria-selected="false">상세 데이터</button>
     </nav>
     <div class="topbar-meta">
-      <span class="counter"><strong id="visibleCount">0</strong> / <span id="totalCount">0</span> 개</span>
+      <span class="counter"><strong id="visibleCount">0</strong> / <span id="totalCount">0</span></span>
+      <button class="theme-toggle" id="themeToggle" aria-label="다크모드 전환" title="다크모드 전환">
+        <svg id="themeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
+      </button>
     </div>
   </header>
 
