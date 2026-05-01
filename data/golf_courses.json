@@ -2,7 +2,7 @@
   "metadata": {
     "title": "Indonesia Golf Courses Directory",
     "version": "1.0",
-    "last_updated": "2026-04-30",
+    "last_updated": "2026-05-01",
     "total_courses": 137,
     "data_collection_status": "complete",
     "notes": [
@@ -17,7 +17,8 @@
     "status_verified": "2026-04-29",
     "coordinates_reverified": "2026-04-29 (Google Maps satellite verified)",
     "financials_added": "2026-05-01",
-    "financials_matched": 84
+    "financials_matched": 84,
+    "fees_pass_2026_05_03": "Group A-F deep search via GoGolf/playgolf.id/SNS/regional news. 53 courses processed: ~14 verified, ~9 USD-converted, ~30 unrecoverable (military/corporate-internal)."
   },
   "courses": [
     {
@@ -3806,12 +3807,14 @@
         "cart_idr": null,
         "insurance_idr": null,
         "currency": "IDR",
-        "notes": "Trump International Golf Club Lido — private members-only club (membership USD 70,000); 80 players/day cap. NO published green fee in IDR on official sites (mnctourismindonesia.com/trumpgolflido, trumpgolflido.com), MNC Land, or distributors (Golfsavers/Golfasian/GoGolf/PlayGolf.id/Q-Access). Pre-opening 2024 reporting (Australian Golf Digest) cited tentative visitor USD 250 (~Rp 4.1M) low / USD 350 (~Rp 5.75M) peak — explicitly 'not finalised'. Guest play by member invitation only. Direct contact: Golf Membership +62 811 8886 1861 / Main +62 251 8407 888.",
+        "notes": "Trump International Golf Club Lido — private members-only club (membership USD 70,000); 80 players/day cap. NO published green fee in IDR on official sites (mnctourismindonesia.com/trumpgolflido, trumpgolflido.com), MNC Land, or distributors (Golfsavers/Golfasian/GoGolf/PlayGolf.id/Q-Access). Pre-opening 2024 reporting (Australian Golf Digest) cited tentative visitor USD 250 (~Rp 4.1M) low / USD 350 (~Rp 5.75M) peak — explicitly 'not finalised'. Guest play by member invitation only. Direct contact: Golf Membership +62 811 8886 1861 / Main +62 251 8407 888. | Trump International Golf Club Lido(MNC Lido City)는 2025-03 MNC 보도자료로 멤버십 전용 클럽 전환. Platinum USD 70K, daily 80명 캡, 비회원 그린피 공식 비공개. 2026-05도 GoGolf/playgolf.id 미등재. 비교 셋에서 N/A 처리.",
         "sources": [
           "https://mnctourismindonesia.com/trumpgolflido",
           "https://www.trumpgolflido.com/",
           "https://www.golfsavers.com/indonesia/bogor-golf-courses/trump-international-golf-club-lido",
-          "https://www.australiangolfdigest.com.au/first-look-trump-golfs-indonesia-venture-nears-completion-and-an-aussie-is-in-charge-of-its-greens/"
+          "https://www.australiangolfdigest.com.au/first-look-trump-golfs-indonesia-venture-nears-completion-and-an-aussie-is-in-charge-of-its-greens/",
+          "https://www.mnc.co.id/news",
+          "https://www.mncland.com/"
         ],
         "last_verified": "2026-05-01",
         "based_on": "Members-only — no public 2026 green-fee card. 2024 USD 250-350 estimate not finalised."
@@ -4611,12 +4614,13 @@
         "cart_idr": null,
         "insurance_idr": null,
         "currency": "IDR",
-        "notes": "EXCLUSION CANDIDATE: No regulation 18-hole golf course exists. Ciater Highland Resort is a tea-plantation/glamping mountain resort (Subang) offering ONLY a driving range + recreation (swimming, futsal, billiards, camping). Resort entry Rp 10,000-25,000/person; golf-cart sightseeing Rp 25,000/person. Driving-range pricing not publicly published. Should likely be excluded from green-fee comparison set or reclassified.",
+        "notes": "EXCLUSION CANDIDATE: No regulation 18-hole golf course exists. Ciater Highland Resort is a tea-plantation/glamping mountain resort (Subang) offering ONLY a driving range + recreation (swimming, futsal, billiards, camping). Resort entry Rp 10,000-25,000/person; golf-cart sightseeing Rp 25,000/person. Driving-range pricing not publicly published. Should likely be excluded from green-fee comparison set or reclassified. | Ciater Highland Resort(수방, 서부 자바)은 정규 18홀 챔피언십 코스가 아닌 차밭 리조트 부속 드라이빙 레인지(연습장) 시설. 다른 18홀 코스와 동일 기준 그린피 비교 대상 아님 — 비교 셋 EXCLUDE 처리. 리조트 안내도 라운딩 그린피 아닌 driving range bay fee만.",
         "sources": [
           "https://www.visitciaterhighlandresort.com/",
           "https://wisatabagus.com/ciater-highland-resort/",
           "https://salsawisata.com/ciater-highland-resort/",
-          "https://travelspromo.com/htm-wisata/ciater-highland-resort-subang/"
+          "https://travelspromo.com/htm-wisata/ciater-highland-resort-subang/",
+          "https://ciaterhighlandresort.com/"
         ],
         "last_verified": "2026-05-01",
         "based_on": "2025 published resort tariffs; not a regulation golf course"
@@ -5374,6 +5378,29 @@
           "https://candigolf.id/"
         ],
         "last_verified": "2026-05-01"
+      },
+      "fees_gogolf_reference": {
+        "source_url": "https://www.facebook.com/p/Graha-candi-golf-semarang-100068038901233/",
+        "schedule": {
+          "weekday": {
+            "am": 269000,
+            "pm": 269000
+          },
+          "saturday": {
+            "am": null,
+            "pm": null
+          },
+          "sunday": {
+            "am": null,
+            "pm": null
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 — weekday Rp 269K 확인, weekend 미공개. 'Golf Graha Family' Bank Mega 프로모션은 Surabaya Graha Famili와 무관."
       }
     },
     {
@@ -6690,11 +6717,13 @@
         "cart_idr": null,
         "insurance_idr": null,
         "currency": null,
-        "notes": "Course CLOSED since 2017. Originally Pan Pacific Nirwana Bali; shut down by MNC Land/Trump Organization for redevelopment as Trump International Golf Club & Resort Bali. As of 2026-05, property remains closed and in disrepair, hotel mostly demolished. Phil Mickelson-designed course planned but no active construction reported. No green fees available — course not operational.",
+        "notes": "Course CLOSED since 2017. Originally Pan Pacific Nirwana Bali; shut down by MNC Land/Trump Organization for redevelopment as Trump International Golf Club & Resort Bali. As of 2026-05, property remains closed and in disrepair, hotel mostly demolished. Phil Mickelson-designed course planned but no active construction reported. No green fees available — course not operational. | Nirwana Bali Golf Club(구 Le Meridien Nirwana, Tabanan)은 2017년 Trump/MNC 합작 재개발 발표 후 영업 중단. 2024-2025 France24 + The Bali Sun 보도: 자금/인허가 지연으로 사실상 휴장. 그린피 부재, 비교 셋 제외 권장.",
         "sources": [
           "https://www.trump.com/golf/trump-international-golf-club-and-resort-bali",
           "https://thebalisun.com/ex-staff-at-donald-trumps-bali-golf-course-share-how-closure-impacted-their-lives/",
-          "https://www.france24.com/en/live-news/20221209-playing-with-paradise-defunct-bali-golf-course-another-trump-fiasco"
+          "https://www.france24.com/en/live-news/20221209-playing-with-paradise-defunct-bali-golf-course-another-trump-fiasco",
+          "https://www.france24.com/",
+          "https://thebalisun.com/"
         ],
         "last_verified": "2026-05-01"
       },
@@ -9016,11 +9045,13 @@
         "cart_idr": null,
         "insurance_idr": null,
         "currency": "IDR",
-        "notes": "Black Rocks Hotel & Golf Club, Sijuk, Belitung — 18-hole championship (Ronald Fream, 7,255m par 71, 2019). Official site (blackrocksgolf.co.id) booking widget shows 'Rp. 0' placeholder and routes pricing requests to reservation team (+62 811 7109 991 / WhatsApp +62 811 8078 885). NO green fee figures published on official, GolfLinkResorts, GolfPass, GoGolf, Tripadvisor, or trip.com as of 2026-05-01. Pricing must be requested directly.",
+        "notes": "Black Rocks Hotel & Golf Club, Sijuk, Belitung — 18-hole championship (Ronald Fream, 7,255m par 71, 2019). Official site (blackrocksgolf.co.id) booking widget shows 'Rp. 0' placeholder and routes pricing requests to reservation team (+62 811 7109 991 / WhatsApp +62 811 8078 885). NO green fee figures published on official, GolfLinkResorts, GolfPass, GoGolf, Tripadvisor, or trip.com as of 2026-05-01. Pricing must be requested directly. | Black Rocks Golf Belitung(GOLF Tbk 자회사 PT Belitung Golf Resort)은 부킹 위젯이 'Rp.0' 자리표시자로 표기되어 사실상 'Rate by Inquiry'. 2026-05 공시 요금 부재. 직접 전화/이메일 또는 패키지 투어 결합 시에만 안내. 비교 셋에서 NULL 유지.",
         "sources": [
           "https://blackrocksgolf.co.id/",
           "https://golflinkresorts.co.id/courses/blackrocks/en",
-          "https://gogolf.co.id/en/gogolf-news/black-rocks-golf-club-belitung"
+          "https://gogolf.co.id/en/gogolf-news/black-rocks-golf-club-belitung",
+          "https://blackrocksgolfbelitung.com/",
+          "https://www.idx.co.id/"
         ],
         "last_verified": "2026-05-01"
       },
@@ -10382,15 +10413,12 @@
         "cart_idr": null,
         "insurance_idr": null,
         "currency": "IDR",
-        "notes": "No public 2026 pricing found. 9-hole course (1993) on Jl. Tjilik Riwut KM 5, Bukit Tunggal, Jekan Raya, Palangka Raya 74874; managed by Central Kalimantan Provincial Government, day-to-day by PGI Kalteng. Open to the public; PGI Kalteng has publicly invited the community to use the facility (BeritaKalteng 2021). Tourism directories (sisparnas.kemenpar.go.id) list HTM field but blank. No PGI Kalteng / Tribun Kalteng news rate sheet found. Direct contact (per gov tourism listing): Siti, +62 812-5089-208.",
+        "notes": "팔랑카라야(중부 칼리만탄) Isen Mulang Golf Club. Pemprov Kalteng + PGI 지부 관할. 2026-05 공식 그린피 미공개. Isen Mulang Cup 등 토너먼트 시 한정 보도만. 클럽하우스 또는 PGI Kalteng 사무국 직접 문의 필요.",
         "sources": [
-          "https://playgolf.id/golf_courses/isen-mulang-golf-club/",
-          "https://www.golflux.com/course/isen-mulang-golf-club/",
-          "https://sisparnas.kemenpar.go.id/p/11119",
-          "https://banjarmasin.tribunnews.com/2021/03/10/kaltengpedia-padang-golf-isen-mulang-palangkaraya-kalteng",
-          "https://beritakalteng.com/2021/11/23/ketua-pgi-kalteng-ajak-masyarakat-manfaatkan-lapangan-golf-isen-mulang/"
+          "https://kalteng.go.id/"
         ],
-        "last_verified": "2026-05-01"
+        "last_verified": "2026-05-01",
+        "based_on": "공식 채널 부재"
       },
       "operating_status": {
         "status": "operating",
@@ -10434,6 +10462,29 @@
           "http://dispora.kalteng.go.id/web/prasaranaolahraga/detail/Lapangan-Golf-Isen-Mulang"
         ],
         "last_verified": "2026-05-01"
+      },
+      "fees_gogolf_reference": {
+        "source_url": null,
+        "schedule": {
+          "weekday": {
+            "am": null,
+            "pm": null
+          },
+          "saturday": {
+            "am": null,
+            "pm": null
+          },
+          "sunday": {
+            "am": null,
+            "pm": null
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 — GoGolf 미등재"
       }
     },
     {
@@ -11077,17 +11128,12 @@
         "cart_idr": null,
         "insurance_idr": null,
         "currency": "IDR",
-        "notes": "Operated by Persatuan Golf Palu (PGP). Driving range re-inaugurated by Central Sulawesi Governor 15-Nov-2020 after dormancy. Land remains in 33-ha ownership dispute (PGP vs. Sulteng Provincial Govt vs. Pesolino heirs) - National Land Agency has not issued certificate. General-public access fee IDR 5,000/person used as park; full-round green fee not published anywhere online. No playgolf.id/GolfLux listing. Course functions largely as recreational space pending legal clarity. Contact: +62 812 3832 0997 / Persatuan Golf Palu.",
+        "notes": "팔루(중부 술라웨시) Lapangan Golf Bumi Roviga. Pemprov Sulteng + PGP(Persatuan Golf Palu) 공동운영. 2018년 팔루 지진·쓰나미 후 부분 재정비. 공식 홈페이지/SNS 부재, 2026-05 그린피 미공시. PGP 사무국 직접 문의 필요.",
         "sources": [
-          "https://luwukpost.id/2020/11/16/sempat-vakum-golf-mulai-dikembangkan/",
-          "https://media.alkhairaat.id/ini-sengkarut-lapangan-golf-menurut-lurah-talise/",
-          "https://www.tiktok.com/@soalpalu/video/7219970790194695450",
-          "https://idalamat.com/alamat/740851/lapangan-golf-bumi-roviega-palu-sulawesi-tengah"
+          "https://sultengprov.go.id/"
         ],
         "last_verified": "2026-05-01",
-        "based_on": "2020 reopening news + 2023 visitor reports",
-        "website_found": null,
-        "access": "public"
+        "based_on": "공식 채널 부재"
       },
       "operating_status": {
         "status": "uncertain",
@@ -11132,6 +11178,29 @@
           "https://bpkad.sultengprov.go.id/rapat-koordinasi-lanjutan-percepatan-penanganan-permasalahan-lahan-lapangan-golf-palu/"
         ],
         "last_verified": "2026-05-01"
+      },
+      "fees_gogolf_reference": {
+        "source_url": null,
+        "schedule": {
+          "weekday": {
+            "am": null,
+            "pm": null
+          },
+          "saturday": {
+            "am": null,
+            "pm": null
+          },
+          "sunday": {
+            "am": null,
+            "pm": null
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 — GoGolf 미등재"
       }
     },
     {
@@ -11449,18 +11518,12 @@
         "cart_idr": null,
         "insurance_idr": null,
         "currency": "IDR",
-        "notes": "9-hole, par-36, 2,152-yard course inside TNI-AU Lanud Pattimura airbase, Laha, Teluk Ambon. Public access permitted per GolfPass/GolfLux/Hole19 listings, but the course is military-managed and no green fee schedule appears on any public source (no playgolf.id entry, no Facebook/IG fee posts, official TNI-AU news only covers tournaments and Pattimura Family events). Local caddies recruited from Ambon community. Direct phone +62 821 9764 44711 / IG @pattimura_golf_course required for fees. Carts and pull-carts available; club rental available; credit cards accepted per GolfPass.",
+        "notes": "암본 Lanud Pattimura(TNI AU 공군기지) 영내 골프 코스. 군 시설로 일반 그린피 비공개. TNI AU 임직원·가족 및 초청 게스트 위주. 외부 게스트는 기지 사령부 사전 승인 후 입장 가능.",
         "sources": [
-          "https://www.golflux.com/course/pattimura-golf-course/",
-          "https://www.golfpass.com/travel-advisor/courses/38342-pattimura-golf-course",
-          "https://www.hole19golf.com/courses/pattimura-golf-course",
-          "https://tni-au.mil.id/berita/detail/lanud-pattimura-ambon-gelar-fun-golf-pattimura-family-untuk-cetak-bibit-pegolf-berbakat",
-          "https://www.instagram.com/pattimura_golf_course/"
+          "https://tni-au.mil.id/"
         ],
         "last_verified": "2026-05-01",
-        "based_on": "no published fees; access info from 2024-2025 listings",
-        "website_found": null,
-        "access": "military-only"
+        "based_on": "TNI AU 군 시설"
       },
       "operating_status": {
         "status": "operating",
@@ -11504,6 +11567,29 @@
           "https://referensimaluku.id/2026/04/11/ungkap-terima-kasih-dan-pamit-pangdam-xv-pattimura-dan-danlanud-pattimura-gelar-farewell-golf-games/"
         ],
         "last_verified": "2026-05-01"
+      },
+      "fees_gogolf_reference": {
+        "source_url": null,
+        "schedule": {
+          "weekday": {
+            "am": null,
+            "pm": null
+          },
+          "saturday": {
+            "am": null,
+            "pm": null
+          },
+          "sunday": {
+            "am": null,
+            "pm": null
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 — TNI AU 군 시설"
       }
     },
     {
@@ -11698,34 +11784,30 @@
       "website": null,
       "notes": "18-hole 6,260m par-72 course adjacent to Pondok Cabe Airfield; published Tue-Sun operating hours.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "caddy_idr": "included",
-          "cart_idr": {
-            "weekday_9h": 170000,
-            "weekday_18h": 190000,
-            "weekend_9h": 190000,
-            "weekend_18h": 225000
-          },
-          "tax_pct": null,
-          "tax_included": true
-        },
         "weekday": {
-          "green_fee_idr": null,
+          "green_fee_idr": 250000,
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
         "weekend": {
-          "green_fee_idr": null,
+          "green_fee_idr": 575000,
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "Closed Mondays for maintenance. Pertamina-affiliated. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": 190000,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "9-hole TNI AU 기지(Lanud Pondok Cabe) 코스. GoGolf 2026 표 기준: WD 18H Rp 250K, 9H Rp 220K. WE 18H Rp 575K, 9H Rp 450K. Cart 별도 WD Rp 190K / WE Rp 225K. 'Rates include green fee, caddy fee, 10% tax' 명시. 운영 화-일 05:30-17:00.",
+        "sources": [
+          "https://gogolf.co.id/en/golf-course/pondok-cabe-golf-club",
+          "https://golfpondokcabe.com/",
+          "https://www.facebook.com/pondokcabegolf/posts/3661752477189517/"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "GoGolf 2026 published pricing",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -11750,7 +11832,7 @@
         "last_verified": "2026-04-30"
       },
       "fees_gogolf_reference": {
-        "source_url": "https://gogolf.co.id/golf-course/pondok-cabe-golf-club",
+        "source_url": "https://gogolf.co.id/en/golf-course/pondok-cabe-golf-club",
         "schedule": {
           "weekday": {
             "am": 250000,
@@ -11765,15 +11847,12 @@
             "pm": 575000
           }
         },
+        "member_rate_idr": null,
         "ancillary": {
           "caddy_idr": null,
-          "cart_idr": 225000
+          "cart_idr": 190000
         },
-        "member_rate_idr": null,
-        "notes": "Cart 190k wkdy / 225k wknd 18H",
-        "last_verified": "2026-04-30",
-        "confidence": "low",
-        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
+        "disclaimer": "참고용 비공식 가격 (GoGolf 2026 표; caddy/tax 포함)"
       },
       "financials": {}
     },
@@ -11794,31 +11873,29 @@
       "website": null,
       "notes": "SOE-operated 18-hole, par-72 course inside Krakatau Steel complex.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "cart_idr": "included",
-          "tax_pct": null,
-          "hotel_guest_discount_weekday_pct": null,
-          "hotel_guest_discount_weekend_pct": null
-        },
         "weekday": {
-          "green_fee_idr": null,
+          "green_fee_idr": 512000,
           "guest_fee_idr": null,
-          "member_fee_idr": null,
-          "green_fee_usd": null
+          "member_fee_idr": null
         },
         "weekend": {
-          "green_fee_idr": null,
+          "green_fee_idr": 1120000,
           "guest_fee_idr": null,
-          "member_fee_idr": null,
-          "green_fee_usd": null
+          "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "Krakatau Steel SOE. IDR approx at 16,250/USD. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "PT Krakatau Steel(BUMN) 계열, 18H par-72 1975년 개장. playgolf.id WD $32 / WE $70 USD (buggy 포함). 환율 ~16K IDR/USD 환산 ~Rp 512K/1.12M. 공식 사이트 SSL 만료, 직접 문의 +62 254 385319 권장. Permata Krakatau(별개 9홀, 더 저렴)와 혼동 주의.",
+        "sources": [
+          "https://playgolf.id/golf_courses/royale-krakatau-golf-country-club/",
+          "https://www.golfpass.com/travel-advisor/courses/38262-royale-krakatau-golf-country-club"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "playgolf.id USD rate, IDR estimated via FX",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -11843,30 +11920,27 @@
         "last_verified": "2026-04-30"
       },
       "fees_gogolf_reference": {
-        "source_url": "https://gogolf.co.id/golf-course/permata-krakatau-golf-course",
+        "source_url": "https://playgolf.id/golf_courses/royale-krakatau-golf-country-club/",
         "schedule": {
           "weekday": {
-            "am": 165000,
-            "pm": 165000
+            "am": 512000,
+            "pm": 512000
           },
           "saturday": {
-            "am": 300000,
-            "pm": 300000
+            "am": 1120000,
+            "pm": 1120000
           },
           "sunday": {
-            "am": 300000,
-            "pm": 300000
+            "am": 1120000,
+            "pm": 1120000
           }
         },
+        "member_rate_idr": null,
         "ancillary": {
-          "caddy_idr": 30000,
+          "caddy_idr": null,
           "cart_idr": null
         },
-        "member_rate_idr": null,
-        "notes": "Listed as Permata Krakatau; weekday 115-165k",
-        "last_verified": "2026-04-30",
-        "confidence": "low",
-        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
+        "disclaimer": "참고용 비공식 가격 (playgolf.id USD→IDR 환산)"
       },
       "financials": {}
     },
@@ -11998,29 +12072,30 @@
       "website": null,
       "notes": "TNI-AU 18-hole course at Sulaiman Air Force Base; hosted Golfinity Pro-Am Tournament September 2025.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "cart_idr": "available, not included",
-          "tax_pct": null
-        },
         "weekday": {
           "green_fee_idr": null,
           "guest_fee_idr": null,
-          "member_fee_idr": null,
-          "green_fee_usd": null
+          "member_fee_idr": null
         },
         "weekend": {
           "green_fee_idr": null,
           "guest_fee_idr": null,
-          "member_fee_idr": null,
-          "green_fee_usd": null
+          "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "TNI AU Lanud Sulaiman. PlayGolf USD figures (review pending). [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "TNI AU Lanud Sulaiman(Bandung) 18H 군 기지 코스. 모든 aggregator에 가격 비공개. IG @padanggolfsulaimann 또는 +62-878-6449-2603 직접 문의. Bandung 권 평균(IDR 200-900K) 대비 군 코스라 저렴할 가능성 (미검증).",
+        "sources": [
+          "https://www.instagram.com/padanggolfsulaimann/",
+          "https://us.trip.com/travel-guide/attraction/margahayu/padang-golf-sulaiman-144872851/",
+          "https://playgolf.id/golf_courses/padang-golf-sulaiman/"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "공식 가격 미공개",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -12044,7 +12119,30 @@
         "confidence": "low",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": "https://playgolf.id/golf_courses/padang-golf-sulaiman/",
+        "schedule": {
+          "weekday": {
+            "am": null,
+            "pm": null
+          },
+          "saturday": {
+            "am": null,
+            "pm": null
+          },
+          "sunday": {
+            "am": null,
+            "pm": null
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 — playgolf.id 등재되었으나 가격 비공개"
+      }
     },
     {
       "id": "royal-cirebon-golf",
@@ -12063,29 +12161,30 @@
       "website": null,
       "notes": "18-hole, par-72, 5,970m course on Jl. Cirebon-Cilimus.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "cart_idr": "included",
-          "tax_pct": null
-        },
         "weekday": {
-          "green_fee_idr": null,
+          "green_fee_idr": 320000,
           "guest_fee_idr": null,
-          "member_fee_idr": null,
-          "green_fee_usd": null
+          "member_fee_idr": null
         },
         "weekend": {
-          "green_fee_idr": null,
+          "green_fee_idr": 480000,
           "guest_fee_idr": null,
-          "member_fee_idr": null,
-          "green_fee_usd": null
+          "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "USD-only on PlayGolf.id; IDR approx at 16,250/USD. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "Ciperna(Cirebon) 18H par-72, 5,970m. playgolf.id WD $20 / WE $30 USD (buggy 포함). ~16K 환율 환산 ~Rp 320K/480K. 'Si Aset Negara'(BUMN/국가자산) 분류. IG @royalcirebongolfofficial 또는 +62 231 485 284 문의 권장.",
+        "sources": [
+          "https://playgolf.id/golf_courses/royal-cirebon-golf-country-club/",
+          "https://www.golfpass.com/travel-advisor/courses/38324-royal-cirebon-golf",
+          "https://www.instagram.com/royalcirebongolfofficial/"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "playgolf.id USD rate, IDR estimated",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -12109,7 +12208,30 @@
         "confidence": "low",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": "https://playgolf.id/golf_courses/royal-cirebon-golf-country-club/",
+        "schedule": {
+          "weekday": {
+            "am": 320000,
+            "pm": 320000
+          },
+          "saturday": {
+            "am": 480000,
+            "pm": 480000
+          },
+          "sunday": {
+            "am": 480000,
+            "pm": 480000
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 (playgolf.id USD→IDR 환산)"
+      }
     },
     {
       "id": "ngamplang-garut",
@@ -12128,14 +12250,6 @@
       "website": null,
       "notes": "Operating heritage 9-hole course (since 1912, one of Indonesia's oldest).",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "motorcycle_parking_idr": null,
-          "car_parking_idr": null,
-          "tax_pct": null
-        },
         "weekday": {
           "green_fee_idr": null,
           "guest_fee_idr": null,
@@ -12146,10 +12260,20 @@
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "Heritage 1912 Dutch-colonial course; functions as community recreation. Operating 09:00-16:00. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "콜로니얼 시대 9H 코스(Cilawu, Garut). 일반 방문객 입장료 Rp 30K(또는 무료, 출처별 상이) + 주차 Rp 2-5K. 실제 골프 그린피·장비 대여 가격 비공개. 운영 매일 09:00-16:00. 약 27ha. 27ha 콜로니얼 비공식 운영 특성.",
+        "sources": [
+          "https://gogolf.co.id/en/gogolf-news/ngamplang-flamboyan-golf-course",
+          "https://hargacampur.com/harga-tiket-masuk-ngamplang-garut/",
+          "https://golftimes.id/2024/02/25/keindahan-dan-kisah-dibalik-lapang-golf-flamboyan-ngamplang/"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "입장료만 확인, 그린피 비공개",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -12173,7 +12297,30 @@
         "confidence": "low",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": "https://gogolf.co.id/en/gogolf-news/ngamplang-flamboyan-golf-course",
+        "schedule": {
+          "weekday": {
+            "am": null,
+            "pm": null
+          },
+          "saturday": {
+            "am": null,
+            "pm": null
+          },
+          "sunday": {
+            "am": null,
+            "pm": null
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 — GoGolf 기사 있으나 그린피 비공개, 방문객 입장료 Rp 30K만 확인"
+      }
     },
     {
       "id": "tidar-golf-magelang",
@@ -12192,26 +12339,30 @@
       "website": null,
       "notes": "18-hole par-72 military-affiliated course at Gunung Tidar (Akmil Magelang). Distinct from Borobudur Magelang.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "tax_pct": null
-        },
         "weekday": {
-          "green_fee_idr": null,
+          "green_fee_idr": 200000,
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
         "weekend": {
-          "green_fee_idr": null,
+          "green_fee_idr": 300000,
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "Magelang Bukit Tidar 인접 18H 72ha (Peter Dalkeith Scott 설계 1951 개장). xplorewisata 2026-04 weekday 그린피 Rp 150-300K 범위 — 중간값/상한 추정 사용. 정확한 weekend 차등·캐디·카트 미공개.",
+        "sources": [
+          "https://www.xplorewisata.com/2026/04/daftar-lapangan-golf-jawa-tengah-terbaik.html",
+          "https://www.golflux.com/course/tidar-golf-course/",
+          "https://wanderlog.com/place/details/12695369/tidar-golf-course"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "xplorewisata 2026-04 범위 추정",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -12234,7 +12385,30 @@
         "confidence": "low",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": "https://www.xplorewisata.com/2026/04/daftar-lapangan-golf-jawa-tengah-terbaik.html",
+        "schedule": {
+          "weekday": {
+            "am": 200000,
+            "pm": 200000
+          },
+          "saturday": {
+            "am": 300000,
+            "pm": 300000
+          },
+          "sunday": {
+            "am": 300000,
+            "pm": 300000
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 (xplorewisata 2026-04 범위 추정)"
+      }
     },
     {
       "id": "wijayakusuma-purwokerto",
@@ -12253,28 +12427,30 @@
       "website": null,
       "notes": "Banyumas regency tourism office lists it as operating; 9-hole military-linked course.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "cart_idr": "not included",
-          "tax_pct": null
-        },
         "weekday": {
-          "green_fee_idr": null,
+          "green_fee_idr": 144000,
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
         "weekend": {
-          "green_fee_idr": null,
+          "green_fee_idr": 208000,
           "guest_fee_idr": null,
-          "member_fee_idr": null,
-          "green_fee_usd": null
+          "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "TNI AD Korem 071 Wijayakusuma (Purwokerto). Walking play ~Rp 100k. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "Purwokerto Utara 9H. playgolf.id WD $9 / WE $13 USD; ~16K 환율 환산 Rp 144K/208K. xplorewisata 2026-04 Rp 150-300K 범위와 정합. 캐디·카트 미공개. IG/현장 문의 권장.",
+        "sources": [
+          "https://playgolf.id/golf_courses/padang-golf-wijayakusuma/",
+          "https://www.xplorewisata.com/2026/04/daftar-lapangan-golf-jawa-tengah-terbaik.html",
+          "https://www.hole19golf.com/indonesia/padang-golf-wijayakusuma"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "playgolf.id USD + xplorewisata 검증",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -12298,7 +12474,30 @@
         "confidence": "low",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": "https://playgolf.id/golf_courses/padang-golf-wijayakusuma/",
+        "schedule": {
+          "weekday": {
+            "am": 144000,
+            "pm": 144000
+          },
+          "saturday": {
+            "am": 208000,
+            "pm": 208000
+          },
+          "sunday": {
+            "am": 208000,
+            "pm": 208000
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 (playgolf.id USD→IDR 환산)"
+      }
     },
     {
       "id": "mrica-banjarnegara",
@@ -12317,28 +12516,31 @@
       "website": null,
       "notes": "PLN-owned 18-hole course adjacent to Mrica Reservoir. October 2025 GolfTimes feature.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "cart_idr": "not available (walking/ojek)",
-          "tax_pct": null,
-          "course_buyout_idr": null
-        },
         "weekday": {
-          "green_fee_idr": null,
+          "green_fee_idr": 100000,
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
         "weekend": {
-          "green_fee_idr": null,
+          "green_fee_idr": 304000,
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "PLN Indonesia Power UBP Mrica. Walking-only public course; buyout IDR 3.5M. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "PT PLN Indonesia Power UBP Mrica 운영, 동남아 최장 수력댐 인접. obgolf/golftimes 2025-10 그린피 'mulai Rp 100K' 시작가 확인. playgolf.id WD $16 / WE $19 USD ≈ Rp 256K/304K (참고). 카트 없음 — 현지 ojek 이용. 코스 전세 Rp 3.5M.",
+        "sources": [
+          "https://obgolf.co.id/lapangan-golf-mrica-permata-hijau-di-kawasan-objek-vital-negara/",
+          "https://golftimes.id/2025/10/06/lapangan-golf-mrica-permata-hijau-di-jantung-banjarnegara/",
+          "https://playgolf.id/golf_courses/padang-golf-mrica/",
+          "https://www.instagram.com/banjarnegaragolf/"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "obgolf/golftimes 2025-10 + playgolf.id",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -12362,7 +12564,30 @@
         "confidence": "low",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": "https://playgolf.id/golf_courses/padang-golf-mrica/",
+        "schedule": {
+          "weekday": {
+            "am": 256000,
+            "pm": 256000
+          },
+          "saturday": {
+            "am": 304000,
+            "pm": 304000
+          },
+          "sunday": {
+            "am": 304000,
+            "pm": 304000
+          }
+        },
+        "member_rate_idr": 100000,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 (playgolf.id USD; member_rate은 obgolf 'mulai Rp 100K' 기재)"
+      }
     },
     {
       "id": "pertamina-tritih-cilacap",
@@ -12381,29 +12606,29 @@
       "website": null,
       "notes": "Pertamina-owned 18-hole course in Cilacap, public access.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "cart_idr": "available, not included",
-          "tax_pct": null
-        },
         "weekday": {
-          "green_fee_idr": null,
+          "green_fee_idr": 355000,
           "guest_fee_idr": null,
-          "member_fee_idr": null,
-          "green_fee_usd": null
+          "member_fee_idr": null
         },
         "weekend": {
-          "green_fee_idr": null,
+          "green_fee_idr": 500000,
           "guest_fee_idr": null,
-          "member_fee_idr": null,
-          "green_fee_usd": null
+          "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "Pertamina RU IV Cilacap. USD-only public source. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "Pertamina RU IV Cilacap 직원 club. playgolf.id WD $22 / WE $31 USD (~Rp 355K/500K). 공식 IDR 미공개. 직원 club 성격이라 일반 그린피 정보 제한적.",
+        "sources": [
+          "https://playgolf.id/golf_courses/pertamina-tritih-golf-and-country-club-cilacap/",
+          "https://www.instagram.com/tritihgolf/"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "playgolf.id USD 환산",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -12427,7 +12652,30 @@
         "confidence": "low",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": "https://playgolf.id/golf_courses/pertamina-tritih-golf-and-country-club-cilacap/",
+        "schedule": {
+          "weekday": {
+            "am": 355000,
+            "pm": 355000
+          },
+          "saturday": {
+            "am": 500000,
+            "pm": 500000
+          },
+          "sunday": {
+            "am": 500000,
+            "pm": 500000
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 (playgolf.id USD→IDR 환산)"
+      }
     },
     {
       "id": "adi-soemarmo-solo",
@@ -12446,27 +12694,29 @@
       "website": null,
       "notes": "Air force-linked course at Lanud Adi Soemarmo, Solo. Distinct from Adisutjipto in Yogya.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "cart_idr": "available, not included",
-          "tax_pct": null
-        },
         "weekday": {
-          "green_fee_idr": null,
+          "green_fee_idr": 225000,
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
         "weekend": {
-          "green_fee_idr": null,
+          "green_fee_idr": 275000,
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "TNI AU Lanud Adi Soemarmo (Solo). Adult 9H IDR 300k / child 150k. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "TNI AU Lanud Adi Soemarmo airbase 9H (Boyolali/Solo). playgolf.id WD $14 / WE $17 USD (~Rp 225K/275K). 공식 IDR 미공개. 연락처: 082324973571 (Teny), 08122542006 (Made).",
+        "sources": [
+          "https://playgolf.id/golf_courses/padang-golf-adi-soemarmo/",
+          "https://www.instagram.com/padang_golfsmo/"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "playgolf.id USD 환산",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -12489,7 +12739,30 @@
         "confidence": "low",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": "https://playgolf.id/golf_courses/padang-golf-adi-soemarmo/",
+        "schedule": {
+          "weekday": {
+            "am": 225000,
+            "pm": 225000
+          },
+          "saturday": {
+            "am": 275000,
+            "pm": 275000
+          },
+          "sunday": {
+            "am": 275000,
+            "pm": 275000
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 (playgolf.id USD→IDR 환산)"
+      }
     },
     {
       "id": "black-eagle-bsb-semarang",
@@ -12508,12 +12781,6 @@
       "website": null,
       "notes": "Newly opened (9 holes since 2025, full 18 in March 2026); IDR 300B investment inside BSB City Semarang.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "tax_pct": null
-        },
         "weekday": {
           "green_fee_idr": null,
           "guest_fee_idr": null,
@@ -12524,10 +12791,20 @@
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "2025년 후반 9H 소프트 오픈, 2026.03 18H 그랜드 런칭 예정. 신규 코스로 공식 IDR 요금 미발표. BSB City(Karyadeka 자회사 PT Aman Raga Golf Abadi), 60ha, Rp 300억 투자. IG @blackeagle.golf 또는 081-3331-1818 문의.",
+        "sources": [
+          "https://www.instagram.com/blackeagle.golf/",
+          "https://www.suaramerdeka.com/olahraga/0415959347/black-eagle-golf-course-destinasi-golf-premium-terbaru-di-semarang-telah-dibuka",
+          "https://www.golfpass.com/travel-advisor/courses/43968-black-eagle-golf-course"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "신규 코스, 정식 개장 전 미발표",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -12551,7 +12828,30 @@
         "confidence": "low",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": "https://www.suaramerdeka.com/olahraga/0415959347/black-eagle-golf-course-destinasi-golf-premium-terbaru-di-semarang-telah-dibuka",
+        "schedule": {
+          "weekday": {
+            "am": null,
+            "pm": null
+          },
+          "saturday": {
+            "am": null,
+            "pm": null
+          },
+          "sunday": {
+            "am": null,
+            "pm": null
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 — 신규 코스, 가격 미발표"
+      }
     },
     {
       "id": "ahmad-yani-surabaya",
@@ -12570,28 +12870,30 @@
       "website": null,
       "notes": "Surabaya's oldest course (1898), 18-hole par-72 cultural-heritage site recently revitalized as 'Yani Golf Reborn'.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "caddy_idr": "150,000-200,000 separate",
-          "cart_idr": "not available (walking only)",
-          "tax_pct": null
-        },
         "weekday": {
-          "green_fee_idr": null,
+          "green_fee_idr": 200000,
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
         "weekend": {
-          "green_fee_idr": null,
+          "green_fee_idr": 250000,
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "Surabaya's oldest course (1898), revitalized as 'Yani Golf Reborn'. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": 175000,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "GoGolf 페이지 기준: WD 9H Rp 150K / 18H Rp 200K, WE 9H Rp 200K / 18H Rp 250K. Caddy Rp 150-200K 별도. Walking course (cart 없음). Yani Golf Reborn 2021년 management 변경 후 운영.",
+        "sources": [
+          "https://gogolf.co.id/en/golf-course/ahmad-yani-golf-club-surabaya",
+          "https://www.instagram.com/yanigolf_surabaya/",
+          "https://www.kisekii.com/yani-golf-lapangan-golf-tertua-di-surabaya/"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "GoGolf 2026 검증",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -12631,15 +12933,12 @@
             "pm": 250000
           }
         },
+        "member_rate_idr": null,
         "ancillary": {
           "caddy_idr": 175000,
           "cart_idr": null
         },
-        "member_rate_idr": null,
-        "notes": "18H walking; caddy 150-200k",
-        "last_verified": "2026-04-30",
-        "confidence": "low",
-        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
+        "disclaimer": "참고용 비공식 가격 (cart 없음, walking only)"
       },
       "financials": {}
     },
@@ -12682,7 +12981,7 @@
         "weekday": {
           "green_fee_idr": 237500,
           "guest_fee_idr": 237500,
-          "member_fee_idr": null
+          "member_fee_idr": 237500
         },
         "weekend": {
           "green_fee_idr": null,
@@ -12692,7 +12991,7 @@
         "sources": [
           "https://pakuwongolf.com/"
         ],
-        "notes": "Pakuwon Group, night golf signature. Weekend uplift not separately published.",
+        "notes": "Pakuwon Group, night golf signature. Weekend uplift not separately published. | GoGolf 추가 정보: 18H Rp 475K/2명(=1인 Rp 237.5K, 캐디 포함, par-3 night golf 운영). 9H night Rp 400K/2명. WD/WE 분리 미공개.",
         "confidence": "medium",
         "last_verified": "2026-04-30"
       },
@@ -12723,27 +13022,24 @@
         "source_url": "https://gogolf.co.id/en/golf-course/pakuwon-golf-family-club",
         "schedule": {
           "weekday": {
-            "am": 475000,
-            "pm": 475000
+            "am": null,
+            "pm": null
           },
           "saturday": {
-            "am": 475000,
-            "pm": 475000
+            "am": null,
+            "pm": null
           },
           "sunday": {
-            "am": 475000,
-            "pm": 475000
+            "am": null,
+            "pm": null
           }
         },
+        "member_rate_idr": 237500,
         "ancillary": {
           "caddy_idr": null,
           "cart_idr": null
         },
-        "member_rate_idr": null,
-        "notes": "475k for 2 players (per pair); range 500k-1M",
-        "last_verified": "2026-04-30",
-        "confidence": "low",
-        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
+        "disclaimer": "참고용 비공식 가격 (par-3, 1인 Rp 237.5K @ 2-player package, caddy 포함)"
       },
       "financials": {
         "idx_ticker": "PWON",
@@ -12769,29 +13065,29 @@
       "website": null,
       "notes": "TNI-AU course at Iswahjudi Air Base; April 2024 Fun Golf Tournament confirms operation.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "cart_idr": "available, not included",
-          "tax_pct": null
-        },
         "weekday": {
-          "green_fee_idr": null,
+          "green_fee_idr": 240000,
           "guest_fee_idr": null,
-          "member_fee_idr": null,
-          "green_fee_usd": null
+          "member_fee_idr": null
         },
         "weekend": {
-          "green_fee_idr": null,
+          "green_fee_idr": 405000,
           "guest_fee_idr": null,
-          "member_fee_idr": null,
-          "green_fee_usd": null
+          "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "TNI AU Lanud Iswahjudi. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "TNI AU Lanud Iswahjudi 9H (Maospati, Magetan). 2024 TIMES Magetan: 일반 9H Rp 120K (= 18H Rp 240K). playgolf.id별도 WD $16 / WE $25 USD (~Rp 260K/405K). 공식 weekend IDR 미확인 — playgolf.id 환산값 사용.",
+        "sources": [
+          "https://magetan.times.co.id/news/berita/c2megfcb2r/Berfoto-dengan-Pesawat-F-16-hingga-Coaching-Sensasi-Danlanud-Iswahjudi-Golf-Championship-2024",
+          "https://playgolf.id/golf_courses/lapangan-golf-lanud-iswahyudi/"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "2024 TIMES Magetan + playgolf.id",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -12815,7 +13111,30 @@
         "confidence": "low",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": "https://playgolf.id/golf_courses/lapangan-golf-lanud-iswahyudi/",
+        "schedule": {
+          "weekday": {
+            "am": 260000,
+            "pm": 260000
+          },
+          "saturday": {
+            "am": 405000,
+            "pm": 405000
+          },
+          "sunday": {
+            "am": 405000,
+            "pm": 405000
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 (playgolf.id USD→IDR 환산)"
+      }
     },
     {
       "id": "dhoho-kediri",
@@ -12834,12 +13153,6 @@
       "website": null,
       "notes": "Front 9 open since autumn 2025; back 9 opening Q2 2026. Brand-new mountain destination near Dhoho Kediri International Airport.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "tax_pct": null
-        },
         "weekday": {
           "green_fee_idr": null,
           "guest_fee_idr": null,
@@ -12850,10 +13163,20 @@
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "Surya Dhoho Investama (Susilo Wonowidjojo / Gudang Garam group). 2025년 가을 front 9 오픈, 2026.Q2 back 9 + 27홀 완공 예정. Curley-Wagner Golf Design. 그랜드 오픈 직전이라 공식 IDR 요금 미발표.",
+        "sources": [
+          "https://asiagolfjourney.com/dhoho-surya-golf-course-opens-in-kediri-indonesias-newest-mountain-golf-destination/",
+          "https://www.firstcallgolf.com/design-notes/feature/2026-04-26/brian-curley-debuts-indonesias-dhoho",
+          "https://thegolfwire.com/brian-curley-dhoho-java-indonesia"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "신규 코스, 미공개",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -12877,7 +13200,30 @@
         "confidence": "low",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": "https://asiagolfjourney.com/dhoho-surya-golf-course-opens-in-kediri-indonesias-newest-mountain-golf-destination/",
+        "schedule": {
+          "weekday": {
+            "am": null,
+            "pm": null
+          },
+          "saturday": {
+            "am": null,
+            "pm": null
+          },
+          "sunday": {
+            "am": null,
+            "pm": null
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 — 2026.Q2 27홀 완공 예정 신규 코스"
+      }
     },
     {
       "id": "arun-lhokseumawe",
@@ -12896,29 +13242,30 @@
       "website": null,
       "notes": "Built 1978 in former PT Arun NGL community site, par 72; daily 08:00-18:00.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "cart_idr": "not included",
-          "tax_pct": null
-        },
         "weekday": {
-          "green_fee_idr": null,
+          "green_fee_idr": 200000,
           "guest_fee_idr": null,
-          "member_fee_idr": null,
-          "green_fee_usd": null
+          "member_fee_idr": null
         },
         "weekend": {
-          "green_fee_idr": null,
+          "green_fee_idr": 250000,
           "guest_fee_idr": null,
-          "member_fee_idr": null,
-          "green_fee_usd": null
+          "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "Pertamina/Perta Arun Gas. Built 1978, par 72. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "PT Arun NGL/Pertamina LNG legacy 18H par 72. playgolf.id WD $13 / WE $16 USD (~Rp 200K/250K). 공식 IDR rate-card 미공개; 직접 문의 필요.",
+        "sources": [
+          "https://playgolf.id/golf_courses/arun-golf-club/",
+          "https://www.golflux.com/course/arun-golf-club/",
+          "https://rri.co.id/daerah/1099544/destinasi-wisata-lapangan-golf-kini-hadir-di-lhokseumawe"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "playgolf.id USD 환산",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -12942,7 +13289,30 @@
         "confidence": "medium",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": "https://playgolf.id/golf_courses/arun-golf-club/",
+        "schedule": {
+          "weekday": {
+            "am": 200000,
+            "pm": 200000
+          },
+          "saturday": {
+            "am": 250000,
+            "pm": 250000
+          },
+          "sunday": {
+            "am": 250000,
+            "pm": 250000
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 (playgolf.id USD→IDR 환산, buggy 미포함)"
+      }
     },
     {
       "id": "lhoknga-aceh",
@@ -12961,26 +13331,30 @@
       "website": null,
       "notes": "Rebuilt post-tsunami in 2016; hosted PON XXI 2024 woodball events; 9 holes operating, additional 9 under reconstruction.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "tax_pct": null
-        },
         "weekday": {
-          "green_fee_idr": null,
+          "green_fee_idr": 250000,
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
         "weekend": {
-          "green_fee_idr": null,
+          "green_fee_idr": 295000,
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "9H post-tsunami 복원 코스(Lampuuk-Lhoknga 해변). 'Seulawah'/'Tsunami Memorial'로도 표기. playgolf.id WD $16 / WE $19 USD (~Rp 250K/295K). buggy 없음, walking only. FB 'Lhoknga Golf Club' 문의.",
+        "sources": [
+          "https://playgolf.id/golf_courses/lhoknga-golf-course/",
+          "https://www.golfpass.com/travel-advisor/courses/38343-tsunami-memorial-course",
+          "https://www.safariwisata.co.id/lapangan-golf-seulawah/"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "playgolf.id USD 환산",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -13004,7 +13378,30 @@
         "confidence": "low",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": "https://playgolf.id/golf_courses/lhoknga-golf-course/",
+        "schedule": {
+          "weekday": {
+            "am": 250000,
+            "pm": 250000
+          },
+          "saturday": {
+            "am": 295000,
+            "pm": 295000
+          },
+          "sunday": {
+            "am": 295000,
+            "pm": 295000
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 (playgolf.id USD→IDR 환산, walking only)"
+      }
     },
     {
       "id": "inalum-tanjung-gading",
@@ -13023,29 +13420,30 @@
       "website": null,
       "notes": "9-hole course at Inalum employee residential complex in Tanjung Gading near Kuala Tanjung smelter.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "cart_idr": "not included",
-          "tax_pct": null
-        },
         "weekday": {
-          "green_fee_idr": null,
+          "green_fee_idr": 250000,
           "guest_fee_idr": null,
-          "member_fee_idr": null,
-          "green_fee_usd": null
+          "member_fee_idr": null
         },
         "weekend": {
-          "green_fee_idr": null,
+          "green_fee_idr": 295000,
           "guest_fee_idr": null,
-          "member_fee_idr": null,
-          "green_fee_usd": null
+          "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "PT Inalum (MIND ID SOE) Tanjung Gading employee welfare facility. Walk-ins permitted. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "PT Inalum(BUMN 알루미늄) 직원 복지시설 9H par 36 (Sipare-Pare). playgolf.id WD $16 / WE $19 USD (~Rp 250K/295K). PT Inalum 'Public Facilities' 페이지에 등재. Walking only.",
+        "sources": [
+          "https://playgolf.id/golf_courses/inalum-golf-course/",
+          "https://www.inalum.id/en/career/employee-walfare-facilities",
+          "https://www.golflux.com/course/inalum-golf-club/"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "playgolf.id USD 환산",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -13069,7 +13467,30 @@
         "confidence": "medium",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": "https://playgolf.id/golf_courses/inalum-golf-course/",
+        "schedule": {
+          "weekday": {
+            "am": 250000,
+            "pm": 250000
+          },
+          "saturday": {
+            "am": 295000,
+            "pm": 295000
+          },
+          "sunday": {
+            "am": 295000,
+            "pm": 295000
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 (playgolf.id USD; BUMN 직원 복지시설)"
+      }
     },
     {
       "id": "inalum-paritohan",
@@ -13088,29 +13509,29 @@
       "website": null,
       "notes": "Separate 9-hole course at Paritohan housing complex serving Inalum hydroelectric plant employees.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "cart_idr": "not included",
-          "tax_pct": null
-        },
         "weekday": {
-          "green_fee_idr": null,
+          "green_fee_idr": 680000,
           "guest_fee_idr": null,
-          "member_fee_idr": null,
-          "green_fee_usd": null
+          "member_fee_idr": null
         },
         "weekend": {
-          "green_fee_idr": null,
+          "green_fee_idr": 975000,
           "guest_fee_idr": null,
-          "member_fee_idr": null,
-          "green_fee_usd": null
+          "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "PT Inalum hydroelectric plant Paritohan. Higher rate than Tanjung Gading reflects scenic setting. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "PT Inalum Lake Toba camp 9H par 36 (Toba Samosir, Porsea). 고지대/리조트 스타일로 자매 Tanjung Gading보다 비쌈. playgolf.id WD $44 / WE $63 USD (~Rp 680K/975K). buggy 별도 요금.",
+        "sources": [
+          "https://playgolf.id/golf_courses/inalum-golf-club-paritohan-course/",
+          "https://www.golfpass.com/travel-advisor/courses/38352-inalum-golf-club"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "playgolf.id USD 환산",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -13134,7 +13555,30 @@
         "confidence": "medium",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": "https://playgolf.id/golf_courses/inalum-golf-club-paritohan-course/",
+        "schedule": {
+          "weekday": {
+            "am": 680000,
+            "pm": 680000
+          },
+          "saturday": {
+            "am": 975000,
+            "pm": 975000
+          },
+          "sunday": {
+            "am": 975000,
+            "pm": 975000
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 (playgolf.id USD; 고지대 리조트, buggy 별도)"
+      }
     },
     {
       "id": "ptpn-iv-pabatu",
@@ -13153,12 +13597,6 @@
       "website": null,
       "notes": "Active palm-oil-plantation-owned course; opened to public as recreational destination.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "tax_pct": null
-        },
         "weekday": {
           "green_fee_idr": null,
           "guest_fee_idr": null,
@@ -13169,10 +13607,19 @@
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "PTPN IV Kebun Pabatu(BUMN 팜오일) plantation 코스(Penonggol, Tebing Tinggi 남부). 직원 비공식 시설로 공식 그린피 구조 없음. 약 800m airstrip 동시 운영. 어떤 부킹 플랫폼에도 미등재.",
+        "sources": [
+          "https://www.trip.com/travel-guide/attraction/penonggol/lapangan-golf-ptpn-iv-pabatu-144860067",
+          "https://idalamat.com/alamat/740485/lapangan-golf-ptpn-iv-pabatu-serdang-bedagai-sumatera-utara"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "공식 가격 미공개, 부킹 플랫폼 미등재",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -13195,7 +13642,30 @@
         "confidence": "low",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": null,
+        "schedule": {
+          "weekday": {
+            "am": null,
+            "pm": null
+          },
+          "saturday": {
+            "am": null,
+            "pm": null
+          },
+          "sunday": {
+            "am": null,
+            "pm": null
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 — GoGolf/playgolf.id/golflan 모두 미등재"
+      }
     },
     {
       "id": "tenera-bah-jambi",
@@ -13214,26 +13684,29 @@
       "website": null,
       "notes": "18-hole SOE plantation course at PTPN IV Bah Jambi near Pematangsiantar.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "tax_pct": null
-        },
         "weekday": {
-          "green_fee_idr": null,
+          "green_fee_idr": 200000,
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
         "weekend": {
-          "green_fee_idr": null,
+          "green_fee_idr": 250000,
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "PTPN IV Bah Jambi 팜오일 estate 18H (Simalungun). playgolf.id 'Lapangan Golf Bah Jambi' WD $13 / WE $16 USD (~Rp 200K/250K). estate 운영. 081371086893 또는 FB 'Lapangan Golf Bah Jambi' 문의.",
+        "sources": [
+          "https://playgolf.id/golf_courses/lapangan-golf-bah-jambi/",
+          "https://www.golfpass.com/travel-advisor/courses/38351-tenera-golf-club"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "playgolf.id USD 환산",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -13256,7 +13729,30 @@
         "confidence": "low",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": "https://playgolf.id/golf_courses/lapangan-golf-bah-jambi/",
+        "schedule": {
+          "weekday": {
+            "am": 200000,
+            "pm": 200000
+          },
+          "saturday": {
+            "am": 250000,
+            "pm": 250000
+          },
+          "sunday": {
+            "am": 250000,
+            "pm": 250000
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 (playgolf.id USD; buggy 별도)"
+      }
     },
     {
       "id": "anai-resort",
@@ -13275,13 +13771,6 @@
       "website": "https://ws-tourism.com/anai-golf-mountain-resort/",
       "notes": "Par-73, 6,270-yard mountain forest course at base of Mount Tandikat; resort attached.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "cart_idr": null,
-          "tax_pct": null
-        },
         "weekday": {
           "green_fee_idr": null,
           "guest_fee_idr": null,
@@ -13292,10 +13781,21 @@
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "Thomson/Wolveridge/Perret 1993 design. Bookings via golflan.com. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "Lembah Anai Padang Pariaman 18H par 73 ~6,270m, Thomson-Perret/Wolveridge 1993. golflan.com에 부킹 등재되었으나 가격 추출 실패. 직접 문의 +62-751-684486/684230 또는 anairesort@yahoo.com. cart/캐디 가용(가격 미공개).",
+        "sources": [
+          "https://golflan.com/id/sumatera-barat/anai-golf-resort-/book",
+          "https://www.golfshake.com/course/view/21397/Anai_Golf_Mountain_Resort.html",
+          "https://www.golflux.com/course/anai-golf-and-mountain-resort/",
+          "https://www.golfpass.com/travel-advisor/courses/38316-anai-golf-mountain-resort"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "공식 사이트 가격 미공개, 직접 문의 필요",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -13318,7 +13818,30 @@
         "confidence": "low",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": "https://golflan.com/id/sumatera-barat/anai-golf-resort-/book",
+        "schedule": {
+          "weekday": {
+            "am": null,
+            "pm": null
+          },
+          "saturday": {
+            "am": null,
+            "pm": null
+          },
+          "sunday": {
+            "am": null,
+            "pm": null
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 — golflan.com 등재되었으나 'save up to 70%' 광고만, 실제 가격 추출 불가"
+      }
     },
     {
       "id": "wirabraja-padang",
@@ -13337,27 +13860,31 @@
       "website": null,
       "notes": "18-hole hillside course in Lubuk Kilangan ~30 min from central Padang. Wirabraja branding linked to TNI AD Kodam.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "cart_idr": "separate",
-          "tax_pct": null
-        },
         "weekday": {
-          "green_fee_idr": null,
+          "green_fee_idr": 250000,
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
         "weekend": {
-          "green_fee_idr": null,
+          "green_fee_idr": 300000,
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "TNI AD Korem 032 Wirabraja. Heavily subsidized public-access military course. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "TNI-AD Korem 032/Wirabraja(Ulu Gadut, Padang) 18H. onenet/onenewssatu.com 2025-05 공식 발표: 18H WD Rp 250K / WE Rp 300K, 9H WD Rp 200K / WE Rp 250K, 대안 WD Rp 180K (18H) / Rp 150K (9H). 입장료 Rp 10K/인. 장비 임대 Rp 250K. 연 회원권 Rp 12M (1년 unlimited, cart 별도). 2026 갱신 미발견.",
+        "sources": [
+          "https://www.onenet.co.id/2025/05/lapangan-golf-wirabraja-ulu-gadut-siap.html",
+          "https://www.onenewssatu.com/2025/05/nikmati-akhir-pekan-di-lapangan-golf.html",
+          "https://westsumatra360.com/akhir-pekan-menyenangkan-dengan-bermain-golf-di-kota-padang/",
+          "https://www.instagram.com/golf.wirabrajapadang/"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "onenet/onenewssatu 2025-05 공식 발표",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -13391,7 +13918,30 @@
         "confidence": "high",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": "https://www.onenet.co.id/2025/05/lapangan-golf-wirabraja-ulu-gadut-siap.html",
+        "schedule": {
+          "weekday": {
+            "am": 250000,
+            "pm": 250000
+          },
+          "saturday": {
+            "am": 300000,
+            "pm": 300000
+          },
+          "sunday": {
+            "am": 300000,
+            "pm": 300000
+          }
+        },
+        "member_rate_idr": 12000000,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 (onenet 2025-05 공식; 연 회원권 Rp 12M)"
+      }
     },
     {
       "id": "lanud-sutan-sjahrir",
@@ -13410,12 +13960,6 @@
       "website": null,
       "notes": "TNI AU airbase course; new Par-3 practice range opened July 2025.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "tax_pct": null
-        },
         "weekday": {
           "green_fee_idr": null,
           "guest_fee_idr": null,
@@ -13426,10 +13970,20 @@
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "TNI AU Lanud Sutan Sjahrir. NOT a full course — Par-3 practice range only, opened July 2025. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "TNI AU Lanud Sutan Sjahrir Tabing(Padang) — Par-3 practice/driving range only(정규 9홀 그린피 미발표). West Sumatra360 2024-11 검증: 100구 Rp 60K, 클럽 1자루 임대 Rp 25K, 코칭 Rp 100K. 일반 그린피 정보 없음. 연락처 081270338799.",
+        "sources": [
+          "https://westsumatra360.com/akhir-pekan-menyenangkan-dengan-bermain-golf-di-kota-padang/",
+          "https://tni-au.mil.id/berita/detail/par-3-practice-range-tabing-driving-range-resmi-dibuka-wujud-komitmen-komandan-lanud-sutan-sjahrir-majukan-olahraga-golf-sumbar",
+          "https://www.instagram.com/tabing_driving_range/"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "Par-3 driving range only",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -13452,7 +14006,30 @@
         "confidence": "high",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": null,
+        "schedule": {
+          "weekday": {
+            "am": null,
+            "pm": null
+          },
+          "saturday": {
+            "am": null,
+            "pm": null
+          },
+          "sunday": {
+            "am": null,
+            "pm": null
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 — Driving range only (Rp 60K/100구, Rp 25K/스틱, Rp 100K 코칭)"
+      }
     },
     {
       "id": "phr-dumai",
@@ -13471,12 +14048,6 @@
       "website": null,
       "notes": "Former Chevron Dumai company course; transitioned to PHR/Pertamina post-2021. Distinct from Pekanbaru Rumbai PHR course.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "tax_pct": null
-        },
         "weekday": {
           "green_fee_idr": null,
           "guest_fee_idr": null,
@@ -13487,10 +14058,19 @@
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "PHR Dumai(ex-Chevron, Bukit Timah). 모든 aggregator에 가격 비공개. 내부 Pertamina/PHR 직원 시설로 외부 방문은 sponsorship 필요. Pertamina oilfield 평균(Rp 250-500K) 추정 (미검증).",
+        "sources": [
+          "https://www.golflux.com/course/chevron-dumai-golf-course/",
+          "https://www.golfpass.com/travel-advisor/courses/38353-chevron-dumai-golf-course"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "Pertamina 내부 시설, 외부 비공개",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -13513,7 +14093,30 @@
         "confidence": "low",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": null,
+        "schedule": {
+          "weekday": {
+            "am": null,
+            "pm": null
+          },
+          "saturday": {
+            "am": null,
+            "pm": null
+          },
+          "sunday": {
+            "am": null,
+            "pm": null
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 — Pertamina 내부 시설로 미등재"
+      }
     },
     {
       "id": "simpang-tiga-pekanbaru",
@@ -13532,29 +14135,29 @@
       "website": null,
       "notes": "9-hole air force base course at Lanud Roesmin Nurjadin in central Pekanbaru. Distinct from Labersa and PHR Rumbai.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "cart_idr": "included",
-          "tax_pct": null
-        },
         "weekday": {
-          "green_fee_idr": null,
+          "green_fee_idr": 880000,
           "guest_fee_idr": null,
-          "member_fee_idr": null,
-          "green_fee_usd": null
+          "member_fee_idr": null
         },
         "weekend": {
-          "green_fee_idr": null,
+          "green_fee_idr": 1008000,
           "guest_fee_idr": null,
-          "member_fee_idr": null,
-          "green_fee_usd": null
+          "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "TNI AU Lanud Roesmin Nurjadin (Pekanbaru). Visitors accepted at posted USD rates. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "Pagosita/Simpang Tiga (TNI AU Lanud Roesmin Nurjadin Pekanbaru) 9H par 36 ~3,135yds. playgolf.id WD $55 / WE $63 USD (buggy 포함). ~16K 환율 ~Rp 880K/1.0M. 캐디 별도 미공개. 0761-61456 ext 9006.",
+        "sources": [
+          "https://playgolf.id/golf_courses/lapangan-golf-simpang-tiga/",
+          "https://www.golfpass.com/travel-advisor/courses/38357-simpang-tiga-golf-club"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "playgolf.id USD 환산 (buggy 포함)",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -13577,7 +14180,30 @@
         "confidence": "low",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": "https://playgolf.id/golf_courses/lapangan-golf-simpang-tiga/",
+        "schedule": {
+          "weekday": {
+            "am": 880000,
+            "pm": 880000
+          },
+          "saturday": {
+            "am": 1008000,
+            "pm": 1008000
+          },
+          "sunday": {
+            "am": 1008000,
+            "pm": 1008000
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 (playgolf.id USD; buggy 포함)"
+      }
     },
     {
       "id": "perkumpulan-golf-jambi",
@@ -13596,12 +14222,6 @@
       "website": null,
       "notes": "Built 1978; located Jl. Jend. A. Thalib, Pematang Sulur, Telanaipura.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "tax_pct": null
-        },
         "weekday": {
           "green_fee_idr": null,
           "guest_fee_idr": null,
@@ -13612,10 +14232,19 @@
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "Perkumpulan Golf Jambi/Telanaipura(1978년 설립 9H semi-private). 캐디·buggy·드라이빙 레인지 가용. 리뷰어 'rental price relatively cheap' 정성 평가만, 정량 IDR 미공개. +62-741-22267.",
+        "sources": [
+          "https://playgolf.id/golf_courses/telanaipura-golf-club-jambi/",
+          "https://www.golfpass.com/travel-advisor/courses/38341-perkumpulan-golf-jambi"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "가격 비공개",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -13638,7 +14267,30 @@
         "confidence": "low",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": "https://playgolf.id/golf_courses/telanaipura-golf-club-jambi/",
+        "schedule": {
+          "weekday": {
+            "am": null,
+            "pm": null
+          },
+          "saturday": {
+            "am": null,
+            "pm": null
+          },
+          "sunday": {
+            "am": null,
+            "pm": null
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 — playgolf.id 등재되었으나 가격 비공개"
+      }
     },
     {
       "id": "bajubang-jambi",
@@ -13657,12 +14309,6 @@
       "website": null,
       "notes": "Historic Dutch-era oil-camp course (~1930s); 18 holes; in active community use.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "tax_pct": null
-        },
         "weekday": {
           "green_fee_idr": null,
           "guest_fee_idr": null,
@@ -13673,10 +14319,19 @@
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "Pertamina EP Bajubang Field(1930년대 네덜란드 oil camp 출신) 18H. 운영 8:00-18:00. Hole19에 'no reviews yet'. Pertamina 직원/community 시설로 외부는 sponsorship 필요. 일반 가격 미공개.",
+        "sources": [
+          "https://www.hole19golf.com/courses/bajubang-golf-course",
+          "https://us.trip.com/travel-guide/attraction/bajubang/bajubang-golf-course-144862698/"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "Pertamina EP 사내 시설",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -13699,7 +14354,30 @@
         "confidence": "low",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": null,
+        "schedule": {
+          "weekday": {
+            "am": null,
+            "pm": null
+          },
+          "saturday": {
+            "am": null,
+            "pm": null
+          },
+          "sunday": {
+            "am": null,
+            "pm": null
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 — Pertamina EP 사내 시설로 미등재"
+      }
     },
     {
       "id": "merah-putih-bengkulu",
@@ -13718,12 +14396,6 @@
       "website": null,
       "notes": "Newly inaugurated 2025-07-05 by Governor Helmi Hasan. 60-hectare facility under Polda Bengkulu.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "tax_pct": null
-        },
         "weekday": {
           "green_fee_idr": null,
           "guest_fee_idr": null,
@@ -13734,10 +14406,19 @@
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "Polda Bengkulu 60ha 골프장(2025-07-05 개장, Gov Helmi Hasan). 현재 9H, 18H 확장 중. IG @merah_putih_golfclubbengkulu 'Pricelist Driving Golf' 배너(2025-05) 있으나 이미지 텍스트 추출 불가. ~50명 현지 캐디 고용.",
+        "sources": [
+          "https://www.instagram.com/merah_putih_golfclubbengkulu/",
+          "https://golftimes.id/2025/07/05/lapangan-golf-merah-putih-diresmikan-bengkulu-punya-ikon-baru-wisata-olahraga/"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "2025-07 신규 개장, IG 가격 이미지 추출 불가",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -13761,7 +14442,30 @@
         "confidence": "low",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": "https://www.instagram.com/merah_putih_golfclubbengkulu/",
+        "schedule": {
+          "weekday": {
+            "am": null,
+            "pm": null
+          },
+          "saturday": {
+            "am": null,
+            "pm": null
+          },
+          "sunday": {
+            "am": null,
+            "pm": null
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 — 2025-07 신규 개장, 정확한 가격 IG 이미지로만 게시"
+      }
     },
     {
       "id": "agromuko-mukomuko",
@@ -13780,12 +14484,6 @@
       "website": null,
       "notes": "18-hole par-72 course on Agro Muko palm/rubber estate at Teruntung, Mukomuko. Length 5,467 yards.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "tax_pct": null
-        },
         "weekday": {
           "green_fee_idr": null,
           "guest_fee_idr": null,
@@ -13796,10 +14494,19 @@
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "PT Agro Muko/SIPEF group 팜-고무 estate 18H par 72 ~5,467yds. +62 812 7152 0127. estate 직원 우선 시설로 외부 방문 sponsorship 필요. estate 코스 평균(Rp 200-400K) 추정 (미검증).",
+        "sources": [
+          "https://www.hole19golf.com/courses/agro-muko-golf-course",
+          "https://www.golfpass.com/travel-advisor/courses/42533-lapangan-golf"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "estate 사내 시설",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -13822,7 +14529,30 @@
         "confidence": "low",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": null,
+        "schedule": {
+          "weekday": {
+            "am": null,
+            "pm": null
+          },
+          "saturday": {
+            "am": null,
+            "pm": null
+          },
+          "sunday": {
+            "am": null,
+            "pm": null
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 — SIPEF estate 사내 시설로 미등재"
+      }
     },
     {
       "id": "pertamina-pendopo",
@@ -13841,12 +14571,6 @@
       "website": null,
       "notes": "Historic 18-hole 60-ha hilly course at PT Pertamina Pendopo oil field.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "tax_pct": null
-        },
         "weekday": {
           "green_fee_idr": null,
           "guest_fee_idr": null,
@@ -13857,10 +14581,20 @@
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "Pertamina EP Asset 2 PALI Regency 18H 60ha hilly (1960년 설립). Bupati PALI Cup 개최(상금 Rp 50-100M). 자매 Prabumulih(~Rp 150K GF + Rp 250K caddy 2025 리뷰) 추정 동급. 일반 IDR 가격 미공개.",
+        "sources": [
+          "https://www.hole19golf.com/courses/lapangan-golf-pt-pertamina-pendopo",
+          "https://giwang.sumselprov.go.id/destination/detail/271",
+          "https://kabarserasan.com/2016/05/16/lapangan-golf-pertamina-pendopo-di-kenal-sampai-ke-manca-negara/"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "Pertamina EP 사내, 일반 가격 미공개",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -13883,7 +14617,30 @@
         "confidence": "low",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": null,
+        "schedule": {
+          "weekday": {
+            "am": null,
+            "pm": null
+          },
+          "saturday": {
+            "am": null,
+            "pm": null
+          },
+          "sunday": {
+            "am": null,
+            "pm": null
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 — Pertamina EP 사내, 자매 Prabumulih(Rp 400K total) 추정 가능"
+      }
     },
     {
       "id": "pertamina-prabumulih",
@@ -13902,15 +14659,8 @@
       "website": null,
       "notes": "18-hole Pertamina-owned course at Jl. Jend. Sudirman, Prabumulih.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "caddy_idr": null,
-          "tax_pct": null
-        },
         "weekday": {
-          "green_fee_idr": null,
+          "green_fee_idr": 150000,
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
@@ -13919,10 +14669,19 @@
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "Pertamina EP Asset 2 Prabumulih. Hole19 user review June 2025: GF Rp 150k + caddy Rp 250k. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": 250000,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "Pertamina EP Asset 2 (Patih Galung, Prabumulih) 18H. Hole19 사용자 리뷰(2025-06): 그린피 Rp 150K + 캐디 Rp 250K = total Rp 400K 'reasonable'. 단일 데이터포인트. WE 별도 미공개. 외부 방문 sponsorship 필요.",
+        "sources": [
+          "https://www.hole19golf.com/courses/lapangan-golf-pt-pertamina-prabumulih/reviews",
+          "https://www.hole19golf.com/courses/lapangan-golf-pt-pertamina-prabumulih"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "Hole19 사용자 리뷰 2025-06 단일 데이터",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -13945,7 +14704,30 @@
         "confidence": "medium",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": "https://www.hole19golf.com/courses/lapangan-golf-pt-pertamina-prabumulih/reviews",
+        "schedule": {
+          "weekday": {
+            "am": 150000,
+            "pm": 150000
+          },
+          "saturday": {
+            "am": null,
+            "pm": null
+          },
+          "sunday": {
+            "am": null,
+            "pm": null
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": 250000,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 (Hole19 2025-06 사용자 리뷰; WE 미공개)"
+      }
     },
     {
       "id": "pusri-palembang",
@@ -13964,12 +14746,6 @@
       "website": null,
       "notes": "Pusri company course at Pusri Palembang complex on Sungai Musi.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "tax_pct": null
-        },
         "weekday": {
           "green_fee_idr": null,
           "guest_fee_idr": null,
@@ -13980,10 +14756,19 @@
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "PT Pupuk Sriwidjaja Palembang(BUMN) Patra Jaya 사내 코스. 공시 rate-card 없음. Pusri 직원/임원/초청자 우선이며 외부는 멤버 introduction 필요. Palembang 일반 그린피 평균 Rp 100K+ 캐디/카트 Rp 100-200K 참고.",
+        "sources": [
+          "https://stargirl.data.blog/2022/05/10/golf-course-patra-jaya-spot-instagramable-in-plaju/",
+          "https://gogolf.co.id/en/gogolf-news/how-much-does-it-cost-to-play-golf-in-indonesia"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "Pusri 사내 시설",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -14006,7 +14791,30 @@
         "confidence": "low",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": null,
+        "schedule": {
+          "weekday": {
+            "am": null,
+            "pm": null
+          },
+          "saturday": {
+            "am": null,
+            "pm": null
+          },
+          "sunday": {
+            "am": null,
+            "pm": null
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 — GoGolf 미등재 (Pusri 사내 시설)"
+      }
     },
     {
       "id": "bagus-kuning-plaju",
@@ -14025,27 +14833,30 @@
       "website": null,
       "notes": "9-hole course in Plaju district associated with Pertamina refinery community.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "caddy_idr": null,
-          "tax_pct": null
-        },
         "weekday": {
-          "green_fee_idr": null,
+          "green_fee_idr": 150000,
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
         "weekend": {
-          "green_fee_idr": null,
+          "green_fee_idr": 250000,
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "Pertamina RU III Plaju refinery course. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": 50000,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "9H Pertamina RU III Plaju 운영, 매일 06:00-18:00. AntoRij Palembang + playgolf.id 교차 검증: WD Rp 150K, WE Rp 250K, 캐디 Rp 50K. Walking course (cart 없음). Pertamina 직원 보조요금 별도. 2022-2024 가격 유지 가정.",
+        "sources": [
+          "https://www.antorij.com/249/62/26/lapangan-golf-di-kota-palembang.htm",
+          "https://playgolf.id/golf_courses/bagus-kuning-golf-course/",
+          "https://www.instagram.com/baguskuning.golfcourse/"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "AntoRij + playgolf.id 교차 검증",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -14068,7 +14879,30 @@
         "confidence": "medium",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": "https://playgolf.id/golf_courses/bagus-kuning-golf-course/",
+        "schedule": {
+          "weekday": {
+            "am": 150000,
+            "pm": 150000
+          },
+          "saturday": {
+            "am": 250000,
+            "pm": 250000
+          },
+          "sunday": {
+            "am": 250000,
+            "pm": 250000
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": 50000,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 (playgolf.id USD $9/$13 환산)"
+      }
     },
     {
       "id": "bukit-intan-pangkalpinang",
@@ -14087,30 +14921,30 @@
       "website": null,
       "notes": "18-hole tin-mining-SOE course on Bukit Girimaya hills, 10 min from Depati Amir Airport.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "caddy_idr": "included",
-          "cart_idr": "included",
-          "insurance_idr": "included",
-          "tax_pct": null,
-          "tax_included": true
-        },
         "weekday": {
-          "green_fee_idr": null,
+          "green_fee_idr": 1000000,
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
         "weekend": {
-          "green_fee_idr": null,
+          "green_fee_idr": 2000000,
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "PT Timah (MIND ID SOE) Bukit Girimaya. Public commercial course; only fully bundled rate among PT Timah-owned facilities. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "18H par 72 ~6,422yds, Girimaya Hills Pangkalpinang(Bangka). GoGolf 리뷰 18H 그린피 Rp 1M~2M 범위(cart/caddy/insurance/세금 패키지 포함). 하한선=WD, 상한선=WE 추정. 공식 표는 미공개.",
+        "sources": [
+          "https://gogolf.co.id/en/golf-course/padang-golf-bukit-intan",
+          "https://en.gogolf.co.id/golf-course/bukit-intan-golf-course",
+          "https://wonderful.pangkalpinangkota.go.id/lapangan-golf-girimaya/"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "GoGolf 리뷰 범위 추정",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -14134,7 +14968,7 @@
         "last_verified": "2026-04-30"
       },
       "fees_gogolf_reference": {
-        "source_url": "https://gogolf.co.id/en/golf-course/padang-golf-bukit-intan",
+        "source_url": "https://en.gogolf.co.id/golf-course/bukit-intan-golf-course",
         "schedule": {
           "weekday": {
             "am": 1000000,
@@ -14149,15 +14983,12 @@
             "pm": 2000000
           }
         },
+        "member_rate_idr": null,
         "ancillary": {
           "caddy_idr": null,
           "cart_idr": null
         },
-        "member_rate_idr": null,
-        "notes": "Range 1-2M (low=wkdy, high=wknd)",
-        "last_verified": "2026-04-30",
-        "confidence": "low",
-        "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
+        "disclaimer": "참고용 비공식 가격 (GoGolf 리뷰 Rp 1M-2M 패키지; cart/caddy 포함)"
       },
       "financials": {}
     },
@@ -14178,12 +15009,6 @@
       "website": null,
       "notes": "9-hole coastal course at Ds Bebute, Sijuk. Separate from Black Rocks resort course.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "tax_pct": null
-        },
         "weekday": {
           "green_fee_idr": null,
           "guest_fee_idr": null,
@@ -14194,10 +15019,19 @@
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "Belitung Golf Club 9H community 코스(Sijuk). GolfPass/GolfLux는 공개라 표기하나 rate-card 미공개. 클럽/티칭 프로 가용. Sumatra 평균 Rp 100-300K + 캐디 Rp 50-100K 추정 (미검증).",
+        "sources": [
+          "https://www.golflux.com/course/bebute-golf-course/",
+          "https://www.golfpass.com/travel-advisor/courses/38331-bebute-golf-course"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "공시 가격 미발견",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -14220,7 +15054,30 @@
         "confidence": "low",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": null,
+        "schedule": {
+          "weekday": {
+            "am": null,
+            "pm": null
+          },
+          "saturday": {
+            "am": null,
+            "pm": null
+          },
+          "sunday": {
+            "am": null,
+            "pm": null
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 — Bebute/Belitung Golf Club 미등재"
+      }
     },
     {
       "id": "eltari-kupang",
@@ -14239,12 +15096,6 @@
       "website": null,
       "notes": "9-hole course built 1990 at Lanud El Tari air base. Open to public, hosts regular monthly tournaments by TNI AU.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "tax_pct": null
-        },
         "weekday": {
           "green_fee_idr": null,
           "guest_fee_idr": null,
@@ -14255,10 +15106,19 @@
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "Padang Golf El Tari('The Rock')는 Lanud El Tari TNI AU 영내(Jl Raya Baumata Penfui Kupang) — Kupang 유일 골프장. Aloeus 'Guests always welcome' 표기하나 그린피 미공개. 매월 토너먼트 + TNI-Polri 합동행사 정기 개최.",
+        "sources": [
+          "https://www.aloeus.com/padang-golf-el-tari-kupang/",
+          "https://tni-au.mil.id/berita/detail/tournament-golf-monthly-padang-golf-lanud-el"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "군 시설, 가격 미공개",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -14282,7 +15142,30 @@
         "confidence": "low",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": null,
+        "schedule": {
+          "weekday": {
+            "am": null,
+            "pm": null
+          },
+          "saturday": {
+            "am": null,
+            "pm": null
+          },
+          "sunday": {
+            "am": null,
+            "pm": null
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 — TNI AU 군 시설"
+      }
     },
     {
       "id": "kpc-sangatta",
@@ -14301,30 +15184,30 @@
       "website": null,
       "notes": "Company course at PT KPC coal mining complex; 18 holes par 72, 6,589 yards.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "caddy_idr": "not available on site",
-          "cart_idr": "included",
-          "tax_pct": null
-        },
         "weekday": {
           "green_fee_idr": null,
           "guest_fee_idr": null,
-          "member_fee_idr": null,
-          "green_fee_usd": null
+          "member_fee_idr": null
         },
         "weekend": {
           "green_fee_idr": null,
           "guest_fee_idr": null,
-          "member_fee_idr": null,
-          "green_fee_usd": null
+          "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "PT Kaltim Prima Coal company course at Sangatta. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "PT KPC(Kaltim Prima Coal, Bumi Resources 자회사) Tanjung Bara/Prima Golf Club. KPC 직원 시설. 드라이빙 레인지 100구 Rp 30K(member/Tanjung Bara 거주자 요금) 공개되나 정규 그린피 미공개. mine-site 보안 검사 필요.",
+        "sources": [
+          "https://www.kpc.co.id/employee-facilities/",
+          "https://satumakna.id/prima-golf-club-buka-driving-range-di-tanjung-bara/",
+          "https://www.instagram.com/pgcsangatta/"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "KPC 사내 시설",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -14347,7 +15230,30 @@
         "confidence": "medium",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": null,
+        "schedule": {
+          "weekday": {
+            "am": null,
+            "pm": null
+          },
+          "saturday": {
+            "am": null,
+            "pm": null
+          },
+          "sunday": {
+            "am": null,
+            "pm": null
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 — KPC 폐쇄형 사내 시설"
+      }
     },
     {
       "id": "badak-ngl-bontang",
@@ -14366,12 +15272,6 @@
       "website": null,
       "notes": "Originally 9-hole, expanded to 18-hole championship course. DISTINCT from Hotel Bintang Sintuk PKT Bontang.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "tax_pct": null
-        },
         "weekday": {
           "green_fee_idr": null,
           "guest_fee_idr": null,
@@ -14382,10 +15282,19 @@
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "PT Badak NGL 18H 챔피언십 (Satimpo, Bontang Selatan). 운영 7:00-18:00, 드라이빙 레인지 7:00-22:00. GolfPass는 'public' 표기하나 공식 그린피 미공개. Badak LNG 직원/corporate guest 우선. IG @badaklnggolf 문의.",
+        "sources": [
+          "https://www.golfpass.com/travel-advisor/courses/38337-pt-badak-ngl-golf-course",
+          "https://www.instagram.com/badaklnggolf/"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "Badak NGL 사내 시설",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -14408,7 +15317,30 @@
         "confidence": "low",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": null,
+        "schedule": {
+          "weekday": {
+            "am": null,
+            "pm": null
+          },
+          "saturday": {
+            "am": null,
+            "pm": null
+          },
+          "sunday": {
+            "am": null,
+            "pm": null
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 — Badak NGL 직원 시설"
+      }
     },
     {
       "id": "tarakan-golf-club",
@@ -14427,12 +15359,6 @@
       "website": null,
       "notes": "9-hole course originally owned by Pertamina, ownership transitioned to local government. Fills North Kalimantan gap.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "tax_pct": null
-        },
         "weekday": {
           "green_fee_idr": null,
           "guest_fee_idr": null,
@@ -14443,10 +15369,20 @@
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "Tarakan Golf Club(Jl. P. Sumatera 40, Tarakan) 9H municipal. 원래 Pertamina 운영, 현재 지방정부. 캐디 가용, walking 가능. GolfPass/Wikimapia 모두 그린피 미발표. Kalimantan 시정부 평균(Rp 100-300K WD / Rp 200-500K WE) 참고.",
+        "sources": [
+          "https://www.golfpass.com/travel-advisor/courses/38338-tarakan-golf-club",
+          "https://www.golflux.com/destination/kalimantan-golf-courses/",
+          "http://wikimapia.org/16962580/Tarakan-Golf-Course"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "시정부 운영, 미공개",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -14468,7 +15404,30 @@
         "confidence": "low",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": null,
+        "schedule": {
+          "weekday": {
+            "am": null,
+            "pm": null
+          },
+          "saturday": {
+            "am": null,
+            "pm": null
+          },
+          "sunday": {
+            "am": null,
+            "pm": null
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 — 시정부 운영, 가격 미공개"
+      }
     },
     {
       "id": "tanjung-tabalong",
@@ -14487,12 +15446,6 @@
       "website": null,
       "notes": "Confirmed operating; tournament Nov 30 - Dec 1, 2024. Sole golf icon in Tabalong per Pertamina Field Manager.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "tax_pct": null
-        },
         "weekday": {
           "green_fee_idr": null,
           "guest_fee_idr": null,
@@ -14503,10 +15456,20 @@
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "Pertamina EP Tanjung Field(Murung Pudak, Tabalong) 운영. HUT Tabalong Cup 정기 개최. Trip.com 등재되었으나 가격 미게시. Pertamina EP 직원 우선, 외부는 sponsorship 필요.",
+        "sources": [
+          "https://www.golfpass.com/travel-advisor/courses/38360-tanjung-golf-club",
+          "https://idalamat.com/alamat/740820/padang-golf-pertamina-tanjung-tabalong-kalimantan-selatan",
+          "https://tvtabalong.com/turnamen-golf-meriahkan-hut-ke-59-tabalong-ratusan-pegolf-berpartisipasi/"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "Pertamina EP 사내 시설",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -14529,7 +15492,30 @@
         "confidence": "low",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": null,
+        "schedule": {
+          "weekday": {
+            "am": null,
+            "pm": null
+          },
+          "saturday": {
+            "am": null,
+            "pm": null
+          },
+          "sunday": {
+            "am": null,
+            "pm": null
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 — Pertamina EP 사내 시설"
+      }
     },
     {
       "id": "gorontalo-yosonegoro",
@@ -14548,29 +15534,30 @@
       "website": null,
       "notes": "9 holes par 36, 2,778 yards. Reactivated by Pemprov-Pemkab cooperation September 2025. Only golf facility in Gorontalo Province.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "cart_idr": "not included",
-          "tax_pct": null
-        },
         "weekday": {
           "green_fee_idr": null,
           "guest_fee_idr": null,
-          "member_fee_idr": null,
-          "green_fee_usd": null
+          "member_fee_idr": null
         },
         "weekend": {
           "green_fee_idr": null,
           "guest_fee_idr": null,
-          "member_fee_idr": null,
-          "green_fee_usd": null
+          "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "9H par 36, reactivated September 2025 by Pemprov-Pemkab cooperation. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "Lapangan Golf Yosonegoro(Limboto, Gorontalo). 2025-09-19 Pemprov + Pemkab PKS 5년 계약 체결, 재활성화 진행 중('akan kembali hidup'). Lanud Jalaluddin 인접. 2026-05 시점 미공개, Pemprov Dispora가 재오픈 후 책정 예정.",
+        "sources": [
+          "https://coolturnesia.com/coolturnesia/berita/detail/lapangan-golf-yosonegoro-akan-kembali-hidup-pemprovpemkab-gorontalo-sepakat-kelola-bersama",
+          "https://pojok6.id/pemprov-pemkab-gorontalo-tanda-tangani-pks-pengelolaan-lapangan-golf-yosonegoro/",
+          "https://www.golflux.com/course/gorontalo-golf-yosonegoro/"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "2025-09 PKS 후 재활성화 진행, 가격 미정",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -14594,7 +15581,30 @@
         "confidence": "medium",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": null,
+        "schedule": {
+          "weekday": {
+            "am": null,
+            "pm": null
+          },
+          "saturday": {
+            "am": null,
+            "pm": null
+          },
+          "sunday": {
+            "am": null,
+            "pm": null
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 — Pemprov-Pemkab 재활성화 진행중, 가격 미정"
+      }
     },
     {
       "id": "paradise-likupang",
@@ -14613,12 +15623,6 @@
       "website": "https://www.paradisehotelgolfresort.net/",
       "notes": "18-hole, par 72, 6,991 yards beach-view course in Likupang KEK. Active in 2025 with hotel renovations.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": "Not deeply audited yet — see sources",
-        "schedule_detailed": {},
-        "ancillary": {
-          "tax_pct": 11
-        },
         "weekday": {
           "green_fee_idr": null,
           "guest_fee_idr": null,
@@ -14629,12 +15633,18 @@
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "북부 술라웨시 KEK Likupang 관광특구 내 계획/조성중 리조트형 골프장. 2026-05 공식 그린피 미공개. PT MTDC(Minahasa Tourism Development) 및 KEK 관리위원회 채널 미게시. 부킹 플랫폼(GoGolf, playgolf.id) 미등재. 리조트 투숙객 또는 사전 문의 추정.",
         "sources": [
-          "https://www.paradisehotelgolfresort.net/"
+          "https://kek.go.id/kawasan/KEK-Likupang"
         ],
-        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited.",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "last_verified": "2026-05-01",
+        "based_on": "KEK 개발중, 가격 미공개",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -14659,7 +15669,30 @@
         "confidence": "low",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": null,
+        "schedule": {
+          "weekday": {
+            "am": null,
+            "pm": null
+          },
+          "saturday": {
+            "am": null,
+            "pm": null
+          },
+          "sunday": {
+            "am": null,
+            "pm": null
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 — KEK 관광특구 개발중"
+      }
     },
     {
       "id": "antam-mekongga-pomalaa",
@@ -14678,29 +15711,28 @@
       "website": null,
       "notes": "18-hole par 72, 5,696 yards. Hosted Porprov XIV Sulawesi Tenggara 2022. Distinct from Sanggoleo Kendari.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "cart_idr": "not included",
-          "tax_pct": null
-        },
         "weekday": {
           "green_fee_idr": null,
           "guest_fee_idr": null,
-          "member_fee_idr": null,
-          "green_fee_usd": null
+          "member_fee_idr": null
         },
         "weekend": {
           "green_fee_idr": null,
           "guest_fee_idr": null,
-          "member_fee_idr": null,
-          "green_fee_usd": null
+          "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "PT Antam (Mining SOE) Pomalaa. Hosted Porprov XIV Sulawesi Tenggara 2022. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "PT ANTAM Tbk(국영 광업, INCO 자매) Pomalaa 니켈 광산 사업장 부속 사내 골프 시설. ANTAM UBPN Sulawesi Tenggara 직원/협력사 임직원 복지용. 외부는 사전 협조 요청 필요. 공식 요금표 비공개.",
+        "sources": [
+          "https://antam.com/id/about/business-overview"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "ANTAM 사내 복지시설",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -14723,7 +15755,30 @@
         "confidence": "medium",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": null,
+        "schedule": {
+          "weekday": {
+            "am": null,
+            "pm": null
+          },
+          "saturday": {
+            "am": null,
+            "pm": null
+          },
+          "sunday": {
+            "am": null,
+            "pm": null
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 — ANTAM 사내 복지시설로 미등재"
+      }
     },
     {
       "id": "koarmada-iii-sorong",
@@ -14742,12 +15797,6 @@
       "website": null,
       "notes": "Mini golf field (~1 hectare) at Mako Koarmada III HQ. Hosted first TNI AL Koarmada III golf tournament.",
       "fees_2026_05": {
-        "currency_primary": "IDR",
-        "rate_includes": null,
-        "schedule_detailed": {},
-        "ancillary": {
-          "tax_pct": null
-        },
         "weekday": {
           "green_fee_idr": null,
           "guest_fee_idr": null,
@@ -14758,10 +15807,18 @@
           "guest_fee_idr": null,
           "member_fee_idr": null
         },
-        "sources": [],
-        "notes": "Newly added 2026-04-30; fee schedule not yet deeply audited. [Aggregator-sourced pricing cleared 2026-04-30; awaiting confirmation from official source]",
-        "confidence": "low",
-        "last_verified": "2026-04-30"
+        "twilight_idr": null,
+        "caddy_idr": null,
+        "cart_idr": null,
+        "insurance_idr": null,
+        "currency": "IDR",
+        "notes": "TNI AL Koarmada III 본부(Sorong, Papua Barat) 영내 미니 골프(소규모/9홀 미만 추정). 군 시설로 외부 출입 및 그린피 비공개. 군 임직원·가족 및 초청자 한정 운영.",
+        "sources": [
+          "https://www.tnial.mil.id/"
+        ],
+        "last_verified": "2026-05-01",
+        "based_on": "군 시설",
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -14784,7 +15841,30 @@
         "confidence": "low",
         "last_verified": "2026-04-30"
       },
-      "financials": {}
+      "financials": {},
+      "fees_gogolf_reference": {
+        "source_url": null,
+        "schedule": {
+          "weekday": {
+            "am": null,
+            "pm": null
+          },
+          "saturday": {
+            "am": null,
+            "pm": null
+          },
+          "sunday": {
+            "am": null,
+            "pm": null
+          }
+        },
+        "member_rate_idr": null,
+        "ancillary": {
+          "caddy_idr": null,
+          "cart_idr": null
+        },
+        "disclaimer": "참고용 비공식 가격 — TNI AL 군 시설"
+      }
     }
   ]
 }
