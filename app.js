@@ -346,6 +346,8 @@ function showDetail(c) {
 
     ${membershipHtml}
 
+    ${renderFinancials(c.financials)}
+
     ${facilities ? `
     <section>
       <h3>부대시설</h3>
@@ -478,6 +480,160 @@ function renderMembership(m) {
     <section class="membership-section minimal">
       <h3>회원권 (멤버십) <span class="member-status-pill ${avail}">${availLabel}</span></h3>
       ${notes || '<p class="muted">공개된 가입비·연회비 정보가 없습니다. 회원권 문의는 클럽으로 직접 연락이 필요합니다.</p>'}
+      ${sourcesHtml}
+    </section>`;
+}
+
+// === Financials Rendering ===
+const LISTED_STATUS_LABEL = {
+  'listed': '상장',
+  'subsidiary-of-listed': '상장사 자회사',
+  'private': '비상장',
+  'state-owned': '국영기업',
+  'government': '정부 운영',
+  'local-government': '지방정부',
+  'military': '군 운영',
+  'foundation': '재단',
+  'joint-venture': '합작법인',
+  'plantation-soe': '국영농장',
+  'tbk-reporting-not-yet-traded': 'Tbk(IDX 미거래)',
+  'subsidiary-of-state-owned (BUMN holding, unlisted)': 'BUMN 자회사(미상장)',
+  'unknown': '미확인'
+};
+
+function fmtBigIDR(n) {
+  if (n == null) return null;
+  const num = Number(n);
+  if (!isFinite(num)) return null;
+  const abs = Math.abs(num);
+  if (abs >= 1e12) return `Rp ${(num / 1e12).toFixed(2).replace(/\.?0+$/, '')}T`;
+  if (abs >= 1e9)  return `Rp ${(num / 1e9).toFixed(2).replace(/\.?0+$/, '')}B`;
+  if (abs >= 1e6)  return `Rp ${(num / 1e6).toFixed(0)}M`;
+  return `Rp ${num.toLocaleString('en-US')}`;
+}
+
+function renderFinancials(fin) {
+  if (!fin || typeof fin !== 'object') return '';
+
+  const ticker = fin.idx_ticker || fin.foreign_ticker;
+  const status = fin.listed_status || 'unknown';
+  const statusLabel = LISTED_STATUS_LABEL[status] || status;
+  const parent = fin.parent_company_full_name || fin.parent_group;
+  const op = fin.operating_company;
+
+  const rows = [];
+  if (op) rows.push(['운영법인', escapeHtml(op)]);
+  if (parent) rows.push(['모회사·기업집단', escapeHtml(parent)]);
+  if (ticker) {
+    const tickerHtml = fin.idx_ticker
+      ? `<span class="ticker-pill idx">${escapeHtml(fin.idx_ticker)}</span>`
+      : `<span class="ticker-pill foreign">${escapeHtml(fin.foreign_ticker)}</span>`;
+    rows.push(['상장 티커', tickerHtml]);
+  }
+  rows.push(['상장 구분', `<span class="listed-status ${escapeHtml(status)}">${escapeHtml(statusLabel)}</span>`]);
+
+  // Revenue (full-year preferred, else H1)
+  const rev = fin.revenue_idr;
+  const revH1 = fin.revenue_idr_h1;
+  const revYear = fin.revenue_year;
+  if (rev != null) {
+    rows.push([`매출${revYear ? ` (${escapeHtml(String(revYear))})` : ''}`, fmtBigIDR(rev)]);
+  } else if (revH1 != null) {
+    rows.push([`매출 (H1-${escapeHtml(String(revYear || '2024'))})`, fmtBigIDR(revH1)]);
+  }
+  if (fin.net_profit_idr != null) {
+    const np = fin.net_profit_idr;
+    const sign = np < 0 ? '<span class="neg">−</span>' : '';
+    rows.push(['순이익', sign + fmtBigIDR(Math.abs(np))]);
+  } else if (fin.net_profit_idr_h1 != null) {
+    rows.push(['순이익 (H1)', fmtBigIDR(fin.net_profit_idr_h1)]);
+  }
+  if (fin.total_assets_idr != null) rows.push(['총자산', fmtBigIDR(fin.total_assets_idr)]);
+  if (fin.employees != null) rows.push(['직원수', `${fin.employees.toLocaleString('en-US')}명`]);
+  if (fin.investment_idr != null) rows.push(['투자/개발비', fmtBigIDR(fin.investment_idr)]);
+  if (fin.investment_usd != null) rows.push(['투자 (USD)', `$${fin.investment_usd.toLocaleString('en-US')}`]);
+
+  if (fin.course_segment_disclosed === true && fin.course_segment_revenue_idr != null) {
+    rows.push(['골프 세그먼트 매출', `<span class="seg-disclosed">${fmtBigIDR(fin.course_segment_revenue_idr)}</span> <span class="muted">(별도공시)</span>`]);
+  } else if (fin.course_segment_disclosed === true) {
+    rows.push(['골프 세그먼트', '<span class="seg-disclosed">별도공시</span>']);
+  }
+
+  // Membership pricing
+  if (fin.membership_price_idr != null) {
+    rows.push(['회원권', `${fmtBigIDR(fin.membership_price_idr)}`]);
+  } else if (fin.membership_price_usd != null) {
+    rows.push(['회원권', `$${fin.membership_price_usd.toLocaleString('en-US')}`]);
+  }
+
+  if (fin.figure_origin) {
+    rows.push(['데이터 신뢰도', `<span class="origin-pill">${escapeHtml(fin.figure_origin)}</span>`]);
+  }
+
+  if (fin.recent_news) {
+    rows.push(['최근 이슈', `<span class="news-line">${escapeHtml(fin.recent_news)}</span>`]);
+  }
+
+  // Notes
+  let notesHtml = '';
+  if (fin.membership_price_notes) notesHtml += `<div class="fin-note"><span class="note-label">회원권 메모:</span> ${escapeHtml(fin.membership_price_notes)}</div>`;
+  if (fin.ownership_notes) notesHtml += `<div class="fin-note"><span class="note-label">소유 메모:</span> ${escapeHtml(fin.ownership_notes)}</div>`;
+
+  // Sources — combine sources + parent_financial_sources + membership_sources
+  const collectSources = () => {
+    const items = [];
+    const seenUrls = new Set();
+    const addOne = (s, kind) => {
+      if (typeof s === 'string') {
+        if (seenUrls.has(s)) return;
+        seenUrls.add(s);
+        items.push({ url: s, title: null, publisher: null, date_published: null, kind });
+        return;
+      }
+      if (s && typeof s === 'object' && s.url) {
+        if (seenUrls.has(s.url)) return;
+        seenUrls.add(s.url);
+        items.push({
+          url: s.url,
+          title: s.title || null,
+          publisher: s.publisher || null,
+          date_published: s.date_published || null,
+          date_accessed: s.date_accessed || null,
+          kind
+        });
+      }
+    };
+    (fin.sources || []).forEach(s => addOne(s, 'general'));
+    (fin.parent_financial_sources || []).forEach(s => addOne(s, 'parent'));
+    (fin.membership_sources || []).forEach(s => addOne(s, 'membership'));
+    return items;
+  };
+  const allSources = collectSources();
+
+  let sourcesHtml = '';
+  if (allSources.length) {
+    const items = allSources.slice(0, 12).map((s, i) => {
+      const kindBadge = s.kind === 'parent' ? '<span class="kind-pill parent">모회사</span>'
+        : s.kind === 'membership' ? '<span class="kind-pill membership">회원권</span>'
+        : '';
+      const label = s.publisher || (() => {
+        try { return new URL(s.url).hostname.replace(/^www\./, ''); }
+        catch { return `[${i+1}]`; }
+      })();
+      const dateInfo = s.date_published ? ` <span class="src-date">${escapeHtml(s.date_published)}</span>` : '';
+      const titleAttr = s.title ? `${s.title} — ${s.url}` : s.url;
+      return `<a class="fin-src" href="${escapeHtml(s.url)}" target="_blank" rel="noopener" title="${escapeHtml(titleAttr)}">${kindBadge}${escapeHtml(label)}${dateInfo}</a>`;
+    }).join(' ');
+    sourcesHtml = `<div class="fin-sources">출처(${allSources.length}): ${items}</div>`;
+  }
+
+  const verifiedDate = fin.last_verified ? `<span class="verified-date">확인일 ${escapeHtml(fin.last_verified)}</span>` : '';
+
+  return `
+    <section class="financials-section">
+      <h3>기업·재무 정보 ${verifiedDate}</h3>
+      <table class="fin-table">${rows.map(([k, v]) => `<tr><th>${k}</th><td>${v}</td></tr>`).join('')}</table>
+      ${notesHtml}
       ${sourcesHtml}
     </section>`;
 }
@@ -741,6 +897,15 @@ function getTableRows() {
     } else if (k === 'status') {
       va = a.operating_status?.status || 'operating';
       vb = b.operating_status?.status || 'operating';
+    } else if (k === 'parent_group') {
+      va = a.financials?.parent_group || a.financials?.parent_company_full_name || '';
+      vb = b.financials?.parent_group || b.financials?.parent_company_full_name || '';
+    } else if (k === 'idx_ticker') {
+      va = a.financials?.idx_ticker || a.financials?.foreign_ticker || '';
+      vb = b.financials?.idx_ticker || b.financials?.foreign_ticker || '';
+    } else if (k === 'parent_revenue') {
+      va = a.financials?.revenue_idr ?? a.financials?.revenue_idr_h1 ?? null;
+      vb = b.financials?.revenue_idr ?? b.financials?.revenue_idr_h1 ?? null;
     } else {
       va = a[k];
       vb = b[k];
@@ -1020,6 +1185,22 @@ function renderTable() {
 
     const mapLink = `<a href="https://www.google.com/maps/search/?api=1&query=${c.lat},${c.lng}" target="_blank" rel="noopener">지도</a>`;
 
+    // Financials cells
+    const fin = c.financials || {};
+    const parentLabel = fin.parent_group || fin.parent_company_full_name || '';
+    const parentCell = parentLabel
+      ? `<span class="parent-cell" title="${escapeHtml(parentLabel)}">${escapeHtml(parentLabel.slice(0, 40))}${parentLabel.length > 40 ? '…' : ''}</span>`
+      : '<span class="muted">—</span>';
+    const ticker = fin.idx_ticker || fin.foreign_ticker;
+    const tickerCell = ticker
+      ? `<span class="ticker-pill ${fin.idx_ticker ? 'idx' : 'foreign'}">${escapeHtml(ticker)}</span>`
+      : '<span class="muted">—</span>';
+    const revIdr = fin.revenue_idr ?? fin.revenue_idr_h1;
+    const revYearLabel = fin.revenue_idr_h1 != null && fin.revenue_idr == null ? ' (H1)' : '';
+    const revCell = revIdr != null
+      ? `<span class="rev-cell">${fmtBigIDR(revIdr)}${revYearLabel}</span>`
+      : '<span class="muted">—</span>';
+
     // GoGolf reference sub-row (when present)
     let gogolfRowHtml = '';
     const gg = c.fees_gogolf_reference;
@@ -1063,6 +1244,9 @@ function renderTable() {
         <td class="num fee">${sunPmCell}</td>
         <td class="member-type">${membershipTypeCell(c.membership)}</td>
         <td class="num member-amount">${membershipAmountCell(c.membership)}</td>
+        <td class="parent-group">${parentCell}</td>
+        <td class="ticker">${tickerCell}</td>
+        <td class="num parent-revenue">${revCell}</td>
         <td class="address">${escapeHtml(c.address || '')}<br>${mapLink}</td>
         <td class="sources official-links">${officialHtml}</td>
         <td class="sources sns-links">${snsHtml}</td>
