@@ -1366,20 +1366,16 @@ function renderTable() {
     for (const t of CAT_TABS) if (cat[t].length) counts[t]++;
   }
 
-  // Filter rows for the active sub-tab: 'all' shows everything, others restrict
-  // to courses that have a source in that category.
-  const visibleRows = currentSourceCat === 'all'
-    ? rows
-    : rows.filter(c => collectCategorizedSources(c)[currentSourceCat]?.length);
-
-  // Render the unified table body, rates swap by category
+  // Always show every filtered course — sub-tab only swaps prices/source column,
+  // never hides rows. (Previously we filtered by category, which removed rows
+  // when switching tabs; user wants the row set to stay stable.)
   const tbody = document.querySelector('[data-src-tbody="all"]');
   if (tbody) {
-    tbody.innerHTML = visibleRows.map(c => renderAllTabRow(c, currentSourceCat)).join('')
+    tbody.innerHTML = rows.map(c => renderAllTabRow(c, currentSourceCat)).join('')
       || `<tr><td colspan="19" class="src-empty">표시할 데이터가 없습니다</td></tr>`;
   }
 
-  // Tab counts
+  // Tab counts (still reflect how many courses have a source in each category)
   document.getElementById('srcCount-all').textContent = rows.length;
   for (const t of CAT_TABS) {
     const el = document.getElementById(`srcCount-${t}`);
@@ -1387,7 +1383,7 @@ function renderTable() {
   }
 
   // Toolbar visible count + panel description + last column header
-  document.getElementById('tableVisibleCount').textContent = visibleRows.length;
+  document.getElementById('tableVisibleCount').textContent = rows.length;
   const descEl = document.getElementById('srcPanelDesc');
   if (descEl) descEl.innerHTML = SRC_TAB_DESC[currentSourceCat] || SRC_TAB_DESC.all;
   const colHdr = document.getElementById('srcColHeader');
