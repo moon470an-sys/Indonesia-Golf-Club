@@ -1843,6 +1843,21 @@ a.src-pill:hover { transform: translateY(-1px); text-decoration: none; box-shado
   border-bottom-color: var(--accent);
   background: var(--bg-surface);
 }
+.src-tab.src-tab-all {
+  position: relative;
+  font-weight: 700;
+  padding-right: 18px;
+}
+.src-tab.src-tab-all::after {
+  content: '';
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 16px;
+  background: var(--border);
+}
 .src-tab-count {
   display: inline-block;
   min-width: 22px;

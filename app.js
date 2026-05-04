@@ -1221,24 +1221,120 @@ function renderSourceTabRow(c, info, sources) {
   `;
 }
 
+// === Unified "전체" tab row (full column set) ===
+function renderAllTabRow(c) {
+  const status = c.operating_status?.status || 'operating';
+  const statusLabel = {
+    operating: '운영중',
+    closed_temporary: '임시 휴장',
+    closed_permanent: '영구 폐장',
+    uncertain: '불확실',
+  }[status] || status;
+
+  const f = c.fees_2026_05 || {};
+  const sd = f.schedule_detailed || {};
+  const wdSlots = extractAmPm(sd.weekday);
+  const satSlots = extractAmPm(sd.weekend_saturday);
+  const sunSlots = extractAmPm(sd.weekend_sunday);
+  const wdFallback = f.weekday?.green_fee_idr ?? f.weekday?.guest_fee_idr;
+  const weFallback = f.weekend?.green_fee_idr ?? f.weekend?.guest_fee_idr;
+  const wdUsd = f.weekday?.green_fee_usd;
+  const weUsd = f.weekend?.green_fee_usd;
+  const cellHtml = (idr, fallbackIdr, fallbackUsd) => {
+    if (idr != null) return fmtIDR(idr);
+    if (fallbackIdr != null) return `<span class="fee-fallback">${fmtIDR(fallbackIdr)}</span>`;
+    if (fallbackUsd != null) return `<span class="fee-fallback">${fmtUSD(fallbackUsd)}</span>`;
+    return '<span class="muted">—</span>';
+  };
+  const wdAmCell = cellHtml(wdSlots.am, wdFallback, wdUsd);
+  const wdPmCell = cellHtml(wdSlots.pm, wdFallback, wdUsd);
+  const satAmCell = cellHtml(satSlots.am, weFallback, weUsd);
+  const satPmCell = cellHtml(satSlots.pm, weFallback, weUsd);
+  const sunAmCell = cellHtml(sunSlots.am, weFallback, weUsd);
+  const sunPmCell = cellHtml(sunSlots.pm, weFallback, weUsd);
+
+  const matoaTag = c.id === 'matoa-nasional' ? '<span class="matoa-tag">★ Matoa</span>' : '';
+  const mapLink = `<a href="https://www.google.com/maps/search/?api=1&query=${c.lat},${c.lng}" target="_blank" rel="noopener">지도</a>`;
+
+  const fin = c.financials || {};
+  const parentLabel = fin.parent_group || fin.parent_company_full_name || '';
+  const parentCell = parentLabel
+    ? `<span class="parent-cell" title="${escapeHtml(parentLabel)}">${escapeHtml(parentLabel.slice(0, 40))}${parentLabel.length > 40 ? '…' : ''}</span>`
+    : '<span class="muted">—</span>';
+  const ticker = fin.idx_ticker || fin.foreign_ticker;
+  const tickerCell = ticker
+    ? `<span class="ticker-pill ${fin.idx_ticker ? 'idx' : 'foreign'} ticker-clickable" data-ticker="${escapeHtml(ticker)}" title="클릭하면 5년 재무 그래프 보기">${escapeHtml(ticker)}</span>`
+    : '<span class="muted">—</span>';
+  const revIdr = fin.revenue_idr ?? fin.revenue_idr_h1;
+  const revYearLabel = fin.revenue_idr_h1 != null && fin.revenue_idr == null ? ' (H1)' : '';
+  const revCell = revIdr != null
+    ? `<span class="rev-cell">${fmtBigIDR(revIdr)}${revYearLabel}</span>`
+    : '<span class="muted">—</span>';
+
+  // Combined sources across all categories, ordered by category priority
+  const cat = collectCategorizedSources(c);
+  const ORDER = ['official', 'platform', 'aggregator', 'sns', 'news'];
+  const allPills = [];
+  for (const t of ORDER) {
+    for (const s of cat[t]) {
+      allPills.push(`<a class="src-pill src-${s.kind}" href="${escapeHtml(s.url)}" target="_blank" rel="noopener" title="${escapeHtml(s.url)}"><span class="src-pill-label">${escapeHtml(s.label)}</span><span class="src-pill-host">${escapeHtml(s.host)}</span></a>`);
+    }
+  }
+  const allSrcHtml = allPills.length ? allPills.join('') : '<span class="muted">—</span>';
+
+  return `
+    <tr class="primary-rate-row">
+      <td class="name">${escapeHtml(c.name_en)}${matoaTag}</td>
+      <td>${escapeHtml(c.region)}</td>
+      <td>${escapeHtml(c.province)}</td>
+      <td><span class="status-pill ${status}">${statusLabel}</span></td>
+      <td class="num">${c.holes ?? '—'}</td>
+      <td class="num">${c.year_opened ?? '—'}</td>
+      <td class="num fee">${wdAmCell}</td>
+      <td class="num fee">${wdPmCell}</td>
+      <td class="num fee fee-premium">${satAmCell}</td>
+      <td class="num fee">${satPmCell}</td>
+      <td class="num fee fee-premium">${sunAmCell}</td>
+      <td class="num fee">${sunPmCell}</td>
+      <td class="member-type">${membershipTypeCell(c.membership)}</td>
+      <td class="num member-amount">${membershipAmountCell(c.membership)}</td>
+      <td class="parent-group">${parentCell}</td>
+      <td class="ticker">${tickerCell}</td>
+      <td class="num parent-revenue">${revCell}</td>
+      <td class="address">${escapeHtml(c.address || '')}<br>${mapLink}</td>
+      <td class="src-cell">${allSrcHtml}</td>
+    </tr>
+  `;
+}
+
 function renderTable() {
   const rows = getTableRows();
-  const TABS = ['official', 'sns', 'platform', 'aggregator', 'news'];
+  const CAT_TABS = ['official', 'sns', 'platform', 'aggregator', 'news'];
   const buckets = { official: [], sns: [], platform: [], aggregator: [], news: [] };
 
   for (const c of rows) {
     const cat = collectCategorizedSources(c);
-    for (const tab of TABS) {
+    for (const tab of CAT_TABS) {
       if (cat[tab].length) buckets[tab].push({ course: c, sources: cat[tab] });
     }
   }
 
+  // 'all' tab: every filtered course, regardless of source category
+  const allTbody = document.querySelector('[data-src-tbody="all"]');
+  if (allTbody) {
+    allTbody.innerHTML = rows.map(renderAllTabRow).join('')
+      || `<tr><td colspan="19" class="src-empty">표시할 데이터가 없습니다</td></tr>`;
+  }
+  const allCnt = document.getElementById('srcCount-all');
+  if (allCnt) allCnt.textContent = rows.length;
+
   // Active panel count → main toolbar counter
   const activeTabBtn = document.querySelector('.src-tab.active');
-  const activeTab = activeTabBtn ? activeTabBtn.dataset.srcTab : 'official';
-  document.getElementById('tableVisibleCount').textContent = buckets[activeTab].length;
+  const activeTab = activeTabBtn ? activeTabBtn.dataset.srcTab : 'all';
+  const activeCount = activeTab === 'all' ? rows.length : (buckets[activeTab]?.length ?? 0);
+  document.getElementById('tableVisibleCount').textContent = activeCount;
 
-  for (const tab of TABS) {
+  for (const tab of CAT_TABS) {
     const tbody = document.querySelector(`[data-src-tbody="${tab}"]`);
     if (!tbody) continue;
     tbody.innerHTML = buckets[tab].map(({ course, sources }) =>

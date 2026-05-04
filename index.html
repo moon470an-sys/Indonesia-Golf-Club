@@ -97,7 +97,11 @@
     </div>
 
     <nav class="src-tabs" role="tablist" id="sourceTabs">
-      <button class="src-tab active" data-src-tab="official" role="tab" aria-selected="true">
+      <button class="src-tab active src-tab-all" data-src-tab="all" role="tab" aria-selected="true">
+        <span class="src-tab-label">전체 (통합)</span>
+        <span class="src-tab-count" id="srcCount-all">0</span>
+      </button>
+      <button class="src-tab" data-src-tab="official" role="tab" aria-selected="false">
         <span class="src-tab-label">공시·공식</span>
         <span class="src-tab-count" id="srcCount-official">0</span>
       </button>
@@ -120,7 +124,39 @@
     </nav>
 
     <div class="src-panel-wrap">
-      <div class="src-panel active" data-src-panel="official">
+      <div class="src-panel active" data-src-panel="all">
+        <div class="src-panel-desc">필터에 해당하는 모든 골프장의 통합 정보 — 요금·멤버십·모회사 재무·전체 출처를 한 표에서 확인</div>
+        <div class="table-scroll">
+          <table class="course-table" data-src-table="all">
+            <thead>
+              <tr>
+                <th data-sort="name_en">골프장명 ▾</th>
+                <th data-sort="region">지역</th>
+                <th data-sort="province">주(Province)</th>
+                <th data-sort="status">운영상태</th>
+                <th data-sort="holes" class="num">홀</th>
+                <th data-sort="year_opened" class="num">개장</th>
+                <th data-sort="weekday_am" class="num">평일<br>AM</th>
+                <th data-sort="weekday_pm" class="num">평일<br>PM</th>
+                <th data-sort="saturday_am" class="num">토<br>AM ⭐</th>
+                <th data-sort="saturday_pm" class="num">토<br>PM</th>
+                <th data-sort="sunday_am" class="num">일<br>AM ⭐</th>
+                <th data-sort="sunday_pm" class="num">일<br>PM</th>
+                <th data-sort="membership_type">멤버십 종류</th>
+                <th data-sort="membership_fee" class="num">멤버십 금액</th>
+                <th data-sort="parent_group">모회사·기업집단</th>
+                <th data-sort="idx_ticker">티커</th>
+                <th data-sort="parent_revenue" class="num">모회사<br>매출 FY2024</th>
+                <th>주소</th>
+                <th>전체 출처</th>
+              </tr>
+            </thead>
+            <tbody data-src-tbody="all"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="src-panel" data-src-panel="official">
         <div class="src-panel-desc">공식 골프장 사이트 · 거래소(IDX) 공시 · OJK · 관공서(.go.id, .mil.id) — <strong>1차 출처</strong></div>
         <div class="table-scroll">
           <table class="course-table src-table" data-src-table="official">
