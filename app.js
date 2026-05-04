@@ -821,6 +821,23 @@ document.getElementById('tableSearch').addEventListener('input', renderTable);
 document.getElementById('tableStatusFilter').addEventListener('change', renderTable);
 document.getElementById('tableRegionFilter').addEventListener('change', renderTable);
 
+// Source-category tab switching
+document.querySelectorAll('.src-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const tab = btn.dataset.srcTab;
+    document.querySelectorAll('.src-tab').forEach(b => {
+      const on = b === btn;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    document.querySelectorAll('.src-panel').forEach(p => {
+      p.classList.toggle('active', p.dataset.srcPanel === tab);
+    });
+    const cntEl = document.getElementById(`srcCount-${tab}`);
+    if (cntEl) document.getElementById('tableVisibleCount').textContent = cntEl.textContent;
+  });
+});
+
 document.querySelectorAll('.course-table th[data-sort]').forEach(th => {
   th.addEventListener('click', () => {
     const key = th.dataset.sort;
@@ -1112,11 +1129,131 @@ function labelSource(url, courseWebsite) {
   return { label: host, kind: 'other', host, url };
 }
 
+// === Source-tab category mapping ===
+// Maps labelSource kind → tab key. 'gov' is grouped under official (1차 출처).
+const SRC_TAB_OF_KIND = {
+  official: 'official',
+  gov: 'official',
+  sns: 'sns',
+  qaccess: 'platform',
+  gogolf: 'platform',
+  playgolf: 'platform',
+  aggregator: 'aggregator',
+  news: 'news',
+  booking: 'news',
+  archive: 'news',
+  other: 'news',
+};
+
+function collectCategorizedSources(c) {
+  // Returns { official: [info...], sns: [...], platform: [...], aggregator: [...], news: [...] }
+  const buckets = { official: [], sns: [], platform: [], aggregator: [], news: [] };
+  const seen = new Map(); // key: tab + '|' + host → bool
+
+  const f = c.fees_2026_05 || {};
+  const m = c.membership || {};
+  const opEv = (c.operating_status?.evidence || []).filter(s => typeof s === 'string' && /^https?:/.test(s));
+
+  const allUrls = []
+    .concat(c.website ? [c.website] : [])
+    .concat(f.sources || [])
+    .concat(m.sources || [])
+    .concat(opEv);
+  if (c.fees_gogolf_reference?.source_url) allUrls.push(c.fees_gogolf_reference.source_url);
+
+  for (const u of allUrls) {
+    if (typeof u !== 'string' || !/^https?:/.test(u)) continue;
+    const info = labelSource(u, c.website);
+    const tab = SRC_TAB_OF_KIND[info.kind] || 'news';
+    const key = tab + '|' + info.host;
+    if (seen.has(key)) continue;
+    seen.set(key, true);
+    buckets[tab].push(info);
+  }
+  return buckets;
+}
+
+function renderSourceTabRow(c, info, sources) {
+  const status = c.operating_status?.status || 'operating';
+  const statusLabel = {
+    operating: '운영중',
+    closed_temporary: '임시 휴장',
+    closed_permanent: '영구 폐장',
+    uncertain: '불확실',
+  }[status] || status;
+
+  const f = c.fees_2026_05 || {};
+  const sd = f.schedule_detailed || {};
+  const wdSlots = extractAmPm(sd.weekday);
+  const satSlots = extractAmPm(sd.weekend_saturday);
+  const sunSlots = extractAmPm(sd.weekend_sunday);
+  const wdFallback = f.weekday?.green_fee_idr ?? f.weekday?.guest_fee_idr;
+  const weFallback = f.weekend?.green_fee_idr ?? f.weekend?.guest_fee_idr;
+  const wdUsd = f.weekday?.green_fee_usd;
+  const weUsd = f.weekend?.green_fee_usd;
+  const cellHtml = (idr, fallbackIdr, fallbackUsd) => {
+    if (idr != null) return fmtIDR(idr);
+    if (fallbackIdr != null) return `<span class="fee-fallback">${fmtIDR(fallbackIdr)}</span>`;
+    if (fallbackUsd != null) return `<span class="fee-fallback">${fmtUSD(fallbackUsd)}</span>`;
+    return '<span class="muted">—</span>';
+  };
+  const wdAmCell = cellHtml(wdSlots.am, wdFallback, wdUsd);
+  const satAmCell = cellHtml(satSlots.am, weFallback, weUsd);
+  const sunAmCell = cellHtml(sunSlots.am, weFallback, weUsd);
+
+  const matoaTag = c.id === 'matoa-nasional' ? '<span class="matoa-tag">★ Matoa</span>' : '';
+
+  const srcPills = sources.map(s =>
+    `<a class="src-pill src-${s.kind}" href="${escapeHtml(s.url)}" target="_blank" rel="noopener" title="${escapeHtml(s.url)}"><span class="src-pill-label">${escapeHtml(s.label)}</span><span class="src-pill-host">${escapeHtml(s.host)}</span></a>`
+  ).join('');
+
+  return `
+    <tr class="primary-rate-row">
+      <td class="name">${escapeHtml(c.name_en)}${matoaTag}</td>
+      <td>${escapeHtml(c.region)}</td>
+      <td><span class="status-pill ${status}">${statusLabel}</span></td>
+      <td class="num">${c.holes ?? '—'}</td>
+      <td class="num fee">${wdAmCell}</td>
+      <td class="num fee fee-premium">${satAmCell}</td>
+      <td class="num fee fee-premium">${sunAmCell}</td>
+      <td class="src-cell">${srcPills || '<span class="muted">—</span>'}</td>
+    </tr>
+  `;
+}
+
 function renderTable() {
   const rows = getTableRows();
-  document.getElementById('tableVisibleCount').textContent = rows.length;
-  const tbody = document.getElementById('courseTableBody');
-  tbody.innerHTML = rows.map(c => {
+  const TABS = ['official', 'sns', 'platform', 'aggregator', 'news'];
+  const buckets = { official: [], sns: [], platform: [], aggregator: [], news: [] };
+
+  for (const c of rows) {
+    const cat = collectCategorizedSources(c);
+    for (const tab of TABS) {
+      if (cat[tab].length) buckets[tab].push({ course: c, sources: cat[tab] });
+    }
+  }
+
+  // Active panel count → main toolbar counter
+  const activeTabBtn = document.querySelector('.src-tab.active');
+  const activeTab = activeTabBtn ? activeTabBtn.dataset.srcTab : 'official';
+  document.getElementById('tableVisibleCount').textContent = buckets[activeTab].length;
+
+  for (const tab of TABS) {
+    const tbody = document.querySelector(`[data-src-tbody="${tab}"]`);
+    if (!tbody) continue;
+    tbody.innerHTML = buckets[tab].map(({ course, sources }) =>
+      renderSourceTabRow(course, tab, sources)
+    ).join('') || `<tr><td colspan="8" class="src-empty">표시할 데이터가 없습니다</td></tr>`;
+    const cnt = document.getElementById(`srcCount-${tab}`);
+    if (cnt) cnt.textContent = buckets[tab].length;
+  }
+
+  return;
+  // legacy single-table renderer (unused, kept disabled below for safety)
+  // eslint-disable-next-line no-unreachable
+  const _legacyTbody = document.getElementById('courseTableBody');
+  if (!_legacyTbody) return;
+  _legacyTbody.innerHTML = rows.map(c => {
     const status = c.operating_status?.status || 'operating';
     const statusLabel = {
       operating: '운영중',

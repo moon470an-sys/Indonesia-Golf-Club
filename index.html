@@ -95,34 +95,135 @@
       <span class="table-counter"><strong id="tableVisibleCount">0</strong>개 표시</span>
       <button id="exportCsv" class="export-btn">📥 CSV 다운로드</button>
     </div>
-    <div class="table-scroll">
-      <table class="course-table">
-        <thead>
-          <tr>
-            <th data-sort="name_en">골프장명 ▾</th>
-            <th data-sort="region">지역</th>
-            <th data-sort="province">주(Province)</th>
-            <th data-sort="status">운영상태</th>
-            <th data-sort="holes" class="num">홀</th>
-            <th data-sort="year_opened" class="num">개장</th>
-            <th data-sort="weekday_am" class="num">Weekday<br>AM</th>
-            <th data-sort="weekday_pm" class="num">Weekday<br>PM</th>
-            <th data-sort="saturday_am" class="num">Saturday<br>AM ⭐</th>
-            <th data-sort="saturday_pm" class="num">Saturday<br>PM</th>
-            <th data-sort="sunday_am" class="num">Sunday<br>AM ⭐</th>
-            <th data-sort="sunday_pm" class="num">Sunday<br>PM</th>
-            <th data-sort="membership_type">멤버십 종류</th>
-            <th data-sort="membership_fee" class="num">멤버십 금액</th>
-            <th data-sort="parent_group">모회사·기업집단</th>
-            <th data-sort="idx_ticker">티커</th>
-            <th data-sort="parent_revenue" class="num">모회사<br>매출 FY2024</th>
-            <th>주소</th>
-            <th>공식 홈페이지</th>
-            <th>SNS</th>
-          </tr>
-        </thead>
-        <tbody id="courseTableBody"></tbody>
-      </table>
+
+    <nav class="src-tabs" role="tablist" id="sourceTabs">
+      <button class="src-tab active" data-src-tab="official" role="tab" aria-selected="true">
+        <span class="src-tab-label">공시·공식</span>
+        <span class="src-tab-count" id="srcCount-official">0</span>
+      </button>
+      <button class="src-tab" data-src-tab="sns" role="tab" aria-selected="false">
+        <span class="src-tab-label">SNS</span>
+        <span class="src-tab-count" id="srcCount-sns">0</span>
+      </button>
+      <button class="src-tab" data-src-tab="platform" role="tab" aria-selected="false">
+        <span class="src-tab-label">전문 골프 플랫폼</span>
+        <span class="src-tab-count" id="srcCount-platform">0</span>
+      </button>
+      <button class="src-tab" data-src-tab="aggregator" role="tab" aria-selected="false">
+        <span class="src-tab-label">글로벌 애그리게이터</span>
+        <span class="src-tab-count" id="srcCount-aggregator">0</span>
+      </button>
+      <button class="src-tab" data-src-tab="news" role="tab" aria-selected="false">
+        <span class="src-tab-label">뉴스·미디어·예약</span>
+        <span class="src-tab-count" id="srcCount-news">0</span>
+      </button>
+    </nav>
+
+    <div class="src-panel-wrap">
+      <div class="src-panel active" data-src-panel="official">
+        <div class="src-panel-desc">공식 골프장 사이트 · 거래소(IDX) 공시 · OJK · 관공서(.go.id, .mil.id) — <strong>1차 출처</strong></div>
+        <div class="table-scroll">
+          <table class="course-table src-table" data-src-table="official">
+            <thead>
+              <tr>
+                <th data-sort="name_en">골프장명 ▾</th>
+                <th data-sort="region">지역</th>
+                <th data-sort="status">운영상태</th>
+                <th data-sort="holes" class="num">홀</th>
+                <th data-sort="weekday_am" class="num">평일 AM</th>
+                <th data-sort="saturday_am" class="num">토 AM ⭐</th>
+                <th data-sort="sunday_am" class="num">일 AM ⭐</th>
+                <th>공식·공시 출처</th>
+              </tr>
+            </thead>
+            <tbody data-src-tbody="official"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="src-panel" data-src-panel="sns">
+        <div class="src-panel-desc">Instagram · Facebook · X(Twitter) · TikTok · Threads — 공식 채널/오너 채널 게시물</div>
+        <div class="table-scroll">
+          <table class="course-table src-table" data-src-table="sns">
+            <thead>
+              <tr>
+                <th data-sort="name_en">골프장명 ▾</th>
+                <th data-sort="region">지역</th>
+                <th data-sort="status">운영상태</th>
+                <th data-sort="holes" class="num">홀</th>
+                <th data-sort="weekday_am" class="num">평일 AM</th>
+                <th data-sort="saturday_am" class="num">토 AM ⭐</th>
+                <th data-sort="sunday_am" class="num">일 AM ⭐</th>
+                <th>SNS 채널</th>
+              </tr>
+            </thead>
+            <tbody data-src-tbody="sns"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="src-panel" data-src-panel="platform">
+        <div class="src-panel-desc">Q-Access · GoGolf · playgolf.id — 인도네시아 현지 전문 골프 예약·요금 플랫폼</div>
+        <div class="table-scroll">
+          <table class="course-table src-table" data-src-table="platform">
+            <thead>
+              <tr>
+                <th data-sort="name_en">골프장명 ▾</th>
+                <th data-sort="region">지역</th>
+                <th data-sort="status">운영상태</th>
+                <th data-sort="holes" class="num">홀</th>
+                <th data-sort="weekday_am" class="num">평일 AM</th>
+                <th data-sort="saturday_am" class="num">토 AM ⭐</th>
+                <th data-sort="sunday_am" class="num">일 AM ⭐</th>
+                <th>플랫폼 출처</th>
+              </tr>
+            </thead>
+            <tbody data-src-tbody="platform"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="src-panel" data-src-panel="aggregator">
+        <div class="src-panel-desc">GolfSavers · GolfAsian · GolfPass · GolfLux · Hole19 · GreenFee365 · Golfshake — 해외 골프 정보 애그리게이터</div>
+        <div class="table-scroll">
+          <table class="course-table src-table" data-src-table="aggregator">
+            <thead>
+              <tr>
+                <th data-sort="name_en">골프장명 ▾</th>
+                <th data-sort="region">지역</th>
+                <th data-sort="status">운영상태</th>
+                <th data-sort="holes" class="num">홀</th>
+                <th data-sort="weekday_am" class="num">평일 AM</th>
+                <th data-sort="saturday_am" class="num">토 AM ⭐</th>
+                <th data-sort="sunday_am" class="num">일 AM ⭐</th>
+                <th>애그리게이터 출처</th>
+              </tr>
+            </thead>
+            <tbody data-src-tbody="aggregator"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="src-panel" data-src-panel="news">
+        <div class="src-panel-desc">현지 뉴스/매거진(Kontan, Bisnis, Kompas, Detik 등) · 예약 채널(Klook, Traveloka, Agoda, Tiket, Trip.com) · Wayback 아카이브 · 기타</div>
+        <div class="table-scroll">
+          <table class="course-table src-table" data-src-table="news">
+            <thead>
+              <tr>
+                <th data-sort="name_en">골프장명 ▾</th>
+                <th data-sort="region">지역</th>
+                <th data-sort="status">운영상태</th>
+                <th data-sort="holes" class="num">홀</th>
+                <th data-sort="weekday_am" class="num">평일 AM</th>
+                <th data-sort="saturday_am" class="num">토 AM ⭐</th>
+                <th data-sort="sunday_am" class="num">일 AM ⭐</th>
+                <th>뉴스·예약·기타 출처</th>
+              </tr>
+            </thead>
+            <tbody data-src-tbody="news"></tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </section>
 
