@@ -512,6 +512,33 @@ function fmtBigIDR(n) {
   return `Rp ${num.toLocaleString('en-US')}`;
 }
 
+// Build a Yahoo Finance URL for an IDX or foreign ticker.
+// Foreign tickers may come prefixed with an exchange code (e.g., "SGX:BN4",
+// "TYO:7868") and may have parenthesized commentary appended.
+function yahooFinanceUrl(rawTicker, isIDX) {
+  if (!rawTicker) return null;
+  const t = String(rawTicker).split('(')[0].trim();
+  if (!t) return null;
+  if (isIDX) {
+    return `https://finance.yahoo.com/quote/${encodeURIComponent(t)}.JK`;
+  }
+  if (t.includes(':')) {
+    const [prefix, codeRaw] = t.split(':').map(s => s.trim());
+    const code = (codeRaw || '').split(/\s+/)[0];
+    const SUFFIX = {
+      SGX: '.SI', TYO: '.T', TSE: '.T', HKEX: '.HK', HKG: '.HK',
+      KLSE: '.KL', BSE: '.BO', NSE: '.NS', LSE: '.L', ASX: '.AX',
+      KRX: '.KS', KOSPI: '.KS', KOSDAQ: '.KQ',
+      NYSE: '', NASDAQ: '', AMEX: '',
+    };
+    const suffix = SUFFIX[prefix.toUpperCase()];
+    if (code && suffix !== undefined) {
+      return `https://finance.yahoo.com/quote/${encodeURIComponent(code)}${suffix}`;
+    }
+  }
+  return `https://finance.yahoo.com/quote/${encodeURIComponent(t.split(/\s+/)[0])}`;
+}
+
 function renderFinancials(fin) {
   if (!fin || typeof fin !== 'object') return '';
 
@@ -526,7 +553,10 @@ function renderFinancials(fin) {
   if (parent) rows.push(['모회사·기업집단', escapeHtml(parent)]);
   if (ticker) {
     const cls = fin.idx_ticker ? 'idx' : 'foreign';
-    const tickerHtml = `<span class="ticker-pill ${cls} ticker-clickable" data-ticker="${escapeHtml(ticker)}" title="클릭하면 5년 재무 그래프 보기">${escapeHtml(ticker)}</span>`;
+    const yhUrl = yahooFinanceUrl(ticker, !!fin.idx_ticker);
+    const tickerHtml = yhUrl
+      ? `<a class="ticker-pill ${cls} ticker-link" href="${escapeHtml(yhUrl)}" target="_blank" rel="noopener" title="Yahoo Finance에서 ${escapeHtml(ticker)} 열기">${escapeHtml(ticker)} <span class="ticker-ext">↗</span></a>`
+      : `<span class="ticker-pill ${cls}">${escapeHtml(ticker)}</span>`;
     rows.push(['상장 티커', tickerHtml]);
   }
   rows.push(['상장 구분', `<span class="listed-status ${escapeHtml(status)}">${escapeHtml(statusLabel)}</span>`]);
@@ -1255,8 +1285,11 @@ function renderAllTabRow(c, cat = 'all') {
     ? `<span class="parent-cell" title="${escapeHtml(parentLabel)}">${escapeHtml(parentLabel.slice(0, 40))}${parentLabel.length > 40 ? '…' : ''}</span>`
     : '<span class="muted">—</span>';
   const ticker = fin.idx_ticker || fin.foreign_ticker;
+  const yhUrl = ticker ? yahooFinanceUrl(ticker, !!fin.idx_ticker) : null;
   const tickerCell = ticker
-    ? `<span class="ticker-pill ${fin.idx_ticker ? 'idx' : 'foreign'} ticker-clickable" data-ticker="${escapeHtml(ticker)}" title="클릭하면 5년 재무 그래프 보기">${escapeHtml(ticker)}</span>`
+    ? (yhUrl
+        ? `<a class="ticker-pill ${fin.idx_ticker ? 'idx' : 'foreign'} ticker-link" href="${escapeHtml(yhUrl)}" target="_blank" rel="noopener" title="Yahoo Finance에서 ${escapeHtml(ticker)} 열기">${escapeHtml(ticker)} <span class="ticker-ext">↗</span></a>`
+        : `<span class="ticker-pill ${fin.idx_ticker ? 'idx' : 'foreign'}">${escapeHtml(ticker)}</span>`)
     : '<span class="muted">—</span>';
   const revIdr = fin.revenue_idr ?? fin.revenue_idr_h1;
   const revYearLabel = fin.revenue_idr_h1 != null && fin.revenue_idr == null ? ' (H1)' : '';
@@ -1476,8 +1509,11 @@ function _unused_renderTableLegacy() {
       ? `<span class="parent-cell" title="${escapeHtml(parentLabel)}">${escapeHtml(parentLabel.slice(0, 40))}${parentLabel.length > 40 ? '…' : ''}</span>`
       : '<span class="muted">—</span>';
     const ticker = fin.idx_ticker || fin.foreign_ticker;
+    const yhUrl = ticker ? yahooFinanceUrl(ticker, !!fin.idx_ticker) : null;
     const tickerCell = ticker
-      ? `<span class="ticker-pill ${fin.idx_ticker ? 'idx' : 'foreign'} ticker-clickable" data-ticker="${escapeHtml(ticker)}" title="클릭하면 5년 재무 그래프 보기">${escapeHtml(ticker)}</span>`
+      ? (yhUrl
+          ? `<a class="ticker-pill ${fin.idx_ticker ? 'idx' : 'foreign'} ticker-link" href="${escapeHtml(yhUrl)}" target="_blank" rel="noopener" title="Yahoo Finance에서 ${escapeHtml(ticker)} 열기">${escapeHtml(ticker)} <span class="ticker-ext">↗</span></a>`
+          : `<span class="ticker-pill ${fin.idx_ticker ? 'idx' : 'foreign'}">${escapeHtml(ticker)}</span>`)
       : '<span class="muted">—</span>';
     const revIdr = fin.revenue_idr ?? fin.revenue_idr_h1;
     const revYearLabel = fin.revenue_idr_h1 != null && fin.revenue_idr == null ? ' (H1)' : '';
@@ -1974,17 +2010,8 @@ document.getElementById('tickerModal').addEventListener('click', (e) => {
   }
 });
 
-// Click delegation for ticker pills
-document.addEventListener('click', async (e) => {
-  const t = e.target.closest('.ticker-clickable');
-  if (!t) return;
-  e.preventDefault();
-  e.stopPropagation();
-  const ticker = t.dataset.ticker;
-  if (!ticker) return;
-  await loadFinancialsIfNeeded();
-  renderTickerModal(ticker);
-});
+// Ticker pills are now plain anchors that open Yahoo Finance in a new tab.
+// (Previously they opened an internal 5-year financials modal — removed.)
 
 // === Theme toggle ===
 const SUN_ICON = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>';
