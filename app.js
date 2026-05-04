@@ -821,20 +821,19 @@ document.getElementById('tableSearch').addEventListener('input', renderTable);
 document.getElementById('tableStatusFilter').addEventListener('change', renderTable);
 document.getElementById('tableRegionFilter').addEventListener('change', renderTable);
 
-// Source-category tab switching
+// Source-category sub-tab switching — re-renders the unified table with
+// rates and sources scoped to the selected category.
 document.querySelectorAll('.src-tab').forEach(btn => {
   btn.addEventListener('click', () => {
     const tab = btn.dataset.srcTab;
+    if (!tab) return;
+    currentSourceCat = tab;
     document.querySelectorAll('.src-tab').forEach(b => {
       const on = b === btn;
       b.classList.toggle('active', on);
       b.setAttribute('aria-selected', on ? 'true' : 'false');
     });
-    document.querySelectorAll('.src-panel').forEach(p => {
-      p.classList.toggle('active', p.dataset.srcPanel === tab);
-    });
-    const cntEl = document.getElementById(`srcCount-${tab}`);
-    if (cntEl) document.getElementById('tableVisibleCount').textContent = cntEl.textContent;
+    renderTable();
   });
 });
 
@@ -1173,56 +1172,44 @@ function collectCategorizedSources(c) {
   return buckets;
 }
 
-function renderSourceTabRow(c, info, sources) {
-  const status = c.operating_status?.status || 'operating';
-  const statusLabel = {
-    operating: '운영중',
-    closed_temporary: '임시 휴장',
-    closed_permanent: '영구 폐장',
-    uncertain: '불확실',
-  }[status] || status;
-
+// === Per-category rate provider ===
+// Returns { wdAm, wdPm, satAm, satPm, sunAm, sunPm, note } where each is
+// either a number (IDR) or null. The unified table rate columns swap
+// based on the selected source category sub-tab.
+function getCategoryRates(c, cat) {
   const f = c.fees_2026_05 || {};
   const sd = f.schedule_detailed || {};
-  const wdSlots = extractAmPm(sd.weekday);
-  const satSlots = extractAmPm(sd.weekend_saturday);
-  const sunSlots = extractAmPm(sd.weekend_sunday);
-  const wdFallback = f.weekday?.green_fee_idr ?? f.weekday?.guest_fee_idr;
-  const weFallback = f.weekend?.green_fee_idr ?? f.weekend?.guest_fee_idr;
-  const wdUsd = f.weekday?.green_fee_usd;
-  const weUsd = f.weekend?.green_fee_usd;
-  const cellHtml = (idr, fallbackIdr, fallbackUsd) => {
-    if (idr != null) return fmtIDR(idr);
-    if (fallbackIdr != null) return `<span class="fee-fallback">${fmtIDR(fallbackIdr)}</span>`;
-    if (fallbackUsd != null) return `<span class="fee-fallback">${fmtUSD(fallbackUsd)}</span>`;
-    return '<span class="muted">—</span>';
+
+  // Platform tab: prefer GoGolf reference rates if available (often differ from official)
+  if (cat === 'platform' && c.fees_gogolf_reference?.schedule) {
+    const sch = c.fees_gogolf_reference.schedule;
+    return {
+      wdAm: sch.weekday?.am ?? null,
+      wdPm: sch.weekday?.pm ?? null,
+      satAm: sch.saturday?.am ?? null,
+      satPm: sch.saturday?.pm ?? null,
+      sunAm: sch.sunday?.am ?? null,
+      sunPm: sch.sunday?.pm ?? null,
+      note: 'GoGolf 참고가',
+      isPlatform: true,
+    };
+  }
+
+  // Default: derive from main schedule (used by 전체·공시·SNS·애그리게이터·뉴스)
+  const wd = extractAmPm(sd.weekday);
+  const sat = extractAmPm(sd.weekend_saturday);
+  const sun = extractAmPm(sd.weekend_sunday);
+  return {
+    wdAm: wd.am, wdPm: wd.pm,
+    satAm: sat.am, satPm: sat.pm,
+    sunAm: sun.am, sunPm: sun.pm,
+    note: null,
+    isPlatform: false,
   };
-  const wdAmCell = cellHtml(wdSlots.am, wdFallback, wdUsd);
-  const satAmCell = cellHtml(satSlots.am, weFallback, weUsd);
-  const sunAmCell = cellHtml(sunSlots.am, weFallback, weUsd);
-
-  const matoaTag = c.id === 'matoa-nasional' ? '<span class="matoa-tag">★ Matoa</span>' : '';
-
-  const srcPills = sources.map(s =>
-    `<a class="src-pill src-${s.kind}" href="${escapeHtml(s.url)}" target="_blank" rel="noopener" title="${escapeHtml(s.url)}"><span class="src-pill-label">${escapeHtml(s.label)}</span><span class="src-pill-host">${escapeHtml(s.host)}</span></a>`
-  ).join('');
-
-  return `
-    <tr class="primary-rate-row">
-      <td class="name">${escapeHtml(c.name_en)}${matoaTag}</td>
-      <td>${escapeHtml(c.region)}</td>
-      <td><span class="status-pill ${status}">${statusLabel}</span></td>
-      <td class="num">${c.holes ?? '—'}</td>
-      <td class="num fee">${wdAmCell}</td>
-      <td class="num fee fee-premium">${satAmCell}</td>
-      <td class="num fee fee-premium">${sunAmCell}</td>
-      <td class="src-cell">${srcPills || '<span class="muted">—</span>'}</td>
-    </tr>
-  `;
 }
 
-// === Unified "전체" tab row (full column set) ===
-function renderAllTabRow(c) {
+// === Unified row renderer (single row template, rates swap by category) ===
+function renderAllTabRow(c, cat = 'all') {
   const status = c.operating_status?.status || 'operating';
   const statusLabel = {
     operating: '운영중',
@@ -1232,28 +1219,34 @@ function renderAllTabRow(c) {
   }[status] || status;
 
   const f = c.fees_2026_05 || {};
-  const sd = f.schedule_detailed || {};
-  const wdSlots = extractAmPm(sd.weekday);
-  const satSlots = extractAmPm(sd.weekend_saturday);
-  const sunSlots = extractAmPm(sd.weekend_sunday);
   const wdFallback = f.weekday?.green_fee_idr ?? f.weekday?.guest_fee_idr;
   const weFallback = f.weekend?.green_fee_idr ?? f.weekend?.guest_fee_idr;
   const wdUsd = f.weekday?.green_fee_usd;
   const weUsd = f.weekend?.green_fee_usd;
+
+  // Rates come from category-aware provider (platform → GoGolf, others → main)
+  const r = getCategoryRates(c, cat);
+  const rateClass = r.isPlatform ? 'fee-platform' : '';
+  // Fallbacks (weekday/weekend single value) only meaningful for non-platform rates
+  const fallbackWd = r.isPlatform ? null : wdFallback;
+  const fallbackWe = r.isPlatform ? null : weFallback;
+  const fallbackWdUsd = r.isPlatform ? null : wdUsd;
+  const fallbackWeUsd = r.isPlatform ? null : weUsd;
   const cellHtml = (idr, fallbackIdr, fallbackUsd) => {
     if (idr != null) return fmtIDR(idr);
     if (fallbackIdr != null) return `<span class="fee-fallback">${fmtIDR(fallbackIdr)}</span>`;
     if (fallbackUsd != null) return `<span class="fee-fallback">${fmtUSD(fallbackUsd)}</span>`;
     return '<span class="muted">—</span>';
   };
-  const wdAmCell = cellHtml(wdSlots.am, wdFallback, wdUsd);
-  const wdPmCell = cellHtml(wdSlots.pm, wdFallback, wdUsd);
-  const satAmCell = cellHtml(satSlots.am, weFallback, weUsd);
-  const satPmCell = cellHtml(satSlots.pm, weFallback, weUsd);
-  const sunAmCell = cellHtml(sunSlots.am, weFallback, weUsd);
-  const sunPmCell = cellHtml(sunSlots.pm, weFallback, weUsd);
+  const wdAmCell = cellHtml(r.wdAm, fallbackWd, fallbackWdUsd);
+  const wdPmCell = cellHtml(r.wdPm, fallbackWd, fallbackWdUsd);
+  const satAmCell = cellHtml(r.satAm, fallbackWe, fallbackWeUsd);
+  const satPmCell = cellHtml(r.satPm, fallbackWe, fallbackWeUsd);
+  const sunAmCell = cellHtml(r.sunAm, fallbackWe, fallbackWeUsd);
+  const sunPmCell = cellHtml(r.sunPm, fallbackWe, fallbackWeUsd);
 
   const matoaTag = c.id === 'matoa-nasional' ? '<span class="matoa-tag">★ Matoa</span>' : '';
+  const noteTag = r.note ? ` <span class="rate-note-tag">${escapeHtml(r.note)}</span>` : '';
   const mapLink = `<a href="https://www.google.com/maps/search/?api=1&query=${c.lat},${c.lng}" target="_blank" rel="noopener">지도</a>`;
 
   const fin = c.financials || {};
@@ -1271,31 +1264,32 @@ function renderAllTabRow(c) {
     ? `<span class="rev-cell">${fmtBigIDR(revIdr)}${revYearLabel}</span>`
     : '<span class="muted">—</span>';
 
-  // Combined sources across all categories, ordered by category priority
-  const cat = collectCategorizedSources(c);
+  // Source column: filtered by selected category (or combined for 'all')
+  const sources = collectCategorizedSources(c);
   const ORDER = ['official', 'platform', 'aggregator', 'sns', 'news'];
-  const allPills = [];
-  for (const t of ORDER) {
-    for (const s of cat[t]) {
-      allPills.push(`<a class="src-pill src-${s.kind}" href="${escapeHtml(s.url)}" target="_blank" rel="noopener" title="${escapeHtml(s.url)}"><span class="src-pill-label">${escapeHtml(s.label)}</span><span class="src-pill-host">${escapeHtml(s.host)}</span></a>`);
+  const tabsToShow = (cat === 'all') ? ORDER : [cat];
+  const pills = [];
+  for (const t of tabsToShow) {
+    for (const s of (sources[t] || [])) {
+      pills.push(`<a class="src-pill src-${s.kind}" href="${escapeHtml(s.url)}" target="_blank" rel="noopener" title="${escapeHtml(s.url)}"><span class="src-pill-label">${escapeHtml(s.label)}</span><span class="src-pill-host">${escapeHtml(s.host)}</span></a>`);
     }
   }
-  const allSrcHtml = allPills.length ? allPills.join('') : '<span class="muted">—</span>';
+  const allSrcHtml = pills.length ? pills.join('') : '<span class="muted">—</span>';
 
   return `
     <tr class="primary-rate-row">
-      <td class="name">${escapeHtml(c.name_en)}${matoaTag}</td>
+      <td class="name">${escapeHtml(c.name_en)}${matoaTag}${noteTag}</td>
       <td>${escapeHtml(c.region)}</td>
       <td>${escapeHtml(c.province)}</td>
       <td><span class="status-pill ${status}">${statusLabel}</span></td>
       <td class="num">${c.holes ?? '—'}</td>
       <td class="num">${c.year_opened ?? '—'}</td>
-      <td class="num fee">${wdAmCell}</td>
-      <td class="num fee">${wdPmCell}</td>
-      <td class="num fee fee-premium">${satAmCell}</td>
-      <td class="num fee">${satPmCell}</td>
-      <td class="num fee fee-premium">${sunAmCell}</td>
-      <td class="num fee">${sunPmCell}</td>
+      <td class="num fee ${rateClass}">${wdAmCell}</td>
+      <td class="num fee ${rateClass}">${wdPmCell}</td>
+      <td class="num fee fee-premium ${rateClass}">${satAmCell}</td>
+      <td class="num fee ${rateClass}">${satPmCell}</td>
+      <td class="num fee fee-premium ${rateClass}">${sunAmCell}</td>
+      <td class="num fee ${rateClass}">${sunPmCell}</td>
       <td class="member-type">${membershipTypeCell(c.membership)}</td>
       <td class="num member-amount">${membershipAmountCell(c.membership)}</td>
       <td class="parent-group">${parentCell}</td>
@@ -1307,44 +1301,69 @@ function renderAllTabRow(c) {
   `;
 }
 
+// === Current selected source category sub-tab (drives rate column swap) ===
+let currentSourceCat = 'all';
+
+const SRC_TAB_DESC = {
+  all: '필터에 해당하는 모든 골프장의 통합 정보 — 요금·멤버십·모회사 재무·전체 출처를 한 표에서 확인',
+  official: '공식 골프장 사이트 · 거래소(IDX) 공시 · OJK · 관공서(.go.id, .mil.id) — 1차 출처 기준 요금',
+  sns: 'Instagram · Facebook · X(Twitter) · TikTok · Threads — 공식 채널 게시물 (요금은 1차 출처와 동일)',
+  platform: 'Q-Access · GoGolf · playgolf.id — 인도네시아 현지 전문 골프 플랫폼. <strong>GoGolf 참고가</strong>가 있을 경우 해당 가격으로 표시 (참고용 비공식 가격)',
+  aggregator: 'GolfSavers · GolfAsian · GolfPass · GolfLux · Hole19 · GreenFee365 · Golfshake — 해외 애그리게이터 (요금은 1차 출처와 동일)',
+  news: '현지 뉴스/매거진 · 예약 채널(Klook, Traveloka, Agoda 등) · Wayback 아카이브 (요금은 1차 출처와 동일)',
+};
+
+const SRC_COL_HEADER = {
+  all: '전체 출처',
+  official: '공식·공시 출처',
+  sns: 'SNS 채널',
+  platform: '전문 골프 플랫폼 출처',
+  aggregator: '애그리게이터 출처',
+  news: '뉴스·예약·기타 출처',
+};
+
 function renderTable() {
   const rows = getTableRows();
   const CAT_TABS = ['official', 'sns', 'platform', 'aggregator', 'news'];
-  const buckets = { official: [], sns: [], platform: [], aggregator: [], news: [] };
 
+  // Per-category counts for the tab badges (count = courses that have ≥1 source in that category)
+  const counts = { official: 0, sns: 0, platform: 0, aggregator: 0, news: 0 };
   for (const c of rows) {
     const cat = collectCategorizedSources(c);
-    for (const tab of CAT_TABS) {
-      if (cat[tab].length) buckets[tab].push({ course: c, sources: cat[tab] });
-    }
+    for (const t of CAT_TABS) if (cat[t].length) counts[t]++;
   }
 
-  // 'all' tab: every filtered course, regardless of source category
-  const allTbody = document.querySelector('[data-src-tbody="all"]');
-  if (allTbody) {
-    allTbody.innerHTML = rows.map(renderAllTabRow).join('')
+  // Filter rows for the active sub-tab: 'all' shows everything, others restrict
+  // to courses that have a source in that category.
+  const visibleRows = currentSourceCat === 'all'
+    ? rows
+    : rows.filter(c => collectCategorizedSources(c)[currentSourceCat]?.length);
+
+  // Render the unified table body, rates swap by category
+  const tbody = document.querySelector('[data-src-tbody="all"]');
+  if (tbody) {
+    tbody.innerHTML = visibleRows.map(c => renderAllTabRow(c, currentSourceCat)).join('')
       || `<tr><td colspan="19" class="src-empty">표시할 데이터가 없습니다</td></tr>`;
   }
-  const allCnt = document.getElementById('srcCount-all');
-  if (allCnt) allCnt.textContent = rows.length;
 
-  // Active panel count → main toolbar counter
-  const activeTabBtn = document.querySelector('.src-tab.active');
-  const activeTab = activeTabBtn ? activeTabBtn.dataset.srcTab : 'all';
-  const activeCount = activeTab === 'all' ? rows.length : (buckets[activeTab]?.length ?? 0);
-  document.getElementById('tableVisibleCount').textContent = activeCount;
-
-  for (const tab of CAT_TABS) {
-    const tbody = document.querySelector(`[data-src-tbody="${tab}"]`);
-    if (!tbody) continue;
-    tbody.innerHTML = buckets[tab].map(({ course, sources }) =>
-      renderSourceTabRow(course, tab, sources)
-    ).join('') || `<tr><td colspan="8" class="src-empty">표시할 데이터가 없습니다</td></tr>`;
-    const cnt = document.getElementById(`srcCount-${tab}`);
-    if (cnt) cnt.textContent = buckets[tab].length;
+  // Tab counts
+  document.getElementById('srcCount-all').textContent = rows.length;
+  for (const t of CAT_TABS) {
+    const el = document.getElementById(`srcCount-${t}`);
+    if (el) el.textContent = counts[t];
   }
 
-  return;
+  // Toolbar visible count + panel description + last column header
+  document.getElementById('tableVisibleCount').textContent = visibleRows.length;
+  const descEl = document.getElementById('srcPanelDesc');
+  if (descEl) descEl.innerHTML = SRC_TAB_DESC[currentSourceCat] || SRC_TAB_DESC.all;
+  const colHdr = document.getElementById('srcColHeader');
+  if (colHdr) colHdr.textContent = SRC_COL_HEADER[currentSourceCat] || SRC_COL_HEADER.all;
+}
+
+// Removed-legacy guard — no longer used.
+function _unused_renderTableLegacy() {
+  const rows = getTableRows();
   // legacy single-table renderer (unused, kept disabled below for safety)
   // eslint-disable-next-line no-unreachable
   const _legacyTbody = document.getElementById('courseTableBody');

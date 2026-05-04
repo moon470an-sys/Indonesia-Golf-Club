@@ -1810,6 +1810,7 @@ a.src-pill:hover { transform: translateY(-1px); text-decoration: none; box-shado
 /* === Source-category tabs (상세 데이터) === */
 .src-tabs {
   display: flex;
+  align-items: center;
   gap: 6px;
   padding: 0 var(--sp-5);
   margin-top: var(--sp-3);
@@ -1818,6 +1819,14 @@ a.src-pill:hover { transform: translateY(-1px); text-decoration: none; box-shado
   overflow-x: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+.src-tabs-prefix {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  padding-right: 4px;
 }
 .src-tabs::-webkit-scrollbar { display: none; }
 
@@ -1931,6 +1940,35 @@ a.src-pill:hover { transform: translateY(-1px); text-decoration: none; box-shado
   padding: 32px 16px;
   color: var(--text-muted);
   font-size: 13px;
+}
+
+/* Platform-source rate cells (GoGolf 참고가 표시 시) */
+.fee-platform {
+  background: var(--gold-soft, rgba(234, 179, 8, 0.10));
+  color: var(--gold, #b45309);
+  font-weight: 600;
+}
+[data-theme="dark"] .fee-platform {
+  background: rgba(234, 179, 8, 0.14);
+  color: #fcd34d;
+}
+.rate-note-tag {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 7px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: var(--gold, #b45309);
+  background: var(--gold-soft, rgba(234, 179, 8, 0.10));
+  border: 1px solid var(--gold, #b45309);
+  border-radius: 999px;
+  vertical-align: middle;
+}
+[data-theme="dark"] .rate-note-tag {
+  color: #fcd34d;
+  border-color: #fcd34d;
+  background: rgba(234, 179, 8, 0.14);
 }
 
 @media (max-width: 720px) {
