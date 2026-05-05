@@ -118,6 +118,35 @@ def fan_out(candidates: list[dict]) -> dict[str, list[dict]]:
     return dict(by_slot)
 
 
+def collapse_per_source(slot_cands: list[dict]) -> list[dict]:
+    """Collapse candidates that share a source_url into a single entry per
+    URL/slot. The collapsed value is the *median* of the URL's candidates
+    (robust to ancillary-fee outliers that slip past the keyword filter).
+
+    Rationale: many pages list multiple IDR amounts (green fee, caddy, cart,
+    insurance, locker). Within one page they all match the same slot context
+    window, but only one represents the green fee. The median absorbs the
+    layout noise. Trust evaluation is then done across distinct URLs, not
+    across raw extracted numbers — that's what the user actually wants when
+    they ask 'do these sources agree?'.
+    """
+    by_url: dict[str, list[dict]] = {}
+    for c in slot_cands:
+        url = c.get("source_url") or ""
+        by_url.setdefault(url, []).append(c)
+    out = []
+    for url, group in by_url.items():
+        # Median value among this URL's candidates
+        values = sorted(c["value_idr"] for c in group)
+        median = values[len(values) // 2]
+        # Pick the candidate whose value is closest to the median; preserve
+        # its tier/publisher/excerpt so the UI still shows the underlying URL.
+        chosen = min(group, key=lambda c: abs(c["value_idr"] - median))
+        out.append({**chosen, "value_idr": median,
+                    "n_collapsed_at_url": len(group)})
+    return out
+
+
 def remove_slot_outliers(slot_cands: list[dict]) -> tuple[list[dict], list[dict]]:
     """Drop candidates whose value is far below the slot median (likely
     ancillary-fee leakage), keeping only those within sane multiples.
@@ -144,19 +173,30 @@ def remove_slot_outliers(slot_cands: list[dict]) -> tuple[list[dict], list[dict]
 
 
 def pick_representative(slot_cands: list[dict]) -> dict:
-    """Choose representative value + meta for one slot.
+    """Choose representative value + meta for one slot (v4 algorithm).
 
-    Filters obvious ancillary-leak outliers (values << slot median) before
-    picking the trusted value. Outlier candidates are NOT deleted from
-    source_details — only excluded from the representative aggregate.
+    Pipeline:
+      1. Collapse: same source_url → one entry (median of that URL's values).
+         Removes intra-page noise (green fee + caddy + cart on one page).
+      2. Outlier filter: drop URLs whose collapsed value < 40% of slot median.
+         Outlier-URLs are NOT deleted from source_details — only excluded
+         from the aggregate, so the comparison modal still shows them.
+      3. Trust pick: Tier-1 wins outright; otherwise tier × recency average.
+      4. Verification flag: raised only when distinct URLs (n_sources >= 2)
+         disagree by >= 30%. Single-URL slots can no longer trip the flag,
+         so spurious 'one page with mixed fees' false positives are gone.
     """
     if not slot_cands:
         return {}
 
-    kept, dropped = remove_slot_outliers(slot_cands)
-    cohort = kept if kept else slot_cands
+    # Step 1 — collapse same-URL duplicates
+    per_url = collapse_per_source(slot_cands)
 
-    # If any Tier-1 candidate exists in the kept set, pick highest-scoring
+    # Step 2 — drop URL-level outliers (likely caddy-only pages, etc.)
+    kept, dropped = remove_slot_outliers(per_url)
+    cohort = kept if kept else per_url
+
+    # Step 3 — pick representative
     tier1 = [c for c in cohort if int(c.get("tier", 5)) == 1]
     if tier1:
         chosen = max(tier1, key=score_candidate)
@@ -171,14 +211,19 @@ def pick_representative(slot_cands: list[dict]) -> dict:
     values = [c["value_idr"] for c in cohort]
     lo, hi = min(values), max(values)
     diff_pct = (hi - lo) / lo * 100 if lo > 0 else 0.0
+
+    # Step 4 — verification flag only when ≥2 distinct URLs disagree
+    verify = (len(cohort) >= 2) and (diff_pct >= 30.0)
+
     return {
         "value_idr": rep,
         "confidence": confidence,
-        "n_sources": len(cohort),
+        "n_sources": len(cohort),         # distinct URLs after collapse
+        "n_raw_candidates": len(slot_cands),
         "n_outliers_dropped": len(dropped),
         "min_idr": lo,
         "max_idr": hi,
-        "verification_needed": diff_pct >= 30.0,
+        "verification_needed": verify,
         "diff_pct": round(diff_pct, 1),
     }
 
