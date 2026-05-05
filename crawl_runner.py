@@ -57,6 +57,14 @@ from urllib.parse import urlparse
 import httpx
 from bs4 import BeautifulSoup
 
+# PDF text extraction is optional — many Indonesian golf clubs publish their
+# rate cards as PDF only. If pdfplumber is missing we silently skip.
+try:
+    import pdfplumber  # type: ignore
+    _HAS_PDF = True
+except ImportError:
+    _HAS_PDF = False
+
 ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "data"
 QUEUE_FILE = DATA / "crawl_queue.json"
@@ -216,6 +224,24 @@ def find_prices_with_context(text: str) -> list[dict]:
     return out
 
 
+# Keywords that mark a price as ancillary (caddy / cart / insurance / tax)
+# rather than a green fee. If the surrounding context is dominated by these,
+# we drop the candidate.
+ANCILLARY_KEYWORDS = (
+    "caddy", "caddie", "kaddy", "kaddie",
+    "cart fee", "cart hire", "buggy", "kart",
+    "insurance", "asuransi",
+    "tax", "ppn", "pajak",
+    "service charge", "biaya layanan",
+    "deposit", "locker", "ball", "shoe rental",
+)
+
+
+def is_ancillary_context(context: str) -> bool:
+    """True when a price's surrounding text is dominated by ancillary words."""
+    return any(kw in context for kw in ANCILLARY_KEYWORDS)
+
+
 def label_slot(context: str) -> Optional[str]:
     """Map a price context window to a 6-slot key, or None if unclear.
 
@@ -283,8 +309,17 @@ def extract_candidates_from_html(html: str, source_url: str, tier: int,
     out = []
     fetched_at = datetime.now(timezone.utc).isoformat()
     for r in raw:
+        # Skip prices whose surrounding context is dominated by caddy/cart/
+        # insurance/tax wording — those are ancillaries, not green fees.
+        if is_ancillary_context(r["context"]):
+            continue
         slot = label_slot(r["context"])
         if slot is None:
+            continue
+        # Heuristic floor: green fees in Indonesia are rarely <150K IDR.
+        # Caddy/cart/insurance items often slip in around 50K-150K — drop
+        # those even when the slot keyword is nearby.
+        if r["value_idr"] < 150_000:
             continue
         out.append({
             "slot": slot,
@@ -392,6 +427,107 @@ def discover_qaccess_detail_links(html: str) -> list[str]:
     return out
 
 
+def discover_pdf_links(html: str, base_url: str) -> list[str]:
+    """Walk anchors and return same-host .pdf URLs whose href OR text contains
+    a price-related keyword. Cap 4 per page.
+    """
+    try:
+        soup = BeautifulSoup(html, "lxml")
+    except Exception:
+        soup = BeautifulSoup(html, "html.parser")
+    base_host = host_of(base_url)
+    out, seen = [], set()
+    for a in soup.find_all("a", href=True):
+        href = a["href"].strip()
+        if not href.lower().endswith(".pdf"):
+            continue
+        text = (a.get_text() or "").strip().lower()
+        href_lc = href.lower()
+        is_price = any(kw in text for kw in LINK_PRICE_KEYWORDS) or \
+                   any(kw in href_lc for kw in LINK_PRICE_KEYWORDS) or \
+                   "rate" in href_lc or "card" in href_lc
+        if not is_price:
+            continue
+        # Resolve to absolute
+        if href.startswith("//"):
+            url = "https:" + href
+        elif href.startswith("/"):
+            scheme = urlparse(base_url).scheme or "https"
+            url = f"{scheme}://{base_host}{href}"
+        elif href.startswith(("http://", "https://")):
+            url = href
+        else:
+            base = base_url if base_url.endswith("/") else base_url + "/"
+            url = base + href
+        if not url.startswith(("http://", "https://")):
+            continue
+        if host_of(url) != base_host:
+            continue
+        if url in seen:
+            continue
+        seen.add(url)
+        out.append(url)
+        if len(out) >= 4:
+            break
+    return out
+
+
+def extract_text_from_pdf_bytes(pdf_bytes: bytes) -> Optional[str]:
+    """Best-effort PDF text extraction (first 6 pages)."""
+    if not _HAS_PDF or not pdf_bytes:
+        return None
+    import io
+    try:
+        with pdfplumber.open(io.BytesIO(pdf_bytes)) as pdf:
+            pages = pdf.pages[:6]
+            chunks = []
+            for p in pages:
+                try:
+                    t = p.extract_text() or ""
+                except Exception:
+                    t = ""
+                if t:
+                    chunks.append(t)
+            return "\n".join(chunks) if chunks else None
+    except Exception:
+        return None
+
+
+def extract_candidates_from_pdf_text(text: str, source_url: str, tier: int,
+                                     publisher: str) -> list[dict]:
+    """Same price/slot logic as the HTML path, but takes raw text directly.
+
+    PDFs often have very dense rate-table layouts where the slot keyword and
+    the IDR amount land far apart. We pre-process by replacing newlines with
+    spaces so the ±60-char context window can bridge typical line breaks.
+    """
+    if not text:
+        return []
+    flat = re.sub(r"\s+", " ", text)[:200_000]
+    raw = find_prices_with_context(flat)
+    out = []
+    fetched_at = datetime.now(timezone.utc).isoformat()
+    for r in raw:
+        if is_ancillary_context(r["context"]):
+            continue
+        slot = label_slot(r["context"])
+        if slot is None:
+            continue
+        if r["value_idr"] < 150_000:
+            continue
+        out.append({
+            "slot": slot,
+            "value_idr": r["value_idr"],
+            "tier": tier,
+            "publisher": publisher,
+            "source_url": source_url,
+            "fetched_at": fetched_at,
+            "raw_excerpt": r["context"][:200],
+            "from_pdf": True,
+        })
+    return out
+
+
 def parse_wayback_cdx(json_text: str) -> Optional[str]:
     """CDX API returns a 2D array; first row is headers. Pick the most recent
     snapshot URL (timestamp + original)."""
@@ -469,10 +605,12 @@ class HostThrottle:
 # ============================================================================
 
 async def fetch_one(client: httpx.AsyncClient, url: str,
-                    throttle: HostThrottle) -> tuple[Optional[str], dict]:
-    """Returns (html_text_or_None, attempt_log_entry).
+                    throttle: HostThrottle, *, want_bytes: bool = False
+                    ) -> tuple[Optional[object], dict]:
+    """Returns (text_or_bytes_or_None, attempt_log_entry).
 
-    attempt_log_entry: {"url", "status", "elapsed_ms", "error"}
+    If `want_bytes` is True, returns the raw bytes (for PDF fetching).
+    Otherwise returns decoded text.
     """
     h = host_of(url)
     if not h:
@@ -492,8 +630,9 @@ async def fetch_one(client: httpx.AsyncClient, url: str,
                                           "Accept-Language": "id,en;q=0.9"})
             dt = int((time.monotonic() - t0) * 1000)
             if r.status_code in (200, 203):
-                return r.text, {"url": url, "status": r.status_code,
-                                "elapsed_ms": dt}
+                payload = r.content if want_bytes else r.text
+                return payload, {"url": url, "status": r.status_code,
+                                 "elapsed_ms": dt}
             if r.status_code in (404, 410):
                 return None, {"url": url, "status": r.status_code,
                               "elapsed_ms": dt, "error": "not found"}
@@ -534,17 +673,22 @@ async def process_course(client: httpx.AsyncClient, throttle: HostThrottle,
         "failed_urls": [],
     }
     visited: set[str] = set()
-    PER_COURSE_URL_CAP = 14   # safety: never let one course balloon
+    PER_COURSE_URL_CAP = 16   # safety: never let one course balloon
 
     async def fetch_and_extract(url: str, *, force_tier: int = None,
                                 force_publisher: str = None):
-        """Fetch a URL once (de-duped) and extract candidates."""
+        """Fetch a URL once (de-duped) and extract candidates.
+
+        If the URL ends in .pdf, fetch as bytes and run pdfplumber.
+        Otherwise fetch as text and run the HTML parser.
+        """
         if url in visited or len(visited) >= PER_COURSE_URL_CAP:
             return None
         visited.add(url)
-        html, log = await fetch_one(client, url, throttle)
+        is_pdf = url.lower().split("?")[0].endswith(".pdf")
+        payload, log = await fetch_one(client, url, throttle, want_bytes=is_pdf)
         out["attempted_urls"].append(log)
-        if html is None:
+        if payload is None:
             out["failed_urls"].append({"url": url, "error": log.get("error")})
             return None
         tier, publisher = classify_tier(url, entry.get("website"))
@@ -552,9 +696,18 @@ async def process_course(client: httpx.AsyncClient, throttle: HostThrottle,
             tier = force_tier
         if force_publisher:
             publisher = force_publisher
-        cands = extract_candidates_from_html(html, url, tier, publisher)
+        if is_pdf:
+            text = extract_text_from_pdf_bytes(payload)
+            if not text:
+                # Note the PDF failure so the merge log stays honest
+                out["failed_urls"].append({"url": url, "error": "pdf_extract_empty"})
+                return None
+            cands = extract_candidates_from_pdf_text(text, url, tier, publisher)
+            out["candidates"].extend(cands)
+            return None  # No HTML body to follow links from
+        cands = extract_candidates_from_html(payload, url, tier, publisher)
         out["candidates"].extend(cands)
-        return html
+        return payload
 
     for kind, url in entry.get("seed_urls", []):
         if len(visited) >= PER_COURSE_URL_CAP:
@@ -572,6 +725,12 @@ async def process_course(client: httpx.AsyncClient, throttle: HostThrottle,
                     if len(visited) >= PER_COURSE_URL_CAP:
                         break
                     await fetch_and_extract(sub)
+                # Discover up to 3 rate-card PDFs and parse each
+                pdf_links = discover_pdf_links(html, url)
+                for pdf_url in pdf_links[:3]:
+                    if len(visited) >= PER_COURSE_URL_CAP:
+                        break
+                    await fetch_and_extract(pdf_url)
 
         elif kind == "qaccess_search":
             html = await fetch_and_extract(url)

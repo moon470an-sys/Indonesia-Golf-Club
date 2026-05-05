@@ -1,0 +1,332 @@
+{
+  "log_file": "crawl_log_20260505_234334.json",
+  "courses_touched": 38,
+  "new_urls_added": 33,
+  "slots_filled": 168,
+  "verification_flags": 123,
+  "tier_before": {
+    "1": 33
+  },
+  "tier_after": {
+    "3": 283,
+    "1": 64,
+    "5": 15
+  },
+  "verification_needed_courses": [
+    {
+      "name_en": "Bintan Lagoon - Sea View Course",
+      "course_id": "bintan-lagoon-seaview",
+      "slots": [
+        "satAm",
+        "satPm",
+        "sunAm",
+        "sunPm"
+      ]
+    },
+    {
+      "name_en": "Lapangan Golf PT Pusri (Patra Jaya)",
+      "course_id": "pusri-palembang",
+      "slots": [
+        "wdAm",
+        "wdPm",
+        "satAm",
+        "satPm",
+        "sunAm",
+        "sunPm"
+      ]
+    },
+    {
+      "name_en": "SouthLinks Country Club",
+      "course_id": "southlinks-batam",
+      "slots": [
+        "wdAm",
+        "wdPm"
+      ]
+    },
+    {
+      "name_en": "Bandung Giri Gahana Golf & Resort",
+      "course_id": "bandung-giri-gahana",
+      "slots": [
+        "satAm"
+      ]
+    },
+    {
+      "name_en": "Cengkareng Golf Club",
+      "course_id": "cengkareng-golf",
+      "slots": [
+        "satAm",
+        "satPm",
+        "sunAm",
+        "sunPm"
+      ]
+    },
+    {
+      "name_en": "Bukit Darmo Golf",
+      "course_id": "bukit-darmo-surabaya",
+      "slots": [
+        "wdAm",
+        "wdPm",
+        "satAm",
+        "satPm",
+        "sunAm",
+        "sunPm"
+      ]
+    },
+    {
+      "name_en": "Ciputra Golf Club & Hotel Surabaya",
+      "course_id": "ciputra-surabaya",
+      "slots": [
+        "wdAm",
+        "wdPm"
+      ]
+    },
+    {
+      "name_en": "Damai Indah Golf - Pantai Indah Kapuk (PIK) Course",
+      "course_id": "damai-indah-pik",
+      "slots": [
+        "sunAm"
+      ]
+    },
+    {
+      "name_en": "Damai Indah Golf - Bumi Serpong Damai (BSD) Course",
+      "course_id": "damai-indah-bsd",
+      "slots": [
+        "wdAm",
+        "wdPm",
+        "sunAm",
+        "sunPm"
+      ]
+    },
+    {
+      "name_en": "Emeralda Golf Club",
+      "course_id": "emeralda-golf",
+      "slots": [
+        "satAm"
+      ]
+    },
+    {
+      "name_en": "Gunung Geulis Country Club",
+      "course_id": "gunung-geulis",
+      "slots": [
+        "wdAm",
+        "wdPm",
+        "satAm",
+        "satPm",
+        "sunAm",
+        "sunPm"
+      ]
+    },
+    {
+      "name_en": "Imperial Klub Golf",
+      "course_id": "imperial-klub",
+      "slots": [
+        "wdAm",
+        "wdPm"
+      ]
+    },
+    {
+      "name_en": "Gading Raya Padang Golf & Club",
+      "course_id": "gading-raya",
+      "slots": [
+        "wdAm",
+        "wdPm",
+        "satAm",
+        "satPm",
+        "sunAm",
+        "sunPm"
+      ]
+    },
+    {
+      "name_en": "Labersa Golf & Country Club",
+      "course_id": "labersa-riau",
+      "slots": [
+        "wdAm",
+        "wdPm",
+        "satAm",
+        "satPm",
+        "sunAm",
+        "sunPm"
+      ]
+    },
+    {
+      "name_en": "Klub Golf Bogor Raya",
+      "course_id": "bogor-raya",
+      "slots": [
+        "satAm",
+        "satPm",
+        "sunAm",
+        "sunPm"
+      ]
+    },
+    {
+      "name_en": "Jagorawi Golf & Country Club",
+      "course_id": "jagorawi",
+      "slots": [
+        "wdAm",
+        "wdPm",
+        "satAm",
+        "satPm",
+        "sunAm",
+        "sunPm"
+      ]
+    },
+    {
+      "name_en": "Laguna Golf Bintan",
+      "course_id": "laguna-bintan",
+      "slots": [
+        "wdAm",
+        "wdPm",
+        "satAm",
+        "satPm",
+        "sunAm",
+        "sunPm"
+      ]
+    },
+    {
+      "name_en": "Modern Golf & Country Club",
+      "course_id": "modern-golf",
+      "slots": [
+        "satAm",
+        "satPm",
+        "sunAm",
+        "sunPm"
+      ]
+    },
+    {
+      "name_en": "Padang Golf Sukajadi",
+      "course_id": "padang-golf-sukajadi-batam",
+      "slots": [
+        "satAm",
+        "satPm",
+        "sunAm",
+        "sunPm"
+      ]
+    },
+    {
+      "name_en": "Padivalley Golf Club",
+      "course_id": "padivalley-makassar",
+      "slots": [
+        "wdAm",
+        "wdPm"
+      ]
+    },
+    {
+      "name_en": "Finna Golf & Country Club Resort",
+      "course_id": "finna-pasuruan",
+      "slots": [
+        "wdAm",
+        "wdPm"
+      ]
+    },
+    {
+      "name_en": "Palm Springs Golf & Country Club Batam",
+      "course_id": "palm-springs-batam",
+      "slots": [
+        "wdAm",
+        "wdPm",
+        "sunPm"
+      ]
+    },
+    {
+      "name_en": "Parahyangan Golf Bandung",
+      "course_id": "parahyangan-bandung",
+      "slots": [
+        "satAm"
+      ]
+    },
+    {
+      "name_en": "Rainbow Hills Golf Club",
+      "course_id": "rainbow-hills",
+      "slots": [
+        "wdAm",
+        "wdPm"
+      ]
+    },
+    {
+      "name_en": "Permata Sentul Golf",
+      "course_id": "permata-sentul",
+      "slots": [
+        "wdAm",
+        "wdPm",
+        "satAm",
+        "satPm",
+        "sunAm",
+        "sunPm"
+      ]
+    },
+    {
+      "name_en": "Senayan National Golf Club",
+      "course_id": "senayan-national",
+      "slots": [
+        "satAm",
+        "satPm",
+        "sunAm",
+        "sunPm"
+      ]
+    },
+    {
+      "name_en": "Rancamaya Golf & Country Club",
+      "course_id": "rancamaya",
+      "slots": [
+        "wdAm",
+        "wdPm"
+      ]
+    },
+    {
+      "name_en": "Ria Bintan Golf Club - Ocean Course",
+      "course_id": "ria-bintan-ocean",
+      "slots": [
+        "wdAm",
+        "wdPm",
+        "satAm",
+        "satPm",
+        "sunAm",
+        "sunPm"
+      ]
+    },
+    {
+      "name_en": "Tamarin Santana Golf Club",
+      "course_id": "tamarin-santana-batam",
+      "slots": [
+        "wdAm",
+        "wdPm",
+        "satAm",
+        "satPm",
+        "sunAm",
+        "sunPm"
+      ]
+    },
+    {
+      "name_en": "Riverside Golf Club",
+      "course_id": "riverside-cibubur",
+      "slots": [
+        "wdAm",
+        "wdPm",
+        "satAm",
+        "satPm",
+        "sunAm",
+        "sunPm"
+      ]
+    },
+    {
+      "name_en": "Taman Dayu Golf Club & Resort",
+      "course_id": "taman-dayu",
+      "slots": [
+        "wdAm",
+        "wdPm",
+        "satAm",
+        "satPm",
+        "sunAm",
+        "sunPm"
+      ]
+    },
+    {
+      "name_en": "Royale Jakarta Golf Club",
+      "course_id": "royale-jakarta",
+      "slots": [
+        "wdAm",
+        "wdPm"
+      ]
+    }
+  ]
+}

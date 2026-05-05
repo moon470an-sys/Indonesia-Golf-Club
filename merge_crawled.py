@@ -118,30 +118,64 @@ def fan_out(candidates: list[dict]) -> dict[str, list[dict]]:
     return dict(by_slot)
 
 
+def remove_slot_outliers(slot_cands: list[dict]) -> tuple[list[dict], list[dict]]:
+    """Drop candidates whose value is far below the slot median (likely
+    ancillary-fee leakage), keeping only those within sane multiples.
+
+    Heuristic: any value below 40% of the median is treated as outlier
+    (caddy/cart/insurance values are typically 5-25% of green fees).
+    Returns (kept, dropped). Never drops if <3 candidates (sample too small).
+    """
+    if len(slot_cands) < 3:
+        return slot_cands, []
+    values = sorted(c["value_idr"] for c in slot_cands)
+    median = values[len(values) // 2]
+    floor = median * 0.4
+    kept, dropped = [], []
+    for c in slot_cands:
+        if c["value_idr"] < floor:
+            dropped.append(c)
+        else:
+            kept.append(c)
+    # Never strip more than half the population — be conservative
+    if len(dropped) > len(slot_cands) // 2:
+        return slot_cands, []
+    return kept, dropped
+
+
 def pick_representative(slot_cands: list[dict]) -> dict:
-    """Choose representative value + meta for one slot."""
+    """Choose representative value + meta for one slot.
+
+    Filters obvious ancillary-leak outliers (values << slot median) before
+    picking the trusted value. Outlier candidates are NOT deleted from
+    source_details — only excluded from the representative aggregate.
+    """
     if not slot_cands:
         return {}
-    # If any Tier-1 candidate exists, pick the highest-scoring among them
-    tier1 = [c for c in slot_cands if int(c.get("tier", 5)) == 1]
+
+    kept, dropped = remove_slot_outliers(slot_cands)
+    cohort = kept if kept else slot_cands
+
+    # If any Tier-1 candidate exists in the kept set, pick highest-scoring
+    tier1 = [c for c in cohort if int(c.get("tier", 5)) == 1]
     if tier1:
         chosen = max(tier1, key=score_candidate)
         rep = chosen["value_idr"]
         confidence = int(score_candidate(chosen))
     else:
-        # Weighted average across all candidates
-        weights = [score_candidate(c) for c in slot_cands]
+        weights = [score_candidate(c) for c in cohort]
         total_w = sum(weights) or 1.0
-        rep = int(sum(c["value_idr"] * w for c, w in zip(slot_cands, weights)) / total_w)
-        confidence = int(sum(weights) / len(slot_cands))
+        rep = int(sum(c["value_idr"] * w for c, w in zip(cohort, weights)) / total_w)
+        confidence = int(sum(weights) / len(cohort))
 
-    values = [c["value_idr"] for c in slot_cands]
+    values = [c["value_idr"] for c in cohort]
     lo, hi = min(values), max(values)
     diff_pct = (hi - lo) / lo * 100 if lo > 0 else 0.0
     return {
         "value_idr": rep,
         "confidence": confidence,
-        "n_sources": len(slot_cands),
+        "n_sources": len(cohort),
+        "n_outliers_dropped": len(dropped),
         "min_idr": lo,
         "max_idr": hi,
         "verification_needed": diff_pct >= 30.0,
