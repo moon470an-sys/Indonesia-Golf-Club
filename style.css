@@ -2237,7 +2237,25 @@ button:focus-visible,
 }
 
 /* === Finance view === */
-.finance-view { padding: var(--sp-4); }
+.finance-view {
+  height: calc(100vh - var(--topbar-h) - var(--footer-h));
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-base);
+}
+.finance-view[hidden] { display: none; }
+.finance-view .table-scroll {
+  flex: 1;
+  overflow: auto;
+  background: var(--bg-surface);
+  margin: var(--sp-4) var(--sp-5) var(--sp-5);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+@media (max-width: 640px) {
+  .finance-view .table-scroll { margin: var(--sp-3); }
+}
 .finance-table {
   width: 100%;
   border-collapse: collapse;

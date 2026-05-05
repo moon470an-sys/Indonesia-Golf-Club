@@ -2864,15 +2864,65 @@ document.getElementById('showFinanceCols')?.addEventListener('change', (e) => {
 });
 
 // === Finance table rendering ===
+
+// A financials object is "meaningful" only if it carries at least one
+// non-empty fact. The dataset has financials:{} stubs on every course;
+// without this gate the finance table prints 137 rows (most empty).
+function _hasMeaningfulFinancials(fin) {
+  if (!fin || typeof fin !== 'object') return false;
+  const STR_KEYS = ['parent_group','parent_company_full_name','operating_company',
+                    'idx_ticker','foreign_ticker','listed_status','figure_origin',
+                    'recent_news','membership_price_notes','ownership_notes'];
+  for (const k of STR_KEYS) {
+    const v = fin[k];
+    if (typeof v === 'string' && v.trim() && v.trim() !== 'unknown') return true;
+  }
+  const NUM_KEYS = ['revenue_idr','revenue_idr_h1','net_profit_idr','net_profit_idr_h1',
+                    'total_assets_idr','course_segment_revenue_idr',
+                    'membership_price_idr','membership_price_usd','employees',
+                    'investment_idr','investment_usd'];
+  for (const k of NUM_KEYS) {
+    if (typeof fin[k] === 'number' && fin[k] !== 0) return true;
+  }
+  if ((fin.sources || []).length > 0) return true;
+  if ((fin.parent_financial_sources || []).length > 0) return true;
+  return false;
+}
+
+// Robust source-URL extraction: handles strings, {url:...} objects,
+// and discards empty / non-http values.
+function _firstUrl(arr) {
+  for (const s of (arr || [])) {
+    if (typeof s === 'string' && /^https?:\/\//i.test(s.trim())) return s.trim();
+    if (s && typeof s === 'object' && typeof s.url === 'string'
+        && /^https?:\/\//i.test(s.url.trim())) return s.url.trim();
+  }
+  return null;
+}
+
+// Yahoo Finance URL with a guaranteed fallback: if the regular function
+// can't resolve a confident exchange suffix (e.g. "Tbk(IDX 미거래)" or
+// "BUMN holding"), fall back to a yahoo finance search query so the click
+// always lands on something useful.
+function _tickerYahooHref(ticker, isIDX) {
+  const direct = yahooFinanceUrl(ticker, isIDX);
+  if (direct) return direct;
+  const q = String(ticker || '').split('(')[0].trim().split(/\s+/)[0];
+  if (!q) return null;
+  return `https://finance.yahoo.com/lookup?s=${encodeURIComponent(q)}`;
+}
+
 function renderFinanceTable() {
   const tbody = document.getElementById('financeTableBody');
   const search = (document.getElementById('financeSearch')?.value || '').trim().toLowerCase();
   const statusF = document.getElementById('financeStatusFilter')?.value || 'listed';
   if (!tbody) return;
 
-  let rows = allCourses.filter(c => {
+  // Universe: only courses with meaningful financials (gates out 52 stubs)
+  const universe = allCourses.filter(c => _hasMeaningfulFinancials(c.financials));
+
+  let rows = universe.filter(c => {
     const fin = c.financials;
-    if (!fin || typeof fin !== 'object') return false;
     const ls = fin.listed_status || '';
     if (statusF === 'listed') {
       if (!(ls === 'listed' || ls === 'subsidiary-of-listed')) return false;
@@ -2885,7 +2935,16 @@ function renderFinanceTable() {
     return true;
   });
 
-  document.getElementById('financeVisibleCount').textContent = rows.length;
+  // Counter shows "<visible> / <universe>" (real meaningful total, not 137)
+  const counter = document.getElementById('financeVisibleCount');
+  if (counter) {
+    counter.textContent = rows.length;
+    const parent = counter.parentElement;
+    if (parent) {
+      parent.innerHTML = `<strong id="financeVisibleCount">${rows.length}</strong>` +
+        `개 / <span class="muted">전체 재무 보유 ${universe.length}</span>`;
+    }
+  }
 
   if (rows.length === 0) {
     tbody.innerHTML = `<tr><td colspan="12"><div class="empty-state">
@@ -2899,11 +2958,13 @@ function renderFinanceTable() {
   tbody.innerHTML = rows.map(c => {
     const fin = c.financials || {};
     const ticker = fin.idx_ticker || fin.foreign_ticker;
-    const yhUrl = ticker ? yahooFinanceUrl(ticker, !!fin.idx_ticker) : null;
+    const yhUrl = ticker ? _tickerYahooHref(ticker, !!fin.idx_ticker) : null;
     const tickerHtml = ticker
-      ? (yhUrl
-          ? `<a class="ticker-pill ${fin.idx_ticker ? 'idx' : 'foreign'} ticker-link" href="${escapeHtml(yhUrl)}" target="_blank" rel="noopener">${escapeHtml(ticker)} ↗</a>`
-          : `<span class="ticker-pill ${fin.idx_ticker ? 'idx' : 'foreign'}">${escapeHtml(ticker)}</span>`)
+      ? `<a class="ticker-pill ${fin.idx_ticker ? 'idx' : 'foreign'} ticker-link"`
+          + ` href="${escapeHtml(yhUrl || 'https://finance.yahoo.com/')}"`
+          + ` target="_blank" rel="noopener"`
+          + ` title="Yahoo Finance에서 ${escapeHtml(ticker)} 열기">`
+          + `${escapeHtml(ticker)} <span class="ticker-ext">↗</span></a>`
       : '<span class="muted">—</span>';
 
     const np = fin.net_profit_idr ?? fin.net_profit_idr_h1;
@@ -2918,16 +2979,32 @@ function renderFinanceTable() {
     const memHtml = fin.membership_price_idr != null ? escapeHtml(fmtBigIDR(fin.membership_price_idr) || '')
       : (fin.membership_price_usd != null ? `$${fin.membership_price_usd.toLocaleString('en-US')}` : '<span class="muted">—</span>');
 
-    const srcCount = ((fin.sources || []).length) + ((fin.parent_financial_sources || []).length);
-    const firstSrc = (fin.sources || [])[0] || (fin.parent_financial_sources || [])[0];
-    const firstUrl = typeof firstSrc === 'string' ? firstSrc : firstSrc?.url;
+    // Sources cell — robust extraction (strings + {url:...} objects + fallback URL)
+    const allFinSources = [
+      ...(fin.sources || []),
+      ...(fin.parent_financial_sources || []),
+      ...(fin.membership_sources || []),
+    ];
+    const validUrls = [];
+    for (const s of allFinSources) {
+      const u = (typeof s === 'string') ? s
+              : (s && typeof s === 'object' && typeof s.url === 'string') ? s.url
+              : null;
+      if (u && /^https?:\/\//i.test(u.trim()) && !validUrls.includes(u.trim())) {
+        validUrls.push(u.trim());
+      }
+    }
+    const firstUrl = validUrls[0] || null;
     const srcCellHtml = firstUrl
-      ? `<a href="${escapeHtml(firstUrl)}" target="_blank" rel="noopener">${srcCount}개 출처 ↗</a>`
-      : '<span class="muted">—</span>';
+      ? `<a href="${escapeHtml(firstUrl)}" target="_blank" rel="noopener" `
+        + `title="${escapeHtml(firstUrl)}">${validUrls.length}개 출처 ↗</a>`
+      : (allFinSources.length > 0
+          ? `<span class="muted" title="등록된 출처 ${allFinSources.length}개 모두 유효한 URL이 아님">${allFinSources.length}개 (URL 없음)</span>`
+          : '<span class="muted">—</span>');
 
     return `<tr>
       <td><strong>${escapeHtml(c.name_en)}</strong></td>
-      <td>${escapeHtml(c.region)}</td>
+      <td>${escapeHtml(c.region || '—')}</td>
       <td>${escapeHtml(fin.parent_group || fin.parent_company_full_name || '—')}</td>
       <td>${escapeHtml(fin.operating_company || '—')}</td>
       <td>${escapeHtml(LISTED_STATUS_LABEL[fin.listed_status] || fin.listed_status || '—')}</td>
