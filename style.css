@@ -275,6 +275,37 @@ input, select, textarea { font-family: inherit; }
   font-weight: 700;
 }
 
+.lang-toggle {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  height: 32px;
+}
+.lang-btn {
+  background: transparent;
+  border: 0;
+  color: var(--text-muted);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 0 10px;
+  cursor: pointer;
+  transition: all var(--t-fast);
+}
+.lang-btn:hover { color: var(--text-primary); }
+.lang-btn.active {
+  background: var(--accent);
+  color: #fff;
+}
+[data-theme="dark"] .lang-btn.active { color: #0a1411; }
+@media (max-width: 640px) {
+  .lang-toggle { height: 28px; }
+  .lang-btn { font-size: 10px; padding: 0 8px; }
+}
+
 .theme-toggle {
   width: 36px;
   height: 36px;

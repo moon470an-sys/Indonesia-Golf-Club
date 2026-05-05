@@ -3222,10 +3222,143 @@ const _themeObserver = new MutationObserver(() => {
 _themeObserver.observe(document.documentElement,
   { attributes: true, attributeFilter: ['data-theme'] });
 
+// === i18n ===
+const I18N = {
+  ko: {
+    'tab.map': '지도',
+    'tab.table': '가격 데이터',
+    'tab.finance': '재무 분석',
+    'tab.analytics': '분석',
+
+    'filter.active': '활성 필터',
+    'filter.reset': '초기화',
+    'filter.region': '지역',
+    'filter.holes': '홀 수',
+    'filter.status': '운영 상태',
+    'filter.price': '가격대 (토 AM 그린피, IDR)',
+    'filter.all': '전체',
+    'filter.holes9': '9홀',
+    'filter.holes18': '18홀',
+    'filter.holes27': '27홀+',
+    'filter.statusOpOnly': '운영중만',
+    'filter.statusClosed': '휴장',
+    'filter.statusUncertain': '불확실',
+    'filter.includeUnknown': '가격 미상도 포함',
+
+    'search.placeholder': '🔍 골프장 이름·지역·설계자 검색',
+
+    'analytics.title': '인도네시아 골프장 데이터 분석',
+    'analytics.subtitle': '137개 코스의 가격·지역·운영상태·재무 데이터를 한눈에',
+    'kpi.total': '전체 골프장',
+    'kpi.operating': '운영중',
+    'kpi.avg': '평균 토 AM 그린피',
+    'kpi.median': '중앙값',
+    'kpi.max': '최고가',
+    'kpi.listed': '상장 그룹 산하',
+    'kpi.listedFoot': '개별 코스 (모회사 IDX)',
+
+    'chart.priceDist': '토 AM 그린피 분포',
+    'chart.priceDistDesc': '운영중 코스 기준, IDR 가격대별 코스 수',
+    'chart.regionAvg': '지역별 평균 토 AM 그린피',
+    'chart.regionAvgDesc': '코스 3개 이상 지역만 (가격 데이터 보유 코스만 포함)',
+    'chart.status': '운영 상태 분포',
+    'chart.statusDesc': '137개 전체 기준',
+    'chart.parentRev': '모회사 매출 Top 10 (FY2024)',
+    'chart.parentRevDesc': '상장사·자회사 기준, IDR Trillion',
+    'chart.scatter': '홀 수 × 가격 산점도',
+    'chart.scatterDesc': '9/18/27홀 코스의 토 AM 가격 분포 — 마커 크기는 모회사 매출, 색상은 운영 상태',
+  },
+  en: {
+    'tab.map': 'Map',
+    'tab.table': 'Price Data',
+    'tab.finance': 'Financials',
+    'tab.analytics': 'Analytics',
+
+    'filter.active': 'Active filters',
+    'filter.reset': 'Reset',
+    'filter.region': 'Region',
+    'filter.holes': 'Holes',
+    'filter.status': 'Status',
+    'filter.price': 'Price range (Sat AM green fee, IDR)',
+    'filter.all': 'All',
+    'filter.holes9': '9 holes',
+    'filter.holes18': '18 holes',
+    'filter.holes27': '27+ holes',
+    'filter.statusOpOnly': 'Operating only',
+    'filter.statusClosed': 'Closed',
+    'filter.statusUncertain': 'Uncertain',
+    'filter.includeUnknown': 'Include unknown prices',
+
+    'search.placeholder': '🔍 Search by name, region, or designer',
+
+    'analytics.title': 'Indonesia Golf Course Analytics',
+    'analytics.subtitle': 'Pricing, regions, status, and financials across 137 courses at a glance',
+    'kpi.total': 'Total courses',
+    'kpi.operating': 'operating',
+    'kpi.avg': 'Avg. Sat AM green fee',
+    'kpi.median': 'median',
+    'kpi.max': 'Highest',
+    'kpi.listed': 'Listed-group affiliated',
+    'kpi.listedFoot': 'individual courses (parent on IDX)',
+
+    'chart.priceDist': 'Sat AM green-fee distribution',
+    'chart.priceDistDesc': 'Operating courses, by IDR price band',
+    'chart.regionAvg': 'Average Sat AM green fee by region',
+    'chart.regionAvgDesc': 'Regions with ≥3 priced courses only',
+    'chart.status': 'Operating-status mix',
+    'chart.statusDesc': 'All 137 courses',
+    'chart.parentRev': 'Parent revenue — Top 10 (FY2024)',
+    'chart.parentRevDesc': 'Listed companies + subsidiaries, IDR trillion',
+    'chart.scatter': 'Holes × price scatter',
+    'chart.scatterDesc': 'Sat AM price by hole count — bubble size = parent revenue, color = operating status',
+  },
+};
+
+let _currentLang = (() => {
+  try {
+    return localStorage.getItem('lang') || 'ko';
+  } catch { return 'ko'; }
+})();
+
+function applyI18n(lang) {
+  _currentLang = lang;
+  const dict = I18N[lang] || I18N.ko;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (dict[key] != null) el.textContent = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (dict[key] != null) el.placeholder = dict[key];
+  });
+  document.documentElement.lang = lang;
+  try { localStorage.setItem('lang', lang); } catch {}
+
+  // Mark active button
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+
+  // Re-render analytics if visible (chart titles depend on i18n)
+  const analyticsView = document.getElementById('analyticsView');
+  if (analyticsView && !analyticsView.hidden && allCourses.length) {
+    renderAnalytics();
+  }
+}
+
+document.addEventListener('click', e => {
+  const btn = e.target.closest('.lang-btn');
+  if (!btn) return;
+  applyI18n(btn.dataset.lang);
+});
+
 // === Boot ===
 document.getElementById('tableView').style.display = 'none';
 const _financeView = document.getElementById('financeView');
 if (_financeView) _financeView.style.display = 'none';
+const _analyticsView = document.getElementById('analyticsView');
+if (_analyticsView) _analyticsView.style.display = 'none';
+applyI18n(_currentLang);
 renderCourseListSkeleton();
 initMap();
 addLegendControl();
