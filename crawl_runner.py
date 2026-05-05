@@ -241,18 +241,45 @@ def extract_candidates_from_html(html: str, source_url: str, tier: int,
     """Parse fetched HTML and return a list of slot-tagged candidate entries.
 
     Returns empty list if no IDR amount could be confidently mapped to a slot.
+    Also walks JSON-LD blocks for `priceSpecification` / `Offer.price` numerics.
     """
     try:
         soup = BeautifulSoup(html, "lxml")
     except Exception:
         soup = BeautifulSoup(html, "html.parser")
+
+    # JSON-LD: pull priceSpecification / Offer / offers numerics BEFORE stripping <script>
+    jsonld_text = []
+    for s in soup.find_all("script", attrs={"type": "application/ld+json"}):
+        try:
+            obj = json.loads(s.string or "")
+        except Exception:
+            continue
+
+        def walk(o, kw=""):
+            if isinstance(o, dict):
+                # If a 'price' / 'priceSpecification' is present, capture it
+                for k, v in o.items():
+                    lk = k.lower()
+                    if lk in ("price", "lowprice", "highprice") and isinstance(v, (int, float, str)):
+                        jsonld_text.append(f"{kw} price {v}")
+                    elif lk == "name" and isinstance(v, str):
+                        walk_kw = v.lower()
+                    walk(v, kw=lk)
+            elif isinstance(o, list):
+                for x in o:
+                    walk(x, kw=kw)
+        walk(obj)
+    jsonld_blob = " ".join(jsonld_text)
+
     for tag in soup(["script", "style", "noscript"]):
         tag.decompose()
     text = soup.get_text(separator=" ", strip=True)
     if len(text) > 200_000:
         text = text[:200_000]
+    full = (text + " " + jsonld_blob)[:220_000]
 
-    raw = find_prices_with_context(text)
+    raw = find_prices_with_context(full)
     out = []
     fetched_at = datetime.now(timezone.utc).isoformat()
     for r in raw:
@@ -269,6 +296,122 @@ def extract_candidates_from_html(html: str, source_url: str, tier: int,
             "raw_excerpt": r["context"][:200],
         })
     return out
+
+
+# Keywords that mark a link (or its visible text) as price-related.
+LINK_PRICE_KEYWORDS = (
+    "rate", "rates", "green-fee", "green_fee", "greenfee", "green fee",
+    "price", "pricing", "fee", "fees", "tarif", "harga",
+    "booking", "reservation", "membership-fee", "biaya",
+)
+
+
+def discover_price_links(html: str, base_url: str) -> list[str]:
+    """Walk anchors on a page and return absolute URLs whose href OR visible
+    text contains a price-related keyword. De-duplicated; same-host only;
+    capped at 6 entries per page to bound fan-out.
+    """
+    try:
+        soup = BeautifulSoup(html, "lxml")
+    except Exception:
+        soup = BeautifulSoup(html, "html.parser")
+    base_host = host_of(base_url)
+    out = []
+    seen = set()
+    for a in soup.find_all("a", href=True):
+        href = a["href"].strip()
+        if not href or href.startswith("#") or href.startswith("javascript:"):
+            continue
+        text = (a.get_text() or "").strip().lower()
+        href_lc = href.lower()
+        is_price = any(kw in text for kw in LINK_PRICE_KEYWORDS) or \
+                   any(kw in href_lc for kw in LINK_PRICE_KEYWORDS)
+        if not is_price:
+            continue
+        # Resolve to absolute URL
+        if href.startswith("//"):
+            url = "https:" + href
+        elif href.startswith("/"):
+            scheme = urlparse(base_url).scheme or "https"
+            url = f"{scheme}://{base_host}{href}"
+        elif href.startswith(("http://", "https://")):
+            url = href
+        else:
+            # relative path
+            base = base_url if base_url.endswith("/") else base_url + "/"
+            url = base + href
+        if not url.startswith(("http://", "https://")):
+            continue
+        # Same-host only — don't fan out to social / external trackers
+        if host_of(url) != base_host:
+            continue
+        if url in seen:
+            continue
+        seen.add(url)
+        # Skip media/asset extensions we can't easily parse
+        if url.lower().endswith((".jpg", ".jpeg", ".png", ".gif", ".webp",
+                                 ".mp4", ".zip", ".css", ".js")):
+            continue
+        out.append(url)
+        if len(out) >= 6:
+            break
+    return out
+
+
+def discover_qaccess_detail_links(html: str) -> list[str]:
+    """Q-Access search result page → up to 3 detail-page links."""
+    try:
+        soup = BeautifulSoup(html, "lxml")
+    except Exception:
+        soup = BeautifulSoup(html, "html.parser")
+    out = []
+    seen = set()
+    for a in soup.find_all("a", href=True):
+        href = a["href"].strip()
+        if not href:
+            continue
+        # Q-Access detail pages have URLs like QGolfPriceDetail or
+        # ?currentRecord=X&currentFilter=Y in the same search system
+        href_lc = href.lower()
+        if not ("qgolfpricedetail" in href_lc or
+                ("qaccess" in href_lc and "currentrecord=" in href_lc) or
+                ("currentrecord=" in href_lc and "qgolf" in href_lc)):
+            continue
+        if href.startswith("/"):
+            url = "https://www.qaccess.asia" + href
+        elif href.startswith(("http://", "https://")):
+            url = href
+        else:
+            url = "https://www.qaccess.asia/" + href.lstrip("./")
+        if url in seen:
+            continue
+        seen.add(url)
+        out.append(url)
+        if len(out) >= 3:
+            break
+    return out
+
+
+def parse_wayback_cdx(json_text: str) -> Optional[str]:
+    """CDX API returns a 2D array; first row is headers. Pick the most recent
+    snapshot URL (timestamp + original)."""
+    try:
+        rows = json.loads(json_text)
+    except Exception:
+        return None
+    if not isinstance(rows, list) or len(rows) <= 1:
+        return None
+    headers = rows[0]
+    try:
+        ts_idx = headers.index("timestamp")
+        orig_idx = headers.index("original")
+    except ValueError:
+        return None
+    # Pick the most recent (last row, since CDX returns chronological)
+    last = rows[-1]
+    if len(last) <= max(ts_idx, orig_idx):
+        return None
+    return f"https://web.archive.org/web/{last[ts_idx]}/{last[orig_idx]}"
 
 
 # ============================================================================
@@ -371,7 +514,16 @@ async def fetch_one(client: httpx.AsyncClient, url: str,
 
 async def process_course(client: httpx.AsyncClient, throttle: HostThrottle,
                          entry: dict) -> dict:
-    """Process one course: fetch each seed URL, extract candidates, return result."""
+    """Process one course (v2): each seed kind drives a different fetch
+    strategy. Per-course visited-URL set caps total work.
+
+    Strategies by kind:
+      - known_source     → fetch directly, extract
+      - official_root    → fetch, then discover price-related anchors and
+                           fetch up to 4 of them
+      - qaccess_search   → fetch, follow up to 3 detail links
+      - wayback_cdx      → CDX API → resolve to a real snapshot URL → fetch
+    """
     out = {
         "course_id": entry["id"],
         "name_en": entry["name_en"],
@@ -381,15 +533,73 @@ async def process_course(client: httpx.AsyncClient, throttle: HostThrottle,
         "attempted_urls": [],
         "failed_urls": [],
     }
-    for kind, url in entry.get("seed_urls", []):
+    visited: set[str] = set()
+    PER_COURSE_URL_CAP = 14   # safety: never let one course balloon
+
+    async def fetch_and_extract(url: str, *, force_tier: int = None,
+                                force_publisher: str = None):
+        """Fetch a URL once (de-duped) and extract candidates."""
+        if url in visited or len(visited) >= PER_COURSE_URL_CAP:
+            return None
+        visited.add(url)
         html, log = await fetch_one(client, url, throttle)
         out["attempted_urls"].append(log)
         if html is None:
             out["failed_urls"].append({"url": url, "error": log.get("error")})
-            continue
+            return None
         tier, publisher = classify_tier(url, entry.get("website"))
+        if force_tier is not None:
+            tier = force_tier
+        if force_publisher:
+            publisher = force_publisher
         cands = extract_candidates_from_html(html, url, tier, publisher)
         out["candidates"].extend(cands)
+        return html
+
+    for kind, url in entry.get("seed_urls", []):
+        if len(visited) >= PER_COURSE_URL_CAP:
+            break
+
+        if kind == "known_source":
+            await fetch_and_extract(url)
+
+        elif kind == "official_root":
+            html = await fetch_and_extract(url)
+            if html:
+                # Discover up to 4 in-page price links and fetch each
+                links = discover_price_links(html, url)
+                for sub in links[:4]:
+                    if len(visited) >= PER_COURSE_URL_CAP:
+                        break
+                    await fetch_and_extract(sub)
+
+        elif kind == "qaccess_search":
+            html = await fetch_and_extract(url)
+            if html:
+                # Follow up to 3 detail pages
+                detail_links = discover_qaccess_detail_links(html)
+                for sub in detail_links[:3]:
+                    if len(visited) >= PER_COURSE_URL_CAP:
+                        break
+                    await fetch_and_extract(sub)
+
+        elif kind == "wayback_cdx":
+            # Hit the CDX endpoint, resolve a real snapshot URL, then fetch it
+            visited.add(url)
+            cdx_html, cdx_log = await fetch_one(client, url, throttle)
+            out["attempted_urls"].append(cdx_log)
+            if not cdx_html:
+                out["failed_urls"].append({"url": url, "error": cdx_log.get("error")})
+                continue
+            snap = parse_wayback_cdx(cdx_html)
+            if snap:
+                await fetch_and_extract(snap, force_tier=2,
+                                        force_publisher="Wayback Archive")
+
+        else:
+            # Unknown kind — just try a plain fetch
+            await fetch_and_extract(url)
+
     return out
 
 

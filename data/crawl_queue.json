@@ -25,44 +25,32 @@
         },
         "seed_urls": [
           [
+            "known_source",
+            "https://golflan.com/id/sumatera-barat/anai-golf-resort-/book"
+          ],
+          [
+            "known_source",
+            "https://www.golfshake.com/course/view/21397/Anai_Golf_Mountain_Resort.html"
+          ],
+          [
+            "known_source",
+            "https://www.golflux.com/course/anai-golf-and-mountain-resort/"
+          ],
+          [
+            "known_source",
+            "https://www.golfpass.com/travel-advisor/courses/38316-anai-golf-mountain-resort"
+          ],
+          [
             "official_root",
             "https://ws-tourism.com/anai-golf-mountain-resort"
           ],
           [
-            "official_path",
-            "https://ws-tourism.com/anai-golf-mountain-resort/rates"
-          ],
-          [
-            "official_path",
-            "https://ws-tourism.com/anai-golf-mountain-resort/green-fee"
-          ],
-          [
-            "official_path",
-            "https://ws-tourism.com/anai-golf-mountain-resort/green-fees"
-          ],
-          [
-            "official_path",
-            "https://ws-tourism.com/anai-golf-mountain-resort/booking"
-          ],
-          [
-            "official_path",
-            "https://ws-tourism.com/anai-golf-mountain-resort/tarif"
-          ],
-          [
-            "official_path",
-            "https://ws-tourism.com/anai-golf-mountain-resort/harga"
-          ],
-          [
-            "official_path",
-            "https://ws-tourism.com/anai-golf-mountain-resort/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=anai+golf+&+mountain+resort"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://golflan.com/id/sumatera-barat/anai-golf-resort-/book"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://ws-tourism.com/anai-golf-mountain-resort/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -82,12 +70,12 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=antam+mekongga+golf+club"
+            "known_source",
+            "https://antam.com/id/about/business-overview"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://antam.com/id/about/business-overview"
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=antam+mekongga+golf+club"
           ]
         ]
       },
@@ -107,12 +95,24 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=batam+island+country+club"
+            "known_source",
+            "https://batamgolfpackage.com/"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://batamgolfpackage.com/"
+            "known_source",
+            "https://www.welcometobatam.com/tering-bay-golf"
+          ],
+          [
+            "known_source",
+            "https://www.golfsavers.com/best-golf-courses-in-batam"
+          ],
+          [
+            "known_source",
+            "https://en.gogolf.co.id/golf-course/tering-bay-golf"
+          ],
+          [
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=batam+island+country+club"
           ]
         ]
       },
@@ -132,12 +132,16 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=bebute+golf+course"
+            "known_source",
+            "https://www.golflux.com/course/bebute-golf-course/"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.golflux.com/course/bebute-golf-course/"
+            "known_source",
+            "https://www.golfpass.com/travel-advisor/courses/38331-bebute-golf-course"
+          ],
+          [
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=bebute+golf+course"
           ]
         ]
       },
@@ -157,12 +161,16 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=bintan+lagoon+-+sea+view+course"
+            "known_source",
+            "https://www.golfsavers.com/indonesia/bintan-golf-courses/bintan-lagoon-resort-jack-nicklaus-course"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.golfsavers.com/indonesia/bintan-golf-courses/bintan-lagoon-resort-jack-nicklaus-course"
+            "known_source",
+            "https://bintanretreat.com/bintan-golf-resorts-2026/"
+          ],
+          [
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=bintan+lagoon+-+sea+view+course"
           ]
         ]
       },
@@ -182,12 +190,16 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=bintan+lagoon+-+woodlands+course"
+            "known_source",
+            "https://www.golfsavers.com/indonesia/bintan-golf-courses/bintan-lagoon-resort-ian-baker-finch-course"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.golfsavers.com/indonesia/bintan-golf-courses/bintan-lagoon-resort-ian-baker-finch-course"
+            "known_source",
+            "https://w.baigolf.com/course.php?act=detail&golf_course_id=6799&lan=en_us"
+          ],
+          [
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=bintan+lagoon+-+woodlands+course"
           ]
         ]
       },
@@ -207,12 +219,20 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=black+eagle+golf+course"
+            "known_source",
+            "https://www.instagram.com/blackeagle.golf/"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.instagram.com/blackeagle.golf/"
+            "known_source",
+            "https://www.suaramerdeka.com/olahraga/0415959347/black-eagle-golf-course-destinasi-golf-premium-terbaru-di-semarang-telah-dibuka"
+          ],
+          [
+            "known_source",
+            "https://www.golfpass.com/travel-advisor/courses/43968-black-eagle-golf-course"
+          ],
+          [
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=black+eagle+golf+course"
           ]
         ]
       },
@@ -232,44 +252,36 @@
         },
         "seed_urls": [
           [
+            "known_source",
+            "https://blackrocksgolf.co.id/"
+          ],
+          [
+            "known_source",
+            "https://golflinkresorts.co.id/courses/blackrocks/en"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/en/gogolf-news/black-rocks-golf-club-belitung"
+          ],
+          [
+            "known_source",
+            "https://blackrocksgolfbelitung.com/"
+          ],
+          [
+            "known_source",
+            "https://www.idx.co.id/"
+          ],
+          [
             "official_root",
             "https://blackrocksgolf.co.id"
           ],
           [
-            "official_path",
-            "https://blackrocksgolf.co.id/rates"
-          ],
-          [
-            "official_path",
-            "https://blackrocksgolf.co.id/green-fee"
-          ],
-          [
-            "official_path",
-            "https://blackrocksgolf.co.id/green-fees"
-          ],
-          [
-            "official_path",
-            "https://blackrocksgolf.co.id/booking"
-          ],
-          [
-            "official_path",
-            "https://blackrocksgolf.co.id/tarif"
-          ],
-          [
-            "official_path",
-            "https://blackrocksgolf.co.id/harga"
-          ],
-          [
-            "official_path",
-            "https://blackrocksgolf.co.id/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=black+rocks+hotel+&+golf+club"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://blackrocksgolf.co.id/"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://blackrocksgolf.co.id/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -289,44 +301,36 @@
         },
         "seed_urls": [
           [
+            "known_source",
+            "https://www.visitciaterhighlandresort.com/"
+          ],
+          [
+            "known_source",
+            "https://wisatabagus.com/ciater-highland-resort/"
+          ],
+          [
+            "known_source",
+            "https://salsawisata.com/ciater-highland-resort/"
+          ],
+          [
+            "known_source",
+            "https://travelspromo.com/htm-wisata/ciater-highland-resort-subang/"
+          ],
+          [
+            "known_source",
+            "https://ciaterhighlandresort.com/"
+          ],
+          [
             "official_root",
             "https://www.visitciaterhighlandresort.com"
           ],
           [
-            "official_path",
-            "https://www.visitciaterhighlandresort.com/rates"
-          ],
-          [
-            "official_path",
-            "https://www.visitciaterhighlandresort.com/green-fee"
-          ],
-          [
-            "official_path",
-            "https://www.visitciaterhighlandresort.com/green-fees"
-          ],
-          [
-            "official_path",
-            "https://www.visitciaterhighlandresort.com/booking"
-          ],
-          [
-            "official_path",
-            "https://www.visitciaterhighlandresort.com/tarif"
-          ],
-          [
-            "official_path",
-            "https://www.visitciaterhighlandresort.com/harga"
-          ],
-          [
-            "official_path",
-            "https://www.visitciaterhighlandresort.com/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=ciater+highland+golf"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.visitciaterhighlandresort.com/"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://www.visitciaterhighlandresort.com/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -346,12 +350,20 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=dhoho+golf+club"
+            "known_source",
+            "https://asiagolfjourney.com/dhoho-surya-golf-course-opens-in-kediri-indonesias-newest-mountain-golf-destination/"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://asiagolfjourney.com/dhoho-surya-golf-course-opens-in-kediri-indonesias-newest-mountain-golf-destination/"
+            "known_source",
+            "https://www.firstcallgolf.com/design-notes/feature/2026-04-26/brian-curley-debuts-indonesias-dhoho"
+          ],
+          [
+            "known_source",
+            "https://thegolfwire.com/brian-curley-dhoho-java-indonesia"
+          ],
+          [
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=dhoho+golf+club"
           ]
         ]
       },
@@ -371,12 +383,16 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=eltari+golf+course"
+            "known_source",
+            "https://www.aloeus.com/padang-golf-el-tari-kupang/"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.aloeus.com/padang-golf-el-tari-kupang/"
+            "known_source",
+            "https://tni-au.mil.id/berita/detail/tournament-golf-monthly-padang-golf-lanud-el"
+          ],
+          [
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=eltari+golf+course"
           ]
         ]
       },
@@ -396,12 +412,16 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=golf+course+pertamina+hulu+rokan+dumai"
+            "known_source",
+            "https://www.golflux.com/course/chevron-dumai-golf-course/"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.golflux.com/course/chevron-dumai-golf-course/"
+            "known_source",
+            "https://www.golfpass.com/travel-advisor/courses/38353-chevron-dumai-golf-course"
+          ],
+          [
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=golf+course+pertamina+hulu+rokan+dumai"
           ]
         ]
       },
@@ -421,12 +441,20 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=gorontalo+golf+yosonegoro"
+            "known_source",
+            "https://coolturnesia.com/coolturnesia/berita/detail/lapangan-golf-yosonegoro-akan-kembali-hidup-pemprovpemkab-gorontalo-sepakat-kelola-bersama"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://coolturnesia.com/coolturnesia/berita/detail/lapangan-golf-yosonegoro-akan-kembali-hidup-pemprovpemkab-gorontalo-sepakat-kelola-bersama"
+            "known_source",
+            "https://pojok6.id/pemprov-pemkab-gorontalo-tanda-tangani-pks-pengelolaan-lapangan-golf-yosonegoro/"
+          ],
+          [
+            "known_source",
+            "https://www.golflux.com/course/gorontalo-golf-yosonegoro/"
+          ],
+          [
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=gorontalo+golf+yosonegoro"
           ]
         ]
       },
@@ -446,44 +474,36 @@
         },
         "seed_urls": [
           [
+            "known_source",
+            "https://candigolf.id/"
+          ],
+          [
+            "known_source",
+            "https://us.trip.com/travel-guide/attraction/tembalang/candi-golf-club-144866825/"
+          ],
+          [
+            "known_source",
+            "https://wanderlog.com/place/details/12286766/candigolf-country-club"
+          ],
+          [
+            "known_source",
+            "https://www.instagram.com/candigolfcountryclub.id/"
+          ],
+          [
+            "known_source",
+            "https://www.facebook.com/p/Graha-candi-golf-semarang-100068038901233/"
+          ],
+          [
             "official_root",
             "https://candigolf.id"
           ],
           [
-            "official_path",
-            "https://candigolf.id/rates"
-          ],
-          [
-            "official_path",
-            "https://candigolf.id/green-fee"
-          ],
-          [
-            "official_path",
-            "https://candigolf.id/green-fees"
-          ],
-          [
-            "official_path",
-            "https://candigolf.id/booking"
-          ],
-          [
-            "official_path",
-            "https://candigolf.id/tarif"
-          ],
-          [
-            "official_path",
-            "https://candigolf.id/harga"
-          ],
-          [
-            "official_path",
-            "https://candigolf.id/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=graha+candi+golf+country+club"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://candigolf.id/"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://candigolf.id/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -503,12 +523,12 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=isen+mulang+golf+club"
+            "known_source",
+            "https://kalteng.go.id/"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://kalteng.go.id/"
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=isen+mulang+golf+club"
           ]
         ]
       },
@@ -528,12 +548,16 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+agromuko"
+            "known_source",
+            "https://www.hole19golf.com/courses/agro-muko-golf-course"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.hole19golf.com/courses/agro-muko-golf-course"
+            "known_source",
+            "https://www.golfpass.com/travel-advisor/courses/42533-lapangan-golf"
+          ],
+          [
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+agromuko"
           ]
         ]
       },
@@ -553,12 +577,16 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+bajubang"
+            "known_source",
+            "https://www.hole19golf.com/courses/bajubang-golf-course"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.hole19golf.com/courses/bajubang-golf-course"
+            "known_source",
+            "https://us.trip.com/travel-guide/attraction/bajubang/bajubang-golf-course-144862698/"
+          ],
+          [
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+bajubang"
           ]
         ]
       },
@@ -578,12 +606,12 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+bumi+roviga"
+            "known_source",
+            "https://sultengprov.go.id/"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://sultengprov.go.id/"
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+bumi+roviga"
           ]
         ]
       },
@@ -603,12 +631,20 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+lanud+sutan+sjahrir"
+            "known_source",
+            "https://westsumatra360.com/akhir-pekan-menyenangkan-dengan-bermain-golf-di-kota-padang/"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://westsumatra360.com/akhir-pekan-menyenangkan-dengan-bermain-golf-di-kota-padang/"
+            "known_source",
+            "https://tni-au.mil.id/berita/detail/par-3-practice-range-tabing-driving-range-resmi-dibuka-wujud-komitmen-komandan-lanud-sutan-sjahrir-majukan-olahraga-golf-sumbar"
+          ],
+          [
+            "known_source",
+            "https://www.instagram.com/tabing_driving_range/"
+          ],
+          [
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+lanud+sutan+sjahrir"
           ]
         ]
       },
@@ -628,12 +664,16 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+merah+putih"
+            "known_source",
+            "https://www.instagram.com/merah_putih_golfclubbengkulu/"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.instagram.com/merah_putih_golfclubbengkulu/"
+            "known_source",
+            "https://golftimes.id/2025/07/05/lapangan-golf-merah-putih-diresmikan-bengkulu-punya-ikon-baru-wisata-olahraga/"
+          ],
+          [
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+merah+putih"
           ]
         ]
       },
@@ -653,12 +693,12 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+mini+koarmada+iii"
+            "known_source",
+            "https://www.tnial.mil.id/"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.tnial.mil.id/"
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+mini+koarmada+iii"
           ]
         ]
       },
@@ -678,12 +718,20 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+ngamplang"
+            "known_source",
+            "https://gogolf.co.id/en/gogolf-news/ngamplang-flamboyan-golf-course"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://gogolf.co.id/en/gogolf-news/ngamplang-flamboyan-golf-course"
+            "known_source",
+            "https://hargacampur.com/harga-tiket-masuk-ngamplang-garut/"
+          ],
+          [
+            "known_source",
+            "https://golftimes.id/2024/02/25/keindahan-dan-kisah-dibalik-lapang-golf-flamboyan-ngamplang/"
+          ],
+          [
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+ngamplang"
           ]
         ]
       },
@@ -703,12 +751,20 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+pt+kpc"
+            "known_source",
+            "https://www.kpc.co.id/employee-facilities/"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.kpc.co.id/employee-facilities/"
+            "known_source",
+            "https://satumakna.id/prima-golf-club-buka-driving-range-di-tanjung-bara/"
+          ],
+          [
+            "known_source",
+            "https://www.instagram.com/pgcsangatta/"
+          ],
+          [
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+pt+kpc"
           ]
         ]
       },
@@ -728,12 +784,20 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+pt+pertamina+pendopo"
+            "known_source",
+            "https://www.hole19golf.com/courses/lapangan-golf-pt-pertamina-pendopo"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.hole19golf.com/courses/lapangan-golf-pt-pertamina-pendopo"
+            "known_source",
+            "https://giwang.sumselprov.go.id/destination/detail/271"
+          ],
+          [
+            "known_source",
+            "https://kabarserasan.com/2016/05/16/lapangan-golf-pertamina-pendopo-di-kenal-sampai-ke-manca-negara/"
+          ],
+          [
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+pt+pertamina+pendopo"
           ]
         ]
       },
@@ -753,12 +817,16 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+pt+pertamina+prabumulih"
+            "known_source",
+            "https://www.hole19golf.com/courses/lapangan-golf-pt-pertamina-prabumulih/reviews"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.hole19golf.com/courses/lapangan-golf-pt-pertamina-prabumulih/reviews"
+            "known_source",
+            "https://www.hole19golf.com/courses/lapangan-golf-pt-pertamina-prabumulih"
+          ],
+          [
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+pt+pertamina+prabumulih"
           ]
         ]
       },
@@ -778,12 +846,16 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+pt+pusri"
+            "known_source",
+            "https://stargirl.data.blog/2022/05/10/golf-course-patra-jaya-spot-instagramable-in-plaju/"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://stargirl.data.blog/2022/05/10/golf-course-patra-jaya-spot-instagramable-in-plaju/"
+            "known_source",
+            "https://gogolf.co.id/en/gogolf-news/how-much-does-it-cost-to-play-golf-in-indonesia"
+          ],
+          [
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+pt+pusri"
           ]
         ]
       },
@@ -803,12 +875,16 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+ptpn+iv+pabatu"
+            "known_source",
+            "https://www.trip.com/travel-guide/attraction/penonggol/lapangan-golf-ptpn-iv-pabatu-144860067"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.trip.com/travel-guide/attraction/penonggol/lapangan-golf-ptpn-iv-pabatu-144860067"
+            "known_source",
+            "https://idalamat.com/alamat/740485/lapangan-golf-ptpn-iv-pabatu-serdang-bedagai-sumatera-utara"
+          ],
+          [
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+ptpn+iv+pabatu"
           ]
         ]
       },
@@ -828,12 +904,20 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=padang+golf+lanud+sulaiman"
+            "known_source",
+            "https://www.instagram.com/padanggolfsulaimann/"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.instagram.com/padanggolfsulaimann/"
+            "known_source",
+            "https://us.trip.com/travel-guide/attraction/margahayu/padang-golf-sulaiman-144872851/"
+          ],
+          [
+            "known_source",
+            "https://playgolf.id/golf_courses/padang-golf-sulaiman/"
+          ],
+          [
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=padang+golf+lanud+sulaiman"
           ]
         ]
       },
@@ -853,44 +937,24 @@
         },
         "seed_urls": [
           [
+            "known_source",
+            "https://pakuwongolf.com/"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/en/golf-course/pakuwon-golf-family-club"
+          ],
+          [
             "official_root",
             "https://pakuwongolf.com"
           ],
           [
-            "official_path",
-            "https://pakuwongolf.com/rates"
-          ],
-          [
-            "official_path",
-            "https://pakuwongolf.com/green-fee"
-          ],
-          [
-            "official_path",
-            "https://pakuwongolf.com/green-fees"
-          ],
-          [
-            "official_path",
-            "https://pakuwongolf.com/booking"
-          ],
-          [
-            "official_path",
-            "https://pakuwongolf.com/tarif"
-          ],
-          [
-            "official_path",
-            "https://pakuwongolf.com/harga"
-          ],
-          [
-            "official_path",
-            "https://pakuwongolf.com/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=pakuwon+golf+&+family+club"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://pakuwongolf.com/"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://pakuwongolf.com/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -910,44 +974,20 @@
         },
         "seed_urls": [
           [
+            "known_source",
+            "https://kek.go.id/kawasan/KEK-Likupang"
+          ],
+          [
             "official_root",
             "https://www.paradisehotelgolfresort.net"
           ],
           [
-            "official_path",
-            "https://www.paradisehotelgolfresort.net/rates"
-          ],
-          [
-            "official_path",
-            "https://www.paradisehotelgolfresort.net/green-fee"
-          ],
-          [
-            "official_path",
-            "https://www.paradisehotelgolfresort.net/green-fees"
-          ],
-          [
-            "official_path",
-            "https://www.paradisehotelgolfresort.net/booking"
-          ],
-          [
-            "official_path",
-            "https://www.paradisehotelgolfresort.net/tarif"
-          ],
-          [
-            "official_path",
-            "https://www.paradisehotelgolfresort.net/harga"
-          ],
-          [
-            "official_path",
-            "https://www.paradisehotelgolfresort.net/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=paradise+golf+club"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://kek.go.id/kawasan/KEK-Likupang"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://www.paradisehotelgolfresort.net/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -967,12 +1007,12 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=pattimura+golf+course"
+            "known_source",
+            "https://tni-au.mil.id/"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://tni-au.mil.id/"
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=pattimura+golf+course"
           ]
         ]
       },
@@ -992,12 +1032,16 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=perkumpulan+golf+jambi"
+            "known_source",
+            "https://playgolf.id/golf_courses/telanaipura-golf-club-jambi/"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://playgolf.id/golf_courses/telanaipura-golf-club-jambi/"
+            "known_source",
+            "https://www.golfpass.com/travel-advisor/courses/38341-perkumpulan-golf-jambi"
+          ],
+          [
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=perkumpulan+golf+jambi"
           ]
         ]
       },
@@ -1017,12 +1061,16 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=pt+badak+ngl+golf+course"
+            "known_source",
+            "https://www.golfpass.com/travel-advisor/courses/38337-pt-badak-ngl-golf-course"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.golfpass.com/travel-advisor/courses/38337-pt-badak-ngl-golf-course"
+            "known_source",
+            "https://www.instagram.com/badaklnggolf/"
+          ],
+          [
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=pt+badak+ngl+golf+course"
           ]
         ]
       },
@@ -1042,44 +1090,28 @@
         },
         "seed_urls": [
           [
+            "known_source",
+            "https://www.golfsavers.com/indonesia/batam-island-golf-courses/southlinks-country-club"
+          ],
+          [
+            "known_source",
+            "https://batamgolfpackage.com/"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/en/golf-course/southlinks-golf-and-country-club"
+          ],
+          [
             "official_root",
             "https://www.southlinks.golf"
           ],
           [
-            "official_path",
-            "https://www.southlinks.golf/rates"
-          ],
-          [
-            "official_path",
-            "https://www.southlinks.golf/green-fee"
-          ],
-          [
-            "official_path",
-            "https://www.southlinks.golf/green-fees"
-          ],
-          [
-            "official_path",
-            "https://www.southlinks.golf/booking"
-          ],
-          [
-            "official_path",
-            "https://www.southlinks.golf/tarif"
-          ],
-          [
-            "official_path",
-            "https://www.southlinks.golf/harga"
-          ],
-          [
-            "official_path",
-            "https://www.southlinks.golf/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=southlinks+country+club"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.golfsavers.com/indonesia/batam-island-golf-courses/southlinks-country-club"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://www.southlinks.golf/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -1099,12 +1131,20 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=tanjung+golf+club"
+            "known_source",
+            "https://www.golfpass.com/travel-advisor/courses/38360-tanjung-golf-club"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.golfpass.com/travel-advisor/courses/38360-tanjung-golf-club"
+            "known_source",
+            "https://idalamat.com/alamat/740820/padang-golf-pertamina-tanjung-tabalong-kalimantan-selatan"
+          ],
+          [
+            "known_source",
+            "https://tvtabalong.com/turnamen-golf-meriahkan-hut-ke-59-tabalong-ratusan-pegolf-berpartisipasi/"
+          ],
+          [
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=tanjung+golf+club"
           ]
         ]
       },
@@ -1124,12 +1164,20 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=tarakan+golf+club"
+            "known_source",
+            "https://www.golfpass.com/travel-advisor/courses/38338-tarakan-golf-club"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.golfpass.com/travel-advisor/courses/38338-tarakan-golf-club"
+            "known_source",
+            "https://www.golflux.com/destination/kalimantan-golf-courses/"
+          ],
+          [
+            "known_source",
+            "http://wikimapia.org/16962580/Tarakan-Golf-Course"
+          ],
+          [
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=tarakan+golf+club"
           ]
         ]
       },
@@ -1149,44 +1197,40 @@
         },
         "seed_urls": [
           [
-            "official_root",
+            "known_source",
             "https://mnctourismindonesia.com/trumpgolflido"
           ],
           [
-            "official_path",
-            "https://mnctourismindonesia.com/trumpgolflido/rates"
+            "known_source",
+            "https://www.trumpgolflido.com/"
           ],
           [
-            "official_path",
-            "https://mnctourismindonesia.com/trumpgolflido/green-fee"
+            "known_source",
+            "https://www.golfsavers.com/indonesia/bogor-golf-courses/trump-international-golf-club-lido"
           ],
           [
-            "official_path",
-            "https://mnctourismindonesia.com/trumpgolflido/green-fees"
+            "known_source",
+            "https://www.australiangolfdigest.com.au/first-look-trump-golfs-indonesia-venture-nears-completion-and-an-aussie-is-in-charge-of-its-greens/"
           ],
           [
-            "official_path",
-            "https://mnctourismindonesia.com/trumpgolflido/booking"
+            "known_source",
+            "https://www.mnc.co.id/news"
           ],
           [
-            "official_path",
-            "https://mnctourismindonesia.com/trumpgolflido/tarif"
+            "known_source",
+            "https://www.mncland.com/"
           ],
           [
-            "official_path",
-            "https://mnctourismindonesia.com/trumpgolflido/harga"
+            "known_source",
+            "https://gogolf.co.id/golf-course/klub-golf-lido-bogor"
           ],
           [
-            "official_path",
-            "https://mnctourismindonesia.com/trumpgolflido/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=trump+international+golf+club+lido"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://mnctourismindonesia.com/trumpgolflido"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://mnctourismindonesia.com/trumpgolflido/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       }
@@ -1210,12 +1254,20 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=bandung+giri+gahana+golf+&+resort"
+            "known_source",
+            "https://gogolf.co.id/en/golf-course/bandung-giri-gahana-golf-resort"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://gogolf.co.id/en/golf-course/bandung-giri-gahana-golf-resort"
+            "known_source",
+            "https://en.gogolf.co.id/golf-course/bandung-giri-gahana-golf"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/golf-course/bandung-giri-gahana-golf"
+          ],
+          [
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=bandung+giri+gahana+golf+&+resort"
           ]
         ]
       },
@@ -1237,12 +1289,28 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=bukit+darmo+golf"
+            "known_source",
+            "https://web.archive.org/web/20211230075448/http://bukitdarmogolf.com/rates-fee-and-membership/ (wayback snapshot 2021-12-30)"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://web.archive.org/web/20211230075448/http://bukitdarmogolf.com/rates-fee-and-membership/ (wayback snapshot 2021-12-30)"
+            "known_source",
+            "https://gogolf.co.id/en/golf-course/bukit-darmo-golf"
+          ],
+          [
+            "known_source",
+            "https://id.trip.com/travel-guide/attraction/dukuhpakis/bukit-darmo-golf-surabaya-58270448/"
+          ],
+          [
+            "known_source",
+            "https://www.bca.co.id/en/promo-bca/2022/07/15/02/59/golf-course"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/golf-course/bukit-darmo-golf"
+          ],
+          [
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=bukit+darmo+golf"
           ]
         ]
       },
@@ -1264,12 +1332,16 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=cengkareng+golf+club"
+            "known_source",
+            "https://gogolf.co.id/en/golf-course/cengkareng-golf-club"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://gogolf.co.id/en/golf-course/cengkareng-golf-club"
+            "known_source",
+            "https://gogolf.co.id/golf-course/cengkareng-golf-club"
+          ],
+          [
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=cengkareng+golf+club"
           ]
         ]
       },
@@ -1283,7 +1355,7 @@
         "reason": "primary vs gogolf 795% on satAm",
         "diagnostics": {
           "n_slots": 6,
-          "primary_url_count": 3,
+          "primary_url_count": 5,
           "has_gogolf": true,
           "age_days": 6,
           "diff_pct": 795.4,
@@ -1291,44 +1363,36 @@
         },
         "seed_urls": [
           [
+            "known_source",
+            "https://ciputragolf.com/"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/en/golf-course/ciputra-golf"
+          ],
+          [
+            "known_source",
+            "https://ciputragolf.com/promo-golf-surabaya/"
+          ],
+          [
+            "known_source",
+            "https://ciputragolf.com/green-fee"
+          ],
+          [
+            "known_source",
+            "https://ciputragolf.com/green-fees"
+          ],
+          [
             "official_root",
             "https://ciputragolf.com"
           ],
           [
-            "official_path",
-            "https://ciputragolf.com/rates"
-          ],
-          [
-            "official_path",
-            "https://ciputragolf.com/green-fee"
-          ],
-          [
-            "official_path",
-            "https://ciputragolf.com/green-fees"
-          ],
-          [
-            "official_path",
-            "https://ciputragolf.com/booking"
-          ],
-          [
-            "official_path",
-            "https://ciputragolf.com/tarif"
-          ],
-          [
-            "official_path",
-            "https://ciputragolf.com/harga"
-          ],
-          [
-            "official_path",
-            "https://ciputragolf.com/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=ciputra+golf+club+&+hotel+surabaya"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://ciputragolf.com/"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://ciputragolf.com/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -1350,44 +1414,24 @@
         },
         "seed_urls": [
           [
+            "known_source",
+            "https://www.damaiindahgolf.com/index.asp?fuseaction=fee"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/golf-course/damai-indah-golf-bsd"
+          ],
+          [
             "official_root",
             "https://www.damaiindahgolf.com"
           ],
           [
-            "official_path",
-            "https://www.damaiindahgolf.com/rates"
-          ],
-          [
-            "official_path",
-            "https://www.damaiindahgolf.com/green-fee"
-          ],
-          [
-            "official_path",
-            "https://www.damaiindahgolf.com/green-fees"
-          ],
-          [
-            "official_path",
-            "https://www.damaiindahgolf.com/booking"
-          ],
-          [
-            "official_path",
-            "https://www.damaiindahgolf.com/tarif"
-          ],
-          [
-            "official_path",
-            "https://www.damaiindahgolf.com/harga"
-          ],
-          [
-            "official_path",
-            "https://www.damaiindahgolf.com/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=damai+indah+golf+-+bumi+serpong+damai"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.damaiindahgolf.com/index.asp?fuseaction=fee"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://www.damaiindahgolf.com/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -1409,44 +1453,24 @@
         },
         "seed_urls": [
           [
+            "known_source",
+            "https://www.damaiindahgolf.com/index.asp?fuseaction=fee"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/golf-course/damai-indah-golf-pik"
+          ],
+          [
             "official_root",
             "https://www.damaiindahgolf.com"
           ],
           [
-            "official_path",
-            "https://www.damaiindahgolf.com/rates"
-          ],
-          [
-            "official_path",
-            "https://www.damaiindahgolf.com/green-fee"
-          ],
-          [
-            "official_path",
-            "https://www.damaiindahgolf.com/green-fees"
-          ],
-          [
-            "official_path",
-            "https://www.damaiindahgolf.com/booking"
-          ],
-          [
-            "official_path",
-            "https://www.damaiindahgolf.com/tarif"
-          ],
-          [
-            "official_path",
-            "https://www.damaiindahgolf.com/harga"
-          ],
-          [
-            "official_path",
-            "https://www.damaiindahgolf.com/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=damai+indah+golf+-+pantai+indah+kapuk"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.damaiindahgolf.com/index.asp?fuseaction=fee"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://www.damaiindahgolf.com/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -1468,44 +1492,24 @@
         },
         "seed_urls": [
           [
+            "known_source",
+            "https://emeralda-golfclub.com/index2.php?fuseaction=golf_rate"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/golf-course/emeralda-golf-club"
+          ],
+          [
             "official_root",
             "https://emeralda-golfclub.com"
           ],
           [
-            "official_path",
-            "https://emeralda-golfclub.com/rates"
-          ],
-          [
-            "official_path",
-            "https://emeralda-golfclub.com/green-fee"
-          ],
-          [
-            "official_path",
-            "https://emeralda-golfclub.com/green-fees"
-          ],
-          [
-            "official_path",
-            "https://emeralda-golfclub.com/booking"
-          ],
-          [
-            "official_path",
-            "https://emeralda-golfclub.com/tarif"
-          ],
-          [
-            "official_path",
-            "https://emeralda-golfclub.com/harga"
-          ],
-          [
-            "official_path",
-            "https://emeralda-golfclub.com/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=emeralda+golf+club"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://emeralda-golfclub.com/index2.php?fuseaction=golf_rate"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://emeralda-golfclub.com/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -1527,44 +1531,28 @@
         },
         "seed_urls": [
           [
+            "known_source",
+            "https://finnagolf.com/"
+          ],
+          [
+            "known_source",
+            "https://bankmega.com/en/promo/finna-golf-pasuruan/"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/en/golf-course/finna-golf-and-country-club"
+          ],
+          [
             "official_root",
             "https://finnagolf.com"
           ],
           [
-            "official_path",
-            "https://finnagolf.com/rates"
-          ],
-          [
-            "official_path",
-            "https://finnagolf.com/green-fee"
-          ],
-          [
-            "official_path",
-            "https://finnagolf.com/green-fees"
-          ],
-          [
-            "official_path",
-            "https://finnagolf.com/booking"
-          ],
-          [
-            "official_path",
-            "https://finnagolf.com/tarif"
-          ],
-          [
-            "official_path",
-            "https://finnagolf.com/harga"
-          ],
-          [
-            "official_path",
-            "https://finnagolf.com/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=finna+golf+&+country+club+resort"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://finnagolf.com/"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://finnagolf.com/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -1586,44 +1574,24 @@
         },
         "seed_urls": [
           [
+            "known_source",
+            "https://www.gadingrayagolf.com/green_fees.html"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/golf-course/gading-raya-padang-golf"
+          ],
+          [
             "official_root",
             "https://www.gadingrayagolf.com"
           ],
           [
-            "official_path",
-            "https://www.gadingrayagolf.com/rates"
-          ],
-          [
-            "official_path",
-            "https://www.gadingrayagolf.com/green-fee"
-          ],
-          [
-            "official_path",
-            "https://www.gadingrayagolf.com/green-fees"
-          ],
-          [
-            "official_path",
-            "https://www.gadingrayagolf.com/booking"
-          ],
-          [
-            "official_path",
-            "https://www.gadingrayagolf.com/tarif"
-          ],
-          [
-            "official_path",
-            "https://www.gadingrayagolf.com/harga"
-          ],
-          [
-            "official_path",
-            "https://www.gadingrayagolf.com/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=gading+raya+padang+golf+&+club"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.gadingrayagolf.com/green_fees.html"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://www.gadingrayagolf.com/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -1645,44 +1613,24 @@
         },
         "seed_urls": [
           [
+            "known_source",
+            "https://gununggeulis.com/country-club/rates/"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/golf-course/gunung-geulis-golf-country-club"
+          ],
+          [
             "official_root",
             "https://gununggeulis.com/country-club"
           ],
           [
-            "official_path",
-            "https://gununggeulis.com/country-club/rates"
-          ],
-          [
-            "official_path",
-            "https://gununggeulis.com/country-club/green-fee"
-          ],
-          [
-            "official_path",
-            "https://gununggeulis.com/country-club/green-fees"
-          ],
-          [
-            "official_path",
-            "https://gununggeulis.com/country-club/booking"
-          ],
-          [
-            "official_path",
-            "https://gununggeulis.com/country-club/tarif"
-          ],
-          [
-            "official_path",
-            "https://gununggeulis.com/country-club/harga"
-          ],
-          [
-            "official_path",
-            "https://gununggeulis.com/country-club/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=gunung+geulis+country+club"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://gununggeulis.com/country-club/rates/"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://gununggeulis.com/country-club/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -1704,12 +1652,20 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=halim+golf+club"
+            "known_source",
+            "https://www.qaccess.asia/QGolfPrice?currentFilter=halim"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.qaccess.asia/QGolfPrice?currentFilter=halim"
+            "known_source",
+            "https://golfhalim.tripod.com/tarif.html"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/en/golf-course/halim-i-golf-course"
+          ],
+          [
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=halim+golf+club"
           ]
         ]
       },
@@ -1731,44 +1687,32 @@
         },
         "seed_urls": [
           [
+            "known_source",
+            "https://adeevatours.com/handara-bali-golf-green-fee/"
+          ],
+          [
+            "known_source",
+            "https://easygolfbali.com/product/green-fees/handara-golf-country-resort-weekend-sat-sun/"
+          ],
+          [
+            "known_source",
+            "https://www.handaragolfresort.com/golf/"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/en/golf-course/bali-handara-golf-resort"
+          ],
+          [
             "official_root",
             "https://www.handaragolfresort.com"
           ],
           [
-            "official_path",
-            "https://www.handaragolfresort.com/rates"
-          ],
-          [
-            "official_path",
-            "https://www.handaragolfresort.com/green-fee"
-          ],
-          [
-            "official_path",
-            "https://www.handaragolfresort.com/green-fees"
-          ],
-          [
-            "official_path",
-            "https://www.handaragolfresort.com/booking"
-          ],
-          [
-            "official_path",
-            "https://www.handaragolfresort.com/tarif"
-          ],
-          [
-            "official_path",
-            "https://www.handaragolfresort.com/harga"
-          ],
-          [
-            "official_path",
-            "https://www.handaragolfresort.com/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=handara+golf+&+resort+bali"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://adeevatours.com/handara-bali-golf-green-fee/"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://www.handaragolfresort.com/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -1790,44 +1734,24 @@
         },
         "seed_urls": [
           [
-            "official_root",
+            "known_source",
+            "https://gogolf.co.id/en/golf-course/imperial-klub-golf-lippo-karawaci"
+          ],
+          [
+            "known_source",
             "https://www.aryaduta.com/en/wellness/ikg"
           ],
           [
-            "official_path",
-            "https://www.aryaduta.com/en/wellness/ikg/rates"
+            "known_source",
+            "https://gogolf.co.id/golf-course/imperial-klub-golf"
           ],
           [
-            "official_path",
-            "https://www.aryaduta.com/en/wellness/ikg/green-fee"
-          ],
-          [
-            "official_path",
-            "https://www.aryaduta.com/en/wellness/ikg/green-fees"
-          ],
-          [
-            "official_path",
-            "https://www.aryaduta.com/en/wellness/ikg/booking"
-          ],
-          [
-            "official_path",
-            "https://www.aryaduta.com/en/wellness/ikg/tarif"
-          ],
-          [
-            "official_path",
-            "https://www.aryaduta.com/en/wellness/ikg/harga"
-          ],
-          [
-            "official_path",
-            "https://www.aryaduta.com/en/wellness/ikg/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=imperial+klub+golf"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://gogolf.co.id/en/golf-course/imperial-klub-golf-lippo-karawaci"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://www.aryaduta.com/en/wellness/ikg/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -1849,44 +1773,28 @@
         },
         "seed_urls": [
           [
+            "known_source",
+            "https://www.jababekagolf.co.id/"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/en/golf-course/jababeka-golf-country-club"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/golf-course/jababeka-golf"
+          ],
+          [
             "official_root",
             "https://www.jababekagolf.co.id"
           ],
           [
-            "official_path",
-            "https://www.jababekagolf.co.id/rates"
-          ],
-          [
-            "official_path",
-            "https://www.jababekagolf.co.id/green-fee"
-          ],
-          [
-            "official_path",
-            "https://www.jababekagolf.co.id/green-fees"
-          ],
-          [
-            "official_path",
-            "https://www.jababekagolf.co.id/booking"
-          ],
-          [
-            "official_path",
-            "https://www.jababekagolf.co.id/tarif"
-          ],
-          [
-            "official_path",
-            "https://www.jababekagolf.co.id/harga"
-          ],
-          [
-            "official_path",
-            "https://www.jababekagolf.co.id/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=jababeka+golf+&+country+club"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.jababekagolf.co.id/"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://www.jababekagolf.co.id/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -1908,44 +1816,28 @@
         },
         "seed_urls": [
           [
+            "known_source",
+            "https://jagorawi.com/green-fees/"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/en/golf-course/jagorawi-golf-country-club"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/golf-course/jagorawi-golf-country-club"
+          ],
+          [
             "official_root",
             "https://jagorawi.com"
           ],
           [
-            "official_path",
-            "https://jagorawi.com/rates"
-          ],
-          [
-            "official_path",
-            "https://jagorawi.com/green-fee"
-          ],
-          [
-            "official_path",
-            "https://jagorawi.com/green-fees"
-          ],
-          [
-            "official_path",
-            "https://jagorawi.com/booking"
-          ],
-          [
-            "official_path",
-            "https://jagorawi.com/tarif"
-          ],
-          [
-            "official_path",
-            "https://jagorawi.com/harga"
-          ],
-          [
-            "official_path",
-            "https://jagorawi.com/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=jagorawi+golf+&+country+club"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://jagorawi.com/green-fees/"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://jagorawi.com/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -1967,44 +1859,32 @@
         },
         "seed_urls": [
           [
+            "known_source",
+            "https://www.klubgolfbogorraya.com/"
+          ],
+          [
+            "known_source",
+            "https://www.golfsavers.com/indonesia/bogor-golf-courses/klub-golf-bogor-raya"
+          ],
+          [
+            "known_source",
+            "https://qgolf.asia/klub-golf-bogor-raya-driving-range/"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/en/golf-course/bogor-raya-golf-club"
+          ],
+          [
             "official_root",
             "https://www.klubgolfbogorraya.com"
           ],
           [
-            "official_path",
-            "https://www.klubgolfbogorraya.com/rates"
-          ],
-          [
-            "official_path",
-            "https://www.klubgolfbogorraya.com/green-fee"
-          ],
-          [
-            "official_path",
-            "https://www.klubgolfbogorraya.com/green-fees"
-          ],
-          [
-            "official_path",
-            "https://www.klubgolfbogorraya.com/booking"
-          ],
-          [
-            "official_path",
-            "https://www.klubgolfbogorraya.com/tarif"
-          ],
-          [
-            "official_path",
-            "https://www.klubgolfbogorraya.com/harga"
-          ],
-          [
-            "official_path",
-            "https://www.klubgolfbogorraya.com/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=klub+golf+bogor+raya"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.klubgolfbogorraya.com/"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://www.klubgolfbogorraya.com/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -2026,44 +1906,28 @@
         },
         "seed_urls": [
           [
+            "known_source",
+            "https://gogolf.co.id/golf-course/labersa-golf-club-resort"
+          ],
+          [
+            "known_source",
+            "https://labersahotel.com/lghcc/"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/en/golf-course/labersa-golf-club"
+          ],
+          [
             "official_root",
             "https://labersahotel.com/lghcc"
           ],
           [
-            "official_path",
-            "https://labersahotel.com/lghcc/rates"
-          ],
-          [
-            "official_path",
-            "https://labersahotel.com/lghcc/green-fee"
-          ],
-          [
-            "official_path",
-            "https://labersahotel.com/lghcc/green-fees"
-          ],
-          [
-            "official_path",
-            "https://labersahotel.com/lghcc/booking"
-          ],
-          [
-            "official_path",
-            "https://labersahotel.com/lghcc/tarif"
-          ],
-          [
-            "official_path",
-            "https://labersahotel.com/lghcc/harga"
-          ],
-          [
-            "official_path",
-            "https://labersahotel.com/lghcc/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=labersa+golf+&+country+club"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://gogolf.co.id/golf-course/labersa-golf-club-resort"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://labersahotel.com/lghcc/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -2077,7 +1941,7 @@
         "reason": "primary vs gogolf 82% on satPm",
         "diagnostics": {
           "n_slots": 6,
-          "primary_url_count": 2,
+          "primary_url_count": 4,
           "has_gogolf": true,
           "age_days": 6,
           "diff_pct": 82.5,
@@ -2085,44 +1949,36 @@
         },
         "seed_urls": [
           [
+            "known_source",
+            "https://www.lagunagolfbintan.com/rates-memberships/"
+          ],
+          [
+            "known_source",
+            "https://www.golfsavers.com/indonesia/bintan-golf-courses/laguna-bintan-golf-club"
+          ],
+          [
+            "known_source",
+            "https://www.lagunagolfbintan.com/rates"
+          ],
+          [
+            "known_source",
+            "https://www.lagunagolfbintan.com/rate"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/en/golf-course/laguna-golf-bintan"
+          ],
+          [
             "official_root",
             "https://www.lagunagolfbintan.com"
           ],
           [
-            "official_path",
-            "https://www.lagunagolfbintan.com/rates"
-          ],
-          [
-            "official_path",
-            "https://www.lagunagolfbintan.com/green-fee"
-          ],
-          [
-            "official_path",
-            "https://www.lagunagolfbintan.com/green-fees"
-          ],
-          [
-            "official_path",
-            "https://www.lagunagolfbintan.com/booking"
-          ],
-          [
-            "official_path",
-            "https://www.lagunagolfbintan.com/tarif"
-          ],
-          [
-            "official_path",
-            "https://www.lagunagolfbintan.com/harga"
-          ],
-          [
-            "official_path",
-            "https://www.lagunagolfbintan.com/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=laguna+golf+bintan"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.lagunagolfbintan.com/rates-memberships/"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://www.lagunagolfbintan.com/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -2144,12 +2000,24 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=merapi+golf+yogyakarta"
+            "known_source",
+            "https://thebudgetgolfer.com/yogyakarta-golf-guide-2026/"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://thebudgetgolfer.com/yogyakarta-golf-guide-2026/"
+            "known_source",
+            "https://www.leadingcourses.com/clubs/asia+indonesia+java+special-region-of-yogyakarta/merapi-golf-yogyakarta"
+          ],
+          [
+            "known_source",
+            "https://www.getyourguide.com/yogyakarta-l349/yogyakarta-merapi-golf-course-cangkringan-t638379/"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/golf-course/merapi-golf-mountain-resort"
+          ],
+          [
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=merapi+golf+yogyakarta"
           ]
         ]
       },
@@ -2171,44 +2039,32 @@
         },
         "seed_urls": [
           [
+            "known_source",
+            "https://www.qaccess.asia/QGolfPrice?currentFilter=&currentRecord=&searchString=modern"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/en/golf-tangerang"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/en/golf-course/modern-golf-country-club"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/golf-course/modern-golf-country-club"
+          ],
+          [
             "official_root",
             "https://www.moderngolf.co.id"
           ],
           [
-            "official_path",
-            "https://www.moderngolf.co.id/rates"
-          ],
-          [
-            "official_path",
-            "https://www.moderngolf.co.id/green-fee"
-          ],
-          [
-            "official_path",
-            "https://www.moderngolf.co.id/green-fees"
-          ],
-          [
-            "official_path",
-            "https://www.moderngolf.co.id/booking"
-          ],
-          [
-            "official_path",
-            "https://www.moderngolf.co.id/tarif"
-          ],
-          [
-            "official_path",
-            "https://www.moderngolf.co.id/harga"
-          ],
-          [
-            "official_path",
-            "https://www.moderngolf.co.id/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=modern+golf+&+country+club"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.qaccess.asia/QGolfPrice?currentFilter=&currentRecord=&searchString=modern"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://www.moderngolf.co.id/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -2230,12 +2086,24 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=mrica+indah+golf+club"
+            "known_source",
+            "https://obgolf.co.id/lapangan-golf-mrica-permata-hijau-di-kawasan-objek-vital-negara/"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://obgolf.co.id/lapangan-golf-mrica-permata-hijau-di-kawasan-objek-vital-negara/"
+            "known_source",
+            "https://golftimes.id/2025/10/06/lapangan-golf-mrica-permata-hijau-di-jantung-banjarnegara/"
+          ],
+          [
+            "known_source",
+            "https://playgolf.id/golf_courses/padang-golf-mrica/"
+          ],
+          [
+            "known_source",
+            "https://www.instagram.com/banjarnegaragolf/"
+          ],
+          [
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=mrica+indah+golf+club"
           ]
         ]
       },
@@ -2257,44 +2125,32 @@
         },
         "seed_urls": [
           [
+            "known_source",
+            "https://www.golfpangkalanjati.com/"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/en/golf-course/padang-golf-pangkalan-jati"
+          ],
+          [
+            "known_source",
+            "https://us.trip.com/travel-guide/attraction/cinere/pangkalan-jati-golf-club-61853804/"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/golf-course/padang-golf-pangkalan-jati"
+          ],
+          [
             "official_root",
             "https://www.golfpangkalanjati.com"
           ],
           [
-            "official_path",
-            "https://www.golfpangkalanjati.com/rates"
-          ],
-          [
-            "official_path",
-            "https://www.golfpangkalanjati.com/green-fee"
-          ],
-          [
-            "official_path",
-            "https://www.golfpangkalanjati.com/green-fees"
-          ],
-          [
-            "official_path",
-            "https://www.golfpangkalanjati.com/booking"
-          ],
-          [
-            "official_path",
-            "https://www.golfpangkalanjati.com/tarif"
-          ],
-          [
-            "official_path",
-            "https://www.golfpangkalanjati.com/harga"
-          ],
-          [
-            "official_path",
-            "https://www.golfpangkalanjati.com/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=padang+golf+pangkalan+jati"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.golfpangkalanjati.com/"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://www.golfpangkalanjati.com/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -2316,44 +2172,32 @@
         },
         "seed_urls": [
           [
+            "known_source",
+            "http://www.padanggolfsukajadi.com/greenfees.html"
+          ],
+          [
+            "known_source",
+            "https://www.padanggolfsukajadi.com/"
+          ],
+          [
+            "known_source",
+            "https://batamgolfpackage.com/"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/golf-course/padang-golf-sukajadi"
+          ],
+          [
             "official_root",
             "https://www.padanggolfsukajadi.com"
           ],
           [
-            "official_path",
-            "https://www.padanggolfsukajadi.com/rates"
-          ],
-          [
-            "official_path",
-            "https://www.padanggolfsukajadi.com/green-fee"
-          ],
-          [
-            "official_path",
-            "https://www.padanggolfsukajadi.com/green-fees"
-          ],
-          [
-            "official_path",
-            "https://www.padanggolfsukajadi.com/booking"
-          ],
-          [
-            "official_path",
-            "https://www.padanggolfsukajadi.com/tarif"
-          ],
-          [
-            "official_path",
-            "https://www.padanggolfsukajadi.com/harga"
-          ],
-          [
-            "official_path",
-            "https://www.padanggolfsukajadi.com/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=padang+golf+sukajadi"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/http://www.padanggolfsukajadi.com/greenfees.html"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://www.padanggolfsukajadi.com/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -2375,44 +2219,28 @@
         },
         "seed_urls": [
           [
+            "known_source",
+            "https://www.tiktok.com/@aandermawannn/video/7402748548787277061"
+          ],
+          [
+            "known_source",
+            "https://padivalley.com/golf-reservation"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/en/golf-course/padivalley-golf-club"
+          ],
+          [
             "official_root",
             "https://padivalley.com"
           ],
           [
-            "official_path",
-            "https://padivalley.com/rates"
-          ],
-          [
-            "official_path",
-            "https://padivalley.com/green-fee"
-          ],
-          [
-            "official_path",
-            "https://padivalley.com/green-fees"
-          ],
-          [
-            "official_path",
-            "https://padivalley.com/booking"
-          ],
-          [
-            "official_path",
-            "https://padivalley.com/tarif"
-          ],
-          [
-            "official_path",
-            "https://padivalley.com/harga"
-          ],
-          [
-            "official_path",
-            "https://padivalley.com/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=padivalley+golf+club"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.tiktok.com/@aandermawannn/video/7402748548787277061"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://padivalley.com/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -2434,44 +2262,32 @@
         },
         "seed_urls": [
           [
+            "known_source",
+            "https://www.golfsavers.com/indonesia/batam-island-golf-courses/palm-springs-golf-country-club"
+          ],
+          [
+            "known_source",
+            "https://en.gogolf.co.id/golf-course/palm-springs-golf"
+          ],
+          [
+            "known_source",
+            "https://www.where2golf.com/indonesia/palm-springs-golf-beach-resort/"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/en/golf-course/palm-springs-golf-beach-resort"
+          ],
+          [
             "official_root",
             "https://batam.palmspringsgolf.co"
           ],
           [
-            "official_path",
-            "https://batam.palmspringsgolf.co/rates"
-          ],
-          [
-            "official_path",
-            "https://batam.palmspringsgolf.co/green-fee"
-          ],
-          [
-            "official_path",
-            "https://batam.palmspringsgolf.co/green-fees"
-          ],
-          [
-            "official_path",
-            "https://batam.palmspringsgolf.co/booking"
-          ],
-          [
-            "official_path",
-            "https://batam.palmspringsgolf.co/tarif"
-          ],
-          [
-            "official_path",
-            "https://batam.palmspringsgolf.co/harga"
-          ],
-          [
-            "official_path",
-            "https://batam.palmspringsgolf.co/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=palm+springs+golf+&+country+club+batam"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.golfsavers.com/indonesia/batam-island-golf-courses/palm-springs-golf-country-club"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://batam.palmspringsgolf.co/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -2485,7 +2301,7 @@
         "reason": "primary vs gogolf 66% on sunPm",
         "diagnostics": {
           "n_slots": 6,
-          "primary_url_count": 1,
+          "primary_url_count": 2,
           "has_gogolf": true,
           "age_days": 6,
           "diff_pct": 66.1,
@@ -2493,44 +2309,24 @@
         },
         "seed_urls": [
           [
-            "official_root",
-            "https://www.parahyangangolf.com"
-          ],
-          [
-            "official_path",
-            "https://www.parahyangangolf.com/rates"
-          ],
-          [
-            "official_path",
-            "https://www.parahyangangolf.com/green-fee"
-          ],
-          [
-            "official_path",
+            "known_source",
             "https://www.parahyangangolf.com/green-fees"
           ],
           [
-            "official_path",
-            "https://www.parahyangangolf.com/booking"
+            "known_source",
+            "https://www.parahyangangolf.com"
           ],
           [
-            "official_path",
-            "https://www.parahyangangolf.com/tarif"
+            "known_source",
+            "https://gogolf.co.id/golf-course/parahyangan-bandung-golf-course"
           ],
           [
-            "official_path",
-            "https://www.parahyangangolf.com/harga"
-          ],
-          [
-            "official_path",
-            "https://www.parahyangangolf.com/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=parahyangan+golf+bandung"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.parahyangangolf.com/green-fees"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://www.parahyangangolf.com/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -2552,44 +2348,28 @@
         },
         "seed_urls": [
           [
+            "known_source",
+            "https://www.permatasentulgolf.net/"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/en/golf-course/permata-sentul-golf-club"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/golf-course/permata-sentul-golf-club"
+          ],
+          [
             "official_root",
             "https://www.permatasentulgolf.net"
           ],
           [
-            "official_path",
-            "https://www.permatasentulgolf.net/rates"
-          ],
-          [
-            "official_path",
-            "https://www.permatasentulgolf.net/green-fee"
-          ],
-          [
-            "official_path",
-            "https://www.permatasentulgolf.net/green-fees"
-          ],
-          [
-            "official_path",
-            "https://www.permatasentulgolf.net/booking"
-          ],
-          [
-            "official_path",
-            "https://www.permatasentulgolf.net/tarif"
-          ],
-          [
-            "official_path",
-            "https://www.permatasentulgolf.net/harga"
-          ],
-          [
-            "official_path",
-            "https://www.permatasentulgolf.net/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=permata+sentul+golf"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.permatasentulgolf.net/"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://www.permatasentulgolf.net/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -2611,44 +2391,28 @@
         },
         "seed_urls": [
           [
+            "known_source",
+            "https://rainbowhillsgolf.com/"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/en/golf-course/rainbow-hills-golf-club"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/golf-course/rainbow-hills-golf-club"
+          ],
+          [
             "official_root",
             "https://rainbowhillsgolf.com"
           ],
           [
-            "official_path",
-            "https://rainbowhillsgolf.com/rates"
-          ],
-          [
-            "official_path",
-            "https://rainbowhillsgolf.com/green-fee"
-          ],
-          [
-            "official_path",
-            "https://rainbowhillsgolf.com/green-fees"
-          ],
-          [
-            "official_path",
-            "https://rainbowhillsgolf.com/booking"
-          ],
-          [
-            "official_path",
-            "https://rainbowhillsgolf.com/tarif"
-          ],
-          [
-            "official_path",
-            "https://rainbowhillsgolf.com/harga"
-          ],
-          [
-            "official_path",
-            "https://rainbowhillsgolf.com/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=rainbow+hills+golf+club"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://rainbowhillsgolf.com/"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://rainbowhillsgolf.com/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -2670,44 +2434,24 @@
         },
         "seed_urls": [
           [
+            "known_source",
+            "https://rancamayagolf.com/golf-rate/"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/golf-course/rancamaya-golf-country-club"
+          ],
+          [
             "official_root",
             "https://rancamayagolf.com"
           ],
           [
-            "official_path",
-            "https://rancamayagolf.com/rates"
-          ],
-          [
-            "official_path",
-            "https://rancamayagolf.com/green-fee"
-          ],
-          [
-            "official_path",
-            "https://rancamayagolf.com/green-fees"
-          ],
-          [
-            "official_path",
-            "https://rancamayagolf.com/booking"
-          ],
-          [
-            "official_path",
-            "https://rancamayagolf.com/tarif"
-          ],
-          [
-            "official_path",
-            "https://rancamayagolf.com/harga"
-          ],
-          [
-            "official_path",
-            "https://rancamayagolf.com/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=rancamaya+golf+&+country+club"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://rancamayagolf.com/golf-rate/"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://rancamayagolf.com/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -2729,44 +2473,32 @@
         },
         "seed_urls": [
           [
+            "known_source",
+            "https://riabintangolf.com/rates/"
+          ],
+          [
+            "known_source",
+            "https://www.riabintan.com/published-rates/"
+          ],
+          [
+            "known_source",
+            "https://www.riabintan.com/justgolf/"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/en/golf-course/ria-bintan-golf-club"
+          ],
+          [
             "official_root",
             "https://www.riabintan.com"
           ],
           [
-            "official_path",
-            "https://www.riabintan.com/rates"
-          ],
-          [
-            "official_path",
-            "https://www.riabintan.com/green-fee"
-          ],
-          [
-            "official_path",
-            "https://www.riabintan.com/green-fees"
-          ],
-          [
-            "official_path",
-            "https://www.riabintan.com/booking"
-          ],
-          [
-            "official_path",
-            "https://www.riabintan.com/tarif"
-          ],
-          [
-            "official_path",
-            "https://www.riabintan.com/harga"
-          ],
-          [
-            "official_path",
-            "https://www.riabintan.com/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=ria+bintan+golf+club+-+ocean+course"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://riabintangolf.com/rates/"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://www.riabintan.com/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -2780,7 +2512,7 @@
         "reason": "primary vs gogolf 62% on satAm",
         "diagnostics": {
           "n_slots": 6,
-          "primary_url_count": 3,
+          "primary_url_count": 4,
           "has_gogolf": true,
           "age_days": 6,
           "diff_pct": 62.5,
@@ -2788,44 +2520,32 @@
         },
         "seed_urls": [
           [
-            "official_root",
+            "known_source",
+            "https://www.riverside-golf.com/offers-package"
+          ],
+          [
+            "known_source",
+            "https://www.golfriverside.net/rates/"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/en/golf-course/riverside-golf-club"
+          ],
+          [
+            "known_source",
             "https://www.riverside-golf.com"
           ],
           [
-            "official_path",
-            "https://www.riverside-golf.com/rates"
+            "known_source",
+            "https://gogolf.co.id/golf-course/riverside-golf-club"
           ],
           [
-            "official_path",
-            "https://www.riverside-golf.com/green-fee"
-          ],
-          [
-            "official_path",
-            "https://www.riverside-golf.com/green-fees"
-          ],
-          [
-            "official_path",
-            "https://www.riverside-golf.com/booking"
-          ],
-          [
-            "official_path",
-            "https://www.riverside-golf.com/tarif"
-          ],
-          [
-            "official_path",
-            "https://www.riverside-golf.com/harga"
-          ],
-          [
-            "official_path",
-            "https://www.riverside-golf.com/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=riverside+golf+club"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.riverside-golf.com/offers-package"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://www.riverside-golf.com/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -2847,44 +2567,28 @@
         },
         "seed_urls": [
           [
+            "known_source",
+            "https://www.royalejakarta.com/golf-rate-2026/"
+          ],
+          [
+            "known_source",
+            "https://www.qaccess.asia/QGolfPrice?currentFilter=&currentRecord=&searchString=royale"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/golf-course/royale-jakarta-golf-club"
+          ],
+          [
             "official_root",
             "https://www.royalejakarta.com"
           ],
           [
-            "official_path",
-            "https://www.royalejakarta.com/rates"
-          ],
-          [
-            "official_path",
-            "https://www.royalejakarta.com/green-fee"
-          ],
-          [
-            "official_path",
-            "https://www.royalejakarta.com/green-fees"
-          ],
-          [
-            "official_path",
-            "https://www.royalejakarta.com/booking"
-          ],
-          [
-            "official_path",
-            "https://www.royalejakarta.com/tarif"
-          ],
-          [
-            "official_path",
-            "https://www.royalejakarta.com/harga"
-          ],
-          [
-            "official_path",
-            "https://www.royalejakarta.com/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=royale+jakarta+golf+club"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.royalejakarta.com/golf-rate-2026/"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://www.royalejakarta.com/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -2906,12 +2610,16 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=senayan+national+golf+club"
+            "known_source",
+            "https://www.qaccess.asia/QGolfPrice?currentFilter=&currentRecord=&searchString=senayan"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.qaccess.asia/QGolfPrice?currentFilter=&currentRecord=&searchString=senayan"
+            "known_source",
+            "https://gogolf.co.id/golf-course/senayan-national-golf-club"
+          ],
+          [
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=senayan+national+golf+club"
           ]
         ]
       },
@@ -2933,44 +2641,32 @@
         },
         "seed_urls": [
           [
+            "known_source",
+            "https://sentulhighlands.com/prices/"
+          ],
+          [
+            "known_source",
+            "https://www.tripadvisor.com/Attraction_Review-g297706-d8817614-Reviews-Sentul_Highlands_Golf_Course-Bogor_West_Java_Java.html"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/en/golf-course/sentul-highlands-golf-club"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/golf-course/sentul-highlands-golf-club"
+          ],
+          [
             "official_root",
             "https://sentulhighlands.com"
           ],
           [
-            "official_path",
-            "https://sentulhighlands.com/rates"
-          ],
-          [
-            "official_path",
-            "https://sentulhighlands.com/green-fee"
-          ],
-          [
-            "official_path",
-            "https://sentulhighlands.com/green-fees"
-          ],
-          [
-            "official_path",
-            "https://sentulhighlands.com/booking"
-          ],
-          [
-            "official_path",
-            "https://sentulhighlands.com/tarif"
-          ],
-          [
-            "official_path",
-            "https://sentulhighlands.com/harga"
-          ],
-          [
-            "official_path",
-            "https://sentulhighlands.com/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=sentul+highlands+golf+club"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://sentulhighlands.com/prices/"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://sentulhighlands.com/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -2992,44 +2688,32 @@
         },
         "seed_urls": [
           [
+            "known_source",
+            "https://www.tamandayu.com/"
+          ],
+          [
+            "known_source",
+            "https://www.golfcards.com/course/taman-dayu-golf-club-resort/"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/en/gogolf-news/how-much-does-it-cost-to-play-golf-in-indonesia"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/en/golf-course/taman-dayu-golf-club"
+          ],
+          [
             "official_root",
             "https://tamandayu.com"
           ],
           [
-            "official_path",
-            "https://tamandayu.com/rates"
-          ],
-          [
-            "official_path",
-            "https://tamandayu.com/green-fee"
-          ],
-          [
-            "official_path",
-            "https://tamandayu.com/green-fees"
-          ],
-          [
-            "official_path",
-            "https://tamandayu.com/booking"
-          ],
-          [
-            "official_path",
-            "https://tamandayu.com/tarif"
-          ],
-          [
-            "official_path",
-            "https://tamandayu.com/harga"
-          ],
-          [
-            "official_path",
-            "https://tamandayu.com/rate"
-          ],
-          [
-            "qaccess",
+            "qaccess_search",
             "https://www.qaccess.asia/QGolfPrice?searchString=taman+dayu+golf+club+&+resort"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://www.tamandayu.com/"
+            "wayback_cdx",
+            "https://web.archive.org/cdx/search/cdx?url=https://tamandayu.com/&output=json&limit=3&filter=statuscode:200"
           ]
         ]
       },
@@ -3051,12 +2735,24 @@
         },
         "seed_urls": [
           [
-            "qaccess",
-            "https://www.qaccess.asia/QGolfPrice?searchString=tamarin+santana+golf+club"
+            "known_source",
+            "https://en.gogolf.co.id/golf-course/tamarin-santana-golf-club"
           ],
           [
-            "wayback",
-            "https://web.archive.org/web/2026*/https://en.gogolf.co.id/golf-course/tamarin-santana-golf-club"
+            "known_source",
+            "https://www.golfsavers.com/indonesia/batam-island-golf-courses/tamarin-santana-golf-club"
+          ],
+          [
+            "known_source",
+            "https://www.welcometobatam.com/book-batam-golf-packages.asp?resort=tamarinsantana"
+          ],
+          [
+            "known_source",
+            "https://gogolf.co.id/en/golf-course/tamarin-santana-golf-club"
+          ],
+          [
+            "qaccess_search",
+            "https://www.qaccess.asia/QGolfPrice?searchString=tamarin+santana+golf+club"
           ]
         ]
       }

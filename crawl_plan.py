@@ -240,29 +240,54 @@ def classify(c, today):
 def candidate_seed_urls(c):
     """Build a prioritized list of seed URLs likely to contain fees.
 
-    Order matters: official site path-extensions first, then known reference
-    aggregators that are usually robots-permissive (Q-Access, Wayback).
+    v2 strategy (much higher yield than v1):
+      1. *Re-visit known sources* — URLs already in fees_2026_05.sources are
+         the highest-yield seeds; they were proven to contain prices when
+         originally added. Re-fetching them validates current values.
+      2. Official-site root — let the runner discover rate-page links from
+         in-page anchors (rate/price/fee/harga/tarif keywords) instead of
+         guessing path extensions.
+      3. Q-Access search — runner follows the detail link from the search
+         results card, not just the search page itself.
+      4. Wayback CDX — runner uses the CDX API to find the most recent
+         snapshot of known sources.
     """
     out = []
-    site = (c.get("website") or "").rstrip("/")
-    if site:
-        out.append(("official_root", site))
-        for path in ("/rates", "/green-fee", "/green-fees", "/booking",
-                     "/tarif", "/harga", "/rate"):
-            out.append(("official_path", site + path))
+    seen = set()
 
-    # Q-Access (Indonesia-specific aggregator, robots-permissive in practice)
-    name_slug = (c.get("name_en") or "").lower().split(",")[0].split("(")[0].strip()
-    name_slug = name_slug.replace(" ", "+")[:40]
-    if name_slug:
-        out.append(("qaccess", f"https://www.qaccess.asia/QGolfPrice?searchString={name_slug}"))
+    def push(kind, url):
+        if not url or url in seen:
+            return
+        seen.add(url)
+        out.append((kind, url))
 
-    # Wayback Machine — fallback for officially-known URLs that may be down
+    # 1. Known sources (highest yield — already proven to host prices)
     f = c.get("fees_2026_05") or {}
     for u in (f.get("sources") or []):
         if isinstance(u, str) and u.startswith(("http://", "https://")):
-            out.append(("wayback", f"https://web.archive.org/web/2026*/{u}"))
-            break  # one Wayback probe per course is enough
+            push("known_source", u)
+
+    # GoGolf reference URL is also a known yielding source for some courses
+    gg_url = (c.get("fees_gogolf_reference") or {}).get("source_url")
+    if isinstance(gg_url, str) and gg_url.startswith(("http://", "https://")):
+        push("known_source", gg_url)
+
+    # 2. Official site root — runner will discover rate-page links from HTML
+    site = (c.get("website") or "").rstrip("/")
+    if site:
+        push("official_root", site)
+
+    # 3. Q-Access search → runner follows detail link from results
+    name_slug = (c.get("name_en") or "").lower().split(",")[0].split("(")[0].strip()
+    name_slug = name_slug.replace(" ", "+")[:40]
+    if name_slug:
+        push("qaccess_search",
+             f"https://www.qaccess.asia/QGolfPrice?searchString={name_slug}")
+
+    # 4. Wayback CDX (runner resolves to a real snapshot URL)
+    if site:
+        push("wayback_cdx",
+             f"https://web.archive.org/cdx/search/cdx?url={site}/&output=json&limit=3&filter=statuscode:200")
 
     return out
 

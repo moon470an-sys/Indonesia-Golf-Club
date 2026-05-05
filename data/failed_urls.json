@@ -142,7 +142,7 @@
   "https://www.visitciaterhighlandresort.com": {
     "course_id": "ciater-highland",
     "error": "ConnectError",
-    "last_attempted": "2026-05-05T16:05:24.159265+00:00"
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
   },
   "https://www.visitciaterhighlandresort.com/rates": {
     "course_id": "ciater-highland",
@@ -277,7 +277,7 @@
   "https://www.paradisehotelgolfresort.net": {
     "course_id": "paradise-likupang",
     "error": "ConnectError",
-    "last_attempted": "2026-05-05T16:05:24.159265+00:00"
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
   },
   "https://www.paradisehotelgolfresort.net/rates": {
     "course_id": "paradise-likupang",
@@ -547,7 +547,7 @@
   "https://ws-tourism.com/anai-golf-mountain-resort": {
     "course_id": "anai-resort",
     "error": "ConnectError",
-    "last_attempted": "2026-05-05T16:05:24.159265+00:00"
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
   },
   "https://ws-tourism.com/anai-golf-mountain-resort/rates": {
     "course_id": "anai-resort",
@@ -1027,7 +1027,7 @@
   "https://tamandayu.com": {
     "course_id": "taman-dayu",
     "error": "ConnectError",
-    "last_attempted": "2026-05-05T16:05:24.159265+00:00"
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
   },
   "https://tamandayu.com/rates": {
     "course_id": "taman-dayu",
@@ -1067,7 +1067,7 @@
   "https://finnagolf.com": {
     "course_id": "finna-pasuruan",
     "error": "ReadTimeout",
-    "last_attempted": "2026-05-05T16:05:24.159265+00:00"
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
   },
   "https://finnagolf.com/rates": {
     "course_id": "finna-pasuruan",
@@ -1103,5 +1103,210 @@
     "course_id": "finna-pasuruan",
     "error": "ReadTimeout",
     "last_attempted": "2026-05-05T16:05:24.159265+00:00"
+  },
+  "https://antam.com/id/about/business-overview": {
+    "course_id": "antam-mekongga-pomalaa",
+    "error": "HTTP 403",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://www.golfpass.com/travel-advisor/courses/38331-bebute-golf-course": {
+    "course_id": "bebute-belitung",
+    "error": "HTTP 403",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://www.instagram.com/blackeagle.golf/": {
+    "course_id": "black-eagle-bsb-semarang",
+    "error": "robots.txt disallow",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://www.suaramerdeka.com/olahraga/0415959347/black-eagle-golf-course-destinasi-golf-premium-terbaru-di-semarang-telah-dibuka": {
+    "course_id": "black-eagle-bsb-semarang",
+    "error": "HTTP 403",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://www.golfpass.com/travel-advisor/courses/43968-black-eagle-golf-course": {
+    "course_id": "black-eagle-bsb-semarang",
+    "error": "HTTP 403",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://blackrocksgolfbelitung.com/": {
+    "course_id": "black-rocks-belitung",
+    "error": "ConnectError",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://www.idx.co.id/": {
+    "course_id": "black-rocks-belitung",
+    "error": "HTTP 403",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://www.golfpass.com/travel-advisor/courses/38353-chevron-dumai-golf-course": {
+    "course_id": "phr-dumai",
+    "error": "HTTP 403",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://www.instagram.com/candigolfcountryclub.id/": {
+    "course_id": "candi-semarang",
+    "error": "robots.txt disallow",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://www.facebook.com/p/Graha-candi-golf-semarang-100068038901233/": {
+    "course_id": "candi-semarang",
+    "error": "robots.txt disallow",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://www.golfpass.com/travel-advisor/courses/42533-lapangan-golf": {
+    "course_id": "agromuko-mukomuko",
+    "error": "HTTP 403",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://www.visitciaterhighlandresort.com/": {
+    "course_id": "ciater-highland",
+    "error": "ConnectError",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://ciaterhighlandresort.com/": {
+    "course_id": "ciater-highland",
+    "error": "ConnectError",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://www.instagram.com/tabing_driving_range/": {
+    "course_id": "lanud-sutan-sjahrir",
+    "error": "robots.txt disallow",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://www.instagram.com/merah_putih_golfclubbengkulu/": {
+    "course_id": "merah-putih-bengkulu",
+    "error": "robots.txt disallow",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://www.tnial.mil.id/": {
+    "course_id": "koarmada-iii-sorong",
+    "error": "ConnectError",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://satumakna.id/prima-golf-club-buka-driving-range-di-tanjung-bara/": {
+    "course_id": "kpc-sangatta",
+    "error": "not found",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://www.instagram.com/pgcsangatta/": {
+    "course_id": "kpc-sangatta",
+    "error": "robots.txt disallow",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://www.aloeus.com/padang-golf-el-tari-kupang/": {
+    "course_id": "eltari-kupang",
+    "error": "ConnectTimeout",
+    "last_attempted": "2026-05-05T16:18:55.025086+00:00"
+  },
+  "https://www.trip.com/travel-guide/attraction/penonggol/lapangan-golf-ptpn-iv-pabatu-144860067": {
+    "course_id": "ptpn-iv-pabatu",
+    "error": "not found",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://www.instagram.com/padanggolfsulaimann/": {
+    "course_id": "padang-golf-lanud-sulaiman",
+    "error": "robots.txt disallow",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://giwang.sumselprov.go.id/destination/detail/271": {
+    "course_id": "pertamina-pendopo",
+    "error": "ConnectError",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://kek.go.id/kawasan/KEK-Likupang": {
+    "course_id": "paradise-likupang",
+    "error": "not found",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://golflan.com/id/sumatera-barat/anai-golf-resort-/book": {
+    "course_id": "anai-resort",
+    "error": "ConnectTimeout",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://www.golfpass.com/travel-advisor/courses/38316-anai-golf-mountain-resort": {
+    "course_id": "anai-resort",
+    "error": "HTTP 403",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://www.golfpass.com/travel-advisor/courses/38341-perkumpulan-golf-jambi": {
+    "course_id": "perkumpulan-golf-jambi",
+    "error": "HTTP 403",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://www.golfpass.com/travel-advisor/courses/38337-pt-badak-ngl-golf-course": {
+    "course_id": "badak-ngl-bontang",
+    "error": "HTTP 403",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://www.instagram.com/badaklnggolf/": {
+    "course_id": "badak-ngl-bontang",
+    "error": "robots.txt disallow",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://www.golfpass.com/travel-advisor/courses/38360-tanjung-golf-club": {
+    "course_id": "tanjung-tabalong",
+    "error": "HTTP 403",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://www.golfpass.com/travel-advisor/courses/38338-tarakan-golf-club": {
+    "course_id": "tarakan-golf-club",
+    "error": "HTTP 403",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "http://wikimapia.org/16962580/Tarakan-Golf-Course": {
+    "course_id": "tarakan-golf-club",
+    "error": "HTTP 218",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://www.mnc.co.id/news": {
+    "course_id": "trump-lido",
+    "error": "HTTP 403",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://golfhalim.tripod.com/tarif.html": {
+    "course_id": "halim-golf-club",
+    "error": "ConnectError",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://www.handaragolfresort.com/golf/": {
+    "course_id": "handara-bali",
+    "error": "not found",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://www.instagram.com/banjarnegaragolf/": {
+    "course_id": "mrica-banjarnegara",
+    "error": "robots.txt disallow",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://www.leadingcourses.com/clubs/asia+indonesia+java+special-region-of-yogyakarta/merapi-golf-yogyakarta": {
+    "course_id": "merapi-yogya",
+    "error": "HTTP 403",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://www.getyourguide.com/yogyakarta-l349/yogyakarta-merapi-golf-course-cangkringan-t638379/": {
+    "course_id": "merapi-yogya",
+    "error": "HTTP 403",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://padivalley.com/banquet-reservation": {
+    "course_id": "padivalley-makassar",
+    "error": "not found",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://finnagolf.com/": {
+    "course_id": "finna-pasuruan",
+    "error": "ReadTimeout",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://www.tripadvisor.com/Attraction_Review-g297706-d8817614-Reviews-Sentul_Highlands_Golf_Course-Bogor_West_Java_Java.html": {
+    "course_id": "sentul-highlands",
+    "error": "HTTP 403",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
+  },
+  "https://www.tamandayu.com/": {
+    "course_id": "taman-dayu",
+    "error": "ConnectError",
+    "last_attempted": "2026-05-05T16:23:40.873541+00:00"
   }
 }
