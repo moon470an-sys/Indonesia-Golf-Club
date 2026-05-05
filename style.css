@@ -1808,6 +1808,85 @@ input, select, textarea { font-family: inherit; }
 [data-theme="dark"] .detail-status-badge.closed_permanent { color: #cbd5e1; }
 [data-theme="dark"] .detail-status-badge.uncertain       { color: #fbbf24; }
 
+/* === Detail panel: coord-notes + evidence === */
+.coord-notes-block {
+  margin-top: 6px;
+  padding: 0;
+  border: 0;
+}
+.coord-notes-block summary {
+  font-size: 11px;
+  color: var(--text-muted);
+  cursor: pointer;
+  list-style: none;
+  padding: 4px 0;
+}
+.coord-notes-block summary::-webkit-details-marker { display: none; }
+.coord-notes-block summary::before {
+  content: "▸ ";
+  display: inline-block;
+  transition: transform var(--t-fast);
+}
+.coord-notes-block[open] summary::before { content: "▾ "; }
+.coord-notes-block p {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  background: var(--bg-muted);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--r-sm);
+  padding: 8px 10px;
+  margin: 4px 0 0;
+  line-height: 1.55;
+}
+
+.evidence-section { margin-top: var(--sp-4); }
+.evidence-section h3 {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 var(--sp-2);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.conf-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 7px;
+  border-radius: var(--r-pill);
+  text-transform: none;
+  letter-spacing: 0;
+  border: 1px solid;
+}
+.conf-badge.high   { background: var(--success-soft); color: var(--success); border-color: var(--success); }
+.conf-badge.medium { background: var(--warn-soft);    color: var(--warn);    border-color: var(--warn); }
+.conf-badge.low    { background: var(--danger-soft);  color: var(--danger);  border-color: var(--danger); }
+
+.evidence-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.evidence-list li {
+  font-size: 11.5px;
+  color: var(--text-secondary);
+  padding: 6px 10px;
+  background: var(--bg-muted);
+  border-left: 2px solid var(--border-strong);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  line-height: 1.5;
+}
+.evidence-list a { color: var(--accent); text-decoration: none; }
+.evidence-list a:hover { text-decoration: underline; }
+
 /* === Detail panel: price matrix === */
 .price-matrix-section { margin-top: var(--sp-4); }
 .price-matrix-section h3 {

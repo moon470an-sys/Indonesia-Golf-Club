@@ -642,7 +642,10 @@ function showDetail(c) {
     <section>
       <h3>주소</h3>
       <p>${escapeHtml(c.address)}</p>
+      ${(c.operating_status?.coord_notes) ? `<details class="coord-notes-block"><summary>좌표 신뢰도 메모</summary><p>${escapeHtml(c.operating_status.coord_notes)}</p></details>` : ''}
     </section>` : ''}
+
+    ${renderOperatingEvidence(c)}
 
     ${c.designer ? `
     <section>
@@ -1703,6 +1706,39 @@ function renderFeeCell(c, slot, cat) {
   const premiumClass = (slot === 'satAm' || slot === 'sunAm') ? ' fee-premium' : '';
   const ariaLabel = `${SLOT_LABEL[slot]} ${fmtIDR(primary.price)} — 출처 ${primary.src.label}${visible.length > 1 ? `, 외 ${visible.length - 1}개` : ''}`;
   return `<td class="num fee fee-cell${dimClass}${premiumClass}" data-fee-cell="${slot}" data-course-id="${escapeHtml(c.id)}" tabindex="0" role="button" aria-label="${escapeHtml(ariaLabel)}">${priceHtml}${dot}${warn}${extra}</td>`;
+}
+
+// === Detail-panel: operating-status evidence ===
+function renderOperatingEvidence(c) {
+  const op = c.operating_status || {};
+  const ev = (op.evidence || []).filter(Boolean);
+  if (!ev.length && !op.last_verified) return '';
+  const verified = op.last_verified
+    ? `<span class="verified-date">확인일 ${escapeHtml(op.last_verified)}</span>`
+    : '';
+  const confLabel = { high: '신뢰도 높음', medium: '신뢰도 보통', low: '신뢰도 낮음' };
+  const confBadge = op.confidence
+    ? `<span class="conf-badge ${escapeHtml(op.confidence)}">${confLabel[op.confidence] || op.confidence}</span>`
+    : '';
+  const items = ev.map(e => {
+    const isUrl = typeof e === 'string' && /^https?:/.test(e);
+    if (isUrl) {
+      let host = '';
+      try { host = new URL(e).hostname.replace(/^www\./, ''); } catch (_) {}
+      return `<li><a href="${escapeHtml(e)}" target="_blank" rel="noopener">${escapeHtml(host || e)} ↗</a></li>`;
+    }
+    // Mixed text — extract any URL inside it
+    const m = String(e).match(/(https?:\/\/\S+)/);
+    if (m) {
+      const txt = String(e).replace(m[1], '').trim();
+      return `<li>${escapeHtml(txt)} <a href="${escapeHtml(m[1])}" target="_blank" rel="noopener">↗</a></li>`;
+    }
+    return `<li>${escapeHtml(String(e))}</li>`;
+  }).join('');
+  return `<section class="evidence-section">
+    <h3>운영 상태 근거 ${confBadge} ${verified}</h3>
+    <ul class="evidence-list">${items || '<li class="muted">근거 없음</li>'}</ul>
+  </section>`;
 }
 
 // === Detail-panel: price matrix (요일 × AM/PM) ===
