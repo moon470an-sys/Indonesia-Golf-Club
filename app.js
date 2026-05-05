@@ -1136,16 +1136,20 @@ document.querySelectorAll('.tab').forEach(btn => {
     const mapView = document.getElementById('mapView');
     const tableView = document.getElementById('tableView');
     const financeView = document.getElementById('financeView');
+    const analyticsView = document.getElementById('analyticsView');
     const showMap = target === 'map';
     const showTable = target === 'table';
     const showFinance = target === 'finance';
+    const showAnalytics = target === 'analytics';
 
     mapView.hidden = !showMap;
     tableView.hidden = !showTable;
     if (financeView) financeView.hidden = !showFinance;
+    if (analyticsView) analyticsView.hidden = !showAnalytics;
     mapView.style.display = showMap ? '' : 'none';
     tableView.style.display = showTable ? '' : 'none';
     if (financeView) financeView.style.display = showFinance ? '' : 'none';
+    if (analyticsView) analyticsView.style.display = showAnalytics ? '' : 'none';
 
     if (showTable) {
       renderTable();
@@ -1154,6 +1158,7 @@ document.querySelectorAll('.tab').forEach(btn => {
       }
     }
     if (showFinance) renderFinanceTable();
+    if (showAnalytics) renderAnalytics();
     if (showMap && map) setTimeout(() => map.invalidateSize(), 100);
   });
 });
@@ -2903,6 +2908,265 @@ function renderFinanceTable() {
 
 document.getElementById('financeSearch')?.addEventListener('input', renderFinanceTable);
 document.getElementById('financeStatusFilter')?.addEventListener('change', renderFinanceTable);
+
+// === Analytics tab ===
+const _charts = {};
+
+function destroyChart(key) {
+  if (_charts[key]) {
+    try { _charts[key].destroy(); } catch (e) { /* ignore */ }
+    _charts[key] = null;
+  }
+}
+
+function chartTheme() {
+  const dark = document.documentElement.dataset.theme === 'dark';
+  const cs = getComputedStyle(document.documentElement);
+  return {
+    grid:  dark ? 'rgba(255,255,255,0.06)' : 'rgba(10,31,23,0.06)',
+    axis:  cs.getPropertyValue('--text-muted').trim() || (dark ? '#94a3b8' : '#8a9892'),
+    text:  cs.getPropertyValue('--text-primary').trim() || (dark ? '#e8ebe7' : '#0a1f17'),
+    accent: cs.getPropertyValue('--accent').trim() || (dark ? '#2eb478' : '#0d6e4d'),
+    gold:  cs.getPropertyValue('--gold').trim() || '#b8924a',
+  };
+}
+
+function fmtBigIDRShort(n) {
+  if (n == null) return '—';
+  const num = Number(n);
+  if (!isFinite(num)) return '—';
+  const abs = Math.abs(num);
+  if (abs >= 1e12) return `${(num / 1e12).toFixed(2)}T`;
+  if (abs >= 1e9)  return `${(num / 1e9).toFixed(1)}B`;
+  if (abs >= 1e6)  return `${Math.round(num / 1e6)}M`;
+  return num.toLocaleString('en-US');
+}
+
+function renderAnalytics() {
+  if (typeof Chart === 'undefined' || !allCourses.length) return;
+  const t = chartTheme();
+  Chart.defaults.color = t.axis;
+  Chart.defaults.borderColor = t.grid;
+  Chart.defaults.font.family = "'Pretendard', 'Inter', sans-serif";
+
+  // KPIs
+  const counts = computeStatusCounts(allCourses);
+  const prices = allCourses
+    .map(c => ({ c, p: getSatAmIDR(c), op: (c.operating_status?.status || 'operating') === 'operating' }))
+    .filter(x => x.p != null && x.op);
+  const sorted = prices.map(x => x.p).sort((a, b) => a - b);
+  const median = sorted[Math.floor(sorted.length / 2)] || 0;
+  const avg = sorted.length ? sorted.reduce((a, b) => a + b, 0) / sorted.length : 0;
+  const maxRow = prices.reduce((m, x) => x.p > m.p ? x : m, prices[0] || { p: 0 });
+
+  const setText = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+  setText('kpiTotal', counts.total);
+  setText('kpiOperating', counts.operating);
+  setText('kpiAvgPrice', avg ? fmtIDR(Math.round(avg)) : '—');
+  setText('kpiMedianPrice', median ? fmtIDR(median) : '—');
+  setText('kpiMaxPrice', maxRow.p ? fmtIDR(maxRow.p) : '—');
+  setText('kpiMaxName', maxRow.c?.name_en || '—');
+  const listedCount = allCourses.filter(c => {
+    const ls = c.financials?.listed_status;
+    return ls === 'listed' || ls === 'subsidiary-of-listed';
+  }).length;
+  setText('kpiListedCount', listedCount);
+
+  // 1) Price distribution histogram
+  const buckets = [
+    { lo: 0,         hi: 250000,    label: '<250K' },
+    { lo: 250000,    hi: 500000,    label: '250-500K' },
+    { lo: 500000,    hi: 750000,    label: '500-750K' },
+    { lo: 750000,    hi: 1000000,   label: '750K-1M' },
+    { lo: 1000000,   hi: 1500000,   label: '1-1.5M' },
+    { lo: 1500000,   hi: 2000000,   label: '1.5-2M' },
+    { lo: 2000000,   hi: 3000000,   label: '2-3M' },
+    { lo: 3000000,   hi: Infinity,  label: '3M+' },
+  ];
+  const distCounts = buckets.map(b => prices.filter(x => x.p >= b.lo && x.p < b.hi).length);
+
+  destroyChart('priceDist');
+  _charts.priceDist = new Chart(document.getElementById('chartPriceDist'), {
+    type: 'bar',
+    data: {
+      labels: buckets.map(b => b.label),
+      datasets: [{
+        label: '코스 수',
+        data: distCounts,
+        backgroundColor: t.accent,
+        borderRadius: 4,
+      }],
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { beginAtZero: true, grid: { color: t.grid }, ticks: { precision: 0 } },
+        x: { grid: { display: false } },
+      },
+    },
+  });
+
+  // 2) Region average bar
+  const regionAgg = {};
+  for (const x of prices) {
+    const r = x.c.region;
+    if (!r) continue;
+    (regionAgg[r] ??= []).push(x.p);
+  }
+  const regionRows = Object.entries(regionAgg)
+    .filter(([, arr]) => arr.length >= 3)
+    .map(([r, arr]) => ({ r, avg: arr.reduce((a, b) => a + b, 0) / arr.length, n: arr.length }))
+    .sort((a, b) => b.avg - a.avg);
+
+  destroyChart('regionAvg');
+  _charts.regionAvg = new Chart(document.getElementById('chartRegionAvg'), {
+    type: 'bar',
+    data: {
+      labels: regionRows.map(x => `${x.r} (${x.n})`),
+      datasets: [{
+        label: '평균 토 AM (Rp)',
+        data: regionRows.map(x => Math.round(x.avg)),
+        backgroundColor: t.gold,
+        borderRadius: 4,
+      }],
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => `Rp ${(ctx.raw / 1e6).toFixed(2)}M` } },
+      },
+      scales: {
+        x: { beginAtZero: true, grid: { color: t.grid },
+             ticks: { callback: v => 'Rp ' + (v / 1e6).toFixed(1) + 'M' } },
+        y: { grid: { display: false } },
+      },
+    },
+  });
+
+  // 3) Status donut
+  destroyChart('status');
+  _charts.status = new Chart(document.getElementById('chartStatus'), {
+    type: 'doughnut',
+    data: {
+      labels: ['운영중', '휴장', '불확실'],
+      datasets: [{
+        data: [counts.operating, counts.closed, counts.uncertain],
+        backgroundColor: ['#16a34a', '#94a3b8', '#f59e0b'],
+        borderWidth: 0,
+      }],
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      cutout: '62%',
+      plugins: {
+        legend: { position: 'bottom', labels: { boxWidth: 12, padding: 10 } },
+      },
+    },
+  });
+
+  // 4) Parent revenue Top 10
+  const parentAgg = {};
+  for (const c of allCourses) {
+    const fin = c.financials;
+    if (!fin) continue;
+    if (!(fin.listed_status === 'listed' || fin.listed_status === 'subsidiary-of-listed')) continue;
+    const rev = fin.revenue_idr ?? fin.revenue_idr_h1;
+    if (rev == null) continue;
+    const key = fin.parent_group || fin.parent_company_full_name || c.name_en;
+    // Keep one record per parent (highest rev to dedupe sibling courses)
+    if (!parentAgg[key] || parentAgg[key].rev < rev) parentAgg[key] = { rev, name: key };
+  }
+  const top10 = Object.values(parentAgg).sort((a, b) => b.rev - a.rev).slice(0, 10);
+
+  destroyChart('parentRevenue');
+  _charts.parentRevenue = new Chart(document.getElementById('chartParentRevenue'), {
+    type: 'bar',
+    data: {
+      labels: top10.map(x => x.name.length > 28 ? x.name.slice(0, 28) + '…' : x.name),
+      datasets: [{
+        label: 'FY2024 매출 (Rp T)',
+        data: top10.map(x => x.rev / 1e12),
+        backgroundColor: t.accent,
+        borderRadius: 4,
+      }],
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => `Rp ${ctx.raw.toFixed(2)}T` } },
+      },
+      scales: {
+        x: { beginAtZero: true, grid: { color: t.grid },
+             ticks: { callback: v => v + 'T' } },
+        y: { grid: { display: false } },
+      },
+    },
+  });
+
+  // 5) Scatter holes × price
+  const STATUS_COLOR = {
+    operating: '#16a34a',
+    closed_temporary: '#94a3b8',
+    closed_permanent: '#64748b',
+    uncertain: '#f59e0b',
+  };
+  const points = [];
+  for (const c of allCourses) {
+    const p = getSatAmIDR(c);
+    if (p == null || c.holes == null) continue;
+    const op = c.operating_status?.status || 'operating';
+    const rev = c.financials?.revenue_idr ?? c.financials?.revenue_idr_h1 ?? 0;
+    points.push({
+      x: c.holes,
+      y: p / 1e6,
+      r: Math.max(4, Math.min(18, 4 + Math.log10((rev || 1e9) / 1e9) * 4)),
+      backgroundColor: STATUS_COLOR[op] || '#16a34a',
+      label: c.name_en,
+    });
+  }
+  destroyChart('scatter');
+  _charts.scatter = new Chart(document.getElementById('chartScatter'), {
+    type: 'bubble',
+    data: { datasets: [{ label: '코스', data: points,
+      backgroundColor: points.map(p => p.backgroundColor + 'cc'),
+      borderColor: points.map(p => p.backgroundColor),
+      borderWidth: 1,
+    }] },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: {
+          label: ctx => {
+            const d = ctx.raw;
+            return `${d.label}: ${d.x}홀 / Rp ${d.y.toFixed(2)}M`;
+          }
+        } },
+      },
+      scales: {
+        x: { title: { display: true, text: '홀 수' },
+             grid: { color: t.grid }, ticks: { stepSize: 9 } },
+        y: { title: { display: true, text: '토 AM 그린피 (Rp M)' },
+             grid: { color: t.grid }, beginAtZero: true },
+      },
+    },
+  });
+}
+
+// Re-render charts on theme change
+const _themeObserver = new MutationObserver(() => {
+  if (document.getElementById('analyticsView') &&
+      !document.getElementById('analyticsView').hidden) {
+    renderAnalytics();
+  }
+});
+_themeObserver.observe(document.documentElement,
+  { attributes: true, attributeFilter: ['data-theme'] });
 
 // === Boot ===
 document.getElementById('tableView').style.display = 'none';

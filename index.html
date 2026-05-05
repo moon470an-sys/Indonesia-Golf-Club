@@ -31,6 +31,7 @@
       <button class="tab active" data-tab="map" role="tab" aria-selected="true">지도</button>
       <button class="tab" data-tab="table" role="tab" aria-selected="false">가격 데이터</button>
       <button class="tab" data-tab="finance" role="tab" aria-selected="false">재무 분석</button>
+      <button class="tab" data-tab="analytics" role="tab" aria-selected="false">분석</button>
     </nav>
     <div class="topbar-meta">
       <span class="counter" id="counterPill" hidden><strong id="visibleCount">0</strong> / <span id="totalCount">0</span></span>
@@ -238,6 +239,64 @@
         </thead>
         <tbody id="financeTableBody"></tbody>
       </table>
+    </div>
+  </section>
+
+  <section class="analytics-view" id="analyticsView" hidden>
+    <div class="analytics-header">
+      <h2>인도네시아 골프장 데이터 분석</h2>
+      <p class="analytics-subtitle">137개 코스의 가격·지역·운영상태·재무 데이터를 한눈에</p>
+    </div>
+
+    <div class="analytics-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">전체 골프장</div>
+        <div class="kpi-value" id="kpiTotal">—</div>
+        <div class="kpi-foot">운영중 <span id="kpiOperating">—</span></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">평균 토 AM 그린피</div>
+        <div class="kpi-value" id="kpiAvgPrice">—</div>
+        <div class="kpi-foot">중앙값 <span id="kpiMedianPrice">—</span></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">최고가</div>
+        <div class="kpi-value" id="kpiMaxPrice">—</div>
+        <div class="kpi-foot" id="kpiMaxName">—</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">상장 그룹 산하</div>
+        <div class="kpi-value" id="kpiListedCount">—</div>
+        <div class="kpi-foot">개별 코스 (모회사 IDX)</div>
+      </div>
+    </div>
+
+    <div class="charts-grid">
+      <div class="chart-card">
+        <h3>토 AM 그린피 분포</h3>
+        <p class="chart-desc">운영중 코스 기준, IDR 가격대별 코스 수</p>
+        <div class="chart-wrap"><canvas id="chartPriceDist"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <h3>지역별 평균 토 AM 그린피</h3>
+        <p class="chart-desc">코스 3개 이상 지역만 (가격 데이터 보유 코스만 포함)</p>
+        <div class="chart-wrap"><canvas id="chartRegionAvg"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <h3>운영 상태 분포</h3>
+        <p class="chart-desc">137개 전체 기준</p>
+        <div class="chart-wrap chart-wrap-square"><canvas id="chartStatus"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <h3>모회사 매출 Top 10 (FY2024)</h3>
+        <p class="chart-desc">상장사·자회사 기준, IDR Trillion</p>
+        <div class="chart-wrap"><canvas id="chartParentRevenue"></canvas></div>
+      </div>
+      <div class="chart-card chart-card-wide">
+        <h3>홀 수 × 가격 산점도</h3>
+        <p class="chart-desc">9/18/27홀 코스의 토 AM 가격 분포 — 마커 크기는 모회사 매출, 색상은 운영 상태</p>
+        <div class="chart-wrap"><canvas id="chartScatter"></canvas></div>
+      </div>
     </div>
   </section>
 
