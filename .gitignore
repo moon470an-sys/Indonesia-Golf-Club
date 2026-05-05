@@ -8,3 +8,7 @@ node_modules/
 url_check_report.json
 validation_raw.md
 tmp/
+
+# Crawl loop transient artifacts (logs/state, not committed)
+data/crawl_state.json
+data/crawl_console.log

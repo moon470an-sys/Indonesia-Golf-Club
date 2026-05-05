@@ -4,12 +4,40 @@ let filteredCourses = [];
 let markers = {};
 let markerCluster;
 let map;
+const PRICE_MAX = 3000000;
 let currentFilter = {
   search: '',
-  region: 'all',
+  regions: new Set(),   // empty = all
   holes: 'all',
   status: 'operating-only',
+  priceMin: 0,
+  priceMax: PRICE_MAX,
+  priceIncludeUnknown: true,
 };
+
+// Approximate Sat AM green fee for slider filter & price-band features.
+function getSatAmIDR(c) {
+  const f = c.fees_2026_05 || {};
+  const sd = f.schedule_detailed || {};
+  const sat = sd.weekend_saturday;
+  if (sat && typeof sat === 'object') {
+    const morning = sat.morning;
+    if (typeof morning === 'number') return morning;
+    if (morning && typeof morning === 'object') {
+      for (const k of ['visitor', 'green_fee_idr', 'guest', 'public_rate', 'guest_fee_idr']) {
+        if (typeof morning[k] === 'number') return morning[k];
+      }
+      for (const v of Object.values(morning)) {
+        if (typeof v === 'number') return v;
+      }
+    }
+  }
+  const we = f.weekend;
+  if (we && typeof we === 'object') {
+    return we.green_fee_idr ?? we.guest_fee_idr ?? we.member_fee_idr ?? null;
+  }
+  return null;
+}
 
 // === Init Map ===
 function initMap() {
@@ -33,14 +61,46 @@ function initMap() {
 }
 
 // === Load Data ===
+function computeStatusCounts(courses) {
+  const counts = { total: courses.length, operating: 0, closed: 0, uncertain: 0 };
+  for (const c of courses) {
+    const s = c.operating_status?.status || 'operating';
+    if (s === 'operating') counts.operating += 1;
+    else if (s === 'closed_temporary' || s === 'closed_permanent') counts.closed += 1;
+    else if (s === 'uncertain') counts.uncertain += 1;
+  }
+  return counts;
+}
+
+function renderHeaderSubtitle(counts) {
+  const sub = document.getElementById('headerSubtitle');
+  if (sub) {
+    sub.innerHTML = `총 <strong>${counts.total}</strong> · ` +
+      `<span class="status-dot operating" aria-hidden="true"></span>운영중 ${counts.operating} · ` +
+      `<span class="status-dot closed" aria-hidden="true"></span>휴장 ${counts.closed} · ` +
+      `<span class="status-dot uncertain" aria-hidden="true"></span>불확실 ${counts.uncertain}`;
+  }
+  const foot = document.getElementById('footerCount');
+  if (foot) {
+    foot.textContent = `총 ${counts.total} 골프장 (운영중 ${counts.operating} · 휴장 ${counts.closed} · 불확실 ${counts.uncertain})`;
+  }
+}
+
 async function loadData() {
   try {
     const res = await fetch('data/golf_courses.json');
     const doc = await res.json();
     allCourses = doc.courses.filter(c => c.lat != null && c.lng != null);
-    const operatingCount = allCourses.filter(c => (c.operating_status?.status || 'operating') === 'operating').length;
-    document.getElementById('totalCount').textContent = `${allCourses.length} (운영 ${operatingCount})`;
-    renderRegionChips();
+    const counts = computeStatusCounts(allCourses);
+    document.getElementById('totalCount').textContent = `${counts.total} (운영 ${counts.operating})`;
+    const pill = document.getElementById('counterPill');
+    if (pill) pill.hidden = false;
+    renderHeaderSubtitle(counts);
+    renderRegionMulti();
+    wireRegionMulti();
+    wirePriceSlider();
+    wireFilterSummary();
+    updateFilterSummary();
     applyFilter();
   } catch (e) {
     console.error('Failed to load data:', e);
@@ -48,35 +108,179 @@ async function loadData() {
   }
 }
 
-// === Region Dropdown ===
-function renderRegionChips() {
-  const regions = [...new Set(allCourses.map(c => c.region))].sort();
-  const container = document.getElementById('regionChips');
-  container.innerHTML = '';
+// === Region Multiselect ===
+let _regionSearchQuery = '';
 
-  const select = document.createElement('select');
-  select.id = 'regionSelect';
-  select.className = 'region-select';
+function renderRegionMulti() {
+  const counts = {};
+  for (const c of allCourses) counts[c.region] = (counts[c.region] || 0) + 1;
+  const regions = Object.keys(counts).sort();
+  const list = document.getElementById('regionMultiList');
+  if (!list) return;
 
-  const allOpt = document.createElement('option');
-  allOpt.value = 'all';
-  allOpt.textContent = '전체 지역';
-  select.appendChild(allOpt);
+  const q = _regionSearchQuery.trim().toLowerCase();
+  const filtered = q ? regions.filter(r => r.toLowerCase().includes(q)) : regions;
 
-  regions.forEach(r => {
-    const opt = document.createElement('option');
-    opt.value = r;
-    opt.textContent = r;
-    select.appendChild(opt);
+  if (filtered.length === 0) {
+    list.innerHTML = '<div class="region-empty">검색 결과 없음</div>';
+  } else {
+    list.innerHTML = filtered.map(r => {
+      const checked = currentFilter.regions.has(r) ? ' checked' : '';
+      return `<label><input type="checkbox" value="${escapeHtml(r)}"${checked} />` +
+        `<span>${escapeHtml(r)}</span><span class="region-count">${counts[r]}</span></label>`;
+    }).join('');
+  }
+  updateRegionTriggerLabel();
+}
+
+function updateRegionTriggerLabel() {
+  const text = document.querySelector('#regionMultiTrigger .region-multi-text');
+  if (!text) return;
+  const n = currentFilter.regions.size;
+  if (n === 0) {
+    text.textContent = '전체 지역';
+    text.classList.remove('has-selection');
+  } else if (n === 1) {
+    text.textContent = [...currentFilter.regions][0];
+    text.classList.add('has-selection');
+  } else {
+    text.textContent = `${[...currentFilter.regions][0]} 외 ${n - 1}개`;
+    text.classList.add('has-selection');
+  }
+}
+
+function wireRegionMulti() {
+  const trigger = document.getElementById('regionMultiTrigger');
+  const popover = document.getElementById('regionMultiPopover');
+  const search = document.getElementById('regionMultiSearch');
+  const list = document.getElementById('regionMultiList');
+  if (!trigger || !popover) return;
+
+  const close = () => {
+    popover.hidden = true;
+    trigger.setAttribute('aria-expanded', 'false');
+    document.removeEventListener('click', onDocClick);
+  };
+  const onDocClick = (e) => {
+    if (!popover.contains(e.target) && !trigger.contains(e.target)) close();
+  };
+  trigger.addEventListener('click', () => {
+    const isOpen = !popover.hidden;
+    if (isOpen) { close(); return; }
+    popover.hidden = false;
+    trigger.setAttribute('aria-expanded', 'true');
+    setTimeout(() => document.addEventListener('click', onDocClick), 0);
+    if (search) search.focus();
   });
-
-  select.value = currentFilter.region || 'all';
-  select.addEventListener('change', () => {
-    currentFilter.region = select.value;
+  search?.addEventListener('input', () => {
+    _regionSearchQuery = search.value;
+    renderRegionMulti();
+  });
+  list?.addEventListener('change', (e) => {
+    const cb = e.target.closest('input[type="checkbox"]');
+    if (!cb) return;
+    if (cb.checked) currentFilter.regions.add(cb.value);
+    else currentFilter.regions.delete(cb.value);
+    updateRegionTriggerLabel();
     applyFilter();
   });
+  document.querySelectorAll('#regionMulti [data-region-action]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const act = btn.dataset.regionAction;
+      if (act === 'all') {
+        for (const c of allCourses) currentFilter.regions.add(c.region);
+      } else {
+        currentFilter.regions.clear();
+      }
+      renderRegionMulti();
+      applyFilter();
+    });
+  });
+}
 
-  container.appendChild(select);
+// === Price slider ===
+function fmtPriceLabel(v) {
+  if (v >= PRICE_MAX) return `Rp ${PRICE_MAX / 1e6}M+`;
+  if (v >= 1e6) return `Rp ${(v / 1e6).toFixed(v % 1e6 === 0 ? 0 : 1)}M`;
+  if (v >= 1000) return `Rp ${(v / 1000).toFixed(0)}K`;
+  return `Rp ${v}`;
+}
+function updatePriceSliderUI() {
+  const minEl = document.getElementById('priceMin');
+  const maxEl = document.getElementById('priceMax');
+  const fill = document.getElementById('priceSliderFill');
+  const minRO = document.getElementById('priceMinReadout');
+  const maxRO = document.getElementById('priceMaxReadout');
+  if (!minEl || !maxEl) return;
+  const lo = Math.min(+minEl.value, +maxEl.value);
+  const hi = Math.max(+minEl.value, +maxEl.value);
+  const span = +maxEl.max - +maxEl.min;
+  if (fill) {
+    fill.style.left = `${((lo - +maxEl.min) / span) * 100}%`;
+    fill.style.right = `${100 - ((hi - +maxEl.min) / span) * 100}%`;
+  }
+  if (minRO) minRO.textContent = fmtPriceLabel(lo);
+  if (maxRO) maxRO.textContent = fmtPriceLabel(hi);
+  currentFilter.priceMin = lo;
+  currentFilter.priceMax = hi;
+}
+function wirePriceSlider() {
+  const minEl = document.getElementById('priceMin');
+  const maxEl = document.getElementById('priceMax');
+  const includeEl = document.getElementById('priceIncludeUnknown');
+  if (!minEl || !maxEl) return;
+  const onChange = () => {
+    updatePriceSliderUI();
+    applyFilter();
+  };
+  ['input', 'change'].forEach(ev => {
+    minEl.addEventListener(ev, onChange);
+    maxEl.addEventListener(ev, onChange);
+  });
+  includeEl?.addEventListener('change', () => {
+    currentFilter.priceIncludeUnknown = includeEl.checked;
+    applyFilter();
+  });
+  updatePriceSliderUI();
+}
+
+// === Filter summary & reset ===
+function isPriceFiltered() {
+  return currentFilter.priceMin > 0 || currentFilter.priceMax < PRICE_MAX;
+}
+function updateFilterSummary() {
+  let n = 0;
+  if (currentFilter.search) n++;
+  if (currentFilter.regions.size > 0) n++;
+  if (currentFilter.holes !== 'all') n++;
+  if (currentFilter.status !== 'operating-only') n++;
+  if (isPriceFiltered()) n++;
+  if (!currentFilter.priceIncludeUnknown) n++;
+  const badge = document.getElementById('activeFilterBadge');
+  if (badge) {
+    badge.textContent = n;
+    badge.classList.toggle('active', n > 0);
+  }
+}
+function wireFilterSummary() {
+  document.getElementById('filterResetBtn')?.addEventListener('click', () => {
+    currentFilter.search = '';
+    currentFilter.regions.clear();
+    currentFilter.holes = 'all';
+    currentFilter.status = 'operating-only';
+    currentFilter.priceMin = 0;
+    currentFilter.priceMax = PRICE_MAX;
+    currentFilter.priceIncludeUnknown = true;
+    document.getElementById('searchInput').value = '';
+    document.getElementById('priceMin').value = 0;
+    document.getElementById('priceMax').value = PRICE_MAX;
+    document.getElementById('priceIncludeUnknown').checked = true;
+    document.querySelectorAll('#holesChips .chip').forEach(b => b.classList.toggle('active', b.dataset.holes === 'all'));
+    document.querySelectorAll('#statusChips .chip').forEach(b => b.classList.toggle('active', b.dataset.status === 'operating-only'));
+    renderRegionMulti();
+    updatePriceSliderUI();
+    applyFilter();
+  });
 }
 
 // === Holes filter ===
@@ -108,9 +312,10 @@ function applyFilter() {
   filteredCourses = allCourses.filter(c => {
     const status = c.operating_status?.status || 'operating';
     if (currentFilter.status === 'operating-only' && status !== 'operating') return false;
-    if (currentFilter.status !== 'all' && currentFilter.status !== 'operating-only' && status !== currentFilter.status) return false;
+    if (currentFilter.status === 'closed_temporary' && !(status === 'closed_temporary' || status === 'closed_permanent')) return false;
+    if (currentFilter.status !== 'all' && currentFilter.status !== 'operating-only' && currentFilter.status !== 'closed_temporary' && status !== currentFilter.status) return false;
 
-    if (currentFilter.region !== 'all' && c.region !== currentFilter.region) return false;
+    if (currentFilter.regions.size > 0 && !currentFilter.regions.has(c.region)) return false;
     if (currentFilter.holes !== 'all') {
       const h = c.holes;
       if (currentFilter.holes === '9' && h !== 9) return false;
@@ -120,18 +325,27 @@ function applyFilter() {
     if (currentFilter.search) {
       const q = currentFilter.search;
       const haystack = [
-        c.name_en,
-        c.region,
-        c.province,
-        c.designer,
-        c.address,
+        c.name_en, c.region, c.province, c.designer, c.address,
       ].filter(Boolean).join(' ').toLowerCase();
       if (!haystack.includes(q)) return false;
+    }
+    // Price filter (Sat AM proxy). Only apply when slider is moved or include-unknown is off.
+    const priceFiltered = isPriceFiltered();
+    if (priceFiltered || !currentFilter.priceIncludeUnknown) {
+      const p = getSatAmIDR(c);
+      if (p == null) {
+        if (!currentFilter.priceIncludeUnknown) return false;
+      } else {
+        // PRICE_MAX position means "no upper cap" — accept anything ≥ priceMin
+        const upper = currentFilter.priceMax >= PRICE_MAX ? Infinity : currentFilter.priceMax;
+        if (p < currentFilter.priceMin || p > upper) return false;
+      }
     }
     return true;
   });
 
   document.getElementById('visibleCount').textContent = filteredCourses.length;
+  updateFilterSummary();
   renderMarkers();
   renderCourseList();
 }
@@ -183,24 +397,47 @@ function buildMarkerPopupHtml(c) {
   `;
 }
 
+function getMarkerStatusClass(c) {
+  const s = c.operating_status?.status || 'operating';
+  if (s === 'closed_temporary' || s === 'closed_permanent') return 'status-closed';
+  if (s === 'uncertain') return 'status-uncertain';
+  return 'status-operating';
+}
+
+function getMarkerSizeClass(c) {
+  const h = c.holes;
+  if (h == null) return 'size-md';
+  if (h <= 9) return 'size-sm';
+  if (h <= 18) return 'size-md';
+  return 'size-lg';
+}
+
+const MARKER_DIMS = {
+  'size-sm': { size: 22, anchor: [11, 22] },
+  'size-md': { size: 28, anchor: [14, 28] },
+  'size-lg': { size: 36, anchor: [18, 36] },
+};
+
 function renderMarkers() {
   markerCluster.clearLayers();
   markers = {};
 
   filteredCourses.forEach(c => {
     const isMatoa = c.id === 'matoa-nasional';
-    const status = c.operating_status?.status || 'operating';
-    const statusClass = status === 'closed_temporary' ? ' closed' : (status === 'uncertain' ? ' uncertain' : '');
+    const statusClass = getMarkerStatusClass(c);
+    const sizeClass = getMarkerSizeClass(c);
+    const dim = MARKER_DIMS[sizeClass];
+
     const icon = L.divIcon({
       className: '',
-      html: `<div class="golf-marker${isMatoa ? ' matoa' : ''}${statusClass}"></div>`,
-      iconSize: [28, 28],
-      iconAnchor: [14, 28],
-      popupAnchor: [0, -28],
+      html: `<div class="golf-marker ${statusClass} ${sizeClass}${isMatoa ? ' matoa' : ''}"></div>`,
+      iconSize: [dim.size, dim.size],
+      iconAnchor: dim.anchor,
+      popupAnchor: [0, -dim.size],
     });
 
     const marker = L.marker([c.lat, c.lng], { icon })
-      .bindTooltip(c.name_en, { direction: 'top', offset: [0, -24] })
+      .bindTooltip(c.name_en, { direction: 'top', offset: [0, -dim.size + 4] })
       .bindPopup(buildMarkerPopupHtml(c), { minWidth: 280, maxWidth: 320, className: 'course-popup' });
 
     markers[c.id] = marker;
@@ -208,13 +445,86 @@ function renderMarkers() {
   });
 }
 
+// === Map Controls: Legend + Zoom Presets ===
+const ZOOM_PRESETS = [
+  { key: 'all',      label: '전체',       bounds: [[-10.5, 95], [6, 141]] },
+  { key: 'jakarta',  label: '자카르타',   bounds: [[-6.45, 106.55], [-6.05, 107.05]] },
+  { key: 'bali',     label: '발리',       bounds: [[-8.85, 114.4], [-8.05, 115.7]] },
+  { key: 'batam',    label: '바탐·빈탄',  bounds: [[1.0, 103.7], [1.25, 104.7]] },
+  { key: 'surabaya', label: '수라바야',   bounds: [[-7.5, 112.5], [-7.1, 112.95]] },
+];
+
+function addLegendControl() {
+  const ctrl = L.control({ position: 'bottomright' });
+  ctrl.onAdd = function () {
+    const el = L.DomUtil.create('div', 'map-legend');
+    el.innerHTML = `
+      <div class="legend-title">운영 상태</div>
+      <div class="legend-row"><span class="legend-swatch op"></span>운영중</div>
+      <div class="legend-row"><span class="legend-swatch cl"></span>휴장</div>
+      <div class="legend-row"><span class="legend-swatch un"></span>불확실</div>
+      <div class="legend-title">홀 수</div>
+      <div class="legend-row"><span class="legend-size sm"></span>9홀 이하</div>
+      <div class="legend-row"><span class="legend-size md"></span>18홀</div>
+      <div class="legend-row"><span class="legend-size lg"></span>27홀 이상</div>
+    `;
+    L.DomEvent.disableClickPropagation(el);
+    L.DomEvent.disableScrollPropagation(el);
+    return el;
+  };
+  ctrl.addTo(map);
+}
+
+function addZoomPresetsControl() {
+  const ctrl = L.control({ position: 'topright' });
+  ctrl.onAdd = function () {
+    const el = L.DomUtil.create('div', 'zoom-presets');
+    el.innerHTML = ZOOM_PRESETS.map(p =>
+      `<button data-preset="${p.key}"${p.key === 'all' ? ' class="active"' : ''}>${p.label}</button>`
+    ).join('');
+    L.DomEvent.disableClickPropagation(el);
+    L.DomEvent.disableScrollPropagation(el);
+    el.addEventListener('click', e => {
+      const btn = e.target.closest('button');
+      if (!btn) return;
+      const preset = ZOOM_PRESETS.find(p => p.key === btn.dataset.preset);
+      if (!preset) return;
+      el.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      map.flyToBounds(preset.bounds, { padding: [40, 40], duration: 0.6 });
+    });
+    return el;
+  };
+  ctrl.addTo(map);
+}
+
 // === Course List ===
+function renderCourseListSkeleton() {
+  const list = document.getElementById('courseList');
+  if (!list) return;
+  const items = Array.from({ length: 8 }, () =>
+    `<div class="skeleton-item">
+      <div class="skeleton-line" style="width:70%"></div>
+      <div class="skeleton-line short"></div>
+      <div class="skeleton-line tiny"></div>
+    </div>`).join('');
+  list.innerHTML = `<div class="skeleton-list">${items}</div>`;
+}
+
 function renderCourseList() {
   const list = document.getElementById('courseList');
   list.innerHTML = '';
 
   if (filteredCourses.length === 0) {
-    list.innerHTML = '<p style="padding: 20px; text-align: center; color: #94a3b8;">검색 결과가 없습니다</p>';
+    list.innerHTML = `<div class="empty-state">
+      <div class="empty-emoji">🔍</div>
+      <div class="empty-title">조건에 맞는 골프장이 없습니다</div>
+      <div class="empty-hint">검색어·지역·가격대 필터를 완화하거나, 운영 상태를 "전체"로 바꿔 보세요.</div>
+      <button class="empty-cta" id="emptyResetBtn" type="button">필터 초기화</button>
+    </div>`;
+    document.getElementById('emptyResetBtn')?.addEventListener('click', () => {
+      document.getElementById('filterResetBtn')?.click();
+    });
     return;
   }
 
@@ -290,22 +600,26 @@ function showDetail(c) {
 
   const facilities = (c.facilities || []).map(f => `<li>${escapeHtml(f)}</li>`).join('');
   const approxTag = c.coord_approximate ? '<span class="approx-tag">좌표 근사</span>' : '';
+  const priceMatrixHtml = renderPriceMatrix(c);
+  const sourceHistoryHtml = renderSourceHistory(c);
   const feesHtml = renderFees(c.fees_2026_05);
   const membershipHtml = renderMembership(c.membership);
 
-  // Operating status banner
+  // Operating status banner + name-adjacent badge
   const opStatus = c.operating_status?.status || 'operating';
+  const STATUS_LABEL_KO = { operating: '운영중', closed_temporary: '임시 휴장', closed_permanent: '영구 폐장', uncertain: '불확실' };
+  const detailStatusBadge = `<span class="detail-status-badge ${opStatus}" title="${escapeHtml(c.operating_status?.last_verified ? '확인일 ' + c.operating_status.last_verified : '')}">${STATUS_LABEL_KO[opStatus] || opStatus}</span>`;
   let statusBanner = '';
-  if (opStatus === 'closed_temporary') {
-    const reason = c.operating_status?.closure_reason || '리노베이션 / 임시 휴장';
+  if (opStatus === 'closed_temporary' || opStatus === 'closed_permanent') {
+    const reason = c.operating_status?.closure_reason || (opStatus === 'closed_permanent' ? '영구 폐장' : '리노베이션 / 임시 휴장');
     const reopened = c.operating_status?.reopened_as ? ` (${escapeHtml(c.operating_status.reopened_as)})` : '';
-    statusBanner = `<div class="status-banner closed">⚠️ 임시 휴장 — ${escapeHtml(reason)}${reopened}</div>`;
+    statusBanner = `<div class="status-banner closed">⚠️ ${STATUS_LABEL_KO[opStatus]} — ${escapeHtml(reason)}${reopened}</div>`;
   } else if (opStatus === 'uncertain') {
     statusBanner = `<div class="status-banner uncertain">❓ 운영 상태 불확실 — 사전 연락 권장</div>`;
   }
 
   content.innerHTML = `
-    <h2 class="name">${escapeHtml(c.name_en)}${approxTag}</h2>
+    <h2 class="name">${escapeHtml(c.name_en)} ${detailStatusBadge}${approxTag}</h2>
     <div class="region-line">${escapeHtml(c.region)} · ${escapeHtml(c.province)}</div>
     ${statusBanner}
 
@@ -342,6 +656,8 @@ function showDetail(c) {
       <p>${escapeHtml(c.course_layout)}</p>
     </section>` : ''}
 
+    ${priceMatrixHtml}
+    ${sourceHistoryHtml}
     ${feesHtml}
 
     ${membershipHtml}
@@ -819,19 +1135,26 @@ document.querySelectorAll('.tab').forEach(btn => {
     });
     const mapView = document.getElementById('mapView');
     const tableView = document.getElementById('tableView');
+    const financeView = document.getElementById('financeView');
     const showMap = target === 'map';
+    const showTable = target === 'table';
+    const showFinance = target === 'finance';
+
     mapView.hidden = !showMap;
-    tableView.hidden = showMap;
+    tableView.hidden = !showTable;
+    if (financeView) financeView.hidden = !showFinance;
     mapView.style.display = showMap ? '' : 'none';
-    tableView.style.display = showMap ? 'none' : '';
-    if (target === 'table') {
+    tableView.style.display = showTable ? '' : 'none';
+    if (financeView) financeView.style.display = showFinance ? '' : 'none';
+
+    if (showTable) {
       renderTable();
-      // Sync map filters into table when first opened
-      if (target === 'table' && !document.getElementById('tableRegionFilter').dataset.populated) {
+      if (!document.getElementById('tableRegionFilter').dataset.populated) {
         populateTableRegions();
       }
     }
-    if (target === 'map' && map) setTimeout(() => map.invalidateSize(), 100);
+    if (showFinance) renderFinanceTable();
+    if (showMap && map) setTimeout(() => map.invalidateSize(), 100);
   });
 });
 
@@ -1202,6 +1525,277 @@ function collectCategorizedSources(c) {
   return buckets;
 }
 
+// === Multi-source price collection ===
+// For each time slot (wdAm, wdPm, satAm, satPm, sunAm, sunPm), assemble all
+// candidate (price, source-info) tuples we can find across fees_2026_05 (primary,
+// often official/Q-Access) and fees_gogolf_reference (gogolf.co.id).
+const SLOT_KEYS = ['wdAm', 'wdPm', 'satAm', 'satPm', 'sunAm', 'sunPm'];
+const SLOT_LABEL = {
+  wdAm: '평일 AM', wdPm: '평일 PM',
+  satAm: '토 AM', satPm: '토 PM',
+  sunAm: '일 AM', sunPm: '일 PM',
+};
+
+function _firstNumber(obj, keys) {
+  if (typeof obj === 'number') return obj;
+  if (!obj || typeof obj !== 'object') return null;
+  for (const k of keys) if (typeof obj[k] === 'number') return obj[k];
+  for (const v of Object.values(obj)) if (typeof v === 'number') return v;
+  return null;
+}
+
+function getPrimaryRates(c) {
+  const f = c.fees_2026_05 || {};
+  const sd = f.schedule_detailed || {};
+  const wd = extractAmPm(sd.weekday);
+  const sat = extractAmPm(sd.weekend_saturday);
+  const sun = extractAmPm(sd.weekend_sunday);
+  const out = {
+    wdAm: wd.am, wdPm: wd.pm,
+    satAm: sat.am, satPm: sat.pm,
+    sunAm: sun.am, sunPm: sun.pm,
+  };
+  // Fallbacks from coarse weekday/weekend aggregates if AM/PM missing.
+  const wdFb = f.weekday?.green_fee_idr ?? f.weekday?.guest_fee_idr ?? null;
+  const weFb = f.weekend?.green_fee_idr ?? f.weekend?.guest_fee_idr ?? null;
+  if (out.wdAm == null && out.wdPm == null && wdFb != null) {
+    out.wdAm = out.wdPm = wdFb;
+  }
+  if (out.satAm == null && out.satPm == null && weFb != null) {
+    out.satAm = out.satPm = weFb;
+  }
+  if (out.sunAm == null && out.sunPm == null && weFb != null) {
+    out.sunAm = out.sunPm = weFb;
+  }
+  return out;
+}
+
+function getGoGolfRates(c) {
+  const sch = c.fees_gogolf_reference?.schedule;
+  if (!sch) return null;
+  return {
+    wdAm: sch.weekday?.am ?? null,
+    wdPm: sch.weekday?.pm ?? null,
+    satAm: sch.saturday?.am ?? null,
+    satPm: sch.saturday?.pm ?? null,
+    sunAm: sch.sunday?.am ?? null,
+    sunPm: sch.sunday?.pm ?? null,
+  };
+}
+
+// Categorize a primary fee source URL into one of: official|platform|aggregator|sns|news.
+function primarySourceCategory(c) {
+  const f = c.fees_2026_05 || {};
+  const urls = (f.sources || []).filter(u => typeof u === 'string' && /^https?:/.test(u));
+  if (urls.length === 0) return { kind: 'official', label: '공식', host: '' };
+  // Use the first URL as the dominant primary source. Map to a 5-bucket category.
+  const info = labelSource(urls[0], c.website);
+  const cat = SRC_TAB_OF_KIND[info.kind] || 'news';
+  return { kind: cat, label: info.label, host: info.host, url: urls[0],
+           date: f.last_verified || null };
+}
+
+function gogolfSourceInfo(c) {
+  const gg = c.fees_gogolf_reference;
+  if (!gg) return null;
+  const url = gg.source_url || '';
+  const host = url ? (getHostname(url) || '') : 'gogolf.co.id';
+  return { kind: 'platform', label: 'GoGolf', host, url, date: gg.last_verified || null };
+}
+
+// For a single slot, return all (price, srcInfo) candidates.
+function getSlotCandidates(c, slot) {
+  const out = [];
+  const pri = getPrimaryRates(c);
+  if (pri[slot] != null) {
+    out.push({ price: pri[slot], src: primarySourceCategory(c), origin: 'primary' });
+  }
+  const gg = getGoGolfRates(c);
+  const ggInfo = gogolfSourceInfo(c);
+  if (gg && gg[slot] != null && ggInfo) {
+    out.push({ price: gg[slot], src: ggInfo, origin: 'gogolf' });
+  }
+  return out;
+}
+
+// Build a fee cell HTML for a single slot, given the active source-tab category.
+function renderFeeCell(c, slot, cat) {
+  const cands = getSlotCandidates(c, slot);
+  if (cands.length === 0) return `<td class="num fee fee-cell"><span class="muted">—</span></td>`;
+
+  // Filter by category when a specific tab is active. "all" shows everything.
+  let visible = cands;
+  let dimmed = false;
+  if (cat !== 'all') {
+    visible = cands.filter(x => x.src.kind === cat);
+    if (visible.length === 0) {
+      dimmed = true;
+      visible = cands; // show grayed-out fallback so user knows price exists in another source
+    }
+  }
+
+  // Pick "primary" candidate to display (prefer trust order: official > platform > aggregator > sns > news).
+  const TRUST = { official: 0, platform: 1, aggregator: 2, sns: 3, news: 4 };
+  const sorted = [...visible].sort((a, b) => (TRUST[a.src.kind] ?? 9) - (TRUST[b.src.kind] ?? 9));
+  const primary = sorted[0];
+
+  const prices = visible.map(x => x.price);
+  const lo = Math.min(...prices);
+  const hi = Math.max(...prices);
+  const diffPct = lo > 0 ? ((hi - lo) / lo) * 100 : 0;
+  const showRange = (cat === 'all') && visible.length > 1 && diffPct >= 1;
+  const showWarn  = visible.length > 1 && diffPct >= 30;
+
+  const dot = `<span class="src-dot k-${primary.src.kind}" title="${escapeHtml(primary.src.label)}"></span>`;
+  let priceHtml;
+  if (showRange) {
+    priceHtml = `<span class="fee-range"><span class="fee-range-pri">${fmtIDR(lo)} ~ ${fmtIDR(hi)}</span>` +
+      `<span class="fee-range-alt">출처별 ±${diffPct.toFixed(0)}%</span></span>`;
+  } else {
+    priceHtml = fmtIDR(primary.price);
+  }
+  const warn = showWarn ? `<span class="price-warn" title="출처별 가격 차이 ${diffPct.toFixed(0)}% — 검증 필요">⚠️</span>` : '';
+  const extra = (cat === 'all' && visible.length > 1 && !showRange)
+    ? `<span class="src-extra">+${visible.length - 1}개 출처</span>` : '';
+
+  const dimClass = dimmed ? ' dim' : '';
+  const premiumClass = (slot === 'satAm' || slot === 'sunAm') ? ' fee-premium' : '';
+  const ariaLabel = `${SLOT_LABEL[slot]} ${fmtIDR(primary.price)} — 출처 ${primary.src.label}${visible.length > 1 ? `, 외 ${visible.length - 1}개` : ''}`;
+  return `<td class="num fee fee-cell${dimClass}${premiumClass}" data-fee-cell="${slot}" data-course-id="${escapeHtml(c.id)}" tabindex="0" role="button" aria-label="${escapeHtml(ariaLabel)}">${priceHtml}${dot}${warn}${extra}</td>`;
+}
+
+// === Detail-panel: price matrix (요일 × AM/PM) ===
+function renderPriceMatrix(c) {
+  const cells = {};
+  let anyValue = false;
+  for (const slot of SLOT_KEYS) {
+    const cands = getSlotCandidates(c, slot);
+    if (cands.length === 0) {
+      cells[slot] = { html: '<span class="muted">—</span>', count: 0 };
+      continue;
+    }
+    anyValue = true;
+    const TRUST = { official: 0, platform: 1, aggregator: 2, sns: 3, news: 4 };
+    const sorted = [...cands].sort((a, b) => (TRUST[a.src.kind] ?? 9) - (TRUST[b.src.kind] ?? 9));
+    const primary = sorted[0];
+    const prices = cands.map(x => x.price);
+    const lo = Math.min(...prices);
+    const hi = Math.max(...prices);
+    const diffPct = lo > 0 ? ((hi - lo) / lo) * 100 : 0;
+    const showRange = cands.length > 1 && diffPct >= 1;
+    const warn = diffPct >= 30 ? ' <span class="price-warn" title="출처별 ±' + diffPct.toFixed(0) + '%">⚠️</span>' : '';
+    const dot = `<span class="src-dot k-${primary.src.kind}" title="${escapeHtml(primary.src.label)}"></span>`;
+    const valHtml = showRange
+      ? `${fmtIDR(lo)} ~ ${fmtIDR(hi)}`
+      : fmtIDR(primary.price);
+    cells[slot] = {
+      html: `<button class="matrix-cell-btn" type="button" data-fee-cell="${slot}" data-course-id="${escapeHtml(c.id)}">${valHtml}${dot}${warn}</button>`,
+      count: cands.length,
+    };
+  }
+  if (!anyValue) return '';
+  const r = (label, am, pm) => `<tr><th>${label}</th><td>${cells[am].html}</td><td>${cells[pm].html}</td></tr>`;
+  return `<section class="price-matrix-section">
+    <h3>가격 매트릭스 <span class="matrix-hint">셀 클릭 → 출처별 비교</span></h3>
+    <table class="price-matrix">
+      <thead><tr><th></th><th>AM</th><th>PM</th></tr></thead>
+      <tbody>
+        ${r('평일', 'wdAm', 'wdPm')}
+        ${r('토', 'satAm', 'satPm')}
+        ${r('일', 'sunAm', 'sunPm')}
+      </tbody>
+    </table>
+  </section>`;
+}
+
+// === Detail-panel: source-by-source price history ===
+function renderSourceHistory(c) {
+  // Group by source category. For each source, show what slots & prices it provides.
+  const groups = { official: [], platform: [], aggregator: [], sns: [], news: [] };
+
+  // Primary source (fees_2026_05) — represented as a single entry covering all slots present.
+  const f = c.fees_2026_05 || {};
+  const priInfo = primarySourceCategory(c);
+  const priRates = getPrimaryRates(c);
+  const priSlotPrices = SLOT_KEYS
+    .filter(s => priRates[s] != null)
+    .map(s => ({ slot: s, price: priRates[s] }));
+  if (priSlotPrices.length > 0) {
+    groups[priInfo.kind] ??= [];
+    groups[priInfo.kind].push({
+      label: priInfo.label || '공식',
+      url: priInfo.url || (f.sources || [])[0] || '',
+      date: f.last_verified || null,
+      slots: priSlotPrices,
+    });
+    // Other URLs in f.sources (beyond the first) — register them under their own category if different.
+    const extra = (f.sources || []).slice(1).filter(u => typeof u === 'string' && /^https?:/.test(u));
+    for (const u of extra) {
+      const info = labelSource(u, c.website);
+      const cat = SRC_TAB_OF_KIND[info.kind] || 'news';
+      groups[cat] ??= [];
+      groups[cat].push({
+        label: info.label, url: u,
+        date: f.last_verified || null,
+        slots: priSlotPrices,
+      });
+    }
+  }
+
+  // GoGolf reference
+  const gg = c.fees_gogolf_reference;
+  if (gg && gg.schedule) {
+    const ggInfo = gogolfSourceInfo(c);
+    const ggRates = getGoGolfRates(c) || {};
+    const ggSlotPrices = SLOT_KEYS
+      .filter(s => ggRates[s] != null)
+      .map(s => ({ slot: s, price: ggRates[s] }));
+    if (ggSlotPrices.length > 0 && ggInfo) {
+      groups.platform.push({
+        label: ggInfo.label, url: ggInfo.url,
+        date: ggInfo.date,
+        slots: ggSlotPrices,
+        confidence: gg.confidence,
+        disclaimer: gg.disclaimer,
+      });
+    }
+  }
+
+  const ORDER = ['official', 'platform', 'sns', 'aggregator', 'news'];
+  const TITLE = SRC_CAT_LABEL || {};
+  const allEmpty = ORDER.every(k => (groups[k] || []).length === 0);
+  if (allEmpty) return '';
+
+  const rowFor = (entry) => {
+    const slotsHtml = entry.slots.map(s =>
+      `<span class="hist-slot"><span class="hist-slot-key">${SLOT_LABEL[s.slot]}</span> <span class="hist-slot-val">${fmtIDR(s.price)}</span></span>`
+    ).join('');
+    const dateHtml = entry.date ? `<span class="hist-date">${escapeHtml(entry.date)}</span>` : '';
+    const linkHtml = entry.url
+      ? `<a class="hist-link" href="${escapeHtml(entry.url)}" target="_blank" rel="noopener">원문 ↗</a>`
+      : '';
+    const conf = entry.confidence === 'low' ? '<span class="hist-conf low">참고용</span>' : '';
+    return `<div class="hist-row">
+      <div class="hist-row-head"><span class="hist-label">${escapeHtml(entry.label)}</span>${conf}${dateHtml}${linkHtml}</div>
+      <div class="hist-slots">${slotsHtml || '<span class="muted">—</span>'}</div>
+    </div>`;
+  };
+
+  const groupHtml = ORDER.map(k => {
+    const arr = groups[k] || [];
+    if (arr.length === 0) return '';
+    return `<div class="hist-group">
+      <div class="hist-group-title"><span class="src-cat-pill k-${k}">${TITLE[k] || k}</span></div>
+      <div class="hist-rows">${arr.map(rowFor).join('')}</div>
+    </div>`;
+  }).join('');
+
+  return `<section class="source-history-section">
+    <h3>출처별 가격 이력</h3>
+    <div class="hist-groups">${groupHtml}</div>
+  </section>`;
+}
+
 // === Per-category rate provider ===
 // Returns { wdAm, wdPm, satAm, satPm, sunAm, sunPm, note } where each is
 // either a number (IDR) or null. The unified table rate columns swap
@@ -1248,35 +1842,17 @@ function renderAllTabRow(c, cat = 'all') {
     uncertain: '불확실',
   }[status] || status;
 
-  const f = c.fees_2026_05 || {};
-  const wdFallback = f.weekday?.green_fee_idr ?? f.weekday?.guest_fee_idr;
-  const weFallback = f.weekend?.green_fee_idr ?? f.weekend?.guest_fee_idr;
-  const wdUsd = f.weekday?.green_fee_usd;
-  const weUsd = f.weekend?.green_fee_usd;
-
-  // Rates come from category-aware provider (platform → GoGolf, others → main)
-  const r = getCategoryRates(c, cat);
-  const rateClass = r.isPlatform ? 'fee-platform' : '';
-  // Fallbacks (weekday/weekend single value) only meaningful for non-platform rates
-  const fallbackWd = r.isPlatform ? null : wdFallback;
-  const fallbackWe = r.isPlatform ? null : weFallback;
-  const fallbackWdUsd = r.isPlatform ? null : wdUsd;
-  const fallbackWeUsd = r.isPlatform ? null : weUsd;
-  const cellHtml = (idr, fallbackIdr, fallbackUsd) => {
-    if (idr != null) return fmtIDR(idr);
-    if (fallbackIdr != null) return `<span class="fee-fallback">${fmtIDR(fallbackIdr)}</span>`;
-    if (fallbackUsd != null) return `<span class="fee-fallback">${fmtUSD(fallbackUsd)}</span>`;
-    return '<span class="muted">—</span>';
-  };
-  const wdAmCell = cellHtml(r.wdAm, fallbackWd, fallbackWdUsd);
-  const wdPmCell = cellHtml(r.wdPm, fallbackWd, fallbackWdUsd);
-  const satAmCell = cellHtml(r.satAm, fallbackWe, fallbackWeUsd);
-  const satPmCell = cellHtml(r.satPm, fallbackWe, fallbackWeUsd);
-  const sunAmCell = cellHtml(r.sunAm, fallbackWe, fallbackWeUsd);
-  const sunPmCell = cellHtml(r.sunPm, fallbackWe, fallbackWeUsd);
+  // Multi-source price cells: each cell shows dominant price + dot + ⚠ if 30%+ diff.
+  // In "all" tab, ranges are shown when sources differ.
+  const wdAmCell = renderFeeCell(c, 'wdAm', cat);
+  const wdPmCell = renderFeeCell(c, 'wdPm', cat);
+  const satAmCell = renderFeeCell(c, 'satAm', cat);
+  const satPmCell = renderFeeCell(c, 'satPm', cat);
+  const sunAmCell = renderFeeCell(c, 'sunAm', cat);
+  const sunPmCell = renderFeeCell(c, 'sunPm', cat);
 
   const matoaTag = c.id === 'matoa-nasional' ? '<span class="matoa-tag">★ Matoa</span>' : '';
-  const noteTag = r.note ? ` <span class="rate-note-tag">${escapeHtml(r.note)}</span>` : '';
+  const noteTag = '';
   const mapLink = `<a href="https://www.google.com/maps/search/?api=1&query=${c.lat},${c.lng}" target="_blank" rel="noopener">지도</a>`;
 
   const fin = c.financials || {};
@@ -1317,17 +1893,17 @@ function renderAllTabRow(c, cat = 'all') {
       <td><span class="status-pill ${status}">${statusLabel}</span></td>
       <td class="num">${c.holes ?? '—'}</td>
       <td class="num">${c.year_opened ?? '—'}</td>
-      <td class="num fee ${rateClass}">${wdAmCell}</td>
-      <td class="num fee ${rateClass}">${wdPmCell}</td>
-      <td class="num fee fee-premium ${rateClass}">${satAmCell}</td>
-      <td class="num fee ${rateClass}">${satPmCell}</td>
-      <td class="num fee fee-premium ${rateClass}">${sunAmCell}</td>
-      <td class="num fee ${rateClass}">${sunPmCell}</td>
+      ${wdAmCell}
+      ${wdPmCell}
+      ${satAmCell}
+      ${satPmCell}
+      ${sunAmCell}
+      ${sunPmCell}
       <td class="member-type">${membershipTypeCell(c.membership)}</td>
       <td class="num member-amount">${membershipAmountCell(c.membership)}</td>
-      <td class="parent-group">${parentCell}</td>
-      <td class="ticker">${tickerCell}</td>
-      <td class="num parent-revenue">${revCell}</td>
+      <td class="parent-group finance-col">${parentCell}</td>
+      <td class="ticker finance-col">${tickerCell}</td>
+      <td class="num parent-revenue finance-col">${revCell}</td>
       <td class="address">${escapeHtml(c.address || '')}<br>${mapLink}</td>
       <td class="src-cell">${allSrcHtml}</td>
     </tr>
@@ -1371,8 +1947,15 @@ function renderTable() {
   // when switching tabs; user wants the row set to stay stable.)
   const tbody = document.querySelector('[data-src-tbody="all"]');
   if (tbody) {
-    tbody.innerHTML = rows.map(c => renderAllTabRow(c, currentSourceCat)).join('')
-      || `<tr><td colspan="19" class="src-empty">표시할 데이터가 없습니다</td></tr>`;
+    if (rows.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="19"><div class="empty-state">
+        <div class="empty-emoji">📭</div>
+        <div class="empty-title">조건에 맞는 골프장이 없습니다</div>
+        <div class="empty-hint">검색어를 비우거나, 운영 상태를 "전체"로 바꿔 보세요.</div>
+      </div></td></tr>`;
+    } else {
+      tbody.innerHTML = rows.map(c => renderAllTabRow(c, currentSourceCat)).join('');
+    }
   }
 
   // Tab counts (still reflect how many courses have a source in each category)
@@ -2037,7 +2620,200 @@ document.getElementById('themeToggle')?.addEventListener('click', () => {
   applyTheme(cur === 'dark' ? 'light' : 'dark');
 });
 
+// === Price comparison modal ===
+const SRC_CAT_LABEL = {
+  official: '공시·공식',
+  platform: '플랫폼',
+  aggregator: '애그리게이터',
+  sns: 'SNS',
+  news: '뉴스·기타',
+};
+const SRC_TRUST_ORDER = ['official', 'platform', 'sns', 'aggregator', 'news'];
+
+function openPriceModal(courseId, slot) {
+  const c = allCourses.find(x => x.id === courseId);
+  if (!c) return;
+  const modal = document.getElementById('priceModal');
+  const title = document.getElementById('priceModalTitle');
+  const sub = document.getElementById('priceModalSubtitle');
+  const body = document.getElementById('priceModalBody');
+  if (!modal || !body) return;
+
+  const cands = getSlotCandidates(c, slot);
+  title.textContent = c.name_en;
+  sub.innerHTML = `<strong>${SLOT_LABEL[slot]}</strong> · ${escapeHtml(c.region)}` +
+    (cands.length === 0 ? ' · <span class="muted">출처 데이터 없음</span>' : '');
+
+  if (cands.length === 0) {
+    body.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:24px;">이 시간대에 등록된 가격 정보가 없습니다.</p>';
+    modal.hidden = false;
+    return;
+  }
+
+  // Sort by trust order; mark best as "trusted"
+  const sorted = [...cands].sort((a, b) =>
+    SRC_TRUST_ORDER.indexOf(a.src.kind) - SRC_TRUST_ORDER.indexOf(b.src.kind));
+  const prices = cands.map(x => x.price);
+  const lo = Math.min(...prices);
+  const hi = Math.max(...prices);
+  const diffPct = lo > 0 ? ((hi - lo) / lo) * 100 : 0;
+
+  const rows = sorted.map((x, i) => {
+    const cat = x.src.kind;
+    const link = x.src.url
+      ? `<a class="src-link" href="${escapeHtml(x.src.url)}" target="_blank" rel="noopener">원문 ↗</a>`
+      : '';
+    const meta = [
+      x.src.host || '',
+      x.src.date ? `게시·확인 ${x.src.date}` : '',
+      x.origin === 'gogolf' ? 'gogolf.co.id 추출' : '',
+    ].filter(Boolean).join(' · ');
+    return `<div class="price-source-row${i === 0 ? ' is-trusted' : ''}">
+      <span class="src-cat-pill k-${cat}">${SRC_CAT_LABEL[cat] || cat}</span>
+      <div class="src-info">
+        <div class="src-info-label">${escapeHtml(x.src.label)}${i === 0 ? ' <small style="color:var(--accent);font-weight:600;">· 신뢰 우선</small>' : ''}</div>
+        <div class="src-info-meta">${escapeHtml(meta || '—')}</div>
+      </div>
+      <span class="src-price">${fmtIDR(x.price)}</span>
+      ${link}
+    </div>`;
+  }).join('');
+
+  const summary = (sorted.length > 1)
+    ? `<div class="price-modal-trust-note">출처별 차이 <strong>${diffPct.toFixed(0)}%</strong> ` +
+      `(${fmtIDR(lo)} ~ ${fmtIDR(hi)})${diffPct >= 30 ? ' — 30% 이상 격차로 추가 검증 권장' : ''}.<br>` +
+      `신뢰도 순서: 공시·공식 → 플랫폼 → SNS → 애그리게이터 → 뉴스</div>`
+    : `<div class="price-modal-trust-note">현재 등록된 출처는 1개. 다른 출처에서 가격이 확인되면 비교 가능.</div>`;
+
+  body.innerHTML = `<div class="price-modal-source-list">${rows}</div>${summary}`;
+  modal.hidden = false;
+}
+
+function closePriceModal() {
+  const m = document.getElementById('priceModal');
+  if (m) m.hidden = true;
+}
+
+document.addEventListener('click', e => {
+  const cell = e.target.closest('.fee-cell[data-fee-cell], .matrix-cell-btn[data-fee-cell]');
+  if (cell && !e.target.closest('a')) {
+    openPriceModal(cell.dataset.courseId, cell.dataset.feeCell);
+    return;
+  }
+  if (e.target.id === 'closePriceModal' || e.target.closest('#closePriceModal')) {
+    closePriceModal();
+    return;
+  }
+  if (e.target.id === 'priceModal') {
+    closePriceModal();
+  }
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' || e.key === ' ') {
+    const cell = e.target.closest?.('.fee-cell[data-fee-cell]');
+    if (cell) {
+      e.preventDefault();
+      openPriceModal(cell.dataset.courseId, cell.dataset.feeCell);
+    }
+  }
+  if (e.key === 'Escape') closePriceModal();
+});
+
+// === Finance column toggle ===
+document.getElementById('showFinanceCols')?.addEventListener('change', (e) => {
+  document.querySelectorAll('.course-table').forEach(t => {
+    t.classList.toggle('show-finance', e.target.checked);
+  });
+});
+
+// === Finance table rendering ===
+function renderFinanceTable() {
+  const tbody = document.getElementById('financeTableBody');
+  const search = (document.getElementById('financeSearch')?.value || '').trim().toLowerCase();
+  const statusF = document.getElementById('financeStatusFilter')?.value || 'listed';
+  if (!tbody) return;
+
+  let rows = allCourses.filter(c => {
+    const fin = c.financials;
+    if (!fin || typeof fin !== 'object') return false;
+    const ls = fin.listed_status || '';
+    if (statusF === 'listed') {
+      if (!(ls === 'listed' || ls === 'subsidiary-of-listed')) return false;
+    } else if (statusF !== 'all' && ls !== statusF) return false;
+    if (search) {
+      const hay = [c.name_en, c.region, fin.parent_group, fin.parent_company_full_name,
+        fin.idx_ticker, fin.foreign_ticker].filter(Boolean).join(' ').toLowerCase();
+      if (!hay.includes(search)) return false;
+    }
+    return true;
+  });
+
+  document.getElementById('financeVisibleCount').textContent = rows.length;
+
+  if (rows.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="12"><div class="empty-state">
+      <div class="empty-emoji">📊</div>
+      <div class="empty-title">조건에 맞는 재무 정보가 없습니다</div>
+      <div class="empty-hint">상장 구분 필터를 "전체"로 바꾸거나 검색어를 비워 보세요.</div>
+    </div></td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = rows.map(c => {
+    const fin = c.financials || {};
+    const ticker = fin.idx_ticker || fin.foreign_ticker;
+    const yhUrl = ticker ? yahooFinanceUrl(ticker, !!fin.idx_ticker) : null;
+    const tickerHtml = ticker
+      ? (yhUrl
+          ? `<a class="ticker-pill ${fin.idx_ticker ? 'idx' : 'foreign'} ticker-link" href="${escapeHtml(yhUrl)}" target="_blank" rel="noopener">${escapeHtml(ticker)} ↗</a>`
+          : `<span class="ticker-pill ${fin.idx_ticker ? 'idx' : 'foreign'}">${escapeHtml(ticker)}</span>`)
+      : '<span class="muted">—</span>';
+
+    const np = fin.net_profit_idr ?? fin.net_profit_idr_h1;
+    const npHtml = np != null
+      ? (np < 0 ? `<span class="neg">−${escapeHtml(fmtBigIDR(Math.abs(np)) || '')}</span>` : escapeHtml(fmtBigIDR(np) || '—'))
+      : '<span class="muted">—</span>';
+
+    const segHtml = fin.course_segment_disclosed && fin.course_segment_revenue_idr != null
+      ? `<span class="seg-disclosed">${escapeHtml(fmtBigIDR(fin.course_segment_revenue_idr) || '—')}</span>`
+      : (fin.course_segment_disclosed ? '<span class="seg-disclosed">별도공시</span>' : '<span class="muted">—</span>');
+
+    const memHtml = fin.membership_price_idr != null ? escapeHtml(fmtBigIDR(fin.membership_price_idr) || '')
+      : (fin.membership_price_usd != null ? `$${fin.membership_price_usd.toLocaleString('en-US')}` : '<span class="muted">—</span>');
+
+    const srcCount = ((fin.sources || []).length) + ((fin.parent_financial_sources || []).length);
+    const firstSrc = (fin.sources || [])[0] || (fin.parent_financial_sources || [])[0];
+    const firstUrl = typeof firstSrc === 'string' ? firstSrc : firstSrc?.url;
+    const srcCellHtml = firstUrl
+      ? `<a href="${escapeHtml(firstUrl)}" target="_blank" rel="noopener">${srcCount}개 출처 ↗</a>`
+      : '<span class="muted">—</span>';
+
+    return `<tr>
+      <td><strong>${escapeHtml(c.name_en)}</strong></td>
+      <td>${escapeHtml(c.region)}</td>
+      <td>${escapeHtml(fin.parent_group || fin.parent_company_full_name || '—')}</td>
+      <td>${escapeHtml(fin.operating_company || '—')}</td>
+      <td>${escapeHtml(LISTED_STATUS_LABEL[fin.listed_status] || fin.listed_status || '—')}</td>
+      <td>${tickerHtml}</td>
+      <td class="num">${escapeHtml(fmtBigIDR(fin.revenue_idr ?? fin.revenue_idr_h1) || '—')}</td>
+      <td class="num">${npHtml}</td>
+      <td class="num">${escapeHtml(fmtBigIDR(fin.total_assets_idr) || '—')}</td>
+      <td class="num">${segHtml}</td>
+      <td class="num">${memHtml}</td>
+      <td>${srcCellHtml}</td>
+    </tr>`;
+  }).join('');
+}
+
+document.getElementById('financeSearch')?.addEventListener('input', renderFinanceTable);
+document.getElementById('financeStatusFilter')?.addEventListener('change', renderFinanceTable);
+
 // === Boot ===
 document.getElementById('tableView').style.display = 'none';
+const _financeView = document.getElementById('financeView');
+if (_financeView) _financeView.style.display = 'none';
+renderCourseListSkeleton();
 initMap();
+addLegendControl();
+addZoomPresetsControl();
 loadData();

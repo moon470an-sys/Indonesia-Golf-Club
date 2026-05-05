@@ -1,0 +1,42 @@
+{
+  "log_file": "crawl_log_20260505_230524.json",
+  "courses_touched": 4,
+  "new_urls_added": 6,
+  "slots_filled": 18,
+  "verification_flags": 11,
+  "tier_before": {},
+  "tier_after": {
+    "1": 33
+  },
+  "verification_needed_courses": [
+    {
+      "name_en": "Laguna Golf Bintan",
+      "course_id": "laguna-bintan",
+      "slots": [
+        "wdAm",
+        "wdPm",
+        "satAm",
+        "satPm",
+        "sunAm",
+        "sunPm"
+      ]
+    },
+    {
+      "name_en": "Parahyangan Golf Bandung",
+      "course_id": "parahyangan-bandung",
+      "slots": [
+        "wdAm"
+      ]
+    },
+    {
+      "name_en": "Riverside Golf Club",
+      "course_id": "riverside-cibubur",
+      "slots": [
+        "satAm",
+        "satPm",
+        "sunAm",
+        "sunPm"
+      ]
+    }
+  ]
+}

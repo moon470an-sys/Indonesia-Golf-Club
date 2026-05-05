@@ -1,0 +1,3065 @@
+{
+  "generated_at": "2026-05-05T00:00:00Z",
+  "total_courses": 137,
+  "skipped_permanently_closed": 3,
+  "well_covered": 61,
+  "P0_count": 0,
+  "P1_count": 37,
+  "P2_count": 36,
+  "queue": {
+    "P0": [],
+    "P1": [
+      {
+        "id": "anai-resort",
+        "name_en": "Anai Golf & Mountain Resort",
+        "region": "Padang Pariaman",
+        "province": "West Sumatra",
+        "website": "https://ws-tourism.com/anai-golf-mountain-resort/",
+        "operating_status": "operating",
+        "reason": "0/6 slots filled",
+        "diagnostics": {
+          "n_slots": 0,
+          "primary_url_count": 4,
+          "has_gogolf": true,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://ws-tourism.com/anai-golf-mountain-resort"
+          ],
+          [
+            "official_path",
+            "https://ws-tourism.com/anai-golf-mountain-resort/rates"
+          ],
+          [
+            "official_path",
+            "https://ws-tourism.com/anai-golf-mountain-resort/green-fee"
+          ],
+          [
+            "official_path",
+            "https://ws-tourism.com/anai-golf-mountain-resort/green-fees"
+          ],
+          [
+            "official_path",
+            "https://ws-tourism.com/anai-golf-mountain-resort/booking"
+          ],
+          [
+            "official_path",
+            "https://ws-tourism.com/anai-golf-mountain-resort/tarif"
+          ],
+          [
+            "official_path",
+            "https://ws-tourism.com/anai-golf-mountain-resort/harga"
+          ],
+          [
+            "official_path",
+            "https://ws-tourism.com/anai-golf-mountain-resort/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=anai+golf+&+mountain+resort"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://golflan.com/id/sumatera-barat/anai-golf-resort-/book"
+          ]
+        ]
+      },
+      {
+        "id": "antam-mekongga-pomalaa",
+        "name_en": "Antam Mekongga Golf Club (Pomalaa)",
+        "region": "Kolaka",
+        "province": "Southeast Sulawesi",
+        "website": null,
+        "operating_status": "operating",
+        "reason": "only 1 source; 0/6 slots filled",
+        "diagnostics": {
+          "n_slots": 0,
+          "primary_url_count": 1,
+          "has_gogolf": false,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=antam+mekongga+golf+club"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://antam.com/id/about/business-overview"
+          ]
+        ]
+      },
+      {
+        "id": "tering-bay-batam",
+        "name_en": "Batam Island Country Club (formerly Tering Bay)",
+        "region": "Batam",
+        "province": "Riau Islands",
+        "website": null,
+        "operating_status": "operating",
+        "reason": "0/6 slots filled",
+        "diagnostics": {
+          "n_slots": 0,
+          "primary_url_count": 3,
+          "has_gogolf": true,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=batam+island+country+club"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://batamgolfpackage.com/"
+          ]
+        ]
+      },
+      {
+        "id": "bebute-belitung",
+        "name_en": "Bebute Golf Course (Belitung Golf Club)",
+        "region": "Belitung",
+        "province": "Bangka Belitung",
+        "website": null,
+        "operating_status": "operating",
+        "reason": "0/6 slots filled",
+        "diagnostics": {
+          "n_slots": 0,
+          "primary_url_count": 2,
+          "has_gogolf": false,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=bebute+golf+course"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.golflux.com/course/bebute-golf-course/"
+          ]
+        ]
+      },
+      {
+        "id": "bintan-lagoon-seaview",
+        "name_en": "Bintan Lagoon - Sea View Course",
+        "region": "Bintan",
+        "province": "Riau Islands",
+        "website": null,
+        "operating_status": "closed_temporary",
+        "reason": "0/6 slots filled",
+        "diagnostics": {
+          "n_slots": 0,
+          "primary_url_count": 2,
+          "has_gogolf": false,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=bintan+lagoon+-+sea+view+course"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.golfsavers.com/indonesia/bintan-golf-courses/bintan-lagoon-resort-jack-nicklaus-course"
+          ]
+        ]
+      },
+      {
+        "id": "bintan-lagoon-woodlands",
+        "name_en": "Bintan Lagoon - Woodlands Course",
+        "region": "Bintan",
+        "province": "Riau Islands",
+        "website": null,
+        "operating_status": "closed_temporary",
+        "reason": "0/6 slots filled",
+        "diagnostics": {
+          "n_slots": 0,
+          "primary_url_count": 2,
+          "has_gogolf": false,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=bintan+lagoon+-+woodlands+course"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.golfsavers.com/indonesia/bintan-golf-courses/bintan-lagoon-resort-ian-baker-finch-course"
+          ]
+        ]
+      },
+      {
+        "id": "black-eagle-bsb-semarang",
+        "name_en": "Black Eagle Golf Course (BSB City)",
+        "region": "Semarang",
+        "province": "Central Java",
+        "website": null,
+        "operating_status": "operating",
+        "reason": "0/6 slots filled",
+        "diagnostics": {
+          "n_slots": 0,
+          "primary_url_count": 3,
+          "has_gogolf": true,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=black+eagle+golf+course"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.instagram.com/blackeagle.golf/"
+          ]
+        ]
+      },
+      {
+        "id": "black-rocks-belitung",
+        "name_en": "Black Rocks Hotel & Golf Club",
+        "region": "Belitung",
+        "province": "Bangka Belitung",
+        "website": "https://blackrocksgolf.co.id/",
+        "operating_status": "operating",
+        "reason": "0/6 slots filled",
+        "diagnostics": {
+          "n_slots": 0,
+          "primary_url_count": 5,
+          "has_gogolf": false,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://blackrocksgolf.co.id"
+          ],
+          [
+            "official_path",
+            "https://blackrocksgolf.co.id/rates"
+          ],
+          [
+            "official_path",
+            "https://blackrocksgolf.co.id/green-fee"
+          ],
+          [
+            "official_path",
+            "https://blackrocksgolf.co.id/green-fees"
+          ],
+          [
+            "official_path",
+            "https://blackrocksgolf.co.id/booking"
+          ],
+          [
+            "official_path",
+            "https://blackrocksgolf.co.id/tarif"
+          ],
+          [
+            "official_path",
+            "https://blackrocksgolf.co.id/harga"
+          ],
+          [
+            "official_path",
+            "https://blackrocksgolf.co.id/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=black+rocks+hotel+&+golf+club"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://blackrocksgolf.co.id/"
+          ]
+        ]
+      },
+      {
+        "id": "ciater-highland",
+        "name_en": "Ciater Highland Golf",
+        "region": "Bandung",
+        "province": "West Java",
+        "website": "https://www.visitciaterhighlandresort.com/",
+        "operating_status": "closed_temporary",
+        "reason": "0/6 slots filled",
+        "diagnostics": {
+          "n_slots": 0,
+          "primary_url_count": 5,
+          "has_gogolf": false,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://www.visitciaterhighlandresort.com"
+          ],
+          [
+            "official_path",
+            "https://www.visitciaterhighlandresort.com/rates"
+          ],
+          [
+            "official_path",
+            "https://www.visitciaterhighlandresort.com/green-fee"
+          ],
+          [
+            "official_path",
+            "https://www.visitciaterhighlandresort.com/green-fees"
+          ],
+          [
+            "official_path",
+            "https://www.visitciaterhighlandresort.com/booking"
+          ],
+          [
+            "official_path",
+            "https://www.visitciaterhighlandresort.com/tarif"
+          ],
+          [
+            "official_path",
+            "https://www.visitciaterhighlandresort.com/harga"
+          ],
+          [
+            "official_path",
+            "https://www.visitciaterhighlandresort.com/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=ciater+highland+golf"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.visitciaterhighlandresort.com/"
+          ]
+        ]
+      },
+      {
+        "id": "dhoho-kediri",
+        "name_en": "Dhoho Golf Club (Surya Dhoho)",
+        "region": "Kediri",
+        "province": "East Java",
+        "website": null,
+        "operating_status": "operating",
+        "reason": "0/6 slots filled",
+        "diagnostics": {
+          "n_slots": 0,
+          "primary_url_count": 3,
+          "has_gogolf": true,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=dhoho+golf+club"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://asiagolfjourney.com/dhoho-surya-golf-course-opens-in-kediri-indonesias-newest-mountain-golf-destination/"
+          ]
+        ]
+      },
+      {
+        "id": "eltari-kupang",
+        "name_en": "Eltari Golf Course (Padang Golf El Tari)",
+        "region": "Kupang",
+        "province": "East Nusa Tenggara",
+        "website": null,
+        "operating_status": "operating",
+        "reason": "0/6 slots filled",
+        "diagnostics": {
+          "n_slots": 0,
+          "primary_url_count": 2,
+          "has_gogolf": false,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=eltari+golf+course"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.aloeus.com/padang-golf-el-tari-kupang/"
+          ]
+        ]
+      },
+      {
+        "id": "phr-dumai",
+        "name_en": "Golf Course Pertamina Hulu Rokan Dumai (formerly Chevron Dumai)",
+        "region": "Dumai",
+        "province": "Riau",
+        "website": null,
+        "operating_status": "operating",
+        "reason": "0/6 slots filled",
+        "diagnostics": {
+          "n_slots": 0,
+          "primary_url_count": 2,
+          "has_gogolf": false,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=golf+course+pertamina+hulu+rokan+dumai"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.golflux.com/course/chevron-dumai-golf-course/"
+          ]
+        ]
+      },
+      {
+        "id": "gorontalo-yosonegoro",
+        "name_en": "Gorontalo Golf Yosonegoro",
+        "region": "Limboto",
+        "province": "Gorontalo",
+        "website": null,
+        "operating_status": "operating",
+        "reason": "0/6 slots filled",
+        "diagnostics": {
+          "n_slots": 0,
+          "primary_url_count": 3,
+          "has_gogolf": false,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=gorontalo+golf+yosonegoro"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://coolturnesia.com/coolturnesia/berita/detail/lapangan-golf-yosonegoro-akan-kembali-hidup-pemprovpemkab-gorontalo-sepakat-kelola-bersama"
+          ]
+        ]
+      },
+      {
+        "id": "candi-semarang",
+        "name_en": "Graha Candi Golf Country Club",
+        "region": "Semarang",
+        "province": "Central Java",
+        "website": "https://candigolf.id/",
+        "operating_status": "operating",
+        "reason": "2/6 slots filled",
+        "diagnostics": {
+          "n_slots": 2,
+          "primary_url_count": 4,
+          "has_gogolf": true,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://candigolf.id"
+          ],
+          [
+            "official_path",
+            "https://candigolf.id/rates"
+          ],
+          [
+            "official_path",
+            "https://candigolf.id/green-fee"
+          ],
+          [
+            "official_path",
+            "https://candigolf.id/green-fees"
+          ],
+          [
+            "official_path",
+            "https://candigolf.id/booking"
+          ],
+          [
+            "official_path",
+            "https://candigolf.id/tarif"
+          ],
+          [
+            "official_path",
+            "https://candigolf.id/harga"
+          ],
+          [
+            "official_path",
+            "https://candigolf.id/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=graha+candi+golf+country+club"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://candigolf.id/"
+          ]
+        ]
+      },
+      {
+        "id": "isen-mulang-palangkaraya",
+        "name_en": "Isen Mulang Golf Club",
+        "region": "Palangkaraya",
+        "province": "Central Kalimantan",
+        "website": null,
+        "operating_status": "operating",
+        "reason": "only 1 source; 0/6 slots filled",
+        "diagnostics": {
+          "n_slots": 0,
+          "primary_url_count": 1,
+          "has_gogolf": false,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=isen+mulang+golf+club"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://kalteng.go.id/"
+          ]
+        ]
+      },
+      {
+        "id": "agromuko-mukomuko",
+        "name_en": "Lapangan Golf Agromuko",
+        "region": "Mukomuko",
+        "province": "Bengkulu",
+        "website": null,
+        "operating_status": "operating",
+        "reason": "0/6 slots filled",
+        "diagnostics": {
+          "n_slots": 0,
+          "primary_url_count": 2,
+          "has_gogolf": false,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+agromuko"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.hole19golf.com/courses/agro-muko-golf-course"
+          ]
+        ]
+      },
+      {
+        "id": "bajubang-jambi",
+        "name_en": "Lapangan Golf Bajubang",
+        "region": "Batanghari",
+        "province": "Jambi",
+        "website": null,
+        "operating_status": "operating",
+        "reason": "0/6 slots filled",
+        "diagnostics": {
+          "n_slots": 0,
+          "primary_url_count": 2,
+          "has_gogolf": false,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+bajubang"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.hole19golf.com/courses/bajubang-golf-course"
+          ]
+        ]
+      },
+      {
+        "id": "bumi-roviga-palu",
+        "name_en": "Lapangan Golf Bumi Roviga (Palu)",
+        "region": "Palu",
+        "province": "Central Sulawesi",
+        "website": null,
+        "operating_status": "uncertain",
+        "reason": "only 1 source; 0/6 slots filled",
+        "diagnostics": {
+          "n_slots": 0,
+          "primary_url_count": 1,
+          "has_gogolf": false,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+bumi+roviga"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://sultengprov.go.id/"
+          ]
+        ]
+      },
+      {
+        "id": "lanud-sutan-sjahrir",
+        "name_en": "Lapangan Golf Lanud Sutan Sjahrir (Tabing)",
+        "region": "Padang",
+        "province": "West Sumatra",
+        "website": null,
+        "operating_status": "operating",
+        "reason": "0/6 slots filled",
+        "diagnostics": {
+          "n_slots": 0,
+          "primary_url_count": 3,
+          "has_gogolf": false,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+lanud+sutan+sjahrir"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://westsumatra360.com/akhir-pekan-menyenangkan-dengan-bermain-golf-di-kota-padang/"
+          ]
+        ]
+      },
+      {
+        "id": "merah-putih-bengkulu",
+        "name_en": "Lapangan Golf Merah Putih (Polda Bengkulu)",
+        "region": "Bengkulu",
+        "province": "Bengkulu",
+        "website": null,
+        "operating_status": "operating",
+        "reason": "0/6 slots filled",
+        "diagnostics": {
+          "n_slots": 0,
+          "primary_url_count": 2,
+          "has_gogolf": true,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+merah+putih"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.instagram.com/merah_putih_golfclubbengkulu/"
+          ]
+        ]
+      },
+      {
+        "id": "koarmada-iii-sorong",
+        "name_en": "Lapangan Golf Mini Koarmada III",
+        "region": "Sorong",
+        "province": "Southwest Papua",
+        "website": null,
+        "operating_status": "operating",
+        "reason": "only 1 source; 0/6 slots filled",
+        "diagnostics": {
+          "n_slots": 0,
+          "primary_url_count": 1,
+          "has_gogolf": false,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+mini+koarmada+iii"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.tnial.mil.id/"
+          ]
+        ]
+      },
+      {
+        "id": "ngamplang-garut",
+        "name_en": "Lapangan Golf Ngamplang (Flamboyan)",
+        "region": "Garut",
+        "province": "West Java",
+        "website": null,
+        "operating_status": "operating",
+        "reason": "0/6 slots filled",
+        "diagnostics": {
+          "n_slots": 0,
+          "primary_url_count": 3,
+          "has_gogolf": true,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+ngamplang"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://gogolf.co.id/en/gogolf-news/ngamplang-flamboyan-golf-course"
+          ]
+        ]
+      },
+      {
+        "id": "kpc-sangatta",
+        "name_en": "Lapangan Golf PT KPC (Kaltim Prima Coal)",
+        "region": "Sangatta",
+        "province": "East Kalimantan",
+        "website": null,
+        "operating_status": "operating",
+        "reason": "0/6 slots filled",
+        "diagnostics": {
+          "n_slots": 0,
+          "primary_url_count": 3,
+          "has_gogolf": false,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+pt+kpc"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.kpc.co.id/employee-facilities/"
+          ]
+        ]
+      },
+      {
+        "id": "pertamina-pendopo",
+        "name_en": "Lapangan Golf PT Pertamina Pendopo",
+        "region": "Pendopo",
+        "province": "South Sumatra",
+        "website": null,
+        "operating_status": "operating",
+        "reason": "0/6 slots filled",
+        "diagnostics": {
+          "n_slots": 0,
+          "primary_url_count": 3,
+          "has_gogolf": false,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+pt+pertamina+pendopo"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.hole19golf.com/courses/lapangan-golf-pt-pertamina-pendopo"
+          ]
+        ]
+      },
+      {
+        "id": "pertamina-prabumulih",
+        "name_en": "Lapangan Golf PT Pertamina Prabumulih",
+        "region": "Prabumulih",
+        "province": "South Sumatra",
+        "website": null,
+        "operating_status": "operating",
+        "reason": "2/6 slots filled",
+        "diagnostics": {
+          "n_slots": 2,
+          "primary_url_count": 2,
+          "has_gogolf": true,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+pt+pertamina+prabumulih"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.hole19golf.com/courses/lapangan-golf-pt-pertamina-prabumulih/reviews"
+          ]
+        ]
+      },
+      {
+        "id": "pusri-palembang",
+        "name_en": "Lapangan Golf PT Pusri (Patra Jaya)",
+        "region": "Palembang",
+        "province": "South Sumatra",
+        "website": null,
+        "operating_status": "operating",
+        "reason": "0/6 slots filled",
+        "diagnostics": {
+          "n_slots": 0,
+          "primary_url_count": 2,
+          "has_gogolf": false,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+pt+pusri"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://stargirl.data.blog/2022/05/10/golf-course-patra-jaya-spot-instagramable-in-plaju/"
+          ]
+        ]
+      },
+      {
+        "id": "ptpn-iv-pabatu",
+        "name_en": "Lapangan Golf PTPN IV Pabatu",
+        "region": "Tebing Tinggi",
+        "province": "North Sumatra",
+        "website": null,
+        "operating_status": "operating",
+        "reason": "0/6 slots filled",
+        "diagnostics": {
+          "n_slots": 0,
+          "primary_url_count": 2,
+          "has_gogolf": false,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=lapangan+golf+ptpn+iv+pabatu"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.trip.com/travel-guide/attraction/penonggol/lapangan-golf-ptpn-iv-pabatu-144860067"
+          ]
+        ]
+      },
+      {
+        "id": "padang-golf-lanud-sulaiman",
+        "name_en": "Padang Golf Lanud Sulaiman",
+        "region": "Bandung",
+        "province": "West Java",
+        "website": null,
+        "operating_status": "operating",
+        "reason": "0/6 slots filled",
+        "diagnostics": {
+          "n_slots": 0,
+          "primary_url_count": 3,
+          "has_gogolf": true,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=padang+golf+lanud+sulaiman"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.instagram.com/padanggolfsulaimann/"
+          ]
+        ]
+      },
+      {
+        "id": "pakuwon-golf-surabaya",
+        "name_en": "Pakuwon Golf & Family Club",
+        "region": "Surabaya",
+        "province": "East Java",
+        "website": "https://pakuwongolf.com/",
+        "operating_status": "operating",
+        "reason": "2/6 slots filled",
+        "diagnostics": {
+          "n_slots": 2,
+          "primary_url_count": 1,
+          "has_gogolf": true,
+          "age_days": 5
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://pakuwongolf.com"
+          ],
+          [
+            "official_path",
+            "https://pakuwongolf.com/rates"
+          ],
+          [
+            "official_path",
+            "https://pakuwongolf.com/green-fee"
+          ],
+          [
+            "official_path",
+            "https://pakuwongolf.com/green-fees"
+          ],
+          [
+            "official_path",
+            "https://pakuwongolf.com/booking"
+          ],
+          [
+            "official_path",
+            "https://pakuwongolf.com/tarif"
+          ],
+          [
+            "official_path",
+            "https://pakuwongolf.com/harga"
+          ],
+          [
+            "official_path",
+            "https://pakuwongolf.com/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=pakuwon+golf+&+family+club"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://pakuwongolf.com/"
+          ]
+        ]
+      },
+      {
+        "id": "paradise-likupang",
+        "name_en": "Paradise Golf Club (Likupang)",
+        "region": "Likupang",
+        "province": "North Sulawesi",
+        "website": "https://www.paradisehotelgolfresort.net/",
+        "operating_status": "operating",
+        "reason": "only 1 source; 0/6 slots filled",
+        "diagnostics": {
+          "n_slots": 0,
+          "primary_url_count": 1,
+          "has_gogolf": false,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://www.paradisehotelgolfresort.net"
+          ],
+          [
+            "official_path",
+            "https://www.paradisehotelgolfresort.net/rates"
+          ],
+          [
+            "official_path",
+            "https://www.paradisehotelgolfresort.net/green-fee"
+          ],
+          [
+            "official_path",
+            "https://www.paradisehotelgolfresort.net/green-fees"
+          ],
+          [
+            "official_path",
+            "https://www.paradisehotelgolfresort.net/booking"
+          ],
+          [
+            "official_path",
+            "https://www.paradisehotelgolfresort.net/tarif"
+          ],
+          [
+            "official_path",
+            "https://www.paradisehotelgolfresort.net/harga"
+          ],
+          [
+            "official_path",
+            "https://www.paradisehotelgolfresort.net/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=paradise+golf+club"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://kek.go.id/kawasan/KEK-Likupang"
+          ]
+        ]
+      },
+      {
+        "id": "pattimura-ambon",
+        "name_en": "Pattimura Golf Course",
+        "region": "Ambon",
+        "province": "Maluku",
+        "website": null,
+        "operating_status": "operating",
+        "reason": "only 1 source; 0/6 slots filled",
+        "diagnostics": {
+          "n_slots": 0,
+          "primary_url_count": 1,
+          "has_gogolf": false,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=pattimura+golf+course"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://tni-au.mil.id/"
+          ]
+        ]
+      },
+      {
+        "id": "perkumpulan-golf-jambi",
+        "name_en": "Perkumpulan Golf Jambi (Telanaipura)",
+        "region": "Jambi",
+        "province": "Jambi",
+        "website": null,
+        "operating_status": "operating",
+        "reason": "0/6 slots filled",
+        "diagnostics": {
+          "n_slots": 0,
+          "primary_url_count": 2,
+          "has_gogolf": true,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=perkumpulan+golf+jambi"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://playgolf.id/golf_courses/telanaipura-golf-club-jambi/"
+          ]
+        ]
+      },
+      {
+        "id": "badak-ngl-bontang",
+        "name_en": "PT Badak NGL Golf Course",
+        "region": "Bontang",
+        "province": "East Kalimantan",
+        "website": null,
+        "operating_status": "operating",
+        "reason": "0/6 slots filled",
+        "diagnostics": {
+          "n_slots": 0,
+          "primary_url_count": 2,
+          "has_gogolf": false,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=pt+badak+ngl+golf+course"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.golfpass.com/travel-advisor/courses/38337-pt-badak-ngl-golf-course"
+          ]
+        ]
+      },
+      {
+        "id": "southlinks-batam",
+        "name_en": "SouthLinks Country Club",
+        "region": "Batam",
+        "province": "Riau Islands",
+        "website": "https://www.southlinks.golf/",
+        "operating_status": "operating",
+        "reason": "0/6 slots filled",
+        "diagnostics": {
+          "n_slots": 0,
+          "primary_url_count": 3,
+          "has_gogolf": true,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://www.southlinks.golf"
+          ],
+          [
+            "official_path",
+            "https://www.southlinks.golf/rates"
+          ],
+          [
+            "official_path",
+            "https://www.southlinks.golf/green-fee"
+          ],
+          [
+            "official_path",
+            "https://www.southlinks.golf/green-fees"
+          ],
+          [
+            "official_path",
+            "https://www.southlinks.golf/booking"
+          ],
+          [
+            "official_path",
+            "https://www.southlinks.golf/tarif"
+          ],
+          [
+            "official_path",
+            "https://www.southlinks.golf/harga"
+          ],
+          [
+            "official_path",
+            "https://www.southlinks.golf/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=southlinks+country+club"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.golfsavers.com/indonesia/batam-island-golf-courses/southlinks-country-club"
+          ]
+        ]
+      },
+      {
+        "id": "tanjung-tabalong",
+        "name_en": "Tanjung Golf Club (Pertamina EP)",
+        "region": "Tabalong",
+        "province": "South Kalimantan",
+        "website": null,
+        "operating_status": "operating",
+        "reason": "0/6 slots filled",
+        "diagnostics": {
+          "n_slots": 0,
+          "primary_url_count": 3,
+          "has_gogolf": false,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=tanjung+golf+club"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.golfpass.com/travel-advisor/courses/38360-tanjung-golf-club"
+          ]
+        ]
+      },
+      {
+        "id": "tarakan-golf-club",
+        "name_en": "Tarakan Golf Club",
+        "region": "Tarakan",
+        "province": "North Kalimantan",
+        "website": null,
+        "operating_status": "operating",
+        "reason": "0/6 slots filled",
+        "diagnostics": {
+          "n_slots": 0,
+          "primary_url_count": 3,
+          "has_gogolf": false,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=tarakan+golf+club"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.golfpass.com/travel-advisor/courses/38338-tarakan-golf-club"
+          ]
+        ]
+      },
+      {
+        "id": "trump-lido",
+        "name_en": "Trump International Golf Club Lido",
+        "region": "Bogor",
+        "province": "West Java",
+        "website": "https://mnctourismindonesia.com/trumpgolflido",
+        "operating_status": "operating",
+        "reason": "0/6 slots filled",
+        "diagnostics": {
+          "n_slots": 0,
+          "primary_url_count": 6,
+          "has_gogolf": true,
+          "age_days": 4
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://mnctourismindonesia.com/trumpgolflido"
+          ],
+          [
+            "official_path",
+            "https://mnctourismindonesia.com/trumpgolflido/rates"
+          ],
+          [
+            "official_path",
+            "https://mnctourismindonesia.com/trumpgolflido/green-fee"
+          ],
+          [
+            "official_path",
+            "https://mnctourismindonesia.com/trumpgolflido/green-fees"
+          ],
+          [
+            "official_path",
+            "https://mnctourismindonesia.com/trumpgolflido/booking"
+          ],
+          [
+            "official_path",
+            "https://mnctourismindonesia.com/trumpgolflido/tarif"
+          ],
+          [
+            "official_path",
+            "https://mnctourismindonesia.com/trumpgolflido/harga"
+          ],
+          [
+            "official_path",
+            "https://mnctourismindonesia.com/trumpgolflido/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=trump+international+golf+club+lido"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://mnctourismindonesia.com/trumpgolflido"
+          ]
+        ]
+      }
+    ],
+    "P2": [
+      {
+        "id": "bandung-giri-gahana",
+        "name_en": "Bandung Giri Gahana Golf & Resort",
+        "region": "Sumedang",
+        "province": "West Java",
+        "website": null,
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 63% on satAm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 2,
+          "has_gogolf": true,
+          "age_days": 6,
+          "diff_pct": 62.9,
+          "diff_slot": "satAm"
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=bandung+giri+gahana+golf+&+resort"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://gogolf.co.id/en/golf-course/bandung-giri-gahana-golf-resort"
+          ]
+        ]
+      },
+      {
+        "id": "bukit-darmo-surabaya",
+        "name_en": "Bukit Darmo Golf",
+        "region": "Surabaya",
+        "province": "East Java",
+        "website": null,
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 88% on wdAm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 4,
+          "has_gogolf": true,
+          "age_days": 4,
+          "diff_pct": 87.6,
+          "diff_slot": "wdAm"
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=bukit+darmo+golf"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://web.archive.org/web/20211230075448/http://bukitdarmogolf.com/rates-fee-and-membership/ (wayback snapshot 2021-12-30)"
+          ]
+        ]
+      },
+      {
+        "id": "cengkareng-golf",
+        "name_en": "Cengkareng Golf Club",
+        "region": "Jakarta",
+        "province": "DKI Jakarta",
+        "website": null,
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 93% on satPm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 1,
+          "has_gogolf": true,
+          "age_days": 6,
+          "diff_pct": 93.2,
+          "diff_slot": "satPm"
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=cengkareng+golf+club"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://gogolf.co.id/en/golf-course/cengkareng-golf-club"
+          ]
+        ]
+      },
+      {
+        "id": "ciputra-surabaya",
+        "name_en": "Ciputra Golf Club & Hotel Surabaya",
+        "region": "Surabaya",
+        "province": "East Java",
+        "website": "https://ciputragolf.com/",
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 795% on satAm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 3,
+          "has_gogolf": true,
+          "age_days": 6,
+          "diff_pct": 795.4,
+          "diff_slot": "satAm"
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://ciputragolf.com"
+          ],
+          [
+            "official_path",
+            "https://ciputragolf.com/rates"
+          ],
+          [
+            "official_path",
+            "https://ciputragolf.com/green-fee"
+          ],
+          [
+            "official_path",
+            "https://ciputragolf.com/green-fees"
+          ],
+          [
+            "official_path",
+            "https://ciputragolf.com/booking"
+          ],
+          [
+            "official_path",
+            "https://ciputragolf.com/tarif"
+          ],
+          [
+            "official_path",
+            "https://ciputragolf.com/harga"
+          ],
+          [
+            "official_path",
+            "https://ciputragolf.com/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=ciputra+golf+club+&+hotel+surabaya"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://ciputragolf.com/"
+          ]
+        ]
+      },
+      {
+        "id": "damai-indah-bsd",
+        "name_en": "Damai Indah Golf - Bumi Serpong Damai (BSD) Course",
+        "region": "Tangerang",
+        "province": "Banten",
+        "website": "https://www.damaiindahgolf.com/",
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 118% on sunPm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 1,
+          "has_gogolf": true,
+          "age_days": 6,
+          "diff_pct": 118.2,
+          "diff_slot": "sunPm"
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://www.damaiindahgolf.com"
+          ],
+          [
+            "official_path",
+            "https://www.damaiindahgolf.com/rates"
+          ],
+          [
+            "official_path",
+            "https://www.damaiindahgolf.com/green-fee"
+          ],
+          [
+            "official_path",
+            "https://www.damaiindahgolf.com/green-fees"
+          ],
+          [
+            "official_path",
+            "https://www.damaiindahgolf.com/booking"
+          ],
+          [
+            "official_path",
+            "https://www.damaiindahgolf.com/tarif"
+          ],
+          [
+            "official_path",
+            "https://www.damaiindahgolf.com/harga"
+          ],
+          [
+            "official_path",
+            "https://www.damaiindahgolf.com/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=damai+indah+golf+-+bumi+serpong+damai"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.damaiindahgolf.com/index.asp?fuseaction=fee"
+          ]
+        ]
+      },
+      {
+        "id": "damai-indah-pik",
+        "name_en": "Damai Indah Golf - Pantai Indah Kapuk (PIK) Course",
+        "region": "Jakarta",
+        "province": "DKI Jakarta",
+        "website": "https://www.damaiindahgolf.com/",
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 75% on sunPm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 1,
+          "has_gogolf": true,
+          "age_days": 6,
+          "diff_pct": 75.1,
+          "diff_slot": "sunPm"
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://www.damaiindahgolf.com"
+          ],
+          [
+            "official_path",
+            "https://www.damaiindahgolf.com/rates"
+          ],
+          [
+            "official_path",
+            "https://www.damaiindahgolf.com/green-fee"
+          ],
+          [
+            "official_path",
+            "https://www.damaiindahgolf.com/green-fees"
+          ],
+          [
+            "official_path",
+            "https://www.damaiindahgolf.com/booking"
+          ],
+          [
+            "official_path",
+            "https://www.damaiindahgolf.com/tarif"
+          ],
+          [
+            "official_path",
+            "https://www.damaiindahgolf.com/harga"
+          ],
+          [
+            "official_path",
+            "https://www.damaiindahgolf.com/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=damai+indah+golf+-+pantai+indah+kapuk"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.damaiindahgolf.com/index.asp?fuseaction=fee"
+          ]
+        ]
+      },
+      {
+        "id": "emeralda-golf",
+        "name_en": "Emeralda Golf Club",
+        "region": "Depok",
+        "province": "West Java",
+        "website": "https://emeralda-golfclub.com/",
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 66% on sunPm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 1,
+          "has_gogolf": true,
+          "age_days": 6,
+          "diff_pct": 65.6,
+          "diff_slot": "sunPm"
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://emeralda-golfclub.com"
+          ],
+          [
+            "official_path",
+            "https://emeralda-golfclub.com/rates"
+          ],
+          [
+            "official_path",
+            "https://emeralda-golfclub.com/green-fee"
+          ],
+          [
+            "official_path",
+            "https://emeralda-golfclub.com/green-fees"
+          ],
+          [
+            "official_path",
+            "https://emeralda-golfclub.com/booking"
+          ],
+          [
+            "official_path",
+            "https://emeralda-golfclub.com/tarif"
+          ],
+          [
+            "official_path",
+            "https://emeralda-golfclub.com/harga"
+          ],
+          [
+            "official_path",
+            "https://emeralda-golfclub.com/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=emeralda+golf+club"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://emeralda-golfclub.com/index2.php?fuseaction=golf_rate"
+          ]
+        ]
+      },
+      {
+        "id": "finna-pasuruan",
+        "name_en": "Finna Golf & Country Club Resort",
+        "region": "Pasuruan",
+        "province": "East Java",
+        "website": "https://finnagolf.com/",
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 167% on satAm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 3,
+          "has_gogolf": true,
+          "age_days": 6,
+          "diff_pct": 166.7,
+          "diff_slot": "satAm"
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://finnagolf.com"
+          ],
+          [
+            "official_path",
+            "https://finnagolf.com/rates"
+          ],
+          [
+            "official_path",
+            "https://finnagolf.com/green-fee"
+          ],
+          [
+            "official_path",
+            "https://finnagolf.com/green-fees"
+          ],
+          [
+            "official_path",
+            "https://finnagolf.com/booking"
+          ],
+          [
+            "official_path",
+            "https://finnagolf.com/tarif"
+          ],
+          [
+            "official_path",
+            "https://finnagolf.com/harga"
+          ],
+          [
+            "official_path",
+            "https://finnagolf.com/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=finna+golf+&+country+club+resort"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://finnagolf.com/"
+          ]
+        ]
+      },
+      {
+        "id": "gading-raya",
+        "name_en": "Gading Raya Padang Golf & Club",
+        "region": "Tangerang",
+        "province": "Banten",
+        "website": "https://www.gadingrayagolf.com/",
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 63% on sunPm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 1,
+          "has_gogolf": true,
+          "age_days": 6,
+          "diff_pct": 63.0,
+          "diff_slot": "sunPm"
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://www.gadingrayagolf.com"
+          ],
+          [
+            "official_path",
+            "https://www.gadingrayagolf.com/rates"
+          ],
+          [
+            "official_path",
+            "https://www.gadingrayagolf.com/green-fee"
+          ],
+          [
+            "official_path",
+            "https://www.gadingrayagolf.com/green-fees"
+          ],
+          [
+            "official_path",
+            "https://www.gadingrayagolf.com/booking"
+          ],
+          [
+            "official_path",
+            "https://www.gadingrayagolf.com/tarif"
+          ],
+          [
+            "official_path",
+            "https://www.gadingrayagolf.com/harga"
+          ],
+          [
+            "official_path",
+            "https://www.gadingrayagolf.com/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=gading+raya+padang+golf+&+club"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.gadingrayagolf.com/green_fees.html"
+          ]
+        ]
+      },
+      {
+        "id": "gunung-geulis",
+        "name_en": "Gunung Geulis Country Club",
+        "region": "Bogor",
+        "province": "West Java",
+        "website": "https://gununggeulis.com/country-club/",
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 94% on sunAm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 1,
+          "has_gogolf": true,
+          "age_days": 6,
+          "diff_pct": 93.8,
+          "diff_slot": "sunAm"
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://gununggeulis.com/country-club"
+          ],
+          [
+            "official_path",
+            "https://gununggeulis.com/country-club/rates"
+          ],
+          [
+            "official_path",
+            "https://gununggeulis.com/country-club/green-fee"
+          ],
+          [
+            "official_path",
+            "https://gununggeulis.com/country-club/green-fees"
+          ],
+          [
+            "official_path",
+            "https://gununggeulis.com/country-club/booking"
+          ],
+          [
+            "official_path",
+            "https://gununggeulis.com/country-club/tarif"
+          ],
+          [
+            "official_path",
+            "https://gununggeulis.com/country-club/harga"
+          ],
+          [
+            "official_path",
+            "https://gununggeulis.com/country-club/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=gunung+geulis+country+club"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://gununggeulis.com/country-club/rates/"
+          ]
+        ]
+      },
+      {
+        "id": "halim-golf-club",
+        "name_en": "Halim Golf Club (Halim I)",
+        "region": "Jakarta",
+        "province": "DKI Jakarta",
+        "website": null,
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 47% on sunPm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 2,
+          "has_gogolf": true,
+          "age_days": 4,
+          "diff_pct": 47.1,
+          "diff_slot": "sunPm"
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=halim+golf+club"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.qaccess.asia/QGolfPrice?currentFilter=halim"
+          ]
+        ]
+      },
+      {
+        "id": "handara-bali",
+        "name_en": "Handara Golf & Resort Bali",
+        "region": "Bali",
+        "province": "Bali",
+        "website": "https://www.handaragolfresort.com/",
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 111% on wdPm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 3,
+          "has_gogolf": true,
+          "age_days": 6,
+          "diff_pct": 110.5,
+          "diff_slot": "wdPm"
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://www.handaragolfresort.com"
+          ],
+          [
+            "official_path",
+            "https://www.handaragolfresort.com/rates"
+          ],
+          [
+            "official_path",
+            "https://www.handaragolfresort.com/green-fee"
+          ],
+          [
+            "official_path",
+            "https://www.handaragolfresort.com/green-fees"
+          ],
+          [
+            "official_path",
+            "https://www.handaragolfresort.com/booking"
+          ],
+          [
+            "official_path",
+            "https://www.handaragolfresort.com/tarif"
+          ],
+          [
+            "official_path",
+            "https://www.handaragolfresort.com/harga"
+          ],
+          [
+            "official_path",
+            "https://www.handaragolfresort.com/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=handara+golf+&+resort+bali"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://adeevatours.com/handara-bali-golf-green-fee/"
+          ]
+        ]
+      },
+      {
+        "id": "imperial-klub",
+        "name_en": "Imperial Klub Golf",
+        "region": "Tangerang",
+        "province": "Banten",
+        "website": "https://www.aryaduta.com/en/wellness/ikg",
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 68% on wdPm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 2,
+          "has_gogolf": true,
+          "age_days": 6,
+          "diff_pct": 68.0,
+          "diff_slot": "wdPm"
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://www.aryaduta.com/en/wellness/ikg"
+          ],
+          [
+            "official_path",
+            "https://www.aryaduta.com/en/wellness/ikg/rates"
+          ],
+          [
+            "official_path",
+            "https://www.aryaduta.com/en/wellness/ikg/green-fee"
+          ],
+          [
+            "official_path",
+            "https://www.aryaduta.com/en/wellness/ikg/green-fees"
+          ],
+          [
+            "official_path",
+            "https://www.aryaduta.com/en/wellness/ikg/booking"
+          ],
+          [
+            "official_path",
+            "https://www.aryaduta.com/en/wellness/ikg/tarif"
+          ],
+          [
+            "official_path",
+            "https://www.aryaduta.com/en/wellness/ikg/harga"
+          ],
+          [
+            "official_path",
+            "https://www.aryaduta.com/en/wellness/ikg/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=imperial+klub+golf"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://gogolf.co.id/en/golf-course/imperial-klub-golf-lippo-karawaci"
+          ]
+        ]
+      },
+      {
+        "id": "jababeka-golf",
+        "name_en": "Jababeka Golf & Country Club",
+        "region": "Bekasi",
+        "province": "West Java",
+        "website": "https://www.jababekagolf.co.id/",
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 46% on satPm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 2,
+          "has_gogolf": true,
+          "age_days": 6,
+          "diff_pct": 45.8,
+          "diff_slot": "satPm"
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://www.jababekagolf.co.id"
+          ],
+          [
+            "official_path",
+            "https://www.jababekagolf.co.id/rates"
+          ],
+          [
+            "official_path",
+            "https://www.jababekagolf.co.id/green-fee"
+          ],
+          [
+            "official_path",
+            "https://www.jababekagolf.co.id/green-fees"
+          ],
+          [
+            "official_path",
+            "https://www.jababekagolf.co.id/booking"
+          ],
+          [
+            "official_path",
+            "https://www.jababekagolf.co.id/tarif"
+          ],
+          [
+            "official_path",
+            "https://www.jababekagolf.co.id/harga"
+          ],
+          [
+            "official_path",
+            "https://www.jababekagolf.co.id/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=jababeka+golf+&+country+club"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.jababekagolf.co.id/"
+          ]
+        ]
+      },
+      {
+        "id": "jagorawi",
+        "name_en": "Jagorawi Golf & Country Club",
+        "region": "Bogor",
+        "province": "West Java",
+        "website": "https://jagorawi.com/",
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 44% on satAm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 2,
+          "has_gogolf": true,
+          "age_days": 6,
+          "diff_pct": 43.8,
+          "diff_slot": "satAm"
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://jagorawi.com"
+          ],
+          [
+            "official_path",
+            "https://jagorawi.com/rates"
+          ],
+          [
+            "official_path",
+            "https://jagorawi.com/green-fee"
+          ],
+          [
+            "official_path",
+            "https://jagorawi.com/green-fees"
+          ],
+          [
+            "official_path",
+            "https://jagorawi.com/booking"
+          ],
+          [
+            "official_path",
+            "https://jagorawi.com/tarif"
+          ],
+          [
+            "official_path",
+            "https://jagorawi.com/harga"
+          ],
+          [
+            "official_path",
+            "https://jagorawi.com/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=jagorawi+golf+&+country+club"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://jagorawi.com/green-fees/"
+          ]
+        ]
+      },
+      {
+        "id": "bogor-raya",
+        "name_en": "Klub Golf Bogor Raya",
+        "region": "Bogor",
+        "province": "West Java",
+        "website": "https://www.klubgolfbogorraya.com/",
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 84% on wdAm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 3,
+          "has_gogolf": true,
+          "age_days": 6,
+          "diff_pct": 83.8,
+          "diff_slot": "wdAm"
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://www.klubgolfbogorraya.com"
+          ],
+          [
+            "official_path",
+            "https://www.klubgolfbogorraya.com/rates"
+          ],
+          [
+            "official_path",
+            "https://www.klubgolfbogorraya.com/green-fee"
+          ],
+          [
+            "official_path",
+            "https://www.klubgolfbogorraya.com/green-fees"
+          ],
+          [
+            "official_path",
+            "https://www.klubgolfbogorraya.com/booking"
+          ],
+          [
+            "official_path",
+            "https://www.klubgolfbogorraya.com/tarif"
+          ],
+          [
+            "official_path",
+            "https://www.klubgolfbogorraya.com/harga"
+          ],
+          [
+            "official_path",
+            "https://www.klubgolfbogorraya.com/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=klub+golf+bogor+raya"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.klubgolfbogorraya.com/"
+          ]
+        ]
+      },
+      {
+        "id": "labersa-riau",
+        "name_en": "Labersa Golf & Country Club",
+        "region": "Pekanbaru",
+        "province": "Riau",
+        "website": "https://labersahotel.com/lghcc/",
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 47% on wdPm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 2,
+          "has_gogolf": true,
+          "age_days": 6,
+          "diff_pct": 46.7,
+          "diff_slot": "wdPm"
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://labersahotel.com/lghcc"
+          ],
+          [
+            "official_path",
+            "https://labersahotel.com/lghcc/rates"
+          ],
+          [
+            "official_path",
+            "https://labersahotel.com/lghcc/green-fee"
+          ],
+          [
+            "official_path",
+            "https://labersahotel.com/lghcc/green-fees"
+          ],
+          [
+            "official_path",
+            "https://labersahotel.com/lghcc/booking"
+          ],
+          [
+            "official_path",
+            "https://labersahotel.com/lghcc/tarif"
+          ],
+          [
+            "official_path",
+            "https://labersahotel.com/lghcc/harga"
+          ],
+          [
+            "official_path",
+            "https://labersahotel.com/lghcc/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=labersa+golf+&+country+club"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://gogolf.co.id/golf-course/labersa-golf-club-resort"
+          ]
+        ]
+      },
+      {
+        "id": "laguna-bintan",
+        "name_en": "Laguna Golf Bintan",
+        "region": "Bintan",
+        "province": "Riau Islands",
+        "website": "https://www.lagunagolfbintan.com/",
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 82% on satPm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 2,
+          "has_gogolf": true,
+          "age_days": 6,
+          "diff_pct": 82.5,
+          "diff_slot": "satPm"
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://www.lagunagolfbintan.com"
+          ],
+          [
+            "official_path",
+            "https://www.lagunagolfbintan.com/rates"
+          ],
+          [
+            "official_path",
+            "https://www.lagunagolfbintan.com/green-fee"
+          ],
+          [
+            "official_path",
+            "https://www.lagunagolfbintan.com/green-fees"
+          ],
+          [
+            "official_path",
+            "https://www.lagunagolfbintan.com/booking"
+          ],
+          [
+            "official_path",
+            "https://www.lagunagolfbintan.com/tarif"
+          ],
+          [
+            "official_path",
+            "https://www.lagunagolfbintan.com/harga"
+          ],
+          [
+            "official_path",
+            "https://www.lagunagolfbintan.com/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=laguna+golf+bintan"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.lagunagolfbintan.com/rates-memberships/"
+          ]
+        ]
+      },
+      {
+        "id": "merapi-yogya",
+        "name_en": "Merapi Golf Yogyakarta",
+        "region": "Yogyakarta",
+        "province": "DI Yogyakarta",
+        "website": null,
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 38% on satAm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 3,
+          "has_gogolf": true,
+          "age_days": 6,
+          "diff_pct": 37.6,
+          "diff_slot": "satAm"
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=merapi+golf+yogyakarta"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://thebudgetgolfer.com/yogyakarta-golf-guide-2026/"
+          ]
+        ]
+      },
+      {
+        "id": "modern-golf",
+        "name_en": "Modern Golf & Country Club",
+        "region": "Tangerang",
+        "province": "Banten",
+        "website": "https://www.moderngolf.co.id/",
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 152% on satPm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 3,
+          "has_gogolf": true,
+          "age_days": 4,
+          "diff_pct": 151.6,
+          "diff_slot": "satPm"
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://www.moderngolf.co.id"
+          ],
+          [
+            "official_path",
+            "https://www.moderngolf.co.id/rates"
+          ],
+          [
+            "official_path",
+            "https://www.moderngolf.co.id/green-fee"
+          ],
+          [
+            "official_path",
+            "https://www.moderngolf.co.id/green-fees"
+          ],
+          [
+            "official_path",
+            "https://www.moderngolf.co.id/booking"
+          ],
+          [
+            "official_path",
+            "https://www.moderngolf.co.id/tarif"
+          ],
+          [
+            "official_path",
+            "https://www.moderngolf.co.id/harga"
+          ],
+          [
+            "official_path",
+            "https://www.moderngolf.co.id/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=modern+golf+&+country+club"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.qaccess.asia/QGolfPrice?currentFilter=&currentRecord=&searchString=modern"
+          ]
+        ]
+      },
+      {
+        "id": "mrica-banjarnegara",
+        "name_en": "Mrica Indah Golf Club",
+        "region": "Banjarnegara",
+        "province": "Central Java",
+        "website": null,
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 156% on wdAm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 4,
+          "has_gogolf": true,
+          "age_days": 4,
+          "diff_pct": 156.0,
+          "diff_slot": "wdAm"
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=mrica+indah+golf+club"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://obgolf.co.id/lapangan-golf-mrica-permata-hijau-di-kawasan-objek-vital-negara/"
+          ]
+        ]
+      },
+      {
+        "id": "padang-golf-pangkalan-jati",
+        "name_en": "Padang Golf Pangkalan Jati",
+        "region": "Depok",
+        "province": "West Java",
+        "website": "https://www.golfpangkalanjati.com/",
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 156% on satAm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 3,
+          "has_gogolf": true,
+          "age_days": 6,
+          "diff_pct": 156.0,
+          "diff_slot": "satAm"
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://www.golfpangkalanjati.com"
+          ],
+          [
+            "official_path",
+            "https://www.golfpangkalanjati.com/rates"
+          ],
+          [
+            "official_path",
+            "https://www.golfpangkalanjati.com/green-fee"
+          ],
+          [
+            "official_path",
+            "https://www.golfpangkalanjati.com/green-fees"
+          ],
+          [
+            "official_path",
+            "https://www.golfpangkalanjati.com/booking"
+          ],
+          [
+            "official_path",
+            "https://www.golfpangkalanjati.com/tarif"
+          ],
+          [
+            "official_path",
+            "https://www.golfpangkalanjati.com/harga"
+          ],
+          [
+            "official_path",
+            "https://www.golfpangkalanjati.com/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=padang+golf+pangkalan+jati"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.golfpangkalanjati.com/"
+          ]
+        ]
+      },
+      {
+        "id": "padang-golf-sukajadi-batam",
+        "name_en": "Padang Golf Sukajadi",
+        "region": "Batam",
+        "province": "Riau Islands",
+        "website": "https://www.padanggolfsukajadi.com/",
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 167% on satPm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 3,
+          "has_gogolf": true,
+          "age_days": 6,
+          "diff_pct": 166.7,
+          "diff_slot": "satPm"
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://www.padanggolfsukajadi.com"
+          ],
+          [
+            "official_path",
+            "https://www.padanggolfsukajadi.com/rates"
+          ],
+          [
+            "official_path",
+            "https://www.padanggolfsukajadi.com/green-fee"
+          ],
+          [
+            "official_path",
+            "https://www.padanggolfsukajadi.com/green-fees"
+          ],
+          [
+            "official_path",
+            "https://www.padanggolfsukajadi.com/booking"
+          ],
+          [
+            "official_path",
+            "https://www.padanggolfsukajadi.com/tarif"
+          ],
+          [
+            "official_path",
+            "https://www.padanggolfsukajadi.com/harga"
+          ],
+          [
+            "official_path",
+            "https://www.padanggolfsukajadi.com/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=padang+golf+sukajadi"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/http://www.padanggolfsukajadi.com/greenfees.html"
+          ]
+        ]
+      },
+      {
+        "id": "padivalley-makassar",
+        "name_en": "Padivalley Golf Club",
+        "region": "Makassar",
+        "province": "South Sulawesi",
+        "website": "https://padivalley.com/",
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 112% on sunAm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 2,
+          "has_gogolf": true,
+          "age_days": 6,
+          "diff_pct": 111.7,
+          "diff_slot": "sunAm"
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://padivalley.com"
+          ],
+          [
+            "official_path",
+            "https://padivalley.com/rates"
+          ],
+          [
+            "official_path",
+            "https://padivalley.com/green-fee"
+          ],
+          [
+            "official_path",
+            "https://padivalley.com/green-fees"
+          ],
+          [
+            "official_path",
+            "https://padivalley.com/booking"
+          ],
+          [
+            "official_path",
+            "https://padivalley.com/tarif"
+          ],
+          [
+            "official_path",
+            "https://padivalley.com/harga"
+          ],
+          [
+            "official_path",
+            "https://padivalley.com/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=padivalley+golf+club"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.tiktok.com/@aandermawannn/video/7402748548787277061"
+          ]
+        ]
+      },
+      {
+        "id": "palm-springs-batam",
+        "name_en": "Palm Springs Golf & Country Club Batam",
+        "region": "Batam",
+        "province": "Riau Islands",
+        "website": "https://batam.palmspringsgolf.co/",
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 33% on sunPm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 3,
+          "has_gogolf": true,
+          "age_days": 4,
+          "diff_pct": 33.3,
+          "diff_slot": "sunPm"
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://batam.palmspringsgolf.co"
+          ],
+          [
+            "official_path",
+            "https://batam.palmspringsgolf.co/rates"
+          ],
+          [
+            "official_path",
+            "https://batam.palmspringsgolf.co/green-fee"
+          ],
+          [
+            "official_path",
+            "https://batam.palmspringsgolf.co/green-fees"
+          ],
+          [
+            "official_path",
+            "https://batam.palmspringsgolf.co/booking"
+          ],
+          [
+            "official_path",
+            "https://batam.palmspringsgolf.co/tarif"
+          ],
+          [
+            "official_path",
+            "https://batam.palmspringsgolf.co/harga"
+          ],
+          [
+            "official_path",
+            "https://batam.palmspringsgolf.co/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=palm+springs+golf+&+country+club+batam"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.golfsavers.com/indonesia/batam-island-golf-courses/palm-springs-golf-country-club"
+          ]
+        ]
+      },
+      {
+        "id": "parahyangan-bandung",
+        "name_en": "Parahyangan Golf Bandung",
+        "region": "Bandung",
+        "province": "West Java",
+        "website": "https://www.parahyangangolf.com/",
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 66% on sunPm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 1,
+          "has_gogolf": true,
+          "age_days": 6,
+          "diff_pct": 66.1,
+          "diff_slot": "sunPm"
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://www.parahyangangolf.com"
+          ],
+          [
+            "official_path",
+            "https://www.parahyangangolf.com/rates"
+          ],
+          [
+            "official_path",
+            "https://www.parahyangangolf.com/green-fee"
+          ],
+          [
+            "official_path",
+            "https://www.parahyangangolf.com/green-fees"
+          ],
+          [
+            "official_path",
+            "https://www.parahyangangolf.com/booking"
+          ],
+          [
+            "official_path",
+            "https://www.parahyangangolf.com/tarif"
+          ],
+          [
+            "official_path",
+            "https://www.parahyangangolf.com/harga"
+          ],
+          [
+            "official_path",
+            "https://www.parahyangangolf.com/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=parahyangan+golf+bandung"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.parahyangangolf.com/green-fees"
+          ]
+        ]
+      },
+      {
+        "id": "permata-sentul",
+        "name_en": "Permata Sentul Golf",
+        "region": "Bogor",
+        "province": "West Java",
+        "website": "https://www.permatasentulgolf.net/",
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 110% on sunPm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 2,
+          "has_gogolf": true,
+          "age_days": 6,
+          "diff_pct": 109.9,
+          "diff_slot": "sunPm"
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://www.permatasentulgolf.net"
+          ],
+          [
+            "official_path",
+            "https://www.permatasentulgolf.net/rates"
+          ],
+          [
+            "official_path",
+            "https://www.permatasentulgolf.net/green-fee"
+          ],
+          [
+            "official_path",
+            "https://www.permatasentulgolf.net/green-fees"
+          ],
+          [
+            "official_path",
+            "https://www.permatasentulgolf.net/booking"
+          ],
+          [
+            "official_path",
+            "https://www.permatasentulgolf.net/tarif"
+          ],
+          [
+            "official_path",
+            "https://www.permatasentulgolf.net/harga"
+          ],
+          [
+            "official_path",
+            "https://www.permatasentulgolf.net/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=permata+sentul+golf"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.permatasentulgolf.net/"
+          ]
+        ]
+      },
+      {
+        "id": "rainbow-hills",
+        "name_en": "Rainbow Hills Golf Club",
+        "region": "Bogor",
+        "province": "West Java",
+        "website": "https://rainbowhillsgolf.com/",
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 53% on wdAm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 2,
+          "has_gogolf": true,
+          "age_days": 6,
+          "diff_pct": 52.6,
+          "diff_slot": "wdAm"
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://rainbowhillsgolf.com"
+          ],
+          [
+            "official_path",
+            "https://rainbowhillsgolf.com/rates"
+          ],
+          [
+            "official_path",
+            "https://rainbowhillsgolf.com/green-fee"
+          ],
+          [
+            "official_path",
+            "https://rainbowhillsgolf.com/green-fees"
+          ],
+          [
+            "official_path",
+            "https://rainbowhillsgolf.com/booking"
+          ],
+          [
+            "official_path",
+            "https://rainbowhillsgolf.com/tarif"
+          ],
+          [
+            "official_path",
+            "https://rainbowhillsgolf.com/harga"
+          ],
+          [
+            "official_path",
+            "https://rainbowhillsgolf.com/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=rainbow+hills+golf+club"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://rainbowhillsgolf.com/"
+          ]
+        ]
+      },
+      {
+        "id": "rancamaya",
+        "name_en": "Rancamaya Golf & Country Club",
+        "region": "Bogor",
+        "province": "West Java",
+        "website": "https://rancamayagolf.com/",
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 81% on satPm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 1,
+          "has_gogolf": true,
+          "age_days": 6,
+          "diff_pct": 80.7,
+          "diff_slot": "satPm"
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://rancamayagolf.com"
+          ],
+          [
+            "official_path",
+            "https://rancamayagolf.com/rates"
+          ],
+          [
+            "official_path",
+            "https://rancamayagolf.com/green-fee"
+          ],
+          [
+            "official_path",
+            "https://rancamayagolf.com/green-fees"
+          ],
+          [
+            "official_path",
+            "https://rancamayagolf.com/booking"
+          ],
+          [
+            "official_path",
+            "https://rancamayagolf.com/tarif"
+          ],
+          [
+            "official_path",
+            "https://rancamayagolf.com/harga"
+          ],
+          [
+            "official_path",
+            "https://rancamayagolf.com/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=rancamaya+golf+&+country+club"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://rancamayagolf.com/golf-rate/"
+          ]
+        ]
+      },
+      {
+        "id": "ria-bintan-ocean",
+        "name_en": "Ria Bintan Golf Club - Ocean Course",
+        "region": "Bintan",
+        "province": "Riau Islands",
+        "website": "https://www.riabintan.com/",
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 80% on satPm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 3,
+          "has_gogolf": true,
+          "age_days": 6,
+          "diff_pct": 80.1,
+          "diff_slot": "satPm"
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://www.riabintan.com"
+          ],
+          [
+            "official_path",
+            "https://www.riabintan.com/rates"
+          ],
+          [
+            "official_path",
+            "https://www.riabintan.com/green-fee"
+          ],
+          [
+            "official_path",
+            "https://www.riabintan.com/green-fees"
+          ],
+          [
+            "official_path",
+            "https://www.riabintan.com/booking"
+          ],
+          [
+            "official_path",
+            "https://www.riabintan.com/tarif"
+          ],
+          [
+            "official_path",
+            "https://www.riabintan.com/harga"
+          ],
+          [
+            "official_path",
+            "https://www.riabintan.com/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=ria+bintan+golf+club+-+ocean+course"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://riabintangolf.com/rates/"
+          ]
+        ]
+      },
+      {
+        "id": "riverside-cibubur",
+        "name_en": "Riverside Golf Club",
+        "region": "Bogor",
+        "province": "West Java",
+        "website": "https://www.riverside-golf.com/",
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 62% on satAm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 3,
+          "has_gogolf": true,
+          "age_days": 6,
+          "diff_pct": 62.5,
+          "diff_slot": "satAm"
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://www.riverside-golf.com"
+          ],
+          [
+            "official_path",
+            "https://www.riverside-golf.com/rates"
+          ],
+          [
+            "official_path",
+            "https://www.riverside-golf.com/green-fee"
+          ],
+          [
+            "official_path",
+            "https://www.riverside-golf.com/green-fees"
+          ],
+          [
+            "official_path",
+            "https://www.riverside-golf.com/booking"
+          ],
+          [
+            "official_path",
+            "https://www.riverside-golf.com/tarif"
+          ],
+          [
+            "official_path",
+            "https://www.riverside-golf.com/harga"
+          ],
+          [
+            "official_path",
+            "https://www.riverside-golf.com/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=riverside+golf+club"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.riverside-golf.com/offers-package"
+          ]
+        ]
+      },
+      {
+        "id": "royale-jakarta",
+        "name_en": "Royale Jakarta Golf Club",
+        "region": "Jakarta",
+        "province": "DKI Jakarta",
+        "website": "https://www.royalejakarta.com/",
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 179% on sunPm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 2,
+          "has_gogolf": true,
+          "age_days": 4,
+          "diff_pct": 179.4,
+          "diff_slot": "sunPm"
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://www.royalejakarta.com"
+          ],
+          [
+            "official_path",
+            "https://www.royalejakarta.com/rates"
+          ],
+          [
+            "official_path",
+            "https://www.royalejakarta.com/green-fee"
+          ],
+          [
+            "official_path",
+            "https://www.royalejakarta.com/green-fees"
+          ],
+          [
+            "official_path",
+            "https://www.royalejakarta.com/booking"
+          ],
+          [
+            "official_path",
+            "https://www.royalejakarta.com/tarif"
+          ],
+          [
+            "official_path",
+            "https://www.royalejakarta.com/harga"
+          ],
+          [
+            "official_path",
+            "https://www.royalejakarta.com/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=royale+jakarta+golf+club"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.royalejakarta.com/golf-rate-2026/"
+          ]
+        ]
+      },
+      {
+        "id": "senayan-national",
+        "name_en": "Senayan National Golf Club",
+        "region": "Jakarta",
+        "province": "DKI Jakarta",
+        "website": null,
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 68% on sunPm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 1,
+          "has_gogolf": true,
+          "age_days": 4,
+          "diff_pct": 67.9,
+          "diff_slot": "sunPm"
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=senayan+national+golf+club"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.qaccess.asia/QGolfPrice?currentFilter=&currentRecord=&searchString=senayan"
+          ]
+        ]
+      },
+      {
+        "id": "sentul-highlands",
+        "name_en": "Sentul Highlands Golf Club",
+        "region": "Bogor",
+        "province": "West Java",
+        "website": "https://sentulhighlands.com/",
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 145% on sunPm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 3,
+          "has_gogolf": true,
+          "age_days": 6,
+          "diff_pct": 144.8,
+          "diff_slot": "sunPm"
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://sentulhighlands.com"
+          ],
+          [
+            "official_path",
+            "https://sentulhighlands.com/rates"
+          ],
+          [
+            "official_path",
+            "https://sentulhighlands.com/green-fee"
+          ],
+          [
+            "official_path",
+            "https://sentulhighlands.com/green-fees"
+          ],
+          [
+            "official_path",
+            "https://sentulhighlands.com/booking"
+          ],
+          [
+            "official_path",
+            "https://sentulhighlands.com/tarif"
+          ],
+          [
+            "official_path",
+            "https://sentulhighlands.com/harga"
+          ],
+          [
+            "official_path",
+            "https://sentulhighlands.com/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=sentul+highlands+golf+club"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://sentulhighlands.com/prices/"
+          ]
+        ]
+      },
+      {
+        "id": "taman-dayu",
+        "name_en": "Taman Dayu Golf Club & Resort",
+        "region": "Pasuruan",
+        "province": "East Java",
+        "website": "https://tamandayu.com/",
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 100% on satPm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 3,
+          "has_gogolf": true,
+          "age_days": 6,
+          "diff_pct": 100.0,
+          "diff_slot": "satPm"
+        },
+        "seed_urls": [
+          [
+            "official_root",
+            "https://tamandayu.com"
+          ],
+          [
+            "official_path",
+            "https://tamandayu.com/rates"
+          ],
+          [
+            "official_path",
+            "https://tamandayu.com/green-fee"
+          ],
+          [
+            "official_path",
+            "https://tamandayu.com/green-fees"
+          ],
+          [
+            "official_path",
+            "https://tamandayu.com/booking"
+          ],
+          [
+            "official_path",
+            "https://tamandayu.com/tarif"
+          ],
+          [
+            "official_path",
+            "https://tamandayu.com/harga"
+          ],
+          [
+            "official_path",
+            "https://tamandayu.com/rate"
+          ],
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=taman+dayu+golf+club+&+resort"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://www.tamandayu.com/"
+          ]
+        ]
+      },
+      {
+        "id": "tamarin-santana-batam",
+        "name_en": "Tamarin Santana Golf Club",
+        "region": "Batam",
+        "province": "Riau Islands",
+        "website": null,
+        "operating_status": "operating",
+        "reason": "primary vs gogolf 103% on satAm",
+        "diagnostics": {
+          "n_slots": 6,
+          "primary_url_count": 3,
+          "has_gogolf": true,
+          "age_days": 4,
+          "diff_pct": 103.4,
+          "diff_slot": "satAm"
+        },
+        "seed_urls": [
+          [
+            "qaccess",
+            "https://www.qaccess.asia/QGolfPrice?searchString=tamarin+santana+golf+club"
+          ],
+          [
+            "wayback",
+            "https://web.archive.org/web/2026*/https://en.gogolf.co.id/golf-course/tamarin-santana-golf-club"
+          ]
+        ]
+      }
+    ]
+  }
+}
