@@ -3162,7 +3162,80 @@ function renderAnalytics() {
     },
   });
 
-  // 5) Scatter holes × price
+  // 5) Designer top 12
+  const designerCounts = {};
+  for (const c of allCourses) {
+    if (!c.designer) continue;
+    const first = c.designer.split(',')[0].split('(')[0].trim();
+    if (!first) continue;
+    designerCounts[first] = (designerCounts[first] || 0) + 1;
+  }
+  const designerTop = Object.entries(designerCounts)
+    .map(([name, n]) => ({ name, n }))
+    .sort((a, b) => b.n - a.n)
+    .slice(0, 12);
+  destroyChart('designer');
+  _charts.designer = new Chart(document.getElementById('chartDesigner'), {
+    type: 'bar',
+    data: {
+      labels: designerTop.map(x => x.name.length > 24 ? x.name.slice(0, 24) + '…' : x.name),
+      datasets: [{
+        label: '코스 수',
+        data: designerTop.map(x => x.n),
+        backgroundColor: t.gold,
+        borderRadius: 4,
+      }],
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { beginAtZero: true, grid: { color: t.grid }, ticks: { precision: 0 } },
+        y: { grid: { display: false } },
+      },
+    },
+  });
+
+  // 6) Opening-year timeline (10-year buckets)
+  const yearBins = {};
+  for (const c of allCourses) {
+    if (!c.year_opened) continue;
+    const decade = Math.floor(c.year_opened / 10) * 10;
+    yearBins[decade] = (yearBins[decade] || 0) + 1;
+  }
+  const decades = Object.keys(yearBins).map(Number).sort((a, b) => a - b);
+  // Fill missing decades with 0 for a continuous timeline
+  if (decades.length) {
+    const lo = decades[0], hi = decades[decades.length - 1];
+    for (let d = lo; d <= hi; d += 10) yearBins[d] = yearBins[d] || 0;
+  }
+  const decadesFilled = Object.keys(yearBins).map(Number).sort((a, b) => a - b);
+
+  destroyChart('timeline');
+  _charts.timeline = new Chart(document.getElementById('chartTimeline'), {
+    type: 'bar',
+    data: {
+      labels: decadesFilled.map(d => `${d}s`),
+      datasets: [{
+        label: '개장 코스 수',
+        data: decadesFilled.map(d => yearBins[d]),
+        backgroundColor: t.accent,
+        borderRadius: 3,
+        barPercentage: 0.85,
+      }],
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { beginAtZero: true, grid: { color: t.grid }, ticks: { precision: 0 } },
+        x: { grid: { display: false } },
+      },
+    },
+  });
+
+  // 7) Scatter holes × price
   const STATUS_COLOR = {
     operating: '#16a34a',
     closed_temporary: '#94a3b8',
@@ -3267,6 +3340,10 @@ const I18N = {
     'chart.parentRevDesc': '상장사·자회사 기준, IDR Trillion',
     'chart.scatter': '홀 수 × 가격 산점도',
     'chart.scatterDesc': '9/18/27홀 코스의 토 AM 가격 분포 — 마커 크기는 모회사 매출, 색상은 운영 상태',
+    'chart.designer': '설계자별 코스 수 (Top 12)',
+    'chart.designerDesc': '유명 코스 설계자가 인도네시아에 남긴 코스 수',
+    'chart.timeline': '개장년도 타임라인',
+    'chart.timelineDesc': '1872년 식민지 시대부터 2025년까지의 개장 분포',
   },
   en: {
     'tab.map': 'Map',
@@ -3311,6 +3388,10 @@ const I18N = {
     'chart.parentRevDesc': 'Listed companies + subsidiaries, IDR trillion',
     'chart.scatter': 'Holes × price scatter',
     'chart.scatterDesc': 'Sat AM price by hole count — bubble size = parent revenue, color = operating status',
+    'chart.designer': 'Top course designers (Top 12)',
+    'chart.designerDesc': 'Famous course architects active in Indonesia',
+    'chart.timeline': 'Opening-year timeline',
+    'chart.timelineDesc': 'From the 1872 colonial era through 2025',
   },
 };
 

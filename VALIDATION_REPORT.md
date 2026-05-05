@@ -432,3 +432,66 @@ python -X utf8 merge_crawled.py
 | 중단 후 재시작 | `crawl_state.json`에 30초마다 done_ids + results 체크포인트 |
 | 같은 출처 중복 등록 | `(source_url, slot, value_idr)` 키로 dedup |
 
+---
+
+## 2차 자율 작업 (Phase G~K, 2026-05-06)
+
+사용자가 "4시간 자율 진행 + 별도 승인 없이"로 위임. 실제 진행:
+
+### Phase G — 분석 탭 (Chart.js) · 완료
+신규 "분석" 탭 추가. 4개 KPI 카드 (전체 코스, 평균/중앙/최고 토 AM 가격, 상장 그룹 산하 코스 수)와 7개 Chart.js 시각화:
+1. 토 AM 그린피 분포 히스토그램 (8 bucket)
+2. 지역별 평균 토 AM 그린피 (3+ 코스 지역만, horizontal bar)
+3. 운영 상태 도넛 (마커 색상 토큰과 동일)
+4. 모회사 FY2024 매출 Top 10 (IDR Trillion, 자회사 dedupe)
+5. 설계자별 코스 수 Top 12 (Peter Thomson 6, Jack Nicklaus 6 등)
+6. 개장년도 타임라인 (1872~2025 decade bucket)
+7. 홀×가격 bubble scatter (size=모회사 매출, color=운영상태)
+
+테마 변경 시 자동 재렌더 (`MutationObserver` + `data-theme`).
+
+### Phase H — 모바일 반응형 + 다크모드 · 완료
+기존 920px 단일 breakpoint → 640px 추가:
+- 모달이 phone에서 bottom sheet 스타일 (max-height 92vh, top 모서리만 둥글게)
+- 가격 비교 row가 2x2 grid로 reflow
+- Map controls 가로 스크롤
+- Analytics 카드 padding/font 축소, charts 200px
+
+다크모드: `src-cat-pill.k-{official|platform|aggregator|sns}` 4종에 명시적 dark 색상 triple 추가 (lighter foreground + saturated background).
+
+### Phase I — 자료 보강 · 완료
+미사용 풍부 데이터 발견 → 디테일 패널에 노출:
+- `operating_status.coord_notes` 132개: collapsible `<details>` 블록 ("좌표 신뢰도 메모")
+- `operating_status.evidence` (URL + 자유 텍스트): 신규 evidence-section 카드, confidence 뱃지(high/medium/low)와 last_verified 노출
+
+### Phase J — 마이크로 인터랙션 + a11y · 완료
+- `--t-spring` 스프링 timing 추가
+- 모달 fade-in + scale-in, 디테일 패널 panelSlideIn, KPI 카드 staggered fadeIn (0/60/120/180ms)
+- KPI 숫자 countUp (700ms easeOutCubic, requestAnimationFrame)
+- `:focus-visible` 명시 outline 2px accent + 4px halo
+- `prefers-reduced-motion` 모든 애니메이션 10us로 단축
+
+### Phase K — KO/EN 토글 · 완료
+- `data-i18n` / `data-i18n-placeholder` 어트리뷰트
+- `I18N` 사전 (KO/EN), 50+ key (탭, 필터, KPI, 7개 차트 제목·설명, 검색 placeholder)
+- `applyI18n(lang)` 텍스트/placeholder 양쪽 swap, `<html lang>` 갱신, localStorage persist
+- 분석 탭이 보이는 상태에서 토글 → 차트 자동 재렌더
+- `.lang-toggle` 헤더 우측 KO/EN 2버튼 pill, 다크모드 contrast OK
+
+### Phase L — 검수 · 완료
+- README.md 완전 갱신 (특징·자동 크롤 파이프라인 워크플로우)
+- 본 보고서 갱신
+- cache-bust `v=20260506b` 적용
+
+### 2차 작업 Git 이력
+| Commit | 내용 |
+|---|---|
+| `3d44fe6` | UI: source_details + crawled_summary 출처 비교 모달·이력 카드 노출 |
+| `2791a0e` | Analytics tab — KPIs + 5 Chart.js visualizations |
+| `8fbd12d` | Mobile responsiveness ≤640px + dark-mode color polish |
+| `9763b4e` | Operating-status evidence + coord notes in detail panel |
+| `b0ce154` | Polish: micro-interactions + a11y focus + count-up KPIs |
+| `7ce8a25` | i18n: KO/EN toggle for primary UI labels |
+
+(차트 2개 추가 + README/REPORT 최종 commit은 본 phase 완료 시 함께 push)
+
