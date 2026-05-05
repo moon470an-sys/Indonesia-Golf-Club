@@ -370,6 +370,11 @@ input, select, textarea { font-family: inherit; }
   padding: var(--sp-4);
   border-bottom: 1px solid var(--border-subtle);
   background: var(--bg-muted);
+  flex-shrink: 0;
+  /* When the region popover expands, only the filters region scrolls —
+     the search bar stays pinned at top, course list stays at bottom. */
+  max-height: 60vh;
+  overflow-y: auto;
 }
 .filter-group { margin-bottom: var(--sp-3); }
 .filter-group:last-child { margin-bottom: 0; }
@@ -462,15 +467,13 @@ input, select, textarea { font-family: inherit; }
 .region-multi-text.has-selection { color: var(--accent); font-weight: 600; }
 .region-multi-caret { font-size: 10px; color: var(--text-muted); }
 .region-multi-popover {
-  position: absolute;
-  top: calc(100% + 4px);
-  left: 0;
-  right: 0;
-  z-index: 800;
+  /* In-flow expansion: the popover pushes following filters down rather
+     than overlapping them. Keeps the sidebar scrollable on small screens. */
+  margin-top: 6px;
   background: var(--bg-surface);
   border: 1px solid var(--border);
   border-radius: var(--r-md);
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-sm);
   padding: 8px;
   display: flex;
   flex-direction: column;
@@ -510,9 +513,13 @@ input, select, textarea { font-family: inherit; }
 .region-multi-list {
   flex: 1;
   overflow-y: auto;
-  max-height: 220px;
+  max-height: 200px;
   display: flex;
   flex-direction: column;
+  /* Subtle inset border-top to separate from search/actions when scrolled */
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 4px;
+  margin-top: 2px;
 }
 .region-multi-list label {
   display: flex;
