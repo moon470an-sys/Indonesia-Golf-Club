@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=20260506d" />
+  <link rel="stylesheet" href="style.css?v=20260506e" />
 </head>
 <body>
   <header class="topbar">
@@ -215,10 +215,13 @@
     <div class="table-toolbar">
       <input type="search" id="financeSearch" placeholder="🔍 검색 (이름·모회사·티커)" autocomplete="off" />
       <select id="financeStatusFilter">
+        <option value="all" selected>전체 (재무 정보 보유)</option>
         <option value="listed">상장사만</option>
-        <option value="all">전체 (재무 정보 보유)</option>
         <option value="subsidiary-of-listed">상장사 자회사</option>
         <option value="state-owned">국영기업</option>
+        <option value="government">정부 운영</option>
+        <option value="military">군 운영</option>
+        <option value="tbk-reporting-not-yet-traded">Tbk 등록 (IDX 미거래)</option>
         <option value="private">비상장</option>
       </select>
       <span class="table-counter"><strong id="financeVisibleCount">0</strong>개 / 85</span>
@@ -351,6 +354,6 @@
           crossorigin=""></script>
   <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-  <script src="app.js?v=20260506d"></script>
+  <script src="app.js?v=20260506e"></script>
 </body>
 </html>

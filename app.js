@@ -2915,7 +2915,7 @@ function _tickerYahooHref(ticker, isIDX) {
 function renderFinanceTable() {
   const tbody = document.getElementById('financeTableBody');
   const search = (document.getElementById('financeSearch')?.value || '').trim().toLowerCase();
-  const statusF = document.getElementById('financeStatusFilter')?.value || 'listed';
+  const statusF = document.getElementById('financeStatusFilter')?.value || 'all';
   if (!tbody) return;
 
   // Universe: only courses with meaningful financials (gates out 52 stubs)
