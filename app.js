@@ -1604,17 +1604,53 @@ function gogolfSourceInfo(c) {
 }
 
 // For a single slot, return all (price, srcInfo) candidates.
+// Sources combine, in order:
+//   1. fees_2026_05 primary rates (legacy / hand-curated)
+//   2. fees_gogolf_reference (legacy / curated)
+//   3. fees_2026_05.source_details — populated by the crawl pipeline (v3+),
+//      one entry per (source_url × slot) after per-URL median collapse.
 function getSlotCandidates(c, slot) {
   const out = [];
+  const seenUrls = new Set();
+
   const pri = getPrimaryRates(c);
+  const priInfo = primarySourceCategory(c);
   if (pri[slot] != null) {
-    out.push({ price: pri[slot], src: primarySourceCategory(c), origin: 'primary' });
+    out.push({ price: pri[slot], src: priInfo, origin: 'primary' });
+    if (priInfo.url) seenUrls.add(priInfo.url);
   }
   const gg = getGoGolfRates(c);
   const ggInfo = gogolfSourceInfo(c);
   if (gg && gg[slot] != null && ggInfo) {
     out.push({ price: gg[slot], src: ggInfo, origin: 'gogolf' });
+    if (ggInfo.url) seenUrls.add(ggInfo.url);
   }
+
+  // Crawled candidates from source_details — one row per source URL
+  const sd = (c.fees_2026_05 || {}).source_details || [];
+  for (const d of sd) {
+    if (!d || d.slot !== slot) continue;
+    const url = d.source_url;
+    if (!url || seenUrls.has(url)) continue;
+    seenUrls.add(url);
+    const info = labelSource(url, c.website);
+    const cat = SRC_TAB_OF_KIND[info.kind] || 'news';
+    out.push({
+      price: d.value_idr,
+      src: {
+        kind: cat,
+        label: d.publisher || info.label,
+        host: info.host,
+        url,
+        date: (d.fetched_at || '').slice(0, 10) || null,
+      },
+      origin: 'crawled',
+      n_collapsed: d.n_collapsed_at_url || null,
+      from_pdf: !!d.from_pdf,
+      tier: d.tier,
+    });
+  }
+
   return out;
 }
 
@@ -1761,6 +1797,53 @@ function renderSourceHistory(c) {
     }
   }
 
+  // Crawled candidates from source_details — group entries per source URL,
+  // not per slot, so each URL becomes one history row spanning all slots
+  // it provided values for.
+  const sd = (f.source_details || []);
+  if (sd.length) {
+    const byUrl = new Map();
+    const seenSrcUrls = new Set([
+      priInfo.url || (f.sources || [])[0] || '',
+      ...(f.sources || []),
+      gg?.source_url || '',
+    ].filter(Boolean));
+    for (const d of sd) {
+      if (!d || !d.source_url || !d.slot) continue;
+      // Skip URLs already represented by primary or gogolf paths
+      if (seenSrcUrls.has(d.source_url) && byUrl.has(d.source_url) === false) {
+        // Still want to add slot-prices to existing group if any —
+        // but those rows already get covered by primary loop. Skip.
+        continue;
+      }
+      const key = d.source_url;
+      if (!byUrl.has(key)) {
+        const info = labelSource(d.source_url, c.website);
+        byUrl.set(key, {
+          label: d.publisher || info.label,
+          url: d.source_url,
+          host: info.host,
+          kind: SRC_TAB_OF_KIND[info.kind] || 'news',
+          date: (d.fetched_at || '').slice(0, 10) || null,
+          tier: d.tier,
+          from_pdf: !!d.from_pdf,
+          n_collapsed: d.n_collapsed_at_url || null,
+          slots: [],
+          slotsSeen: new Set(),
+          isCrawled: true,
+        });
+      }
+      const g = byUrl.get(key);
+      if (g.slotsSeen.has(d.slot)) continue;
+      g.slotsSeen.add(d.slot);
+      g.slots.push({ slot: d.slot, price: d.value_idr });
+    }
+    for (const g of byUrl.values()) {
+      groups[g.kind] ??= [];
+      groups[g.kind].push(g);
+    }
+  }
+
   const ORDER = ['official', 'platform', 'sns', 'aggregator', 'news'];
   const TITLE = SRC_CAT_LABEL || {};
   const allEmpty = ORDER.every(k => (groups[k] || []).length === 0);
@@ -1775,8 +1858,14 @@ function renderSourceHistory(c) {
       ? `<a class="hist-link" href="${escapeHtml(entry.url)}" target="_blank" rel="noopener">원문 ↗</a>`
       : '';
     const conf = entry.confidence === 'low' ? '<span class="hist-conf low">참고용</span>' : '';
-    return `<div class="hist-row">
-      <div class="hist-row-head"><span class="hist-label">${escapeHtml(entry.label)}</span>${conf}${dateHtml}${linkHtml}</div>
+    const crawledTag = entry.isCrawled
+      ? `<span class="hist-crawled-tag" title="자동 크롤로 추출된 출처">자동 · Tier ${entry.tier ?? '?'}${entry.from_pdf ? ' · PDF' : ''}</span>`
+      : '';
+    const collapseTag = (entry.n_collapsed && entry.n_collapsed > 1)
+      ? `<span class="hist-collapse-tag" title="이 페이지에서 ${entry.n_collapsed}개 가격 추출 → median 사용">${entry.n_collapsed}개 추출/median</span>`
+      : '';
+    return `<div class="hist-row${entry.isCrawled ? ' is-crawled' : ''}">
+      <div class="hist-row-head"><span class="hist-label">${escapeHtml(entry.label)}</span>${conf}${crawledTag}${collapseTag}${dateHtml}${linkHtml}</div>
       <div class="hist-slots">${slotsHtml || '<span class="muted">—</span>'}</div>
     </div>`;
   };
@@ -2663,10 +2752,17 @@ function openPriceModal(courseId, slot) {
     const link = x.src.url
       ? `<a class="src-link" href="${escapeHtml(x.src.url)}" target="_blank" rel="noopener">원문 ↗</a>`
       : '';
+    const originLabel = x.origin === 'gogolf' ? 'gogolf.co.id 추출'
+      : x.origin === 'crawled' ? `자동 크롤 (Tier ${x.tier ?? '?'})${x.from_pdf ? ' · PDF' : ''}`
+      : '';
+    const collapseNote = (x.n_collapsed && x.n_collapsed > 1)
+      ? `페이지 내 ${x.n_collapsed}개 가격 추출 → median 사용`
+      : '';
     const meta = [
       x.src.host || '',
-      x.src.date ? `게시·확인 ${x.src.date}` : '',
-      x.origin === 'gogolf' ? 'gogolf.co.id 추출' : '',
+      x.src.date ? `확인 ${x.src.date}` : '',
+      originLabel,
+      collapseNote,
     ].filter(Boolean).join(' · ');
     return `<div class="price-source-row${i === 0 ? ' is-trusted' : ''}">
       <span class="src-cat-pill k-${cat}">${SRC_CAT_LABEL[cat] || cat}</span>
