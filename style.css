@@ -73,6 +73,7 @@
   --t-fast: 120ms ease;
   --t-base: 180ms ease;
   --t-slow: 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  --t-spring: 320ms cubic-bezier(0.34, 1.56, 0.64, 1);
 
   /* === Layout === */
   --topbar-h: 60px;
@@ -752,6 +753,61 @@ input, select, textarea { font-family: inherit; }
   transition: all var(--t-fast);
 }
 .sidebar-toggle:hover { background: var(--bg-muted); }
+
+/* === Micro-interactions === */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes modalSlideIn {
+  from { opacity: 0; transform: translateY(8px) scale(0.985); }
+  to   { opacity: 1; transform: translateY(0)   scale(1); }
+}
+@keyframes overlayFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes panelSlideIn {
+  from { transform: translateX(20px); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+/* Detail panel — slide in when populated */
+.detail-panel.open .detail-content {
+  animation: panelSlideIn var(--t-slow) forwards;
+}
+
+/* Modal overlay + dialog */
+.modal-overlay { animation: overlayFade var(--t-base); }
+.modal-dialog  { animation: modalSlideIn var(--t-spring); }
+
+/* Empty / loading slate */
+.empty-state { animation: fadeIn var(--t-base); }
+
+/* Course list items — subtle stagger */
+.course-list .course-item { animation: fadeIn var(--t-base); }
+
+/* Focus indicators — keyboard a11y */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--r-sm);
+}
+button:focus-visible,
+.tab:focus-visible,
+.chip:focus-visible,
+.region-multi-trigger:focus-visible {
+  outline-offset: 1px;
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+/* Reduce motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
 
 /* === Markers ===
    - Color encodes operating status (green/gray/amber)
@@ -2070,7 +2126,20 @@ input, select, textarea { font-family: inherit; }
   border-radius: var(--r-lg);
   padding: var(--sp-4) var(--sp-5);
   box-shadow: var(--shadow-xs);
+  animation: fadeIn 360ms ease both;
+  transition: transform var(--t-fast), box-shadow var(--t-fast);
 }
+.kpi-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.kpi-card:nth-child(1) { animation-delay: 0ms; }
+.kpi-card:nth-child(2) { animation-delay: 60ms; }
+.kpi-card:nth-child(3) { animation-delay: 120ms; }
+.kpi-card:nth-child(4) { animation-delay: 180ms; }
+.chart-card {
+  animation: fadeIn 360ms ease both;
+  animation-delay: 200ms;
+  transition: box-shadow var(--t-fast);
+}
+.chart-card:hover { box-shadow: var(--shadow-sm); }
 .kpi-label {
   font-size: 11px;
   font-weight: 600;
@@ -2105,6 +2174,7 @@ input, select, textarea { font-family: inherit; }
   border-radius: var(--r-lg);
   padding: var(--sp-4) var(--sp-5);
   box-shadow: var(--shadow-xs);
+  /* animation defined above for fade + delay */
 }
 .chart-card.chart-card-wide { grid-column: span 2; }
 .chart-card h3 {

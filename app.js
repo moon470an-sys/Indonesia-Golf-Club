@@ -2996,17 +2996,35 @@ function renderAnalytics() {
   const maxRow = prices.reduce((m, x) => x.p > m.p ? x : m, prices[0] || { p: 0 });
 
   const setText = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
-  setText('kpiTotal', counts.total);
+
+  // Count-up animation for numeric KPI values (skips when reduce-motion is set)
+  const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+  const countUp = (id, target, format = (n) => String(n), duration = 700) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (reduceMotion || target === 0) { el.textContent = format(target); return; }
+    const start = performance.now();
+    const tick = (now) => {
+      const t = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - t, 3); // easeOutCubic
+      el.textContent = format(Math.round(target * eased));
+      if (t < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+  countUp('kpiTotal', counts.total);
   setText('kpiOperating', counts.operating);
-  setText('kpiAvgPrice', avg ? fmtIDR(Math.round(avg)) : '—');
+  if (avg) countUp('kpiAvgPrice', Math.round(avg), n => fmtIDR(n) || '—');
+  else setText('kpiAvgPrice', '—');
   setText('kpiMedianPrice', median ? fmtIDR(median) : '—');
-  setText('kpiMaxPrice', maxRow.p ? fmtIDR(maxRow.p) : '—');
+  if (maxRow.p) countUp('kpiMaxPrice', maxRow.p, n => fmtIDR(n) || '—');
+  else setText('kpiMaxPrice', '—');
   setText('kpiMaxName', maxRow.c?.name_en || '—');
   const listedCount = allCourses.filter(c => {
     const ls = c.financials?.listed_status;
     return ls === 'listed' || ls === 'subsidiary-of-listed';
   }).length;
-  setText('kpiListedCount', listedCount);
+  countUp('kpiListedCount', listedCount);
 
   // 1) Price distribution histogram
   const buckets = [
