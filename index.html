@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=20260506i" />
+  <link rel="stylesheet" href="style.css?v=20260506j" />
 </head>
 <body>
   <header class="topbar">
@@ -28,10 +28,10 @@
       <span class="subtitle" id="headerSubtitle" aria-live="polite">데이터 로딩 중…</span>
     </div>
     <nav class="tabs" role="tablist">
-      <button class="tab active" data-tab="map" role="tab" aria-selected="true" data-i18n="tab.map">지도</button>
+      <button class="tab active" data-tab="analytics" role="tab" aria-selected="true" data-i18n="tab.analytics">대시보드</button>
+      <button class="tab" data-tab="map" role="tab" aria-selected="false" data-i18n="tab.map">지도</button>
       <button class="tab" data-tab="table" role="tab" aria-selected="false" data-i18n="tab.table">가격 데이터</button>
       <button class="tab" data-tab="finance" role="tab" aria-selected="false" data-i18n="tab.finance">재무 분석</button>
-      <button class="tab" data-tab="analytics" role="tab" aria-selected="false" data-i18n="tab.analytics">분석</button>
     </nav>
     <div class="topbar-meta">
       <span class="counter" id="counterPill" hidden><strong id="visibleCount">0</strong> / <span id="totalCount">0</span></span>
@@ -45,7 +45,7 @@
     </div>
   </header>
 
-  <main class="layout" id="mapView" data-view="map">
+  <main class="layout" id="mapView" data-view="map" hidden>
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-header">
         <input type="search" id="searchInput" placeholder="🔍 골프장 이름·지역·설계자 검색" autocomplete="off" data-i18n-placeholder="search.placeholder" />
@@ -253,9 +253,9 @@
     </div>
   </section>
 
-  <section class="analytics-view" id="analyticsView" hidden>
+  <section class="analytics-view" id="analyticsView">
     <div class="analytics-header">
-      <h2 data-i18n="analytics.title">인도네시아 골프장 데이터 분석</h2>
+      <h2 data-i18n="analytics.title">인도네시아 골프장 대시보드</h2>
       <p class="analytics-subtitle" data-i18n="analytics.subtitle">137개 코스의 가격·지역·운영상태·재무 데이터를 한눈에</p>
     </div>
 
@@ -358,6 +358,6 @@
           crossorigin=""></script>
   <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-  <script src="app.js?v=20260506i"></script>
+  <script src="app.js?v=20260506j"></script>
 </body>
 </html>

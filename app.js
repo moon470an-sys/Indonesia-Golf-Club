@@ -1690,11 +1690,9 @@ function renderFeeCell(c, slot, cat) {
   const showRange = (cat === 'all') && visible.length > 1 && diffPct >= 1;
   const showWarn  = visible.length > 1 && diffPct >= 30;
 
-  const dot = `<span class="src-dot k-${primary.src.kind}" title="${escapeHtml(primary.src.label)}"></span>`;
   let priceHtml;
   if (showRange) {
-    priceHtml = `<span class="fee-range"><span class="fee-range-pri">${fmtIDR(lo)} ~ ${fmtIDR(hi)}</span>` +
-      `<span class="fee-range-alt">출처별 ±${diffPct.toFixed(0)}%</span></span>`;
+    priceHtml = `<span class="fee-range"><span class="fee-range-pri">${fmtIDR(lo)} ~ ${fmtIDR(hi)}</span></span>`;
   } else {
     priceHtml = fmtIDR(primary.price);
   }
@@ -1705,7 +1703,7 @@ function renderFeeCell(c, slot, cat) {
   const dimClass = dimmed ? ' dim' : '';
   const premiumClass = (slot === 'satAm' || slot === 'sunAm') ? ' fee-premium' : '';
   const ariaLabel = `${SLOT_LABEL[slot]} ${fmtIDR(primary.price)} — 출처 ${primary.src.label}${visible.length > 1 ? `, 외 ${visible.length - 1}개` : ''}`;
-  return `<td class="num fee fee-cell${dimClass}${premiumClass}" data-fee-cell="${slot}" data-course-id="${escapeHtml(c.id)}" tabindex="0" role="button" aria-label="${escapeHtml(ariaLabel)}">${priceHtml}${dot}${warn}${extra}</td>`;
+  return `<td class="num fee fee-cell${dimClass}${premiumClass}" data-fee-cell="${slot}" data-course-id="${escapeHtml(c.id)}" tabindex="0" role="button" aria-label="${escapeHtml(ariaLabel)}">${priceHtml}${warn}${extra}</td>`;
 }
 
 // === Detail-panel: operating-status evidence ===
@@ -1761,12 +1759,11 @@ function renderPriceMatrix(c) {
     const diffPct = lo > 0 ? ((hi - lo) / lo) * 100 : 0;
     const showRange = cands.length > 1 && diffPct >= 1;
     const warn = diffPct >= 30 ? ' <span class="price-warn" title="출처별 ±' + diffPct.toFixed(0) + '%">⚠️</span>' : '';
-    const dot = `<span class="src-dot k-${primary.src.kind}" title="${escapeHtml(primary.src.label)}"></span>`;
     const valHtml = showRange
       ? `${fmtIDR(lo)} ~ ${fmtIDR(hi)}`
       : fmtIDR(primary.price);
     cells[slot] = {
-      html: `<button class="matrix-cell-btn" type="button" data-fee-cell="${slot}" data-course-id="${escapeHtml(c.id)}">${valHtml}${dot}${warn}</button>`,
+      html: `<button class="matrix-cell-btn" type="button" data-fee-cell="${slot}" data-course-id="${escapeHtml(c.id)}">${valHtml}${warn}</button>`,
       count: cands.length,
     };
   }
@@ -3412,7 +3409,7 @@ const I18N = {
     'tab.map': '지도',
     'tab.table': '가격 데이터',
     'tab.finance': '재무 분석',
-    'tab.analytics': '분석',
+    'tab.analytics': '대시보드',
 
     'finance.hint': '💡 <strong>티커</strong> 클릭 시 Yahoo Finance가 새 탭으로 열립니다. <strong>재무 추이</strong> 셀을 클릭하면 5년 매출·순이익·자산 그래프를 볼 수 있습니다.',
 
@@ -3433,7 +3430,7 @@ const I18N = {
 
     'search.placeholder': '🔍 골프장 이름·지역·설계자 검색',
 
-    'analytics.title': '인도네시아 골프장 데이터 분석',
+    'analytics.title': '인도네시아 골프장 대시보드',
     'analytics.subtitle': '137개 코스의 가격·지역·운영상태·재무 데이터를 한눈에',
     'kpi.total': '전체 골프장',
     'kpi.operating': '운영중',
@@ -3462,7 +3459,7 @@ const I18N = {
     'tab.map': 'Map',
     'tab.table': 'Price Data',
     'tab.finance': 'Financials',
-    'tab.analytics': 'Analytics',
+    'tab.analytics': 'Dashboard',
 
     'finance.hint': '💡 Click <strong>Ticker</strong> to open Yahoo Finance in a new tab. Click the <strong>Trend</strong> cell to view 5-year revenue / net profit / total assets charts.',
 
@@ -3483,7 +3480,7 @@ const I18N = {
 
     'search.placeholder': '🔍 Search by name, region, or designer',
 
-    'analytics.title': 'Indonesia Golf Course Analytics',
+    'analytics.title': 'Indonesia Golf Course Dashboard',
     'analytics.subtitle': 'Pricing, regions, status, and financials across 137 courses at a glance',
     'kpi.total': 'Total courses',
     'kpi.operating': 'operating',
@@ -3553,14 +3550,20 @@ document.addEventListener('click', e => {
 });
 
 // === Boot ===
+// Default landing tab is the dashboard (analytics) — map / price / finance
+// are hidden until the user clicks them.
+document.getElementById('mapView').style.display = 'none';
 document.getElementById('tableView').style.display = 'none';
 const _financeView = document.getElementById('financeView');
 if (_financeView) _financeView.style.display = 'none';
-const _analyticsView = document.getElementById('analyticsView');
-if (_analyticsView) _analyticsView.style.display = 'none';
 applyI18n(_currentLang);
 renderCourseListSkeleton();
 initMap();
 addLegendControl();
 addZoomPresetsControl();
-loadData();
+loadData().then(() => {
+  // Once courses are in memory, populate the dashboard charts so the
+  // landing view isn't blank. Map/table/finance still render lazily on
+  // their first tab activation.
+  renderAnalytics();
+});
