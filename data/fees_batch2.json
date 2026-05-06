@@ -1,0 +1,470 @@
+[
+  {
+    "id": "finna-pasuruan",
+    "name_en": "Finna Golf & Country Club Resort",
+    "region": "Pasuruan, East Java",
+    "fees_2026_05": {
+      "weekday": {
+        "visitor_walk_in_idr": 535000,
+        "weekend_idr": null,
+        "member_idr": null,
+        "affiliated_member_idr": 400000
+      },
+      "weekend": {
+        "visitor_walk_in_idr": 945000
+      },
+      "twilight_idr": null,
+      "caddy_idr": null,
+      "cart_idr": null,
+      "insurance_idr": null,
+      "locker_idr": null,
+      "ball_idr": null,
+      "service_pct": null,
+      "tax_ppn_pct": 11,
+      "currency": "IDR",
+      "all_inclusive": true,
+      "inclusions_note": "Walk-in visitor 18-hole rate of IDR 535k (weekday) / 945k (weekend) bundles green fee, cart, caddy, tax, insurance per SICC reciprocal listing & gogolf.co.id. Affiliated SICC members IDR 400k (incl. cart+caddy). Caddy gratuity given separately. gogolf review also cites Rp 495k/660k 'nett' which appears to be off-peak/promo rate; SICC figures used as primary.",
+      "sources": [
+        "https://gis.sicc.org.sg/?page_id=10881",
+        "https://gogolf.co.id/en/golf-course/finna-golf-and-country-club",
+        "https://finnagolf.com/"
+      ],
+      "last_verified": "2026-04-30",
+      "official_site_status": "live (homepage 403 to fetcher; rate page not directly extractable)",
+      "rates_visible_on_official": false
+    }
+  },
+  {
+    "id": "taman-dayu",
+    "name_en": "Taman Dayu Golf Club & Resort",
+    "region": "Pasuruan, East Java",
+    "fees_2026_05": {
+      "weekday": {
+        "green_fee_idr_low": 740000,
+        "green_fee_idr_high": 930000,
+        "fee_card_from_idr": 800000,
+        "ramadan_promo_idr": 690000
+      },
+      "weekend": {
+        "green_fee_idr_low": 950000,
+        "green_fee_idr_high": 1900000
+      },
+      "twilight_idr": null,
+      "caddy_idr": 210000,
+      "cart_idr": 200000,
+      "insurance_idr": null,
+      "locker_idr": null,
+      "ball_idr": null,
+      "service_pct": null,
+      "tax_ppn_pct": 11,
+      "currency": "IDR",
+      "all_inclusive": false,
+      "inclusions_note": "Green fee separate from caddy and cart. Caddy fee IDR 210,000; cart IDR 200,000/round. Weekday range 740k-930k by tee slot; weekend 950k-1.9M. Golfcards lists 'from IDR 800k' with Tue-Thu 20% discount for fee-card members. Ramadan 2026 promo Rp 690k all-in. Official 'The Golf Rates 2025' page exists but image-based, not extractable via WebFetch.",
+      "sources": [
+        "https://gogolf.co.id/en/golf-course/taman-dayu-golf-club",
+        "https://www.golfcards.com/course/taman-dayu-golf-club-resort/",
+        "https://golftimes.id/2026/02/19/taman-dayu-padukan-iftar-staycation-dan-golf-teknologi-tinggi-di-ramadan-2026/",
+        "https://tamandayu.com/"
+      ],
+      "last_verified": "2026-04-30",
+      "official_site_status": "live; rates page image-based",
+      "rates_visible_on_official": false
+    }
+  },
+  {
+    "id": "graha-famili",
+    "name_en": "Golf Graha Famili & Country Club",
+    "region": "Surabaya, East Java",
+    "fees_2026_05": {
+      "weekday": {
+        "visitor_idr": 590000
+      },
+      "weekend": {
+        "visitor_idr": 770000
+      },
+      "twilight_idr": null,
+      "caddy_idr": null,
+      "cart_idr": null,
+      "insurance_idr": null,
+      "locker_idr": null,
+      "ball_idr": null,
+      "service_pct": null,
+      "tax_ppn_pct": 11,
+      "currency": "IDR",
+      "all_inclusive": null,
+      "inclusions_note": "Weekday IDR 590k, weekend IDR 770k for visitors per gogolf review. Includes locker room, driving range, caddie assistance access (additional service fees apply). Members get unlimited green fees + clubhouse benefits. Caddy/cart/insurance not separately published. Official golfgraha.com 'Golf Rate' link returned 404 to fetcher.",
+      "sources": [
+        "https://gogolf.co.id/en/golf-course/graha-famili-golf-country-club",
+        "https://www.golfgraha.com/",
+        "https://www.golfasian.com/golf-courses/indonesia-golf-courses/surabaya/golf-graha-famili-country-club/"
+      ],
+      "last_verified": "2026-04-30",
+      "official_site_status": "live; rate sub-page 404",
+      "rates_visible_on_official": false
+    }
+  },
+  {
+    "id": "araya-malang",
+    "name_en": "Araya Golf & Family Club",
+    "region": "Malang, East Java",
+    "fees_2026_05": {
+      "weekday": {
+        "green_fee_usd": 30,
+        "monday_package_idr": 145000,
+        "9hole_package_idr": 150000,
+        "happy_day_wed_thu_idr": 190000
+      },
+      "weekend": {
+        "green_fee_usd": 54
+      },
+      "twilight_idr": null,
+      "caddy_idr": null,
+      "cart_idr": null,
+      "insurance_idr": null,
+      "locker_idr": null,
+      "ball_idr": null,
+      "service_pct": null,
+      "tax_ppn_pct": 11,
+      "currency": "USD/IDR",
+      "all_inclusive": null,
+      "inclusions_note": "playgolf.id lists USD 30 midweek / USD 54 weekend (~IDR 480k / 870k). Monday Golf Package Rp 145k; Tue-Fri 9-hole Rp 150k; Wed/Thu Happy Day Rp 190k incl. meal. Buggy 'included' per playgolf.id. Official Araya 'Our Rates' page is a 2022 image flyer not text-extractable.",
+      "sources": [
+        "https://playgolf.id/golf_courses/araya-golf-family-club/",
+        "https://arayagolf.com/golf-course/our-rates/",
+        "https://gmclub.id/arayagolfsukha/",
+        "https://arayagolf.com/driving-range-package-2/"
+      ],
+      "last_verified": "2026-04-30",
+      "official_site_status": "live; rate flyer image-only",
+      "rates_visible_on_official": false
+    }
+  },
+  {
+    "id": "jember-glantangan",
+    "name_en": "Glantangan Golf Club (Padang Golf Glantangan)",
+    "region": "Jember, East Java",
+    "fees_2026_05": {
+      "weekday": {
+        "green_fee_idr": 125000
+      },
+      "weekend": {
+        "green_fee_idr": 150000
+      },
+      "twilight_idr": null,
+      "caddy_idr": null,
+      "cart_idr": null,
+      "insurance_idr": null,
+      "locker_idr": null,
+      "ball_idr": null,
+      "service_pct": null,
+      "tax_ppn_pct": null,
+      "currency": "IDR",
+      "all_inclusive": null,
+      "inclusions_note": "Weekday IDR 125k, weekend IDR 150k for 18 holes per agro-rolas/local listings. Course is municipally-managed plantation course; ~150 male caddies (also plantation laborers) available. Pricing source dated; current rates not formally republished. No official website.",
+      "sources": [
+        "https://agrorolas.wordpress.com/objek-wisata/7-wisata-agro-glantangan-wag-jember/",
+        "https://www.golfpass.com/travel-advisor/courses/38320-glantangan-golf-club",
+        "https://us.trip.com/travel-guide/attraction/tempurejo/padang-golf-glantangan-144867458/",
+        "https://www.instagram.com/glantangangolf_coursejember/"
+      ],
+      "last_verified": "2026-04-30",
+      "official_site_status": "no official website",
+      "rates_visible_on_official": false
+    }
+  },
+  {
+    "id": "singosari-malang",
+    "name_en": "Padang Golf Abdulrachman Saleh",
+    "region": "Singosari, Malang, East Java",
+    "fees_2026_05": {
+      "weekday": {
+        "green_fee_usd": 16
+      },
+      "weekend": {
+        "green_fee_usd": 19
+      },
+      "twilight_idr": null,
+      "caddy_idr": null,
+      "cart_idr": null,
+      "insurance_idr": null,
+      "locker_idr": null,
+      "ball_idr": null,
+      "service_pct": null,
+      "tax_ppn_pct": null,
+      "currency": "USD",
+      "all_inclusive": null,
+      "inclusions_note": "playgolf.id lists USD 16 midweek / USD 19 weekend (~IDR 260k / 310k). Often cited as 'cheapest course'. Buggy not included; on-fairway buggy not allowed. TNI-AU (Air Force) operated, public access. No official website.",
+      "sources": [
+        "https://playgolf.id/golf_courses/abdul-rachman-saleh-padang-golf/",
+        "https://www.golfpass.com/travel-advisor/courses/38152-abdulrachman-saleh-golf-course",
+        "https://www.golflux.com/course/abdulrachman-saleh-golf-course/",
+        "https://golftimes.id/2025/01/02/tiga-tempat-golf-terbaik-di-malang-raya-untuk-pencinta-olahraga/"
+      ],
+      "last_verified": "2026-04-30",
+      "official_site_status": "no official website",
+      "rates_visible_on_official": false
+    }
+  },
+  {
+    "id": "new-kuta",
+    "name_en": "New Kuta Golf",
+    "region": "Pecatu, Bali",
+    "fees_2026_05": {
+      "weekday": {
+        "domestic_kims_idr": 1900000,
+        "foreign_idr": 2600000
+      },
+      "weekend": {
+        "domestic_kims_idr": 2600000,
+        "foreign_idr": 2600000
+      },
+      "twilight_idr": null,
+      "caddy_idr": "included",
+      "cart_idr": "included",
+      "insurance_idr": "included",
+      "locker_idr": null,
+      "ball_idr": 65000,
+      "ball_idr_100": 105000,
+      "club_hire_premium_dom_idr": 500000,
+      "club_hire_premium_foreign_idr": 600000,
+      "shoes_hire_dom_idr": 90000,
+      "shoes_hire_foreign_idr": 155000,
+      "service_pct": null,
+      "tax_ppn_pct": 11,
+      "currency": "IDR",
+      "all_inclusive": true,
+      "inclusions_note": "Per official newkutagolf.co.id/golf 2026 rate: weekday Rp 1.9M (dom/KIMS), Rp 2.6M (foreign); weekend Rp 2.6M (all). Includes green fee, cart, caddy, players insurance, 11% PPN, 2 bottles mineral water. Driving range 50/100 balls Rp 65k/105k. Club hire premium Rp 500k (dom) / Rp 600k (foreign). Shoe hire Rp 90k/155k.",
+      "sources": [
+        "https://newkutagolf.co.id/golf",
+        "https://gogolf.co.id/en/golf-course/new-kuta-golf",
+        "https://baligolfcourses.com/new-kuta-golf/"
+      ],
+      "last_verified": "2026-04-30",
+      "official_site_status": "live, rates published",
+      "rates_visible_on_official": true
+    }
+  },
+  {
+    "id": "handara-bali",
+    "name_en": "Handara Golf & Resort Bali",
+    "region": "Bedugul, Bali (highlands)",
+    "fees_2026_05": {
+      "weekday": {
+        "green_fee_idr": 2000000,
+        "green_fee_idr_published_from": 1800000,
+        "green_fee_usd_discounted": 125
+      },
+      "weekend": {
+        "green_fee_idr": 2000000
+      },
+      "sunset_after_1400_idr": 950000,
+      "9hole_idr": 1200000,
+      "extra_18_idr": 1400000,
+      "extra_9_idr": 1000000,
+      "rider_fee_weekday_idr": 300000,
+      "rider_fee_weekend_idr": 600000,
+      "twilight_idr": 950000,
+      "caddy_idr": "included",
+      "cart_idr": "included",
+      "insurance_idr": "included",
+      "caddy_tip_min_idr": 200000,
+      "club_hire_usd": 30,
+      "package_with_lunch_transfer_idr": 1750000,
+      "service_pct": null,
+      "tax_ppn_pct": 11,
+      "currency": "IDR",
+      "all_inclusive": true,
+      "inclusions_note": "Standard 18-hole IDR 2,000,000 includes green fee, cart, caddy, insurance, tax (per gogolf 2026). Golfcards lists 'from IDR 1,800,000' with 20% discount everyday + holidays. Sunset (after 14:00) IDR 950k. 9-hole IDR 1.2M; extra 18 IDR 1.4M; extra 9 IDR 1M. Non-player rider fee weekday IDR 300k / weekend IDR 600k. Caddy tip min IDR 200k/player. USD 125 net via select agents; package incl. lunch + return transfer IDR 1.75M (min 2 pax). Official site blocked WebFetch.",
+      "sources": [
+        "https://adeevatours.com/handara-bali-golf-green-fee/",
+        "https://gogolf.co.id/en/golf-course/bali-handara-golf-resort",
+        "https://www.golfcards.com/course/handara-golf-resort-bali/",
+        "https://www.handaragolfresort.com/golf/",
+        "https://www.golfsavers.com/indonesia/bali-golf-courses/handara-golf-resort-bali"
+      ],
+      "last_verified": "2026-04-30",
+      "official_site_status": "live (403 to fetcher)",
+      "rates_visible_on_official": false
+    }
+  },
+  {
+    "id": "bukit-pandawa",
+    "name_en": "Bukit Pandawa Golf & Country Club",
+    "region": "Pandawa Cliff, South Bali",
+    "fees_2026_05": {
+      "weekday": {
+        "green_fee_idr_foreign": 1700000,
+        "green_fee_idr_dom_kitas": 1300000
+      },
+      "weekend": {
+        "green_fee_idr_foreign": 1850000,
+        "green_fee_idr_dom_kitas": 1450000,
+        "weekend_surcharge_idr": 150000
+      },
+      "twilight_idr": null,
+      "caddy_idr": "included",
+      "cart_idr": "included (shared 2-per-cart)",
+      "insurance_idr": "included",
+      "ball_idr": null,
+      "locker_idr": null,
+      "club_hire_usd": 30,
+      "shoe_hire_usd": 12,
+      "private_transfer_idr": 500000,
+      "service_pct": null,
+      "tax_ppn_pct": 10,
+      "currency": "IDR",
+      "all_inclusive": true,
+      "inclusions_note": "18 par-3 championship layout. Weekday Rp 1.7M (foreign) / Rp 1.3M (domestic & KITAS). Weekend/holiday adds Rp 150k surcharge. Includes green fee, caddy, shared cart, 2 bottles water, insurance. Per baligolfers source: rates exclude 10% government tax (note: Bali sometimes still publishes 10% pre-PPN-11%). Club hire USD 30, shoes USD 12. Private pickup IDR 500k/car. 30% deposit to confirm.",
+      "sources": [
+        "https://gobaligolf.com/bukit-pandawa-golf-course-package/",
+        "https://baligolfers.com/tour/bukit-pandawa-golf-weekend-public-holiday-green-fee/",
+        "https://adeevatours.com/bukit-pandawa-golf-green-fee/",
+        "https://www.bukitpandawagolf.com/"
+      ],
+      "last_verified": "2026-04-30",
+      "official_site_status": "live; rates not visible on homepage",
+      "rates_visible_on_official": false
+    }
+  },
+  {
+    "id": "lombok-sire-beach",
+    "name_en": "Sire Beach Golf Club / Lombok Golf Kosaido Country Club",
+    "region": "Sire Bay, North Lombok, NTB",
+    "fees_2026_05": {
+      "weekday": {
+        "green_fee_idr_standard": 1485000,
+        "green_fee_idr_foreign": 1500000,
+        "green_fee_idr_local_kitas": 1000000
+      },
+      "weekend": {
+        "green_fee_idr_standard": 1485000
+      },
+      "twilight_idr": null,
+      "9hole_idr": "available (rate not published)",
+      "caddy_idr": "included",
+      "cart_idr": null,
+      "insurance_idr": null,
+      "locker_idr": null,
+      "shoes_hire_idr": 165000,
+      "club_hire_idr": 275000,
+      "service_pct": null,
+      "tax_ppn_pct": 11,
+      "currency": "IDR",
+      "all_inclusive": false,
+      "inclusions_note": "Standard 18-hole IDR 1,485,000 same weekday/weekend per gogolf 2026 review; includes caddy, tax, hotel-to-course shuttle. Foreign visitor up to IDR 1.5M; local/KITAS ~IDR 1M. Buggy fee separate. Shoes IDR 165k, clubs IDR 275k. Official sirebeachgolfclub.com homepage and /golf-rates/ blocked WebFetch (ECONNREFUSED).",
+      "sources": [
+        "https://gogolf.co.id/en/golf-course/lombok-golf-kosaido",
+        "https://sirebeachgolfclub.com/golf-rates/",
+        "https://www.lomboknetwork.net/tours-prices/golfing-in-lombok/kosaido-golf-lombok/",
+        "https://www.golfpass.com/travel-advisor/courses/38229-sire-beach-golf-club"
+      ],
+      "last_verified": "2026-04-30",
+      "official_site_status": "live (fetcher blocked)",
+      "rates_visible_on_official": false
+    }
+  },
+  {
+    "id": "pertamina-balikpapan",
+    "name_en": "Pertamina Balikpapan Golf Club (Padang Sepinggan Course)",
+    "region": "Balikpapan, East Kalimantan",
+    "fees_2026_05": {
+      "weekday": {
+        "non_member_idr": 250000,
+        "member_idr": 200000,
+        "green_fee_usd": 30
+      },
+      "weekend": {
+        "non_member_idr": 450000,
+        "member_idr": 300000,
+        "green_fee_usd": 47
+      },
+      "twilight_idr": null,
+      "caddy_idr": null,
+      "cart_idr": null,
+      "insurance_idr": null,
+      "locker_idr": null,
+      "service_pct": null,
+      "tax_ppn_pct": null,
+      "currency": "IDR",
+      "all_inclusive": false,
+      "inclusions_note": "Pertamina-employee oriented but accepts public. Mandiri promo data cites non-member IDR 250k (wd) / 450k (we), member IDR 200k/300k (~2016 baseline). playgolf.id/golflux list USD 30 midweek / USD 47 weekend (~IDR 480k / 760k) which may reflect non-member walk-in present-day. Buggy not included; cart not standard on fairway. Mandiri/credit-card cashback IDR 100k. No official website.",
+      "sources": [
+        "https://playgolf.id/golf_courses/pertamina-balikpapan-golf-club/",
+        "https://www.golflux.com/course/pertamina-balikpapan-golf-club/",
+        "https://www.mandirikartukredit.com/hot-offer?qo=terbaru&kategori=golf&page=2",
+        "https://www.facebook.com/pertaminagolfbalikpapan"
+      ],
+      "last_verified": "2026-04-30",
+      "official_site_status": "no official website",
+      "rates_visible_on_official": false
+    }
+  },
+  {
+    "id": "karang-joang",
+    "name_en": "Karang Joang Golf & Country Club (Senyiur Hotels)",
+    "region": "Balikpapan Utara, East Kalimantan",
+    "fees_2026_05": {
+      "weekday": {
+        "green_fee_usd": 13
+      },
+      "weekend": {
+        "green_fee_usd": 19
+      },
+      "twilight_idr": null,
+      "caddy_idr": null,
+      "cart_idr": null,
+      "insurance_idr": null,
+      "locker_idr": null,
+      "service_pct": null,
+      "tax_ppn_pct": null,
+      "currency": "USD",
+      "gran_senyiur_guest_discount_pct": 50,
+      "all_inclusive": false,
+      "inclusions_note": "playgolf.id lists USD 13 weekday / USD 19 weekend (~IDR 210k / 310k). Carts and caddies available; not bundled in green fee. 50% green-fee discount for Gran Senyiur Hotel guests. No official course website; managed via Gran Senyiur service detail page.",
+      "sources": [
+        "https://gran.senyiurhotels.com/service/detail/5",
+        "https://playgolf.id/golf_courses/karang-joang-golf-and-country-club/",
+        "https://www.golflux.com/course/karang-joang-golf-country-club/",
+        "https://www.instagram.com/karangjoanggolfbpn/"
+      ],
+      "last_verified": "2026-04-30",
+      "official_site_status": "no dedicated course website",
+      "rates_visible_on_official": false
+    }
+  },
+  {
+    "id": "bintang-sintuk-bontang",
+    "name_en": "Hotel Bintang Sintuk / Lapangan Golf Bukit Sintuk PKT",
+    "region": "Bontang, East Kalimantan",
+    "fees_2026_05": {
+      "weekday": {
+        "green_fee_idr": null,
+        "green_fee_usd": null
+      },
+      "weekend": {
+        "green_fee_idr": null,
+        "green_fee_usd": null
+      },
+      "twilight_idr": null,
+      "caddy_idr": null,
+      "cart_idr": null,
+      "insurance_idr": null,
+      "locker_idr": null,
+      "service_pct": null,
+      "tax_ppn_pct": null,
+      "currency": null,
+      "all_inclusive": null,
+      "inclusions_note": "PKT (Pupuk Kaltim) employee-oriented 18-hole course, Par 72, 6,245 yards. Carts and caddies listed available per Hole19 / GolfPass / GolfLux but no published green fee. Hotel Bintang Sintuk on-site (3-star); contact +62 81254 80857 or marketing.hotelbintangsintuk@gmail.com for tee-time pricing. No public rate card found.",
+      "sources": [
+        "https://www.golfpass.com/travel-advisor/courses/38309-hotel-bintang-sintuk",
+        "https://www.golflux.com/course/hotel-bintang-sintuk-golf-course/",
+        "https://www.hole19golf.com/courses/bukit-sintuk-bintang-golf-course",
+        "http://www.hotelbintangsintuk.com/index.php?hbs=room",
+        "https://www.instagram.com/explore/locations/1404879892920937/lapangan-golf-bukit-sintuk-pkt-bontang/"
+      ],
+      "last_verified": "2026-04-30",
+      "official_site_status": "hotel website live; no published green-fee rates",
+      "rates_visible_on_official": false
+    }
+  }
+]
