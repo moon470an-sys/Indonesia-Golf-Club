@@ -2865,11 +2865,11 @@ document.getElementById('showFinanceCols')?.addEventListener('change', (e) => {
 
 // === Finance table rendering ===
 
-// A financials row is shown only when there's something genuinely useful to
-// show: an actual number (revenue/profit/assets/...) OR a ticker that yields
-// a working Yahoo Finance link. Rows whose only content is parent-group /
-// operating-company strings get hidden — listing them in a "재무 분석" tab
-// is misleading because the actual financial figures are missing.
+// Strict policy: a row is shown only when it has at least one actual
+// financial-statement number (revenue/profit/assets/segment/membership/...).
+// Ticker-only rows (parent group + listed_status + ticker but no audited
+// numbers) are hidden — listing them in a "재무 분석" tab is misleading
+// because every numeric column displays "—".
 function _hasMeaningfulFinancials(fin) {
   if (!fin || typeof fin !== 'object') return false;
   const NUM_KEYS = ['revenue_idr','revenue_idr_h1','net_profit_idr','net_profit_idr_h1',
@@ -2879,9 +2879,20 @@ function _hasMeaningfulFinancials(fin) {
   for (const k of NUM_KEYS) {
     if (typeof fin[k] === 'number' && fin[k] !== 0) return true;
   }
-  const ticker = fin.idx_ticker || fin.foreign_ticker;
-  if (typeof ticker === 'string' && ticker.trim()) return true;
   return false;
+}
+
+// Extract a bare ticker code suitable for matching against
+// company_financials_5y.json (which keys by code only — "BSDE", "PWON", etc).
+// Strips parenthetical comments, exchange prefix (e.g. "SGX:5IG" -> "5IG"),
+// and trailing whitespace.
+function _bareTicker(raw) {
+  if (!raw) return null;
+  const head = String(raw).split('(')[0].trim();
+  if (!head) return null;
+  const tail = head.includes(':') ? head.split(':').pop() : head;
+  const code = tail.trim().split(/\s+/)[0];
+  return code || null;
 }
 
 // Robust source-URL extraction: handles strings, {url:...} objects,
@@ -2942,12 +2953,19 @@ function renderFinanceTable() {
   }
 
   if (rows.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="12"><div class="empty-state">
+    tbody.innerHTML = `<tr><td colspan="13"><div class="empty-state">
       <div class="empty-emoji">📊</div>
       <div class="empty-title">조건에 맞는 재무 정보가 없습니다</div>
       <div class="empty-hint">상장 구분 필터를 "전체"로 바꾸거나 검색어를 비워 보세요.</div>
     </div></td></tr>`;
     return;
+  }
+
+  // Pre-load 5y financials so the trend cell knows which tickers have data.
+  // If this is the first call, schedule a re-render once the fetch resolves
+  // so the 📈 buttons appear without a manual reload.
+  if (!financialsByTicker) {
+    loadFinancialsIfNeeded().then(() => renderFinanceTable());
   }
 
   tbody.innerHTML = rows.map(c => {
@@ -2997,6 +3015,14 @@ function renderFinanceTable() {
           ? `<span class="muted" title="등록된 출처 ${allFinSources.length}개 모두 유효한 URL이 아님">${allFinSources.length}개 (URL 없음)</span>`
           : '<span class="muted">—</span>');
 
+    // Trend column: opens 5y modal if we have data for the parent ticker.
+    const bare = _bareTicker(ticker);
+    const has5y = bare && financialsByTicker && financialsByTicker[bare.toUpperCase()];
+    const trendHtml = has5y
+      ? `<button class="trend-btn" type="button" data-ticker="${escapeHtml(bare)}"`
+        + ` title="${escapeHtml(bare)} 5년 매출·순이익·자산 추이 보기">📈 5Y</button>`
+      : '<span class="muted" title="해당 모회사의 다년치 재무 데이터가 아직 준비되지 않음">—</span>';
+
     return `<tr>
       <td><strong>${escapeHtml(c.name_en)}</strong></td>
       <td>${escapeHtml(c.region || '—')}</td>
@@ -3009,10 +3035,23 @@ function renderFinanceTable() {
       <td class="num">${escapeHtml(fmtBigIDR(fin.total_assets_idr) || '—')}</td>
       <td class="num">${segHtml}</td>
       <td class="num">${memHtml}</td>
+      <td class="trend-cell">${trendHtml}</td>
       <td>${srcCellHtml}</td>
     </tr>`;
   }).join('');
 }
+
+// Click handler for the new "재무 추이" column — opens the existing
+// 5-year ticker modal (renderTickerModal) which already has Chart.js
+// visualizations for revenue, net profit, total assets, and balance.
+document.addEventListener('click', async (e) => {
+  const btn = e.target.closest('.trend-btn[data-ticker]');
+  if (!btn) return;
+  e.preventDefault();
+  const ticker = btn.dataset.ticker;
+  await loadFinancialsIfNeeded();
+  renderTickerModal(ticker);
+});
 
 document.getElementById('financeSearch')?.addEventListener('input', renderFinanceTable);
 document.getElementById('financeStatusFilter')?.addEventListener('change', renderFinanceTable);
@@ -3375,6 +3414,8 @@ const I18N = {
     'tab.finance': '재무 분석',
     'tab.analytics': '분석',
 
+    'finance.hint': '💡 <strong>티커</strong> 클릭 시 Yahoo Finance가 새 탭으로 열립니다. <strong>재무 추이</strong> 셀을 클릭하면 5년 매출·순이익·자산 그래프를 볼 수 있습니다.',
+
     'filter.active': '활성 필터',
     'filter.reset': '초기화',
     'filter.region': '지역',
@@ -3422,6 +3463,8 @@ const I18N = {
     'tab.table': 'Price Data',
     'tab.finance': 'Financials',
     'tab.analytics': 'Analytics',
+
+    'finance.hint': '💡 Click <strong>Ticker</strong> to open Yahoo Finance in a new tab. Click the <strong>Trend</strong> cell to view 5-year revenue / net profit / total assets charts.',
 
     'filter.active': 'Active filters',
     'filter.reset': 'Reset',
@@ -3478,7 +3521,11 @@ function applyI18n(lang) {
   const dict = I18N[lang] || I18N.ko;
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
-    if (dict[key] != null) el.textContent = dict[key];
+    if (dict[key] == null) return;
+    // Allow inline tags (<strong>, <em>, ...) by detecting an angle bracket
+    // in the value. Plain strings still go through textContent for safety.
+    if (/[<>]/.test(dict[key])) el.innerHTML = dict[key];
+    else el.textContent = dict[key];
   });
   document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
     const key = el.getAttribute('data-i18n-placeholder');

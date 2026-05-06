@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=20260506h" />
+  <link rel="stylesheet" href="style.css?v=20260506i" />
 </head>
 <body>
   <header class="topbar">
@@ -226,6 +226,9 @@
       </select>
       <span class="table-counter"><strong id="financeVisibleCount">0</strong>개 / 85</span>
     </div>
+    <p class="finance-hint" data-i18n="finance.hint">
+      💡 <strong>티커</strong> 클릭 시 Yahoo Finance가 새 탭으로 열립니다. <strong>재무 추이</strong> 셀을 클릭하면 5년 매출·순이익·자산 그래프를 볼 수 있습니다.
+    </p>
     <div class="table-scroll">
       <table class="finance-table">
         <thead>
@@ -241,6 +244,7 @@
             <th data-sort="total_assets_idr" class="num">총자산</th>
             <th data-sort="course_segment_revenue_idr" class="num">골프 세그먼트<br>매출</th>
             <th data-sort="membership_price_idr" class="num">회원권</th>
+            <th>재무 추이</th>
             <th>출처</th>
           </tr>
         </thead>
@@ -354,6 +358,6 @@
           crossorigin=""></script>
   <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-  <script src="app.js?v=20260506h"></script>
+  <script src="app.js?v=20260506i"></script>
 </body>
 </html>
