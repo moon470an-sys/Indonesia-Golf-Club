@@ -537,9 +537,9 @@ function renderCourseList() {
     return;
   }
 
-  // Sort: by name (descending)
+  // Sort: by name (ascending)
   const sorted = [...filteredCourses].sort((a, b) =>
-    b.name_en.localeCompare(a.name_en));
+    a.name_en.localeCompare(b.name_en));
 
   sorted.forEach(c => {
     const item = document.createElement('div');
@@ -1135,7 +1135,7 @@ function escapeHtml(s) {
 }
 
 // === Tabs ===
-let tableSort = { key: 'name_en', dir: 'desc' };
+let tableSort = { key: 'name_en', dir: 'asc' };
 
 document.querySelectorAll('.tab').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -2941,7 +2941,7 @@ function renderFinanceTable() {
     return true;
   });
 
-  rows.sort((a, b) => b.name_en.localeCompare(a.name_en));
+  rows.sort((a, b) => a.name_en.localeCompare(b.name_en));
 
   // Counter shows "<visible> / <universe>" (real meaningful total, not 137)
   const counter = document.getElementById('financeVisibleCount');
