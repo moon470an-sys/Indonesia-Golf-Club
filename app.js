@@ -2865,18 +2865,13 @@ document.getElementById('showFinanceCols')?.addEventListener('change', (e) => {
 
 // === Finance table rendering ===
 
-// A financials object is "meaningful" only if it carries at least one
-// non-empty fact. The dataset has financials:{} stubs on every course;
-// without this gate the finance table prints 137 rows (most empty).
+// A financials row is shown only when there's something genuinely useful to
+// show: an actual number (revenue/profit/assets/...) OR a ticker that yields
+// a working Yahoo Finance link. Rows whose only content is parent-group /
+// operating-company strings get hidden — listing them in a "재무 분석" tab
+// is misleading because the actual financial figures are missing.
 function _hasMeaningfulFinancials(fin) {
   if (!fin || typeof fin !== 'object') return false;
-  const STR_KEYS = ['parent_group','parent_company_full_name','operating_company',
-                    'idx_ticker','foreign_ticker','listed_status','figure_origin',
-                    'recent_news','membership_price_notes','ownership_notes'];
-  for (const k of STR_KEYS) {
-    const v = fin[k];
-    if (typeof v === 'string' && v.trim() && v.trim() !== 'unknown') return true;
-  }
   const NUM_KEYS = ['revenue_idr','revenue_idr_h1','net_profit_idr','net_profit_idr_h1',
                     'total_assets_idr','course_segment_revenue_idr',
                     'membership_price_idr','membership_price_usd','employees',
@@ -2884,8 +2879,8 @@ function _hasMeaningfulFinancials(fin) {
   for (const k of NUM_KEYS) {
     if (typeof fin[k] === 'number' && fin[k] !== 0) return true;
   }
-  if ((fin.sources || []).length > 0) return true;
-  if ((fin.parent_financial_sources || []).length > 0) return true;
+  const ticker = fin.idx_ticker || fin.foreign_ticker;
+  if (typeof ticker === 'string' && ticker.trim()) return true;
   return false;
 }
 
