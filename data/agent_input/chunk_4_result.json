@@ -1,0 +1,10 @@
+{
+  "verified_count": 19,
+  "issues": [
+    {"id": "pakuwon-golf-surabaya", "field": "revenue_idr", "current_value": null, "correct_value": 6670000000000, "evidence_url": "https://www.pakuwonjati.com/en/posts/81/year-2024-adjusted-net-income-pwon-grow-14-", "note": "PWON FY2024 net revenue Rp 6.67 trillion."},
+    {"id": "pakuwon-golf-surabaya", "field": "net_profit_idr", "current_value": null, "correct_value": 2620000000000, "evidence_url": "https://www.pakuwonjati.com/en/posts/81/year-2024-adjusted-net-income-pwon-grow-14-", "note": "PWON FY2024 adjusted net profit Rp 2.62T (+14% YoY)."},
+    {"id": "pakuwon-golf-surabaya", "field": "total_assets_idr", "current_value": null, "correct_value": 35371085149000, "evidence_url": "https://finance.yahoo.com/quote/PWON.JK/balance-sheet/", "note": "PWON total assets Rp 35.37T at 31 Dec 2024."},
+    {"id": "pakuwon-golf-surabaya", "field": "revenue_year", "current_value": null, "correct_value": "2024", "evidence_url": "https://www.pakuwonjati.com/en/posts/81/year-2024-adjusted-net-income-pwon-grow-14-", "note": "Fiscal year for added FY2024 figures."},
+    {"id": "bintang-sintuk-bontang", "field": "listed_status", "current_value": "subsidiary-of-listed", "correct_value": "tbk-reporting-not-yet-traded", "evidence_url": "https://www.idx.co.id/StaticData/NewsAndAnnouncement/ANNOUNCEMENTSTOCK/From_EREP/202405/20250514142137-54417-0/PIHC_LKT_2024.pdf", "note": "PIHC reports financials to IDX as bond issuer; equity wholly state-owned, not publicly traded."}
+  ]
+}

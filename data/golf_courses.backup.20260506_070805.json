@@ -202,7 +202,7 @@
         "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       },
       "financials": {
-        "operating_company": "PT Asiamadya Selaras",
+        "operating_company": "PT Royale Halim Golf Development",
         "parent_group": "Private (Indonesian individual investors); land arrangement linked to TNI AU concession",
         "idx_ticker": null,
         "listed_status": "private",
@@ -220,7 +220,7 @@
         "sources": [
           "https://www.royalejakartagolf.com/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "membership_source_strength": "tier-1-official-structure-only",
         "membership_sources": [
           {
@@ -229,17 +229,6 @@
             "publisher": "Royale Jakarta Golf Club",
             "date_published": null,
             "date_accessed": "2026-05-01"
-          }
-        ],
-        "verification_log": [
-          {
-            "verified_at": "2026-05-06",
-            "field": "operating_company",
-            "old_value": "PT Royale Halim Golf Development",
-            "new_value": "PT Asiamadya Selaras",
-            "evidence_url": "https://id.linkedin.com/company/pt-asiamadya-selaras",
-            "note": "Royale Jakarta Golf Club is operated by PT Asiamadya Selaras (LinkedIn + business directories confirm).",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
           }
         ]
       }
@@ -363,10 +352,10 @@
         "parent_group": "Pondok Indah Group (sister entity to PT Metropolitan Kentjana Tbk/MKPI; distinct legal entity)",
         "idx_ticker": "PIPG",
         "listed_status": "tbk-reporting-not-yet-traded",
-        "revenue_idr": 197570521436,
-        "revenue_year": "2024",
-        "net_profit_idr": 55903815772,
-        "total_assets_idr": 446060061475,
+        "revenue_idr": null,
+        "revenue_year": null,
+        "net_profit_idr": null,
+        "total_assets_idr": null,
         "course_segment_disclosed": true,
         "membership_price_idr": null,
         "membership_price_notes": "Verified Pondok Indah Golf does NOT publish membership rates publicly. The original site (golfpondokindah.com) only lists Green Fees; Membership is contact-only (+62-21-7694906). Historical Republika 2014 article cited Rp 70M original card price escalating ~Rp 1.5B in resale market — 10+ year stale, not reliable for 2026. Previous '2.5B' figure was unverified estimate.",
@@ -411,55 +400,7 @@
             "date_accessed": "2026-05-01"
           }
         ],
-        "last_verified": "2026-05-06",
-        "verification_log": [
-          {
-            "verified_at": "2026-05-06",
-            "field": "revenue_idr",
-            "old_value": null,
-            "new_value": 197570521436,
-            "evidence_url": "https://www.golfpondokindah.com/document/2024_Final_Report_as_per_31_Dec_2024.pdf",
-            "note": "FY2024 audited revenue Rp 197,570,521,436 from PIPG's 31-Dec-2024 financial statements.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "net_profit_idr",
-            "old_value": null,
-            "new_value": 55903815772,
-            "evidence_url": "https://www.golfpondokindah.com/document/2024_Final_Report_as_per_31_Dec_2024.pdf",
-            "note": "FY2024 audited net income Rp 55,903,815,772 from PIPG.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "total_assets_idr",
-            "old_value": null,
-            "new_value": 446060061475,
-            "evidence_url": "https://www.golfpondokindah.com/document/2024_Final_Report_as_per_31_Dec_2024.pdf",
-            "note": "FY2024 audited total assets Rp 446,060,061,475.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "revenue_year",
-            "old_value": null,
-            "new_value": "2024",
-            "evidence_url": "https://www.golfpondokindah.com/document/2024_Final_Report_as_per_31_Dec_2024.pdf",
-            "note": "Sets revenue_year to FY2024.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "parent_company_full_name",
-            "old_value": null,
-            "new_value": "PT Pondok Indah Padang Golf Tbk",
-            "evidence_url": "https://www.golfpondokindah.com/document/2024_Final_Report_as_per_31_Dec_2024.pdf",
-            "note": "PIPG is itself the legal entity (Tbk) and parent of the golf operation.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
-          }
-        ],
-        "parent_company_full_name": "PT Pondok Indah Padang Golf Tbk"
+        "last_verified": "2026-05-01"
       }
     },
     {
@@ -1104,8 +1045,8 @@
         "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       },
       "financials": {
-        "operating_company": "PT Preton Nusantara (course built by Inkopal/TNI AL Navy Cooperative; managed via PT Preton Nusantara)",
-        "parent_group": "TNI AL / Inkopal (Indonesian Navy Cooperative); commercial management via PT Preton Nusantara",
+        "operating_company": "Pengelola Padang Golf Pangkalan Jati (Kostrad / TNI AD)",
+        "parent_group": "TNI AD / Kostrad (Indonesian Army Strategic Reserve Command)",
         "idx_ticker": null,
         "listed_status": "military",
         "revenue_idr": null,
@@ -1120,27 +1061,7 @@
         "recent_news": null,
         "ownership_notes": "Located in Pangkalan Jati area straddling Depok/East Jakarta; affiliated with Indonesian Army (Kostrad) facilities.",
         "sources": [],
-        "last_verified": "2026-05-06",
-        "verification_log": [
-          {
-            "verified_at": "2026-05-06",
-            "field": "operating_company",
-            "old_value": "Pengelola Padang Golf Pangkalan Jati (Kostrad / TNI AD)",
-            "new_value": "PT Preton Nusantara (course built by Inkopal/TNI AL Navy Cooperative; managed via PT Preton Nusantara)",
-            "evidence_url": "https://gogolf.co.id/en/golf-course/padang-golf-pangkalan-jati",
-            "note": "Course was built by Induk Koperasi TNI Angkatan Laut (Inkopal, Navy), not Kostrad/TNI AD.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "parent_group",
-            "old_value": "TNI AD / Kostrad (Indonesian Army Strategic Reserve Command)",
-            "new_value": "TNI AL / Inkopal (Indonesian Navy Cooperative); commercial management via PT Preton Nusantara",
-            "evidence_url": "https://gogolf.co.id/en/golf-course/padang-golf-pangkalan-jati",
-            "note": "Founded 1976/79 by TNI AL (Navy).",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
-          }
-        ]
+        "last_verified": "2026-05-01"
       }
     },
     {
@@ -1780,7 +1701,7 @@
         "revenue_idr": 1017000000000,
         "revenue_year": "2024",
         "net_profit_idr": -690300000000,
-        "total_assets_idr": 13561474000000,
+        "total_assets_idr": null,
         "course_segment_disclosed": true,
         "membership_price_idr": null,
         "membership_price_notes": "Membership marketed alongside Modernland's Kota Modern residential project in Tangerang.",
@@ -1792,7 +1713,7 @@
           "https://www.idx.co.id/",
           "https://modernland.co.id/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "parent_company_full_name": "PT Modernland Realty Tbk",
         "revenue_idr_h1": null,
         "net_profit_idr_h1": null,
@@ -1815,18 +1736,7 @@
         ],
         "course_segment_revenue_idr": 74300000000,
         "course_segment_revenue_year": "2024",
-        "course_segment_notes": "MDLN explicitly discloses 'Golf Course & Club House Restaurant' segment revenue Rp 74.3B for FY2024 — among the most granular golf-segment numbers in any IDX filing.",
-        "verification_log": [
-          {
-            "verified_at": "2026-05-06",
-            "field": "total_assets_idr",
-            "old_value": null,
-            "new_value": 13561474000000,
-            "evidence_url": "https://stockanalysis.com/quote/idx/MDLN/financials/balance-sheet/",
-            "note": "MDLN FY2024 total assets Rp 13.56T.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
-          }
-        ]
+        "course_segment_notes": "MDLN explicitly discloses 'Golf Course & Club House Restaurant' segment revenue Rp 74.3B for FY2024 — among the most granular golf-segment numbers in any IDX filing."
       }
     },
     {
@@ -3417,7 +3327,7 @@
         "revenue_idr": 11340000000000,
         "revenue_year": "2024",
         "net_profit_idr": 18750000000000,
-        "total_assets_idr": 53783859000000,
+        "total_assets_idr": null,
         "course_segment_disclosed": false,
         "membership_price_idr": null,
         "membership_price_notes": "TIER-1 OFFICIAL structure-only: two Annual Playing Rights options (Full Week + Weekday Only) — pricing rendered as image, not text-extractable. Member green fees Rp 798k (Tue-Thu), Rp 898k (Fri); guest weekend Rp 1.49-2.30M. '9 Warriors' weekday early-tee package Rp 450k.",
@@ -3429,7 +3339,7 @@
           "https://www.lippokarawaci.co.id/",
           "https://www.idx.co.id/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "parent_company_full_name": "PT Lippo Karawaci Tbk",
         "revenue_idr_h1": null,
         "net_profit_idr_h1": null,
@@ -3465,17 +3375,6 @@
             "publisher": "Imperial Klub Golf",
             "date_published": null,
             "date_accessed": "2026-05-01"
-          }
-        ],
-        "verification_log": [
-          {
-            "verified_at": "2026-05-06",
-            "field": "total_assets_idr",
-            "old_value": null,
-            "new_value": 53783859000000,
-            "evidence_url": "https://stockanalysis.com/quote/idx/LPKR/financials/balance-sheet/",
-            "note": "LPKR FY2024 total assets Rp 53.78T.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
           }
         ]
       }
@@ -4294,10 +4193,10 @@
         "parent_group": "Sentul City Group",
         "idx_ticker": "BKSL",
         "listed_status": "subsidiary-of-listed",
-        "revenue_idr": 744068000000,
+        "revenue_idr": null,
         "revenue_year": "2024",
         "net_profit_idr": 17400000000,
-        "total_assets_idr": 21188291000000,
+        "total_assets_idr": null,
         "course_segment_disclosed": false,
         "membership_price_idr": null,
         "membership_price_notes": "Membership pricing not publicly disclosed; marketed alongside Sentul City highland residential.",
@@ -4309,7 +4208,7 @@
           "https://sentulcity.co.id/",
           "https://www.idx.co.id/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "parent_company_full_name": "PT Sentul City Tbk",
         "net_profit_idr_h1": null,
         "figure_origin": "audited_FY2024_partial",
@@ -4327,26 +4226,6 @@
             "publisher": "Liputan6",
             "date_published": "2025-01-15",
             "date_accessed": "2026-05-01"
-          }
-        ],
-        "verification_log": [
-          {
-            "verified_at": "2026-05-06",
-            "field": "revenue_idr",
-            "old_value": null,
-            "new_value": 744068000000,
-            "evidence_url": "https://stockanalysis.com/quote/idx/BKSL/financials/",
-            "note": "BKSL FY2024 revenue Rp 744.07B.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "total_assets_idr",
-            "old_value": null,
-            "new_value": 21188291000000,
-            "evidence_url": "https://stockanalysis.com/quote/idx/BKSL/financials/balance-sheet/",
-            "note": "BKSL FY2024 total assets Rp 21.19T.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
           }
         ]
       }
@@ -4546,10 +4425,10 @@
         "parent_group": "Sentul City Group",
         "idx_ticker": "BKSL",
         "listed_status": "subsidiary-of-listed",
-        "revenue_idr": 744068000000,
+        "revenue_idr": null,
         "revenue_year": "2024",
         "net_profit_idr": 17400000000,
-        "total_assets_idr": 21188291000000,
+        "total_assets_idr": null,
         "course_segment_disclosed": false,
         "membership_price_idr": null,
         "membership_price_notes": null,
@@ -4561,7 +4440,7 @@
           "https://sentulcity.co.id/",
           "https://www.idx.co.id/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "parent_company_full_name": "PT Sentul City Tbk",
         "net_profit_idr_h1": null,
         "figure_origin": "audited_FY2024_partial",
@@ -4579,26 +4458,6 @@
             "publisher": "Liputan6",
             "date_published": "2025-01-15",
             "date_accessed": "2026-05-01"
-          }
-        ],
-        "verification_log": [
-          {
-            "verified_at": "2026-05-06",
-            "field": "revenue_idr",
-            "old_value": null,
-            "new_value": 744068000000,
-            "evidence_url": "https://stockanalysis.com/quote/idx/BKSL/financials/",
-            "note": "BKSL FY2024 revenue Rp 744.07B.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "total_assets_idr",
-            "old_value": null,
-            "new_value": 21188291000000,
-            "evidence_url": "https://stockanalysis.com/quote/idx/BKSL/financials/balance-sheet/",
-            "note": "BKSL FY2024 total assets Rp 21.19T.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
           }
         ]
       }
@@ -5221,10 +5080,10 @@
         "parent_group": "Sentul City Group",
         "idx_ticker": "BKSL",
         "listed_status": "subsidiary-of-listed",
-        "revenue_idr": 744068000000,
+        "revenue_idr": null,
         "revenue_year": "2024",
         "net_profit_idr": 17400000000,
-        "total_assets_idr": 21188291000000,
+        "total_assets_idr": null,
         "course_segment_disclosed": false,
         "membership_price_idr": null,
         "membership_price_notes": null,
@@ -5236,7 +5095,7 @@
           "https://sentulcity.co.id/",
           "https://www.idx.co.id/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "parent_company_full_name": "PT Sentul City Tbk",
         "net_profit_idr_h1": null,
         "figure_origin": "audited_FY2024_partial",
@@ -5254,26 +5113,6 @@
             "publisher": "Liputan6",
             "date_published": "2025-01-15",
             "date_accessed": "2026-05-01"
-          }
-        ],
-        "verification_log": [
-          {
-            "verified_at": "2026-05-06",
-            "field": "revenue_idr",
-            "old_value": null,
-            "new_value": 744068000000,
-            "evidence_url": "https://stockanalysis.com/quote/idx/BKSL/financials/",
-            "note": "BKSL FY2024 revenue Rp 744.07B.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "total_assets_idr",
-            "old_value": null,
-            "new_value": 21188291000000,
-            "evidence_url": "https://stockanalysis.com/quote/idx/BKSL/financials/balance-sheet/",
-            "note": "BKSL FY2024 total assets Rp 21.19T.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
           }
         ]
       }
@@ -5584,8 +5423,8 @@
         "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       },
       "financials": {
-        "operating_company": "PT Gitamaya Interbuana Golf & Country",
-        "parent_group": "Midplaza Holding (Mochtar Riady-affiliated private holding)",
+        "operating_company": "PT Riverside Cibubur Golf (private operator)",
+        "parent_group": "Private",
         "idx_ticker": null,
         "listed_status": "private",
         "revenue_idr": null,
@@ -5600,27 +5439,7 @@
         "recent_news": null,
         "ownership_notes": "Cibubur (Bogor border) area private operator; not consolidated in any listed property group's segment reporting.",
         "sources": [],
-        "last_verified": "2026-05-06",
-        "verification_log": [
-          {
-            "verified_at": "2026-05-06",
-            "field": "operating_company",
-            "old_value": "PT Riverside Cibubur Golf (private operator)",
-            "new_value": "PT Gitamaya Interbuana Golf & Country",
-            "evidence_url": "https://www.midplaza.com/business/detail/riverside_golf_club",
-            "note": "Riverside Golf Club operated by PT Gitamaya Interbuana Golf & Country (Midplaza Holding).",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "parent_group",
-            "old_value": "Private",
-            "new_value": "Midplaza Holding (Mochtar Riady-affiliated private holding)",
-            "evidence_url": "https://www.midplaza.com/business/detail/riverside_golf_club",
-            "note": "Midplaza Holding lists Riverside Golf Club as portfolio business.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
-          }
-        ]
+        "last_verified": "2026-05-01"
       }
     },
     {
@@ -6193,13 +6012,13 @@
       },
       "financials": {
         "operating_company": "PT Suryamas Dutamakmur Tbk (Rancamaya township developer)",
-        "parent_group": "Sinar Mas Land (via PT Bumi Serpong Damai Tbk / BSDE — acquired 91.99% of SMDM on 23 Oct 2024)",
+        "parent_group": "Suryamas Dutamakmur Group",
         "idx_ticker": "SMDM",
-        "listed_status": "subsidiary-of-listed",
+        "listed_status": "listed",
         "revenue_idr": 694040000000,
         "revenue_year": "2024",
         "net_profit_idr": 123770000000,
-        "total_assets_idr": 3462272000000,
+        "total_assets_idr": null,
         "course_segment_disclosed": true,
         "membership_price_idr": null,
         "membership_price_notes": "Membership tied to Rancamaya township residential program; pricing details not always disclosed in IDX filings.",
@@ -6211,7 +6030,7 @@
           "https://www.idx.co.id/",
           "https://www.rancamaya.com/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "parent_company_full_name": "PT Suryamas Dutamakmur Tbk (BSDE/Sinar Mas Land subsidiary from 2024)",
         "revenue_idr_h1": null,
         "net_profit_idr_h1": null,
@@ -6230,35 +6049,6 @@
             "publisher": "EGINDO",
             "date_published": "2025-03-04",
             "date_accessed": "2026-05-01"
-          }
-        ],
-        "verification_log": [
-          {
-            "verified_at": "2026-05-06",
-            "field": "total_assets_idr",
-            "old_value": null,
-            "new_value": 3462272000000,
-            "evidence_url": "https://stockanalysis.com/quote/idx/SMDM/financials/balance-sheet/",
-            "note": "SMDM FY2024 total assets Rp 3.46T.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "parent_group",
-            "old_value": "Suryamas Dutamakmur Group",
-            "new_value": "Sinar Mas Land (via PT Bumi Serpong Damai Tbk / BSDE — acquired 91.99% of SMDM on 23 Oct 2024)",
-            "evidence_url": "https://www.kompas.com/properti/read/2024/12/18/140000621/resmi-sinarmas-akuisisi-suryamas-dutamakmur-lanjutkan-3-proyek-besar",
-            "note": "BSDE acquired 91.99% of SMDM in Oct 2024; SMDM now Sinar Mas Land subsidiary.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "listed_status",
-            "old_value": "listed",
-            "new_value": "subsidiary-of-listed",
-            "evidence_url": "https://www.idxchannel.com/market-news/sinar-mas-land-akuisisi-9199-persen-saham-suryamas-dutamakmur-smdm",
-            "note": "SMDM still listed but controlled (91.99%) by BSDE.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
           }
         ]
       }
@@ -6870,7 +6660,7 @@
         "listed_status": "subsidiary-of-listed",
         "revenue_idr": 1770000000000,
         "revenue_year": "2024",
-        "net_profit_idr": 658629000000,
+        "net_profit_idr": 679000000000,
         "total_assets_idr": 35830000000000,
         "course_segment_disclosed": true,
         "membership_price_idr": null,
@@ -6884,8 +6674,8 @@
           "https://www.idx.co.id/",
           "https://mncland.com/"
         ],
-        "last_verified": "2026-05-06",
-        "parent_company_full_name": "PT MNC Tourism Indonesia Tbk (formerly PT MNC Land Tbk; renamed July 2025)",
+        "last_verified": "2026-05-01",
+        "parent_company_full_name": "PT MNC Land Tbk",
         "revenue_idr_h1": null,
         "net_profit_idr_h1": null,
         "figure_origin": "audited_FY2024",
@@ -6928,26 +6718,6 @@
             "publisher": "Asian Golf Industry Federation",
             "date_published": "2025-03-01",
             "date_accessed": "2026-05-01"
-          }
-        ],
-        "verification_log": [
-          {
-            "verified_at": "2026-05-06",
-            "field": "parent_company_full_name",
-            "old_value": "PT MNC Land Tbk",
-            "new_value": "PT MNC Tourism Indonesia Tbk (formerly PT MNC Land Tbk; renamed July 2025)",
-            "evidence_url": "https://market.bisnis.com/read/20250703/192/1890100/mnc-land-kpig-resmi-ganti-nama-jadi-mnc-tourism-indonesia",
-            "note": "KPIG officially rebranded July 2025; ticker remains KPIG.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "net_profit_idr",
-            "old_value": 679000000000,
-            "new_value": 658629000000,
-            "evidence_url": "https://stockanalysis.com/quote/idx/KPIG/financials/",
-            "note": "FY2024 net income Rp 658.63B per stockanalysis.com (vs current Rp 679B).",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
           }
         ]
       }
@@ -7907,7 +7677,7 @@
       },
       "financials": {
         "operating_company": "PT Merapi Golf Gelanggang Wisata (Jakarta)",
-        "parent_group": "Original investor consortium led by Sahid Group (Sukamdani Sahid Gitosardjono); operating company PT Merapi Golf Gelanggang Wisata is private and is NOT a subsidiary of IDX-listed PT Hotel Sahid Jaya International Tbk (SHID)",
+        "parent_group": "Consortium of 12 investors (Sahid Group / Sukamdani Sahid Gitosardjono, Sudwikatmono, Yuwono Kolopaking, Mayjen H.R. Pramono, Hindarto Suvert Tantular, Sutrisno Eddy Tjokro, etc.)",
         "idx_ticker": null,
         "listed_status": "private",
         "revenue_idr": null,
@@ -7926,18 +7696,7 @@
           "https://www.mail-archive.com/siarlist@minipostgresql.org/msg00256.html",
           "https://jogjaprov.go.id/wisata/detail-wisata/201/2979"
         ],
-        "last_verified": "2026-05-06",
-        "verification_log": [
-          {
-            "verified_at": "2026-05-06",
-            "field": "parent_group",
-            "old_value": "Consortium of 12 investors (Sahid Group / Sukamdani Sahid Gitosardjono, Sudwikatmono, Yuwono Kolopaking, Mayjen H.R. Pramono, Hindarto Suvert Tantular, Sutrisno Eddy Tjokro, etc.)",
-            "new_value": "Original investor consortium led by Sahid Group (Sukamdani Sahid Gitosardjono); operating company PT Merapi Golf Gelanggang Wisata is private and is NOT a subsidiary of IDX-listed PT Hotel Sahid Jaya International Tbk (SHID)",
-            "evidence_url": "https://pthsji.com/financial-statements/",
-            "note": "SHID public filings do not list PT Merapi Golf as a consolidated subsidiary; the Sahid Group founder is one of several private co-investors in the course.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_2_result.json"
-          }
-        ]
+        "last_verified": "2026-05-01"
       }
     },
     {
@@ -8042,14 +7801,14 @@
         "last_verified": "2026-04-30"
       },
       "financials": {
-        "operating_company": "PT Antilope Madju Puri Indah (subsidiary of PT Jakarta Setiabudi Internasional Tbk; hotel operated under Hyatt franchise)",
-        "parent_group": "PT Jakarta Setiabudi Internasional Tbk (JSPT) — owner; Hyatt provides only the franchise/management brand",
-        "idx_ticker": "JSPT",
+        "operating_company": "Hyatt Regency Yogyakarta hotel (golf course is part of hotel operations)",
+        "parent_group": "Hyatt Hotels Corporation (NYSE:H) management; Indonesian hotel ownership entity",
+        "idx_ticker": "H (NYSE) for Hyatt brand operator",
         "listed_status": "subsidiary-of-listed",
-        "revenue_idr": 2402430000000,
+        "revenue_idr": null,
         "revenue_year": null,
-        "net_profit_idr": 261337000000,
-        "total_assets_idr": 6457845000000,
+        "net_profit_idr": null,
+        "total_assets_idr": null,
         "course_segment_disclosed": false,
         "membership_price_idr": null,
         "membership_price_notes": "Quarterly, half-yearly, and yearly memberships listed on Hyatt page with discounts and privileges; specific IDR amounts not publicly published.",
@@ -8062,63 +7821,7 @@
           "https://www.golfpass.com/travel-advisor/courses/38211-hyatt-regency-yogyakarta-golf-course",
           "https://www.instagram.com/hyattgolfcourse/"
         ],
-        "last_verified": "2026-05-06",
-        "verification_log": [
-          {
-            "verified_at": "2026-05-06",
-            "field": "operating_company",
-            "old_value": "Hyatt Regency Yogyakarta hotel (golf course is part of hotel operations)",
-            "new_value": "PT Antilope Madju Puri Indah (subsidiary of PT Jakarta Setiabudi Internasional Tbk; hotel operated under Hyatt franchise)",
-            "evidence_url": "https://id.wikipedia.org/wiki/Hyatt_Regency_Yogyakarta",
-            "note": "Hyatt Regency Yogyakarta and its golf course are owned via PT Antilope Madju, part of Jakarta Setiabudi Internasional (JSPT).",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_2_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "parent_group",
-            "old_value": "Hyatt Hotels Corporation (NYSE:H) management; Indonesian hotel ownership entity",
-            "new_value": "PT Jakarta Setiabudi Internasional Tbk (JSPT) — owner; Hyatt provides only the franchise/management brand",
-            "evidence_url": "https://id.wikipedia.org/wiki/Hyatt_Regency_Yogyakarta",
-            "note": "Property is owned by JSPT (an IDX-listed Indonesian hospitality group); Hyatt only licenses the brand.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_2_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "idx_ticker",
-            "old_value": "H (NYSE) for Hyatt brand operator",
-            "new_value": "JSPT",
-            "evidence_url": "https://stockanalysis.com/quote/idx/JSPT/",
-            "note": "Owner JSPT is the IDX-listed parent; this is a domestic IDX ticker, not a US ticker.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_2_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "revenue_idr",
-            "old_value": null,
-            "new_value": 2402430000000,
-            "evidence_url": "https://stockanalysis.com/quote/idx/JSPT/financials/",
-            "note": "JSPT FY2024 revenue = Rp 2.40T.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_2_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "net_profit_idr",
-            "old_value": null,
-            "new_value": 261337000000,
-            "evidence_url": "https://stockanalysis.com/quote/idx/JSPT/financials/",
-            "note": "JSPT FY2024 net income = Rp 261.34B.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_2_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "total_assets_idr",
-            "old_value": null,
-            "new_value": 6457845000000,
-            "evidence_url": "https://stockanalysis.com/quote/idx/JSPT/financials/balance-sheet/",
-            "note": "JSPT total assets at Dec 31 2024 = Rp 6.46T.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_2_result.json"
-          }
-        ]
+        "last_verified": "2026-05-01"
       }
     },
     {
@@ -8333,10 +8036,10 @@
         "parent_group": "Jababeka & Co. (PT Kawasan Industri Jababeka Tbk)",
         "idx_ticker": "KIJA",
         "listed_status": "subsidiary-of-listed",
-        "revenue_idr": 4602648000000,
+        "revenue_idr": 4950000000000,
         "revenue_year": "2024",
         "net_profit_idr": 363300000000,
-        "total_assets_idr": 14017356000000,
+        "total_assets_idr": null,
         "course_segment_disclosed": false,
         "membership_price_idr": 167000000,
         "membership_price_notes": "Individual Transferable Premium IDR 167,000,000; Standard IDR 61,000,000; 1-Year Exclusive IDR 17,200,000. Member green fee IDR 255k weekday / 355k weekend.",
@@ -8350,27 +8053,7 @@
           "https://www.indopremier.com/ipotnews/newsDetail.php?jdl=Financial_Statements_Full_Year_2024_of_KIJA&news_id=461353",
           "https://borobudur-golf.com/"
         ],
-        "last_verified": "2026-05-06",
-        "verification_log": [
-          {
-            "verified_at": "2026-05-06",
-            "field": "revenue_idr",
-            "old_value": 4950000000000,
-            "new_value": 4602648000000,
-            "evidence_url": "https://stockanalysis.com/quote/idx/KIJA/financials/",
-            "note": "KIJA FY2024 audited revenue was Rp 4.60T (4,602,648 million IDR), not Rp 4.95T.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_2_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "total_assets_idr",
-            "old_value": null,
-            "new_value": 14017356000000,
-            "evidence_url": "https://stockanalysis.com/quote/idx/KIJA/financials/balance-sheet/",
-            "note": "KIJA total assets at Dec 31 2024 = Rp 14.02T per balance sheet.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_2_result.json"
-          }
-        ]
+        "last_verified": "2026-05-01"
       }
     },
     {
@@ -8902,10 +8585,10 @@
         "parent_group": "PT Ciputra Development Tbk (Ciputra Group)",
         "idx_ticker": "CTRA",
         "listed_status": "subsidiary-of-listed",
-        "revenue_idr": 11187565000000,
+        "revenue_idr": 11190000000000,
         "revenue_year": "2024",
-        "net_profit_idr": 2126288000000,
-        "total_assets_idr": 47022702000000,
+        "net_profit_idr": 2130000000000,
+        "total_assets_idr": null,
         "course_segment_disclosed": false,
         "membership_price_idr": null,
         "membership_price_notes": "Individual & Family Club memberships exist; pricing dynamic per management policy and not publicly listed.",
@@ -8919,36 +8602,7 @@
           "https://ciputragolf.com/",
           "https://www.idnfinancials.com/ctrs/pt-ciputra-surya-tbk"
         ],
-        "last_verified": "2026-05-06",
-        "verification_log": [
-          {
-            "verified_at": "2026-05-06",
-            "field": "revenue_idr",
-            "old_value": 11190000000000,
-            "new_value": 11187565000000,
-            "evidence_url": "https://stockanalysis.com/quote/idx/CTRA/financials/",
-            "note": "Refining CTRA FY2024 revenue to exact figure 11,187,565M IDR.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_2_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "net_profit_idr",
-            "old_value": 2130000000000,
-            "new_value": 2126288000000,
-            "evidence_url": "https://stockanalysis.com/quote/idx/CTRA/financials/",
-            "note": "Refining CTRA FY2024 net income to exact figure 2,126,288M IDR.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_2_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "total_assets_idr",
-            "old_value": null,
-            "new_value": 47022702000000,
-            "evidence_url": "https://stockanalysis.com/quote/idx/CTRA/financials/balance-sheet/",
-            "note": "CTRA total assets at Dec 31 2024 = Rp 47.02T.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_2_result.json"
-          }
-        ]
+        "last_verified": "2026-05-01"
       }
     },
     {
@@ -9438,10 +9092,10 @@
         "parent_group": "PT Bukit Darmo Property Tbk (Sumampow Family)",
         "idx_ticker": "BKDP",
         "listed_status": "listed",
-        "revenue_idr": 30520000000,
+        "revenue_idr": null,
         "revenue_year": "2024",
-        "net_profit_idr": -35914000000,
-        "total_assets_idr": 752245000000,
+        "net_profit_idr": null,
+        "total_assets_idr": null,
         "course_segment_disclosed": false,
         "membership_price_idr": null,
         "membership_price_notes": "'Rates, Fee, and Membership' page lists member 9H IDR 245k-675k / 18H IDR 365k-910k; explicit Uang Pangkal/Iuran/Jaminan not extractable (site 403 to fetcher).",
@@ -9455,36 +9109,7 @@
           "https://britama.com/index.php/2012/10/sejarah-dan-profil-singkat-bkdp/",
           "https://stockbit.com/symbol/BKDP"
         ],
-        "last_verified": "2026-05-06",
-        "verification_log": [
-          {
-            "verified_at": "2026-05-06",
-            "field": "revenue_idr",
-            "old_value": null,
-            "new_value": 30520000000,
-            "evidence_url": "https://stockanalysis.com/quote/idx/BKDP/financials/",
-            "note": "BKDP FY2024 revenue = Rp 30.52B per income statement.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_2_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "net_profit_idr",
-            "old_value": null,
-            "new_value": -35914000000,
-            "evidence_url": "https://stockanalysis.com/quote/idx/BKDP/financials/",
-            "note": "BKDP FY2024 was a net loss of approximately Rp 35.91B.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_2_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "total_assets_idr",
-            "old_value": null,
-            "new_value": 752245000000,
-            "evidence_url": "https://stockanalysis.com/quote/idx/BKDP/financials/balance-sheet/",
-            "note": "BKDP total assets at Dec 31 2024 = Rp 752.24B.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_2_result.json"
-          }
-        ]
+        "last_verified": "2026-05-01"
       }
     },
     {
@@ -10208,10 +9833,10 @@
         "parent_group": "PT Ciputra Development Tbk (Ciputra Group)",
         "idx_ticker": "CTRA",
         "listed_status": "subsidiary-of-listed",
-        "revenue_idr": 11187565000000,
+        "revenue_idr": 11190000000000,
         "revenue_year": "2024",
-        "net_profit_idr": 2126288000000,
-        "total_assets_idr": 47022702000000,
+        "net_profit_idr": 2130000000000,
+        "total_assets_idr": null,
         "course_segment_disclosed": false,
         "membership_price_idr": null,
         "membership_price_notes": "Eight categories listed (Jack Nicklaus, Individual, Family, Corporate, 1 Year Term, Junior, Driving Range, Country Club); IDR amounts not publicly disclosed. Up to 14 reciprocal play rights/year.",
@@ -10225,36 +9850,7 @@
           "https://id.wikipedia.org/wiki/Taman_Dayu",
           "https://tamandayu.com/"
         ],
-        "last_verified": "2026-05-06",
-        "verification_log": [
-          {
-            "verified_at": "2026-05-06",
-            "field": "revenue_idr",
-            "old_value": 11190000000000,
-            "new_value": 11187565000000,
-            "evidence_url": "https://stockanalysis.com/quote/idx/CTRA/financials/",
-            "note": "Refining CTRA FY2024 revenue to exact figure 11,187,565M IDR (parent of Taman Dayu).",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_2_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "net_profit_idr",
-            "old_value": 2130000000000,
-            "new_value": 2126288000000,
-            "evidence_url": "https://stockanalysis.com/quote/idx/CTRA/financials/",
-            "note": "Refining CTRA FY2024 net income to exact figure 2,126,288M IDR.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_2_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "total_assets_idr",
-            "old_value": null,
-            "new_value": 47022702000000,
-            "evidence_url": "https://stockanalysis.com/quote/idx/CTRA/financials/balance-sheet/",
-            "note": "CTRA total assets at Dec 31 2024 = Rp 47.02T.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_2_result.json"
-          }
-        ]
+        "last_verified": "2026-05-01"
       }
     },
     {
@@ -10405,10 +10001,10 @@
         "parent_group": "PT Intiland Development Tbk (Intiland Group)",
         "idx_ticker": "DILD",
         "listed_status": "subsidiary-of-listed",
-        "revenue_idr": 2553285000000,
+        "revenue_idr": 2550000000000,
         "revenue_year": "2024",
-        "net_profit_idr": 174766000000,
-        "total_assets_idr": 13703553000000,
+        "net_profit_idr": null,
+        "total_assets_idr": null,
         "course_segment_disclosed": false,
         "membership_price_idr": 25500000,
         "membership_price_notes": "Gold (All Day Yearly) IDR 25.5M; Outstation (Weekend Yearly) IDR 22.5M; Weekday Yearly IDR 13.5M. Flat annual fees, no Uang Pangkal disclosed.",
@@ -10422,36 +10018,7 @@
           "https://www.intiland.com/en/others/surabaya/graha-famili-golf-country-club/",
           "https://golfgraha.com/"
         ],
-        "last_verified": "2026-05-06",
-        "verification_log": [
-          {
-            "verified_at": "2026-05-06",
-            "field": "revenue_idr",
-            "old_value": 2550000000000,
-            "new_value": 2553285000000,
-            "evidence_url": "https://stockanalysis.com/quote/idx/DILD/financials/",
-            "note": "Refining DILD FY2024 revenue to exact figure 2,553,285M IDR.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_2_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "net_profit_idr",
-            "old_value": null,
-            "new_value": 174766000000,
-            "evidence_url": "https://stockanalysis.com/quote/idx/DILD/financials/",
-            "note": "DILD FY2024 net income = Rp 174.77B per income statement.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_2_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "total_assets_idr",
-            "old_value": null,
-            "new_value": 13703553000000,
-            "evidence_url": "https://stockanalysis.com/quote/idx/DILD/financials/balance-sheet/",
-            "note": "DILD total assets at Dec 31 2024 = Rp 13.70T.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_2_result.json"
-          }
-        ]
+        "last_verified": "2026-05-01"
       }
     },
     {
@@ -11380,7 +10947,7 @@
         "parent_group": "InJourney (PT Aviasi Pariwisata Indonesia / Holding BUMN Pariwisata)",
         "idx_ticker": null,
         "foreign_ticker": null,
-        "listed_status": "state-owned",
+        "listed_status": "subsidiary-of-state-owned (BUMN holding, unlisted)",
         "revenue_idr": null,
         "revenue_year": null,
         "net_profit_idr": null,
@@ -11399,18 +10966,7 @@
           "https://www.hin.id/ppid",
           "https://www.ultimoparadiso.com/2024/04/01/the-grand-reveal-of-bali-beach-hotel-reviving-heritage-rebirth-of-a-legacy/"
         ],
-        "last_verified": "2026-05-06",
-        "verification_log": [
-          {
-            "verified_at": "2026-05-06",
-            "field": "listed_status",
-            "old_value": "subsidiary-of-state-owned (BUMN holding, unlisted)",
-            "new_value": "state-owned",
-            "evidence_url": "https://highend-traveller.com/the-meru-sanur-bali-beach-hotel-by-injourney-hospitality-named-among-the-worlds-top-100-hotels-and-balis-30-best-resorts/",
-            "note": "Value must come from the allowed enum; PT HIN under InJourney/Aviasi Pariwisata (Persero) is wholly state-owned and unlisted.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_2_result.json"
-          }
-        ]
+        "last_verified": "2026-05-01"
       }
     },
     {
@@ -11720,10 +11276,10 @@
         "idx_ticker": "AMMN",
         "foreign_ticker": null,
         "listed_status": "course is community/staff facility of listed mining parent; resort (Naia) operates privately",
-        "revenue_idr": 42180000000000,
+        "revenue_idr": null,
         "revenue_year": "2024",
-        "net_profit_idr": 10350000000000,
-        "total_assets_idr": 175710000000000,
+        "net_profit_idr": null,
+        "total_assets_idr": null,
         "course_segment_disclosed": false,
         "membership_price_idr": null,
         "membership_price_notes": "Originally a Newmont/AMNT staff course; opened to public play via Naia Resort. No formal membership.",
@@ -11738,36 +11294,7 @@
           "https://www.newmont.com/investors/news-release/news-details/2016/Newmont-Successfully-Completes-Sale-of-Indonesian-Assets/default.aspx",
           "https://www.amman.co.id/"
         ],
-        "last_verified": "2026-05-06",
-        "verification_log": [
-          {
-            "verified_at": "2026-05-06",
-            "field": "revenue_idr",
-            "old_value": null,
-            "new_value": 42180000000000,
-            "evidence_url": "https://www.amman.co.id/press-release/amman-full-year-2024-earnings-results-a-record-breaking-year-for-gold-production",
-            "note": "AMMN FY2024 net sales US$2.664B, ~Rp 42.18 trillion at ~15,830 IDR/USD.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_3_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "net_profit_idr",
-            "old_value": null,
-            "new_value": 10350000000000,
-            "evidence_url": "https://www.indopremier.com/ipotnews/newsDetail.php?jdl=Financial_Statements_Full_Year_2024_of_AMMN&news_id=460668",
-            "note": "AMMN FY2024 net profit Rp 10.35 trillion (vs Rp 3.89T 2023).",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_3_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "total_assets_idr",
-            "old_value": null,
-            "new_value": 175710000000000,
-            "evidence_url": "https://www.alphaspread.com/security/idx/ammn/financials/balance-sheet/total-assets",
-            "note": "AMMN total assets US$11.1B as of Dec 31 2024, ~Rp 175.71 trillion.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_3_result.json"
-          }
-        ]
+        "last_verified": "2026-05-01"
       }
     },
     {
@@ -12136,9 +11663,9 @@
         "idx_ticker": null,
         "foreign_ticker": "SGX:BN4",
         "listed_status": "joint-venture",
-        "revenue_idr": 77900000000000,
+        "revenue_idr": null,
         "revenue_year": null,
-        "net_profit_idr": 12500000000000,
+        "net_profit_idr": null,
         "total_assets_idr": null,
         "course_segment_disclosed": false,
         "membership_price_idr": null,
@@ -12153,27 +11680,7 @@
           "https://www.keppel.com/upload/PressRelease/Ria%20Bintan%20&%20Keppel%20Factsheet.pdf",
           "https://www.bintan-resorts.com/golf/ria-bintan-golf-club/"
         ],
-        "last_verified": "2026-05-06",
-        "verification_log": [
-          {
-            "verified_at": "2026-05-06",
-            "field": "revenue_idr",
-            "old_value": null,
-            "new_value": 77900000000000,
-            "evidence_url": "https://www.keppel.com/media/keppel-achieves-106-billion-net-profit-from-continuing-operations-up-5-yoy-excluding-legacy-om-assets/",
-            "note": "Keppel Ltd FY2024 total revenue S$6.6 billion ~ Rp 77.9 trillion at ~11,800 IDR/SGD (parent JV partner).",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_3_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "net_profit_idr",
-            "old_value": null,
-            "new_value": 12500000000000,
-            "evidence_url": "https://www.keppel.com/media/keppel-achieves-106-billion-net-profit-from-continuing-operations-up-5-yoy-excluding-legacy-om-assets/",
-            "note": "Keppel Ltd FY2024 net profit S$1.06 billion from continuing operations ~ Rp 12.5 trillion.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_3_result.json"
-          }
-        ]
+        "last_verified": "2026-05-01"
       }
     },
     {
@@ -12244,9 +11751,9 @@
         "idx_ticker": null,
         "foreign_ticker": "SGX:BN4",
         "listed_status": "joint-venture",
-        "revenue_idr": 77900000000000,
+        "revenue_idr": null,
         "revenue_year": null,
-        "net_profit_idr": 12500000000000,
+        "net_profit_idr": null,
         "total_assets_idr": null,
         "course_segment_disclosed": false,
         "membership_price_idr": null,
@@ -12260,27 +11767,7 @@
           "https://www.riabintan.com/",
           "https://www.keppel.com/upload/PressRelease/Ria%20Bintan%20&%20Keppel%20Factsheet.pdf"
         ],
-        "last_verified": "2026-05-06",
-        "verification_log": [
-          {
-            "verified_at": "2026-05-06",
-            "field": "revenue_idr",
-            "old_value": null,
-            "new_value": 77900000000000,
-            "evidence_url": "https://www.keppel.com/media/keppel-achieves-106-billion-net-profit-from-continuing-operations-up-5-yoy-excluding-legacy-om-assets/",
-            "note": "Same Keppel JV — FY2024 revenue S$6.6B ~ Rp 77.9 trillion.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_3_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "net_profit_idr",
-            "old_value": null,
-            "new_value": 12500000000000,
-            "evidence_url": "https://www.keppel.com/media/keppel-achieves-106-billion-net-profit-from-continuing-operations-up-5-yoy-excluding-legacy-om-assets/",
-            "note": "Keppel Ltd FY2024 NP ~ Rp 12.5 trillion.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_3_result.json"
-          }
-        ]
+        "last_verified": "2026-05-01"
       }
     },
     {
@@ -13183,9 +12670,9 @@
         "idx_ticker": null,
         "foreign_ticker": "SGX:B58",
         "listed_status": "subsidiary-of-listed",
-        "revenue_idr": 4491000000000,
+        "revenue_idr": null,
         "revenue_year": "2024",
-        "net_profit_idr": 496800000000,
+        "net_profit_idr": null,
         "total_assets_idr": null,
         "course_segment_disclosed": false,
         "membership_price_idr": null,
@@ -13201,27 +12688,7 @@
           "https://www.groupbanyan.com/financial-information",
           "https://www.banyantree.com/indonesia/bintan"
         ],
-        "last_verified": "2026-05-06",
-        "verification_log": [
-          {
-            "verified_at": "2026-05-06",
-            "field": "revenue_idr",
-            "old_value": null,
-            "new_value": 4491000000000,
-            "evidence_url": "https://www.theedgesingapore.com/capital/results/banyan-tree-reports-earnings-421-mil-fy2024-33-y-o-y",
-            "note": "Banyan Group FY2024 revenue S$380.6M ~ Rp 4.49 trillion at ~11,800 IDR/SGD.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_3_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "net_profit_idr",
-            "old_value": null,
-            "new_value": 496800000000,
-            "evidence_url": "https://www.theedgesingapore.com/capital/results/banyan-tree-reports-earnings-421-mil-fy2024-33-y-o-y",
-            "note": "Banyan Group FY2024 PATMI S$42.1M ~ Rp 496.8 billion at ~11,800 IDR/SGD.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_3_result.json"
-          }
-        ]
+        "last_verified": "2026-05-01"
       }
     },
     {
@@ -13613,10 +13080,10 @@
         "idx_ticker": "BSDE",
         "foreign_ticker": "SGX:A26 (Sinarmas Land)",
         "listed_status": "subsidiary-of-listed",
-        "revenue_idr": 13800000000000,
+        "revenue_idr": 28700000000000,
         "revenue_year": "2024",
         "net_profit_idr": 4360000000000,
-        "total_assets_idr": 76023000000000,
+        "total_assets_idr": 76641008600000,
         "course_segment_disclosed": true,
         "membership_price_idr": null,
         "membership_price_notes": "Mixed model: pay-per-round for resort guests; some local memberships sold via Nuvasa Bay residential sales.",
@@ -13631,27 +13098,7 @@
           "https://www.bsdcity.com/app/uploads/2025/05/BSDE-Annual-Report-2024-1.pdf",
           "https://www.thejakartapost.com/news/2015/12/13/sinar-mas-land-invest-rp-4t-batam-infrastructure.html"
         ],
-        "last_verified": "2026-05-06",
-        "verification_log": [
-          {
-            "verified_at": "2026-05-06",
-            "field": "revenue_idr",
-            "old_value": 28700000000000,
-            "new_value": 13800000000000,
-            "evidence_url": "https://www.indopremier.com/ipotnews/newsDetail.php?jdl=Financial+Statements+Full+Year+2024+of+BSDE&news_id=460948",
-            "note": "BSDE FY2024 consolidated operating revenue (pendapatan usaha) was Rp 13.80 trillion (+19.56% YoY), not Rp 28.7T.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_3_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "total_assets_idr",
-            "old_value": 76641008600000,
-            "new_value": 76023000000000,
-            "evidence_url": "https://www.indopremier.com/ipotnews/newsDetail.php?jdl=Financial+Statements+Full+Year+2024+of+BSDE&news_id=460948",
-            "note": "BSDE FY2024 total assets approximately Rp 76.023 trillion per Q4 2024 financial statements.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_3_result.json"
-          }
-        ]
+        "last_verified": "2026-05-01"
       }
     },
     {
@@ -14414,9 +13861,9 @@
         "idx_ticker": null,
         "foreign_ticker": "SGX:5IG (Gallant Venture - parent of Batamindo group)",
         "listed_status": "subsidiary-of-listed (via Gallant Venture)",
-        "revenue_idr": 2252800000000,
+        "revenue_idr": null,
         "revenue_year": "2024",
-        "net_profit_idr": -550900000000,
+        "net_profit_idr": null,
         "total_assets_idr": null,
         "course_segment_disclosed": false,
         "membership_price_idr": null,
@@ -14431,27 +13878,7 @@
           "https://www.gallantventure.com/",
           "https://gallantventure.listedcompany.com/newsroom/20250410_183110_5IG_3DEUBX7IREC8PUU3.1.pdf"
         ],
-        "last_verified": "2026-05-06",
-        "verification_log": [
-          {
-            "verified_at": "2026-05-06",
-            "field": "revenue_idr",
-            "old_value": null,
-            "new_value": 2252800000000,
-            "evidence_url": "https://stockanalysis.com/quote/sgx/5IG/revenue/",
-            "note": "Gallant Venture FY2024 revenue S$190.92M (+4.52% YoY) ~ Rp 2.25 trillion at ~11,800 IDR/SGD.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_3_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "net_profit_idr",
-            "old_value": null,
-            "new_value": -550900000000,
-            "evidence_url": "https://stockanalysis.com/quote/sgx/5IG/",
-            "note": "Gallant Venture FY2024 net loss S$46.69M ~ -Rp 551 billion at ~11,800 IDR/SGD.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_3_result.json"
-          }
-        ]
+        "last_verified": "2026-05-01"
       }
     },
     {
@@ -14978,10 +14405,10 @@
         "idx_ticker": "GOLF",
         "foreign_ticker": null,
         "listed_status": "subsidiary-of-listed (since 8 July 2024 IPO of GOLF on IDX)",
-        "revenue_idr": 197990000000,
-        "revenue_year": "2024",
-        "net_profit_idr": 67570000000,
-        "total_assets_idr": 8637499000000,
+        "revenue_idr": 208150000000,
+        "revenue_year": "2025-TTM",
+        "net_profit_idr": 71060000000,
+        "total_assets_idr": null,
         "course_segment_disclosed": true,
         "membership_price_idr": null,
         "membership_price_notes": "Hotel-and-golf resort guest / green-fee model; no general public membership disclosed.",
@@ -14997,45 +14424,7 @@
           "https://golflinkresorts.co.id/newsevent/en/9/golf-increasingly-popular-intra-golflink-resorts-owned-by-soeharto-s-grandson-goes-public-on-the-stock-exchange",
           "https://e-ipo.co.id/en/ipo/309/golf-pt-intra-golflink-resorts-tbk"
         ],
-        "last_verified": "2026-05-06",
-        "verification_log": [
-          {
-            "verified_at": "2026-05-06",
-            "field": "revenue_idr",
-            "old_value": 208150000000,
-            "new_value": 197990000000,
-            "evidence_url": "https://www.idnfinancials.com/news/53569/golf-records-12-profit-growth-in-2024",
-            "note": "GOLF FY2024 net revenue Rp 197.99 billion (+11.49% YoY).",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_3_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "net_profit_idr",
-            "old_value": 71060000000,
-            "new_value": 67570000000,
-            "evidence_url": "https://www.idnfinancials.com/news/53569/golf-records-12-profit-growth-in-2024",
-            "note": "GOLF FY2024 net profit Rp 67.57 billion (+12% YoY from Rp 60.17B in 2023).",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_3_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "total_assets_idr",
-            "old_value": null,
-            "new_value": 8637499000000,
-            "evidence_url": "https://stockanalysis.com/quote/idx/GOLF/financials/balance-sheet/",
-            "note": "GOLF FY2024 total assets Rp 8.637 trillion per consolidated balance sheet.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_3_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "revenue_year",
-            "old_value": "2025-TTM",
-            "new_value": "2024",
-            "evidence_url": "https://www.idnfinancials.com/news/53569/golf-records-12-profit-growth-in-2024",
-            "note": "Updated to FY2024 audited figures.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_3_result.json"
-          }
-        ]
+        "last_verified": "2026-05-01"
       }
     },
     {
@@ -15219,7 +14608,7 @@
         "parent_group": "Holding Perkebunan Nusantara (PTPN III Persero) — PalmCo / SupportingCo restructuring 2024",
         "idx_ticker": null,
         "listed_status": "state-owned",
-        "revenue_idr": 54154000000000,
+        "revenue_idr": 21920000000000,
         "revenue_year": "2024",
         "net_profit_idr": 449190000000,
         "total_assets_idr": 152220000000000,
@@ -15234,18 +14623,7 @@
           "https://playgolf.id/golf_courses/tamora-golf-club/",
           "https://holding-perkebunan.com/laporan-tahunan/"
         ],
-        "last_verified": "2026-05-06",
-        "verification_log": [
-          {
-            "verified_at": "2026-05-06",
-            "field": "revenue_idr",
-            "old_value": 21920000000000,
-            "new_value": 54154000000000,
-            "evidence_url": "https://holding-perkebunan.com/wp-content/uploads/2025/08/SR-PTPN-III-2024-FINAL.pdf",
-            "note": "PTPN III Holding consolidated revenue FY2024 was Rp 54.15 trillion per 2024 Sustainability Report.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_3_result.json"
-          }
-        ]
+        "last_verified": "2026-05-01"
       }
     },
     {
@@ -16411,7 +15789,7 @@
         "operating_company": "PT Pupuk Kalimantan Timur (PKT) - Hotel Bintang Sintuk / employee recreation",
         "parent_group": "PT Pupuk Indonesia (Persero) [PIHC]",
         "idx_ticker": null,
-        "listed_status": "tbk-reporting-not-yet-traded",
+        "listed_status": "subsidiary-of-listed",
         "revenue_idr": 81610000000000,
         "revenue_year": "2024",
         "net_profit_idr": 8890000000000,
@@ -16427,18 +15805,7 @@
           "https://market.bisnis.com/read/20250514/192/1876846/pupuk-indonesia-cetak-laba-tebal-rp889-triliun-sepanjang-2024",
           "https://www.pupukkaltim.com/id/laporan-laporan"
         ],
-        "last_verified": "2026-05-06",
-        "verification_log": [
-          {
-            "verified_at": "2026-05-06",
-            "field": "listed_status",
-            "old_value": "subsidiary-of-listed",
-            "new_value": "tbk-reporting-not-yet-traded",
-            "evidence_url": "https://www.idx.co.id/StaticData/NewsAndAnnouncement/ANNOUNCEMENTSTOCK/From_EREP/202405/20250514142137-54417-0/PIHC_LKT_2024.pdf",
-            "note": "PIHC reports financials to IDX as bond issuer; equity wholly state-owned, not publicly traded.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_4_result.json"
-          }
-        ]
+        "last_verified": "2026-05-01"
       }
     },
     {
@@ -19553,50 +18920,7 @@
         "idx_ticker": "PWON",
         "parent_group": "PT Pakuwon Jati Tbk (Pakuwon Group)",
         "operating_company": "PT Pakuwon Jati Tbk",
-        "listed_status": "listed",
-        "revenue_idr": 6670000000000,
-        "verification_log": [
-          {
-            "verified_at": "2026-05-06",
-            "field": "revenue_idr",
-            "old_value": null,
-            "new_value": 6670000000000,
-            "evidence_url": "https://www.pakuwonjati.com/en/posts/81/year-2024-adjusted-net-income-pwon-grow-14-",
-            "note": "PWON FY2024 net revenue Rp 6.67 trillion.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_4_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "net_profit_idr",
-            "old_value": null,
-            "new_value": 2620000000000,
-            "evidence_url": "https://www.pakuwonjati.com/en/posts/81/year-2024-adjusted-net-income-pwon-grow-14-",
-            "note": "PWON FY2024 adjusted net profit Rp 2.62T (+14% YoY).",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_4_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "total_assets_idr",
-            "old_value": null,
-            "new_value": 35371085149000,
-            "evidence_url": "https://finance.yahoo.com/quote/PWON.JK/balance-sheet/",
-            "note": "PWON total assets Rp 35.37T at 31 Dec 2024.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_4_result.json"
-          },
-          {
-            "verified_at": "2026-05-06",
-            "field": "revenue_year",
-            "old_value": null,
-            "new_value": "2024",
-            "evidence_url": "https://www.pakuwonjati.com/en/posts/81/year-2024-adjusted-net-income-pwon-grow-14-",
-            "note": "Fiscal year for added FY2024 figures.",
-            "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_4_result.json"
-          }
-        ],
-        "last_verified": "2026-05-06",
-        "net_profit_idr": 2620000000000,
-        "total_assets_idr": 35371085149000,
-        "revenue_year": "2024"
+        "listed_status": "listed"
       }
     },
     {
