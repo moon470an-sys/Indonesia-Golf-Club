@@ -1,0 +1,314 @@
+{
+  "created_at": "2026-05-06",
+  "items": [
+    {
+      "id": "bali-beach-sanur",
+      "field": "operating_status",
+      "value": {
+        "old": {
+          "status": "closed_permanent",
+          "confidence": "high"
+        },
+        "new": {
+          "status": "operational",
+          "confidence": "medium",
+          "evidence": [
+            "Golfasian (2026) lists course as 'open everyday' with active tee-time booking form, equipment rental, caddies, Indonesian restaurant",
+            "GoGolf.co.id (2026) describes facilities as operational including floodlit night driving range 7:00-22:00 daily; green-fee rates published as of 2026",
+            "Hotel description (best-bali-hotels.com, 2026) references 'landscaped 9-hole Grand Bali Beach Golf Course' as a nearby attraction ~15 min walk from The Meru Sanur",
+            "Balistarisland.com (2025) and TripAdvisor (2025) continue to list course as active with 2025 review listings",
+            "Sanur KEK redevelopment focuses on Bali International Hospital and medical/wellness tourism; 'Bali Beach Club' project was scrapped per The Bali Sun, but no announcement of golf course closure or conversion",
+            "Official domain balibeachgolfcourse.com 301-redirects to storagespace.id (domain sold) — likely cause of original mis-classification, but third-party operators (Golfasian, GoGolf, Vilondo, Golfscape) continue selling tee times"
+          ],
+          "closure_reason": null,
+          "reopened_as": null,
+          "last_verified": "2026-05-06"
+        },
+        "rationale": "Original closed_permanent classification appears based solely on official domain redirect. Multiple recent (2025-2026) third-party booking platforms and hotel/tourism sources still treat the course as operational. Recommend downgrading to operational/medium until on-the-ground verification (phone +66 84 704 3344 Golfasian / direct site visit) confirms. Domain loss alone is insufficient evidence for permanent closure, especially since the parent (PT Hotel Indonesia Natour / InJourney Hospitality) still operates the adjacent The Meru Sanur & Bali Beach Hotel and references the golf course in marketing."
+      },
+      "reason": "canonical=None, confidence=low"
+    },
+    {
+      "id": "antam-mekongga-pomalaa",
+      "field": "coords",
+      "value": {
+        "old": {
+          "lat": -4.1842,
+          "lng": 121.6172
+        },
+        "new_candidate": {
+          "lat": -4.1997539,
+          "lng": 121.5997624
+        },
+        "source": "https://playgolf.id/golf_courses/antam-mekongga-golf-club/",
+        "note": "PlayGolf.id 좌표가 약 2.5km 차이. 주소 RH2X+3WR Plus Code(Jl. Teratai, Pomalaa) 일치 검증 필요. 1차 출처 부재로 보류 권고."
+      },
+      "reason": "out-of-bbox or unparsable"
+    },
+    {
+      "id": "gorontalo-yosonegoro",
+      "field": "operating_status",
+      "value": {
+        "status": "operating",
+        "confidence": "low",
+        "evidence_add": [
+          "https://gorontalo.antaranews.com/berita/353200/pemkab-pemprov-kerja-sama-pengelolaan-pacuan-kuda-dan-lapangan-golf",
+          "https://kontras.id/2025/09/19/pemprov-dan-pemkab-gorontalo-resmi-kolaborasi-kelola-lapangan-yosonegoro/",
+          "https://barometernewsgo.com/2025/09/19/5-tahun-ke-depan-arena-pacuan-kuda-dan-lapangan-golf-di-yosonegoro-dikelola-pemprov-gorontalo/",
+          "https://bkad.gorontalokab.go.id/archives/2047",
+          "2026-05-06: 1차 출처 다수 확인 결과 2025-09-19 PKS 시점에서 'lama tidak berfungsi/terurus' 상태였고 'akan dilakukan pemeliharaan'이라 명시. 재오픈 예상 시점 '5 tahun ke depan' 범위. confidence medium -> low 하향 권고."
+        ],
+        "notes_append": "2026-05-06: ANTARA Gorontalo, kontras.id, barometernewsgo, BKAD Pemkab Gorontalo 1차 출처 교차검증. PKS는 5년 임대(pinjam pakai) 협약이며 운영 시작이 아닌 관리 권한 이전. 재가동까지 pemeliharaan 단계 필요. 실제 골프 라운드 가능 여부 미확인 -> 'operating' 표기 유지 시 confidence low 권고."
+      },
+      "reason": "canonical=operating, confidence=low"
+    },
+    {
+      "id": "paradise-likupang",
+      "field": "membership",
+      "value": {
+        "available": true,
+        "categories": [],
+        "currency_note": "IDR",
+        "sources": [
+          "https://www.paradisehotelgolfresort.net/",
+          "https://www.instagram.com/paradise.golf.manado/",
+          "https://www.instagram.com/paradisehotellikupang/"
+        ],
+        "notes": "Public resort course (KEK Likupang). Direct contact +62 431 894 1808, reservation@paradisehotelgolfresort.com. 전용 골프 IG @paradise.golf.manado 운영중.",
+        "confidence": "low",
+        "last_verified": "2026-05-06"
+      },
+      "reason": "complex membership change"
+    },
+    {
+      "id": "perkumpulan-golf-jambi",
+      "field": "coords",
+      "value": {
+        "old": {
+          "lat": -1.5966,
+          "lng": 103.5739
+        },
+        "new": {
+          "lat": -1.6065294,
+          "lng": 103.5665063
+        },
+        "note": "playgolf.id 좌표가 더 정확. 기존 좌표는 약 1.3km 북동쪽 오차."
+      },
+      "reason": "out-of-bbox or unparsable"
+    },
+    {
+      "id": "rumbai-pekanbaru",
+      "field": "membership",
+      "value": {
+        "available": "employees_only",
+        "evidence_add": [
+          "2024-12-01 캐디 청원 기사: '회원/Chevron(PHR) 게스트만 이용 가능' 명시 — 외부 일반 이용 여전히 제한",
+          "Sabang Merauke News 후속 기사 (2024-12): NasDem DPRD 회파가 캐디 청원에 응해 의회 청문회 개최 — 일반 개방은 미결"
+        ],
+        "notes": "2024-12 기준 PHR/Chevron 직원·게스트 한정 정책 유지. 일반 개방 청원은 진행 중이나 정책 변경 미확정"
+      },
+      "reason": "complex membership change"
+    },
+    {
+      "id": "sorowako-gc",
+      "field": "financials",
+      "value": {
+        "revenue_idr": 16107000000000,
+        "revenue_year": "2025",
+        "net_profit_idr": 1237000000000,
+        "recent_news": "INCO FY2025 revenue USD 990.2M (+4% YoY), net profit USD 76.06M (+32% YoY vs 57.67M), EBITDA USD 228.2M, capex USD 485.9M (+46% YoY for Pomalaa/Bahodopi/Sorowako HPAL); cash USD 376.3M (Dec-2025). Nickel-in-matte production 72,027 tonnes (up YoY). MIND ID became controlling shareholder in 2024.",
+        "ownership_notes": "Township amenity for PT Vale Indonesia (Sorowako nickel mine, Luwu Timur). FY2025 IDR figures converted at ~IDR 16,266/USD spot Dec-2025. Course remains internal recreational facility managed by Sorowako Golf Club (SGC)."
+      },
+      "reason": "non-additive financial field"
+    },
+    {
+      "id": "akr-grand-kawanua",
+      "field": "financials",
+      "value": {
+        "revenue_idr": 46020000000000,
+        "revenue_year": "2025",
+        "net_profit_idr": 2470000000000,
+        "ownership_notes": "AKRA FY2025 consolidated: revenue Rp 46.02T (+18.82% YoY vs Rp 38.73T 2024), net profit Rp 2.47T (+11% YoY vs Rp 2.23T 2024). Industrial estate/utilities revenue surged +107% and +129% YoY; trading & distribution +16%. Q1 2026 also reported higher revenue and profit. Course is amenity inside 180-250 ha satellite city; not separately disclosed."
+      },
+      "reason": "non-additive financial field"
+    },
+    {
+      "id": "gombel-semarang",
+      "field": "financials",
+      "value": {
+        "operating_company": "Semarang Royale Golf (rebrand operator) — 공식 사이트 운영 확인",
+        "official_website": "https://www.semarangroyalegolf.com/",
+        "sources_added": [
+          "https://www.semarangroyalegolf.com/",
+          "https://playgolf.id/golf_courses/semarang-royale-golf/"
+        ]
+      },
+      "reason": "non-additive financial field"
+    },
+    {
+      "id": "gombel-semarang",
+      "field": "membership",
+      "value": {
+        "available": "yes",
+        "categories": [
+          {
+            "name": "Member (green fee discount)",
+            "member_green_fee_18h_idr": 200000,
+            "member_green_fee_9h_idr": 130000,
+            "applicable": "any day"
+          }
+        ],
+        "uang_pangkal_idr": null,
+        "iuran_idr": null,
+        "jaminan_idr": null,
+        "sources": [
+          "https://gogolf.co.id/en/golf-course/gombel-golf-semarang",
+          "https://en.gogolf.co.id/golf-course/gombel-golf"
+        ],
+        "notes": "회원 그린피 할인 혜택 확인됨 (18H 200k / 9H 130k, 요일 무관). Uang Pangkal/Iuran/Jaminan는 공식·집계 사이트 모두 미공개. 직접 문의 필요(+62-24-749-9988)."
+      },
+      "reason": "complex membership change"
+    },
+    {
+      "id": "sentul-highlands",
+      "field": "membership",
+      "value": {
+        "categories_unchanged": true,
+        "individual_idr_per_year": 35000000,
+        "corporate_4p_idr_per_year": 120000000,
+        "last_verified": "2026-05-07",
+        "evidence_url": "https://gogolf.co.id/en/golf-course/sentul-highlands-golf-club",
+        "note": "Player's Card 개인 35M / 법인 4인 120M IDR 동일. 가입금·예치금 비공개 유지."
+      },
+      "reason": "complex membership change"
+    },
+    {
+      "id": "pakuwon-golf-surabaya",
+      "field": "coords",
+      "value": {
+        "old_value": {
+          "lat": -7.2872,
+          "lng": 112.6678
+        },
+        "new_value": {
+          "lat": -7.2932594,
+          "lng": 112.6654417
+        },
+        "evidence_url": "https://playgolf.id/golf_courses/pakuwon-golf-family-club/",
+        "note": "More precise coords from playgolf.id (Jl. Pakuwon Indah Lontar Barat, Lidah Wetan, Lakarsantri, Surabaya 60213). Approx 700m south of previous estimate."
+      },
+      "reason": "out-of-bbox or unparsable"
+    },
+    {
+      "id": "bukit-asam",
+      "field": "financials",
+      "value": {
+        "revenue_idr": 31330000000000,
+        "revenue_year": "2025-9M",
+        "net_profit_idr": null,
+        "total_assets_idr": 42840000000000,
+        "recent_news": "9M2025: revenue Rp 31.33T (+2% YoY), total assets Rp 42.84T (Sep-2025). H1 2025 net profit Rp 833B (-59% YoY). Bukit Asam Golf Club Tanjung Enim continues to host events; no closure signals.",
+        "ownership_notes": "Owned and operated by PT Bukit Asam Tbk (IDX:PTBA), state-owned coal miner under MIND ID. 9M2025 update: revenue Rp 31.33T (vs Rp 30.66T 9M2024), total assets Rp 42.84T (Sep-2025) vs Rp 41.79T YE2024; H1 2025 net profit dropped 59% YoY to Rp 833B reflecting weaker coal prices. FY2025 full-year disclosure pending."
+      },
+      "reason": "non-additive financial field"
+    },
+    {
+      "id": "jatinangor-national",
+      "field": "membership",
+      "value": {
+        "available": {
+          "old": "unknown",
+          "new": "yes"
+        },
+        "notes": {
+          "old": "Resort-style operation. /membership returns 404 on official site. No membership pricing on official channels.",
+          "new": "공식 사이트 /membership/general 페이지 확인됨 (이전 404 → 활성화). 개인(Individual) 및 법인(Corporate) 멤버십 제공, 배우자·21세 미만 자녀 그린피 무료, 버기·캐디 우대 요금. 연간 maintenance fee 별도. 가격은 비공개로 marketing@jatinangorgolf.com / +62 22 779 8403 문의."
+        },
+        "categories": {
+          "old": [],
+          "new": [
+            "Individual",
+            "Corporate"
+          ]
+        },
+        "sources": {
+          "old": [
+            "https://www.jatinangorgolf.com/"
+          ],
+          "new": [
+            "https://www.jatinangorgolf.com/membership/general"
+          ]
+        },
+        "last_verified": {
+          "old": "2026-04-30",
+          "new": "2026-05-07"
+        }
+      },
+      "reason": "complex membership change"
+    },
+    {
+      "id": "palm-springs-batam",
+      "field": "coords",
+      "value": {
+        "old_lat": 1.18619,
+        "old_lng": 104.07733,
+        "new_lat": 1.189077,
+        "new_lng": 104.08267,
+        "source": "Where2Golf / GoGolf coordinate dataset (Sambau, Nongsa)",
+        "note": "약 600m 동북쪽으로 미세 보정 (Hang Lekiu 클럽하우스 부근)."
+      },
+      "reason": "out-of-bbox or unparsable"
+    },
+    {
+      "id": "palm-springs-karawang",
+      "field": "membership",
+      "value": {
+        "available": true,
+        "categories": [
+          {
+            "name": "Weekdays Membership",
+            "initiation_fee": 8000000,
+            "annual_fee": 8000000,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "transferable": false,
+            "notes": "Annual subscription IDR 8,000,000. Free GF on weekdays only; other charges apply. Non-refundable, non-transferable."
+          },
+          {
+            "name": "Full Term One Year (Daily Membership)",
+            "initiation_fee": 55000000,
+            "annual_fee": 55000000,
+            "monthly_fee": null,
+            "refundable_deposit": null,
+            "term_years": 1,
+            "transferable": false,
+            "notes": "Annual subscription IDR 55,000,000. Free GF every day incl. weekends/holidays. Non-refundable, non-transferable."
+          }
+        ],
+        "currency_note": "IDR primary",
+        "sources": [
+          "https://karawang.palmspringsgolf.co/membership"
+        ],
+        "notes": "Sinar Mas Land owned. Annual subscription (APR-style), no equity. Two tiers: Weekdays IDR 8,000,000 / Full Term One Year (Daily) IDR 55,000,000. Reciprocal arrangements with courses in Indonesia, Malaysia, Singapore, China, Vietnam, Australia, Brunei. Contact: +62-267-644730, WA +6285775608559 (Aini) / +6281311792069 (Nur).",
+        "confidence": "high",
+        "last_verified": "2026-05-07"
+      },
+      "reason": "complex membership change"
+    },
+    {
+      "id": "trump-lido",
+      "field": "financials",
+      "value": {
+        "revenue_idr_q1_2026": 589050000000,
+        "net_profit_idr_q1_2026": 95350000000,
+        "q1_yoy_revenue_growth_pct": 26.75,
+        "q1_yoy_net_profit_growth_pct": 78.15,
+        "hospitality_segment_q1_2026_idr": 306100000000,
+        "property_segment_q1_2026_idr": 282960000000,
+        "recent_news_update": "MNC Tourism Indonesia (KPIG) Q1/2026: net profit Rp 95.35B (+78.15% YoY), revenue Rp 589.05B (+26.75% YoY). Hospitality (hotels/resorts/golf incl. Trump Lido) Rp 306.1B = 52% of revenue. Continued focus on completing Hyatt Regency Lido Resort and Lido Adventure Park in MNC Lido City SEZ."
+      },
+      "reason": "non-additive financial field"
+    }
+  ]
+}

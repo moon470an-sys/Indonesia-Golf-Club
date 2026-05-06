@@ -767,10 +767,9 @@
         "sources": [
           "https://www.qaccess.asia/QGolfPrice?currentFilter=halim",
           "https://golfhalim.tripod.com/tarif.html",
-          "https://gogolf.co.id/en/golf-course/halim-i-golf-course",
-          "https://www.where2golf.com/indonesia/halim-golf-club/"
+          "https://gogolf.co.id/en/golf-course/halim-i-golf-course"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "source_details": [
           {
             "slot": "sunPm",
@@ -933,10 +932,9 @@
           "https://www.golfpangkalanjati.com/",
           "https://gogolf.co.id/en/golf-course/padang-golf-pangkalan-jati",
           "https://us.trip.com/travel-guide/attraction/cinere/pangkalan-jati-golf-club-61853804/",
-          "https://golfpangkalanjati.com/green",
-          "https://playgolf.id/golf_courses/pangkalan-jati-golf-club/"
+          "https://golfpangkalanjati.com/green"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-04-29",
         "based_on": "2025 rates - 2026 may differ",
         "source_details": [
           {
@@ -1520,7 +1518,7 @@
           "https://gogolf.co.id/en/golf-course/modern-golf-country-club",
           "https://gogolf.co.id/golf-course/modern-golf-country-club"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "source_details": [
           {
             "slot": "weekend",
@@ -1653,15 +1651,6 @@
             "raw_excerpt": "ontoh range bisa mulai sekitar rp 650 ribu (weekday) hingga rp 2,2 juta (weekend) , namun harga dapat berubah tergantung musim & la",
             "tier_score": 65,
             "score": 65.0
-          },
-          {
-            "slot": null,
-            "value_idr": null,
-            "publisher": null,
-            "source_url": "https://www.qaccess.asia/QGolfPrice?currentFilter=&currentRecord=&searchString=modern",
-            "tier": null,
-            "as_of": "2026-05-06",
-            "notes": null
           }
         ],
         "crawled_summary": {
@@ -3245,11 +3234,9 @@
         "sources": [
           "https://gogolf.co.id/en/golf-course/imperial-klub-golf-lippo-karawaci",
           "https://www.aryaduta.com/en/wellness/ikg",
-          "https://gogolf.co.id/golf-course/imperial-klub-golf",
-          "https://www.tripadvisor.com/Attraction_Review-g1493703-d4441274-Reviews-Imperial_Klub_Golf_Lippo_Karawaci-Tangerang_Banten_Province_Java.html",
-          "https://www.leadingcourses.com/clubs/asia+indonesia+java+banten/imperial-klub-golf"
+          "https://gogolf.co.id/golf-course/imperial-klub-golf"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-04-29",
         "based_on": "2025 rates - 2026 may differ",
         "source_details": [
           {
@@ -3535,10 +3522,9 @@
         "notes": "Emeralda Golf Club, Cimanggis Depok (27 holes). Monday: guests of members 1,038,000; visitors 1,288,000. Tue-Fri: 1,288,000/1,488,000. Sat AM guests 3,588k/visitors 3,788k; Sat PM 2,688k/2,988k. Sun AM 2,988k/3,088k; Sun PM 2,208k/2,288k. Includes Green Fee 18H, Cart, Service Fee, Insurance, Taxes. Note: site shows '2025' rates - 2026 may differ.",
         "sources": [
           "https://emeralda-golfclub.com/index2.php?fuseaction=golf_rate",
-          "https://gogolf.co.id/golf-course/emeralda-golf-club",
-          "https://gogolf.co.id/en/golf-course/emeralda-golf-club"
+          "https://gogolf.co.id/golf-course/emeralda-golf-club"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-04-29",
         "based_on": "2025 rates - 2026 may differ",
         "source_details": [
           {
@@ -4223,19 +4209,8 @@
           "https://www.tripadvisor.com/Attraction_Review-g297706-d8817614-Reviews-Sentul_Highlands_Golf_Course-Bogor_West_Java_Java.html",
           "https://gogolf.co.id/en/golf-course/sentul-highlands-golf-club"
         ],
-        "last_verified": "2026-05-06",
-        "based_on": "2025 rates - 2026 may differ",
-        "source_details": [
-          {
-            "slot": null,
-            "value_idr": null,
-            "publisher": null,
-            "source_url": null,
-            "tier": null,
-            "as_of": "2026-05-06",
-            "notes": null
-          }
-        ]
+        "last_verified": "2026-04-29",
+        "based_on": "2025 rates - 2026 may differ"
       },
       "operating_status": {
         "status": "operating",
@@ -4419,10 +4394,9 @@
         "sources": [
           "https://rainbowhillsgolf.com/",
           "https://gogolf.co.id/en/golf-course/rainbow-hills-golf-club",
-          "https://gogolf.co.id/golf-course/rainbow-hills-golf-club",
-          "https://www.qaccess.asia/QGolfPrice?searchString=Rainbow+Hills+Golf"
+          "https://gogolf.co.id/golf-course/rainbow-hills-golf-club"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-04-29",
         "based_on": "2025 rates - 2026 may differ",
         "source_details": [
           {
@@ -4479,60 +4453,6 @@
             "raw_excerpt": "antung hari dan waktu bermain: weekday: sekitar rp975.000 – rp995.000 weekend: sekitar rp1.700.000 – rp2.400.000+ biasanya harga s",
             "tier_score": 65,
             "score": 65.0
-          },
-          {
-            "slot": "weekday_am",
-            "value_idr": null,
-            "publisher": null,
-            "source_url": "https://gogolf.co.id/en/golf-course/rainbow-hills-golf-club",
-            "tier": null,
-            "as_of": "2026-05-06",
-            "notes": null
-          },
-          {
-            "slot": "weekday_pm",
-            "value_idr": null,
-            "publisher": null,
-            "source_url": "https://www.qaccess.asia/QGolfPrice?searchString=Rainbow+Hills+Golf",
-            "tier": null,
-            "as_of": "2026-05-06",
-            "notes": null
-          },
-          {
-            "slot": "saturday_am",
-            "value_idr": null,
-            "publisher": null,
-            "source_url": "https://gogolf.co.id/en/golf-course/rainbow-hills-golf-club",
-            "tier": null,
-            "as_of": "2026-05-06",
-            "notes": null
-          },
-          {
-            "slot": "saturday_pm",
-            "value_idr": null,
-            "publisher": null,
-            "source_url": "https://gogolf.co.id/en/golf-course/rainbow-hills-golf-club",
-            "tier": null,
-            "as_of": "2026-05-06",
-            "notes": null
-          },
-          {
-            "slot": "sunday_am",
-            "value_idr": null,
-            "publisher": null,
-            "source_url": "https://gogolf.co.id/en/golf-course/rainbow-hills-golf-club",
-            "tier": null,
-            "as_of": "2026-05-06",
-            "notes": null
-          },
-          {
-            "slot": "sunday_pm",
-            "value_idr": null,
-            "publisher": null,
-            "source_url": "https://gogolf.co.id/en/golf-course/rainbow-hills-golf-club",
-            "tier": null,
-            "as_of": "2026-05-06",
-            "notes": null
           }
         ],
         "crawled_summary": {
@@ -4731,7 +4651,7 @@
           "https://qgolf.asia/klub-golf-bogor-raya-driving-range/",
           "https://gogolf.co.id/en/golf-course/bogor-raya-golf-club"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-04-29",
         "based_on": "2023-2025 rates - 2026 may differ",
         "source_details": [
           {
@@ -4755,78 +4675,6 @@
             "raw_excerpt": "るもの： 18ホールのゴルフ1ラウンド デラックスルームに1泊 朝食と昼食 weekend breakout 土曜午後：rp980,000（ゴルフ、昼食＆夕食、ゴルフボールを含む、2フライト対象） 日曜／祝日：rp850,000（18ホール、ゴルフボール、2",
             "tier_score": 65,
             "score": 65.0
-          },
-          {
-            "slot": "weekday_mon_am",
-            "value_idr": null,
-            "publisher": "QAccess",
-            "source_url": "https://www.qaccess.asia/QGolfPrice?searchString=Klub+Golf+Bogor+Raya",
-            "tier": null,
-            "as_of": "2026-05-06",
-            "notes": null
-          },
-          {
-            "slot": "weekday_mon_pm",
-            "value_idr": null,
-            "publisher": "QAccess",
-            "source_url": "https://www.qaccess.asia/QGolfPrice?searchString=Klub+Golf+Bogor+Raya",
-            "tier": null,
-            "as_of": "2026-05-06",
-            "notes": null
-          },
-          {
-            "slot": "weekday_tue_fri_am",
-            "value_idr": null,
-            "publisher": "QAccess",
-            "source_url": "https://www.qaccess.asia/QGolfPrice?searchString=Klub+Golf+Bogor+Raya",
-            "tier": null,
-            "as_of": "2026-05-06",
-            "notes": null
-          },
-          {
-            "slot": "weekday_tue_fri_pm",
-            "value_idr": null,
-            "publisher": "QAccess",
-            "source_url": "https://www.qaccess.asia/QGolfPrice?searchString=Klub+Golf+Bogor+Raya",
-            "tier": null,
-            "as_of": "2026-05-06",
-            "notes": null
-          },
-          {
-            "slot": "satAm",
-            "value_idr": null,
-            "publisher": "QAccess",
-            "source_url": "https://www.qaccess.asia/QGolfPrice?searchString=Klub+Golf+Bogor+Raya",
-            "tier": null,
-            "as_of": "2026-05-06",
-            "notes": null
-          },
-          {
-            "slot": "satPm",
-            "value_idr": null,
-            "publisher": "QAccess",
-            "source_url": "https://www.qaccess.asia/QGolfPrice?searchString=Klub+Golf+Bogor+Raya",
-            "tier": null,
-            "as_of": "2026-05-06",
-            "notes": null
-          },
-          {
-            "slot": "sunAm",
-            "value_idr": null,
-            "publisher": "QAccess",
-            "source_url": "https://www.qaccess.asia/QGolfPrice?searchString=Klub+Golf+Bogor+Raya",
-            "tier": null,
-            "as_of": "2026-05-06",
-            "notes": null
-          },
-          {
-            "slot": "sunPm",
-            "value_idr": null,
-            "publisher": "QAccess",
-            "source_url": "https://www.qaccess.asia/QGolfPrice?searchString=Klub+Golf+Bogor+Raya",
-            "tier": null,
-            "as_of": "2026-05-06",
-            "notes": null
           }
         ],
         "crawled_summary": {
@@ -5823,10 +5671,9 @@
         "sources": [
           "https://jagorawi.com/green-fees/",
           "https://gogolf.co.id/en/golf-course/jagorawi-golf-country-club",
-          "https://gogolf.co.id/golf-course/jagorawi-golf-country-club",
-          "https://jagorawi.com/membership"
+          "https://gogolf.co.id/golf-course/jagorawi-golf-country-club"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-04-29",
         "based_on": "2024-2025 rates - 2026 may differ",
         "source_details": [
           {
@@ -7148,12 +6995,9 @@
           "https://www.threads.com/@maz_iwan/post/DS7aEhhCdtN/",
           "https://rsmmbogor.com/heritage-golf-field",
           "https://www.golflux.com/course/bogor-golf-club-rsjmm-heritage-golf-field/",
-          "https://www.instagram.com/heritagegolffield/",
-          "https://www.golfpass.com/travel-advisor/courses/38330-bogor-golf-club-rsjmm-heritage-golf-field",
-          "https://www.hole19golf.com/courses/rsjmm-heritage-golf-field",
-          "https://us.trip.com/travel-guide/attraction/central-bogor/rsjmm-heritage-golf-field-bogor-144866484/"
+          "https://www.instagram.com/heritagegolffield/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "Late-2025 player report (Threads), not contradicted by 2026 sources"
       },
       "operating_status": {
@@ -7520,11 +7364,9 @@
         "sources": [
           "https://vault.nimc.gov.ng/blog/mountain-view-golf-bandung-tee-times-green-fees-and-more-1767647064",
           "https://www.golfsavers.com/indonesia/bandung-golf-courses/dago-pakar-mountain-view-golf-club",
-          "https://mountainviewgolfbandung.com/",
-          "https://www.golfasian.com/golf-courses/indonesia-golf-courses/bandung/mountain-view-golf-club/",
-          "https://www.tripadvisor.com/Attraction_Review-g297704-d3532305-Reviews-Mountain_View_Golf_Club-Bandung_West_Java_Java.html"
+          "https://mountainviewgolfbandung.com/"
         ],
-        "last_verified": "2026-05-06"
+        "last_verified": "2026-04-29"
       },
       "operating_status": {
         "status": "operating",
@@ -7614,11 +7456,9 @@
         "notes": "Official 2026 rates page lists prices via image: Tue-Fri morning from IDR 490,000, afternoon from IDR 430,000. Saturday morning from IDR 900,000 / afternoon IDR 800,000. Sunday morning from IDR 780,000 / afternoon IDR 700,000. Member rate IDR 250,000. Includes 18-hole green fee + shared cart + caddy. Closed Mondays.",
         "sources": [
           "https://dagoheritage1917.com/green_fees.php",
-          "https://nuansaholiday.co.id/product/bandung-golf/",
-          "https://gogolf.co.id/en/golf-course/pgb-dago-endah-golf",
-          "https://us.trip.com/travel-guide/attraction/cibeunying-kaler/1917-heritage-dago-golf-course-58326644/"
+          "https://nuansaholiday.co.id/product/bandung-golf/"
         ],
-        "last_verified": "2026-05-06"
+        "last_verified": "2026-04-29"
       },
       "operating_status": {
         "status": "operating",
@@ -7779,31 +7619,9 @@
         "sources": [
           "https://www.jatinangorgolf.com/rates/golf",
           "https://www.bgg.co.id/rates/golf",
-          "https://www.golfsavers.com/indonesia/bandung-golf-courses/jatinangor-national-golf-resort",
-          "https://www.jatinangorgolf.com/golf.php",
-          "https://www.jatinangorgolf.com/membership/general"
+          "https://www.golfsavers.com/indonesia/bandung-golf-courses/jatinangor-national-golf-resort"
         ],
-        "last_verified": "2026-05-06",
-        "source_details": [
-          {
-            "slot": null,
-            "value_idr": null,
-            "publisher": null,
-            "source_url": "https://www.jatinangorgolf.com/golf.php",
-            "tier": null,
-            "as_of": "2026-05-06",
-            "notes": null
-          },
-          {
-            "slot": null,
-            "value_idr": null,
-            "publisher": null,
-            "source_url": null,
-            "tier": null,
-            "as_of": "2026-05-06",
-            "notes": null
-          }
-        ]
+        "last_verified": "2026-05-01"
       },
       "operating_status": {
         "status": "operating",
@@ -7922,11 +7740,9 @@
           "https://wisatabagus.com/ciater-highland-resort/",
           "https://salsawisata.com/ciater-highland-resort/",
           "https://travelspromo.com/htm-wisata/ciater-highland-resort-subang/",
-          "https://ciaterhighlandresort.com/",
-          "https://www.visitciaterhighlandresort.my.id/",
-          "https://wisata.subang.go.id/view-ciater-highland-resort.jsp"
+          "https://ciaterhighlandresort.com/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "2025 published resort tariffs; not a regulation golf course"
       },
       "operating_status": {
@@ -8016,13 +7832,9 @@
         "sources": [
           "https://thebudgetgolfer.com/yogyakarta-golf-guide-2026/",
           "https://www.leadingcourses.com/clubs/asia+indonesia+java+special-region-of-yogyakarta/merapi-golf-yogyakarta",
-          "https://www.getyourguide.com/yogyakarta-l349/yogyakarta-merapi-golf-course-cangkringan-t638379/",
-          "https://merapigolf-club.netlify.app/",
-          "https://gogolf.co.id/en/golf-course/merapi-golf-mountain-resort",
-          "https://us.trip.com/travel-guide/attraction/cangkringan/merapi-golf-club-143946148/",
-          "https://visitingjogja.jogjaprov.go.id/8413/merapi-golf-cangkringan-sleman/"
+          "https://www.getyourguide.com/yogyakarta-l349/yogyakarta-merapi-golf-course-cangkringan-t638379/"
         ],
-        "last_verified": "2026-05-06"
+        "last_verified": "2026-04-29"
       },
       "operating_status": {
         "status": "operating",
@@ -8170,21 +7982,9 @@
         "notes": "9-hole course at Hyatt Regency Yogyakarta. Range IDR 409,000 - 509,000 per person. Bookings made directly at Bogey's Terrace. Caddy/cart not separately disclosed.",
         "sources": [
           "https://www.hyatt.com/hyatt-regency/en-US/yogya-hyatt-regency-yogyakarta/golf-course",
-          "https://thebudgetgolfer.com/yogyakarta-golf-guide-2026/",
-          "https://www.golflux.com/holiday/stay-play-hyatt-regency-yogyakarta/"
+          "https://thebudgetgolfer.com/yogyakarta-golf-guide-2026/"
         ],
-        "last_verified": "2026-05-06",
-        "source_details": [
-          {
-            "slot": null,
-            "value_idr": null,
-            "publisher": null,
-            "source_url": null,
-            "tier": null,
-            "as_of": "2026-05-06",
-            "notes": null
-          }
-        ]
+        "last_verified": "2026-04-29"
       },
       "operating_status": {
         "status": "operating",
@@ -8363,12 +8163,9 @@
         "notes": "Indonesian Air Force-affiliated course, open to public. Monday IDR 325,000; Tue-Fri IDR 370,000; Sat-Sun & Holidays IDR 690,000. Junior rates IDR 240,000 (weekday) / IDR 390,000 (weekend). Rates last updated August 2025; 2026 update not separately confirmed.",
         "sources": [
           "https://www.gelora.id/v/padanggolfadisutjipto",
-          "https://berjogja.com/4-rekomendasi-tempat-main-golf-di-yogyakarta-lengkap-alamat-dan-tarif/",
-          "https://www.instagram.com/p/DS9Tw9iCfqz/",
-          "https://playgolf.id/golf_courses/padang-golf-adisutjipto/",
-          "https://www.gelora.id/v/padanggolfadisutjipto/about"
+          "https://berjogja.com/4-rekomendasi-tempat-main-golf-di-yogyakarta-lengkap-alamat-dan-tarif/"
         ],
-        "last_verified": "2026-05-06"
+        "last_verified": "2026-04-29"
       },
       "operating_status": {
         "status": "operating",
@@ -8458,10 +8255,9 @@
         "notes": "Visitor weekday IDR 850,000 / weekend & holiday IDR 1,750,000. Member weekday IDR 255,000 / weekend IDR 355,000. Twin-share cart included; single cart upgrade IDR 150,000.",
         "sources": [
           "https://web.archive.org/web/20240713134223/https://www.borobudur-golf.com/rates/ (wayback snapshot 2024-07-13)",
-          "https://www.golfpass.com/travel-advisor/courses/38170-borobudur-international-golf-country-club",
-          "https://www.golfasian.com/golf-courses/indonesia-golf-courses/yogyakarta/borobudur-international-golf-country-club/"
+          "https://www.golfpass.com/travel-advisor/courses/38170-borobudur-international-golf-country-club"
         ],
-        "last_verified": "2026-05-06"
+        "last_verified": "2026-04-29"
       },
       "operating_status": {
         "status": "operating",
@@ -8620,22 +8416,9 @@
         "sources": [
           "https://gogolf.co.id/en/golf-course/gombel-golf-semarang",
           "https://en.gogolf.co.id/golf-course/gombel-golf",
-          "https://www.traveloka.com/id-id/activities/indonesia/product/gombel-golf-semarang-2001925005778",
-          "https://www.semarangroyalegolf.com/",
-          "https://playgolf.id/golf_courses/semarang-royale-golf/"
+          "https://www.traveloka.com/id-id/activities/indonesia/product/gombel-golf-semarang-2001925005778"
         ],
-        "last_verified": "2026-05-06",
-        "source_details": [
-          {
-            "slot": null,
-            "value_idr": null,
-            "publisher": null,
-            "source_url": "https://gogolf.co.id/en/golf-course/gombel-golf-semarang",
-            "tier": null,
-            "as_of": "2026-05-06",
-            "notes": null
-          }
-        ]
+        "last_verified": "2026-04-29"
       },
       "operating_status": {
         "status": "operating",
@@ -8751,11 +8534,9 @@
           "https://candigolf.id/",
           "https://us.trip.com/travel-guide/attraction/tembalang/candi-golf-club-144866825/",
           "https://wanderlog.com/place/details/12286766/candigolf-country-club",
-          "https://www.instagram.com/candigolfcountryclub.id/",
-          "https://greenfee365.com/golf-course/graha-candi-golf",
-          "https://gogolf.co.id/en/golf-semarang"
+          "https://www.instagram.com/candigolfcountryclub.id/"
         ],
-        "last_verified": "2026-05-06"
+        "last_verified": "2026-05-01"
       },
       "operating_status": {
         "status": "operating",
@@ -9216,10 +8997,9 @@
           "https://gogolf.co.id/en/golf-course/bukit-darmo-golf",
           "https://id.trip.com/travel-guide/attraction/dukuhpakis/bukit-darmo-golf-surabaya-58270448/",
           "https://www.bca.co.id/en/promo-bca/2022/07/15/02/59/golf-course",
-          "https://gogolf.co.id/golf-course/bukit-darmo-golf",
-          "https://bukitdarmogolf.com/rates-fee-and-membership/"
+          "https://gogolf.co.id/golf-course/bukit-darmo-golf"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "source_details": [
           {
             "slot": "weekday",
@@ -10012,10 +9792,9 @@
           "https://www.tamandayu.com/",
           "https://www.golfcards.com/course/taman-dayu-golf-club-resort/",
           "https://gogolf.co.id/en/gogolf-news/how-much-does-it-cost-to-play-golf-in-indonesia",
-          "https://gogolf.co.id/en/golf-course/taman-dayu-golf-club",
-          "https://www.golfsavers.com/indonesia/surabaya-golf-courses/taman-dayu-golf-club-and-resort"
+          "https://gogolf.co.id/en/golf-course/taman-dayu-golf-club"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-04-29",
         "source_details": [
           {
             "slot": "weekday",
@@ -10843,12 +10622,9 @@
         "sources": [
           "https://playgolf.id/golf_courses/padang-golf-glantangan/",
           "https://us.trip.com/travel-guide/attraction/tempurejo/padang-golf-glantangan-144867458/",
-          "https://www.instagram.com/glantangangolf_coursejember/",
-          "https://www.kliktimes.com/news/72910059933/melihat-padang-golf-glantangan-sarana-olahraga-elite-yang-makin-eksis-di-jember",
-          "https://jatimnow.com/baca-79083-jember-miliki-lapangan-golf-berpotensi-tingkatkan-ekonomi-masyarakat",
-          "https://www.indonesiayp.com/company/530557/Padang_Golf_Glantangan"
+          "https://www.instagram.com/glantangangolf_coursejember/"
         ],
-        "last_verified": "2026-05-06"
+        "last_verified": "2026-04-29"
       },
       "operating_status": {
         "status": "operating",
@@ -10939,13 +10715,9 @@
           "https://abrisgrup.com/lapangan-golf-di-malang-yang-rekomended-tahun-2023/",
           "https://playgolf.id/golf_courses/abdul-rachman-saleh-padang-golf/",
           "https://www.hole19golf.com/courses/padang-golf-abdulrachman-saleh",
-          "https://www.golfpass.com/travel-advisor/courses/38152-abdulrachman-saleh-golf-course",
-          "https://golftimes.id/2025/01/02/tiga-tempat-golf-terbaik-di-malang-raya-untuk-pencinta-olahraga/",
-          "https://us.trip.com/travel-guide/attraction/singosari/abdul-rachman-saleh-padang-golf-144868268/",
-          "https://www.facebook.com/Pen.TNI/posts/lanud-abdulrachman-saleh-gelar-open-base-2025-penuh-semangat-dirgantararibuan-ma/122310484172006840/",
-          "https://www.youtube.com/watch?v=w60ttH5crR8"
+          "https://www.golfpass.com/travel-advisor/courses/38152-abdulrachman-saleh-golf-course"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "2023 published rates from abrisgrup.com plus 2024-2025 USD rates from playgolf.id/hole19golf.com"
       },
       "operating_status": {
@@ -11035,12 +10807,9 @@
         "sources": [
           "https://balinational.com/golfvisitors/golfrates/",
           "https://www.golfsavers.com/indonesia/bali-golf-courses/bali-national-golf-club",
-          "https://adeevatours.com/bali-national-golf-green-fee/",
-          "https://www.facebook.com/GolfAsian.TheAsianGolfExperts/posts/1153943883445324/",
-          "https://bali.com/places/bali-national-golf-club/",
-          "https://www.top100golfcourses.com/golf-course/bali-national"
+          "https://adeevatours.com/bali-national-golf-green-fee/"
         ],
-        "last_verified": "2026-05-06"
+        "last_verified": "2026-04-29"
       },
       "operating_status": {
         "status": "closed_permanent",
@@ -11103,12 +10872,9 @@
           "https://thebalisun.com/ex-staff-at-donald-trumps-bali-golf-course-share-how-closure-impacted-their-lives/",
           "https://www.france24.com/en/live-news/20221209-playing-with-paradise-defunct-bali-golf-course-another-trump-fiasco",
           "https://www.france24.com/",
-          "https://thebalisun.com/",
-          "https://www.asiasentinel.com/p/hot-mic-halted-project-trump-troubles-indonesia",
-          "https://www.mncland.com/trumpbali",
-          "https://www.top100golfcourses.com/golf-course/nirwana-bali"
+          "https://thebalisun.com/"
         ],
-        "last_verified": "2026-05-06"
+        "last_verified": "2026-05-01"
       },
       "operating_status": {
         "status": "closed_permanent",
@@ -11170,11 +10936,9 @@
         "sources": [
           "https://www.golfsavers.com/indonesia/bali-golf-courses/new-kuta-golf-club",
           "https://easygolfbali.com/product/green-fees/new-kuta-golf/",
-          "https://gobaligolf.com/new-kuta-golf-package/",
-          "https://baligolfspot.com/product/new-kuta/",
-          "https://newkutagolf.co.id/play"
+          "https://gobaligolf.com/new-kuta-golf-package/"
         ],
-        "last_verified": "2026-05-06"
+        "last_verified": "2026-04-29"
       },
       "operating_status": {
         "status": "operating",
@@ -11294,11 +11058,9 @@
           "https://adeevatours.com/handara-bali-golf-green-fee/",
           "https://easygolfbali.com/product/green-fees/handara-golf-country-resort-weekend-sat-sun/",
           "https://www.handaragolfresort.com/golf/",
-          "https://gogolf.co.id/en/golf-course/bali-handara-golf-resort",
-          "https://www.golfsavers.com/indonesia/bali-golf-courses/handara-golf-resort-bali",
-          "https://www.leadingcourses.com/clubs/asia+indonesia+nusa-tenggara+bali/handara-golf-resort-bali"
+          "https://gogolf.co.id/en/golf-course/bali-handara-golf-resort"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-04-29",
         "source_details": [
           {
             "slot": "weekday",
@@ -11482,31 +11244,9 @@
         "sources": [
           "https://adeevatours.com/bukit-pandawa-golf-green-fee/",
           "https://baligolfers.com/tour/bukit-pandawa-golf-weekend-public-holiday-green-fee/",
-          "https://easygolfbali.com/product/green-fees/bukit-pandawa-golf-country-club/",
-          "https://www.bukitpandawagolf.com/booknow.php",
-          "https://www.bukitpandawagolf.com/news/promo/ (Beginner Golf Lesson Package, 2026-05-06 게시)"
+          "https://easygolfbali.com/product/green-fees/bukit-pandawa-golf-country-club/"
         ],
-        "last_verified": "2026-05-06",
-        "source_details": [
-          {
-            "slot": null,
-            "value_idr": null,
-            "publisher": null,
-            "source_url": "https://www.bukitpandawagolf.com/",
-            "tier": null,
-            "as_of": "2026-05-06",
-            "notes": null
-          },
-          {
-            "slot": null,
-            "value_idr": null,
-            "publisher": null,
-            "source_url": "https://gogolf.co.id/en/golf-course/bukit-pandawa-golf-country-club",
-            "tier": null,
-            "as_of": "2026-05-06",
-            "notes": null
-          }
-        ]
+        "last_verified": "2026-04-29"
       },
       "operating_status": {
         "status": "operating",
@@ -11714,13 +11454,9 @@
         "notes": "Single 18-hole rate IDR 1,485,000 weekday and weekend; inclusive of caddy fee, tax, and hotel-to-course shuttle. Cart not specified as included (commonly extra).",
         "sources": [
           "https://sirebeachgolfclub.com/golf-rates/",
-          "https://www.lomboknetwork.net/tours-prices/golfing-in-lombok/kosaido-golf-lombok/",
-          "https://famous.ppl.ac.id/2025/10/15/lombok-golf-sire-beach-golf-club/",
-          "https://forevervacation.com/lombok/sire-beach-golf-club",
-          "https://guideandgo.com/en/indonesia/sira-beach-lombok-golfing-191019P10",
-          "https://www.golfpass.com/travel-advisor/courses/38229-sire-beach-golf-club"
+          "https://www.lomboknetwork.net/tours-prices/golfing-in-lombok/kosaido-golf-lombok/"
         ],
-        "last_verified": "2026-05-06"
+        "last_verified": "2026-04-29"
       },
       "operating_status": {
         "status": "operating",
@@ -11954,11 +11690,9 @@
         "notes": "9-hole resort course at Naia Resort Sumbawa. IDR 300,000 (9 holes) inclusive of course fee and caddie - last published rate (~2020); current 2026 rate not separately verified, treat as estimate. No cart at this small layout.",
         "sources": [
           "https://www.naiaresortsumbawa.com/kaleang-golf-course-west-sumbawa/",
-          "https://www.hole19golf.com/indonesia/kaleang-golf-club-naia-resort-sumbawa",
-          "https://www.naiaresortsumbawa.com/contact-us/",
-          "https://www.tripadvisor.com/Hotel_Review-g3680095-d17389647-Reviews-Naia_Resort_Beach_Club_Sumbawa-Sekongkang_Sumbawa_West_Nusa_Tenggara.html"
+          "https://www.hole19golf.com/indonesia/kaleang-golf-club-naia-resort-sumbawa"
         ],
-        "last_verified": "2026-05-06"
+        "last_verified": "2026-04-29"
       },
       "operating_status": {
         "status": "uncertain",
@@ -12079,11 +11813,9 @@
           "https://riabintangolf.com/rates/",
           "https://www.riabintan.com/published-rates/",
           "https://www.riabintan.com/justgolf/",
-          "https://gogolf.co.id/en/golf-course/ria-bintan-golf-club",
-          "https://www.riabintan.com/justgolf/ (공식 - 2026 신규 요금표; international SGD only, domestic IDR)",
-          "https://bintanretreat.com/bintan-golf-packages-2026-ria-bintan/ (2026 패키지)"
+          "https://gogolf.co.id/en/golf-course/ria-bintan-golf-club"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-04-29",
         "source_details": [
           {
             "slot": "weekday",
@@ -12249,15 +11981,6 @@
             "raw_excerpt": "rs: weekday 18 holes: rp 1,465,000 weekend/public holidays: rp 1,990,000 9-hole/twilight: rp 940,000 (weekday), rp 1,105,000 (weekend)",
             "tier_score": 65,
             "score": 65.0
-          },
-          {
-            "slot": null,
-            "value_idr": null,
-            "publisher": null,
-            "source_url": null,
-            "tier": null,
-            "as_of": "2026-05-06",
-            "notes": null
           }
         ],
         "crawled_summary": {
@@ -12493,11 +12216,9 @@
         "notes": "Forest 9 - same rate card as Ocean Course. International: Wkdy IDR 1,465,000 (SGD 147); Wknd IDR 1,990,000 (SGD 199). 9-hole and twilight options available at reduced rates. Domestic/KITAS rate ~25-30% lower.",
         "sources": [
           "https://riabintangolf.com/rates/",
-          "https://www.riabintan.com/published-rates/",
-          "https://bintanretreat.com/ria-bintan-golf-club-2025-best-golf-course-bintan/",
-          "https://www.bintan-resorts.com/golf/ria-bintan-golf-club/"
+          "https://www.riabintan.com/published-rates/"
         ],
-        "last_verified": "2026-05-06"
+        "last_verified": "2026-04-29"
       },
       "operating_status": {
         "status": "closed_temporary",
@@ -12603,12 +12324,9 @@
         "notes": "Sea View (Jack Nicklaus) course at Bintan Lagoon Resort. Aggregator-quoted rates: weekday SGD 70 nett/pax, weekend SGD 110 nett/pax. USD conversion at ~SGD 1 = USD 0.75. Package typically includes shared buggy, caddy, golf insurance. Resort had been closed for renovation post-COVID; aggregator listings for 2026 reflect current bookable rates.",
         "sources": [
           "https://www.golfsavers.com/indonesia/bintan-golf-courses/bintan-lagoon-resort-jack-nicklaus-course",
-          "https://bintanretreat.com/bintan-golf-resorts-2026/",
-          "https://www.bintan-resorts.com/resorts/movenpick-bintan-resort-and-spa-bintan-lagoon/",
-          "https://www.travelandtourworld.com/news/article/escape-to-paradise-movenpick-resort-spa-bintan-lagoon-opens-with-stunning-views-and-premium-services/",
-          "https://www.ttgasia.com/2026/01/08/new-hotels-movenpick-resort-spa-bintan-lagoon-ac-hotel-by-marriott-puchong-and-more/"
+          "https://bintanretreat.com/bintan-golf-resorts-2026/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "source_details": [
           {
             "slot": "weekend",
@@ -12693,22 +12411,18 @@
         "last_crawled": "2026-05-05T16:56:20.418780+00:00"
       },
       "operating_status": {
-        "status": "operating",
-        "confidence": "medium",
+        "status": "closed_temporary",
+        "confidence": "high",
         "evidence": [
           "https://en.wikipedia.org/wiki/Bintan_Lagoon_Resort - golf courses closed 2020 due to insolvency",
           "https://www.where2golf.com/indonesia/bintan-lagoon-resort-sea-view-course/ - flagged as closed",
           "https://www.hospitalitynet.org/announcement/41013764.html - Movenpick Resort & Spa Bintan Lagoon opening Q1 2026",
           "https://www.travelandtourworld.com/news/article/movenpick-resort-and-spa-bintan-lagoon-opens-in-2026-... - resort relaunches 2026 mentioning 'access to two championship courses' but golf reopening not separately confirmed",
-          "https://www.ttgasia.com/2026/01/08/new-hotels-movenpick-resort-spa-bintan-lagoon - Jan 2026 announcement focuses on hotel facilities, not explicit golf reopening",
-          "https://bintanretreat.com/bintan-golf-resorts-2026/ - 2026 패키지로 Bintan Lagoon Sea View(Jack Nicklaus) 및 Woodlands 2개 코스 예약 가능 표시 (IDR 1,400,000 day-trip)",
-          "https://www.bintan-resorts.com/resorts/movenpick-bintan-resort-and-spa-bintan-lagoon/ - 2026 Q1 오픈 Movenpick 페이지에서 'access to two championship courses (Jack Nicklaus, Ian Baker-Finch)' 명시",
-          "https://www.travelandtourworld.com/news/article/movenpick-resort-and-spa-bintan-lagoon-opens-in-2026 - 리조트 오픈과 2개 챔피언십 코스 접근권 공지",
-          "https://www.where2golf.com/indonesia/bintan-lagoon-resort-sea-view-course/ - 'COURSE CLOSED IN 2020; unsure if it will reopen' 라는 상충 표기 잔존 (업데이트 지연 가능성)"
+          "https://www.ttgasia.com/2026/01/08/new-hotels-movenpick-resort-spa-bintan-lagoon - Jan 2026 announcement focuses on hotel facilities, not explicit golf reopening"
         ],
         "closure_reason": "Closed 2020 due to Bintan Lagoon Resort insolvency; resort hotel rebooted by Mövenpick (Accor) Q1 2026 but golf reopening not confirmed in 2026 launch materials",
         "reopened_as": "Mövenpick Resort & Spa Bintan Lagoon (hotel only confirmed; golf TBD)",
-        "last_verified": "2026-05-06"
+        "last_verified": "2026-04-29"
       },
       "membership": {
         "available": false,
@@ -12782,12 +12496,9 @@
         "notes": "Woodlands (Ian Baker-Finch) course at Bintan Lagoon Resort. Aggregator-quoted rates: weekday SGD 70 nett/pax, weekend SGD 110 nett/pax. USD ~SGD 1 = USD 0.75. Package typically includes shared buggy, caddy, golf insurance. Same rate card as Sea View course.",
         "sources": [
           "https://www.golfsavers.com/indonesia/bintan-golf-courses/bintan-lagoon-resort-ian-baker-finch-course",
-          "https://w.baigolf.com/course.php?act=detail&golf_course_id=6799&lan=en_us",
-          "https://www.bintan-resorts.com/resorts/movenpick-bintan-resort-and-spa-bintan-lagoon/",
-          "https://all.accor.com/hotel/B9X8/index.en.shtml",
-          "https://www.travelandtourworld.com/news/article/movenpick-resort-and-spa-bintan-lagoon-opens-in-2026-blending-their-swiss-sophistication-with-indonesian-hospitality-to-boost-tourism-and-connectivity-growth/"
+          "https://w.baigolf.com/course.php?act=detail&golf_course_id=6799&lan=en_us"
         ],
-        "last_verified": "2026-05-06"
+        "last_verified": "2026-05-01"
       },
       "operating_status": {
         "status": "closed_temporary",
@@ -12877,12 +12588,9 @@
           "https://www.golfsavers.com/indonesia/bintan-golf-courses/laguna-bintan-golf-club",
           "https://www.lagunagolfbintan.com/rates",
           "https://www.lagunagolfbintan.com/rate",
-          "https://gogolf.co.id/en/golf-course/laguna-golf-bintan",
-          "https://www.lagunagolfbintan.com/tournament-rules-update-2026/",
-          "https://www.golfbusinesstechnology.com/laguna-golf-phuket-and-laguna-golf-bintan-boost-global-reach-with-renewed-partnership-with-gms-agency/",
-          "https://www.bintan-resorts.com/golf/laguna-golf-bintan/"
+          "https://gogolf.co.id/en/golf-course/laguna-golf-bintan"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-04-29",
         "source_details": [
           {
             "slot": "weekday",
@@ -13560,11 +13268,9 @@
           "https://www.golfsavers.com/indonesia/batam-island-golf-courses/palm-springs-golf-country-club",
           "https://en.gogolf.co.id/golf-course/palm-springs-golf",
           "https://www.where2golf.com/indonesia/palm-springs-golf-beach-resort/",
-          "https://gogolf.co.id/en/golf-course/palm-springs-golf-beach-resort",
-          "https://batam.palmspringsgolf.co/packages-and-rates",
-          "https://batamgolfpackage.com/"
+          "https://gogolf.co.id/en/golf-course/palm-springs-golf-beach-resort"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "source_details": [
           {
             "slot": "weekday",
@@ -13752,60 +13458,6 @@
             "raw_excerpt": "uch as rp950,000 on weekdays, rp1,550,000 on saturdays, and rp1,360,000 on sundays. rates may change depending on season and promoti",
             "tier_score": 65,
             "score": 65.0
-          },
-          {
-            "slot": "weekday",
-            "value_idr": null,
-            "publisher": null,
-            "source_url": "https://batam.palmspringsgolf.co/packages-and-rates",
-            "tier": 1,
-            "as_of": "2026-05-06",
-            "notes": null
-          },
-          {
-            "slot": "satAm",
-            "value_idr": null,
-            "publisher": null,
-            "source_url": "https://batam.palmspringsgolf.co/packages-and-rates",
-            "tier": 1,
-            "as_of": "2026-05-06",
-            "notes": null
-          },
-          {
-            "slot": "satPm",
-            "value_idr": null,
-            "publisher": null,
-            "source_url": "https://batam.palmspringsgolf.co/packages-and-rates",
-            "tier": 1,
-            "as_of": "2026-05-06",
-            "notes": null
-          },
-          {
-            "slot": "sunAm",
-            "value_idr": null,
-            "publisher": null,
-            "source_url": "https://batam.palmspringsgolf.co/packages-and-rates",
-            "tier": 1,
-            "as_of": "2026-05-06",
-            "notes": null
-          },
-          {
-            "slot": "sunPm",
-            "value_idr": null,
-            "publisher": null,
-            "source_url": "https://batam.palmspringsgolf.co/packages-and-rates",
-            "tier": 1,
-            "as_of": "2026-05-06",
-            "notes": null
-          },
-          {
-            "slot": "weekend",
-            "value_idr": null,
-            "publisher": null,
-            "source_url": "https://batam.palmspringsgolf.co/packages-and-rates",
-            "tier": 1,
-            "as_of": "2026-05-06",
-            "notes": null
           }
         ],
         "crawled_summary": {
@@ -14045,13 +13697,9 @@
           "https://batamgolfpackage.com/",
           "https://www.welcometobatam.com/tering-bay-golf",
           "https://www.golfsavers.com/best-golf-courses-in-batam",
-          "https://en.gogolf.co.id/golf-course/tering-bay-golf",
-          "https://www.batamislandcc.com/",
-          "https://gngcd.com/courses/batam-island-country-club/",
-          "https://deemples.com/my/course/tering-bay-golf-country-club",
-          "https://www.golfsavers.com/indonesia/batam-island-golf-courses/batam-island-country-club"
+          "https://en.gogolf.co.id/golf-course/tering-bay-golf"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "source_details": [
           {
             "slot": "weekend",
@@ -14272,12 +13920,9 @@
           "https://en.gogolf.co.id/golf-course/tamarin-santana-golf-club",
           "https://www.golfsavers.com/indonesia/batam-island-golf-courses/tamarin-santana-golf-club",
           "https://www.welcometobatam.com/book-batam-golf-packages.asp?resort=tamarinsantana",
-          "https://gogolf.co.id/en/golf-course/tamarin-santana-golf-club",
-          "https://www.golflux.com/course/tamarin-golf-and-footgolf-club/",
-          "https://playgolf.id/golf_courses/tamarin-golf-footgolf-club/",
-          "https://www.championsgolf.co/about-the-golf-course/tamarin-golf-resort/"
+          "https://gogolf.co.id/en/golf-course/tamarin-santana-golf-club"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "2024-2025 published rates",
         "source_details": [
           {
@@ -14367,24 +14012,6 @@
             "raw_excerpt": "00 per player weekends: rp 295,000 per player club members: rp 245,000 per player (any day) inclusive benefits each package include",
             "tier_score": 65,
             "score": 65.0
-          },
-          {
-            "slot": "weekday",
-            "value_idr": 363000,
-            "publisher": "GolfLux",
-            "source_url": "https://www.golflux.com/course/tamarin-golf-and-footgolf-club/",
-            "tier": 4,
-            "as_of": "2026-05-06",
-            "notes": "9H walk-in green fee USD 기준; 1 USD ≈ IDR 16,500 환산"
-          },
-          {
-            "slot": "weekend",
-            "value_idr": 412500,
-            "publisher": "GolfLux",
-            "source_url": "https://www.golflux.com/course/tamarin-golf-and-footgolf-club/",
-            "tier": 4,
-            "as_of": "2026-05-06",
-            "notes": "9H walk-in green fee USD 기준 환산"
           }
         ],
         "crawled_summary": {
@@ -14583,12 +14210,9 @@
         "sources": [
           "https://www.golfsavers.com/indonesia/batam-island-golf-courses/southlinks-country-club",
           "https://batamgolfpackage.com/",
-          "https://gogolf.co.id/en/golf-course/southlinks-golf-and-country-club",
-          "https://www.welcometobatam.com/southlink-golf-batam-from-singapore-with-ferry-land-transfer-package",
-          "https://deemples.com/my/golf-packages/batam-golf-sukajadi-southlinks",
-          "https://www.golftripz.com/golf-holiday/2n-3r-batam-golf-getaway"
+          "https://gogolf.co.id/en/golf-course/southlinks-golf-and-country-club"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "source_details": [
           {
             "slot": "weekday",
@@ -14873,12 +14497,9 @@
           "http://www.padanggolfsukajadi.com/greenfees.html",
           "https://www.padanggolfsukajadi.com/",
           "https://batamgolfpackage.com/",
-          "https://gogolf.co.id/golf-course/padang-golf-sukajadi",
-          "https://www.golfsavers.com/indonesia/batam-island-golf-courses/padang-golf-sukajadi",
-          "https://www.golfasian.com/golf-courses/indonesia-golf-courses/batam/padang-golf-sukajadi/",
-          "https://www.yellowpages.net/phone-62-7788073008-golf-club-Batam-IDEN2105637.html"
+          "https://gogolf.co.id/golf-course/padang-golf-sukajadi"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-04-29",
         "source_details": [
           {
             "slot": "weekend",
@@ -15174,23 +14795,9 @@
         "sources": [
           "https://web.archive.org/web/20200216210617/http://www.indahpuri.com:80/golfing-fees/ (wayback snapshot 2020-02-16)",
           "https://batamgolfpackage.com/",
-          "https://www.golfasian.com/golf-courses/indonesia-golf-courses/batam/indah-puri-golf-resort/",
-          "https://batam-golf.com/indah-puri-golf-batam-day-package/",
-          "https://www.welcometobatam.com/book-batam-golf-packages.asp?resort=indahpuri",
-          "https://deemples.com/my/golf-packages/batam-golf-indah-puri-batam-hills"
+          "https://www.golfasian.com/golf-courses/indonesia-golf-courses/batam/indah-puri-golf-resort/"
         ],
-        "last_verified": "2026-05-06",
-        "source_details": [
-          {
-            "slot": null,
-            "value_idr": null,
-            "publisher": null,
-            "source_url": null,
-            "tier": null,
-            "as_of": "2026-05-06",
-            "notes": null
-          }
-        ]
+        "last_verified": "2026-05-01"
       },
       "operating_status": {
         "status": "operating",
@@ -15583,13 +15190,9 @@
           "https://playgolf.id/golf_courses/tamora-golf-club/",
           "https://www.instagram.com/tgcsumut/",
           "https://greenfee365.com/golf-course/tamora-golf-club",
-          "https://us.trip.com/travel-guide/attraction/tanjung-morawa/tamora-golf-club-144866602/",
-          "https://www.golfpass.com/travel-advisor/courses/38286-tamora-golf-club",
-          "https://www.golfbook.io/p/country/indonesia/region/north-sumatra/city/tanjung-morawa/golf-course/tamora-golf-club-90b29bdc",
-          "https://www.golflux.com/course/tamora-golf-club/",
-          "https://www.golfshake.com/course/view/21493/Tamora_Golf_Club.html"
+          "https://us.trip.com/travel-guide/attraction/tanjung-morawa/tamora-golf-club-144866602/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "PlayGolf.id USD listing converted at USD/IDR ~17,300 (May 2026)"
       },
       "operating_status": {
@@ -15688,11 +15291,9 @@
         "sources": [
           "https://playgolf.id/golf_courses/graha-metropolitan-golf-course/",
           "https://www.golfshake.com/course/view/21430/Graha_Helvetia_Golf_Country_Club.html",
-          "https://www.golflux.com/course/graha-helvetia-golf-country-club/",
-          "https://www.pinnacle-travel.com/medan-golf-courses/",
-          "https://mieayammahmud.com/tempat-main-golf-di-medan/"
+          "https://www.golflux.com/course/graha-helvetia-golf-country-club/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "PlayGolf.id USD listing + Indonesian review-cited IDR 670k weekday"
       },
       "operating_status": {
@@ -15782,11 +15383,9 @@
           "https://www.bbcc-golf.com/",
           "https://www.putteringaroundtheworld.com/bukit-barisan-golf-course/",
           "https://nicklausdesign.com/course/bukit-barisan/",
-          "http://www.indogolf.com/show.phtml?id=BBCC",
-          "https://www.aurorawisata.com/paket-golf-medan/",
-          "https://us.trip.com/travel-guide/attraction/namorih/bukit-barisan-country-club-144865387/"
+          "http://www.indogolf.com/show.phtml?id=BBCC"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "PlayGolf.id USD listing converted at USD/IDR ~17,300 (May 2026)"
       },
       "operating_status": {
@@ -15876,13 +15475,9 @@
           "https://playgolf.id/golf_courses/golf-course-pertamina-hulu-rokan-rumbai/",
           "https://www.golfpass.com/travel-advisor/courses/38274-rumbai-golf-country-club",
           "https://us.trip.com/travel-guide/attraction/pekanbaru/golf-course-pertamina-hulu-rokan-rumbai-144860388/",
-          "https://hr2.chevron.com/expatriate/asia-pacific/rumbai-and-minas",
-          "https://www.sabangmeraukenews.com/berita/22533/pekerja-caddy-lapangan-golf-pt-phr-curhat-ke-anggota-dprd-pekanbaru-lindawati-minta-lapangan-dibuka-.html",
-          "https://www.sabangmeraukenews.com/berita/22664/fraksi-nasdem-dprd-pekanbaru-respon-cepat-aspirasi-pekerja-caddy-lapangan-golf-pt-phr-undang-audiens.html",
-          "https://www.lemon8-app.com/@sitompul.ofc/7458883757358137863?region=id",
-          "https://riaupos.co/tag/lapangan-golf-phr-rumbai/"
+          "https://hr2.chevron.com/expatriate/asia-pacific/rumbai-and-minas"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "PlayGolf.id USD listing converted at USD/IDR ~17,300 (May 2026); GolfPass historical caddy Rp 100k"
       },
       "operating_status": {
@@ -15971,11 +15566,9 @@
         "sources": [
           "https://gogolf.co.id/golf-course/labersa-golf-club-resort",
           "https://labersahotel.com/lghcc/",
-          "https://gogolf.co.id/en/golf-course/labersa-golf-club",
-          "https://labersahotel.com/lghcc/blog/stay-and-play",
-          "https://www.indonesiagolf.indonesiagolfcourses.com/member-details.php?abbr=LGCC&v=ina"
+          "https://gogolf.co.id/en/golf-course/labersa-golf-club"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-04-29",
         "source_details": [
           {
             "slot": "weekday",
@@ -16306,12 +15899,9 @@
           "https://www.antorij.com/249/62/26/lapangan-golf-di-kota-palembang.htm",
           "https://www.instagram.com/kentenheritage_1937golfcourse/",
           "https://www.stripes.com/living/pacific_travel/quick_trips/2022-09-15/golf-palembang-indonesia-mosque-muslim-7299209.html",
-          "https://www.palembang.indonesia-tourism.com/kenten_hill.html",
-          "https://www.instagram.com/official_kentengolfcourse/",
-          "https://perpesi.org/event/2nd-sriwijaya-senior-golf-tournament",
-          "https://obgolf.co.id/tee-for-tanah-air-golf-tournament-sejarah-baru-leonian-golf-palembang-terukir-di-kenten-golf-1937/"
+          "https://www.palembang.indonesia-tourism.com/kenten_hill.html"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "GoGolf.co.id 2024-2025 profile + AntoRij Palembang course summary"
       },
       "operating_status": {
@@ -16427,11 +16017,9 @@
           "https://www.tiktok.com/@ifsmile70/video/7457590611969887493",
           "https://www.facebook.com/HumasProtokolKabupatenMuaraenim/posts/jajal-golf-pt-bukit-asam-pj-bupati-siap-gelar-turnamen-bupati-cup-2024pj-bupati-/837414521913245/",
           "https://www.golfpass.com/travel-advisor/courses/38361-bukit-asam-golf-club",
-          "https://www.petromindo.com/tender/detail/pengadaan-golf-cart-lapangan-golf-tanjung-enim",
-          "https://www.idnfinancials.com/news/56298/ptba-net-profit-plunges-59-in-h1-2025",
-          "https://voi.id/en/economy/479389"
+          "https://www.petromindo.com/tender/detail/pengadaan-golf-cart-lapangan-golf-tanjung-enim"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "PlayGolf.id USD listing converted at USD/IDR ~17,300 (May 2026)"
       },
       "operating_status": {
@@ -16522,11 +16110,9 @@
           "https://www.golfpass.com/travel-advisor/courses/38253-padang-golf-sukarame",
           "https://greenfee365.com/golf-course/padang-golf-sukarame",
           "https://www.golflux.com/course/padang-golf-sukarame/",
-          "https://us.trip.com/travel-guide/attraction/bandar-lampung/lapangan-golf-sukarame-147222359/",
-          "https://www.facebook.com/officialpemprovlampung/posts/977555501235470/",
-          "https://lampungpro.co/news/golf-gathering-bank-bri-lapangan-golf-sukarame-bandar-lampung-terima-tiga-golf-car"
+          "https://us.trip.com/travel-guide/attraction/bandar-lampung/lapangan-golf-sukarame-147222359/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "PlayGolf.id USD listing converted at USD/IDR ~17,300 (May 2026)"
       },
       "operating_status": {
@@ -16612,12 +16198,9 @@
         "notes": "Historical/legacy non-member rates (~2016): weekday IDR 250,000, weekend IDR 450,000. Likely outdated; 2026 rates not publicly listed. Contact: +62 542 766418.",
         "sources": [
           "https://www.golflux.com/course/pertamina-balikpapan-golf-club/",
-          "https://www.facebook.com/pertaminagolfbalikpapan",
-          "https://beritakaltim.co/2026/01/31/wali-kota-cup-golf-tournament-2026-jadi-ajang-silaturahmi-pegolf-nusantara-di-balikpapan/",
-          "https://www.balpos.com/metropolis/amp/1797145055/digelar-di-dua-lapangan-wali-kota-cup-2026-jadi-tonggak-baru-ekosistem-golf-balikpapan",
-          "https://playgolf.id/golf_courses/pertamina-balikpapan-golf-club/"
+          "https://www.facebook.com/pertaminagolfbalikpapan"
         ],
-        "last_verified": "2026-05-06"
+        "last_verified": "2026-04-29"
       },
       "operating_status": {
         "status": "operating",
@@ -16706,11 +16289,9 @@
           "https://playgolf.id/golf_courses/karang-joang-golf-and-country-club/",
           "https://gran.senyiurhotels.com/service/detail/5",
           "https://www.golflux.com/course/karang-joang-golf-country-club/",
-          "https://www.instagram.com/karangjoanggolfbpn/",
-          "https://us.trip.com/travel-guide/attraction/karang-joang/karang-joang-golf-and-country-club-146428073/",
-          "https://www.tripadvisor.com/Attraction_Review-g317100-d7725394-Reviews-Karang_Joang_Valley_Golf_Country_Club-Balikpapan_East_Kalimantan_Kalimantan.html"
+          "https://www.instagram.com/karangjoanggolfbpn/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "PlayGolf.id directory (USD listing, undated)"
       },
       "operating_status": {
@@ -16802,12 +16383,9 @@
           "https://playgolf.id/golf_courses/lapangan-golf-bukit-sintuk/",
           "https://www.golflux.com/course/hotel-bintang-sintuk-golf-course/",
           "https://www.golfpass.com/travel-advisor/courses/38309-hotel-bintang-sintuk",
-          "https://www.hole19golf.com/courses/bukit-sintuk-bintang-golf-course",
-          "https://sg.trip.com/hotels/north-bontang-hotel-detail-26661951/hotel-bintang-sintuk/",
-          "https://id.trip.com/travel-guide/attraction/bontang/lapangan-golf-bukit-sintuk-146773629/",
-          "http://www.hotelbintangsintuk.co.id/index.php?hbs=meeting"
+          "https://www.hole19golf.com/courses/bukit-sintuk-bintang-golf-course"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "PlayGolf.id directory (USD listing, undated)"
       },
       "operating_status": {
@@ -16994,11 +16572,9 @@
         "currency": "IDR",
         "notes": "팔랑카라야(중부 칼리만탄) Isen Mulang Golf Club. Pemprov Kalteng + PGI 지부 관할. 2026-05 공식 그린피 미공개. Isen Mulang Cup 등 토너먼트 시 한정 보도만. 클럽하우스 또는 PGI Kalteng 사무국 직접 문의 필요.",
         "sources": [
-          "https://kalteng.go.id/",
-          "https://mmc.kalteng.go.id/berita/read/48482/bupati-seruyan-resmikan-turnamen-golf-dorong-wadah-promosi-daerah",
-          "https://www.golflux.com/course/isen-mulang-golf-club/"
+          "https://kalteng.go.id/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "공식 채널 부재"
       },
       "operating_status": {
@@ -17112,13 +16688,9 @@
           "https://wisato.id/wisata-budaya/padang-golf-swargaloka-sebagai-salah-satu-wisata-di-banjarbaru/",
           "https://www.golflux.com/course/swargaloka-golf-club/",
           "https://sg.trip.com/travel-guide/attraction/banjarbaru-city/swargaloka-golf-club-141808672/",
-          "https://www.instagram.com/lapangan_golfswargaloka/",
-          "https://wasaka.kalselprov.go.id/ajang-promosi-daerah-gubernur-kalsel-h-muhidin-buka-festival-golf-2025-di-lapangan-swargaloka-banjarbaru/",
-          "https://golftimes.id/2025/07/20/festival-golf-2025-meriahkan-ulang-tahun-kalsel-dengan-semangat-kebersamaan-dan-gaya-hidup-sehat/",
-          "https://inilahkalsel.com/gubernur-kalsel-buka-festival-golf-2025-dengan-bola-berasap-biru-di-lapangan-swargaloka-banjarbaru/",
-          "https://id.trip.com/travel-guide/attraction/banjarbaru-city/swargaloka-golf-club-141808672"
+          "https://www.instagram.com/lapangan_golfswargaloka/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "PlayGolf.id (USD); Radar Banjarmasin (cart)"
       },
       "operating_status": {
@@ -17208,13 +16780,9 @@
           "https://www.instagram.com/golf_alamkhatulistiwa/",
           "https://sitimustiani.com/2024/07/piknik-asik-di-lapangan-golf-khatulistiwa/",
           "https://www.golflux.com/course/alam-khatulistiwa-golf/",
-          "https://www.golfpass.com/travel-advisor/courses/38306-alam-khatulistiwa-golf",
-          "https://www.golflux.com/destination/kalimantan-golf-courses/",
-          "https://www.hole19golf.com/courses/khatulistiwa-golf-club",
-          "https://iniborneo.com/2025/06/28/olahraga-golf-di-kota-pontianak-semakin-diminati/",
-          "https://golftimes.id/2025/06/28/lapangan-first-wing-golf-energi-baru-untuk-geliat-sport-city-pontianak/"
+          "https://www.golfpass.com/travel-advisor/courses/38306-alam-khatulistiwa-golf"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "Instagram official post April 2024 (Rp 290k 18h); Siti Mustiani blog July 2024"
       },
       "operating_status": {
@@ -17252,13 +16820,11 @@
         "membership_price_notes": "Green fees published on Instagram (@golf_alamkhatulistiwa); membership not disclosed.",
         "investment_idr": null,
         "employees": null,
-        "recent_news": "Only 18-hole championship golf course in Pontianak/West Kalimantan; clubhouse design subject of academic research (UNTAN JMARS, 2025).\nPontianak에 신규 First Wing Golf(Jl. Purnama 2)가 2025-06-28 개장—Alam Khatulistiwa의 18홀 단독 지위는 유지되나 지역 골프 인구(약 500명) 대비 경쟁 환경 변화 신호.",
+        "recent_news": "Only 18-hole championship golf course in Pontianak/West Kalimantan; clubhouse design subject of academic research (UNTAN JMARS, 2025).",
         "ownership_notes": "Managed by Yayasan Alam Bhana (foundation - non-commercial). 18-hole par 72.",
         "sources": [
           "https://www.instagram.com/golf_alamkhatulistiwa/",
-          "https://www.golflux.com/course/alam-khatulistiwa-golf/",
-          "https://golftimes.id/2025/06/28/lapangan-first-wing-golf-energi-baru-untuk-geliat-sport-city-pontianak/",
-          "https://iniborneo.com/2025/06/28/olahraga-golf-di-kota-pontianak-semakin-diminati/"
+          "https://www.golflux.com/course/alam-khatulistiwa-golf/"
         ],
         "last_verified": "2026-05-01"
       }
@@ -17509,15 +17075,9 @@
         "notes": "Green fee 18 holes: IDR 300,000 (no weekday/weekend split published). Caddy IDR 150,000-200,000 (midpoint 175k). Cart IDR 300,000. Source TikTok 2024 visit; weekend rate may differ.",
         "sources": [
           "https://www.tiktok.com/@aandermawannn/video/7402748548787277061",
-          "https://www.hole19golf.com/courses/padang-golf-baddoka-makassar",
-          "https://lantamal6-koarmada2.tnial.mil.id/lantamal-vi-makassar-olahraga-rutin-sambil-menikmati-panorama-lapangan-golf-baddoka/",
-          "https://peloporwiratama.co.id/2025/03/24/berkah-ramadhan-1446-h-1025-m-lantamal-vi-gelar-main-golf-pakai-sarung-dan-bagikan-1000-paket-sembako-di-lapangan-golf-baddoka/",
-          "https://golftimes.id/2025/03/24/lantamal-vi-gelar-golf-unik-pakai-sarung-dan-bagikan-1-000-paket-sembako-di-makassar/",
-          "https://tni.mil.id/view-157216-manfaatkan-faswatpers-lapangan-golf-baddoka-cara-lantamal-vi-perkuat-solidaritas-dan-kekompakan.html",
-          "https://playgolf.id/golf_courses/golf-baddoka/",
-          "https://us.trip.com/travel-guide/attraction/tamalanrea/golf-baddoka-144872768/"
+          "https://www.hole19golf.com/courses/padang-golf-baddoka-makassar"
         ],
-        "last_verified": "2026-05-06"
+        "last_verified": "2026-04-29"
       },
       "operating_status": {
         "status": "operating",
@@ -17604,11 +17164,9 @@
         "notes": "Public day rates effective Dec 1, 2024 (still current). With golf car twin-share: weekday IDR 590,000 / weekend & holiday IDR 815,000 (incl. green fee, caddy, buggy). Walking: weekday IDR 305,000 / weekend IDR 530,000 (incl. green fee, caddy). Accompany person twin-sharing cart: IDR 285,000. Cart rental: 1 pax IDR 285k / 2 pax IDR 570k. Insurance IDR 10,000. Driving range 50 balls IDR 40k / 100 balls IDR 60k.",
         "sources": [
           "https://www.akrgolfmanado.com/",
-          "https://www.golflux.com/course/akr-grand-kawanua-golf-club/",
-          "https://www.petromindo.com/news/article/akr-corporindo-posts-11-rise-in-2025-net-profit-on-jiipe-growth",
-          "https://www.petromindo.com/news/article/akr-corporindo-posts-higher-revenue-and-profit-in-q1-2026"
+          "https://www.golflux.com/course/akr-grand-kawanua-golf-club/"
         ],
-        "last_verified": "2026-05-06"
+        "last_verified": "2026-04-29"
       },
       "operating_status": {
         "status": "operating",
@@ -17666,9 +17224,7 @@
         "sources": [
           "https://www.idnfinancials.com/news/53270/akras-profit-down-1997-in-2024",
           "https://web.archive.org/web/20251008103108/https://akrland.com/en/projects/manado/akr-gkic-grand-kawanua-international-city/ (wayback snapshot 2025-10-08)",
-          "https://www.berita-bisnis.com/berbekal-rp-3-triliun-akr-land-development-kembangkan-lagi-grand-kawanua-manado/",
-          "https://www.petromindo.com/news/article/akr-corporindo-posts-11-rise-in-2025-net-profit-on-jiipe-growth",
-          "https://www.petromindo.com/news/article/akr-corporindo-posts-higher-revenue-and-profit-in-q1-2026"
+          "https://www.berita-bisnis.com/berbekal-rp-3-triliun-akr-land-development-kembangkan-lagi-grand-kawanua-manado/"
         ],
         "last_verified": "2026-05-01"
       }
@@ -17713,12 +17269,9 @@
         "sources": [
           "https://playgolf.id/golf_courses/sorowako-golf-club/",
           "https://www.golflux.com/course/sorowako-golf-club/",
-          "https://welcometosorowako.wordpress.com/hobikomunitas/",
-          "https://voi.id/en/economy/565162",
-          "https://www.vale.com/w/strengthening-stability-accelerating-growth-pt-vale-delivers-robust-performance-and-advances-indonesia-s-sustainable-nickel-future-1",
-          "https://www.instagram.com/p/DQBvmq_j1aK/"
+          "https://welcometosorowako.wordpress.com/hobikomunitas/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "2024-2025 playgolf.id listing (USD); USD-IDR converted at May 2026 spot",
         "website_found": null,
         "access": "public"
@@ -17806,12 +17359,9 @@
         "currency": "IDR",
         "notes": "팔루(중부 술라웨시) Lapangan Golf Bumi Roviga. Pemprov Sulteng + PGP(Persatuan Golf Palu) 공동운영. 2018년 팔루 지진·쓰나미 후 부분 재정비. 공식 홈페이지/SNS 부재, 2026-05 그린피 미공시. PGP 사무국 직접 문의 필요.",
         "sources": [
-          "https://sultengprov.go.id/",
-          "https://netiz.id/berita/baca/pemprov-sulteng-gandeng-pgp-pengelolaan-lapangan-golf-palu-segera-dimulai/",
-          "https://filesulawesi.com/2025/05/19/kejelasan-status-lahan-lapangan-golf-jalan-re-martadinata-talise-jadi-pembahasan/",
-          "https://media.alkhairaat.id/ini-sengkarut-lapangan-golf-menurut-lurah-talise/"
+          "https://sultengprov.go.id/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "공식 채널 부재"
       },
       "operating_status": {
@@ -17923,10 +17473,9 @@
           "https://playgolf.id/golf_courses/club-house-sanggoleo-golf-kendari/",
           "https://golftimes.id/2023/01/19/lapangan-golf-sanggoleo-jadi-andalan-pemain-untuk-nikmati-sunset/",
           "https://www.instagram.com/sanggoleogolfclub/",
-          "https://www.facebook.com/p/Sanggoleo-Golf-Club-Kendari-100065426711781/",
-          "https://fnews.id/2025/11/06/openg-dari-pemungut-bola-jadi-pegolf-andalan-di-kendari/"
+          "https://www.facebook.com/p/Sanggoleo-Golf-Club-Kendari-100065426711781/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "2024-2025 playgolf.id listing (USD); USD-IDR converted at May 2026 spot",
         "website_found": null,
         "access": "public"
@@ -18016,12 +17565,9 @@
         "notes": "9-hole course operated by Kodam XVII Cenderawasih. Green fee IDR 100,000 weekdays / IDR 150,000 weekends & holidays (weekend = weekday + IDR 50k). Caddy IDR 50,000 / 9 holes. Cart IDR 100,000 / 9 holes. Rates may be older but commonly cited.",
         "sources": [
           "https://www.golfpass.com/travel-advisor/courses/38311-cenderawasih-golf-club",
-          "https://www.golflux.com/course/cenderawasih-golf-club/",
-          "https://admediapapua.com/2025/05/18/pangdam-xvii-cenderawasih-pimpin-syukuran-hut-ke-62-kodam/",
-          "https://tni-au.mil.id/berita/detail/danlanud-spr-hadiri-acara-syukuran-hut-ke-62-kodam-xvii-cenderawasih",
-          "https://id1723470-padang-golf-cenderawasih.contact.page/"
+          "https://www.golflux.com/course/cenderawasih-golf-club/"
         ],
-        "last_verified": "2026-05-06"
+        "last_verified": "2026-04-29"
       },
       "operating_status": {
         "status": "operating",
@@ -18112,11 +17658,9 @@
           "https://playgolf.id/golf_courses/klub-golf-rimba-papua/",
           "https://www.top100golfcourses.com/golf-course/rimba-irian",
           "https://www.allsquaregolf.com/golf-courses/indonesia/rimba-irian",
-          "https://thegolfcourses.com/club/klub-golf-rimba-irian",
-          "https://www.salampapua.com/2025/08/128-peserta-meriahkan-golf-tournament-2025-merah-putih-di-timika.html",
-          "https://www.instagram.com/kgri_kuala_kencana/"
+          "https://thegolfcourses.com/club/klub-golf-rimba-irian"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "2024-2025 playgolf.id listing (USD); USD-IDR converted at May 2026 spot",
         "website_found": null,
         "access": "members-only"
@@ -18205,13 +17749,9 @@
         "currency": "IDR",
         "notes": "암본 Lanud Pattimura(TNI AU 공군기지) 영내 골프 코스. 군 시설로 일반 그린피 비공개. TNI AU 임직원·가족 및 초청 게스트 위주. 외부 게스트는 기지 사령부 사전 승인 후 입장 가능.",
         "sources": [
-          "https://tni-au.mil.id/",
-          "https://www.malukuterkini.com/2026/04/12/puluhan-golfer-ramaikan-farewell-golf-games-pangdam-xv-danlanud-pattimura/",
-          "https://masarikuonline.com/danlanud-pattimura-gelar-welcome-games-golf-pererat-sinergi-lintas-lembaga/",
-          "https://timesmaluku.com/daerah/bri-ambon-farewell-golf-pangdam-pattimura/",
-          "https://www.instagram.com/explore/locations/971270959674695/padang-golf-lanud-pattimura-ambon/"
+          "https://tni-au.mil.id/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "TNI AU 군 시설"
       },
       "operating_status": {
@@ -18361,14 +17901,11 @@
           "member_fee_idr": null
         },
         "sources": [
-          "https://jakartagolfclub.org/green-fee/",
-          "https://gogolf.co.id/en/golf-course/jakarta-golf-club",
-          "https://propcongolf.com/membership/10-home/our-favourite-links/88-jakarta-golf-club",
-          "https://www.golfsg.net/golf-course/jakarta-golf-club-rawamangun/"
+          "https://jakartagolfclub.org/green-fee/"
         ],
         "notes": "Indonesia's oldest course (1872). Trial 3-mo and Annual memberships publicly priced.",
         "confidence": "high",
-        "last_verified": "2026-05-06"
+        "last_verified": "2026-04-30"
       },
       "operating_status": {
         "status": "operating",
@@ -18495,11 +18032,9 @@
         "sources": [
           "https://gogolf.co.id/en/golf-course/pondok-cabe-golf-club",
           "https://golfpondokcabe.com/",
-          "https://www.facebook.com/pondokcabegolf/posts/3661752477189517/",
-          "https://playgolf.id/golf_courses/pondok-cabe-golf-club/",
-          "https://www.golfpass.com/travel-advisor/courses/38265-pondok-cabe-golf-country-club"
+          "https://www.facebook.com/pondokcabegolf/posts/3661752477189517/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "GoGolf 2026 published pricing",
         "schedule_detailed": {}
       },
@@ -18585,11 +18120,9 @@
         "notes": "PT Krakatau Steel(BUMN) 계열, 18H par-72 1975년 개장. playgolf.id WD $32 / WE $70 USD (buggy 포함). 환율 ~16K IDR/USD 환산 ~Rp 512K/1.12M. 공식 사이트 SSL 만료, 직접 문의 +62 254 385319 권장. Permata Krakatau(별개 9홀, 더 저렴)와 혼동 주의.",
         "sources": [
           "https://playgolf.id/golf_courses/royale-krakatau-golf-country-club/",
-          "https://www.golfpass.com/travel-advisor/courses/38262-royale-krakatau-golf-country-club",
-          "https://kiec.co.id/en/golf-2/",
-          "https://krakataugolf.com/golf-course/"
+          "https://www.golfpass.com/travel-advisor/courses/38262-royale-krakatau-golf-country-club"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "playgolf.id USD rate, IDR estimated via FX",
         "schedule_detailed": {}
       },
@@ -18678,7 +18211,7 @@
           "https://en.gogolf.co.id/golf-course/bandung-giri-gahana-golf",
           "https://gogolf.co.id/golf-course/bandung-giri-gahana-golf"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-04-29",
         "source_details": [
           {
             "slot": "weekday",
@@ -18899,87 +18432,6 @@
             "raw_excerpt": "ana golf tergolong kompetitif: weekday: sekitar rp855.500 – rp965.500 weekend: sekitar rp1.185.500 – rp1.735.500 biasanya harga su",
             "tier_score": 65,
             "score": 65.0
-          },
-          {
-            "slot": "weekday_am",
-            "value_idr": 800000,
-            "publisher": "Jatinangor National Golf & Resort (official)",
-            "source_url": "https://www.jatinangorgolf.com/golf.php",
-            "tier": 1,
-            "as_of": "2026-05-06",
-            "notes": "Includes green fee, caddy fee, cart fee (sharing seat)."
-          },
-          {
-            "slot": "weekday_pm",
-            "value_idr": 800000,
-            "publisher": "Jatinangor National Golf & Resort (official)",
-            "source_url": "https://www.jatinangorgolf.com/golf.php",
-            "tier": 1,
-            "as_of": "2026-05-06",
-            "notes": "Includes green fee, caddy fee, cart fee (sharing seat)."
-          },
-          {
-            "slot": "saturday_am",
-            "value_idr": 1700000,
-            "publisher": "Jatinangor National Golf & Resort (official)",
-            "source_url": "https://www.jatinangorgolf.com/golf.php",
-            "tier": 1,
-            "as_of": "2026-05-06",
-            "notes": null
-          },
-          {
-            "slot": "saturday_pm",
-            "value_idr": 1300000,
-            "publisher": "Jatinangor National Golf & Resort (official)",
-            "source_url": "https://www.jatinangorgolf.com/golf.php",
-            "tier": 1,
-            "as_of": "2026-05-06",
-            "notes": null
-          },
-          {
-            "slot": "sunday_am",
-            "value_idr": 1515000,
-            "publisher": "Jatinangor National Golf & Resort (official)",
-            "source_url": "https://www.jatinangorgolf.com/golf.php",
-            "tier": 1,
-            "as_of": "2026-05-06",
-            "notes": "Sunday / Public Holiday AM."
-          },
-          {
-            "slot": "sunday_pm",
-            "value_idr": 1140000,
-            "publisher": "Jatinangor National Golf & Resort (official)",
-            "source_url": "https://www.jatinangorgolf.com/golf.php",
-            "tier": 1,
-            "as_of": "2026-05-06",
-            "notes": "Sunday / Public Holiday PM."
-          },
-          {
-            "slot": "driving_range_public_60min",
-            "value_idr": 150000,
-            "publisher": "Jatinangor National Golf & Resort (official)",
-            "source_url": "https://www.jatinangorgolf.com/golf.php",
-            "tier": 1,
-            "as_of": "2026-05-06",
-            "notes": null
-          },
-          {
-            "slot": "driving_range_member_60min",
-            "value_idr": 100000,
-            "publisher": "Jatinangor National Golf & Resort (official)",
-            "source_url": "https://www.jatinangorgolf.com/golf.php",
-            "tier": 1,
-            "as_of": "2026-05-06",
-            "notes": null
-          },
-          {
-            "slot": "club_rental",
-            "value_idr": 660000,
-            "publisher": "Jatinangor National Golf & Resort (official)",
-            "source_url": "https://www.jatinangorgolf.com/golf.php",
-            "tier": 1,
-            "as_of": "2026-05-06",
-            "notes": "Golf bag set rental, per bag."
           }
         ],
         "crawled_summary": {
@@ -19043,21 +18495,16 @@
       },
       "operating_status": {
         "status": "operating",
-        "confidence": "high",
+        "confidence": "medium",
         "evidence": [
           "https://gogolf.co.id/en/golf-course/bandung-giri-gahana-golf-resort",
           "https://www.tripadvisor.com/Attraction_Review-g297704-d3319982-Reviews-Giri_Gahana_Golf_Resort-Bandung_West_Java_Java.html",
-          "2026-04-30 coordinate correction: -6.9269,107.7711 -> -6.9120064,107.7628791 (Plus code 24RP+M9). Stored ~1.8km SE of actual",
-          "https://www.jatinangorgolf.com/golf.php",
-          "https://www.jatinangorgolf.com/",
-          "Reservation lines active: +62 22 779 8403, +62 811 1111 6059; marketing@jatinangorgolf.com",
-          "Online booking portal active (booking.radiant1.co/hotel_booking/search_availability?hotel_search=413225)",
-          "https://obgolf.co.id/dari-bgg-ke-jng/ (rebrand BGG -> JNG, 12 March)"
+          "2026-04-30 coordinate correction: -6.9269,107.7711 -> -6.9120064,107.7628791 (Plus code 24RP+M9). Stored ~1.8km SE of actual"
         ],
         "closure_reason": null,
         "reopened_as": null,
         "coord_notes": "Approx. coords from research; verify if deploying. Operator: PT Langen Kridha Pratyangga Tbk. | 2026-04-30 corrected: Stored ~1.8km SE of actual (Plus code 24RP+M9)",
-        "last_verified": "2026-05-06"
+        "last_verified": "2026-04-30"
       },
       "membership": {
         "available": "unknown",
@@ -19154,11 +18601,9 @@
         "sources": [
           "https://www.instagram.com/padanggolfsulaimann/",
           "https://us.trip.com/travel-guide/attraction/margahayu/padang-golf-sulaiman-144872851/",
-          "https://playgolf.id/golf_courses/padang-golf-sulaiman/",
-          "https://golali.id/lokasi-padang-golf-sulaiman-dimana/",
-          "https://moovitapp.com/index/id/Tranportasi_Umum-Lapangan_Golf_Lanud_Sulaiman-Bandung-site_145528424-4486"
+          "https://playgolf.id/golf_courses/padang-golf-sulaiman/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "공식 가격 미공개",
         "schedule_detailed": {}
       },
@@ -19245,13 +18690,9 @@
         "sources": [
           "https://playgolf.id/golf_courses/royal-cirebon-golf-country-club/",
           "https://www.golfpass.com/travel-advisor/courses/38324-royal-cirebon-golf",
-          "https://www.instagram.com/royalcirebongolfofficial/",
-          "https://us.trip.com/travel-guide/new-attraction/talun/royal-cirebon-golf-and-country-club-147328111/",
-          "https://www.hole19golf.com/courses/royal-cirebon-golf-country-club",
-          "https://www.golflux.com/course/royal-cirebon-golf-country-club/",
-          "https://wanderlog.com/place/details/12695347/royal-cirebon-golf--country-club"
+          "https://www.instagram.com/royalcirebongolfofficial/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "playgolf.id USD rate, IDR estimated",
         "schedule_detailed": {}
       },
@@ -19338,13 +18779,9 @@
         "sources": [
           "https://gogolf.co.id/en/gogolf-news/ngamplang-flamboyan-golf-course",
           "https://hargacampur.com/harga-tiket-masuk-ngamplang-garut/",
-          "https://golftimes.id/2024/02/25/keindahan-dan-kisah-dibalik-lapang-golf-flamboyan-ngamplang/",
-          "https://radartasiktv.disway.id/wisata/read/17501/update-harga-tiket-masuk-wisata-ngamplang-garut-2026-dan-jam-operasionalnya",
-          "https://radartasiktv.disway.id/wisata/read/17219/update-wisata-ngamplang-garut-2026-harga-tiket-fasilitas-terbaru-dan-rute-tercepat",
-          "https://garut.pikiran-rakyat.com/garut/pr-528480709/dibangun-belanda-tahun-1912-lapangan-golf-flamboyan-ngamplang-garut-jadi-tempat-healing-penuh-sejarah",
-          "https://www.instagram.com/ngamplanggreengolf/"
+          "https://golftimes.id/2024/02/25/keindahan-dan-kisah-dibalik-lapang-golf-flamboyan-ngamplang/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "입장료만 확인, 그린피 비공개",
         "schedule_detailed": {}
       },
@@ -19431,12 +18868,9 @@
         "sources": [
           "https://www.xplorewisata.com/2026/04/daftar-lapangan-golf-jawa-tengah-terbaik.html",
           "https://www.golflux.com/course/tidar-golf-course/",
-          "https://wanderlog.com/place/details/12695369/tidar-golf-course",
-          "https://bkppkutim.com/tidar-golf-course-11450319619329096818/",
-          "https://www.detik.com/jateng/wisata/d-6244073/4-wisata-magelang-di-gunung-tidar-golf-hingga-gardu-pandang-elja",
-          "https://www.tempo.co/hiburan/wisata-gunung-tidar-tetap-buka-selama-retret-kepala-daerah-di-akmil-magelang-1209725"
+          "https://wanderlog.com/place/details/12695369/tidar-golf-course"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "xplorewisata 2026-04 범위 추정",
         "schedule_detailed": {}
       },
@@ -19522,11 +18956,9 @@
         "sources": [
           "https://playgolf.id/golf_courses/padang-golf-wijayakusuma/",
           "https://www.xplorewisata.com/2026/04/daftar-lapangan-golf-jawa-tengah-terbaik.html",
-          "https://www.hole19golf.com/indonesia/padang-golf-wijayakusuma",
-          "https://us.trip.com/travel-guide/attraction/purwokerto/padang-golf-wijayakusuma-144859462/",
-          "https://www.parscape.com/location/golf_clubs/wijayakusumagolfcoursepurwokertocentraljava"
+          "https://www.hole19golf.com/indonesia/padang-golf-wijayakusuma"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "playgolf.id USD + xplorewisata 검증",
         "schedule_detailed": {}
       },
@@ -19614,11 +19046,9 @@
           "https://obgolf.co.id/lapangan-golf-mrica-permata-hijau-di-kawasan-objek-vital-negara/",
           "https://golftimes.id/2025/10/06/lapangan-golf-mrica-permata-hijau-di-jantung-banjarnegara/",
           "https://playgolf.id/golf_courses/padang-golf-mrica/",
-          "https://www.instagram.com/banjarnegaragolf/",
-          "https://us.trip.com/travel-guide/attraction/banjarnegara/padang-golf-mrica-147172600/",
-          "https://timesindonesia.co.id/wisata/527000/driving-range-golf-mrica-banjarnegara-disulap-jadi-destinasi-wisata-olahraga"
+          "https://www.instagram.com/banjarnegaragolf/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "obgolf/golftimes 2025-10 + playgolf.id",
         "schedule_detailed": {}
       },
@@ -19704,11 +19134,9 @@
         "notes": "Pertamina RU IV Cilacap 직원 club. playgolf.id WD $22 / WE $31 USD (~Rp 355K/500K). 공식 IDR 미공개. 직원 club 성격이라 일반 그린피 정보 제한적.",
         "sources": [
           "https://playgolf.id/golf_courses/pertamina-tritih-golf-and-country-club-cilacap/",
-          "https://www.instagram.com/tritihgolf/",
-          "https://www.golfpass.com/travel-advisor/courses/38333-tritih-golf-club",
-          "https://www.golflux.com/course/tritih-golf-club/"
+          "https://www.instagram.com/tritihgolf/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "playgolf.id USD 환산",
         "schedule_detailed": {}
       },
@@ -19765,8 +19193,8 @@
       "region": "Boyolali (Solo)",
       "province": "Central Java",
       "address": "Ngemplak, Boyolali",
-      "lat": -7.5195261,
-      "lng": 110.7571093,
+      "lat": -7.5161,
+      "lng": 110.7569,
       "holes": 9,
       "par": null,
       "designer": null,
@@ -19794,29 +19222,23 @@
         "notes": "TNI AU Lanud Adi Soemarmo airbase 9H (Boyolali/Solo). playgolf.id WD $14 / WE $17 USD (~Rp 225K/275K). 공식 IDR 미공개. 연락처: 082324973571 (Teny), 08122542006 (Made).",
         "sources": [
           "https://playgolf.id/golf_courses/padang-golf-adi-soemarmo/",
-          "https://www.instagram.com/padang_golfsmo/",
-          "https://www.instagram.com/p/DTRuYDOEYrI/",
-          "https://www.instagram.com/p/DPfpd6VEZsI/",
-          "https://www.golfpass.com/travel-advisor/courses/38334-padang-golf-adi-soemarmo",
-          "https://www.golflux.com/course/padang-golf-adi-soemarmo/"
+          "https://www.instagram.com/padang_golfsmo/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "playgolf.id USD 환산",
         "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
-        "confidence": "high",
+        "confidence": "medium",
         "evidence": [
           "https://www.instagram.com/padang_golfsmo/",
-          "https://playgolf.id/golf_courses/padang-golf-adi-soemarmo/",
-          "https://www.instagram.com/p/DTRuYDOEYrI/",
-          "https://www.instagram.com/p/DPfpd6VEZsI/"
+          "https://playgolf.id/golf_courses/padang-golf-adi-soemarmo/"
         ],
         "closure_reason": null,
         "reopened_as": null,
         "coord_notes": "Approx. coords from research; verify if deploying. Operator: TNI AU Lanud Adi Soemarmo.",
-        "last_verified": "2026-05-06"
+        "last_verified": "2026-04-30"
       },
       "membership": {
         "available": "military_personnel",
@@ -19850,8 +19272,7 @@
           "cart_idr": null
         },
         "disclaimer": "참고용 비공식 가격 (playgolf.id USD→IDR 환산)"
-      },
-      "coord_approximate": false
+      }
     },
     {
       "id": "black-eagle-bsb-semarang",
@@ -19889,12 +19310,9 @@
         "sources": [
           "https://www.instagram.com/blackeagle.golf/",
           "https://www.suaramerdeka.com/olahraga/0415959347/black-eagle-golf-course-destinasi-golf-premium-terbaru-di-semarang-telah-dibuka",
-          "https://www.golfpass.com/travel-advisor/courses/43968-black-eagle-golf-course",
-          "https://www.instagram.com/p/DO5NlvVkTDc/",
-          "https://www.instagram.com/p/DSt_CArgF1L/",
-          "https://jatengpos.co.id/ekonomi/2024/07/03/bsb-city-segera-dilengkapi-lapangan-golf-bertaraf-internasional/"
+          "https://www.golfpass.com/travel-advisor/courses/43968-black-eagle-golf-course"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "신규 코스, 정식 개장 전 미발표",
         "schedule_detailed": {}
       },
@@ -19951,8 +19369,8 @@
       "region": "Surabaya",
       "province": "East Java",
       "address": "Gunungsari, Surabaya",
-      "lat": -7.3067,
-      "lng": 112.7159,
+      "lat": -7.3094,
+      "lng": 112.7236,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -19983,7 +19401,7 @@
           "https://www.instagram.com/yanigolf_surabaya/",
           "https://www.kisekii.com/yani-golf-lapangan-golf-tertua-di-surabaya/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "GoGolf 2026 검증",
         "schedule_detailed": {}
       },
@@ -20032,8 +19450,7 @@
         },
         "disclaimer": "참고용 비공식 가격 (cart 없음, walking only)"
       },
-      "financials": {},
-      "coord_approximate": false
+      "financials": {}
     },
     {
       "id": "pakuwon-golf-surabaya",
@@ -20082,25 +19499,11 @@
           "member_fee_idr": null
         },
         "sources": [
-          "https://pakuwongolf.com/",
-          "https://playgolf.id/golf_courses/pakuwon-golf-family-club/",
-          "https://www.golfasian.com/golf-courses/indonesia-golf-courses/surabaya/pakuwon-golf-family-club/",
-          "https://tourism.surabaya.go.id/destination/568f8d91-9ce1-4567-bd53-7f83c041f2d3"
+          "https://pakuwongolf.com/"
         ],
         "notes": "Pakuwon Group, night golf signature. Weekend uplift not separately published. | GoGolf 추가 정보: 18H Rp 475K/2명(=1인 Rp 237.5K, 캐디 포함, par-3 night golf 운영). 9H night Rp 400K/2명. WD/WE 분리 미공개.",
         "confidence": "medium",
-        "last_verified": "2026-05-06",
-        "source_details": [
-          {
-            "slot": null,
-            "value_idr": null,
-            "publisher": null,
-            "source_url": null,
-            "tier": null,
-            "as_of": "2026-05-06",
-            "notes": null
-          }
-        ]
+        "last_verified": "2026-04-30"
       },
       "operating_status": {
         "status": "operating",
@@ -20233,11 +19636,9 @@
         "notes": "TNI AU Lanud Iswahjudi 9H (Maospati, Magetan). 2024 TIMES Magetan: 일반 9H Rp 120K (= 18H Rp 240K). playgolf.id별도 WD $16 / WE $25 USD (~Rp 260K/405K). 공식 weekend IDR 미확인 — playgolf.id 환산값 사용.",
         "sources": [
           "https://magetan.times.co.id/news/berita/c2megfcb2r/Berfoto-dengan-Pesawat-F-16-hingga-Coaching-Sensasi-Danlanud-Iswahjudi-Golf-Championship-2024",
-          "https://playgolf.id/golf_courses/lapangan-golf-lanud-iswahyudi/",
-          "https://www.hole19golf.com/courses/lapangan-golf-lanud-iswahyudi",
-          "https://tni-au.mil.id/berita/detail/lanud-iswahjudi-gelar-golf-bareng-rebutkan-trofi-bergilir"
+          "https://playgolf.id/golf_courses/lapangan-golf-lanud-iswahyudi/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "2024 TIMES Magetan + playgolf.id",
         "schedule_detailed": {}
       },
@@ -20294,8 +19695,8 @@
       "region": "Kediri",
       "province": "East Java",
       "address": "Kediri, East Java",
-      "lat": -7.781,
-      "lng": 112.087,
+      "lat": -7.75,
+      "lng": 112.0083,
       "holes": 27,
       "par": 72,
       "designer": "Brian Curley (Curley-Wagner)",
@@ -20326,7 +19727,7 @@
           "https://www.firstcallgolf.com/design-notes/feature/2026-04-26/brian-curley-debuts-indonesias-dhoho",
           "https://thegolfwire.com/brian-curley-dhoho-java-indonesia"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "신규 코스, 미공개",
         "schedule_detailed": {}
       },
@@ -20375,8 +19776,7 @@
           "cart_idr": null
         },
         "disclaimer": "참고용 비공식 가격 — 2026.Q2 27홀 완공 예정 신규 코스"
-      },
-      "coord_approximate": false
+      }
     },
     {
       "id": "arun-lhokseumawe",
@@ -20384,8 +19784,8 @@
       "region": "Lhokseumawe",
       "province": "Aceh",
       "address": "Lhokseumawe, Aceh",
-      "lat": 5.2254375,
-      "lng": 97.0414844,
+      "lat": 5.2217383,
+      "lng": 97.0393561,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -20414,10 +19814,9 @@
         "sources": [
           "https://playgolf.id/golf_courses/arun-golf-club/",
           "https://www.golflux.com/course/arun-golf-club/",
-          "https://rri.co.id/daerah/1099544/destinasi-wisata-lapangan-golf-kini-hadir-di-lhokseumawe",
-          "https://aesia.kemenkeu.go.id/mobile/properti/detail/388"
+          "https://rri.co.id/daerah/1099544/destinasi-wisata-lapangan-golf-kini-hadir-di-lhokseumawe"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "playgolf.id USD 환산",
         "schedule_detailed": {}
       },
@@ -20466,8 +19865,7 @@
           "cart_idr": null
         },
         "disclaimer": "참고용 비공식 가격 (playgolf.id USD→IDR 환산, buggy 미포함)"
-      },
-      "coord_approximate": false
+      }
     },
     {
       "id": "lhoknga-aceh",
@@ -20505,14 +19903,9 @@
         "sources": [
           "https://playgolf.id/golf_courses/lhoknga-golf-course/",
           "https://www.golfpass.com/travel-advisor/courses/38343-tsunami-memorial-course",
-          "https://www.safariwisata.co.id/lapangan-golf-seulawah/",
-          "https://mediakontras.id/pemuda-aceh-soal-pengelolaan-lapangan-golf-seulawah-soroti-minimnya-transparansi/",
-          "https://investaceh.id/projects/detail/development-of-lhoknga-golf-course-and-resort",
-          "https://www.trip.com/travel-guide/attraction/meunasah-lambaro/lhoknga-golf-course-144868108",
-          "https://waspadaaceh.com/lapangan-golf-lhoknga-tertutup-bagi-wisatawan/",
-          "https://dialeksis.com/aceh/para-pecinta-golf-aceh-protes-karena-lapangan-seulawah-lhok-nga-kering/"
+          "https://www.safariwisata.co.id/lapangan-golf-seulawah/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "playgolf.id USD 환산",
         "schedule_detailed": {}
       },
@@ -20599,10 +19992,9 @@
         "sources": [
           "https://playgolf.id/golf_courses/inalum-golf-course/",
           "https://www.inalum.id/en/career/employee-walfare-facilities",
-          "https://www.golflux.com/course/inalum-golf-club/",
-          "https://id.trip.com/travel-guide/attraction/perkebunan-sipare-pare/inalum-golf-course-144866697"
+          "https://www.golflux.com/course/inalum-golf-club/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "playgolf.id USD 환산",
         "schedule_detailed": {}
       },
@@ -20688,11 +20080,9 @@
         "notes": "PT Inalum Lake Toba camp 9H par 36 (Toba Samosir, Porsea). 고지대/리조트 스타일로 자매 Tanjung Gading보다 비쌈. playgolf.id WD $44 / WE $63 USD (~Rp 680K/975K). buggy 별도 요금.",
         "sources": [
           "https://playgolf.id/golf_courses/inalum-golf-club-paritohan-course/",
-          "https://www.golfpass.com/travel-advisor/courses/38352-inalum-golf-club",
-          "https://in.trip.com/travel-guide/attraction/ambar-halim/inalum-golf-club-paritohan-course-144871922",
-          "https://www.inalum.id/en/read/inalum-unit-plta-paritohan-raih-proper-emas-2023-dari-klhk"
+          "https://www.golfpass.com/travel-advisor/courses/38352-inalum-golf-club"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "playgolf.id USD 환산",
         "schedule_detailed": {}
       },
@@ -20778,11 +20168,9 @@
         "notes": "PTPN IV Kebun Pabatu(BUMN 팜오일) plantation 코스(Penonggol, Tebing Tinggi 남부). 직원 비공식 시설로 공식 그린피 구조 없음. 약 800m airstrip 동시 운영. 어떤 부킹 플랫폼에도 미등재.",
         "sources": [
           "https://www.trip.com/travel-guide/attraction/penonggol/lapangan-golf-ptpn-iv-pabatu-144860067",
-          "https://idalamat.com/alamat/740485/lapangan-golf-ptpn-iv-pabatu-serdang-bedagai-sumatera-utara",
-          "https://www.hariansib.com/Marsipature-Hutanabe/413329/akhir-pekan-lapangan-golf-pabatu-ramai-dikunjungi-pegolf/",
-          "https://www.timesumut.com/wisata/105212181953/lapang-golf-tebing-tinggi-pabatu-sumatera-utara-dibuka-sebagai-destinasi-wisata-terbaru-bagi-warga"
+          "https://idalamat.com/alamat/740485/lapangan-golf-ptpn-iv-pabatu-serdang-bedagai-sumatera-utara"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "공식 가격 미공개, 부킹 플랫폼 미등재",
         "schedule_detailed": {}
       },
@@ -20867,12 +20255,9 @@
         "notes": "PTPN IV Bah Jambi 팜오일 estate 18H (Simalungun). playgolf.id 'Lapangan Golf Bah Jambi' WD $13 / WE $16 USD (~Rp 200K/250K). estate 운영. 081371086893 또는 FB 'Lapangan Golf Bah Jambi' 문의.",
         "sources": [
           "https://playgolf.id/golf_courses/lapangan-golf-bah-jambi/",
-          "https://www.golfpass.com/travel-advisor/courses/38351-tenera-golf-club",
-          "https://us.trip.com/travel-guide/attraction/moho/lapangan-golf-bah-jambi-144865246/",
-          "https://www.facebook.com/345776762424023",
-          "https://www.youtube.com/watch?v=iJX0Fjsw3tI"
+          "https://www.golfpass.com/travel-advisor/courses/38351-tenera-golf-club"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "playgolf.id USD 환산",
         "schedule_detailed": {}
       },
@@ -20959,11 +20344,9 @@
           "https://golflan.com/id/sumatera-barat/anai-golf-resort-/book",
           "https://www.golfshake.com/course/view/21397/Anai_Golf_Mountain_Resort.html",
           "https://www.golflux.com/course/anai-golf-and-mountain-resort/",
-          "https://www.golfpass.com/travel-advisor/courses/38316-anai-golf-mountain-resort",
-          "https://ws-tourism.com/anai-golf-mountain-resort/",
-          "https://www.touristlink.com/indonesia/anai-resort-and-golf-course/overview.html"
+          "https://www.golfpass.com/travel-advisor/courses/38316-anai-golf-mountain-resort"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "공식 사이트 가격 미공개, 직접 문의 필요",
         "schedule_detailed": {}
       },
@@ -21050,11 +20433,9 @@
           "https://www.onenet.co.id/2025/05/lapangan-golf-wirabraja-ulu-gadut-siap.html",
           "https://www.onenewssatu.com/2025/05/nikmati-akhir-pekan-di-lapangan-golf.html",
           "https://westsumatra360.com/akhir-pekan-menyenangkan-dengan-bermain-golf-di-kota-padang/",
-          "https://www.instagram.com/golf.wirabrajapadang/",
-          "https://id.trip.com/travel-guide/attraction/limau-manis-selatan/lapangan-golf-gadut-144868839",
-          "https://bkppkutim.com/lapangan-golf-wirabraja-ulu-gadut-4714527373487999905/"
+          "https://www.instagram.com/golf.wirabrajapadang/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "onenet/onenewssatu 2025-05 공식 발표",
         "schedule_detailed": {}
       },
@@ -21151,11 +20532,9 @@
         "sources": [
           "https://westsumatra360.com/akhir-pekan-menyenangkan-dengan-bermain-golf-di-kota-padang/",
           "https://tni-au.mil.id/berita/detail/par-3-practice-range-tabing-driving-range-resmi-dibuka-wujud-komitmen-komandan-lanud-sutan-sjahrir-majukan-olahraga-golf-sumbar",
-          "https://www.instagram.com/tabing_driving_range/",
-          "https://golftimes.id/2024/08/02/lanud-sutan-sjahrir-dan-bri-padang-kolaborasi-untuk-sehat-bersama-di-lapangan-golf/",
-          "https://tni-au.mil.id/berita/detail/lanud-sutan-sjahrir-gelar-golf-bersama-dalam-rangka-peringatan-hut-ke-79-tni-tahun-2024"
+          "https://www.instagram.com/tabing_driving_range/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "Par-3 driving range only",
         "schedule_detailed": {}
       },
@@ -21240,11 +20619,9 @@
         "notes": "PHR Dumai(ex-Chevron, Bukit Timah). 모든 aggregator에 가격 비공개. 내부 Pertamina/PHR 직원 시설로 외부 방문은 sponsorship 필요. Pertamina oilfield 평균(Rp 250-500K) 추정 (미검증).",
         "sources": [
           "https://www.golflux.com/course/chevron-dumai-golf-course/",
-          "https://www.golfpass.com/travel-advisor/courses/38353-chevron-dumai-golf-course",
-          "https://www.expedia.com/Chevron-Dumai-Golf-Course-Dumai.d553248621554455055.Vacation-Attraction",
-          "https://idalamat.com/alamat/740509/padang-golf-pertamina-dumai-dumai-riau"
+          "https://www.golfpass.com/travel-advisor/courses/38353-chevron-dumai-golf-course"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "Pertamina 내부 시설, 외부 비공개",
         "schedule_detailed": {}
       },
@@ -21329,17 +20706,15 @@
         "notes": "Pagosita/Simpang Tiga (TNI AU Lanud Roesmin Nurjadin Pekanbaru) 9H par 36 ~3,135yds. playgolf.id WD $55 / WE $63 USD (buggy 포함). ~16K 환율 ~Rp 880K/1.0M. 캐디 별도 미공개. 0761-61456 ext 9006.",
         "sources": [
           "https://playgolf.id/golf_courses/lapangan-golf-simpang-tiga/",
-          "https://www.golfpass.com/travel-advisor/courses/38357-simpang-tiga-golf-club",
-          "https://riauberkabar.sigapnews.co.id/tni/sn-87681/perkuat-sinergi-dan-silaturahmi-lanud-roesmin-nurjadin-gelar-golf-bersama",
-          "https://www.golflux.com/course/simpang-tiga-golf-club/"
+          "https://www.golfpass.com/travel-advisor/courses/38357-simpang-tiga-golf-club"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "playgolf.id USD 환산 (buggy 포함)",
         "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
-        "confidence": "high",
+        "confidence": "medium",
         "evidence": [
           "https://www.golfpass.com/travel-advisor/courses/38357-simpang-tiga-golf-club",
           "https://roesminnurjadin.tni-au.mil.id/2014/01/03/perwira-lanud-rsn-giat-berlatih-golf/"
@@ -21347,7 +20722,7 @@
         "closure_reason": null,
         "reopened_as": null,
         "coord_notes": "Approx. coords from research; verify if deploying. Operator: TNI AU Lanud Roesmin Nurjadin.",
-        "last_verified": "2026-05-06"
+        "last_verified": "2026-04-30"
       },
       "membership": {
         "available": "unknown",
@@ -21418,24 +20793,11 @@
         "notes": "Perkumpulan Golf Jambi/Telanaipura(1978년 설립 9H semi-private). 캐디·buggy·드라이빙 레인지 가용. 리뷰어 'rental price relatively cheap' 정성 평가만, 정량 IDR 미공개. +62-741-22267.",
         "sources": [
           "https://playgolf.id/golf_courses/telanaipura-golf-club-jambi/",
-          "https://www.golfpass.com/travel-advisor/courses/38341-perkumpulan-golf-jambi",
-          "https://jambi.tribunnews.com/2022/10/04/lapangan-golf-telanai-hadirkan-fasilitas-terbaik-di-provinsi-jambi",
-          "https://us.trip.com/travel-guide/attraction/jambi/telanaipura-golf-club-jambi-144867482/"
+          "https://www.golfpass.com/travel-advisor/courses/38341-perkumpulan-golf-jambi"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "가격 비공개",
-        "schedule_detailed": {},
-        "source_details": [
-          {
-            "slot": null,
-            "value_idr": null,
-            "publisher": null,
-            "source_url": null,
-            "tier": null,
-            "as_of": "2026-05-06",
-            "notes": null
-          }
-        ]
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -21518,12 +20880,9 @@
         "notes": "Pertamina EP Bajubang Field(1930년대 네덜란드 oil camp 출신) 18H. 운영 8:00-18:00. Hole19에 'no reviews yet'. Pertamina 직원/community 시설로 외부는 sponsorship 필요. 일반 가격 미공개.",
         "sources": [
           "https://www.hole19golf.com/courses/bajubang-golf-course",
-          "https://us.trip.com/travel-guide/attraction/bajubang/bajubang-golf-course-144862698/",
-          "https://untappd.com/v/lapangan-golf-bajubang/2315987",
-          "https://www.youtube.com/watch?v=MYNrY-ln2sU",
-          "https://www.instagram.com/explore/locations/2082062161824849/lapangan-golf-bajubang/"
+          "https://us.trip.com/travel-guide/attraction/bajubang/bajubang-golf-course-144862698/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "Pertamina EP 사내 시설",
         "schedule_detailed": {}
       },
@@ -21608,12 +20967,9 @@
         "notes": "Polda Bengkulu 60ha 골프장(2025-07-05 개장, Gov Helmi Hasan). 현재 9H, 18H 확장 중. IG @merah_putih_golfclubbengkulu 'Pricelist Driving Golf' 배너(2025-05) 있으나 이미지 텍스트 추출 불가. ~50명 현지 캐디 고용.",
         "sources": [
           "https://www.instagram.com/merah_putih_golfclubbengkulu/",
-          "https://golftimes.id/2025/07/05/lapangan-golf-merah-putih-diresmikan-bengkulu-punya-ikon-baru-wisata-olahraga/",
-          "https://tribratanews.bengkulu.polri.go.id/wujudkan-lingkungan-asri-kapolda-bengkulu-pimpin-korve-bersama-300-personel-di-lapangan-golf-merah-putih/",
-          "https://rri.co.id/bengkulu/regional/2382416/momentum-mayday-2026-polda-bengkulu-bersama-kspi-jalan-santai",
-          "https://www.tiktok.com/@mpgcbengkulu"
+          "https://golftimes.id/2025/07/05/lapangan-golf-merah-putih-diresmikan-bengkulu-punya-ikon-baru-wisata-olahraga/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "2025-07 신규 개장, IG 가격 이미지 추출 불가",
         "schedule_detailed": {}
       },
@@ -21787,11 +21143,9 @@
         "sources": [
           "https://www.hole19golf.com/courses/lapangan-golf-pt-pertamina-pendopo",
           "https://giwang.sumselprov.go.id/destination/detail/271",
-          "https://kabarserasan.com/2016/05/16/lapangan-golf-pertamina-pendopo-di-kenal-sampai-ke-manca-negara/",
-          "https://www.sininews.com/2024/04/hari-ketiga-lebaran-lapangan-golf.html",
-          "https://onews-id.com/lapangan-golf-pali-destinasi-olahraga-dan-wisata-favorit-di-hari-libur/"
+          "https://kabarserasan.com/2016/05/16/lapangan-golf-pertamina-pendopo-di-kenal-sampai-ke-manca-negara/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "Pertamina EP 사내, 일반 가격 미공개",
         "schedule_detailed": {}
       },
@@ -21876,11 +21230,9 @@
         "notes": "Pertamina EP Asset 2 (Patih Galung, Prabumulih) 18H. Hole19 사용자 리뷰(2025-06): 그린피 Rp 150K + 캐디 Rp 250K = total Rp 400K 'reasonable'. 단일 데이터포인트. WE 별도 미공개. 외부 방문 sponsorship 필요.",
         "sources": [
           "https://www.hole19golf.com/courses/lapangan-golf-pt-pertamina-prabumulih/reviews",
-          "https://www.hole19golf.com/courses/lapangan-golf-pt-pertamina-prabumulih",
-          "https://www.hole19golf.com/indonesia/lapangan-golf-pt-pertamina-prabumulih",
-          "https://www.golfpass.com/travel-advisor/courses/38367-perkumpulan-golf-prabumulih"
+          "https://www.hole19golf.com/courses/lapangan-golf-pt-pertamina-prabumulih"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "Hole19 사용자 리뷰 2025-06 단일 데이터",
         "schedule_detailed": {}
       },
@@ -21965,10 +21317,9 @@
         "notes": "PT Pupuk Sriwidjaja Palembang(BUMN) Patra Jaya 사내 코스. 공시 rate-card 없음. Pusri 직원/임원/초청자 우선이며 외부는 멤버 introduction 필요. Palembang 일반 그린피 평균 Rp 100K+ 캐디/카트 Rp 100-200K 참고.",
         "sources": [
           "https://stargirl.data.blog/2022/05/10/golf-course-patra-jaya-spot-instagramable-in-plaju/",
-          "https://gogolf.co.id/en/gogolf-news/how-much-does-it-cost-to-play-golf-in-indonesia",
-          "https://id.trip.com/travel-guide/attraction/palembang/lapangan-golf-pt-pupuk-sriwijaya-147588482/"
+          "https://gogolf.co.id/en/gogolf-news/how-much-does-it-cost-to-play-golf-in-indonesia"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "Pusri 사내 시설",
         "schedule_detailed": {},
         "source_details": [
@@ -22268,12 +21619,9 @@
         "sources": [
           "https://www.antorij.com/249/62/26/lapangan-golf-di-kota-palembang.htm",
           "https://playgolf.id/golf_courses/bagus-kuning-golf-course/",
-          "https://www.instagram.com/baguskuning.golfcourse/",
-          "https://id.trip.com/travel-guide/attraction/tangga-takat/bagus-kuning-golf-course-144866898/",
-          "https://idalamat.com/alamat/740525/bagus-kuning-golf-course-palembang-sumatera-selatan",
-          "https://www.youtube.com/watch?v=da-XXe13HSU"
+          "https://www.instagram.com/baguskuning.golfcourse/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "AntoRij + playgolf.id 교차 검증",
         "schedule_detailed": {}
       },
@@ -22359,11 +21707,9 @@
         "sources": [
           "https://gogolf.co.id/en/golf-course/padang-golf-bukit-intan",
           "https://en.gogolf.co.id/golf-course/bukit-intan-golf-course",
-          "https://wonderful.pangkalpinangkota.go.id/lapangan-golf-girimaya/",
-          "https://www.indonesiagolf.indonesiagolfcourses.com/member-details.php?abbr=PGBI&v=ina",
-          "https://gogolf.co.id/golf-course/padang-golf-bukit-intan"
+          "https://wonderful.pangkalpinangkota.go.id/lapangan-golf-girimaya/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "GoGolf 리뷰 범위 추정",
         "schedule_detailed": {}
       },
@@ -22448,13 +21794,9 @@
         "notes": "Belitung Golf Club 9H community 코스(Sijuk). GolfPass/GolfLux는 공개라 표기하나 rate-card 미공개. 클럽/티칭 프로 가용. Sumatra 평균 Rp 100-300K + 캐디 Rp 50-100K 추정 (미검증).",
         "sources": [
           "https://www.golflux.com/course/bebute-golf-course/",
-          "https://www.golfpass.com/travel-advisor/courses/38331-bebute-golf-course",
-          "https://idalamat.com/alamat/740541/bebute-golf-course-belitung-kepulauan-bangka-belitung",
-          "https://www.facebook.com/305193816265354",
-          "https://www.golfbook.io/p/country/region/bangka-belitung-islands/city/sijuk/golf-course/bebute-golf-course-8a35d2a7",
-          "https://setda.belitung.go.id/pemkab-belitung-gelar-event-yearly-belitung-golf-series-piala-bupati-2025/"
+          "https://www.golfpass.com/travel-advisor/courses/38331-bebute-golf-course"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "공시 가격 미발견",
         "schedule_detailed": {}
       },
@@ -22539,13 +21881,9 @@
         "notes": "Padang Golf El Tari('The Rock')는 Lanud El Tari TNI AU 영내(Jl Raya Baumata Penfui Kupang) — Kupang 유일 골프장. Aloeus 'Guests always welcome' 표기하나 그린피 미공개. 매월 토너먼트 + TNI-Polri 합동행사 정기 개최.",
         "sources": [
           "https://www.aloeus.com/padang-golf-el-tari-kupang/",
-          "https://tni-au.mil.id/berita/detail/tournament-golf-monthly-padang-golf-lanud-el",
-          "https://tribratanews.ntt.polri.go.id/2025/05/31/ajang-perpisahan-penuh-kehangatan-polda-ntt-gelar-farewell-golf-untuk-irjen-pol-daniel-silotonga/",
-          "https://tni-au.mil.id/berita/detail/solidaritas-tni-polri-komandan-lanud-el-tari-dan-kapolda-ntt-jalin-keakraban-di-lapangan-golf",
-          "https://tribratanews.polri.go.id/blog/nasional-3/polda-ntt-rayakan-hut-ri-ke-79-dengan-gelar-turnamen-golf-78249",
-          "https://us.trip.com/travel-guide/attraction/penfui/eltari-golf-field-144861855/"
+          "https://tni-au.mil.id/berita/detail/tournament-golf-monthly-padang-golf-lanud-el"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "군 시설, 가격 미공개",
         "schedule_detailed": {}
       },
@@ -22632,25 +21970,11 @@
         "sources": [
           "https://www.kpc.co.id/employee-facilities/",
           "https://satumakna.id/prima-golf-club-buka-driving-range-di-tanjung-bara/",
-          "https://www.instagram.com/pgcsangatta/",
-          "https://www.kpc.co.id/id/",
-          "https://bumiresources.com/en/about-us/subsidiaries/detail/kaltim-prima-coal",
-          "https://www.facebook.com/pages/Prima%20Golf%20Club%20Tanjung%20Bara%20Sangatta/246809285370232/"
+          "https://www.instagram.com/pgcsangatta/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "KPC 사내 시설",
-        "schedule_detailed": {},
-        "source_details": [
-          {
-            "slot": null,
-            "value_idr": null,
-            "publisher": null,
-            "source_url": "https://playgolf.id/golf_courses/lapangan-golf-pt-kpc/",
-            "tier": null,
-            "as_of": "2026-05-06",
-            "notes": null
-          }
-        ]
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -22733,11 +22057,9 @@
         "notes": "PT Badak NGL 18H 챔피언십 (Satimpo, Bontang Selatan). 운영 7:00-18:00, 드라이빙 레인지 7:00-22:00. GolfPass는 'public' 표기하나 공식 그린피 미공개. Badak LNG 직원/corporate guest 우선. IG @badaklnggolf 문의.",
         "sources": [
           "https://www.golfpass.com/travel-advisor/courses/38337-pt-badak-ngl-golf-course",
-          "https://www.instagram.com/badaklnggolf/",
-          "https://us.trip.com/travel-guide/attraction/bontang/pt-badak-ngl-golf-course-144859377/",
-          "https://www.hole19golf.com/courses/badak-ngl-golf-bontang"
+          "https://www.instagram.com/badaklnggolf/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "Badak NGL 사내 시설",
         "schedule_detailed": {}
       },
@@ -22823,12 +22145,9 @@
         "sources": [
           "https://www.golfpass.com/travel-advisor/courses/38338-tarakan-golf-club",
           "https://www.golflux.com/destination/kalimantan-golf-courses/",
-          "http://wikimapia.org/16962580/Tarakan-Golf-Course",
-          "https://us.trip.com/travel-guide/attraction/tarakan/lapangan-golf-144862145/",
-          "https://idalamat.com/alamat/740846/tarakan-golf-club-tarakan-kalimantan-utara",
-          "https://ayo.co.id/venues/sport-city/golf/kota-tarakan"
+          "http://wikimapia.org/16962580/Tarakan-Golf-Course"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "시정부 운영, 미공개",
         "schedule_detailed": {}
       },
@@ -22913,11 +22232,9 @@
         "sources": [
           "https://www.golfpass.com/travel-advisor/courses/38360-tanjung-golf-club",
           "https://idalamat.com/alamat/740820/padang-golf-pertamina-tanjung-tabalong-kalimantan-selatan",
-          "https://tvtabalong.com/turnamen-golf-meriahkan-hut-ke-59-tabalong-ratusan-pegolf-berpartisipasi/",
-          "https://id.trip.com/travel-guide/attraction/belimbing-raya/padang-golf-pertamina-tanjung-147168132/",
-          "https://id.top10place.com/padang-golf-pertamina-tanjung-158339332.html"
+          "https://tvtabalong.com/turnamen-golf-meriahkan-hut-ke-59-tabalong-ratusan-pegolf-berpartisipasi/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "Pertamina EP 사내 시설",
         "schedule_detailed": {}
       },
@@ -23003,14 +22320,9 @@
         "sources": [
           "https://coolturnesia.com/coolturnesia/berita/detail/lapangan-golf-yosonegoro-akan-kembali-hidup-pemprovpemkab-gorontalo-sepakat-kelola-bersama",
           "https://pojok6.id/pemprov-pemkab-gorontalo-tanda-tangani-pks-pengelolaan-lapangan-golf-yosonegoro/",
-          "https://www.golflux.com/course/gorontalo-golf-yosonegoro/",
-          "https://gorontalo.antaranews.com/berita/353200/pemkab-pemprov-kerja-sama-pengelolaan-pacuan-kuda-dan-lapangan-golf",
-          "https://kontras.id/2025/09/19/pemprov-dan-pemkab-gorontalo-resmi-kolaborasi-kelola-lapangan-yosonegoro/",
-          "https://bkad.gorontalokab.go.id/archives/2047",
-          "https://barometernewsgo.com/2025/09/19/5-tahun-ke-depan-arena-pacuan-kuda-dan-lapangan-golf-di-yosonegoro-dikelola-pemprov-gorontalo/",
-          "https://gorontalo.gebraknews.co.id/2025/07/dispora-provinsi-dan-pemkab-gorontalo-jalin-kerja-sama-optimalisasi-lapangan-golf-yosonegoro/"
+          "https://www.golflux.com/course/gorontalo-golf-yosonegoro/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "2025-09 PKS 후 재활성화 진행, 가격 미정",
         "schedule_detailed": {}
       },
@@ -23095,14 +22407,9 @@
         "currency": "IDR",
         "notes": "북부 술라웨시 KEK Likupang 관광특구 내 계획/조성중 리조트형 골프장. 2026-05 공식 그린피 미공개. PT MTDC(Minahasa Tourism Development) 및 KEK 관리위원회 채널 미게시. 부킹 플랫폼(GoGolf, playgolf.id) 미등재. 리조트 투숙객 또는 사전 문의 추정.",
         "sources": [
-          "https://kek.go.id/kawasan/KEK-Likupang",
-          "https://www.instagram.com/paradise.golf.manado/",
-          "https://www.instagram.com/paradisehotellikupang/",
-          "https://www.traveloka.com/en-en/hotel/indonesia/paradise-hotel-golf--resort-3000010015494",
-          "https://www.trip.com/hotels/likupang-ii-hotel-detail-7019203/paradise-hotel-golf-and-resort/",
-          "https://www.agoda.com/casabaio-paradise-resort/hotel/manado-id.html"
+          "https://kek.go.id/kawasan/KEK-Likupang"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "KEK 개발중, 가격 미공개",
         "schedule_detailed": {}
       },
@@ -23188,25 +22495,11 @@
         "currency": "IDR",
         "notes": "PT ANTAM Tbk(국영 광업, INCO 자매) Pomalaa 니켈 광산 사업장 부속 사내 골프 시설. ANTAM UBPN Sulawesi Tenggara 직원/협력사 임직원 복지용. 외부는 사전 협조 요청 필요. 공식 요금표 비공개.",
         "sources": [
-          "https://antam.com/id/about/business-overview",
-          "https://bkppkutim.com/antam-mekongga-golf-club-13011479032047099777/",
-          "https://idalamat.com/alamat/740866/antam-mekongga-golf-club-kolaka-sulawesi-tenggara",
-          "https://www.golfpass.com/travel-advisor/courses/38363-mekongga-golf-course"
+          "https://antam.com/id/about/business-overview"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "ANTAM 사내 복지시설",
-        "schedule_detailed": {},
-        "source_details": [
-          {
-            "slot": null,
-            "value_idr": null,
-            "publisher": null,
-            "source_url": null,
-            "tier": null,
-            "as_of": "2026-05-06",
-            "notes": null
-          }
-        ]
+        "schedule_detailed": {}
       },
       "operating_status": {
         "status": "operating",
@@ -23288,12 +22581,9 @@
         "currency": "IDR",
         "notes": "TNI AL Koarmada III 본부(Sorong, Papua Barat) 영내 미니 골프(소규모/9홀 미만 추정). 군 시설로 외부 출입 및 그린피 비공개. 군 임직원·가족 및 초청자 한정 운영.",
         "sources": [
-          "https://www.tnial.mil.id/",
-          "https://sorong.tribunnews.com/2023/09/22/bangun-sarana-olahraga-golf-koarmada-iii-buka-peluang-bagi-warga-sorong-asah-keterampilan",
-          "https://sorongnews.com/ajak-puluhan-jurnalis-main-golf-pangkoarmada-iii-sebut-peranan-media-massa-sangat-penting/",
-          "https://www.radarsorong.id/silaturahmi-panglima-koarmada-iii-pers-diajak-main-golf/"
+          "https://www.tnial.mil.id/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-01",
         "based_on": "군 시설",
         "schedule_detailed": {}
       },
@@ -23590,18 +22880,7 @@
         ],
         "last_verified": "2026-05-06",
         "official_site_status": "live, rates published (mobile fee_membership page)",
-        "rates_visible_on_official": true,
-        "source_details": [
-          {
-            "slot": null,
-            "value_idr": null,
-            "publisher": null,
-            "source_url": "https://www.qaccess.asia/qgolfprice",
-            "tier": null,
-            "as_of": "2026-05-06",
-            "notes": null
-          }
-        ]
+        "rates_visible_on_official": true
       },
       "membership": {
         "available": true,
@@ -23652,13 +22931,7 @@
         ],
         "last_verified": "2026-05-06"
       },
-      "fees_2026_05": {
-        "sources": [
-          "https://www.jawapos.com/sports/2604170244/renovasi-golf-bandar-kemayoran-bos-persija-targetkan-jadi-ikon-baru-kemayoran-indah-golf",
-          "https://obgolf.co.id/era-baru-dimulai-kemayoran-indah-golf-siap-bersolek/"
-        ],
-        "last_verified": "2026-05-06"
-      },
+      "fees_2026_05": null,
       "membership": {
         "available": "unknown",
         "sources": [
@@ -23695,14 +22968,11 @@
       "website": null,
       "notes": "Operated by IDX-listed PT Pembangunan Jaya Ancol Tbk (PJAA), majority-owned by the DKI Jakarta provincial government. Long-running coastal Jakarta course adjacent to Ancol amusement park.",
       "operating_status": {
-        "status": "closed_permanent",
-        "confidence": "high",
+        "status": "operating",
+        "confidence": "medium",
         "evidence": [
           "https://www.mscorecard.com/mscorecard/showcourse.php?cid=1243501465772",
-          "https://golftoday.co.uk/course/jaya-ancol-golf-club/",
-          "https://sains.kompas.com/read/2010/02/24/15000062/~Megapolitan~News",
-          "https://en.wikipedia.org/wiki/Taman_Impian_Jaya_Ancol",
-          "https://nativeindonesia.com/ecopark-ancol/"
+          "https://golftoday.co.uk/course/jaya-ancol-golf-club/"
         ],
         "last_verified": "2026-05-06"
       },
@@ -23728,11 +22998,7 @@
           "https://www.mscorecard.com/mscorecard/showcourse.php?cid=1243501465772",
           "https://golftoday.co.uk/course/jaya-ancol-golf-club/",
           "https://www.golfshake.com/course/view/21441/Jaya_Ancol_Golf_Club.html",
-          "https://www.where2golf.com/golf-tournaments/results/venue/jaya-ancol-gc/",
-          "https://sains.kompas.com/read/2010/02/24/15000062/~Megapolitan~News",
-          "https://nativeindonesia.com/ecopark-ancol/",
-          "https://en.wikipedia.org/wiki/Taman_Impian_Jaya_Ancol",
-          "https://ashleyhotelgroup.com/blog/all-you-need-to-know-about-ecopark-ancol/"
+          "https://www.where2golf.com/golf-tournaments/results/venue/jaya-ancol-gc/"
         ],
         "last_verified": "2026-05-06",
         "official_site_status": "no official website",
@@ -23909,23 +23175,11 @@
           "https://palmhillgolf.co.id/golf",
           "https://gogolf.co.id/en/golf-course/palm-hills-golf-club",
           "https://www.qaccess.asia/qgolfprice",
-          "https://golflinkresorts.co.id/courses/palmhill/en",
-          "https://www.qaccess.asia/QGolfPrice?currentFilter=&currentRecord=&searchString=Palm+Hill+Golf+Club"
+          "https://golflinkresorts.co.id/courses/palmhill/en"
         ],
         "last_verified": "2026-05-06",
         "official_site_status": "live, rates published",
-        "rates_visible_on_official": true,
-        "source_details": [
-          {
-            "slot": null,
-            "value_idr": null,
-            "publisher": null,
-            "source_url": "https://www.qaccess.asia/QGolfPrice",
-            "tier": null,
-            "as_of": "2026-05-06",
-            "notes": null
-          }
-        ]
+        "rates_visible_on_official": true
       },
       "membership": {
         "available": true,
@@ -24000,8 +23254,7 @@
           "https://gogolf.co.id/en/golf-tangerang",
           "https://playgolf.id/golf_courses/tigaraksa-golf-residens/",
           "https://www.golflux.com/course/takara-golf-resort/",
-          "https://www.hole19golf.com/courses/takara-golf-resort-tigaraksa-tangerang",
-          "https://greenfee365.com/golf-course/takara-golf-and-resort"
+          "https://www.hole19golf.com/courses/takara-golf-resort-tigaraksa-tangerang"
         ],
         "last_verified": "2026-05-06",
         "official_site_status": "no dedicated public website (info@takara-golf.co.id contact only)",
@@ -24087,9 +23340,7 @@
           "https://gogolf.co.id/en/golf-course/bandung-indah-golf-country-club",
           "https://www.golfcards.com/course/bandung-indah-golf-country-club/",
           "https://www.golfasian.com/golf-courses/indonesia-golf-courses/bandung/bandung-indah-golf-country-club/",
-          "https://www.golflux.com/course/bandung-indah-golf-country-club/",
-          "https://gogolf.co.id/en/gogolf-news/how-much-does-it-cost-to-play-golf-in-indonesia",
-          "https://gogolf.co.id/en/top-golf-courses-in-indonesia"
+          "https://www.golflux.com/course/bandung-indah-golf-country-club/"
         ],
         "last_verified": "2026-05-06",
         "official_site_status": "official site bandungindahgolf.com unreachable to fetcher (ECONNREFUSED)",
@@ -24165,12 +23416,7 @@
           "https://www.leadingcourses.com/clubs/asia+indonesia+java+west-java/arcamanik-raya-golf-country-club",
           "https://www.golfshake.com/course/view/21398/Arcamanik_Raya_Golf_Country_Club.html",
           "https://greenfee365.com/golf-course/arcamanik-endah-golf-course",
-          "https://expertgolf.com/en/golfguide/golfguide-detail/Padang+Golf+Arcamanik+Endah-500541",
-          "https://us.trip.com/travel-guide/attraction/arcamanik/arcamanik-golf-club-144872818/",
-          "https://idfirms.com/jawa-barat/arcamanik-golf-club-16824",
-          "https://kumparan.com/seputar-bandung/4-rekomendasi-lapangan-golf-di-bandung-untuk-pemula-dan-profesional-21xs14QajxY",
-          "https://id.polomap.com/kota-bandung/160625",
-          "https://www.instagram.com/explore/locations/1468051843220752/pengelola-lapangan-golf-arcamanik/"
+          "https://expertgolf.com/en/golfguide/golfguide-detail/Padang+Golf+Arcamanik+Endah-500541"
         ],
         "last_verified": "2026-05-06",
         "official_site_status": "no official website",
@@ -24193,8 +23439,8 @@
       "region": "Banjarnegara",
       "province": "Central Java",
       "address": "Kompleks PLN Indonesia Power UBP Mrica, adjacent to Waduk Mrica (Panglima Besar Soedirman Reservoir), Banjarnegara, Central Java",
-      "lat": -7.3910151,
-      "lng": 109.5977828,
+      "lat": null,
+      "lng": null,
       "holes": 18,
       "par": null,
       "year_opened": 1989,
@@ -24227,12 +23473,8 @@
         },
         "currency": "IDR",
         "sources": [
-          "https://obgolf.co.id/lapangan-golf-mrica-permata-hijau-di-kawasan-objek-vital-negara/",
-          "https://playgolf.id/golf_courses/padang-golf-mrica/",
-          "https://www.instagram.com/banjarnegaragolf/",
-          "https://www.golfpass.com/travel-advisor/courses/38319-mrica-indah-golf-club"
-        ],
-        "last_verified": "2026-05-06"
+          "https://obgolf.co.id/lapangan-golf-mrica-permata-hijau-di-kawasan-objek-vital-negara/"
+        ]
       },
       "membership": {
         "available": "unknown",
@@ -24243,8 +23485,7 @@
         "parent_group": "PT PLN Indonesia Power / PT PLN (Persero)",
         "idx_ticker": null,
         "listed_status": "state-owned"
-      },
-      "coord_approximate": false
+      }
     },
     {
       "id": "martabe-sejahtera-medan",
@@ -24252,8 +23493,8 @@
       "region": "Medan",
       "province": "North Sumatra",
       "address": "Jl. Letjen Djamin Ginting Km. 22, Uruk Gedang, Kec. Namorambe, Kabupaten Deli Serdang, Sumatera Utara 20353",
-      "lat": 3.4270453,
-      "lng": 98.6136641,
+      "lat": 3.4705,
+      "lng": 98.6225,
       "holes": 18,
       "par": 72,
       "year_opened": 1998,
@@ -24324,8 +23565,7 @@
         "parent_group": null,
         "idx_ticker": null,
         "listed_status": "private"
-      },
-      "coord_approximate": false
+      }
     }
   ]
 }
