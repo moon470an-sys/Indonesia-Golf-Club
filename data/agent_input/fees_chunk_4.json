@@ -1,0 +1,16 @@
+{
+  "chunk": "fees_chunk_4",
+  "region_focus": "Sumatra (Medan)",
+  "courses": [
+    {
+      "id": "martabe-sejahtera-medan",
+      "name_en": "Martabe Sejahtera Golf Club",
+      "region": "Medan, North Sumatra",
+      "known_evidence": [
+        "https://www.golflux.com/course/martabe-sejahtera-golf-club/",
+        "https://www.golfpass.com/travel-advisor/courses/38230-martabe-sejahtera-golf-club",
+        "https://www.hole19golf.com/courses/martabe-sejahtera-gc"
+      ]
+    }
+  ]
+}

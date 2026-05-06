@@ -1,0 +1,35 @@
+{
+  "chunk": "fees_chunk_1",
+  "region_focus": "Jakarta proper",
+  "courses": [
+    {
+      "id": "suvarna-jakarta",
+      "name_en": "Suvarna Jakarta Golf Club",
+      "region": "Jakarta",
+      "known_evidence": [
+        "https://www.suvarnajakartagolfclub.com/",
+        "https://www.golfasian.com/golf-courses/indonesia-golf-courses/jakarta/suvarna-jakarta-golf-club/",
+        "https://www.top100golfcourses.com/golf-course/suvarna-jakarta"
+      ]
+    },
+    {
+      "id": "sedayu-indo-golf",
+      "name_en": "Sedayu Indo Golf (The Links)",
+      "region": "Jakarta",
+      "known_evidence": [
+        "https://www.sedayuindogolf.com/",
+        "https://www.golfpass.com/travel-advisor/courses/40323-sedayu-indo-golf",
+        "https://www.pik2.com/facility-detail?id=7"
+      ]
+    },
+    {
+      "id": "jaya-ancol-golf",
+      "name_en": "Padang Golf Jaya Ancol (Ancol Golf Club)",
+      "region": "Jakarta",
+      "known_evidence": [
+        "https://www.mscorecard.com/mscorecard/showcourse.php?cid=1243501465772",
+        "https://golftoday.co.uk/course/jaya-ancol-golf-club/"
+      ]
+    }
+  ]
+}

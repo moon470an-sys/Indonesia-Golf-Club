@@ -350,7 +350,7 @@ def detect_outliers(courses_doc):
     if not courses_doc: return
     fees = []
     for c in courses_doc["courses"]:
-        f = c.get("fees_2026_05", {})
+        f = c.get("fees_2026_05") or {}
         if isinstance(f.get("weekday"), dict):
             v = f["weekday"].get("green_fee_idr")
             if isinstance(v, (int,float)) and v > 0:

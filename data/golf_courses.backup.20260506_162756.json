@@ -19,8 +19,7 @@
     "financials_added": "2026-05-01",
     "financials_matched": 84,
     "fees_pass_2026_05_03": "Group A-F deep search via GoGolf/playgolf.id/SNS/regional news. 53 courses processed: ~14 verified, ~9 USD-converted, ~30 unrecoverable (military/corporate-internal).",
-    "last_discovery_merge": "20260506_080716",
-    "last_fees_merge": "20260506_162756"
+    "last_discovery_merge": "20260506_080716"
   },
   "courses": [
     {
@@ -22668,47 +22667,7 @@
         ],
         "last_verified": "2026-05-06"
       },
-      "fees_2026_05": {
-        "weekday": {
-          "publish_idr_mon_thu": 1580000,
-          "publish_idr_fri": 1720000,
-          "qgolf_idr_am": 1277000,
-          "qgolf_idr_pm": 1077000,
-          "green_fee_usd": 94
-        },
-        "weekend": {
-          "publish_idr_sat_am": 3580000,
-          "publish_idr_sat_pm": 2580000,
-          "publish_idr_sun_am": 3580000,
-          "publish_idr_sun_pm": 2580000,
-          "qgolf_idr_sat_am": 2977000,
-          "qgolf_idr_sat_pm": 1877000,
-          "qgolf_idr_sun_am": 2877000,
-          "qgolf_idr_sun_pm": 1777000,
-          "green_fee_usd": 213
-        },
-        "twilight_idr": null,
-        "caddy_idr": "included",
-        "cart_idr": "included",
-        "insurance_idr": null,
-        "locker_idr": null,
-        "ball_idr": 85000,
-        "ball_idr_weekend": 140000,
-        "service_pct": null,
-        "tax_ppn_pct": 11,
-        "currency": "IDR",
-        "all_inclusive": true,
-        "inclusions_note": "27-hole 'mandatory buggy' course in Halim, East Jakarta. Open to non-members via QAccess/QGolf. Publish rates per official 'GOLF-RATE-2026-MAY' image: weekday IDR 1.58M (Mon-Thu) / 1.72M (Fri); weekend AM IDR 3.58M / PM IDR 2.58M. Discounted QGolf rates IDR 1.077M-2.977M. Buggy is mandatory and bundled. Caddy assumed bundled per Golfsavers SGD 130 (~IDR 1.5M) all-in listing. Practice range Rp 85k weekday / 140k weekend. Golfasian quotes USD 94 midweek / USD 213 weekend (~IDR 1.5M / 3.4M).",
-        "sources": [
-          "https://www.suvarnajakartagolfclub.com/golf-rate/",
-          "https://www.qaccess.asia/QGolfPrice?currentFilter=&currentRecord=&searchString=suvarna",
-          "https://www.golfsavers.com/indonesia/jakarta-golf-courses/suvarna-jakarta-golf-club",
-          "https://www.golfasian.com/golf-courses/indonesia-golf-courses/jakarta/suvarna-jakarta-golf-club/"
-        ],
-        "last_verified": "2026-05-06",
-        "official_site_status": "live; rate page links to image flyer (text-only fetch returns 'VIEW RATE' button)",
-        "rates_visible_on_official": false
-      },
+      "fees_2026_05": null,
       "membership": {
         "available": true,
         "sources": [
@@ -22756,40 +22715,7 @@
         ],
         "last_verified": "2026-05-06"
       },
-      "fees_2026_05": {
-        "weekday": {
-          "green_fee_idr_monday": 460000,
-          "green_fee_idr_tue_fri": 510000,
-          "women_juniors_idr": 460000,
-          "single_player_surcharge_idr": 110000
-        },
-        "weekend": {
-          "green_fee_idr_morning": 1450000,
-          "green_fee_idr_afternoon_9_18": 950000
-        },
-        "twilight_idr": 950000,
-        "caddy_idr": "included",
-        "cart_idr": "included (shared)",
-        "cart_idr_18_private": 360000,
-        "cart_idr_9_private": 250000,
-        "insurance_idr": null,
-        "locker_idr": null,
-        "ball_idr": null,
-        "service_pct": null,
-        "tax_ppn_pct": 11,
-        "currency": "IDR",
-        "all_inclusive": true,
-        "inclusions_note": "Per gogolf.co.id 2026 rate card: weekday Mon IDR 460k, Tue-Fri IDR 510k, weekend morning IDR 1.45M, weekend afternoon (9-18 holes) IDR 950k. Rates include green fee, shared cart, caddy and tax. Single-player surcharge IDR 110k. Private (non-shared) cart IDR 360k/18 or 250k/9. Golfcards.com lists older 'Rp 350k' fee with 20% Tue-Fri / 10% weekend fee-card discount. Suvarna Sutera estate course; official site under update.",
-        "sources": [
-          "https://gogolf.co.id/en/golf-course/kedaton-golf-country-club",
-          "https://www.golfcards.com/course/kedaton-golf-country-club/",
-          "https://suvarnasutera.com/facilities",
-          "https://www.where2golf.com/indonesia/kedaton-golf-country-club/"
-        ],
-        "last_verified": "2026-05-06",
-        "official_site_status": "live; site under update, rates not visible on official",
-        "rates_visible_on_official": false
-      },
+      "fees_2026_05": null,
       "membership": {
         "available": true,
         "sources": [
@@ -22836,52 +22762,7 @@
         ],
         "last_verified": "2026-05-06"
       },
-      "fees_2026_05": {
-        "weekday": {
-          "public_idr": 1299000,
-          "member_guest_idr": 1158000,
-          "qgolf_idr": 999000,
-          "ladies_monday_idr": 999000,
-          "member_idr": 450000,
-          "green_fee_usd": 75
-        },
-        "weekend": {
-          "saturday_public_am_idr": 3088000,
-          "saturday_public_pm_idr": 2788000,
-          "saturday_member_guest_am_idr": 2788000,
-          "saturday_member_guest_pm_idr": 2588000,
-          "sunday_holiday_public_am_idr": 3088000,
-          "sunday_holiday_public_pm_idr": 2588000,
-          "sunday_holiday_member_guest_am_idr": 2788000,
-          "sunday_holiday_member_guest_pm_idr": 2399000,
-          "qgolf_idr_low": 1899000,
-          "qgolf_idr_high": 2399000,
-          "green_fee_usd": 181
-        },
-        "twilight_idr": null,
-        "9hole_weekday_public_idr": 1099000,
-        "9hole_weekend_public_idr": 2188000,
-        "caddy_idr": "included",
-        "cart_idr": "included (shared)",
-        "insurance_idr": "included",
-        "locker_idr": null,
-        "ball_idr": null,
-        "service_pct": null,
-        "tax_ppn_pct": 11,
-        "currency": "IDR",
-        "all_inclusive": true,
-        "inclusions_note": "Per official Sedayu 'Fee & Membership' page: weekday 18-hole public IDR 1,299,000 / member-guest IDR 1,158,000; Sat AM IDR 3,088,000; Sun/holiday AM IDR 3,088,000. Rates explicitly include caddy, green fee, sharing cart, insurance and tax. Member-only walk-on rate IDR 450k. 9-hole shared-cart from IDR 1,099,000 weekday. BNI credit-card promo offers up to 30% off (max Rp 600k discount). QGolf/QAccess discounted weekday IDR 999k. Golfasian USD 75/181 (~IDR 1.2M / 2.9M).",
-        "sources": [
-          "https://www.sedayuindogolf.com/mobile/index.php?fuseaction=fee_membership",
-          "https://www.qaccess.asia/qgolfprice",
-          "https://bniexperience.bni.co.id/promo/detail/diskon-hingga-30di-green-fee-dan-driving-range-sedayu-indo-golf-ozvgwi",
-          "https://www.golfasian.com/golf-courses/indonesia-golf-courses/jakarta/sedayu-indo-golf/",
-          "https://www.golfsavers.com/indonesia/jakarta-golf-courses/sedayu-indo-golf-"
-        ],
-        "last_verified": "2026-05-06",
-        "official_site_status": "live, rates published (mobile fee_membership page)",
-        "rates_visible_on_official": true
-      },
+      "fees_2026_05": null,
       "membership": {
         "available": true,
         "sources": [
@@ -22976,34 +22857,7 @@
         ],
         "last_verified": "2026-05-06"
       },
-      "fees_2026_05": {
-        "weekday": {
-          "green_fee_idr": null
-        },
-        "weekend": {
-          "green_fee_idr": null
-        },
-        "twilight_idr": null,
-        "caddy_idr": null,
-        "cart_idr": null,
-        "insurance_idr": null,
-        "locker_idr": null,
-        "ball_idr": null,
-        "service_pct": null,
-        "tax_ppn_pct": null,
-        "currency": null,
-        "all_inclusive": null,
-        "inclusions_note": "18-hole Robert Trent Jones Jr.-designed seaside course in Taman Impian Jaya Ancol, North Jakarta. Operated by PT Pembangunan Jaya Ancol (PJAA); listed by mScorecard, golftoday.co.uk, golfshake, where2golf as active and tournament-host venue. No published green-fee rate found on any aggregator (golftoday/golfshake explicitly say 'guide prices, please confirm with the course'). No official website; not listed in QGolf/QAccess Jakarta directory. Direct phone +62 21 682122. Pricing must be obtained by phone.",
-        "sources": [
-          "https://www.mscorecard.com/mscorecard/showcourse.php?cid=1243501465772",
-          "https://golftoday.co.uk/course/jaya-ancol-golf-club/",
-          "https://www.golfshake.com/course/view/21441/Jaya_Ancol_Golf_Club.html",
-          "https://www.where2golf.com/golf-tournaments/results/venue/jaya-ancol-gc/"
-        ],
-        "last_verified": "2026-05-06",
-        "official_site_status": "no official website",
-        "rates_visible_on_official": false
-      },
+      "fees_2026_05": null,
       "membership": {
         "available": "unknown",
         "sources": [
@@ -23051,44 +22905,7 @@
         ],
         "last_verified": "2026-05-06"
       },
-      "fees_2026_05": {
-        "weekday": {
-          "green_fee_idr_tue_wed": 468000,
-          "green_fee_idr_thu_fri": 568000
-        },
-        "weekend": {
-          "green_fee_idr_morning": 1668000,
-          "green_fee_idr_afternoon": 1268000,
-          "jjc_member_idr_morning": 1950000,
-          "jjc_member_idr_afternoon": 1500000,
-          "jjc_competition_40plus_idr_morning": 1850000,
-          "jjc_competition_40plus_idr_afternoon": 1450000
-        },
-        "twilight_idr": 1268000,
-        "caddy_idr": "included",
-        "cart_idr": "included (shared)",
-        "insurance_idr": null,
-        "locker_idr": null,
-        "ball_idr": null,
-        "membership_initiation_idr": 157000000,
-        "membership_yearly_2026_idr": 50000000,
-        "membership_family_monthly_idr": 12500000,
-        "service_pct": null,
-        "tax_ppn_pct": 11,
-        "currency": "IDR",
-        "all_inclusive": true,
-        "inclusions_note": "27-hole layout (Lotus, Orchid, Jasmine). Per gogolf.co.id 2026 rate card: weekday IDR 468k (Tue-Wed) / 568k (Thu-Fri); weekend morning IDR 1.668M / afternoon IDR 1.268M. Rates include green fee, caddy, shared cart and tax. Private (non-shared) cart at extra cost. JJC Japanese-member rate (per JJC official): weekend AM IDR 1.95M / PM IDR 1.5M, with competition rate (40+ players) AM 1.85M / PM 1.45M. Closed Mondays. Official rate sub-page returns 404.",
-        "sources": [
-          "https://gogolf.co.id/en/golf-course/lotus-lake-golf-club",
-          "https://lotuslakesgolf.com/",
-          "https://jjc.or.id/kojin/kojintokuten/lotus-lakes-golf-club/",
-          "https://asialinkkarawang.com/lotus-lakes-golf-club/",
-          "https://www.golfsavers.com/indonesia/jakarta-golf-courses/lotuslakes-golf-club"
-        ],
-        "last_verified": "2026-05-06",
-        "official_site_status": "live; rate sub-page 404 (only membership prices visible on homepage)",
-        "rates_visible_on_official": false
-      },
+      "fees_2026_05": null,
       "membership": {
         "available": true,
         "sources": [
@@ -23135,52 +22952,7 @@
         ],
         "last_verified": "2026-05-06"
       },
-      "fees_2026_05": {
-        "weekday": {
-          "senior_morning_idr": 580000,
-          "senior_afternoon_idr": 499000,
-          "ladies_junior_morning_idr": 580000,
-          "ladies_junior_afternoon_idr": 499000,
-          "golflink_member_idr": 350000,
-          "visitor_idr_low": 525000,
-          "visitor_idr_high": 730000,
-          "monday_promo_idr": 525000,
-          "qgolf_easy_am_idr": 440000,
-          "qgolf_easy_pm_idr": 415000
-        },
-        "weekend": {
-          "saturday_visitor_morning_idr": 2205000,
-          "saturday_visitor_afternoon_idr": 850000,
-          "sunday_visitor_morning_idr": 1875000,
-          "sunday_visitor_afternoon_idr": 750000,
-          "saturday_member_guest_morning_idr": 1760000,
-          "saturday_member_guest_afternoon_idr": 850000,
-          "sunday_member_guest_morning_idr": 1540000,
-          "sunday_member_guest_afternoon_idr": 750000,
-          "saturday_qgolf_am_idr": 950000,
-          "sunday_qgolf_am_idr": 890000
-        },
-        "twilight_idr": 750000,
-        "caddy_idr": "included",
-        "cart_idr": "included",
-        "insurance_idr": "included",
-        "locker_idr": null,
-        "ball_idr": null,
-        "service_pct": null,
-        "tax_ppn_pct": 11,
-        "currency": "IDR",
-        "all_inclusive": true,
-        "inclusions_note": "Operated by Golflink Resorts. Per official palmhillgolf.co.id/golf, all rates include green fee, caddy, cart, tax & insurance (effective Jan 2023). Weekday Tue-Fri: senior/ladies/junior IDR 580k AM / 499k PM; GolfLink members IDR 350k. Saturday visitor IDR 2.205M AM / 850k PM; Sunday visitor IDR 1.875M AM / 750k PM. Monday promo IDR 525k. QAccess discounted rates IDR 440-950k. gogolf.co.id cites visitor weekday IDR 525-730k.",
-        "sources": [
-          "https://palmhillgolf.co.id/golf",
-          "https://gogolf.co.id/en/golf-course/palm-hills-golf-club",
-          "https://www.qaccess.asia/qgolfprice",
-          "https://golflinkresorts.co.id/courses/palmhill/en"
-        ],
-        "last_verified": "2026-05-06",
-        "official_site_status": "live, rates published",
-        "rates_visible_on_official": true
-      },
+      "fees_2026_05": null,
       "membership": {
         "available": true,
         "sources": [
@@ -23226,40 +22998,7 @@
         ],
         "last_verified": "2026-05-06"
       },
-      "fees_2026_05": {
-        "weekday": {
-          "green_fee_idr_female": 100000,
-          "green_fee_idr_male": 150000,
-          "green_fee_idr_summary": 450000
-        },
-        "weekend": {
-          "green_fee_idr_low": 345000,
-          "green_fee_idr_high": 455000,
-          "green_fee_idr_summary": 650000
-        },
-        "twilight_idr": null,
-        "caddy_idr": "included",
-        "cart_idr": null,
-        "insurance_idr": null,
-        "locker_idr": null,
-        "ball_idr": null,
-        "beginner_bundle_idr": 990000,
-        "service_pct": null,
-        "tax_ppn_pct": null,
-        "currency": "IDR",
-        "all_inclusive": false,
-        "inclusions_note": "Sources disagree. gogolf.co.id course review lists weekday IDR 100k (female) / 150k (male) and Sunday IDR 345k-455k. gogolf.co.id 'Top Tangerang' summary lists weekday IDR 450k / weekend IDR 650k (caddie included). playgolf.id (Tigaraksa Golf Residens) lists USD 23 / USD 60 (~IDR 370k / 960k). Caddy included in green fee; carts/buggies not available — walking course. Beginner bundle IDR 990k (lessons + range + 9 holes). Conservative lower figures used as primary; significant range due to source disagreement.",
-        "sources": [
-          "https://gogolf.co.id/en/golf-course/takara-golf-resort",
-          "https://gogolf.co.id/en/golf-tangerang",
-          "https://playgolf.id/golf_courses/tigaraksa-golf-residens/",
-          "https://www.golflux.com/course/takara-golf-resort/",
-          "https://www.hole19golf.com/courses/takara-golf-resort-tigaraksa-tangerang"
-        ],
-        "last_verified": "2026-05-06",
-        "official_site_status": "no dedicated public website (info@takara-golf.co.id contact only)",
-        "rates_visible_on_official": false
-      },
+      "fees_2026_05": null,
       "membership": {
         "available": true,
         "sources": [
@@ -23311,41 +23050,7 @@
         ],
         "last_verified": "2026-05-06"
       },
-      "fees_2026_05": {
-        "weekday": {
-          "green_fee_idr_from": 450000
-        },
-        "weekend": {
-          "green_fee_idr_low": 600000,
-          "green_fee_idr_high": 850000
-        },
-        "twilight_idr": null,
-        "caddy_idr": null,
-        "cart_idr": null,
-        "insurance_idr": null,
-        "locker_idr": null,
-        "ball_idr": null,
-        "cart_usd_golfasian": 30,
-        "club_set_usd_golfasian": 25,
-        "shoes_usd_golfasian": 8,
-        "umbrella_usd_golfasian": 5,
-        "fee_card_weekday_discount_pct": 30,
-        "fee_card_weekend_discount_pct": 20,
-        "service_pct": null,
-        "tax_ppn_pct": 11,
-        "currency": "IDR",
-        "all_inclusive": false,
-        "inclusions_note": "Per gogolf.co.id 2025 review: weekday from IDR 450k; weekend/holiday IDR 600k-850k. Caddie and buggy excluded from green fee. golfasian.com lists rentals at USD 30 cart / USD 25 club set / USD 8 shoes / USD 5 umbrella (~IDR 480k cart). Golfcards fee-card members get 30% wd / 20% we discount. Public access; designed 1994 by Michael Coate (AUS), 18-hole par-72.",
-        "sources": [
-          "https://gogolf.co.id/en/golf-course/bandung-indah-golf-country-club",
-          "https://www.golfcards.com/course/bandung-indah-golf-country-club/",
-          "https://www.golfasian.com/golf-courses/indonesia-golf-courses/bandung/bandung-indah-golf-country-club/",
-          "https://www.golflux.com/course/bandung-indah-golf-country-club/"
-        ],
-        "last_verified": "2026-05-06",
-        "official_site_status": "official site bandungindahgolf.com unreachable to fetcher (ECONNREFUSED)",
-        "rates_visible_on_official": false
-      },
+      "fees_2026_05": null,
       "membership": {
         "available": "unknown",
         "sources": [
@@ -23387,41 +23092,7 @@
         ],
         "last_verified": "2026-05-06"
       },
-      "fees_2026_05": {
-        "weekday": {
-          "green_fee_18hole_member_idr": 150000,
-          "green_fee_18hole_non_member_idr": 200000,
-          "green_fee_9hole_member_idr": 100000,
-          "green_fee_9hole_non_member_idr": 150000
-        },
-        "weekend": {
-          "green_fee_18hole_member_idr": 150000,
-          "green_fee_18hole_non_member_idr": 200000,
-          "green_fee_9hole_member_idr": 150000,
-          "green_fee_9hole_non_member_idr": 200000
-        },
-        "twilight_idr": null,
-        "caddy_idr": 13000,
-        "cart_idr": 120000,
-        "insurance_idr": null,
-        "locker_idr": null,
-        "ball_idr": null,
-        "service_pct": null,
-        "tax_ppn_pct": null,
-        "currency": "IDR",
-        "all_inclusive": false,
-        "inclusions_note": "Modest TNI-affiliated public course (also called Padang Golf Arcamanik Endah). Only published rates found are dated (jomkebandung blog): 18-hole non-member IDR 200k (wd & we), member IDR 150k; 9-hole non-member IDR 150k wd / 200k we. Caddy IDR 13k and cart IDR 120k from same older source - likely now higher. Industry roundups place Arcamanik in the 'below IDR 1M' affordable tier. Course not activated on greenfee365; no live online booking. Confirm with club +62 22 7272891.",
-        "sources": [
-          "https://jomkebandung.wordpress.com/golf/",
-          "https://www.leadingcourses.com/clubs/asia+indonesia+java+west-java/arcamanik-raya-golf-country-club",
-          "https://www.golfshake.com/course/view/21398/Arcamanik_Raya_Golf_Country_Club.html",
-          "https://greenfee365.com/golf-course/arcamanik-endah-golf-course",
-          "https://expertgolf.com/en/golfguide/golfguide-detail/Padang+Golf+Arcamanik+Endah-500541"
-        ],
-        "last_verified": "2026-05-06",
-        "official_site_status": "no official website",
-        "rates_visible_on_official": false
-      },
+      "fees_2026_05": null,
       "membership": {
         "available": "unknown",
         "sources": []
@@ -23524,36 +23195,7 @@
         ],
         "last_verified": "2026-05-06"
       },
-      "fees_2026_05": {
-        "weekday": {
-          "green_fee_idr": 340000,
-          "green_fee_usd": 25
-        },
-        "weekend": {
-          "green_fee_idr": 500000,
-          "green_fee_usd": 31
-        },
-        "twilight_idr": null,
-        "caddy_idr": 90000,
-        "cart_idr": 200000,
-        "insurance_idr": null,
-        "locker_idr": null,
-        "ball_idr": null,
-        "service_pct": null,
-        "tax_ppn_pct": null,
-        "currency": "IDR",
-        "all_inclusive": false,
-        "inclusions_note": "Pinnacle Travel publishes IDR 340k weekday / 500k weekend green fee; caddy IDR 90k; cart IDR 200k (each separate). playgolf.id corroborates USD 25 / 31 (~IDR 400k / 496k) with buggy not bundled. Semi-private club (~700 members) but accepts public visitors. Course built 1998, designed by Gus Grantham; ~22km south of Medan toward Berastagi. Official site martabe-golf.com unreachable to fetcher.",
-        "sources": [
-          "https://www.pinnacle-travel.com/medan-golf-courses/",
-          "https://playgolf.id/golf_courses/martabe-sejahtera-golf-course/",
-          "https://www.golfpass.com/travel-advisor/courses/38230-martabe-sejahtera-golf-club",
-          "http://www.martabe-golf.com/rate.htm"
-        ],
-        "last_verified": "2026-05-06",
-        "official_site_status": "official martabe-golf.com unreachable (ECONNREFUSED) to fetcher; rate page indexed by search engines",
-        "rates_visible_on_official": false
-      },
+      "fees_2026_05": null,
       "membership": {
         "available": true,
         "sources": [

@@ -1,0 +1,123 @@
+[
+  {
+    "id": "kedaton-golf",
+    "name_en": "Kedaton Golf & Country Club",
+    "region": "Tangerang",
+    "fees_2026_05": {
+      "weekday": {
+        "green_fee_idr_monday": 460000,
+        "green_fee_idr_tue_fri": 510000,
+        "women_juniors_idr": 460000,
+        "single_player_surcharge_idr": 110000
+      },
+      "weekend": {
+        "green_fee_idr_morning": 1450000,
+        "green_fee_idr_afternoon_9_18": 950000
+      },
+      "twilight_idr": 950000,
+      "caddy_idr": "included",
+      "cart_idr": "included (shared)",
+      "cart_idr_18_private": 360000,
+      "cart_idr_9_private": 250000,
+      "insurance_idr": null,
+      "locker_idr": null,
+      "ball_idr": null,
+      "service_pct": null,
+      "tax_ppn_pct": 11,
+      "currency": "IDR",
+      "all_inclusive": true,
+      "inclusions_note": "Per gogolf.co.id 2026 rate card: weekday Mon IDR 460k, Tue-Fri IDR 510k, weekend morning IDR 1.45M, weekend afternoon (9-18 holes) IDR 950k. Rates include green fee, shared cart, caddy and tax. Single-player surcharge IDR 110k. Private (non-shared) cart IDR 360k/18 or 250k/9. Golfcards.com lists older 'Rp 350k' fee with 20% Tue-Fri / 10% weekend fee-card discount. Suvarna Sutera estate course; official site under update.",
+      "sources": [
+        "https://gogolf.co.id/en/golf-course/kedaton-golf-country-club",
+        "https://www.golfcards.com/course/kedaton-golf-country-club/",
+        "https://suvarnasutera.com/facilities",
+        "https://www.where2golf.com/indonesia/kedaton-golf-country-club/"
+      ],
+      "last_verified": "2026-05-06",
+      "official_site_status": "live; site under update, rates not visible on official",
+      "rates_visible_on_official": false
+    }
+  },
+  {
+    "id": "takara-golf-tigaraksa",
+    "name_en": "Takara Golf Resort",
+    "region": "Tangerang (Tigaraksa)",
+    "fees_2026_05": {
+      "weekday": {
+        "green_fee_idr_female": 100000,
+        "green_fee_idr_male": 150000,
+        "green_fee_idr_summary": 450000
+      },
+      "weekend": {
+        "green_fee_idr_low": 345000,
+        "green_fee_idr_high": 455000,
+        "green_fee_idr_summary": 650000
+      },
+      "twilight_idr": null,
+      "caddy_idr": "included",
+      "cart_idr": null,
+      "insurance_idr": null,
+      "locker_idr": null,
+      "ball_idr": null,
+      "beginner_bundle_idr": 990000,
+      "service_pct": null,
+      "tax_ppn_pct": null,
+      "currency": "IDR",
+      "all_inclusive": false,
+      "inclusions_note": "Sources disagree. gogolf.co.id course review lists weekday IDR 100k (female) / 150k (male) and Sunday IDR 345k-455k. gogolf.co.id 'Top Tangerang' summary lists weekday IDR 450k / weekend IDR 650k (caddie included). playgolf.id (Tigaraksa Golf Residens) lists USD 23 / USD 60 (~IDR 370k / 960k). Caddy included in green fee; carts/buggies not available — walking course. Beginner bundle IDR 990k (lessons + range + 9 holes). Conservative lower figures used as primary; significant range due to source disagreement.",
+      "sources": [
+        "https://gogolf.co.id/en/golf-course/takara-golf-resort",
+        "https://gogolf.co.id/en/golf-tangerang",
+        "https://playgolf.id/golf_courses/tigaraksa-golf-residens/",
+        "https://www.golflux.com/course/takara-golf-resort/",
+        "https://www.hole19golf.com/courses/takara-golf-resort-tigaraksa-tangerang"
+      ],
+      "last_verified": "2026-05-06",
+      "official_site_status": "no dedicated public website (info@takara-golf.co.id contact only)",
+      "rates_visible_on_official": false
+    }
+  },
+  {
+    "id": "lotus-lakes-karawang",
+    "name_en": "Lotus Lakes Golf Club (Karawang International)",
+    "region": "Karawang, West Java",
+    "fees_2026_05": {
+      "weekday": {
+        "green_fee_idr_tue_wed": 468000,
+        "green_fee_idr_thu_fri": 568000
+      },
+      "weekend": {
+        "green_fee_idr_morning": 1668000,
+        "green_fee_idr_afternoon": 1268000,
+        "jjc_member_idr_morning": 1950000,
+        "jjc_member_idr_afternoon": 1500000,
+        "jjc_competition_40plus_idr_morning": 1850000,
+        "jjc_competition_40plus_idr_afternoon": 1450000
+      },
+      "twilight_idr": 1268000,
+      "caddy_idr": "included",
+      "cart_idr": "included (shared)",
+      "insurance_idr": null,
+      "locker_idr": null,
+      "ball_idr": null,
+      "membership_initiation_idr": 157000000,
+      "membership_yearly_2026_idr": 50000000,
+      "membership_family_monthly_idr": 12500000,
+      "service_pct": null,
+      "tax_ppn_pct": 11,
+      "currency": "IDR",
+      "all_inclusive": true,
+      "inclusions_note": "27-hole layout (Lotus, Orchid, Jasmine). Per gogolf.co.id 2026 rate card: weekday IDR 468k (Tue-Wed) / 568k (Thu-Fri); weekend morning IDR 1.668M / afternoon IDR 1.268M. Rates include green fee, caddy, shared cart and tax. Private (non-shared) cart at extra cost. JJC Japanese-member rate (per JJC official): weekend AM IDR 1.95M / PM IDR 1.5M, with competition rate (40+ players) AM 1.85M / PM 1.45M. Closed Mondays. Official rate sub-page returns 404.",
+      "sources": [
+        "https://gogolf.co.id/en/golf-course/lotus-lake-golf-club",
+        "https://lotuslakesgolf.com/",
+        "https://jjc.or.id/kojin/kojintokuten/lotus-lakes-golf-club/",
+        "https://asialinkkarawang.com/lotus-lakes-golf-club/",
+        "https://www.golfsavers.com/indonesia/jakarta-golf-courses/lotuslakes-golf-club"
+      ],
+      "last_verified": "2026-05-06",
+      "official_site_status": "live; rate sub-page 404 (only membership prices visible on homepage)",
+      "rates_visible_on_official": false
+    }
+  }
+]

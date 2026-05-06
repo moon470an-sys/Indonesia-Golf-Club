@@ -1,0 +1,132 @@
+[
+  {
+    "id": "suvarna-jakarta",
+    "name_en": "Suvarna Jakarta Golf Club",
+    "region": "Jakarta",
+    "fees_2026_05": {
+      "weekday": {
+        "publish_idr_mon_thu": 1580000,
+        "publish_idr_fri": 1720000,
+        "qgolf_idr_am": 1277000,
+        "qgolf_idr_pm": 1077000,
+        "green_fee_usd": 94
+      },
+      "weekend": {
+        "publish_idr_sat_am": 3580000,
+        "publish_idr_sat_pm": 2580000,
+        "publish_idr_sun_am": 3580000,
+        "publish_idr_sun_pm": 2580000,
+        "qgolf_idr_sat_am": 2977000,
+        "qgolf_idr_sat_pm": 1877000,
+        "qgolf_idr_sun_am": 2877000,
+        "qgolf_idr_sun_pm": 1777000,
+        "green_fee_usd": 213
+      },
+      "twilight_idr": null,
+      "caddy_idr": "included",
+      "cart_idr": "included",
+      "insurance_idr": null,
+      "locker_idr": null,
+      "ball_idr": 85000,
+      "ball_idr_weekend": 140000,
+      "service_pct": null,
+      "tax_ppn_pct": 11,
+      "currency": "IDR",
+      "all_inclusive": true,
+      "inclusions_note": "27-hole 'mandatory buggy' course in Halim, East Jakarta. Open to non-members via QAccess/QGolf. Publish rates per official 'GOLF-RATE-2026-MAY' image: weekday IDR 1.58M (Mon-Thu) / 1.72M (Fri); weekend AM IDR 3.58M / PM IDR 2.58M. Discounted QGolf rates IDR 1.077M-2.977M. Buggy is mandatory and bundled. Caddy assumed bundled per Golfsavers SGD 130 (~IDR 1.5M) all-in listing. Practice range Rp 85k weekday / 140k weekend. Golfasian quotes USD 94 midweek / USD 213 weekend (~IDR 1.5M / 3.4M).",
+      "sources": [
+        "https://www.suvarnajakartagolfclub.com/golf-rate/",
+        "https://www.qaccess.asia/QGolfPrice?currentFilter=&currentRecord=&searchString=suvarna",
+        "https://www.golfsavers.com/indonesia/jakarta-golf-courses/suvarna-jakarta-golf-club",
+        "https://www.golfasian.com/golf-courses/indonesia-golf-courses/jakarta/suvarna-jakarta-golf-club/"
+      ],
+      "last_verified": "2026-05-06",
+      "official_site_status": "live; rate page links to image flyer (text-only fetch returns 'VIEW RATE' button)",
+      "rates_visible_on_official": false
+    }
+  },
+  {
+    "id": "sedayu-indo-golf",
+    "name_en": "Sedayu Indo Golf (The Links)",
+    "region": "Jakarta",
+    "fees_2026_05": {
+      "weekday": {
+        "public_idr": 1299000,
+        "member_guest_idr": 1158000,
+        "qgolf_idr": 999000,
+        "ladies_monday_idr": 999000,
+        "member_idr": 450000,
+        "green_fee_usd": 75
+      },
+      "weekend": {
+        "saturday_public_am_idr": 3088000,
+        "saturday_public_pm_idr": 2788000,
+        "saturday_member_guest_am_idr": 2788000,
+        "saturday_member_guest_pm_idr": 2588000,
+        "sunday_holiday_public_am_idr": 3088000,
+        "sunday_holiday_public_pm_idr": 2588000,
+        "sunday_holiday_member_guest_am_idr": 2788000,
+        "sunday_holiday_member_guest_pm_idr": 2399000,
+        "qgolf_idr_low": 1899000,
+        "qgolf_idr_high": 2399000,
+        "green_fee_usd": 181
+      },
+      "twilight_idr": null,
+      "9hole_weekday_public_idr": 1099000,
+      "9hole_weekend_public_idr": 2188000,
+      "caddy_idr": "included",
+      "cart_idr": "included (shared)",
+      "insurance_idr": "included",
+      "locker_idr": null,
+      "ball_idr": null,
+      "service_pct": null,
+      "tax_ppn_pct": 11,
+      "currency": "IDR",
+      "all_inclusive": true,
+      "inclusions_note": "Per official Sedayu 'Fee & Membership' page: weekday 18-hole public IDR 1,299,000 / member-guest IDR 1,158,000; Sat AM IDR 3,088,000; Sun/holiday AM IDR 3,088,000. Rates explicitly include caddy, green fee, sharing cart, insurance and tax. Member-only walk-on rate IDR 450k. 9-hole shared-cart from IDR 1,099,000 weekday. BNI credit-card promo offers up to 30% off (max Rp 600k discount). QGolf/QAccess discounted weekday IDR 999k. Golfasian USD 75/181 (~IDR 1.2M / 2.9M).",
+      "sources": [
+        "https://www.sedayuindogolf.com/mobile/index.php?fuseaction=fee_membership",
+        "https://www.qaccess.asia/qgolfprice",
+        "https://bniexperience.bni.co.id/promo/detail/diskon-hingga-30di-green-fee-dan-driving-range-sedayu-indo-golf-ozvgwi",
+        "https://www.golfasian.com/golf-courses/indonesia-golf-courses/jakarta/sedayu-indo-golf/",
+        "https://www.golfsavers.com/indonesia/jakarta-golf-courses/sedayu-indo-golf-"
+      ],
+      "last_verified": "2026-05-06",
+      "official_site_status": "live, rates published (mobile fee_membership page)",
+      "rates_visible_on_official": true
+    }
+  },
+  {
+    "id": "jaya-ancol-golf",
+    "name_en": "Padang Golf Jaya Ancol (Ancol Golf Club)",
+    "region": "Jakarta",
+    "fees_2026_05": {
+      "weekday": {
+        "green_fee_idr": null
+      },
+      "weekend": {
+        "green_fee_idr": null
+      },
+      "twilight_idr": null,
+      "caddy_idr": null,
+      "cart_idr": null,
+      "insurance_idr": null,
+      "locker_idr": null,
+      "ball_idr": null,
+      "service_pct": null,
+      "tax_ppn_pct": null,
+      "currency": null,
+      "all_inclusive": null,
+      "inclusions_note": "18-hole Robert Trent Jones Jr.-designed seaside course in Taman Impian Jaya Ancol, North Jakarta. Operated by PT Pembangunan Jaya Ancol (PJAA); listed by mScorecard, golftoday.co.uk, golfshake, where2golf as active and tournament-host venue. No published green-fee rate found on any aggregator (golftoday/golfshake explicitly say 'guide prices, please confirm with the course'). No official website; not listed in QGolf/QAccess Jakarta directory. Direct phone +62 21 682122. Pricing must be obtained by phone.",
+      "sources": [
+        "https://www.mscorecard.com/mscorecard/showcourse.php?cid=1243501465772",
+        "https://golftoday.co.uk/course/jaya-ancol-golf-club/",
+        "https://www.golfshake.com/course/view/21441/Jaya_Ancol_Golf_Club.html",
+        "https://www.where2golf.com/golf-tournaments/results/venue/jaya-ancol-gc/"
+      ],
+      "last_verified": "2026-05-06",
+      "official_site_status": "no official website",
+      "rates_visible_on_official": false
+    }
+  }
+]

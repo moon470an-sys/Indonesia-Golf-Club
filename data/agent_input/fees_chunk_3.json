@@ -1,0 +1,34 @@
+{
+  "chunk": "fees_chunk_3",
+  "region_focus": "Bogor & Bandung (West Java highlands)",
+  "courses": [
+    {
+      "id": "palm-hill-bogor",
+      "name_en": "Palm Hill Golf Club",
+      "region": "Bogor, West Java",
+      "known_evidence": [
+        "https://palmhillgolf.co.id/",
+        "https://golflinkresorts.co.id/courses/palmhill/en",
+        "https://www.golfpass.com/travel-advisor/courses/38256-palm-hill-golf-club"
+      ]
+    },
+    {
+      "id": "bandung-indah-margahayu",
+      "name_en": "Bandung Indah Golf & Country Club",
+      "region": "Bandung, West Java",
+      "known_evidence": [
+        "https://www.golfasian.com/golf-courses/indonesia-golf-courses/bandung/bandung-indah-golf-country-club/",
+        "https://www.golflux.com/course/bandung-indah-golf-country-club/"
+      ]
+    },
+    {
+      "id": "arcamanik-raya-bandung",
+      "name_en": "Arcamanik Raya Golf & Country Club",
+      "region": "Bandung, West Java",
+      "known_evidence": [
+        "https://www.leadingcourses.com/clubs/asia+indonesia+java+west-java/arcamanik-raya-golf-country-club",
+        "https://www.golfshake.com/course/view/21398/Arcamanik_Raya_Golf_Country_Club.html"
+      ]
+    }
+  ]
+}
