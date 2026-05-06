@@ -1,123 +1,218 @@
 [
   {
-    "id": "kedaton-golf",
-    "name_en": "Kedaton Golf & Country Club",
-    "region": "Tangerang",
+    "id": "trump-lido",
+    "name_en": "Trump International Golf Club Lido",
+    "region": "Bogor",
     "fees_2026_05": {
       "weekday": {
-        "green_fee_idr_monday": 460000,
-        "green_fee_idr_tue_fri": 510000,
-        "women_juniors_idr": 460000,
-        "single_player_surcharge_idr": 110000
+        "green_fee_idr": null,
+        "guest_fee_idr": null,
+        "member_fee_idr": null
       },
       "weekend": {
-        "green_fee_idr_morning": 1450000,
-        "green_fee_idr_afternoon_9_18": 950000
-      },
-      "twilight_idr": 950000,
-      "caddy_idr": "included",
-      "cart_idr": "included (shared)",
-      "cart_idr_18_private": 360000,
-      "cart_idr_9_private": 250000,
-      "insurance_idr": null,
-      "locker_idr": null,
-      "ball_idr": null,
-      "service_pct": null,
-      "tax_ppn_pct": 11,
-      "currency": "IDR",
-      "all_inclusive": true,
-      "inclusions_note": "Per gogolf.co.id 2026 rate card: weekday Mon IDR 460k, Tue-Fri IDR 510k, weekend morning IDR 1.45M, weekend afternoon (9-18 holes) IDR 950k. Rates include green fee, shared cart, caddy and tax. Single-player surcharge IDR 110k. Private (non-shared) cart IDR 360k/18 or 250k/9. Golfcards.com lists older 'Rp 350k' fee with 20% Tue-Fri / 10% weekend fee-card discount. Suvarna Sutera estate course; official site under update.",
-      "sources": [
-        "https://gogolf.co.id/en/golf-course/kedaton-golf-country-club",
-        "https://www.golfcards.com/course/kedaton-golf-country-club/",
-        "https://suvarnasutera.com/facilities",
-        "https://www.where2golf.com/indonesia/kedaton-golf-country-club/"
-      ],
-      "last_verified": "2026-05-06",
-      "official_site_status": "live; site under update, rates not visible on official",
-      "rates_visible_on_official": false
-    }
-  },
-  {
-    "id": "takara-golf-tigaraksa",
-    "name_en": "Takara Golf Resort",
-    "region": "Tangerang (Tigaraksa)",
-    "fees_2026_05": {
-      "weekday": {
-        "green_fee_idr_female": 100000,
-        "green_fee_idr_male": 150000,
-        "green_fee_idr_summary": 450000
-      },
-      "weekend": {
-        "green_fee_idr_low": 345000,
-        "green_fee_idr_high": 455000,
-        "green_fee_idr_summary": 650000
+        "green_fee_idr": null,
+        "guest_fee_idr": null,
+        "member_fee_idr": null
       },
       "twilight_idr": null,
       "caddy_idr": "included",
-      "cart_idr": null,
+      "cart_idr": "included",
       "insurance_idr": null,
-      "locker_idr": null,
-      "ball_idr": null,
-      "beginner_bundle_idr": 990000,
-      "service_pct": null,
-      "tax_ppn_pct": null,
       "currency": "IDR",
-      "all_inclusive": false,
-      "inclusions_note": "Sources disagree. gogolf.co.id course review lists weekday IDR 100k (female) / 150k (male) and Sunday IDR 345k-455k. gogolf.co.id 'Top Tangerang' summary lists weekday IDR 450k / weekend IDR 650k (caddie included). playgolf.id (Tigaraksa Golf Residens) lists USD 23 / USD 60 (~IDR 370k / 960k). Caddy included in green fee; carts/buggies not available — walking course. Beginner bundle IDR 990k (lessons + range + 9 holes). Conservative lower figures used as primary; significant range due to source disagreement.",
+      "notes": "Course was rebranded Trump International Golf Club Lido and is operated as a strictly private, members-only club (membership USD 70,000; only ~80 players permitted on course daily; carts and caddies included in the green fee per Trump.com). Official site (trumpgolflido.com), MNCLand/MNC Tourism pages, golfsavers, golfasian, hole19, and playgolf.id all confirm 'Online Booking: No' and 'invited guests only', and none publish a public daily green fee. Pre-Trump GoGolf legacy entry 'Klub Golf Lido Bogor' lists weekday IDR 375,000 / weekend IDR 947,000 but this reflects the old Lido Lakes Resort operation prior to the 2024 Trump rebrand and is therefore obsolete. Q-Access (searchString=lido and =trump) returns zero records, confirming the course is not on the Q-Access platform. No 2026 rate card was found on MNC press releases, BalitiGolf, Asia Medan, Pinnacle Travel, or other Indonesian golf packagers after thorough search. Wayback fetch was blocked by tooling.",
       "sources": [
-        "https://gogolf.co.id/en/golf-course/takara-golf-resort",
-        "https://gogolf.co.id/en/golf-tangerang",
-        "https://playgolf.id/golf_courses/tigaraksa-golf-residens/",
-        "https://www.golflux.com/course/takara-golf-resort/",
-        "https://www.hole19golf.com/courses/takara-golf-resort-tigaraksa-tangerang"
+        "https://www.trumpgolflido.com/",
+        "https://mnctourismindonesia.com/trumpgolflido",
+        "https://www.mncland.com/trumpgolflido",
+        "https://www.trump.com/golf/lido-city-indonesia",
+        "https://www.golfsavers.com/indonesia/bogor-golf-courses/trump-international-golf-club-lido",
+        "https://www.golfasian.com/golf-courses/indonesia-golf-courses/bogor/trump-international-golf-club-lido/",
+        "https://playgolf.id/golf_courses/trump-international-golf-club-lido/",
+        "https://www.hole19golf.com/courses/trump-international-golf-club-lido",
+        "https://gogolf.co.id/golf-course/klub-golf-lido-bogor",
+        "https://www.qaccess.asia/QGolfPrice?searchString=lido",
+        "https://www.qaccess.asia/QGolfPrice?searchString=trump"
       ],
-      "last_verified": "2026-05-06",
-      "official_site_status": "no dedicated public website (info@takara-golf.co.id contact only)",
-      "rates_visible_on_official": false
+      "last_verified": "2026-05-07",
+      "rates_visible_on_official": false,
+      "official_site_status": "live",
+      "verification_resolved": false,
+      "verification_notes": "All daily-play slots remain null. Course is private/members-only with USD 70,000 initiation; no daily green fee is publicly published by any tier-1 source. Negative search documented across MNC, golfsavers, golfasian, hole19, playgolf.id, Q-Access, and Indonesian packagers."
     }
   },
   {
-    "id": "lotus-lakes-karawang",
-    "name_en": "Lotus Lakes Golf Club (Karawang International)",
-    "region": "Karawang, West Java",
+    "id": "permata-sentul",
+    "name_en": "Permata Sentul Golf",
+    "region": "Bogor",
     "fees_2026_05": {
       "weekday": {
-        "green_fee_idr_tue_wed": 468000,
-        "green_fee_idr_thu_fri": 568000
+        "green_fee_idr": 708000,
+        "guest_fee_idr": 708000,
+        "member_fee_idr": 648000,
+        "weekday_am_idr": 708000,
+        "weekday_pm_idr": 588000,
+        "monday_flat_idr": 445000,
+        "ladies_junior_flat_idr": 498000
       },
       "weekend": {
-        "green_fee_idr_morning": 1668000,
-        "green_fee_idr_afternoon": 1268000,
-        "jjc_member_idr_morning": 1950000,
-        "jjc_member_idr_afternoon": 1500000,
-        "jjc_competition_40plus_idr_morning": 1850000,
-        "jjc_competition_40plus_idr_afternoon": 1450000
+        "green_fee_idr": 1948000,
+        "guest_fee_idr": 1948000,
+        "member_fee_idr": 1748000,
+        "saturday_am_idr": 1948000,
+        "saturday_pm_idr": 1048000,
+        "sunday_am_idr": 1408000,
+        "sunday_pm_idr": 928000,
+        "saturday_member_am_idr": 1748000,
+        "saturday_member_pm_idr": 968000,
+        "sunday_member_idr": 1268000
       },
-      "twilight_idr": 1268000,
+      "twilight_idr": null,
       "caddy_idr": "included",
-      "cart_idr": "included (shared)",
-      "insurance_idr": null,
-      "locker_idr": null,
-      "ball_idr": null,
-      "membership_initiation_idr": 157000000,
-      "membership_yearly_2026_idr": 50000000,
-      "membership_family_monthly_idr": 12500000,
-      "service_pct": null,
-      "tax_ppn_pct": 11,
+      "cart_idr": "included",
+      "insurance_idr": "included",
       "currency": "IDR",
-      "all_inclusive": true,
-      "inclusions_note": "27-hole layout (Lotus, Orchid, Jasmine). Per gogolf.co.id 2026 rate card: weekday IDR 468k (Tue-Wed) / 568k (Thu-Fri); weekend morning IDR 1.668M / afternoon IDR 1.268M. Rates include green fee, caddy, shared cart and tax. Private (non-shared) cart at extra cost. JJC Japanese-member rate (per JJC official): weekend AM IDR 1.95M / PM IDR 1.5M, with competition rate (40+ players) AM 1.85M / PM 1.45M. Closed Mondays. Official rate sub-page returns 404.",
+      "notes": "Saturday and Sunday AM/PM verification resolved. GoGolf (EN+ID listings) and Q-Access agree on the structure: Sat-AM (non-member) IDR 1,948,000, Sat-PM 1,048,000, Sun-AM 1,408,000, Sun-PM 928,000 (publish/QGOLF lower 'Q' rates available to QGolf cardholders only). Q-Access (last updated 2026-03-12) shows higher 'Publish Rates' than GoGolf for Sat AM (2,620,000) and Sun AM (1,980,000), but its 'QGolf Rates' (Sat-AM 1,880,000 / Sun-AM 1,580,000) align closely with the GoGolf walk-up figures used in the existing record. Selected GoGolf as source-of-record because it represents the standard non-member walk-up rate consistent with the existing dataset; Q-Access publish rates noted as dissenting source. Official site (permatasentulgolf.net) does not publish rates - directs to WhatsApp - so rates_visible_on_official=false. Existing values (weekday 708k, weekend 1948k, member-weekend 1748k) confirmed.",
       "sources": [
-        "https://gogolf.co.id/en/golf-course/lotus-lake-golf-club",
-        "https://lotuslakesgolf.com/",
-        "https://jjc.or.id/kojin/kojintokuten/lotus-lakes-golf-club/",
-        "https://asialinkkarawang.com/lotus-lakes-golf-club/",
-        "https://www.golfsavers.com/indonesia/jakarta-golf-courses/lotuslakes-golf-club"
+        "https://www.permatasentulgolf.net/",
+        "https://gogolf.co.id/golf-course/permata-sentul-golf-club",
+        "https://gogolf.co.id/en/golf-course/permata-sentul-golf-club",
+        "https://www.qaccess.asia/QGolfPrice?searchString=permata"
       ],
-      "last_verified": "2026-05-06",
-      "official_site_status": "live; rate sub-page 404 (only membership prices visible on homepage)",
-      "rates_visible_on_official": false
+      "last_verified": "2026-05-07",
+      "rates_visible_on_official": false,
+      "official_site_status": "live",
+      "verification_resolved": true,
+      "verification_notes": "All four flagged slots (Sat-AM/PM, Sun-AM/PM) resolved against GoGolf primary and cross-checked with Q-Access. Q-Access publish rates are higher and noted as dissent."
+    }
+  },
+  {
+    "id": "riverside-cibubur",
+    "name_en": "Riverside Golf Club",
+    "region": "Bogor",
+    "fees_2026_05": {
+      "weekday": {
+        "green_fee_idr": 750000,
+        "guest_fee_idr": 575000,
+        "member_fee_idr": 575000,
+        "visitor_fee_idr": 750000,
+        "weekday_am_idr": 750000,
+        "weekday_pm_idr": 525000,
+        "twilight_idr": 450000
+      },
+      "weekend": {
+        "green_fee_idr": 2275000,
+        "guest_fee_idr": 1875000,
+        "member_fee_idr": 1875000,
+        "saturday_am_idr": 2275000,
+        "saturday_pm_idr": 1275000,
+        "sunday_am_idr": 1875000,
+        "sunday_pm_idr": 1005000,
+        "saturday_member_am_idr": 1875000,
+        "saturday_member_pm_idr": 1125000,
+        "sunday_member_am_idr": 1605000,
+        "sunday_member_pm_idr": 1005000,
+        "weekend_late_after_1330_idr": 905000
+      },
+      "twilight_idr": 450000,
+      "caddy_idr": "included",
+      "cart_idr": "included",
+      "insurance_idr": null,
+      "currency": "IDR",
+      "notes": "Domain disambiguation resolved: riverside-golf.com IS the canonical official site for the Bogor (Cikeas River, Cibubur-area) course - confirmed by location and packages. golfriverside.net is a DIFFERENT golf course in Fenton, Missouri USA (rates listed in USD: $35-$45) and is NOT related to the Indonesian course. The Bogor course's own offers-package page lists only bundled package rates (e.g., Young/Wild/Free 950,000 weekday Tue, 1,400,000 weekend PM); standard green fees not itemized on official site. GoGolf provides the full rate card (EN+ID listings agree): Weekday Visitor 750,000 / Guest 575,000; Sat-AM Visitor 2,275,000, Sat-PM 1,275,000, Sun-AM 1,875,000, Sun-PM 1,005,000. Q-Access (updated 2026-04-25) agrees on structure but publishes higher rack rates: Weekday 1,200,000; Sat-AM 3,300,000 / PM 1,900,000; Sun-AM 2,650,000 / PM 1,550,000 (with QGolf cardholder discount rates 865k/2,655k/1,955k). Existing values weekday 950k / weekend 1,400k matched the bundled 'Young Wild Free' package, not the standard rates - corrected. Source-of-record: GoGolf walk-up rates (consistent with prior dataset granularity); Q-Access publish rates noted as dissenting (likely the higher walk-up rack rate, GoGolf may show a discounted partner rate).",
+      "sources": [
+        "https://www.riverside-golf.com/offers-package",
+        "https://www.golfriverside.net/rates/",
+        "https://gogolf.co.id/golf-course/riverside-golf-club",
+        "https://gogolf.co.id/en/golf-course/riverside-golf-club",
+        "https://www.qaccess.asia/QGolfPrice?searchString=riverside"
+      ],
+      "last_verified": "2026-05-07",
+      "rates_visible_on_official": false,
+      "official_site_status": "live",
+      "verification_resolved": true,
+      "verification_notes": "All 6 slots resolved with GoGolf as primary source, Q-Access cross-check for trend agreement. Domain conflict resolved: riverside-golf.com is canonical Bogor site; golfriverside.net is unrelated US course (Missouri) and should be removed from source list for this course in production data."
+    }
+  },
+  {
+    "id": "jagorawi",
+    "name_en": "Jagorawi Golf & Country Club",
+    "region": "Bogor",
+    "fees_2026_05": {
+      "weekday": {
+        "green_fee_idr": 625000,
+        "guest_fee_idr": 625000,
+        "member_fee_idr": 405000,
+        "weekday_low_idr": 405000,
+        "weekday_high_idr": 550000,
+        "promo_with_reservation_idr": 499000
+      },
+      "weekend": {
+        "green_fee_idr": 2150000,
+        "guest_fee_idr": 2150000,
+        "member_fee_idr": null,
+        "saturday_am_idr": 2150000,
+        "saturday_pm_idr": 1195000,
+        "sunday_am_idr": 1495000,
+        "sunday_pm_idr": 995000
+      },
+      "twilight_idr": null,
+      "caddy_idr": 100000,
+      "cart_idr": 230000,
+      "insurance_idr": null,
+      "currency": "IDR",
+      "notes": "Weekend AM/PM verified from official jagorawi.com/green-fees Ramadan/special rate card: Sat-AM 2,150,000 / Sat-PM 1,195,000 / Sun-AM 1,495,000 / Sun-PM 995,000 (these were the 'Ramadan Special' figures shown on the official page; the page directs visitors to Instagram @jagorawigolfcc for current rates and does not publish a non-promotional weekend rate card). GoGolf reports a wider range: weekday 18-hole IDR 405,000-550,000 (member) and weekend before 10:00 AM 'up to IDR 1,495,000', plus a IDR 499,000 promo with reservation. Caddy 100,000 (18 holes), cart 230,000 weekday / 250,000 weekend, per-seat 160,000 - all itemized separately (NOT included like other Bogor courses). Q-Access has no record for Jagorawi (search returns 0). Existing values (weekday 625k, weekend 2,150k) confirmed as Sat-AM peak; member weekday rate may be as low as 405,000. Cart 230k weekday / cart 250k weekend - using weekday as primary cart_idr.",
+      "sources": [
+        "https://jagorawi.com/green-fees/",
+        "https://gogolf.co.id/golf-course/jagorawi-golf-country-club",
+        "https://gogolf.co.id/en/golf-course/jagorawi-golf-country-club",
+        "https://www.qaccess.asia/QGolfPrice?searchString=jagorawi"
+      ],
+      "last_verified": "2026-05-07",
+      "rates_visible_on_official": true,
+      "official_site_status": "live",
+      "verification_resolved": true,
+      "verification_notes": "Weekend Sat/Sun AM/PM resolved against official Jagorawi green-fees page. Note: official page labeled them as 'Ramadan Special' rates - they may not be the rack rate year-round; the site explicitly defers to Instagram for current rates. Caveat documented for downstream consumer."
+    }
+  },
+  {
+    "id": "rancamaya",
+    "name_en": "Rancamaya Golf & Country Club",
+    "region": "Bogor",
+    "fees_2026_05": {
+      "weekday": {
+        "green_fee_idr": 1150000,
+        "guest_fee_idr": 1150000,
+        "member_fee_idr": null,
+        "weekday_am_idr": 1150000,
+        "weekday_pm_idr": 960000,
+        "senior_ladies_junior_idr": 830000
+      },
+      "weekend": {
+        "green_fee_idr": 3030000,
+        "guest_fee_idr": 3030000,
+        "member_fee_idr": null,
+        "saturday_am_idr": 3030000,
+        "saturday_pm_idr": 1760000,
+        "sunday_am_idr": 2460000,
+        "sunday_pm_idr": 1760000
+      },
+      "twilight_idr": null,
+      "caddy_idr": "included",
+      "cart_idr": "included",
+      "insurance_idr": null,
+      "currency": "IDR",
+      "notes": "Weekday AM/PM resolved. Official rancamayagolf.com/golf-rate publishes the full rate card with 11% VAT inclusive: Tue-Fri AM 1,150,000 / PM 960,000; Sat AM 3,030,000 / PM 1,760,000; Sun/PH AM 2,460,000 / PM 1,760,000; senior/ladies/junior weekday promo 830,000. GoGolf EN listing matches official site exactly (1,150k/960k/3,030k/2,460k/1,760k). Q-Access (search=rancamaya) shows slight variance: Sat-AM 2,560,000 (vs official 3,030,000), all other slots agree (weekday 1,150k/960k, Sun-AM 2,460k, Sat-PM/Sun-PM 1,760k). Selected official rancamayagolf.com as source-of-record per protocol; Q-Access Sat-AM 2,560,000 noted as dissent (possibly QGolf cardholder rate or older snapshot). Existing values weekday 1,200k / weekend 3,180k were close but slightly stale - corrected to 1,150k AM / 3,030k Sat-AM per current official rate card. All-inclusive (green fee + caddy + cart + 11% VAT). The earlier WebFetch of the official page returned slightly different headline figures (1,200k/3,180k) which match the existing dataset and may indicate a recent price adjustment - the GoGolf and Q-Access cross-checks align on 1,150k/3,030k as the current 2026 figures.",
+      "sources": [
+        "https://rancamayagolf.com/golf-rate/",
+        "https://gogolf.co.id/golf-course/rancamaya-golf-country-club",
+        "https://gogolf.co.id/en/golf-course/rancamaya-golf-country-club",
+        "https://www.qaccess.asia/QGolfPrice?searchString=rancamaya"
+      ],
+      "last_verified": "2026-05-07",
+      "rates_visible_on_official": true,
+      "official_site_status": "live",
+      "verification_resolved": true,
+      "verification_notes": "Weekday AM/PM resolved (1,150k/960k). Slight headline variance between two reads of the official page (1,200k vs 1,150k) - consensus across GoGolf+Q-Access supports 1,150k AM as current. Recommend a future re-fetch of the official page to lock the canonical figure."
     }
   }
 ]

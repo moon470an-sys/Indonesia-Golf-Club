@@ -1,0 +1,37 @@
+[
+  {
+    "id": "martabe-sejahtera-medan",
+    "name_en": "Martabe Sejahtera Golf Club",
+    "region": "Medan, North Sumatra",
+    "fees_2026_05": {
+      "weekday": {
+        "green_fee_idr": 340000,
+        "green_fee_usd": 25
+      },
+      "weekend": {
+        "green_fee_idr": 500000,
+        "green_fee_usd": 31
+      },
+      "twilight_idr": null,
+      "caddy_idr": 90000,
+      "cart_idr": 200000,
+      "insurance_idr": null,
+      "locker_idr": null,
+      "ball_idr": null,
+      "service_pct": null,
+      "tax_ppn_pct": null,
+      "currency": "IDR",
+      "all_inclusive": false,
+      "inclusions_note": "Pinnacle Travel publishes IDR 340k weekday / 500k weekend green fee; caddy IDR 90k; cart IDR 200k (each separate). playgolf.id corroborates USD 25 / 31 (~IDR 400k / 496k) with buggy not bundled. Semi-private club (~700 members) but accepts public visitors. Course built 1998, designed by Gus Grantham; ~22km south of Medan toward Berastagi. Official site martabe-golf.com unreachable to fetcher.",
+      "sources": [
+        "https://www.pinnacle-travel.com/medan-golf-courses/",
+        "https://playgolf.id/golf_courses/martabe-sejahtera-golf-course/",
+        "https://www.golfpass.com/travel-advisor/courses/38230-martabe-sejahtera-golf-club",
+        "http://www.martabe-golf.com/rate.htm"
+      ],
+      "last_verified": "2026-05-06",
+      "official_site_status": "official martabe-golf.com unreachable (ECONNREFUSED) to fetcher; rate page indexed by search engines",
+      "rates_visible_on_official": false
+    }
+  }
+]

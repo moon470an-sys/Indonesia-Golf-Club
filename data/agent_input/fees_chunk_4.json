@@ -1,15 +1,70 @@
 {
   "chunk": "fees_chunk_4",
-  "region_focus": "Sumatra (Medan)",
+  "region_focus": "Bintan / Batam / Riau verification",
+  "purpose": "Resolve weekend AM/PM flags on island resort courses; reconcile USD/IDR.",
   "courses": [
     {
-      "id": "martabe-sejahtera-medan",
-      "name_en": "Martabe Sejahtera Golf Club",
-      "region": "Medan, North Sumatra",
+      "id": "laguna-bintan",
+      "name_en": "Laguna Golf Bintan",
+      "region": "Bintan",
+      "issue": "All 6 time slots flagged. Resort markets via Banyan Tree / Singapore packagers — USD published, need IDR equivalent for 2026.",
+      "known_rates_existing": {"weekday_idr": 1750000, "weekend_idr": 2500000},
       "known_evidence": [
-        "https://www.golflux.com/course/martabe-sejahtera-golf-club/",
-        "https://www.golfpass.com/travel-advisor/courses/38230-martabe-sejahtera-golf-club",
-        "https://www.hole19golf.com/courses/martabe-sejahtera-gc"
+        "https://www.lagunagolfbintan.com/rates-memberships/",
+        "https://www.lagunagolfbintan.com/rates",
+        "https://www.lagunagolfbintan.com/rate",
+        "https://www.lagunagolfbintan.com/tournament-rules-update-2026/",
+        "https://www.golfsavers.com/indonesia/bintan-golf-courses/laguna-bintan-golf-club",
+        "https://gogolf.co.id/en/golf-course/laguna-golf-bintan",
+        "https://www.bintan-resorts.com/golf/laguna-golf-bintan/",
+        "https://www.golfbusinesstechnology.com/laguna-golf-phuket-and-laguna-golf-bintan-boost-global-reach-with-renewed-partnership-with-gms-agency/"
+      ],
+      "search_targets": ["Laguna Bintan green fee 2026 weekday weekend AM PM", "Banyan Tree Bintan golf package 2026"]
+    },
+    {
+      "id": "palm-springs-batam",
+      "name_en": "Palm Springs Golf & Country Club Batam",
+      "region": "Batam",
+      "issue": "Sunday AM/PM verification_needed. USD/IDR cross-check needed.",
+      "known_rates_existing": {"weekday_idr": 850000, "weekday_usd": 53, "weekend_idr": 1600000, "weekend_usd": 90},
+      "known_evidence": [
+        "https://batam.palmspringsgolf.co/packages-and-rates",
+        "https://www.golfsavers.com/indonesia/batam-island-golf-courses/palm-springs-golf-country-club",
+        "https://gogolf.co.id/en/golf-course/palm-springs-golf-beach-resort",
+        "https://en.gogolf.co.id/golf-course/palm-springs-golf",
+        "https://batamgolfpackage.com/",
+        "https://www.where2golf.com/indonesia/palm-springs-golf-beach-resort/"
+      ]
+    },
+    {
+      "id": "tamarin-santana-batam",
+      "name_en": "Tamarin Santana Golf Club",
+      "region": "Batam",
+      "issue": "All 6 time slots flagged. Course operates as 'Tamarin Golf & FootGolf' on some sources (rebrand?) — clarify.",
+      "known_rates_existing": {"weekday_idr": 455000, "weekday_usd": 28, "weekend_idr": 600000, "weekend_usd": 38},
+      "known_evidence": [
+        "https://en.gogolf.co.id/golf-course/tamarin-santana-golf-club",
+        "https://gogolf.co.id/en/golf-course/tamarin-santana-golf-club",
+        "https://www.golfsavers.com/indonesia/batam-island-golf-courses/tamarin-santana-golf-club",
+        "https://www.welcometobatam.com/book-batam-golf-packages.asp?resort=tamarinsantana",
+        "https://www.golflux.com/course/tamarin-golf-and-footgolf-club/",
+        "https://playgolf.id/golf_courses/tamarin-golf-footgolf-club/",
+        "https://www.championsgolf.co/about-the-golf-course/tamarin-golf-resort/"
+      ]
+    },
+    {
+      "id": "labersa-riau",
+      "name_en": "Labersa Golf & Country Club",
+      "region": "Pekanbaru",
+      "issue": "Weekend slots flagged. Resort tied to hotel — verify bundled vs greens-only rate.",
+      "known_rates_existing": {"weekday_idr": 880000, "weekend_idr": 1100000, "member_idr": 600000},
+      "known_evidence": [
+        "https://gogolf.co.id/golf-course/labersa-golf-club-resort",
+        "https://gogolf.co.id/en/golf-course/labersa-golf-club",
+        "https://labersahotel.com/lghcc/",
+        "https://labersahotel.com/lghcc/blog/stay-and-play",
+        "https://www.indonesiagolf.indonesiagolfcourses.com/member-details.php?abbr=LGCC&v=ina",
+        "https://www.qaccess.asia/QGolfPrice?searchString=labersa"
       ]
     }
   ]

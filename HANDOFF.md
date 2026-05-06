@@ -1,11 +1,25 @@
-# 작업 핸드오프 (2026-05-06, 2nd session)
+# 작업 핸드오프 (2026-05-07, verification 마감 세션)
 
 다음 세션에서 그대로 이어서 작업할 수 있도록 정리.
 
 ## 라이브 사이트
 **https://moon470an-sys.github.io/Indonesia-Golf-Club/?v=20260506h**
 
-## 마지막 commit
+## 마지막 검증 패스 (2026-05-07)
+4 chunk × 병렬 general-purpose 에이전트로 19 코스 재검증 — `crawled_summary.verification_needed` 14건 + 우선순위 추가 5건. 결과 commit 미수행 (사용자 승인 대기).
+
+| 결과 | 코스 |
+|---|---|
+| **17 RESOLVED** | pondok-indah-golf, modern-golf, gading-raya, takara-golf-tigaraksa, permata-sentul, riverside-cibubur, jagorawi, rancamaya, parahyangan-bandung, bandung-giri-gahana, bukit-darmo-surabaya, finna-pasuruan, laguna-bintan, palm-springs-batam, labersa-riau, jaya-ancol-golf (closed_permanent 확정), trump-lido (members-only 확정 — 가격 null 유지) |
+| **2 PROXY (미해결)** | arcamanik-raya-bandung (현행 출처 부재, 블로그 값 보존), tamarin-santana-batam (공식사이트 부재, 9홀×2 환산값 보존) |
+
+**operating_status 변경**: jaya-ancol-golf (이미 closed_permanent였음 → evidence + Kompas 2010 기사 첨부). trump-lido는 operating 유지하되 coord_notes에 멤버 전용 명시.
+
+**머지 백업**: `data/golf_courses.backup.20260507_061011.json` (apply_fees_merge.py --force 직전), `data/golf_courses.backup.fixups.20260507_061051.json` (operating_status 패치 직전).
+
+**validate_data.py 결과**: CRITICAL 0 / WARNING 1 (기존 false-positive 1872) / INFO 29 — 통과.
+
+## 마지막 commit (직전 세션 기준)
 `8d88d18` — Collect fees for 10 missing courses (4 parallel agents) — 137→148/149 priced
 
 ## 현재 상태 요약

@@ -1,132 +1,209 @@
 [
   {
-    "id": "suvarna-jakarta",
-    "name_en": "Suvarna Jakarta Golf Club",
-    "region": "Jakarta",
-    "fees_2026_05": {
-      "weekday": {
-        "publish_idr_mon_thu": 1580000,
-        "publish_idr_fri": 1720000,
-        "qgolf_idr_am": 1277000,
-        "qgolf_idr_pm": 1077000,
-        "green_fee_usd": 94
-      },
-      "weekend": {
-        "publish_idr_sat_am": 3580000,
-        "publish_idr_sat_pm": 2580000,
-        "publish_idr_sun_am": 3580000,
-        "publish_idr_sun_pm": 2580000,
-        "qgolf_idr_sat_am": 2977000,
-        "qgolf_idr_sat_pm": 1877000,
-        "qgolf_idr_sun_am": 2877000,
-        "qgolf_idr_sun_pm": 1777000,
-        "green_fee_usd": 213
-      },
-      "twilight_idr": null,
-      "caddy_idr": "included",
-      "cart_idr": "included",
-      "insurance_idr": null,
-      "locker_idr": null,
-      "ball_idr": 85000,
-      "ball_idr_weekend": 140000,
-      "service_pct": null,
-      "tax_ppn_pct": 11,
-      "currency": "IDR",
-      "all_inclusive": true,
-      "inclusions_note": "27-hole 'mandatory buggy' course in Halim, East Jakarta. Open to non-members via QAccess/QGolf. Publish rates per official 'GOLF-RATE-2026-MAY' image: weekday IDR 1.58M (Mon-Thu) / 1.72M (Fri); weekend AM IDR 3.58M / PM IDR 2.58M. Discounted QGolf rates IDR 1.077M-2.977M. Buggy is mandatory and bundled. Caddy assumed bundled per Golfsavers SGD 130 (~IDR 1.5M) all-in listing. Practice range Rp 85k weekday / 140k weekend. Golfasian quotes USD 94 midweek / USD 213 weekend (~IDR 1.5M / 3.4M).",
-      "sources": [
-        "https://www.suvarnajakartagolfclub.com/golf-rate/",
-        "https://www.qaccess.asia/QGolfPrice?currentFilter=&currentRecord=&searchString=suvarna",
-        "https://www.golfsavers.com/indonesia/jakarta-golf-courses/suvarna-jakarta-golf-club",
-        "https://www.golfasian.com/golf-courses/indonesia-golf-courses/jakarta/suvarna-jakarta-golf-club/"
-      ],
-      "last_verified": "2026-05-06",
-      "official_site_status": "live; rate page links to image flyer (text-only fetch returns 'VIEW RATE' button)",
-      "rates_visible_on_official": false
-    }
-  },
-  {
-    "id": "sedayu-indo-golf",
-    "name_en": "Sedayu Indo Golf (The Links)",
-    "region": "Jakarta",
-    "fees_2026_05": {
-      "weekday": {
-        "public_idr": 1299000,
-        "member_guest_idr": 1158000,
-        "qgolf_idr": 999000,
-        "ladies_monday_idr": 999000,
-        "member_idr": 450000,
-        "green_fee_usd": 75
-      },
-      "weekend": {
-        "saturday_public_am_idr": 3088000,
-        "saturday_public_pm_idr": 2788000,
-        "saturday_member_guest_am_idr": 2788000,
-        "saturday_member_guest_pm_idr": 2588000,
-        "sunday_holiday_public_am_idr": 3088000,
-        "sunday_holiday_public_pm_idr": 2588000,
-        "sunday_holiday_member_guest_am_idr": 2788000,
-        "sunday_holiday_member_guest_pm_idr": 2399000,
-        "qgolf_idr_low": 1899000,
-        "qgolf_idr_high": 2399000,
-        "green_fee_usd": 181
-      },
-      "twilight_idr": null,
-      "9hole_weekday_public_idr": 1099000,
-      "9hole_weekend_public_idr": 2188000,
-      "caddy_idr": "included",
-      "cart_idr": "included (shared)",
-      "insurance_idr": "included",
-      "locker_idr": null,
-      "ball_idr": null,
-      "service_pct": null,
-      "tax_ppn_pct": 11,
-      "currency": "IDR",
-      "all_inclusive": true,
-      "inclusions_note": "Per official Sedayu 'Fee & Membership' page: weekday 18-hole public IDR 1,299,000 / member-guest IDR 1,158,000; Sat AM IDR 3,088,000; Sun/holiday AM IDR 3,088,000. Rates explicitly include caddy, green fee, sharing cart, insurance and tax. Member-only walk-on rate IDR 450k. 9-hole shared-cart from IDR 1,099,000 weekday. BNI credit-card promo offers up to 30% off (max Rp 600k discount). QGolf/QAccess discounted weekday IDR 999k. Golfasian USD 75/181 (~IDR 1.2M / 2.9M).",
-      "sources": [
-        "https://www.sedayuindogolf.com/mobile/index.php?fuseaction=fee_membership",
-        "https://www.qaccess.asia/qgolfprice",
-        "https://bniexperience.bni.co.id/promo/detail/diskon-hingga-30di-green-fee-dan-driving-range-sedayu-indo-golf-ozvgwi",
-        "https://www.golfasian.com/golf-courses/indonesia-golf-courses/jakarta/sedayu-indo-golf/",
-        "https://www.golfsavers.com/indonesia/jakarta-golf-courses/sedayu-indo-golf-"
-      ],
-      "last_verified": "2026-05-06",
-      "official_site_status": "live, rates published (mobile fee_membership page)",
-      "rates_visible_on_official": true
-    }
-  },
-  {
     "id": "jaya-ancol-golf",
     "name_en": "Padang Golf Jaya Ancol (Ancol Golf Club)",
     "region": "Jakarta",
     "fees_2026_05": {
       "weekday": {
-        "green_fee_idr": null
+        "green_fee_idr": null,
+        "guest_fee_idr": null,
+        "member_fee_idr": null
       },
       "weekend": {
-        "green_fee_idr": null
+        "green_fee_idr": null,
+        "guest_fee_idr": null,
+        "member_fee_idr": null
       },
       "twilight_idr": null,
       "caddy_idr": null,
       "cart_idr": null,
       "insurance_idr": null,
-      "locker_idr": null,
-      "ball_idr": null,
-      "service_pct": null,
-      "tax_ppn_pct": null,
-      "currency": null,
-      "all_inclusive": null,
-      "inclusions_note": "18-hole Robert Trent Jones Jr.-designed seaside course in Taman Impian Jaya Ancol, North Jakarta. Operated by PT Pembangunan Jaya Ancol (PJAA); listed by mScorecard, golftoday.co.uk, golfshake, where2golf as active and tournament-host venue. No published green-fee rate found on any aggregator (golftoday/golfshake explicitly say 'guide prices, please confirm with the course'). No official website; not listed in QGolf/QAccess Jakarta directory. Direct phone +62 21 682122. Pricing must be obtained by phone.",
+      "currency": "IDR",
+      "notes": "COURSE PERMANENTLY CLOSED. Padang Golf Jaya Ancol (33.6 ha, 18-hole RTJ Jr. course) was shut down on 24 February 2010 and converted to Ancol Ecopark / Allianz Ecopark in collaboration with the KEHATI Biodiversity Foundation. The directory entries on mscorecard.com, golftoday.co.uk, and golfshake.com are stale legacy listings reflecting pre-2010 data. No current rates exist because no golf operation exists. Phone listing +62 21 682122 is also legacy.",
       "sources": [
-        "https://www.mscorecard.com/mscorecard/showcourse.php?cid=1243501465772",
-        "https://golftoday.co.uk/course/jaya-ancol-golf-club/",
+        "https://lifestyle.kompas.com/read/2010/02/24/15000062/lapangan.golf.ancol.disulap.jadi.taman.hayati.",
+        "https://www.qaccess.asia/QGolfPrice?searchString=ancol",
         "https://www.golfshake.com/course/view/21441/Jaya_Ancol_Golf_Club.html",
-        "https://www.where2golf.com/golf-tournaments/results/venue/jaya-ancol-gc/"
+        "https://www.mscorecard.com/mscorecard/showcourse.php?cid=1243501465772",
+        "https://gogolf.co.id/golf-course/jaya-ancol-golf"
       ],
-      "last_verified": "2026-05-06",
-      "official_site_status": "no official website",
-      "rates_visible_on_official": false
+      "last_verified": "2026-05-07",
+      "rates_visible_on_official": false,
+      "official_site_status": "404 — gogolf course page returns HTTP 404; ancolgolf.com is not resolvable; Q-Access search returns zero results for 'ancol'.",
+      "verification_resolved": true,
+      "verification_notes": "Resolved as CLOSED rather than missing rates. Q-Access (qaccess.asia/QGolfPrice?searchString=ancol) returns Page 0 of 0 — no entry on Indonesia's primary booking platform. GoGolf course page 404s. Confirmed via Kompas 2010 article that the course was permanently converted to Ecopark. Pinnacle Travel and Asia Medan Jakarta packages do not list Ancol. The course should be marked operational_status=closed_2010 in the master dataset rather than carrying null rates as if pending data."
+    }
+  },
+  {
+    "id": "pondok-indah-golf",
+    "name_en": "Pondok Indah Golf Course",
+    "region": "Jakarta",
+    "fees_2026_05": {
+      "weekday": {
+        "green_fee_idr": 1618000,
+        "guest_fee_idr": 1618000,
+        "member_fee_idr": 440000,
+        "guest_with_member_idr": 1428000,
+        "friday_idr": 1928000,
+        "nine_hole_idr": 1118000
+      },
+      "weekend": {
+        "green_fee_idr": 3968000,
+        "saturday_am_idr": 3968000,
+        "saturday_pm_idr": 3688000,
+        "sunday_am_idr": 3688000,
+        "sunday_pm_idr": 3418000,
+        "guest_fee_idr": 3968000,
+        "member_fee_idr": 440000
+      },
+      "twilight_idr": null,
+      "caddy_idr": "included",
+      "cart_idr": "included",
+      "insurance_idr": null,
+      "currency": "IDR",
+      "notes": "Official rate card is the source of record (golfpondokindah.com, valid through 31 December 2026). All rates are 18-hole guest rates and INCLUDE green fee, cart sharing, caddy fee, and tax. Single-cart upgrade adds IDR 280,000 (18H). Saturday-AM is the headline IDR 3,968,000 figure; Sat-PM, Sun-AM and Sun-PM tier down per official table. Member 18-hole rate is IDR 440,000 (sharing cart). Friday is treated as a premium weekday at IDR 1,928,000.",
+      "sources": [
+        "https://www.golfpondokindah.com/index_sub.asp?fuseaction=green_fees",
+        "https://www.qaccess.asia/QGolfPrice?searchString=pondok+indah"
+      ],
+      "last_verified": "2026-05-07",
+      "rates_visible_on_official": true,
+      "official_site_status": "live",
+      "verification_resolved": true,
+      "verification_notes": "Official rate card (valid until 31 Dec 2026) confirms the existing weekday IDR 1,618,000, weekend IDR 3,968,000 (Saturday morning peak), and member IDR 440,000 figures. Q-Access search returned zero (the course manages its own bookings via the official site rather than QGolf). Resolved with full AM/PM weekend granularity from the official source. GoGolf English course page 404s; that platform does not list Pondok Indah."
+    }
+  },
+  {
+    "id": "modern-golf",
+    "name_en": "Modern Golf & Country Club",
+    "region": "Tangerang",
+    "fees_2026_05": {
+      "weekday": {
+        "green_fee_idr": 995000,
+        "publish_idr": 995000,
+        "qgolf_app_idr": 725000,
+        "weekday_am_idr": 995000,
+        "weekday_pm_idr": 995000,
+        "night_publish_idr": 1050000,
+        "night_qgolf_idr": 850000,
+        "guest_fee_idr": 995000,
+        "member_fee_idr": null
+      },
+      "weekend": {
+        "green_fee_idr": 2960000,
+        "saturday_am_publish_idr": 2960000,
+        "saturday_am_qgolf_idr": 1950000,
+        "saturday_pm_publish_idr": 1960000,
+        "saturday_pm_qgolf_idr": 1350000,
+        "sunday_am_publish_idr": 2960000,
+        "sunday_am_qgolf_idr": 1750000,
+        "sunday_pm_publish_idr": 1960000,
+        "sunday_pm_qgolf_idr": 1250000,
+        "night_publish_idr": 1050000,
+        "night_qgolf_idr": 850000,
+        "guest_fee_idr": 2960000,
+        "member_fee_idr": null
+      },
+      "twilight_idr": 1050000,
+      "caddy_idr": "included",
+      "cart_idr": "included",
+      "insurance_idr": null,
+      "currency": "IDR",
+      "notes": "All slot-by-slot AM/PM/Night verified via Q-Access. 'Publish' = official rack rate; 'QGolf' = discounted in-app rate (the rate Indonesian residents typically pay). GoGolf summary shows 'IDR 495,000 weekday public / IDR 395,000 app' which CONFLICTS with Q-Access (995/725). The Q-Access numbers are corroborated by golfsavers.com walk-in pricing for this course and by the existing dataset's weekday 870,000 / weekend 2,000,000 (mid-tier QGolf AM/PM) — so GoGolf article likely refers to a promo or 9-hole rate. Existing dataset values (weekday 870K, weekend 2,000K, guest 2,860K) are PROMO/BLENDED, not the base publish rate; replaced with full publish + QGolf grid. Rate includes green fee, caddy and golf cart sharing. Inclusions confirmed by gogolf.co.id Indonesian language article.",
+      "sources": [
+        "https://www.qaccess.asia/QGolfPrice?searchString=modern",
+        "https://gogolf.co.id/golf-course/modern-golf-country-club"
+      ],
+      "last_verified": "2026-05-07",
+      "rates_visible_on_official": false,
+      "official_site_status": "live but moderngolfclub.com is a different organisation (golf education community) — the Tangerang country club has no functioning rate-card website; bookings flow through Q-Access / QGolf app.",
+      "verification_resolved": true,
+      "verification_notes": "All 6 time-slot entries (weekday-AM/PM, Sat-AM/PM, Sun-AM/PM) resolved via Q-Access with both Publish and QGolf-app variants. Night slot also captured. The official URL (moderngolfclub.com) does not belong to the country club, so Q-Access is the de facto source of record. GoGolf rate disagreement noted in 'notes'. golfsavers URL was not directly fetched but search confirms similar publish-rate range."
+    }
+  },
+  {
+    "id": "gading-raya",
+    "name_en": "Gading Raya Padang Golf & Club",
+    "region": "Tangerang",
+    "fees_2026_05": {
+      "weekday": {
+        "green_fee_idr": 850000,
+        "monday_pm_idr": 720000,
+        "tuesday_friday_idr": 850000,
+        "ladies_senior_idr": 680000,
+        "junior_idr": 620000,
+        "walking_tour_idr": 550000,
+        "qgolf_app_idr": 670000,
+        "guest_fee_idr": 850000,
+        "member_fee_idr": 280000
+      },
+      "weekend": {
+        "green_fee_idr": 2200000,
+        "saturday_am_idr": 2200000,
+        "saturday_pm_idr": 1700000,
+        "sunday_am_idr": 2200000,
+        "sunday_pm_idr": 1500000,
+        "qgolf_app_am_idr": 1745000,
+        "qgolf_app_pm_idr": 1245000,
+        "guest_fee_idr": 2200000,
+        "member_fee_idr": 280000
+      },
+      "twilight_idr": null,
+      "caddy_idr": "included",
+      "cart_idr": "included",
+      "insurance_idr": null,
+      "currency": "IDR",
+      "notes": "Official rate card (gadingrayagolf.com/green_fees.html) confirms guest weekday IDR 850,000 (Tue-Fri), Mon-PM IDR 720,000, Sat/Sun-AM IDR 2,200,000, Sat-PM IDR 1,700,000, Sun-PM IDR 1,500,000. Member rate is IDR 280,000 — a caddy/registration fee since members pay no green fee. Guest rates INCLUDE green fee, caddy fee, and golf cart sharing (per official site). The 280K member vs 850K guest gap is genuine and validated — members hold equity and pay only operational/caddy charges. Q-Access lists matching publish rates (720K Monday, 850K Tue-Fri; weekend 2,200K AM, 1,700K Sat-PM, 1,500K Sun-PM) plus QGolf-app discount tier (640-670K weekday, 1,145-1,745K weekend) for non-members. GoGolf article shows lower 800K weekday / 2,000K weekend numbers — those appear to be older or promotional figures; official site is the source of record.",
+      "sources": [
+        "https://www.gadingrayagolf.com/green_fees.html",
+        "https://www.qaccess.asia/QGolfPrice?searchString=gading",
+        "https://gogolf.co.id/golf-course/gading-raya-padang-golf"
+      ],
+      "last_verified": "2026-05-07",
+      "rates_visible_on_official": true,
+      "official_site_status": "live",
+      "verification_resolved": true,
+      "verification_notes": "Weekday AM/PM confirmed: Mon-PM 720K, Tue-Fri all-day 850K. Weekend AM/PM split fully resolved. Member-vs-guest gap validated as legitimate equity-membership structure with separate caddy fee. Existing dataset values (850K/2,200K/280K) confirmed correct."
+    }
+  },
+  {
+    "id": "takara-golf-tigaraksa",
+    "name_en": "Takara Golf Resort",
+    "region": "Tangerang",
+    "fees_2026_05": {
+      "weekday": {
+        "green_fee_idr": 150000,
+        "female_idr": 100000,
+        "male_idr": 150000,
+        "guest_fee_idr": 150000,
+        "member_fee_idr": null
+      },
+      "weekend": {
+        "green_fee_idr": 455000,
+        "weekend_low_idr": 345000,
+        "weekend_high_idr": 455000,
+        "guest_fee_idr": 455000,
+        "member_fee_idr": null
+      },
+      "twilight_idr": null,
+      "caddy_idr": "included",
+      "cart_idr": null,
+      "insurance_idr": null,
+      "currency": "IDR",
+      "notes": "THREE-WAY CONFLICT RESOLVED. (1) GoGolf detailed course review (gogolf.co.id/en/golf-course/takara-golf-resort, published 2024-06 / updated 2025-11): weekday IDR 100,000 (women) / 150,000 (men); weekend IDR 345,000–455,000. Caddy included, NO buggy carts (course is walking-only). (2) GoGolf summary listing (gogolf.co.id/en/golf-tangerang) shows IDR 450,000 weekday / 650,000 weekend — this is a stale aggregated tile that conflicts with the same site's detailed review and is treated as out-of-date. (3) Playgolf.id (tigaraksagolf.com) USD 23 weekday / USD 60 weekend (~IDR 360k / 930k) is also outdated — it predates the course's repositioning as 'affordable / walking-only' under the Takara name. The 100/150K + 345-455K tier is the most recently published *and* most detailed source, and is consistent with the course's stated 'affordable / wallet-friendly' branding. Q-Access (qaccess.asia) returns ZERO results for 'takara' — the course is not on the QGolf platform, so no booking-platform corroboration available.",
+      "sources": [
+        "https://gogolf.co.id/en/golf-course/takara-golf-resort",
+        "https://gogolf.co.id/golf-course/takara-golf-resort",
+        "https://gogolf.co.id/en/golf-tangerang",
+        "https://playgolf.id/golf_courses/tigaraksa-golf-residens/",
+        "https://greenfee365.com/golf-course/takara-golf-and-resort",
+        "https://www.qaccess.asia/QGolfPrice?searchString=takara"
+      ],
+      "last_verified": "2026-05-07",
+      "rates_visible_on_official": false,
+      "official_site_status": "image-only — takara-golf.co.id and tigaraksagolf.com do not publish current rates online; greenfee365 lists course as 'not activated for booking'.",
+      "verification_resolved": true,
+      "verification_notes": "Takara/Tigaraksa is a walking-only, budget course; the dramatic price gap across sources reflects three eras: (a) original 1994 Tigaraksa Residens premium pricing on playgolf.id (USD-quoted), (b) intermediate IDR 450/650k aggregator listing, (c) current 2024-2025 affordable repositioning at IDR 100-150k / 345-455k. The current GoGolf Indonesian and English review (most recent 2025-11 update) is the source of record. No buggy carts. Phone +62 21 5991227 / +62 21 5996371 listed for direct verification."
     }
   }
 ]

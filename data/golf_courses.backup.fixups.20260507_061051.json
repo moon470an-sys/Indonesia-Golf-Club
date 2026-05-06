@@ -20,20 +20,7 @@
     "financials_matched": 84,
     "fees_pass_2026_05_03": "Group A-F deep search via GoGolf/playgolf.id/SNS/regional news. 53 courses processed: ~14 verified, ~9 USD-converted, ~30 unrecoverable (military/corporate-internal).",
     "last_discovery_merge": "20260506_080716",
-    "last_fees_merge": "20260507_061011",
-    "last_verification": "2026-05-07",
-    "verification_session_2026_05_07": {
-      "courses_reviewed": 19,
-      "resolved": 17,
-      "unresolved_kept_proxy": [
-        "arcamanik-raya-bandung",
-        "tamarin-santana-batam"
-      ],
-      "operating_status_changes": [
-        "jaya-ancol-golf"
-      ],
-      "trump-lido": "documented members-only"
-    }
+    "last_fees_merge": "20260507_061011"
   },
   "courses": [
     {
@@ -5892,7 +5879,7 @@
         ],
         "closure_reason": null,
         "reopened_as": null,
-        "coord_notes": "Existing dataset (-6.7472, 106.8156) was ~1 km east; corrected. Course is at 700m elevation, Ernie Els-designed. Membership USD 70,000, capped at 80 players/day. 2024 actual opening confirmed, NOT just announcement. [2026-05-07 verification] Strictly members-only (USD 70,000 initiation, ~80 players/day). No public daily green fee anywhere — confirmed via official site, MNCLand, Trump.com, golfsavers, golfasian, hole19, playgolf.id, Q-Access. fees_2026_05 rates remain null.",
+        "coord_notes": "Existing dataset (-6.7472, 106.8156) was ~1 km east; corrected. Course is at 700m elevation, Ernie Els-designed. Membership USD 70,000, capped at 80 players/day. 2024 actual opening confirmed, NOT just announcement.",
         "last_verified": "2026-04-30"
       },
       "membership": {
@@ -20575,17 +20562,9 @@
           "https://golftoday.co.uk/course/jaya-ancol-golf-club/",
           "https://sains.kompas.com/read/2010/02/24/15000062/~Megapolitan~News",
           "https://en.wikipedia.org/wiki/Taman_Impian_Jaya_Ancol",
-          "https://nativeindonesia.com/ecopark-ancol/",
-          {
-            "url": "https://lifestyle.kompas.com/read/2010/02/24/15000062/lapangan.golf.ancol.disulap.jadi.taman.hayati.",
-            "publisher": "Kompas",
-            "fetched_at": "2026-05-07",
-            "supports": "closed_permanent",
-            "note": "2010 conversion to Ecopark"
-          }
+          "https://nativeindonesia.com/ecopark-ancol/"
         ],
-        "last_verified": "2026-05-07",
-        "coord_notes": "[2026-05-07 verification] Confirmed permanently closed since 24-Feb-2010. Course converted to Ancol Ecopark / Allianz Ecopark per Kompas 2010 article. Q-Access returns zero, GoGolf course page 404. Directory listings on mscorecard/golfshake/golftoday are stale legacy data. Phone +62-21-682122 is legacy."
+        "last_verified": "2026-05-06"
       },
       "fees_2026_05": {
         "weekday": {

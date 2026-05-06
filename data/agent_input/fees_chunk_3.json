@@ -1,33 +1,79 @@
 {
   "chunk": "fees_chunk_3",
-  "region_focus": "Bogor & Bandung (West Java highlands)",
+  "region_focus": "Bandung / Surabaya / Pasuruan verification",
+  "purpose": "Cross-source resolution on Java mainland courses.",
   "courses": [
     {
-      "id": "palm-hill-bogor",
-      "name_en": "Palm Hill Golf Club",
-      "region": "Bogor, West Java",
+      "id": "parahyangan-bandung",
+      "name_en": "Parahyangan Golf Bandung",
+      "region": "Bandung",
+      "issue": "Weekday AM verification_needed.",
+      "known_rates_existing": {"weekday_idr": 1018000, "weekend_idr": 2408000},
       "known_evidence": [
-        "https://palmhillgolf.co.id/",
-        "https://golflinkresorts.co.id/courses/palmhill/en",
-        "https://www.golfpass.com/travel-advisor/courses/38256-palm-hill-golf-club"
-      ]
-    },
-    {
-      "id": "bandung-indah-margahayu",
-      "name_en": "Bandung Indah Golf & Country Club",
-      "region": "Bandung, West Java",
-      "known_evidence": [
-        "https://www.golfasian.com/golf-courses/indonesia-golf-courses/bandung/bandung-indah-golf-country-club/",
-        "https://www.golflux.com/course/bandung-indah-golf-country-club/"
+        "https://www.parahyangangolf.com/green-fees",
+        "https://www.parahyangangolf.com",
+        "https://gogolf.co.id/golf-course/parahyangan-bandung-golf-course",
+        "https://gogolf.co.id/en/golf-course/parahyangan-bandung-golf-course",
+        "https://www.qaccess.asia/QGolfPrice?searchString=parahyangan"
       ]
     },
     {
       "id": "arcamanik-raya-bandung",
       "name_en": "Arcamanik Raya Golf & Country Club",
-      "region": "Bandung, West Java",
+      "region": "Bandung",
+      "issue": "Only blog (jomkebandung) shows historical rates. Need current 2026 rate from official or recent platform.",
+      "known_rates_existing": {"weekday_18hole_non_member_idr": 200000, "weekend_18hole_non_member_idr": 200000, "9hole_non_member_idr": 150000},
       "known_evidence": [
+        "https://jomkebandung.wordpress.com/golf/",
         "https://www.leadingcourses.com/clubs/asia+indonesia+java+west-java/arcamanik-raya-golf-country-club",
-        "https://www.golfshake.com/course/view/21398/Arcamanik_Raya_Golf_Country_Club.html"
+        "https://www.golfshake.com/course/view/21398/Arcamanik_Raya_Golf_Country_Club.html",
+        "https://greenfee365.com/golf-course/arcamanik-endah-golf-course",
+        "https://expertgolf.com/en/golfguide/golfguide-detail/Padang+Golf+Arcamanik+Endah-500541",
+        "https://kumparan.com/seputar-bandung/4-rekomendasi-lapangan-golf-di-bandung-untuk-pemula-dan-profesional-21xs14QajxY"
+      ],
+      "search_targets": ["Arcamanik golf rate 2026", "Bandung Arcamanik green fee", "Padang Golf Arcamanik biaya 2026", "Instagram @arcamanikgolf"]
+    },
+    {
+      "id": "bandung-giri-gahana",
+      "name_en": "Bandung Giri Gahana Golf & Resort",
+      "region": "Sumedang",
+      "issue": "Saturday AM verification_needed. Currently single-publisher (GoGolf).",
+      "known_rates_existing": {"weekday_idr": 845500, "weekend_idr": 1065500},
+      "known_evidence": [
+        "https://gogolf.co.id/en/golf-course/bandung-giri-gahana-golf-resort",
+        "https://gogolf.co.id/golf-course/bandung-giri-gahana-golf",
+        "https://www.bgg.co.id/",
+        "https://www.qaccess.asia/QGolfPrice?searchString=giri+gahana"
+      ]
+    },
+    {
+      "id": "bukit-darmo-surabaya",
+      "name_en": "Bukit Darmo Golf",
+      "region": "Surabaya",
+      "issue": "Weekend slots flagged. Existing weekend value 975K is suspiciously close to weekday 910K — verify.",
+      "known_rates_existing": {"weekday_idr": 910000, "weekend_idr": 975000, "member_idr": 365000},
+      "known_evidence": [
+        "https://web.archive.org/web/2021*/bukitdarmogolf.com/rates-fee-and-membership/",
+        "https://gogolf.co.id/en/golf-course/bukit-darmo-golf",
+        "https://gogolf.co.id/golf-course/bukit-darmo-golf",
+        "https://bukitdarmogolf.com/rates-fee-and-membership/",
+        "https://id.trip.com/travel-guide/attraction/dukuhpakis/bukit-darmo-golf-surabaya-58270448/",
+        "https://www.qaccess.asia/QGolfPrice?searchString=bukit+darmo"
+      ]
+    },
+    {
+      "id": "finna-pasuruan",
+      "name_en": "Finna Golf & Country Club Resort",
+      "region": "Pasuruan",
+      "issue": "Weekday AM/PM flagged. Resort course with bank promo (Bank Mega) — verify base rate.",
+      "known_rates_existing": {"weekday_idr": 1260000, "weekend_idr": 1760000},
+      "known_evidence": [
+        "https://finnagolf.com/",
+        "https://bankmega.com/en/promo/finna-golf-pasuruan/",
+        "https://gogolf.co.id/en/golf-course/finna-golf-and-country-club",
+        "https://gogolf.co.id/golf-course/finna-golf-and-country-club-resort",
+        "https://www.qaccess.asia/QGolfPrice?searchString=finna",
+        "https://www.golfsavers.com/indonesia/surabaya-golf-courses/finna-golf-club"
       ]
     }
   ]

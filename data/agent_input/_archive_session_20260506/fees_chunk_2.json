@@ -1,0 +1,35 @@
+{
+  "chunk": "fees_chunk_2",
+  "region_focus": "Tangerang & Karawang (West Java periphery of Jakarta)",
+  "courses": [
+    {
+      "id": "kedaton-golf",
+      "name_en": "Kedaton Golf & Country Club",
+      "region": "Tangerang",
+      "known_evidence": [
+        "https://gogolf.co.id/en/golf-course/kedaton-golf-country-club",
+        "https://www.golfpass.com/travel-advisor/courses/38224-kedaton-golf-and-country-club",
+        "https://suvarnasutera.com/facilities"
+      ]
+    },
+    {
+      "id": "takara-golf-tigaraksa",
+      "name_en": "Takara Golf Resort",
+      "region": "Tangerang (Tigaraksa)",
+      "known_evidence": [
+        "https://gogolf.co.id/en/golf-course/takara-golf-resort",
+        "https://www.golfpass.com/travel-advisor/courses/38284-takara-golf-resort"
+      ]
+    },
+    {
+      "id": "lotus-lakes-karawang",
+      "name_en": "Lotus Lakes Golf Club (Karawang International)",
+      "region": "Karawang, West Java",
+      "known_evidence": [
+        "https://lotuslakesgolf.com/",
+        "https://gogolf.co.id/en/golf-course/lotus-lake-golf-club",
+        "https://www.golfpass.com/travel-advisor/courses/38222-lotuslakes-golf-club-lotus-course"
+      ]
+    }
+  ]
+}

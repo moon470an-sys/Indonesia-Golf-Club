@@ -1,133 +1,192 @@
 [
   {
-    "id": "palm-hill-bogor",
-    "name_en": "Palm Hill Golf Club",
-    "region": "Bogor, West Java",
+    "id": "parahyangan-bandung",
+    "name_en": "Parahyangan Golf Bandung",
+    "region": "Bandung",
     "fees_2026_05": {
       "weekday": {
-        "senior_morning_idr": 580000,
-        "senior_afternoon_idr": 499000,
-        "ladies_junior_morning_idr": 580000,
-        "ladies_junior_afternoon_idr": 499000,
-        "golflink_member_idr": 350000,
-        "visitor_idr_low": 525000,
-        "visitor_idr_high": 730000,
-        "monday_promo_idr": 525000,
-        "qgolf_easy_am_idr": 440000,
-        "qgolf_easy_pm_idr": 415000
+        "green_fee_idr": 1018000,
+        "am_idr": 1018000,
+        "pm_idr": 1018000,
+        "qgolf_am_idr": 798000,
+        "qgolf_pm_idr": 798000
       },
       "weekend": {
-        "saturday_visitor_morning_idr": 2205000,
-        "saturday_visitor_afternoon_idr": 850000,
-        "sunday_visitor_morning_idr": 1875000,
-        "sunday_visitor_afternoon_idr": 750000,
-        "saturday_member_guest_morning_idr": 1760000,
-        "saturday_member_guest_afternoon_idr": 850000,
-        "sunday_member_guest_morning_idr": 1540000,
-        "sunday_member_guest_afternoon_idr": 750000,
-        "saturday_qgolf_am_idr": 950000,
-        "sunday_qgolf_am_idr": 890000
+        "green_fee_idr": 2408000,
+        "saturday_am_idr": 2408000,
+        "saturday_pm_idr": 1608000,
+        "sunday_am_idr": 2148000,
+        "sunday_pm_idr": 1408000,
+        "qgolf_saturday_am_idr": 2288000,
+        "qgolf_saturday_pm_idr": 1478000,
+        "qgolf_sunday_am_idr": 2028000,
+        "qgolf_sunday_pm_idr": 1268000
       },
-      "twilight_idr": 750000,
+      "twilight_idr": null,
       "caddy_idr": "included",
       "cart_idr": "included",
       "insurance_idr": "included",
-      "locker_idr": null,
-      "ball_idr": null,
-      "service_pct": null,
-      "tax_ppn_pct": 11,
       "currency": "IDR",
-      "all_inclusive": true,
-      "inclusions_note": "Operated by Golflink Resorts. Per official palmhillgolf.co.id/golf, all rates include green fee, caddy, cart, tax & insurance (effective Jan 2023). Weekday Tue-Fri: senior/ladies/junior IDR 580k AM / 499k PM; GolfLink members IDR 350k. Saturday visitor IDR 2.205M AM / 850k PM; Sunday visitor IDR 1.875M AM / 750k PM. Monday promo IDR 525k. QAccess discounted rates IDR 440-950k. gogolf.co.id cites visitor weekday IDR 525-730k.",
+      "notes": "Official parahyangangolf.com publishes weekday flat rate IDR 1,018,000 (AM=PM). Saturday AM 2,408,000 / PM 1,608,000; Sunday AM 2,148,000 / PM 1,408,000. Rates include green fee, caddie, shared cart, insurance. Q-Access publish rates match official exactly (last updated 30 Mar 2026). GoGolf review article quotes lower values (weekday 948,000; Sat AM 2,548,000; Sat PM 1,700,000; Sun AM 2,288,000; Sun PM 1,450,000) — treated as outdated/secondary; official site takes precedence. Min 2 players weekday, min 3 players weekend AM.",
       "sources": [
-        "https://palmhillgolf.co.id/golf",
-        "https://gogolf.co.id/en/golf-course/palm-hills-golf-club",
-        "https://www.qaccess.asia/qgolfprice",
-        "https://golflinkresorts.co.id/courses/palmhill/en"
+        "https://www.parahyangangolf.com/green-fees",
+        "https://www.qaccess.asia/QGolfPrice?searchString=parahyangan",
+        "https://gogolf.co.id/golf-course/parahyangan-bandung-golf-course"
       ],
-      "last_verified": "2026-05-06",
-      "official_site_status": "live, rates published",
-      "rates_visible_on_official": true
-    }
-  },
-  {
-    "id": "bandung-indah-margahayu",
-    "name_en": "Bandung Indah Golf & Country Club",
-    "region": "Bandung, West Java",
-    "fees_2026_05": {
-      "weekday": {
-        "green_fee_idr_from": 450000
-      },
-      "weekend": {
-        "green_fee_idr_low": 600000,
-        "green_fee_idr_high": 850000
-      },
-      "twilight_idr": null,
-      "caddy_idr": null,
-      "cart_idr": null,
-      "insurance_idr": null,
-      "locker_idr": null,
-      "ball_idr": null,
-      "cart_usd_golfasian": 30,
-      "club_set_usd_golfasian": 25,
-      "shoes_usd_golfasian": 8,
-      "umbrella_usd_golfasian": 5,
-      "fee_card_weekday_discount_pct": 30,
-      "fee_card_weekend_discount_pct": 20,
-      "service_pct": null,
-      "tax_ppn_pct": 11,
-      "currency": "IDR",
-      "all_inclusive": false,
-      "inclusions_note": "Per gogolf.co.id 2025 review: weekday from IDR 450k; weekend/holiday IDR 600k-850k. Caddie and buggy excluded from green fee. golfasian.com lists rentals at USD 30 cart / USD 25 club set / USD 8 shoes / USD 5 umbrella (~IDR 480k cart). Golfcards fee-card members get 30% wd / 20% we discount. Public access; designed 1994 by Michael Coate (AUS), 18-hole par-72.",
-      "sources": [
-        "https://gogolf.co.id/en/golf-course/bandung-indah-golf-country-club",
-        "https://www.golfcards.com/course/bandung-indah-golf-country-club/",
-        "https://www.golfasian.com/golf-courses/indonesia-golf-courses/bandung/bandung-indah-golf-country-club/",
-        "https://www.golflux.com/course/bandung-indah-golf-country-club/"
-      ],
-      "last_verified": "2026-05-06",
-      "official_site_status": "official site bandungindahgolf.com unreachable to fetcher (ECONNREFUSED)",
-      "rates_visible_on_official": false
+      "last_verified": "2026-05-07",
+      "rates_visible_on_official": true,
+      "official_site_status": "live",
+      "verification_resolved": true,
+      "verification_notes": "Weekday AM resolved at 1,018,000 IDR (AM=PM, official). Saturday and Sunday AM/PM all confirmed via official + Q-Access cross-check. GoGolf review-page values dissent and are recorded but rejected in favour of the official rate card."
     }
   },
   {
     "id": "arcamanik-raya-bandung",
     "name_en": "Arcamanik Raya Golf & Country Club",
-    "region": "Bandung, West Java",
+    "region": "Bandung",
     "fees_2026_05": {
       "weekday": {
-        "green_fee_18hole_member_idr": 150000,
-        "green_fee_18hole_non_member_idr": 200000,
-        "green_fee_9hole_member_idr": 100000,
-        "green_fee_9hole_non_member_idr": 150000
+        "green_fee_idr": 150000,
+        "non_member_18hole_idr": 150000,
+        "non_member_9hole_idr": 80000,
+        "member_18hole_idr": 100000,
+        "member_9hole_idr": 60000
       },
       "weekend": {
-        "green_fee_18hole_member_idr": 150000,
-        "green_fee_18hole_non_member_idr": 200000,
-        "green_fee_9hole_member_idr": 150000,
-        "green_fee_9hole_non_member_idr": 200000
+        "green_fee_idr": 200000,
+        "non_member_18hole_idr": 200000,
+        "non_member_9hole_idr": 125000,
+        "member_18hole_idr": 150000,
+        "member_9hole_idr": 80000
       },
       "twilight_idr": null,
       "caddy_idr": 13000,
       "cart_idr": 120000,
       "insurance_idr": null,
-      "locker_idr": null,
-      "ball_idr": null,
-      "service_pct": null,
-      "tax_ppn_pct": null,
       "currency": "IDR",
-      "all_inclusive": false,
-      "inclusions_note": "Modest TNI-affiliated public course (also called Padang Golf Arcamanik Endah). Only published rates found are dated (jomkebandung blog): 18-hole non-member IDR 200k (wd & we), member IDR 150k; 9-hole non-member IDR 150k wd / 200k we. Caddy IDR 13k and cart IDR 120k from same older source - likely now higher. Industry roundups place Arcamanik in the 'below IDR 1M' affordable tier. Course not activated on greenfee365; no live online booking. Confirm with club +62 22 7272891.",
+      "notes": "No official site or 2026 rate card found. Only published source remains the historical jomkebandung blog (corrected: jomkebandung lists 9-hole non-member 150k weekday / 200k weekend; 18-hole non-member 80k weekday / 125k weekend; cart 120k; caddy 13k). Note jomkebandung tabulates the 9-hole rate ABOVE the 18-hole rate — the small 9-hole municipal course is the cheaper offering. The 'known_rates_existing' input had weekday and weekend at the same 200k value which appears to conflate 9-hole weekend non-member with both weekday and weekend; the blog distinguishes 9H 150k WD / 200k WE. Bahasa-Indonesia searches (Padang Golf Arcamanik biaya 2026 / tarif Arcamanik), Trip.com 2026 page, kumparan, expertgolf, leadingcourses, and Instagram all return no current published rate. Phone +62 22 7272891 is the official contact.",
       "sources": [
         "https://jomkebandung.wordpress.com/golf/",
-        "https://www.leadingcourses.com/clubs/asia+indonesia+java+west-java/arcamanik-raya-golf-country-club",
-        "https://www.golfshake.com/course/view/21398/Arcamanik_Raya_Golf_Country_Club.html",
-        "https://greenfee365.com/golf-course/arcamanik-endah-golf-course",
-        "https://expertgolf.com/en/golfguide/golfguide-detail/Padang+Golf+Arcamanik+Endah-500541"
+        "https://expertgolf.com/en/golfguide/golfguide-detail/Padang+Golf+Arcamanik+Endah-500541",
+        "https://kumparan.com/seputar-bandung/4-rekomendasi-lapangan-golf-di-bandung-untuk-pemula-dan-profesional-21xs14QajxY",
+        "https://us.trip.com/travel-guide/attraction/arcamanik/arcamanik-golf-club-144872818/"
       ],
-      "last_verified": "2026-05-06",
-      "official_site_status": "no official website",
-      "rates_visible_on_official": false
+      "last_verified": "2026-05-07",
+      "rates_visible_on_official": false,
+      "official_site_status": "no-official-website-found",
+      "verification_resolved": false,
+      "verification_notes": "All AM/PM granularity unresolved — Arcamanik does not publish AM/PM splits (small 9-hole municipal course, walk-up pricing). Only weekday-vs-weekend, member-vs-non-member, and 9H-vs-18H tiers are published, and only on the jomkebandung blog (date unknown, likely 2018-2022). 2026 rates cannot be confirmed from any current source; values shown are the most recent published proxy."
+    }
+  },
+  {
+    "id": "bandung-giri-gahana",
+    "name_en": "Bandung Giri Gahana Golf & Resort",
+    "region": "Sumedang",
+    "fees_2026_05": {
+      "weekday": {
+        "green_fee_idr": 965500,
+        "am_idr": 965500,
+        "pm_idr": 855500
+      },
+      "weekend": {
+        "green_fee_idr": 1735500,
+        "saturday_am_idr": 1735500,
+        "saturday_pm_idr": 1515500,
+        "sunday_am_idr": 1515500,
+        "sunday_pm_idr": 1185500
+      },
+      "twilight_idr": null,
+      "caddy_idr": "included",
+      "cart_idr": "included",
+      "insurance_idr": null,
+      "currency": "IDR",
+      "notes": "GoGolf review (id and en) consistently lists: Weekday AM 965,500 / PM 855,500; Saturday AM 1,735,500 / PM 1,515,500; Sunday AM 1,515,500 / PM 1,185,500. All-inclusive of green fee, caddie, government tax, buggy cart. The 'known_rates_existing' weekday 845,500 corresponds approximately to weekday PM (855,500) and weekend 1,065,500 does not match any single published slot — likely a partial/outdated capture. Official bgg.co.id returned ECONNREFUSED on 2026-05-07. Q-Access page returned empty/no entry. Rate kept on single-publisher (GoGolf) basis; no contradicting source found.",
+      "sources": [
+        "https://gogolf.co.id/golf-course/bandung-giri-gahana-golf",
+        "https://gogolf.co.id/en/golf-course/bandung-giri-gahana-golf-resort"
+      ],
+      "last_verified": "2026-05-07",
+      "rates_visible_on_official": false,
+      "official_site_status": "ECONNREFUSED (bgg.co.id unreachable from verifier)",
+      "verification_resolved": true,
+      "verification_notes": "Saturday AM resolved at 1,735,500 IDR (single-publisher: GoGolf id+en cross-confirmed, 2026-current). All weekday/weekend AM/PM slots resolved via GoGolf. Existing 845,500/1,065,500 figures appear stale and have been replaced. Official site outage means second-source corroboration is still pending; recommend re-check when bgg.co.id is back online."
+    }
+  },
+  {
+    "id": "bukit-darmo-surabaya",
+    "name_en": "Bukit Darmo Golf",
+    "region": "Surabaya",
+    "fees_2026_05": {
+      "weekday": {
+        "green_fee_idr": 910000,
+        "am_idr": 910000,
+        "pm_idr": 910000,
+        "member_idr": 365000
+      },
+      "weekend": {
+        "green_fee_idr": 975000,
+        "saturday_am_idr": 975000,
+        "saturday_pm_idr": 775000,
+        "sunday_am_idr": 875000,
+        "sunday_pm_idr": 675000
+      },
+      "twilight_idr": null,
+      "caddy_idr": null,
+      "cart_idr": null,
+      "insurance_idr": null,
+      "currency": "IDR",
+      "notes": "Official bukitdarmogolf.com/rates-fee-and-membership/ rate card (per indexed snippet): Saturday AM 975,000 / Saturday PM 775,000 / Sunday AM 875,000 / Sunday PM 675,000. The 'suspiciously close' 975k weekend figure is in fact the SATURDAY-AM peak rate; Sunday PM drops to 675k, so the full weekend curve is not flat. Direct fetches of bukitdarmogolf.com returned 403 Forbidden (anti-bot), but the indexed result confirms the rate card. GolfSavers lists 18H weekday 485-725k / weekend 635-935k (likely tier ranges incl. member). PlayGolf.id lists USD 44 WD / USD 100 WE (~700k / ~1.6M IDR — appears outdated). GolfCards.com shows base 600k with 'Wed-Sun + holidays 20% discount'. Membership tiers IDR 5.5M-39.9M annually with green-fee discounts. Existing 910k WD / 975k WE / 365k member retained as best estimate; weekend slots disaggregated.",
+      "sources": [
+        "https://bukitdarmogolf.com/rates-fee-and-membership/",
+        "https://gogolf.co.id/en/golf-course/bukit-darmo-golf",
+        "https://www.golfcards.com/course/bukit-darmo-golf/",
+        "https://playgolf.id/golf_courses/bukit-darmo-golf-surabaya/"
+      ],
+      "last_verified": "2026-05-07",
+      "rates_visible_on_official": true,
+      "official_site_status": "live (403 to scrapers; indexed by Google)",
+      "verification_resolved": true,
+      "verification_notes": "Weekend slots resolved: Sat AM 975,000 (peak) vs Sun PM 675,000 (low). The 975k vs 910k closeness was a comparison artefact — 975k is Sat-AM peak, not a flat weekend rate. Sunday PM is materially lower than weekday (675k vs 910k), which is consistent with city-course pricing. Weekday AM/PM split not separately published (treated as flat). Caddy/cart/insurance not separately listed on the rate card snippet — left null."
+    }
+  },
+  {
+    "id": "finna-pasuruan",
+    "name_en": "Finna Golf & Country Club Resort",
+    "region": "Pasuruan",
+    "fees_2026_05": {
+      "weekday": {
+        "green_fee_idr": 1250000,
+        "am_idr": 1250000,
+        "pm_idr": 1250000,
+        "qgolf_am_idr": 475000,
+        "qgolf_pm_idr": 475000
+      },
+      "weekend": {
+        "green_fee_idr": 1750000,
+        "saturday_am_idr": 1750000,
+        "saturday_pm_idr": 1750000,
+        "sunday_am_idr": 1750000,
+        "sunday_pm_idr": 1750000,
+        "qgolf_saturday_idr": 675000,
+        "qgolf_sunday_idr": 675000
+      },
+      "twilight_idr": null,
+      "caddy_idr": "included",
+      "cart_idr": "included",
+      "insurance_idr": null,
+      "currency": "IDR",
+      "notes": "Q-Access publish rate (last updated 15 Jan 2026): Weekday AM/PM 1,250,000; Saturday AM/PM 1,750,000; Sunday AM/PM 1,750,000. QGolf-app discount: 475,000 WD / 675,000 WE. Bank Mega promo page (Dec 2022-Nov 2023) lists base 1,260,000 WD / 1,760,000 WE — virtually identical to current Q-Access publish rate, just rounded differently. GoGolf English review quotes 'Rp 495,000 nett WD / 660,000 nett WE' — these are clearly the QGolf-app/promo rates, not the publish rate. Existing input figures (1,260k/1,760k) align with Bank Mega 2022-23 base; current 2026 publish rate is 1,250k/1,750k (≈10k lower nominal). Includes green fee, caddy fee, cart; gratuities additional.",
+      "sources": [
+        "https://www.qaccess.asia/QGolfPrice?searchString=finna",
+        "https://bankmega.com/en/promo/finna-golf-pasuruan/",
+        "https://gogolf.co.id/en/golf-course/finna-golf-and-country-club",
+        "https://finnagolf.com/"
+      ],
+      "last_verified": "2026-05-07",
+      "rates_visible_on_official": false,
+      "official_site_status": "live (rate card not displayed on homepage; rates only via reservation channels)",
+      "verification_resolved": true,
+      "verification_notes": "Weekday AM/PM resolved: 1,250,000 IDR flat (AM=PM) per Q-Access (15 Jan 2026 update). No AM/PM split published — Finna treats AM and PM identically. Weekend equally flat at 1,750,000. The previously stored 1,260k/1,760k figures (Bank Mega 2022-23 base) are within 1% of current publish and likely just a different rounding by the publisher; both treated as concordant."
     }
   }
 ]

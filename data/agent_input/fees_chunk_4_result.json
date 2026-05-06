@@ -1,37 +1,171 @@
 [
   {
-    "id": "martabe-sejahtera-medan",
-    "name_en": "Martabe Sejahtera Golf Club",
-    "region": "Medan, North Sumatra",
+    "id": "laguna-bintan",
+    "name_en": "Laguna Golf Bintan",
+    "region": "Bintan",
     "fees_2026_05": {
       "weekday": {
-        "green_fee_idr": 340000,
-        "green_fee_usd": 25
+        "green_fee_idr": 1750000,
+        "green_fee_usd": null,
+        "am_idr": 1750000,
+        "pm_idr": 1500000,
+        "9hole_am_idr": 1100000,
+        "9hole_pm_idr": 900000
       },
       "weekend": {
-        "green_fee_idr": 500000,
-        "green_fee_usd": 31
+        "green_fee_idr": 2500000,
+        "green_fee_usd": null,
+        "saturday_am_idr": 2500000,
+        "saturday_pm_idr": 2250000,
+        "sunday_am_idr": 2500000,
+        "sunday_pm_idr": 2250000,
+        "9hole_am_idr": 1450000,
+        "9hole_pm_idr": 1250000
+      },
+      "twilight_idr": 1500000,
+      "caddy_idr": "included",
+      "cart_idr": "included",
+      "insurance_idr": "included",
+      "currency": "IDR",
+      "notes": "Official lagunagolfbintan.com lists 18-hole visitor rates only in IDR. Green fee includes twin-share buggy + twin-share caddy + golfer's insurance + 1 bottle water + 40 practice balls. PM rate triggers after 1:30pm. Weekend rate applies to both Saturday and Sunday (no separate Sat/Sun pricing on official site). Bintan Retreat referenced lower visitor rates (IDR 1,040,000 wd / 1,490,000 we) but these conflict with the official rate card so are not used. SGD 163 wd / SGD 210 we shown via packagers but USD not officially published. Existing weekday_idr=1750000 and weekend_idr=2500000 confirmed.",
+      "sources": [
+        "https://www.lagunagolfbintan.com/rates-memberships/",
+        "https://www.golfsavers.com/indonesia/bintan-golf-courses/laguna-bintan-golf-club"
+      ],
+      "last_verified": "2026-05-07",
+      "rates_visible_on_official": true,
+      "official_site_status": "live",
+      "verification_resolved": true,
+      "verification_notes": "All 6 slots resolved. Saturday and Sunday share the same rate on official card (no Sat/Sun split). PM (after 1:30pm) discount confirmed for both wd and we. 9-hole rates also captured for completeness. USD not published officially."
+    }
+  },
+  {
+    "id": "palm-springs-batam",
+    "name_en": "Palm Springs Golf & Country Club Batam",
+    "region": "Batam",
+    "fees_2026_05": {
+      "weekday": {
+        "green_fee_idr": 850000,
+        "green_fee_usd": 53,
+        "green_fee_sgd": 70,
+        "am_idr": 850000,
+        "pm_idr": 850000
+      },
+      "weekend": {
+        "green_fee_idr": 1600000,
+        "green_fee_usd": 90,
+        "saturday_am_idr": 1600000,
+        "saturday_am_sgd": 120,
+        "saturday_pm_idr": 1400000,
+        "saturday_pm_sgd": 105,
+        "sunday_am_idr": 1400000,
+        "sunday_am_sgd": 100,
+        "sunday_pm_idr": 1200000,
+        "sunday_pm_sgd": 90
+      },
+      "twilight_idr": 1200000,
+      "caddy_idr": "included",
+      "cart_idr": "included",
+      "insurance_idr": "included",
+      "currency": "IDR",
+      "notes": "Official batam.palmspringsgolf.co publishes rates in SGD only (Singapore-tourist focus). SGD 70 wd / SGD 120 Sat-AM / SGD 105 Sat-PM / SGD 100 Sun-AM / SGD 90 Sun-PM. IDR equivalents from gogolf.co.id review (Apr 2026): wd Rp 800-850k; Sat Rp 1.6M; Sun-AM Rp 1.4M; Sun-PM Rp 1.2M. USD figures are existing chunk values (~SGD/1.33 conversion). Domestic non-member rate per gogolf: Rp 950k wd / Rp 1.55M Sat / Rp 1.36M Sun. Existing weekday_idr=850000 and weekend_idr=1600000 (Sat-AM) confirmed.",
+      "sources": [
+        "https://batam.palmspringsgolf.co/packages-and-rates",
+        "https://gogolf.co.id/en/golf-course/palm-springs-golf-beach-resort",
+        "https://batamgolfpackage.com/",
+        "https://golf-batam.com/"
+      ],
+      "last_verified": "2026-05-07",
+      "rates_visible_on_official": true,
+      "official_site_status": "live",
+      "verification_resolved": true,
+      "verification_notes": "All 6 slots resolved. Sunday AM/PM previously flagged - now confirmed Sun-AM SGD 100 / IDR 1.4M and Sun-PM SGD 90 / IDR 1.2M. Saturday split into AM/PM also captured. Weekday no AM/PM split published."
+    }
+  },
+  {
+    "id": "tamarin-santana-batam",
+    "name_en": "Tamarin Santana Golf Club",
+    "region": "Batam",
+    "fees_2026_05": {
+      "weekday": {
+        "green_fee_idr": 455000,
+        "green_fee_usd": 28,
+        "green_fee_sgd": null,
+        "am_idr": 455000,
+        "pm_idr": 455000,
+        "9hole_idr": 245000
+      },
+      "weekend": {
+        "green_fee_idr": 600000,
+        "green_fee_usd": 38,
+        "green_fee_sgd": null,
+        "saturday_am_idr": 600000,
+        "saturday_pm_idr": 600000,
+        "sunday_am_idr": 600000,
+        "sunday_pm_idr": 600000,
+        "9hole_idr": 295000
       },
       "twilight_idr": null,
-      "caddy_idr": 90000,
-      "cart_idr": 200000,
-      "insurance_idr": null,
-      "locker_idr": null,
-      "ball_idr": null,
-      "service_pct": null,
-      "tax_ppn_pct": null,
+      "caddy_idr": "included",
+      "cart_idr": "included",
+      "insurance_idr": "included",
       "currency": "IDR",
-      "all_inclusive": false,
-      "inclusions_note": "Pinnacle Travel publishes IDR 340k weekday / 500k weekend green fee; caddy IDR 90k; cart IDR 200k (each separate). playgolf.id corroborates USD 25 / 31 (~IDR 400k / 496k) with buggy not bundled. Semi-private club (~700 members) but accepts public visitors. Course built 1998, designed by Gus Grantham; ~22km south of Medan toward Berastagi. Official site martabe-golf.com unreachable to fetcher.",
+      "notes": "REBRAND CLARIFICATION: 'Tamarin Santana Golf Club' (Jack Nicklaus 9-hole par-36 course in Nongsa, Batam, opened ~2014) is the same physical facility as 'Tamarin Golf & FootGolf Club' and 'Tamarin Golf Resort'. Operator added FootGolf use; managed/marketed by Champions Golf (Results Golf Management). Operating name on golfsavers, gogolf, leadingcourses, nicklausdesign all confirm 'Tamarin Santana Golf Club' for the Nicklaus 9-hole. 'Tamarin Public Golf Course' / 'Tamarin Golf & FootGolf' are alternate marketing names referring to the same property (which now offers FootGolf as a second use). Conflicting rates by source: gogolf.co.id (9-hole basis): Rp 245k wd / Rp 295k we. golfsavers / playgolf.id (USD basis): USD 22 mid-week / USD 25 weekend. welcometobatam.com bundles ferry+transport: SGD 173 wd / SGD 205 we (NOT greens-only). Existing chunk rates (Rp 455k wd / Rp 600k we, USD 28/38) reflect 18-hole equivalent (2x9) and are retained as primary; 9-hole single-loop rate also captured. No AM/PM split published.",
       "sources": [
-        "https://www.pinnacle-travel.com/medan-golf-courses/",
-        "https://playgolf.id/golf_courses/martabe-sejahtera-golf-course/",
-        "https://www.golfpass.com/travel-advisor/courses/38230-martabe-sejahtera-golf-club",
-        "http://www.martabe-golf.com/rate.htm"
+        "https://gogolf.co.id/golf-course/tamarin-santana-golf-club",
+        "https://www.golfsavers.com/indonesia/batam-island-golf-courses/tamarin-santana-golf-club",
+        "https://playgolf.id/golf_courses/tamarin-golf-footgolf-club/",
+        "https://www.welcometobatam.com/book-batam-golf-packages.asp?resort=tamarinsantana",
+        "https://nicklausdesign.com/course/tamarin-santana-golf-club/"
       ],
-      "last_verified": "2026-05-06",
-      "official_site_status": "official martabe-golf.com unreachable (ECONNREFUSED) to fetcher; rate page indexed by search engines",
-      "rates_visible_on_official": false
+      "last_verified": "2026-05-07",
+      "rates_visible_on_official": false,
+      "official_site_status": "no-dedicated-domain",
+      "verification_resolved": false,
+      "verification_notes": "Course has no dedicated official website with public rate card; rates aggregated from 3rd-party booking sites. AM/PM splits not published anywhere - only weekday vs weekend. 9-hole single loop Rp 245k/295k (gogolf, in-IDR for domestic walk-ins). 18-hole equivalent Rp 455k/600k matches existing record. Saturday vs Sunday treated identically. Tamarin Santana = Tamarin Golf & FootGolf = Tamarin Golf Resort (same operator, expanded use)."
+    }
+  },
+  {
+    "id": "labersa-riau",
+    "name_en": "Labersa Golf & Country Club",
+    "region": "Pekanbaru",
+    "fees_2026_05": {
+      "weekday": {
+        "green_fee_idr": 880000,
+        "green_fee_usd": null,
+        "guest_fee_idr": 880000,
+        "member_fee_idr": 600000,
+        "am_idr": 880000,
+        "pm_idr": 880000,
+        "promo_idr": 600000
+      },
+      "weekend": {
+        "green_fee_idr": 1100000,
+        "green_fee_usd": null,
+        "guest_fee_idr": 1100000,
+        "member_fee_idr": 750000,
+        "saturday_am_idr": 1100000,
+        "saturday_pm_idr": 1100000,
+        "sunday_am_idr": 1100000,
+        "sunday_pm_idr": 1100000,
+        "promo_idr": 750000
+      },
+      "twilight_idr": null,
+      "caddy_idr": "included",
+      "cart_idr": "included",
+      "insurance_idr": "included",
+      "currency": "IDR",
+      "notes": "Hotel-guest / standard rate per labersahotel.com / gogolf.co.id: Rp 880,000 wd / Rp 1,100,000 we (includes green fee, buggy cart, caddy, 10% government tax, lunch+drinks in some packages). Member rate Rp 600,000 (existing). Stay-and-Play bundled package: Rp 1,400,000 wd / Rp 1,700,000 we (includes 1-night accommodation at Labersa Grand Hotel Pekanbaru + golf). Promotional walk-in social-media rate: Rp 600,000 nett wd / Rp 750,000 nett we (lunch+iced tea included). No AM/PM split published. Saturday and Sunday share weekend pricing. Existing weekday_idr=880000, weekend_idr=1100000, member_idr=600000 all confirmed.",
+      "sources": [
+        "https://gogolf.co.id/en/golf-course/labersa-golf-club",
+        "https://labersahotel.com/lghcc/blog/stay-and-play",
+        "https://www.indonesiagolf.indonesiagolfcourses.com/member-details.php?abbr=LGCC&v=ina"
+      ],
+      "last_verified": "2026-05-07",
+      "rates_visible_on_official": true,
+      "official_site_status": "live",
+      "verification_resolved": true,
+      "verification_notes": "Greens-only vs bundled stay-play resolved: Rp 880k wd / Rp 1.1M we are greens-only (with buggy/caddy/tax). Stay-and-Play Rp 1.4M/1.7M includes hotel night. Weekend slots resolved (Sat = Sun = Rp 1.1M, no AM/PM split). USD not published."
     }
   }
 ]

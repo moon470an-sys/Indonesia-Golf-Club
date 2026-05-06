@@ -1,35 +1,87 @@
 {
   "chunk": "fees_chunk_1",
-  "region_focus": "Jakarta proper",
+  "region_focus": "Jakarta / Tangerang priority verification",
+  "purpose": "Resolve cross-source price disagreement, fill missing rates, replace single-source with corroborated rates.",
   "courses": [
-    {
-      "id": "suvarna-jakarta",
-      "name_en": "Suvarna Jakarta Golf Club",
-      "region": "Jakarta",
-      "known_evidence": [
-        "https://www.suvarnajakartagolfclub.com/",
-        "https://www.golfasian.com/golf-courses/indonesia-golf-courses/jakarta/suvarna-jakarta-golf-club/",
-        "https://www.top100golfcourses.com/golf-course/suvarna-jakarta"
-      ]
-    },
-    {
-      "id": "sedayu-indo-golf",
-      "name_en": "Sedayu Indo Golf (The Links)",
-      "region": "Jakarta",
-      "known_evidence": [
-        "https://www.sedayuindogolf.com/",
-        "https://www.golfpass.com/travel-advisor/courses/40323-sedayu-indo-golf",
-        "https://www.pik2.com/facility-detail?id=7"
-      ]
-    },
     {
       "id": "jaya-ancol-golf",
       "name_en": "Padang Golf Jaya Ancol (Ancol Golf Club)",
       "region": "Jakarta",
+      "issue": "All published sources state 'guide prices, confirm with course' — no rate card found yet. Phone +62 21 682122 listed.",
       "known_evidence": [
         "https://www.mscorecard.com/mscorecard/showcourse.php?cid=1243501465772",
-        "https://golftoday.co.uk/course/jaya-ancol-golf-club/"
+        "https://golftoday.co.uk/course/jaya-ancol-golf-club/",
+        "https://www.golfshake.com/course/view/21441/Jaya_Ancol_Golf_Club.html",
+        "https://gogolf.co.id/golf-course/jaya-ancol-golf",
+        "https://qaccess.asia/QGolfPrice?searchString=ancol",
+        "https://playgolf.id/?s=ancol"
+      ],
+      "search_targets": [
+        "Pinnacle Travel Jakarta golf packages",
+        "Asia Medan golf package Jakarta",
+        "Jakarta golf packager Ancol",
+        "Ancol golf rate 2026",
+        "Padang Golf Jaya Ancol fee",
+        "qaccess ancol golf",
+        "Instagram @ancolgolfclub rate",
+        "Wayback https://www.ancolgolf.com/ rate"
       ]
+    },
+    {
+      "id": "pondok-indah-golf",
+      "name_en": "Pondok Indah Golf Course",
+      "region": "Jakarta",
+      "issue": "Single official source. Need ≥1 corroborating source (Q-Access / GoGolf / Golfsavers) for premium rates.",
+      "known_rates_existing": {"weekday_idr": 1618000, "weekend_idr": 3968000, "member_idr": 440000},
+      "known_evidence": [
+        "https://www.golfpondokindah.com/index_sub.asp?fuseaction=green_fees",
+        "https://www.qaccess.asia/QGolfPrice?searchString=pondok+indah",
+        "https://gogolf.co.id/golf-course/pondok-indah-golf-club",
+        "https://www.golfsavers.com/indonesia/jakarta-golf-courses/pondok-indah",
+        "https://en.gogolf.co.id/golf-course/pondok-indah"
+      ]
+    },
+    {
+      "id": "modern-golf",
+      "name_en": "Modern Golf & Country Club",
+      "region": "Tangerang",
+      "issue": "All 6 time-slot crawled_summary entries flagged verification_needed. Need slot-by-slot AM/PM resolution.",
+      "known_rates_existing": {"weekday_green_fee_idr": 870000, "weekend_green_fee_idr": 2000000, "guest_idr_weekend": 2860000},
+      "known_evidence": [
+        "https://www.qaccess.asia/QGolfPrice?searchString=modern",
+        "https://gogolf.co.id/golf-course/modern-golf-country-club",
+        "https://gogolf.co.id/en/golf-course/modern-golf-country-club",
+        "https://www.moderngolfclub.com/",
+        "https://www.golfsavers.com/indonesia/jakarta-golf-courses/modern-golf"
+      ],
+      "search_targets": ["Modern Golf Tangerang rate AM PM 2026", "Q-Access Modern weekday weekend AM PM"]
+    },
+    {
+      "id": "gading-raya",
+      "name_en": "Gading Raya Padang Golf & Club",
+      "region": "Tangerang",
+      "issue": "Weekday AM/PM crawled_summary flagged. Member rate 280K vs guest 850K is a large gap to validate.",
+      "known_rates_existing": {"weekday_green_fee_idr": 850000, "weekend_green_fee_idr": 2200000, "member_idr": 280000},
+      "known_evidence": [
+        "https://www.gadingrayagolf.com/green_fees.html",
+        "https://gogolf.co.id/golf-course/gading-raya-padang-golf",
+        "https://www.qaccess.asia/QGolfPrice?searchString=gading"
+      ]
+    },
+    {
+      "id": "takara-golf-tigaraksa",
+      "name_en": "Takara Golf Resort",
+      "region": "Tangerang",
+      "issue": "EXTREME source disagreement — gogolf course review IDR 100-150k vs gogolf summary IDR 450-650k vs playgolf USD 23/60 (~IDR 360k/930k). Need to determine which is current.",
+      "known_evidence": [
+        "https://gogolf.co.id/en/golf-course/takara-golf-resort",
+        "https://gogolf.co.id/en/golf-tangerang",
+        "https://playgolf.id/golf_courses/tigaraksa-golf-residens/",
+        "https://www.golflux.com/course/takara-golf-resort/",
+        "https://www.hole19golf.com/courses/takara-golf-resort-tigaraksa-tangerang",
+        "https://greenfee365.com/golf-course/takara-golf-and-resort"
+      ],
+      "search_targets": ["Takara Golf Tigaraksa rate 2026", "Padang Golf Takara Tangerang green fee", "Instagram @takaragolfresort"]
     }
   ]
 }

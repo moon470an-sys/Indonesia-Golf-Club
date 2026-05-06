@@ -1,0 +1,133 @@
+[
+  {
+    "id": "palm-hill-bogor",
+    "name_en": "Palm Hill Golf Club",
+    "region": "Bogor, West Java",
+    "fees_2026_05": {
+      "weekday": {
+        "senior_morning_idr": 580000,
+        "senior_afternoon_idr": 499000,
+        "ladies_junior_morning_idr": 580000,
+        "ladies_junior_afternoon_idr": 499000,
+        "golflink_member_idr": 350000,
+        "visitor_idr_low": 525000,
+        "visitor_idr_high": 730000,
+        "monday_promo_idr": 525000,
+        "qgolf_easy_am_idr": 440000,
+        "qgolf_easy_pm_idr": 415000
+      },
+      "weekend": {
+        "saturday_visitor_morning_idr": 2205000,
+        "saturday_visitor_afternoon_idr": 850000,
+        "sunday_visitor_morning_idr": 1875000,
+        "sunday_visitor_afternoon_idr": 750000,
+        "saturday_member_guest_morning_idr": 1760000,
+        "saturday_member_guest_afternoon_idr": 850000,
+        "sunday_member_guest_morning_idr": 1540000,
+        "sunday_member_guest_afternoon_idr": 750000,
+        "saturday_qgolf_am_idr": 950000,
+        "sunday_qgolf_am_idr": 890000
+      },
+      "twilight_idr": 750000,
+      "caddy_idr": "included",
+      "cart_idr": "included",
+      "insurance_idr": "included",
+      "locker_idr": null,
+      "ball_idr": null,
+      "service_pct": null,
+      "tax_ppn_pct": 11,
+      "currency": "IDR",
+      "all_inclusive": true,
+      "inclusions_note": "Operated by Golflink Resorts. Per official palmhillgolf.co.id/golf, all rates include green fee, caddy, cart, tax & insurance (effective Jan 2023). Weekday Tue-Fri: senior/ladies/junior IDR 580k AM / 499k PM; GolfLink members IDR 350k. Saturday visitor IDR 2.205M AM / 850k PM; Sunday visitor IDR 1.875M AM / 750k PM. Monday promo IDR 525k. QAccess discounted rates IDR 440-950k. gogolf.co.id cites visitor weekday IDR 525-730k.",
+      "sources": [
+        "https://palmhillgolf.co.id/golf",
+        "https://gogolf.co.id/en/golf-course/palm-hills-golf-club",
+        "https://www.qaccess.asia/qgolfprice",
+        "https://golflinkresorts.co.id/courses/palmhill/en"
+      ],
+      "last_verified": "2026-05-06",
+      "official_site_status": "live, rates published",
+      "rates_visible_on_official": true
+    }
+  },
+  {
+    "id": "bandung-indah-margahayu",
+    "name_en": "Bandung Indah Golf & Country Club",
+    "region": "Bandung, West Java",
+    "fees_2026_05": {
+      "weekday": {
+        "green_fee_idr_from": 450000
+      },
+      "weekend": {
+        "green_fee_idr_low": 600000,
+        "green_fee_idr_high": 850000
+      },
+      "twilight_idr": null,
+      "caddy_idr": null,
+      "cart_idr": null,
+      "insurance_idr": null,
+      "locker_idr": null,
+      "ball_idr": null,
+      "cart_usd_golfasian": 30,
+      "club_set_usd_golfasian": 25,
+      "shoes_usd_golfasian": 8,
+      "umbrella_usd_golfasian": 5,
+      "fee_card_weekday_discount_pct": 30,
+      "fee_card_weekend_discount_pct": 20,
+      "service_pct": null,
+      "tax_ppn_pct": 11,
+      "currency": "IDR",
+      "all_inclusive": false,
+      "inclusions_note": "Per gogolf.co.id 2025 review: weekday from IDR 450k; weekend/holiday IDR 600k-850k. Caddie and buggy excluded from green fee. golfasian.com lists rentals at USD 30 cart / USD 25 club set / USD 8 shoes / USD 5 umbrella (~IDR 480k cart). Golfcards fee-card members get 30% wd / 20% we discount. Public access; designed 1994 by Michael Coate (AUS), 18-hole par-72.",
+      "sources": [
+        "https://gogolf.co.id/en/golf-course/bandung-indah-golf-country-club",
+        "https://www.golfcards.com/course/bandung-indah-golf-country-club/",
+        "https://www.golfasian.com/golf-courses/indonesia-golf-courses/bandung/bandung-indah-golf-country-club/",
+        "https://www.golflux.com/course/bandung-indah-golf-country-club/"
+      ],
+      "last_verified": "2026-05-06",
+      "official_site_status": "official site bandungindahgolf.com unreachable to fetcher (ECONNREFUSED)",
+      "rates_visible_on_official": false
+    }
+  },
+  {
+    "id": "arcamanik-raya-bandung",
+    "name_en": "Arcamanik Raya Golf & Country Club",
+    "region": "Bandung, West Java",
+    "fees_2026_05": {
+      "weekday": {
+        "green_fee_18hole_member_idr": 150000,
+        "green_fee_18hole_non_member_idr": 200000,
+        "green_fee_9hole_member_idr": 100000,
+        "green_fee_9hole_non_member_idr": 150000
+      },
+      "weekend": {
+        "green_fee_18hole_member_idr": 150000,
+        "green_fee_18hole_non_member_idr": 200000,
+        "green_fee_9hole_member_idr": 150000,
+        "green_fee_9hole_non_member_idr": 200000
+      },
+      "twilight_idr": null,
+      "caddy_idr": 13000,
+      "cart_idr": 120000,
+      "insurance_idr": null,
+      "locker_idr": null,
+      "ball_idr": null,
+      "service_pct": null,
+      "tax_ppn_pct": null,
+      "currency": "IDR",
+      "all_inclusive": false,
+      "inclusions_note": "Modest TNI-affiliated public course (also called Padang Golf Arcamanik Endah). Only published rates found are dated (jomkebandung blog): 18-hole non-member IDR 200k (wd & we), member IDR 150k; 9-hole non-member IDR 150k wd / 200k we. Caddy IDR 13k and cart IDR 120k from same older source - likely now higher. Industry roundups place Arcamanik in the 'below IDR 1M' affordable tier. Course not activated on greenfee365; no live online booking. Confirm with club +62 22 7272891.",
+      "sources": [
+        "https://jomkebandung.wordpress.com/golf/",
+        "https://www.leadingcourses.com/clubs/asia+indonesia+java+west-java/arcamanik-raya-golf-country-club",
+        "https://www.golfshake.com/course/view/21398/Arcamanik_Raya_Golf_Country_Club.html",
+        "https://greenfee365.com/golf-course/arcamanik-endah-golf-course",
+        "https://expertgolf.com/en/golfguide/golfguide-detail/Padang+Golf+Arcamanik+Endah-500541"
+      ],
+      "last_verified": "2026-05-06",
+      "official_site_status": "no official website",
+      "rates_visible_on_official": false
+    }
+  }
+]

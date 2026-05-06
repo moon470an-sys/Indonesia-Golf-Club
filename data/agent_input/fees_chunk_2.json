@@ -1,34 +1,75 @@
 {
   "chunk": "fees_chunk_2",
-  "region_focus": "Tangerang & Karawang (West Java periphery of Jakarta)",
+  "region_focus": "Bogor cluster verification",
+  "purpose": "Weekend AM/PM cross-source disagreement resolution; fill missing Trump Lido rates.",
   "courses": [
     {
-      "id": "kedaton-golf",
-      "name_en": "Kedaton Golf & Country Club",
-      "region": "Tangerang",
+      "id": "trump-lido",
+      "name_en": "Trump International Golf Club Lido",
+      "region": "Bogor",
+      "issue": "Both weekday and weekend rates are null. Course re-opened under Trump branding — need 2026 rate card.",
       "known_evidence": [
-        "https://gogolf.co.id/en/golf-course/kedaton-golf-country-club",
-        "https://www.golfpass.com/travel-advisor/courses/38224-kedaton-golf-and-country-club",
-        "https://suvarnasutera.com/facilities"
+        "https://www.trumpgolflido.com/",
+        "https://mnctourismindonesia.com/trumpgolflido",
+        "https://www.golfsavers.com/indonesia/bogor-golf-courses/trump-international-golf-club-lido",
+        "https://gogolf.co.id/golf-course/klub-golf-lido-bogor",
+        "https://www.qaccess.asia/QGolfPrice?searchString=lido",
+        "https://www.qaccess.asia/QGolfPrice?searchString=trump"
+      ],
+      "search_targets": ["Trump Lido golf rate 2026", "MNC Lido golf green fee", "Trump Lido weekday weekend rate", "lido golf course IDR rate", "Wayback https://www.trumpgolflido.com/"]
+    },
+    {
+      "id": "permata-sentul",
+      "name_en": "Permata Sentul Golf",
+      "region": "Bogor",
+      "issue": "Weekend Sat AM/PM + Sun AM/PM all flagged verification_needed.",
+      "known_rates_existing": {"weekday_idr": 708000, "weekend_idr": 1948000, "member_weekend_idr": 1748000},
+      "known_evidence": [
+        "https://www.permatasentulgolf.net/",
+        "https://gogolf.co.id/golf-course/permata-sentul-golf-club",
+        "https://gogolf.co.id/en/golf-course/permata-sentul-golf-club",
+        "https://www.qaccess.asia/QGolfPrice?searchString=permata"
       ]
     },
     {
-      "id": "takara-golf-tigaraksa",
-      "name_en": "Takara Golf Resort",
-      "region": "Tangerang (Tigaraksa)",
+      "id": "riverside-cibubur",
+      "name_en": "Riverside Golf Club",
+      "region": "Bogor",
+      "issue": "All 6 time slots flagged. Two official-domain sources exist (riverside-golf.com / golfriverside.net) — verify they agree.",
+      "known_rates_existing": {"weekday_idr": 950000, "weekend_idr": 1400000},
       "known_evidence": [
-        "https://gogolf.co.id/en/golf-course/takara-golf-resort",
-        "https://www.golfpass.com/travel-advisor/courses/38284-takara-golf-resort"
+        "https://www.riverside-golf.com/offers-package",
+        "https://www.golfriverside.net/rates/",
+        "https://gogolf.co.id/golf-course/riverside-golf-club",
+        "https://gogolf.co.id/en/golf-course/riverside-golf-club",
+        "https://www.qaccess.asia/QGolfPrice?searchString=riverside"
       ]
     },
     {
-      "id": "lotus-lakes-karawang",
-      "name_en": "Lotus Lakes Golf Club (Karawang International)",
-      "region": "Karawang, West Java",
+      "id": "jagorawi",
+      "name_en": "Jagorawi Golf & Country Club",
+      "region": "Bogor",
+      "issue": "Weekend slots verification_needed. Official site has rate page; need GoGolf/Q-Access cross-check.",
+      "known_rates_existing": {"weekday_idr": 625000, "weekend_idr": 2150000},
       "known_evidence": [
-        "https://lotuslakesgolf.com/",
-        "https://gogolf.co.id/en/golf-course/lotus-lake-golf-club",
-        "https://www.golfpass.com/travel-advisor/courses/38222-lotuslakes-golf-club-lotus-course"
+        "https://jagorawi.com/green-fees/",
+        "https://gogolf.co.id/golf-course/jagorawi-golf-country-club",
+        "https://gogolf.co.id/en/golf-course/jagorawi-golf-country-club",
+        "https://www.qaccess.asia/QGolfPrice?searchString=jagorawi"
+      ]
+    },
+    {
+      "id": "rancamaya",
+      "name_en": "Rancamaya Golf & Country Club",
+      "region": "Bogor",
+      "issue": "Weekday AM/PM verification_needed. Premium course — large weekend gap (3.18M).",
+      "known_rates_existing": {"weekday_idr": 1200000, "weekend_idr": 3180000},
+      "known_evidence": [
+        "https://rancamayagolf.com/golf-rate/",
+        "https://gogolf.co.id/golf-course/rancamaya-golf-country-club",
+        "https://gogolf.co.id/en/golf-course/rancamaya-golf-country-club",
+        "https://www.qaccess.asia/QGolfPrice?searchString=rancamaya",
+        "https://www.golfsavers.com/indonesia/bogor-golf-courses/rancamaya"
       ]
     }
   ]
