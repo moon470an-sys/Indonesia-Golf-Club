@@ -64,6 +64,7 @@ function initMap() {
     if (panel && panel.classList.contains('open')) {
       panel.classList.remove('open');
       panel.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('detail-open');
       document.querySelectorAll('.course-item').forEach(el => el.classList.remove('active'));
     }
   });
@@ -456,11 +457,10 @@ function renderMarkers() {
 
 // === Map Controls: Legend + Zoom Presets ===
 const ZOOM_PRESETS = [
-  { key: 'all',      label: '전체',       bounds: [[-10.5, 95], [6, 141]] },
-  { key: 'jakarta',  label: '자카르타',   bounds: [[-6.45, 106.55], [-6.05, 107.05]] },
-  { key: 'bali',     label: '발리',       bounds: [[-8.85, 114.4], [-8.05, 115.7]] },
-  { key: 'batam',    label: '바탐·빈탄',  bounds: [[1.0, 103.7], [1.25, 104.7]] },
-  { key: 'surabaya', label: '수라바야',   bounds: [[-7.5, 112.5], [-7.1, 112.95]] },
+  { key: 'all',         label: '전체',        bounds: [[-10.5, 95], [6, 141]] },
+  { key: 'jabodetabek', label: 'Jabodetabek', bounds: [[-6.7, 106.3], [-6.0, 107.3]] },
+  { key: 'balikpapan',  label: 'Balikpapan',  bounds: [[-1.45, 116.6], [-1.0, 117.1]] },
+  { key: 'bali',        label: 'Bali',        bounds: [[-8.85, 114.4], [-8.05, 115.7]] },
 ];
 
 function addLegendControl() {
@@ -697,12 +697,14 @@ function showDetail(c) {
 
   panel.classList.add('open');
   panel.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('detail-open');
 }
 
 document.getElementById('closeDetail').addEventListener('click', () => {
   const panel = document.getElementById('detailPanel');
   panel.classList.remove('open');
   panel.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('detail-open');
   document.querySelectorAll('.course-item').forEach(el => el.classList.remove('active'));
 });
 

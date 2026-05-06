@@ -982,6 +982,17 @@ button:focus-visible,
 .leaflet-top.leaflet-right .zoom-presets { margin: 12px 12px 0 0; }
 .leaflet-bottom.leaflet-right .map-legend { margin: 0 12px 12px 0; }
 
+/* When detail panel is open, slide right-side map controls left so they
+   don't sit underneath the panel and overlap the region buttons / legend. */
+.leaflet-top.leaflet-right,
+.leaflet-bottom.leaflet-right {
+  transition: transform var(--t-slow);
+}
+body.detail-open .leaflet-top.leaflet-right,
+body.detail-open .leaflet-bottom.leaflet-right {
+  transform: translateX(calc(-1 * var(--detail-w)));
+}
+
 /* Marker popup */
 .course-popup .leaflet-popup-content-wrapper {
   border-radius: var(--r-lg);
