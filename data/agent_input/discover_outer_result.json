@@ -1,0 +1,36 @@
+{
+  "region": "outer",
+  "missing_count": 1,
+  "missing": [
+    {
+      "id": "martabe-sejahtera-medan",
+      "name_en": "Martabe Sejahtera Golf Club",
+      "region": "Medan",
+      "province": "North Sumatra",
+      "address": "Jl. Letjen Djamin Ginting Km. 22, Uruk Gedang, Kec. Namorambe, Kabupaten Deli Serdang, Sumatera Utara 20353",
+      "lat": 3.4705, "lng": 98.6225,
+      "holes": 18, "par": 72,
+      "year_opened": 1998,
+      "designer": "Gus Grantham / JMP Golf Design Group",
+      "course_layout": "Championship 18-hole layout, 6,071 m from the back tees (Black 6,071 / Blue 5,633 / White 5,221 / Red 4,677). Bermuda greens and TifDwarf 419 fairways set in the rolling foothills south of Medan toward the Karo highlands.",
+      "facilities": ["driving range","putting green","pro shop","clubhouse","restaurant","locker rooms","club rental","cart rental","caddies","teaching pro"],
+      "website": "http://www.martabe-golf.com",
+      "notes": "Opened 1998, Martabe Sejahtera is a public-access 18-hole par-72 championship course in Namorambe, Deli Serdang, ~22 km south of central Medan on the Berastagi road. One of four major 18-hole layouts in Greater Medan (alongside Royal Sumatra, Tamora and Graha Metropolitan/Helvetia).",
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://www.golflux.com/course/martabe-sejahtera-golf-club/",
+          "https://www.golfpass.com/travel-advisor/courses/38230-martabe-sejahtera-golf-club",
+          "https://www.hole19golf.com/courses/martabe-sejahtera-gc"
+        ],
+        "last_verified": "2026-05-06"
+      },
+      "fees_2026_05": null,
+      "membership": { "available": true, "sources": ["https://www.golflux.com/course/martabe-sejahtera-golf-club/"] },
+      "financials": { "operating_company": "PT Martabe Sejahtera", "parent_group": null, "idx_ticker": null, "listed_status": "private" }
+    }
+  ],
+  "no_other_majors_found": true,
+  "notes": "Outer-island 81-course inventory is largely complete. Martabe Sejahtera (Medan/Deli Serdang) is the one missing major operating 18-hole. Bali, Lombok, Bintan, Batam, Sulawesi, Kalimantan, Maluku, Papua all confirmed complete versus GolfLux/GolfPass/Hole19/APLGI directories."
+}

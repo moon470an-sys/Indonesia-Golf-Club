@@ -1,0 +1,488 @@
+[
+  {
+    "id": "bali-national",
+    "name_en": "Bali National Golf Club",
+    "region": "Bali",
+    "province": "Bali"
+  },
+  {
+    "id": "nirwana-bali",
+    "name_en": "Nirwana Bali Golf Club",
+    "region": "Bali",
+    "province": "Bali"
+  },
+  {
+    "id": "new-kuta",
+    "name_en": "New Kuta Golf",
+    "region": "Bali",
+    "province": "Bali"
+  },
+  {
+    "id": "handara-bali",
+    "name_en": "Handara Golf & Resort Bali",
+    "region": "Bali",
+    "province": "Bali"
+  },
+  {
+    "id": "bukit-pandawa",
+    "name_en": "Bukit Pandawa Golf & Country Club",
+    "region": "Bali",
+    "province": "Bali"
+  },
+  {
+    "id": "bali-beach-sanur",
+    "name_en": "Bali Beach Golf Course",
+    "region": "Bali",
+    "province": "Bali"
+  },
+  {
+    "id": "lombok-sire-beach",
+    "name_en": "Sire Beach Golf Club (Lombok Kosaido)",
+    "region": "Lombok",
+    "province": "West Nusa Tenggara"
+  },
+  {
+    "id": "gec-rinjani",
+    "name_en": "GEC Rinjani Golf & Resort",
+    "region": "Lombok",
+    "province": "West Nusa Tenggara"
+  },
+  {
+    "id": "kaleang-sumbawa",
+    "name_en": "Kaleang Golf Club (Naia Resort Sumbawa)",
+    "region": "Sumbawa",
+    "province": "West Nusa Tenggara"
+  },
+  {
+    "id": "ria-bintan-ocean",
+    "name_en": "Ria Bintan Golf Club - Ocean Course",
+    "region": "Bintan",
+    "province": "Riau Islands"
+  },
+  {
+    "id": "ria-bintan-forest",
+    "name_en": "Ria Bintan Golf Club - Forest Course",
+    "region": "Bintan",
+    "province": "Riau Islands"
+  },
+  {
+    "id": "bintan-lagoon-seaview",
+    "name_en": "Bintan Lagoon - Sea View Course",
+    "region": "Bintan",
+    "province": "Riau Islands"
+  },
+  {
+    "id": "bintan-lagoon-woodlands",
+    "name_en": "Bintan Lagoon - Woodlands Course",
+    "region": "Bintan",
+    "province": "Riau Islands"
+  },
+  {
+    "id": "laguna-bintan",
+    "name_en": "Laguna Golf Bintan",
+    "region": "Bintan",
+    "province": "Riau Islands"
+  },
+  {
+    "id": "palm-springs-batam",
+    "name_en": "Palm Springs Golf & Country Club Batam",
+    "region": "Batam",
+    "province": "Riau Islands"
+  },
+  {
+    "id": "tering-bay-batam",
+    "name_en": "Batam Island Country Club (formerly Tering Bay)",
+    "region": "Batam",
+    "province": "Riau Islands"
+  },
+  {
+    "id": "tamarin-santana-batam",
+    "name_en": "Tamarin Santana Golf Club",
+    "region": "Batam",
+    "province": "Riau Islands"
+  },
+  {
+    "id": "southlinks-batam",
+    "name_en": "SouthLinks Country Club",
+    "region": "Batam",
+    "province": "Riau Islands"
+  },
+  {
+    "id": "padang-golf-sukajadi-batam",
+    "name_en": "Padang Golf Sukajadi",
+    "region": "Batam",
+    "province": "Riau Islands"
+  },
+  {
+    "id": "indah-puri-batam",
+    "name_en": "Indah Puri Golf Resort",
+    "region": "Batam",
+    "province": "Riau Islands"
+  },
+  {
+    "id": "black-rocks-belitung",
+    "name_en": "Black Rocks Hotel & Golf Club",
+    "region": "Belitung",
+    "province": "Bangka Belitung"
+  },
+  {
+    "id": "royal-sumatra",
+    "name_en": "Royal Sumatra Golf & Country Club",
+    "region": "Medan",
+    "province": "North Sumatra"
+  },
+  {
+    "id": "tamora-medan",
+    "name_en": "Tamora Golf Club",
+    "region": "Medan",
+    "province": "North Sumatra"
+  },
+  {
+    "id": "graha-metropolitan-medan",
+    "name_en": "Graha Metropolitan (Helvetia) Golf & Country Club",
+    "region": "Medan",
+    "province": "North Sumatra"
+  },
+  {
+    "id": "bukit-barisan-medan",
+    "name_en": "Bukit Barisan Country Club",
+    "region": "Medan",
+    "province": "North Sumatra"
+  },
+  {
+    "id": "rumbai-pekanbaru",
+    "name_en": "Golf Course Pertamina Hulu Rokan Rumbai (formerly Rumbai GCC)",
+    "region": "Pekanbaru",
+    "province": "Riau"
+  },
+  {
+    "id": "labersa-riau",
+    "name_en": "Labersa Golf & Country Club",
+    "region": "Pekanbaru",
+    "province": "Riau"
+  },
+  {
+    "id": "palembang-gc",
+    "name_en": "Kenten Heritage 1937 Golf Course (formerly Palembang Golf Club)",
+    "region": "Palembang",
+    "province": "South Sumatra"
+  },
+  {
+    "id": "bukit-asam",
+    "name_en": "Bukit Asam Golf Club (PTBA)",
+    "region": "Tanjung Enim",
+    "province": "South Sumatra"
+  },
+  {
+    "id": "padang-golf-sukarame",
+    "name_en": "Padang Golf Sukarame",
+    "region": "Bandar Lampung",
+    "province": "Lampung"
+  },
+  {
+    "id": "pertamina-balikpapan",
+    "name_en": "Pertamina Balikpapan Golf Club",
+    "region": "Balikpapan",
+    "province": "East Kalimantan"
+  },
+  {
+    "id": "karang-joang",
+    "name_en": "Karang Joang Golf & Country Club",
+    "region": "Balikpapan",
+    "province": "East Kalimantan"
+  },
+  {
+    "id": "bintang-sintuk-bontang",
+    "name_en": "Hotel Bintang Sintuk Golf Course (Bukit Sintuk)",
+    "region": "Bontang",
+    "province": "East Kalimantan"
+  },
+  {
+    "id": "mahulu-samarinda",
+    "name_en": "Mahulu Golf Course",
+    "region": "Samarinda",
+    "province": "East Kalimantan"
+  },
+  {
+    "id": "isen-mulang-palangkaraya",
+    "name_en": "Isen Mulang Golf Club",
+    "region": "Palangkaraya",
+    "province": "Central Kalimantan"
+  },
+  {
+    "id": "swargaloka-banjarbaru",
+    "name_en": "Padang Golf Swargaloka (Banjarbaru)",
+    "region": "Banjarmasin",
+    "province": "South Kalimantan"
+  },
+  {
+    "id": "alam-khatulistiwa",
+    "name_en": "Alam Khatulistiwa Golf Club",
+    "region": "Pontianak",
+    "province": "West Kalimantan"
+  },
+  {
+    "id": "padivalley-makassar",
+    "name_en": "Padivalley Golf Club",
+    "region": "Makassar",
+    "province": "South Sulawesi"
+  },
+  {
+    "id": "padang-golf-baddoka",
+    "name_en": "Padang Golf Baddoka Makassar",
+    "region": "Makassar",
+    "province": "South Sulawesi"
+  },
+  {
+    "id": "akr-grand-kawanua",
+    "name_en": "AKR Grand Kawanua Golf Club (Wenang)",
+    "region": "Manado",
+    "province": "North Sulawesi"
+  },
+  {
+    "id": "sorowako-gc",
+    "name_en": "Sorowako Golf Club",
+    "region": "Sorowako",
+    "province": "South Sulawesi"
+  },
+  {
+    "id": "bumi-roviga-palu",
+    "name_en": "Lapangan Golf Bumi Roviga (Palu)",
+    "region": "Palu",
+    "province": "Central Sulawesi"
+  },
+  {
+    "id": "sanggoleo-kendari",
+    "name_en": "Sanggoleo Golf Club",
+    "region": "Kendari",
+    "province": "Southeast Sulawesi"
+  },
+  {
+    "id": "cenderawasih-jayapura",
+    "name_en": "Cenderawasih Golf Club (Sentani/Jayapura)",
+    "region": "Jayapura",
+    "province": "Papua"
+  },
+  {
+    "id": "rimba-irian-timika",
+    "name_en": "Rimba Irian Golf Club (Timika)",
+    "region": "Timika",
+    "province": "Central Papua"
+  },
+  {
+    "id": "pattimura-ambon",
+    "name_en": "Pattimura Golf Course",
+    "region": "Ambon",
+    "province": "Maluku"
+  },
+  {
+    "id": "pondok-cabe-golf",
+    "name_en": "Pondok Cabe Golf & Country Club",
+    "region": "Tangerang Selatan",
+    "province": "Banten"
+  },
+  {
+    "id": "wijayakusuma-purwokerto",
+    "name_en": "Padang Golf Wijayakusuma",
+    "region": "Banyumas",
+    "province": "Central Java"
+  },
+  {
+    "id": "mrica-banjarnegara",
+    "name_en": "Mrica Indah Golf Club",
+    "region": "Banjarnegara",
+    "province": "Central Java"
+  },
+  {
+    "id": "adi-soemarmo-solo",
+    "name_en": "Padang Golf Adi Soemarmo",
+    "region": "Boyolali (Solo)",
+    "province": "Central Java"
+  },
+  {
+    "id": "iswahyudi-madiun",
+    "name_en": "Iswahyudi Golf Club (Lanud Iswahjudi)",
+    "region": "Magetan/Madiun",
+    "province": "East Java"
+  },
+  {
+    "id": "arun-lhokseumawe",
+    "name_en": "Arun Golf Club",
+    "region": "Lhokseumawe",
+    "province": "Aceh"
+  },
+  {
+    "id": "lhoknga-aceh",
+    "name_en": "Lhoknga (Seulawah) Golf Course",
+    "region": "Aceh Besar",
+    "province": "Aceh"
+  },
+  {
+    "id": "inalum-tanjung-gading",
+    "name_en": "Inalum Golf Club (Tanjung Gading)",
+    "region": "Batu Bara",
+    "province": "North Sumatra"
+  },
+  {
+    "id": "inalum-paritohan",
+    "name_en": "Inalum Golf Club (Paritohan)",
+    "region": "Toba Samosir",
+    "province": "North Sumatra"
+  },
+  {
+    "id": "ptpn-iv-pabatu",
+    "name_en": "Lapangan Golf PTPN IV Pabatu",
+    "region": "Tebing Tinggi",
+    "province": "North Sumatra"
+  },
+  {
+    "id": "tenera-bah-jambi",
+    "name_en": "Tenera Golf Club (PTPN IV Bah Jambi)",
+    "region": "Simalungun",
+    "province": "North Sumatra"
+  },
+  {
+    "id": "anai-resort",
+    "name_en": "Anai Golf & Mountain Resort",
+    "region": "Padang Pariaman",
+    "province": "West Sumatra"
+  },
+  {
+    "id": "wirabraja-padang",
+    "name_en": "Lapangan Golf Wirabraja Ulu Gadut",
+    "region": "Padang",
+    "province": "West Sumatra"
+  },
+  {
+    "id": "lanud-sutan-sjahrir",
+    "name_en": "Lapangan Golf Lanud Sutan Sjahrir (Tabing)",
+    "region": "Padang",
+    "province": "West Sumatra"
+  },
+  {
+    "id": "phr-dumai",
+    "name_en": "Golf Course Pertamina Hulu Rokan Dumai (formerly Chevron Dumai)",
+    "region": "Dumai",
+    "province": "Riau"
+  },
+  {
+    "id": "simpang-tiga-pekanbaru",
+    "name_en": "Simpang Tiga Golf Club (Pagosita)",
+    "region": "Pekanbaru",
+    "province": "Riau"
+  },
+  {
+    "id": "perkumpulan-golf-jambi",
+    "name_en": "Perkumpulan Golf Jambi (Telanaipura)",
+    "region": "Jambi",
+    "province": "Jambi"
+  },
+  {
+    "id": "bajubang-jambi",
+    "name_en": "Lapangan Golf Bajubang",
+    "region": "Batanghari",
+    "province": "Jambi"
+  },
+  {
+    "id": "merah-putih-bengkulu",
+    "name_en": "Lapangan Golf Merah Putih (Polda Bengkulu)",
+    "region": "Bengkulu",
+    "province": "Bengkulu"
+  },
+  {
+    "id": "agromuko-mukomuko",
+    "name_en": "Lapangan Golf Agromuko",
+    "region": "Mukomuko",
+    "province": "Bengkulu"
+  },
+  {
+    "id": "pertamina-pendopo",
+    "name_en": "Lapangan Golf PT Pertamina Pendopo",
+    "region": "Pendopo",
+    "province": "South Sumatra"
+  },
+  {
+    "id": "pertamina-prabumulih",
+    "name_en": "Lapangan Golf PT Pertamina Prabumulih",
+    "region": "Prabumulih",
+    "province": "South Sumatra"
+  },
+  {
+    "id": "pusri-palembang",
+    "name_en": "Lapangan Golf PT Pusri (Patra Jaya)",
+    "region": "Palembang",
+    "province": "South Sumatra"
+  },
+  {
+    "id": "bagus-kuning-plaju",
+    "name_en": "Bagus Kuning Golf Course",
+    "region": "Palembang",
+    "province": "South Sumatra"
+  },
+  {
+    "id": "bukit-intan-pangkalpinang",
+    "name_en": "Bukit Intan Golf Course (Girimaya)",
+    "region": "Pangkalpinang",
+    "province": "Bangka Belitung"
+  },
+  {
+    "id": "bebute-belitung",
+    "name_en": "Bebute Golf Course (Belitung Golf Club)",
+    "region": "Belitung",
+    "province": "Bangka Belitung"
+  },
+  {
+    "id": "eltari-kupang",
+    "name_en": "Eltari Golf Course (Padang Golf El Tari)",
+    "region": "Kupang",
+    "province": "East Nusa Tenggara"
+  },
+  {
+    "id": "kpc-sangatta",
+    "name_en": "Lapangan Golf PT KPC (Kaltim Prima Coal)",
+    "region": "Sangatta",
+    "province": "East Kalimantan"
+  },
+  {
+    "id": "badak-ngl-bontang",
+    "name_en": "PT Badak NGL Golf Course",
+    "region": "Bontang",
+    "province": "East Kalimantan"
+  },
+  {
+    "id": "tarakan-golf-club",
+    "name_en": "Tarakan Golf Club",
+    "region": "Tarakan",
+    "province": "North Kalimantan"
+  },
+  {
+    "id": "tanjung-tabalong",
+    "name_en": "Tanjung Golf Club (Pertamina EP)",
+    "region": "Tabalong",
+    "province": "South Kalimantan"
+  },
+  {
+    "id": "gorontalo-yosonegoro",
+    "name_en": "Gorontalo Golf Yosonegoro",
+    "region": "Limboto",
+    "province": "Gorontalo"
+  },
+  {
+    "id": "paradise-likupang",
+    "name_en": "Paradise Golf Club (Likupang)",
+    "region": "Likupang",
+    "province": "North Sulawesi"
+  },
+  {
+    "id": "antam-mekongga-pomalaa",
+    "name_en": "Antam Mekongga Golf Club (Pomalaa)",
+    "region": "Kolaka",
+    "province": "Southeast Sulawesi"
+  },
+  {
+    "id": "koarmada-iii-sorong",
+    "name_en": "Lapangan Golf Mini Koarmada III",
+    "region": "Sorong",
+    "province": "Southwest Papua"
+  }
+]

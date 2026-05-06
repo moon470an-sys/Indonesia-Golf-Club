@@ -1,0 +1,389 @@
+{
+  "region": "jakarta_metro",
+  "missing_count": 9,
+  "skip_already_exists": [
+    "pondok-cabe-golf"
+  ],
+  "missing": [
+    {
+      "id": "suvarna-jakarta",
+      "name_en": "Suvarna Jakarta Golf Club",
+      "region": "Jakarta",
+      "province": "DKI Jakarta",
+      "address": "Jl. Radar Selatan No.1, RT.3/RW.4, Halim Perdanakusuma, Kec. Makasar, Kota Jakarta Timur, DKI Jakarta 13610",
+      "lat": -6.28492,
+      "lng": 106.89476,
+      "holes": 27,
+      "par": 72,
+      "year_opened": 2018,
+      "designer": "Robert (Bob) Moore Jr. / JMP Golf Design",
+      "course_layout": "27-hole championship layout on 96 ha at the former Halim 2 site, organized as three nine-hole loops (Red, Green, Blue). Indonesian-style links design with revetted bunkers, walled water canals, large green complexes and strategic bunkering. Mandatory GPS-equipped buggies.",
+      "facilities": [
+        "driving range",
+        "pro shop",
+        "clubhouse",
+        "restaurant",
+        "locker rooms",
+        "putting green",
+        "chipping green",
+        "GPS buggies"
+      ],
+      "website": "https://www.suvarnajakartagolfclub.com/",
+      "notes": "Built on the redeveloped Halim 2 land, sister to the still-operating pay-and-play Halim 1. Premium membership-oriented club operated by Suvarna Land. Suvarna Sutera (Tangerang) instead contains Kedaton Golf & Country Club.",
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://www.suvarnajakartagolfclub.com/",
+          "https://www.golfasian.com/golf-courses/indonesia-golf-courses/jakarta/suvarna-jakarta-golf-club/",
+          "https://www.top100golfcourses.com/golf-course/suvarna-jakarta"
+        ],
+        "last_verified": "2026-05-06"
+      },
+      "fees_2026_05": null,
+      "membership": {
+        "available": true,
+        "sources": [
+          "https://www.suvarnajakartagolfclub.com/membership/"
+        ]
+      },
+      "financials": {
+        "operating_company": "Suvarna Land (PT Suvarna Land)",
+        "parent_group": null,
+        "idx_ticker": null,
+        "listed_status": "private"
+      }
+    },
+    {
+      "id": "kedaton-golf",
+      "name_en": "Kedaton Golf & Country Club",
+      "region": "Tangerang",
+      "province": "Banten",
+      "address": "Jl. Padi Utama No. 18, Padi Golf Estate, Suvarna Sutera, Sukabumi/Sindang Jaya, Pasar Kemis, Tangerang Regency, Banten 15561",
+      "lat": -6.1714,
+      "lng": 106.5269,
+      "holes": 18,
+      "par": 72,
+      "year_opened": 1995,
+      "designer": "Rick Robbins",
+      "course_layout": "Championship 18-hole, par-72 course measuring approximately 7,000 yards on 80 ha. Water hazards line 17 of 18 holes. Traditional Sundanese-style clubhouse.",
+      "facilities": [
+        "driving range",
+        "pro shop",
+        "clubhouse",
+        "restaurant",
+        "banquet hall",
+        "locker rooms",
+        "putting green"
+      ],
+      "website": "https://en.gogolf.co.id/golfcourselist/kedaton-golf-country-club",
+      "notes": "Inside the Suvarna Sutera (Padi Golf Estate) integrated township in Pasar Kemis/Sindang Jaya, Tangerang. Founded by Yayasan Tunas Manunggal in 1994, opened 1995. Now part of the Alam Sutera Realty (ASRI) Suvarna Sutera development. ~1,700 active members.",
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://gogolf.co.id/en/golf-course/kedaton-golf-country-club",
+          "https://www.golfpass.com/travel-advisor/courses/38224-kedaton-golf-and-country-club",
+          "https://suvarnasutera.com/facilities"
+        ],
+        "last_verified": "2026-05-06"
+      },
+      "fees_2026_05": null,
+      "membership": {
+        "available": true,
+        "sources": [
+          "https://gogolf.co.id/en/golf-course/kedaton-golf-country-club"
+        ]
+      },
+      "financials": {
+        "operating_company": "PT Suvarna Sutera (Padi Golf Estate)",
+        "parent_group": "Alam Sutera Realty",
+        "idx_ticker": "ASRI",
+        "listed_status": "subsidiary-of-listed"
+      }
+    },
+    {
+      "id": "sedayu-indo-golf",
+      "name_en": "Sedayu Indo Golf (The Links)",
+      "region": "Jakarta",
+      "province": "DKI Jakarta",
+      "address": "Jl. Marina Indah No. 1, Golf Island Boulevard, Pantai Indah Kapuk (Pantai Maju), Penjaringan, Jakarta Utara 14460",
+      "lat": -6.108,
+      "lng": 106.738,
+      "holes": 18,
+      "par": 72,
+      "year_opened": 2021,
+      "designer": "Nicklaus Design",
+      "course_layout": "Indonesia's first 'Hybrid Golf' design, blending Links and Parkland features on a reclaimed island in North Jakarta Bay (Pantai Maju / Golf Island PIK). Direct ocean views.",
+      "facilities": [
+        "driving range",
+        "pro shop",
+        "clubhouse",
+        "restaurant",
+        "locker rooms",
+        "putting green"
+      ],
+      "website": "https://www.sedayuindogolf.com/",
+      "notes": "Premium course on the 303-ha Golf Island reclamation in Pantai Indah Kapuk, developed by Agung Sedayu Group together with Salim Group. First major reclamation-based golf course in Indonesia.",
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://www.sedayuindogolf.com/",
+          "https://www.golfpass.com/travel-advisor/courses/40323-sedayu-indo-golf",
+          "https://www.pik2.com/facility-detail?id=7"
+        ],
+        "last_verified": "2026-05-06"
+      },
+      "fees_2026_05": null,
+      "membership": {
+        "available": true,
+        "sources": [
+          "https://www.sedayuindogolf.com/index.php?fuseaction=fee_membership"
+        ]
+      },
+      "financials": {
+        "operating_company": "Sedayu Indo Golf (Agung Sedayu Group)",
+        "parent_group": "Agung Sedayu Group / Salim Group",
+        "idx_ticker": null,
+        "listed_status": "private"
+      }
+    },
+    {
+      "id": "bandar-kemayoran-golf",
+      "name_en": "Bandar Kemayoran Golf (Kemayoran Indah Golf, under renovation)",
+      "region": "Jakarta",
+      "province": "DKI Jakarta",
+      "address": "Jl. Ruas D3-4, Kota Baru Bandar Kemayoran, Pademangan Timur, Pademangan, Jakarta Pusat 14410",
+      "lat": -6.14,
+      "lng": 106.85,
+      "holes": 18,
+      "par": 72,
+      "year_opened": 1997,
+      "designer": "Peter Dalkeith Scott",
+      "course_layout": "Urban 18-hole, par-72 layout (~6,024 yds blue tees) with water hazards on 13 holes, an island green at hole 7 and a peninsula fairway at hole 14.",
+      "facilities": [
+        "driving range",
+        "pro shop",
+        "clubhouse",
+        "restaurant",
+        "locker rooms",
+        "putting green",
+        "chipping green",
+        "VIP room"
+      ],
+      "website": "https://golfbandarkemayoran.id/",
+      "notes": "Final tournament held 16-18 April 2026; subsequently closed for ~2-year revitalization to be rebranded 'Kemayoran Indah Golf' with night-golf concept, 4-star hotel and clubhouse. New operator PT Accola Hotel Indonesia (subsidiary of IDX-listed PT DMS Propertindo Tbk, KOTA) under 15-year cooperation agreement with PPK Kemayoran (~Sept 2028 reopening).",
+      "operating_status": {
+        "status": "closed_temporary",
+        "confidence": "high",
+        "closure_reason": "Revitalization (2-year, reopens ~2028 as Kemayoran Indah Golf with night-golf, hotel, new clubhouse)",
+        "reopened_as": "Kemayoran Indah Golf",
+        "evidence": [
+          "https://golfjoy.co.id/selamat-tinggal-golf-bandar-kemayoran-selamat-datang-kemayoran-indah-golf/",
+          "https://golftimes.id/2026/04/20/revitalisasi-kemayoran-indah-golf-hadirkan-konsep-night-golf-dan-fasilitas-terpadu-di-jantung-jakarta/"
+        ],
+        "last_verified": "2026-05-06"
+      },
+      "fees_2026_05": null,
+      "membership": {
+        "available": "unknown",
+        "sources": [
+          "https://golfbandarkemayoran.id/"
+        ]
+      },
+      "financials": {
+        "operating_company": "PT Accola Hotel Indonesia",
+        "parent_group": "PT DMS Propertindo Tbk",
+        "idx_ticker": "KOTA",
+        "listed_status": "subsidiary-of-listed"
+      }
+    },
+    {
+      "id": "jaya-ancol-golf",
+      "name_en": "Padang Golf Jaya Ancol (Ancol Golf Club)",
+      "region": "Jakarta",
+      "province": "DKI Jakarta",
+      "address": "Jl. Lodan Timur No. 7, Taman Impian Jaya Ancol, Pademangan, Jakarta Utara 14430",
+      "lat": -6.122,
+      "lng": 106.835,
+      "holes": 18,
+      "par": 71,
+      "year_opened": null,
+      "designer": "Ir. Ciputra",
+      "course_layout": "Seaside 18-hole, par-71 course inside the Taman Impian Jaya Ancol resort complex, partly built on land below sea level along the Java Sea coast.",
+      "facilities": [
+        "driving range",
+        "pro shop",
+        "clubhouse",
+        "restaurant",
+        "locker rooms"
+      ],
+      "website": null,
+      "notes": "Operated by IDX-listed PT Pembangunan Jaya Ancol Tbk (PJAA), majority-owned by the DKI Jakarta provincial government. Long-running coastal Jakarta course adjacent to Ancol amusement park.",
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.mscorecard.com/mscorecard/showcourse.php?cid=1243501465772",
+          "https://golftoday.co.uk/course/jaya-ancol-golf-club/"
+        ],
+        "last_verified": "2026-05-06"
+      },
+      "fees_2026_05": null,
+      "membership": {
+        "available": "unknown",
+        "sources": [
+          "https://www.mscorecard.com/mscorecard/showcourse.php?cid=1243501465772"
+        ]
+      },
+      "financials": {
+        "operating_company": "PT Pembangunan Jaya Ancol Tbk",
+        "parent_group": "Pemprov DKI Jakarta / Pembangunan Jaya Group",
+        "idx_ticker": "PJAA",
+        "listed_status": "listed"
+      }
+    },
+    {
+      "id": "lotus-lakes-karawang",
+      "name_en": "Lotus Lakes Golf Club (Karawang International)",
+      "region": "Karawang",
+      "province": "West Java",
+      "address": "Jl. Bukit Golf Indah No. 1, Margamulya, Karawang Barat, Kabupaten Karawang, Jawa Barat 41361",
+      "lat": -6.331,
+      "lng": 107.273,
+      "holes": 27,
+      "par": 72,
+      "year_opened": 1993,
+      "designer": "Naoyuki Saito",
+      "course_layout": "27-hole championship layout in three loops: Lotus (3,548 yds), Orchid (3,649 yds), Jasmine (3,595 yds). Parkland style with multiple lakes.",
+      "facilities": [
+        "driving range",
+        "pro shop",
+        "clubhouse",
+        "restaurant",
+        "locker rooms",
+        "putting green",
+        "hotel"
+      ],
+      "website": "https://lotuslakesgolf.com/",
+      "notes": "Inaugurated 29 October 1993 as Karawang International Golf Club; now Lotus Lakes Golf Club. In Karawang industrial belt at Bukit Golf Indah; on-site Puri KIIC Golf View Hotel.",
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://lotuslakesgolf.com/",
+          "https://gogolf.co.id/en/golf-course/lotus-lake-golf-club",
+          "https://www.golfpass.com/travel-advisor/courses/38222-lotuslakes-golf-club-lotus-course"
+        ],
+        "last_verified": "2026-05-06"
+      },
+      "fees_2026_05": null,
+      "membership": {
+        "available": true,
+        "sources": [
+          "https://lotuslakesgolf.com/"
+        ]
+      },
+      "financials": {
+        "operating_company": "PT Karawang Bukit Golf",
+        "parent_group": null,
+        "idx_ticker": null,
+        "listed_status": "private"
+      }
+    },
+    {
+      "id": "palm-hill-bogor",
+      "name_en": "Palm Hill Golf Club",
+      "region": "Bogor",
+      "province": "West Java",
+      "address": "Jl. Sentul Raya, Desa Kadumangu, Kec. Babakan Madang (Sentul), Kabupaten Bogor, Jawa Barat 16810",
+      "lat": -6.5793,
+      "lng": 106.8762,
+      "holes": 18,
+      "par": 72,
+      "year_opened": 1993,
+      "designer": "Tom Matteson",
+      "course_layout": "Hilly 18-hole, par-72 leisure course (~7,034 yds) on 70 ha within a 94-ha estate in the Sentul/Citeureup area, with views of surrounding hills and Mount Salak.",
+      "facilities": [
+        "driving range",
+        "pro shop",
+        "clubhouse",
+        "restaurant",
+        "locker rooms",
+        "putting green"
+      ],
+      "website": "https://palmhillgolf.co.id/",
+      "notes": "Opened September 1993, developed by Taisei Corporation of Japan. Now part of the Golflink Resorts portfolio. Public-access course in Sentul/Citeureup, Bogor.",
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://palmhillgolf.co.id/",
+          "https://golflinkresorts.co.id/courses/palmhill/en",
+          "https://www.golfpass.com/travel-advisor/courses/38256-palm-hill-golf-club"
+        ],
+        "last_verified": "2026-05-06"
+      },
+      "fees_2026_05": null,
+      "membership": {
+        "available": true,
+        "sources": [
+          "https://palmhillgolf.co.id/"
+        ]
+      },
+      "financials": {
+        "operating_company": "Palm Hill Golf Club / Golflink Resorts",
+        "parent_group": null,
+        "idx_ticker": null,
+        "listed_status": "private"
+      }
+    },
+    {
+      "id": "takara-golf-tigaraksa",
+      "name_en": "Takara Golf Resort",
+      "region": "Tangerang",
+      "province": "Banten",
+      "address": "Jl. Aria Wasangkara, Tapos, Tigaraksa, Kabupaten Tangerang, Banten 15720",
+      "lat": -6.349,
+      "lng": 106.479,
+      "holes": 18,
+      "par": 72,
+      "year_opened": 1994,
+      "designer": "Hisayuki Watanabe",
+      "course_layout": "18-hole, par-72 course (~6,070 yds) in the Tigaraksa area of western Tangerang. Affordable, approachable layout.",
+      "facilities": [
+        "driving range",
+        "pro shop",
+        "clubhouse",
+        "restaurant",
+        "locker rooms",
+        "putting green"
+      ],
+      "website": "https://takara-golf.co.id/",
+      "notes": "Public-access Japanese-designed course in Tigaraksa, western Tangerang Regency, opened 1994. Part of the Tigaraksa Golf Residens estate.",
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://gogolf.co.id/en/golf-course/takara-golf-resort",
+          "https://www.golfpass.com/travel-advisor/courses/38284-takara-golf-resort"
+        ],
+        "last_verified": "2026-05-06"
+      },
+      "fees_2026_05": null,
+      "membership": {
+        "available": true,
+        "sources": [
+          "https://www.indonesiagolf.indonesiagolfcourses.com/member-details.php?abbr=TGR"
+        ]
+      },
+      "financials": {
+        "operating_company": "Takara Golf Resort (Tigaraksa Golf)",
+        "parent_group": null,
+        "idx_ticker": null,
+        "listed_status": "private"
+      }
+    }
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "region": "java_west_central",
+  "missing_count": 3,
+  "missing": [
+    {
+      "id": "bandung-indah-margahayu",
+      "name_en": "Bandung Indah Golf & Country Club",
+      "region": "Bandung",
+      "province": "West Java",
+      "address": "Jalan Terusan Kopo KM 8.4, Sulaiman, Margahayu, Bandung Regency, West Java 40229",
+      "lat": -6.97961,
+      "lng": 107.57446,
+      "holes": 18,
+      "par": 72,
+      "year_opened": 1994,
+      "designer": "Michael Coates & Associates (Australia)",
+      "course_layout": "18 holes, par 72, ~6,386 m. Parkland-style with man-made undulating hills, water hazards, strategic bunkers, long par-5s (#14 ~500m, #17 ~516m). Cool climate at western edge of Bandung.",
+      "facilities": [
+        "driving range",
+        "pro shop",
+        "chipping green",
+        "training bunkers",
+        "locker rooms",
+        "restaurants",
+        "tennis courts",
+        "swimming pool",
+        "children's playground",
+        "meeting rooms",
+        "club rental",
+        "cart rental"
+      ],
+      "website": "https://bandungindahgolf.com",
+      "notes": "An 18-hole, par-72 championship course on the western edge of Bandung opened in 1994 to a Michael Coates design. Co-located with the Bandung Indah Waterpark, one of the most full-featured resort-style golf clubs in the Bandung area, open to the public daily.",
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://www.golfasian.com/golf-courses/indonesia-golf-courses/bandung/bandung-indah-golf-country-club/",
+          "https://www.golflux.com/course/bandung-indah-golf-country-club/"
+        ],
+        "last_verified": "2026-05-06"
+      },
+      "fees_2026_05": null,
+      "membership": {
+        "available": "unknown",
+        "sources": [
+          "https://www.golfasian.com/golf-courses/indonesia-golf-courses/bandung/bandung-indah-golf-country-club/"
+        ]
+      },
+      "financials": {
+        "operating_company": null,
+        "parent_group": null,
+        "idx_ticker": null,
+        "listed_status": "private"
+      }
+    },
+    {
+      "id": "arcamanik-raya-bandung",
+      "name_en": "Arcamanik Raya Golf & Country Club",
+      "region": "Bandung",
+      "province": "West Java",
+      "address": "Jl. Raya Timur Km. 7 / Jl. Golf Barat Raya, Sukamiskin, Arcamanik, Bandung, West Java 40293",
+      "lat": -6.92,
+      "lng": 107.67,
+      "holes": 18,
+      "par": null,
+      "year_opened": 1970,
+      "designer": "Ir. Sonarjo",
+      "course_layout": "18-hole parkland-style course built in 1970 inside the Arcamanik area of east Bandung, now part of the broader Jabar (West Java) Sport Center complex. Course is relatively flat.",
+      "facilities": [
+        "pro shop (limited)",
+        "caddies"
+      ],
+      "website": null,
+      "notes": "One of Bandung's oldest 18-hole courses, opened 1970 inside the West Java provincial Arcamanik Sport Center (rebuilt for PON XIX 2016). Public/affordable round. Coordinates approximate (~-6.92, 107.67).",
+      "operating_status": {
+        "status": "operating",
+        "confidence": "medium",
+        "evidence": [
+          "https://www.leadingcourses.com/clubs/asia+indonesia+java+west-java/arcamanik-raya-golf-country-club",
+          "https://www.golfshake.com/course/view/21398/Arcamanik_Raya_Golf_Country_Club.html"
+        ],
+        "last_verified": "2026-05-06"
+      },
+      "fees_2026_05": null,
+      "membership": {
+        "available": "unknown",
+        "sources": []
+      },
+      "financials": {
+        "operating_company": "Pengelola Lapangan Golf Arcamanik (under Jabar provincial Sport Center)",
+        "parent_group": "Pemerintah Provinsi Jawa Barat",
+        "idx_ticker": null,
+        "listed_status": "government"
+      }
+    },
+    {
+      "id": "mrica-indah-banjarnegara",
+      "name_en": "Mrica Indah Golf Club",
+      "region": "Banjarnegara",
+      "province": "Central Java",
+      "address": "Kompleks PLN Indonesia Power UBP Mrica, adjacent to Waduk Mrica (Panglima Besar Soedirman Reservoir), Banjarnegara, Central Java",
+      "lat": null,
+      "lng": null,
+      "holes": 18,
+      "par": null,
+      "year_opened": 1989,
+      "designer": null,
+      "course_layout": "18-hole course on gently rolling terrain on the edge of Waduk Mrica/PB Soedirman hydroelectric reservoir. Originally built 1989 to serve European expatriate engineers working on the Mrica hydro plant. New driving range opened February 2025.",
+      "facilities": [
+        "driving range (opened Feb 2025)",
+        "clubhouse",
+        "caddies",
+        "ojek transport between holes (no golf carts)"
+      ],
+      "website": null,
+      "notes": "An 18-hole industrial-heritage golf course built 1989 alongside the Mrica hydroelectric scheme, operated by PLN Indonesia Power UBP Mrica. Green fees from ~IDR 100,000. Recently revitalised with new driving range inaugurated by the Acting Regent of Banjarnegara in early 2025.",
+      "operating_status": {
+        "status": "operating",
+        "confidence": "high",
+        "evidence": [
+          "https://golftimes.id/2025/10/06/lapangan-golf-mrica-permata-hijau-di-jantung-banjarnegara/",
+          "https://obgolf.co.id/lapangan-golf-mrica-permata-hijau-di-kawasan-objek-vital-negara/",
+          "https://www.golflux.com/course/mrica-indah-golf-club/"
+        ],
+        "last_verified": "2026-05-06"
+      },
+      "fees_2026_05": {
+        "weekday": {
+          "green_fee_idr": 100000
+        },
+        "weekend": {
+          "green_fee_idr": null
+        },
+        "currency": "IDR",
+        "sources": [
+          "https://obgolf.co.id/lapangan-golf-mrica-permata-hijau-di-kawasan-objek-vital-negara/"
+        ]
+      },
+      "membership": {
+        "available": "unknown",
+        "sources": []
+      },
+      "financials": {
+        "operating_company": "PT PLN Indonesia Power UBP Mrica",
+        "parent_group": "PT PLN Indonesia Power / PT PLN (Persero)",
+        "idx_ticker": null,
+        "listed_status": "state-owned"
+      }
+    }
+  ],
+  "no_other_majors_found": true,
+  "notes": "Three confirmed missing in West/Central Java: Bandung Indah G&CC (Margahayu), Arcamanik Raya G&CC (heritage public, Bandung), Mrica Indah (Banjarnegara, PLN-operated)."
+}

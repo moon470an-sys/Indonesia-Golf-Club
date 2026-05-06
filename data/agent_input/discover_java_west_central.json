@@ -1,0 +1,110 @@
+[
+  {
+    "id": "parahyangan-bandung",
+    "name_en": "Parahyangan Golf Bandung",
+    "region": "Bandung",
+    "province": "West Java"
+  },
+  {
+    "id": "mountain-view-bandung",
+    "name_en": "Mountain View Golf Club",
+    "region": "Bandung",
+    "province": "West Java"
+  },
+  {
+    "id": "dago-heritage-1917",
+    "name_en": "Dago Heritage 1917 Golf Course",
+    "region": "Bandung",
+    "province": "West Java"
+  },
+  {
+    "id": "jatinangor-national",
+    "name_en": "Jatinangor National Golf & Resort",
+    "region": "Bandung",
+    "province": "West Java"
+  },
+  {
+    "id": "ciater-highland",
+    "name_en": "Ciater Highland Golf",
+    "region": "Bandung",
+    "province": "West Java"
+  },
+  {
+    "id": "merapi-yogya",
+    "name_en": "Merapi Golf Yogyakarta",
+    "region": "Yogyakarta",
+    "province": "DI Yogyakarta"
+  },
+  {
+    "id": "yogyakarta-gc",
+    "name_en": "Yogyakarta Golf Club (Hyatt Regency)",
+    "region": "Yogyakarta",
+    "province": "DI Yogyakarta"
+  },
+  {
+    "id": "adisutjipto-yogya",
+    "name_en": "Padang Golf Adisutjipto",
+    "region": "Yogyakarta",
+    "province": "DI Yogyakarta"
+  },
+  {
+    "id": "borobudur-magelang",
+    "name_en": "Borobudur International Golf & Country Club",
+    "region": "Magelang",
+    "province": "Central Java"
+  },
+  {
+    "id": "gombel-semarang",
+    "name_en": "Gombel Golf Semarang",
+    "region": "Semarang",
+    "province": "Central Java"
+  },
+  {
+    "id": "candi-semarang",
+    "name_en": "Graha Candi Golf Country Club",
+    "region": "Semarang",
+    "province": "Central Java"
+  },
+  {
+    "id": "bandung-giri-gahana",
+    "name_en": "Bandung Giri Gahana Golf & Resort",
+    "region": "Sumedang",
+    "province": "West Java"
+  },
+  {
+    "id": "padang-golf-lanud-sulaiman",
+    "name_en": "Padang Golf Lanud Sulaiman",
+    "region": "Bandung",
+    "province": "West Java"
+  },
+  {
+    "id": "royal-cirebon-golf",
+    "name_en": "Royal Cirebon Golf & Country Club",
+    "region": "Cirebon",
+    "province": "West Java"
+  },
+  {
+    "id": "ngamplang-garut",
+    "name_en": "Lapangan Golf Ngamplang (Flamboyan)",
+    "region": "Garut",
+    "province": "West Java"
+  },
+  {
+    "id": "tidar-golf-magelang",
+    "name_en": "Tidar Golf Course",
+    "region": "Magelang",
+    "province": "Central Java"
+  },
+  {
+    "id": "pertamina-tritih-cilacap",
+    "name_en": "Pertamina Tritih Golf & Country Club",
+    "region": "Cilacap",
+    "province": "Central Java"
+  },
+  {
+    "id": "black-eagle-bsb-semarang",
+    "name_en": "Black Eagle Golf Course (BSB City)",
+    "region": "Semarang",
+    "province": "Central Java"
+  }
+]

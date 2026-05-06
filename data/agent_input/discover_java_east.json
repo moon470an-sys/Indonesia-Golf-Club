@@ -1,0 +1,68 @@
+[
+  {
+    "id": "ciputra-surabaya",
+    "name_en": "Ciputra Golf Club & Hotel Surabaya",
+    "region": "Surabaya",
+    "province": "East Java"
+  },
+  {
+    "id": "bukit-darmo-surabaya",
+    "name_en": "Bukit Darmo Golf",
+    "region": "Surabaya",
+    "province": "East Java"
+  },
+  {
+    "id": "finna-pasuruan",
+    "name_en": "Finna Golf & Country Club Resort",
+    "region": "Pasuruan",
+    "province": "East Java"
+  },
+  {
+    "id": "taman-dayu",
+    "name_en": "Taman Dayu Golf Club & Resort",
+    "region": "Pasuruan",
+    "province": "East Java"
+  },
+  {
+    "id": "graha-famili",
+    "name_en": "Golf Graha Famili & Country Club",
+    "region": "Surabaya",
+    "province": "East Java"
+  },
+  {
+    "id": "araya-malang",
+    "name_en": "Araya Golf & Family Club",
+    "region": "Malang",
+    "province": "East Java"
+  },
+  {
+    "id": "jember-glantangan",
+    "name_en": "Glantangan Golf Club (Jember)",
+    "region": "Jember",
+    "province": "East Java"
+  },
+  {
+    "id": "singosari-malang",
+    "name_en": "Padang Golf Abdulrachman Saleh (Singosari)",
+    "region": "Malang",
+    "province": "East Java"
+  },
+  {
+    "id": "ahmad-yani-surabaya",
+    "name_en": "Ahmad Yani Golf Club (Yani Golf Reborn)",
+    "region": "Surabaya",
+    "province": "East Java"
+  },
+  {
+    "id": "pakuwon-golf-surabaya",
+    "name_en": "Pakuwon Golf & Family Club",
+    "region": "Surabaya",
+    "province": "East Java"
+  },
+  {
+    "id": "dhoho-kediri",
+    "name_en": "Dhoho Golf Club (Surya Dhoho)",
+    "region": "Kediri",
+    "province": "East Java"
+  }
+]
