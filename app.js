@@ -9,7 +9,7 @@ let currentFilter = {
   search: '',
   regions: new Set(),   // empty = all
   holes: 'all',
-  status: 'operating-only',
+  status: 'all',
   priceMin: 0,
   priceMax: PRICE_MAX,
   priceIncludeUnknown: true,
@@ -58,6 +58,15 @@ function initMap() {
     spiderfyOnMaxZoom: true,
   });
   map.addLayer(markerCluster);
+
+  map.on('click', () => {
+    const panel = document.getElementById('detailPanel');
+    if (panel && panel.classList.contains('open')) {
+      panel.classList.remove('open');
+      panel.setAttribute('aria-hidden', 'true');
+      document.querySelectorAll('.course-item').forEach(el => el.classList.remove('active'));
+    }
+  });
 }
 
 // === Load Data ===
@@ -253,7 +262,7 @@ function updateFilterSummary() {
   if (currentFilter.search) n++;
   if (currentFilter.regions.size > 0) n++;
   if (currentFilter.holes !== 'all') n++;
-  if (currentFilter.status !== 'operating-only') n++;
+  if (currentFilter.status !== 'all') n++;
   if (isPriceFiltered()) n++;
   if (!currentFilter.priceIncludeUnknown) n++;
   const badge = document.getElementById('activeFilterBadge');
@@ -267,7 +276,7 @@ function wireFilterSummary() {
     currentFilter.search = '';
     currentFilter.regions.clear();
     currentFilter.holes = 'all';
-    currentFilter.status = 'operating-only';
+    currentFilter.status = 'all';
     currentFilter.priceMin = 0;
     currentFilter.priceMax = PRICE_MAX;
     currentFilter.priceIncludeUnknown = true;
@@ -276,7 +285,7 @@ function wireFilterSummary() {
     document.getElementById('priceMax').value = PRICE_MAX;
     document.getElementById('priceIncludeUnknown').checked = true;
     document.querySelectorAll('#holesChips .chip').forEach(b => b.classList.toggle('active', b.dataset.holes === 'all'));
-    document.querySelectorAll('#statusChips .chip').forEach(b => b.classList.toggle('active', b.dataset.status === 'operating-only'));
+    document.querySelectorAll('#statusChips .chip').forEach(b => b.classList.toggle('active', b.dataset.status === 'all'));
     renderRegionMulti();
     updatePriceSliderUI();
     applyFilter();
@@ -1696,14 +1705,10 @@ function renderFeeCell(c, slot, cat) {
   } else {
     priceHtml = fmtIDR(primary.price);
   }
-  const warn = showWarn ? `<span class="price-warn" title="출처별 가격 차이 ${diffPct.toFixed(0)}% — 검증 필요">⚠️</span>` : '';
-  const extra = (cat === 'all' && visible.length > 1 && !showRange)
-    ? `<span class="src-extra">+${visible.length - 1}개 출처</span>` : '';
-
   const dimClass = dimmed ? ' dim' : '';
   const premiumClass = (slot === 'satAm' || slot === 'sunAm') ? ' fee-premium' : '';
   const ariaLabel = `${SLOT_LABEL[slot]} ${fmtIDR(primary.price)} — 출처 ${primary.src.label}${visible.length > 1 ? `, 외 ${visible.length - 1}개` : ''}`;
-  return `<td class="num fee fee-cell${dimClass}${premiumClass}" data-fee-cell="${slot}" data-course-id="${escapeHtml(c.id)}" tabindex="0" role="button" aria-label="${escapeHtml(ariaLabel)}">${priceHtml}${warn}${extra}</td>`;
+  return `<td class="num fee fee-cell${dimClass}${premiumClass}" data-fee-cell="${slot}" data-course-id="${escapeHtml(c.id)}" tabindex="0" role="button" aria-label="${escapeHtml(ariaLabel)}">${priceHtml}</td>`;
 }
 
 // === Detail-panel: operating-status evidence ===
@@ -2863,16 +2868,14 @@ document.getElementById('showFinanceCols')?.addEventListener('change', (e) => {
 // === Finance table rendering ===
 
 // Strict policy: a row is shown only when it has at least one actual
-// financial-statement number (revenue/profit/assets/segment/membership/...).
-// Ticker-only rows (parent group + listed_status + ticker but no audited
-// numbers) are hidden — listing them in a "재무 분석" tab is misleading
-// because every numeric column displays "—".
+// financial-statement number (revenue/profit/assets/segment/...).
+// Membership-only rows (회원권 가격만 있고 진짜 재무 데이터 없음) are
+// excluded — they belong in the membership view, not 재무 분석.
 function _hasMeaningfulFinancials(fin) {
   if (!fin || typeof fin !== 'object') return false;
   const NUM_KEYS = ['revenue_idr','revenue_idr_h1','net_profit_idr','net_profit_idr_h1',
                     'total_assets_idr','course_segment_revenue_idr',
-                    'membership_price_idr','membership_price_usd','employees',
-                    'investment_idr','investment_usd'];
+                    'employees','investment_idr','investment_usd'];
   for (const k of NUM_KEYS) {
     if (typeof fin[k] === 'number' && fin[k] !== 0) return true;
   }
@@ -2982,10 +2985,6 @@ function renderFinanceTable() {
       ? (np < 0 ? `<span class="neg">−${escapeHtml(fmtBigIDR(Math.abs(np)) || '')}</span>` : escapeHtml(fmtBigIDR(np) || '—'))
       : '<span class="muted">—</span>';
 
-    const segHtml = fin.course_segment_disclosed && fin.course_segment_revenue_idr != null
-      ? `<span class="seg-disclosed">${escapeHtml(fmtBigIDR(fin.course_segment_revenue_idr) || '—')}</span>`
-      : (fin.course_segment_disclosed ? '<span class="seg-disclosed">별도공시</span>' : '<span class="muted">—</span>');
-
     const memHtml = fin.membership_price_idr != null ? escapeHtml(fmtBigIDR(fin.membership_price_idr) || '')
       : (fin.membership_price_usd != null ? `$${fin.membership_price_usd.toLocaleString('en-US')}` : '<span class="muted">—</span>');
 
@@ -3030,7 +3029,6 @@ function renderFinanceTable() {
       <td class="num">${escapeHtml(fmtBigIDR(fin.revenue_idr ?? fin.revenue_idr_h1) || '—')}</td>
       <td class="num">${npHtml}</td>
       <td class="num">${escapeHtml(fmtBigIDR(fin.total_assets_idr) || '—')}</td>
-      <td class="num">${segHtml}</td>
       <td class="num">${memHtml}</td>
       <td class="trend-cell">${trendHtml}</td>
       <td>${srcCellHtml}</td>
