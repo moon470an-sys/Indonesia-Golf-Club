@@ -537,11 +537,9 @@ function renderCourseList() {
     return;
   }
 
-  // Sort: by region, then by name
-  const sorted = [...filteredCourses].sort((a, b) => {
-    if (a.region !== b.region) return a.region.localeCompare(b.region);
-    return a.name_en.localeCompare(b.name_en);
-  });
+  // Sort: by name (descending)
+  const sorted = [...filteredCourses].sort((a, b) =>
+    b.name_en.localeCompare(a.name_en));
 
   sorted.forEach(c => {
     const item = document.createElement('div');
@@ -1135,7 +1133,7 @@ function escapeHtml(s) {
 }
 
 // === Tabs ===
-let tableSort = { key: 'region', dir: 'asc' };
+let tableSort = { key: 'name_en', dir: 'desc' };
 
 document.querySelectorAll('.tab').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -2940,6 +2938,8 @@ function renderFinanceTable() {
     }
     return true;
   });
+
+  rows.sort((a, b) => b.name_en.localeCompare(a.name_en));
 
   // Counter shows "<visible> / <universe>" (real meaningful total, not 137)
   const counter = document.getElementById('financeVisibleCount');
