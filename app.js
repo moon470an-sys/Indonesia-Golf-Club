@@ -1799,25 +1799,49 @@ function renderSourceHistory(c) {
   const priSlotPrices = SLOT_KEYS
     .filter(s => priRates[s] != null)
     .map(s => ({ slot: s, price: priRates[s] }));
+  // Fingerprint slot prices so URLs in the same category that produce the
+  // same rate set collapse into a single row (extras shown as compact links).
+  const priSig = priSlotPrices.map(s => `${s.slot}:${s.price}`).join('|');
+  const placedUrls = new Set();
+  const fpKeyOf = (cat, sig) => `${cat}|${sig}`;
+  const fingerprintIndex = new Map();
   if (priSlotPrices.length > 0) {
+    const priUrl = priInfo.url || (f.sources || [])[0] || '';
     groups[priInfo.kind] ??= [];
-    groups[priInfo.kind].push({
+    const priEntry = {
       label: priInfo.label || '공식',
-      url: priInfo.url || (f.sources || [])[0] || '',
+      url: priUrl,
       date: f.last_verified || null,
       slots: priSlotPrices,
-    });
-    // Other URLs in f.sources (beyond the first) — register them under their own category if different.
+      extraUrls: [],
+    };
+    groups[priInfo.kind].push(priEntry);
+    if (priUrl) placedUrls.add(priUrl);
+    fingerprintIndex.set(fpKeyOf(priInfo.kind, priSig), priEntry);
+
+    // Other URLs in f.sources — fold into existing category-row when prices
+    // match; otherwise create a new row for that category.
     const extra = (f.sources || []).slice(1).filter(u => typeof u === 'string' && /^https?:/.test(u));
     for (const u of extra) {
+      if (placedUrls.has(u)) continue;
+      placedUrls.add(u);
       const info = labelSource(u, c.website);
       const cat = SRC_TAB_OF_KIND[info.kind] || 'news';
-      groups[cat] ??= [];
-      groups[cat].push({
-        label: info.label, url: u,
-        date: f.last_verified || null,
-        slots: priSlotPrices,
-      });
+      const fp = fpKeyOf(cat, priSig);
+      const existing = fingerprintIndex.get(fp);
+      if (existing) {
+        existing.extraUrls.push({ label: info.label, url: u });
+      } else {
+        const entry = {
+          label: info.label, url: u,
+          date: f.last_verified || null,
+          slots: priSlotPrices,
+          extraUrls: [],
+        };
+        groups[cat] ??= [];
+        groups[cat].push(entry);
+        fingerprintIndex.set(fp, entry);
+      }
     }
   }
 
@@ -1907,9 +1931,13 @@ function renderSourceHistory(c) {
     const collapseTag = (entry.n_collapsed && entry.n_collapsed > 1)
       ? `<span class="hist-collapse-tag" title="이 페이지에서 ${entry.n_collapsed}개 가격 추출 → median 사용">${entry.n_collapsed}개 추출/median</span>`
       : '';
+    const extraUrlsHtml = (entry.extraUrls && entry.extraUrls.length)
+      ? `<div class="hist-extra-sources" title="동일 가격을 게시한 추가 출처">추가 출처: ${entry.extraUrls.map(e => `<a href="${escapeHtml(e.url)}" target="_blank" rel="noopener" class="hist-extra-link">${escapeHtml(e.label)} ↗</a>`).join(' · ')}</div>`
+      : '';
     return `<div class="hist-row${entry.isCrawled ? ' is-crawled' : ''}">
       <div class="hist-row-head"><span class="hist-label">${escapeHtml(entry.label)}</span>${conf}${crawledTag}${collapseTag}${dateHtml}${linkHtml}</div>
       <div class="hist-slots">${slotsHtml || '<span class="muted">—</span>'}</div>
+      ${extraUrlsHtml}
     </div>`;
   };
 

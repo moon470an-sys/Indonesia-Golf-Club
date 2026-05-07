@@ -2140,6 +2140,21 @@ body.detail-open .leaflet-bottom.leaflet-right {
 }
 .hist-slot-key { color: var(--text-muted); font-size: 10.5px; }
 .hist-slot-val { font-family: var(--font-mono); color: var(--text-primary); font-weight: 600; }
+.hist-extra-sources {
+  margin-top: 4px;
+  font-size: 10.5px;
+  color: var(--text-muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 6px;
+  align-items: baseline;
+}
+.hist-extra-link {
+  color: var(--text-secondary, var(--text-muted));
+  text-decoration: none;
+  border-bottom: 1px dotted var(--border, currentColor);
+}
+.hist-extra-link:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
 /* === Analytics view === */
 .analytics-view {
