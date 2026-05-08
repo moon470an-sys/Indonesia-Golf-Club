@@ -3154,9 +3154,11 @@ function fmtBigIDRShort(n) {
 
 function renderAnalytics() {
   if (typeof Chart === 'undefined' || !allCourses.length) return;
-  const t = chartTheme();
-  Chart.defaults.color = t.axis;
-  Chart.defaults.borderColor = t.grid;
+  // NOTE: keep this name `theme` (not `t`) — `t` is the i18n helper and
+  // shadowing it here breaks every t('...') call further down the function.
+  const theme = chartTheme();
+  Chart.defaults.color = theme.axis;
+  Chart.defaults.borderColor = theme.grid;
   Chart.defaults.font.family = "'Pretendard', 'Inter', sans-serif";
 
   // KPIs
@@ -3221,7 +3223,7 @@ function renderAnalytics() {
       datasets: [{
         label: t('an.coursesCount'),
         data: distCounts,
-        backgroundColor: t.accent,
+        backgroundColor: theme.accent,
         borderRadius: 4,
       }],
     },
@@ -3229,7 +3231,7 @@ function renderAnalytics() {
       responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false } },
       scales: {
-        y: { beginAtZero: true, grid: { color: t.grid }, ticks: { precision: 0 } },
+        y: { beginAtZero: true, grid: { color: theme.grid }, ticks: { precision: 0 } },
         x: { grid: { display: false } },
       },
     },
@@ -3255,7 +3257,7 @@ function renderAnalytics() {
       datasets: [{
         label: t('an.avgSatAm'),
         data: regionRows.map(x => Math.round(x.avg)),
-        backgroundColor: t.gold,
+        backgroundColor: theme.gold,
         borderRadius: 4,
       }],
     },
@@ -3267,7 +3269,7 @@ function renderAnalytics() {
         tooltip: { callbacks: { label: ctx => `Rp ${(ctx.raw / 1e6).toFixed(2)}M` } },
       },
       scales: {
-        x: { beginAtZero: true, grid: { color: t.grid },
+        x: { beginAtZero: true, grid: { color: theme.grid },
              ticks: { callback: v => 'Rp ' + (v / 1e6).toFixed(1) + 'M' } },
         y: { grid: { display: false } },
       },
@@ -3317,7 +3319,7 @@ function renderAnalytics() {
       datasets: [{
         label: t('an.parentRev'),
         data: top10.map(x => x.rev / 1e12),
-        backgroundColor: t.accent,
+        backgroundColor: theme.accent,
         borderRadius: 4,
       }],
     },
@@ -3329,7 +3331,7 @@ function renderAnalytics() {
         tooltip: { callbacks: { label: ctx => `Rp ${ctx.raw.toFixed(2)}T` } },
       },
       scales: {
-        x: { beginAtZero: true, grid: { color: t.grid },
+        x: { beginAtZero: true, grid: { color: theme.grid },
              ticks: { callback: v => v + 'T' } },
         y: { grid: { display: false } },
       },
@@ -3356,7 +3358,7 @@ function renderAnalytics() {
       datasets: [{
         label: t('an.coursesCount'),
         data: designerTop.map(x => x.n),
-        backgroundColor: t.gold,
+        backgroundColor: theme.gold,
         borderRadius: 4,
       }],
     },
@@ -3365,7 +3367,7 @@ function renderAnalytics() {
       responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false } },
       scales: {
-        x: { beginAtZero: true, grid: { color: t.grid }, ticks: { precision: 0 } },
+        x: { beginAtZero: true, grid: { color: theme.grid }, ticks: { precision: 0 } },
         y: { grid: { display: false } },
       },
     },
@@ -3394,7 +3396,7 @@ function renderAnalytics() {
       datasets: [{
         label: t('an.openedCount'),
         data: decadesFilled.map(d => yearBins[d]),
-        backgroundColor: t.accent,
+        backgroundColor: theme.accent,
         borderRadius: 3,
         barPercentage: 0.85,
       }],
@@ -3403,7 +3405,7 @@ function renderAnalytics() {
       responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false } },
       scales: {
-        y: { beginAtZero: true, grid: { color: t.grid }, ticks: { precision: 0 } },
+        y: { beginAtZero: true, grid: { color: theme.grid }, ticks: { precision: 0 } },
         x: { grid: { display: false } },
       },
     },
@@ -3451,9 +3453,9 @@ function renderAnalytics() {
       },
       scales: {
         x: { title: { display: true, text: t('an.holes') },
-             grid: { color: t.grid }, ticks: { stepSize: 9 } },
+             grid: { color: theme.grid }, ticks: { stepSize: 9 } },
         y: { title: { display: true, text: t('an.satAmFee') },
-             grid: { color: t.grid }, beginAtZero: true },
+             grid: { color: theme.grid }, beginAtZero: true },
       },
     },
   });
