@@ -18,14 +18,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=20260507a" />
+  <link rel="stylesheet" href="style.css?v=20260508a" />
 </head>
 <body>
   <header class="topbar">
     <div class="brand">
       <span class="logo-dot" aria-hidden="true"></span>
       <h1>Indonesia Golf Club</h1>
-      <span class="subtitle" id="headerSubtitle" aria-live="polite">데이터 로딩 중…</span>
+      <span class="subtitle" id="headerSubtitle" aria-live="polite" data-i18n="header.loading">데이터 로딩 중…</span>
     </div>
     <nav class="tabs" role="tablist">
       <button class="tab active" data-tab="analytics" role="tab" aria-selected="true" data-i18n="tab.analytics">대시보드</button>
@@ -39,7 +39,7 @@
         <button class="lang-btn active" data-lang="ko" type="button">KO</button>
         <button class="lang-btn" data-lang="en" type="button">EN</button>
       </div>
-      <button class="theme-toggle" id="themeToggle" aria-label="다크모드 전환" title="다크모드 전환">
+      <button class="theme-toggle" id="themeToggle" aria-label="다크모드 전환" title="다크모드 전환" data-i18n-aria-label="theme.toggle" data-i18n-title="theme.toggle">
         <svg id="themeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
       </button>
     </div>
@@ -63,14 +63,14 @@
           <label data-i18n="filter.region">지역</label>
           <div class="region-multi" id="regionMulti">
             <button type="button" class="region-multi-trigger" id="regionMultiTrigger" aria-expanded="false" aria-haspopup="listbox">
-              <span class="region-multi-text">전체 지역</span>
+              <span class="region-multi-text" data-i18n="region.all">전체 지역</span>
               <span class="region-multi-caret">▾</span>
             </button>
             <div class="region-multi-popover" id="regionMultiPopover" hidden>
-              <input type="search" class="region-multi-search" id="regionMultiSearch" placeholder="지역 검색…" autocomplete="off" />
+              <input type="search" class="region-multi-search" id="regionMultiSearch" placeholder="지역 검색…" autocomplete="off" data-i18n-placeholder="region.search" />
               <div class="region-multi-actions">
-                <button type="button" data-region-action="all">전체 선택</button>
-                <button type="button" data-region-action="none">선택 해제</button>
+                <button type="button" data-region-action="all" data-i18n="region.selectAll">전체 선택</button>
+                <button type="button" data-region-action="none" data-i18n="region.clear">선택 해제</button>
               </div>
               <div class="region-multi-list" id="regionMultiList" role="listbox" aria-multiselectable="true"></div>
             </div>
@@ -99,8 +99,8 @@
           <div class="price-slider" id="priceSlider">
             <div class="price-slider-track">
               <div class="price-slider-fill" id="priceSliderFill"></div>
-              <input type="range" id="priceMin" min="0" max="3000000" step="100000" value="0" aria-label="최소 가격" />
-              <input type="range" id="priceMax" min="0" max="3000000" step="100000" value="3000000" aria-label="최대 가격" />
+              <input type="range" id="priceMin" min="0" max="3000000" step="100000" value="0" aria-label="최소 가격" data-i18n-aria-label="price.min" />
+              <input type="range" id="priceMax" min="0" max="3000000" step="100000" value="3000000" aria-label="최대 가격" data-i18n-aria-label="price.max" />
             </div>
             <div class="price-slider-readout">
               <span id="priceMinReadout">Rp 0</span>
@@ -120,88 +120,88 @@
 
     <section class="map-wrap">
       <div id="map"></div>
-      <button class="sidebar-toggle" id="sidebarToggle" aria-label="사이드바 토글">☰</button>
+      <button class="sidebar-toggle" id="sidebarToggle" aria-label="사이드바 토글" data-i18n-aria-label="sidebar.toggle">☰</button>
     </section>
 
     <aside class="detail-panel" id="detailPanel" aria-hidden="true">
-      <button class="close-btn" id="closeDetail" aria-label="닫기">×</button>
+      <button class="close-btn" id="closeDetail" aria-label="닫기" data-i18n-aria-label="common.close">×</button>
       <div class="detail-content" id="detailContent"></div>
     </aside>
   </main>
 
   <section class="table-view" id="tableView" hidden>
     <div class="table-toolbar">
-      <input type="search" id="tableSearch" placeholder="🔍 검색 (이름·지역·설계자·주소)" autocomplete="off" />
+      <input type="search" id="tableSearch" placeholder="🔍 검색 (이름·지역·설계자·주소)" autocomplete="off" data-i18n-placeholder="table.searchPh" />
       <select id="tableStatusFilter">
-        <option value="operating-only">운영중만</option>
-        <option value="all">전체</option>
-        <option value="closed_temporary">임시 휴장</option>
-        <option value="closed_permanent">영구 폐장</option>
-        <option value="uncertain">불확실</option>
+        <option value="operating-only" data-i18n="status.operatingOnly">운영중만</option>
+        <option value="all" data-i18n="filter.all">전체</option>
+        <option value="closed_temporary" data-i18n="status.closedTemp">임시 휴장</option>
+        <option value="closed_permanent" data-i18n="status.closedPerm">영구 폐장</option>
+        <option value="uncertain" data-i18n="status.uncertain">불확실</option>
       </select>
-      <select id="tableRegionFilter"><option value="all">모든 지역</option></select>
-      <span class="table-counter"><strong id="tableVisibleCount">0</strong>개 표시</span>
+      <select id="tableRegionFilter"><option value="all" data-i18n="region.allRegions">모든 지역</option></select>
+      <span class="table-counter"><strong id="tableVisibleCount">0</strong><span data-i18n="table.showing">개 표시</span></span>
       <label class="finance-toggle">
         <input type="checkbox" id="showFinanceCols" />
-        <span>재무 컬럼 표시</span>
+        <span data-i18n="table.showFinance">재무 컬럼 표시</span>
       </label>
-      <button id="exportCsv" class="export-btn">📥 CSV 다운로드</button>
+      <button id="exportCsv" class="export-btn" data-i18n="table.csvDownload">📥 CSV 다운로드</button>
     </div>
 
-    <nav class="src-tabs" role="tablist" id="sourceTabs" aria-label="요금 출처 카테고리">
-      <span class="src-tabs-prefix">요금 출처:</span>
+    <nav class="src-tabs" role="tablist" id="sourceTabs" aria-label="요금 출처 카테고리" data-i18n-aria-label="srcTabs.label">
+      <span class="src-tabs-prefix" data-i18n="srcTabs.prefix">요금 출처:</span>
       <button class="src-tab active src-tab-all" data-src-tab="all" role="tab" aria-selected="true">
-        <span class="src-tab-label">전체</span>
+        <span class="src-tab-label" data-i18n="filter.all">전체</span>
         <span class="src-tab-count" id="srcCount-all">0</span>
       </button>
       <button class="src-tab" data-src-tab="official" role="tab" aria-selected="false">
-        <span class="src-tab-label">공시</span>
+        <span class="src-tab-label" data-i18n="srcTabs.official">공시</span>
         <span class="src-tab-count" id="srcCount-official">0</span>
       </button>
       <button class="src-tab" data-src-tab="sns" role="tab" aria-selected="false">
-        <span class="src-tab-label">SNS</span>
+        <span class="src-tab-label" data-i18n="srcTabs.sns">SNS</span>
         <span class="src-tab-count" id="srcCount-sns">0</span>
       </button>
       <button class="src-tab" data-src-tab="platform" role="tab" aria-selected="false">
-        <span class="src-tab-label">전문 골프 플랫폼</span>
+        <span class="src-tab-label" data-i18n="srcTabs.platform">전문 골프 플랫폼</span>
         <span class="src-tab-count" id="srcCount-platform">0</span>
       </button>
       <button class="src-tab" data-src-tab="aggregator" role="tab" aria-selected="false">
-        <span class="src-tab-label">글로벌 애그리게이터</span>
+        <span class="src-tab-label" data-i18n="srcTabs.aggregator">글로벌 애그리게이터</span>
         <span class="src-tab-count" id="srcCount-aggregator">0</span>
       </button>
       <button class="src-tab" data-src-tab="news" role="tab" aria-selected="false">
-        <span class="src-tab-label">뉴스·미디어·예약</span>
+        <span class="src-tab-label" data-i18n="srcTabs.news">뉴스·미디어·예약</span>
         <span class="src-tab-count" id="srcCount-news">0</span>
       </button>
     </nav>
 
     <div class="src-panel-wrap">
       <div class="src-panel active" data-src-panel="all">
-        <div class="src-panel-desc" id="srcPanelDesc">필터에 해당하는 모든 골프장의 통합 정보 — 요금·멤버십·모회사 재무·전체 출처를 한 표에서 확인</div>
+        <div class="src-panel-desc" id="srcPanelDesc" data-i18n="srcDesc.all">필터에 해당하는 모든 골프장의 통합 정보 — 요금·멤버십·모회사 재무·전체 출처를 한 표에서 확인</div>
         <div class="table-scroll">
           <table class="course-table" data-src-table="all">
             <thead>
               <tr>
-                <th data-sort="name_en" class="sort-asc">골프장명 ▴</th>
-                <th data-sort="region">지역</th>
-                <th data-sort="province">주(Province)</th>
-                <th data-sort="status">운영상태</th>
-                <th data-sort="holes" class="num">홀</th>
-                <th data-sort="year_opened" class="num">개장</th>
-                <th data-sort="weekday_am" class="num">평일<br>AM</th>
-                <th data-sort="weekday_pm" class="num">평일<br>PM</th>
-                <th data-sort="saturday_am" class="num">토<br>AM ⭐</th>
-                <th data-sort="saturday_pm" class="num">토<br>PM</th>
-                <th data-sort="sunday_am" class="num">일<br>AM ⭐</th>
-                <th data-sort="sunday_pm" class="num">일<br>PM</th>
-                <th data-sort="membership_type">멤버십 종류</th>
-                <th data-sort="membership_fee" class="num">멤버십 금액</th>
-                <th class="finance-col" data-sort="parent_group">모회사·기업집단</th>
-                <th class="finance-col" data-sort="idx_ticker">티커</th>
-                <th class="finance-col" data-sort="parent_revenue" class="num">모회사<br>매출 FY2024</th>
-                <th>주소</th>
-                <th id="srcColHeader">전체 출처</th>
+                <th data-sort="name_en" class="sort-asc"><span data-i18n="th.name">골프장명</span> ▴</th>
+                <th data-sort="region" data-i18n="th.region">지역</th>
+                <th data-sort="province" data-i18n="th.province">주(Province)</th>
+                <th data-sort="status" data-i18n="th.status">운영상태</th>
+                <th data-sort="holes" class="num" data-i18n="th.holes">홀</th>
+                <th data-sort="year_opened" class="num" data-i18n="th.opened">개장</th>
+                <th data-sort="weekday_am" class="num"><span data-i18n="th.weekday">평일</span><br>AM</th>
+                <th data-sort="weekday_pm" class="num"><span data-i18n="th.weekday">평일</span><br>PM</th>
+                <th data-sort="saturday_am" class="num"><span data-i18n="th.saturday">토</span><br>AM ⭐</th>
+                <th data-sort="saturday_pm" class="num"><span data-i18n="th.saturday">토</span><br>PM</th>
+                <th data-sort="sunday_am" class="num"><span data-i18n="th.sunday">일</span><br>AM ⭐</th>
+                <th data-sort="sunday_pm" class="num"><span data-i18n="th.sunday">일</span><br>PM</th>
+                <th data-sort="membership_type" data-i18n="th.memberType">멤버십 종류</th>
+                <th data-sort="membership_fee" class="num" data-i18n="th.memberFee">멤버십 금액</th>
+                <th class="finance-col" data-sort="parent_group" data-i18n="th.parent">모회사·기업집단</th>
+                <th class="finance-col" data-sort="idx_ticker" data-i18n="th.ticker">티커</th>
+                <th class="finance-col" data-sort="parent_revenue" class="num"><span data-i18n="th.parentRev">모회사 매출</span><br>FY2024</th>
+                <th data-i18n="th.address">주소</th>
+                <th id="srcColHeader" data-i18n="srcCol.all">전체 출처</th>
               </tr>
             </thead>
             <tbody data-src-tbody="all"></tbody>
@@ -213,18 +213,18 @@
 
   <section class="finance-view" id="financeView" hidden>
     <div class="table-toolbar">
-      <input type="search" id="financeSearch" placeholder="🔍 검색 (이름·모회사·티커)" autocomplete="off" />
+      <input type="search" id="financeSearch" placeholder="🔍 검색 (이름·모회사·티커)" autocomplete="off" data-i18n-placeholder="finance.searchPh" />
       <select id="financeStatusFilter">
-        <option value="all" selected>전체 (재무 정보 보유)</option>
-        <option value="listed">상장사만</option>
-        <option value="subsidiary-of-listed">상장사 자회사</option>
-        <option value="state-owned">국영기업</option>
-        <option value="government">정부 운영</option>
-        <option value="military">군 운영</option>
-        <option value="tbk-reporting-not-yet-traded">Tbk 등록 (IDX 미거래)</option>
-        <option value="private">비상장</option>
+        <option value="all" selected data-i18n="finance.statusAll">전체 (재무 정보 보유)</option>
+        <option value="listed" data-i18n="finance.statusListed">상장사만</option>
+        <option value="subsidiary-of-listed" data-i18n="finance.statusSubsidiary">상장사 자회사</option>
+        <option value="state-owned" data-i18n="listed.state-owned">국영기업</option>
+        <option value="government" data-i18n="listed.government">정부 운영</option>
+        <option value="military" data-i18n="listed.military">군 운영</option>
+        <option value="tbk-reporting-not-yet-traded" data-i18n="finance.statusTbk">Tbk 등록 (IDX 미거래)</option>
+        <option value="private" data-i18n="listed.private">비상장</option>
       </select>
-      <span class="table-counter"><strong id="financeVisibleCount">0</strong>개 / 85</span>
+      <span class="table-counter"><strong id="financeVisibleCount">0</strong><span data-i18n="finance.counterSep">개 / 85</span></span>
     </div>
     <p class="finance-hint" data-i18n="finance.hint">
       💡 <strong>티커</strong> 클릭 시 Yahoo Finance가 새 탭으로 열립니다. <strong>재무 추이</strong> 셀을 클릭하면 5년 매출·순이익·자산 그래프를 볼 수 있습니다.
@@ -233,18 +233,18 @@
       <table class="finance-table">
         <thead>
           <tr>
-            <th data-sort="name_en">골프장명 ▾</th>
-            <th data-sort="region">지역</th>
-            <th data-sort="parent_group">모회사·기업집단</th>
-            <th data-sort="operating_company">운영법인</th>
-            <th data-sort="listed_status">상장 구분</th>
-            <th data-sort="idx_ticker">티커</th>
-            <th data-sort="revenue_idr" class="num">매출 FY2024</th>
-            <th data-sort="net_profit_idr" class="num">순이익</th>
-            <th data-sort="total_assets_idr" class="num">총자산</th>
-            <th data-sort="membership_price_idr" class="num">회원권</th>
-            <th>재무 추이</th>
-            <th>출처</th>
+            <th data-sort="name_en"><span data-i18n="th.name">골프장명</span> ▾</th>
+            <th data-sort="region" data-i18n="th.region">지역</th>
+            <th data-sort="parent_group" data-i18n="th.parent">모회사·기업집단</th>
+            <th data-sort="operating_company" data-i18n="th.opCompany">운영법인</th>
+            <th data-sort="listed_status" data-i18n="th.listedStatus">상장 구분</th>
+            <th data-sort="idx_ticker" data-i18n="th.ticker">티커</th>
+            <th data-sort="revenue_idr" class="num" data-i18n="th.revenueFY">매출 FY2024</th>
+            <th data-sort="net_profit_idr" class="num" data-i18n="th.netProfit">순이익</th>
+            <th data-sort="total_assets_idr" class="num" data-i18n="th.totalAssets">총자산</th>
+            <th data-sort="membership_price_idr" class="num" data-i18n="th.membership">회원권</th>
+            <th data-i18n="th.trend">재무 추이</th>
+            <th data-i18n="th.sources">출처</th>
           </tr>
         </thead>
         <tbody id="financeTableBody"></tbody>
@@ -323,7 +323,7 @@
   <!-- Price comparison modal -->
   <div class="modal-overlay" id="priceModal" hidden>
     <div class="modal-dialog price-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="priceModalTitle">
-      <button class="modal-close" id="closePriceModal" aria-label="닫기">×</button>
+      <button class="modal-close" id="closePriceModal" aria-label="닫기" data-i18n-aria-label="common.close">×</button>
       <header class="modal-header">
         <h2 id="priceModalTitle">—</h2>
         <div class="modal-subtitle" id="priceModalSubtitle"></div>
@@ -333,21 +333,21 @@
   </div>
 
   <footer class="footer">
-    <span id="footerCount">총 149 골프장</span> · 데이터 출처: APLGI · GolfPass · GolfAsian · 공식 골프장 사이트 ·
-    지도: © OpenStreetMap contributors · 지오코딩: Nominatim ·
+    <span id="footerCount">총 149 골프장</span> · <span data-i18n="footer.dataSrc">데이터 출처</span>: APLGI · GolfPass · GolfAsian · <span data-i18n="footer.officialSite">공식 골프장 사이트</span> ·
+    <span data-i18n="footer.map">지도</span>: © OpenStreetMap contributors · <span data-i18n="footer.geocode">지오코딩</span>: Nominatim ·
     <a href="https://github.com/moon470an-sys/Indonesia-Golf-Club" target="_blank" rel="noopener">GitHub</a>
   </footer>
 
   <!-- Ticker financials modal -->
   <div class="modal-overlay" id="tickerModal" hidden>
     <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="tickerModalTitle">
-      <button class="modal-close" id="closeTickerModal" aria-label="닫기">×</button>
+      <button class="modal-close" id="closeTickerModal" aria-label="닫기" data-i18n-aria-label="common.close">×</button>
       <header class="modal-header">
         <h2 id="tickerModalTitle">—</h2>
         <div class="modal-subtitle" id="tickerModalSubtitle"></div>
       </header>
       <div class="modal-body" id="tickerModalBody">
-        <p style="text-align:center; color:#94a3b8;">로딩 중...</p>
+        <p style="text-align:center; color:#94a3b8;" data-i18n="common.loading">로딩 중...</p>
       </div>
     </div>
   </div>
@@ -357,6 +357,6 @@
           crossorigin=""></script>
   <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-  <script src="app.js?v=20260507a"></script>
+  <script src="app.js?v=20260508a"></script>
 </body>
 </html>

@@ -1,0 +1,1538 @@
+{
+  "total": 149,
+  "found": 43,
+  "missing": 106,
+  "applied": 40,
+  "soft_flagged": [
+    {
+      "id": "modern-golf",
+      "name": "Modern Golf & Country Club",
+      "old": [
+        -6.18638,
+        106.64198
+      ],
+      "new": [
+        -6.197324,
+        106.6442537
+      ],
+      "move_km": 1.243,
+      "query": "Modern Golf & Country Club",
+      "osm_class": "club",
+      "osm_type": "sport",
+      "osm_display_name": "Modern Golf and Country Club, Jalan Modern Golf Raya, Kota Modern, Tangerang, Banten, Jawa, 15117, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (medium move, golfish)"
+    },
+    {
+      "id": "matoa-nasional",
+      "name": "Padang Golf Matoa Nasional",
+      "old": [
+        -6.34925,
+        106.81188
+      ],
+      "new": [
+        -6.3596432,
+        106.7963009
+      ],
+      "move_km": 2.074,
+      "query": "Padang Golf Matoa Nasional",
+      "osm_class": "landuse",
+      "osm_type": "grass",
+      "osm_display_name": "eks Padang Golf Matoa Nasional, Jagakarsa, Jakarta Selatan, Daerah Khusus Ibukota Jakarta, Jawa, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (medium move, golfish)"
+    },
+    {
+      "id": "imperial-klub",
+      "name": "Imperial Klub Golf",
+      "old": [
+        -6.21889,
+        106.59849
+      ],
+      "new": [
+        -6.2337919,
+        106.6026865
+      ],
+      "move_km": 1.721,
+      "query": "Imperial Klub Golf",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Imperial Klub Golf, 2709, Jalan Pulau Golf, Lippo Village, Bencongan Indah, Kelapa Dua, Kabupaten Tangerang, Banten, Jawa, 15811, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (medium move, golfish)"
+    },
+    {
+      "id": "trump-lido",
+      "name": "Trump International Golf Club Lido",
+      "old": [
+        -6.7447,
+        106.8075
+      ],
+      "new": [
+        -6.7574833,
+        106.8243698
+      ],
+      "move_km": 2.343,
+      "query": "Trump International Golf Club Lido",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Trump International Golf Club Lido, Jalan Lido, Watesjaya, Cigombong, Kab Bogor, Jawa Barat, Jawa, 16110, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (medium move, golfish)"
+    },
+    {
+      "id": "bali-national",
+      "name": "Bali National Golf Club",
+      "old": [
+        -8.7942,
+        115.2266
+      ],
+      "new": [
+        -8.8104726,
+        115.2213392
+      ],
+      "move_km": 1.9,
+      "query": "Bali National Golf Club",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Bali National Golf Club, Jalan Flamboyan XI, Benoa, Kuta Selatan, Badung, Bali, Nusa Tenggara, 80363, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (medium move, golfish)"
+    },
+    {
+      "id": "pakuwon-golf-surabaya",
+      "name": "Pakuwon Golf & Family Club",
+      "old": [
+        -7.2872,
+        112.6678
+      ],
+      "new": [
+        -7.2930217,
+        112.6591077
+      ],
+      "move_km": 1.157,
+      "query": "Pakuwon Golf & Family Club",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Pakuwon Golf & Family Club, Jalan Ritz Golf Residence, Pakuwon Indah, RW 16, Lontar, Lakarsantri, Surabaya, Jawa Timur, Jawa, 60123, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (medium move, golfish)"
+    },
+    {
+      "id": "kedaton-golf",
+      "name": "Kedaton Golf & Country Club",
+      "old": [
+        -6.1714,
+        106.5269
+      ],
+      "new": [
+        -6.1910413,
+        106.5179322
+      ],
+      "move_km": 2.398,
+      "query": "Kedaton Golf & Country Club",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Kedaton Golf & Country Club, Jalan Meranti 2, Suvarna Sutera, Suka Harja, Sindangjaya, Kabupaten Tangerang, Banten, Jawa, 15135, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (medium move, golfish)"
+    },
+    {
+      "id": "sedayu-indo-golf",
+      "name": "Sedayu Indo Golf (The Links)",
+      "old": [
+        -6.108,
+        106.738
+      ],
+      "new": [
+        -6.0821729,
+        106.7521403
+      ],
+      "move_km": 3.27,
+      "query": "Sedayu Indo Golf (The Links)",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Sedayu Indo Golf, Mozart Signature 2C, Pantai Indah Kapuk, Jakarta Utara, Daerah Khusus Ibukota Jakarta, Jawa, 14460, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (medium move, golfish)"
+    },
+    {
+      "id": "palm-hill-bogor",
+      "name": "Palm Hill Golf Club",
+      "old": [
+        -6.5793,
+        106.8762
+      ],
+      "new": [
+        -6.5476463,
+        106.8618623
+      ],
+      "move_km": 3.86,
+      "query": "Palm Hill Golf Club",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Palm Hill Golf Club, Jalan Sentul Raya, Kadumanggu, Babakan Madang, Kab Bogor, Jawa Barat, Jawa, 16810, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (medium move, golfish)"
+    },
+    {
+      "id": "bandung-indah-margahayu",
+      "name": "Bandung Indah Golf & Country Club",
+      "old": [
+        -6.97961,
+        107.57446
+      ],
+      "new": [
+        -6.9849758,
+        107.5826686
+      ],
+      "move_km": 1.085,
+      "query": "Bandung Indah Golf & Country Club",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Bandung Indah Golf & Country Club, Jalan Anis, Cangkuang Kulon, Margahayu, Kabupaten Bandung, Jawa Barat, Jawa, 40239, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (medium move, golfish)"
+    }
+  ],
+  "review": [
+    {
+      "id": "bogor-raya",
+      "name": "Klub Golf Bogor Raya",
+      "old": [
+        -6.55687,
+        106.85148
+      ],
+      "new": [
+        -6.6013632,
+        106.8355773
+      ],
+      "move_km": 5.25,
+      "query": "Klub Golf Bogor Raya",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Klub Golf Bogor Raya, Jalan Danau Bogor Raya, Sukaraja, Kab Bogor, Jawa Barat, Jawa, 38877, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "review (large move)"
+    },
+    {
+      "id": "jababeka-golf",
+      "name": "Jababeka Golf & Country Club",
+      "old": [
+        -6.19798,
+        107.1326
+      ],
+      "new": [
+        -6.2988467,
+        107.1758763
+      ],
+      "move_km": 12.193,
+      "query": "Jababeka Golf & Country Club",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Jababeka Golf & Country Club, Jalan Taman Golf Utama 2, Kota Jababeka, Sertajaya, Kab Bekasi, Jawa Barat, Jawa, 17825, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "review (large move)"
+    }
+  ],
+  "not_found": [
+    {
+      "id": "halim-golf-club",
+      "name": "Halim Golf Club (Halim I)"
+    },
+    {
+      "id": "padang-golf-pangkalan-jati",
+      "name": "Padang Golf Pangkalan Jati"
+    },
+    {
+      "id": "gading-raya",
+      "name": "Gading Raya Padang Golf & Club"
+    },
+    {
+      "id": "damai-indah-pik",
+      "name": "Damai Indah Golf - Pantai Indah Kapuk (PIK) Course"
+    },
+    {
+      "id": "damai-indah-bsd",
+      "name": "Damai Indah Golf - Bumi Serpong Damai (BSD) Course"
+    },
+    {
+      "id": "gunung-geulis",
+      "name": "Gunung Geulis Country Club"
+    },
+    {
+      "id": "rainbow-hills",
+      "name": "Rainbow Hills Golf Club"
+    },
+    {
+      "id": "jagorawi",
+      "name": "Jagorawi Golf & Country Club"
+    },
+    {
+      "id": "rancamaya",
+      "name": "Rancamaya Golf & Country Club"
+    },
+    {
+      "id": "palm-springs-karawang",
+      "name": "Palm Springs Karawang"
+    },
+    {
+      "id": "bogor-golf-club",
+      "name": "Bogor Golf Club (RSJMM Heritage)"
+    },
+    {
+      "id": "mountain-view-bandung",
+      "name": "Mountain View Golf Club"
+    },
+    {
+      "id": "dago-heritage-1917",
+      "name": "Dago Heritage 1917 Golf Course"
+    },
+    {
+      "id": "jatinangor-national",
+      "name": "Jatinangor National Golf & Resort"
+    },
+    {
+      "id": "ciater-highland",
+      "name": "Ciater Highland Golf"
+    },
+    {
+      "id": "yogyakarta-gc",
+      "name": "Yogyakarta Golf Club (Hyatt Regency)"
+    },
+    {
+      "id": "adisutjipto-yogya",
+      "name": "Padang Golf Adisutjipto"
+    },
+    {
+      "id": "candi-semarang",
+      "name": "Graha Candi Golf Country Club"
+    },
+    {
+      "id": "ciputra-surabaya",
+      "name": "Ciputra Golf Club & Hotel Surabaya"
+    },
+    {
+      "id": "finna-pasuruan",
+      "name": "Finna Golf & Country Club Resort"
+    },
+    {
+      "id": "taman-dayu",
+      "name": "Taman Dayu Golf Club & Resort"
+    },
+    {
+      "id": "graha-famili",
+      "name": "Golf Graha Famili & Country Club"
+    },
+    {
+      "id": "araya-malang",
+      "name": "Araya Golf & Family Club"
+    },
+    {
+      "id": "jember-glantangan",
+      "name": "Glantangan Golf Club (Jember)"
+    },
+    {
+      "id": "singosari-malang",
+      "name": "Padang Golf Abdulrachman Saleh (Singosari)"
+    },
+    {
+      "id": "nirwana-bali",
+      "name": "Nirwana Bali Golf Club"
+    },
+    {
+      "id": "bali-beach-sanur",
+      "name": "Bali Beach Golf Course"
+    },
+    {
+      "id": "lombok-sire-beach",
+      "name": "Sire Beach Golf Club (Lombok Kosaido)"
+    },
+    {
+      "id": "gec-rinjani",
+      "name": "GEC Rinjani Golf & Resort"
+    },
+    {
+      "id": "kaleang-sumbawa",
+      "name": "Kaleang Golf Club (Naia Resort Sumbawa)"
+    },
+    {
+      "id": "ria-bintan-ocean",
+      "name": "Ria Bintan Golf Club - Ocean Course"
+    },
+    {
+      "id": "ria-bintan-forest",
+      "name": "Ria Bintan Golf Club - Forest Course"
+    },
+    {
+      "id": "bintan-lagoon-seaview",
+      "name": "Bintan Lagoon - Sea View Course"
+    },
+    {
+      "id": "bintan-lagoon-woodlands",
+      "name": "Bintan Lagoon - Woodlands Course"
+    },
+    {
+      "id": "palm-springs-batam",
+      "name": "Palm Springs Golf & Country Club Batam"
+    },
+    {
+      "id": "tering-bay-batam",
+      "name": "Batam Island Country Club (formerly Tering Bay)"
+    },
+    {
+      "id": "tamarin-santana-batam",
+      "name": "Tamarin Santana Golf Club"
+    },
+    {
+      "id": "padang-golf-sukajadi-batam",
+      "name": "Padang Golf Sukajadi"
+    },
+    {
+      "id": "indah-puri-batam",
+      "name": "Indah Puri Golf Resort"
+    },
+    {
+      "id": "black-rocks-belitung",
+      "name": "Black Rocks Hotel & Golf Club"
+    },
+    {
+      "id": "tamora-medan",
+      "name": "Tamora Golf Club"
+    },
+    {
+      "id": "graha-metropolitan-medan",
+      "name": "Graha Metropolitan (Helvetia) Golf & Country Club"
+    },
+    {
+      "id": "rumbai-pekanbaru",
+      "name": "Golf Course Pertamina Hulu Rokan Rumbai (formerly Rumbai GCC)"
+    },
+    {
+      "id": "palembang-gc",
+      "name": "Kenten Heritage 1937 Golf Course (formerly Palembang Golf Club)"
+    },
+    {
+      "id": "bukit-asam",
+      "name": "Bukit Asam Golf Club (PTBA)"
+    },
+    {
+      "id": "pertamina-balikpapan",
+      "name": "Pertamina Balikpapan Golf Club"
+    },
+    {
+      "id": "bintang-sintuk-bontang",
+      "name": "Hotel Bintang Sintuk Golf Course (Bukit Sintuk)"
+    },
+    {
+      "id": "mahulu-samarinda",
+      "name": "Mahulu Golf Course"
+    },
+    {
+      "id": "isen-mulang-palangkaraya",
+      "name": "Isen Mulang Golf Club"
+    },
+    {
+      "id": "swargaloka-banjarbaru",
+      "name": "Padang Golf Swargaloka (Banjarbaru)"
+    },
+    {
+      "id": "alam-khatulistiwa",
+      "name": "Alam Khatulistiwa Golf Club"
+    },
+    {
+      "id": "akr-grand-kawanua",
+      "name": "AKR Grand Kawanua Golf Club (Wenang)"
+    },
+    {
+      "id": "sorowako-gc",
+      "name": "Sorowako Golf Club"
+    },
+    {
+      "id": "bumi-roviga-palu",
+      "name": "Lapangan Golf Bumi Roviga (Palu)"
+    },
+    {
+      "id": "sanggoleo-kendari",
+      "name": "Sanggoleo Golf Club"
+    },
+    {
+      "id": "cenderawasih-jayapura",
+      "name": "Cenderawasih Golf Club (Sentani/Jayapura)"
+    },
+    {
+      "id": "rimba-irian-timika",
+      "name": "Rimba Irian Golf Club (Timika)"
+    },
+    {
+      "id": "royale-krakatau-cilegon",
+      "name": "Royale Krakatau Golf & Country Club"
+    },
+    {
+      "id": "padang-golf-lanud-sulaiman",
+      "name": "Padang Golf Lanud Sulaiman"
+    },
+    {
+      "id": "royal-cirebon-golf",
+      "name": "Royal Cirebon Golf & Country Club"
+    },
+    {
+      "id": "ngamplang-garut",
+      "name": "Lapangan Golf Ngamplang (Flamboyan)"
+    },
+    {
+      "id": "tidar-golf-magelang",
+      "name": "Tidar Golf Course"
+    },
+    {
+      "id": "wijayakusuma-purwokerto",
+      "name": "Padang Golf Wijayakusuma"
+    },
+    {
+      "id": "mrica-banjarnegara",
+      "name": "Mrica Indah Golf Club"
+    },
+    {
+      "id": "pertamina-tritih-cilacap",
+      "name": "Pertamina Tritih Golf & Country Club"
+    },
+    {
+      "id": "black-eagle-bsb-semarang",
+      "name": "Black Eagle Golf Course (BSB City)"
+    },
+    {
+      "id": "ahmad-yani-surabaya",
+      "name": "Ahmad Yani Golf Club (Yani Golf Reborn)"
+    },
+    {
+      "id": "iswahyudi-madiun",
+      "name": "Iswahyudi Golf Club (Lanud Iswahjudi)"
+    },
+    {
+      "id": "dhoho-kediri",
+      "name": "Dhoho Golf Club (Surya Dhoho)"
+    },
+    {
+      "id": "arun-lhokseumawe",
+      "name": "Arun Golf Club"
+    },
+    {
+      "id": "lhoknga-aceh",
+      "name": "Lhoknga (Seulawah) Golf Course"
+    },
+    {
+      "id": "inalum-tanjung-gading",
+      "name": "Inalum Golf Club (Tanjung Gading)"
+    },
+    {
+      "id": "inalum-paritohan",
+      "name": "Inalum Golf Club (Paritohan)"
+    },
+    {
+      "id": "ptpn-iv-pabatu",
+      "name": "Lapangan Golf PTPN IV Pabatu"
+    },
+    {
+      "id": "tenera-bah-jambi",
+      "name": "Tenera Golf Club (PTPN IV Bah Jambi)"
+    },
+    {
+      "id": "anai-resort",
+      "name": "Anai Golf & Mountain Resort"
+    },
+    {
+      "id": "wirabraja-padang",
+      "name": "Lapangan Golf Wirabraja Ulu Gadut"
+    },
+    {
+      "id": "lanud-sutan-sjahrir",
+      "name": "Lapangan Golf Lanud Sutan Sjahrir (Tabing)"
+    },
+    {
+      "id": "phr-dumai",
+      "name": "Golf Course Pertamina Hulu Rokan Dumai (formerly Chevron Dumai)"
+    },
+    {
+      "id": "simpang-tiga-pekanbaru",
+      "name": "Simpang Tiga Golf Club (Pagosita)"
+    },
+    {
+      "id": "perkumpulan-golf-jambi",
+      "name": "Perkumpulan Golf Jambi (Telanaipura)"
+    },
+    {
+      "id": "bajubang-jambi",
+      "name": "Lapangan Golf Bajubang"
+    },
+    {
+      "id": "merah-putih-bengkulu",
+      "name": "Lapangan Golf Merah Putih (Polda Bengkulu)"
+    },
+    {
+      "id": "agromuko-mukomuko",
+      "name": "Lapangan Golf Agromuko"
+    },
+    {
+      "id": "pertamina-pendopo",
+      "name": "Lapangan Golf PT Pertamina Pendopo"
+    },
+    {
+      "id": "pertamina-prabumulih",
+      "name": "Lapangan Golf PT Pertamina Prabumulih"
+    },
+    {
+      "id": "pusri-palembang",
+      "name": "Lapangan Golf PT Pusri (Patra Jaya)"
+    },
+    {
+      "id": "bagus-kuning-plaju",
+      "name": "Bagus Kuning Golf Course"
+    },
+    {
+      "id": "bukit-intan-pangkalpinang",
+      "name": "Bukit Intan Golf Course (Girimaya)"
+    },
+    {
+      "id": "bebute-belitung",
+      "name": "Bebute Golf Course (Belitung Golf Club)"
+    },
+    {
+      "id": "eltari-kupang",
+      "name": "Eltari Golf Course (Padang Golf El Tari)"
+    },
+    {
+      "id": "kpc-sangatta",
+      "name": "Lapangan Golf PT KPC (Kaltim Prima Coal)"
+    },
+    {
+      "id": "badak-ngl-bontang",
+      "name": "PT Badak NGL Golf Course"
+    },
+    {
+      "id": "tarakan-golf-club",
+      "name": "Tarakan Golf Club"
+    },
+    {
+      "id": "tanjung-tabalong",
+      "name": "Tanjung Golf Club (Pertamina EP)"
+    },
+    {
+      "id": "gorontalo-yosonegoro",
+      "name": "Gorontalo Golf Yosonegoro"
+    },
+    {
+      "id": "paradise-likupang",
+      "name": "Paradise Golf Club (Likupang)"
+    },
+    {
+      "id": "antam-mekongga-pomalaa",
+      "name": "Antam Mekongga Golf Club (Pomalaa)"
+    },
+    {
+      "id": "koarmada-iii-sorong",
+      "name": "Lapangan Golf Mini Koarmada III"
+    },
+    {
+      "id": "suvarna-jakarta",
+      "name": "Suvarna Jakarta Golf Club"
+    },
+    {
+      "id": "bandar-kemayoran-golf",
+      "name": "Bandar Kemayoran Golf (Kemayoran Indah Golf, under renovation)"
+    },
+    {
+      "id": "jaya-ancol-golf",
+      "name": "Padang Golf Jaya Ancol (Ancol Golf Club)"
+    },
+    {
+      "id": "lotus-lakes-karawang",
+      "name": "Lotus Lakes Golf Club (Karawang International)"
+    },
+    {
+      "id": "takara-golf-tigaraksa",
+      "name": "Takara Golf Resort"
+    },
+    {
+      "id": "arcamanik-raya-bandung",
+      "name": "Arcamanik Raya Golf & Country Club"
+    },
+    {
+      "id": "mrica-indah-banjarnegara",
+      "name": "Mrica Indah Golf Club"
+    }
+  ],
+  "summary": [
+    {
+      "id": "royale-jakarta",
+      "name": "Royale Jakarta Golf Club",
+      "old": [
+        -6.27133,
+        106.90164
+      ],
+      "new": [
+        -6.2695812,
+        106.9006037
+      ],
+      "move_km": 0.226,
+      "query": "Royale Jakarta Golf Club",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Royale Jakarta Golf Club, Jalan Jatayu, RW 04, Halim Perdana Kusuma, Makasar, Jakarta Timur, Daerah Khusus Ibukota Jakarta, Jawa, 13610, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (small move)"
+    },
+    {
+      "id": "pondok-indah-golf",
+      "name": "Pondok Indah Golf Course",
+      "old": [
+        -6.26966,
+        106.78557
+      ],
+      "new": [
+        -6.2734279,
+        106.7920683
+      ],
+      "move_km": 0.832,
+      "query": "Pondok Indah Golf Course",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Pondok Indah Golf Course, Jalan Kencana Permai V, Pondok Indah, Pondok Pinang, Kebayoran Lama, Jakarta Selatan, Daerah Khusus Ibukota Jakarta, Jawa, 12310, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (small move)"
+    },
+    {
+      "id": "senayan-national",
+      "name": "Senayan National Golf Club",
+      "old": [
+        -6.219,
+        106.8014
+      ],
+      "new": [
+        -6.2228771,
+        106.7965077
+      ],
+      "move_km": 0.692,
+      "query": "Senayan National Golf Club",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Senayan National Golf Club, Jalan Asia Afrika, RW 02, Gelora, Tanah Abang, Jakarta Pusat, Daerah Khusus Ibukota Jakarta, Jawa, 12190, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (small move)"
+    },
+    {
+      "id": "cengkareng-golf",
+      "name": "Cengkareng Golf Club",
+      "old": [
+        -6.12508,
+        106.67208
+      ],
+      "new": [
+        -6.1246555,
+        106.6748952
+      ],
+      "move_km": 0.315,
+      "query": "Cengkareng Golf Club",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Cengkareng Golf Club, Zona Antar Keberangkatan Terminal 3, Pajang, Benda, Tangerang, Kosambi, Kabupaten Tangerang, Banten, Jawa, 19120, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (small move)"
+    },
+    {
+      "id": "modern-golf",
+      "name": "Modern Golf & Country Club",
+      "old": [
+        -6.18638,
+        106.64198
+      ],
+      "new": [
+        -6.197324,
+        106.6442537
+      ],
+      "move_km": 1.243,
+      "query": "Modern Golf & Country Club",
+      "osm_class": "club",
+      "osm_type": "sport",
+      "osm_display_name": "Modern Golf and Country Club, Jalan Modern Golf Raya, Kota Modern, Tangerang, Banten, Jawa, 15117, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (medium move, golfish)"
+    },
+    {
+      "id": "matoa-nasional",
+      "name": "Padang Golf Matoa Nasional",
+      "old": [
+        -6.34925,
+        106.81188
+      ],
+      "new": [
+        -6.3596432,
+        106.7963009
+      ],
+      "move_km": 2.074,
+      "query": "Padang Golf Matoa Nasional",
+      "osm_class": "landuse",
+      "osm_type": "grass",
+      "osm_display_name": "eks Padang Golf Matoa Nasional, Jagakarsa, Jakarta Selatan, Daerah Khusus Ibukota Jakarta, Jawa, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (medium move, golfish)"
+    },
+    {
+      "id": "imperial-klub",
+      "name": "Imperial Klub Golf",
+      "old": [
+        -6.21889,
+        106.59849
+      ],
+      "new": [
+        -6.2337919,
+        106.6026865
+      ],
+      "move_km": 1.721,
+      "query": "Imperial Klub Golf",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Imperial Klub Golf, 2709, Jalan Pulau Golf, Lippo Village, Bencongan Indah, Kelapa Dua, Kabupaten Tangerang, Banten, Jawa, 15811, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (medium move, golfish)"
+    },
+    {
+      "id": "emeralda-golf",
+      "name": "Emeralda Golf Club",
+      "old": [
+        -6.4218,
+        106.89072
+      ],
+      "new": [
+        -6.4198051,
+        106.8844016
+      ],
+      "move_km": 0.733,
+      "query": "Emeralda Golf Club",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Emeralda Golf Club, Jalan Tol Jakarta–Bogor–Ciawi, Bojong Nangka, Gunung Putri, Kab Bogor, Jawa Barat, Jawa, 16963, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (small move)"
+    },
+    {
+      "id": "sentul-highlands",
+      "name": "Sentul Highlands Golf Club",
+      "old": [
+        -6.57826,
+        106.87797
+      ],
+      "new": [
+        -6.5868887,
+        106.8759251
+      ],
+      "move_km": 0.986,
+      "query": "Sentul Highlands Golf Club",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Sentul Highlands Golf Club, Jalan Taman Venesia Utara, Sentul City, Sumurbatu, Babakan Madang, Kab Bogor, Jawa Barat, Jawa, 16810, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (small move)"
+    },
+    {
+      "id": "bogor-raya",
+      "name": "Klub Golf Bogor Raya",
+      "old": [
+        -6.55687,
+        106.85148
+      ],
+      "new": [
+        -6.6013632,
+        106.8355773
+      ],
+      "move_km": 5.25,
+      "query": "Klub Golf Bogor Raya",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Klub Golf Bogor Raya, Jalan Danau Bogor Raya, Sukaraja, Kab Bogor, Jawa Barat, Jawa, 38877, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "review (large move)"
+    },
+    {
+      "id": "permata-sentul",
+      "name": "Permata Sentul Golf",
+      "old": [
+        -6.5292,
+        106.8761
+      ],
+      "new": [
+        -6.531464,
+        106.8694695
+      ],
+      "move_km": 0.775,
+      "query": "Permata Sentul Golf",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Permata Sentul Golf, Jalan Permata Sakti 2, Permata Sentul, Tangkil, Citeureup, Kab Bogor, Jawa Barat, Jawa, 16810, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (small move)"
+    },
+    {
+      "id": "riverside-cibubur",
+      "name": "Riverside Golf Club",
+      "old": [
+        -6.42969,
+        106.9056
+      ],
+      "new": [
+        -6.426288,
+        106.9008748
+      ],
+      "move_km": 0.645,
+      "query": "Riverside Golf Club",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Riverside Golf Club, Jalan Tol Jakarta–Bogor–Ciawi, Bojong Nangka, Gunung Putri, Kab Bogor, Jawa Barat, Jawa, 16963, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (small move)"
+    },
+    {
+      "id": "jababeka-golf",
+      "name": "Jababeka Golf & Country Club",
+      "old": [
+        -6.19798,
+        107.1326
+      ],
+      "new": [
+        -6.2988467,
+        107.1758763
+      ],
+      "move_km": 12.193,
+      "query": "Jababeka Golf & Country Club",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Jababeka Golf & Country Club, Jalan Taman Golf Utama 2, Kota Jababeka, Sertajaya, Kab Bekasi, Jawa Barat, Jawa, 17825, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "review (large move)"
+    },
+    {
+      "id": "trump-lido",
+      "name": "Trump International Golf Club Lido",
+      "old": [
+        -6.7447,
+        106.8075
+      ],
+      "new": [
+        -6.7574833,
+        106.8243698
+      ],
+      "move_km": 2.343,
+      "query": "Trump International Golf Club Lido",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Trump International Golf Club Lido, Jalan Lido, Watesjaya, Cigombong, Kab Bogor, Jawa Barat, Jawa, 16110, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (medium move, golfish)"
+    },
+    {
+      "id": "parahyangan-bandung",
+      "name": "Parahyangan Golf Bandung",
+      "old": [
+        -6.87783,
+        107.44114
+      ],
+      "new": [
+        -6.8764717,
+        107.4429555
+      ],
+      "move_km": 0.251,
+      "query": "Parahyangan Golf Bandung",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Parahyangan Golf, Jalan Panglipuran, Nayapati Residence, Kota Baru Parahyangan, Bojonghaleuang, Bandung Barat, Jawa Barat, Jawa, 40553, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (small move)"
+    },
+    {
+      "id": "merapi-yogya",
+      "name": "Merapi Golf Yogyakarta",
+      "old": [
+        -7.62106,
+        110.445
+      ],
+      "new": [
+        -7.620777,
+        110.4468297
+      ],
+      "move_km": 0.204,
+      "query": "Merapi Golf Yogyakarta",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Merapi Golf, Jalan Menuju Lapangan Golf Umbulharjo-Kepuharjo, Kepuhharjo, Cangkringan, Sleman, Daerah Istimewa Yogyakarta, Jawa, 55583, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (small move)"
+    },
+    {
+      "id": "borobudur-magelang",
+      "name": "Borobudur International Golf & Country Club",
+      "old": [
+        -7.48779,
+        110.21552
+      ],
+      "new": [
+        -7.4911408,
+        110.2168879
+      ],
+      "move_km": 0.402,
+      "query": "Borobudur International Golf & Country Club",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Borobudur International Golf & Country Club, Jalan ke Bukit Tidar, Magersari, Kota Magelang, Jawa Tengah, Jawa, 56124, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (small move)"
+    },
+    {
+      "id": "gombel-semarang",
+      "name": "Gombel Golf Semarang",
+      "old": [
+        -7.03704,
+        110.41351
+      ],
+      "new": [
+        -7.0370582,
+        110.413494
+      ],
+      "move_km": 0.003,
+      "query": "Gombel Golf Semarang",
+      "osm_class": "leisure",
+      "osm_type": "sports_centre",
+      "osm_display_name": "Gombel Golf Semarang, Jalan Gombel Golf Semarang, RW 05, Tinjomoyo, Banyumanik, Kota Semarang, Jawa Tengah, Jawa, 50254, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (small move)"
+    },
+    {
+      "id": "bukit-darmo-surabaya",
+      "name": "Bukit Darmo Golf",
+      "old": [
+        -7.28739,
+        112.6892
+      ],
+      "new": [
+        -7.2891865,
+        112.6874017
+      ],
+      "move_km": 0.282,
+      "query": "Bukit Darmo Golf",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Bukit Darmo Golf, Jalan Pradah Kali Kendal XI, RW 01, Pradahkali Kendal, Dukuh Pakis, Surabaya, Jawa Timur, Jawa, 60226, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (small move)"
+    },
+    {
+      "id": "bali-national",
+      "name": "Bali National Golf Club",
+      "old": [
+        -8.7942,
+        115.2266
+      ],
+      "new": [
+        -8.8104726,
+        115.2213392
+      ],
+      "move_km": 1.9,
+      "query": "Bali National Golf Club",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Bali National Golf Club, Jalan Flamboyan XI, Benoa, Kuta Selatan, Badung, Bali, Nusa Tenggara, 80363, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (medium move, golfish)"
+    },
+    {
+      "id": "new-kuta",
+      "name": "New Kuta Golf",
+      "old": [
+        -8.80446,
+        115.12816
+      ],
+      "new": [
+        -8.8039473,
+        115.1241672
+      ],
+      "move_km": 0.442,
+      "query": "New Kuta Golf",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "New Kuta Golf, Jalan Anggrek Boulevard, Pecatu, Kuta Selatan, Badung, Bali, Nusa Tenggara, 80163, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (small move)"
+    },
+    {
+      "id": "handara-bali",
+      "name": "Handara Golf & Resort Bali",
+      "old": [
+        -8.24526,
+        115.16136
+      ],
+      "new": [
+        -8.2470399,
+        115.161626
+      ],
+      "move_km": 0.2,
+      "query": "Handara Golf & Resort Bali",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Handara Golf & Resort Bali, 2, Giriloka, Pancasari, Sukasada, Buleleng, Bali, Nusa Tenggara, 81162, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (small move)"
+    },
+    {
+      "id": "bukit-pandawa",
+      "name": "Bukit Pandawa Golf & Country Club",
+      "old": [
+        -8.8345,
+        115.1968
+      ],
+      "new": [
+        -8.8355725,
+        115.2007119
+      ],
+      "move_km": 0.446,
+      "query": "Bukit Pandawa Golf & Country Club",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Bukit Pandawa Golf & Country Club, Jalan Nusa Dua Selatan, Kutuh, Kuta Selatan, Badung, Bali, Nusa Tenggara, 80366, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (small move)"
+    },
+    {
+      "id": "laguna-bintan",
+      "name": "Laguna Golf Bintan",
+      "old": [
+        1.18168,
+        104.34015
+      ],
+      "new": [
+        1.1801931,
+        104.343333
+      ],
+      "move_km": 0.391,
+      "query": "Laguna Golf Bintan",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Laguna Bintan Golf Club, Jalan Langsat, Sebong Lagoi, Bintan, Kepulauan Riau, Sumatera, 29155, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (small move)"
+    },
+    {
+      "id": "southlinks-batam",
+      "name": "SouthLinks Country Club",
+      "old": [
+        1.1142,
+        103.99535
+      ],
+      "new": [
+        1.1141209,
+        103.9953393
+      ],
+      "move_km": 0.009,
+      "query": "SouthLinks Country Club",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "SouthLinks Country Club, Jalan Club House SLCC, Tiban Indah, Sekupang, Batam, Kepulauan Riau, Sumatera, 29423, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (small move)"
+    },
+    {
+      "id": "royal-sumatra",
+      "name": "Royal Sumatra Golf & Country Club",
+      "old": [
+        3.5190269,
+        98.6447694
+      ],
+      "new": [
+        3.526113,
+        98.6433031
+      ],
+      "move_km": 0.805,
+      "query": "Royal Sumatra Golf & Country Club golf, Indonesia",
+      "osm_class": "amenity",
+      "osm_type": "school",
+      "osm_display_name": "Singapore School Medan ( SIS ) Royal Sumatera Campus, Jalan Jamin Ginting, Mangga, Medan Tuntungan, Kota Medan, Sumatera Utara, Sumatera, 20142, Indonesia",
+      "is_golfish": false,
+      "old_approx": false,
+      "decision": "skipped (not golfish, small move)"
+    },
+    {
+      "id": "bukit-barisan-medan",
+      "name": "Bukit Barisan Country Club",
+      "old": [
+        3.5029711,
+        98.5698585
+      ],
+      "new": [
+        3.5029712,
+        98.5698585
+      ],
+      "move_km": 0.0,
+      "query": "Bukit Barisan Country Club",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Bukit Barisan Country Club Golf Course, Jalan Lapangan Golf Tuntungan, Tuntungan II, Pancur Batu, Kabupaten Deli Serdang, Sumatera Utara, Sumatera, 20138, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (small move)"
+    },
+    {
+      "id": "labersa-riau",
+      "name": "Labersa Golf & Country Club",
+      "old": [
+        0.4419174,
+        101.487254
+      ],
+      "new": [
+        0.4393207,
+        101.4816622
+      ],
+      "move_km": 0.686,
+      "query": "Labersa Golf & Country Club",
+      "osm_class": "building",
+      "osm_type": "yes",
+      "osm_display_name": "Labersa Golf & Country Club, Jalan Labersa, Tanah Merah, Siak Hulu, Kampar, Riau, Sumatera, 28284, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (small move)"
+    },
+    {
+      "id": "padang-golf-sukarame",
+      "name": "Padang Golf Sukarame",
+      "old": [
+        -5.3784073,
+        105.3082928
+      ],
+      "new": [
+        -5.3784073,
+        105.3082928
+      ],
+      "move_km": 0.0,
+      "query": "Padang Golf Sukarame",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Padang Golf Sukarame, Jalan Perumahan Golf Asri, Bandar Lampung, Lampung, Sumatera, 35131, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (small move)"
+    },
+    {
+      "id": "karang-joang",
+      "name": "Karang Joang Golf & Country Club",
+      "old": [
+        -1.171073,
+        116.8597282
+      ],
+      "new": [
+        -1.1774092,
+        116.8582417
+      ],
+      "move_km": 0.724,
+      "query": "Karang Joang Golf & Country Club",
+      "osm_class": "highway",
+      "osm_type": "unclassified",
+      "osm_display_name": "Karang Joang Golf & Country Club, Karang Joang, Balikpapan Utara, Balikpapan, Kalimantan Timur, Kalimantan, 76134, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (small move)"
+    },
+    {
+      "id": "padivalley-makassar",
+      "name": "Padivalley Golf Club",
+      "old": [
+        -5.2044256,
+        119.5914487
+      ],
+      "new": [
+        -5.2044256,
+        119.5914487
+      ],
+      "move_km": 0.0,
+      "query": "Padivalley Golf Club",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Padivalley Golf Club, Jalan Insinyur Haeruddin, Pallantikang, Pattallassang, Gowa, Sulawesi Selatan, Sulawesi, 92211, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (small move)"
+    },
+    {
+      "id": "padang-golf-baddoka",
+      "name": "Padang Golf Baddoka Makassar",
+      "old": [
+        -5.0855763,
+        119.5035452
+      ],
+      "new": [
+        -5.0855763,
+        119.5035452
+      ],
+      "move_km": 0.0,
+      "query": "Padang Golf Baddoka Makassar",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Padang Golf Baddoka Makassar, Jalan Batara Bira, Pangandongang, Bulurokeng, Biringkanaya, Makassar, Sulawesi Selatan, Sulawesi, 90155, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (small move)"
+    },
+    {
+      "id": "pattimura-ambon",
+      "name": "Pattimura Golf Course",
+      "old": [
+        -3.7035445,
+        128.0990142
+      ],
+      "new": [
+        -3.7035445,
+        128.0990142
+      ],
+      "move_km": 0.0,
+      "query": "Pattimura Golf Course",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Pattimura, Jalan Propinsi, Laha, Ambon, Maluku, 97236, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (small move)"
+    },
+    {
+      "id": "jakarta-golf-club-rawamangun",
+      "name": "Jakarta Golf Club (Rawamangun)",
+      "old": [
+        -6.1976,
+        106.88
+      ],
+      "new": [
+        -6.2002075,
+        106.8766073
+      ],
+      "move_km": 0.474,
+      "query": "Jakarta Golf Club (Rawamangun)",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Jakarta Golf Club, Jalan Rawamangun Muka I, RW 13, Rawamangun, Pulo Gadung, Jakarta Timur, Daerah Khusus Ibukota Jakarta, Jawa, 13220, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (small move)"
+    },
+    {
+      "id": "pondok-cabe-golf",
+      "name": "Pondok Cabe Golf & Country Club",
+      "old": [
+        -6.3541161,
+        106.7641624
+      ],
+      "new": [
+        -6.3505609,
+        106.7626918
+      ],
+      "move_km": 0.427,
+      "query": "Pondok Cabe Golf & Country Club",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Pondok Cabe Golf & Country Club, Jalan Kayu Putih, Perumahan Modern Hill, Pondok Cabe Udik, Pamulang, Tangerang Selatan, Banten, Jawa, 15418, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (small move)"
+    },
+    {
+      "id": "bandung-giri-gahana",
+      "name": "Bandung Giri Gahana Golf & Resort",
+      "old": [
+        -6.9120064,
+        107.7628791
+      ],
+      "new": [
+        -6.9173663,
+        107.7630026
+      ],
+      "move_km": 0.596,
+      "query": "Bandung Giri Gahana Golf & Resort",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Bandung Giri Gahana Golf & Resort, Jalan ITB 1, Jatinangor, Sumedang, Jawa Barat, Jawa, 45363, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (small move)"
+    },
+    {
+      "id": "adi-soemarmo-solo",
+      "name": "Padang Golf Adi Soemarmo",
+      "old": [
+        -7.5195261,
+        110.7571093
+      ],
+      "new": [
+        -7.5186106,
+        110.7562748
+      ],
+      "move_km": 0.137,
+      "query": "Padang Golf Adi Soemarmo",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Padang Golf Adi Soemarmo, Jalan Padang Golf, Kawasan Bandara Adi Soemarmo, Ngesrep, Desa Sindon, Kecamatan Ngemplak, Boyolali, Jawa Tengah, Jawa, 57375, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (small move)"
+    },
+    {
+      "id": "pakuwon-golf-surabaya",
+      "name": "Pakuwon Golf & Family Club",
+      "old": [
+        -7.2872,
+        112.6678
+      ],
+      "new": [
+        -7.2930217,
+        112.6591077
+      ],
+      "move_km": 1.157,
+      "query": "Pakuwon Golf & Family Club",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Pakuwon Golf & Family Club, Jalan Ritz Golf Residence, Pakuwon Indah, RW 16, Lontar, Lakarsantri, Surabaya, Jawa Timur, Jawa, 60123, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (medium move, golfish)"
+    },
+    {
+      "id": "kedaton-golf",
+      "name": "Kedaton Golf & Country Club",
+      "old": [
+        -6.1714,
+        106.5269
+      ],
+      "new": [
+        -6.1910413,
+        106.5179322
+      ],
+      "move_km": 2.398,
+      "query": "Kedaton Golf & Country Club",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Kedaton Golf & Country Club, Jalan Meranti 2, Suvarna Sutera, Suka Harja, Sindangjaya, Kabupaten Tangerang, Banten, Jawa, 15135, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (medium move, golfish)"
+    },
+    {
+      "id": "sedayu-indo-golf",
+      "name": "Sedayu Indo Golf (The Links)",
+      "old": [
+        -6.108,
+        106.738
+      ],
+      "new": [
+        -6.0821729,
+        106.7521403
+      ],
+      "move_km": 3.27,
+      "query": "Sedayu Indo Golf (The Links)",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Sedayu Indo Golf, Mozart Signature 2C, Pantai Indah Kapuk, Jakarta Utara, Daerah Khusus Ibukota Jakarta, Jawa, 14460, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (medium move, golfish)"
+    },
+    {
+      "id": "palm-hill-bogor",
+      "name": "Palm Hill Golf Club",
+      "old": [
+        -6.5793,
+        106.8762
+      ],
+      "new": [
+        -6.5476463,
+        106.8618623
+      ],
+      "move_km": 3.86,
+      "query": "Palm Hill Golf Club",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Palm Hill Golf Club, Jalan Sentul Raya, Kadumanggu, Babakan Madang, Kab Bogor, Jawa Barat, Jawa, 16810, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (medium move, golfish)"
+    },
+    {
+      "id": "bandung-indah-margahayu",
+      "name": "Bandung Indah Golf & Country Club",
+      "old": [
+        -6.97961,
+        107.57446
+      ],
+      "new": [
+        -6.9849758,
+        107.5826686
+      ],
+      "move_km": 1.085,
+      "query": "Bandung Indah Golf & Country Club",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Bandung Indah Golf & Country Club, Jalan Anis, Cangkuang Kulon, Margahayu, Kabupaten Bandung, Jawa Barat, Jawa, 40239, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (medium move, golfish)"
+    },
+    {
+      "id": "martabe-sejahtera-medan",
+      "name": "Martabe Sejahtera Golf Club",
+      "old": [
+        3.4270453,
+        98.6136641
+      ],
+      "new": [
+        3.4270991,
+        98.615255
+      ],
+      "move_km": 0.177,
+      "query": "Martabe Sejahtera Golf Club",
+      "osm_class": "leisure",
+      "osm_type": "golf_course",
+      "osm_display_name": "Martabe Sejahtera Golf Club, Jalan Durin Tonggal - Sugau, MS, Dorin Tonggal, Pancur Batu, Kabupaten Deli Serdang, Sumatera Utara, Sumatera, 20356, Indonesia",
+      "is_golfish": true,
+      "old_approx": false,
+      "decision": "applied (small move)"
+    }
+  ]
+}

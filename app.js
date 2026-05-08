@@ -85,14 +85,11 @@ function computeStatusCounts(courses) {
 function renderHeaderSubtitle(counts) {
   const sub = document.getElementById('headerSubtitle');
   if (sub) {
-    sub.innerHTML = `총 <strong>${counts.total}</strong> · ` +
-      `<span class="status-dot operating" aria-hidden="true"></span>운영중 ${counts.operating} · ` +
-      `<span class="status-dot closed" aria-hidden="true"></span>휴장 ${counts.closed} · ` +
-      `<span class="status-dot uncertain" aria-hidden="true"></span>불확실 ${counts.uncertain}`;
+    sub.innerHTML = t('header.totalLine', counts);
   }
   const foot = document.getElementById('footerCount');
   if (foot) {
-    foot.textContent = `총 ${counts.total} 골프장 (운영중 ${counts.operating} · 휴장 ${counts.closed} · 불확실 ${counts.uncertain})`;
+    foot.textContent = t('header.totalText', counts);
   }
 }
 
@@ -102,7 +99,7 @@ async function loadData() {
     const doc = await res.json();
     allCourses = doc.courses.filter(c => c.lat != null && c.lng != null);
     const counts = computeStatusCounts(allCourses);
-    document.getElementById('totalCount').textContent = `${counts.total} (운영 ${counts.operating})`;
+    document.getElementById('totalCount').textContent = t('header.counterPill', counts);
     const pill = document.getElementById('counterPill');
     if (pill) pill.hidden = false;
     renderHeaderSubtitle(counts);
@@ -114,7 +111,7 @@ async function loadData() {
     applyFilter();
   } catch (e) {
     console.error('Failed to load data:', e);
-    alert('데이터 로딩 실패');
+    alert(t('common.dataLoadFailed'));
   }
 }
 
@@ -132,7 +129,7 @@ function renderRegionMulti() {
   const filtered = q ? regions.filter(r => r.toLowerCase().includes(q)) : regions;
 
   if (filtered.length === 0) {
-    list.innerHTML = '<div class="region-empty">검색 결과 없음</div>';
+    list.innerHTML = `<div class="region-empty">${t('common.noResults')}</div>`;
   } else {
     list.innerHTML = filtered.map(r => {
       const checked = currentFilter.regions.has(r) ? ' checked' : '';
@@ -148,13 +145,13 @@ function updateRegionTriggerLabel() {
   if (!text) return;
   const n = currentFilter.regions.size;
   if (n === 0) {
-    text.textContent = '전체 지역';
+    text.textContent = t('region.all');
     text.classList.remove('has-selection');
   } else if (n === 1) {
     text.textContent = [...currentFilter.regions][0];
     text.classList.add('has-selection');
   } else {
-    text.textContent = `${[...currentFilter.regions][0]} 외 ${n - 1}개`;
+    text.textContent = t('region.selectedSummary', { first: [...currentFilter.regions][0], extra: n - 1 });
     text.classList.add('has-selection');
   }
 }
@@ -361,9 +358,46 @@ function applyFilter() {
 }
 
 // === Render Markers ===
+function statusLabelOf(status) {
+  const map = {
+    operating: 'status.operating',
+    closed_temporary: 'status.closedTemp',
+    closed_permanent: 'status.closedPerm',
+    uncertain: 'status.uncertain',
+  };
+  return map[status] ? t(map[status]) : status;
+}
+
+function membershipAvailLabel(avail) {
+  const map = {
+    'true': 'member.recruiting',
+    true: 'member.recruiting',
+    'false': 'common.none',
+    false: 'common.none',
+    'by_invitation_only': 'member.invitationOnly',
+    'employees_only': 'member.employees',
+    'military_personnel': 'member.militaryPersonnel',
+    'members_only': 'member.membersOnlyShort',
+    'unknown': 'common.unknown',
+  };
+  return map[avail] ? t(map[avail]) : null;
+}
+
+// Build a Google Maps URL that lands on the actual course listing
+// (not just the lat/lng coords). Uses place_id when available, otherwise
+// queries by name + region + country so Google's place search resolves it.
+function googleMapsPlaceUrl(c) {
+  if (c?.google_place_id) {
+    return `https://www.google.com/maps/place/?q=place_id:${encodeURIComponent(c.google_place_id)}`;
+  }
+  const parts = [c?.name_en, c?.region, 'Indonesia'].filter(Boolean);
+  const q = parts.join(', ');
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
+}
+
 function buildMarkerPopupHtml(c) {
   const status = c.operating_status?.status || 'operating';
-  const statusLabel = { operating: '운영중', closed_temporary: '임시 휴장', closed_permanent: '영구 폐장', uncertain: '불확실' }[status] || status;
+  const statusLabel = statusLabelOf(status);
   const f = c.fees_2026_05 || {};
   const wd = f.weekday?.green_fee_idr ?? f.weekday?.guest_fee_idr ?? f.weekday?.member_fee_idr;
   const we = f.weekend?.green_fee_idr ?? f.weekend?.guest_fee_idr ?? f.weekend?.member_fee_idr;
@@ -374,26 +408,27 @@ function buildMarkerPopupHtml(c) {
   const designer = c.designer ? escapeHtml(c.designer.split(',')[0].trim().split('(')[0].trim()) : null;
   const m = c.membership || {};
   let membershipLine = '';
-  if (m.available === true || m.available === 'true') membershipLine = '회원 모집 중';
-  else if (m.available === 'employees_only') membershipLine = '직원 전용';
-  else if (m.available === 'military_personnel') membershipLine = '군 전용';
-  else if (m.available === 'by_invitation_only') membershipLine = '초대제';
-  else if (m.available === 'members_only') membershipLine = '멤버 전용 (양도시장)';
-  else if (m.available === false) membershipLine = '없음';
+  if (m.available === true || m.available === 'true') membershipLine = t('member.recruiting');
+  else if (m.available === 'employees_only') membershipLine = t('member.employees');
+  else if (m.available === 'military_personnel') membershipLine = t('member.military');
+  else if (m.available === 'by_invitation_only') membershipLine = t('member.invitation');
+  else if (m.available === 'members_only') membershipLine = t('member.membersOnly');
+  else if (m.available === false) membershipLine = t('common.none');
 
   const matoaTag = c.id === 'matoa-nasional' ? ' <span class="matoa-tag">★</span>' : '';
-  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${c.lat},${c.lng}`;
-  const websiteLink = c.website ? `<a href="${escapeHtml(c.website)}" target="_blank" rel="noopener">공식 웹사이트</a>` : '';
-  const mapsLink = `<a href="${mapsUrl}" target="_blank" rel="noopener">구글 지도</a>`;
+  const mapsUrl = googleMapsPlaceUrl(c);
+  const websiteLink = c.website ? `<a href="${escapeHtml(c.website)}" target="_blank" rel="noopener">${t('popup.officialWeb')}</a>` : '';
+  const mapsLink = `<a href="${mapsUrl}" target="_blank" rel="noopener">${t('popup.googleMap')}</a>`;
+  const yearText = c.year_opened ? `${c.year_opened}${t('common.year') ? t('common.year') : ''}` : '—';
 
   const rows = [
-    ['지역', `${escapeHtml(c.region || '—')}, ${escapeHtml(c.province || '—')}`],
-    ['운영', `<span class="popup-status ${status}">${statusLabel}</span>`],
-    ['홀/파', `${c.holes ?? '—'}홀${c.par ? ` · Par ${c.par}` : ''}`],
-    ['개장', c.year_opened ? `${c.year_opened}년` : '—'],
-    ['설계자', designer || '—'],
-    ['평일/주말', `${fmtFee(wd, wdUSD)} / ${fmtFee(we, weUSD)}`],
-    membershipLine ? ['멤버십', membershipLine] : null,
+    [t('popup.region'), `${escapeHtml(c.region || '—')}, ${escapeHtml(c.province || '—')}`],
+    [t('popup.operating'), `<span class="popup-status ${status}">${statusLabel}</span>`],
+    [t('popup.holesPar'), `${c.holes ?? '—'}${t('common.holesUnit')}${c.par ? ` · Par ${c.par}` : ''}`],
+    [t('popup.opened'), yearText],
+    [t('popup.designer'), designer || '—'],
+    [t('popup.weekdayWeekend'), `${fmtFee(wd, wdUSD)} / ${fmtFee(we, weUSD)}`],
+    membershipLine ? [t('popup.membership'), membershipLine] : null,
   ].filter(Boolean);
 
   return `
@@ -402,7 +437,7 @@ function buildMarkerPopupHtml(c) {
       ${c.address ? `<div class="popup-addr">${escapeHtml(c.address)}</div>` : ''}
       <table class="popup-table">${rows.map(([k, v]) => `<tr><th>${k}</th><td>${v}</td></tr>`).join('')}</table>
       <div class="popup-links">${[websiteLink, mapsLink].filter(Boolean).join(' · ')}</div>
-      <button class="popup-detail-btn" data-detail-id="${escapeHtml(c.id)}">상세 정보 →</button>
+      <button class="popup-detail-btn" data-detail-id="${escapeHtml(c.id)}">${t('popup.detailBtn')}</button>
     </div>
   `;
 }
@@ -457,26 +492,49 @@ function renderMarkers() {
 
 // === Map Controls: Legend + Zoom Presets ===
 const ZOOM_PRESETS = [
-  { key: 'all',         label: '전체',        bounds: [[-10.5, 95], [6, 141]] },
-  { key: 'jabodetabek', label: 'Jabodetabek', bounds: [[-6.7, 106.3], [-6.0, 107.3]] },
-  { key: 'balikpapan',  label: 'Balikpapan',  bounds: [[-1.45, 116.6], [-1.0, 117.1]] },
-  { key: 'bali',        label: 'Bali',        bounds: [[-8.85, 114.4], [-8.05, 115.7]] },
+  { key: 'all',         labelKey: 'map.zoomAll', bounds: [[-10.5, 95], [6, 141]] },
+  { key: 'jabodetabek', label: 'Jabodetabek',    bounds: [[-6.7, 106.3], [-6.0, 107.3]] },
+  { key: 'balikpapan',  label: 'Balikpapan',     bounds: [[-1.45, 116.6], [-1.0, 117.1]] },
+  { key: 'bali',        label: 'Bali',           bounds: [[-8.85, 114.4], [-8.05, 115.7]] },
 ];
+
+let _legendEl = null;
+let _zoomPresetsEl = null;
+
+function _renderLegendInner() {
+  if (!_legendEl) return;
+  _legendEl.innerHTML = `
+      <div class="legend-title">${t('map.legendStatus')}</div>
+      <div class="legend-row"><span class="legend-swatch op"></span>${t('status.operating')}</div>
+      <div class="legend-row"><span class="legend-swatch cl"></span>${t('status.closed')}</div>
+      <div class="legend-row"><span class="legend-swatch un"></span>${t('status.uncertain')}</div>
+      <div class="legend-title">${t('map.legendHoles')}</div>
+      <div class="legend-row"><span class="legend-size sm"></span>${t('map.legend9')}</div>
+      <div class="legend-row"><span class="legend-size md"></span>${t('map.legend18')}</div>
+      <div class="legend-row"><span class="legend-size lg"></span>${t('map.legend27')}</div>
+    `;
+}
+
+function _renderZoomPresetsInner() {
+  if (!_zoomPresetsEl) return;
+  const activeKey = _zoomPresetsEl.querySelector('button.active')?.dataset.preset || 'all';
+  _zoomPresetsEl.innerHTML = ZOOM_PRESETS.map(p => {
+    const label = p.labelKey ? t(p.labelKey) : p.label;
+    return `<button data-preset="${p.key}"${p.key === activeKey ? ' class="active"' : ''}>${label}</button>`;
+  }).join('');
+}
+
+function _refreshMapControls() {
+  _renderLegendInner();
+  _renderZoomPresetsInner();
+}
 
 function addLegendControl() {
   const ctrl = L.control({ position: 'bottomright' });
   ctrl.onAdd = function () {
     const el = L.DomUtil.create('div', 'map-legend');
-    el.innerHTML = `
-      <div class="legend-title">운영 상태</div>
-      <div class="legend-row"><span class="legend-swatch op"></span>운영중</div>
-      <div class="legend-row"><span class="legend-swatch cl"></span>휴장</div>
-      <div class="legend-row"><span class="legend-swatch un"></span>불확실</div>
-      <div class="legend-title">홀 수</div>
-      <div class="legend-row"><span class="legend-size sm"></span>9홀 이하</div>
-      <div class="legend-row"><span class="legend-size md"></span>18홀</div>
-      <div class="legend-row"><span class="legend-size lg"></span>27홀 이상</div>
-    `;
+    _legendEl = el;
+    _renderLegendInner();
     L.DomEvent.disableClickPropagation(el);
     L.DomEvent.disableScrollPropagation(el);
     return el;
@@ -488,9 +546,8 @@ function addZoomPresetsControl() {
   const ctrl = L.control({ position: 'topright' });
   ctrl.onAdd = function () {
     const el = L.DomUtil.create('div', 'zoom-presets');
-    el.innerHTML = ZOOM_PRESETS.map(p =>
-      `<button data-preset="${p.key}"${p.key === 'all' ? ' class="active"' : ''}>${p.label}</button>`
-    ).join('');
+    _zoomPresetsEl = el;
+    _renderZoomPresetsInner();
     L.DomEvent.disableClickPropagation(el);
     L.DomEvent.disableScrollPropagation(el);
     el.addEventListener('click', e => {
@@ -527,9 +584,9 @@ function renderCourseList() {
   if (filteredCourses.length === 0) {
     list.innerHTML = `<div class="empty-state">
       <div class="empty-emoji">🔍</div>
-      <div class="empty-title">조건에 맞는 골프장이 없습니다</div>
-      <div class="empty-hint">검색어·지역·가격대 필터를 완화하거나, 운영 상태를 "전체"로 바꿔 보세요.</div>
-      <button class="empty-cta" id="emptyResetBtn" type="button">필터 초기화</button>
+      <div class="empty-title">${t('empty.title')}</div>
+      <div class="empty-hint">${t('empty.hint')}</div>
+      <button class="empty-cta" id="emptyResetBtn" type="button">${t('empty.cta')}</button>
     </div>`;
     document.getElementById('emptyResetBtn')?.addEventListener('click', () => {
       document.getElementById('filterResetBtn')?.click();
@@ -546,7 +603,7 @@ function renderCourseList() {
     item.className = 'course-item';
     item.dataset.id = c.id;
 
-    const holesText = c.holes ? `${c.holes}홀` : '';
+    const holesText = c.holes ? `${c.holes}${t('common.holesUnit')}` : '';
     const parText = c.par ? `Par ${c.par}` : '';
     const designerBadge = c.designer ? `<span class="badge">${escapeHtml(c.designer.split(',')[0].trim().split('(')[0].trim())}</span>` : '';
 
@@ -556,17 +613,17 @@ function renderCourseList() {
     if (f && f.weekday) {
       const wd = f.weekday.green_fee_idr ?? f.weekday.guest_fee_idr ?? f.weekday.member_fee_idr;
       if (wd != null) {
-        feePreview = `<span class="fee-badge">평일 ${fmtIDR(wd)}~</span>`;
+        feePreview = `<span class="fee-badge">${t('list.weekdayPrefix')} ${fmtIDR(wd)}~</span>`;
       } else if (f.weekday.green_fee_usd) {
-        feePreview = `<span class="fee-badge">평일 ${fmtUSD(f.weekday.green_fee_usd)}~</span>`;
+        feePreview = `<span class="fee-badge">${t('list.weekdayPrefix')} ${fmtUSD(f.weekday.green_fee_usd)}~</span>`;
       }
     }
 
     // Status badge
     const status = c.operating_status?.status || 'operating';
     let statusBadge = '';
-    if (status === 'closed_temporary') statusBadge = '<span class="status-badge closed">휴장</span>';
-    else if (status === 'uncertain') statusBadge = '<span class="status-badge uncertain">불확실</span>';
+    if (status === 'closed_temporary') statusBadge = `<span class="status-badge closed">${t('status.closed')}</span>`;
+    else if (status === 'uncertain') statusBadge = `<span class="status-badge uncertain">${t('status.uncertain')}</span>`;
 
     item.innerHTML = `
       <h4>${escapeHtml(c.name_en)} ${statusBadge}</h4>
@@ -601,12 +658,12 @@ function showDetail(c) {
   const panel = document.getElementById('detailPanel');
   const content = document.getElementById('detailContent');
 
-  const holesText = c.holes ? `${c.holes}홀` : '—';
+  const holesText = c.holes ? `${c.holes}${t('common.holesUnit')}` : '—';
   const parText = c.par != null ? c.par : '—';
   const yearText = c.year_opened || '—';
 
   const facilities = (c.facilities || []).map(f => `<li>${escapeHtml(f)}</li>`).join('');
-  const approxTag = c.coord_approximate ? '<span class="approx-tag">좌표 근사</span>' : '';
+  const approxTag = c.coord_approximate ? `<span class="approx-tag">${t('detail.coordApprox')}</span>` : '';
   const priceMatrixHtml = renderPriceMatrix(c);
   const sourceHistoryHtml = renderSourceHistory(c);
   const feesHtml = renderFees(c.fees_2026_05);
@@ -614,15 +671,15 @@ function showDetail(c) {
 
   // Operating status banner + name-adjacent badge
   const opStatus = c.operating_status?.status || 'operating';
-  const STATUS_LABEL_KO = { operating: '운영중', closed_temporary: '임시 휴장', closed_permanent: '영구 폐장', uncertain: '불확실' };
-  const detailStatusBadge = `<span class="detail-status-badge ${opStatus}" title="${escapeHtml(c.operating_status?.last_verified ? '확인일 ' + c.operating_status.last_verified : '')}">${STATUS_LABEL_KO[opStatus] || opStatus}</span>`;
+  const verifiedTitle = c.operating_status?.last_verified ? t('detail.verifiedDate', { date: c.operating_status.last_verified }) : '';
+  const detailStatusBadge = `<span class="detail-status-badge ${opStatus}" title="${escapeHtml(verifiedTitle)}">${statusLabelOf(opStatus)}</span>`;
   let statusBanner = '';
   if (opStatus === 'closed_temporary' || opStatus === 'closed_permanent') {
-    const reason = c.operating_status?.closure_reason || (opStatus === 'closed_permanent' ? '영구 폐장' : '리노베이션 / 임시 휴장');
+    const reason = c.operating_status?.closure_reason || (opStatus === 'closed_permanent' ? t('status.reasonPerm') : t('status.reasonReno'));
     const reopened = c.operating_status?.reopened_as ? ` (${escapeHtml(c.operating_status.reopened_as)})` : '';
-    statusBanner = `<div class="status-banner closed">⚠️ ${STATUS_LABEL_KO[opStatus]} — ${escapeHtml(reason)}${reopened}</div>`;
+    statusBanner = `<div class="status-banner closed">${t('status.banner.closed', { label: statusLabelOf(opStatus), reason: escapeHtml(reason), reopened })}</div>`;
   } else if (opStatus === 'uncertain') {
-    statusBanner = `<div class="status-banner uncertain">❓ 운영 상태 불확실 — 사전 연락 권장</div>`;
+    statusBanner = `<div class="status-banner uncertain">${t('status.banner.uncertain')}</div>`;
   }
 
   content.innerHTML = `
@@ -632,37 +689,37 @@ function showDetail(c) {
 
     <div class="stats">
       <div class="stat">
-        <div class="label">홀</div>
+        <div class="label">${t('detail.holes')}</div>
         <div class="value">${holesText}</div>
       </div>
       <div class="stat">
-        <div class="label">파</div>
+        <div class="label">${t('detail.par')}</div>
         <div class="value">${parText}</div>
       </div>
       <div class="stat">
-        <div class="label">개장</div>
+        <div class="label">${t('detail.opened')}</div>
         <div class="value">${yearText}</div>
       </div>
     </div>
 
     ${c.address ? `
     <section>
-      <h3>주소</h3>
+      <h3>${t('detail.address')}</h3>
       <p>${escapeHtml(c.address)}</p>
-      ${(c.operating_status?.coord_notes) ? `<details class="coord-notes-block"><summary>좌표 신뢰도 메모</summary><p>${escapeHtml(c.operating_status.coord_notes)}</p></details>` : ''}
+      ${(c.operating_status?.coord_notes) ? `<details class="coord-notes-block"><summary>${t('detail.coordNotes')}</summary><p>${escapeHtml(c.operating_status.coord_notes)}</p></details>` : ''}
     </section>` : ''}
 
     ${renderOperatingEvidence(c)}
 
     ${c.designer ? `
     <section>
-      <h3>설계자</h3>
+      <h3>${t('detail.designer')}</h3>
       <p>${escapeHtml(c.designer)}</p>
     </section>` : ''}
 
     ${c.course_layout ? `
     <section>
-      <h3>코스 구성</h3>
+      <h3>${t('detail.layout')}</h3>
       <p>${escapeHtml(c.course_layout)}</p>
     </section>` : ''}
 
@@ -676,7 +733,7 @@ function showDetail(c) {
 
     ${facilities ? `
     <section>
-      <h3>부대시설</h3>
+      <h3>${t('detail.facilities')}</h3>
       <ul class="facility-list">${facilities}</ul>
     </section>` : ''}
 
@@ -687,11 +744,11 @@ function showDetail(c) {
 
     ${c.website ? `
     <section>
-      <a class="website-link" href="${escapeHtml(c.website)}" target="_blank" rel="noopener">공식 웹사이트 →</a>
+      <a class="website-link" href="${escapeHtml(c.website)}" target="_blank" rel="noopener">${t('detail.officialWebLink')}</a>
     </section>` : ''}
 
     <section>
-      <a class="website-link" style="background:#475569" href="https://www.google.com/maps/search/?api=1&query=${c.lat},${c.lng}" target="_blank" rel="noopener">Google 지도 열기 →</a>
+      <a class="website-link" style="background:#475569" href="${escapeHtml(googleMapsPlaceUrl(c))}" target="_blank" rel="noopener">${t('detail.googleMapOpen')}</a>
     </section>
   `;
 
@@ -735,24 +792,12 @@ function fmtMoney(amt, cur) {
   return fmtK(amt, '') + ' ' + c;
 }
 
-const MEMBERSHIP_AVAIL_LABEL = {
-  'true': '회원 모집 중',
-  true: '회원 모집 중',
-  'false': '없음',
-  false: '없음',
-  'by_invitation_only': '초대제 (비공개)',
-  'employees_only': '직원 전용',
-  'military_personnel': '군인 전용',
-  'members_only': '회원 전용',
-  'unknown': '정보 없음',
-};
-
 function renderMembership(m) {
   if (!m || typeof m !== 'object') return '';
   const avail = m.available;
   const cats = Array.isArray(m.categories) ? m.categories : [];
 
-  const availLabel = MEMBERSHIP_AVAIL_LABEL[avail] ?? '정보 없음';
+  const availLabel = membershipAvailLabel(avail) ?? t('common.unknown');
 
   // Build category rows
   const catRows = cats.map(cat => {
@@ -765,37 +810,37 @@ function renderMembership(m) {
     const annT = fmtMoney(ann.amount, ann.currency);
     const monT = fmtMoney(mon.amount, mon.currency);
     const depT = fmtMoney(dep.amount, dep.currency);
-    const term = cat.term_years ? `${cat.term_years}년` : '';
+    const term = cat.term_years ? `${cat.term_years}${t('common.year')}` : '';
     const detail = [
-      initT ? `가입비 ${initT}` : null,
-      annT ? `연회비 ${annT}` : null,
-      monT ? `월회비 ${monT}` : null,
-      depT ? `예치금 ${depT}` : null,
+      initT ? `${t('member.initFee')} ${initT}` : null,
+      annT ? `${t('member.annualFee')} ${annT}` : null,
+      monT ? `${t('member.monthlyFee')} ${monT}` : null,
+      depT ? `${t('member.deposit')} ${depT}` : null,
       term,
     ].filter(Boolean).join(' · ');
     if (!cat.name && !detail) return '';
     return `<tr>
       <td>${escapeHtml(cat.name || '—')}</td>
-      <td>${detail || '<span class="muted">비공개</span>'}</td>
+      <td>${detail || `<span class="muted">${t('common.private')}</span>`}</td>
     </tr>`;
   }).filter(Boolean).join('');
 
   const sources = (m.sources || []).filter(Boolean);
   const sourcesHtml = sources.length
-    ? `<div class="fee-sources">출처: ${sources.slice(0, 4).map((u, i) =>
+    ? `<div class="fee-sources">${t('fee.sources')}: ${sources.slice(0, 4).map((u, i) =>
         `<a href="${escapeHtml(u)}" target="_blank" rel="noopener" title="${escapeHtml(u)}">[${i + 1}]</a>`
       ).join(' ')}</div>`
     : '';
 
   const notes = m.notes ? `<div class="fee-notes">${escapeHtml(m.notes)}</div>` : '';
-  const verifiedDate = m.last_verified ? `<span class="verified-date">확인일 ${escapeHtml(m.last_verified)}</span>` : '';
+  const verifiedDate = m.last_verified ? `<span class="verified-date">${t('detail.verifiedDate', { date: escapeHtml(m.last_verified) })}</span>` : '';
 
   if (catRows) {
     return `
       <section class="membership-section">
-        <h3>회원권 (멤버십) <span class="member-status-pill ${avail}">${availLabel}</span> ${verifiedDate}</h3>
+        <h3>${t('member.section')} <span class="member-status-pill ${avail}">${availLabel}</span> ${verifiedDate}</h3>
         <table class="member-table">
-          <thead><tr><th>등급</th><th>비용</th></tr></thead>
+          <thead><tr><th>${t('member.grade')}</th><th>${t('member.cost')}</th></tr></thead>
           <tbody>${catRows}</tbody>
         </table>
         ${notes}
@@ -806,28 +851,35 @@ function renderMembership(m) {
   // No priced categories — show status only
   return `
     <section class="membership-section minimal">
-      <h3>회원권 (멤버십) <span class="member-status-pill ${avail}">${availLabel}</span></h3>
-      ${notes || '<p class="muted">공개된 가입비·연회비 정보가 없습니다. 회원권 문의는 클럽으로 직접 연락이 필요합니다.</p>'}
+      <h3>${t('member.section')} <span class="member-status-pill ${avail}">${availLabel}</span></h3>
+      ${notes || `<p class="muted">${t('member.noDataNote')}</p>`}
       ${sourcesHtml}
     </section>`;
 }
 
 // === Financials Rendering ===
-const LISTED_STATUS_LABEL = {
-  'listed': '상장',
-  'subsidiary-of-listed': '상장사 자회사',
-  'private': '비상장',
-  'state-owned': '국영기업',
-  'government': '정부 운영',
-  'local-government': '지방정부',
-  'military': '군 운영',
-  'foundation': '재단',
-  'joint-venture': '합작법인',
-  'plantation-soe': '국영농장',
-  'tbk-reporting-not-yet-traded': 'Tbk(IDX 미거래)',
-  'subsidiary-of-state-owned (BUMN holding, unlisted)': 'BUMN 자회사(미상장)',
-  'unknown': '미확인'
-};
+function listedStatusLabel(status) {
+  const map = {
+    'listed': 'listed.listed',
+    'subsidiary-of-listed': 'listed.subsidiary-of-listed',
+    'private': 'listed.private',
+    'state-owned': 'listed.state-owned',
+    'government': 'listed.government',
+    'local-government': 'listed.local-government',
+    'military': 'listed.military',
+    'foundation': 'listed.foundation',
+    'joint-venture': 'listed.joint-venture',
+    'plantation-soe': 'listed.plantation-soe',
+    'tbk-reporting-not-yet-traded': 'listed.tbk-reporting-not-yet-traded',
+    'subsidiary-of-state-owned (BUMN holding, unlisted)': 'listed.bumn-subsidiary',
+    'unknown': 'listed.unknown',
+  };
+  return map[status] ? t(map[status]) : status;
+}
+
+const LISTED_STATUS_LABEL = new Proxy({}, {
+  get(_, status) { return listedStatusLabel(status); },
+});
 
 function fmtBigIDR(n) {
   if (n == null) return null;
@@ -872,69 +924,69 @@ function renderFinancials(fin) {
 
   const ticker = fin.idx_ticker || fin.foreign_ticker;
   const status = fin.listed_status || 'unknown';
-  const statusLabel = LISTED_STATUS_LABEL[status] || status;
+  const statusLabel = listedStatusLabel(status);
   const parent = fin.parent_company_full_name || fin.parent_group;
   const op = fin.operating_company;
 
   const rows = [];
-  if (op) rows.push(['운영법인', escapeHtml(op)]);
-  if (parent) rows.push(['모회사·기업집단', escapeHtml(parent)]);
+  if (op) rows.push([t('fin.opCompany'), escapeHtml(op)]);
+  if (parent) rows.push([t('fin.parent'), escapeHtml(parent)]);
   if (ticker) {
     const cls = fin.idx_ticker ? 'idx' : 'foreign';
     const yhUrl = yahooFinanceUrl(ticker, !!fin.idx_ticker);
     const tickerHtml = yhUrl
-      ? `<a class="ticker-pill ${cls} ticker-link" href="${escapeHtml(yhUrl)}" target="_blank" rel="noopener" title="Yahoo Finance에서 ${escapeHtml(ticker)} 열기">${escapeHtml(ticker)} <span class="ticker-ext">↗</span></a>`
+      ? `<a class="ticker-pill ${cls} ticker-link" href="${escapeHtml(yhUrl)}" target="_blank" rel="noopener" title="${escapeHtml(t('finance.tickerOpen', { ticker }))}">${escapeHtml(ticker)} <span class="ticker-ext">↗</span></a>`
       : `<span class="ticker-pill ${cls}">${escapeHtml(ticker)}</span>`;
-    rows.push(['상장 티커', tickerHtml]);
+    rows.push([t('fin.ticker'), tickerHtml]);
   }
-  rows.push(['상장 구분', `<span class="listed-status ${escapeHtml(status)}">${escapeHtml(statusLabel)}</span>`]);
+  rows.push([t('fin.listedStatus'), `<span class="listed-status ${escapeHtml(status)}">${escapeHtml(statusLabel)}</span>`]);
 
   // Revenue (full-year preferred, else H1)
   const rev = fin.revenue_idr;
   const revH1 = fin.revenue_idr_h1;
   const revYear = fin.revenue_year;
   if (rev != null) {
-    rows.push([`매출${revYear ? ` (${escapeHtml(String(revYear))})` : ''}`, fmtBigIDR(rev)]);
+    rows.push([revYear ? t('fin.revenueWith', { year: escapeHtml(String(revYear)) }) : t('fin.revenue'), fmtBigIDR(rev)]);
   } else if (revH1 != null) {
-    rows.push([`매출 (H1-${escapeHtml(String(revYear || '2024'))})`, fmtBigIDR(revH1)]);
+    rows.push([t('fin.revenueH1', { year: escapeHtml(String(revYear || '2024')) }), fmtBigIDR(revH1)]);
   }
   if (fin.net_profit_idr != null) {
     const np = fin.net_profit_idr;
     const sign = np < 0 ? '<span class="neg">−</span>' : '';
-    rows.push(['순이익', sign + fmtBigIDR(Math.abs(np))]);
+    rows.push([t('fin.netProfit'), sign + fmtBigIDR(Math.abs(np))]);
   } else if (fin.net_profit_idr_h1 != null) {
-    rows.push(['순이익 (H1)', fmtBigIDR(fin.net_profit_idr_h1)]);
+    rows.push([t('fin.netProfitH1'), fmtBigIDR(fin.net_profit_idr_h1)]);
   }
-  if (fin.total_assets_idr != null) rows.push(['총자산', fmtBigIDR(fin.total_assets_idr)]);
-  if (fin.employees != null) rows.push(['직원수', `${fin.employees.toLocaleString('en-US')}명`]);
-  if (fin.investment_idr != null) rows.push(['투자/개발비', fmtBigIDR(fin.investment_idr)]);
-  if (fin.investment_usd != null) rows.push(['투자 (USD)', `$${fin.investment_usd.toLocaleString('en-US')}`]);
+  if (fin.total_assets_idr != null) rows.push([t('fin.totalAssets'), fmtBigIDR(fin.total_assets_idr)]);
+  if (fin.employees != null) rows.push([t('fin.employees'), `${fin.employees.toLocaleString('en-US')}${t('common.peopleUnit')}`]);
+  if (fin.investment_idr != null) rows.push([t('fin.investment'), fmtBigIDR(fin.investment_idr)]);
+  if (fin.investment_usd != null) rows.push([t('fin.investmentUsd'), `$${fin.investment_usd.toLocaleString('en-US')}`]);
 
   if (fin.course_segment_disclosed === true && fin.course_segment_revenue_idr != null) {
-    rows.push(['골프 세그먼트 매출', `<span class="seg-disclosed">${fmtBigIDR(fin.course_segment_revenue_idr)}</span> <span class="muted">(별도공시)</span>`]);
+    rows.push([t('fin.golfSegment'), `<span class="seg-disclosed">${fmtBigIDR(fin.course_segment_revenue_idr)}</span> <span class="muted">${t('fin.segDisclosedNote')}</span>`]);
   } else if (fin.course_segment_disclosed === true) {
-    rows.push(['골프 세그먼트', '<span class="seg-disclosed">별도공시</span>']);
+    rows.push([t('fin.golfSegmentLabel'), `<span class="seg-disclosed">${t('fin.segDisclosed')}</span>`]);
   }
 
   // Membership pricing
   if (fin.membership_price_idr != null) {
-    rows.push(['회원권', `${fmtBigIDR(fin.membership_price_idr)}`]);
+    rows.push([t('fin.membership'), `${fmtBigIDR(fin.membership_price_idr)}`]);
   } else if (fin.membership_price_usd != null) {
-    rows.push(['회원권', `$${fin.membership_price_usd.toLocaleString('en-US')}`]);
+    rows.push([t('fin.membership'), `$${fin.membership_price_usd.toLocaleString('en-US')}`]);
   }
 
   if (fin.figure_origin) {
-    rows.push(['데이터 신뢰도', `<span class="origin-pill">${escapeHtml(fin.figure_origin)}</span>`]);
+    rows.push([t('fin.dataReliability'), `<span class="origin-pill">${escapeHtml(fin.figure_origin)}</span>`]);
   }
 
   if (fin.recent_news) {
-    rows.push(['최근 이슈', `<span class="news-line">${escapeHtml(fin.recent_news)}</span>`]);
+    rows.push([t('fin.recentNews'), `<span class="news-line">${escapeHtml(fin.recent_news)}</span>`]);
   }
 
   // Notes
   let notesHtml = '';
-  if (fin.membership_price_notes) notesHtml += `<div class="fin-note"><span class="note-label">회원권 메모:</span> ${escapeHtml(fin.membership_price_notes)}</div>`;
-  if (fin.ownership_notes) notesHtml += `<div class="fin-note"><span class="note-label">소유 메모:</span> ${escapeHtml(fin.ownership_notes)}</div>`;
+  if (fin.membership_price_notes) notesHtml += `<div class="fin-note"><span class="note-label">${t('fin.memberNote')}</span> ${escapeHtml(fin.membership_price_notes)}</div>`;
+  if (fin.ownership_notes) notesHtml += `<div class="fin-note"><span class="note-label">${t('fin.ownerNote')}</span> ${escapeHtml(fin.ownership_notes)}</div>`;
 
   // Sources — combine sources + parent_financial_sources + membership_sources
   const collectSources = () => {
@@ -970,8 +1022,8 @@ function renderFinancials(fin) {
   let sourcesHtml = '';
   if (allSources.length) {
     const items = allSources.slice(0, 12).map((s, i) => {
-      const kindBadge = s.kind === 'parent' ? '<span class="kind-pill parent">모회사</span>'
-        : s.kind === 'membership' ? '<span class="kind-pill membership">회원권</span>'
+      const kindBadge = s.kind === 'parent' ? `<span class="kind-pill parent">${t('fin.kindParent')}</span>`
+        : s.kind === 'membership' ? `<span class="kind-pill membership">${t('fin.kindMember')}</span>`
         : '';
       const label = s.publisher || (() => {
         try { return new URL(s.url).hostname.replace(/^www\./, ''); }
@@ -981,14 +1033,14 @@ function renderFinancials(fin) {
       const titleAttr = s.title ? `${s.title} — ${s.url}` : s.url;
       return `<a class="fin-src" href="${escapeHtml(s.url)}" target="_blank" rel="noopener" title="${escapeHtml(titleAttr)}">${kindBadge}${escapeHtml(label)}${dateInfo}</a>`;
     }).join(' ');
-    sourcesHtml = `<div class="fin-sources">출처(${allSources.length}): ${items}</div>`;
+    sourcesHtml = `<div class="fin-sources">${t('fin.sources', { n: allSources.length })}: ${items}</div>`;
   }
 
-  const verifiedDate = fin.last_verified ? `<span class="verified-date">확인일 ${escapeHtml(fin.last_verified)}</span>` : '';
+  const verifiedDate = fin.last_verified ? `<span class="verified-date">${t('detail.verifiedDate', { date: escapeHtml(fin.last_verified) })}</span>` : '';
 
   return `
     <section class="financials-section">
-      <h3>기업·재무 정보 ${verifiedDate}</h3>
+      <h3>${t('fin.section')} ${verifiedDate}</h3>
       <table class="fin-table">${rows.map(([k, v]) => `<tr><th>${k}</th><td>${v}</td></tr>`).join('')}</table>
       ${notesHtml}
       ${sourcesHtml}
@@ -1047,24 +1099,24 @@ function renderFees(f) {
   if (wdGreen != null || wdUSD != null) {
     const idr = fmtIDR(wdGreen);
     const usd = fmtUSD(wdUSD);
-    rows.push(`<tr><td>평일 그린피</td><td class="amt">${[idr, usd].filter(Boolean).join(' / ') || '—'}</td></tr>`);
+    rows.push(`<tr><td>${t('fee.weekday')}</td><td class="amt">${[idr, usd].filter(Boolean).join(' / ') || '—'}</td></tr>`);
   }
   if (weGreen != null || weUSD != null) {
     const idr = fmtIDR(weGreen);
     const usd = fmtUSD(weUSD);
-    rows.push(`<tr><td>주말 그린피</td><td class="amt">${[idr, usd].filter(Boolean).join(' / ') || '—'}</td></tr>`);
+    rows.push(`<tr><td>${t('fee.weekend')}</td><td class="amt">${[idr, usd].filter(Boolean).join(' / ') || '—'}</td></tr>`);
   }
-  if (f.twilight_idr != null) rows.push(`<tr><td>트와일라잇</td><td class="amt">${fmtIDR(f.twilight_idr)}</td></tr>`);
-  if (caddy != null) rows.push(`<tr><td>캐디피</td><td class="amt">${fmtFee(caddy)}</td></tr>`);
-  if (cart != null) rows.push(`<tr><td>카트</td><td class="amt">${fmtFee(cart)}</td></tr>`);
-  if (insurance != null) rows.push(`<tr><td>보험</td><td class="amt">${fmtFee(insurance)}</td></tr>`);
-  if (taxPct != null) rows.push(`<tr><td>세금(PPN)</td><td class="amt">${taxPct}%${taxIncluded ? ' (포함)' : ''}</td></tr>`);
-  if (rateIncludes) rows.push(`<tr><td>요금 구성</td><td class="amt note-cell">${escapeHtml(rateIncludes)}</td></tr>`);
+  if (f.twilight_idr != null) rows.push(`<tr><td>${t('fee.twilight')}</td><td class="amt">${fmtIDR(f.twilight_idr)}</td></tr>`);
+  if (caddy != null) rows.push(`<tr><td>${t('fee.caddy')}</td><td class="amt">${fmtFee(caddy)}</td></tr>`);
+  if (cart != null) rows.push(`<tr><td>${t('fee.cart')}</td><td class="amt">${fmtFee(cart)}</td></tr>`);
+  if (insurance != null) rows.push(`<tr><td>${t('fee.insurance')}</td><td class="amt">${fmtFee(insurance)}</td></tr>`);
+  if (taxPct != null) rows.push(`<tr><td>${t('fee.tax')}</td><td class="amt">${taxPct}%${taxIncluded ? ' ' + t('fee.taxIncluded') : ''}</td></tr>`);
+  if (rateIncludes) rows.push(`<tr><td>${t('fee.rateIncludes')}</td><td class="amt note-cell">${escapeHtml(rateIncludes)}</td></tr>`);
 
   const detailed = f.schedule_detailed;
   let detailedHtml = '';
   if (isObject(detailed)) {
-    const slotLabels = { weekday: '평일', weekend_saturday: '토요일', weekend_sunday: '일요일', public_holiday: '공휴일' };
+    const slotLabels = { weekday: t('slot.weekday'), weekend_saturday: t('slot.weekendSat'), weekend_sunday: t('slot.weekendSun'), public_holiday: t('slot.holiday') };
     const blocks = [];
     for (const [slot, slotLabel] of Object.entries(slotLabels)) {
       const slotData = detailed[slot];
@@ -1084,27 +1136,28 @@ function renderFees(f) {
       flatten(slotData);
       if (lines.length) blocks.push(`<div class="slot-block"><h4>${slotLabel}</h4><ul class="slot-list">${lines.join('')}</ul></div>`);
     }
-    if (blocks.length) detailedHtml = `<details class="schedule-detailed"><summary>상세 시간/세그먼트별 요율</summary>${blocks.join('')}</details>`;
+    if (blocks.length) detailedHtml = `<details class="schedule-detailed"><summary>${t('fee.detailed')}</summary>${blocks.join('')}</details>`;
   }
 
   const sources = (f.sources || []).filter(Boolean);
   const idUrls = new Set((f.indonesian_sources || []).map(e => e?.url).filter(Boolean));
   const sourcesHtml = sources.length
-    ? `<div class="fee-sources">출처: ${sources.slice(0, 8).map((u, i) => {
+    ? `<div class="fee-sources">${t('fee.sources')}: ${sources.slice(0, 8).map((u, i) => {
         const langTag = idUrls.has(u) ? '<span class="lang-tag">ID</span>' : '<span class="lang-tag en">EN</span>';
         return `<a href="${escapeHtml(u)}" target="_blank" rel="noopener" title="${escapeHtml(u)}">[${i + 1}]${langTag}</a>`;
       }).join(' ')}</div>`
     : '';
 
-  const verifiedDate = f.last_verified ? `<span class="verified-date">확인일 ${escapeHtml(f.last_verified)}</span>` : '';
+  const verifiedDate = f.last_verified ? `<span class="verified-date">${t('detail.verifiedDate', { date: escapeHtml(f.last_verified) })}</span>` : '';
   const basedOn = f.based_on ? `<div class="fee-warning">⚠ ${escapeHtml(f.based_on)}</div>` : '';
   const notes = f.notes ? `<div class="fee-notes">${escapeHtml(f.notes)}</div>` : '';
+  const feeTitle = t('fee.title', { date: t('fee.dateMay') });
 
   if (rows.length === 0) {
     // Notes-only fee section (for closed courses or member-only)
     return `
       <section class="fees-section">
-        <h3>이용금액 (2026년 5월) ${verifiedDate}</h3>
+        <h3>${feeTitle} ${verifiedDate}</h3>
         ${basedOn}
         ${detailedHtml}
         ${notes}
@@ -1114,7 +1167,7 @@ function renderFees(f) {
 
   return `
     <section class="fees-section">
-      <h3>이용금액 (2026년 5월) ${verifiedDate}</h3>
+      <h3>${feeTitle} ${verifiedDate}</h3>
       ${basedOn}
       <table class="fee-table">${rows.join('')}</table>
       ${detailedHtml}
@@ -1334,18 +1387,18 @@ function membershipCellText(m) {
     const init = cat.initiation_fee || {};
     const ann = cat.annual_fee || {};
     if (init.amount != null) {
-      return `<span class="member-amt">가입 ${fmtMoney(init.amount, init.currency)}</span>`;
+      return `<span class="member-amt">${t('member.cellInit', { amt: fmtMoney(init.amount, init.currency) })}</span>`;
     }
     if (ann.amount != null) {
-      return `<span class="member-amt">연 ${fmtMoney(ann.amount, ann.currency)}</span>`;
+      return `<span class="member-amt">${t('member.cellAnnual', { amt: fmtMoney(ann.amount, ann.currency) })}</span>`;
     }
   }
   const avail = m.available;
-  const label = MEMBERSHIP_AVAIL_LABEL[avail];
+  const label = membershipAvailLabel(avail);
   if (label && avail !== 'unknown' && avail !== false) {
     return `<span class="member-status-pill ${avail}">${label}</span>`;
   }
-  return '<span class="muted">비공개</span>';
+  return `<span class="muted">${t('common.private')}</span>`;
 }
 
 function membershipTypeCell(m) {
@@ -1360,11 +1413,11 @@ function membershipTypeCell(m) {
     }
   }
   const avail = m.available;
-  const label = MEMBERSHIP_AVAIL_LABEL[avail];
+  const label = membershipAvailLabel(avail);
   if (label && avail !== 'unknown' && avail !== false) {
     return `<span class="member-status-pill ${avail}">${label}</span>`;
   }
-  return '<span class="muted">비공개</span>';
+  return `<span class="muted">${t('common.private')}</span>`;
 }
 
 function membershipAmountCell(m) {
@@ -1375,13 +1428,13 @@ function membershipAmountCell(m) {
     const init = cat.initiation_fee || {};
     const ann = cat.annual_fee || {};
     const mo = cat.monthly_fee || {};
-    if (init.amount != null) parts.push(`<span class="member-amt">가입 ${fmtMoney(init.amount, init.currency)}</span>`);
-    if (ann.amount != null) parts.push(`<span class="member-amt">연 ${fmtMoney(ann.amount, ann.currency)}</span>`);
-    if (mo.amount != null) parts.push(`<span class="member-amt">월 ${fmtMoney(mo.amount, mo.currency)}</span>`);
+    if (init.amount != null) parts.push(`<span class="member-amt">${t('member.cellInit', { amt: fmtMoney(init.amount, init.currency) })}</span>`);
+    if (ann.amount != null) parts.push(`<span class="member-amt">${t('member.cellAnnual', { amt: fmtMoney(ann.amount, ann.currency) })}</span>`);
+    if (mo.amount != null) parts.push(`<span class="member-amt">${t('member.cellMonthly', { amt: fmtMoney(mo.amount, mo.currency) })}</span>`);
     if (parts.length >= 3) break;
   }
   if (parts.length) return parts.slice(0, 3).join('<br>');
-  return '<span class="muted">비공개</span>';
+  return `<span class="muted">${t('common.private')}</span>`;
 }
 
 function extractAmPm(slotData) {
@@ -1476,7 +1529,7 @@ function labelSource(url, courseWebsite) {
   if (courseWebsite) {
     const wh = getHostname(courseWebsite);
     if (wh && (host === wh || host.endsWith('.' + wh) || wh.endsWith('.' + host))) {
-      return { label: '공식', kind: 'official', host, url };
+      return { label: t('src.official'), kind: 'official', host, url };
     }
   }
   if (host.includes('qaccess.asia')) return { label: 'Q-Access', kind: 'qaccess', host, url };
@@ -1489,12 +1542,12 @@ function labelSource(url, courseWebsite) {
   if (host.includes('hole19')) return { label: 'Hole19', kind: 'aggregator', host, url };
   if (host.includes('greenfee365')) return { label: 'GreenFee365', kind: 'aggregator', host, url };
   if (host.includes('golfshake')) return { label: 'Golfshake', kind: 'aggregator', host, url };
-  if (host.includes('klook') || host.includes('traveloka') || host.includes('agoda') || host.includes('tiket.com') || host.includes('trip.com')) return { label: '예약', kind: 'booking', host, url };
-  if (host.includes('facebook') || host === 'fb.com' || host.includes('instagram') || host.includes('twitter') || host === 'x.com' || host.includes('tiktok') || host.includes('threads')) return { label: 'SNS', kind: 'sns', host, url };
-  if (host.includes('idnfinancials') || host.includes('kontan') || host.includes('bisnis') || host.includes('kompas') || host.includes('detik') || host.includes('tempo.co') || host.includes('tribun') || host.includes('liputan6') || host.includes('voi.id') || host.includes('cnbcindonesia') || host.includes('jawapos') || host.includes('suaramerdeka') || host.includes('antaranews') || host.includes('golftimes') || host.includes('obgolf') || host.includes('xplorewisata') || host.includes('antorij')) return { label: '뉴스/매거진', kind: 'news', host, url };
-  if (host.includes('idx.co.id') || host.includes('ojk.go.id') || host.includes('sec.gov') || host.includes('sgx.com')) return { label: '공시', kind: 'official', host, url };
+  if (host.includes('klook') || host.includes('traveloka') || host.includes('agoda') || host.includes('tiket.com') || host.includes('trip.com')) return { label: t('src.reservation'), kind: 'booking', host, url };
+  if (host.includes('facebook') || host === 'fb.com' || host.includes('instagram') || host.includes('twitter') || host === 'x.com' || host.includes('tiktok') || host.includes('threads')) return { label: t('src.sns'), kind: 'sns', host, url };
+  if (host.includes('idnfinancials') || host.includes('kontan') || host.includes('bisnis') || host.includes('kompas') || host.includes('detik') || host.includes('tempo.co') || host.includes('tribun') || host.includes('liputan6') || host.includes('voi.id') || host.includes('cnbcindonesia') || host.includes('jawapos') || host.includes('suaramerdeka') || host.includes('antaranews') || host.includes('golftimes') || host.includes('obgolf') || host.includes('xplorewisata') || host.includes('antorij')) return { label: t('src.news'), kind: 'news', host, url };
+  if (host.includes('idx.co.id') || host.includes('ojk.go.id') || host.includes('sec.gov') || host.includes('sgx.com')) return { label: t('src.disclosure'), kind: 'official', host, url };
   if (host.includes('archive.org') || host.includes('wayback')) return { label: 'Wayback', kind: 'archive', host, url };
-  if (host.includes('tni-au.mil') || host.includes('tniad') || host.includes('tnial') || host.endsWith('.mil.id') || host.endsWith('.go.id')) return { label: '관공서', kind: 'gov', host, url };
+  if (host.includes('tni-au.mil') || host.includes('tniad') || host.includes('tnial') || host.endsWith('.mil.id') || host.endsWith('.go.id')) return { label: t('src.gov'), kind: 'gov', host, url };
   return { label: host, kind: 'other', host, url };
 }
 
@@ -1547,11 +1600,11 @@ function collectCategorizedSources(c) {
 // candidate (price, source-info) tuples we can find across fees_2026_05 (primary,
 // often official/Q-Access) and fees_gogolf_reference (gogolf.co.id).
 const SLOT_KEYS = ['wdAm', 'wdPm', 'satAm', 'satPm', 'sunAm', 'sunPm'];
-const SLOT_LABEL = {
-  wdAm: '평일 AM', wdPm: '평일 PM',
-  satAm: '토 AM', satPm: '토 PM',
-  sunAm: '일 AM', sunPm: '일 PM',
-};
+const SLOT_LABEL = new Proxy({}, {
+  get(_, key) {
+    return t('slot.' + key);
+  },
+});
 
 function _firstNumber(obj, keys) {
   if (typeof obj === 'number') return obj;
@@ -1604,7 +1657,7 @@ function getGoGolfRates(c) {
 function primarySourceCategory(c) {
   const f = c.fees_2026_05 || {};
   const urls = (f.sources || []).filter(u => typeof u === 'string' && /^https?:/.test(u));
-  if (urls.length === 0) return { kind: 'official', label: '공식', host: '' };
+  if (urls.length === 0) return { kind: 'official', label: t('src.official'), host: '' };
   // Use the first URL as the dominant primary source. Map to a 5-bucket category.
   const info = labelSource(urls[0], c.website);
   const cat = SRC_TAB_OF_KIND[info.kind] || 'news';
@@ -1707,7 +1760,7 @@ function renderFeeCell(c, slot, cat) {
   }
   const dimClass = dimmed ? ' dim' : '';
   const premiumClass = (slot === 'satAm' || slot === 'sunAm') ? ' fee-premium' : '';
-  const ariaLabel = `${SLOT_LABEL[slot]} ${fmtIDR(primary.price)} — 출처 ${primary.src.label}${visible.length > 1 ? `, 외 ${visible.length - 1}개` : ''}`;
+  const ariaLabel = `${SLOT_LABEL[slot]} ${fmtIDR(primary.price)} — ${t('fee.sources')} ${primary.src.label}${visible.length > 1 ? `, +${visible.length - 1}` : ''}`;
   return `<td class="num fee fee-cell${dimClass}${premiumClass}" data-fee-cell="${slot}" data-course-id="${escapeHtml(c.id)}" tabindex="0" role="button" aria-label="${escapeHtml(ariaLabel)}">${priceHtml}</td>`;
 }
 
@@ -1717,9 +1770,9 @@ function renderOperatingEvidence(c) {
   const ev = (op.evidence || []).filter(Boolean);
   if (!ev.length && !op.last_verified) return '';
   const verified = op.last_verified
-    ? `<span class="verified-date">확인일 ${escapeHtml(op.last_verified)}</span>`
+    ? `<span class="verified-date">${t('detail.verifiedDate', { date: escapeHtml(op.last_verified) })}</span>`
     : '';
-  const confLabel = { high: '신뢰도 높음', medium: '신뢰도 보통', low: '신뢰도 낮음' };
+  const confLabel = { high: t('conf.high'), medium: t('conf.medium'), low: t('conf.low') };
   const confBadge = op.confidence
     ? `<span class="conf-badge ${escapeHtml(op.confidence)}">${confLabel[op.confidence] || op.confidence}</span>`
     : '';
@@ -1739,8 +1792,8 @@ function renderOperatingEvidence(c) {
     return `<li>${escapeHtml(String(e))}</li>`;
   }).join('');
   return `<section class="evidence-section">
-    <h3>운영 상태 근거 ${confBadge} ${verified}</h3>
-    <ul class="evidence-list">${items || '<li class="muted">근거 없음</li>'}</ul>
+    <h3>${t('evidence.title')} ${confBadge} ${verified}</h3>
+    <ul class="evidence-list">${items || `<li class="muted">${t('evidence.none')}</li>`}</ul>
   </section>`;
 }
 
@@ -1775,13 +1828,13 @@ function renderPriceMatrix(c) {
   if (!anyValue) return '';
   const r = (label, am, pm) => `<tr><th>${label}</th><td>${cells[am].html}</td><td>${cells[pm].html}</td></tr>`;
   return `<section class="price-matrix-section">
-    <h3>가격 매트릭스 <span class="matrix-hint">셀 클릭 → 출처별 비교</span></h3>
+    <h3>${t('matrix.title')} <span class="matrix-hint">${t('matrix.hint')}</span></h3>
     <table class="price-matrix">
       <thead><tr><th></th><th>AM</th><th>PM</th></tr></thead>
       <tbody>
-        ${r('평일', 'wdAm', 'wdPm')}
-        ${r('토', 'satAm', 'satPm')}
-        ${r('일', 'sunAm', 'sunPm')}
+        ${r(t('matrix.weekday'), 'wdAm', 'wdPm')}
+        ${r(t('matrix.sat'), 'satAm', 'satPm')}
+        ${r(t('matrix.sun'), 'sunAm', 'sunPm')}
       </tbody>
     </table>
   </section>`;
@@ -1809,7 +1862,7 @@ function renderSourceHistory(c) {
     const priUrl = priInfo.url || (f.sources || [])[0] || '';
     groups[priInfo.kind] ??= [];
     const priEntry = {
-      label: priInfo.label || '공식',
+      label: priInfo.label || t('src.official'),
       url: priUrl,
       date: f.last_verified || null,
       slots: priSlotPrices,
@@ -1912,7 +1965,7 @@ function renderSourceHistory(c) {
   }
 
   const ORDER = ['official', 'platform', 'sns', 'aggregator', 'news'];
-  const TITLE = SRC_CAT_LABEL || {};
+  const TITLE = ORDER.reduce((acc, k) => { acc[k] = t('srcCat.' + k); return acc; }, {});
   const allEmpty = ORDER.every(k => (groups[k] || []).length === 0);
   if (allEmpty) return '';
 
@@ -1922,17 +1975,17 @@ function renderSourceHistory(c) {
     ).join('');
     const dateHtml = entry.date ? `<span class="hist-date">${escapeHtml(entry.date)}</span>` : '';
     const linkHtml = entry.url
-      ? `<a class="hist-link" href="${escapeHtml(entry.url)}" target="_blank" rel="noopener">원문 ↗</a>`
+      ? `<a class="hist-link" href="${escapeHtml(entry.url)}" target="_blank" rel="noopener">${t('history.original')}</a>`
       : '';
-    const conf = entry.confidence === 'low' ? '<span class="hist-conf low">참고용</span>' : '';
+    const conf = entry.confidence === 'low' ? `<span class="hist-conf low">${t('history.refOnly')}</span>` : '';
     const crawledTag = entry.isCrawled
-      ? `<span class="hist-crawled-tag" title="자동 크롤로 추출된 출처">자동 · Tier ${entry.tier ?? '?'}${entry.from_pdf ? ' · PDF' : ''}</span>`
+      ? `<span class="hist-crawled-tag" title="${escapeHtml(t('history.crawledTitle'))}">${t('history.crawled', { tier: entry.tier ?? '?', pdf: entry.from_pdf ? ' · PDF' : '' })}</span>`
       : '';
     const collapseTag = (entry.n_collapsed && entry.n_collapsed > 1)
-      ? `<span class="hist-collapse-tag" title="이 페이지에서 ${entry.n_collapsed}개 가격 추출 → median 사용">${entry.n_collapsed}개 추출/median</span>`
+      ? `<span class="hist-collapse-tag" title="${escapeHtml(t('history.collapseTitle', { n: entry.n_collapsed }))}">${t('history.collapseTag', { n: entry.n_collapsed })}</span>`
       : '';
     const extraUrlsHtml = (entry.extraUrls && entry.extraUrls.length)
-      ? `<div class="hist-extra-sources" title="동일 가격을 게시한 추가 출처">추가 출처: ${entry.extraUrls.map(e => `<a href="${escapeHtml(e.url)}" target="_blank" rel="noopener" class="hist-extra-link">${escapeHtml(e.label)} ↗</a>`).join(' · ')}</div>`
+      ? `<div class="hist-extra-sources" title="${escapeHtml(t('history.extraSrcTitle'))}">${t('history.extraSrc')}: ${entry.extraUrls.map(e => `<a href="${escapeHtml(e.url)}" target="_blank" rel="noopener" class="hist-extra-link">${escapeHtml(e.label)} ↗</a>`).join(' · ')}</div>`
       : '';
     return `<div class="hist-row${entry.isCrawled ? ' is-crawled' : ''}">
       <div class="hist-row-head"><span class="hist-label">${escapeHtml(entry.label)}</span>${conf}${crawledTag}${collapseTag}${dateHtml}${linkHtml}</div>
@@ -1951,7 +2004,7 @@ function renderSourceHistory(c) {
   }).join('');
 
   return `<section class="source-history-section">
-    <h3>출처별 가격 이력</h3>
+    <h3>${t('history.title')}</h3>
     <div class="hist-groups">${groupHtml}</div>
   </section>`;
 }
@@ -1974,7 +2027,7 @@ function getCategoryRates(c, cat) {
       satPm: sch.saturday?.pm ?? null,
       sunAm: sch.sunday?.am ?? null,
       sunPm: sch.sunday?.pm ?? null,
-      note: 'GoGolf 참고가',
+      note: t('table.gogolfNote'),
       isPlatform: true,
     };
   }
@@ -1995,12 +2048,7 @@ function getCategoryRates(c, cat) {
 // === Unified row renderer (single row template, rates swap by category) ===
 function renderAllTabRow(c, cat = 'all') {
   const status = c.operating_status?.status || 'operating';
-  const statusLabel = {
-    operating: '운영중',
-    closed_temporary: '임시 휴장',
-    closed_permanent: '영구 폐장',
-    uncertain: '불확실',
-  }[status] || status;
+  const statusLabel = statusLabelOf(status);
 
   // Multi-source price cells: each cell shows dominant price + dot + ⚠ if 30%+ diff.
   // In "all" tab, ranges are shown when sources differ.
@@ -2013,7 +2061,7 @@ function renderAllTabRow(c, cat = 'all') {
 
   const matoaTag = c.id === 'matoa-nasional' ? '<span class="matoa-tag">★ Matoa</span>' : '';
   const noteTag = '';
-  const mapLink = `<a href="https://www.google.com/maps/search/?api=1&query=${c.lat},${c.lng}" target="_blank" rel="noopener">지도</a>`;
+  const mapLink = `<a href="${escapeHtml(googleMapsPlaceUrl(c))}" target="_blank" rel="noopener">${t('map.mapLink')}</a>`;
 
   const fin = c.financials || {};
   const parentLabel = fin.parent_group || fin.parent_company_full_name || '';
@@ -2024,7 +2072,7 @@ function renderAllTabRow(c, cat = 'all') {
   const yhUrl = ticker ? yahooFinanceUrl(ticker, !!fin.idx_ticker) : null;
   const tickerCell = ticker
     ? (yhUrl
-        ? `<a class="ticker-pill ${fin.idx_ticker ? 'idx' : 'foreign'} ticker-link" href="${escapeHtml(yhUrl)}" target="_blank" rel="noopener" title="Yahoo Finance에서 ${escapeHtml(ticker)} 열기">${escapeHtml(ticker)} <span class="ticker-ext">↗</span></a>`
+        ? `<a class="ticker-pill ${fin.idx_ticker ? 'idx' : 'foreign'} ticker-link" href="${escapeHtml(yhUrl)}" target="_blank" rel="noopener" title="${escapeHtml(t('finance.tickerOpen', { ticker }))}">${escapeHtml(ticker)} <span class="ticker-ext">↗</span></a>`
         : `<span class="ticker-pill ${fin.idx_ticker ? 'idx' : 'foreign'}">${escapeHtml(ticker)}</span>`)
     : '<span class="muted">—</span>';
   const revIdr = fin.revenue_idr ?? fin.revenue_idr_h1;
@@ -2073,23 +2121,13 @@ function renderAllTabRow(c, cat = 'all') {
 // === Current selected source category sub-tab (drives rate column swap) ===
 let currentSourceCat = 'all';
 
-const SRC_TAB_DESC = {
-  all: '필터에 해당하는 모든 골프장의 통합 정보 — 요금·멤버십·모회사 재무·전체 출처를 한 표에서 확인',
-  official: '공식 골프장 사이트 · 거래소(IDX) 공시 · OJK · 관공서(.go.id, .mil.id) — 1차 출처 기준 요금',
-  sns: 'Instagram · Facebook · X(Twitter) · TikTok · Threads — 공식 채널 게시물 (요금은 1차 출처와 동일)',
-  platform: 'Q-Access · GoGolf · playgolf.id — 인도네시아 현지 전문 골프 플랫폼. <strong>GoGolf 참고가</strong>가 있을 경우 해당 가격으로 표시 (참고용 비공식 가격)',
-  aggregator: 'GolfSavers · GolfAsian · GolfPass · GolfLux · Hole19 · GreenFee365 · Golfshake — 해외 애그리게이터 (요금은 1차 출처와 동일)',
-  news: '현지 뉴스/매거진 · 예약 채널(Klook, Traveloka, Agoda 등) · Wayback 아카이브 (요금은 1차 출처와 동일)',
-};
+const SRC_TAB_DESC = new Proxy({}, {
+  get(_, k) { return t('srcDesc.' + k); },
+});
 
-const SRC_COL_HEADER = {
-  all: '전체 출처',
-  official: '공식·공시 출처',
-  sns: 'SNS 채널',
-  platform: '전문 골프 플랫폼 출처',
-  aggregator: '애그리게이터 출처',
-  news: '뉴스·예약·기타 출처',
-};
+const SRC_COL_HEADER = new Proxy({}, {
+  get(_, k) { return t('srcCol.' + k); },
+});
 
 function renderTable() {
   const rows = getTableRows();
@@ -2110,8 +2148,8 @@ function renderTable() {
     if (rows.length === 0) {
       tbody.innerHTML = `<tr><td colspan="19"><div class="empty-state">
         <div class="empty-emoji">📭</div>
-        <div class="empty-title">조건에 맞는 골프장이 없습니다</div>
-        <div class="empty-hint">검색어를 비우거나, 운영 상태를 "전체"로 바꿔 보세요.</div>
+        <div class="empty-title">${t('empty.title')}</div>
+        <div class="empty-hint">${t('empty.hint2')}</div>
       </div></td></tr>`;
     } else {
       tbody.innerHTML = rows.map(c => renderAllTabRow(c, currentSourceCat)).join('');
@@ -2376,12 +2414,12 @@ function _unused_renderTableLegacy() {
 document.getElementById('exportCsv').addEventListener('click', () => {
   const rows = getTableRows();
   const headers = [
-    '골프장명', '지역', '주', '운영상태', '홀', '파', '개장연도',
-    '설계자', '주소', '평일그린피(IDR)', '주말그린피(IDR)',
-    '평일USD', '주말USD', '캐디(IDR)', '카트(IDR)', '보험(IDR)',
-    '웹사이트', '위도', '경도', '특이사항', '요금메모',
-    '멤버십가입가능', '멤버십카테고리', '멤버십최저비용(IDR환산)',
-    '멤버십메모', '출처URL목록'
+    t('csv.name'), t('csv.region'), t('csv.province'), t('csv.status'), t('csv.holes'), t('csv.par'), t('csv.year'),
+    t('csv.designer'), t('csv.address'), t('csv.weekdayFee'), t('csv.weekendFee'),
+    t('csv.weekdayUsd'), t('csv.weekendUsd'), t('csv.caddyFee'), t('csv.cartFee'), t('csv.insuranceFee'),
+    t('csv.website'), t('csv.lat'), t('csv.lng'), t('csv.note'), t('csv.feeNote'),
+    t('csv.memberAvail'), t('csv.memberCat'), t('csv.memberLowest'),
+    t('csv.memberNote'), t('csv.sources')
   ];
   const csvRows = rows.map(c => {
     const f = c.fees_2026_05 || {};
@@ -2392,8 +2430,8 @@ document.getElementById('exportCsv').addEventListener('click', () => {
       const init = cat.initiation_fee || {};
       const ann = cat.annual_fee || {};
       const parts = [cat.name];
-      if (init.amount) parts.push(`가입 ${init.amount} ${init.currency || 'IDR'}`);
-      if (ann.amount) parts.push(`연 ${ann.amount} ${ann.currency || 'IDR'}`);
+      if (init.amount) parts.push(`${t('member.cellInit', { amt: `${init.amount} ${init.currency || 'IDR'}` })}`);
+      if (ann.amount) parts.push(`${t('member.cellAnnual', { amt: `${ann.amount} ${ann.currency || 'IDR'}` })}`);
       return parts.join(' / ');
     }).join(' || ');
     const lowest = lowestMembershipFee(m);
@@ -2507,8 +2545,8 @@ function renderTickerModal(ticker) {
 
   if (!data) {
     bodyEl.innerHTML = `
-      <p style="color:#64748b">티커 <strong>${escapeHtml(ticker)}</strong>의 5년치 상세 재무 데이터가 아직 준비되지 않았습니다. (조사 진행 중)</p>
-      <p style="color:#94a3b8; font-size:12px">데이터가 추가되면 매출/순이익/총자산 5년 추이 그래프와 표를 이 위치에서 확인할 수 있습니다.</p>
+      <p style="color:#64748b">${t('ticker.notReady', { ticker: escapeHtml(ticker) })}</p>
+      <p style="color:#94a3b8; font-size:12px">${t('ticker.notReadyHint')}</p>
     `;
     overlay.hidden = false;
     return;
@@ -2529,16 +2567,16 @@ function renderTickerModal(ticker) {
 
   // Metric rows
   const metrics = [
-    { key: 'revenue', label: '매출' },
-    { key: 'operating_profit', label: '영업이익' },
-    { key: 'net_profit', label: '순이익' },
-    { key: 'ebitda', label: 'EBITDA' },
-    { key: 'total_assets', label: '총자산' },
-    { key: 'total_liabilities', label: '총부채' },
-    { key: 'total_equity', label: '자기자본' },
-    { key: 'eps', label: 'EPS' },
-    { key: 'dividend_per_share', label: 'DPS' },
-    { key: 'employees', label: '직원수' },
+    { key: 'revenue', label: t('ticker.metric.revenue') },
+    { key: 'operating_profit', label: t('ticker.metric.operating_profit') },
+    { key: 'net_profit', label: t('ticker.metric.net_profit') },
+    { key: 'ebitda', label: t('ticker.metric.ebitda') },
+    { key: 'total_assets', label: t('ticker.metric.total_assets') },
+    { key: 'total_liabilities', label: t('ticker.metric.total_liabilities') },
+    { key: 'total_equity', label: t('ticker.metric.total_equity') },
+    { key: 'eps', label: t('ticker.metric.eps') },
+    { key: 'dividend_per_share', label: t('ticker.metric.dividend_per_share') },
+    { key: 'employees', label: t('ticker.metric.employees') },
   ];
 
   const getMetricValue = (yr, key) => {
@@ -2588,39 +2626,39 @@ function renderTickerModal(ticker) {
         const label = s.publisher || (() => { try { return new URL(s.url).hostname.replace(/^www\./,''); } catch { return s.url; } })();
         return `<a class="fin-src" href="${escapeHtml(s.url)}" target="_blank" rel="noopener" title="${escapeHtml(s.title || s.url)}">${escapeHtml(label)}${s.date_published ? ` <span class="src-date">${escapeHtml(s.date_published)}</span>` : ''}</a>`;
       }).join(' ')
-    : '<span class="muted">출처 정보 없음</span>';
+    : `<span class="muted">${t('ticker.noSources')}</span>`;
 
   bodyEl.innerHTML = `
-    <h3>📈 5년 재무 요약 <span class="fin5y-quality ${qualityClass}">${escapeHtml(qualityClass.toUpperCase())}</span></h3>
+    <h3>${t('ticker.summary')} <span class="fin5y-quality ${qualityClass}">${escapeHtml(qualityClass.toUpperCase())}</span></h3>
     ${summaryNote}
     <div class="fin5y-charts">
       <div class="chart-card">
-        <h4>매출 (Revenue)</h4>
+        <h4>${t('ticker.chart.revenue')}</h4>
         <canvas id="chart-revenue"></canvas>
       </div>
       <div class="chart-card">
-        <h4>순이익 (Net Profit)</h4>
+        <h4>${t('ticker.chart.netprofit')}</h4>
         <canvas id="chart-netprofit"></canvas>
       </div>
       <div class="chart-card">
-        <h4>총자산 (Total Assets)</h4>
+        <h4>${t('ticker.chart.assets')}</h4>
         <canvas id="chart-assets"></canvas>
       </div>
       <div class="chart-card">
-        <h4>자산 vs 부채 vs 자본</h4>
+        <h4>${t('ticker.chart.balance')}</h4>
         <canvas id="chart-balance"></canvas>
       </div>
     </div>
-    <h3>📋 연도별 상세 (${escapeHtml(currency)})</h3>
+    <h3>${t('ticker.tableTitle', { currency: escapeHtml(currency) })}</h3>
     <table class="fin5y-table">
       <thead>
-        <tr><th class="metric-col">항목</th>${years.map(y => `<th>${y}</th>`).join('')}</tr>
+        <tr><th class="metric-col">${t('ticker.metricItem')}</th>${years.map(y => `<th>${y}</th>`).join('')}</tr>
       </thead>
       <tbody>${tableRows}</tbody>
     </table>
-    <h3>🔗 출처 (전 연도 통합)</h3>
+    <h3>${t('ticker.sourcesTitle')}</h3>
     <div class="fin-sources">${sourceLinks}</div>
-    <p style="font-size:11px;color:#94a3b8;margin-top:14px">확인일 ${escapeHtml(data.last_verified || '2026-05-01')} · 단위 ${isIDR ? 'IDR (T=조, B=십억, M=백만)' : escapeHtml(currency)}${idrEquiv ? ' · 작은 숫자는 IDR 환산값' : ''}</p>
+    <p style="font-size:11px;color:#94a3b8;margin-top:14px">${t('ticker.unitFooter', { date: escapeHtml(data.last_verified || '2026-05-01'), unit: isIDR ? t('ticker.unitIDR') : escapeHtml(currency) })}${idrEquiv ? t('ticker.unitIDREquiv') : ''}</p>
   `;
 
   overlay.hidden = false;
@@ -2686,9 +2724,9 @@ function renderTickerModal(ticker) {
       });
       activeCharts.push(ch);
     };
-    mkLineChart('chart-revenue', 'revenue', colors.revenue, '매출');
-    mkLineChart('chart-netprofit', 'net_profit', colors.netprofit, '순이익');
-    mkLineChart('chart-assets', 'total_assets', colors.assets, '총자산');
+    mkLineChart('chart-revenue', 'revenue', colors.revenue, t('ticker.line.revenue'));
+    mkLineChart('chart-netprofit', 'net_profit', colors.netprofit, t('ticker.line.netprofit'));
+    mkLineChart('chart-assets', 'total_assets', colors.assets, t('ticker.line.assets'));
 
     // Stacked balance chart
     const balCanvas = document.getElementById('chart-balance');
@@ -2708,8 +2746,8 @@ function renderTickerModal(ticker) {
         data: {
           labels: years,
           datasets: [
-            { label: '부채', data: liabPts, backgroundColor: isDark ? '#fbbf2488' : '#b8924a88', borderColor: isDark ? '#fbbf24' : '#b8924a', borderWidth: 2, stack: 'b' },
-            { label: '자본', data: eqPts, backgroundColor: isDark ? '#34d39988' : '#0d6e4d88', borderColor: isDark ? '#34d399' : '#0d6e4d', borderWidth: 2, stack: 'b' },
+            { label: t('ticker.line.liab'), data: liabPts, backgroundColor: isDark ? '#fbbf2488' : '#b8924a88', borderColor: isDark ? '#fbbf24' : '#b8924a', borderWidth: 2, stack: 'b' },
+            { label: t('ticker.line.equity'), data: eqPts, backgroundColor: isDark ? '#34d39988' : '#0d6e4d88', borderColor: isDark ? '#34d399' : '#0d6e4d', borderWidth: 2, stack: 'b' },
           ]
         },
         options: {
@@ -2781,13 +2819,9 @@ document.getElementById('themeToggle')?.addEventListener('click', () => {
 });
 
 // === Price comparison modal ===
-const SRC_CAT_LABEL = {
-  official: '공시·공식',
-  platform: '플랫폼',
-  aggregator: '애그리게이터',
-  sns: 'SNS',
-  news: '뉴스·기타',
-};
+const SRC_CAT_LABEL = new Proxy({}, {
+  get(_, k) { return t('srcCat.' + k); },
+});
 const SRC_TRUST_ORDER = ['official', 'platform', 'sns', 'aggregator', 'news'];
 
 function openPriceModal(courseId, slot) {
@@ -2802,10 +2836,10 @@ function openPriceModal(courseId, slot) {
   const cands = getSlotCandidates(c, slot);
   title.textContent = c.name_en;
   sub.innerHTML = `<strong>${SLOT_LABEL[slot]}</strong> · ${escapeHtml(c.region)}` +
-    (cands.length === 0 ? ' · <span class="muted">출처 데이터 없음</span>' : '');
+    (cands.length === 0 ? ` · <span class="muted">${t('priceModal.noData')}</span>` : '');
 
   if (cands.length === 0) {
-    body.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:24px;">이 시간대에 등록된 가격 정보가 없습니다.</p>';
+    body.innerHTML = `<p style="color:var(--text-muted);text-align:center;padding:24px;">${t('priceModal.noDataMsg')}</p>`;
     modal.hidden = false;
     return;
   }
@@ -2821,24 +2855,24 @@ function openPriceModal(courseId, slot) {
   const rows = sorted.map((x, i) => {
     const cat = x.src.kind;
     const link = x.src.url
-      ? `<a class="src-link" href="${escapeHtml(x.src.url)}" target="_blank" rel="noopener">원문 ↗</a>`
+      ? `<a class="src-link" href="${escapeHtml(x.src.url)}" target="_blank" rel="noopener">${t('history.original')}</a>`
       : '';
-    const originLabel = x.origin === 'gogolf' ? 'gogolf.co.id 추출'
-      : x.origin === 'crawled' ? `자동 크롤 (Tier ${x.tier ?? '?'})${x.from_pdf ? ' · PDF' : ''}`
+    const originLabel = x.origin === 'gogolf' ? t('priceModal.gogolfExtract')
+      : x.origin === 'crawled' ? t('priceModal.crawled', { tier: x.tier ?? '?', pdf: x.from_pdf ? ' · PDF' : '' })
       : '';
     const collapseNote = (x.n_collapsed && x.n_collapsed > 1)
-      ? `페이지 내 ${x.n_collapsed}개 가격 추출 → median 사용`
+      ? t('priceModal.collapsed', { n: x.n_collapsed })
       : '';
     const meta = [
       x.src.host || '',
-      x.src.date ? `확인 ${x.src.date}` : '',
+      x.src.date ? t('priceModal.verified', { date: x.src.date }) : '',
       originLabel,
       collapseNote,
     ].filter(Boolean).join(' · ');
     return `<div class="price-source-row${i === 0 ? ' is-trusted' : ''}">
       <span class="src-cat-pill k-${cat}">${SRC_CAT_LABEL[cat] || cat}</span>
       <div class="src-info">
-        <div class="src-info-label">${escapeHtml(x.src.label)}${i === 0 ? ' <small style="color:var(--accent);font-weight:600;">· 신뢰 우선</small>' : ''}</div>
+        <div class="src-info-label">${escapeHtml(x.src.label)}${i === 0 ? ` <small style="color:var(--accent);font-weight:600;">${t('priceModal.trusted')}</small>` : ''}</div>
         <div class="src-info-meta">${escapeHtml(meta || '—')}</div>
       </div>
       <span class="src-price">${fmtIDR(x.price)}</span>
@@ -2847,10 +2881,8 @@ function openPriceModal(courseId, slot) {
   }).join('');
 
   const summary = (sorted.length > 1)
-    ? `<div class="price-modal-trust-note">출처별 차이 <strong>${diffPct.toFixed(0)}%</strong> ` +
-      `(${fmtIDR(lo)} ~ ${fmtIDR(hi)})${diffPct >= 30 ? ' — 30% 이상 격차로 추가 검증 권장' : ''}.<br>` +
-      `신뢰도 순서: 공시·공식 → 플랫폼 → SNS → 애그리게이터 → 뉴스</div>`
-    : `<div class="price-modal-trust-note">현재 등록된 출처는 1개. 다른 출처에서 가격이 확인되면 비교 가능.</div>`;
+    ? `<div class="price-modal-trust-note">${t('priceModal.diffNote', { pct: diffPct.toFixed(0), lo: fmtIDR(lo), hi: fmtIDR(hi), warn: diffPct >= 30 ? t('priceModal.diffWarn') : '' })}</div>`
+    : `<div class="price-modal-trust-note">${t('priceModal.singleSrc')}</div>`;
 
   body.innerHTML = `<div class="price-modal-source-list">${rows}</div>${summary}`;
   modal.hidden = false;
@@ -2978,15 +3010,15 @@ function renderFinanceTable() {
     const parent = counter.parentElement;
     if (parent) {
       parent.innerHTML = `<strong id="financeVisibleCount">${rows.length}</strong>` +
-        `개 / <span class="muted">전체 재무 보유 ${universe.length}</span>`;
+        ` / <span class="muted">${t('fin.totalKept')} ${universe.length}</span>`;
     }
   }
 
   if (rows.length === 0) {
     tbody.innerHTML = `<tr><td colspan="13"><div class="empty-state">
       <div class="empty-emoji">📊</div>
-      <div class="empty-title">조건에 맞는 재무 정보가 없습니다</div>
-      <div class="empty-hint">상장 구분 필터를 "전체"로 바꾸거나 검색어를 비워 보세요.</div>
+      <div class="empty-title">${t('empty.financeTitle')}</div>
+      <div class="empty-hint">${t('empty.financeHint')}</div>
     </div></td></tr>`;
     return;
   }
@@ -3006,7 +3038,7 @@ function renderFinanceTable() {
       ? `<a class="ticker-pill ${fin.idx_ticker ? 'idx' : 'foreign'} ticker-link"`
           + ` href="${escapeHtml(yhUrl || 'https://finance.yahoo.com/')}"`
           + ` target="_blank" rel="noopener"`
-          + ` title="Yahoo Finance에서 ${escapeHtml(ticker)} 열기">`
+          + ` title="${escapeHtml(t('finance.tickerOpen', { ticker }))}">`
           + `${escapeHtml(ticker)} <span class="ticker-ext">↗</span></a>`
       : '<span class="muted">—</span>';
 
@@ -3036,9 +3068,9 @@ function renderFinanceTable() {
     const firstUrl = validUrls[0] || null;
     const srcCellHtml = firstUrl
       ? `<a href="${escapeHtml(firstUrl)}" target="_blank" rel="noopener" `
-        + `title="${escapeHtml(firstUrl)}">${validUrls.length}개 출처 ↗</a>`
+        + `title="${escapeHtml(firstUrl)}">${t('finance.viewSrc', { n: validUrls.length })}</a>`
       : (allFinSources.length > 0
-          ? `<span class="muted" title="등록된 출처 ${allFinSources.length}개 모두 유효한 URL이 아님">${allFinSources.length}개 (URL 없음)</span>`
+          ? `<span class="muted" title="${escapeHtml(t('finance.invalidSrcTitle', { n: allFinSources.length }))}">${t('finance.invalidSrc', { n: allFinSources.length })}</span>`
           : '<span class="muted">—</span>');
 
     // Trend column: opens 5y modal if we have data for the parent ticker.
@@ -3046,8 +3078,8 @@ function renderFinanceTable() {
     const has5y = bare && financialsByTicker && financialsByTicker[bare.toUpperCase()];
     const trendHtml = has5y
       ? `<button class="trend-btn" type="button" data-ticker="${escapeHtml(bare)}"`
-        + ` title="${escapeHtml(bare)} 5년 매출·순이익·자산 추이 보기">📈 5Y</button>`
-      : '<span class="muted" title="해당 모회사의 다년치 재무 데이터가 아직 준비되지 않음">—</span>';
+        + ` title="${escapeHtml(t('finance.trendTitle', { ticker: bare }))}">📈 5Y</button>`
+      : `<span class="muted" title="${escapeHtml(t('finance.trendNoData'))}">—</span>`;
 
     return `<tr>
       <td><strong>${escapeHtml(c.name_en)}</strong></td>
@@ -3181,7 +3213,7 @@ function renderAnalytics() {
     data: {
       labels: buckets.map(b => b.label),
       datasets: [{
-        label: '코스 수',
+        label: t('an.coursesCount'),
         data: distCounts,
         backgroundColor: t.accent,
         borderRadius: 4,
@@ -3215,7 +3247,7 @@ function renderAnalytics() {
     data: {
       labels: regionRows.map(x => `${x.r} (${x.n})`),
       datasets: [{
-        label: '평균 토 AM (Rp)',
+        label: t('an.avgSatAm'),
         data: regionRows.map(x => Math.round(x.avg)),
         backgroundColor: t.gold,
         borderRadius: 4,
@@ -3241,7 +3273,7 @@ function renderAnalytics() {
   _charts.status = new Chart(document.getElementById('chartStatus'), {
     type: 'doughnut',
     data: {
-      labels: ['운영중', '휴장', '불확실'],
+      labels: [t('status.operating'), t('status.closed'), t('status.uncertain')],
       datasets: [{
         data: [counts.operating, counts.closed, counts.uncertain],
         backgroundColor: ['#16a34a', '#94a3b8', '#f59e0b'],
@@ -3277,7 +3309,7 @@ function renderAnalytics() {
     data: {
       labels: top10.map(x => x.name.length > 28 ? x.name.slice(0, 28) + '…' : x.name),
       datasets: [{
-        label: 'FY2024 매출 (Rp T)',
+        label: t('an.parentRev'),
         data: top10.map(x => x.rev / 1e12),
         backgroundColor: t.accent,
         borderRadius: 4,
@@ -3316,7 +3348,7 @@ function renderAnalytics() {
     data: {
       labels: designerTop.map(x => x.name.length > 24 ? x.name.slice(0, 24) + '…' : x.name),
       datasets: [{
-        label: '코스 수',
+        label: t('an.coursesCount'),
         data: designerTop.map(x => x.n),
         backgroundColor: t.gold,
         borderRadius: 4,
@@ -3354,7 +3386,7 @@ function renderAnalytics() {
     data: {
       labels: decadesFilled.map(d => `${d}s`),
       datasets: [{
-        label: '개장 코스 수',
+        label: t('an.openedCount'),
         data: decadesFilled.map(d => yearBins[d]),
         backgroundColor: t.accent,
         borderRadius: 3,
@@ -3395,7 +3427,7 @@ function renderAnalytics() {
   destroyChart('scatter');
   _charts.scatter = new Chart(document.getElementById('chartScatter'), {
     type: 'bubble',
-    data: { datasets: [{ label: '코스', data: points,
+    data: { datasets: [{ label: t('an.course'), data: points,
       backgroundColor: points.map(p => p.backgroundColor + 'cc'),
       borderColor: points.map(p => p.backgroundColor),
       borderWidth: 1,
@@ -3407,14 +3439,14 @@ function renderAnalytics() {
         tooltip: { callbacks: {
           label: ctx => {
             const d = ctx.raw;
-            return `${d.label}: ${d.x}홀 / Rp ${d.y.toFixed(2)}M`;
+            return `${d.label}: ${d.x}${t('an.holesUnit')} / Rp ${d.y.toFixed(2)}M`;
           }
         } },
       },
       scales: {
-        x: { title: { display: true, text: '홀 수' },
+        x: { title: { display: true, text: t('an.holes') },
              grid: { color: t.grid }, ticks: { stepSize: 9 } },
-        y: { title: { display: true, text: '토 AM 그린피 (Rp M)' },
+        y: { title: { display: true, text: t('an.satAmFee') },
              grid: { color: t.grid }, beginAtZero: true },
       },
     },
@@ -3482,6 +3514,388 @@ const I18N = {
     'chart.designerDesc': '유명 코스 설계자가 인도네시아에 남긴 코스 수',
     'chart.timeline': '개장년도 타임라인',
     'chart.timelineDesc': '1872년 식민지 시대부터 2025년까지의 개장 분포',
+
+    // Common
+    'common.close': '닫기',
+    'common.loading': '로딩 중...',
+    'common.dataLoadFailed': '데이터 로딩 실패',
+    'common.noResults': '검색 결과 없음',
+    'common.private': '비공개',
+    'common.unknown': '정보 없음',
+    'common.none': '없음',
+    'common.all': '전체',
+    'common.year': '년',
+    'common.holesUnit': '홀',
+    'common.peopleUnit': '명',
+    'common.itemsUnit': '개',
+
+    // Header / footer
+    'header.loading': '데이터 로딩 중…',
+    'header.totalLine': '총 <strong>{total}</strong> · <span class="status-dot operating" aria-hidden="true"></span>운영중 {operating} · <span class="status-dot closed" aria-hidden="true"></span>휴장 {closed} · <span class="status-dot uncertain" aria-hidden="true"></span>불확실 {uncertain}',
+    'header.totalText': '총 {total} 골프장 (운영중 {operating} · 휴장 {closed} · 불확실 {uncertain})',
+    'header.counterPill': '{total} (운영 {operating})',
+    'theme.toggle': '다크모드 전환',
+    'sidebar.toggle': '사이드바 토글',
+    'price.min': '최소 가격',
+    'price.max': '최대 가격',
+
+    'footer.dataSrc': '데이터 출처',
+    'footer.officialSite': '공식 골프장 사이트',
+    'footer.map': '지도',
+    'footer.geocode': '지오코딩',
+
+    // Region multi
+    'region.all': '전체 지역',
+    'region.allRegions': '모든 지역',
+    'region.search': '지역 검색…',
+    'region.selectAll': '전체 선택',
+    'region.clear': '선택 해제',
+    'region.selectedSummary': '{first} 외 {extra}개',
+
+    // Empty states
+    'empty.title': '조건에 맞는 골프장이 없습니다',
+    'empty.hint': '검색어·지역·가격대 필터를 완화하거나, 운영 상태를 "전체"로 바꿔 보세요.',
+    'empty.hint2': '검색어를 비우거나, 운영 상태를 "전체"로 바꿔 보세요.',
+    'empty.cta': '필터 초기화',
+    'empty.financeTitle': '조건에 맞는 재무 정보가 없습니다',
+    'empty.financeHint': '상장 구분 필터를 "전체"로 바꾸거나 검색어를 비워 보세요.',
+
+    // Status labels
+    'status.operating': '운영중',
+    'status.operatingOnly': '운영중만',
+    'status.closed': '휴장',
+    'status.closedTemp': '임시 휴장',
+    'status.closedPerm': '영구 폐장',
+    'status.uncertain': '불확실',
+    'status.banner.closed': '⚠️ {label} — {reason}{reopened}',
+    'status.banner.uncertain': '❓ 운영 상태 불확실 — 사전 연락 권장',
+    'status.reasonPerm': '영구 폐장',
+    'status.reasonReno': '리노베이션 / 임시 휴장',
+
+    // Marker popup / detail panel
+    'popup.region': '지역',
+    'popup.operating': '운영',
+    'popup.holesPar': '홀/파',
+    'popup.opened': '개장',
+    'popup.designer': '설계자',
+    'popup.weekdayWeekend': '평일/주말',
+    'popup.membership': '멤버십',
+    'popup.officialWeb': '공식 웹사이트',
+    'popup.googleMap': '구글 지도',
+    'popup.detailBtn': '상세 정보 →',
+
+    'detail.holes': '홀',
+    'detail.par': '파',
+    'detail.opened': '개장',
+    'detail.address': '주소',
+    'detail.coordNotes': '좌표 신뢰도 메모',
+    'detail.designer': '설계자',
+    'detail.layout': '코스 구성',
+    'detail.facilities': '부대시설',
+    'detail.officialWebLink': '공식 웹사이트 →',
+    'detail.googleMapOpen': 'Google 지도 열기 →',
+    'detail.coordApprox': '좌표 근사',
+    'detail.verifiedDate': '확인일 {date}',
+
+    // Operating evidence
+    'evidence.title': '운영 상태 근거',
+    'evidence.none': '근거 없음',
+    'conf.high': '신뢰도 높음',
+    'conf.medium': '신뢰도 보통',
+    'conf.low': '신뢰도 낮음',
+
+    // Price matrix
+    'matrix.title': '가격 매트릭스',
+    'matrix.hint': '셀 클릭 → 출처별 비교',
+    'matrix.weekday': '평일',
+    'matrix.sat': '토',
+    'matrix.sun': '일',
+
+    // Source history
+    'history.title': '출처별 가격 이력',
+    'history.original': '원문 ↗',
+    'history.refOnly': '참고용',
+    'history.crawled': '자동 · Tier {tier}{pdf}',
+    'history.crawledTitle': '자동 크롤로 추출된 출처',
+    'history.collapseTag': '{n}개 추출/median',
+    'history.collapseTitle': '이 페이지에서 {n}개 가격 추출 → median 사용',
+    'history.extraSrc': '추가 출처',
+    'history.extraSrcTitle': '동일 가격을 게시한 추가 출처',
+
+    // Slot labels
+    'slot.wdAm': '평일 AM',
+    'slot.wdPm': '평일 PM',
+    'slot.satAm': '토 AM',
+    'slot.satPm': '토 PM',
+    'slot.sunAm': '일 AM',
+    'slot.sunPm': '일 PM',
+    'slot.weekday': '평일',
+    'slot.weekendSat': '토요일',
+    'slot.weekendSun': '일요일',
+    'slot.holiday': '공휴일',
+
+    // Membership
+    'member.section': '회원권 (멤버십)',
+    'member.grade': '등급',
+    'member.cost': '비용',
+    'member.initFee': '가입비',
+    'member.annualFee': '연회비',
+    'member.monthlyFee': '월회비',
+    'member.deposit': '예치금',
+    'member.noDataNote': '공개된 가입비·연회비 정보가 없습니다. 회원권 문의는 클럽으로 직접 연락이 필요합니다.',
+    'member.recruiting': '회원 모집 중',
+    'member.employees': '직원 전용',
+    'member.military': '군 전용',
+    'member.militaryPersonnel': '군인 전용',
+    'member.invitation': '초대제',
+    'member.invitationOnly': '초대제 (비공개)',
+    'member.membersOnly': '멤버 전용 (양도시장)',
+    'member.membersOnlyShort': '회원 전용',
+    'member.cellInit': '가입 {amt}',
+    'member.cellAnnual': '연 {amt}',
+    'member.cellMonthly': '월 {amt}',
+
+    // Listed status
+    'listed.listed': '상장',
+    'listed.subsidiary-of-listed': '상장사 자회사',
+    'listed.private': '비상장',
+    'listed.state-owned': '국영기업',
+    'listed.government': '정부 운영',
+    'listed.local-government': '지방정부',
+    'listed.military': '군 운영',
+    'listed.foundation': '재단',
+    'listed.joint-venture': '합작법인',
+    'listed.plantation-soe': '국영농장',
+    'listed.tbk-reporting-not-yet-traded': 'Tbk(IDX 미거래)',
+    'listed.bumn-subsidiary': 'BUMN 자회사(미상장)',
+    'listed.unknown': '미확인',
+
+    // Financials
+    'fin.section': '기업·재무 정보',
+    'fin.opCompany': '운영법인',
+    'fin.parent': '모회사·기업집단',
+    'fin.ticker': '상장 티커',
+    'fin.listedStatus': '상장 구분',
+    'fin.revenue': '매출',
+    'fin.revenueWith': '매출 ({year})',
+    'fin.revenueH1': '매출 (H1-{year})',
+    'fin.netProfit': '순이익',
+    'fin.netProfitH1': '순이익 (H1)',
+    'fin.totalAssets': '총자산',
+    'fin.employees': '직원수',
+    'fin.investment': '투자/개발비',
+    'fin.investmentUsd': '투자 (USD)',
+    'fin.golfSegment': '골프 세그먼트 매출',
+    'fin.golfSegmentLabel': '골프 세그먼트',
+    'fin.segDisclosed': '별도공시',
+    'fin.segDisclosedNote': '(별도공시)',
+    'fin.membership': '회원권',
+    'fin.dataReliability': '데이터 신뢰도',
+    'fin.recentNews': '최근 이슈',
+    'fin.memberNote': '회원권 메모:',
+    'fin.ownerNote': '소유 메모:',
+    'fin.sources': '출처({n})',
+    'fin.kindParent': '모회사',
+    'fin.kindMember': '회원권',
+    'fin.totalKept': '전체 재무 보유',
+
+    // Fees / pricing
+    'fee.title': '이용금액 ({date})',
+    'fee.dateMay': '2026년 5월',
+    'fee.weekday': '평일 그린피',
+    'fee.weekend': '주말 그린피',
+    'fee.twilight': '트와일라잇',
+    'fee.caddy': '캐디피',
+    'fee.cart': '카트',
+    'fee.insurance': '보험',
+    'fee.tax': '세금(PPN)',
+    'fee.taxIncluded': '(포함)',
+    'fee.rateIncludes': '요금 구성',
+    'fee.detailed': '상세 시간/세그먼트별 요율',
+    'fee.sources': '출처',
+    'fee.caddyShort': '캐디',
+    'fee.cartShort': '카트',
+    'fee.member': '멤버',
+
+    // Source labels (URL categorization)
+    'src.official': '공식',
+    'src.disclosure': '공시',
+    'src.reservation': '예약',
+    'src.sns': 'SNS',
+    'src.news': '뉴스/매거진',
+    'src.gov': '관공서',
+
+    // Source category labels
+    'srcCat.official': '공시·공식',
+    'srcCat.platform': '플랫폼',
+    'srcCat.aggregator': '애그리게이터',
+    'srcCat.sns': 'SNS',
+    'srcCat.news': '뉴스·기타',
+
+    // Source tab labels (HTML attrs)
+    'srcTabs.label': '요금 출처 카테고리',
+    'srcTabs.prefix': '요금 출처:',
+    'srcTabs.official': '공시',
+    'srcTabs.sns': 'SNS',
+    'srcTabs.platform': '전문 골프 플랫폼',
+    'srcTabs.aggregator': '글로벌 애그리게이터',
+    'srcTabs.news': '뉴스·미디어·예약',
+
+    // Source tab descriptions
+    'srcDesc.all': '필터에 해당하는 모든 골프장의 통합 정보 — 요금·멤버십·모회사 재무·전체 출처를 한 표에서 확인',
+    'srcDesc.official': '공식 골프장 사이트 · 거래소(IDX) 공시 · OJK · 관공서(.go.id, .mil.id) — 1차 출처 기준 요금',
+    'srcDesc.sns': 'Instagram · Facebook · X(Twitter) · TikTok · Threads — 공식 채널 게시물 (요금은 1차 출처와 동일)',
+    'srcDesc.platform': 'Q-Access · GoGolf · playgolf.id — 인도네시아 현지 전문 골프 플랫폼. <strong>GoGolf 참고가</strong>가 있을 경우 해당 가격으로 표시 (참고용 비공식 가격)',
+    'srcDesc.aggregator': 'GolfSavers · GolfAsian · GolfPass · GolfLux · Hole19 · GreenFee365 · Golfshake — 해외 애그리게이터 (요금은 1차 출처와 동일)',
+    'srcDesc.news': '현지 뉴스/매거진 · 예약 채널(Klook, Traveloka, Agoda 등) · Wayback 아카이브 (요금은 1차 출처와 동일)',
+
+    // Source column header
+    'srcCol.all': '전체 출처',
+    'srcCol.official': '공식·공시 출처',
+    'srcCol.sns': 'SNS 채널',
+    'srcCol.platform': '전문 골프 플랫폼 출처',
+    'srcCol.aggregator': '애그리게이터 출처',
+    'srcCol.news': '뉴스·예약·기타 출처',
+
+    // Map controls
+    'map.legendStatus': '운영 상태',
+    'map.legendHoles': '홀 수',
+    'map.legend9': '9홀 이하',
+    'map.legend18': '18홀',
+    'map.legend27': '27홀 이상',
+    'map.zoomAll': '전체',
+    'map.mapLink': '지도',
+
+    // Map list
+    'list.weekdayPrefix': '평일',
+
+    // Table view
+    'table.searchPh': '🔍 검색 (이름·지역·설계자·주소)',
+    'table.showing': '개 표시',
+    'table.showFinance': '재무 컬럼 표시',
+    'table.csvDownload': '📥 CSV 다운로드',
+    'table.sameRate': '동일',
+    'table.gogolfNote': 'GoGolf 참고가',
+    'table.gogolfDisclaimer': '참고용 비공식 가격',
+
+    'th.name': '골프장명',
+    'th.region': '지역',
+    'th.province': '주(Province)',
+    'th.status': '운영상태',
+    'th.holes': '홀',
+    'th.opened': '개장',
+    'th.weekday': '평일',
+    'th.saturday': '토',
+    'th.sunday': '일',
+    'th.memberType': '멤버십 종류',
+    'th.memberFee': '멤버십 금액',
+    'th.parent': '모회사·기업집단',
+    'th.ticker': '티커',
+    'th.parentRev': '모회사 매출',
+    'th.address': '주소',
+    'th.opCompany': '운영법인',
+    'th.listedStatus': '상장 구분',
+    'th.revenueFY': '매출 FY2024',
+    'th.netProfit': '순이익',
+    'th.totalAssets': '총자산',
+    'th.membership': '회원권',
+    'th.trend': '재무 추이',
+    'th.sources': '출처',
+
+    // Finance view
+    'finance.searchPh': '🔍 검색 (이름·모회사·티커)',
+    'finance.statusAll': '전체 (재무 정보 보유)',
+    'finance.statusListed': '상장사만',
+    'finance.statusSubsidiary': '상장사 자회사',
+    'finance.statusTbk': 'Tbk 등록 (IDX 미거래)',
+    'finance.counterSep': '개 / 85',
+    'finance.viewSrc': '{n}개 출처 ↗',
+    'finance.invalidSrc': '{n}개 (URL 없음)',
+    'finance.invalidSrcTitle': '등록된 출처 {n}개 모두 유효한 URL이 아님',
+    'finance.tickerOpen': 'Yahoo Finance에서 {ticker} 열기',
+    'finance.trendTitle': '{ticker} 5년 매출·순이익·자산 추이 보기',
+    'finance.trendNoData': '해당 모회사의 다년치 재무 데이터가 아직 준비되지 않음',
+
+    // Ticker modal
+    'ticker.notReady': '티커 <strong>{ticker}</strong>의 5년치 상세 재무 데이터가 아직 준비되지 않았습니다. (조사 진행 중)',
+    'ticker.notReadyHint': '데이터가 추가되면 매출/순이익/총자산 5년 추이 그래프와 표를 이 위치에서 확인할 수 있습니다.',
+    'ticker.summary': '📈 5년 재무 요약',
+    'ticker.tableTitle': '📋 연도별 상세 ({currency})',
+    'ticker.sourcesTitle': '🔗 출처 (전 연도 통합)',
+    'ticker.metricItem': '항목',
+    'ticker.metric.revenue': '매출',
+    'ticker.metric.operating_profit': '영업이익',
+    'ticker.metric.net_profit': '순이익',
+    'ticker.metric.ebitda': 'EBITDA',
+    'ticker.metric.total_assets': '총자산',
+    'ticker.metric.total_liabilities': '총부채',
+    'ticker.metric.total_equity': '자기자본',
+    'ticker.metric.eps': 'EPS',
+    'ticker.metric.dividend_per_share': 'DPS',
+    'ticker.metric.employees': '직원수',
+    'ticker.chart.revenue': '매출 (Revenue)',
+    'ticker.chart.netprofit': '순이익 (Net Profit)',
+    'ticker.chart.assets': '총자산 (Total Assets)',
+    'ticker.chart.balance': '자산 vs 부채 vs 자본',
+    'ticker.line.liab': '부채',
+    'ticker.line.equity': '자본',
+    'ticker.line.revenue': '매출',
+    'ticker.line.netprofit': '순이익',
+    'ticker.line.assets': '총자산',
+    'ticker.unitFooter': '확인일 {date} · 단위 {unit}',
+    'ticker.unitIDR': 'IDR (T=조, B=십억, M=백만)',
+    'ticker.unitIDREquiv': ' · 작은 숫자는 IDR 환산값',
+    'ticker.noSources': '출처 정보 없음',
+
+    // Price modal
+    'priceModal.noData': '출처 데이터 없음',
+    'priceModal.noDataMsg': '이 시간대에 등록된 가격 정보가 없습니다.',
+    'priceModal.gogolfExtract': 'gogolf.co.id 추출',
+    'priceModal.crawled': '자동 크롤 (Tier {tier}{pdf})',
+    'priceModal.collapsed': '페이지 내 {n}개 가격 추출 → median 사용',
+    'priceModal.verified': '확인 {date}',
+    'priceModal.trusted': '· 신뢰 우선',
+    'priceModal.diffNote': '출처별 차이 <strong>{pct}%</strong> ({lo} ~ {hi}){warn}.<br>신뢰도 순서: 공시·공식 → 플랫폼 → SNS → 애그리게이터 → 뉴스',
+    'priceModal.diffWarn': ' — 30% 이상 격차로 추가 검증 권장',
+    'priceModal.singleSrc': '현재 등록된 출처는 1개. 다른 출처에서 가격이 확인되면 비교 가능.',
+
+    // Analytics labels
+    'an.coursesCount': '코스 수',
+    'an.avgSatAm': '평균 토 AM (Rp)',
+    'an.parentRev': 'FY2024 매출 (Rp T)',
+    'an.openedCount': '개장 코스 수',
+    'an.course': '코스',
+    'an.holes': '홀 수',
+    'an.satAmFee': '토 AM 그린피 (Rp M)',
+    'an.holesUnit': '홀',
+
+    // CSV
+    'csv.name': '골프장명',
+    'csv.region': '지역',
+    'csv.province': '주',
+    'csv.status': '운영상태',
+    'csv.holes': '홀',
+    'csv.par': '파',
+    'csv.year': '개장연도',
+    'csv.designer': '설계자',
+    'csv.address': '주소',
+    'csv.weekdayFee': '평일그린피(IDR)',
+    'csv.weekendFee': '주말그린피(IDR)',
+    'csv.weekdayUsd': '평일USD',
+    'csv.weekendUsd': '주말USD',
+    'csv.caddyFee': '캐디(IDR)',
+    'csv.cartFee': '카트(IDR)',
+    'csv.insuranceFee': '보험(IDR)',
+    'csv.website': '웹사이트',
+    'csv.lat': '위도',
+    'csv.lng': '경도',
+    'csv.note': '특이사항',
+    'csv.feeNote': '요금메모',
+    'csv.memberAvail': '멤버십가입가능',
+    'csv.memberCat': '멤버십카테고리',
+    'csv.memberLowest': '멤버십최저비용(IDR환산)',
+    'csv.memberNote': '멤버십메모',
+    'csv.sources': '출처URL목록',
   },
   en: {
     'tab.map': 'Map',
@@ -3532,6 +3946,388 @@ const I18N = {
     'chart.designerDesc': 'Famous course architects active in Indonesia',
     'chart.timeline': 'Opening-year timeline',
     'chart.timelineDesc': 'From the 1872 colonial era through 2025',
+
+    // Common
+    'common.close': 'Close',
+    'common.loading': 'Loading...',
+    'common.dataLoadFailed': 'Failed to load data',
+    'common.noResults': 'No results',
+    'common.private': 'Not disclosed',
+    'common.unknown': 'Unknown',
+    'common.none': 'None',
+    'common.all': 'All',
+    'common.year': '',
+    'common.holesUnit': 'H',
+    'common.peopleUnit': '',
+    'common.itemsUnit': '',
+
+    // Header / footer
+    'header.loading': 'Loading data…',
+    'header.totalLine': 'Total <strong>{total}</strong> · <span class="status-dot operating" aria-hidden="true"></span>Operating {operating} · <span class="status-dot closed" aria-hidden="true"></span>Closed {closed} · <span class="status-dot uncertain" aria-hidden="true"></span>Uncertain {uncertain}',
+    'header.totalText': 'Total {total} courses (Operating {operating} · Closed {closed} · Uncertain {uncertain})',
+    'header.counterPill': '{total} (Operating {operating})',
+    'theme.toggle': 'Toggle dark mode',
+    'sidebar.toggle': 'Toggle sidebar',
+    'price.min': 'Min price',
+    'price.max': 'Max price',
+
+    'footer.dataSrc': 'Data sources',
+    'footer.officialSite': 'Official course websites',
+    'footer.map': 'Map',
+    'footer.geocode': 'Geocoding',
+
+    // Region multi
+    'region.all': 'All regions',
+    'region.allRegions': 'All regions',
+    'region.search': 'Search regions…',
+    'region.selectAll': 'Select all',
+    'region.clear': 'Clear',
+    'region.selectedSummary': '{first} +{extra} more',
+
+    // Empty states
+    'empty.title': 'No courses match your filters',
+    'empty.hint': 'Try relaxing the search/region/price filters, or set status to "All".',
+    'empty.hint2': 'Clear the search box, or set status to "All".',
+    'empty.cta': 'Reset filters',
+    'empty.financeTitle': 'No financial records match',
+    'empty.financeHint': 'Set the listed-status filter to "All" or clear the search box.',
+
+    // Status labels
+    'status.operating': 'Operating',
+    'status.operatingOnly': 'Operating only',
+    'status.closed': 'Closed',
+    'status.closedTemp': 'Temporarily closed',
+    'status.closedPerm': 'Permanently closed',
+    'status.uncertain': 'Uncertain',
+    'status.banner.closed': '⚠️ {label} — {reason}{reopened}',
+    'status.banner.uncertain': '❓ Operating status uncertain — call ahead recommended',
+    'status.reasonPerm': 'Permanently closed',
+    'status.reasonReno': 'Renovation / temporary closure',
+
+    // Marker popup / detail panel
+    'popup.region': 'Region',
+    'popup.operating': 'Status',
+    'popup.holesPar': 'Holes/Par',
+    'popup.opened': 'Opened',
+    'popup.designer': 'Designer',
+    'popup.weekdayWeekend': 'Weekday/Weekend',
+    'popup.membership': 'Membership',
+    'popup.officialWeb': 'Official site',
+    'popup.googleMap': 'Google Maps',
+    'popup.detailBtn': 'Details →',
+
+    'detail.holes': 'Holes',
+    'detail.par': 'Par',
+    'detail.opened': 'Opened',
+    'detail.address': 'Address',
+    'detail.coordNotes': 'Coordinate confidence notes',
+    'detail.designer': 'Designer',
+    'detail.layout': 'Course layout',
+    'detail.facilities': 'Facilities',
+    'detail.officialWebLink': 'Official website →',
+    'detail.googleMapOpen': 'Open in Google Maps →',
+    'detail.coordApprox': 'Approx. location',
+    'detail.verifiedDate': 'Verified {date}',
+
+    // Operating evidence
+    'evidence.title': 'Operating-status evidence',
+    'evidence.none': 'No evidence',
+    'conf.high': 'High confidence',
+    'conf.medium': 'Medium confidence',
+    'conf.low': 'Low confidence',
+
+    // Price matrix
+    'matrix.title': 'Price matrix',
+    'matrix.hint': 'Click a cell to compare sources',
+    'matrix.weekday': 'Weekday',
+    'matrix.sat': 'Sat',
+    'matrix.sun': 'Sun',
+
+    // Source history
+    'history.title': 'Price history by source',
+    'history.original': 'Original ↗',
+    'history.refOnly': 'reference',
+    'history.crawled': 'Auto · Tier {tier}{pdf}',
+    'history.crawledTitle': 'Auto-crawled source',
+    'history.collapseTag': '{n} extracted/median',
+    'history.collapseTitle': '{n} prices extracted from this page → median used',
+    'history.extraSrc': 'Other sources',
+    'history.extraSrcTitle': 'Additional sources publishing the same price',
+
+    // Slot labels
+    'slot.wdAm': 'Weekday AM',
+    'slot.wdPm': 'Weekday PM',
+    'slot.satAm': 'Sat AM',
+    'slot.satPm': 'Sat PM',
+    'slot.sunAm': 'Sun AM',
+    'slot.sunPm': 'Sun PM',
+    'slot.weekday': 'Weekday',
+    'slot.weekendSat': 'Saturday',
+    'slot.weekendSun': 'Sunday',
+    'slot.holiday': 'Public holiday',
+
+    // Membership
+    'member.section': 'Membership',
+    'member.grade': 'Tier',
+    'member.cost': 'Cost',
+    'member.initFee': 'Initiation',
+    'member.annualFee': 'Annual',
+    'member.monthlyFee': 'Monthly',
+    'member.deposit': 'Deposit',
+    'member.noDataNote': 'No public initiation/annual fee information. Contact the club directly for membership inquiries.',
+    'member.recruiting': 'Open enrollment',
+    'member.employees': 'Employees only',
+    'member.military': 'Military only',
+    'member.militaryPersonnel': 'Military personnel only',
+    'member.invitation': 'By invitation',
+    'member.invitationOnly': 'By invitation only (private)',
+    'member.membersOnly': 'Members only (transfer market)',
+    'member.membersOnlyShort': 'Members only',
+    'member.cellInit': 'Init {amt}',
+    'member.cellAnnual': 'Annual {amt}',
+    'member.cellMonthly': 'Monthly {amt}',
+
+    // Listed status
+    'listed.listed': 'Listed',
+    'listed.subsidiary-of-listed': 'Subsidiary of listed co.',
+    'listed.private': 'Private',
+    'listed.state-owned': 'State-owned',
+    'listed.government': 'Government-run',
+    'listed.local-government': 'Local government',
+    'listed.military': 'Military-run',
+    'listed.foundation': 'Foundation',
+    'listed.joint-venture': 'Joint venture',
+    'listed.plantation-soe': 'State plantation (SOE)',
+    'listed.tbk-reporting-not-yet-traded': 'Tbk (not yet traded)',
+    'listed.bumn-subsidiary': 'BUMN subsidiary (unlisted)',
+    'listed.unknown': 'Unknown',
+
+    // Financials
+    'fin.section': 'Company & financials',
+    'fin.opCompany': 'Operating company',
+    'fin.parent': 'Parent / group',
+    'fin.ticker': 'Ticker',
+    'fin.listedStatus': 'Listing status',
+    'fin.revenue': 'Revenue',
+    'fin.revenueWith': 'Revenue ({year})',
+    'fin.revenueH1': 'Revenue (H1-{year})',
+    'fin.netProfit': 'Net profit',
+    'fin.netProfitH1': 'Net profit (H1)',
+    'fin.totalAssets': 'Total assets',
+    'fin.employees': 'Employees',
+    'fin.investment': 'Investment / capex',
+    'fin.investmentUsd': 'Investment (USD)',
+    'fin.golfSegment': 'Golf segment revenue',
+    'fin.golfSegmentLabel': 'Golf segment',
+    'fin.segDisclosed': 'Disclosed separately',
+    'fin.segDisclosedNote': '(disclosed separately)',
+    'fin.membership': 'Membership',
+    'fin.dataReliability': 'Data reliability',
+    'fin.recentNews': 'Recent news',
+    'fin.memberNote': 'Membership note:',
+    'fin.ownerNote': 'Ownership note:',
+    'fin.sources': 'Sources ({n})',
+    'fin.kindParent': 'Parent',
+    'fin.kindMember': 'Membership',
+    'fin.totalKept': 'with financial data',
+
+    // Fees / pricing
+    'fee.title': 'Green fees ({date})',
+    'fee.dateMay': 'May 2026',
+    'fee.weekday': 'Weekday green fee',
+    'fee.weekend': 'Weekend green fee',
+    'fee.twilight': 'Twilight',
+    'fee.caddy': 'Caddy fee',
+    'fee.cart': 'Cart',
+    'fee.insurance': 'Insurance',
+    'fee.tax': 'Tax (PPN)',
+    'fee.taxIncluded': '(included)',
+    'fee.rateIncludes': 'Rate includes',
+    'fee.detailed': 'Detailed schedule by time/segment',
+    'fee.sources': 'Sources',
+    'fee.caddyShort': 'Caddy',
+    'fee.cartShort': 'Cart',
+    'fee.member': 'Member',
+
+    // Source labels (URL categorization)
+    'src.official': 'Official',
+    'src.disclosure': 'Disclosure',
+    'src.reservation': 'Booking',
+    'src.sns': 'SNS',
+    'src.news': 'News/Magazine',
+    'src.gov': 'Government',
+
+    // Source category labels
+    'srcCat.official': 'Official / Disclosure',
+    'srcCat.platform': 'Platform',
+    'srcCat.aggregator': 'Aggregator',
+    'srcCat.sns': 'SNS',
+    'srcCat.news': 'News / Other',
+
+    // Source tab labels (HTML attrs)
+    'srcTabs.label': 'Price source category',
+    'srcTabs.prefix': 'Source:',
+    'srcTabs.official': 'Official',
+    'srcTabs.sns': 'SNS',
+    'srcTabs.platform': 'Local golf platforms',
+    'srcTabs.aggregator': 'Global aggregators',
+    'srcTabs.news': 'News / Booking',
+
+    // Source tab descriptions
+    'srcDesc.all': 'All courses matching the filters — fees, membership, parent financials, all sources in one table',
+    'srcDesc.official': 'Official course sites · IDX disclosures · OJK · Government (.go.id, .mil.id) — primary-source rates',
+    'srcDesc.sns': 'Instagram · Facebook · X (Twitter) · TikTok · Threads — official-channel posts (rates same as primary)',
+    'srcDesc.platform': 'Q-Access · GoGolf · playgolf.id — Indonesian local golf platforms. Shows <strong>GoGolf reference rate</strong> when present (informal reference price)',
+    'srcDesc.aggregator': 'GolfSavers · GolfAsian · GolfPass · GolfLux · Hole19 · GreenFee365 · Golfshake — international aggregators (rates same as primary)',
+    'srcDesc.news': 'Local news/magazines · Booking channels (Klook, Traveloka, Agoda, etc.) · Wayback archives (rates same as primary)',
+
+    // Source column header
+    'srcCol.all': 'All sources',
+    'srcCol.official': 'Official / disclosure sources',
+    'srcCol.sns': 'SNS channels',
+    'srcCol.platform': 'Platform sources',
+    'srcCol.aggregator': 'Aggregator sources',
+    'srcCol.news': 'News / booking / other sources',
+
+    // Map controls
+    'map.legendStatus': 'Status',
+    'map.legendHoles': 'Holes',
+    'map.legend9': '≤9 holes',
+    'map.legend18': '18 holes',
+    'map.legend27': '≥27 holes',
+    'map.zoomAll': 'All',
+    'map.mapLink': 'Map',
+
+    // Map list
+    'list.weekdayPrefix': 'Weekday',
+
+    // Table view
+    'table.searchPh': '🔍 Search (name, region, designer, address)',
+    'table.showing': ' shown',
+    'table.showFinance': 'Show financial columns',
+    'table.csvDownload': '📥 Download CSV',
+    'table.sameRate': 'same',
+    'table.gogolfNote': 'GoGolf reference',
+    'table.gogolfDisclaimer': 'Informal reference price',
+
+    'th.name': 'Course',
+    'th.region': 'Region',
+    'th.province': 'Province',
+    'th.status': 'Status',
+    'th.holes': 'Holes',
+    'th.opened': 'Opened',
+    'th.weekday': 'Weekday',
+    'th.saturday': 'Sat',
+    'th.sunday': 'Sun',
+    'th.memberType': 'Membership type',
+    'th.memberFee': 'Membership fee',
+    'th.parent': 'Parent / group',
+    'th.ticker': 'Ticker',
+    'th.parentRev': 'Parent revenue',
+    'th.address': 'Address',
+    'th.opCompany': 'Operating co.',
+    'th.listedStatus': 'Listing status',
+    'th.revenueFY': 'Revenue FY2024',
+    'th.netProfit': 'Net profit',
+    'th.totalAssets': 'Total assets',
+    'th.membership': 'Membership',
+    'th.trend': 'Trend',
+    'th.sources': 'Sources',
+
+    // Finance view
+    'finance.searchPh': '🔍 Search (name, parent, ticker)',
+    'finance.statusAll': 'All (with financial data)',
+    'finance.statusListed': 'Listed only',
+    'finance.statusSubsidiary': 'Subsidiary of listed',
+    'finance.statusTbk': 'Tbk registered (not yet on IDX)',
+    'finance.counterSep': ' / 85',
+    'finance.viewSrc': '{n} sources ↗',
+    'finance.invalidSrc': '{n} (no URL)',
+    'finance.invalidSrcTitle': 'None of the {n} registered sources are valid URLs',
+    'finance.tickerOpen': 'Open {ticker} on Yahoo Finance',
+    'finance.trendTitle': 'View {ticker} 5-year revenue / net profit / assets',
+    'finance.trendNoData': 'Multi-year financial data not yet available for this parent',
+
+    // Ticker modal
+    'ticker.notReady': '5-year financials for ticker <strong>{ticker}</strong> are not yet available. (Research in progress.)',
+    'ticker.notReadyHint': 'Once data is added, you will see 5-year revenue / net profit / total assets charts and tables here.',
+    'ticker.summary': '📈 5-year financial summary',
+    'ticker.tableTitle': '📋 Yearly detail ({currency})',
+    'ticker.sourcesTitle': '🔗 Sources (all years combined)',
+    'ticker.metricItem': 'Metric',
+    'ticker.metric.revenue': 'Revenue',
+    'ticker.metric.operating_profit': 'Operating profit',
+    'ticker.metric.net_profit': 'Net profit',
+    'ticker.metric.ebitda': 'EBITDA',
+    'ticker.metric.total_assets': 'Total assets',
+    'ticker.metric.total_liabilities': 'Total liabilities',
+    'ticker.metric.total_equity': 'Total equity',
+    'ticker.metric.eps': 'EPS',
+    'ticker.metric.dividend_per_share': 'DPS',
+    'ticker.metric.employees': 'Employees',
+    'ticker.chart.revenue': 'Revenue',
+    'ticker.chart.netprofit': 'Net Profit',
+    'ticker.chart.assets': 'Total Assets',
+    'ticker.chart.balance': 'Assets vs Liabilities vs Equity',
+    'ticker.line.liab': 'Liabilities',
+    'ticker.line.equity': 'Equity',
+    'ticker.line.revenue': 'Revenue',
+    'ticker.line.netprofit': 'Net profit',
+    'ticker.line.assets': 'Total assets',
+    'ticker.unitFooter': 'Verified {date} · Unit: {unit}',
+    'ticker.unitIDR': 'IDR (T = trillion, B = billion, M = million)',
+    'ticker.unitIDREquiv': ' · small numbers are IDR equivalents',
+    'ticker.noSources': 'No source information',
+
+    // Price modal
+    'priceModal.noData': 'No source data',
+    'priceModal.noDataMsg': 'No registered price for this time slot.',
+    'priceModal.gogolfExtract': 'Extracted from gogolf.co.id',
+    'priceModal.crawled': 'Auto-crawled (Tier {tier}{pdf})',
+    'priceModal.collapsed': '{n} prices extracted from page → median used',
+    'priceModal.verified': 'Verified {date}',
+    'priceModal.trusted': '· primary',
+    'priceModal.diffNote': 'Source spread <strong>{pct}%</strong> ({lo} ~ {hi}){warn}.<br>Trust order: Official/Disclosure → Platform → SNS → Aggregator → News',
+    'priceModal.diffWarn': ' — over 30% spread, additional verification recommended',
+    'priceModal.singleSrc': 'Only one source registered. Comparison enabled when more sources are added.',
+
+    // Analytics labels
+    'an.coursesCount': 'Courses',
+    'an.avgSatAm': 'Avg Sat AM (Rp)',
+    'an.parentRev': 'FY2024 revenue (Rp T)',
+    'an.openedCount': 'Courses opened',
+    'an.course': 'Course',
+    'an.holes': 'Holes',
+    'an.satAmFee': 'Sat AM green fee (Rp M)',
+    'an.holesUnit': 'H',
+
+    // CSV
+    'csv.name': 'Course',
+    'csv.region': 'Region',
+    'csv.province': 'Province',
+    'csv.status': 'Status',
+    'csv.holes': 'Holes',
+    'csv.par': 'Par',
+    'csv.year': 'Year opened',
+    'csv.designer': 'Designer',
+    'csv.address': 'Address',
+    'csv.weekdayFee': 'Weekday GF (IDR)',
+    'csv.weekendFee': 'Weekend GF (IDR)',
+    'csv.weekdayUsd': 'Weekday USD',
+    'csv.weekendUsd': 'Weekend USD',
+    'csv.caddyFee': 'Caddy (IDR)',
+    'csv.cartFee': 'Cart (IDR)',
+    'csv.insuranceFee': 'Insurance (IDR)',
+    'csv.website': 'Website',
+    'csv.lat': 'Latitude',
+    'csv.lng': 'Longitude',
+    'csv.note': 'Notes',
+    'csv.feeNote': 'Fee notes',
+    'csv.memberAvail': 'Membership available',
+    'csv.memberCat': 'Membership categories',
+    'csv.memberLowest': 'Lowest membership cost (IDR)',
+    'csv.memberNote': 'Membership notes',
+    'csv.sources': 'Source URLs',
   },
 };
 
@@ -3541,14 +4337,22 @@ let _currentLang = (() => {
   } catch { return 'ko'; }
 })();
 
+function t(key, params) {
+  const dict = I18N[_currentLang] || I18N.ko;
+  let s = dict[key];
+  if (s == null) s = (I18N.ko[key] != null ? I18N.ko[key] : key);
+  if (params && typeof s === 'string') {
+    s = s.replace(/\{(\w+)\}/g, (_, k) => (params[k] != null ? params[k] : ''));
+  }
+  return s;
+}
+
 function applyI18n(lang) {
   _currentLang = lang;
   const dict = I18N[lang] || I18N.ko;
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (dict[key] == null) return;
-    // Allow inline tags (<strong>, <em>, ...) by detecting an angle bracket
-    // in the value. Plain strings still go through textContent for safety.
     if (/[<>]/.test(dict[key])) el.innerHTML = dict[key];
     else el.textContent = dict[key];
   });
@@ -3556,15 +4360,44 @@ function applyI18n(lang) {
     const key = el.getAttribute('data-i18n-placeholder');
     if (dict[key] != null) el.placeholder = dict[key];
   });
+  document.querySelectorAll('[data-i18n-title]').forEach(el => {
+    const key = el.getAttribute('data-i18n-title');
+    if (dict[key] != null) el.title = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
+    const key = el.getAttribute('data-i18n-aria-label');
+    if (dict[key] != null) el.setAttribute('aria-label', dict[key]);
+  });
   document.documentElement.lang = lang;
   try { localStorage.setItem('lang', lang); } catch {}
 
-  // Mark active button
   document.querySelectorAll('.lang-btn').forEach(b => {
     b.classList.toggle('active', b.dataset.lang === lang);
   });
 
-  // Re-render analytics if visible (chart titles depend on i18n)
+  // Re-render dynamic content that contains hardcoded labels
+  if (allCourses.length) {
+    try {
+      const counts = computeStatusCounts(allCourses);
+      renderHeaderSubtitle(counts);
+      const totalEl = document.getElementById('totalCount');
+      if (totalEl) totalEl.textContent = t('header.counterPill', { total: counts.total, operating: counts.operating });
+      updateRegionTriggerLabel?.();
+      renderCourseList?.();
+      renderTable?.();
+      renderFinanceTable?.();
+      // Refresh source-tab description / column header
+      const descEl = document.getElementById('srcPanelDesc');
+      if (descEl) descEl.innerHTML = t('srcDesc.' + (currentSourceCat || 'all'));
+      const colHdr = document.getElementById('srcColHeader');
+      if (colHdr) colHdr.textContent = t('srcCol.' + (currentSourceCat || 'all'));
+      // Re-render markers (popups embed Korean strings)
+      if (typeof markerCluster !== 'undefined' && markerCluster) renderMarkers?.();
+      // Re-render legend / zoom presets
+      _refreshMapControls?.();
+    } catch (e) { /* ignore */ }
+  }
+
   const analyticsView = document.getElementById('analyticsView');
   if (analyticsView && !analyticsView.hidden && allCourses.length) {
     renderAnalytics();
