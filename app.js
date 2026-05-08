@@ -2984,8 +2984,14 @@ function renderFinanceTable() {
   const statusF = document.getElementById('financeStatusFilter')?.value || 'all';
   if (!tbody) return;
 
-  // Universe: only courses with meaningful financials (gates out 52 stubs)
-  const universe = allCourses.filter(c => _hasMeaningfulFinancials(c.financials));
+  // Universe: only courses with meaningful financials AND a ticker
+  // (parent listed on an exchange). Rows without a ticker are excluded
+  // from the finance view per product decision — they belong elsewhere.
+  const universe = allCourses.filter(c => {
+    if (!_hasMeaningfulFinancials(c.financials)) return false;
+    const fin = c.financials || {};
+    return !!(fin.idx_ticker || fin.foreign_ticker);
+  });
 
   let rows = universe.filter(c => {
     const fin = c.financials;
