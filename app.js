@@ -4331,8 +4331,17 @@ const I18N = {
   },
 };
 
+// Bumping LANG_RESET_TOKEN forces a one-time reset of stored language
+// preference on the next visit (used after a deploy that changes default
+// behavior). Default is always Korean for new visitors.
+const LANG_RESET_TOKEN = '2026-05-08-ko-default';
 let _currentLang = (() => {
   try {
+    if (localStorage.getItem('lang.reset') !== LANG_RESET_TOKEN) {
+      localStorage.setItem('lang.reset', LANG_RESET_TOKEN);
+      localStorage.removeItem('lang');
+      return 'ko';
+    }
     return localStorage.getItem('lang') || 'ko';
   } catch { return 'ko'; }
 })();

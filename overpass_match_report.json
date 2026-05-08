@@ -1,0 +1,2668 @@
+{
+  "threshold": 0.78,
+  "courses_total": 149,
+  "matched": 92,
+  "applied": 92,
+  "no_match": 2,
+  "weak_match": 48,
+  "results": [
+    {
+      "id": "royale-jakarta",
+      "name": "Royale Jakarta Golf Club",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.309,
+      "old": [
+        -6.27133,
+        106.90164
+      ],
+      "new": [
+        -6.2697065,
+        106.8993747
+      ],
+      "matched_name": "Royale Jakarta Golf Club",
+      "osm_ref": "way/126510664",
+      "applied": true
+    },
+    {
+      "id": "pondok-indah-golf",
+      "name": "Pondok Indah Golf Course",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.52,
+      "old": [
+        -6.26966,
+        106.78557
+      ],
+      "new": [
+        -6.2734361,
+        106.788344
+      ],
+      "matched_name": "Pondok Indah Golf Course",
+      "osm_ref": "way/28420725",
+      "applied": true
+    },
+    {
+      "id": "senayan-national",
+      "name": "Senayan National Golf Club",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.633,
+      "old": [
+        -6.219,
+        106.8014
+      ],
+      "new": [
+        -6.2219492,
+        106.7964971
+      ],
+      "matched_name": "Senayan National Golf Club",
+      "osm_ref": "relation/12618369",
+      "applied": true
+    },
+    {
+      "id": "halim-golf-club",
+      "name": "Halim Golf Club (Halim I)",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 1.917,
+      "old": [
+        -6.267,
+        106.8911
+      ],
+      "new": [
+        -6.2842355,
+        106.8906058
+      ],
+      "matched_name": "Padang Golf Halim",
+      "osm_ref": "relation/13276253",
+      "applied": true
+    },
+    {
+      "id": "padang-golf-pangkalan-jati",
+      "name": "Padang Golf Pangkalan Jati",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.566,
+      "old": [
+        -6.3175,
+        106.7827
+      ],
+      "new": [
+        -6.3184495,
+        106.7877319
+      ],
+      "matched_name": "Lapangan Golf Pangkalan Jati",
+      "osm_ref": "way/28923426",
+      "applied": true
+    },
+    {
+      "id": "cengkareng-golf",
+      "name": "Cengkareng Golf Club",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.055,
+      "old": [
+        -6.12508,
+        106.67208
+      ],
+      "new": [
+        -6.1246468,
+        106.6718315
+      ],
+      "matched_name": "Cengkareng Golf Club",
+      "osm_ref": "way/203319399",
+      "applied": true
+    },
+    {
+      "id": "modern-golf",
+      "name": "Modern Golf & Country Club",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 1.166,
+      "old": [
+        -6.18638,
+        106.64198
+      ],
+      "new": [
+        -6.1956729,
+        106.6468677
+      ],
+      "matched_name": "Padang Golf Modern",
+      "osm_ref": "way/430612509",
+      "applied": true
+    },
+    {
+      "id": "gading-raya",
+      "name": "Gading Raya Padang Golf & Club",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.705,
+      "old": [
+        -6.24668,
+        106.63398
+      ],
+      "new": [
+        -6.2515839,
+        106.6380214
+      ],
+      "matched_name": "Gading Raya Golf Club",
+      "osm_ref": "way/362673650",
+      "applied": true
+    },
+    {
+      "id": "matoa-nasional",
+      "name": "Padang Golf Matoa Nasional",
+      "decision": "weak_match",
+      "score": 0.682,
+      "move_km": 24.985,
+      "old": [
+        -6.34925,
+        106.81188
+      ],
+      "new": [
+        -6.1956729,
+        106.6468677
+      ],
+      "matched_name": "Padang Golf Modern",
+      "osm_ref": "way/430612509",
+      "applied": false
+    },
+    {
+      "id": "damai-indah-pik",
+      "name": "Damai Indah Golf - Pantai Indah Kapuk (PIK) Course",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 0.809,
+      "old": [
+        -6.10994,
+        106.74288
+      ],
+      "new": [
+        -6.1171122,
+        106.7441236
+      ],
+      "matched_name": "Damai Indah Golf & Country Club",
+      "osm_ref": "way/31033059",
+      "applied": true
+    },
+    {
+      "id": "damai-indah-bsd",
+      "name": "Damai Indah Golf - Bumi Serpong Damai (BSD) Course",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 0.369,
+      "old": [
+        -6.28169,
+        106.65219
+      ],
+      "new": [
+        -6.2823531,
+        106.6554624
+      ],
+      "matched_name": "Damai Indah Golf & Country Club",
+      "osm_ref": "relation/6412603",
+      "applied": true
+    },
+    {
+      "id": "imperial-klub",
+      "name": "Imperial Klub Golf",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 1.729,
+      "old": [
+        -6.21889,
+        106.59849
+      ],
+      "new": [
+        -6.2339064,
+        106.6025528
+      ],
+      "matched_name": "Imperial Klub Golf",
+      "osm_ref": "way/363198589",
+      "applied": true
+    },
+    {
+      "id": "emeralda-golf",
+      "name": "Emeralda Golf Club",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.775,
+      "old": [
+        -6.4218,
+        106.89072
+      ],
+      "new": [
+        -6.4198053,
+        106.8839967
+      ],
+      "matched_name": "Emeralda Golf Club",
+      "osm_ref": "relation/9656708",
+      "applied": true
+    },
+    {
+      "id": "gunung-geulis",
+      "name": "Gunung Geulis Country Club",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.412,
+      "old": [
+        -6.62502,
+        106.8623
+      ],
+      "new": [
+        -6.6253572,
+        106.8660119
+      ],
+      "matched_name": "Gunung Geulis Golf",
+      "osm_ref": "way/142579269",
+      "applied": true
+    },
+    {
+      "id": "sentul-highlands",
+      "name": "Sentul Highlands Golf Club",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.991,
+      "old": [
+        -6.57826,
+        106.87797
+      ],
+      "new": [
+        -6.5858915,
+        106.8733364
+      ],
+      "matched_name": "Sentul Highlands Golf Club",
+      "osm_ref": "relation/12485745",
+      "applied": true
+    },
+    {
+      "id": "rainbow-hills",
+      "name": "Rainbow Hills Golf Club",
+      "decision": "weak_match",
+      "score": 0.762,
+      "move_km": 8.493,
+      "old": [
+        -6.62046,
+        106.88642
+      ],
+      "new": [
+        -6.5477484,
+        106.8628792
+      ],
+      "matched_name": "Palm Hill Golf Club",
+      "osm_ref": "way/173801453",
+      "applied": false
+    },
+    {
+      "id": "bogor-raya",
+      "name": "Klub Golf Bogor Raya",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 5.257,
+      "old": [
+        -6.55687,
+        106.85148
+      ],
+      "new": [
+        -6.6013978,
+        106.8354946
+      ],
+      "matched_name": "Klub Golf Bogor Raya",
+      "osm_ref": "way/142575989",
+      "applied": true
+    },
+    {
+      "id": "permata-sentul",
+      "name": "Permata Sentul Golf",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.902,
+      "old": [
+        -6.5292,
+        106.8761
+      ],
+      "new": [
+        -6.5309003,
+        106.868116
+      ],
+      "matched_name": "Permata Sentul Golf",
+      "osm_ref": "relation/14264143",
+      "applied": true
+    },
+    {
+      "id": "riverside-cibubur",
+      "name": "Riverside Golf Club",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.696,
+      "old": [
+        -6.42969,
+        106.9056
+      ],
+      "new": [
+        -6.4263359,
+        106.9002838
+      ],
+      "matched_name": "Riverside Golf Club",
+      "osm_ref": "way/166670007",
+      "applied": true
+    },
+    {
+      "id": "jagorawi",
+      "name": "Jagorawi Golf & Country Club",
+      "decision": "match_too_far",
+      "score": 0.808,
+      "move_km": 37.322,
+      "old": [
+        -6.4542,
+        106.87602
+      ],
+      "new": [
+        -6.2988361,
+        107.1753927
+      ],
+      "matched_name": "Jababeka Golf & Country Club",
+      "osm_ref": "way/574920211",
+      "applied": false
+    },
+    {
+      "id": "rancamaya",
+      "name": "Rancamaya Golf & Country Club",
+      "decision": "match",
+      "score": 0.852,
+      "move_km": 0.198,
+      "old": [
+        -6.65984,
+        106.82255
+      ],
+      "new": [
+        -6.6581644,
+        106.8231648
+      ],
+      "matched_name": "R Hotel Rancmaya Golf & Country Club",
+      "osm_ref": "way/987926003",
+      "applied": true
+    },
+    {
+      "id": "jababeka-golf",
+      "name": "Jababeka Golf & Country Club",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 12.171,
+      "old": [
+        -6.19798,
+        107.1326
+      ],
+      "new": [
+        -6.2988361,
+        107.1753927
+      ],
+      "matched_name": "Jababeka Golf & Country Club",
+      "osm_ref": "way/574920211",
+      "applied": true
+    },
+    {
+      "id": "palm-springs-karawang",
+      "name": "Palm Springs Karawang",
+      "decision": "weak_match",
+      "score": 0.688,
+      "move_km": 1.694,
+      "old": [
+        -6.3361,
+        107.2756
+      ],
+      "new": [
+        -6.3470208,
+        107.2862886
+      ],
+      "matched_name": "Palmsprings Golf & Country Club",
+      "osm_ref": "way/361767040",
+      "applied": false
+    },
+    {
+      "id": "trump-lido",
+      "name": "Trump International Golf Club Lido",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 2.23,
+      "old": [
+        -6.7447,
+        106.8075
+      ],
+      "new": [
+        -6.7575671,
+        106.8229893
+      ],
+      "matched_name": "Trump International Golf Club Lido",
+      "osm_ref": "way/1341308101",
+      "applied": true
+    },
+    {
+      "id": "bogor-golf-club",
+      "name": "Bogor Golf Club (RSJMM Heritage)",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 1.51,
+      "old": [
+        -6.5969,
+        106.7861
+      ],
+      "new": [
+        -6.5851658,
+        106.7792143
+      ],
+      "matched_name": "Bogor Golf",
+      "osm_ref": "relation/9054032",
+      "applied": true
+    },
+    {
+      "id": "parahyangan-bandung",
+      "name": "Parahyangan Golf Bandung",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 0.317,
+      "old": [
+        -6.87783,
+        107.44114
+      ],
+      "new": [
+        -6.8764741,
+        107.4386111
+      ],
+      "matched_name": "Parahyangan Golf",
+      "osm_ref": "relation/19823975",
+      "applied": true
+    },
+    {
+      "id": "mountain-view-bandung",
+      "name": "Mountain View Golf Club",
+      "decision": "weak_match",
+      "score": 0.667,
+      "move_km": 95.799,
+      "old": [
+        -6.86297,
+        107.64801
+      ],
+      "new": [
+        -6.4263359,
+        106.9002838
+      ],
+      "matched_name": "Riverside Golf Club",
+      "osm_ref": "way/166670007",
+      "applied": false
+    },
+    {
+      "id": "dago-heritage-1917",
+      "name": "Dago Heritage 1917 Golf Course",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 0.374,
+      "old": [
+        -6.86763,
+        107.62578
+      ],
+      "new": [
+        -6.870961,
+        107.6253211
+      ],
+      "matched_name": "Lapangan Golf Dago",
+      "osm_ref": "way/94691701",
+      "applied": true
+    },
+    {
+      "id": "jatinangor-national",
+      "name": "Jatinangor National Golf & Resort",
+      "decision": "weak_match",
+      "score": 0.632,
+      "move_km": 131.467,
+      "old": [
+        -6.91201,
+        107.76288
+      ],
+      "new": [
+        -6.2219492,
+        106.7964971
+      ],
+      "matched_name": "Senayan National Golf Club",
+      "osm_ref": "relation/12618369",
+      "applied": false
+    },
+    {
+      "id": "ciater-highland",
+      "name": "Ciater Highland Golf",
+      "decision": "weak_match",
+      "score": 0.652,
+      "move_km": 88.294,
+      "old": [
+        -6.73,
+        107.6595
+      ],
+      "new": [
+        -6.5858915,
+        106.8733364
+      ],
+      "matched_name": "Sentul Highlands Golf Club",
+      "osm_ref": "relation/12485745",
+      "applied": false
+    },
+    {
+      "id": "merapi-yogya",
+      "name": "Merapi Golf Yogyakarta",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 0.24,
+      "old": [
+        -7.62106,
+        110.445
+      ],
+      "new": [
+        -7.6208169,
+        110.4471647
+      ],
+      "matched_name": "Merapi Golf",
+      "osm_ref": "way/261194143",
+      "applied": true
+    },
+    {
+      "id": "yogyakarta-gc",
+      "name": "Yogyakarta Golf Club (Hyatt Regency)",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 0.182,
+      "old": [
+        -7.74064,
+        110.37284
+      ],
+      "new": [
+        -7.7390529,
+        110.3732563
+      ],
+      "matched_name": "Hyatt Regency Golf",
+      "osm_ref": "way/245570646",
+      "applied": true
+    },
+    {
+      "id": "adisutjipto-yogya",
+      "name": "Padang Golf Adisutjipto",
+      "decision": "match",
+      "score": 0.857,
+      "move_km": 0.635,
+      "old": [
+        -7.79054,
+        110.4346
+      ],
+      "new": [
+        -7.7955302,
+        110.4317968
+      ],
+      "matched_name": "Adisucipto Golf Club",
+      "osm_ref": "way/154237407",
+      "applied": true
+    },
+    {
+      "id": "borobudur-magelang",
+      "name": "Borobudur International Golf & Country Club",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.38,
+      "old": [
+        -7.48779,
+        110.21552
+      ],
+      "new": [
+        -7.4911495,
+        110.2161718
+      ],
+      "matched_name": "Borobudur International Golf & Country Club",
+      "osm_ref": "way/924345026",
+      "applied": true
+    },
+    {
+      "id": "gombel-semarang",
+      "name": "Gombel Golf Semarang",
+      "decision": "weak_match",
+      "score": 0.578,
+      "move_km": 388.589,
+      "old": [
+        -7.03704,
+        110.41351
+      ],
+      "new": [
+        -6.400798,
+        106.9534594
+      ],
+      "matched_name": "Meilia Golf Driving Range",
+      "osm_ref": "way/1269080956",
+      "applied": false
+    },
+    {
+      "id": "candi-semarang",
+      "name": "Graha Candi Golf Country Club",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.011,
+      "old": [
+        -7.02597,
+        110.43823
+      ],
+      "new": [
+        -7.0259083,
+        110.4381564
+      ],
+      "matched_name": "Graha Candi Golf",
+      "osm_ref": "node/11801443736",
+      "applied": true
+    },
+    {
+      "id": "ciputra-surabaya",
+      "name": "Ciputra Golf Club & Hotel Surabaya",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 1.103,
+      "old": [
+        -7.28395,
+        112.64179
+      ],
+      "new": [
+        -7.290969,
+        112.6347267
+      ],
+      "matched_name": "Ciputra Golf",
+      "osm_ref": "relation/5121369",
+      "applied": true
+    },
+    {
+      "id": "bukit-darmo-surabaya",
+      "name": "Bukit Darmo Golf",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.275,
+      "old": [
+        -7.28739,
+        112.6892
+      ],
+      "new": [
+        -7.2891994,
+        112.6874945
+      ],
+      "matched_name": "Bukit Darmo Golf",
+      "osm_ref": "way/160043626",
+      "applied": true
+    },
+    {
+      "id": "finna-pasuruan",
+      "name": "Finna Golf & Country Club Resort",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 0.261,
+      "old": [
+        -7.67582,
+        112.66857
+      ],
+      "new": [
+        -7.6745488,
+        112.6705563
+      ],
+      "matched_name": "Finna Country Golf",
+      "osm_ref": "way/924350243",
+      "applied": true
+    },
+    {
+      "id": "taman-dayu",
+      "name": "Taman Dayu Golf Club & Resort",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 0.606,
+      "old": [
+        -7.70289,
+        112.67476
+      ],
+      "new": [
+        -7.6982458,
+        112.6776462
+      ],
+      "matched_name": "Lapangan Golf Taman Dayu",
+      "osm_ref": "relation/20252519",
+      "applied": true
+    },
+    {
+      "id": "graha-famili",
+      "name": "Golf Graha Famili & Country Club",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.179,
+      "old": [
+        -7.29578,
+        112.68436
+      ],
+      "new": [
+        -7.2954903,
+        112.6859534
+      ],
+      "matched_name": "Golf Graha Famili",
+      "osm_ref": "relation/9332158",
+      "applied": true
+    },
+    {
+      "id": "araya-malang",
+      "name": "Araya Golf & Family Club",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 1.55,
+      "old": [
+        -7.93722,
+        112.68196
+      ],
+      "new": [
+        -7.9393139,
+        112.6680499
+      ],
+      "matched_name": "Lapangan Golf Araya",
+      "osm_ref": "relation/20245245",
+      "applied": true
+    },
+    {
+      "id": "jember-glantangan",
+      "name": "Glantangan Golf Club (Jember)",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 0.211,
+      "old": [
+        -8.33117,
+        113.69671
+      ],
+      "new": [
+        -8.3301747,
+        113.6983461
+      ],
+      "matched_name": "Glantangan Golf Course",
+      "osm_ref": "node/452888070",
+      "applied": true
+    },
+    {
+      "id": "singosari-malang",
+      "name": "Padang Golf Abdulrachman Saleh (Singosari)",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 0.505,
+      "old": [
+        -7.89251,
+        112.68574
+      ],
+      "new": [
+        -7.8881787,
+        112.6843482
+      ],
+      "matched_name": "Padang Golf Abdulrachman Saleh",
+      "osm_ref": "way/696046862",
+      "applied": true
+    },
+    {
+      "id": "bali-national",
+      "name": "Bali National Golf Club",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 1.34,
+      "old": [
+        -8.7942,
+        115.2266
+      ],
+      "new": [
+        -8.8049128,
+        115.2210158
+      ],
+      "matched_name": "Bali National Golf Club",
+      "osm_ref": "relation/4472683",
+      "applied": true
+    },
+    {
+      "id": "nirwana-bali",
+      "name": "Nirwana Bali Golf Club",
+      "decision": "weak_match",
+      "score": 0.622,
+      "move_km": 25.267,
+      "old": [
+        -8.621,
+        115.086
+      ],
+      "new": [
+        -8.8049128,
+        115.2210158
+      ],
+      "matched_name": "Bali National Golf Club",
+      "osm_ref": "relation/4472683",
+      "applied": false
+    },
+    {
+      "id": "new-kuta",
+      "name": "New Kuta Golf",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.207,
+      "old": [
+        -8.80446,
+        115.12816
+      ],
+      "new": [
+        -8.8030685,
+        115.1269073
+      ],
+      "matched_name": "New Kuta Golf",
+      "osm_ref": "relation/9848757",
+      "applied": true
+    },
+    {
+      "id": "handara-bali",
+      "name": "Handara Golf & Resort Bali",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.302,
+      "old": [
+        -8.24526,
+        115.16136
+      ],
+      "new": [
+        -8.2470453,
+        115.1592869
+      ],
+      "matched_name": "Handara Golf & Resort Bali",
+      "osm_ref": "way/129317885",
+      "applied": true
+    },
+    {
+      "id": "bukit-pandawa",
+      "name": "Bukit Pandawa Golf & Country Club",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.195,
+      "old": [
+        -8.8345,
+        115.1968
+      ],
+      "new": [
+        -8.8355489,
+        115.1982272
+      ],
+      "matched_name": "Bukit Pandawa Golf & Country Club",
+      "osm_ref": "way/947732992",
+      "applied": true
+    },
+    {
+      "id": "bali-beach-sanur",
+      "name": "Bali Beach Golf Course",
+      "decision": "weak_match",
+      "score": 0.622,
+      "move_km": 14.035,
+      "old": [
+        -8.6855,
+        115.2624
+      ],
+      "new": [
+        -8.8049128,
+        115.2210158
+      ],
+      "matched_name": "Bali National Golf Club",
+      "osm_ref": "relation/4472683",
+      "applied": false
+    },
+    {
+      "id": "lombok-sire-beach",
+      "name": "Sire Beach Golf Club (Lombok Kosaido)",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 0.205,
+      "old": [
+        -8.36842,
+        116.1082
+      ],
+      "new": [
+        -8.3676771,
+        116.1064991
+      ],
+      "matched_name": "Lombok Golf Kosaido Country Club",
+      "osm_ref": "way/1470076862",
+      "applied": true
+    },
+    {
+      "id": "gec-rinjani",
+      "name": "GEC Rinjani Golf & Resort",
+      "decision": "weak_match",
+      "score": 0.596,
+      "move_km": 124.635,
+      "old": [
+        -8.57945,
+        116.24138
+      ],
+      "new": [
+        -8.2470453,
+        115.1592869
+      ],
+      "matched_name": "Handara Golf & Resort Bali",
+      "osm_ref": "way/129317885",
+      "applied": false
+    },
+    {
+      "id": "kaleang-sumbawa",
+      "name": "Kaleang Golf Club (Naia Resort Sumbawa)",
+      "decision": "weak_match",
+      "score": 0.609,
+      "move_km": 194.216,
+      "old": [
+        -8.98899,
+        116.75857
+      ],
+      "new": [
+        -8.2470453,
+        115.1592869
+      ],
+      "matched_name": "Handara Golf & Resort Bali",
+      "osm_ref": "way/129317885",
+      "applied": false
+    },
+    {
+      "id": "ria-bintan-ocean",
+      "name": "Ria Bintan Golf Club - Ocean Course",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 0.652,
+      "old": [
+        1.19555,
+        104.41301
+      ],
+      "new": [
+        1.1899676,
+        104.4112301
+      ],
+      "matched_name": "Ria Bintan Golf Course",
+      "osm_ref": "way/988221205",
+      "applied": true
+    },
+    {
+      "id": "ria-bintan-forest",
+      "name": "Ria Bintan Golf Club - Forest Course",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 0.969,
+      "old": [
+        1.18555,
+        104.40372
+      ],
+      "new": [
+        1.1899676,
+        104.4112301
+      ],
+      "matched_name": "Ria Bintan Golf Course",
+      "osm_ref": "way/988221205",
+      "applied": true
+    },
+    {
+      "id": "bintan-lagoon-seaview",
+      "name": "Bintan Lagoon - Sea View Course",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 1.329,
+      "old": [
+        1.1944,
+        104.4258
+      ],
+      "new": [
+        1.1856512,
+        104.4176506
+      ],
+      "matched_name": "Bintan Lagoon Golf Course",
+      "osm_ref": "way/1006629036",
+      "applied": true
+    },
+    {
+      "id": "bintan-lagoon-woodlands",
+      "name": "Bintan Lagoon - Woodlands Course",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 1.329,
+      "old": [
+        1.1944,
+        104.4258
+      ],
+      "new": [
+        1.1856512,
+        104.4176506
+      ],
+      "matched_name": "Bintan Lagoon Golf Course",
+      "osm_ref": "way/1006629036",
+      "applied": true
+    },
+    {
+      "id": "laguna-bintan",
+      "name": "Laguna Golf Bintan",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.309,
+      "old": [
+        1.18168,
+        104.34015
+      ],
+      "new": [
+        1.1801964,
+        104.3424998
+      ],
+      "matched_name": "Laguna Bintan Golf Club",
+      "osm_ref": "way/694504916",
+      "applied": true
+    },
+    {
+      "id": "palm-springs-batam",
+      "name": "Palm Springs Golf & Country Club Batam",
+      "decision": "weak_match",
+      "score": 0.744,
+      "move_km": 0.646,
+      "old": [
+        1.18619,
+        104.07733
+      ],
+      "new": [
+        1.1851973,
+        104.0830527
+      ],
+      "matched_name": "Palm Springs Golf & Beach Resort",
+      "osm_ref": "way/60761666",
+      "applied": false
+    },
+    {
+      "id": "tering-bay-batam",
+      "name": "Batam Island Country Club (formerly Tering Bay)",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 0.023,
+      "old": [
+        1.16607,
+        104.07694
+      ],
+      "new": [
+        1.1661774,
+        104.0771133
+      ],
+      "matched_name": "Tering Bay Golf",
+      "osm_ref": "way/92412833",
+      "applied": true
+    },
+    {
+      "id": "tamarin-santana-batam",
+      "name": "Tamarin Santana Golf Club",
+      "decision": "weak_match",
+      "score": 0.708,
+      "move_km": 27.291,
+      "old": [
+        1.18978,
+        104.0972
+      ],
+      "new": [
+        1.1801964,
+        104.3424998
+      ],
+      "matched_name": "Laguna Bintan Golf Club",
+      "osm_ref": "way/694504916",
+      "applied": false
+    },
+    {
+      "id": "southlinks-batam",
+      "name": "SouthLinks Country Club",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.009,
+      "old": [
+        1.1142,
+        103.99535
+      ],
+      "new": [
+        1.1141209,
+        103.9953393
+      ],
+      "matched_name": "SouthLinks Country Club",
+      "osm_ref": "node/702341393",
+      "applied": true
+    },
+    {
+      "id": "padang-golf-sukajadi-batam",
+      "name": "Padang Golf Sukajadi",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.506,
+      "old": [
+        1.10221,
+        104.0322
+      ],
+      "new": [
+        1.101223,
+        104.027757
+      ],
+      "matched_name": "Sukajadi Golf Course",
+      "osm_ref": "relation/14694540",
+      "applied": true
+    },
+    {
+      "id": "indah-puri-batam",
+      "name": "Indah Puri Golf Resort",
+      "decision": "weak_match",
+      "score": 0.652,
+      "move_km": 0.245,
+      "old": [
+        1.13658,
+        103.96201
+      ],
+      "new": [
+        1.13878,
+        103.96199
+      ],
+      "matched_name": "Indah Puri Driving Range",
+      "osm_ref": "node/707685842",
+      "applied": false
+    },
+    {
+      "id": "black-rocks-belitung",
+      "name": "Black Rocks Hotel & Golf Club",
+      "decision": "weak_match",
+      "score": 0.636,
+      "move_km": 414.628,
+      "old": [
+        -2.56487,
+        107.70993
+      ],
+      "new": [
+        -6.2001515,
+        106.877294
+      ],
+      "matched_name": "Jakarta Golf Club",
+      "osm_ref": "way/28257150",
+      "applied": false
+    },
+    {
+      "id": "royal-sumatra",
+      "name": "Royal Sumatra Golf & Country Club",
+      "decision": "match",
+      "score": 0.963,
+      "move_km": 0.278,
+      "old": [
+        3.5190269,
+        98.6447694
+      ],
+      "new": [
+        3.5193258,
+        98.6422823
+      ],
+      "matched_name": "Royal Sumatera Golf Course",
+      "osm_ref": "way/228771722",
+      "applied": true
+    },
+    {
+      "id": "tamora-medan",
+      "name": "Tamora Golf Club",
+      "decision": "weak_match",
+      "score": 0.651,
+      "move_km": 21.587,
+      "old": [
+        3.5284074,
+        98.7825317
+      ],
+      "new": [
+        3.4271939,
+        98.6165613
+      ],
+      "matched_name": "Martabe Sejahtera Golf Club",
+      "osm_ref": "way/228923765",
+      "applied": false
+    },
+    {
+      "id": "graha-metropolitan-medan",
+      "name": "Graha Metropolitan (Helvetia) Golf & Country Club",
+      "decision": "match",
+      "score": 0.831,
+      "move_km": 0.099,
+      "old": [
+        3.6232453,
+        98.6467127
+      ],
+      "new": [
+        3.6232546,
+        98.6458242
+      ],
+      "matched_name": "Graha Helvetia Golf & Country Club",
+      "osm_ref": "relation/19184888",
+      "applied": true
+    },
+    {
+      "id": "bukit-barisan-medan",
+      "name": "Bukit Barisan Country Club",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.03,
+      "old": [
+        3.5029711,
+        98.5698585
+      ],
+      "new": [
+        3.5031054,
+        98.5696196
+      ],
+      "matched_name": "Bukit Barisan Country Club Golf Course",
+      "osm_ref": "way/319531954",
+      "applied": true
+    },
+    {
+      "id": "rumbai-pekanbaru",
+      "name": "Golf Course Pertamina Hulu Rokan Rumbai (formerly Rumbai GCC)",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 0.502,
+      "old": [
+        0.5841695,
+        101.438559
+      ],
+      "new": [
+        0.5845844,
+        101.4430586
+      ],
+      "matched_name": "Rumbai Golf & Country Club",
+      "osm_ref": "relation/4472694",
+      "applied": true
+    },
+    {
+      "id": "labersa-riau",
+      "name": "Labersa Golf & Country Club",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.101,
+      "old": [
+        0.4419174,
+        101.487254
+      ],
+      "new": [
+        0.4418105,
+        101.4863528
+      ],
+      "matched_name": "Labersa Golf Course",
+      "osm_ref": "way/242815285",
+      "applied": true
+    },
+    {
+      "id": "palembang-gc",
+      "name": "Kenten Heritage 1937 Golf Course (formerly Palembang Golf Club)",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 0.0,
+      "old": [
+        -2.9585637,
+        104.7669339
+      ],
+      "new": [
+        -2.9585637,
+        104.7669339
+      ],
+      "matched_name": "Palembang Golf Club",
+      "osm_ref": "node/13001801856",
+      "applied": true
+    },
+    {
+      "id": "bukit-asam",
+      "name": "Bukit Asam Golf Club (PTBA)",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 0.116,
+      "old": [
+        -3.7663795,
+        103.7707784
+      ],
+      "new": [
+        -3.7664683,
+        103.7697351
+      ],
+      "matched_name": "Lapangan Golf PTBA",
+      "osm_ref": "way/396516845",
+      "applied": true
+    },
+    {
+      "id": "padang-golf-sukarame",
+      "name": "Padang Golf Sukarame",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.156,
+      "old": [
+        -5.3784073,
+        105.3082928
+      ],
+      "new": [
+        -5.3797799,
+        105.3080173
+      ],
+      "matched_name": "Padang Golf Sukarame",
+      "osm_ref": "way/404322909",
+      "applied": true
+    },
+    {
+      "id": "pertamina-balikpapan",
+      "name": "Pertamina Balikpapan Golf Club",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 0.04,
+      "old": [
+        -1.2707695,
+        116.8689789
+      ],
+      "new": [
+        -1.2705687,
+        116.8692802
+      ],
+      "matched_name": "Pertamina Golf Club",
+      "osm_ref": "way/54638427",
+      "applied": true
+    },
+    {
+      "id": "karang-joang",
+      "name": "Karang Joang Golf & Country Club",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.0,
+      "old": [
+        -1.171073,
+        116.8597282
+      ],
+      "new": [
+        -1.171073,
+        116.8597282
+      ],
+      "matched_name": "Karang Joang Golf & Country Club",
+      "osm_ref": "node/6216321538",
+      "applied": true
+    },
+    {
+      "id": "bintang-sintuk-bontang",
+      "name": "Hotel Bintang Sintuk Golf Course (Bukit Sintuk)",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 0.28,
+      "old": [
+        0.1600183,
+        117.4760234
+      ],
+      "new": [
+        0.1600178,
+        117.4735075
+      ],
+      "matched_name": "Padang Golf Bintang Sintuk",
+      "osm_ref": "way/565035364",
+      "applied": true
+    },
+    {
+      "id": "mahulu-samarinda",
+      "name": "Mahulu Golf Course",
+      "decision": "weak_match",
+      "score": 0.7,
+      "move_km": 893.295,
+      "old": [
+        -0.5553336,
+        117.0888033
+      ],
+      "new": [
+        -7.3020517,
+        112.7147168
+      ],
+      "matched_name": "Ahmad Yani Golf Course",
+      "osm_ref": "way/160043628",
+      "applied": false
+    },
+    {
+      "id": "isen-mulang-palangkaraya",
+      "name": "Isen Mulang Golf Club",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.067,
+      "old": [
+        -2.1789004,
+        113.8887414
+      ],
+      "new": [
+        -2.1785587,
+        113.8892361
+      ],
+      "matched_name": "Isen Mulang Golf",
+      "osm_ref": "way/351300869",
+      "applied": true
+    },
+    {
+      "id": "swargaloka-banjarbaru",
+      "name": "Padang Golf Swargaloka (Banjarbaru)",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 0.03,
+      "old": [
+        -3.4273622,
+        114.7460494
+      ],
+      "new": [
+        -3.4272552,
+        114.7463005
+      ],
+      "matched_name": "Lapangan Golf Swargaloka",
+      "osm_ref": "way/1216279720",
+      "applied": true
+    },
+    {
+      "id": "alam-khatulistiwa",
+      "name": "Alam Khatulistiwa Golf Club",
+      "decision": "weak_match",
+      "score": 0.612,
+      "move_km": 608.756,
+      "old": [
+        0.0644,
+        109.3409
+      ],
+      "new": [
+        1.0582885,
+        103.9568692
+      ],
+      "matched_name": "Paradise Bay Golf Club",
+      "osm_ref": "node/700645239",
+      "applied": false
+    },
+    {
+      "id": "padivalley-makassar",
+      "name": "Padivalley Golf Club",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.142,
+      "old": [
+        -5.2044256,
+        119.5914487
+      ],
+      "new": [
+        -5.2042635,
+        119.592719
+      ],
+      "matched_name": "Padivalley Golf Club",
+      "osm_ref": "relation/13213357",
+      "applied": true
+    },
+    {
+      "id": "padang-golf-baddoka",
+      "name": "Padang Golf Baddoka Makassar",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.218,
+      "old": [
+        -5.0855763,
+        119.5035452
+      ],
+      "new": [
+        -5.0843975,
+        119.5051231
+      ],
+      "matched_name": "Padang Golf Baddoka Makassar",
+      "osm_ref": "relation/4465798",
+      "applied": true
+    },
+    {
+      "id": "akr-grand-kawanua",
+      "name": "AKR Grand Kawanua Golf Club (Wenang)",
+      "decision": "weak_match",
+      "score": 0.554,
+      "move_km": 1573.911,
+      "old": [
+        1.5042914,
+        124.8977854
+      ],
+      "new": [
+        -8.8355489,
+        115.1982272
+      ],
+      "matched_name": "Bukit Pandawa Golf & Country Club",
+      "osm_ref": "way/947732992",
+      "applied": false
+    },
+    {
+      "id": "sorowako-gc",
+      "name": "Sorowako Golf Club",
+      "decision": "weak_match",
+      "score": 0.579,
+      "move_km": 355.835,
+      "old": [
+        -2.5237272,
+        121.3448283
+      ],
+      "new": [
+        -5.2042635,
+        119.592719
+      ],
+      "matched_name": "Padivalley Golf Club",
+      "osm_ref": "relation/13213357",
+      "applied": false
+    },
+    {
+      "id": "bumi-roviga-palu",
+      "name": "Lapangan Golf Bumi Roviga (Palu)",
+      "decision": "weak_match",
+      "score": 0.679,
+      "move_km": 477.445,
+      "old": [
+        -0.8673524,
+        119.8796362
+      ],
+      "new": [
+        -5.1411165,
+        119.4650247
+      ],
+      "matched_name": "Lapangan Golf Wirabuana",
+      "osm_ref": "way/320801117",
+      "applied": false
+    },
+    {
+      "id": "sanggoleo-kendari",
+      "name": "Sanggoleo Golf Club",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 0.0,
+      "old": [
+        -4.0350982,
+        122.4826795
+      ],
+      "new": [
+        -4.0350982,
+        122.4826795
+      ],
+      "matched_name": "Padang Golf Sanggoleo Kendari",
+      "osm_ref": "node/9884408054",
+      "applied": true
+    },
+    {
+      "id": "cenderawasih-jayapura",
+      "name": "Cenderawasih Golf Club (Sentani/Jayapura)",
+      "decision": "no_match",
+      "score": 0.0
+    },
+    {
+      "id": "rimba-irian-timika",
+      "name": "Rimba Irian Golf Club (Timika)",
+      "decision": "weak_match",
+      "score": 0.647,
+      "move_km": 0.0,
+      "old": [
+        -4.4113925,
+        136.8729976
+      ],
+      "new": [
+        -4.4113925,
+        136.8729976
+      ],
+      "matched_name": "Klub Golf Rimba Irian",
+      "osm_ref": "node/1248466759",
+      "applied": false
+    },
+    {
+      "id": "pattimura-ambon",
+      "name": "Pattimura Golf Course",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.0,
+      "old": [
+        -3.7035445,
+        128.0990142
+      ],
+      "new": [
+        -3.7035445,
+        128.0990142
+      ],
+      "matched_name": "Pattimura",
+      "osm_ref": "node/5091537847",
+      "applied": true
+    },
+    {
+      "id": "jakarta-golf-club-rawamangun",
+      "name": "Jakarta Golf Club (Rawamangun)",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 0.412,
+      "old": [
+        -6.1976,
+        106.88
+      ],
+      "new": [
+        -6.2001515,
+        106.877294
+      ],
+      "matched_name": "Jakarta Golf Club",
+      "osm_ref": "way/28257150",
+      "applied": true
+    },
+    {
+      "id": "pondok-cabe-golf",
+      "name": "Pondok Cabe Golf & Country Club",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.428,
+      "old": [
+        -6.3541161,
+        106.7641624
+      ],
+      "new": [
+        -6.3505836,
+        106.7626282
+      ],
+      "matched_name": "Pondok Cabe Golf & Country Club",
+      "osm_ref": "way/28869722",
+      "applied": true
+    },
+    {
+      "id": "royale-krakatau-cilegon",
+      "name": "Royale Krakatau Golf & Country Club",
+      "decision": "match_too_far",
+      "score": 0.828,
+      "move_km": 99.23,
+      "old": [
+        -6.0013788,
+        106.0433705
+      ],
+      "new": [
+        -6.2697065,
+        106.8993747
+      ],
+      "matched_name": "Royale Jakarta Golf Club",
+      "osm_ref": "way/126510664",
+      "applied": false
+    },
+    {
+      "id": "bandung-giri-gahana",
+      "name": "Bandung Giri Gahana Golf & Resort",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.655,
+      "old": [
+        -6.9120064,
+        107.7628791
+      ],
+      "new": [
+        -6.917439,
+        107.7651768
+      ],
+      "matched_name": "Bandung Giri Gahana Golf & Resort",
+      "osm_ref": "way/185962202",
+      "applied": true
+    },
+    {
+      "id": "padang-golf-lanud-sulaiman",
+      "name": "Padang Golf Lanud Sulaiman",
+      "decision": "weak_match",
+      "score": 0.698,
+      "move_km": 109.086,
+      "old": [
+        -6.980684,
+        107.586197
+      ],
+      "new": [
+        -6.2842355,
+        106.8906058
+      ],
+      "matched_name": "Padang Golf Halim",
+      "osm_ref": "relation/13276253",
+      "applied": false
+    },
+    {
+      "id": "royal-cirebon-golf",
+      "name": "Royal Cirebon Golf & Country Club",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.421,
+      "old": [
+        -6.7747904,
+        108.5236276
+      ],
+      "new": [
+        -6.7723851,
+        108.5265735
+      ],
+      "matched_name": "Royal Cirebon Golf",
+      "osm_ref": "way/477456751",
+      "applied": true
+    },
+    {
+      "id": "ngamplang-garut",
+      "name": "Lapangan Golf Ngamplang (Flamboyan)",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 0.028,
+      "old": [
+        -7.2520908,
+        107.9033935
+      ],
+      "new": [
+        -7.2522222,
+        107.9031717
+      ],
+      "matched_name": "Golf Course Ngamplang",
+      "osm_ref": "node/2362656666",
+      "applied": true
+    },
+    {
+      "id": "tidar-golf-magelang",
+      "name": "Tidar Golf Course",
+      "decision": "weak_match",
+      "score": 0.698,
+      "move_km": 54.806,
+      "old": [
+        -7.4869,
+        110.22
+      ],
+      "new": [
+        -7.0173137,
+        110.3709389
+      ],
+      "matched_name": "Manyaran Indah Golf Course",
+      "osm_ref": "node/13007226881",
+      "applied": false
+    },
+    {
+      "id": "wijayakusuma-purwokerto",
+      "name": "Padang Golf Wijayakusuma",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.053,
+      "old": [
+        -7.4140079,
+        109.2471135
+      ],
+      "new": [
+        -7.4144147,
+        109.2468717
+      ],
+      "matched_name": "Wijayakusuma Golf Course",
+      "osm_ref": "way/189050049",
+      "applied": true
+    },
+    {
+      "id": "mrica-banjarnegara",
+      "name": "Mrica Indah Golf Club",
+      "decision": "weak_match",
+      "score": 0.723,
+      "move_km": 94.876,
+      "old": [
+        -7.3910151,
+        109.5977828
+      ],
+      "new": [
+        -7.0173137,
+        110.3709389
+      ],
+      "matched_name": "Manyaran Indah Golf Course",
+      "osm_ref": "node/13007226881",
+      "applied": false
+    },
+    {
+      "id": "pertamina-tritih-cilacap",
+      "name": "Pertamina Tritih Golf & Country Club",
+      "decision": "weak_match",
+      "score": 0.708,
+      "move_km": 175.457,
+      "old": [
+        -7.6373333,
+        109.0317988
+      ],
+      "new": [
+        -6.9848999,
+        107.5832956
+      ],
+      "matched_name": "Bandung Indah Golf & Country Club",
+      "osm_ref": "way/163595363",
+      "applied": false
+    },
+    {
+      "id": "adi-soemarmo-solo",
+      "name": "Padang Golf Adi Soemarmo",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.126,
+      "old": [
+        -7.5195261,
+        110.7571093
+      ],
+      "new": [
+        -7.518642,
+        110.7578247
+      ],
+      "matched_name": "Padang Golf Adi Soemarmo",
+      "osm_ref": "way/794664053",
+      "applied": true
+    },
+    {
+      "id": "black-eagle-bsb-semarang",
+      "name": "Black Eagle Golf Course (BSB City)",
+      "decision": "weak_match",
+      "score": 0.556,
+      "move_km": 265.19,
+      "old": [
+        -7.029085,
+        110.3268207
+      ],
+      "new": [
+        -7.3020517,
+        112.7147168
+      ],
+      "matched_name": "Ahmad Yani Golf Course",
+      "osm_ref": "way/160043628",
+      "applied": false
+    },
+    {
+      "id": "ahmad-yani-surabaya",
+      "name": "Ahmad Yani Golf Club (Yani Golf Reborn)",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 0.533,
+      "old": [
+        -7.3067,
+        112.7159
+      ],
+      "new": [
+        -7.3020517,
+        112.7147168
+      ],
+      "matched_name": "Ahmad Yani Golf Course",
+      "osm_ref": "way/160043628",
+      "applied": true
+    },
+    {
+      "id": "pakuwon-golf-surabaya",
+      "name": "Pakuwon Golf & Family Club",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.924,
+      "old": [
+        -7.2872,
+        112.6678
+      ],
+      "new": [
+        -7.2939246,
+        112.6628853
+      ],
+      "matched_name": "Pakuwon Golf & Family Club",
+      "osm_ref": "relation/14264202",
+      "applied": true
+    },
+    {
+      "id": "iswahyudi-madiun",
+      "name": "Iswahyudi Golf Club (Lanud Iswahjudi)",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 0.402,
+      "old": [
+        -7.6142593,
+        111.4563417
+      ],
+      "new": [
+        -7.6121919,
+        111.4533483
+      ],
+      "matched_name": "Lapangan Golf Iswahyudi",
+      "osm_ref": "way/691043883",
+      "applied": true
+    },
+    {
+      "id": "dhoho-kediri",
+      "name": "Dhoho Golf Club (Surya Dhoho)",
+      "decision": "weak_match",
+      "score": 0.591,
+      "move_km": 577.478,
+      "old": [
+        -7.781,
+        112.087
+      ],
+      "new": [
+        -6.9063098,
+        106.9253884
+      ],
+      "matched_name": "Golf Club Setukpa",
+      "osm_ref": "relation/20138191",
+      "applied": false
+    },
+    {
+      "id": "arun-lhokseumawe",
+      "name": "Arun Golf Club",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.474,
+      "old": [
+        5.2254375,
+        97.0414844
+      ],
+      "new": [
+        5.2217383,
+        97.0393561
+      ],
+      "matched_name": "Arun Golf Course",
+      "osm_ref": "way/297313748",
+      "applied": true
+    },
+    {
+      "id": "lhoknga-aceh",
+      "name": "Lhoknga (Seulawah) Golf Course",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 0.048,
+      "old": [
+        5.4793,
+        95.237
+      ],
+      "new": [
+        5.479238,
+        95.2374283
+      ],
+      "matched_name": "Lapangan Golf Lhoknga",
+      "osm_ref": "way/304300802",
+      "applied": true
+    },
+    {
+      "id": "inalum-tanjung-gading",
+      "name": "Inalum Golf Club (Tanjung Gading)",
+      "decision": "match_too_far",
+      "score": 0.95,
+      "move_km": 88.746,
+      "old": [
+        3.3130253,
+        99.3356239
+      ],
+      "new": [
+        2.5183837,
+        99.2612144
+      ],
+      "matched_name": "Lapangan Golf Inalum",
+      "osm_ref": "way/602689182",
+      "applied": false
+    },
+    {
+      "id": "inalum-paritohan",
+      "name": "Inalum Golf Club (Paritohan)",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 0.0,
+      "old": [
+        2.5183837,
+        99.2612144
+      ],
+      "new": [
+        2.5183837,
+        99.2612144
+      ],
+      "matched_name": "Lapangan Golf Inalum",
+      "osm_ref": "way/602689182",
+      "applied": true
+    },
+    {
+      "id": "ptpn-iv-pabatu",
+      "name": "Lapangan Golf PTPN IV Pabatu",
+      "decision": "weak_match",
+      "score": 0.708,
+      "move_km": 85.638,
+      "old": [
+        3.2828,
+        99.1672
+      ],
+      "new": [
+        2.5183837,
+        99.2612144
+      ],
+      "matched_name": "Lapangan Golf Inalum",
+      "osm_ref": "way/602689182",
+      "applied": false
+    },
+    {
+      "id": "tenera-bah-jambi",
+      "name": "Tenera Golf Club (PTPN IV Bah Jambi)",
+      "decision": "no_match",
+      "score": 0.0
+    },
+    {
+      "id": "anai-resort",
+      "name": "Anai Golf & Mountain Resort",
+      "decision": "weak_match",
+      "score": 0.578,
+      "move_km": 443.962,
+      "old": [
+        -0.4625,
+        100.3539
+      ],
+      "new": [
+        1.101223,
+        104.027757
+      ],
+      "matched_name": "Sukajadi Golf Course",
+      "osm_ref": "relation/14694540",
+      "applied": false
+    },
+    {
+      "id": "wirabraja-padang",
+      "name": "Lapangan Golf Wirabraja Ulu Gadut",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 2.151,
+      "old": [
+        -0.9514,
+        100.4339
+      ],
+      "new": [
+        -0.9433791,
+        100.4515052
+      ],
+      "matched_name": "Lapangan Golf Ulu Gadut",
+      "osm_ref": "way/358802782",
+      "applied": true
+    },
+    {
+      "id": "lanud-sutan-sjahrir",
+      "name": "Lapangan Golf Lanud Sutan Sjahrir (Tabing)",
+      "decision": "weak_match",
+      "score": 0.603,
+      "move_km": 13.131,
+      "old": [
+        -0.879,
+        100.3525
+      ],
+      "new": [
+        -0.9433791,
+        100.4515052
+      ],
+      "matched_name": "Lapangan Golf Ulu Gadut",
+      "osm_ref": "way/358802782",
+      "applied": false
+    },
+    {
+      "id": "phr-dumai",
+      "name": "Golf Course Pertamina Hulu Rokan Dumai (formerly Chevron Dumai)",
+      "decision": "match_too_far",
+      "score": 0.95,
+      "move_km": 1747.278,
+      "old": [
+        1.6783,
+        101.433
+      ],
+      "new": [
+        -1.2705687,
+        116.8692802
+      ],
+      "matched_name": "Pertamina Golf Club",
+      "osm_ref": "way/54638427",
+      "applied": false
+    },
+    {
+      "id": "simpang-tiga-pekanbaru",
+      "name": "Simpang Tiga Golf Club (Pagosita)",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 1.606,
+      "old": [
+        0.4708,
+        101.4503
+      ],
+      "new": [
+        0.471295,
+        101.4358663
+      ],
+      "matched_name": "Lapangan Golf Simpang Tiga",
+      "osm_ref": "way/918692693",
+      "applied": true
+    },
+    {
+      "id": "perkumpulan-golf-jambi",
+      "name": "Perkumpulan Golf Jambi (Telanaipura)",
+      "decision": "weak_match",
+      "score": 0.576,
+      "move_km": 668.073,
+      "old": [
+        -1.5966,
+        103.5739
+      ],
+      "new": [
+        -6.6182626,
+        106.8820267
+      ],
+      "matched_name": "Padang Golf Bukit Pelangi",
+      "osm_ref": "way/142579270",
+      "applied": false
+    },
+    {
+      "id": "bajubang-jambi",
+      "name": "Lapangan Golf Bajubang",
+      "decision": "match_too_far",
+      "score": 0.8,
+      "move_km": 245.978,
+      "old": [
+        -1.6772,
+        103.0419
+      ],
+      "new": [
+        -3.7664683,
+        103.7697351
+      ],
+      "matched_name": "Lapangan Golf PTBA",
+      "osm_ref": "way/396516845",
+      "applied": false
+    },
+    {
+      "id": "merah-putih-bengkulu",
+      "name": "Lapangan Golf Merah Putih (Polda Bengkulu)",
+      "decision": "weak_match",
+      "score": 0.667,
+      "move_km": 378.889,
+      "old": [
+        -3.825,
+        102.305
+      ],
+      "new": [
+        -0.9466154,
+        100.4796343
+      ],
+      "matched_name": "Lapangan Golf Semen Padang",
+      "osm_ref": "way/358801960",
+      "applied": false
+    },
+    {
+      "id": "agromuko-mukomuko",
+      "name": "Lapangan Golf Agromuko",
+      "decision": "weak_match",
+      "score": 0.743,
+      "move_km": 177.672,
+      "old": [
+        -2.735,
+        101.15
+      ],
+      "new": [
+        -3.8444372,
+        102.3018119
+      ],
+      "matched_name": "Lapangan Golf",
+      "osm_ref": "way/302562741",
+      "applied": false
+    },
+    {
+      "id": "pertamina-pendopo",
+      "name": "Lapangan Golf PT Pertamina Pendopo",
+      "decision": "weak_match",
+      "score": 0.654,
+      "move_km": 34.34,
+      "old": [
+        -3.4583,
+        103.79
+      ],
+      "new": [
+        -3.7664683,
+        103.7697351
+      ],
+      "matched_name": "Lapangan Golf PTBA",
+      "osm_ref": "way/396516845",
+      "applied": false
+    },
+    {
+      "id": "pertamina-prabumulih",
+      "name": "Lapangan Golf PT Pertamina Prabumulih",
+      "decision": "weak_match",
+      "score": 0.618,
+      "move_km": 63.705,
+      "old": [
+        -3.4309,
+        104.235
+      ],
+      "new": [
+        -3.7664683,
+        103.7697351
+      ],
+      "matched_name": "Lapangan Golf PTBA",
+      "osm_ref": "way/396516845",
+      "applied": false
+    },
+    {
+      "id": "pusri-palembang",
+      "name": "Lapangan Golf PT Pusri (Patra Jaya)",
+      "decision": "weak_match",
+      "score": 0.667,
+      "move_km": 144.362,
+      "old": [
+        -2.9667,
+        104.7942
+      ],
+      "new": [
+        -3.7664683,
+        103.7697351
+      ],
+      "matched_name": "Lapangan Golf PTBA",
+      "osm_ref": "way/396516845",
+      "applied": false
+    },
+    {
+      "id": "bagus-kuning-plaju",
+      "name": "Bagus Kuning Golf Course",
+      "decision": "weak_match",
+      "score": 0.571,
+      "move_km": 1.064,
+      "old": [
+        -2.995,
+        104.809
+      ],
+      "new": [
+        -2.9902729,
+        104.8006681
+      ],
+      "matched_name": "Golf Cource",
+      "osm_ref": "node/13001330251",
+      "applied": false
+    },
+    {
+      "id": "bukit-intan-pangkalpinang",
+      "name": "Bukit Intan Golf Course (Girimaya)",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 3.286,
+      "old": [
+        -2.13,
+        106.1311
+      ],
+      "new": [
+        -2.1564722,
+        106.117952
+      ],
+      "matched_name": "Girimaya Golf Course",
+      "osm_ref": "way/129211068",
+      "applied": true
+    },
+    {
+      "id": "bebute-belitung",
+      "name": "Bebute Golf Course (Belitung Golf Club)",
+      "decision": "weak_match",
+      "score": 0.571,
+      "move_km": 459.541,
+      "old": [
+        -2.5667,
+        107.7
+      ],
+      "new": [
+        -6.6182626,
+        106.8820267
+      ],
+      "matched_name": "Padang Golf Bukit Pelangi",
+      "osm_ref": "way/142579270",
+      "applied": false
+    },
+    {
+      "id": "eltari-kupang",
+      "name": "Eltari Golf Course (Padang Golf El Tari)",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 1.306,
+      "old": [
+        -10.1717,
+        123.6717
+      ],
+      "new": [
+        -10.1827645,
+        123.6676932
+      ],
+      "matched_name": "Padang Golf El Tari",
+      "osm_ref": "node/1924560452",
+      "applied": true
+    },
+    {
+      "id": "kpc-sangatta",
+      "name": "Lapangan Golf PT KPC (Kaltim Prima Coal)",
+      "decision": "weak_match",
+      "score": 0.564,
+      "move_km": 377.68,
+      "old": [
+        0.4842,
+        117.5447
+      ],
+      "new": [
+        -2.1524796,
+        115.4031394
+      ],
+      "matched_name": "Lapangan Golf Pertamina EP Tanjung Field",
+      "osm_ref": "way/386199829",
+      "applied": false
+    },
+    {
+      "id": "badak-ngl-bontang",
+      "name": "PT Badak NGL Golf Course",
+      "decision": "weak_match",
+      "score": 0.558,
+      "move_km": 168.407,
+      "old": [
+        0.1133,
+        117.4847
+      ],
+      "new": [
+        -1.2705687,
+        116.8692802
+      ],
+      "matched_name": "Pertamina Golf Club",
+      "osm_ref": "way/54638427",
+      "applied": false
+    },
+    {
+      "id": "tarakan-golf-club",
+      "name": "Tarakan Golf Club",
+      "decision": "weak_match",
+      "score": 0.6,
+      "move_km": 3.18,
+      "old": [
+        3.3033,
+        117.6336
+      ],
+      "new": [
+        3.3089505,
+        117.6055223
+      ],
+      "matched_name": "Lapangan Golf",
+      "osm_ref": "way/1092585426",
+      "applied": false
+    },
+    {
+      "id": "tanjung-tabalong",
+      "name": "Tanjung Golf Club (Pertamina EP)",
+      "decision": "match_too_far",
+      "score": 0.95,
+      "move_km": 192.182,
+      "old": [
+        -2.1683,
+        115.3917
+      ],
+      "new": [
+        -1.2705687,
+        116.8692802
+      ],
+      "matched_name": "Pertamina Golf Club",
+      "osm_ref": "way/54638427",
+      "applied": false
+    },
+    {
+      "id": "gorontalo-yosonegoro",
+      "name": "Gorontalo Golf Yosonegoro",
+      "decision": "weak_match",
+      "score": 0.553,
+      "move_km": 1428.232,
+      "old": [
+        0.6307,
+        122.931
+      ],
+      "new": [
+        -8.3301747,
+        113.6983461
+      ],
+      "matched_name": "Glantangan Golf Course",
+      "osm_ref": "node/452888070",
+      "applied": false
+    },
+    {
+      "id": "paradise-likupang",
+      "name": "Paradise Golf Club (Likupang)",
+      "decision": "weak_match",
+      "score": 0.638,
+      "move_km": 977.15,
+      "old": [
+        1.6856,
+        125.0533
+      ],
+      "new": [
+        -5.2042635,
+        119.592719
+      ],
+      "matched_name": "Padivalley Golf Club",
+      "osm_ref": "relation/13213357",
+      "applied": false
+    },
+    {
+      "id": "antam-mekongga-pomalaa",
+      "name": "Antam Mekongga Golf Club (Pomalaa)",
+      "decision": "weak_match",
+      "score": 0.588,
+      "move_km": 618.868,
+      "old": [
+        -4.1842,
+        121.6172
+      ],
+      "new": [
+        -1.2705687,
+        116.8692802
+      ],
+      "matched_name": "Pertamina Golf Club",
+      "osm_ref": "way/54638427",
+      "applied": false
+    },
+    {
+      "id": "koarmada-iii-sorong",
+      "name": "Lapangan Golf Mini Koarmada III",
+      "decision": "match_too_far",
+      "score": 0.95,
+      "move_km": 1538.863,
+      "old": [
+        -0.9325,
+        131.2611
+      ],
+      "new": [
+        0.1462563,
+        117.4633538
+      ],
+      "matched_name": "Golf Mini",
+      "osm_ref": "way/1055888597",
+      "applied": false
+    },
+    {
+      "id": "suvarna-jakarta",
+      "name": "Suvarna Jakarta Golf Club",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.353,
+      "old": [
+        -6.28492,
+        106.89476
+      ],
+      "new": [
+        -6.2826321,
+        106.896976
+      ],
+      "matched_name": "Suvarna Jakarta",
+      "osm_ref": "way/28164112",
+      "applied": true
+    },
+    {
+      "id": "kedaton-golf",
+      "name": "Kedaton Golf & Country Club",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 2.32,
+      "old": [
+        -6.1714,
+        106.5269
+      ],
+      "new": [
+        -6.1910459,
+        106.5198414
+      ],
+      "matched_name": "Kedaton Golf & Country Club",
+      "osm_ref": "way/515754580",
+      "applied": true
+    },
+    {
+      "id": "sedayu-indo-golf",
+      "name": "Sedayu Indo Golf (The Links)",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 3.245,
+      "old": [
+        -6.108,
+        106.738
+      ],
+      "new": [
+        -6.0821788,
+        106.7516747
+      ],
+      "matched_name": "Sedayu Indo Golf The Links",
+      "osm_ref": "way/915535253",
+      "applied": true
+    },
+    {
+      "id": "bandar-kemayoran-golf",
+      "name": "Bandar Kemayoran Golf (Kemayoran Indah Golf, under renovation)",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 0.326,
+      "old": [
+        -6.14,
+        106.85
+      ],
+      "new": [
+        -6.1423901,
+        106.8517122
+      ],
+      "matched_name": "Golf Bandar Kemayoran",
+      "osm_ref": "relation/14264148",
+      "applied": true
+    },
+    {
+      "id": "jaya-ancol-golf",
+      "name": "Padang Golf Jaya Ancol (Ancol Golf Club)",
+      "decision": "weak_match",
+      "score": 0.61,
+      "move_km": 26.111,
+      "old": [
+        -6.122,
+        106.835
+      ],
+      "new": [
+        -6.2515839,
+        106.6380214
+      ],
+      "matched_name": "Gading Raya Golf Club",
+      "osm_ref": "way/362673650",
+      "applied": false
+    },
+    {
+      "id": "lotus-lakes-karawang",
+      "name": "Lotus Lakes Golf Club (Karawang International)",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 3.503,
+      "old": [
+        -6.331,
+        107.273
+      ],
+      "new": [
+        -6.3488349,
+        107.2468668
+      ],
+      "matched_name": "Lotus Lakes Golf Club",
+      "osm_ref": "way/549605278",
+      "applied": true
+    },
+    {
+      "id": "palm-hill-bogor",
+      "name": "Palm Hill Golf Club",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 3.804,
+      "old": [
+        -6.5793,
+        106.8762
+      ],
+      "new": [
+        -6.5477484,
+        106.8628792
+      ],
+      "matched_name": "Palm Hill Golf Club",
+      "osm_ref": "way/173801453",
+      "applied": true
+    },
+    {
+      "id": "takara-golf-tigaraksa",
+      "name": "Takara Golf Resort",
+      "decision": "match",
+      "score": 0.95,
+      "move_km": 6.263,
+      "old": [
+        -6.349,
+        106.479
+      ],
+      "new": [
+        -6.2934001,
+        106.4699534
+      ],
+      "matched_name": "Padang Golf Takara",
+      "osm_ref": "way/337709877",
+      "applied": true
+    },
+    {
+      "id": "bandung-indah-margahayu",
+      "name": "Bandung Indah Golf & Country Club",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 1.139,
+      "old": [
+        -6.97961,
+        107.57446
+      ],
+      "new": [
+        -6.9848999,
+        107.5832956
+      ],
+      "matched_name": "Bandung Indah Golf & Country Club",
+      "osm_ref": "way/163595363",
+      "applied": true
+    },
+    {
+      "id": "arcamanik-raya-bandung",
+      "name": "Arcamanik Raya Golf & Country Club",
+      "decision": "weak_match",
+      "score": 0.698,
+      "move_km": 11.986,
+      "old": [
+        -6.92,
+        107.67
+      ],
+      "new": [
+        -6.9848999,
+        107.5832956
+      ],
+      "matched_name": "Bandung Indah Golf & Country Club",
+      "osm_ref": "way/163595363",
+      "applied": false
+    },
+    {
+      "id": "mrica-indah-banjarnegara",
+      "name": "Mrica Indah Golf Club",
+      "decision": "weak_match",
+      "score": 0.723,
+      "move_km": 94.876,
+      "old": [
+        -7.3910151,
+        109.5977828
+      ],
+      "new": [
+        -7.0173137,
+        110.3709389
+      ],
+      "matched_name": "Manyaran Indah Golf Course",
+      "osm_ref": "node/13007226881",
+      "applied": false
+    },
+    {
+      "id": "martabe-sejahtera-medan",
+      "name": "Martabe Sejahtera Golf Club",
+      "decision": "match",
+      "score": 1.0,
+      "move_km": 0.322,
+      "old": [
+        3.4270453,
+        98.6136641
+      ],
+      "new": [
+        3.4271939,
+        98.6165613
+      ],
+      "matched_name": "Martabe Sejahtera Golf Club",
+      "osm_ref": "way/228923765",
+      "applied": true
+    }
+  ]
+}

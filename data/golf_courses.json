@@ -42,8 +42,8 @@
       "region": "Jakarta",
       "province": "DKI Jakarta",
       "address": "Jl. Halim III, Halim Perdanakusuma, Jakarta Timur, DKI Jakarta 13610",
-      "lat": -6.2695812,
-      "lng": 106.9006037,
+      "lat": -6.2697065,
+      "lng": 106.8993747,
       "holes": 27,
       "par": 72,
       "designer": "Robert Moore (JMP Group)",
@@ -258,7 +258,8 @@
           }
         ]
       },
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/126510664"
     },
     {
       "id": "pondok-indah-golf",
@@ -266,8 +267,8 @@
       "region": "Jakarta",
       "province": "DKI Jakarta",
       "address": "Jl. Metro Pondok Indah No.16, Pd. Pinang, Kebayoran Lama, Jakarta Selatan 12310",
-      "lat": -6.2734279,
-      "lng": 106.7920683,
+      "lat": -6.2734361,
+      "lng": 106.788344,
       "holes": 18,
       "par": 72,
       "designer": "Robert Trent Jones Jr.",
@@ -489,7 +490,8 @@
         ],
         "parent_company_full_name": "PT Pondok Indah Padang Golf Tbk"
       },
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/28420725"
     },
     {
       "id": "senayan-national",
@@ -497,8 +499,8 @@
       "region": "Jakarta",
       "province": "DKI Jakarta",
       "address": "Jl. Asia Afrika Pintu IX, Senayan, Jakarta Pusat 10270",
-      "lat": -6.2228771,
-      "lng": 106.7965077,
+      "lat": -6.2219492,
+      "lng": 106.7964971,
       "holes": 18,
       "par": 69,
       "designer": "Bob Moore (JMP Golf Design Group)",
@@ -750,7 +752,8 @@
           }
         ]
       },
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "relation/12618369"
     },
     {
       "id": "halim-golf-club",
@@ -758,8 +761,8 @@
       "region": "Jakarta",
       "province": "DKI Jakarta",
       "address": "Jl. Radar Selatan No.1, Halim Perdana Kusumah, Makasar, Jakarta Timur 13610",
-      "lat": -6.267,
-      "lng": 106.8911,
+      "lat": -6.2842355,
+      "lng": 106.8906058,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -917,7 +920,9 @@
           "https://tni-au.mil.id/"
         ],
         "last_verified": "2026-05-01"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "relation/13276253"
     },
     {
       "id": "padang-golf-pangkalan-jati",
@@ -925,8 +930,8 @@
       "region": "Depok",
       "province": "West Java",
       "address": "Jl. Jati Indah Raya No.1, Pangkalan Jati, Cinere, Depok 16513",
-      "lat": -6.3175,
-      "lng": 106.7827,
+      "lat": -6.3184495,
+      "lng": 106.7877319,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -1173,7 +1178,9 @@
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
           }
         ]
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/28923426"
     },
     {
       "id": "cengkareng-golf",
@@ -1181,8 +1188,8 @@
       "region": "Jakarta",
       "province": "DKI Jakarta",
       "address": "Taman Niaga Soewarna, Blok G Lot 1, Bandara Soekarno-Hatta, Jakarta 19110",
-      "lat": -6.1246555,
-      "lng": 106.6748952,
+      "lat": -6.1246468,
+      "lng": 106.6718315,
       "holes": 18,
       "par": 72,
       "designer": "Walter Raleigh Stewart",
@@ -1497,7 +1504,8 @@
           }
         ]
       },
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/203319399"
     },
     {
       "id": "modern-golf",
@@ -1505,8 +1513,8 @@
       "region": "Tangerang",
       "province": "Banten",
       "address": "Jl. Modern Golf Raya No.99, Klp. Indah, Kota Tangerang, Banten 15117",
-      "lat": -6.197324,
-      "lng": 106.6442537,
+      "lat": -6.1956729,
+      "lng": 106.6468677,
       "holes": 18,
       "par": 72,
       "designer": "Peter Thomson",
@@ -1676,7 +1684,8 @@
           }
         ]
       },
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/430612509"
     },
     {
       "id": "gading-raya",
@@ -1684,8 +1693,8 @@
       "region": "Tangerang",
       "province": "Banten",
       "address": "Bulevar Gading Golf, Jl. Gading Serpong, Tangerang 15826",
-      "lat": -6.24668,
-      "lng": 106.63398,
+      "lat": -6.2515839,
+      "lng": 106.6380214,
       "holes": 18,
       "par": 72,
       "designer": "Graham Marsh",
@@ -1991,7 +2000,9 @@
             "date_accessed": "2026-05-01"
           }
         ]
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/362673650"
     },
     {
       "id": "matoa-nasional",
@@ -1999,8 +2010,8 @@
       "region": "Jakarta",
       "province": "DKI Jakarta",
       "address": "Jl. Moh. Kahfi I Km. 7, Ciganjur, Cipedak, Jagakarsa, Jakarta Selatan 12630",
-      "lat": -6.3596432,
-      "lng": 106.7963009,
+      "lat": -6.34925,
+      "lng": 106.81188,
       "holes": 18,
       "par": 72,
       "designer": "B. Hasan, B. Santoso & Associates with Thompson, Wolveridge & Perrett",
@@ -2099,8 +2110,7 @@
             "date_accessed": "2026-05-01"
           }
         ]
-      },
-      "coord_source": "nominatim_audit_v1"
+      }
     },
     {
       "id": "damai-indah-pik",
@@ -2108,8 +2118,8 @@
       "region": "Jakarta",
       "province": "DKI Jakarta",
       "address": "Jl. Marina Indah Raya, Kapuk Muara, Penjaringan, Jakarta Utara 14460",
-      "lat": -6.1168642,
-      "lng": 106.7441648,
+      "lat": -6.1171122,
+      "lng": 106.7441236,
       "holes": 18,
       "par": 72,
       "designer": "Robert Trent Jones Jr.",
@@ -2485,7 +2495,8 @@
           }
         ]
       },
-      "coord_source": "nominatim_audit_fix"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/31033059"
     },
     {
       "id": "damai-indah-bsd",
@@ -2493,8 +2504,8 @@
       "region": "Tangerang",
       "province": "Banten",
       "address": "Jl. Scientia Boulevard, Curug Sangereng, Klp. Dua, Tangerang 15810",
-      "lat": -6.2783667,
-      "lng": 106.6503343,
+      "lat": -6.2823531,
+      "lng": 106.6554624,
       "holes": 18,
       "par": 72,
       "designer": "Jack Nicklaus",
@@ -2851,7 +2862,8 @@
         "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       },
       "financials": {},
-      "coord_source": "nominatim_audit_fix"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "relation/6412603"
     },
     {
       "id": "imperial-klub",
@@ -2859,8 +2871,8 @@
       "region": "Tangerang",
       "province": "Banten",
       "address": "Jl. Permata Sari Lippo Karawaci, Bencongan, Kelapa Dua, Tangerang 15810",
-      "lat": -6.2337919,
-      "lng": 106.6026865,
+      "lat": -6.2339064,
+      "lng": 106.6025528,
       "holes": 18,
       "par": 72,
       "designer": "Desmond Muirhead",
@@ -3147,7 +3159,8 @@
           }
         ]
       },
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/363198589"
     },
     {
       "id": "emeralda-golf",
@@ -3155,8 +3168,8 @@
       "region": "Depok",
       "province": "West Java",
       "address": "Jl. Cimanggis Boulevard, Tapos, Depok 16953",
-      "lat": -6.4198051,
-      "lng": 106.8844016,
+      "lat": -6.4198053,
+      "lng": 106.8839967,
       "holes": 27,
       "par": 72,
       "designer": "Arnold Palmer (Lake & River); Jack Nicklaus (Plantation)",
@@ -3465,7 +3478,8 @@
           }
         ]
       },
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "relation/9656708"
     },
     {
       "id": "gunung-geulis",
@@ -3473,8 +3487,8 @@
       "region": "Bogor",
       "province": "West Java",
       "address": "Jl. Pasir Angin, Gadog, Sukaraja, Bogor 16720",
-      "lat": -6.62502,
-      "lng": 106.8623,
+      "lat": -6.6253572,
+      "lng": 106.8660119,
       "holes": 36,
       "par": 72,
       "designer": "Thomson, Wolveridge & Perrett",
@@ -3833,7 +3847,9 @@
             "date_accessed": "2026-05-01"
           }
         ]
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/142579269"
     },
     {
       "id": "sentul-highlands",
@@ -3841,8 +3857,8 @@
       "region": "Bogor",
       "province": "West Java",
       "address": "Jl. Sumur Batu Bukit Sentul, Babakan Madang, Sentul City, Bogor 16810",
-      "lat": -6.5868887,
-      "lng": 106.8759251,
+      "lat": -6.5858915,
+      "lng": 106.8733364,
       "holes": 18,
       "par": 72,
       "designer": "Gary Player",
@@ -4032,7 +4048,8 @@
           }
         ]
       },
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "relation/12485745"
     },
     {
       "id": "rainbow-hills",
@@ -4347,8 +4364,8 @@
       "region": "Bogor",
       "province": "West Java",
       "address": "Golf Estate Bogor Raya, Sukaraja, Bogor 16710",
-      "lat": -6.6013632,
-      "lng": 106.8355773,
+      "lat": -6.6013978,
+      "lng": 106.8354946,
       "holes": 18,
       "par": 71,
       "designer": "Graham V. Marsh",
@@ -4669,7 +4686,8 @@
           }
         ]
       },
-      "coord_source": "nominatim_audit_fix"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/142575989"
     },
     {
       "id": "permata-sentul",
@@ -4677,8 +4695,8 @@
       "region": "Bogor",
       "province": "West Java",
       "address": "Jl. Permata Sentul Raya No.1504, Tangkil, Citeureup, Bogor 16810",
-      "lat": -6.531464,
-      "lng": 106.8694695,
+      "lat": -6.5309003,
+      "lng": 106.868116,
       "holes": 18,
       "par": 71,
       "designer": "Peter Thomson, Michael Wolveridge & Ross Perrett",
@@ -4845,7 +4863,8 @@
           }
         ]
       },
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "relation/14264143"
     },
     {
       "id": "riverside-cibubur",
@@ -4853,8 +4872,8 @@
       "region": "Bogor",
       "province": "West Java",
       "address": "Jl. Bukit Golf Riverside, Bojong Nangka, Gunung Putri, Bogor 16965",
-      "lat": -6.426288,
-      "lng": 106.9008748,
+      "lat": -6.4263359,
+      "lng": 106.9002838,
       "holes": 18,
       "par": 72,
       "designer": "Greg Norman (Bob Harrison lead)",
@@ -5012,7 +5031,8 @@
           }
         ]
       },
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/166670007"
     },
     {
       "id": "jagorawi",
@@ -5187,8 +5207,8 @@
       "region": "Bogor",
       "province": "West Java",
       "address": "Jl. Rancamaya Utama, Ciawi, Bogor 16720",
-      "lat": -6.65984,
-      "lng": 106.82255,
+      "lat": -6.6581644,
+      "lng": 106.8231648,
       "holes": 18,
       "par": 72,
       "designer": "Ted Robinson",
@@ -5413,7 +5433,9 @@
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
           }
         ]
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/987926003"
     },
     {
       "id": "jababeka-golf",
@@ -5421,8 +5443,8 @@
       "region": "Bekasi",
       "province": "West Java",
       "address": "Jl. Raya Lemahabang, Cikarang Baru, Sertajaya, Cikarang Timur, Bekasi 17581",
-      "lat": -6.2988467,
-      "lng": 107.1758763,
+      "lat": -6.2988361,
+      "lng": 107.1753927,
       "holes": 18,
       "par": 72,
       "designer": "Nick Faldo",
@@ -5700,7 +5722,8 @@
         ],
         "course_segment_notes": "KIJA AR explicitly lists 'Golf' as one of 5 reportable segments (industrial estate, real estate, GOLF, infrastructure, service & maintenance). Specific golf revenue not extracted in this pass."
       },
-      "coord_source": "nominatim_audit_fix"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/574920211"
     },
     {
       "id": "palm-springs-karawang",
@@ -5842,8 +5865,8 @@
       "region": "Bogor",
       "province": "West Java",
       "address": "MNC Lido City SEZ, Jl. Raya Bogor-Sukabumi Km 21, Cigombong, Bogor 16110",
-      "lat": -6.7574833,
-      "lng": 106.8243698,
+      "lat": -6.7575671,
+      "lng": 106.8229893,
       "holes": 18,
       "par": 72,
       "designer": "Ernie Els",
@@ -6073,7 +6096,8 @@
           }
         ]
       },
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/1341308101"
     },
     {
       "id": "bogor-golf-club",
@@ -6081,8 +6105,8 @@
       "region": "Bogor",
       "province": "West Java",
       "address": "Jl. Dr. Sumeru No.96, Menteng, Bogor Barat, Bogor 16111",
-      "lat": -6.5969,
-      "lng": 106.7861,
+      "lat": -6.5851658,
+      "lng": 106.7792143,
       "holes": 9,
       "par": 36,
       "designer": null,
@@ -6165,7 +6189,9 @@
         "ownership_notes": "Heritage course in central Bogor; long associated with the Indonesian Army (RSJMM Heritage). Not in commercial corporate filings.",
         "sources": [],
         "last_verified": "2026-05-01"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "relation/9054032"
     },
     {
       "id": "parahyangan-bandung",
@@ -6173,8 +6199,8 @@
       "region": "Bandung",
       "province": "West Java",
       "address": "Jl. Saridewata No.1, Kotabaru Parahyangan, Padalarang, Bandung Barat 40553",
-      "lat": -6.8764717,
-      "lng": 107.4429555,
+      "lat": -6.8764741,
+      "lng": 107.4386111,
       "holes": 18,
       "par": 72,
       "designer": "Bob Moore (JMP)",
@@ -6313,7 +6339,8 @@
         ],
         "last_verified": "2026-05-01"
       },
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "relation/19823975"
     },
     {
       "id": "mountain-view-bandung",
@@ -6417,8 +6444,8 @@
       "region": "Bandung",
       "province": "West Java",
       "address": "Jl. Ir. H. Juanda No.335, Dago, Coblong, Bandung 40135",
-      "lat": -6.86763,
-      "lng": 107.62578,
+      "lat": -6.870961,
+      "lng": 107.6253211,
       "holes": 18,
       "par": 70,
       "designer": "Chohei Miyazawa (1994 expansion)",
@@ -6572,7 +6599,9 @@
           "http://dagoheritage.com/"
         ],
         "last_verified": "2026-05-01"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/94691701"
     },
     {
       "id": "jatinangor-national",
@@ -6817,8 +6846,8 @@
       "region": "Yogyakarta",
       "province": "DI Yogyakarta",
       "address": "Jl. Golf Merapi, Kepuharjo, Cangkringan, Sleman, DI Yogyakarta 55583",
-      "lat": -7.620777,
-      "lng": 110.4468297,
+      "lat": -7.6208169,
+      "lng": 110.4471647,
       "holes": 18,
       "par": 72,
       "designer": "Thomson, Wolveridge & Perrett",
@@ -6966,7 +6995,8 @@
           }
         ]
       },
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/261194143"
     },
     {
       "id": "yogyakarta-gc",
@@ -6974,8 +7004,8 @@
       "region": "Yogyakarta",
       "province": "DI Yogyakarta",
       "address": "Jl. Palagan Tentara Pelajar, Sariharjo, Ngaglik, Sleman 55581",
-      "lat": -7.74064,
-      "lng": 110.37284,
+      "lat": -7.7390529,
+      "lng": 110.3732563,
       "holes": 9,
       "par": 30,
       "designer": "Fisette Golf Design",
@@ -7159,7 +7189,9 @@
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_2_result.json"
           }
         ]
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/245570646"
     },
     {
       "id": "adisutjipto-yogya",
@@ -7167,8 +7199,8 @@
       "region": "Yogyakarta",
       "province": "DI Yogyakarta",
       "address": "Jl. Raya Yogya-Solo Km.10.2, Maguwoharjo, Sendangtirto, Berbah, Sleman 55282",
-      "lat": -7.79054,
-      "lng": 110.4346,
+      "lat": -7.7955302,
+      "lng": 110.4317968,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -7253,7 +7285,9 @@
           "https://www.instagram.com/padanggolfadisutjipto/"
         ],
         "last_verified": "2026-05-01"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/154237407"
     },
     {
       "id": "borobudur-magelang",
@@ -7261,8 +7295,8 @@
       "region": "Magelang",
       "province": "Central Java",
       "address": "Jl. Gatot Subroto No.1, Bulurejo, Mertoyudan, Magelang 56172",
-      "lat": -7.4911408,
-      "lng": 110.2168879,
+      "lat": -7.4911495,
+      "lng": 110.2161718,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -7416,7 +7450,8 @@
           }
         ]
       },
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/924345026"
     },
     {
       "id": "gombel-semarang",
@@ -7424,8 +7459,8 @@
       "region": "Semarang",
       "province": "Central Java",
       "address": "Jl. Gombel Lama No.90, Tinjomoyo, Banyumanik, Semarang 50262",
-      "lat": -7.0370582,
-      "lng": 110.413494,
+      "lat": -7.03704,
+      "lng": 110.41351,
       "holes": 18,
       "par": 72,
       "designer": "Peter Thomson",
@@ -7546,8 +7581,7 @@
           "https://www.instagram.com/gombelgolfid/"
         ],
         "last_verified": "2026-05-01"
-      },
-      "coord_source": "nominatim_audit_v1"
+      }
     },
     {
       "id": "candi-semarang",
@@ -7555,8 +7589,8 @@
       "region": "Semarang",
       "province": "Central Java",
       "address": "Jl. Candi Golf Boulevard No.1, Jangli, Tembalang, Semarang 50274",
-      "lat": -7.02597,
-      "lng": 110.43823,
+      "lat": -7.0259083,
+      "lng": 110.4381564,
       "holes": 9,
       "par": 36,
       "designer": null,
@@ -7667,7 +7701,9 @@
           "cart_idr": null
         },
         "disclaimer": "참고용 비공식 가격 — weekday Rp 269K 확인, weekend 미공개. 'Golf Graha Family' Bank Mega 프로모션은 Surabaya Graha Famili와 무관."
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "node/11801443736"
     },
     {
       "id": "ciputra-surabaya",
@@ -7675,8 +7711,8 @@
       "region": "Surabaya",
       "province": "East Java",
       "address": "Jl. CitraLand Utama, CitraLand Surabaya 60219",
-      "lat": -7.28395,
-      "lng": 112.64179,
+      "lat": -7.290969,
+      "lng": 112.6347267,
       "holes": 27,
       "par": 108,
       "designer": "Andy Dye III (Dye Design)",
@@ -8010,7 +8046,9 @@
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_2_result.json"
           }
         ]
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "relation/5121369"
     },
     {
       "id": "bukit-darmo-surabaya",
@@ -8018,8 +8056,8 @@
       "region": "Surabaya",
       "province": "East Java",
       "address": "Jl. Bukit Darmo Golf No.74, Pradahkalikendal, Dukuhpakis, Surabaya",
-      "lat": -7.2891865,
-      "lng": 112.6874017,
+      "lat": -7.2891994,
+      "lng": 112.6874945,
       "holes": 18,
       "par": 72,
       "designer": "Jack Nicklaus II",
@@ -8240,7 +8278,8 @@
           }
         ]
       },
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/160043626"
     },
     {
       "id": "finna-pasuruan",
@@ -8248,8 +8287,8 @@
       "region": "Pasuruan",
       "province": "East Java",
       "address": "Jl. Raya Barsi, Prigen, Pasuruan 67157",
-      "lat": -7.67582,
-      "lng": 112.66857,
+      "lat": -7.6745488,
+      "lng": 112.6705563,
       "holes": 18,
       "par": 72,
       "designer": "Peter Thomson, Wolveridge, Perrett, Grantham",
@@ -8374,7 +8413,9 @@
           "https://www.pasuruankab.go.id/postingan/pariwisata/potensi/finna-golf-country-club-resort"
         ],
         "last_verified": "2026-05-01"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/924350243"
     },
     {
       "id": "taman-dayu",
@@ -8382,8 +8423,8 @@
       "region": "Pasuruan",
       "province": "East Java",
       "address": "Jl. Raya Surabaya-Malang Km.48, Bulukandang, Pandaan, Pasuruan 67156",
-      "lat": -7.70289,
-      "lng": 112.67476,
+      "lat": -7.6982458,
+      "lng": 112.6776462,
       "holes": 18,
       "par": 72,
       "designer": "Jack Nicklaus, David Heatwole",
@@ -8885,7 +8926,9 @@
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_2_result.json"
           }
         ]
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "relation/20252519"
     },
     {
       "id": "graha-famili",
@@ -8893,8 +8936,8 @@
       "region": "Surabaya",
       "province": "East Java",
       "address": "Jl. Raya Golf Graha Famili, Pradahkalikendal, Dukuh Pakis, Surabaya 60226",
-      "lat": -7.29578,
-      "lng": 112.68436,
+      "lat": -7.2954903,
+      "lng": 112.6859534,
       "holes": 18,
       "par": 72,
       "designer": "Arnold Palmer, Gus Grantham, Rick Robbins",
@@ -9082,7 +9125,9 @@
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_2_result.json"
           }
         ]
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "relation/9332158"
     },
     {
       "id": "araya-malang",
@@ -9090,8 +9135,8 @@
       "region": "Malang",
       "province": "East Java",
       "address": "Araya Boulevard No.7, The Araya, Malang 65154",
-      "lat": -7.93722,
-      "lng": 112.68196,
+      "lat": -7.9393139,
+      "lng": 112.6680499,
       "holes": 18,
       "par": 72,
       "designer": "J. Michael Poellot",
@@ -9210,7 +9255,9 @@
           "https://thearaya.com/"
         ],
         "last_verified": "2026-05-01"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "relation/20245245"
     },
     {
       "id": "jember-glantangan",
@@ -9218,8 +9265,8 @@
       "region": "Jember",
       "province": "East Java",
       "address": "Pondokrejo, Tempurejo, Jember 68173",
-      "lat": -8.33117,
-      "lng": 113.69671,
+      "lat": -8.3301747,
+      "lng": 113.6983461,
       "holes": 18,
       "par": null,
       "designer": null,
@@ -9303,7 +9350,9 @@
           "https://beritajatim.com/pkb-kritik-anggaran-rp-5-m-untuk-padang-golf-glantangan-jember"
         ],
         "last_verified": "2026-05-01"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "node/452888070"
     },
     {
       "id": "singosari-malang",
@@ -9311,8 +9360,8 @@
       "region": "Malang",
       "province": "East Java",
       "address": "Jl. Padang Golf Abd. Rachman Saleh, Komplek TNI AU Kartanegara, Losari, Singosari, Malang 65153",
-      "lat": -7.89251,
-      "lng": 112.68574,
+      "lat": -7.8881787,
+      "lng": 112.6843482,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -9400,7 +9449,9 @@
           "https://tni-au.mil.id/berita/detail/lanud-abdulrachman-saleh-gelar-turnamen-golf-akrab-mempererat-persaudaraan-dan-silaturahmi"
         ],
         "last_verified": "2026-05-01"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/696046862"
     },
     {
       "id": "bali-national",
@@ -9408,8 +9459,8 @@
       "region": "Bali",
       "province": "Bali",
       "address": "The MAJ Nusa Dua, Kawasan Wisata Lot S-5, Nusa Dua, Bali",
-      "lat": -8.8104726,
-      "lng": 115.2213392,
+      "lat": -8.8049128,
+      "lng": 115.2210158,
       "holes": 18,
       "par": 72,
       "designer": "Nelson & Haworth (2013 redesign)",
@@ -9467,7 +9518,8 @@
         "notes": "Course is closed_permanent. Prior membership pricing data cleared 2026-04-30."
       },
       "financials": {},
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "relation/4472683"
     },
     {
       "id": "nirwana-bali",
@@ -9543,8 +9595,8 @@
       "region": "Bali",
       "province": "Bali",
       "address": "Jl. Raya Uluwatu, Kawasan Pecatu Indah Resort, Pecatu, Kuta Selatan, Badung 80361",
-      "lat": -8.8039473,
-      "lng": 115.1241672,
+      "lat": -8.8030685,
+      "lng": 115.1269073,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -9658,7 +9710,8 @@
         "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       },
       "financials": {},
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "relation/9848757"
     },
     {
       "id": "handara-bali",
@@ -9666,8 +9719,8 @@
       "region": "Bali",
       "province": "Bali",
       "address": "Desa Pancasari, Singaraja, Bali 81161",
-      "lat": -8.2470399,
-      "lng": 115.161626,
+      "lat": -8.2470453,
+      "lng": 115.1592869,
       "holes": 18,
       "par": 72,
       "designer": "Peter Thomson",
@@ -9851,7 +9904,8 @@
         "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       },
       "financials": {},
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/129317885"
     },
     {
       "id": "bukit-pandawa",
@@ -9859,8 +9913,8 @@
       "region": "Bali",
       "province": "Bali",
       "address": "Jl. Gunung Payung No.8, Banjar Panti Giri, Kutuh, Kuta Selatan, Badung 80361",
-      "lat": -8.8355725,
-      "lng": 115.2007119,
+      "lat": -8.8355489,
+      "lng": 115.1982272,
       "holes": 18,
       "par": 54,
       "designer": null,
@@ -9985,7 +10039,8 @@
         "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       },
       "financials": {},
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/947732992"
     },
     {
       "id": "bali-beach-sanur",
@@ -10092,8 +10147,8 @@
       "region": "Lombok",
       "province": "West Nusa Tenggara",
       "address": "Sire Bay, Jl. Raya Tanjung, Teniga, Tanjung, Lombok Utara, NTB 83352",
-      "lat": -8.36842,
-      "lng": 116.1082,
+      "lat": -8.3676771,
+      "lng": 116.1064991,
       "holes": 18,
       "par": 72,
       "designer": "Peter Thomson, Wolveridge & Perrett",
@@ -10206,7 +10261,9 @@
           "https://indonesiagolfcourses.com/lombok/"
         ],
         "last_verified": "2026-05-01"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/1470076862"
     },
     {
       "id": "gec-rinjani",
@@ -10455,8 +10512,8 @@
       "region": "Bintan",
       "province": "Riau Islands",
       "address": "Jl. Perigi Raja Parcel A11, Lagoi, North Bintan 29152",
-      "lat": 1.19555,
-      "lng": 104.41301,
+      "lat": 1.1899676,
+      "lng": 104.4112301,
       "holes": 18,
       "par": 72,
       "designer": "Gary Player",
@@ -10864,7 +10921,9 @@
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_3_result.json"
           }
         ]
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/988221205"
     },
     {
       "id": "ria-bintan-forest",
@@ -10872,8 +10931,8 @@
       "region": "Bintan",
       "province": "Riau Islands",
       "address": "Jl. Perigi Raja Parcel A11, Lagoi, North Bintan 29152",
-      "lat": 1.18555,
-      "lng": 104.40372,
+      "lat": 1.1899676,
+      "lng": 104.4112301,
       "holes": 9,
       "par": 36,
       "designer": "Gary Player",
@@ -10973,7 +11032,9 @@
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_3_result.json"
           }
         ]
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/988221205"
     },
     {
       "id": "bintan-lagoon-seaview",
@@ -10981,8 +11042,8 @@
       "region": "Bintan",
       "province": "Riau Islands",
       "address": "Jl. Indera Segara Site A12, Lagoi, Teluk Sebong, Bintan 29155",
-      "lat": 1.1944,
-      "lng": 104.4258,
+      "lat": 1.1856512,
+      "lng": 104.4176506,
       "holes": 18,
       "par": 72,
       "designer": "Jack Nicklaus",
@@ -11153,7 +11214,9 @@
           "https://www.travelweekly-asia.com/Travel-News/Resorts/Mvenpick-adds-Bintan-to-its-resort-portfolio"
         ],
         "last_verified": "2026-05-01"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/1006629036"
     },
     {
       "id": "bintan-lagoon-woodlands",
@@ -11161,8 +11224,8 @@
       "region": "Bintan",
       "province": "Riau Islands",
       "address": "Jl. Indera Segara Site A12, Lagoi, Teluk Sebong, Bintan 29155",
-      "lat": 1.1944,
-      "lng": 104.4258,
+      "lat": 1.1856512,
+      "lng": 104.4176506,
       "holes": 18,
       "par": 72,
       "designer": "Ian Baker-Finch",
@@ -11243,7 +11306,9 @@
           "https://en.wikipedia.org/wiki/Bintan_Lagoon_Resort"
         ],
         "last_verified": "2026-05-01"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/1006629036"
     },
     {
       "id": "laguna-bintan",
@@ -11251,8 +11316,8 @@
       "region": "Bintan",
       "province": "Riau Islands",
       "address": "Jl. Teluk Berembang, Laguna Bintan Resort, Lagoi 29155",
-      "lat": 1.1801931,
-      "lng": 104.343333,
+      "lat": 1.1801964,
+      "lng": 104.3424998,
       "holes": 18,
       "par": 72,
       "designer": "Greg Norman; Paul Jansen (2016 redesign)",
@@ -11437,7 +11502,8 @@
           }
         ]
       },
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/694504916"
     },
     {
       "id": "palm-springs-batam",
@@ -11632,8 +11698,8 @@
       "region": "Batam",
       "province": "Riau Islands",
       "address": "Jl. Hang Lekiu Km.4, Nongsa, Batam Kota 29467",
-      "lat": 1.16607,
-      "lng": 104.07694,
+      "lat": 1.1661774,
+      "lng": 104.0771133,
       "holes": 18,
       "par": 72,
       "designer": "Greg Norman",
@@ -11853,7 +11919,9 @@
           "https://www.iacworldwide.com/clubs/tering-bay-golf-country-club/"
         ],
         "last_verified": "2026-05-01"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/92412833"
     },
     {
       "id": "tamarin-santana-batam",
@@ -12287,7 +12355,8 @@
           }
         ]
       },
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "node/702341393"
     },
     {
       "id": "padang-golf-sukajadi-batam",
@@ -12295,8 +12364,8 @@
       "region": "Batam",
       "province": "Riau Islands",
       "address": "Jl. Jendral Sudirman, Clubhouse Sukajadi, Batam Kota 29432",
-      "lat": 1.10221,
-      "lng": 104.0322,
+      "lat": 1.101223,
+      "lng": 104.027757,
       "holes": 18,
       "par": 72,
       "designer": "Thomson, Wolveridge & Perrett",
@@ -12589,7 +12658,9 @@
           "https://batam-golf.com/batam-golf-paradise/padang-golf-sukajadi/"
         ],
         "last_verified": "2026-05-01"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "relation/14694540"
     },
     {
       "id": "indah-puri-batam",
@@ -12896,8 +12967,8 @@
       "region": "Medan",
       "province": "North Sumatra",
       "address": "Jl. Jamin Ginting Km.8.5, Mangga, Medan Tuntungan, Medan 20142",
-      "lat": 3.5190269,
-      "lng": 98.6447694,
+      "lat": 3.5193258,
+      "lng": 98.6422823,
       "holes": 18,
       "par": 72,
       "designer": "Gus Grantham / JMP (Mike Poellot)",
@@ -12996,7 +13067,9 @@
           "https://www.royalbotanicapark.com/"
         ],
         "last_verified": "2026-05-01"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/228771722"
     },
     {
       "id": "tamora-medan",
@@ -13110,8 +13183,8 @@
       "region": "Medan",
       "province": "North Sumatra",
       "address": "Jl. Kapten Sumarsono, Kampung Lalang, Sunggal, Deli Serdang",
-      "lat": 3.6232453,
-      "lng": 98.6467127,
+      "lat": 3.6232546,
+      "lng": 98.6458242,
       "holes": 18,
       "par": 72,
       "designer": "Gary Player",
@@ -13194,7 +13267,9 @@
           "https://www.golfshake.com/course/view/21430/Graha_Helvetia_Golf_Country_Club.html"
         ],
         "last_verified": "2026-05-01"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "relation/19184888"
     },
     {
       "id": "bukit-barisan-medan",
@@ -13202,8 +13277,8 @@
       "region": "Medan",
       "province": "North Sumatra",
       "address": "Jl. Medan-Pancur Batu Km.17, Tuntungan, Namorih, Pancur Batu, Deli Serdang 20353",
-      "lat": 3.5029712,
-      "lng": 98.5698585,
+      "lat": 3.5031054,
+      "lng": 98.5696196,
       "holes": 18,
       "par": 72,
       "designer": "Jack Nicklaus",
@@ -13290,7 +13365,8 @@
         ],
         "last_verified": "2026-05-01"
       },
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/319531954"
     },
     {
       "id": "rumbai-pekanbaru",
@@ -13298,8 +13374,8 @@
       "region": "Pekanbaru",
       "province": "Riau",
       "address": "Kompleks Iksora PT CPI, Lembah Damai, Rumbai, Pekanbaru 28265",
-      "lat": 0.5841695,
-      "lng": 101.438559,
+      "lat": 0.5845844,
+      "lng": 101.4430586,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -13386,7 +13462,9 @@
           "https://www.idnfinancials.com/news/39440/pertamina-hulu-rokan-schedules-management-transfer-rokan-block-august"
         ],
         "last_verified": "2026-05-01"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "relation/4472694"
     },
     {
       "id": "labersa-riau",
@@ -13394,8 +13472,8 @@
       "region": "Pekanbaru",
       "province": "Riau",
       "address": "Jl. Labersa, Tanah Merah, Siak Hulu, Kampar 28282",
-      "lat": 0.4393207,
-      "lng": 101.4816622,
+      "lat": 0.4418105,
+      "lng": 101.4863528,
       "holes": 27,
       "par": 108,
       "designer": "Edwin Palmer",
@@ -13519,7 +13597,8 @@
         ],
         "last_verified": "2026-05-01"
       },
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/242815285"
     },
     {
       "id": "palembang-gc",
@@ -13640,7 +13719,9 @@
           "https://www.instagram.com/kentenheritage_1937golfcourse/"
         ],
         "last_verified": "2026-05-01"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "node/13001801856"
     },
     {
       "id": "bukit-asam",
@@ -13648,8 +13729,8 @@
       "region": "Tanjung Enim",
       "province": "South Sumatra",
       "address": "Town Site, Tanjung Enim, Lawang Kidul, Muara Enim 31711",
-      "lat": -3.7663795,
-      "lng": 103.7707784,
+      "lat": -3.7664683,
+      "lng": 103.7697351,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -13735,7 +13816,9 @@
           "https://www.ptba.co.id/uploads/ptba_laporan_tahunan/20250430114045-2025-04-30ptba_laporan_tahunan113945.pdf"
         ],
         "last_verified": "2026-05-01"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/396516845"
     },
     {
       "id": "padang-golf-sukarame",
@@ -13743,8 +13826,8 @@
       "region": "Bandar Lampung",
       "province": "Lampung",
       "address": "Jl. Prof. Dr. Hamka, Sukarame, Bandar Lampung 35131",
-      "lat": -5.3784073,
-      "lng": 105.3082928,
+      "lat": -5.3797799,
+      "lng": 105.3080173,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -13830,7 +13913,8 @@
         ],
         "last_verified": "2026-05-01"
       },
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/404322909"
     },
     {
       "id": "pertamina-balikpapan",
@@ -13838,8 +13922,8 @@
       "region": "Balikpapan",
       "province": "East Kalimantan",
       "address": "Jl. Jenderal Sudirman, Stal Kuda, Gn. Bahagia, Balikpapan Selatan 76114",
-      "lat": -1.2707695,
-      "lng": 116.8689789,
+      "lat": -1.2705687,
+      "lng": 116.8692802,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -13921,7 +14005,9 @@
           "https://www.facebook.com/pertaminagolfbalikpapan"
         ],
         "last_verified": "2026-05-01"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/54638427"
     },
     {
       "id": "karang-joang",
@@ -13929,8 +14015,8 @@
       "region": "Balikpapan",
       "province": "East Kalimantan",
       "address": "Karang Joang, Balikpapan Utara, Balikpapan",
-      "lat": -1.1774092,
-      "lng": 116.8582417,
+      "lat": -1.171073,
+      "lng": 116.8597282,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -14018,7 +14104,8 @@
         ],
         "last_verified": "2026-05-01"
       },
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "node/6216321538"
     },
     {
       "id": "bintang-sintuk-bontang",
@@ -14026,8 +14113,8 @@
       "region": "Bontang",
       "province": "East Kalimantan",
       "address": "Jl. Urea, Kawasan Lapangan Golf Sintuk PKT, Bontang 75313",
-      "lat": 0.1600183,
-      "lng": 117.4760234,
+      "lat": 0.1600178,
+      "lng": 117.4735075,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -14123,7 +14210,9 @@
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_4_result.json"
           }
         ]
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/565035364"
     },
     {
       "id": "mahulu-samarinda",
@@ -14222,8 +14311,8 @@
       "region": "Palangkaraya",
       "province": "Central Kalimantan",
       "address": "Bukit Tunggal, Jekan Raya, Palangka Raya 74874",
-      "lat": -2.1789004,
-      "lng": 113.8887414,
+      "lat": -2.1785587,
+      "lng": 113.8892361,
       "holes": 9,
       "par": 36,
       "designer": null,
@@ -14326,7 +14415,9 @@
           "cart_idr": null
         },
         "disclaimer": "참고용 비공식 가격 — GoGolf 미등재"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/351300869"
     },
     {
       "id": "swargaloka-banjarbaru",
@@ -14334,8 +14425,8 @@
       "region": "Banjarmasin",
       "province": "South Kalimantan",
       "address": "Jl. A. Yani Km.24, Landasan Ulin Utara, Liang Anggang, Banjarbaru 70724",
-      "lat": -3.4273622,
-      "lng": 114.7460494,
+      "lat": -3.4272552,
+      "lng": 114.7463005,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -14423,7 +14514,9 @@
           "https://www.katajari.com/festival-golf-2025-di-lapangan-swargaloka-golf-banjarbaru/"
         ],
         "last_verified": "2026-05-01"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/1216279720"
     },
     {
       "id": "alam-khatulistiwa",
@@ -14529,8 +14622,8 @@
       "region": "Makassar",
       "province": "South Sulawesi",
       "address": "Patalassang, Bontonompo, Gowa, Sulawesi Selatan",
-      "lat": -5.2044256,
-      "lng": 119.5914487,
+      "lat": -5.2042635,
+      "lng": 119.592719,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -14729,7 +14822,8 @@
         ],
         "last_verified": "2026-05-01"
       },
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "relation/13213357"
     },
     {
       "id": "padang-golf-baddoka",
@@ -14737,8 +14831,8 @@
       "region": "Makassar",
       "province": "South Sulawesi",
       "address": "Jl. Batara Bira No.6, Pai, Biring Kanaya, Makassar 90243",
-      "lat": -5.0855763,
-      "lng": 119.5035452,
+      "lat": -5.0843975,
+      "lng": 119.5051231,
       "holes": 18,
       "par": 72,
       "designer": "Ronald Fream",
@@ -14825,7 +14919,8 @@
         ],
         "last_verified": "2026-05-01"
       },
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "relation/4465798"
     },
     {
       "id": "akr-grand-kawanua",
@@ -15238,7 +15333,9 @@
           "https://kendarinews.com/2021/08/19/separuh-lapangan-golf-sanggoleo-kendari-dikuasai-warga/"
         ],
         "last_verified": "2026-05-01"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "node/9884408054"
     },
     {
       "id": "cenderawasih-jayapura",
@@ -15542,7 +15639,8 @@
         },
         "disclaimer": "참고용 비공식 가격 — TNI AU 군 시설"
       },
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "node/5091537847"
     },
     {
       "id": "jakarta-golf-club-rawamangun",
@@ -15550,8 +15648,8 @@
       "region": "Jakarta",
       "province": "DKI Jakarta",
       "address": "Rawamangun, East Jakarta",
-      "lat": -6.2002075,
-      "lng": 106.8766073,
+      "lat": -6.2001515,
+      "lng": 106.877294,
       "holes": 18,
       "par": 72,
       "designer": "Tom Simpson (1934 layout)",
@@ -15721,7 +15819,8 @@
         "disclaimer": "참고용 — gogolf.co.id에서 추출한 비공식 가격. 공식 가격과 다를 수 있음."
       },
       "financials": {},
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/28257150"
     },
     {
       "id": "pondok-cabe-golf",
@@ -15729,8 +15828,8 @@
       "region": "Tangerang Selatan",
       "province": "Banten",
       "address": "Pamulang, South Tangerang",
-      "lat": -6.3505609,
-      "lng": 106.7626918,
+      "lat": -6.3505836,
+      "lng": 106.7626282,
       "holes": 18,
       "par": 72,
       "designer": "Thomson, Wolveridge & Associates",
@@ -15813,7 +15912,8 @@
         "disclaimer": "참고용 비공식 가격 (GoGolf 2026 표; caddy/tax 포함)"
       },
       "financials": {},
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/28869722"
     },
     {
       "id": "royale-krakatau-cilegon",
@@ -15911,8 +16011,8 @@
       "region": "Sumedang",
       "province": "West Java",
       "address": "Jatinangor, Sumedang",
-      "lat": -6.9173663,
-      "lng": 107.7630026,
+      "lat": -6.917439,
+      "lng": 107.7651768,
       "holes": 18,
       "par": 72,
       "designer": "Michael Coates & Associates",
@@ -16026,7 +16126,8 @@
         ],
         "last_verified": "2026-05-01"
       },
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/185962202"
     },
     {
       "id": "padang-golf-lanud-sulaiman",
@@ -16125,8 +16226,8 @@
       "region": "Cirebon",
       "province": "West Java",
       "address": "Talun (Ciperna), Cirebon",
-      "lat": -6.7747904,
-      "lng": 108.5236276,
+      "lat": -6.7723851,
+      "lng": 108.5265735,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -16210,7 +16311,9 @@
           "cart_idr": null
         },
         "disclaimer": "참고용 비공식 가격 (playgolf.id USD→IDR 환산)"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/477456751"
     },
     {
       "id": "ngamplang-garut",
@@ -16218,8 +16321,8 @@
       "region": "Garut",
       "province": "West Java",
       "address": "Cilawu, Garut",
-      "lat": -7.2520908,
-      "lng": 107.9033935,
+      "lat": -7.2522222,
+      "lng": 107.9031717,
       "holes": 9,
       "par": null,
       "designer": "Denis Gerard Mulder (Dutch colonial)",
@@ -16303,7 +16406,9 @@
           "cart_idr": null
         },
         "disclaimer": "참고용 비공식 가격 — GoGolf 기사 있으나 그린피 비공개, 방문객 입장료 Rp 30K만 확인"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "node/2362656666"
     },
     {
       "id": "tidar-golf-magelang",
@@ -16402,8 +16507,8 @@
       "region": "Banyumas",
       "province": "Central Java",
       "address": "Purwokerto, Banyumas",
-      "lat": -7.4140079,
-      "lng": 109.2471135,
+      "lat": -7.4144147,
+      "lng": 109.2468717,
       "holes": 9,
       "par": null,
       "designer": null,
@@ -16485,7 +16590,9 @@
           "cart_idr": null
         },
         "disclaimer": "참고용 비공식 가격 (playgolf.id USD→IDR 환산)"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/189050049"
     },
     {
       "id": "mrica-banjarnegara",
@@ -16675,8 +16782,8 @@
       "region": "Boyolali (Solo)",
       "province": "Central Java",
       "address": "Ngemplak, Boyolali",
-      "lat": -7.5186106,
-      "lng": 110.7562748,
+      "lat": -7.518642,
+      "lng": 110.7578247,
       "holes": 9,
       "par": null,
       "designer": null,
@@ -16762,7 +16869,8 @@
         "disclaimer": "참고용 비공식 가격 (playgolf.id USD→IDR 환산)"
       },
       "coord_approximate": false,
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/794664053"
     },
     {
       "id": "black-eagle-bsb-semarang",
@@ -16862,8 +16970,8 @@
       "region": "Surabaya",
       "province": "East Java",
       "address": "Gunungsari, Surabaya",
-      "lat": -7.3067,
-      "lng": 112.7159,
+      "lat": -7.3020517,
+      "lng": 112.7147168,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -16944,7 +17052,9 @@
         "disclaimer": "참고용 비공식 가격 (cart 없음, walking only)"
       },
       "financials": {},
-      "coord_approximate": false
+      "coord_approximate": false,
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/160043628"
     },
     {
       "id": "pakuwon-golf-surabaya",
@@ -16952,8 +17062,8 @@
       "region": "Surabaya",
       "province": "East Java",
       "address": "Pakuwon Indah, West Surabaya",
-      "lat": -7.2930217,
-      "lng": 112.6591077,
+      "lat": -7.2939246,
+      "lng": 112.6628853,
       "holes": 18,
       "par": null,
       "designer": "Thomson & Wolveridge",
@@ -17108,7 +17218,8 @@
         "total_assets_idr": 35371085149000,
         "revenue_year": "2024"
       },
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "relation/14264202"
     },
     {
       "id": "iswahyudi-madiun",
@@ -17116,8 +17227,8 @@
       "region": "Magetan/Madiun",
       "province": "East Java",
       "address": "Maospati, Magetan",
-      "lat": -7.6142593,
-      "lng": 111.4563417,
+      "lat": -7.6121919,
+      "lng": 111.4533483,
       "holes": 9,
       "par": null,
       "designer": null,
@@ -17198,7 +17309,9 @@
           "cart_idr": null
         },
         "disclaimer": "참고용 비공식 가격 (playgolf.id USD→IDR 환산)"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/691043883"
     },
     {
       "id": "dhoho-kediri",
@@ -17296,8 +17409,8 @@
       "region": "Lhokseumawe",
       "province": "Aceh",
       "address": "Lhokseumawe, Aceh",
-      "lat": 5.2254375,
-      "lng": 97.0414844,
+      "lat": 5.2217383,
+      "lng": 97.0393561,
       "holes": 18,
       "par": 72,
       "designer": null,
@@ -17379,7 +17492,9 @@
         },
         "disclaimer": "참고용 비공식 가격 (playgolf.id USD→IDR 환산, buggy 미포함)"
       },
-      "coord_approximate": false
+      "coord_approximate": false,
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/297313748"
     },
     {
       "id": "lhoknga-aceh",
@@ -17387,8 +17502,8 @@
       "region": "Aceh Besar",
       "province": "Aceh",
       "address": "Lhoknga, Aceh Besar",
-      "lat": 5.4793,
-      "lng": 95.237,
+      "lat": 5.479238,
+      "lng": 95.2374283,
       "holes": 9,
       "par": null,
       "designer": null,
@@ -17473,7 +17588,9 @@
           "cart_idr": null
         },
         "disclaimer": "참고용 비공식 가격 (playgolf.id USD→IDR 환산, walking only)"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/304300802"
     },
     {
       "id": "inalum-tanjung-gading",
@@ -17653,7 +17770,9 @@
           "cart_idr": null
         },
         "disclaimer": "참고용 비공식 가격 (playgolf.id USD; 고지대 리조트, buggy 별도)"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/602689182"
     },
     {
       "id": "ptpn-iv-pabatu",
@@ -17931,8 +18050,8 @@
       "region": "Padang",
       "province": "West Sumatra",
       "address": "Lubuk Kilangan, Padang",
-      "lat": -0.9514,
-      "lng": 100.4339,
+      "lat": -0.9433791,
+      "lng": 100.4515052,
       "holes": 18,
       "par": null,
       "designer": null,
@@ -18025,7 +18144,9 @@
           "cart_idr": null
         },
         "disclaimer": "참고용 비공식 가격 (onenet 2025-05 공식; 연 회원권 Rp 12M)"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/358802782"
     },
     {
       "id": "lanud-sutan-sjahrir",
@@ -18212,8 +18333,8 @@
       "region": "Pekanbaru",
       "province": "Riau",
       "address": "Sidomulyo Timur, Pekanbaru",
-      "lat": 0.4708,
-      "lng": 101.4503,
+      "lat": 0.471295,
+      "lng": 101.4358663,
       "holes": 9,
       "par": null,
       "designer": null,
@@ -18293,7 +18414,9 @@
           "cart_idr": null
         },
         "disclaimer": "참고용 비공식 가격 (playgolf.id USD; buggy 포함)"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/918692693"
     },
     {
       "id": "perkumpulan-golf-jambi",
@@ -19241,8 +19364,8 @@
       "region": "Pangkalpinang",
       "province": "Bangka Belitung",
       "address": "Girimaya, Pangkalpinang",
-      "lat": -2.13,
-      "lng": 106.1311,
+      "lat": -2.1564722,
+      "lng": 106.117952,
       "holes": 18,
       "par": null,
       "designer": null,
@@ -19323,7 +19446,9 @@
         },
         "disclaimer": "참고용 비공식 가격 (GoGolf 리뷰 Rp 1M-2M 패키지; cart/caddy 포함)"
       },
-      "financials": {}
+      "financials": {},
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/129211068"
     },
     {
       "id": "bebute-belitung",
@@ -19422,8 +19547,8 @@
       "region": "Kupang",
       "province": "East Nusa Tenggara",
       "address": "Penfui, Kupang",
-      "lat": -10.1717,
-      "lng": 123.6717,
+      "lat": -10.1827645,
+      "lng": 123.6676932,
       "holes": 9,
       "par": null,
       "designer": null,
@@ -19506,7 +19631,9 @@
           "cart_idr": null
         },
         "disclaimer": "참고용 비공식 가격 — TNI AU 군 시설"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "node/1924560452"
     },
     {
       "id": "kpc-sangatta",
@@ -20261,8 +20388,8 @@
       "region": "Jakarta",
       "province": "DKI Jakarta",
       "address": "Jl. Radar Selatan No.1, RT.3/RW.4, Halim Perdanakusuma, Kec. Makasar, Kota Jakarta Timur, DKI Jakarta 13610",
-      "lat": -6.28492,
-      "lng": 106.89476,
+      "lat": -6.2826321,
+      "lng": 106.896976,
       "holes": 27,
       "par": 72,
       "year_opened": 2018,
@@ -20342,7 +20469,9 @@
         "parent_group": null,
         "idx_ticker": null,
         "listed_status": "private"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/28164112"
     },
     {
       "id": "kedaton-golf",
@@ -20350,8 +20479,8 @@
       "region": "Tangerang",
       "province": "Banten",
       "address": "Jl. Padi Utama No. 18, Padi Golf Estate, Suvarna Sutera, Sukabumi/Sindang Jaya, Pasar Kemis, Tangerang Regency, Banten 15561",
-      "lat": -6.1910413,
-      "lng": 106.5179322,
+      "lat": -6.1910459,
+      "lng": 106.5198414,
       "holes": 18,
       "par": 72,
       "year_opened": 1995,
@@ -20424,7 +20553,8 @@
         "idx_ticker": "ASRI",
         "listed_status": "subsidiary-of-listed"
       },
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/515754580"
     },
     {
       "id": "sedayu-indo-golf",
@@ -20432,8 +20562,8 @@
       "region": "Jakarta",
       "province": "DKI Jakarta",
       "address": "Jl. Marina Indah No. 1, Golf Island Boulevard, Pantai Indah Kapuk (Pantai Maju), Penjaringan, Jakarta Utara 14460",
-      "lat": -6.0821729,
-      "lng": 106.7521403,
+      "lat": -6.0821788,
+      "lng": 106.7516747,
       "holes": 18,
       "par": 72,
       "year_opened": 2021,
@@ -20528,7 +20658,8 @@
         "idx_ticker": null,
         "listed_status": "private"
       },
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/915535253"
     },
     {
       "id": "bandar-kemayoran-golf",
@@ -20536,8 +20667,8 @@
       "region": "Jakarta",
       "province": "DKI Jakarta",
       "address": "Jl. Ruas D3-4, Kota Baru Bandar Kemayoran, Pademangan Timur, Pademangan, Jakarta Pusat 14410",
-      "lat": -6.14,
-      "lng": 106.85,
+      "lat": -6.1423901,
+      "lng": 106.8517122,
       "holes": 18,
       "par": 72,
       "year_opened": 1997,
@@ -20584,7 +20715,9 @@
         "parent_group": "PT DMS Propertindo Tbk",
         "idx_ticker": "KOTA",
         "listed_status": "subsidiary-of-listed"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "relation/14264148"
     },
     {
       "id": "jaya-ancol-golf",
@@ -20677,8 +20810,8 @@
       "region": "Karawang",
       "province": "West Java",
       "address": "Jl. Bukit Golf Indah No. 1, Margamulya, Karawang Barat, Kabupaten Karawang, Jawa Barat 41361",
-      "lat": -6.331,
-      "lng": 107.273,
+      "lat": -6.3488349,
+      "lng": 107.2468668,
       "holes": 27,
       "par": 72,
       "year_opened": 1993,
@@ -20754,7 +20887,9 @@
         "parent_group": null,
         "idx_ticker": null,
         "listed_status": "private"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/549605278"
     },
     {
       "id": "palm-hill-bogor",
@@ -20762,8 +20897,8 @@
       "region": "Bogor",
       "province": "West Java",
       "address": "Jl. Sentul Raya, Desa Kadumangu, Kec. Babakan Madang (Sentul), Kabupaten Bogor, Jawa Barat 16810",
-      "lat": -6.5476463,
-      "lng": 106.8618623,
+      "lat": -6.5477484,
+      "lng": 106.8628792,
       "holes": 18,
       "par": 72,
       "year_opened": 1993,
@@ -20859,7 +20994,8 @@
         "idx_ticker": null,
         "listed_status": "private"
       },
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/173801453"
     },
     {
       "id": "takara-golf-tigaraksa",
@@ -20867,8 +21003,8 @@
       "region": "Tangerang",
       "province": "Banten",
       "address": "Jl. Aria Wasangkara, Tapos, Tigaraksa, Kabupaten Tangerang, Banten 15720",
-      "lat": -6.349,
-      "lng": 106.479,
+      "lat": -6.2934001,
+      "lng": 106.4699534,
       "holes": 18,
       "par": 72,
       "year_opened": 1994,
@@ -20939,7 +21075,9 @@
         "parent_group": null,
         "idx_ticker": null,
         "listed_status": "private"
-      }
+      },
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/337709877"
     },
     {
       "id": "bandung-indah-margahayu",
@@ -20947,8 +21085,8 @@
       "region": "Bandung",
       "province": "West Java",
       "address": "Jalan Terusan Kopo KM 8.4, Sulaiman, Margahayu, Bandung Regency, West Java 40229",
-      "lat": -6.9849758,
-      "lng": 107.5826686,
+      "lat": -6.9848999,
+      "lng": 107.5832956,
       "holes": 18,
       "par": 72,
       "year_opened": 1994,
@@ -21028,7 +21166,8 @@
         "idx_ticker": null,
         "listed_status": "private"
       },
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/163595363"
     },
     {
       "id": "arcamanik-raya-bandung",
@@ -21167,8 +21306,8 @@
       "region": "Medan",
       "province": "North Sumatra",
       "address": "Jl. Letjen Djamin Ginting Km. 22, Uruk Gedang, Kec. Namorambe, Kabupaten Deli Serdang, Sumatera Utara 20353",
-      "lat": 3.4270991,
-      "lng": 98.615255,
+      "lat": 3.4271939,
+      "lng": 98.6165613,
       "holes": 18,
       "par": 72,
       "year_opened": 1998,
@@ -21241,7 +21380,8 @@
         "listed_status": "private"
       },
       "coord_approximate": false,
-      "coord_source": "nominatim_audit_v1"
+      "coord_source": "overpass_v1",
+      "coord_osm_ref": "way/228923765"
     }
   ]
 }
