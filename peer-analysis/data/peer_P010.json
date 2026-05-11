@@ -1,0 +1,237 @@
+{
+  "peer_id": "P010",
+  "ticker": "SMDM",
+  "inventory": {
+    "peer_id": "P010",
+    "ticker": "SMDM",
+    "course_name_primary": "Rancamaya Golf Estate",
+    "legal_entity_primary": "PT Suryamas Dutamakmur Tbk",
+    "parent_group": "Suryamas Group",
+    "region": "Rancamaya, Bogor (~400m elev.)",
+    "tier_hint": "A-",
+    "fys_available": "2022,2023,2024",
+    "n_pdfs": "5",
+    "n_chunks": "1639",
+    "golf_relevance": "CORE",
+    "golf_hit_chunks": "8",
+    "null": [
+      " hilly terrain."
+    ]
+  },
+  "inventory_notes": "18-hole private members golf + Rancamaya Golf Estate residential + R Hotel Rancamaya + home rentals. 400-hectare resort",
+  "profile": {
+    "peer_id": "P010",
+    "ticker": "SMDM",
+    "course_name": "Rancamaya Golf Estate (private members)",
+    "legal_entity": "PT Suryamas Dutamakmur Tbk",
+    "parent_group": "Suryamas Group (founders)",
+    "ownership_summary": "Listed entity; founded Sep 21 1989 as PT Suryamas Dutamakmur; legal status as PT Oct 31 1990; first project Rancamaya Golf Estate launched 1993 (some snippets cite 1994)",
+    "region_city": "Rancamaya, Bogor (~400m elevation, hilly)",
+    "area_ha": "400 (Rancamaya Golf Estate total resort -- includes residential + golf course + R Hotel)",
+    "holes": "18",
+    "par": "N/A -- Not Disclosed in AR",
+    "architect_designer": "N/A -- Not Disclosed in AR (course recognised: \"\"One of The World's Top 1000 Golf Course\"\" by ROLEX; \"\"Best Golf Club in South East Asia 2008-2010\"\" by HAPA)",
+    "year_opened_or_established": "PT Suryamas Dutamakmur founded Sep 21 1989; Rancamaya Golf Estate launched 1993",
+    "fairway_grass": "N/A -- Not Disclosed in AR",
+    "green_grass": "N/A -- Not Disclosed in AR",
+    "member_categories": "Private members + Individual Trial Membership + Corporate Trial Membership + Membership Appreciation Program (MAP); aging member base, attracting younger members through pricing strategy",
+    "facilities": "18-hole private golf course + R Hotel Rancamaya (140 rooms, 10 villas, 9 meeting rooms, 2 ha Deer Garden, garden parties) + Rancamaya Home Rentals (villa rentals) + Country Club + Estate Management",
+    "revenue_segments_disclosed": "4 streams: (1) Land/residential sales; (2) Hotels; (3) Golf operations + Country clubs + Estate management; (4) Golf memberships. FY2022: Golf+CC+EM+memberships = IDR 75.6 bn (13.4% of net sales); FY2021 = IDR 75.1 bn (13.2%)",
+    "source_pages": "SMDM/FY2022 p.7; SMDM/FY2022 p.16; SMDM/FY2023 p.34; SMDM/FY2023 p.66; SMDM/FY2022 p.55",
+    "source_year": "2022 (with FY2023/2024 cross-reference)",
+    "public_disclosure": "Y"
+  },
+  "courses": [
+    {
+      "course_id": "rancamaya",
+      "course_name": "Rancamaya Golf & Country Club",
+      "region": "Bogor",
+      "holes": 18,
+      "par": 72,
+      "designer": "Ted Robinson",
+      "year_opened": 1995,
+      "facilities_count": 4,
+      "facilities_summary": "Driving Range | Pro Shop | Restaurant | Locker Rooms",
+      "address": "Jl. Rancamaya Utama, Ciawi, Bogor 16720",
+      "website": "https://rancamayagolf.com/",
+      "lat": -6.6581644,
+      "lng": 106.8231648,
+      "notes": "6;931 yards championship course in Ciawi."
+    }
+  ],
+  "pricing": [
+    {
+      "course_id": "rancamaya",
+      "course_name": "Rancamaya Golf & Country Club",
+      "slot": "wdAm",
+      "currency": "IDR",
+      "green_fee_value": 1150000,
+      "green_fee_status": "value_ok",
+      "tier": "N/A",
+      "publisher": "official-weekday-aggregate",
+      "n_sources": "N/A",
+      "primary_source": "https://rancamayagolf.com/golf-rate/",
+      "last_verified": "2026-05-07",
+      "notes": "Weekday AM/PM resolved. Official rancamayagolf.com/golf-rate publishes the full rate card with 11% VAT inclusive: Tue-Fri AM 1;150;000 / PM 960;000; Sat AM 3;030;000 / PM 1;760;000; Sun/PH AM 2;460;00"
+    },
+    {
+      "course_id": "rancamaya",
+      "course_name": "Rancamaya Golf & Country Club",
+      "slot": "wdPm",
+      "currency": "IDR",
+      "green_fee_value": 1150000,
+      "green_fee_status": "value_ok",
+      "tier": "N/A",
+      "publisher": "official-weekday-aggregate",
+      "n_sources": "N/A",
+      "primary_source": "https://rancamayagolf.com/golf-rate/",
+      "last_verified": "2026-05-07",
+      "notes": "Weekday AM/PM resolved. Official rancamayagolf.com/golf-rate publishes the full rate card with 11% VAT inclusive: Tue-Fri AM 1;150;000 / PM 960;000; Sat AM 3;030;000 / PM 1;760;000; Sun/PH AM 2;460;00"
+    },
+    {
+      "course_id": "rancamaya",
+      "course_name": "Rancamaya Golf & Country Club",
+      "slot": "satAm",
+      "currency": "IDR",
+      "green_fee_value": 3030000,
+      "green_fee_status": "value_ok",
+      "tier": "N/A",
+      "publisher": "official-saturday-aggregate",
+      "n_sources": "N/A",
+      "primary_source": "https://rancamayagolf.com/golf-rate/",
+      "last_verified": "2026-05-07",
+      "notes": "Weekday AM/PM resolved. Official rancamayagolf.com/golf-rate publishes the full rate card with 11% VAT inclusive: Tue-Fri AM 1;150;000 / PM 960;000; Sat AM 3;030;000 / PM 1;760;000; Sun/PH AM 2;460;00"
+    },
+    {
+      "course_id": "rancamaya",
+      "course_name": "Rancamaya Golf & Country Club",
+      "slot": "satPm",
+      "currency": "IDR",
+      "green_fee_value": 3030000,
+      "green_fee_status": "value_ok",
+      "tier": "N/A",
+      "publisher": "official-saturday-aggregate",
+      "n_sources": "N/A",
+      "primary_source": "https://rancamayagolf.com/golf-rate/",
+      "last_verified": "2026-05-07",
+      "notes": "Weekday AM/PM resolved. Official rancamayagolf.com/golf-rate publishes the full rate card with 11% VAT inclusive: Tue-Fri AM 1;150;000 / PM 960;000; Sat AM 3;030;000 / PM 1;760;000; Sun/PH AM 2;460;00"
+    },
+    {
+      "course_id": "rancamaya",
+      "course_name": "Rancamaya Golf & Country Club",
+      "slot": "sunAm",
+      "currency": "IDR",
+      "green_fee_value": 3030000,
+      "green_fee_status": "value_ok",
+      "tier": "N/A",
+      "publisher": "official-sunday-aggregate",
+      "n_sources": "N/A",
+      "primary_source": "https://rancamayagolf.com/golf-rate/",
+      "last_verified": "2026-05-07",
+      "notes": "Weekday AM/PM resolved. Official rancamayagolf.com/golf-rate publishes the full rate card with 11% VAT inclusive: Tue-Fri AM 1;150;000 / PM 960;000; Sat AM 3;030;000 / PM 1;760;000; Sun/PH AM 2;460;00"
+    },
+    {
+      "course_id": "rancamaya",
+      "course_name": "Rancamaya Golf & Country Club",
+      "slot": "sunPm",
+      "currency": "IDR",
+      "green_fee_value": 3030000,
+      "green_fee_status": "value_ok",
+      "tier": "N/A",
+      "publisher": "official-sunday-aggregate",
+      "n_sources": "N/A",
+      "primary_source": "https://rancamayagolf.com/golf-rate/",
+      "last_verified": "2026-05-07",
+      "notes": "Weekday AM/PM resolved. Official rancamayagolf.com/golf-rate publishes the full rate card with 11% VAT inclusive: Tue-Fri AM 1;150;000 / PM 960;000; Sat AM 3;030;000 / PM 1;760;000; Sun/PH AM 2;460;00"
+    }
+  ],
+  "financials_curated": [
+    {
+      "course_id": "rancamaya",
+      "course_name": "Rancamaya Golf & Country Club",
+      "parent_entity": "PT Suryamas Dutamakmur Tbk (BSDE/Sinar Mas Land subsidiary from 2024)",
+      "fy": "FY2024",
+      "revenue_idr": 694040000000,
+      "net_profit_idr": 123770000000,
+      "total_assets_idr": 3462272000000,
+      "course_segment_revenue_idr": null,
+      "course_segment_disclosed": "True",
+      "figure_origin": "audited_FY2024",
+      "last_verified": "2026-05-06",
+      "relationship_note": "primary -- SMDM acquired by BSDE Oct 2024, 91.99%"
+    }
+  ],
+  "financials_ar_raw": [
+    {
+      "fy": "FY2022",
+      "currency": "IDR",
+      "unit_label_from_ar": "billion",
+      "revenue_raw": 566403.0,
+      "gross_profit_raw": null,
+      "operating_profit_raw": null,
+      "ebitda_raw": null,
+      "net_profit_raw": null,
+      "total_assets_raw": null,
+      "total_equity_raw": 2959.3,
+      "source_files": "annual_reports/SMDM/FY2022/AnnualReport2022-SMDM-att3.pdf",
+      "extraction_notes": "EBITDA not parsed"
+    },
+    {
+      "fy": "FY2023",
+      "currency": "IDR",
+      "unit_label_from_ar": "billion",
+      "revenue_raw": 496497.0,
+      "gross_profit_raw": null,
+      "operating_profit_raw": null,
+      "ebitda_raw": null,
+      "net_profit_raw": null,
+      "total_assets_raw": null,
+      "total_equity_raw": null,
+      "source_files": "annual_reports/SMDM/FY2023/AnnualReport2023-SMDM-att1.pdf",
+      "extraction_notes": "EBITDA not parsed"
+    },
+    {
+      "fy": "FY2024",
+      "currency": "IDR",
+      "unit_label_from_ar": "billion",
+      "revenue_raw": 694045.0,
+      "gross_profit_raw": null,
+      "operating_profit_raw": null,
+      "ebitda_raw": null,
+      "net_profit_raw": 162603.0,
+      "total_assets_raw": null,
+      "total_equity_raw": null,
+      "source_files": "annual_reports/SMDM/FY2024/AnnualReport2024-SMDM-att1.pdf",
+      "extraction_notes": "EBITDA not parsed"
+    }
+  ],
+  "membership": [
+    {
+      "course_id": "rancamaya",
+      "course_name": "Rancamaya Golf & Country Club",
+      "price_idr": null,
+      "price_usd": null,
+      "tiers_disclosed": "",
+      "source_strength": "",
+      "notes": "Membership tied to Rancamaya township residential program; pricing details not always disclosed in IDX filings."
+    }
+  ],
+  "operating_signals": [
+    {
+      "course_id": "rancamaya",
+      "course_name": "Rancamaya Golf & Country Club",
+      "holes": 18,
+      "par": 72,
+      "area_ha_estimate": "N/A",
+      "segment_revenue_disclosure": "Golf + Country club + Estate management + memberships disclosed FY2022: IDR 75.6 bn (13.4% of net sales); FY2021: 75.1 bn (13.2%)",
+      "segment_year": "FY2022",
+      "course_segment_revenue_idr": null,
+      "operational_notes": "6;931 yards championship course in Ciawi."
+    }
+  ],
+  "data_sources": [
+    "Annual Reports (indexed via ChromaDB, 21 IDX tickers)",
+    "site/data/golf_courses.json (149 courses curated)",
+    "Official course websites and Q-Access aggregator (where cited)"
+  ]
+}

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>P001 DMIG — Peer Analysis</title>
+<meta name="description" content="Public-disclosure profile of DMIG (Damai Indah Golf (BSD + PIK)) — financials, course specs, rate cards, membership pricing from annual reports and official sources." />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/peer-style.css?v=20260511a" />
+</head>
+<body>
+
+<header class="pa-header">
+  <div class="container">
+    <div class="pa-brand">
+      <div class="pa-logo">⛳</div>
+      <div>
+        <h1>Indonesia Golf Industry — Peer Analysis</h1>
+        <div class="subtitle">Peer detail · P001 DMIG</div>
+      </div>
+    </div>
+    <nav class="pa-nav">
+      <a href="../index.html">Overview</a>
+      <a href="../comparison/pricing.html">Pricing</a>
+      <a href="../comparison/financial.html">Financials</a>
+      <a href="../comparison/operating.html">Course Specs</a>
+      <a href="../operations/index.html">Operations</a>
+      <a href="../about/methodology.html">Methodology</a>
+      <a href="../../index.html">← Map</a>
+    </nav>
+  </div>
+</header>
+
+<section class="pa-detail-head">
+  <div class="container">
+    <a class="pa-back-link" href="../index.html">← Back to peer roster</a>
+    <h2 id="peerTitle">P001 — Loading...</h2>
+    <div class="sub" id="peerSubtitle">Loading peer detail...</div>
+  </div>
+</section>
+
+<section class="pa-section">
+  <div class="container">
+    <div class="pa-tabs" id="paTabs">
+      <button class="active" data-pane="overview">Overview</button>
+      <button data-pane="courses">Course Specs</button>
+      <button data-pane="pricing">Pricing</button>
+      <button data-pane="financials">Financials</button>
+      <button data-pane="membership">Membership</button>
+      <button data-pane="operating">Operating Signals</button>
+      <button data-pane="profile">Full Profile</button>
+    </div>
+
+    <div id="pane-overview" class="pa-pane"></div>
+    <div id="pane-courses" class="pa-pane" hidden></div>
+    <div id="pane-pricing" class="pa-pane" hidden></div>
+    <div id="pane-financials" class="pa-pane" hidden></div>
+    <div id="pane-membership" class="pa-pane" hidden></div>
+    <div id="pane-operating" class="pa-pane" hidden></div>
+    <div id="pane-profile" class="pa-pane" hidden></div>
+  </div>
+</section>
+
+<footer class="pa-footer">
+  <div class="container">
+    <div class="bottom">
+      All figures sourced from publicly available IDX annual reports and named company / industry sources.
+      No proprietary information presented. Last refreshed: <span id="footerStamp">—</span>.
+    </div>
+  </div>
+</footer>
+
+<script>
+const PEER_ID = "P001";
+const dataPath = `../data/peer_${PEER_ID}.json`;
+
+async function load() {
+  const r = await fetch(dataPath);
+  if (!r.ok) throw new Error(r.status);
+  return r.json();
+}
+
+function fmtIDR(v) {
+  if (v == null || v === '') return '<span class="na">N/A</span>';
+  if (typeof v === 'string') return escapeHtml(v);
+  if (v >= 1e12) return (v / 1e12).toFixed(2) + ' T';
+  if (v >= 1e9)  return (v / 1e9).toFixed(2)  + ' B';
+  if (v >= 1e6)  return (v / 1e6).toFixed(1)  + ' M';
+  return v.toLocaleString();
+}
+
+function fmtUSD(v) {
+  if (v == null || v === '') return '<span class="na">N/A</span>';
+  return 'USD ' + Number(v).toLocaleString();
+}
+
+function escapeHtml(s) {
+  if (s == null) return '';
+  return String(s)
+    .replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;').replaceAll("'", '&#39;');
+}
+
+function na(v, fallback = 'N/A — Not Disclosed') {
+  if (v == null || v === '' || v === 'N/A') return `<span class="na">${escapeHtml(fallback)}</span>`;
+  return escapeHtml(String(v));
+}
+
+function naLong(v) {
+  if (v == null || v === '' || v === 'N/A' || v === 'N/A — Not Disclosed in AR') {
+    return '<span class="na">Not disclosed in source</span>';
+  }
+  return escapeHtml(String(v));
+}
+
+function tierBadge(t) {
+  if (!t || t === 'N/A') return '<span class="pa-tier NA">Tier N/A</span>';
+  return `<span class="pa-tier ${t.replace(/[^A-Za-z+-]/g, '')}">Tier ${escapeHtml(t)}</span>`;
+}
+
+function renderOverview(d) {
+  const inv = d.inventory || {};
+  const prof = d.profile || {};
+  const facts = d.courses || [];
+  const fin = (d.financials_curated || []).find(f => f.figure_origin && f.figure_origin.includes('audited')) || (d.financials_curated || [])[0] || {};
+
+  document.getElementById('peerTitle').textContent = `${d.peer_id} · ${inv.course_name_primary || inv.ticker || ''}`;
+  document.getElementById('peerSubtitle').innerHTML =
+    `IDX:${escapeHtml(inv.ticker)} · ${escapeHtml(inv.legal_entity_primary || '')} · ${tierBadge(inv.tier_hint)}`;
+
+  const html = `
+    <h4>Snapshot</h4>
+    <table class="pa-table">
+      <tr><th style="width:30%">Peer ID</th><td>${escapeHtml(d.peer_id)}</td></tr>
+      <tr><th>IDX Ticker</th><td>${escapeHtml(inv.ticker)}</td></tr>
+      <tr><th>Primary course</th><td>${naLong(inv.course_name_primary)}</td></tr>
+      <tr><th>Legal entity</th><td>${naLong(inv.legal_entity_primary)}</td></tr>
+      <tr><th>Parent group</th><td>${naLong(inv.parent_group)}</td></tr>
+      <tr><th>Region</th><td>${naLong(inv.region)}</td></tr>
+      <tr><th>Tier (heuristic)</th><td>${tierBadge(inv.tier_hint)}</td></tr>
+      <tr><th>Annual Report years indexed</th><td>${naLong(inv.fys_available)}</td></tr>
+      <tr><th>Courses mapped to this peer</th><td>${facts.length}</td></tr>
+      <tr><th>Inventory note</th><td>${escapeHtml(d.inventory_notes || '')}</td></tr>
+    </table>
+
+    ${fin.fy ? `
+    <h4 style="margin-top:24px">Headline financials — ${escapeHtml(fin.fy)}</h4>
+    <table class="pa-table">
+      <tr><th style="width:50%">Parent revenue (IDR)</th><td class="r">${fmtIDR(fin.revenue_idr)}</td></tr>
+      <tr><th>Parent net profit (IDR)</th><td class="r">${fmtIDR(fin.net_profit_idr)}</td></tr>
+      <tr><th>Total assets (IDR)</th><td class="r">${fmtIDR(fin.total_assets_idr)}</td></tr>
+      <tr><th>Course segment revenue (IDR)</th><td class="r">${fin.course_segment_revenue_idr != null && fin.course_segment_revenue_idr !== '' ? fmtIDR(fin.course_segment_revenue_idr) : '<span class="na">Not separately disclosed</span>'}</td></tr>
+      <tr><th>Course segment break-out disclosed?</th><td>${fin.course_segment_disclosed === 'True' ? '<span class="pa-tag green">Yes</span>' : '<span class="pa-tag">No / not separately</span>'}</td></tr>
+      <tr><th>Figure origin</th><td>${naLong(fin.figure_origin)}</td></tr>
+    </table>
+    ` : ''}
+
+    <div class="pa-source">
+      Source: Company FY2024 annual report (audited) plus curated official disclosures. See <em>Financials</em> tab for full multi-year detail.
+    </div>
+  `;
+  document.getElementById('pane-overview').innerHTML = html;
+}
+
+function renderCourses(d) {
+  const facts = d.courses || [];
+  if (facts.length === 0) {
+    document.getElementById('pane-courses').innerHTML = '<div class="pa-empty">No course records — peer has no direct golf operations.</div>';
+    return;
+  }
+  const html = facts.map(c => `
+    <div style="margin-bottom:20px; padding:16px; background:#fafaf6; border-radius:8px;">
+      <h4>${escapeHtml(c.course_name || c.course_id || '')}</h4>
+      <table class="pa-table">
+        <tr><th style="width:30%">Course ID</th><td>${escapeHtml(c.course_id || '')}</td></tr>
+        <tr><th>Region</th><td>${naLong(c.region)}</td></tr>
+        <tr><th>Address</th><td>${naLong(c.address)}</td></tr>
+        <tr><th>Holes / Par</th><td>${c.holes != null ? c.holes : '<span class="na">N/A</span>'} / ${c.par != null ? c.par : '<span class="na">N/A</span>'}</td></tr>
+        <tr><th>Designer</th><td>${naLong(c.designer)}</td></tr>
+        <tr><th>Year opened</th><td>${c.year_opened != null ? c.year_opened : '<span class="na">N/A</span>'}</td></tr>
+        <tr><th>Facilities</th><td>${naLong(c.facilities_summary)}</td></tr>
+        <tr><th>Website</th><td>${c.website ? `<a href="${escapeHtml(c.website)}" target="_blank" rel="noopener">${escapeHtml(c.website)}</a>` : '<span class="na">N/A</span>'}</td></tr>
+        ${c.lat && c.lng ? `<tr><th>Coordinates</th><td>${c.lat.toFixed(4)}, ${c.lng.toFixed(4)}</td></tr>` : ''}
+        <tr><th>Notes</th><td>${naLong(c.notes)}</td></tr>
+      </table>
+    </div>
+  `).join('');
+  document.getElementById('pane-courses').innerHTML = html;
+}
+
+function renderPricing(d) {
+  const rows = d.pricing || [];
+  if (rows.length === 0) {
+    document.getElementById('pane-pricing').innerHTML = '<div class="pa-empty">No pricing data available.</div>';
+    return;
+  }
+
+  // Group by course → slot matrix
+  const byCourse = {};
+  rows.forEach(r => { (byCourse[r.course_id] = byCourse[r.course_id] || []).push(r); });
+
+  let html = '';
+  for (const [courseId, slots] of Object.entries(byCourse)) {
+    const courseName = slots[0].course_name;
+    const slotMap = {};
+    slots.forEach(s => { slotMap[s.slot] = s; });
+    const sample = slots[0];
+    const note = sample.notes || '';
+    html += `
+      <div style="margin-bottom:20px;">
+        <h4>${escapeHtml(courseName)} — slot pricing</h4>
+        <table class="pa-table">
+          <thead><tr>
+            <th>Slot</th><th class="r">Green Fee (IDR)</th><th>Publisher</th><th>Source links</th><th>Verified</th>
+          </tr></thead>
+          <tbody>
+            ${['wdAm','wdPm','satAm','satPm','sunAm','sunPm'].map(slot => {
+              const s = slotMap[slot] || {};
+              return `<tr>
+                <td><strong>${slot}</strong></td>
+                <td class="r">${s.green_fee_value != null ? fmtIDR(s.green_fee_value) : '<span class="na">N/A</span>'}</td>
+                <td>${naLong(s.publisher)}</td>
+                <td>${s.primary_source ? `<a href="${escapeHtml(s.primary_source)}" target="_blank" rel="noopener">link</a>` : '<span class="na">—</span>'}</td>
+                <td>${naLong(s.last_verified)}</td>
+              </tr>`;
+            }).join('')}
+          </tbody>
+        </table>
+        ${note ? `<div class="pa-source">Notes: ${escapeHtml(note)}</div>` : ''}
+      </div>
+    `;
+  }
+  document.getElementById('pane-pricing').innerHTML = html;
+}
+
+function renderFinancials(d) {
+  const cur = d.financials_curated || [];
+  const raw = d.financials_ar_raw || [];
+  let html = '<h4>FY2024 audited (preferred source)</h4>';
+  if (cur.length === 0) {
+    html += '<div class="pa-empty">No curated financials available.</div>';
+  } else {
+    html += `<table class="pa-table">
+      <thead><tr>
+        <th>Course / Entity</th><th>FY</th><th class="r">Revenue (IDR)</th><th class="r">Net profit (IDR)</th><th class="r">Total assets (IDR)</th><th class="r">Course segment rev (IDR)</th><th>Segment disclosed</th><th>Origin</th>
+      </tr></thead>
+      <tbody>
+        ${cur.map(f => `<tr>
+          <td>${escapeHtml(f.course_name || f.parent_entity || '')}</td>
+          <td>${escapeHtml(f.fy || '')}</td>
+          <td class="r">${fmtIDR(f.revenue_idr)}</td>
+          <td class="r">${fmtIDR(f.net_profit_idr)}</td>
+          <td class="r">${fmtIDR(f.total_assets_idr)}</td>
+          <td class="r">${f.course_segment_revenue_idr != null ? fmtIDR(f.course_segment_revenue_idr) : '<span class="na">—</span>'}</td>
+          <td>${f.course_segment_disclosed === 'True' ? '<span class="pa-tag green">Yes</span>' : '<span class="pa-tag">No</span>'}</td>
+          <td>${escapeHtml(f.figure_origin || '')}</td>
+        </tr>`).join('')}
+      </tbody>
+    </table>`;
+  }
+
+  if (raw.length > 0) {
+    html += `<h4 style="margin-top:24px">AR text-extracted multi-FY (raw / unverified units)</h4>
+      <div class="pa-source" style="margin-bottom:8px; border-top:none; padding-top:0;">
+        ⚠ These values come from automated AR PDF text extraction and may have unit-detection errors.
+        Refer to curated FY2024 figures above for analysis.
+      </div>
+      <table class="pa-table">
+        <thead><tr>
+          <th>FY</th><th>Unit (AR label)</th><th class="r">Revenue</th><th class="r">Gross profit</th><th class="r">Operating profit</th><th class="r">EBITDA</th><th class="r">Net profit</th><th class="r">Total assets</th><th class="r">Total equity</th>
+        </tr></thead>
+        <tbody>
+          ${raw.map(f => `<tr>
+            <td>${escapeHtml(f.fy || '')}</td>
+            <td>${naLong(f.unit_label_from_ar)}</td>
+            <td class="r">${f.revenue_raw != null ? f.revenue_raw.toLocaleString() : '<span class="na">—</span>'}</td>
+            <td class="r">${f.gross_profit_raw != null ? f.gross_profit_raw.toLocaleString() : '<span class="na">—</span>'}</td>
+            <td class="r">${f.operating_profit_raw != null ? f.operating_profit_raw.toLocaleString() : '<span class="na">—</span>'}</td>
+            <td class="r">${f.ebitda_raw != null ? f.ebitda_raw.toLocaleString() : '<span class="na">—</span>'}</td>
+            <td class="r">${f.net_profit_raw != null ? f.net_profit_raw.toLocaleString() : '<span class="na">—</span>'}</td>
+            <td class="r">${f.total_assets_raw != null ? f.total_assets_raw.toLocaleString() : '<span class="na">—</span>'}</td>
+            <td class="r">${f.total_equity_raw != null ? f.total_equity_raw.toLocaleString() : '<span class="na">—</span>'}</td>
+          </tr>`).join('')}
+        </tbody>
+      </table>`;
+  }
+  document.getElementById('pane-financials').innerHTML = html;
+}
+
+function renderMembership(d) {
+  const rows = d.membership || [];
+  if (rows.length === 0) {
+    document.getElementById('pane-membership').innerHTML = '<div class="pa-empty">No membership data available.</div>';
+    return;
+  }
+  let html = '';
+  rows.forEach(m => {
+    html += `<div style="margin-bottom:16px">
+      <h4>${escapeHtml(m.course_name || '')}</h4>
+      <table class="pa-table">
+        <tr><th style="width:30%">Initiation / Annual price (IDR)</th><td class="r">${m.price_idr != null ? fmtIDR(m.price_idr) : '<span class="na">Not disclosed</span>'}</td></tr>
+        <tr><th>Initiation price (USD)</th><td class="r">${m.price_usd != null ? fmtUSD(m.price_usd) : '<span class="na">—</span>'}</td></tr>
+        <tr><th>Tiers disclosed</th><td>${naLong(m.tiers_disclosed)}</td></tr>
+        <tr><th>Source strength</th><td>${naLong(m.source_strength)}</td></tr>
+        <tr><th>Notes</th><td>${naLong(m.notes)}</td></tr>
+      </table>
+    </div>`;
+  });
+  document.getElementById('pane-membership').innerHTML = html;
+}
+
+function renderOperating(d) {
+  const rows = d.operating_signals || [];
+  if (rows.length === 0) {
+    document.getElementById('pane-operating').innerHTML = '<div class="pa-empty">No operating signals available.</div>';
+    return;
+  }
+  let html = '';
+  rows.forEach(o => {
+    html += `<div style="margin-bottom:16px">
+      <h4>${escapeHtml(o.course_name || '')}</h4>
+      <table class="pa-table">
+        <tr><th style="width:30%">Holes / Par</th><td>${o.holes != null ? o.holes : '<span class="na">N/A</span>'} / ${o.par != null ? o.par : '<span class="na">N/A</span>'}</td></tr>
+        <tr><th>Course area (hectares)</th><td>${naLong(o.area_ha_estimate)}</td></tr>
+        <tr><th>Course segment revenue (IDR)</th><td class="r">${o.course_segment_revenue_idr != null ? fmtIDR(o.course_segment_revenue_idr) : '<span class="na">Not separately disclosed</span>'}</td></tr>
+        <tr><th>Segment disclosure note</th><td>${naLong(o.segment_revenue_disclosure)}</td></tr>
+        <tr><th>Operational notes</th><td>${naLong(o.operational_notes)}</td></tr>
+      </table>
+    </div>`;
+  });
+  // Add a note about Operating KPIs NOT in AR
+  html += `<div class="pa-source" style="margin-top:16px">
+    <strong>Limitations:</strong> Operating KPIs commonly required by analysts —
+    annual rounds played, occupancy rate, headcount per hole, F&amp;B capture rate — are
+    NOT publicly disclosed in any IDX-listed peer's annual report at the course level.
+    Supplementary industry-association data (APLGI) or tee-time platform aggregates
+    (Q-Access, GoGolf) would be required to populate these metrics.
+  </div>`;
+  document.getElementById('pane-operating').innerHTML = html;
+}
+
+function renderProfile(d) {
+  const p = d.profile || {};
+  if (Object.keys(p).length === 0) {
+    document.getElementById('pane-profile').innerHTML = '<div class="pa-empty">No profile data available.</div>';
+    return;
+  }
+  let html = `<table class="pa-table">`;
+  for (const [k, v] of Object.entries(p)) {
+    if (k === 'peer_id') continue;
+    html += `<tr><th style="width:30%">${escapeHtml(k.replaceAll('_', ' '))}</th><td>${naLong(v)}</td></tr>`;
+  }
+  html += `</table>`;
+  document.getElementById('pane-profile').innerHTML = html;
+}
+
+function bindTabs() {
+  document.querySelectorAll('#paTabs button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#paTabs button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const target = btn.dataset.pane;
+      ['overview','courses','pricing','financials','membership','operating','profile'].forEach(p => {
+        document.getElementById(`pane-${p}`).hidden = (p !== target);
+      });
+    });
+  });
+}
+
+(async () => {
+  try {
+    const d = await load();
+    renderOverview(d);
+    renderCourses(d);
+    renderPricing(d);
+    renderFinancials(d);
+    renderMembership(d);
+    renderOperating(d);
+    renderProfile(d);
+    bindTabs();
+    const m = await fetch('../data/meta.json').then(r => r.json()).catch(() => ({}));
+    document.getElementById('footerStamp').textContent = m.generated_at || '—';
+  } catch (err) {
+    document.getElementById('pane-overview').innerHTML =
+      `<div class="pa-empty">Failed to load peer detail data. ${err.message}</div>`;
+    console.error(err);
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,234 @@
+{
+  "peer_id": "P011",
+  "ticker": "KIJA",
+  "inventory": {
+    "peer_id": "P011",
+    "ticker": "KIJA",
+    "course_name_primary": "Jababeka Golf & Country Club",
+    "legal_entity_primary": "PT Kawasan Industri Jababeka Tbk",
+    "parent_group": "Jababeka Group",
+    "region": "Cikarang (Bekasi)",
+    "tier_hint": "B+",
+    "fys_available": "2022,2023,2024",
+    "n_pdfs": "5",
+    "n_chunks": "3693",
+    "golf_relevance": "CORE",
+    "golf_hit_chunks": "6"
+  },
+  "inventory_notes": "Leisure & Hospitality pillar contributed IDR 129.4 bn (2023) / 122.6 bn (2022) -- combined golf+hotel+resort segment revenue.",
+  "profile": {
+    "peer_id": "P011",
+    "ticker": "KIJA",
+    "course_name": "Jababeka Golf & Country Club",
+    "legal_entity": "PT Kawasan Industri Jababeka Tbk",
+    "parent_group": "Jababeka Group",
+    "ownership_summary": "Industrial estate developer; golf operates as part of Recreation and Hospitality pillar (with hotels + resorts)",
+    "region_city": "Cikarang (Bekasi)",
+    "area_ha": "N/A -- Not Disclosed in AR",
+    "holes": "N/A -- Not Disclosed in AR",
+    "par": "N/A -- Not Disclosed in AR",
+    "architect_designer": "N/A -- Not Disclosed in AR",
+    "year_opened_or_established": "N/A in AR -- Jababeka township golf established as part of Cikarang industrial estate development",
+    "fairway_grass": "N/A -- Not Disclosed in AR",
+    "green_grass": "N/A -- Not Disclosed in AR",
+    "member_categories": "N/A -- Not Disclosed in AR (membership dues recognized over rental/membership period; registration fees recognized on receipt)",
+    "facilities": "Jababeka Golf & Country Club + Metro Suites (private international club at Kota Jababeka) + multiple hotels + resorts + Tanjung Lesung Tourism Area + Morotai (eastern Indonesia development)",
+    "revenue_segments_disclosed": "Recreation & Hospitality pillar (golf + hotel + resort): IDR 129.4 bn (FY2023) / 122.6 bn (FY2022). Pure golf segment disclosed FY2024: IDR 47.92 bn / FY2023: 45.48 bn",
+    "source_pages": "KIJA/FY2024 p.81; KIJA/FY2024 p.518; KIJA/FY2023 p.105; KIJA/FY2024 p.468",
+    "source_year": "2023 (with FY2022/2024 cross-reference)",
+    "public_disclosure": "Y"
+  },
+  "courses": [
+    {
+      "course_id": "jababeka-golf",
+      "course_name": "Jababeka Golf & Country Club",
+      "region": "Bekasi",
+      "holes": 18,
+      "par": 72,
+      "designer": "Nick Faldo",
+      "year_opened": 1996,
+      "facilities_count": 4,
+      "facilities_summary": "Driving Range | Pro Shop | Restaurant | Locker Rooms",
+      "address": "Jl. Raya Lemahabang, Cikarang Baru, Sertajaya, Cikarang Timur, Bekasi 17581",
+      "website": "https://www.jababekagolf.co.id/",
+      "lat": -6.2988361,
+      "lng": 107.1753927,
+      "notes": "By 6x major champion Nick Faldo. 70 ha in Jababeka Industrial Estate."
+    }
+  ],
+  "pricing": [
+    {
+      "course_id": "jababeka-golf",
+      "course_name": "Jababeka Golf & Country Club",
+      "slot": "wdAm",
+      "currency": "IDR",
+      "green_fee_value": 575000,
+      "green_fee_status": "value_ok",
+      "tier": "N/A",
+      "publisher": "N/A",
+      "n_sources": "1",
+      "primary_source": "https://www.jababekagolf.co.id/",
+      "last_verified": "2026-04-29",
+      "notes": "Jababeka Golf & Country Club; Cikarang. Mon Rp475;000; Tue-Fri Rp575;000; Sat-Sun Rp1;200;000-1;750;000. Weekend morning (05:25-08:00) Rp 2;025;000; afternoon (11:22-13:00) Rp 1;525;000 on holidays. I"
+    },
+    {
+      "course_id": "jababeka-golf",
+      "course_name": "Jababeka Golf & Country Club",
+      "slot": "wdPm",
+      "currency": "IDR",
+      "green_fee_value": 575000,
+      "green_fee_status": "value_ok",
+      "tier": "N/A",
+      "publisher": "N/A",
+      "n_sources": "1",
+      "primary_source": "https://www.jababekagolf.co.id/",
+      "last_verified": "2026-04-29",
+      "notes": "Jababeka Golf & Country Club; Cikarang. Mon Rp475;000; Tue-Fri Rp575;000; Sat-Sun Rp1;200;000-1;750;000. Weekend morning (05:25-08:00) Rp 2;025;000; afternoon (11:22-13:00) Rp 1;525;000 on holidays. I"
+    },
+    {
+      "course_id": "jababeka-golf",
+      "course_name": "Jababeka Golf & Country Club",
+      "slot": "satAm",
+      "currency": "IDR",
+      "green_fee_value": 1750000,
+      "green_fee_status": "value_ok",
+      "tier": "N/A",
+      "publisher": "N/A",
+      "n_sources": "2",
+      "primary_source": "https://www.jababekagolf.co.id/",
+      "last_verified": "2026-04-29",
+      "notes": "Jababeka Golf & Country Club; Cikarang. Mon Rp475;000; Tue-Fri Rp575;000; Sat-Sun Rp1;200;000-1;750;000. Weekend morning (05:25-08:00) Rp 2;025;000; afternoon (11:22-13:00) Rp 1;525;000 on holidays. I"
+    },
+    {
+      "course_id": "jababeka-golf",
+      "course_name": "Jababeka Golf & Country Club",
+      "slot": "satPm",
+      "currency": "IDR",
+      "green_fee_value": 1750000,
+      "green_fee_status": "value_ok",
+      "tier": "N/A",
+      "publisher": "N/A",
+      "n_sources": "2",
+      "primary_source": "https://www.jababekagolf.co.id/",
+      "last_verified": "2026-04-29",
+      "notes": "Jababeka Golf & Country Club; Cikarang. Mon Rp475;000; Tue-Fri Rp575;000; Sat-Sun Rp1;200;000-1;750;000. Weekend morning (05:25-08:00) Rp 2;025;000; afternoon (11:22-13:00) Rp 1;525;000 on holidays. I"
+    },
+    {
+      "course_id": "jababeka-golf",
+      "course_name": "Jababeka Golf & Country Club",
+      "slot": "sunAm",
+      "currency": "IDR",
+      "green_fee_value": 1750000,
+      "green_fee_status": "value_ok",
+      "tier": "N/A",
+      "publisher": "N/A",
+      "n_sources": "2",
+      "primary_source": "https://www.jababekagolf.co.id/",
+      "last_verified": "2026-04-29",
+      "notes": "Jababeka Golf & Country Club; Cikarang. Mon Rp475;000; Tue-Fri Rp575;000; Sat-Sun Rp1;200;000-1;750;000. Weekend morning (05:25-08:00) Rp 2;025;000; afternoon (11:22-13:00) Rp 1;525;000 on holidays. I"
+    },
+    {
+      "course_id": "jababeka-golf",
+      "course_name": "Jababeka Golf & Country Club",
+      "slot": "sunPm",
+      "currency": "IDR",
+      "green_fee_value": 1750000,
+      "green_fee_status": "value_ok",
+      "tier": "N/A",
+      "publisher": "N/A",
+      "n_sources": "2",
+      "primary_source": "https://www.jababekagolf.co.id/",
+      "last_verified": "2026-04-29",
+      "notes": "Jababeka Golf & Country Club; Cikarang. Mon Rp475;000; Tue-Fri Rp575;000; Sat-Sun Rp1;200;000-1;750;000. Weekend morning (05:25-08:00) Rp 2;025;000; afternoon (11:22-13:00) Rp 1;525;000 on holidays. I"
+    }
+  ],
+  "financials_curated": [
+    {
+      "course_id": "jababeka-golf",
+      "course_name": "Jababeka Golf & Country Club",
+      "parent_entity": "PT Kawasan Industri Jababeka Tbk",
+      "fy": "FY2024",
+      "revenue_idr": 4600000000000,
+      "net_profit_idr": 363300000000,
+      "total_assets_idr": 14010000000000,
+      "course_segment_revenue_idr": null,
+      "course_segment_disclosed": "True",
+      "figure_origin": "audited_FY2024",
+      "last_verified": "2026-05-01",
+      "relationship_note": "primary"
+    }
+  ],
+  "financials_ar_raw": [
+    {
+      "fy": "FY2022",
+      "currency": "IDR",
+      "unit_label_from_ar": "billion",
+      "revenue_raw": 2720.2,
+      "gross_profit_raw": null,
+      "operating_profit_raw": null,
+      "ebitda_raw": 1087.0,
+      "net_profit_raw": null,
+      "total_assets_raw": null,
+      "total_equity_raw": 750000000.0,
+      "source_files": "annual_reports/KIJA/FY2022/AnnualReport2022-KIJA-att1.pdf",
+      "extraction_notes": ""
+    },
+    {
+      "fy": "FY2023",
+      "currency": "IDR",
+      "unit_label_from_ar": "billion",
+      "revenue_raw": 3291.9,
+      "gross_profit_raw": null,
+      "operating_profit_raw": null,
+      "ebitda_raw": null,
+      "net_profit_raw": null,
+      "total_assets_raw": null,
+      "total_equity_raw": null,
+      "source_files": "annual_reports/KIJA/FY2023/AnnualReport2023-KIJA-att1.pdf",
+      "extraction_notes": "EBITDA not parsed"
+    },
+    {
+      "fy": "FY2024",
+      "currency": "IDR",
+      "unit_label_from_ar": "billion",
+      "revenue_raw": 4602.6,
+      "gross_profit_raw": null,
+      "operating_profit_raw": null,
+      "ebitda_raw": null,
+      "net_profit_raw": null,
+      "total_assets_raw": 14017.4,
+      "total_equity_raw": 6000.0,
+      "source_files": "annual_reports/KIJA/FY2024/AnnualReport2024-KIJA-att1.pdf",
+      "extraction_notes": "EBITDA not parsed"
+    }
+  ],
+  "membership": [
+    {
+      "course_id": "jababeka-golf",
+      "course_name": "Jababeka Golf & Country Club",
+      "price_idr": null,
+      "price_usd": null,
+      "tiers_disclosed": "",
+      "source_strength": "",
+      "notes": "Semi-private with 500+ active members (Cikarang corporate execs). 4 categories confirmed. Inquiry: reservasi@jababekagolf.co.id / +62 857 1095 3112."
+    }
+  ],
+  "operating_signals": [
+    {
+      "course_id": "jababeka-golf",
+      "course_name": "Jababeka Golf & Country Club",
+      "holes": 18,
+      "par": 72,
+      "area_ha_estimate": "70 ha (KIJA/Jababeka)",
+      "segment_revenue_disclosure": "Pure Golf segment EXPLICITLY disclosed: IDR 47.92 bn (FY2024) / IDR 45.48 bn (FY2023). Combined Rec & Hospitality (incl. golf+hotel+resort) IDR 129.4 bn (FY2023)",
+      "segment_year": "FY2024 audited",
+      "course_segment_revenue_idr": null,
+      "operational_notes": "By 6x major champion Nick Faldo. 70 ha in Jababeka Industrial Estate."
+    }
+  ],
+  "data_sources": [
+    "Annual Reports (indexed via ChromaDB, 21 IDX tickers)",
+    "site/data/golf_courses.json (149 courses curated)",
+    "Official course websites and Q-Access aggregator (where cited)"
+  ]
+}

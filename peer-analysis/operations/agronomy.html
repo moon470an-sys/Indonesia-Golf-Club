@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Agronomy — Operations — Indonesia Golf Industry Peer Analysis</title>
+<meta name="description" content="Course operations and agronomy disclosure across IDX-listed Indonesian golf operators — turf species, irrigation, water source, renovation cycle. Sourced from public annual reports." />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/peer-style.css?v=20260511c" />
+<style>
+  .crumbs { font-size: 13.5px; color: var(--charcoal-soft); margin-bottom: 18px; }
+  .crumbs a { color: var(--forest-green); }
+  .pilot-banner {
+    background: #fff7ed; border: 1px solid #fed7aa; padding: 12px 16px;
+    border-radius: var(--radius-md); margin: 16px 0 24px;
+    font-size: 13.5px; color: #7c2d12;
+  }
+  .pilot-banner strong { color: #7c2d12; }
+  table.ops-table {
+    width: 100%; border-collapse: collapse; font-size: 14px;
+    background: white; box-shadow: var(--shadow-sm); border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+  table.ops-table th {
+    background: var(--forest-green); color: white; font-weight: 600;
+    text-align: left; padding: 12px 14px; font-size: 13px;
+    border-bottom: 1px solid var(--forest-green-dark);
+  }
+  table.ops-table td {
+    padding: 13px 14px; border-bottom: 1px solid var(--slate-200);
+    vertical-align: top; color: var(--charcoal);
+  }
+  table.ops-table tr:last-child td { border-bottom: none; }
+  table.ops-table .field { font-weight: 600; color: var(--charcoal); width: 240px; }
+  table.ops-table .na { color: var(--slate-500); font-style: italic; }
+  table.ops-table .src { color: var(--slate-500); font-size: 12px; margin-top: 4px; display: block; }
+  table.ops-table .val-positive { color: var(--green); font-weight: 600; }
+
+  .practice-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px; margin-top: 14px;
+  }
+  .practice-card {
+    background: white; border: 1px solid var(--slate-200);
+    border-left: 4px solid var(--forest-green-light);
+    padding: 16px 18px; border-radius: var(--radius-md);
+  }
+  .practice-card h5 { margin: 0 0 6px; font-size: 14px; color: var(--charcoal); }
+  .practice-card p { margin: 0; font-size: 13.5px; color: var(--charcoal-soft); line-height: 1.55; }
+  .practice-card .src { color: var(--slate-500); font-size: 12px; display: block; margin-top: 6px; }
+
+  .checklist {
+    background: white; border: 1px solid var(--slate-200);
+    border-radius: var(--radius-md); padding: 20px 24px;
+  }
+  .checklist ol { padding-left: 22px; margin: 8px 0; }
+  .checklist li { font-size: 14.5px; color: var(--charcoal); padding: 6px 0; line-height: 1.55; }
+  .checklist li strong { color: var(--forest-green-dark); }
+
+  .gap-tag {
+    display: inline-block; padding: 2px 8px; border-radius: 10px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.02em;
+    margin-left: 6px;
+  }
+  .gap-tag.disclosed { background: #dcfce7; color: #166534; }
+  .gap-tag.partial   { background: #fef9c3; color: #854d0e; }
+  .gap-tag.absent    { background: #fee2e2; color: #991b1b; }
+
+  .pa-footer { background: var(--forest-green); color: rgba(255,255,255,0.85); padding: 28px 0; margin-top: 60px; font-size: 13px; }
+  .pa-footer p { margin: 0; }
+</style>
+</head>
+<body>
+
+<header class="pa-header">
+  <div class="container">
+    <div class="pa-brand">
+      <div class="pa-logo">⛳</div>
+      <div>
+        <h1>Indonesia Golf Industry — Peer Analysis</h1>
+        <div class="subtitle">Operations · 01. Course Operations &amp; Agronomy</div>
+      </div>
+    </div>
+    <nav class="pa-nav">
+      <a href="../index.html">Overview</a>
+      <a href="../comparison/pricing.html">Pricing</a>
+      <a href="../comparison/financial.html">Financials</a>
+      <a href="../comparison/operating.html">Course Specs</a>
+      <a href="index.html" class="active">Operations</a>
+      <a href="../about/methodology.html">Methodology</a>
+      <a href="../../index.html">← Map</a>
+    </nav>
+  </div>
+</header>
+
+<section class="pa-section">
+  <div class="container">
+    <div class="crumbs"><a href="index.html">← Operations</a> &nbsp;·&nbsp; 01. Course Operations &amp; Agronomy</div>
+    <h2 style="font-size: 30px; margin: 0 0 6px;">Course Operations &amp; Agronomy</h2>
+    <p class="lede" style="margin-top: 4px;">Turf species, irrigation system, water source, fertiliser regime, renovation cadence, maintenance equipment — the dimension that drives the single largest line of golf-course operating expense and the durability of asset quality.</p>
+
+    <div class="pilot-banner">
+      <strong>Pilot release · 1 of 13 peers curated.</strong> P001 (PT Damai Indah Golf Tbk — DMIG) shown below. Curation across the remaining 12 peers follows the same query template (six natural-language queries against the indexed annual report corpus) and uses identical disclosure-vs-not-disclosed classification.
+    </div>
+
+    <!-- ============== Industry context ============== -->
+    <h3 style="margin-top: 28px;">Industry context</h3>
+    <p style="font-size: 15px; color: var(--charcoal-soft); line-height: 1.65;">
+      Indonesia hosts roughly 150 operating golf courses across Java, Bali, Sumatra and Sulawesi. Climate is tropical / equatorial throughout, with year-round growing seasons but pronounced wet-season drainage challenges. The dominant fairway grasses on Indonesian courses, based on regional benchmarks where disclosed, are Bermuda variants (Tifway 419, TifTuf) and Paspalum (sea-grade, salt-tolerant for coastal courses); greens are typically TifEagle, Tifdwarf, or, on premium coastal sites, Paspalum. <strong>None of the 13 IDX-listed peers disclose turf species in their annual reports.</strong>
+    </p>
+    <p style="font-size: 15px; color: var(--charcoal-soft); line-height: 1.65;">
+      Renovation cadence on Indonesian courses, based on management literature, runs 7–10 years for greens (resurfacing) and 15–20 years for full fairway grass replacement, modified by tropical-season wear. P001's FY2023 disclosure of "reshaping and sand-capping fairways" at the BSD course is consistent with a 20-year-cohort (course opened 1992) approaching mid-life agronomy refresh.
+    </p>
+
+    <!-- ============== Peer disclosure table ============== -->
+    <h3 style="margin-top: 32px;">Peer-level disclosure — Agronomy fields</h3>
+    <p class="lede">Each row is one agronomy-related data point. The column shows P001's annual-report disclosure status. Source references cite the printed page of the annual report PDF.</p>
+
+    <table class="ops-table" style="margin-top: 14px;">
+      <thead>
+        <tr><th style="width: 280px;">Field</th><th>P001 — DMIG (Damai Indah Golf)</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="field">Fairway grass species <span class="gap-tag absent">ABSENT</span></td>
+          <td><span class="na">N/A — Not Disclosed</span><span class="src">No reference to Bermuda / Paspalum / Zoysia variants in FY2022, FY2023, or FY2024 ARs.</span></td>
+        </tr>
+        <tr>
+          <td class="field">Green grass species <span class="gap-tag absent">ABSENT</span></td>
+          <td><span class="na">N/A — Not Disclosed</span></td>
+        </tr>
+        <tr>
+          <td class="field">Rough grass species <span class="gap-tag absent">ABSENT</span></td>
+          <td><span class="na">N/A — Not Disclosed</span></td>
+        </tr>
+        <tr>
+          <td class="field">Irrigation system &amp; vendor <span class="gap-tag absent">ABSENT</span></td>
+          <td><span class="na">N/A — Not Disclosed</span><span class="src">No mention of Toro / Rain Bird / Hunter or pump-and-sprinkler count.</span></td>
+        </tr>
+        <tr>
+          <td class="field">Water source <span class="gap-tag absent">ABSENT</span></td>
+          <td><span class="na">N/A — Not Disclosed</span><span class="src">No reference to borehole, reservoir, or PDAM treated-water supply.</span></td>
+        </tr>
+        <tr>
+          <td class="field">Annual water consumption <span class="gap-tag absent">ABSENT</span></td>
+          <td><span class="na">N/A — Not Disclosed</span></td>
+        </tr>
+        <tr>
+          <td class="field">Fertiliser / pesticide cost or volume <span class="gap-tag absent">ABSENT</span></td>
+          <td><span class="na">N/A — Not Disclosed</span><span class="src">Aggregated into "Cost of Revenue — Golf" line (FY2023: Rp 51.2 bn — covers all course OpEx).</span></td>
+        </tr>
+        <tr>
+          <td class="field">Renovation activity <span class="gap-tag partial">PARTIAL</span></td>
+          <td>
+            FY2023: Reshaping and sand-capping fairway at BSD Course to improve grass quality and drainage. <br>
+            FY2022: BSD clubhouse renovation + new VVIP room + re-designing entrance + paving-block road around player areas. <br>
+            <em>No formal renovation cycle disclosed.</em>
+            <span class="src">Source: AR FY2023 p.4; AR FY2022 p.4</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="field">Maintenance equipment refresh <span class="gap-tag partial">PARTIAL</span></td>
+          <td>
+            FY2023: "Operational machine tool rejuvenation program" initiated for course maintenance equipment.<br>
+            <em>Brand, model, and equipment count not disclosed.</em>
+            <span class="src">Source: AR FY2023 p.4</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="field">Maintenance headcount per hole <span class="gap-tag absent">ABSENT</span></td>
+          <td><span class="na">N/A — Not Disclosed at per-hole level</span><span class="src">Department headcount provided at BSD vs PIK course level — see Headcount dimension page.</span></td>
+        </tr>
+        <tr>
+          <td class="field">Environmental award / recognition <span class="gap-tag disclosed">DISCLOSED</span></td>
+          <td>
+            1997 award: "Lapangan Golf dengan Kepedulian terhadap Lingkungan" (Environmental Care Golf Course) — BSD Course — Tangerang Regency Government Level II.
+            <span class="src">Source: AR FY2022 p.11</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- ============== Best-practice cards ============== -->
+    <h3 style="margin-top: 36px;">Notable practice observations</h3>
+    <p class="lede">What can be inferred from peer-disclosed activity rather than direct technical disclosure.</p>
+    <div class="practice-grid">
+      <div class="practice-card">
+        <h5>Sand-capping for drainage</h5>
+        <p>P001 explicitly disclosed FY2023 sand-capping of BSD fairways alongside fairway reshaping. This is a recognised tropical-climate fix for wet-season drainage / disease pressure and is consistent with an ageing (1992) course entering mid-life refresh.</p>
+        <span class="src">AR FY2023 p.4</span>
+      </div>
+      <div class="practice-card">
+        <h5>Tropical agronomy refresh cadence</h5>
+        <p>The 30-year gap between original construction (1992) and disclosed fairway sand-cap / reshape (FY2023) brackets one full renovation cycle. Future investors should expect a comparable cadence — i.e. budget a major fairway intervention every 20–30 years on a tropical Indonesian site.</p>
+        <span class="src">Inference; AR FY2022 p.4 (BSD clubhouse refresh) + AR FY2023 p.4 (fairway works)</span>
+      </div>
+      <div class="practice-card">
+        <h5>Machine refresh as productivity signal</h5>
+        <p>Disclosure of an "operational machine tool rejuvenation program" suggests course-maintenance fleet age was material enough to warrant strategic communication. Investors evaluating a target should request fleet age and replacement cycle on mowers, aerators, and topdressers.</p>
+        <span class="src">AR FY2023 p.4</span>
+      </div>
+    </div>
+
+    <!-- ============== Investor checklist ============== -->
+    <h3 style="margin-top: 36px;">Operational due-diligence checklist — Agronomy</h3>
+    <p class="lede">Annual-report-derived gaps that an acquirer should close via site visit, vendor interview, or management questionnaire.</p>
+
+    <div class="checklist">
+      <ol>
+        <li><strong>Turf species inventory</strong> — request grass cultivar list per fairway / green / rough / tee, with year of last full re-grass. Standard cultivars in Indonesia: Tifway 419, TifEagle, Paspalum SeaIsle, Zoysia matrella.</li>
+        <li><strong>Irrigation system schematic</strong> — request irrigation map: pump quantity / horsepower, sprinkler head count and model, pipe loop topology, central control software (Toro Lynx / Rain Bird IC).</li>
+        <li><strong>Water rights and source mix</strong> — confirm legal water rights (groundwater abstraction permit, surface water rights, PDAM contract), reservoir capacity (m³), historical drawdown, and projected water-tariff escalation.</li>
+        <li><strong>Annual chemical &amp; fertiliser spend</strong> — request 3-year history of fertiliser, fungicide, insecticide, herbicide spend broken out by product. Standard tropical course spend benchmark: USD 8,000–18,000 per hole per year.</li>
+        <li><strong>Renovation history &amp; CapEx plan</strong> — full history of greens resurfacing, fairway re-grass, bunker reconstruction, drainage works, with cost. Forward 5-year CapEx plan + any deferred maintenance.</li>
+        <li><strong>Course superintendent profile</strong> — superintendent tenure, GCSAA certification status, succession bench depth, key reports (assistant supt, equipment mgr, irrigation tech).</li>
+        <li><strong>Maintenance fleet inventory</strong> — full equipment list with age, replacement cost, residual value, maintenance contract. Greens mowers (count, age), fairway mowers, rough mowers, aerators, topdressers, sprayers, utility carts.</li>
+        <li><strong>Maintenance facility audit</strong> — workshop size, chemical-storage SLF compliance, fuel-storage permit, wash-pad waste-water treatment, employee facilities.</li>
+        <li><strong>Pest &amp; disease history</strong> — log of major disease events (dollar spot, fairy ring, brown patch), pest pressure (mole crickets, grubs), and response cost. Resistance build-up in any chemical class.</li>
+        <li><strong>Sustainability certification trajectory</strong> — Audubon Cooperative Sanctuary, GEO Certified, or domestic environmental certifications. ISO 14001 if pursued.</li>
+      </ol>
+    </div>
+
+    <p style="font-size: 13.5px; color: var(--slate-500); margin-top: 32px;">
+      <strong>Bottom line:</strong> Annual reports of IDX-listed peers offer essentially no public window into agronomy specifics. Treat this dimension as an entirely private-channel diligence area. The investment value of this page is in scoping the questions, not in reading off peer benchmarks.
+    </p>
+  </div>
+</section>
+
+<footer class="pa-footer">
+  <div class="container">
+    <p>Data sourced from publicly available IDX annual reports (FY2022–FY2024). Independent industry research — no commercial affiliation. Last updated: 2026-05-11.</p>
+  </div>
+</footer>
+
+</body>
+</html>

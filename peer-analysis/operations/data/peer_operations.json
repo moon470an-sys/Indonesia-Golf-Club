@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.0-pilot",
+  "last_updated": "2026-05-11",
+  "coverage": "pilot — 1 of 13 peers curated. Full curation pending.",
+  "currency_convention": "All monetary values in IDR (Indonesian Rupiah). 'bn' = billion. 'mn' = million.",
+  "missing_value_policy": "Fields where the annual report does not disclose the data are tagged 'N/A — Not Disclosed'. No imputation. No web-source fill-in.",
+  "source_convention": "AR FY{year} p.{page} — refers to the issuer's published annual report PDF. Page numbers are the printed page (not PDF page).",
+  "peers": [
+    {
+      "peer_id": "P001",
+      "ticker": "DMIG",
+      "legal_entity": "PT Damai Indah Golf Tbk",
+      "course_name": "Damai Indah Golf — BSD Course & PIK Course",
+      "region": "Tangerang (BSD City) + North Jakarta (PIK)",
+      "data_coverage_pct": 42,
+      "agronomy": {
+        "fairway_grass": {"value": "N/A — Not Disclosed", "source": null},
+        "green_grass": {"value": "N/A — Not Disclosed", "source": null},
+        "rough_grass": {"value": "N/A — Not Disclosed", "source": null},
+        "fertilizer_pesticide_cost": {"value": "N/A — Not Disclosed", "source": null},
+        "irrigation_system": {"value": "N/A — Not Disclosed", "source": null},
+        "water_source": {"value": "N/A — Not Disclosed", "source": null},
+        "water_use_annual": {"value": "N/A — Not Disclosed", "source": null},
+        "renovation_cycle": {"value": "Not formalised as a fixed cycle. FY2023 disclosed reshaping & sand-capping of BSD fairways to improve grass quality and drainage. FY2022 disclosed BSD clubhouse renovation + new VVIP room + paving-block road around player area.", "source": "AR FY2023 p.4; AR FY2022 p.4"},
+        "maintenance_equipment": {"value": "Operational machine tool rejuvenation program initiated FY2023 for golf course maintenance equipment. Brand/model not specified.", "source": "AR FY2023 p.4"},
+        "maintenance_headcount_per_hole": {"value": "N/A — Not Disclosed at the per-hole level. See Headcount for department totals.", "source": null}
+      },
+      "headcount": {
+        "total_headcount": {"value": 196, "fy": 2022, "source": "AR FY2022 p.101", "note": "Disclosed as 'employees with right to receive benefits'. FY2021 figure was 342, materially higher pre-COVID restructuring."},
+        "department_breakdown": {
+          "value": "Disclosed at BSD/PIK course level per department. FY2023 partial: Golf Operation BSD 7, PIK 6 (total 13). Driving Range BSD: 2023 = 2, 2022 = 4. Other departments (GCM, F&B, Engineering, G&A, Security) listed but full counts truncated in extraction.",
+          "source": "AR FY2023 p.19",
+          "needs_re-extraction": "Yes — full table requires direct AR read"
+        },
+        "caddy_operation_model": {"value": "N/A — Not Disclosed", "source": null},
+        "caddy_pool_size": {"value": "N/A — Not Disclosed", "source": null},
+        "caddy_compensation": {"value": "N/A — Not Disclosed", "source": null},
+        "outsourcing_model": {"value": "N/A — Not explicitly disclosed", "source": null},
+        "salary_disclosure": {"value": "Aggregated employee benefit liability disclosed (Rp 12.4 bn FY2024, Rp 12.9 bn FY2023, actuarial Projected Unit Credit method). Per-role salaries not disclosed.", "source": "AR FY2024 p.84"},
+        "union_status": {"value": "N/A — Not Disclosed", "source": null},
+        "turnover_rate": {"value": "N/A — Not Disclosed", "source": null}
+      },
+      "revenue_ops": {
+        "annual_rounds": {"value": 120335, "fy": 2023, "source": "AR FY2023 p.21", "note": "Total golfers BSD+PIK 36-hole. FY2022 = 107,356; FY2021 = 85,194 implied. +12.09% YoY 2023."},
+        "monthly_distribution": {"value": "Disclosed by month and course. BSD ~4,000–4,700/month; PIK ~5,300–6,200/month (consistently higher utilisation at PIK).", "source": "AR FY2023 p.14"},
+        "green_fee_structure": {"value": "Not enumerated in AR. Implied from revenue ratios that members/non-members have differential pricing; specific rate card requires website verification.", "source": null},
+        "tee_time_platform": {"value": "N/A — Not Disclosed", "source": null},
+        "daily_slot_capacity": {"value": "N/A — Not Disclosed", "source": null},
+        "membership_categories": {"value": "Two main structures disclosed: (1) Refundable membership (older issuance, refundable after 30 years), and (2) Permanent transferable membership (new issuance since 2012; amortised over 3 yrs initially, since 2020 over life of certificate).", "source": "AR FY2023 p.85"},
+        "membership_fee_disclosed": {"value": "Historical buy-in: Rp 180 mn/member (registered as of 31 Dec 2004); Rp 150 mn/member (registered as of 31 Dec 2003). Refundable membership balance at 31 Dec 2024 = Rp 50.1 bn (declining as members redeem).", "source": "AR FY2023 p.86; AR FY2024 p.82"},
+        "member_count_total": {"value": "Not directly stated. Refundable balance of Rp 50.1 bn at Rp 150–180 mn per cert implies ~300 active refundable members. Permanent transferable separately accounted.", "source": "Derived from AR FY2024 p.82"},
+        "tournament_corporate_events": {"value": "Tournament revenue included in golf course business revenue line; not separately enumerated.", "source": "AR FY2023 p.21"}
+      },
+      "f_and_b": {
+        "facilities_list": {"value": "BSD Course restaurant; PIK Course restaurant; BSD swimming pool canteen; PIK 'The Range' food court (7 tenants).", "source": "AR FY2022 p.15-16; AR FY2022 p.18"},
+        "f_and_b_revenue": {
+          "bsd_restaurant_fy2023": 17238750403,
+          "pik_restaurant_fy2023": 20452428599,
+          "bsd_pool_canteen_fy2023": 296024316,
+          "the_range_fnb_fy2023": "Bundled within The Range total Rp 31.35 bn; F&B + banquet line separately disclosed but not extracted in pilot.",
+          "source": "AR FY2023 p.15"
+        },
+        "f_and_b_share_of_total_revenue": {"value": "Restaurant + recreation ≈ Rp 38 bn vs total Rp 245 bn (FY2023) → ~15.5% of revenue. Excludes The Range F&B which is captured separately under Recreation.", "source": "Derived from AR FY2023 p.21"},
+        "operation_model": {"value": "In-house. The Range food court has tenant operators (tenant income disclosed as line item).", "source": "AR FY2023 p.18 (tenant income)"},
+        "capture_rate": {"value": "N/A — Not Disclosed (would require pax-per-round data)", "source": null},
+        "per_pax_spend": {"value": "N/A — Not Disclosed", "source": null}
+      },
+      "facilities": {
+        "land_area": {"value": "BSD City: 76 ha. PIK: 80 ha. Total ~156 ha land rights.", "source": "AR FY2024 p.80"},
+        "clubhouse_status": {"value": "BSD clubhouse renovated FY2022 with new VVIP room and re-designed entrance. Specific m² not disclosed.", "source": "AR FY2022 p.4"},
+        "driving_range_bays": {"value": "The Range@Damai Indah Golf, PIK: 78 bays (52 with Inrange technology + auto tee-up system). 'First golftainment in Indonesia'. Soft-opened 28 Sep 2022, fully operational from 2023.", "source": "AR FY2022 p.18"},
+        "academy_pro_shop_locker": {"value": "Pro shop: 4 named golf shops at The Range PIK. Academy: not separately enumerated. Locker: not detailed.", "source": "AR FY2022 p.18"},
+        "ancillary_facilities": {"value": "BSD swimming pool (school groups, swim championships hosted). The Range mini-golf 18-hole short course (FY2023 revenue Rp 523 mn).", "source": "AR FY2023 p.15; p.18"},
+        "golf_carts": {"value": "Cart use referenced ('player driving golf cart') but fleet quantity not disclosed.", "source": "AR FY2022 p.4"},
+        "parking_generator_security": {"value": "N/A — Not Disclosed", "source": null},
+        "insurance_coverage": {"value": "Fixed assets (excluding land) insured for Rp 465.7 bn + USD 2 mn (FY2024).", "source": "AR FY2024 p.79"}
+      },
+      "governance": {
+        "legal_form": {"value": "PT (Perseroan Terbatas) Tbk + PMA status (Foreign Investment Company / Penanaman Modal Asing). IDX listed since 27 March 2002 (effective letter S-603/PM/2002).", "source": "AR FY2022 p.5"},
+        "ownership_structure": {"value": "Major shareholders include PT Mandara Permai, PT Bumi Serpong Damai; share transfers from Obayashi Corporation to PT Ciputra Residence disclosed.", "source": "AR FY2023 p.88; transfer attachment"},
+        "authorized_capital": {"value": "Rp 68.25 bn. 516 Series A + 1,759 Series B shares of Rp 30 mn nominal each.", "source": "AR FY2023 p.85"},
+        "land_rights_type": {"value": "Hak atas tanah (land rights) with deferred extension costs amortised over the rights period. HGB type implied for built-up area.", "source": "AR FY2024 p.80"},
+        "permits_disclosed": {"value": "N/A — Specific permit numbers (SLF, AMDAL) not disclosed in AR. Articles of Association amendments (AHU-0058113.AH.01.02 of 2021) disclosed.", "source": "AR FY2022 p.5"},
+        "taxation": {"value": "PPh Corporate, PPN VAT, PPh Article 4(2). Tax audit history disclosed (FY2017 underpayment notices Nov 2022; objection KEP-03674/KEB/PJ/WPJ.07/2023 partially granted Dec 2023).", "source": "AR FY2023 p.92-95"},
+        "bpjs_certification": {"value": "N/A — Not separately disclosed", "source": null},
+        "environmental_certification": {"value": "N/A — No ISO 14001/Audubon/GEO certification disclosed", "source": null},
+        "legal_status": {"value": "No material litigation. No pending claims against company, BoC, or BoD as of report date.", "source": "AR FY2023 p.13"}
+      },
+      "digital": {
+        "pos_system": {"value": "N/A — Not Disclosed", "source": null},
+        "tee_time_booking_platform": {"value": "N/A — Not Disclosed", "source": null},
+        "crm_system": {"value": "N/A — Not Disclosed", "source": null},
+        "accounting_software": {"value": "N/A — Software not disclosed. External auditor FY2024 = Kanaka Puradiredja, Suhartono.", "source": "AR FY2024 p.20"},
+        "cart_gps_iot": {"value": "The Range PIK uses 'Inrange technology' across 52 of 78 driving range bays (ball-tracking).", "source": "AR FY2022 p.18"},
+        "mobile_app": {"value": "N/A — Not Disclosed", "source": null},
+        "general_it_investment": {"value": "FY2023 disclosed 'operational machine tool rejuvenation program' for course maintenance, indicating digital/equipment refresh activity. Specifics not given.", "source": "AR FY2023 p.4"}
+      },
+      "marketing": {
+        "marketing_budget_share": {"value": "N/A — Not separately disclosed. Total operating expenses FY2023 = Rp 75.6 bn (across all functions).", "source": "AR FY2023 p.21"},
+        "primary_channels": {"value": "N/A — Not Disclosed", "source": null},
+        "member_events": {"value": "N/A — Specific calendar not disclosed", "source": null},
+        "reciprocal_access": {"value": "N/A — Not Disclosed", "source": null},
+        "external_tournaments_hosted": {"value": "Implied via 'green fee and golf tournament revenue' line item but tournament names (PGTI / Asian Tour / sponsorship deals) not disclosed.", "source": "AR FY2023 p.21"},
+        "hotel_airline_partnerships": {"value": "N/A — Not Disclosed", "source": null},
+        "awards_recognition": {
+          "value": [
+            "1992: 'Golf Nugget Award for Site Plan' — PIK Course — Pacific Coast Builders Conference",
+            "1996: 'Host Venue of The Year' — BSD Course — APGA",
+            "1997: 'Lapangan Golf dengan Kepedulian terhadap Lingkungan' (Environmental Care) — BSD — Tangerang Local Govt L2",
+            "1999: 'The Best Golf Course in Indonesia' — BSD — USA Golf Digest",
+            "2000: 'Best 3 Asia/Pacific Course of The Year' — (course unspecified in extract)"
+          ],
+          "source": "AR FY2022 p.11"
+        },
+        "csr_community": {"value": "Ciputra Golfprenuer Foundation (junior player development) + employment opportunities around the courses + national-athlete training opportunities.", "source": "AR FY2023 p.13"}
+      },
+      "evidence_file": "raw_peer_data/operations/evidence/peer_P001_operations.json"
+    }
+  ],
+  "pending_peers": [
+    {"peer_id": "P002", "ticker": "KPIG", "status": "not_extracted"},
+    {"peer_id": "P003", "ticker": "MKPI", "status": "not_extracted"},
+    {"peer_id": "P004", "ticker": "PIPG", "status": "extracting_in_background"},
+    {"peer_id": "P005", "ticker": "BSDE", "status": "not_extracted"},
+    {"peer_id": "P006", "ticker": "DILD", "status": "not_extracted"},
+    {"peer_id": "P007", "ticker": "GOLF", "status": "not_extracted"},
+    {"peer_id": "P008", "ticker": "MDLN", "status": "not_extracted"},
+    {"peer_id": "P009", "ticker": "SMRA", "status": "not_extracted"},
+    {"peer_id": "P010", "ticker": "SMDM", "status": "not_extracted"},
+    {"peer_id": "P011", "ticker": "KIJA", "status": "not_extracted"},
+    {"peer_id": "P012", "ticker": "BKDP", "status": "not_extracted"},
+    {"peer_id": "P013", "ticker": "BKSL", "status": "not_extracted"}
+  ],
+  "industry_aggregates": {
+    "note": "Aggregates will be populated once curation reaches ≥5 peers. Pilot view shows P001 only."
+  },
+  "data_availability_observation": {
+    "summary": "Indonesian listed golf operator annual reports prioritise financial statements, ownership structure, board profiles, and segment-level revenue commentary. Operational specifics (grass varieties, irrigation vendor, fertilizer cost, POS system, booking platform, caddy structure, cart fleet) are systematically absent. The richest disclosure areas are: (a) total headcount + departmental count for pure-play operators; (b) round volume + monthly distribution; (c) F&B revenue split by outlet; (d) membership accounting (refundable vs transferable); (e) land area + insurance coverage; (f) tax audit history.",
+    "dimensions_with_high_disclosure": ["headcount (top-line)", "revenue_ops (round volume)", "f_and_b (revenue split)", "facilities (land area)", "governance (legal/tax)"],
+    "dimensions_with_low_disclosure": ["agronomy (almost entirely undisclosed)", "digital (almost entirely undisclosed)", "marketing (budget undisclosed; awards retrospectively listed)"]
+  }
+}

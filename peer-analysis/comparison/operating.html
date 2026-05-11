@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Operations & Workforce — Indonesia Golf Industry Peer Analysis</title>
+<meta name="description" content="Course physical specs, workforce, organisation structure, and salary disclosure across 13 IDX-listed Indonesian peer golf operators." />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/peer-style.css?v=20260511b" />
+</head>
+<body>
+<header class="pa-header">
+  <div class="container">
+    <div class="pa-brand">
+      <div class="pa-logo">⛳</div>
+      <div><h1>Indonesia Golf Industry — Peer Analysis</h1><div class="subtitle">Operations &amp; Workforce · Course specs · Headcount · Org · Salary disclosure</div></div>
+    </div>
+    <nav class="pa-nav">
+      <a href="../index.html">Overview</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="financial.html">Financials</a>
+      <a href="operating.html" class="active">Course Specs</a>
+      <a href="../operations/index.html">Operations</a>
+      <a href="../about/methodology.html">Methodology</a>
+      <a href="../../index.html">← Map</a>
+    </nav>
+  </div>
+</header>
+
+<section class="pa-section">
+  <div class="container">
+    <h3>Course Physical Specs &amp; Workforce Disclosure</h3>
+    <p class="lede">17 peer-mapped courses + headcount, departmental structure and salary disclosure for 13 IDX-listed operators. All data is sourced directly from publicly available annual reports (FY2022–FY2024). Where a peer does not disclose at the course level, the page shows the disclosure scope (group / segment / parent-only) so the reader can judge comparability.</p>
+
+    <!-- ====== Section 1: Course Physical ====== -->
+    <h3 style="margin-top:24px">1. Course Physical Specs</h3>
+    <div class="pa-charts">
+      <div class="pa-chart">
+        <h4>Holes Distribution</h4>
+        <div class="canvas-wrap" style="height:260px"><canvas id="chartHoles"></canvas></div>
+      </div>
+      <div class="pa-chart">
+        <h4>Courses by Tier (heuristic)</h4>
+        <div class="canvas-wrap" style="height:260px"><canvas id="chartTier"></canvas></div>
+      </div>
+    </div>
+
+    <h4 style="margin-top:16px">Course Specs Table</h4>
+    <div style="overflow:auto">
+      <table class="pa-table" id="tblSpecs"></table>
+    </div>
+
+    <!-- ====== Section 2: Workforce ====== -->
+    <h3 style="margin-top:32px">2. Workforce — Total Headcount per Peer</h3>
+    <p class="lede">All figures are total entity / group headcount as disclosed in the peer's annual report. Some peers report at parent vs group level — both shown where applicable. Pure-play golf companies (DMIG / PIPG / GOLF) are the most directly comparable.</p>
+
+    <div class="pa-charts">
+      <div class="pa-chart">
+        <h4>Total Headcount by Peer</h4>
+        <div class="canvas-wrap" style="height:340px"><canvas id="chartHeadcount"></canvas></div>
+      </div>
+      <div class="pa-chart">
+        <h4>Staff per Hole — Pure-play / Comparable Peers</h4>
+        <div class="canvas-wrap" style="height:340px"><canvas id="chartStaffPerHole"></canvas></div>
+      </div>
+    </div>
+
+    <h4 style="margin-top:16px">Workforce Disclosure Table</h4>
+    <div class="pa-source" style="margin-bottom:8px">
+      <strong>Disclosure scope</strong>: "Entity-direct" = the peer operates the golf course as its primary business; total headcount is golf-relevant. "Group-bundled" = golf is a small share of a larger conglomerate; HC includes non-golf operations.
+    </div>
+    <div style="overflow:auto">
+      <table class="pa-table" id="tblWorkforce"></table>
+    </div>
+
+    <!-- ====== Section 3: Salary Expense ====== -->
+    <h3 style="margin-top:32px">3. Salary Expense Disclosure</h3>
+    <p class="lede">Peers disclose salary expense at varying levels: golf-segment direct cost (most analyst-useful), entity-level operating expense, or group-level only. Two peers — <strong>MDLN</strong> and <strong>KIJA</strong> — explicitly carve out golf segment cost; <strong>SMDM</strong> reports a 4-pillar segment (Golf + Country Club + Estate Mgmt + Memberships); other peers bundle into broader operating expense lines.</p>
+
+    <div class="pa-charts" style="grid-template-columns:1fr;">
+      <div class="pa-chart">
+        <h4>Salary Expense per Peer (IDR bn, scoped per disclosure)</h4>
+        <div class="canvas-wrap" style="height:320px"><canvas id="chartSalary"></canvas></div>
+      </div>
+    </div>
+
+    <h4 style="margin-top:16px">Salary Disclosure Table</h4>
+    <div style="overflow:auto">
+      <table class="pa-table" id="tblSalary"></table>
+    </div>
+
+    <!-- ====== Section 4: PIPG Department Breakdown ====== -->
+    <h3 style="margin-top:32px">4. Departmental Breakdown — PIPG (most-disclosed pure-play)</h3>
+    <p class="lede">PT Pondok Indah Padang Golf Tbk (PIPG) publishes the most detailed department-level headcount distribution in the peer set, broken into 10 departments. This is the analytical reference for any 18-hole urban-premium Jakarta course operator.</p>
+    <div class="pa-charts">
+      <div class="pa-chart">
+        <h4>PIPG Department Distribution (FY2022 chart, n=266)</h4>
+        <div class="canvas-wrap" style="height:340px"><canvas id="chartPIPGDept"></canvas></div>
+      </div>
+      <div class="pa-chart">
+        <h4>PIPG Manager-level Org (FY2023)</h4>
+        <div class="pa-pane" style="padding:12px;font-size:13px;line-height:1.6">
+          <div><strong>GCM Manager</strong> · Golf Course Maintenance</div>
+          <div><strong>Golf Operational Manager</strong> · Tee sheet, pace of play, pro shop</div>
+          <div><strong>F&amp;B Manager + Executive Chef</strong> · Restaurant, bar, banquet</div>
+          <div><strong>Property &amp; ME Manager</strong> · Clubhouse, MEP</div>
+          <div><strong>Marketing &amp; Memberships Manager</strong> · Largest dept (86 staff)</div>
+          <div><strong>Finance &amp; Accounting Manager</strong></div>
+          <div><strong>HR / IT / GA Manager</strong></div>
+          <div><strong>Secretary</strong> · Theresia P. Laras</div>
+          <div><strong>Internal Audit</strong> · Lanang Prabowo</div>
+          <div style="margin-top:8px; color: var(--slate-500); font-size:11px">Source: PIPG AR FY2023 p.15 (org chart)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== Section 5: Disclosure Quality Matrix ====== -->
+    <h3 style="margin-top:32px">5. Disclosure Quality Matrix</h3>
+    <p class="lede">Comparability of each peer for cross-operator headcount / salary analysis. Pure-play golf companies and gold-standard segment disclosers (MDLN) provide the highest-quality references; conglomerate group-only disclosures are useful only for industry-context purposes.</p>
+    <div style="overflow:auto">
+      <table class="pa-table" id="tblQuality"></table>
+    </div>
+
+  </div>
+</section>
+
+<footer class="pa-footer">
+  <div class="container">
+    <div class="bottom">All figures from public IDX annual report disclosures (FY2022–FY2024). Disclosure quality / comparability ratings are this dashboard's interpretation. See <a href="../about/methodology.html">methodology</a>.</div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+async function loadJson(p) { const r = await fetch(p); return r.json(); }
+function fmtIDR(v) { if (v == null) return '<span class="na">—</span>'; if (v >= 1e9) return (v/1e9).toFixed(2)+' B'; if (v >= 1e6) return (v/1e6).toFixed(1)+' M'; return v.toLocaleString(); }
+function escapeHtml(s) { return String(s ?? '').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;'); }
+function tierColor(t) { return t === 'A' ? '#1a4d10' : t === 'A-' ? '#3d7a1e' : t === 'B+' ? '#8b6914' : '#64748b'; }
+
+(async () => {
+  const [op, workforce, peers] = await Promise.all([
+    loadJson('../data/comparison_operating.json'),
+    loadJson('../data/comparison_workforce.json'),
+    loadJson('../data/peers.json'),
+  ]);
+
+  // ===== Section 1: Course physical =====
+  const holesBuckets = { '9': 0, '18': 0, '27': 0, '36': 0, 'Other': 0 };
+  op.forEach(o => { if (o.holes == null) return; const k = String(o.holes); if (k in holesBuckets) holesBuckets[k]++; else holesBuckets['Other']++; });
+  new Chart(document.getElementById('chartHoles'), {
+    type: 'bar',
+    data: { labels: Object.keys(holesBuckets), datasets: [{ data: Object.values(holesBuckets), backgroundColor: '#2D5016' }] },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } } }
+  });
+
+  const courseByTier = {};
+  op.forEach(o => { const t = o.tier_hint || 'N/A'; courseByTier[t] = (courseByTier[t] || 0) + 1; });
+  new Chart(document.getElementById('chartTier'), {
+    type: 'doughnut',
+    data: { labels: Object.keys(courseByTier), datasets: [{ data: Object.values(courseByTier), backgroundColor: ['#1a4d10','#3d7a1e','#8b6914','#64748b','#cbd5e1'] }] },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+  });
+
+  // Specs table
+  const tbl = document.getElementById('tblSpecs');
+  let head = `<thead><tr><th>Peer</th><th>Ticker</th><th>Course</th><th class="r">Holes</th><th class="r">Par</th><th>Area</th><th>Region</th><th>Tier</th></tr></thead>`;
+  let body = '<tbody>' + op.map(o => `<tr>
+    <td>${o.peer_id}</td><td>${o.ticker}</td>
+    <td>${escapeHtml(o.course_name)}</td>
+    <td class="r">${o.holes != null ? o.holes : '<span class="na">—</span>'}</td>
+    <td class="r">${o.par != null ? o.par : '<span class="na">—</span>'}</td>
+    <td>${o.area_ha_estimate && o.area_ha_estimate !== 'N/A' ? escapeHtml(o.area_ha_estimate) : '<span class="na">N/A</span>'}</td>
+    <td>${escapeHtml(o.region || '')}</td>
+    <td><span class="pa-tier ${(o.tier_hint || 'NA').replace(/[^A-Za-z+-]/g,'')}">${escapeHtml(o.tier_hint || 'N/A')}</span></td>
+  </tr>`).join('') + '</tbody>';
+  tbl.innerHTML = head + body;
+
+  // ===== Section 2: Workforce =====
+  const wf = workforce.peers;
+
+  // Headcount bar (Hilights pure-play in green)
+  const wfSorted = [...wf].sort((a, b) => (b.total_headcount || b.total_headcount_group || 0) - (a.total_headcount || a.total_headcount_group || 0));
+  const isPurePlay = (p) => p.type.includes('Pure-play') || p.type.includes('Golf-led');
+  new Chart(document.getElementById('chartHeadcount'), {
+    type: 'bar',
+    data: {
+      labels: wfSorted.map(p => `${p.peer_id} ${p.ticker}`),
+      datasets: [{
+        data: wfSorted.map(p => p.total_headcount || p.total_headcount_group || 0),
+        backgroundColor: wfSorted.map(p => isPurePlay(p) ? '#15803d' : '#64748b'),
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      indexAxis: 'y',
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => `${ctx.parsed.x.toLocaleString()} employees` } }
+      },
+      scales: { x: { type: 'logarithmic', title: { display: true, text: 'Headcount (log scale)' } } }
+    }
+  });
+
+  // Staff per hole (only peers with data)
+  const sph = wf.filter(p => p.staff_per_hole != null);
+  sph.sort((a, b) => b.staff_per_hole - a.staff_per_hole);
+  new Chart(document.getElementById('chartStaffPerHole'), {
+    type: 'bar',
+    data: {
+      labels: sph.map(p => `${p.peer_id} ${p.ticker}`),
+      datasets: [{
+        data: sph.map(p => p.staff_per_hole),
+        backgroundColor: sph.map(p => isPurePlay(p) ? '#15803d' : '#64748b'),
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => `${ctx.parsed.y.toFixed(1)} staff per hole` } }
+      },
+      scales: { y: { beginAtZero: true, title: { display: true, text: 'Staff per Hole' } } }
+    }
+  });
+
+  // Workforce table
+  const tblW = document.getElementById('tblWorkforce');
+  let hw = `<thead><tr><th>Peer</th><th>Ticker</th><th>Type</th><th class="r">Total HC</th><th>FY</th><th class="r">Staff/Hole</th><th>Disclosure scope</th><th>Comparability</th></tr></thead>`;
+  let bw = '<tbody>' + wf.map(p => {
+    const hc = p.total_headcount || p.total_headcount_group;
+    const scope = isPurePlay(p) ? '<span class="pa-tag green">Entity-direct (golf core)</span>' : '<span class="pa-tag">Group-bundled</span>';
+    return `<tr>
+      <td>${p.peer_id}</td><td><strong>${p.ticker}</strong></td>
+      <td>${escapeHtml(p.type)}</td>
+      <td class="r">${hc != null ? hc.toLocaleString() : '<span class="na">—</span>'}</td>
+      <td>${escapeHtml(p.headcount_fy)}</td>
+      <td class="r">${p.staff_per_hole != null ? p.staff_per_hole.toFixed(1) : '<span class="na">—</span>'}</td>
+      <td>${scope}</td>
+      <td>${escapeHtml(p.comparability)}</td>
+    </tr>`;
+  }).join('') + '</tbody>';
+  tblW.innerHTML = hw + bw;
+
+  // ===== Section 3: Salary =====
+  const sal = wf.filter(p => p.salary_expense_idr_bn != null);
+  sal.sort((a, b) => (b.salary_expense_idr_bn || 0) - (a.salary_expense_idr_bn || 0));
+  new Chart(document.getElementById('chartSalary'), {
+    type: 'bar',
+    data: {
+      labels: sal.map(p => `${p.peer_id} ${p.ticker}`),
+      datasets: [{
+        data: sal.map(p => p.salary_expense_idr_bn),
+        backgroundColor: sal.map(p => isPurePlay(p) ? '#15803d' : '#64748b'),
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: { y: { type: 'logarithmic', title: { display: true, text: 'Salary IDR bn (log)' } } },
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => `${ctx.parsed.y.toFixed(2)} IDR bn` } }
+      }
+    }
+  });
+
+  // Salary table
+  const tblS = document.getElementById('tblSalary');
+  let hs = `<thead><tr><th>Peer</th><th>Ticker</th><th class="r">Salary (IDR bn)</th><th>FY</th><th class="r">Salary / Revenue %</th><th>Disclosure scope &amp; note</th></tr></thead>`;
+  let bs = '<tbody>' + wf.map(p => {
+    if (p.salary_expense_idr_bn == null) {
+      return `<tr><td>${p.peer_id}</td><td><strong>${p.ticker}</strong></td><td class="r"><span class="na">—</span></td><td><span class="na">n/a</span></td><td class="r"><span class="na">—</span></td><td>${escapeHtml(p.salary_disclosure_note || 'Not disclosed')}</td></tr>`;
+    }
+    return `<tr>
+      <td>${p.peer_id}</td><td><strong>${p.ticker}</strong></td>
+      <td class="r">${p.salary_expense_idr_bn.toFixed(2)}</td>
+      <td>${escapeHtml(p.salary_fy)}</td>
+      <td class="r">${p.salary_to_revenue_pct != null ? p.salary_to_revenue_pct.toFixed(1) + '%' : '<span class="na">—</span>'}</td>
+      <td>${escapeHtml(p.salary_disclosure_note || '')}</td>
+    </tr>`;
+  }).join('') + '</tbody>';
+  tblS.innerHTML = hs + bs;
+
+  // ===== Section 4: PIPG Department Pie =====
+  const pipg = wf.find(p => p.ticker === 'PIPG');
+  if (pipg && pipg.department_breakdown) {
+    new Chart(document.getElementById('chartPIPGDept'), {
+      type: 'doughnut',
+      data: {
+        labels: Object.keys(pipg.department_breakdown),
+        datasets: [{
+          data: Object.values(pipg.department_breakdown),
+          backgroundColor: ['#1a4d10','#3d7a1e','#5fa138','#8b6914','#b88c2a','#a8794c','#7a604a','#5a4b3d','#928678','#bfb097'],
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'right', labels: { font: { size: 10 } } },
+          tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.parsed} staff (${(ctx.parsed / 266 * 100).toFixed(1)}%)` } }
+        }
+      }
+    });
+  }
+
+  // ===== Section 5: Disclosure Quality Matrix =====
+  const tblQ = document.getElementById('tblQuality');
+  let hq = `<thead><tr><th>Peer</th><th>Ticker</th><th>Type</th><th>HC disclosure</th><th>Salary disclosure</th><th>Dept breakdown</th><th>Org chart</th><th>Overall comparability</th></tr></thead>`;
+  let bq = '<tbody>' + wf.map(p => {
+    const hc = p.total_headcount || p.total_headcount_group;
+    const hcCell = hc != null ? `<span class="pa-tag green">${hc.toLocaleString()}</span>` : '<span class="pa-tag">—</span>';
+    const salCell = p.salary_expense_idr_bn != null ? '<span class="pa-tag green">Disclosed</span>' : '<span class="pa-tag">Bundled</span>';
+    const deptCell = p.department_breakdown ? '<span class="pa-tag green">Full</span>' : (p.department_breakdown_fy2024 || p.department_breakdown_fy2023 ? '<span class="pa-tag amber">Partial</span>' : '<span class="pa-tag">No</span>');
+    const orgCell = p.org_levels ? '<span class="pa-tag green">Yes</span>' : '<span class="pa-tag">—</span>';
+    return `<tr>
+      <td>${p.peer_id}</td><td><strong>${p.ticker}</strong></td>
+      <td>${escapeHtml(p.type)}</td>
+      <td>${hcCell}</td>
+      <td>${salCell}</td>
+      <td>${deptCell}</td>
+      <td>${orgCell}</td>
+      <td>${escapeHtml(p.comparability)}</td>
+    </tr>`;
+  }).join('') + '</tbody>';
+  tblQ.innerHTML = hq + bq;
+})();
+</script>
+</body>
+</html>

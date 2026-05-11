@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Indonesia Golf Industry — Peer Analysis</title>
+<meta name="description" content="Peer analysis of 13 IDX-listed Indonesian companies operating golf courses — financials, rate cards, course specs from public annual reports and company websites." />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/peer-style.css?v=20260511a" />
+</head>
+<body>
+
+<header class="pa-header">
+  <div class="container">
+    <div class="pa-brand">
+      <div class="pa-logo">⛳</div>
+      <div>
+        <h1>Indonesia Golf Industry — Peer Analysis</h1>
+        <div class="subtitle">13 IDX-listed peers · Annual report &amp; public disclosure based</div>
+      </div>
+    </div>
+    <nav class="pa-nav">
+      <a href="index.html" class="active">Overview</a>
+      <a href="comparison/pricing.html">Pricing</a>
+      <a href="comparison/financial.html">Financials</a>
+      <a href="comparison/operating.html">Course Specs</a>
+      <a href="operations/index.html">Operations</a>
+      <a href="about/methodology.html">Methodology</a>
+      <a href="../index.html">← Map</a>
+    </nav>
+  </div>
+</header>
+
+<section class="pa-hero">
+  <div class="container">
+    <h2>13 publicly-listed peer operators in the Indonesian golf market</h2>
+    <p>This dashboard summarises company-level disclosures from publicly available annual reports (FY2022–FY2024)
+       and curated official course information for 13 IDX-listed entities operating golf course assets across Indonesia.
+       All figures preserve original disclosure currency and unit. Missing fields are shown as <em>Not Disclosed</em>
+       rather than imputed.</p>
+    <div class="pa-stats" id="paStats"></div>
+  </div>
+</section>
+
+<section class="pa-section">
+  <div class="container">
+    <h3>Peer Roster</h3>
+    <p class="lede">Click a card for full company / course details. Filter or search to narrow the list.</p>
+    <div class="pa-filter-bar">
+      <button data-filter="all" class="active">All (<span id="cntAll">0</span>)</button>
+      <button data-filter="tier-A">Tier A</button>
+      <button data-filter="tier-A-">Tier A−</button>
+      <button data-filter="tier-B+">Tier B+</button>
+      <button data-filter="region-Jakarta">Jakarta metro</button>
+      <button data-filter="region-Tangerang">Tangerang</button>
+      <button data-filter="region-Bogor">Bogor</button>
+      <button data-filter="region-Surabaya">Surabaya</button>
+      <button data-filter="region-Bali">Bali</button>
+      <input type="search" class="pa-search" id="searchInp" placeholder="Search ticker / company / course..." />
+    </div>
+    <div class="pa-grid" id="peerGrid"></div>
+  </div>
+</section>
+
+<section class="pa-section">
+  <div class="container">
+    <h3>Peer Distribution</h3>
+    <p class="lede">Snapshot of the 13-peer set by tier, region and course-opening-year cohort.</p>
+    <div class="pa-charts">
+      <div class="pa-chart">
+        <h4>By Tier (heuristic)</h4>
+        <div class="canvas-wrap"><canvas id="chartTier"></canvas></div>
+      </div>
+      <div class="pa-chart">
+        <h4>By Region</h4>
+        <div class="canvas-wrap"><canvas id="chartRegion"></canvas></div>
+      </div>
+      <div class="pa-chart">
+        <h4>Course Opening Year — Distribution</h4>
+        <div class="canvas-wrap"><canvas id="chartYears"></canvas></div>
+      </div>
+      <div class="pa-chart">
+        <h4>FY2024 Parent Revenue (IDR bn, log scale)</h4>
+        <div class="canvas-wrap"><canvas id="chartRevenue"></canvas></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="pa-footer">
+  <div class="container">
+    <div class="grid">
+      <div>
+        <h5>About this dashboard</h5>
+        <p>Independent industry research on publicly-listed peer operators in the Indonesian golf market. Data is drawn exclusively from publicly available annual reports filed with the Indonesia Stock Exchange (IDX), company official websites, and named industry aggregators. No proprietary or confidential information is presented.</p>
+      </div>
+      <div>
+        <h5>Data sources</h5>
+        <ul>
+          <li>IDX Annual Reports (FY2022–FY2024)</li>
+          <li>Official course websites (rate cards, membership)</li>
+          <li>Q-Access, GoGolf, GolfLux (Tier-3 cross-reference)</li>
+        </ul>
+      </div>
+      <div>
+        <h5>Navigation</h5>
+        <ul>
+          <li><a href="index.html">Overview</a></li>
+          <li><a href="comparison/pricing.html">Pricing comparison</a></li>
+          <li><a href="comparison/financial.html">Financial comparison</a></li>
+          <li><a href="about/methodology.html">Methodology &amp; sources</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="bottom">
+      <span id="footerStamp">Data last updated: —</span>
+       · Data sourced from publicly available annual reports and company disclosures.
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+async function loadJson(path) {
+  const r = await fetch(path);
+  if (!r.ok) throw new Error(`Fetch ${path} failed: ${r.status}`);
+  return r.json();
+}
+
+function fmtIDR(v) {
+  if (v == null) return '<span class="muted">N/A</span>';
+  if (v >= 1e12) return (v / 1e12).toFixed(2) + ' T';
+  if (v >= 1e9)  return (v / 1e9).toFixed(2)  + ' B';
+  if (v >= 1e6)  return (v / 1e6).toFixed(1)  + ' M';
+  return v.toLocaleString();
+}
+
+function tierClass(t) {
+  if (!t || t === 'N/A') return 'NA';
+  return t.replace(/[^A-Za-z+-]/g, '').replace('-', '-');
+}
+
+let allPeers = [];
+let currentFilter = 'all';
+let currentSearch = '';
+
+function renderCards() {
+  const grid = document.getElementById('peerGrid');
+  let list = allPeers.filter(p => {
+    if (currentFilter === 'all') return true;
+    if (currentFilter.startsWith('tier-')) {
+      const want = currentFilter.replace('tier-', '');
+      return p.tier_hint === want;
+    }
+    if (currentFilter.startsWith('region-')) {
+      const want = currentFilter.replace('region-', '');
+      return (p.region || '').toLowerCase().includes(want.toLowerCase());
+    }
+    return true;
+  });
+  if (currentSearch) {
+    const s = currentSearch.toLowerCase();
+    list = list.filter(p =>
+      (p.ticker || '').toLowerCase().includes(s) ||
+      (p.course_name_primary || '').toLowerCase().includes(s) ||
+      (p.legal_entity || '').toLowerCase().includes(s) ||
+      (p.parent_group || '').toLowerCase().includes(s) ||
+      (p.primary_designer || '').toLowerCase().includes(s)
+    );
+  }
+  document.getElementById('cntAll').textContent = list.length;
+  if (list.length === 0) {
+    grid.innerHTML = '<div class="pa-empty">No peers match current filters.</div>';
+    return;
+  }
+  grid.innerHTML = list.map(p => `
+    <div class="pa-card">
+      <a class="peer-link" href="peers/${p.peer_id}.html">
+        <div class="pa-card-head">
+          <span class="pa-card-id">${p.peer_id}</span>
+          <span class="pa-card-ticker">IDX:${p.ticker}</span>
+        </div>
+        <h4>${escapeHtml(p.course_name_primary || p.legal_entity || p.ticker)}</h4>
+        <div class="meta"><strong>${escapeHtml(p.legal_entity || '—')}</strong></div>
+        <div class="meta">${escapeHtml(p.parent_group || '—')} · ${escapeHtml(p.region || '—')} <span class="pa-tier ${tierClass(p.tier_hint)}">Tier ${escapeHtml(p.tier_hint || 'NA')}</span></div>
+        <div class="pa-card-specs">
+          ${p.primary_holes != null ? `<span><span class="dot"></span>${p.primary_holes}-hole</span>` : ''}
+          ${p.primary_par != null ? `<span><span class="dot"></span>Par ${p.primary_par}</span>` : ''}
+          ${p.primary_year_opened != null ? `<span><span class="dot"></span>Opened ${p.primary_year_opened}</span>` : ''}
+          ${p.n_courses_mapped > 1 ? `<span><span class="dot"></span>${p.n_courses_mapped} courses</span>` : ''}
+        </div>
+        ${p.primary_designer && p.primary_designer !== 'N/A' ? `<div class="meta">Designer: ${escapeHtml(p.primary_designer)}</div>` : ''}
+        <div class="pa-fin">
+          <div class="k">FY revenue (parent)</div><div class="v">${fmtIDR(p.fy_revenue_idr)}</div>
+          <div class="k">FY net profit</div><div class="v">${fmtIDR(p.fy_net_profit_idr)}</div>
+          <div class="k">Total assets</div><div class="v">${fmtIDR(p.fy_total_assets_idr)}</div>
+          <div class="k">Reporting year</div><div class="v">${escapeHtml(p.fy_year || 'N/A')}</div>
+        </div>
+      </a>
+    </div>
+  `).join('');
+}
+
+function escapeHtml(s) {
+  if (s == null) return '';
+  return String(s)
+    .replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;').replaceAll("'", '&#39;');
+}
+
+function renderStats(peers, meta) {
+  const stats = [
+    { v: peers.length, l: 'Peer companies' },
+    { v: peers.reduce((s, p) => s + (p.n_courses_mapped || 0), 0), l: 'Mapped courses' },
+    { v: peers.filter(p => p.fy_revenue_idr != null).length, l: 'With FY2024 revenue disclosed' },
+    { v: peers.filter(p => p.course_segment_disclosed === 'True').length, l: 'Course-segment disclosed' },
+  ];
+  document.getElementById('paStats').innerHTML = stats.map(s =>
+    `<div class="pa-stat"><div class="v">${s.v}</div><div class="l">${s.l}</div></div>`
+  ).join('');
+  document.getElementById('footerStamp').textContent = `Data last updated: ${meta.generated_at}`;
+}
+
+function renderCharts(peers) {
+  // Tier distribution
+  const tierCounts = {};
+  peers.forEach(p => { const t = p.tier_hint || 'N/A'; tierCounts[t] = (tierCounts[t] || 0) + 1; });
+  new Chart(document.getElementById('chartTier'), {
+    type: 'doughnut',
+    data: {
+      labels: Object.keys(tierCounts),
+      datasets: [{
+        data: Object.values(tierCounts),
+        backgroundColor: ['#1a4d10', '#3d7a1e', '#8b6914', '#64748b', '#cbd5e1'],
+      }]
+    },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+  });
+
+  // Region distribution
+  const regionCounts = {};
+  peers.forEach(p => {
+    const r = p.region || 'N/A';
+    // Crude grouping
+    let bucket = 'Other';
+    const low = r.toLowerCase();
+    if (low.includes('jakarta') && !low.includes('north') && !low.includes('south')) bucket = 'Jakarta';
+    else if (low.includes('south jakarta') || low.includes('south')) bucket = 'South Jakarta';
+    else if (low.includes('north jakarta') || low.includes('pik')) bucket = 'North Jakarta / PIK';
+    else if (low.includes('tangerang') || low.includes('bsd') || low.includes('serpong')) bucket = 'Tangerang / BSD';
+    else if (low.includes('bogor') || low.includes('sentul') || low.includes('lido') || low.includes('rancamaya')) bucket = 'Bogor area';
+    else if (low.includes('bekasi') || low.includes('cikarang') || low.includes('karawang')) bucket = 'Bekasi / Karawang';
+    else if (low.includes('surabaya')) bucket = 'Surabaya';
+    else if (low.includes('bali') || low.includes('pecatu') || low.includes('kuta')) bucket = 'Bali';
+    else if (low.includes('belitung')) bucket = 'Belitung';
+    regionCounts[bucket] = (regionCounts[bucket] || 0) + 1;
+  });
+  new Chart(document.getElementById('chartRegion'), {
+    type: 'bar',
+    data: {
+      labels: Object.keys(regionCounts),
+      datasets: [{
+        data: Object.values(regionCounts),
+        backgroundColor: '#2D5016',
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+      scales: { x: { beginAtZero: true, ticks: { stepSize: 1 } } },
+      plugins: { legend: { display: false } }
+    }
+  });
+
+  // Years
+  const yrs = peers.map(p => p.primary_year_opened).filter(v => v != null).sort((a,b)=>a-b);
+  const buckets = ['1970-1979','1980-1989','1990-1999','2000-2009','2010-2019','2020+'];
+  const counts = [0,0,0,0,0,0];
+  yrs.forEach(y => {
+    if (y < 1980) counts[0]++;
+    else if (y < 1990) counts[1]++;
+    else if (y < 2000) counts[2]++;
+    else if (y < 2010) counts[3]++;
+    else if (y < 2020) counts[4]++;
+    else counts[5]++;
+  });
+  new Chart(document.getElementById('chartYears'), {
+    type: 'bar',
+    data: {
+      labels: buckets,
+      datasets: [{ data: counts, backgroundColor: '#3d7a1e' }]
+    },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } } }
+  });
+
+  // Revenue (log scale)
+  const revList = peers
+    .filter(p => p.fy_revenue_idr != null && p.fy_revenue_idr > 0)
+    .sort((a,b) => b.fy_revenue_idr - a.fy_revenue_idr);
+  new Chart(document.getElementById('chartRevenue'), {
+    type: 'bar',
+    data: {
+      labels: revList.map(p => `${p.peer_id} ${p.ticker}`),
+      datasets: [{
+        data: revList.map(p => p.fy_revenue_idr / 1e9),
+        backgroundColor: revList.map(p => {
+          const t = p.tier_hint || 'NA';
+          return t === 'A' ? '#1a4d10' : t === 'A-' ? '#3d7a1e' : t === 'B+' ? '#8b6914' : '#64748b';
+        }),
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: { y: { type: 'logarithmic', title: { display: true, text: 'IDR bn (log)' } } },
+      plugins: { legend: { display: false }, tooltip: { callbacks: {
+        label: ctx => `${ctx.parsed.y.toLocaleString(undefined, {maximumFractionDigits: 0})} IDR bn`
+      } } }
+    }
+  });
+}
+
+(async () => {
+  try {
+    const [peers, meta] = await Promise.all([
+      loadJson('data/peers.json'),
+      loadJson('data/meta.json'),
+    ]);
+    allPeers = peers;
+    renderStats(peers, meta);
+    renderCards();
+    renderCharts(peers);
+
+    // Filter buttons
+    document.querySelectorAll('.pa-filter-bar button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.pa-filter-bar button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = btn.dataset.filter;
+        renderCards();
+      });
+    });
+    document.getElementById('searchInp').addEventListener('input', (e) => {
+      currentSearch = e.target.value || '';
+      renderCards();
+    });
+  } catch (err) {
+    document.getElementById('peerGrid').innerHTML = `<div class="pa-empty">Data failed to load. ${err.message}</div>`;
+    console.error(err);
+  }
+})();
+</script>
+</body>
+</html>

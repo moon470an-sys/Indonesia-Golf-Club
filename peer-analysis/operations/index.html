@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Operations — Indonesia Golf Industry Peer Analysis</title>
+<meta name="description" content="Eight-dimension operational practice analysis of Indonesian golf course operators, sourced from publicly available annual reports. Independent industry research." />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/peer-style.css?v=20260511c" />
+<style>
+  .ops-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+    margin-top: 24px;
+  }
+  .ops-card {
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: var(--radius-md);
+    padding: 22px 20px 18px;
+    transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+    display: flex; flex-direction: column; gap: 8px;
+    text-decoration: none; color: inherit;
+  }
+  .ops-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--forest-green-light);
+    text-decoration: none;
+  }
+  .ops-card .num {
+    font-size: 13px; font-weight: 700; color: var(--forest-green);
+    letter-spacing: 0.04em;
+  }
+  .ops-card h4 {
+    font-size: 17px; font-weight: 700; color: var(--charcoal);
+    margin: 0;
+  }
+  .ops-card p {
+    font-size: 13.5px; color: var(--charcoal-soft); margin: 6px 0 0;
+    line-height: 1.5;
+  }
+  .ops-card .meta {
+    font-size: 12px; color: var(--slate-500); margin-top: auto; padding-top: 8px;
+  }
+  .ops-card.placeholder {
+    opacity: 0.55; pointer-events: none; background: var(--slate-50);
+  }
+  .ops-card.placeholder:hover { transform: none; box-shadow: var(--shadow-sm); border-color: var(--slate-200); }
+  .availability-note {
+    background: #fff7ed; border: 1px solid #fed7aa; padding: 14px 18px;
+    border-radius: var(--radius-md); margin-top: 18px;
+    font-size: 14px; color: #9a3412;
+  }
+  .availability-note strong { color: #7c2d12; }
+</style>
+</head>
+<body>
+
+<header class="pa-header">
+  <div class="container">
+    <div class="pa-brand">
+      <div class="pa-logo">⛳</div>
+      <div>
+        <h1>Indonesia Golf Industry — Peer Analysis</h1>
+        <div class="subtitle">Operations · 8-dimension operational practice analysis</div>
+      </div>
+    </div>
+    <nav class="pa-nav">
+      <a href="../index.html">Overview</a>
+      <a href="../comparison/pricing.html">Pricing</a>
+      <a href="../comparison/financial.html">Financials</a>
+      <a href="../comparison/operating.html">Course Specs</a>
+      <a href="index.html" class="active">Operations</a>
+      <a href="../about/methodology.html">Methodology</a>
+      <a href="../../index.html">← Map</a>
+    </nav>
+  </div>
+</header>
+
+<section class="pa-hero">
+  <div class="container">
+    <h2>How Indonesia's golf clubs are actually run</h2>
+    <p>Eight dimensions of operational practice — agronomy, headcount, revenue operations, F&amp;B, facilities, governance, digital systems, marketing — extracted from publicly available annual reports of 13 IDX-listed peer golf operators. Independent industry research; no commercial affiliation. Fields where annual reports do not disclose the data are marked <em>Not Disclosed</em>, never imputed.</p>
+    <div class="pa-stats">
+      <div class="pa-stat"><div class="v">13</div><div class="l">Peer Operators</div></div>
+      <div class="pa-stat"><div class="v">8</div><div class="l">Operational Dimensions</div></div>
+      <div class="pa-stat"><div class="v">FY2022–2024</div><div class="l">Annual Report Vintage</div></div>
+      <div class="pa-stat"><div class="v">99,618</div><div class="l">Indexed AR Chunks</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pa-section">
+  <div class="container">
+    <h3>Operational Dimensions</h3>
+    <p class="lede">Each dimension is one focus area an operator (or an acquirer running operational due diligence) needs to understand. Click a card to drill into peer-level disclosure and the gap between what is publicly visible and what requires private-channel diligence.</p>
+
+    <div class="availability-note">
+      <strong>Pilot release.</strong> Detailed pages for the remaining seven dimensions follow the same structure as Agronomy. Curation across all 13 peers will populate the comparison tables and industry aggregates in the next release.
+    </div>
+
+    <div class="ops-grid">
+      <a href="agronomy.html" class="ops-card">
+        <div class="num">01</div>
+        <h4>Course Operations &amp; Agronomy</h4>
+        <p>Turf species, irrigation, water source, fertiliser, renovation cadence — the single largest operating expense line for any golf course.</p>
+        <div class="meta">Live · Pilot data</div>
+      </a>
+
+      <a href="#" class="ops-card placeholder">
+        <div class="num">02</div>
+        <h4>Headcount &amp; Organisation</h4>
+        <p>Total workforce, departmental split, caddy operating model, outsourcing footprint — the second largest OpEx item.</p>
+        <div class="meta">Coming next release</div>
+      </a>
+
+      <a href="#" class="ops-card placeholder">
+        <div class="num">03</div>
+        <h4>Revenue Operations</h4>
+        <p>Green-fee rate cards, tee-time platform, daily slot capacity, round volume, membership categories and pricing.</p>
+        <div class="meta">Coming next release</div>
+      </a>
+
+      <a href="#" class="ops-card placeholder">
+        <div class="num">04</div>
+        <h4>Food &amp; Beverage</h4>
+        <p>Restaurant outlets, banquet capacity, F&amp;B share of revenue, capture rate, in-house vs outsourced operating model.</p>
+        <div class="meta">Coming next release</div>
+      </a>
+
+      <a href="#" class="ops-card placeholder">
+        <div class="num">05</div>
+        <h4>Facilities &amp; Assets</h4>
+        <p>Land area, clubhouse, driving range, academy, locker, spa, cart fleet, parking, generator, security infrastructure.</p>
+        <div class="meta">Coming next release</div>
+      </a>
+
+      <a href="#" class="ops-card placeholder">
+        <div class="num">06</div>
+        <h4>Governance &amp; Regulatory</h4>
+        <p>Legal entity, shareholder structure, land rights (HGB/HGU/BOT), permits, taxation, environmental and labour certifications.</p>
+        <div class="meta">Coming next release</div>
+      </a>
+
+      <a href="#" class="ops-card placeholder">
+        <div class="num">07</div>
+        <h4>Digital &amp; Systems</h4>
+        <p>POS, tee-time booking platform, CRM, accounting software, cart GPS, IoT, member mobile app, WiFi coverage.</p>
+        <div class="meta">Coming next release</div>
+      </a>
+
+      <a href="#" class="ops-card placeholder">
+        <div class="num">08</div>
+        <h4>Marketing &amp; Member Experience</h4>
+        <p>Marketing spend share, channels, member events, reciprocal access, hotel/airline partnerships, tournament hosting.</p>
+        <div class="meta">Coming next release</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="pa-section" style="background: white;">
+  <div class="container">
+    <h3>A note on disclosure quality</h3>
+    <p class="lede">Indonesian listed golf-operator annual reports prioritise financial statements, ownership structure, board profiles, and segment-level revenue commentary. Operational specifics — grass varieties, irrigation vendor, fertiliser cost, POS system, booking platform, caddy operating structure, cart fleet — are systematically absent from public filings. The richest publicly available disclosure areas are:</p>
+    <ul style="font-size: 15px; color: var(--charcoal-soft); line-height: 1.75; padding-left: 22px;">
+      <li>Total headcount and departmental count (for pure-play operators)</li>
+      <li>Annual round volume and monthly distribution</li>
+      <li>F&amp;B revenue split by outlet</li>
+      <li>Membership accounting (refundable vs transferable, balances)</li>
+      <li>Land area and insurance coverage</li>
+      <li>Tax audit history and corporate-tax position</li>
+    </ul>
+    <p style="font-size: 14px; color: var(--charcoal-soft); margin-top: 16px;">For investment-grade due diligence on the 'silent' dimensions (agronomy specifics, digital stack, marketing budget, caddy economics, vendor contracts), private-channel diligence — site visit, management interview, vendor confirmation — is required. This site documents what <em>is</em> in the public record so private diligence can focus its scope.</p>
+  </div>
+</section>
+
+<footer class="pa-footer">
+  <div class="container">
+    <p>Data sourced from publicly available IDX annual reports (FY2022–FY2024) and indexed via a multilingual embedding model (intfloat/multilingual-e5-small). Independent industry research — no commercial affiliation. Last updated: 2026-05-11.</p>
+  </div>
+</footer>
+
+</body>
+</html>
