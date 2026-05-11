@@ -1,0 +1,61 @@
+{
+  "_meta": {
+    "ticker": "DILD",
+    "parent": "PT Intiland Development Tbk dan Entitas Anak / and Its Subsidiaries",
+    "currency": "IDR",
+    "unit": "rupiah (absolute)",
+    "fiscal_years": ["FY2024", "FY2025"],
+    "source_ar": ["annual_reports/DILD/FY2025/AnnualReport2025-DILD-att2.pdf"],
+    "extraction_method": "PyMuPDF positional text extraction",
+    "extracted_at": "2026-05-11 Cycle 101"
+  },
+  "segment_note_FY2025": {
+    "source_page": "FY25 AR att2 p.445 Note INFORMASI SEGMEN OPERASI",
+    "segments_listed_FY2025": ["Kawasan Perumahan (Land)", "High Rise", "Industri Perkantoran (Industrial Offices)", "Estate Facilities", "Hotels", "Lainnya (Others)"],
+    "golf_segment": "NONE — DILD FY25 operating segments include Hotels and Estate Facilities but no standalone Golf segment. FY24 comparative column confirmed identical segment definition.",
+    "segment_results_FY2025": {
+      "Kawasan_Perumahan_Land": 453548443847,
+      "High_Rise": 67551766420,
+      "Industri_Perkantoran": 127242771060,
+      "Estate_Facilities": 248899595473,
+      "Hotels": 47835399614,
+      "Lainnya_Others": 15409193526,
+      "Eliminasi": 0,
+      "Konsolidasi_unverified": "Total 정량 추가 추출 필요"
+    },
+    "segment_results_FY2024_comparative": {
+      "Kawasan_Perumahan_Land": 262452881449,
+      "High_Rise": 133980954022,
+      "Industri_Perkantoran": 117640406290,
+      "Estate_Facilities": 221432601279,
+      "Hotels": 38006417279,
+      "Lainnya_Others": 11838743443
+    },
+    "yoy_changes_segment_results": {
+      "Kawasan_Perumahan_yoy": 0.728,
+      "High_Rise_yoy": -0.496,
+      "Industri_Perkantoran_yoy": 0.082,
+      "Estate_Facilities_yoy": 0.124,
+      "Hotels_yoy": 0.259,
+      "Lainnya_yoy": 0.302,
+      "comment": "Land 부문 segment result 대폭 증가 (+72.8%). High Rise -49.6% 감소. Hotels +25.9%."
+    },
+    "segment_assets_FY2025": {
+      "Kawasan_Perumahan_Land": 3135446991766,
+      "High_Rise": 7047496377447,
+      "Industri_Perkantoran": 1216126456225,
+      "Estate_Facilities": 1161435721719,
+      "Hotels": 744346627515,
+      "Lainnya_Others": 8313580670,
+      "Eliminasi": -556944598488,
+      "Konsolidasi": 12756221156854,
+      "comment": "Hotels segment assets Rp 744.3 bn (FY24 700.8 bn). 6 segment 전체 자산 Rp 12,756 bn."
+    },
+    "segment_liabilities_FY2025": {
+      "Konsolidasi": 6330130612128,
+      "FY2024_comparative": 6956640610515,
+      "yoy": -0.0901
+    }
+  },
+  "geographic_segment": "Operasi Grup berlokasi di wilayah Indonesia, terutama Pulau Jawa (Seluruh pendapatan Grup adalah pendapatan domestik / All revenues domestic)."
+}

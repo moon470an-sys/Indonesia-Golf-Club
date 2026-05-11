@@ -7,7 +7,12 @@
 <meta name="description" content="13개 상장사 토지·홀·설계자·시설·총자산 비교." />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260511g" />
+<link rel="stylesheet" href="ops-style.css?v=20260511c51" />
+<style>
+  .scroll-x { overflow-x: auto; }
+  table.ops-tbl .nd { color: var(--ops-muted); font-style: italic; font-size: 12.5px; }
+  .cite-inline { color: var(--ops-cite); font-size: 11.5px; font-weight: 500; margin-left: 6px; }
+</style>
 </head>
 <body>
 <header class="ops-head">
@@ -20,7 +25,7 @@
       </div>
     </a>
     <nav class="ops-nav">
-      <a href="index.html">한눈에</a><a href="revenue.html">매출</a><a href="cost-hr.html">비용·인력</a><a href="assets.html" class="active">자산</a><a href="risk.html">구조·위험</a><a href="../../index.html" class="back">← 지도</a>
+      <a href="index.html">한눈에</a><a href="overview.html">TLDR</a><a href="unit-economics.html">단위 경제</a><a href="revenue.html">매출 믹스</a><a href="cost-hr.html">비용 구조</a><a href="assets.html" class="active">시설</a><a href="risk.html">위험</a><a href="../../index.html" class="back">← 지도</a>
     </nav>
   </div>
 </header>
@@ -28,13 +33,13 @@
   <div class="ops-wrap">
     <div class="row">
       <div>
-        <div class="eyebrow">자산·시설 · 03</div>
-        <h1>토지, 코스, 그리고 부속 자산</h1>
-        <p class="lede">토지 면적, 홀 수·Par·설계자, 부속 시설, 총자산. 골프장 가치의 70% 이상이 토지에 묶여 있으며 면적이 결정 요인입니다.</p>
+        <div class="eyebrow">시설 포트폴리오 · 04</div>
+        <h1>토지·홀·부속 시설 매출 기여</h1>
+        <p class="lede">토지 면적, 홀 수·Par·설계자, 부속 시설(드라이빙 레인지·호텔·볼룸·레지던스)의 매출 기여를 AR 공시 사실로만 정리. DMIG는 The Range FY23 매출 Rp 31,351 m (BoD 보고 p.16 직접 인용).</p>
       </div>
       <div class="bignum-block">
-        <div class="bignum">12<span class="u">/13</span></div>
-        <div class="biglabel">홀 수 공시</div>
+        <div class="bignum">156<span class="u">ha</span></div>
+        <div class="biglabel">DMIG 코스 면적 (BSD 76 + PIK 80, AR FY24 p.5)</div>
       </div>
     </div>
   </div>
@@ -42,7 +47,99 @@
 
 <section class="ops-section">
   <div class="ops-wrap">
-    <h2>1. 코스 기본 사양</h2>
+    <h2>1. AR-cited 코스 정량 (Cycle 5)</h2>
+    <h3>홀 수 · 코스 면적 · 직원 수 — AR 직접 공시분만</h3>
+    <p class="lede">peer Profil Perusahaan / Wilayah Operasional / SDM 페이지에 명시 공시된 수치만. 미공시는 "공시 없음".</p>
+    <div class="tbl-card scroll-x">
+      <table class="ops-tbl">
+        <thead>
+          <tr>
+            <th>Peer</th>
+            <th>코스 (개)</th>
+            <th class="num">홀 (개)</th>
+            <th class="num">코스 면적 (ha)</th>
+            <th class="num">정규직 (FY24)</th>
+            <th class="num">홀당 정규직</th>
+            <th class="num">ha당 정규직</th>
+            <th>AR 출처</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hi">
+            <td class="peer">DMIG</td>
+            <td>2 (BSD + PIK)</td>
+            <td class="num">36</td>
+            <td class="num">156<span class="cite-inline">(76 + 80)</span></td>
+            <td class="num">198</td>
+            <td class="num">5.5</td>
+            <td class="num">1.27</td>
+            <td><span class="src">FY24 AR p.5 Profil + p.19 SDM Tabel 6</span></td>
+          </tr>
+          <tr class="hi">
+            <td class="peer">PIPG</td>
+            <td>1 (Pondok Indah)</td>
+            <td class="num">18</td>
+            <td class="num">53.01<span class="cite-inline">(530,095 m²)</span></td>
+            <td class="num">254</td>
+            <td class="num">14.1</td>
+            <td class="num">4.79</td>
+            <td><span class="src">FY24 AR p.7 + p.74 SDM + Note 10 (HGB 209,533 m²)</span></td>
+          </tr>
+          <tr class="hi">
+            <td class="peer">GOLF (연결)</td>
+            <td>2 (NKG Bali + SGU Sentul)</td>
+            <td class="num">36</td>
+            <td class="num">171.2<span class="cite-inline">(85.1 + 86.1)</span></td>
+            <td class="num"><span class="nd">AR 미공시</span></td>
+            <td class="num">—</td>
+            <td class="num">—</td>
+            <td><span class="src">FY24 AR p.62 Wilayah Operasional</span></td>
+          </tr>
+          <tr>
+            <td class="peer">GOLF (+BGR associate)</td>
+            <td>3 (+Black Rocks Belitung)</td>
+            <td class="num">54</td>
+            <td class="num">243.4<span class="cite-inline">(+72.2)</span></td>
+            <td class="num"><span class="nd">AR 미공시</span></td>
+            <td class="num">—</td>
+            <td class="num">—</td>
+            <td><span class="src">+BGR 동일 출처 (entitas asosiasi 비연결)</span></td>
+          </tr>
+          <tr>
+            <td class="peer">MDLN</td>
+            <td>1 (Modern Golf &amp; CC, Tangerang)</td>
+            <td class="num"><span class="nd">미공시</span></td>
+            <td class="num"><span class="nd">미공시</span></td>
+            <td class="num"><span class="nd">미공시</span></td>
+            <td class="num">—</td>
+            <td class="num">—</td>
+            <td><span class="src">FY24 AR att1 Profil (정량 분리 없음)</span></td>
+          </tr>
+          <tr>
+            <td class="peer">KIJA</td>
+            <td>1 (Jababeka Golf &amp; CC)</td>
+            <td class="num"><span class="nd">미공시</span></td>
+            <td class="num"><span class="nd">미공시</span></td>
+            <td class="num"><span class="nd">미공시</span></td>
+            <td class="num">—</td>
+            <td class="num">—</td>
+            <td><span class="src">FY24 AR att1 (정량 분리 없음)</span></td>
+          </tr>
+          <tr>
+            <td class="peer">기타 7개사</td>
+            <td colspan="6" style="text-align:center;"><span class="nd">AR Profil 미공시 (7 peer 모두 정량 분리 0건)</span></td>
+            <td><span class="src">peer별 Profil section 미완</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src" style="margin-top:8px;">Cycle 8 시점 코스 면적 AR-cited = 3개사 (DMIG·PIPG·GOLF) / 홀 수 = 5개사 / 정규직 = 2개사 (DMIG 198명 + PIPG 254명). <strong>비교</strong>: 홀당 정규직 DMIG 5.5명 vs PIPG 14.1명 (PIPG 2.56배 인력 집약). ha당 정규직 DMIG 1.27 vs PIPG 4.79 (PIPG 3.77배). DMIG 156 ha 교외형 vs PIPG 53 ha 도심 서비스 집약형.</p>
+  </div>
+</section>
+
+<section class="ops-section">
+  <div class="ops-wrap">
+    <h2>1-b. 큐레이션 코스 사양 (참고)</h2>
     <h3>13개사 토지 · 홀 · 설계자 · 개장년</h3>
     <div class="tbl-card">
       <table class="ops-tbl">
@@ -179,7 +276,81 @@
 
 <section class="ops-section">
   <div class="ops-wrap">
-    <h2>2. 부속 시설 상세</h2>
+    <h2>2. 부속 시설 매출 기여</h2>
+    <h3>드라이빙 레인지·호텔·볼룸·F&B — AR 공시 절대 금액</h3>
+    <p class="lede">부속 시설 매출이 별도 라인으로 공시된 사례만 게재. 대부분 peer는 통합 매출에 포함되어 분리 불가.</p>
+    <div class="tbl-card scroll-x">
+      <table class="ops-tbl">
+        <thead>
+          <tr>
+            <th>Peer · 시설</th>
+            <th class="num">FY2022 (Rp m)</th>
+            <th class="num">FY2023 (Rp m)</th>
+            <th class="num">FY2024 (Rp m)</th>
+            <th class="num">YoY '23→'24</th>
+            <th>AR 출처</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hi">
+            <td class="peer">DMIG · The Range (PIK)<span class="sub">드라이빙 레인지 + 미니골프 + F&amp;B + 스폰서십 + 임대</span></td>
+            <td class="num"><span style="color:var(--ops-muted);">6,632 (Oct~Dec only)</span></td>
+            <td class="num">31,351</td>
+            <td class="num"><span style="color:var(--ops-muted);">미공시 (별도 라인 없음)</span></td>
+            <td class="num">—</td>
+            <td><span class="src">FY23 AR p.16 BoD Report ("The Range" sub-section)</span></td>
+          </tr>
+          <tr class="hi">
+            <td class="peer">DMIG · Driving Range (BSD)<span class="sub">기존</span></td>
+            <td class="num">3,767</td>
+            <td class="num">13,159<span style="color:var(--ops-muted);font-size:11px;"> (+249.3%)</span></td>
+            <td class="num"><span class="nd">AR 미공시</span></td>
+            <td class="num">—</td>
+            <td><span class="src">FY23 AR p.16 BoD ("Driving Range" 13,158,949,745)</span></td>
+          </tr>
+          <tr class="hi">
+            <td class="peer">DMIG · Mini Golf / Short course</td>
+            <td class="num">173</td>
+            <td class="num">523<span style="color:var(--ops-muted);font-size:11px;"> (+202.9%)</span></td>
+            <td class="num"><span class="nd">AR 미공시</span></td>
+            <td class="num">—</td>
+            <td><span class="src">FY23 AR p.16 BoD ("Mini Golf / Short course")</span></td>
+          </tr>
+          <tr>
+            <td class="peer">DMIG · Sewa ruangan (room rental)<span class="sub">볼룸·미팅</span></td>
+            <td class="num">4,870</td>
+            <td class="num">9,162</td>
+            <td class="num">8,222</td>
+            <td class="num">-10.3%</td>
+            <td><span class="src">FY24 AR p.86 Note 23 Sewa ruangan</span></td>
+          </tr>
+          <tr>
+            <td class="peer">DMIG · Sponsor<span class="sub">스폰서십 (재분류 후)</span></td>
+            <td class="num"><span class="nd">[Lain-lain]</span></td>
+            <td class="num">7,857</td>
+            <td class="num">12,360</td>
+            <td class="num">+57.3%</td>
+            <td><span class="src">FY24 AR p.86 Note 23 Sponsor</span></td>
+          </tr>
+          <tr>
+            <td class="peer">기타 12개 peer</td>
+            <td colspan="4" style="text-align:center;"><span class="nd">부속 시설 절대 금액 라인 분리 공시 없음 (그룹 매출 통합)</span></td>
+            <td><span class="src">curated AR 직접 매핑 미완 (장기 작업)</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src" style="margin-top:8px;">단위: Rp million. DMIG The Range FY23 매출 31,350,806,602 = AR FY23 p.16 BoD Report 직접 인용 (Driving Range 13.16 + Mini Golf 0.52 + F&amp;B banquet + F&amp;B + sponsorship + tenant income + room rental). FY22 6,632 = 신규 시설 2022년 10월~12월 3개월분만 운영.</p>
+    <div class="note">
+      <div class="ico">i</div>
+      <div class="body"><p><strong>DMIG The Range 시설 메모 (FY24 AR p.5 Profil) · </strong> Maksud dan Tujuan: "pengelolaan lapangan golf dan sarana-sarana penunjang lainnya seperti Club House, Restaurant, Driving Range, Proshop, Function Room dan Swimming Pool khusus di BSD Course." Function Room·Swimming Pool은 BSD Course 한정.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ops-section">
+  <div class="ops-wrap">
+    <h2>3. 부속 시설 상세 (정성)</h2>
     <h3>13개사 클럽하우스 · 부대 시설 공시</h3>
     <div class="kv-grid"><div class="kv">
         <div class="k">DMIG</div>
@@ -218,11 +389,30 @@
         <div class="k">BKSL</div>
         <div class="v small">Golf operations carried by related party PT Padang Golf Bukit Sentul; Sentul City township + Royal Sentul Resort Hotel (related party) + various property assets</div>
       </div></div>
+    <p class="src" style="margin-top:8px;">출처: curated peer_profile.csv (Phase A) + AR Profil Perusahaan 일부 인용. 정량 라인은 위 섹션 2 참조. 정성 시설 항목 AR 직접 출처 매핑은 장기 작업 (피어별 Profil 다양한 형식).</p>
   </div>
 </section>
+<!-- ============================================================ -->
+<section class="ops-section">
+  <div class="ops-wrap">
+    <h2>4. FY2025 시설·자산 후속 (Cycle 110)</h2>
+    <h3>13/13 peer FY25 추출 후 시설 데이터 가용성</h3>
+    <p class="lede">본 사이트는 원래 FY22-24 시설 정량 (코스/홀/면적). FY25 AR 11 peer 가용 시점에서 시설 데이터 확장 가능성 점검.</p>
+    <div class="note">
+      <div class="body">
+        <strong>FY25 시설 데이터 가용성 (현재 본 사이트 미추출)</strong>:<br>
+        • DMIG·PIPG·GOLF·MDLN·KIJA·SMDM 시설 정량 (코스/홀/면적/정규직) → FY24 AR Profil/Wilayah 섹션에서 본 사이트 추출 완료. FY25 AR Profil 섹션에 동일 데이터가 있을 가능성 높으나 본 사이트 미추출 (FY25 추출은 P&L·Segment Note 중심).<br>
+        • <strong>BKDP·SMRA·BSDE·DILD·MKPI·BKSL FY25 시설 데이터</strong>: 본 사이트 Cycle 92-103 추출은 모두 Segment Note 또는 P&L 범위. 시설 (코스 수·홀·면적·정규직) 정량은 별도 추출 필요 — 단, 이 6 peer는 모두 Golf 직접 운영 없음 (관계사 운영 또는 미보유) 확인. 본 사이트의 시설 비교는 6 peer (DMIG·PIPG·GOLF·MDLN·KIJA·SMDM) Golf 단독 운영자에 한정.<br>
+        • <strong>관련 발견</strong>: MDLN FY25 Penyusutan +104.1% 비중 1.5배 확대 (cost-hr.html Cycle 86) → 자산 base 증가 신호. 자산 증가의 구체적 내용 (신규 코스/시설/장비) 식별은 AR Note 11 (Aset Tetap) 별도 추출 필요 (본 사이트 미추출).
+      </div>
+    </div>
+    <p class="src" style="margin-top:8px;">관련 페이지: <a href="cost-hr.html">cost-hr.html FY25 follow-up</a> (MDLN COGS 시계열) · <a href="risk.html">risk.html FY25 후속</a> (7 peer 종합).</p>
+  </div>
+</section>
+
 <footer class="ops-foot">
   <div class="ops-wrap">
-    <p>출처: 공개 IDX 연차보고서 (FY2022–FY2024) + Phase A/B 큐레이션. 독립 산업 연구. 마지막 갱신 2026-05-11.</p>
+    <p>출처: IDX 공식 Annual Reports FY2022-FY2024 + FY2025 가용 11 peer (시설 정량은 본 사이트 미추출). DMIG·PIPG·GOLF 시설 정량 AR-cited (코스/홀/면적/정규직). 메타: IMPROVEMENT_LOG.md / verification_log.md / CORRECTIONS.md (11건) / LIMITATIONS.md. 마지막 갱신 2026-05-11 (Cycle 110).</p>
   </div>
 </footer>
 </body>

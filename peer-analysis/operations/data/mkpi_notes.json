@@ -1,0 +1,48 @@
+{
+  "_meta": {
+    "ticker": "MKPI",
+    "parent": "PT Metropolitan Kentjana Tbk dan Entitas Anak / and Subsidiaries",
+    "currency": "IDR",
+    "unit": "thousand Rupiah (per AR 'Disajikan dalam Rupiah, kecuali dinyatakan lain' — Rp'000 in segment table)",
+    "fiscal_years": ["FY2025"],
+    "source_ar": ["annual_reports/MKPI/FY2025/AnnualReport2025-MKPI-att1.pdf"],
+    "extraction_method": "PyMuPDF positional text extraction",
+    "extracted_at": "2026-05-11 Cycle 102"
+  },
+  "operations_scope": "MKPI = PT Metropolitan Kentjana Tbk = Pondok Indah Group property management. Operates: Pondok Indah Mall, Pondok Indah Office Tower, Pondok Indah Golf Apartment. **GOLF operations 직접 운영 없음** — Pondok Indah Padang Golf은 PIPG (associate) 운영. MKPI 자체는 골프 시설 운영 매출 없음.",
+  "segment_note_37_FY2025": {
+    "source_page": "FY25 AR att1 p.223 Note 37 INFORMASI SEGMEN USAHA",
+    "segments_listed": ["Pusat Perbelanjaan (Shopping center)", "Perkantoran (Office)", "Apartemen", "Real Estat", "Taman Air (Water park)", "Hotel"],
+    "golf_segment": "NONE — MKPI FY25 operating segments do NOT include Golf. 6 segments cover shopping, office, apartment, real estate, water park, hotel.",
+    "segment_revenue_FY2025_thousand_Rp": {
+      "Pusat_Perbelanjaan": 1400894857,
+      "Perkantoran": 306777050,
+      "Apartemen": 167330484,
+      "Real_Estat": 271131228,
+      "Taman_Air": 12674335,
+      "Hotel": 445638083,
+      "Subtotal": 2604446037,
+      "Eliminasi": -1133000,
+      "Konsolidasi": 2603313037,
+      "unit_conversion": "Rp 2,603 bn consolidated revenue FY25"
+    },
+    "segment_income_FY2025_thousand_Rp": {
+      "Pusat_Perbelanjaan": 911831287,
+      "Perkantoran": 130148382,
+      "Apartemen": 68253539,
+      "Real_Estat": 64478132,
+      "Taman_Air": 2091711,
+      "Hotel": 63577719,
+      "Subtotal_segment_income": 1240380770,
+      "Eliminasi": -494454,
+      "Operating_income": 1239886316,
+      "unit_conversion": "Operating income Rp 1,240 bn FY25"
+    },
+    "net_income_FY2025": 1122176939,
+    "net_income_unit_conversion": "Rp 1,122 bn FY25",
+    "total_assets_FY2025": 9463752773,
+    "total_assets_unit_conversion": "Rp 9,464 bn FY25",
+    "depreciation_FY2025_total": 305342347,
+    "capex_FY2025_total": 254893027
+  }
+}

@@ -4,10 +4,20 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>인도네시아 골프 운영 벤치마크 — 13개 상장사</title>
-<meta name="description" content="13 IDX 상장사 골프장 운영 지표. Annual Report 기반." />
+<meta name="description" content="13 IDX 상장사 골프장 운영 지표. Annual Report Note 직접 인용 기반. 운영 총괄 관점." />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260511g" />
+<link rel="stylesheet" href="ops-style.css?v=20260511c51" />
+<style>
+  .scroll-x { overflow-x: auto; }
+  table.progress-tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.progress-tbl thead th { padding: 8px 6px; text-align: center; background: var(--ops-surface); border-bottom: 1px solid var(--ops-line-strong); font-size: 11px; color: var(--ops-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  table.progress-tbl tbody td { padding: 6px 6px; text-align: center; border-bottom: 1px solid var(--ops-line); }
+  table.progress-tbl tbody td.peer { text-align: left; font-weight: 700; }
+  .cell-done { background: var(--ops-green-tint); color: var(--ops-green); font-weight: 700; }
+  .cell-partial { background: #fef3c7; color: #92400e; font-weight: 700; }
+  .cell-none { color: var(--ops-muted); font-style: italic; }
+</style>
 </head>
 <body>
 <header class="ops-head">
@@ -16,60 +26,452 @@
       <div class="mark">⛳</div>
       <div>
         <div class="name">인도네시아 골프 운영 벤치마크</div>
-        <div class="sub">13개 IDX 상장사 · Annual Report 기반</div>
+        <div class="sub">13개 IDX 상장사 · Annual Report Note 직접 인용</div>
       </div>
     </a>
     <nav class="ops-nav">
-      <a href="index.html" class="active">한눈에</a><a href="revenue.html">매출</a><a href="cost-hr.html">비용·인력</a><a href="assets.html">자산</a><a href="risk.html">구조·위험</a><a href="../../index.html" class="back">← 지도</a>
+      <a href="index.html" class="active">한눈에</a><a href="overview.html">TLDR</a><a href="unit-economics.html">단위 경제</a><a href="revenue.html">매출 믹스</a><a href="cost-hr.html">비용 구조</a><a href="assets.html">시설</a><a href="risk.html">위험</a><a href="../../index.html" class="back">← 지도</a>
     </nav>
   </div>
 </header>
 <section class="ops-hero">
   <div class="ops-wrap">
-    <div class="eyebrow">운영 벤치마크</div>
-    <h1>인도네시아 골프장,<br/>실제로 어떻게 굴러가는가</h1>
-    <p class="lede">IDX 상장 13개 골프장 운영사의 매출·매출원가·판관비·자산·위험 지표를 한 화면에 정리했습니다. 운영자가 자기 클럽의 위치를 가늠하고 개선 여지를 찾기 위한 벤치마크입니다.</p>
+    <div class="eyebrow">운영 총괄 관점 · 객관적 사실 기록</div>
+    <h1>인도네시아 13개 상장 골프장,<br/>AR Note 그대로 비교</h1>
+    <p class="lede">IDX 상장 13개 골프장 운영사의 매출 라인·매출원가·판관비·시설·공시된 위험을 Annual Report Note 직접 인용으로 정리. 추정·일반론 없이 공시된 항목만 게재. 미공시는 "공시 없음" 표기.</p>
     <div class="bignum-row">
-      <div class="item"><div class="v">13<span class="u">개사</span></div><div class="l">상장사 Peer</div></div>
-      <div class="item"><div class="v">10<span class="u">/13</span></div><div class="l">FY2024 매출 공시</div></div>
-      <div class="item"><div class="v">22,424<span class="u">bn</span></div><div class="l">합계 매출 (IDR)</div></div>
-      <div class="item"><div class="v">1,017<span class="u">bn</span></div><div class="l">중앙값 매출 (IDR)</div></div>
+      <div class="item"><div class="v">13<span class="u">/13</span></div><div class="l"><strong>AR 직접 추출 완주</strong> peer (Cycle 103) — Golf segment 분리는 6/13</div></div>
+      <div class="item"><div class="v">6<span class="u">/13</span></div><div class="l">골프 segment 매출+COGS+GP AR-cited (DMIG·PIPG·GOLF·MDLN·KIJA·SMDM)</div></div>
+      <div class="item"><div class="v">11<span class="u">건</span></div><div class="l">curated → AR 직접 검증 정정 (CORRECTIONS.md)</div></div>
+      <div class="item"><div class="v">166<span class="u">사이클</span></div><div class="l">history table Cycle 165 1행 추가 · <a href="overview.html" style="color:var(--ops-green);">TLDR</a></div></div>
     </div>
   </div>
 </section>
 
 <section class="ops-section">
   <div class="ops-wrap">
-    <h2>카테고리</h2>
-    <h3>네 가지 관점으로 본 운영</h3>
-    <p class="lede">매출을 어떻게 만드는가, 어떻게 쓰는가, 무엇을 가지고 있는가, 무엇이 위험한가 — 13개사 비교 표로 이동합니다.</p>
+    <h2>이 사이트 사용법</h2>
+    <h3>30초 가이드</h3>
+    <p class="lede"><strong>처음이라면</strong>: → <a href="overview.html" style="color:var(--ops-green);font-weight:700;">TLDR (overview)</a>로 핵심 7 발견 + 6 peer 1-card + FY25 follow-up 한 화면.<br>
+    <strong>깊게 보고 싶다면</strong>: 아래 5 카테고리 카드 중 관심 분야 선택. 모든 페이지에 <strong>FY25 follow-up 섹션</strong> 추가됨 (6/7 페이지).<br>
+    <strong>데이터 출처 확인</strong>: 모든 수치는 AR 페이지/Note 인라인. 검증 = <a href="verification_log.md">verification_log.md</a>. 정정 11건 = <a href="CORRECTIONS.md">CORRECTIONS.md</a>.<br>
+    <strong>한계 확인</strong>: 본 사이트에 없는 데이터는 <a href="LIMITATIONS.md">LIMITATIONS.md</a> 6 카테고리에 명시.</p>
+  </div>
+</section>
+
+<section class="ops-section">
+  <div class="ops-wrap">
+    <h2>5개 페이지 카테고리</h2>
+    <h3>운영 총괄이 한 화면에서 볼 수 있는 5가지 관점</h3>
+    <p class="lede">단위 경제 → 매출 믹스 → 비용 구조 → 시설 → 공시된 위험. 모든 수치에 AR 페이지/Note 번호 명시.</p>
     <div class="cat-grid">
+      <a href="unit-economics.html" class="cat-card">
+        <div class="badge">01</div><h4>단위 경제</h4>
+        <p class="desc">홀당·ha당·1인당·회원 1인당 매출. 골프 부문 분리 공시 peer (DMIG·PIPG·GOLF·MDLN segment)만.</p>
+        <div class="arrow">상세 보기</div>
+      </a>
       <a href="revenue.html" class="cat-card">
-        <div class="badge">01</div><h4>매출 운영</h4>
-        <p class="desc">총매출, 매출총이익, 순이익, 회원권 모델, 매출 세그먼트 공시 — 13개사 다년 추이.</p>
+        <div class="badge">02</div><h4>매출 믹스</h4>
+        <p class="desc">Green Fee / 회원권 / F&B / 부속 / 부동산 세그먼트. DMIG 7-라인 100% stacked bar 3년 추이.</p>
         <div class="arrow">상세 보기</div>
       </a>
       <a href="cost-hr.html" class="cat-card">
-        <div class="badge">02</div><h4>매출원가·판관비</h4>
-        <p class="desc">매출원가율, 판관비율, GP 마진, 영업이익률 — 손익 구조 13개사 비교.</p>
+        <div class="badge">03</div><h4>비용 구조</h4>
+        <p class="desc">기준 peer (DMIG) 매출원가 3 라인 + 판관비 17 라인 분해 FY22-24. 12개 비교 peer 동일 양식.</p>
         <div class="arrow">상세 보기</div>
       </a>
       <a href="assets.html" class="cat-card">
-        <div class="badge">03</div><h4>자산·시설</h4>
-        <p class="desc">토지 면적, 홀·Par·설계자, 부속 시설, 총자산 — 13개사.</p>
+        <div class="badge">04</div><h4>시설 포트폴리오</h4>
+        <p class="desc">토지·홀·총자산 + 부속 시설(드라이빙 레인지·호텔·볼룸·레지던스) 매출 기여. AR 공시 사실만.</p>
         <div class="arrow">상세 보기</div>
       </a>
       <a href="risk.html" class="cat-card">
-        <div class="badge">04</div><h4>구조·위험</h4>
-        <p class="desc">법인 형태, 모회사·지주, 토지권, 회원권 구조, 위험 이슈.</p>
+        <div class="badge">05</div><h4>운영 위험</h4>
+        <p class="desc">손실·우발부채·토지권 만료·회원권 환매·감사의견. peer AR에 실제 공시된 사례만.</p>
         <div class="arrow">상세 보기</div>
       </a>
     </div>
+
+    <div class="note">
+      <div class="ico">i</div>
+      <div class="body"><p><strong>원칙 · </strong> 본 사이트는 (1) IDX 상장 13개사 공식 AR FY2022-FY2024에 명시된 내용만, (2) 추정·해석·일반론·특정 자산 비교 없이, (3) 모든 수치에 AR 페이지/Note 번호를 명시하며, (4) 미공시 항목은 "공시 없음" + n/13으로 표기, (5) pure-play vs 그룹 합산 peer를 분리 표기한다. 메타 문서: <code>IMPROVEMENT_LOG.md</code> (사이클별 변경) / <code>verification_log.md</code> (검증 결과) / <code>CORRECTIONS.md</code> (curated → AR-direct 정정 11건) / <code>LIMITATIONS.md</code> (추출 한계 6 카테고리 + 신뢰 등급 5단계 + 극복 방안) / <code>INVENTORY.md</code> (산출물 종합).</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ops-section">
+  <div class="ops-wrap">
+    <h2>13-peer 추출 진행 매트릭스</h2>
+    <h3>Cycle 1-103 누적 AR Note 직접 추출 현황 — <strong style="color:var(--ops-green);">★ 13/13 peer JSON 추출 완주 (Cycle 103) ★</strong></h3>
+    <p class="lede">peer × 데이터 카테고리 매트릭스 — 녹색 = AR-cited 완료, 노란색 = 부분 / 추가 추출 가능, 회색 = 분리 공시 없음.</p>
+    <div class="note" style="margin-bottom:16px;">
+      <div class="body" style="font-size:13px;">
+        <strong>FY25 가용성 (Cycle 62-103)</strong>: 11/13 peer FY25 AR 직접 추출 완료. DMIG·PIPG는 본 사이트 환경에서 FY25 AR 미가용 (annual_reports/DMIG·PIPG/FY2025/ 부재).<br>
+        <strong>Golf segment 분리 공시</strong>: 6 peer (DMIG·PIPG·GOLF·MDLN·KIJA·SMDM) — 핵심 비교 대상.<br>
+        <strong>Hotel·Resort·Golf 통합 또는 Leisure 통합</strong>: 2 peer (KPIG·SMRA) — 부분 비교 대상.<br>
+        <strong>Golf segment 자체 미공시 (직접 운영 없음 or 관계사)</strong>: 5 peer (BSDE·DILD·MKPI·BKSL·BKDP) — 컨텍스트 정보 제공.
+      </div>
+    </div>
+    <div class="tbl-card scroll-x">
+      <table class="progress-tbl">
+        <thead>
+          <tr>
+            <th>Peer</th>
+            <th>매출 segment</th>
+            <th>COGS segment</th>
+            <th>OpEx 라인</th>
+            <th>홀·면적</th>
+            <th>정규직</th>
+            <th>회원권 정책</th>
+            <th>토지권</th>
+            <th>매출 집중</th>
+            <th>매입 집중</th>
+            <th>감사의견</th>
+            <th>FY22 시계열</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="peer">DMIG</td>
+            <td class="cell-done">✓ 7 라인</td>
+            <td class="cell-done">✓ 3 라인</td>
+            <td class="cell-done">✓ 17 라인</td>
+            <td class="cell-done">✓ 36/156</td>
+            <td class="cell-done">✓ 198</td>
+            <td class="cell-done">✓ Refundable</td>
+            <td class="cell-none">미공시</td>
+            <td class="cell-done">✓ 없음 명시</td>
+            <td class="cell-done">✓ 없음 명시</td>
+            <td class="cell-none">Cycle 16</td>
+            <td class="cell-done">✓ Note 23</td>
+          </tr>
+          <tr>
+            <td class="peer">PIPG</td>
+            <td class="cell-done">✓ 11 라인</td>
+            <td class="cell-done">✓ 10 라인</td>
+            <td class="cell-done">✓ 17 라인</td>
+            <td class="cell-done">✓ 18/53.01</td>
+            <td class="cell-done">✓ 254</td>
+            <td class="cell-partial">정성</td>
+            <td class="cell-done">✓ HGB 2025/2055</td>
+            <td class="cell-none">미확인</td>
+            <td class="cell-none">미확인</td>
+            <td class="cell-none">Cycle 16</td>
+            <td class="cell-done">✓ Note 27</td>
+          </tr>
+          <tr>
+            <td class="peer">GOLF</td>
+            <td class="cell-done">✓ 4 segment</td>
+            <td class="cell-done">✓ 4 segment</td>
+            <td class="cell-done">✓ Sel 5 + G&amp;A 16</td>
+            <td class="cell-done">✓ 36 또는 54</td>
+            <td class="cell-none">미공시</td>
+            <td class="cell-none">미공시</td>
+            <td class="cell-none">미공시</td>
+            <td class="cell-done">✓ Triniti 34%</td>
+            <td class="cell-none">미확인</td>
+            <td class="cell-none">Cycle 16</td>
+            <td class="cell-partial">Ikhtisar만</td>
+          </tr>
+          <tr>
+            <td class="peer">MDLN</td>
+            <td class="cell-done">✓ 4 sub-line</td>
+            <td class="cell-done">✓ Golf 3 + F&amp;B 3</td>
+            <td class="cell-partial">통합</td>
+            <td class="cell-none">미공시</td>
+            <td class="cell-none">미공시</td>
+            <td class="cell-none">미공시</td>
+            <td class="cell-none">미공시</td>
+            <td class="cell-none">없음</td>
+            <td class="cell-done">✓ Jumbo Power</td>
+            <td class="cell-none">이미지 PDF</td>
+            <td class="cell-done">✓ Note 25</td>
+          </tr>
+          <tr>
+            <td class="peer">KIJA</td>
+            <td class="cell-done">✓ 1 segment</td>
+            <td class="cell-done">✓ 1 segment</td>
+            <td class="cell-partial">Sel 1 + G&amp;A 1</td>
+            <td class="cell-none">미공시</td>
+            <td class="cell-none">미공시</td>
+            <td class="cell-none">미공시</td>
+            <td class="cell-none">미공시</td>
+            <td class="cell-none">미확인</td>
+            <td class="cell-none">미확인</td>
+            <td class="cell-none">Cycle 16</td>
+            <td class="cell-none">Cycle 16</td>
+          </tr>
+          <tr>
+            <td class="peer">SMDM</td>
+            <td class="cell-done">✓ 1 segment</td>
+            <td class="cell-done">✓ 1 segment</td>
+            <td class="cell-partial">Sel 1 + G&amp;A 1</td>
+            <td class="cell-none">미공시</td>
+            <td class="cell-partial">665 (그룹)</td>
+            <td class="cell-partial">정성</td>
+            <td class="cell-none">미공시</td>
+            <td class="cell-none">미확인</td>
+            <td class="cell-none">미확인</td>
+            <td class="cell-none">Cycle 16</td>
+            <td class="cell-done">✓ Note 29</td>
+          </tr>
+          <tr>
+            <td class="peer">KPIG</td>
+            <td class="cell-partial">Hotel+resort+골프 통합</td>
+            <td class="cell-none">분리 없음</td>
+            <td class="cell-done">✓ G&amp;A 13 라인 (그룹)</td>
+            <td class="cell-none">미공시</td>
+            <td class="cell-none">미공시</td>
+            <td class="cell-none">미공시</td>
+            <td class="cell-none">미공시</td>
+            <td class="cell-none">미확인</td>
+            <td class="cell-none">미확인</td>
+            <td class="cell-none">Cycle 16</td>
+            <td class="cell-none">없음</td>
+          </tr>
+          <tr>
+            <td class="peer">BSDE</td>
+            <td class="cell-none">DMIG associate만</td>
+            <td class="cell-none">분리 없음</td>
+            <td class="cell-none">미추출</td>
+            <td class="cell-none">N/A</td>
+            <td class="cell-none">N/A</td>
+            <td class="cell-none">N/A</td>
+            <td class="cell-none">미공시</td>
+            <td class="cell-none">미확인</td>
+            <td class="cell-none">미확인</td>
+            <td class="cell-none">미추출</td>
+            <td class="cell-none">N/A</td>
+          </tr>
+          <tr>
+            <td class="peer">BKSL</td>
+            <td class="cell-none">관계사 운영</td>
+            <td class="cell-none">분리 없음</td>
+            <td class="cell-none">미추출</td>
+            <td class="cell-none">미공시</td>
+            <td class="cell-none">미공시</td>
+            <td class="cell-none">미공시</td>
+            <td class="cell-none">미공시</td>
+            <td class="cell-none">미확인</td>
+            <td class="cell-none">미확인</td>
+            <td class="cell-none">미추출</td>
+            <td class="cell-none">N/A</td>
+          </tr>
+          <tr>
+            <td class="peer">SMRA</td>
+            <td class="cell-none">Leisure 통합</td>
+            <td class="cell-none">분리 없음</td>
+            <td class="cell-none">미추출</td>
+            <td class="cell-none">미공시</td>
+            <td class="cell-none">미공시</td>
+            <td class="cell-partial">정성</td>
+            <td class="cell-none">미공시</td>
+            <td class="cell-none">미확인</td>
+            <td class="cell-none">미확인</td>
+            <td class="cell-none">미추출</td>
+            <td class="cell-none">N/A</td>
+          </tr>
+          <tr>
+            <td class="peer">DILD</td>
+            <td class="cell-none">분리 없음</td>
+            <td class="cell-none">분리 없음</td>
+            <td class="cell-none">미추출</td>
+            <td class="cell-none">미공시</td>
+            <td class="cell-none">미공시</td>
+            <td class="cell-none">미공시</td>
+            <td class="cell-none">미공시</td>
+            <td class="cell-none">미확인</td>
+            <td class="cell-none">미확인</td>
+            <td class="cell-none">미추출</td>
+            <td class="cell-none">N/A</td>
+          </tr>
+          <tr>
+            <td class="peer">BKDP</td>
+            <td class="cell-none">분리 없음</td>
+            <td class="cell-none">분리 없음</td>
+            <td class="cell-none">미추출</td>
+            <td class="cell-none">미공시</td>
+            <td class="cell-none">미공시</td>
+            <td class="cell-none">미공시</td>
+            <td class="cell-none">미공시</td>
+            <td class="cell-none">없음</td>
+            <td class="cell-none">없음</td>
+            <td class="cell-done">✓ Going Concern</td>
+            <td class="cell-none">N/A</td>
+          </tr>
+          <tr>
+            <td class="peer">MKPI</td>
+            <td class="cell-none">N/A 골프 X</td>
+            <td class="cell-none">N/A</td>
+            <td class="cell-none">N/A</td>
+            <td class="cell-none">N/A</td>
+            <td class="cell-none">N/A</td>
+            <td class="cell-none">N/A</td>
+            <td class="cell-none">N/A</td>
+            <td class="cell-none">N/A</td>
+            <td class="cell-none">N/A</td>
+            <td class="cell-none">미추출</td>
+            <td class="cell-none">N/A</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--ops-line); font-size: 12px; color: var(--ops-ink-soft); display: flex; gap: 16px; flex-wrap: wrap;">
+      <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 14px; height: 14px; background: var(--ops-green-tint); border: 1px solid var(--ops-green); border-radius: 2px;"></span>AR-cited 완료</span>
+      <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 14px; height: 14px; background: #fef3c7; border: 1px solid #92400e; border-radius: 2px;"></span>부분 추출 / 정성만</span>
+      <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 14px; height: 14px; background: white; border: 1px solid var(--ops-line); border-radius: 2px;"></span>미공시 / N/A</span>
+    </div>
+    <p class="src" style="margin-top:12px;">Cycle 14 종료 시점. 6 peer (DMIG·PIPG·GOLF·MDLN·KIJA·SMDM) Golf segment 매출+COGS 직접 추출. 7 peer (KPIG·BSDE·BKSL·SMRA·DILD·BKDP·MKPI) Golf 분리 공시 없음 또는 N/A. BKDP만 audit opinion AR-cited (Going Concern). 4 peer FY22 시계열 완료 (DMIG·PIPG·MDLN·SMDM).</p>
+  </div>
+</section>
+
+<section class="ops-section">
+  <div class="ops-wrap">
+    <h2>6-peer 핵심 ratio 한 화면 요약 (Cycle 19)</h2>
+    <h3>Golf segment 분리 공시 6 peer × FY2024</h3>
+    <p class="lede">사이트 톱-레벨 1-cell summary — 운영 총괄이 한눈에 비교.</p>
+    <div class="tbl-card scroll-x">
+      <table class="ops-tbl">
+        <thead>
+          <tr>
+            <th>Peer</th>
+            <th class="num">Golf 매출 FY24 (Rp bn)</th>
+            <th class="num">Golf 매출 3-yr CAGR</th>
+            <th class="num">Golf GP 마진</th>
+            <th class="num">Golf OpInc 마진</th>
+            <th class="num">매출원가율</th>
+            <th>유형</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hi">
+            <td class="peer">DMIG</td>
+            <td class="num">127.9</td>
+            <td class="num">+13.9%</td>
+            <td class="num">58.6%</td>
+            <td class="num">31.2%</td>
+            <td class="num">30.4%</td>
+            <td>Pure-play 2 courses</td>
+          </tr>
+          <tr class="hi">
+            <td class="peer">PIPG</td>
+            <td class="num">53.9</td>
+            <td class="num">+9.4%</td>
+            <td class="num">63.4%</td>
+            <td class="num">27.1%</td>
+            <td class="num">35.2%</td>
+            <td>Pure-play 1 course</td>
+          </tr>
+          <tr>
+            <td class="peer">GOLF (Golf segment)</td>
+            <td class="num">93.0</td>
+            <td class="num"><span class="nd">미완</span></td>
+            <td class="num">65.7%</td>
+            <td class="num">36.6%<span class="cite-inline">(그룹)</span></td>
+            <td class="num">39.5%<span class="cite-inline">(그룹)</span></td>
+            <td>그룹 (호텔+골프+부동산)</td>
+          </tr>
+          <tr>
+            <td class="peer">MDLN (Golf+F&amp;B)</td>
+            <td class="num">74.4</td>
+            <td class="num">+9.2%</td>
+            <td class="num">39.7%</td>
+            <td class="num"><span class="nd">계산 불가</span></td>
+            <td class="num">60.3%</td>
+            <td>그룹 (Hospitaliti segment 일부)</td>
+          </tr>
+          <tr>
+            <td class="peer">KIJA (Golf segment)</td>
+            <td class="num">85.0</td>
+            <td class="num"><span class="nd">미완</span></td>
+            <td class="num">41.6%</td>
+            <td class="num">6.0%</td>
+            <td class="num">58.4%</td>
+            <td>그룹 (산업단지 부속)</td>
+          </tr>
+          <tr style="background:#fef2f2;">
+            <td class="peer">SMDM (Golf&amp;CC segment)</td>
+            <td class="num">63.3</td>
+            <td class="num">+10.7%</td>
+            <td class="num" style="color:var(--ops-danger);">38.9% (-15.9pp)</td>
+            <td class="num" style="color:var(--ops-danger);">-0.3% (적자)</td>
+            <td class="num" style="color:var(--ops-danger);">61.1% (+15.9pp)</td>
+            <td>그룹 (Rancamaya)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src" style="margin-top:8px;">매출 정렬: DMIG &gt; GOLF &gt; KIJA &gt; MDLN &gt; SMDM &gt; PIPG. Pure-play 2 peer (DMIG·PIPG)와 그룹 peer 비교 — GP 마진 PIPG/GOLF 65% 이상 우위 vs MDLN/KIJA/SMDM 40% 내외. 영업이익률 DMIG·GOLF·PIPG 27-37% vs KIJA 6% / SMDM 적자. <strong>SMDM 단독 outlier</strong>: GP 마진 -15.9pp 큰 하락. Cycle 1-24 누적 AR-direct 추출, <a href="../../site/peer-analysis/operations/CORRECTIONS.md">CORRECTIONS.md</a> 11건 정정 후.</p>
+  </div>
+</section>
+
+<section class="ops-section">
+  <div class="ops-wrap">
+    <h2>13-peer 골프 운영 분류 (Cycle 25)</h2>
+    <h3>직접 운영 vs 간접 운영 vs 운영 없음</h3>
+    <p class="lede">"골프 peer"로 분류된 13개사의 실제 골프 운영 형태. AR Note 직접 확인 결과.</p>
+    <div class="tbl-card scroll-x">
+      <table class="ops-tbl">
+        <thead>
+          <tr>
+            <th>유형</th>
+            <th>peer (개)</th>
+            <th>설명</th>
+            <th>본 사이트 비교 가능</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hi" style="background:var(--ops-green-tint);">
+            <td class="peer">Pure-play (전체 매출 100% 골프)</td>
+            <td>DMIG · PIPG (2)</td>
+            <td>DMIG = BSD + PIK 36 hole. PIPG = Pondok Indah 18 hole.</td>
+            <td><span style="color:var(--ops-green);font-weight:700;">✓ 가장 정확한 비교 가능</span></td>
+          </tr>
+          <tr style="background:#e8f0e2;">
+            <td class="peer">직접 자회사 운영 + segment 분리 공시</td>
+            <td>GOLF (NKG+SGU) · MDLN · KIJA · SMDM (4)</td>
+            <td>그룹 내 자회사 또는 사업부로 직접 운영. AR Note에 Golf segment 매출+COGS 분리.</td>
+            <td><span style="color:var(--ops-green);font-weight:700;">✓ Golf segment 추출 가능 (Cycle 3·4·5·6)</span></td>
+          </tr>
+          <tr style="background:#fef3c7;">
+            <td class="peer">호텔/관광 통합 공시 (Golf 분리 X)</td>
+            <td>KPIG (1)</td>
+            <td>Trump Lido 직접 운영 (MNC Tourism Indonesia 자회사). 단, Note 31 매출 라인이 "Hotel, resor dan golf" 통합 — Golf 단독 분리 없음.</td>
+            <td><span style="color:#92400e;">부분 (그룹 통합만)</span></td>
+          </tr>
+          <tr style="background:#fef3c7;">
+            <td class="peer">Associate (지분 보유, 비연결)</td>
+            <td>BSDE (DMIG associate) · GOLF의 BGR Belitung (associate)</td>
+            <td>BSDE → DMIG 지분 보유. GOLF → BGR Black Rocks Belitung 비연결 associate. 본 그룹 매출에 미포함.</td>
+            <td><span style="color:#92400e;">DMIG·GOLF 본체로 추출 (BSDE·BGR 별도 X)</span></td>
+          </tr>
+          <tr>
+            <td class="peer">관계사 운영 (그룹 외 entity)</td>
+            <td>BKSL (1)</td>
+            <td>Sentul Golf은 PT Padang Golf Bukit Sentul (관계사) 운영. BKSL 매출에 포함 X.</td>
+            <td><span class="nd">Golf 자체가 그룹 외</span></td>
+          </tr>
+          <tr>
+            <td class="peer">기타 부동산 그룹 (Golf 미운영 또는 라인 없음)</td>
+            <td>BKDP · SMRA · DILD (3)</td>
+            <td>BKDP = Shopping center 임대 위주, Golf 매출 라인 자체 없음 (Cycle 24 발견). SMRA = Leisure 통합 (800+ 회원 Gading Raya 그룹 매출에 통합). DILD = Graha Famili Country Club 그룹 매출에 통합.</td>
+            <td><span class="nd">Golf 단독 추출 불가</span></td>
+          </tr>
+          <tr>
+            <td class="peer">지분 보유만 (직접 골프 X)</td>
+            <td>MKPI (1)</td>
+            <td>PIPG associate 0.38% 보유. 직접 골프 운영 X.</td>
+            <td><span class="nd">N/A</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src" style="margin-top:8px;">총 13 peer = 2 (pure-play) + 4 (직접+segment 분리) + 1 (그룹 통합) + 2 (associate) + 1 (관계사) + 3 (Golf 그룹 미공시) + 1 (지분 보유만). 본 사이트는 <strong>6 peer (DMIG·PIPG·GOLF·MDLN·KIJA·SMDM)</strong>를 핵심 비교 대상으로, 7 peer는 보조 / 미공시로 분류.</p>
   </div>
 </section>
 <footer class="ops-foot">
   <div class="ops-wrap">
-    <p>출처: 공개 IDX 연차보고서 (FY2022–FY2024) + Phase A/B 큐레이션. 독립 산업 연구. 마지막 갱신 2026-05-11.</p>
+    <p>출처: IDX 공식 Annual Reports FY2022-FY2024 + FY2025 (11 peer 가용). 13/13 peer AR Note 직접 추출 완주 (Cycle 1-103). 메타 문서: IMPROVEMENT_LOG.md (사이클 변경) · verification_log.md (검증) · CORRECTIONS.md (정정 11건) · LIMITATIONS.md (한계 6) · INVENTORY.md (산출물) · README.md (가이드). 마지막 갱신 2026-05-11 (Cycle 116).</p>
   </div>
 </footer>
 </body>

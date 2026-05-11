@@ -1,0 +1,105 @@
+{
+  "_meta": {
+    "ticker": "DMIG",
+    "parent": "PT Damai Indah Golf Tbk",
+    "currency": "IDR",
+    "unit": "rupiah (absolute)",
+    "fiscal_years": ["FY2022", "FY2023", "FY2024"],
+    "source_ar": [
+      "annual_reports/DMIG/FY2022/DMIG_AnnualReport2022_ENG.pdf",
+      "annual_reports/DMIG/FY2023/DMIG_AnnualReport2023_ENG.pdf",
+      "annual_reports/DMIG/FY2024/DMIG_AnnualReport2024_INA.pdf"
+    ],
+    "extraction_method": "PyMuPDF positional text extraction, manually verified row totals.",
+    "extracted_at": "2026-05-11"
+  },
+  "revenue_note": {
+    "note_number": {"FY2022": 23, "FY2023": 23, "FY2024": 23},
+    "source_page": {"FY2022": "FY23 AR p.89", "FY2023": "FY23 AR p.89 / FY24 AR p.86", "FY2024": "FY24 AR p.86"},
+    "lines": [
+      {"id_label": "Lapangan golf", "en_label": "Golf course",
+       "FY2022": 98459321142, "FY2023": 127131955307, "FY2024": 127922630366},
+      {"id_label": "Restoran", "en_label": "Restaurant",
+       "FY2022": 34702074865, "FY2023": 48548360800, "FY2024": 50274776410},
+      {"id_label": "Iuran keanggotaan", "en_label": "Membership dues",
+       "FY2022": 42597773865, "FY2023": 45819536950, "FY2024": 46347850174},
+      {"id_label": "Sponsor", "en_label": "Sponsorship",
+       "FY2022": null, "FY2023": 7857157655, "FY2024": 12360303237,
+       "note": "FY23 AR original groups sponsor into Lain-lain (11.15bn); FY24 AR restates FY23 sponsor=7.86bn / others=3.30bn."},
+      {"id_label": "Sewa ruangan", "en_label": "Room rental",
+       "FY2022": 4870079530, "FY2023": 9161626170, "FY2024": 8221787564},
+      {"id_label": "Rekreasi", "en_label": "Recreation",
+       "FY2022": 2353707404, "FY2023": 3171309564, "FY2024": 3037692059},
+      {"id_label": "Lain-lain", "en_label": "Others",
+       "FY2022": 3471473090, "FY2023_original": 11153479043, "FY2023_restated": 3296321388, "FY2024": 4937400384}
+    ],
+    "total": {"FY2022": 186454429896, "FY2023": 244986267834, "FY2024": 253102440194}
+  },
+  "cogs_note": {
+    "note_number": {"FY2022": 24, "FY2023": 24, "FY2024": 24},
+    "source_page": {"FY2022": "FY23 AR p.90", "FY2023": "FY23 AR p.90 / FY24 AR p.86", "FY2024": "FY24 AR p.86"},
+    "lines": [
+      {"id_label": "Lapangan golf", "en_label": "Golf course",
+       "FY2022": 39248614476, "FY2023": 51226292809, "FY2024": 52909540145},
+      {"id_label": "Restoran", "en_label": "Restaurant",
+       "FY2022": 19521743654, "FY2023": 21822561324, "FY2024": 22784791885},
+      {"id_label": "Rekreasi", "en_label": "Recreation",
+       "FY2022": 1055851060, "FY2023": 1243578193, "FY2024": 1353394838}
+    ],
+    "total": {"FY2022": 59826209190, "FY2023": 74292432326, "FY2024": 77047726868}
+  },
+  "opex_note": {
+    "note_number": {"FY2022": 25, "FY2023": 25, "FY2024": 25},
+    "source_page": {"FY2022": "FY23 AR p.90", "FY2023": "FY23 AR p.90 / FY24 AR p.87", "FY2024": "FY24 AR p.87"},
+    "note_on_english_translation": "DMIG AR English column has translation typos on FY23 page: 'Pajak dan perizinan' (Indonesian) is correctly Tax and licensing (AR's English column mis-prints 'Employee welfare'); 'Kesejahteraan karyawan' is correctly Employee welfare (AR mis-prints 'Professional fee'); 'Jasa tenaga ahli' is correctly Professional fee (AR mis-prints 'Tax and licensing'). FY24 AR corrects the alignment. Primary labels here use the verified Indonesian terms.",
+    "lines": [
+      {"id_label": "Gaji dan upah", "en_label": "Salaries and wages",
+       "FY2022": 24888066326, "FY2023": 28299633793, "FY2024": 28632542580},
+      {"id_label": "Penyusutan", "en_label": "Depreciation",
+       "ref_note": 11,
+       "FY2022": 16567296704, "FY2023": 25898201573, "FY2024": 28209973116},
+      {"id_label": "Pajak bumi dan bangunan", "en_label": "Land and building tax",
+       "FY2022": 9096732116, "FY2023": 10207296804, "FY2024": 10446341610},
+      {"id_label": "Jasa kebersihan dan pelayanan", "en_label": "Cleaning service",
+       "FY2022": 7760753290, "FY2023": 8319132117, "FY2024": 8692025201},
+      {"id_label": "Listrik dan air", "en_label": "Electricity and water",
+       "FY2022": 4040888969, "FY2023": 4302806960, "FY2024": 4475253059},
+      {"id_label": "Amortisasi", "en_label": "Amortization",
+       "FY2022": 2613975177, "FY2023": 2613975176, "FY2024": 2613975176},
+      {"id_label": "Perbaikan dan pemeliharaan", "en_label": "Repair and maintenance",
+       "FY2022": 1769216137, "FY2023": 2249343763, "FY2024": 2268418997},
+      {"id_label": "Imbalan kerja karyawan", "en_label": "Employee benefits",
+       "ref_note": 19,
+       "FY2022": 0, "FY2023": 2119591401, "FY2024": 2368855959},
+      {"id_label": "Administrasi bank", "en_label": "Bank administration",
+       "FY2022": 1414623929, "FY2023": 1855453943, "FY2024": 2042994947},
+      {"id_label": "Pajak dan perizinan", "en_label": "Tax and licensing",
+       "FY2022": 1170087004, "FY2023": 3247087235, "FY2024": 1579152772},
+      {"id_label": "Jasa tenaga ahli", "en_label": "Professional fee",
+       "FY2022": 797127240, "FY2023": 502963581, "FY2024": 1125708982},
+      {"id_label": "Kesejahteraan karyawan", "en_label": "Employee welfare",
+       "FY2022": 574785770, "FY2023": 993373668, "FY2024": 998818935},
+      {"id_label": "Transportasi", "en_label": "Transportation",
+       "FY2022": 612452008, "FY2023": 952627976, "FY2024": 932938511},
+      {"id_label": "Beban Asuransi", "en_label": "Insurance",
+       "FY2022": 430225003, "FY2023": 592640505, "FY2024": 570957876},
+      {"id_label": "Alat-alat tulis dan cetakan", "en_label": "Stationery and printing",
+       "FY2022": 658622158, "FY2023": 516534083, "FY2024": 561350429},
+      {"id_label": "Telepon dan teleks", "en_label": "Telephone and telex",
+       "FY2022": 222859159, "FY2023": 269223949, "FY2024": 267908067},
+      {"id_label": "Lain-lain", "en_label": "Others (each below Rp100m)",
+       "FY2022": 1137620832, "FY2023": 1216613146, "FY2024": 1340830505}
+    ],
+    "total": {"FY2022": 73755331822, "FY2023": 94156499674, "FY2024": 97128046722}
+  },
+  "related_party_note": {
+    "note_number": {"FY2022": null, "FY2023": 26, "FY2024": 26},
+    "source_page": {"FY2023": "FY23 AR p.91", "FY2024": "FY24 AR p.87"},
+    "lines": [
+      {"id_label": "Beban gaji dan tunjangan", "en_label": "Salaries and benefit expenses (key mgmt)",
+       "FY2022": 3278868973, "FY2023": 5508109553, "FY2024": 5344758190},
+      {"id_label": "Persentase terhadap beban usaha", "en_label": "% to operating expenses",
+       "FY2022": 0.0585, "FY2023": 0.0585, "FY2024": 0.0550}
+    ]
+  }
+}

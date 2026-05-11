@@ -1,0 +1,90 @@
+{
+  "_meta": {
+    "ticker": "KIJA",
+    "parent": "PT Kawasan Industri Jababeka Tbk (dan Entitas Anak / consolidated)",
+    "currency": "IDR",
+    "unit": "rupiah million (per AR p.520 'jutaan Rupiah')",
+    "fiscal_years": ["FY2023", "FY2024"],
+    "source_ar": ["annual_reports/KIJA/FY2024/AnnualReport2024-KIJA-att1.pdf"],
+    "extraction_method": "PyMuPDF positional text extraction",
+    "extracted_at": "2026-05-11 Cycle 5"
+  },
+  "segment_info_note_34": {
+    "source_page": "FY24 AR p.523-524 Note 34 INFORMASI SEGMEN (Cycle 6+ Real estat·Listrik·Land lease 등 추가 segment 정량 추출)",
+    "segments_count": 5,
+    "segments_listed": ["Real Estat", "Golf", "Listrik (Power Plant)", "Pengelolaan Kota (Town Mgmt)", "Lain-lain"],
+    "golf_segment_FY2024": {
+      "revenue": 85019,
+      "cogs": 49634,
+      "gross_profit": 35385,
+      "selling_expenses": 1665,
+      "ga_expenses": 28604,
+      "operating_income_calc": 5116,
+      "interest_income": 764,
+      "interest_expense": 1433,
+      "final_tax": 101,
+      "net_income": 6742,
+      "comprehensive_income": 7167,
+      "note": "Unit Rp million. Curated CSV had Golf segment 47.92 bn — that may have been an older/narrower sub-classification. AR FY24 directly shows Golf segment Rp 85,019 m (Note 34)."
+    },
+    "real_estate_segment_FY2024_partial": {
+      "revenue": 2573405,
+      "cogs": 1230504,
+      "gross_profit": 1342901,
+      "selling_expenses": 98408,
+      "ga_expenses": 304126,
+      "operating_income_calc": 940367,
+      "operating_margin_calc": 0.365,
+      "note": "Unit Rp million. Largest segment. GP margin 52.2%, OpInc margin 36.5% (excludes finance/tax). Cycle 52 OpInc derivation: 1,342,901 - 98,408 - 304,126."
+    },
+    "all_5_segments_FY2024_extended": {
+      "source_page": "FY24 AR att1 p.523-524 Note 34 (Cycle 37 deep extraction)",
+      "Real Estat": {"revenue": 2573405, "cogs": -1230504, "gp": 1342901, "selling": -98408, "ga": -304126, "gp_margin": 0.522},
+      "Golf": {"revenue": 85019, "cogs": -49634, "gp": 35385, "selling": -1665, "ga": -28604, "net": 6742, "gp_margin": 0.416},
+      "Service & Maintenance (Pengelolaan Kota)": {"revenue": 779848, "cogs": -412940, "gp": 366908, "ga": -127798, "gp_margin": 0.471},
+      "Power Plant (Listrik)": {"revenue": 1182415, "cogs": -978657, "gp": 203758, "ga": -68307, "gp_margin": 0.172},
+      "Tourism (Pariwisata)": {"revenue": 69545, "cogs": -51347, "gp": 18198, "ga": -49491, "gp_margin": 0.262},
+      "Total (pre-elimination)": {"revenue_sum": 4690232, "comment": "Subtotal does not equal consolidated 4,602,648 - eliminations -87,584 reconcile"}
+    },
+    "consolidated_total_FY2024": {
+      "revenue": 4602648,
+      "cogs": -2635469,
+      "gross_profit": 1967179,
+      "gp_margin": 0.427,
+      "selling_expenses": -105347,
+      "ga_expenses": -548301,
+      "finance_expenses": -381637,
+      "other_expenses_net": -164417,
+      "income_before_tax": 821108,
+      "income_tax": -51050,
+      "net_income": 770058,
+      "comprehensive_income": 775396,
+      "source": "FY24 AR att1 p.524 Note 34 Total column"
+    },
+    "curated_discrepancy_note": "Cycle 5: KIJA Golf segment FY24 = Rp 85.019 bn per AR Note 34 (direct extraction). curated CSV's Rp 47.92 bn does not match — possibly older Pure Green Fee narrower line or different fiscal year. Use AR-direct figure."
+  },
+  "fy2025_cross_validation": {
+    "source": "KIJA FY25 AR att1 p.557-559 Note 34 (Cycle 65)",
+    "fy2024_comparative_verified": {
+      "Total_Penjualan": 4602648,
+      "Total_BPP": 2635469,
+      "Total_Laba_bruto": 1967179,
+      "Total_Penghasilan_tahun_berjalan": 770058,
+      "Total_Komprehensif_neto": 775396,
+      "Golf_segment_Penjualan": 85019,
+      "Golf_segment_BPP": 49634,
+      "Golf_segment_Laba_bruto": 35385,
+      "Golf_segment_Net_income": 6742,
+      "Golf_segment_Comprehensive": 7167,
+      "verification": "All values 100% match Cycle 5/37/52 extraction. KIJA FY24 data confirmed by FY25 AR comparative column."
+    },
+    "fy2025_specific": "Partial extraction (rotated table limitation - LIMITATIONS category 2). FY25 specific segment-level Golf numbers not fully isolated."
+  },
+  "operating_segments_section_description": {
+    "source_page": "FY24 AR p.523 Note 34 (header)",
+    "segments_described": [
+      {"name": "Real Estat", "description": "Industrial estate development + supporting infrastructure (residential, apartments, offices, shopping centers, water/waste/telephone/electricity installations, sports & recreation facilities)"},
+      {"name": "Golf", "description": "Pengelolaan lapangan golf, club house, fasilitas rekreasi dan olahraga + sarana penunjang (Jababeka Golf & Country Club)"}
+    ]
+  }
+}

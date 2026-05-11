@@ -1,0 +1,57 @@
+{
+  "_meta": {
+    "ticker": "KPIG",
+    "parent": "PT MNC Land Tbk → PT MNC Tourism Indonesia Tbk (renamed July 2025)",
+    "currency": "IDR",
+    "unit": "rupiah (absolute)",
+    "fiscal_years": ["FY2023", "FY2024"],
+    "source_ar": ["annual_reports/KPIG/FY2024/AnnualReport2024-KPIG-att1.pdf"],
+    "extraction_method": "PyMuPDF positional text extraction",
+    "extracted_at": "2026-05-11 Cycle 7"
+  },
+  "revenue_note_31": {
+    "source_page": "FY24 AR p.315 Note 31 PENDAPATAN USAHA",
+    "lines": [
+      {"id_label": "Hotel, resor dan golf", "en_label": "Hotel, resort and golf", "FY2023": 811856360834, "FY2024": 960227506634, "note": "Golf is bundled with Hotel and Resort — NOT separately disclosed"},
+      {"id_label": "Manajemen properti dan jasa lainnya", "en_label": "Property management and other services", "FY2023": 422811572214, "FY2024": 617780723407},
+      {"id_label": "Sewa ruang perkantoran", "en_label": "Office space rental", "FY2023": 172668962183, "FY2024": 139138304557},
+      {"id_label": "Apartemen dan properti lainnya", "en_label": "Apartment and other properties", "FY2023": 13669538304, "FY2024": 52997863295}
+    ],
+    "total": {"FY2023": 1421006433535, "FY2024": 1770144397893},
+    "golf_only_disclosed": false,
+    "curated_discrepancy_note": "Curated CSV's 'Trump Lido membership 7.36 bn FY24' could not be verified from Note 31 directly. Golf is bundled into 'Hotel, resor dan golf' line. The 7.36 bn likely sourced from MD&A or sub-note not yet extracted."
+  },
+  "ga_note_34": {
+    "source_page": "FY24 AR p.316 Note 34 BEBAN UMUM DAN ADMINISTRASI",
+    "lines": [
+      {"id_label": "Gaji dan tunjangan", "FY2023": 133103661030, "FY2024": 120495134362},
+      {"id_label": "Perbaikan dan perawatan", "FY2023": 34623812609, "FY2024": 48637675150},
+      {"id_label": "Jasa manajemen", "FY2023": 29881846148, "FY2024": 30673901082},
+      {"id_label": "Pajak dan perijinan", "FY2023": 11994756540, "FY2024": 24623991247},
+      {"id_label": "Penyusutan (Note 12)", "FY2023": 19297652426, "FY2024": 18916032019},
+      {"id_label": "Perangkat lunak dan teknologi informasi", "FY2023": 28132170993, "FY2024": 14108685309},
+      {"id_label": "Asuransi", "FY2023": 12426647612, "FY2024": 12412053406},
+      {"id_label": "Imbalan kerja", "FY2023": 3275321378, "FY2024": 9924626291},
+      {"id_label": "Utilitas", "FY2023": 6610695007, "FY2024": 9496020588},
+      {"id_label": "Transportasi dan akomodasi", "FY2023": 5469270540, "FY2024": 5320564362},
+      {"id_label": "Jasa profesional", "FY2023": 3523018505, "FY2024": 3652518363},
+      {"id_label": "Perlengkapan dan administrasi kantor", "FY2023": 5517871316, "FY2024": 3043767134},
+      {"id_label": "Lain-lain", "FY2023": 41639060907, "FY2024": 53777105643}
+    ],
+    "total": {"FY2023": 335495785011, "FY2024": 355082074956}
+  },
+  "earnings_per_share_note_35": {
+    "FY2024_net_profit": 658629034066,
+    "FY2023_net_profit": 329809864915
+  },
+  "key_finding": "KPIG groups Hotel + Resort + Golf as ONE revenue line (Rp 960 bn FY24). Trump Golf Lido is operated by Trump Golf (license/management arrangement) per MD&A p.38 but specific golf-only revenue is not separately disclosed in Note 31. Therefore KPIG is NOT added to the 6-peer Golf GP comparison.",
+  "fy2025_follow_up": {
+    "source": "KPIG FY25 AR att1 p.325 Note 31 (Cycle 71)",
+    "company_name_change_verified": "PT MNC LAND TBK → PT MNC TOURISM INDONESIA TBK (formerly PT MNC LAND TBK), 2025-07 official rename",
+    "FY2025_revenue_note_31": {
+      "Hotel_resor_dan_golf": 1059832083248,
+      "yoy_vs_fy2024": 0.1037
+    },
+    "golf_segment_disclosure": "Hotel + Resort + Golf 통합 라인 유지 (FY24과 동일 패턴). Golf 단독 분리 여전히 없음. 본 사이트 6-peer 비교 대상 외 유지."
+  }
+}

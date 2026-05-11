@@ -1,0 +1,98 @@
+{
+  "_meta": {
+    "ticker": "SMDM",
+    "parent": "PT Suryamas Dutamakmur Tbk (dan Entitas Anak / consolidated, acquired by BSDE 91.99% in 2024-10)",
+    "currency": "IDR",
+    "unit": "rupiah (absolute)",
+    "fiscal_years": ["FY2023", "FY2024"],
+    "source_ar": ["annual_reports/SMDM/FY2024/AnnualReport2024-SMDM-att1.pdf"],
+    "extraction_method": "PyMuPDF positional text extraction",
+    "extracted_at": "2026-05-11 Cycle 6"
+  },
+  "segment_info_note_29": {
+    "source_page": "FY24 AR p.219-220 Note 29 Informasi Segmen Usaha",
+    "segments_count": 5,
+    "segments_listed": ["Real Estat dan Properti", "Golf dan Country Club (Rancamaya)", "Estat Manajemen", "Investasi dan Hotel", "Lainnya"],
+    "FY2024": {
+      "Real Estat dan Properti": {"revenue": 572609431402, "cogs": -236010889903, "gross_profit": 336598541499, "selling": -66243931744, "ga": -115292141286},
+      "Golf dan Country Club": {"revenue": 63282214554, "cogs": -38688676161, "gross_profit": 24593538393, "selling": -561109134, "ga": -24245473940},
+      "Estat Manajemen": {"revenue": 24636060732, "cogs": -16576397510, "gross_profit": 8059663222, "selling": 0, "ga": -14408963124},
+      "Investasi dan Hotel": {"revenue": 61589647062, "cogs": -29907027973, "gross_profit": 31682619089, "selling": -792479186, "ga": -31976554000},
+      "Lainnya": {"revenue": 85088184, "cogs": 0, "gross_profit": 85088184},
+      "Eliminasi": {"revenue": -28157233015, "cogs": 24442992903, "gross_profit": -3714240112, "selling": -347487451},
+      "Konsolidasian": {"revenue": 694045208919, "cogs": -296739998644, "gross_profit": 397305210275, "selling": -67945007515}
+    },
+    "FY2022": {
+      "source_page": "SMDM FY2023 AR att1 p.212 Note 29 comparative column",
+      "Real Estat dan Properti": {"revenue": 431274743523, "cogs": -153883396394, "gross_profit": 277391347129, "selling": -36781424087, "ga": -52131862546},
+      "Golf dan Country Club": {"revenue": 51662964626, "cogs": -23345482675, "gross_profit": 28317481951, "selling": -3380251067, "ga": -23718725374},
+      "Estat Manajemen": {"revenue": 19490961475, "cogs": -14074661680, "gross_profit": 5416299795, "selling": 0, "ga": -11891243461},
+      "Investasi dan Hotel": {"revenue": 63889255657, "cogs": -28193096803, "gross_profit": 35696158854, "selling": -1103373237, "ga": -34037522470},
+      "Lainnya": {"revenue": 84798184, "cogs": 0, "gross_profit": 84798184},
+      "Eliminasi": {"revenue": 0, "cogs": -44284594, "gross_profit": -44284594, "selling": -4596320},
+      "Konsolidasian": {"revenue": 566402723465, "cogs": -219540922146, "gross_profit": 346861801319, "selling": -41269644711}
+    },
+    "FY2023": {
+      "Real Estat dan Properti": {"revenue": 351287127412, "cogs": -129084529153, "gross_profit": 222202598259, "selling": -42423451801, "ga": -83870977011},
+      "Golf dan Country Club": {"revenue": 58197227138, "cogs": -25716957257, "gross_profit": 32480269881, "selling": -2940170039, "ga": -27303232401},
+      "Estat Manajemen": {"revenue": 22083677771, "cogs": -16746490741, "gross_profit": 5337187030, "selling": -15188201, "ga": -11184061003},
+      "Investasi dan Hotel": {"revenue": 64848052959, "cogs": -34439601633, "gross_profit": 30408451326, "selling": -1036257052, "ga": -25731532165},
+      "Lainnya": {"revenue": 81818184, "cogs": 0, "gross_profit": 81818184},
+      "Eliminasi": {"revenue": 0, "cogs": -45083987, "gross_profit": -45083987},
+      "Konsolidasian": {"revenue": 496497903464, "cogs": -206032662771, "gross_profit": 290465240693, "selling": -46415067093}
+    }
+  },
+  "computed_ratios": {
+    "FY2024": {
+      "golf_revenue": 63282214554,
+      "golf_cogs": 38688676161,
+      "golf_gp_margin": 0.389,
+      "golf_pct_of_consolidated": 0.0912,
+      "_segment_opinc_FY2024_cycle53": {
+        "Real Estat": {"opinc_calc": 155062468469, "opinc_margin": 0.271, "comment": "GP 336,598 - Sel 66,244 - G&A 115,292"},
+        "Golf & CC": {"opinc_calc": -212043861, "opinc_margin": -0.0034, "comment": "GP 24,594 - Sel 561 - G&A 24,245 = -212 (적자 전환)"},
+        "Estat Manajemen": {"opinc_calc": -6349299902, "opinc_margin": -0.258, "comment": "GP 8,060 - G&A 14,409 (Sel 0)"},
+        "Investasi & Hotel": {"opinc_calc": -1086414097, "opinc_margin": -0.0176, "comment": "GP 31,683 - Sel 792 - G&A 31,977 = -1,086 (소액 적자)"},
+        "Lainnya": {"opinc_calc": 85088184, "opinc_margin": 1.0, "comment": "GP 85 직접"},
+        "Total of segments": {"opinc_sum": 147499798793, "comment": "Sum of 5 segments + eliminasi. Group net income FY24 from curated = 123.77 bn (차이는 finance/tax/eliminasi)"}
+      }
+    },
+    "FY2023": {
+      "golf_revenue": 58197227138,
+      "golf_cogs": 25716957257,
+      "golf_gp_margin": 0.558,
+      "golf_pct_of_consolidated": 0.1172
+    },
+    "yoy_2023_to_2024_golf_revenue": 0.0874,
+    "yoy_2023_to_2024_golf_cogs": 0.5044,
+    "gp_margin_drop_pp": -16.9
+  },
+  "related_party_insurance": {
+    "source_page": "FY24 AR p.221",
+    "counterparty": "PT Asuransi Sinarmas",
+    "premium_FY2024": 433989630,
+    "premium_FY2023": 398191558,
+    "pct_of_total_insurance_FY2024": 0.553,
+    "pct_of_total_insurance_FY2023": 0.7356
+  },
+  "key_mgmt_compensation": {
+    "FY2024": 23473182157,
+    "FY2023": 17182641655
+  },
+  "curated_discrepancy_note": "Cycle 6 검증: SMDM Golf & Country Club FY24 = Rp 63.28 bn (AR Note 29 직접). curated CSV의 FY22 Rp 75.6 bn은 다른 fiscal year 또는 Golf+CC+Hotel 통합 추정. AR FY24 직접 값으로 정정.",
+  "fy2025_follow_up": {
+    "source": "SMDM FY25 AR att2 p.297-300 Note 43 (Cycle 64·67)",
+    "FY2025_Konsolidasian": {
+      "Real_Estat_Properti_revenue": 264215229164,
+      "Golf_CC_revenue": 66644774916,
+      "Investasi_Hotel_revenue": 52259747548,
+      "Lainnya_revenue": 2964923336,
+      "Konsolidasian_revenue": 386084674964,
+      "Golf_CC_gp": 59063304343,
+      "Golf_CC_gp_margin": 0.886,
+      "Golf_CC_opinc": 25451393110,
+      "Golf_CC_opinc_margin": 0.382
+    },
+    "caveat": "Cycle 67: SMDM FY25 AR p.300 'restatement' table 발견. FY24 figures가 BSDE 인수 후 재진술된 가능성. Cycle 6 SMDM FY24 데이터 (단독 발행 AR 기준) 정확. FY25 segment 변화는 회계 재분류 효과 가능."
+  }
+}

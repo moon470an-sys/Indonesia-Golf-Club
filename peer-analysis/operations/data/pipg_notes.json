@@ -1,0 +1,118 @@
+{
+  "_meta": {
+    "ticker": "PIPG",
+    "parent": "PT Pondok Indah Padang Golf Tbk",
+    "currency": "IDR",
+    "unit": "rupiah (absolute)",
+    "fiscal_years": ["FY2022", "FY2023", "FY2024"],
+    "source_ar": ["annual_reports/PIPG/FY2024/PIPG_AnnualReport2024.pdf"],
+    "extraction_method": "PyMuPDF positional text extraction, FY24 AR comparative columns + Financial Highlights p.11 multi-year",
+    "extracted_at": "2026-05-11 Cycle 2"
+  },
+  "profile": {
+    "courses": 1,
+    "holes": 18,
+    "land_area_m2_total": 530095,
+    "land_area_ha_total": 53.01,
+    "land_certificates": 12,
+    "hgb_area_m2": 209533,
+    "hgb_expiry_years": "2025 dan 2055",
+    "leased_from_mkpi_m2": 20611,
+    "leased_purpose": "Junior Driving Range",
+    "leased_term_start": "2023-08-01",
+    "leased_term_end": "2028-07-31",
+    "source_pages": "FY24 AR p.7 (luas lahan + hole) / FY24 AR p.131 Note 10 (HGB area + expiry) / FY24 AR p.132 Note 11 (MKPI lease)"
+  },
+  "financial_highlights": {
+    "source_page": "FY24 AR p.11 (Dalam ribu Rupiah)",
+    "rows_in_idr_thousand": [
+      {"label": "Total Aset", "FY2022": 372381898, "FY2023": 413995784, "FY2024": 446060061},
+      {"label": "Jumlah Ekuitas - Bersih", "FY2022": 296672762, "FY2023": 328194240, "FY2024": 357884810},
+      {"label": "Pendapatan Usaha", "FY2022": 162573493, "FY2023": 203092322, "FY2024": 197570521},
+      {"label": "Beban Pokok", "FY2022": -64507946, "FY2023": -85055665, "FY2024": -69576990},
+      {"label": "Laba Kotor", "FY2022": 98065547, "FY2023": 118036657, "FY2024": 127993531},
+      {"label": "Beban Usaha", "FY2022": -57347094, "FY2023": -65527585, "FY2024": -76117492},
+      {"label": "Pendapatan Lainnya", "FY2022": 1854093, "FY2023": 1305658, "FY2024": 1575322},
+      {"label": "Laba Usaha", "FY2022": 42572546, "FY2023": 53814730, "FY2024": 53451362},
+      {"label": "Pendapatan (Beban) Lain-lain", "FY2022": 6832596, "FY2023": 8142183, "FY2024": 12364555},
+      {"label": "Laba Sebelum Pajak", "FY2022": 49405142, "FY2023": 61956913, "FY2024": 65815917},
+      {"label": "Jumlah Beban Pajak", "FY2022": -7107898, "FY2023": -9481826, "FY2024": -9912101},
+      {"label": "Laba Bersih", "FY2022": 42297244, "FY2023": 52475087, "FY2024": 55903816},
+      {"label": "Laba per Saham (Rupiah)", "FY2022": 32561389, "FY2023": 40396526, "FY2024": 43036040}
+    ],
+    "shares_outstanding": 1299
+  },
+  "revenue_note_27": {
+    "source_page": "FY24 AR p.141 Note 27 PENDAPATAN USAHA",
+    "lines": [
+      {"id_label": "Golf course", "en_label": "Golf course", "FY2023": 51155369582, "FY2024": 53872137586},
+      {"id_label": "Restoran", "en_label": "Restaurant", "FY2023": 33192504715, "FY2024": 38920039094},
+      {"id_label": "Iuran keanggotaan dan pendaftaran", "en_label": "Membership and registration fees", "FY2023": 27424538398, "FY2024": 32735257000},
+      {"id_label": "Driving range", "en_label": "Driving range", "FY2023": 19339791384, "FY2024": 18887049511},
+      {"id_label": "Sewa", "en_label": "Rent (Note 10)", "FY2023": 16329896623, "FY2024": 15526070002},
+      {"id_label": "Golf cart", "en_label": "Golf cart", "FY2023": 15959429596, "FY2024": 16151939273},
+      {"id_label": "Branding", "en_label": "Branding", "FY2023": 13625000000, "FY2024": 14437499999},
+      {"id_label": "Bagi hasil", "en_label": "Sharing revenue", "FY2023": 2516358582, "FY2024": 3022548738},
+      {"id_label": "Academy golf", "en_label": "Academy golf", "FY2023": 1844771589, "FY2024": 2320173825},
+      {"id_label": "Gym", "en_label": "Gym", "FY2023": 1434391329, "FY2024": 1697806408},
+      {"id_label": "Sponsor Indonesia open", "en_label": "Indonesia's open sponsor", "FY2023": 20270270269, "FY2024": 0}
+    ],
+    "total": {"FY2023": 203092322067, "FY2024": 197570521436}
+  },
+  "cogs_note_28": {
+    "source_page": "FY24 AR p.142 Note 28 BEBAN POKOK PENDAPATAN",
+    "lines": [
+      {"id_label": "Restoran", "en_label": "Restaurant", "FY2023": 22843371185, "FY2024": 26849012194},
+      {"id_label": "Golf course", "en_label": "Golf course", "FY2023": 19897793616, "FY2024": 19726650880},
+      {"id_label": "Golf cart", "en_label": "Golf cart", "FY2023": 7776049098, "FY2024": 7925599098},
+      {"id_label": "Driving range", "en_label": "Driving range", "FY2023": 3381560637, "FY2024": 4011825575},
+      {"id_label": "Keanggotaan", "en_label": "Membership", "FY2023": 3336863353, "FY2024": 3751197307},
+      {"id_label": "Sewa - penyusutan", "en_label": "Rent - depreciation (Note 10)", "FY2023": 2394644952, "FY2024": 2394644952},
+      {"id_label": "Academy golf", "en_label": "Academy golf", "FY2023": 2056566426, "FY2024": 2222123676},
+      {"id_label": "Branding", "en_label": "Branding", "FY2023": 3589097379, "FY2024": 1208849750},
+      {"id_label": "Gym", "en_label": "Gym", "FY2023": 1137004004, "FY2024": 1180060244},
+      {"id_label": "Sewa - pajak bumi dan bangunan", "en_label": "Rent - land and building tax", "FY2023": 307026276, "FY2024": 307026276},
+      {"id_label": "Tournament Indonesia open", "en_label": "Tournament Indonesia open", "FY2023": 18335688002, "FY2024": 0}
+    ],
+    "total": {"FY2023": 85055664928, "FY2024": 69576989952}
+  },
+  "opex_note_29": {
+    "source_page": "FY24 AR p.142 Note 29 BEBAN USAHA",
+    "lines": [
+      {"id_label": "Pajak dan perijinan", "en_label": "Tax and legal", "FY2023": 20678004570, "FY2024": 24206339416},
+      {"id_label": "Beban gaji dan tunjangan karyawan", "en_label": "Salary and allowances", "FY2023": 15214692900, "FY2024": 17879399883},
+      {"id_label": "Perbaikan dan pemeliharaan", "en_label": "Repair and maintenance", "FY2023": 10631126207, "FY2024": 11647849332},
+      {"id_label": "Penyusutan", "en_label": "Depreciation (Notes 9, 13)", "FY2023": 9535969877, "FY2024": 11314046387},
+      {"id_label": "Amortisasi beban tangguhan", "en_label": "Amortization of deferred charge (Note 12)", "FY2023": 2584670742, "FY2024": 2692716768},
+      {"id_label": "Penyisihan imbalan pasca kerja karyawan", "en_label": "Provision for employee benefit (Note 22)", "FY2023": 1337755694, "FY2024": 2531094853},
+      {"id_label": "Listrik dan air", "en_label": "Electricity and water", "FY2023": 2219036841, "FY2024": 2197347660},
+      {"id_label": "Perlengkapan dan peralatan kantor", "en_label": "Supplies and office equipment", "FY2023": 1183525315, "FY2024": 1361780386},
+      {"id_label": "Sumbangan dan kontribusi", "en_label": "Donation and contribution", "FY2023": 895335472, "FY2024": 1053684107},
+      {"id_label": "Asuransi", "en_label": "Insurance", "FY2023": 327917408, "FY2024": 355668258},
+      {"id_label": "Beban diklat", "en_label": "Training expenses", "FY2023": 197620000, "FY2024": 353385800},
+      {"id_label": "Audit dan konsultan", "en_label": "Audit and consultant", "FY2023": 290935000, "FY2024": 192339000},
+      {"id_label": "Transportasi dan perjalanan dinas", "en_label": "Transportation and travels", "FY2023": 166345335, "FY2024": 163022268},
+      {"id_label": "Penyisihan penurunan nilai piutang", "en_label": "Allowance for impairment of receivable (Note 6)", "FY2023": 0, "FY2024": 120228613},
+      {"id_label": "Pos, telepon dan fax", "en_label": "Post, telephone and fax", "FY2023": 61721108, "FY2024": 41079330},
+      {"id_label": "Penghapusan persediaan", "en_label": "Write-off inventory", "FY2023": 803666, "FY2024": 7509512},
+      {"id_label": "Penyisihan persediaan", "en_label": "Allowance of inventories", "FY2023": 202124424, "FY2024": 0}
+    ],
+    "total": {"FY2023": 65527584559, "FY2024": 76117491573}
+  },
+  "agreements_commitments": {
+    "source_page": "FY24 AR p.143 Note 32 PERIKATAN, KOMITMEN DAN KONTIJENSI",
+    "items": [
+      {"type": "Pool management rights", "counterparty": "PT Metropolitan Kentjana Tbk (related party)", "agreement_no": "ADD/001/DD/PIPG/II/24.E", "term": "2024-03-01 to 2029-02-28 (5 years)", "rent_y1y2": "Rp 786,597,278 + VAT", "rent_y3y4": "Rp 825,927,141 + VAT", "rent_y5": "Rp 867,223,498 + VAT"},
+      {"type": "Telecom tower land lease (incoming)", "counterparty": "PT Indosat Multi Media Mobile (3 years 2021-09-15 to 2024-09-14)", "area_m2": 36, "rental_fee": "Rp 600,000,000 incl VAT"},
+      {"type": "Telecom tower land lease (renewed)", "counterparty": "PT Epid Menara Assetco (formerly Indosat Multi Media Mobile)", "agreement_no": "PKS/001/DD/PIPG/IX/24.E", "term": "2024-09-15 to 2029-09-14 (5 years)", "area_m2": 36, "rental_fee": "Rp 1,010,000,000 incl VAT"},
+      {"type": "Land lease (outgoing for Junior Driving Range)", "counterparty": "PT Metropolitan Kentjana Tbk (related party)", "agreement_no": "02/HK/MK/I/2024 (signed 2024-03-06)", "term": "2023-08-01 to 2028-07-31 (5 years)", "area_m2": 20611, "rent": "not disclosed"}
+    ]
+  },
+  "dividends": {
+    "source_page": "FY24 AR p.141 Note 26 PEMBAGIAN DIVIDEN",
+    "events": [
+      {"fy_book": "FY2022", "total_idr": 20763216000, "per_share_idr": 15984000, "rupst_date": "2023-06-15", "notaris": "Dewi Kusumawati S.H. No. 25"},
+      {"fy_book": "FY2023", "total_idr": 26239800000, "per_share_idr": 20200000, "rupst_date": "2024-06-06", "notaris": "Utiek R. Abdurachman S.H. No. 07"}
+    ]
+  }
+}

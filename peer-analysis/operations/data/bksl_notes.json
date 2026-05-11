@@ -1,0 +1,55 @@
+{
+  "_meta": {
+    "ticker": "BKSL",
+    "parent": "PT Sentul City Tbk dan Entitas Anak / and Subsidiaries",
+    "currency": "IDR",
+    "unit": "rupiah (absolute)",
+    "fiscal_years": ["FY2025"],
+    "source_ar": ["annual_reports/BKSL/FY2025/AnnualReport2025-BKSL-att1.pdf"],
+    "extraction_method": "PyMuPDF positional text extraction",
+    "extracted_at": "2026-05-11 Cycle 103"
+  },
+  "operations_scope": "BKSL = PT Sentul City Tbk = Sentul City 부동산 개발. **Sentul Golf은 PT Padang Golf Bukit Sentul (관계사) 운영 — BKSL 직접 매출에 포함되지 않음** (Cycle 24 finding 유지).",
+  "segment_note_37_FY2025": {
+    "source_page": "FY25 AR att1 p.299 Note 37 SEGMEN OPERASI",
+    "segments_listed_FY2025": ["Real Estat (Primary)", "Lain-lain (Others: restoran, taman hiburan, pengelolaan kota)"],
+    "golf_segment": "NONE — BKSL FY25 segments are: Real Estat (primary) + Lain-lain (restaurant, amusement park, town management). **Golf segment 없음.** Sentul Golf은 BKSL 관계사 operated 별도 entity.",
+    "segment_revenue_FY2025": {
+      "Real_Estat_external": 2490479649184,
+      "Lain_lain_external": 266984106836,
+      "Total_external_revenue": 2757463756020,
+      "unit_conversion": "Real Estat Rp 2,490 bn / Others Rp 267 bn / Total Rp 2,757 bn"
+    },
+    "segment_results_FY2025": {
+      "Real_Estat": 1518084542641,
+      "Lain_lain": 52052940856,
+      "Total": 1570137483497,
+      "unit_conversion": "Real Estat Rp 1,518 bn / Others Rp 52 bn / Total Rp 1,570 bn"
+    },
+    "operating_expenses_FY2025": {
+      "Real_Estat": -241699433519,
+      "Lain_lain": -59104222023,
+      "Total": -300803655542
+    },
+    "other_expenses_net_FY2025": {
+      "Total": -426700384870
+    },
+    "income_before_tax_FY2025": {
+      "Real_Estat": 916003449365,
+      "Lain_lain": -73350006280,
+      "Total": 842653443085
+    },
+    "net_profit_FY2025": {
+      "Real_Estat": 907369298335,
+      "Lain_lain": -74509166506,
+      "Total": 832860131829,
+      "unit_conversion": "Rp 833 bn 그룹 순이익"
+    },
+    "segment_assets_FY2025_after_elimination": {
+      "Real_Estat": 21000582413033,
+      "Lain_lain": 260456190523,
+      "Total_net": 21261038603556,
+      "unit_conversion": "Rp 21,261 bn net 자산"
+    }
+  }
+}

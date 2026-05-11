@@ -1,0 +1,2283 @@
+{
+  "_meta": {
+    "description": "Consolidated peer notes — 13/13 peer single source for downstream queries",
+    "peer_count": 13,
+    "peers_included": [
+      "dmig",
+      "pipg",
+      "golf",
+      "mdln",
+      "kija",
+      "smdm",
+      "kpig",
+      "bkdp",
+      "smra",
+      "bsde",
+      "dild",
+      "mkpi",
+      "bksl"
+    ],
+    "fiscal_years_covered": "FY2022-FY2025 (peer별 가용 범위 상이)",
+    "sources": "IDX 공식 Annual Reports FY2022-FY2025",
+    "generated_at": "2026-05-11 Cycle 105 (regenerated 9→13 peer 완주)",
+    "prior_versions": "Cycle 33 7 peer (55.7 KB) → Cycle 81 FY25 포함 7 peer (63.8 KB) → Cycle 97 9 peer (67.3 KB) → Cycle 105 13 peer 완주"
+  },
+  "peers": {
+    "dmig": {
+      "_meta": {
+        "ticker": "DMIG",
+        "parent": "PT Damai Indah Golf Tbk",
+        "currency": "IDR",
+        "unit": "rupiah (absolute)",
+        "fiscal_years": [
+          "FY2022",
+          "FY2023",
+          "FY2024"
+        ],
+        "source_ar": [
+          "annual_reports/DMIG/FY2022/DMIG_AnnualReport2022_ENG.pdf",
+          "annual_reports/DMIG/FY2023/DMIG_AnnualReport2023_ENG.pdf",
+          "annual_reports/DMIG/FY2024/DMIG_AnnualReport2024_INA.pdf"
+        ],
+        "extraction_method": "PyMuPDF positional text extraction, manually verified row totals.",
+        "extracted_at": "2026-05-11"
+      },
+      "revenue_note": {
+        "note_number": {
+          "FY2022": 23,
+          "FY2023": 23,
+          "FY2024": 23
+        },
+        "source_page": {
+          "FY2022": "FY23 AR p.89",
+          "FY2023": "FY23 AR p.89 / FY24 AR p.86",
+          "FY2024": "FY24 AR p.86"
+        },
+        "lines": [
+          {
+            "id_label": "Lapangan golf",
+            "en_label": "Golf course",
+            "FY2022": 98459321142,
+            "FY2023": 127131955307,
+            "FY2024": 127922630366
+          },
+          {
+            "id_label": "Restoran",
+            "en_label": "Restaurant",
+            "FY2022": 34702074865,
+            "FY2023": 48548360800,
+            "FY2024": 50274776410
+          },
+          {
+            "id_label": "Iuran keanggotaan",
+            "en_label": "Membership dues",
+            "FY2022": 42597773865,
+            "FY2023": 45819536950,
+            "FY2024": 46347850174
+          },
+          {
+            "id_label": "Sponsor",
+            "en_label": "Sponsorship",
+            "FY2022": null,
+            "FY2023": 7857157655,
+            "FY2024": 12360303237,
+            "note": "FY23 AR original groups sponsor into Lain-lain (11.15bn); FY24 AR restates FY23 sponsor=7.86bn / others=3.30bn."
+          },
+          {
+            "id_label": "Sewa ruangan",
+            "en_label": "Room rental",
+            "FY2022": 4870079530,
+            "FY2023": 9161626170,
+            "FY2024": 8221787564
+          },
+          {
+            "id_label": "Rekreasi",
+            "en_label": "Recreation",
+            "FY2022": 2353707404,
+            "FY2023": 3171309564,
+            "FY2024": 3037692059
+          },
+          {
+            "id_label": "Lain-lain",
+            "en_label": "Others",
+            "FY2022": 3471473090,
+            "FY2023_original": 11153479043,
+            "FY2023_restated": 3296321388,
+            "FY2024": 4937400384
+          }
+        ],
+        "total": {
+          "FY2022": 186454429896,
+          "FY2023": 244986267834,
+          "FY2024": 253102440194
+        }
+      },
+      "cogs_note": {
+        "note_number": {
+          "FY2022": 24,
+          "FY2023": 24,
+          "FY2024": 24
+        },
+        "source_page": {
+          "FY2022": "FY23 AR p.90",
+          "FY2023": "FY23 AR p.90 / FY24 AR p.86",
+          "FY2024": "FY24 AR p.86"
+        },
+        "lines": [
+          {
+            "id_label": "Lapangan golf",
+            "en_label": "Golf course",
+            "FY2022": 39248614476,
+            "FY2023": 51226292809,
+            "FY2024": 52909540145
+          },
+          {
+            "id_label": "Restoran",
+            "en_label": "Restaurant",
+            "FY2022": 19521743654,
+            "FY2023": 21822561324,
+            "FY2024": 22784791885
+          },
+          {
+            "id_label": "Rekreasi",
+            "en_label": "Recreation",
+            "FY2022": 1055851060,
+            "FY2023": 1243578193,
+            "FY2024": 1353394838
+          }
+        ],
+        "total": {
+          "FY2022": 59826209190,
+          "FY2023": 74292432326,
+          "FY2024": 77047726868
+        }
+      },
+      "opex_note": {
+        "note_number": {
+          "FY2022": 25,
+          "FY2023": 25,
+          "FY2024": 25
+        },
+        "source_page": {
+          "FY2022": "FY23 AR p.90",
+          "FY2023": "FY23 AR p.90 / FY24 AR p.87",
+          "FY2024": "FY24 AR p.87"
+        },
+        "note_on_english_translation": "DMIG AR English column has translation typos on FY23 page: 'Pajak dan perizinan' (Indonesian) is correctly Tax and licensing (AR's English column mis-prints 'Employee welfare'); 'Kesejahteraan karyawan' is correctly Employee welfare (AR mis-prints 'Professional fee'); 'Jasa tenaga ahli' is correctly Professional fee (AR mis-prints 'Tax and licensing'). FY24 AR corrects the alignment. Primary labels here use the verified Indonesian terms.",
+        "lines": [
+          {
+            "id_label": "Gaji dan upah",
+            "en_label": "Salaries and wages",
+            "FY2022": 24888066326,
+            "FY2023": 28299633793,
+            "FY2024": 28632542580
+          },
+          {
+            "id_label": "Penyusutan",
+            "en_label": "Depreciation",
+            "ref_note": 11,
+            "FY2022": 16567296704,
+            "FY2023": 25898201573,
+            "FY2024": 28209973116
+          },
+          {
+            "id_label": "Pajak bumi dan bangunan",
+            "en_label": "Land and building tax",
+            "FY2022": 9096732116,
+            "FY2023": 10207296804,
+            "FY2024": 10446341610
+          },
+          {
+            "id_label": "Jasa kebersihan dan pelayanan",
+            "en_label": "Cleaning service",
+            "FY2022": 7760753290,
+            "FY2023": 8319132117,
+            "FY2024": 8692025201
+          },
+          {
+            "id_label": "Listrik dan air",
+            "en_label": "Electricity and water",
+            "FY2022": 4040888969,
+            "FY2023": 4302806960,
+            "FY2024": 4475253059
+          },
+          {
+            "id_label": "Amortisasi",
+            "en_label": "Amortization",
+            "FY2022": 2613975177,
+            "FY2023": 2613975176,
+            "FY2024": 2613975176
+          },
+          {
+            "id_label": "Perbaikan dan pemeliharaan",
+            "en_label": "Repair and maintenance",
+            "FY2022": 1769216137,
+            "FY2023": 2249343763,
+            "FY2024": 2268418997
+          },
+          {
+            "id_label": "Imbalan kerja karyawan",
+            "en_label": "Employee benefits",
+            "ref_note": 19,
+            "FY2022": 0,
+            "FY2023": 2119591401,
+            "FY2024": 2368855959
+          },
+          {
+            "id_label": "Administrasi bank",
+            "en_label": "Bank administration",
+            "FY2022": 1414623929,
+            "FY2023": 1855453943,
+            "FY2024": 2042994947
+          },
+          {
+            "id_label": "Pajak dan perizinan",
+            "en_label": "Tax and licensing",
+            "FY2022": 1170087004,
+            "FY2023": 3247087235,
+            "FY2024": 1579152772
+          },
+          {
+            "id_label": "Jasa tenaga ahli",
+            "en_label": "Professional fee",
+            "FY2022": 797127240,
+            "FY2023": 502963581,
+            "FY2024": 1125708982
+          },
+          {
+            "id_label": "Kesejahteraan karyawan",
+            "en_label": "Employee welfare",
+            "FY2022": 574785770,
+            "FY2023": 993373668,
+            "FY2024": 998818935
+          },
+          {
+            "id_label": "Transportasi",
+            "en_label": "Transportation",
+            "FY2022": 612452008,
+            "FY2023": 952627976,
+            "FY2024": 932938511
+          },
+          {
+            "id_label": "Beban Asuransi",
+            "en_label": "Insurance",
+            "FY2022": 430225003,
+            "FY2023": 592640505,
+            "FY2024": 570957876
+          },
+          {
+            "id_label": "Alat-alat tulis dan cetakan",
+            "en_label": "Stationery and printing",
+            "FY2022": 658622158,
+            "FY2023": 516534083,
+            "FY2024": 561350429
+          },
+          {
+            "id_label": "Telepon dan teleks",
+            "en_label": "Telephone and telex",
+            "FY2022": 222859159,
+            "FY2023": 269223949,
+            "FY2024": 267908067
+          },
+          {
+            "id_label": "Lain-lain",
+            "en_label": "Others (each below Rp100m)",
+            "FY2022": 1137620832,
+            "FY2023": 1216613146,
+            "FY2024": 1340830505
+          }
+        ],
+        "total": {
+          "FY2022": 73755331822,
+          "FY2023": 94156499674,
+          "FY2024": 97128046722
+        }
+      },
+      "related_party_note": {
+        "note_number": {
+          "FY2022": null,
+          "FY2023": 26,
+          "FY2024": 26
+        },
+        "source_page": {
+          "FY2023": "FY23 AR p.91",
+          "FY2024": "FY24 AR p.87"
+        },
+        "lines": [
+          {
+            "id_label": "Beban gaji dan tunjangan",
+            "en_label": "Salaries and benefit expenses (key mgmt)",
+            "FY2022": 3278868973,
+            "FY2023": 5508109553,
+            "FY2024": 5344758190
+          },
+          {
+            "id_label": "Persentase terhadap beban usaha",
+            "en_label": "% to operating expenses",
+            "FY2022": 0.0585,
+            "FY2023": 0.0585,
+            "FY2024": 0.055
+          }
+        ]
+      }
+    },
+    "pipg": {
+      "_meta": {
+        "ticker": "PIPG",
+        "parent": "PT Pondok Indah Padang Golf Tbk",
+        "currency": "IDR",
+        "unit": "rupiah (absolute)",
+        "fiscal_years": [
+          "FY2022",
+          "FY2023",
+          "FY2024"
+        ],
+        "source_ar": [
+          "annual_reports/PIPG/FY2024/PIPG_AnnualReport2024.pdf"
+        ],
+        "extraction_method": "PyMuPDF positional text extraction, FY24 AR comparative columns + Financial Highlights p.11 multi-year",
+        "extracted_at": "2026-05-11 Cycle 2"
+      },
+      "profile": {
+        "courses": 1,
+        "holes": 18,
+        "land_area_m2_total": 530095,
+        "land_area_ha_total": 53.01,
+        "land_certificates": 12,
+        "hgb_area_m2": 209533,
+        "hgb_expiry_years": "2025 dan 2055",
+        "leased_from_mkpi_m2": 20611,
+        "leased_purpose": "Junior Driving Range",
+        "leased_term_start": "2023-08-01",
+        "leased_term_end": "2028-07-31",
+        "source_pages": "FY24 AR p.7 (luas lahan + hole) / FY24 AR p.131 Note 10 (HGB area + expiry) / FY24 AR p.132 Note 11 (MKPI lease)"
+      },
+      "financial_highlights": {
+        "source_page": "FY24 AR p.11 (Dalam ribu Rupiah)",
+        "rows_in_idr_thousand": [
+          {
+            "label": "Total Aset",
+            "FY2022": 372381898,
+            "FY2023": 413995784,
+            "FY2024": 446060061
+          },
+          {
+            "label": "Jumlah Ekuitas - Bersih",
+            "FY2022": 296672762,
+            "FY2023": 328194240,
+            "FY2024": 357884810
+          },
+          {
+            "label": "Pendapatan Usaha",
+            "FY2022": 162573493,
+            "FY2023": 203092322,
+            "FY2024": 197570521
+          },
+          {
+            "label": "Beban Pokok",
+            "FY2022": -64507946,
+            "FY2023": -85055665,
+            "FY2024": -69576990
+          },
+          {
+            "label": "Laba Kotor",
+            "FY2022": 98065547,
+            "FY2023": 118036657,
+            "FY2024": 127993531
+          },
+          {
+            "label": "Beban Usaha",
+            "FY2022": -57347094,
+            "FY2023": -65527585,
+            "FY2024": -76117492
+          },
+          {
+            "label": "Pendapatan Lainnya",
+            "FY2022": 1854093,
+            "FY2023": 1305658,
+            "FY2024": 1575322
+          },
+          {
+            "label": "Laba Usaha",
+            "FY2022": 42572546,
+            "FY2023": 53814730,
+            "FY2024": 53451362
+          },
+          {
+            "label": "Pendapatan (Beban) Lain-lain",
+            "FY2022": 6832596,
+            "FY2023": 8142183,
+            "FY2024": 12364555
+          },
+          {
+            "label": "Laba Sebelum Pajak",
+            "FY2022": 49405142,
+            "FY2023": 61956913,
+            "FY2024": 65815917
+          },
+          {
+            "label": "Jumlah Beban Pajak",
+            "FY2022": -7107898,
+            "FY2023": -9481826,
+            "FY2024": -9912101
+          },
+          {
+            "label": "Laba Bersih",
+            "FY2022": 42297244,
+            "FY2023": 52475087,
+            "FY2024": 55903816
+          },
+          {
+            "label": "Laba per Saham (Rupiah)",
+            "FY2022": 32561389,
+            "FY2023": 40396526,
+            "FY2024": 43036040
+          }
+        ],
+        "shares_outstanding": 1299
+      },
+      "revenue_note_27": {
+        "source_page": "FY24 AR p.141 Note 27 PENDAPATAN USAHA",
+        "lines": [
+          {
+            "id_label": "Golf course",
+            "en_label": "Golf course",
+            "FY2023": 51155369582,
+            "FY2024": 53872137586
+          },
+          {
+            "id_label": "Restoran",
+            "en_label": "Restaurant",
+            "FY2023": 33192504715,
+            "FY2024": 38920039094
+          },
+          {
+            "id_label": "Iuran keanggotaan dan pendaftaran",
+            "en_label": "Membership and registration fees",
+            "FY2023": 27424538398,
+            "FY2024": 32735257000
+          },
+          {
+            "id_label": "Driving range",
+            "en_label": "Driving range",
+            "FY2023": 19339791384,
+            "FY2024": 18887049511
+          },
+          {
+            "id_label": "Sewa",
+            "en_label": "Rent (Note 10)",
+            "FY2023": 16329896623,
+            "FY2024": 15526070002
+          },
+          {
+            "id_label": "Golf cart",
+            "en_label": "Golf cart",
+            "FY2023": 15959429596,
+            "FY2024": 16151939273
+          },
+          {
+            "id_label": "Branding",
+            "en_label": "Branding",
+            "FY2023": 13625000000,
+            "FY2024": 14437499999
+          },
+          {
+            "id_label": "Bagi hasil",
+            "en_label": "Sharing revenue",
+            "FY2023": 2516358582,
+            "FY2024": 3022548738
+          },
+          {
+            "id_label": "Academy golf",
+            "en_label": "Academy golf",
+            "FY2023": 1844771589,
+            "FY2024": 2320173825
+          },
+          {
+            "id_label": "Gym",
+            "en_label": "Gym",
+            "FY2023": 1434391329,
+            "FY2024": 1697806408
+          },
+          {
+            "id_label": "Sponsor Indonesia open",
+            "en_label": "Indonesia's open sponsor",
+            "FY2023": 20270270269,
+            "FY2024": 0
+          }
+        ],
+        "total": {
+          "FY2023": 203092322067,
+          "FY2024": 197570521436
+        }
+      },
+      "cogs_note_28": {
+        "source_page": "FY24 AR p.142 Note 28 BEBAN POKOK PENDAPATAN",
+        "lines": [
+          {
+            "id_label": "Restoran",
+            "en_label": "Restaurant",
+            "FY2023": 22843371185,
+            "FY2024": 26849012194
+          },
+          {
+            "id_label": "Golf course",
+            "en_label": "Golf course",
+            "FY2023": 19897793616,
+            "FY2024": 19726650880
+          },
+          {
+            "id_label": "Golf cart",
+            "en_label": "Golf cart",
+            "FY2023": 7776049098,
+            "FY2024": 7925599098
+          },
+          {
+            "id_label": "Driving range",
+            "en_label": "Driving range",
+            "FY2023": 3381560637,
+            "FY2024": 4011825575
+          },
+          {
+            "id_label": "Keanggotaan",
+            "en_label": "Membership",
+            "FY2023": 3336863353,
+            "FY2024": 3751197307
+          },
+          {
+            "id_label": "Sewa - penyusutan",
+            "en_label": "Rent - depreciation (Note 10)",
+            "FY2023": 2394644952,
+            "FY2024": 2394644952
+          },
+          {
+            "id_label": "Academy golf",
+            "en_label": "Academy golf",
+            "FY2023": 2056566426,
+            "FY2024": 2222123676
+          },
+          {
+            "id_label": "Branding",
+            "en_label": "Branding",
+            "FY2023": 3589097379,
+            "FY2024": 1208849750
+          },
+          {
+            "id_label": "Gym",
+            "en_label": "Gym",
+            "FY2023": 1137004004,
+            "FY2024": 1180060244
+          },
+          {
+            "id_label": "Sewa - pajak bumi dan bangunan",
+            "en_label": "Rent - land and building tax",
+            "FY2023": 307026276,
+            "FY2024": 307026276
+          },
+          {
+            "id_label": "Tournament Indonesia open",
+            "en_label": "Tournament Indonesia open",
+            "FY2023": 18335688002,
+            "FY2024": 0
+          }
+        ],
+        "total": {
+          "FY2023": 85055664928,
+          "FY2024": 69576989952
+        }
+      },
+      "opex_note_29": {
+        "source_page": "FY24 AR p.142 Note 29 BEBAN USAHA",
+        "lines": [
+          {
+            "id_label": "Pajak dan perijinan",
+            "en_label": "Tax and legal",
+            "FY2023": 20678004570,
+            "FY2024": 24206339416
+          },
+          {
+            "id_label": "Beban gaji dan tunjangan karyawan",
+            "en_label": "Salary and allowances",
+            "FY2023": 15214692900,
+            "FY2024": 17879399883
+          },
+          {
+            "id_label": "Perbaikan dan pemeliharaan",
+            "en_label": "Repair and maintenance",
+            "FY2023": 10631126207,
+            "FY2024": 11647849332
+          },
+          {
+            "id_label": "Penyusutan",
+            "en_label": "Depreciation (Notes 9, 13)",
+            "FY2023": 9535969877,
+            "FY2024": 11314046387
+          },
+          {
+            "id_label": "Amortisasi beban tangguhan",
+            "en_label": "Amortization of deferred charge (Note 12)",
+            "FY2023": 2584670742,
+            "FY2024": 2692716768
+          },
+          {
+            "id_label": "Penyisihan imbalan pasca kerja karyawan",
+            "en_label": "Provision for employee benefit (Note 22)",
+            "FY2023": 1337755694,
+            "FY2024": 2531094853
+          },
+          {
+            "id_label": "Listrik dan air",
+            "en_label": "Electricity and water",
+            "FY2023": 2219036841,
+            "FY2024": 2197347660
+          },
+          {
+            "id_label": "Perlengkapan dan peralatan kantor",
+            "en_label": "Supplies and office equipment",
+            "FY2023": 1183525315,
+            "FY2024": 1361780386
+          },
+          {
+            "id_label": "Sumbangan dan kontribusi",
+            "en_label": "Donation and contribution",
+            "FY2023": 895335472,
+            "FY2024": 1053684107
+          },
+          {
+            "id_label": "Asuransi",
+            "en_label": "Insurance",
+            "FY2023": 327917408,
+            "FY2024": 355668258
+          },
+          {
+            "id_label": "Beban diklat",
+            "en_label": "Training expenses",
+            "FY2023": 197620000,
+            "FY2024": 353385800
+          },
+          {
+            "id_label": "Audit dan konsultan",
+            "en_label": "Audit and consultant",
+            "FY2023": 290935000,
+            "FY2024": 192339000
+          },
+          {
+            "id_label": "Transportasi dan perjalanan dinas",
+            "en_label": "Transportation and travels",
+            "FY2023": 166345335,
+            "FY2024": 163022268
+          },
+          {
+            "id_label": "Penyisihan penurunan nilai piutang",
+            "en_label": "Allowance for impairment of receivable (Note 6)",
+            "FY2023": 0,
+            "FY2024": 120228613
+          },
+          {
+            "id_label": "Pos, telepon dan fax",
+            "en_label": "Post, telephone and fax",
+            "FY2023": 61721108,
+            "FY2024": 41079330
+          },
+          {
+            "id_label": "Penghapusan persediaan",
+            "en_label": "Write-off inventory",
+            "FY2023": 803666,
+            "FY2024": 7509512
+          },
+          {
+            "id_label": "Penyisihan persediaan",
+            "en_label": "Allowance of inventories",
+            "FY2023": 202124424,
+            "FY2024": 0
+          }
+        ],
+        "total": {
+          "FY2023": 65527584559,
+          "FY2024": 76117491573
+        }
+      },
+      "agreements_commitments": {
+        "source_page": "FY24 AR p.143 Note 32 PERIKATAN, KOMITMEN DAN KONTIJENSI",
+        "items": [
+          {
+            "type": "Pool management rights",
+            "counterparty": "PT Metropolitan Kentjana Tbk (related party)",
+            "agreement_no": "ADD/001/DD/PIPG/II/24.E",
+            "term": "2024-03-01 to 2029-02-28 (5 years)",
+            "rent_y1y2": "Rp 786,597,278 + VAT",
+            "rent_y3y4": "Rp 825,927,141 + VAT",
+            "rent_y5": "Rp 867,223,498 + VAT"
+          },
+          {
+            "type": "Telecom tower land lease (incoming)",
+            "counterparty": "PT Indosat Multi Media Mobile (3 years 2021-09-15 to 2024-09-14)",
+            "area_m2": 36,
+            "rental_fee": "Rp 600,000,000 incl VAT"
+          },
+          {
+            "type": "Telecom tower land lease (renewed)",
+            "counterparty": "PT Epid Menara Assetco (formerly Indosat Multi Media Mobile)",
+            "agreement_no": "PKS/001/DD/PIPG/IX/24.E",
+            "term": "2024-09-15 to 2029-09-14 (5 years)",
+            "area_m2": 36,
+            "rental_fee": "Rp 1,010,000,000 incl VAT"
+          },
+          {
+            "type": "Land lease (outgoing for Junior Driving Range)",
+            "counterparty": "PT Metropolitan Kentjana Tbk (related party)",
+            "agreement_no": "02/HK/MK/I/2024 (signed 2024-03-06)",
+            "term": "2023-08-01 to 2028-07-31 (5 years)",
+            "area_m2": 20611,
+            "rent": "not disclosed"
+          }
+        ]
+      },
+      "dividends": {
+        "source_page": "FY24 AR p.141 Note 26 PEMBAGIAN DIVIDEN",
+        "events": [
+          {
+            "fy_book": "FY2022",
+            "total_idr": 20763216000,
+            "per_share_idr": 15984000,
+            "rupst_date": "2023-06-15",
+            "notaris": "Dewi Kusumawati S.H. No. 25"
+          },
+          {
+            "fy_book": "FY2023",
+            "total_idr": 26239800000,
+            "per_share_idr": 20200000,
+            "rupst_date": "2024-06-06",
+            "notaris": "Utiek R. Abdurachman S.H. No. 07"
+          }
+        ]
+      }
+    },
+    "golf": {
+      "_meta": {
+        "ticker": "GOLF",
+        "parent": "PT Intra GolfLink Resorts Tbk (dan Entitas Anak / consolidated)",
+        "currency": "IDR",
+        "unit": "rupiah (absolute)",
+        "fiscal_years": [
+          "FY2022",
+          "FY2023",
+          "FY2024"
+        ],
+        "source_ar": [
+          "annual_reports/GOLF/FY2024/AnnualReport2024-GOLF-att1.pdf"
+        ],
+        "extraction_method": "PyMuPDF positional text extraction",
+        "extracted_at": "2026-05-11 Cycle 3",
+        "ipo_date": "2024-07-08 (BEI listed)"
+      },
+      "courses": {
+        "source_page": "FY24 AR p.62 Wilayah Operasional",
+        "operations": [
+          {
+            "club": "New Kuta Golf Club",
+            "location": "Pecatu, Bali",
+            "area_ha": 85.1,
+            "holes": 18,
+            "par": 72,
+            "designer": "links-style (first in Indonesia)",
+            "operator_subsidiary": "PT New Kuta Golf and Ocean View (NKG)",
+            "consolidation": "Subsidiary"
+          },
+          {
+            "club": "Palm Hill Golf Club",
+            "location": "Sentul, Bogor (Desa Kadumanggu, Babakan Madang)",
+            "area_ha": 86.1,
+            "holes": 18,
+            "operator_subsidiary": "PT Sentul Golf Utama (SGU)",
+            "consolidation": "Subsidiary"
+          },
+          {
+            "club": "Black Rocks Hotel & Golf Club",
+            "location": "Belitung",
+            "area_ha": 72.2,
+            "holes": 18,
+            "length_m": 7255,
+            "operator_subsidiary": "PT Belitung Golf and Resorts (BGR)",
+            "consolidation": "Entitas asosiasi (associate, equity method) — NOT consolidated"
+          }
+        ],
+        "totals_consolidated_only": {
+          "courses": 2,
+          "holes": 36,
+          "area_ha": 171.2
+        },
+        "totals_including_associate": {
+          "courses": 3,
+          "holes": 54,
+          "area_ha": 243.4
+        }
+      },
+      "financial_highlights": {
+        "source_page": "FY24 AR p.10 Ikhtisar Data Keuangan Penting",
+        "rows_in_idr": [
+          {
+            "label": "Penjualan Bersih",
+            "FY2022": 111630826260,
+            "FY2023": 177582018034,
+            "FY2024": 197993814652
+          },
+          {
+            "label": "Beban Pokok Penjualan",
+            "FY2022": -46120193253,
+            "FY2023": -65139719812,
+            "FY2024": -78273268303
+          },
+          {
+            "label": "Laba Bruto",
+            "FY2022": 65510633007,
+            "FY2023": 112442298222,
+            "FY2024": 119720546349
+          },
+          {
+            "label": "Laba Usaha",
+            "FY2022": 32264940858,
+            "FY2023": 71448309127,
+            "FY2024": 72469171724
+          },
+          {
+            "label": "Laba Sebelum Pajak",
+            "FY2022": 33432945679,
+            "FY2023": 69861328833,
+            "FY2024": 78025929060
+          },
+          {
+            "label": "Laba Tahun Berjalan",
+            "FY2022": 25533647764,
+            "FY2023": 60176514048,
+            "FY2024": 67575400860
+          },
+          {
+            "label": "Laba Komprehensif",
+            "FY2022": 23698832364,
+            "FY2023": 7160660504177,
+            "FY2024": 27766914715,
+            "note": "FY23 OCI Rp 7,100 bn = property revaluation gain (anomalous)"
+          }
+        ]
+      },
+      "revenue_note_29": {
+        "source_page": "FY24 AR p.210 Note 29 PENDAPATAN BERSIH",
+        "by_operations": {
+          "lines": [
+            {
+              "id_label": "Golf",
+              "en_label": "Golf",
+              "FY2023": 94436855876,
+              "FY2024": 93042072774
+            },
+            {
+              "id_label": "Real Estat",
+              "en_label": "Real Estate",
+              "FY2023": 44612798930,
+              "FY2024": 67855585238
+            },
+            {
+              "id_label": "Restoran",
+              "en_label": "Restaurant",
+              "FY2023": 26208681275,
+              "FY2024": 27210899688
+            },
+            {
+              "id_label": "Lain-lain",
+              "en_label": "Other",
+              "FY2023": 12323681953,
+              "FY2024": 9885256952
+            }
+          ],
+          "total": {
+            "FY2023": 177582018034,
+            "FY2024": 197993814652
+          }
+        },
+        "by_party": {
+          "lines": [
+            {
+              "id_label": "Pihak ketiga",
+              "en_label": "Third parties",
+              "FY2023": 176805966428,
+              "FY2024": 197283908805
+            },
+            {
+              "id_label": "Pihak berelasi (Note 34)",
+              "en_label": "Related parties",
+              "FY2023": 776051606,
+              "FY2024": 709905847
+            }
+          ]
+        },
+        "customer_concentration": {
+          "name": "PT Triniti Garam Properti",
+          "amount_FY2024": 67855585238,
+          "amount_FY2023": 44612798930,
+          "pct_of_revenue_FY2024": 0.34,
+          "pct_of_revenue_FY2023": 0.25,
+          "source": "FY24 AR p.211 Note 29 (continued)"
+        }
+      },
+      "cogs_note_30": {
+        "source_page": "FY24 AR p.211 Note 30 BEBAN POKOK PENDAPATAN",
+        "lines": [
+          {
+            "id_label": "Golf",
+            "FY2023": 30392943136,
+            "FY2024": 31958463807
+          },
+          {
+            "id_label": "Real Estat",
+            "FY2023": 15157146209,
+            "FY2024": 24312479906
+          },
+          {
+            "id_label": "Restoran",
+            "FY2023": 13889690526,
+            "FY2024": 14663402230
+          },
+          {
+            "id_label": "Lain-lain",
+            "FY2023": 5699939941,
+            "FY2024": 7338922360
+          }
+        ],
+        "total": {
+          "FY2023": 65139719812,
+          "FY2024": 78273268303
+        }
+      },
+      "selling_note_31": {
+        "source_page": "FY24 AR p.211 Note 31 BEBAN PENJUALAN",
+        "lines": [
+          {
+            "id_label": "Iklan dan promosi",
+            "en_label": "Advertising and promotion",
+            "FY2023": 972714013,
+            "FY2024": 4175403401
+          },
+          {
+            "id_label": "Perlengkapan pemasaran",
+            "en_label": "Marketing tools",
+            "FY2023": 164296388,
+            "FY2024": 688080609
+          },
+          {
+            "id_label": "Transportasi",
+            "FY2023": 81146823,
+            "FY2024": 85640811
+          },
+          {
+            "id_label": "Komisi penjualan",
+            "en_label": "Sales commission",
+            "FY2023": 26002673,
+            "FY2024": 154815070
+          },
+          {
+            "id_label": "Lain-lain",
+            "FY2023": 31779489,
+            "FY2024": 295348435
+          }
+        ],
+        "total": {
+          "FY2023": 1275939386,
+          "FY2024": 5399288326
+        }
+      },
+      "ga_note_32": {
+        "source_page": "FY24 AR p.212 Note 32 BEBAN UMUM DAN ADMINISTRASI",
+        "lines": [
+          {
+            "id_label": "Gaji dan tunjangan",
+            "en_label": "Salaries and allowances",
+            "FY2023": 14387982756,
+            "FY2024": 15741716990
+          },
+          {
+            "id_label": "Utilitas",
+            "en_label": "Utility",
+            "FY2023": 3973298773,
+            "FY2024": 3990970830
+          },
+          {
+            "id_label": "Perbaikan dan perawatan",
+            "en_label": "Repairs and maintenance",
+            "FY2023": 1990418042,
+            "FY2024": 2482660756
+          },
+          {
+            "id_label": "Penyusutan aset tetap",
+            "en_label": "Depreciation (Note 13)",
+            "FY2023": 2917770619,
+            "FY2024": 2481525409
+          },
+          {
+            "id_label": "Jasa profesional",
+            "en_label": "Professional fees",
+            "FY2023": 3778976233,
+            "FY2024": 2414211940
+          },
+          {
+            "id_label": "Pajak bumi dan bangunan",
+            "en_label": "Land and building tax",
+            "FY2023": 3439796940,
+            "FY2024": 2399739576
+          },
+          {
+            "id_label": "Beban imbalan kerja karyawan",
+            "en_label": "Employee benefits (Note 23)",
+            "FY2023": 2192855190,
+            "FY2024": 1994093797
+          },
+          {
+            "id_label": "Keamanan",
+            "en_label": "Security",
+            "FY2023": 1927688466,
+            "FY2024": 1908730639
+          },
+          {
+            "id_label": "Transportasi dan akomodasi",
+            "FY2023": 380432976,
+            "FY2024": 1636778059
+          },
+          {
+            "id_label": "Sumbangan dan donasi",
+            "FY2023": 122596535,
+            "FY2024": 1409109889
+          },
+          {
+            "id_label": "Legal dan perizinan",
+            "FY2023": 835006177,
+            "FY2024": 1321883097
+          },
+          {
+            "id_label": "Biaya kartu kredit",
+            "FY2023": 1093978688,
+            "FY2024": 1154842768
+          },
+          {
+            "id_label": "Asuransi",
+            "FY2023": 840013197,
+            "FY2024": 807153840
+          },
+          {
+            "id_label": "Perlengkapan kantor",
+            "FY2023": 111445452,
+            "FY2024": 748529633
+          },
+          {
+            "id_label": "Perjalanan dinas",
+            "FY2023": 666716352,
+            "FY2024": 571598314
+          },
+          {
+            "id_label": "Lain-lain",
+            "FY2023": 1059073313,
+            "FY2024": 788540762
+          }
+        ],
+        "total": {
+          "FY2023": 39718049709,
+          "FY2024": 41852086299
+        }
+      },
+      "computed_ratios": {
+        "FY2024": {
+          "gross_margin_golf_segment": 0.657,
+          "gross_margin_restoran_segment": 0.461,
+          "gross_margin_real_estate_segment": 0.642,
+          "net_margin": 0.341,
+          "operating_margin": 0.366,
+          "revenue_per_hole_consolidated": 5499833740,
+          "revenue_per_hole_including_assoc": 3666552123,
+          "golf_revenue_per_golf_hole_consolidated": 2584502021,
+          "golf_revenue_per_golf_hole_inc_assoc": 1723000000
+        }
+      },
+      "fy2025_follow_up": {
+        "source": "GOLF FY25 AR att1 p.6-7 Kinerja Keuangan headline (Cycle 62)",
+        "FY2025_headline": {
+          "golf_revenue": 79394000000,
+          "real_estate_revenue": 101926000000,
+          "total_net_revenue": 215520000000,
+          "golf_operating_income": 27567000000,
+          "golf_opinc_margin": 0.347,
+          "total_assets": 8685571000000,
+          "total_equity": 8018791000000
+        },
+        "yoy_changes": {
+          "total_net_revenue_yoy": 0.0885,
+          "real_estate_yoy_per_AR_text": 0.0955,
+          "golf_yoy_per_AR_text": 0.17,
+          "golf_opinc_yoy": 0.1013,
+          "assets_yoy": 0.0056,
+          "equity_yoy": 0.0048
+        },
+        "caveat": "Golf revenue 79,394 (FY25) vs 93,042 (FY24 Note 29 segment) = -14.7%, but AR text says +17%. Possible segment redefinition or sub-line basis. AR Note 29 직접 verification은 별도 cycle (현재 headline만)."
+      }
+    },
+    "mdln": {
+      "_meta": {
+        "ticker": "MDLN",
+        "parent": "PT Modernland Realty Tbk (dan Entitas Anak / consolidated)",
+        "currency": "IDR",
+        "unit": "rupiah (absolute)",
+        "fiscal_years": [
+          "FY2023",
+          "FY2024"
+        ],
+        "source_ar": [
+          "annual_reports/MDLN/FY2024/AnnualReport2024-MDLN-att2.pdf"
+        ],
+        "extraction_method": "PyMuPDF positional text extraction, FY24 AR comparative columns",
+        "extracted_at": "2026-05-11 Cycle 4"
+      },
+      "operating_segment_note_32": {
+        "source_page": "FY24 AR p.323-324 Note 32 SEGMEN OPERASI",
+        "by_project_location": {
+          "FY2024": {
+            "Tangerang": 174286560998,
+            "Bekasi": 84465096497,
+            "Cakung": 511728191690,
+            "Serang": 165834169551,
+            "Gajah Mada": 82166014155,
+            "Eliminasi": -909909910,
+            "Total": 1017570122981
+          },
+          "FY2023": {
+            "Tangerang": 150687356371,
+            "Bekasi": 111562249157,
+            "Cakung": 510381910446,
+            "Serang": 310492680526,
+            "Gajah Mada": 70093371923,
+            "Eliminasi": -909909910,
+            "Total": 1152307658513
+          }
+        },
+        "by_product_service": {
+          "FY2024": {
+            "Residensial": 728033436726,
+            "Industrial": 141722217972,
+            "Hospitaliti (Hotel + Golf + Country Club)": 148724378193,
+            "Eliminasi": -909909910,
+            "Total": 1017570122981
+          },
+          "FY2023": {
+            "Residensial": 724978420384,
+            "Industrial": 292000951332,
+            "Hospitaliti": 136238196707,
+            "Eliminasi": -909909910,
+            "Total": 1152307658513
+          }
+        }
+      },
+      "revenue_note_25": {
+        "source_page": "FY24 AR p.318 Note 25 PENDAPATAN",
+        "lines": [
+          {
+            "id_label": "Tanah",
+            "en_label": "Land",
+            "FY2023": 395098925175,
+            "FY2024": 172576134242,
+            "category": "Net sales"
+          },
+          {
+            "id_label": "Rumah tinggal dan ruko",
+            "en_label": "Residential houses and shophouses",
+            "FY2023": 476236340591,
+            "FY2024": 600287623711,
+            "category": "Net sales"
+          },
+          {
+            "id_label": "Apartemen",
+            "en_label": "Apartment",
+            "FY2023": 114074652360,
+            "FY2024": 53753189168,
+            "category": "Net sales"
+          },
+          {
+            "id_label": "EPS dan Wiremesh",
+            "FY2023": 18491729194,
+            "FY2024": 24111951579,
+            "category": "Net sales"
+          },
+          {
+            "id_label": "[Subtotal: Penjualan bersih]",
+            "FY2023": 1003901647320,
+            "FY2024": 850728898700,
+            "category": "Net sales subtotal"
+          },
+          {
+            "id_label": "Pendapatan dari hotel dan sewa",
+            "en_label": "Hotel and rental income",
+            "FY2023": 79420611312,
+            "FY2024": 92466307811,
+            "category": "Hospitality"
+          },
+          {
+            "id_label": "Lapangan golf - Green fees",
+            "FY2023": 10150444974,
+            "FY2024": 12368974368,
+            "category": "Golf"
+          },
+          {
+            "id_label": "Lapangan golf - Keanggotaan",
+            "en_label": "Golf Membership fees",
+            "FY2023": 10214068168,
+            "FY2024": 9612162186,
+            "category": "Golf"
+          },
+          {
+            "id_label": "Lapangan golf - Lain-lain",
+            "FY2023": 31696258331,
+            "FY2024": 34659152744,
+            "category": "Golf"
+          },
+          {
+            "id_label": "Restoran club house",
+            "en_label": "Club house restaurant",
+            "FY2023": 16924628408,
+            "FY2024": 17734627172,
+            "category": "Golf F&B"
+          },
+          {
+            "id_label": "[Subtotal: Lapangan golf dan restoran club house]",
+            "FY2023": 68985399881,
+            "FY2024": 74374916470,
+            "category": "Golf+F&B subtotal"
+          }
+        ],
+        "total": {
+          "FY2023": 1152307658513,
+          "FY2024": 1017570122981
+        }
+      },
+      "cogs_note_26": {
+        "source_page": "FY24 AR p.318-319 Note 26 BEBAN POKOK PENDAPATAN",
+        "hotel_rental_direct_cost_lines": [
+          {
+            "id_label": "Beban penyusutan (Note 11)",
+            "FY2023": 31203613449,
+            "FY2024": 31306434292
+          },
+          {
+            "id_label": "Makanan dan minuman",
+            "FY2023": 12795799249,
+            "FY2024": 15245368887
+          },
+          {
+            "id_label": "Ruangan / Rooms",
+            "FY2023": 13900369183,
+            "FY2024": 13973347857
+          },
+          {
+            "id_label": "Perlengkapan, perawatan dan biaya manajemen",
+            "FY2023": 6543520498,
+            "FY2024": 7090998423
+          },
+          {
+            "id_label": "Lain-lain",
+            "FY2023": 500230675,
+            "FY2024": 537467537
+          }
+        ],
+        "hotel_rental_subtotal": {
+          "FY2023": 64943533054,
+          "FY2024": 68153616996
+        },
+        "golf_course_direct_cost_lines": [
+          {
+            "id_label": "Gaji dan tunjangan lainnya",
+            "FY2023": 17998245638,
+            "FY2024": 19250477043
+          },
+          {
+            "id_label": "Beban penyusutan (Note 11)",
+            "FY2023": 2201698981,
+            "FY2024": 2756141331
+          },
+          {
+            "id_label": "Lain-lain",
+            "FY2023": 9414991411,
+            "FY2024": 9425141847
+          }
+        ],
+        "golf_course_subtotal": {
+          "FY2023": 29614936030,
+          "FY2024": 31431760221
+        },
+        "club_house_restaurant_direct_cost_lines": [
+          {
+            "id_label": "Gaji dan tunjangan",
+            "FY2023": 5414720117,
+            "FY2024": 5893345675
+          },
+          {
+            "id_label": "Makanan dan minuman",
+            "FY2023": 5430704782,
+            "FY2024": 5792557630
+          },
+          {
+            "id_label": "Lain-lain",
+            "FY2023": 2468062098,
+            "FY2024": 1744090867
+          }
+        ],
+        "club_house_restaurant_subtotal": {
+          "FY2023": 13313486997,
+          "FY2024": 13429994172
+        },
+        "golf_plus_clubhouse_subtotal": {
+          "FY2023": 42928423027,
+          "FY2024": 44861754393
+        },
+        "supplier_concentration": {
+          "name": "PT Jumbo Power International",
+          "amount_FY2024": 62020000000,
+          "pct_of_total_cogs": "exceeds 10%",
+          "source": "FY24 AR p.319 Note 26 (continued)"
+        }
+      },
+      "computed_ratios": {
+        "FY2024": {
+          "golf_revenue_pure": 56640289298,
+          "golf_revenue_with_fnb": 74374916470,
+          "golf_cogs_pure": 31431760221,
+          "golf_fnb_cogs": 13429994172,
+          "golf_pure_gp_margin": 0.445,
+          "golf_fnb_gp_margin": 0.243,
+          "golf_combined_gp_margin": 0.397
+        }
+      },
+      "fy2025_follow_up": {
+        "source": "MDLN FY25 AR att2 p.302-303 Note 25/26 (Cycle 66·69)",
+        "revenue_note_25_FY2025": {
+          "Tanah": 229034338823,
+          "Rumah_tinggal_dan_ruko": 274417865106,
+          "Apartemen": 14130190770,
+          "EPS_dan_Wiremesh": 18081029110,
+          "Net_sales_subtotal": 834127712773,
+          "Hotel_dan_sewa": 83711243395,
+          "Green_fees": 15389498332,
+          "Keanggotaan_golf": 9804054063,
+          "Lain_lain_golf": 49255183606,
+          "Restoran_club_house": 20871753785,
+          "Golf_plus_FB_subtotal_calc": 95320489786
+        },
+        "cogs_note_26_FY2025": {
+          "Golf_course_Gaji": 23259951529,
+          "Golf_course_Penyusutan": 5625910134,
+          "Golf_course_Lain_lain": 13136445035,
+          "Golf_course_subtotal": 42022306698
+        },
+        "fy2025_ratios": {
+          "golf_revenue_pure": 74448735999,
+          "golf_revenue_with_fnb": 95320489786,
+          "golf_cogs_pure": 42022306698,
+          "golf_pure_gp_margin": 0.436,
+          "yoy_revenue_pure": 0.314,
+          "yoy_cogs_pure": 0.337,
+          "gp_margin_change_pp": -0.009
+        }
+      }
+    },
+    "kija": {
+      "_meta": {
+        "ticker": "KIJA",
+        "parent": "PT Kawasan Industri Jababeka Tbk (dan Entitas Anak / consolidated)",
+        "currency": "IDR",
+        "unit": "rupiah million (per AR p.520 'jutaan Rupiah')",
+        "fiscal_years": [
+          "FY2023",
+          "FY2024"
+        ],
+        "source_ar": [
+          "annual_reports/KIJA/FY2024/AnnualReport2024-KIJA-att1.pdf"
+        ],
+        "extraction_method": "PyMuPDF positional text extraction",
+        "extracted_at": "2026-05-11 Cycle 5"
+      },
+      "segment_info_note_34": {
+        "source_page": "FY24 AR p.523-524 Note 34 INFORMASI SEGMEN (Cycle 6+ Real estat·Listrik·Land lease 등 추가 segment 정량 추출)",
+        "segments_count": 5,
+        "segments_listed": [
+          "Real Estat",
+          "Golf",
+          "Listrik (Power Plant)",
+          "Pengelolaan Kota (Town Mgmt)",
+          "Lain-lain"
+        ],
+        "golf_segment_FY2024": {
+          "revenue": 85019,
+          "cogs": 49634,
+          "gross_profit": 35385,
+          "selling_expenses": 1665,
+          "ga_expenses": 28604,
+          "operating_income_calc": 5116,
+          "interest_income": 764,
+          "interest_expense": 1433,
+          "final_tax": 101,
+          "net_income": 6742,
+          "comprehensive_income": 7167,
+          "note": "Unit Rp million. Curated CSV had Golf segment 47.92 bn — that may have been an older/narrower sub-classification. AR FY24 directly shows Golf segment Rp 85,019 m (Note 34)."
+        },
+        "real_estate_segment_FY2024_partial": {
+          "revenue": 2573405,
+          "cogs": 1230504,
+          "gross_profit": 1342901,
+          "selling_expenses": 98408,
+          "ga_expenses": 304126,
+          "operating_income_calc": 940367,
+          "operating_margin_calc": 0.365,
+          "note": "Unit Rp million. Largest segment. GP margin 52.2%, OpInc margin 36.5% (excludes finance/tax). Cycle 52 OpInc derivation: 1,342,901 - 98,408 - 304,126."
+        },
+        "all_5_segments_FY2024_extended": {
+          "source_page": "FY24 AR att1 p.523-524 Note 34 (Cycle 37 deep extraction)",
+          "Real Estat": {
+            "revenue": 2573405,
+            "cogs": -1230504,
+            "gp": 1342901,
+            "selling": -98408,
+            "ga": -304126,
+            "gp_margin": 0.522
+          },
+          "Golf": {
+            "revenue": 85019,
+            "cogs": -49634,
+            "gp": 35385,
+            "selling": -1665,
+            "ga": -28604,
+            "net": 6742,
+            "gp_margin": 0.416
+          },
+          "Service & Maintenance (Pengelolaan Kota)": {
+            "revenue": 779848,
+            "cogs": -412940,
+            "gp": 366908,
+            "ga": -127798,
+            "gp_margin": 0.471
+          },
+          "Power Plant (Listrik)": {
+            "revenue": 1182415,
+            "cogs": -978657,
+            "gp": 203758,
+            "ga": -68307,
+            "gp_margin": 0.172
+          },
+          "Tourism (Pariwisata)": {
+            "revenue": 69545,
+            "cogs": -51347,
+            "gp": 18198,
+            "ga": -49491,
+            "gp_margin": 0.262
+          },
+          "Total (pre-elimination)": {
+            "revenue_sum": 4690232,
+            "comment": "Subtotal does not equal consolidated 4,602,648 - eliminations -87,584 reconcile"
+          }
+        },
+        "consolidated_total_FY2024": {
+          "revenue": 4602648,
+          "cogs": -2635469,
+          "gross_profit": 1967179,
+          "gp_margin": 0.427,
+          "selling_expenses": -105347,
+          "ga_expenses": -548301,
+          "finance_expenses": -381637,
+          "other_expenses_net": -164417,
+          "income_before_tax": 821108,
+          "income_tax": -51050,
+          "net_income": 770058,
+          "comprehensive_income": 775396,
+          "source": "FY24 AR att1 p.524 Note 34 Total column"
+        },
+        "curated_discrepancy_note": "Cycle 5: KIJA Golf segment FY24 = Rp 85.019 bn per AR Note 34 (direct extraction). curated CSV's Rp 47.92 bn does not match — possibly older Pure Green Fee narrower line or different fiscal year. Use AR-direct figure."
+      },
+      "fy2025_cross_validation": {
+        "source": "KIJA FY25 AR att1 p.557-559 Note 34 (Cycle 65)",
+        "fy2024_comparative_verified": {
+          "Total_Penjualan": 4602648,
+          "Total_BPP": 2635469,
+          "Total_Laba_bruto": 1967179,
+          "Total_Penghasilan_tahun_berjalan": 770058,
+          "Total_Komprehensif_neto": 775396,
+          "Golf_segment_Penjualan": 85019,
+          "Golf_segment_BPP": 49634,
+          "Golf_segment_Laba_bruto": 35385,
+          "Golf_segment_Net_income": 6742,
+          "Golf_segment_Comprehensive": 7167,
+          "verification": "All values 100% match Cycle 5/37/52 extraction. KIJA FY24 data confirmed by FY25 AR comparative column."
+        },
+        "fy2025_specific": "Partial extraction (rotated table limitation - LIMITATIONS category 2). FY25 specific segment-level Golf numbers not fully isolated."
+      },
+      "operating_segments_section_description": {
+        "source_page": "FY24 AR p.523 Note 34 (header)",
+        "segments_described": [
+          {
+            "name": "Real Estat",
+            "description": "Industrial estate development + supporting infrastructure (residential, apartments, offices, shopping centers, water/waste/telephone/electricity installations, sports & recreation facilities)"
+          },
+          {
+            "name": "Golf",
+            "description": "Pengelolaan lapangan golf, club house, fasilitas rekreasi dan olahraga + sarana penunjang (Jababeka Golf & Country Club)"
+          }
+        ]
+      }
+    },
+    "smdm": {
+      "_meta": {
+        "ticker": "SMDM",
+        "parent": "PT Suryamas Dutamakmur Tbk (dan Entitas Anak / consolidated, acquired by BSDE 91.99% in 2024-10)",
+        "currency": "IDR",
+        "unit": "rupiah (absolute)",
+        "fiscal_years": [
+          "FY2023",
+          "FY2024"
+        ],
+        "source_ar": [
+          "annual_reports/SMDM/FY2024/AnnualReport2024-SMDM-att1.pdf"
+        ],
+        "extraction_method": "PyMuPDF positional text extraction",
+        "extracted_at": "2026-05-11 Cycle 6"
+      },
+      "segment_info_note_29": {
+        "source_page": "FY24 AR p.219-220 Note 29 Informasi Segmen Usaha",
+        "segments_count": 5,
+        "segments_listed": [
+          "Real Estat dan Properti",
+          "Golf dan Country Club (Rancamaya)",
+          "Estat Manajemen",
+          "Investasi dan Hotel",
+          "Lainnya"
+        ],
+        "FY2024": {
+          "Real Estat dan Properti": {
+            "revenue": 572609431402,
+            "cogs": -236010889903,
+            "gross_profit": 336598541499,
+            "selling": -66243931744,
+            "ga": -115292141286
+          },
+          "Golf dan Country Club": {
+            "revenue": 63282214554,
+            "cogs": -38688676161,
+            "gross_profit": 24593538393,
+            "selling": -561109134,
+            "ga": -24245473940
+          },
+          "Estat Manajemen": {
+            "revenue": 24636060732,
+            "cogs": -16576397510,
+            "gross_profit": 8059663222,
+            "selling": 0,
+            "ga": -14408963124
+          },
+          "Investasi dan Hotel": {
+            "revenue": 61589647062,
+            "cogs": -29907027973,
+            "gross_profit": 31682619089,
+            "selling": -792479186,
+            "ga": -31976554000
+          },
+          "Lainnya": {
+            "revenue": 85088184,
+            "cogs": 0,
+            "gross_profit": 85088184
+          },
+          "Eliminasi": {
+            "revenue": -28157233015,
+            "cogs": 24442992903,
+            "gross_profit": -3714240112,
+            "selling": -347487451
+          },
+          "Konsolidasian": {
+            "revenue": 694045208919,
+            "cogs": -296739998644,
+            "gross_profit": 397305210275,
+            "selling": -67945007515
+          }
+        },
+        "FY2022": {
+          "source_page": "SMDM FY2023 AR att1 p.212 Note 29 comparative column",
+          "Real Estat dan Properti": {
+            "revenue": 431274743523,
+            "cogs": -153883396394,
+            "gross_profit": 277391347129,
+            "selling": -36781424087,
+            "ga": -52131862546
+          },
+          "Golf dan Country Club": {
+            "revenue": 51662964626,
+            "cogs": -23345482675,
+            "gross_profit": 28317481951,
+            "selling": -3380251067,
+            "ga": -23718725374
+          },
+          "Estat Manajemen": {
+            "revenue": 19490961475,
+            "cogs": -14074661680,
+            "gross_profit": 5416299795,
+            "selling": 0,
+            "ga": -11891243461
+          },
+          "Investasi dan Hotel": {
+            "revenue": 63889255657,
+            "cogs": -28193096803,
+            "gross_profit": 35696158854,
+            "selling": -1103373237,
+            "ga": -34037522470
+          },
+          "Lainnya": {
+            "revenue": 84798184,
+            "cogs": 0,
+            "gross_profit": 84798184
+          },
+          "Eliminasi": {
+            "revenue": 0,
+            "cogs": -44284594,
+            "gross_profit": -44284594,
+            "selling": -4596320
+          },
+          "Konsolidasian": {
+            "revenue": 566402723465,
+            "cogs": -219540922146,
+            "gross_profit": 346861801319,
+            "selling": -41269644711
+          }
+        },
+        "FY2023": {
+          "Real Estat dan Properti": {
+            "revenue": 351287127412,
+            "cogs": -129084529153,
+            "gross_profit": 222202598259,
+            "selling": -42423451801,
+            "ga": -83870977011
+          },
+          "Golf dan Country Club": {
+            "revenue": 58197227138,
+            "cogs": -25716957257,
+            "gross_profit": 32480269881,
+            "selling": -2940170039,
+            "ga": -27303232401
+          },
+          "Estat Manajemen": {
+            "revenue": 22083677771,
+            "cogs": -16746490741,
+            "gross_profit": 5337187030,
+            "selling": -15188201,
+            "ga": -11184061003
+          },
+          "Investasi dan Hotel": {
+            "revenue": 64848052959,
+            "cogs": -34439601633,
+            "gross_profit": 30408451326,
+            "selling": -1036257052,
+            "ga": -25731532165
+          },
+          "Lainnya": {
+            "revenue": 81818184,
+            "cogs": 0,
+            "gross_profit": 81818184
+          },
+          "Eliminasi": {
+            "revenue": 0,
+            "cogs": -45083987,
+            "gross_profit": -45083987
+          },
+          "Konsolidasian": {
+            "revenue": 496497903464,
+            "cogs": -206032662771,
+            "gross_profit": 290465240693,
+            "selling": -46415067093
+          }
+        }
+      },
+      "computed_ratios": {
+        "FY2024": {
+          "golf_revenue": 63282214554,
+          "golf_cogs": 38688676161,
+          "golf_gp_margin": 0.389,
+          "golf_pct_of_consolidated": 0.0912,
+          "_segment_opinc_FY2024_cycle53": {
+            "Real Estat": {
+              "opinc_calc": 155062468469,
+              "opinc_margin": 0.271,
+              "comment": "GP 336,598 - Sel 66,244 - G&A 115,292"
+            },
+            "Golf & CC": {
+              "opinc_calc": -212043861,
+              "opinc_margin": -0.0034,
+              "comment": "GP 24,594 - Sel 561 - G&A 24,245 = -212 (적자 전환)"
+            },
+            "Estat Manajemen": {
+              "opinc_calc": -6349299902,
+              "opinc_margin": -0.258,
+              "comment": "GP 8,060 - G&A 14,409 (Sel 0)"
+            },
+            "Investasi & Hotel": {
+              "opinc_calc": -1086414097,
+              "opinc_margin": -0.0176,
+              "comment": "GP 31,683 - Sel 792 - G&A 31,977 = -1,086 (소액 적자)"
+            },
+            "Lainnya": {
+              "opinc_calc": 85088184,
+              "opinc_margin": 1.0,
+              "comment": "GP 85 직접"
+            },
+            "Total of segments": {
+              "opinc_sum": 147499798793,
+              "comment": "Sum of 5 segments + eliminasi. Group net income FY24 from curated = 123.77 bn (차이는 finance/tax/eliminasi)"
+            }
+          }
+        },
+        "FY2023": {
+          "golf_revenue": 58197227138,
+          "golf_cogs": 25716957257,
+          "golf_gp_margin": 0.558,
+          "golf_pct_of_consolidated": 0.1172
+        },
+        "yoy_2023_to_2024_golf_revenue": 0.0874,
+        "yoy_2023_to_2024_golf_cogs": 0.5044,
+        "gp_margin_drop_pp": -16.9
+      },
+      "related_party_insurance": {
+        "source_page": "FY24 AR p.221",
+        "counterparty": "PT Asuransi Sinarmas",
+        "premium_FY2024": 433989630,
+        "premium_FY2023": 398191558,
+        "pct_of_total_insurance_FY2024": 0.553,
+        "pct_of_total_insurance_FY2023": 0.7356
+      },
+      "key_mgmt_compensation": {
+        "FY2024": 23473182157,
+        "FY2023": 17182641655
+      },
+      "curated_discrepancy_note": "Cycle 6 검증: SMDM Golf & Country Club FY24 = Rp 63.28 bn (AR Note 29 직접). curated CSV의 FY22 Rp 75.6 bn은 다른 fiscal year 또는 Golf+CC+Hotel 통합 추정. AR FY24 직접 값으로 정정.",
+      "fy2025_follow_up": {
+        "source": "SMDM FY25 AR att2 p.297-300 Note 43 (Cycle 64·67)",
+        "FY2025_Konsolidasian": {
+          "Real_Estat_Properti_revenue": 264215229164,
+          "Golf_CC_revenue": 66644774916,
+          "Investasi_Hotel_revenue": 52259747548,
+          "Lainnya_revenue": 2964923336,
+          "Konsolidasian_revenue": 386084674964,
+          "Golf_CC_gp": 59063304343,
+          "Golf_CC_gp_margin": 0.886,
+          "Golf_CC_opinc": 25451393110,
+          "Golf_CC_opinc_margin": 0.382
+        },
+        "caveat": "Cycle 67: SMDM FY25 AR p.300 'restatement' table 발견. FY24 figures가 BSDE 인수 후 재진술된 가능성. Cycle 6 SMDM FY24 데이터 (단독 발행 AR 기준) 정확. FY25 segment 변화는 회계 재분류 효과 가능."
+      }
+    },
+    "kpig": {
+      "_meta": {
+        "ticker": "KPIG",
+        "parent": "PT MNC Land Tbk → PT MNC Tourism Indonesia Tbk (renamed July 2025)",
+        "currency": "IDR",
+        "unit": "rupiah (absolute)",
+        "fiscal_years": [
+          "FY2023",
+          "FY2024"
+        ],
+        "source_ar": [
+          "annual_reports/KPIG/FY2024/AnnualReport2024-KPIG-att1.pdf"
+        ],
+        "extraction_method": "PyMuPDF positional text extraction",
+        "extracted_at": "2026-05-11 Cycle 7"
+      },
+      "revenue_note_31": {
+        "source_page": "FY24 AR p.315 Note 31 PENDAPATAN USAHA",
+        "lines": [
+          {
+            "id_label": "Hotel, resor dan golf",
+            "en_label": "Hotel, resort and golf",
+            "FY2023": 811856360834,
+            "FY2024": 960227506634,
+            "note": "Golf is bundled with Hotel and Resort — NOT separately disclosed"
+          },
+          {
+            "id_label": "Manajemen properti dan jasa lainnya",
+            "en_label": "Property management and other services",
+            "FY2023": 422811572214,
+            "FY2024": 617780723407
+          },
+          {
+            "id_label": "Sewa ruang perkantoran",
+            "en_label": "Office space rental",
+            "FY2023": 172668962183,
+            "FY2024": 139138304557
+          },
+          {
+            "id_label": "Apartemen dan properti lainnya",
+            "en_label": "Apartment and other properties",
+            "FY2023": 13669538304,
+            "FY2024": 52997863295
+          }
+        ],
+        "total": {
+          "FY2023": 1421006433535,
+          "FY2024": 1770144397893
+        },
+        "golf_only_disclosed": false,
+        "curated_discrepancy_note": "Curated CSV's 'Trump Lido membership 7.36 bn FY24' could not be verified from Note 31 directly. Golf is bundled into 'Hotel, resor dan golf' line. The 7.36 bn likely sourced from MD&A or sub-note not yet extracted."
+      },
+      "ga_note_34": {
+        "source_page": "FY24 AR p.316 Note 34 BEBAN UMUM DAN ADMINISTRASI",
+        "lines": [
+          {
+            "id_label": "Gaji dan tunjangan",
+            "FY2023": 133103661030,
+            "FY2024": 120495134362
+          },
+          {
+            "id_label": "Perbaikan dan perawatan",
+            "FY2023": 34623812609,
+            "FY2024": 48637675150
+          },
+          {
+            "id_label": "Jasa manajemen",
+            "FY2023": 29881846148,
+            "FY2024": 30673901082
+          },
+          {
+            "id_label": "Pajak dan perijinan",
+            "FY2023": 11994756540,
+            "FY2024": 24623991247
+          },
+          {
+            "id_label": "Penyusutan (Note 12)",
+            "FY2023": 19297652426,
+            "FY2024": 18916032019
+          },
+          {
+            "id_label": "Perangkat lunak dan teknologi informasi",
+            "FY2023": 28132170993,
+            "FY2024": 14108685309
+          },
+          {
+            "id_label": "Asuransi",
+            "FY2023": 12426647612,
+            "FY2024": 12412053406
+          },
+          {
+            "id_label": "Imbalan kerja",
+            "FY2023": 3275321378,
+            "FY2024": 9924626291
+          },
+          {
+            "id_label": "Utilitas",
+            "FY2023": 6610695007,
+            "FY2024": 9496020588
+          },
+          {
+            "id_label": "Transportasi dan akomodasi",
+            "FY2023": 5469270540,
+            "FY2024": 5320564362
+          },
+          {
+            "id_label": "Jasa profesional",
+            "FY2023": 3523018505,
+            "FY2024": 3652518363
+          },
+          {
+            "id_label": "Perlengkapan dan administrasi kantor",
+            "FY2023": 5517871316,
+            "FY2024": 3043767134
+          },
+          {
+            "id_label": "Lain-lain",
+            "FY2023": 41639060907,
+            "FY2024": 53777105643
+          }
+        ],
+        "total": {
+          "FY2023": 335495785011,
+          "FY2024": 355082074956
+        }
+      },
+      "earnings_per_share_note_35": {
+        "FY2024_net_profit": 658629034066,
+        "FY2023_net_profit": 329809864915
+      },
+      "key_finding": "KPIG groups Hotel + Resort + Golf as ONE revenue line (Rp 960 bn FY24). Trump Golf Lido is operated by Trump Golf (license/management arrangement) per MD&A p.38 but specific golf-only revenue is not separately disclosed in Note 31. Therefore KPIG is NOT added to the 6-peer Golf GP comparison.",
+      "fy2025_follow_up": {
+        "source": "KPIG FY25 AR att1 p.325 Note 31 (Cycle 71)",
+        "company_name_change_verified": "PT MNC LAND TBK → PT MNC TOURISM INDONESIA TBK (formerly PT MNC LAND TBK), 2025-07 official rename",
+        "FY2025_revenue_note_31": {
+          "Hotel_resor_dan_golf": 1059832083248,
+          "yoy_vs_fy2024": 0.1037
+        },
+        "golf_segment_disclosure": "Hotel + Resort + Golf 통합 라인 유지 (FY24과 동일 패턴). Golf 단독 분리 여전히 없음. 본 사이트 6-peer 비교 대상 외 유지."
+      }
+    },
+    "bkdp": {
+      "_meta": {
+        "ticker": "BKDP",
+        "parent": "PT Bukit Darmo Property Tbk dan Entitas Anak / and Subsidiaries",
+        "currency": "IDR",
+        "unit": "rupiah (absolute)",
+        "fiscal_years": [
+          "FY2024",
+          "FY2025"
+        ],
+        "source_ar": [
+          "annual_reports/BKDP/FY2025/AnnualReport2025-BKDP-att2.pdf"
+        ],
+        "extraction_method": "PyMuPDF positional text extraction",
+        "extracted_at": "2026-05-11 Cycle 92"
+      },
+      "note": "BKDP is NOT a golf operator. Per Cycle 24 finding (CORRECTIONS #10), BKDP main revenue is shopping centre rental (Plaza). Included here for risk.html Going Concern context only.",
+      "fy2025_pnl": {
+        "source_page": "FY25 AR att2 p.70 LAPORAN LABA RUGI KONSOLIDASIAN",
+        "revenue_FY2025": 36632337898,
+        "revenue_FY2024_comparative": 30520490000,
+        "yoy_revenue": 0.2002,
+        "cogs_FY2025": 42364344871,
+        "cogs_FY2024_comparative": 38645057443,
+        "gross_loss_FY2025": -5732006973,
+        "gross_loss_FY2024_comparative": -8124567443,
+        "gross_loss_improvement": 0.294,
+        "operating_expenses_FY2025": -23435859898,
+        "operating_expenses_FY2024_comparative": -22524734239,
+        "loss_from_operation_FY2025": -29096870620,
+        "loss_from_operation_FY2024_comparative": -30550273161,
+        "final_tax_expense_FY2025": -4312126340,
+        "financial_charge_FY2025": -2251297159,
+        "loss_for_year_FY2025_total": -35573382387,
+        "loss_for_year_FY2024_total": -35914000850,
+        "loss_attributable_to_parent_FY2025": -35556555414,
+        "loss_attributable_to_NCI_FY2025": -16826973,
+        "eps_basic_FY2025": -4.73,
+        "eps_basic_FY2024_comparative": -4.78,
+        "total_comprehensive_loss_FY2025": -36798458126
+      },
+      "going_concern_FY2025": {
+        "auditor_pages": "p.58-67 (image-based PDF — PyMuPDF returns empty text)",
+        "status": "image PDF limitation 동일 (FY24 AR도 image PDF). FY25 auditor opinion 텍스트 직접 추출 불가 (LIMITATIONS category 1).",
+        "operational_facts_FY2025": "Revenue +20.0% YoY (Rp 30.52 bn → 36.63 bn). Gross Loss 지속 (Rp -5.73 bn / FY24 -8.12 bn). Net Loss 지속 (Rp -35.57 bn / FY24 -35.91 bn). EPS Basic -4.73 (FY24 -4.78). 매출 성장 + 손실 지속.",
+        "fy24_going_concern_reference": "Cycle 12 verified FY24 AR Going Concern uncertainty (per CORRECTIONS.md). FY25 auditor opinion 본 사이트 미추출."
+      }
+    },
+    "smra": {
+      "_meta": {
+        "ticker": "SMRA",
+        "parent": "PT Summarecon Agung Tbk dan Entitas Anaknya / and Its Subsidiaries",
+        "currency": "IDR",
+        "unit": "thousand Rupiah (per AR p.319 'Disajikan dalam Ribuan Rupiah')",
+        "fiscal_years": [
+          "FY2024",
+          "FY2025"
+        ],
+        "source_ar": [
+          "annual_reports/SMRA/FY2025/AnnualReport2025-SMRA-att2.pdf"
+        ],
+        "extraction_method": "PyMuPDF positional text extraction",
+        "extracted_at": "2026-05-11 Cycle 95"
+      },
+      "note": "SMRA bundles 'Rekreasi/Leisure' as one revenue line - includes golf AND other recreation. Pure golf 단독 분리 공시 없음 (Cycle 9 finding 유지). FY24 curated CSV figure was Rp 10,620 bn (Leisure&Hospitality 통합).",
+      "revenue_note_31": {
+        "source_page": "FY25 AR att2 p.319 Note 31 PENDAPATAN NETO",
+        "Rekreasi_Leisure": {
+          "FY2025": 61114634,
+          "FY2024_comparative": 66672127,
+          "yoy": -0.0833,
+          "unit_after_conversion": "Rp 61.11 bn FY25 / Rp 66.67 bn FY24 (thousand→bn)"
+        },
+        "total_net_revenues": {
+          "FY2025": 8766927470,
+          "FY2024_comparative": 10623354592,
+          "yoy": -0.1748,
+          "unit_after_conversion": "Rp 8,767 bn FY25 / Rp 10,623 bn FY24"
+        }
+      },
+      "cogs_note_32": {
+        "source_page": "FY25 AR att2 p.321 Note 32 BEBAN POKOK PENJUALAN DAN BEBAN LANGSUNG",
+        "Rekreasi_Leisure_COGS": {
+          "FY2025": 54514137,
+          "FY2024_comparative": 54682474,
+          "yoy": -0.0031,
+          "unit_after_conversion": "Rp 54.51 bn FY25 / Rp 54.68 bn FY24"
+        },
+        "total_cogs": {
+          "FY2025": 4368408619,
+          "FY2024_comparative": 5162448504,
+          "unit_after_conversion": "Rp 4,368 bn FY25 / Rp 5,162 bn FY24"
+        }
+      },
+      "computed_ratios": {
+        "Leisure_GP_FY2025_bn": 6.600497,
+        "Leisure_GP_FY2024_bn": 11.989653,
+        "Leisure_GP_margin_FY2025": 0.108,
+        "Leisure_GP_margin_FY2024": 0.1798,
+        "Leisure_GP_margin_change_pp": -0.0718,
+        "comment": "Leisure GP margin 18.0% → 10.8% (-7.2pp). 매출 -8.3%, COGS -0.3% (사실상 동일) → operating leverage 악화. 단, 골프 단독이 아닌 Rekreasi 통합 라인."
+      },
+      "supplier_concentration_FY2025": "Note 32: 2025·2024 모두 단일 공급처 매입 10% 초과 사례 없음 (사실)."
+    },
+    "bsde": {
+      "_meta": {
+        "ticker": "BSDE",
+        "parent": "PT Bumi Serpong Damai Tbk dan Entitas Anak / and Its Subsidiaries",
+        "currency": "IDR",
+        "unit": "rupiah (absolute)",
+        "fiscal_years": [
+          "FY2024",
+          "FY2025"
+        ],
+        "source_ar": [
+          "annual_reports/BSDE/FY2025/AnnualReport2025-BSDE-att2.pdf"
+        ],
+        "extraction_method": "PyMuPDF positional text extraction",
+        "extracted_at": "2026-05-11 Cycle 98",
+        "previous_extraction_failures": "Cycle 56 BSDE FY24 segment Note 추출 시도 → 490p 빈 텍스트 (FY24 AR att2 image-PDF 부분). Cycle 98 FY25 AR에서 segment Note 텍스트 추출 성공 (FY24 comparative column으로 우회 검증 가능)."
+      },
+      "segment_note_FY2025": {
+        "source_page": "FY25 AR att2 p.491 INFORMASI SEGMEN OPERASI",
+        "segments_listed": [
+          "Real Estat",
+          "Properti",
+          "Hotel",
+          "Jalan tol (Toll road)",
+          "Lain-lain",
+          "Konsolidasi"
+        ],
+        "golf_segment": "NONE — BSDE FY25 segments do NOT include Golf as a standalone segment (FY24도 동일 패턴 확인 - comparative column).",
+        "FY2025": {
+          "Real_Estat_revenue": 11830304233654,
+          "Properti_revenue": 769493304388,
+          "Hotel_revenue": 52259747548,
+          "Jalan_tol_revenue": 103637323000,
+          "Lain_lain_revenue": 32757728144,
+          "Consolidated_revenue": 12788452336734,
+          "Real_Estat_gp": 7739204902519,
+          "Consolidated_gp": 8125955872700,
+          "Consolidated_operating_profit": 3447178841678,
+          "Consolidated_net_profit": 2857738492944,
+          "Equity_in_associates_others_segment": 207052481534,
+          "Equity_in_associates_consolidated": 615139655559,
+          "comment": "Others segment의 associate equity 207 bn은 DMIG·관계사 지분 손익 가능성 (BSDE has DMIG associate 검증 Cycle 16). 직접 DMIG 라인 분리는 없음."
+        },
+        "FY2024_comparative": {
+          "Real_Estat_revenue": 12365047454098,
+          "Properti_revenue": 675614072837,
+          "Hotel_revenue": 17790521887,
+          "Jalan_tol_revenue": 689122810103,
+          "Lain_lain_revenue": 48997289912,
+          "Consolidated_revenue": 13796572148837,
+          "Consolidated_gp": 8816385465162,
+          "Consolidated_operating_profit": 4468905803578,
+          "Equity_in_associates_consolidated_partial": "FY24 데이터 일부만 추출 (p.491 후반 lines)"
+        },
+        "yoy_changes": {
+          "Consolidated_revenue_yoy": -0.0731,
+          "Real_Estat_revenue_yoy": -0.0432,
+          "Hotel_revenue_yoy": 1.937,
+          "Jalan_tol_revenue_yoy": -0.8496,
+          "Consolidated_operating_profit_yoy": -0.2287,
+          "comment": "Consolidated 매출 -7.3% / Hotel +193.7% (저점 회복) / Jalan tol -85.0% (대대적 감소, FY24 689 bn → FY25 104 bn) / Operating profit -22.9%."
+        }
+      },
+      "legal_matters_note_58": {
+        "source_page": "FY25 AR att2 p.490 Catatan 58 Perkara Hukum dan Kewajiban Bersyarat",
+        "DUTI_HGB_lawsuits": "DUTI (subsidiary)는 HGB 관련 6 + 8 = 14건 소송 모두 승소 (1심-항소심-상고심 일관). 최종 판결 2009-2015 사이.",
+        "current_status_FY2025": "31 Desember 2025 기준, 그룹 추가 중대 소송 없음 (그룹 입장)."
+      }
+    },
+    "dild": {
+      "_meta": {
+        "ticker": "DILD",
+        "parent": "PT Intiland Development Tbk dan Entitas Anak / and Its Subsidiaries",
+        "currency": "IDR",
+        "unit": "rupiah (absolute)",
+        "fiscal_years": [
+          "FY2024",
+          "FY2025"
+        ],
+        "source_ar": [
+          "annual_reports/DILD/FY2025/AnnualReport2025-DILD-att2.pdf"
+        ],
+        "extraction_method": "PyMuPDF positional text extraction",
+        "extracted_at": "2026-05-11 Cycle 101"
+      },
+      "segment_note_FY2025": {
+        "source_page": "FY25 AR att2 p.445 Note INFORMASI SEGMEN OPERASI",
+        "segments_listed_FY2025": [
+          "Kawasan Perumahan (Land)",
+          "High Rise",
+          "Industri Perkantoran (Industrial Offices)",
+          "Estate Facilities",
+          "Hotels",
+          "Lainnya (Others)"
+        ],
+        "golf_segment": "NONE — DILD FY25 operating segments include Hotels and Estate Facilities but no standalone Golf segment. FY24 comparative column confirmed identical segment definition.",
+        "segment_results_FY2025": {
+          "Kawasan_Perumahan_Land": 453548443847,
+          "High_Rise": 67551766420,
+          "Industri_Perkantoran": 127242771060,
+          "Estate_Facilities": 248899595473,
+          "Hotels": 47835399614,
+          "Lainnya_Others": 15409193526,
+          "Eliminasi": 0,
+          "Konsolidasi_unverified": "Total 정량 추가 추출 필요"
+        },
+        "segment_results_FY2024_comparative": {
+          "Kawasan_Perumahan_Land": 262452881449,
+          "High_Rise": 133980954022,
+          "Industri_Perkantoran": 117640406290,
+          "Estate_Facilities": 221432601279,
+          "Hotels": 38006417279,
+          "Lainnya_Others": 11838743443
+        },
+        "yoy_changes_segment_results": {
+          "Kawasan_Perumahan_yoy": 0.728,
+          "High_Rise_yoy": -0.496,
+          "Industri_Perkantoran_yoy": 0.082,
+          "Estate_Facilities_yoy": 0.124,
+          "Hotels_yoy": 0.259,
+          "Lainnya_yoy": 0.302,
+          "comment": "Land 부문 segment result 대폭 증가 (+72.8%). High Rise -49.6% 감소. Hotels +25.9%."
+        },
+        "segment_assets_FY2025": {
+          "Kawasan_Perumahan_Land": 3135446991766,
+          "High_Rise": 7047496377447,
+          "Industri_Perkantoran": 1216126456225,
+          "Estate_Facilities": 1161435721719,
+          "Hotels": 744346627515,
+          "Lainnya_Others": 8313580670,
+          "Eliminasi": -556944598488,
+          "Konsolidasi": 12756221156854,
+          "comment": "Hotels segment assets Rp 744.3 bn (FY24 700.8 bn). 6 segment 전체 자산 Rp 12,756 bn."
+        },
+        "segment_liabilities_FY2025": {
+          "Konsolidasi": 6330130612128,
+          "FY2024_comparative": 6956640610515,
+          "yoy": -0.0901
+        }
+      },
+      "geographic_segment": "Operasi Grup berlokasi di wilayah Indonesia, terutama Pulau Jawa (Seluruh pendapatan Grup adalah pendapatan domestik / All revenues domestic)."
+    },
+    "mkpi": {
+      "_meta": {
+        "ticker": "MKPI",
+        "parent": "PT Metropolitan Kentjana Tbk dan Entitas Anak / and Subsidiaries",
+        "currency": "IDR",
+        "unit": "thousand Rupiah (per AR 'Disajikan dalam Rupiah, kecuali dinyatakan lain' — Rp'000 in segment table)",
+        "fiscal_years": [
+          "FY2025"
+        ],
+        "source_ar": [
+          "annual_reports/MKPI/FY2025/AnnualReport2025-MKPI-att1.pdf"
+        ],
+        "extraction_method": "PyMuPDF positional text extraction",
+        "extracted_at": "2026-05-11 Cycle 102"
+      },
+      "operations_scope": "MKPI = PT Metropolitan Kentjana Tbk = Pondok Indah Group property management. Operates: Pondok Indah Mall, Pondok Indah Office Tower, Pondok Indah Golf Apartment. **GOLF operations 직접 운영 없음** — Pondok Indah Padang Golf은 PIPG (associate) 운영. MKPI 자체는 골프 시설 운영 매출 없음.",
+      "segment_note_37_FY2025": {
+        "source_page": "FY25 AR att1 p.223 Note 37 INFORMASI SEGMEN USAHA",
+        "segments_listed": [
+          "Pusat Perbelanjaan (Shopping center)",
+          "Perkantoran (Office)",
+          "Apartemen",
+          "Real Estat",
+          "Taman Air (Water park)",
+          "Hotel"
+        ],
+        "golf_segment": "NONE — MKPI FY25 operating segments do NOT include Golf. 6 segments cover shopping, office, apartment, real estate, water park, hotel.",
+        "segment_revenue_FY2025_thousand_Rp": {
+          "Pusat_Perbelanjaan": 1400894857,
+          "Perkantoran": 306777050,
+          "Apartemen": 167330484,
+          "Real_Estat": 271131228,
+          "Taman_Air": 12674335,
+          "Hotel": 445638083,
+          "Subtotal": 2604446037,
+          "Eliminasi": -1133000,
+          "Konsolidasi": 2603313037,
+          "unit_conversion": "Rp 2,603 bn consolidated revenue FY25"
+        },
+        "segment_income_FY2025_thousand_Rp": {
+          "Pusat_Perbelanjaan": 911831287,
+          "Perkantoran": 130148382,
+          "Apartemen": 68253539,
+          "Real_Estat": 64478132,
+          "Taman_Air": 2091711,
+          "Hotel": 63577719,
+          "Subtotal_segment_income": 1240380770,
+          "Eliminasi": -494454,
+          "Operating_income": 1239886316,
+          "unit_conversion": "Operating income Rp 1,240 bn FY25"
+        },
+        "net_income_FY2025": 1122176939,
+        "net_income_unit_conversion": "Rp 1,122 bn FY25",
+        "total_assets_FY2025": 9463752773,
+        "total_assets_unit_conversion": "Rp 9,464 bn FY25",
+        "depreciation_FY2025_total": 305342347,
+        "capex_FY2025_total": 254893027
+      }
+    },
+    "bksl": {
+      "_meta": {
+        "ticker": "BKSL",
+        "parent": "PT Sentul City Tbk dan Entitas Anak / and Subsidiaries",
+        "currency": "IDR",
+        "unit": "rupiah (absolute)",
+        "fiscal_years": [
+          "FY2025"
+        ],
+        "source_ar": [
+          "annual_reports/BKSL/FY2025/AnnualReport2025-BKSL-att1.pdf"
+        ],
+        "extraction_method": "PyMuPDF positional text extraction",
+        "extracted_at": "2026-05-11 Cycle 103"
+      },
+      "operations_scope": "BKSL = PT Sentul City Tbk = Sentul City 부동산 개발. **Sentul Golf은 PT Padang Golf Bukit Sentul (관계사) 운영 — BKSL 직접 매출에 포함되지 않음** (Cycle 24 finding 유지).",
+      "segment_note_37_FY2025": {
+        "source_page": "FY25 AR att1 p.299 Note 37 SEGMEN OPERASI",
+        "segments_listed_FY2025": [
+          "Real Estat (Primary)",
+          "Lain-lain (Others: restoran, taman hiburan, pengelolaan kota)"
+        ],
+        "golf_segment": "NONE — BKSL FY25 segments are: Real Estat (primary) + Lain-lain (restaurant, amusement park, town management). **Golf segment 없음.** Sentul Golf은 BKSL 관계사 operated 별도 entity.",
+        "segment_revenue_FY2025": {
+          "Real_Estat_external": 2490479649184,
+          "Lain_lain_external": 266984106836,
+          "Total_external_revenue": 2757463756020,
+          "unit_conversion": "Real Estat Rp 2,490 bn / Others Rp 267 bn / Total Rp 2,757 bn"
+        },
+        "segment_results_FY2025": {
+          "Real_Estat": 1518084542641,
+          "Lain_lain": 52052940856,
+          "Total": 1570137483497,
+          "unit_conversion": "Real Estat Rp 1,518 bn / Others Rp 52 bn / Total Rp 1,570 bn"
+        },
+        "operating_expenses_FY2025": {
+          "Real_Estat": -241699433519,
+          "Lain_lain": -59104222023,
+          "Total": -300803655542
+        },
+        "other_expenses_net_FY2025": {
+          "Total": -426700384870
+        },
+        "income_before_tax_FY2025": {
+          "Real_Estat": 916003449365,
+          "Lain_lain": -73350006280,
+          "Total": 842653443085
+        },
+        "net_profit_FY2025": {
+          "Real_Estat": 907369298335,
+          "Lain_lain": -74509166506,
+          "Total": 832860131829,
+          "unit_conversion": "Rp 833 bn 그룹 순이익"
+        },
+        "segment_assets_FY2025_after_elimination": {
+          "Real_Estat": 21000582413033,
+          "Lain_lain": 260456190523,
+          "Total_net": 21261038603556,
+          "unit_conversion": "Rp 21,261 bn net 자산"
+        }
+      }
+    }
+  }
+}

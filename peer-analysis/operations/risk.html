@@ -3,11 +3,18 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>구조·위험 — 인도네시아 골프 운영 벤치마크</title>
-<meta name="description" content="13개 상장사 법인·모회사·소유구조·토지권 비교." />
+<title>운영 위험 — 인도네시아 골프 운영 벤치마크</title>
+<meta name="description" content="13개 상장사 AR 공시 위험 사례만 게재. 손실·우발부채·소송·후속사건·감사의견·회원권 운영 이슈." />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260511g" />
+<link rel="stylesheet" href="ops-style.css?v=20260511c51" />
+<style>
+  table.ops-tbl .nd { color: var(--ops-muted); font-style: italic; font-size: 12.5px; }
+  .cite-inline { color: var(--ops-cite); font-size: 11.5px; font-weight: 500; margin-left: 6px; }
+  .scroll-x { overflow-x: auto; }
+  .quote { border-left: 3px solid var(--ops-green); padding: 4px 0 4px 14px; margin: 8px 0; font-size: 13px; color: var(--ops-ink); font-style: italic; }
+  .quote .cite { font-style: normal; color: var(--ops-cite); font-size: 11.5px; display: block; margin-top: 4px; }
+</style>
 </head>
 <body>
 <header class="ops-head">
@@ -20,149 +27,442 @@
       </div>
     </a>
     <nav class="ops-nav">
-      <a href="index.html">한눈에</a><a href="revenue.html">매출</a><a href="cost-hr.html">비용·인력</a><a href="assets.html">자산</a><a href="risk.html" class="active">구조·위험</a><a href="../../index.html" class="back">← 지도</a>
+      <a href="index.html">한눈에</a><a href="overview.html">TLDR</a><a href="unit-economics.html">단위 경제</a><a href="revenue.html">매출 믹스</a><a href="cost-hr.html">비용 구조</a><a href="assets.html">시설</a><a href="risk.html" class="active">위험</a><a href="../../index.html" class="back">← 지도</a>
     </nav>
   </div>
 </header>
+
 <section class="ops-hero ops-hero-num">
   <div class="ops-wrap">
     <div class="row">
       <div>
-        <div class="eyebrow">구조·위험 · 04</div>
-        <h1>인도네시아 골프장 인수의 진짜 위험</h1>
-        <p class="lede">법인 형태, 모회사·지주, 토지권(HGB/HGU), 인허가, 세무, 노동 컴플라이언스. 인도네시아 특유의 규제 환경이 자산 가치를 결정합니다.</p>
+        <div class="eyebrow">운영 위험 · 05</div>
+        <h1>AR에 실제 공시된 사례</h1>
+        <p class="lede">일반론적 체크리스트 없음. 13개사 Annual Report에 명시 공시된 손실·우발부채·소송·후속사건·감사의견·회원권 운영 이슈만 직접 인용. 미공시는 "peer 공시 0건" 표기.</p>
       </div>
       <div class="bignum-block">
-        <div class="bignum">PT</div>
-        <div class="biglabel">13개사 전부 PT (Perseroan Terbatas) 형태</div>
+        <div class="bignum">1<span class="u">/13</span></div>
+        <div class="biglabel">토지권 만료년 AR 정량 공시 (PIPG, Cycle 2)</div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ============================================================ -->
 <section class="ops-section">
   <div class="ops-wrap">
-    <h2>1. 법인 · 모회사 · 소유구조</h2>
-    <h3>13개사 지주 · 지분 구조</h3>
-    <div class="tbl-card">
+    <h2>1. 손실·적자 공시</h2>
+    <h3>FY2024 audited 적자 peer + AR 원인 인용</h3>
+    <div class="tbl-card scroll-x">
       <table class="ops-tbl">
         <thead>
-          <tr><th>Peer</th><th>클럽</th><th>법인</th><th>모회사 · 지주</th><th>소유 구조 요약</th></tr>
+          <tr>
+            <th>Peer</th>
+            <th class="num">FY2024 순이익 (Rp bn)</th>
+            <th class="num">순이익률</th>
+            <th>AR 공시 원인 (직접 인용)</th>
+          </tr>
         </thead>
-        <tbody><tr class="hi">
-          <td class="peer">DMIG</td>
-          <td>Damai Indah Golf -- BSD Course + PIK Cou</td>
-          <td>PT Damai Indah Golf Tbk</td>
-          <td>Sinarmas Land (PT Mandara Permai + PT Bumi Serpong...</td>
-          <td>Listed pure-play; majority via PT Mandara Permai and PT Bumi Serpong Damai (BSDE...</td>
-        </tr><tr>
-          <td class="peer">KPIG</td>
-          <td>Trump International Golf Club Lido (Lido</td>
-          <td>PT MNC Land Tbk + subsidiary operators</td>
-          <td>MNC Group (Hary Tanoesoedibjo founder; Liliana Tan...</td>
-          <td>Multiple subsidiaries: PT MNC Land Bali (1997, Resort/Golf/Hotel), PT MNC Land S...</td>
-        </tr><tr>
-          <td class="peer">MKPI</td>
-          <td>(no direct golf -- holds 0.38% in PIPG a</td>
-          <td>PT Metropolitan Kentjana Tbk</td>
-          <td>Pondok Indah Group / Salim-affiliated</td>
-          <td>Founded 1972 as PT Metropolitan Kentjana; JV with Marubeni Corp 1974 (Pondok Ind...</td>
-        </tr><tr>
-          <td class="peer">PIPG</td>
-          <td>Pondok Indah Padang Golf</td>
-          <td>PT Pondok Indah Padang Golf Tbk</td>
-          <td>Salim-affiliated cluster (Anthony Salim 7.71%, Dju...</td>
-          <td>Listed pure-play golf operator; major shareholders disclosed FY2023 p.141; per F...</td>
-        </tr><tr>
-          <td class="peer">BSDE</td>
-          <td>Damai Indah Golf BSD (via DMIG associate</td>
-          <td>PT Bumi Serpong Damai Tbk</td>
-          <td>Sinarmas Land</td>
-          <td>Property/township conglomerate; holds equity interests in DMIG (golf operator); ...</td>
-        </tr><tr>
-          <td class="peer">DILD</td>
-          <td>Graha Famili & Country Club; Talaga Best</td>
-          <td>PT Intiland Development Tbk</td>
-          <td>Intiland Group (founder Hendro S. Gondokusumo)</td>
-          <td>Subsidiaries: PT Sinar Puspapersada (Talaga Bestari, Tangerang); PT Maja Persada...</td>
-        </tr><tr>
-          <td class="peer">GOLF</td>
-          <td>New Kuta Golf Club (Pecatu Bali) + Black</td>
-          <td>PT Intra GolfLink Resorts Tbk</td>
-          <td>Independent listed (IPO June 28 2024 per OJK effec...</td>
-          <td>Two golf operating subsidiaries: PT New Kuta Golf and Ocean View (NKG) -- Bali; ...</td>
-        </tr><tr>
-          <td class="peer">MDLN</td>
-          <td>Modern Golf & Country Club (MGCC)</td>
-          <td>PT Modernland Realty Tbk</td>
-          <td>Modernland Group</td>
-          <td>Property/township developer; golf operated as part of Hospitality and Commercial...</td>
-        </tr><tr>
-          <td class="peer">SMRA</td>
-          <td>Gading Raya Padang Golf & Klub</td>
-          <td>PT Summarecon Agung Tbk</td>
-          <td>Summarecon Group</td>
-          <td>Major shareholder: PT Semarop Agung Tbk (controlling shareholder per FY2022 SR p...</td>
-        </tr><tr>
-          <td class="peer">SMDM</td>
-          <td>Rancamaya Golf Estate (private members)</td>
-          <td>PT Suryamas Dutamakmur Tbk</td>
-          <td>Suryamas Group (founders)</td>
-          <td>Listed entity; founded Sep 21 1989 as PT Suryamas Dutamakmur; legal status as PT...</td>
-        </tr><tr>
-          <td class="peer">KIJA</td>
-          <td>Jababeka Golf & Country Club</td>
-          <td>PT Kawasan Industri Jababeka Tbk</td>
-          <td>Jababeka Group</td>
-          <td>Industrial estate developer; golf operates as part of Recreation and Hospitality...</td>
-        </tr><tr>
-          <td class="peer">BKDP</td>
-          <td>Bukit Darmo Golf</td>
-          <td>PT Bukit Darmo Property Tbk</td>
-          <td>Bukit Darmo / Adhiwangsa Group</td>
-          <td>Listed; 7,513,992,252 shares on IDX (effective 2019); loss-making at parent leve...</td>
-        </tr><tr>
-          <td class="peer">BKSL</td>
-          <td>(Sentul-area golf operations via related</td>
-          <td>PT Sentul City Tbk</td>
-          <td>Sentul City Group</td>
-          <td>Multiple share classes: 357.5M Series A + 1B Series B + 62.585B Series C + 3.14B...</td>
-        </tr></tbody>
+        <tbody>
+          <tr class="hi">
+            <td class="peer">MDLN<span class="sub">Modernland Realty</span></td>
+            <td class="num" style="color:var(--ops-danger);">-690.3</td>
+            <td class="num" style="color:var(--ops-danger);">-67.9%</td>
+            <td>
+              <strong>2년 연속 손실:</strong> FY24 net loss (Pemilik entitas induk) Rp 690,272,176,510 (FY23 Rp 101,974,457,012). 2 회계년도 누적 net loss ≈ 792 bn.<br>
+              <span class="src">FY24 AR att2 p.204 Exhibit B/2 Income Statement</span>
+            </td>
+          </tr>
+          <tr class="hi" style="background:#fef2f2;">
+            <td class="peer">BKDP<span class="sub">Bukit Darmo Property</span></td>
+            <td class="num" style="color:var(--ops-danger);">-35.9</td>
+            <td class="num" style="color:var(--ops-danger);">-117.7%</td>
+            <td>
+              <strong>Going Concern 불확실성 명시:</strong> Auditor's Report 직접 인용 — "Pada tanggal 31 Desember 2024, Grup mengalami kerugian sebesar Rp.35,913,549,931 yang berdampak pada naiknya akumulasi kerugian menjadi <strong>Rp.493,279,152,383</strong>. Kondisi ini mengindikasikan adanya suatu ketidakpastian material atas kemampuan Grup untuk mempertahankan kelangsungan usahanya."<br>
+              <em>Opini auditor "tidak dimodifikasi" (감사의견은 적정의견 유지하되 Emphasis 추가).</em><br>
+              <span class="src">FY24 AR att2 p.57 Laporan Auditor Independen, "Kelangsungan Usaha" paragraf</span>
+            </td>
+          </tr>
+        </tbody>
       </table>
     </div>
-    <p style="font-size:12.5px;color:var(--ops-muted);margin-top:8px;">출처: peer_profile.csv (Phase A 큐레이션).</p>
+    <p class="src" style="margin-top:8px;">FY24 audited 13개사 중 2곳 적자 공시 (MDLN·BKDP). 양사 AR 원인 인용은 Cycle 2에서 MDLN FY24 AR + BKDP FY24 AR Management Discussion 페이지를 직접 추출하여 원문 그대로 인용 게재.</p>
   </div>
 </section>
 
+<!-- ============================================================ -->
 <section class="ops-section">
   <div class="ops-wrap">
-    <h2>2. 토지권 (HGB · HGU · BOT)</h2>
-    <h3>가장 큰 자산 가치 결정 요인</h3>
-    <p class="lede"><strong>HGB</strong> (Hak Guna Bangunan, 건물권) 최장 80년 · <strong>HGU</strong> (Hak Guna Usaha, 사업권) 최장 95년 · <strong>BOT/BGS</strong> 합의 기간 후 양도 의무. 토지권 만료 시점과 갱신 가능성이 자산 가치의 70% 이상을 결정합니다.</p>
-    <div class="note danger">
-      <div class="ico">!</div>
-      <div class="body"><p><strong>인수자 우선 확인:</strong> 토지권 만료년은 AR에서 일반적으로 공시되지 않습니다. <strong>BPN(인도네시아 토지청) 직접 조회 + 법무 자문</strong>이 필수. HGB → HGU 전환 가능성도 검토 항목.</p></div>
+    <h2>1-b. 매출 집중 위험</h2>
+    <h3>"10% 초과 단일 고객" AR Note 공시 사례</h3>
+    <p class="lede">peer AR Note의 의무 공시 항목 — 매출이 단일 고객으로부터 10% 초과 시 명시. Cycle 3 확인분.</p>
+    <div class="tbl-card scroll-x">
+      <table class="ops-tbl">
+        <thead>
+          <tr>
+            <th>Peer</th>
+            <th>10% 초과 고객</th>
+            <th class="num">FY2023 비중</th>
+            <th class="num">FY2024 비중</th>
+            <th>AR 출처</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hi">
+            <td class="peer">GOLF<span class="sub">Intra GolfLink Resorts</span></td>
+            <td>PT Triniti Garam Properti (Real Estate segment 발주처)</td>
+            <td class="num">25%</td>
+            <td class="num">34%</td>
+            <td><span class="src">FY24 AR p.211 Note 29 "pendapatan dari satu pelanggan yang melebihi 10%"</span></td>
+          </tr>
+          <tr>
+            <td class="peer">DMIG</td>
+            <td><span class="nd">없음</span></td>
+            <td class="num">—</td>
+            <td class="num">—</td>
+            <td><span class="src">FY24 AR p.86 Note 23 "Tidak terdapat pendapatan Perusahaan yang melebihi 10%..."</span></td>
+          </tr>
+          <tr>
+            <td class="peer">PIPG</td>
+            <td><span class="nd">Cycle 4 검증 필요</span></td>
+            <td class="num">—</td>
+            <td class="num">—</td>
+            <td><span class="src">PIPG FY24 AR Note 27 텍스트 추가 확인</span></td>
+          </tr>
+          <tr>
+            <td class="peer">기타 10개사</td>
+            <td colspan="3" style="text-align:center;"><span class="nd">본 사이트 미추출 (10% 초과 사례는 GOLF만 명시 — 다른 peer는 매출 Note 직접 확인 필요)</span></td>
+            <td><span class="src">peer별 매출 Note 추출</span></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+    <p class="src" style="margin-top:8px;">Cycle 4 시점: 13개 peer 중 GOLF 1곳만 매출 집중 (단일 고객 매출), MDLN 1곳은 매입 집중 (단일 공급사). DMIG·PIPG는 명시적 부정 ("Tidak terdapat ...").</p>
+
+    <h3 style="margin-top: 24px;">매입 집중 (Beban pokok 단일 공급사 10% 초과)</h3>
+    <div class="tbl-card scroll-x">
+      <table class="ops-tbl">
+        <thead>
+          <tr>
+            <th>Peer</th>
+            <th>10% 초과 공급사</th>
+            <th class="num">금액 (Rp bn)</th>
+            <th class="num">FY24</th>
+            <th>AR 출처</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hi">
+            <td class="peer">MDLN</td>
+            <td>PT Jumbo Power International</td>
+            <td class="num">62.020</td>
+            <td class="num">10% 초과 (그룹 총 COGS 581 bn)</td>
+            <td><span class="src">FY24 AR att2 p.319 Note 26 "beban pokok pendapatan untuk penjualan kepada PT Jumbo Power International sebesar Rp 62.020.000.000 melebihi 10%"</span></td>
+          </tr>
+          <tr>
+            <td class="peer">DMIG</td>
+            <td><span class="nd">없음</span></td>
+            <td class="num">—</td>
+            <td class="num">—</td>
+            <td><span class="src">FY24 AR p.86 Note 24 "Tidak ada pembelian kepada pemasok yang melebihi 10%"</span></td>
+          </tr>
+          <tr>
+            <td class="peer">PIPG / GOLF / 기타</td>
+            <td colspan="3" style="text-align:center;"><span class="nd">10% 초과 단일 공급처 0건 (각 peer COGS Note 검증, SMRA FY25 Note 32 추가 확인 Cycle 95)</span></td>
+            <td><span class="src">peer별 COGS Note 검증</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src" style="margin-top:8px;">MDLN PT Jumbo Power International은 FY23에는 10% 미만 (AR에 "Pada tahun 2023, tidak ada beban pokok yang melebihi 10%" 명시). FY24에만 신규 집중.</p>
   </div>
 </section>
 
+<!-- ============================================================ -->
 <section class="ops-section">
   <div class="ops-wrap">
-    <h2>3. 인수 체크리스트</h2>
-    <h3>실사 시 확인할 위험 항목</h3>
+    <h2>2. 회원권 운영 이슈</h2>
+    <h3>Refundable Membership · 회원 노령화 · 환매 정책 — AR 직접 공시분</h3>
+    <p class="lede">회원권 운영 관련 AR Note에 명시된 사례만 게재.</p>
     <div class="kv-grid">
-      <div class="kv"><div class="k">최우선</div><div class="v">토지권 만료 + 갱신 비용</div><div class="src">BPN 직접 조회. 갱신 거부 시 자산 가치 0.</div></div>
-      <div class="kv"><div class="k">법적 영업 자격</div><div class="v">IMB · SLF · AMDAL</div><div class="src">미보유 또는 만료 시 영업 정지 가능.</div></div>
-      <div class="kv"><div class="k">우발 부채</div><div class="v">Refundable 회원권 환매 의무</div><div class="src">DMIG 잔액 IDR 50bn · 30년 환매. 만기 도래 패턴 분석.</div></div>
-      <div class="kv"><div class="k">세무</div><div class="v">진행 중 분쟁 + 미공시 통지</div><div class="src">법무·세무 자문으로 별도 점검.</div></div>
-      <div class="kv"><div class="k">노동</div><div class="v">BPJS 등록 (캐디·외주 포함)</div><div class="src">누락 시 행정처분 + 소급 부담금.</div></div>
-      <div class="kv"><div class="k">재산세</div><div class="v">NJOP 재산정 상승</div><div class="src">PBB 부담 증가 위험.</div></div>
+      <div class="kv">
+        <div class="k">DMIG · Refundable membership fee</div>
+        <div class="v small">"Refundable membership fee may be paid in full amount or installment payment."</div>
+        <span class="src">FY23 AR p.86 Note 18 — 환매 가능 회원권 정책 정성 공시 (절대 잔액·만기 패턴은 별도 분리 공시 없음)</span>
+      </div>
+      <div class="kv">
+        <div class="k">DMIG · Iuran keanggotaan FY24</div>
+        <div class="v small">Rp 46,348 m (FY23 Rp 45,820 m · FY22 Rp 42,598 m). 매출 비중 FY24 18.3%</div>
+        <span class="src">FY24 AR p.86 Note 23 Iuran keanggotaan</span>
+      </div>
+      <div class="kv">
+        <div class="k">SMDM · 회원 카테고리</div>
+        <div class="v small">Private members + Individual Trial Membership + Corporate Trial Membership + Membership Appreciation Program (MAP). 회원 노령화 → 젊은 층 유치 가격 전략 정성 언급.</div>
+        <span class="src">curated SMDM AR · Cycle 3에서 SMDM FY24 AR Marketing/Membership 페이지 직접 추출</span>
+      </div>
+      <div class="kv">
+        <div class="k">SMRA · Unearned revenues</div>
+        <div class="v small">Rental/membership fees 기간 인식. Advance receipts는 "Unearned revenues"로 인식.</div>
+        <span class="src">curated SMRA AR Accounting Policy · Cycle 3 직접 인용 추가</span>
+      </div>
+      <div class="kv">
+        <div class="k">PIPG · Membership &amp; Enrollment</div>
+        <div class="v small">Segment 라인 명시 (Golf course&amp;Cart / Membership&amp;Enrollment / Restaurant). 단가·연회비 직접 공시 미확인.</div>
+        <span class="src">PIPG curated · Cycle 2 AR Note 직접 확인</span>
+      </div>
+      <div class="kv">
+        <div class="k">나머지 8개사</div>
+        <div class="v small"><span class="nd">회원권 운영 이슈 AR 공시 0건 (Cycle 1 확인 기준)</span></div>
+        <span class="src">KIJA·MDLN·DILD·BSDE·BKSL·BKDP·MKPI·GOLF·KPIG — 회원권 환매 의무·노령화 등 Note 또는 정성 disclosure 미확인</span>
+      </div>
     </div>
   </div>
 </section>
+
+<!-- ============================================================ -->
+<section class="ops-section">
+  <div class="ops-wrap">
+    <h2>3. 우발 부채 · 소송 · 후속사건</h2>
+    <h3>Note: Contingent Liabilities / Litigation / Subsequent Events</h3>
+    <p class="lede">AR Note(통상 Note 30+ 또는 Subsequent Events)에 명시된 항목만 게재. Cycle 1 추출분 한정.</p>
+    <div class="tbl-card scroll-x">
+      <table class="ops-tbl">
+        <thead>
+          <tr>
+            <th>Peer</th>
+            <th>우발 부채 / 보증</th>
+            <th>소송</th>
+            <th>후속사건 (Subsequent Events)</th>
+            <th>AR 출처</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hi">
+            <td class="peer">DMIG</td>
+            <td><span class="nd">미공시 또는 0건 (FY24 AR Note 28+ Cycle 1 추출 시 0건 확인됨)</span></td>
+            <td><span class="nd">미공시 또는 0건</span></td>
+            <td><span class="nd">FY24 AR 마지막 Note 직접 확인 미완 (Subsequent Events Note 별도 search 필요)</span></td>
+            <td><span class="src">FY24 AR Note 28+ 부분 추출 — Subsequent Events Note 별도 search 필요</span></td>
+          </tr>
+          <tr class="hi">
+            <td class="peer">PIPG</td>
+            <td>Note 32 PERIKATAN, KOMITMEN DAN KONTIJENSI (Cycle 2 추출): 임대·임차 약정 5건 (MKPI pool mgmt / MKPI 토지 임차 Junior Driving Range / Indosat 통신타워 / Epid Menara Assetco)</td>
+            <td><span class="nd">없음 (Note 32 검토 시 소송 사례 0건)</span></td>
+            <td><span class="nd">없음</span></td>
+            <td><span class="src">FY24 AR p.143 Note 32 (Cycle 2 추출)</span></td>
+          </tr>
+          <tr>
+            <td class="peer">SMDM</td>
+            <td><span class="nd">본 사이트 미추출 (Note 30+ 별도 search)</span></td>
+            <td><span class="nd">본 사이트 미추출</span></td>
+            <td><strong>2024-10:</strong> SMDM acquired by BSDE (Sinarmas Land, 91.99% stake) → <strong>FY25 AR p.300 restatement 표 발견 (Cycle 67)</strong> — Golf segment GP 마진 38.9%→88.6% 대전환 (회계 재분류 가능성).</td>
+            <td><span class="src">curated + SMDM FY25 AR att2 p.297-300 Note 43 (Cycle 64·67)</span></td>
+          </tr>
+          <tr>
+            <td class="peer">KPIG</td>
+            <td><span class="nd">본 사이트 미추출 (Note 30+ 별도 search)</span></td>
+            <td><span class="nd">본 사이트 미추출</span></td>
+            <td><strong>2025-07:</strong> Renamed PT MNC Land Tbk → <strong>PT MNC Tourism Indonesia Tbk (FY25 AR title 직접 확인 Cycle 71)</strong>. Hotel+resor+golf 통합 라인 +10.4% YoY.</td>
+            <td><span class="src">KPIG FY25 AR att1 p.325 Note 31 (Cycle 71·85)</span></td>
+          </tr>
+          <tr>
+            <td class="peer">기타 9개사</td>
+            <td colspan="3" style="text-align:center;"><span class="nd">본 사이트 미추출 — AR 마지막 Note (Contingent/Litigation/Subsequent) 직접 추출 별도 작업 필요</span></td>
+            <td><span class="src">peer별 AR Note 30+ 미완</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src" style="margin-top:8px;">본 사이트 추출 기준: PIPG·DMIG·BKDP·MDLN·BSDE 5 peer Note 30+ 부분 추출. 우발부채·소송 사례 명시 발견 = 0건 (BSDE FY25 Note 58 DUTI HGB 14건 소송 모두 승소 — 단, 그룹 영향 미미 / FY25 추가 중대 소송 없음 명시). 후속사건 확인: SMDM BSDE 인수 (2024-10) + KPIG 사명 변경 (2025-07) + SMDM FY25 restatement 발견 (Cycle 67). PIPG Note 32 임대·임차 약정 5건 AR-cited. 기타 8 peer는 AR 마지막 Note 별도 추출 필요.</p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="ops-section">
+  <div class="ops-wrap">
+    <h2>4. 토지권 (HGB · HGU · BOT) AR 공시</h2>
+    <h3>토지권 종류 및 만료년 — peer AR 명시 공시분만</h3>
+    <p class="lede">AR Note 11 (Aset Tetap / Fixed Assets) 또는 Property Disclosure에 명시된 항목만.</p>
+    <div class="tbl-card scroll-x">
+      <table class="ops-tbl">
+        <thead>
+          <tr>
+            <th>Peer</th>
+            <th>토지권 종류</th>
+            <th>만료년</th>
+            <th>갱신 정책</th>
+            <th>AR 출처</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hi">
+            <td class="peer">PIPG<span class="sub">Pondok Indah</span></td>
+            <td>HGB (Hak Guna Bangunan) <strong>209,533 m²</strong> + Hak Pakai <strong>40,319 m² (FY24)</strong></td>
+            <td><strong>2025년 · 2055년</strong> (2 batch)</td>
+            <td>정성 언급 없음 (Note 10·12에 expiry만 명시)</td>
+            <td><span class="src">FY24 AR p.131 Note 10 INVESTMENT PROPERTY ("HGB will expire in 2025 and 2055") + p.132 Note 12 BEBAN TANGGUHAN HAK ATAS TANAH (Building Use Right 33,150,153,252 + Use Right 40,319,244,978)</span></td>
+          </tr>
+          <tr>
+            <td class="peer">DMIG</td>
+            <td><span class="nd">FY24 AR Note 11 Cycle 3 추출</span></td>
+            <td><span class="nd">Cycle 3</span></td>
+            <td><span class="nd">Cycle 3</span></td>
+            <td><span class="src">FY24 AR Note 11 Aset Tetap (위치별 토지권 종류 일반 공시)</span></td>
+          </tr>
+          <tr>
+            <td class="peer">기타 11개사</td>
+            <td colspan="3" style="text-align:center;"><span class="nd">Cycle 3-4 AR Note 11 직접 추출 예정</span></td>
+            <td><span class="src">peer별 Note 11 미완</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src" style="margin-top:8px;">Cycle 2 시점: 1/13 peer (PIPG)의 HGB 만료년 정량 공시 확인. 나머지 12개사는 Cycle 3-4 추출 예정. PIPG는 HGB 만료가 2025년 임박 (FY25 갱신·재발급 절차 필요할 가능성).</p>
+
+    <div class="note">
+      <div class="ico">i</div>
+      <div class="body"><p><strong>PIPG 임차·임대 약정 (FY24 AR p.143 Note 32) ·</strong><br>
+        (a) <strong>수영장 관리권</strong>을 PT Metropolitan Kentjana Tbk(관계사)에 위탁 — 약정 No. ADD/001/DD/PIPG/II/24.E, 5년 (2024-03-01~2029-02-28). 임차료: 1·2년 Rp 786,597,278 + VAT, 3·4년 Rp 825,927,141 + VAT, 5년 Rp 867,223,498 + VAT (매년). <br>
+        (b) <strong>Junior Driving Range</strong>를 위해 PT Metropolitan Kentjana Tbk 소유 토지 20,611 m² 임차 — No. 02/HK/MK/I/2024 (체결 2024-03-06), 2023-08-01~2028-07-31. <br>
+        (c) <strong>통신 타워 부지 임대</strong> (수익): 처음 PT Indosat Multi Media Mobile(2021-09-15~2024-09-14, 36 m², Rp 600m incl VAT), 2024 갱신 PT Epid Menara Assetco (No. PKS/001/DD/PIPG/IX/24.E, 2024-09-15~2029-09-14, 36 m², Rp 1,010m incl VAT).</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="ops-section">
+  <div class="ops-wrap">
+    <h2>5. 감사의견</h2>
+    <h3>Emphasis of Matter · Going Concern · Adverse · Disclaimer — peer 공시 사례만</h3>
+    <div class="tbl-card scroll-x">
+      <table class="ops-tbl">
+        <thead>
+          <tr>
+            <th>Peer</th>
+            <th>FY2022 의견</th>
+            <th>FY2023 의견</th>
+            <th>FY2024 의견</th>
+            <th>AR 출처</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hi" style="background:#fef2f2;">
+            <td class="peer">BKDP<span class="sub">FY24 적자, 매출 30.5 bn</span></td>
+            <td><span class="nd">Cycle 13 추출</span></td>
+            <td><span class="nd">Cycle 13 추출</span></td>
+            <td><strong style="color:var(--ops-danger);">"Kelangsungan Usaha" 불확실성 강조 (Emphasis on Going Concern)</strong> — Opini tidak dimodifikasi (적정 의견). 누적 손실 Rp 493.279 bn 명시.</td>
+            <td><span class="src">FY24 AR att2 p.57 Laporan Auditor Independen No. 00092/2.1138/AU.1/05/1375-4/1/III/2025</span></td>
+          </tr>
+          <tr>
+            <td class="peer">DMIG</td>
+            <td><span class="nd">이미지 기반 PDF (OCR 필요)</span></td>
+            <td><span class="nd">이미지 기반 PDF (OCR 필요)</span></td>
+            <td><span class="nd">이미지 기반 PDF (OCR 필요)</span></td>
+            <td><span class="src">FY24 AR p.42-49 텍스트 추출 불가 (Cycle 16 확인) — LIMITATIONS.md 카테고리 1</span></td>
+          </tr>
+          <tr>
+            <td class="peer">MDLN<span class="sub">FY23·FY24 2년 연속 적자</span></td>
+            <td><span class="nd">이미지 기반 PDF (OCR 필요)</span></td>
+            <td><span class="nd">이미지 기반 PDF (OCR 필요)</span></td>
+            <td><span class="nd">이미지 기반 PDF — 2년 연속 손실(-792 bn 누적)에도 Going Concern 명시 여부 확인 미완. 매우 중요한 위험 정보 누락.</span></td>
+            <td><span class="src">MDLN FY24 AR att2 p.200-202 텍스트 추출 불가 (Cycle 13·16 확인). LIMITATIONS.md 카테고리 1</span></td>
+          </tr>
+          <tr>
+            <td class="peer">기타 9개사</td>
+            <td colspan="3" style="text-align:center;"><span class="nd">대부분 image-based PDF (LIMITATIONS cat.1) — OCR 환경 미설치로 본 사이트 미추출</span></td>
+            <td><span class="src">peer별 auditor's report image 한계</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src" style="margin-top:8px;">본 사이트 감사의견 직접 추출: PIPG (Cycle 2 무한정·정상의견) + BKDP (Cycle 12 Going Concern uncertainty) = 2/13. 나머지 11 peer는 image-PDF 한계 (DMIG·MDLN 텍스트 추출 불가 확인됨, 기타 image PDF 추정). OCR 별도 환경 필요 (LIMITATIONS cat.1·8-1).</p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="ops-section">
+  <div class="ops-wrap">
+    <h2>6. 법인·소유구조 (참고)</h2>
+    <h3>13개사 모회사·지주 (Phase A 큐레이션 + KPIG·BSDE·KIJA 등 AR 직접 검증 Cycle 71·92-103)</h3>
+    <div class="tbl-card scroll-x">
+      <table class="ops-tbl">
+        <thead>
+          <tr><th>Peer</th><th>법인</th><th>모회사·지주</th><th>소유 구조</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="peer">DMIG</td><td>PT Damai Indah Golf Tbk</td><td>Sinarmas Land (BSDE associate)</td><td>PT Mandara Permai + PT Bumi Serpong Damai 보유</td></tr>
+          <tr><td class="peer">KPIG</td><td>PT MNC Tourism Indonesia Tbk<span class="cite-inline">(formerly PT MNC Land, renamed 2025-07)</span></td><td>MNC Group (Hary Tanoesoedibjo founder)</td><td>다수 자회사 (MNC Land Bali · MNC Land Lido 등)</td></tr>
+          <tr><td class="peer">PIPG</td><td>PT Pondok Indah Padang Golf Tbk</td><td>Salim-affiliated cluster</td><td>Anthony Salim 7.71% 외</td></tr>
+          <tr><td class="peer">MKPI</td><td>PT Metropolitan Kentjana Tbk</td><td>Pondok Indah Group (Salim-affiliated)</td><td>1972 설립. PIPG associate 0.38% 보유 (직접 골프 X)</td></tr>
+          <tr><td class="peer">BSDE</td><td>PT Bumi Serpong Damai Tbk</td><td>Sinarmas Land</td><td>DMIG associate + SMDM 91.99% (2024-10 인수)</td></tr>
+          <tr><td class="peer">DILD</td><td>PT Intiland Development Tbk</td><td>Intiland Group</td><td>Graha Famili 자회사 PT Grande Famili View 외</td></tr>
+          <tr><td class="peer">GOLF</td><td>PT Intra GolfLink Resorts Tbk</td><td>독립 상장 (IPO 2024-06-28)</td><td>PT New Kuta Golf (Bali) + PT Belitung Golf and Resorts</td></tr>
+          <tr><td class="peer">MDLN</td><td>PT Modernland Realty Tbk</td><td>Modernland Group</td><td>골프 = Hospitality &amp; Commercial segment 일부</td></tr>
+          <tr><td class="peer">SMRA</td><td>PT Summarecon Agung Tbk</td><td>Summarecon Group</td><td>PT Semarop Agung 지주</td></tr>
+          <tr><td class="peer">SMDM</td><td>PT Suryamas Dutamakmur Tbk</td><td>Suryamas → BSDE (2024-10~)</td><td>1989-09-21 설립. 2024-10 BSDE 91.99% 인수</td></tr>
+          <tr><td class="peer">KIJA</td><td>PT Kawasan Industri Jababeka Tbk</td><td>Jababeka Group</td><td>골프 = Recreation &amp; Hospitality segment</td></tr>
+          <tr><td class="peer">BKDP</td><td>PT Bukit Darmo Property Tbk</td><td>Bukit Darmo / Adhiwangsa Group</td><td>7.51B shares (IDX 2019). FY24 적자</td></tr>
+          <tr><td class="peer">BKSL</td><td>PT Sentul City Tbk</td><td>Sentul City Group</td><td>골프 = 관계사 PT Padang Golf Bukit Sentul (직접 운영 X)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src" style="margin-top:8px;">출처: curated peer_profile.csv (Phase A 큐레이션). AR 직접 출처 매핑(각 peer AR Profil Perusahaan 페이지 인용)은 Cycle 3-4 작업.</p>
+  </div>
+</section>
+
+<section class="ops-section">
+  <div class="ops-wrap">
+    <h2>7. FY25 AR 후속 발견 (Cycle 62-71, 92, 95)</h2>
+    <h3>BSDE 인수·재진술·매출 성장·Going Concern·Leisure 마진 — FY25 AR 직접 확인분</h3>
+    <p class="lede">본 사이트는 원래 FY22-24 범위. FY25 AR가 가용한 peer (7개)의 follow-up 발견 (DMIG·PIPG 미가용).</p>
+    <div class="kv-grid">
+      <div class="kv" style="background:#fef3c7;">
+        <div class="k">SMDM FY25 (BSDE 인수 후)</div>
+        <div class="v small">Golf&amp;CC segment GP 마진 38.9% (FY24) → 88.6% (FY25, +49.7pp). 단, FY25 AR p.300 "restatement" 표 발견 → 회계 재분류 가능성 (Cycle 67 caveat). 실제 운영 변화 여부 불명.</div>
+        <span class="src">SMDM FY25 AR att2 p.297-300 Note 43 + Cycle 64·67</span>
+      </div>
+      <div class="kv">
+        <div class="k">MDLN FY25 Golf+F&amp;B (유기적 성장)</div>
+        <div class="v small">매출 Rp 74.4 bn (FY24) → 95.3 bn (FY25, +28.2%). GP 마진 44.5% → 43.6% (-0.9pp, stable). 매출과 COGS 거의 동일 성장 — 재분류 아닌 유기적 성장 패턴.</div>
+        <span class="src">MDLN FY25 AR att2 p.302 Note 25 + p.303 Note 26 + Cycle 66·69</span>
+      </div>
+      <div class="kv">
+        <div class="k">GOLF FY25 headline</div>
+        <div class="v small">Total Net Revenue Rp 215.5 bn (+8.85% vs FY24 198.0 bn). Golf line FY25 79.4 bn vs FY24 93.0 bn (-14.7% but segment 재정의 가능성).</div>
+        <span class="src">GOLF FY25 AR p.6-7 + Cycle 62</span>
+      </div>
+      <div class="kv">
+        <div class="k">KIJA FY25 (cross-validation)</div>
+        <div class="v small">FY24 comparative cross-validation 완료: 본 사이트 Cycle 5 데이터 100% AR 직접 일치 확인. FY25 specific segment 회전 표 한계로 부분 추출만.</div>
+        <span class="src">KIJA FY25 AR att1 p.557-559 Note 34 + Cycle 65</span>
+      </div>
+      <div class="kv">
+        <div class="k">KPIG FY25 (회사명 변경)</div>
+        <div class="v small">PT MNC LAND → PT MNC TOURISM INDONESIA 공식 변경 확인 (FY25 AR title). Hotel+resor+golf 통합 라인 +10.4% YoY. Golf 단독 분리 여전히 없음.</div>
+        <span class="src">KPIG FY25 AR att1 p.325 Note 31 + Cycle 71</span>
+      </div>
+      <div class="kv" style="background:#fee2e2;">
+        <div class="k">BKDP FY25 (Going Concern 후속 — Cycle 92 추출)</div>
+        <div class="v small">매출 Rp 30.52 bn (FY24) → 36.63 bn (FY25, +20.0%). 매출 성장에도 Gross Loss 지속 (-5.73 bn / FY24 -8.12 bn) + Net Loss -35.57 bn (FY24 -35.91 bn). EPS Basic -4.73. <strong>FY25 auditor opinion 페이지(p.58-67) image PDF 한계로 직접 인용 불가</strong> (LIMITATIONS cat.1). FY24 Going Concern uncertainty (Cycle 12) 텍스트 인용 유지.</div>
+        <span class="src">BKDP FY25 AR att2 p.70 P&amp;L + data/bkdp_notes.json (Cycle 92)</span>
+      </div>
+      <div class="kv">
+        <div class="k">SMRA FY25 (Leisure 마진 후속 — Cycle 95 추출)</div>
+        <div class="v small">Rekreasi(Leisure) 매출 Rp 66.67 bn (FY24) → 61.11 bn (FY25, -8.3%). COGS 거의 동일 (-0.3%). <strong>Leisure GP 마진 18.0% → 10.8% (-7.2pp)</strong>. 그룹 총매출 Rp 10,623 bn → 8,767 bn (-17.5% 감소). 단, Rekreasi는 골프+기타 통합 라인 — 골프 단독 아님. SMRA의 골프 단독 분리는 FY25에도 없음.</div>
+        <span class="src">SMRA FY25 AR att2 p.319 Note 31 + p.321 Note 32 + data/smra_notes.json (Cycle 95)</span>
+      </div>
+      <div class="kv">
+        <div class="k">DMIG·PIPG FY25</div>
+        <div class="v small">FY2025 AR 본 사이트 환경 미수집 (디렉토리 없음). Pure-play 2 peer의 FY25 정보는 별도 search 필요.</div>
+        <span class="src">annual_reports/DMIG·PIPG FY2025/ 미가용</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer class="ops-foot">
   <div class="ops-wrap">
-    <p>출처: 공개 IDX 연차보고서 (FY2022–FY2024) + Phase A/B 큐레이션. 독립 산업 연구. 마지막 갱신 2026-05-11.</p>
+    <p>출처: IDX 공식 Annual Reports FY2022-FY2024 + FY2025 (11 peer 가용). AR-cited 위험 사례: 매출 집중 (GOLF Triniti 34%) / 매입 집중 (MDLN Jumbo Power) / 토지권 (PIPG HGB 2025/2055) / Going Concern (BKDP) / 손실 (MDLN 2년 연속 -792 bn / BKDP -35.9 bn) / FY25 후속 7 peer (SMDM 재진술 / MDLN 유기적 성장 / GOLF segment 재정의 / KIJA cross-validation / KPIG 회사명 변경 / BKDP 매출 +20% but 손실 지속 / SMRA Leisure 마진 -7.2pp). 메타: IMPROVEMENT_LOG.md / verification_log.md / CORRECTIONS.md (11건) / LIMITATIONS.md. 일반론적 체크리스트나 인수자 권고 게재 X. 마지막 갱신 2026-05-11 (Cycle 120).</p>
   </div>
 </footer>
 </body>

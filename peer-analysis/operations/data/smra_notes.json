@@ -1,0 +1,51 @@
+{
+  "_meta": {
+    "ticker": "SMRA",
+    "parent": "PT Summarecon Agung Tbk dan Entitas Anaknya / and Its Subsidiaries",
+    "currency": "IDR",
+    "unit": "thousand Rupiah (per AR p.319 'Disajikan dalam Ribuan Rupiah')",
+    "fiscal_years": ["FY2024", "FY2025"],
+    "source_ar": ["annual_reports/SMRA/FY2025/AnnualReport2025-SMRA-att2.pdf"],
+    "extraction_method": "PyMuPDF positional text extraction",
+    "extracted_at": "2026-05-11 Cycle 95"
+  },
+  "note": "SMRA bundles 'Rekreasi/Leisure' as one revenue line - includes golf AND other recreation. Pure golf 단독 분리 공시 없음 (Cycle 9 finding 유지). FY24 curated CSV figure was Rp 10,620 bn (Leisure&Hospitality 통합).",
+  "revenue_note_31": {
+    "source_page": "FY25 AR att2 p.319 Note 31 PENDAPATAN NETO",
+    "Rekreasi_Leisure": {
+      "FY2025": 61114634,
+      "FY2024_comparative": 66672127,
+      "yoy": -0.0833,
+      "unit_after_conversion": "Rp 61.11 bn FY25 / Rp 66.67 bn FY24 (thousand→bn)"
+    },
+    "total_net_revenues": {
+      "FY2025": 8766927470,
+      "FY2024_comparative": 10623354592,
+      "yoy": -0.1748,
+      "unit_after_conversion": "Rp 8,767 bn FY25 / Rp 10,623 bn FY24"
+    }
+  },
+  "cogs_note_32": {
+    "source_page": "FY25 AR att2 p.321 Note 32 BEBAN POKOK PENJUALAN DAN BEBAN LANGSUNG",
+    "Rekreasi_Leisure_COGS": {
+      "FY2025": 54514137,
+      "FY2024_comparative": 54682474,
+      "yoy": -0.0031,
+      "unit_after_conversion": "Rp 54.51 bn FY25 / Rp 54.68 bn FY24"
+    },
+    "total_cogs": {
+      "FY2025": 4368408619,
+      "FY2024_comparative": 5162448504,
+      "unit_after_conversion": "Rp 4,368 bn FY25 / Rp 5,162 bn FY24"
+    }
+  },
+  "computed_ratios": {
+    "Leisure_GP_FY2025_bn": 6.600497,
+    "Leisure_GP_FY2024_bn": 11.989653,
+    "Leisure_GP_margin_FY2025": 0.1080,
+    "Leisure_GP_margin_FY2024": 0.1798,
+    "Leisure_GP_margin_change_pp": -0.0718,
+    "comment": "Leisure GP margin 18.0% → 10.8% (-7.2pp). 매출 -8.3%, COGS -0.3% (사실상 동일) → operating leverage 악화. 단, 골프 단독이 아닌 Rekreasi 통합 라인."
+  },
+  "supplier_concentration_FY2025": "Note 32: 2025·2024 모두 단일 공급처 매입 10% 초과 사례 없음 (사실)."
+}

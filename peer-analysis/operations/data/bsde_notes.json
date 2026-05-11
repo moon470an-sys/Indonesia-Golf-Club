@@ -1,0 +1,57 @@
+{
+  "_meta": {
+    "ticker": "BSDE",
+    "parent": "PT Bumi Serpong Damai Tbk dan Entitas Anak / and Its Subsidiaries",
+    "currency": "IDR",
+    "unit": "rupiah (absolute)",
+    "fiscal_years": ["FY2024", "FY2025"],
+    "source_ar": ["annual_reports/BSDE/FY2025/AnnualReport2025-BSDE-att2.pdf"],
+    "extraction_method": "PyMuPDF positional text extraction",
+    "extracted_at": "2026-05-11 Cycle 98",
+    "previous_extraction_failures": "Cycle 56 BSDE FY24 segment Note 추출 시도 → 490p 빈 텍스트 (FY24 AR att2 image-PDF 부분). Cycle 98 FY25 AR에서 segment Note 텍스트 추출 성공 (FY24 comparative column으로 우회 검증 가능)."
+  },
+  "segment_note_FY2025": {
+    "source_page": "FY25 AR att2 p.491 INFORMASI SEGMEN OPERASI",
+    "segments_listed": ["Real Estat", "Properti", "Hotel", "Jalan tol (Toll road)", "Lain-lain", "Konsolidasi"],
+    "golf_segment": "NONE — BSDE FY25 segments do NOT include Golf as a standalone segment (FY24도 동일 패턴 확인 - comparative column).",
+    "FY2025": {
+      "Real_Estat_revenue": 11830304233654,
+      "Properti_revenue": 769493304388,
+      "Hotel_revenue": 52259747548,
+      "Jalan_tol_revenue": 103637323000,
+      "Lain_lain_revenue": 32757728144,
+      "Consolidated_revenue": 12788452336734,
+      "Real_Estat_gp": 7739204902519,
+      "Consolidated_gp": 8125955872700,
+      "Consolidated_operating_profit": 3447178841678,
+      "Consolidated_net_profit": 2857738492944,
+      "Equity_in_associates_others_segment": 207052481534,
+      "Equity_in_associates_consolidated": 615139655559,
+      "comment": "Others segment의 associate equity 207 bn은 DMIG·관계사 지분 손익 가능성 (BSDE has DMIG associate 검증 Cycle 16). 직접 DMIG 라인 분리는 없음."
+    },
+    "FY2024_comparative": {
+      "Real_Estat_revenue": 12365047454098,
+      "Properti_revenue": 675614072837,
+      "Hotel_revenue": 17790521887,
+      "Jalan_tol_revenue": 689122810103,
+      "Lain_lain_revenue": 48997289912,
+      "Consolidated_revenue": 13796572148837,
+      "Consolidated_gp": 8816385465162,
+      "Consolidated_operating_profit": 4468905803578,
+      "Equity_in_associates_consolidated_partial": "FY24 데이터 일부만 추출 (p.491 후반 lines)"
+    },
+    "yoy_changes": {
+      "Consolidated_revenue_yoy": -0.0731,
+      "Real_Estat_revenue_yoy": -0.0432,
+      "Hotel_revenue_yoy": 1.937,
+      "Jalan_tol_revenue_yoy": -0.8496,
+      "Consolidated_operating_profit_yoy": -0.2287,
+      "comment": "Consolidated 매출 -7.3% / Hotel +193.7% (저점 회복) / Jalan tol -85.0% (대대적 감소, FY24 689 bn → FY25 104 bn) / Operating profit -22.9%."
+    }
+  },
+  "legal_matters_note_58": {
+    "source_page": "FY25 AR att2 p.490 Catatan 58 Perkara Hukum dan Kewajiban Bersyarat",
+    "DUTI_HGB_lawsuits": "DUTI (subsidiary)는 HGB 관련 6 + 8 = 14건 소송 모두 승소 (1심-항소심-상고심 일관). 최종 판결 2009-2015 사이.",
+    "current_status_FY2025": "31 Desember 2025 기준, 그룹 추가 중대 소송 없음 (그룹 입장)."
+  }
+}

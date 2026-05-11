@@ -1,0 +1,43 @@
+{
+  "_meta": {
+    "ticker": "BKDP",
+    "parent": "PT Bukit Darmo Property Tbk dan Entitas Anak / and Subsidiaries",
+    "currency": "IDR",
+    "unit": "rupiah (absolute)",
+    "fiscal_years": ["FY2024", "FY2025"],
+    "source_ar": ["annual_reports/BKDP/FY2025/AnnualReport2025-BKDP-att2.pdf"],
+    "extraction_method": "PyMuPDF positional text extraction",
+    "extracted_at": "2026-05-11 Cycle 92"
+  },
+  "note": "BKDP is NOT a golf operator. Per Cycle 24 finding (CORRECTIONS #10), BKDP main revenue is shopping centre rental (Plaza). Included here for risk.html Going Concern context only.",
+  "fy2025_pnl": {
+    "source_page": "FY25 AR att2 p.70 LAPORAN LABA RUGI KONSOLIDASIAN",
+    "revenue_FY2025": 36632337898,
+    "revenue_FY2024_comparative": 30520490000,
+    "yoy_revenue": 0.2002,
+    "cogs_FY2025": 42364344871,
+    "cogs_FY2024_comparative": 38645057443,
+    "gross_loss_FY2025": -5732006973,
+    "gross_loss_FY2024_comparative": -8124567443,
+    "gross_loss_improvement": 0.294,
+    "operating_expenses_FY2025": -23435859898,
+    "operating_expenses_FY2024_comparative": -22524734239,
+    "loss_from_operation_FY2025": -29096870620,
+    "loss_from_operation_FY2024_comparative": -30550273161,
+    "final_tax_expense_FY2025": -4312126340,
+    "financial_charge_FY2025": -2251297159,
+    "loss_for_year_FY2025_total": -35573382387,
+    "loss_for_year_FY2024_total": -35914000850,
+    "loss_attributable_to_parent_FY2025": -35556555414,
+    "loss_attributable_to_NCI_FY2025": -16826973,
+    "eps_basic_FY2025": -4.73,
+    "eps_basic_FY2024_comparative": -4.78,
+    "total_comprehensive_loss_FY2025": -36798458126
+  },
+  "going_concern_FY2025": {
+    "auditor_pages": "p.58-67 (image-based PDF — PyMuPDF returns empty text)",
+    "status": "image PDF limitation 동일 (FY24 AR도 image PDF). FY25 auditor opinion 텍스트 직접 추출 불가 (LIMITATIONS category 1).",
+    "operational_facts_FY2025": "Revenue +20.0% YoY (Rp 30.52 bn → 36.63 bn). Gross Loss 지속 (Rp -5.73 bn / FY24 -8.12 bn). Net Loss 지속 (Rp -35.57 bn / FY24 -35.91 bn). EPS Basic -4.73 (FY24 -4.78). 매출 성장 + 손실 지속.",
+    "fy24_going_concern_reference": "Cycle 12 verified FY24 AR Going Concern uncertainty (per CORRECTIONS.md). FY25 auditor opinion 본 사이트 미추출."
+  }
+}

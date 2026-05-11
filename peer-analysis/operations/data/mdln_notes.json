@@ -1,0 +1,140 @@
+{
+  "_meta": {
+    "ticker": "MDLN",
+    "parent": "PT Modernland Realty Tbk (dan Entitas Anak / consolidated)",
+    "currency": "IDR",
+    "unit": "rupiah (absolute)",
+    "fiscal_years": ["FY2023", "FY2024"],
+    "source_ar": ["annual_reports/MDLN/FY2024/AnnualReport2024-MDLN-att2.pdf"],
+    "extraction_method": "PyMuPDF positional text extraction, FY24 AR comparative columns",
+    "extracted_at": "2026-05-11 Cycle 4"
+  },
+  "operating_segment_note_32": {
+    "source_page": "FY24 AR p.323-324 Note 32 SEGMEN OPERASI",
+    "by_project_location": {
+      "FY2024": {
+        "Tangerang": 174286560998,
+        "Bekasi": 84465096497,
+        "Cakung": 511728191690,
+        "Serang": 165834169551,
+        "Gajah Mada": 82166014155,
+        "Eliminasi": -909909910,
+        "Total": 1017570122981
+      },
+      "FY2023": {
+        "Tangerang": 150687356371,
+        "Bekasi": 111562249157,
+        "Cakung": 510381910446,
+        "Serang": 310492680526,
+        "Gajah Mada": 70093371923,
+        "Eliminasi": -909909910,
+        "Total": 1152307658513
+      }
+    },
+    "by_product_service": {
+      "FY2024": {
+        "Residensial": 728033436726,
+        "Industrial": 141722217972,
+        "Hospitaliti (Hotel + Golf + Country Club)": 148724378193,
+        "Eliminasi": -909909910,
+        "Total": 1017570122981
+      },
+      "FY2023": {
+        "Residensial": 724978420384,
+        "Industrial": 292000951332,
+        "Hospitaliti": 136238196707,
+        "Eliminasi": -909909910,
+        "Total": 1152307658513
+      }
+    }
+  },
+  "revenue_note_25": {
+    "source_page": "FY24 AR p.318 Note 25 PENDAPATAN",
+    "lines": [
+      {"id_label": "Tanah", "en_label": "Land", "FY2023": 395098925175, "FY2024": 172576134242, "category": "Net sales"},
+      {"id_label": "Rumah tinggal dan ruko", "en_label": "Residential houses and shophouses", "FY2023": 476236340591, "FY2024": 600287623711, "category": "Net sales"},
+      {"id_label": "Apartemen", "en_label": "Apartment", "FY2023": 114074652360, "FY2024": 53753189168, "category": "Net sales"},
+      {"id_label": "EPS dan Wiremesh", "FY2023": 18491729194, "FY2024": 24111951579, "category": "Net sales"},
+      {"id_label": "[Subtotal: Penjualan bersih]", "FY2023": 1003901647320, "FY2024": 850728898700, "category": "Net sales subtotal"},
+      {"id_label": "Pendapatan dari hotel dan sewa", "en_label": "Hotel and rental income", "FY2023": 79420611312, "FY2024": 92466307811, "category": "Hospitality"},
+      {"id_label": "Lapangan golf - Green fees", "FY2023": 10150444974, "FY2024": 12368974368, "category": "Golf"},
+      {"id_label": "Lapangan golf - Keanggotaan", "en_label": "Golf Membership fees", "FY2023": 10214068168, "FY2024": 9612162186, "category": "Golf"},
+      {"id_label": "Lapangan golf - Lain-lain", "FY2023": 31696258331, "FY2024": 34659152744, "category": "Golf"},
+      {"id_label": "Restoran club house", "en_label": "Club house restaurant", "FY2023": 16924628408, "FY2024": 17734627172, "category": "Golf F&B"},
+      {"id_label": "[Subtotal: Lapangan golf dan restoran club house]", "FY2023": 68985399881, "FY2024": 74374916470, "category": "Golf+F&B subtotal"}
+    ],
+    "total": {"FY2023": 1152307658513, "FY2024": 1017570122981}
+  },
+  "cogs_note_26": {
+    "source_page": "FY24 AR p.318-319 Note 26 BEBAN POKOK PENDAPATAN",
+    "hotel_rental_direct_cost_lines": [
+      {"id_label": "Beban penyusutan (Note 11)", "FY2023": 31203613449, "FY2024": 31306434292},
+      {"id_label": "Makanan dan minuman", "FY2023": 12795799249, "FY2024": 15245368887},
+      {"id_label": "Ruangan / Rooms", "FY2023": 13900369183, "FY2024": 13973347857},
+      {"id_label": "Perlengkapan, perawatan dan biaya manajemen", "FY2023": 6543520498, "FY2024": 7090998423},
+      {"id_label": "Lain-lain", "FY2023": 500230675, "FY2024": 537467537}
+    ],
+    "hotel_rental_subtotal": {"FY2023": 64943533054, "FY2024": 68153616996},
+    "golf_course_direct_cost_lines": [
+      {"id_label": "Gaji dan tunjangan lainnya", "FY2023": 17998245638, "FY2024": 19250477043},
+      {"id_label": "Beban penyusutan (Note 11)", "FY2023": 2201698981, "FY2024": 2756141331},
+      {"id_label": "Lain-lain", "FY2023": 9414991411, "FY2024": 9425141847}
+    ],
+    "golf_course_subtotal": {"FY2023": 29614936030, "FY2024": 31431760221},
+    "club_house_restaurant_direct_cost_lines": [
+      {"id_label": "Gaji dan tunjangan", "FY2023": 5414720117, "FY2024": 5893345675},
+      {"id_label": "Makanan dan minuman", "FY2023": 5430704782, "FY2024": 5792557630},
+      {"id_label": "Lain-lain", "FY2023": 2468062098, "FY2024": 1744090867}
+    ],
+    "club_house_restaurant_subtotal": {"FY2023": 13313486997, "FY2024": 13429994172},
+    "golf_plus_clubhouse_subtotal": {"FY2023": 42928423027, "FY2024": 44861754393},
+    "supplier_concentration": {
+      "name": "PT Jumbo Power International",
+      "amount_FY2024": 62020000000,
+      "pct_of_total_cogs": "exceeds 10%",
+      "source": "FY24 AR p.319 Note 26 (continued)"
+    }
+  },
+  "computed_ratios": {
+    "FY2024": {
+      "golf_revenue_pure": 56640289298,
+      "golf_revenue_with_fnb": 74374916470,
+      "golf_cogs_pure": 31431760221,
+      "golf_fnb_cogs": 13429994172,
+      "golf_pure_gp_margin": 0.445,
+      "golf_fnb_gp_margin": 0.243,
+      "golf_combined_gp_margin": 0.397
+    }
+  },
+  "fy2025_follow_up": {
+    "source": "MDLN FY25 AR att2 p.302-303 Note 25/26 (Cycle 66·69)",
+    "revenue_note_25_FY2025": {
+      "Tanah": 229034338823,
+      "Rumah_tinggal_dan_ruko": 274417865106,
+      "Apartemen": 14130190770,
+      "EPS_dan_Wiremesh": 18081029110,
+      "Net_sales_subtotal": 834127712773,
+      "Hotel_dan_sewa": 83711243395,
+      "Green_fees": 15389498332,
+      "Keanggotaan_golf": 9804054063,
+      "Lain_lain_golf": 49255183606,
+      "Restoran_club_house": 20871753785,
+      "Golf_plus_FB_subtotal_calc": 95320489786
+    },
+    "cogs_note_26_FY2025": {
+      "Golf_course_Gaji": 23259951529,
+      "Golf_course_Penyusutan": 5625910134,
+      "Golf_course_Lain_lain": 13136445035,
+      "Golf_course_subtotal": 42022306698
+    },
+    "fy2025_ratios": {
+      "golf_revenue_pure": 74448735999,
+      "golf_revenue_with_fnb": 95320489786,
+      "golf_cogs_pure": 42022306698,
+      "golf_pure_gp_margin": 0.436,
+      "yoy_revenue_pure": 0.314,
+      "yoy_cogs_pure": 0.337,
+      "gp_margin_change_pp": -0.009
+    }
+  }
+}
