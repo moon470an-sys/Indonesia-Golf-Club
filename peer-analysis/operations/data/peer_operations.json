@@ -1,129 +1,267 @@
 {
-  "schema_version": "2.0-operator",
+  "schema_version": "3.0-csv-driven",
   "last_updated": "2026-05-11",
-  "coverage": "DMIG 시연. 나머지 12개사은 다음 추출 단계에서 채움.",
-  "currency": "IDR (별도 표기 없으면). bn=십억, mn=백만.",
-  "missing_value_label": "— 미공시",
-  "source_format": "AR FY{연도} p.{면}",
-  "industry_summary": {
-    "n_peers": 13,
-    "fy_vintage": "FY2022–FY2024",
-    "geography": "Java(8) · Bali(1) · Bogor(2) · Surabaya(2)",
-    "tier_distribution": {"A": 4, "A-": 6, "B+": 3}
-  },
+  "source": "raw_peer_data/*.csv (Phase A/B 큐레이션)",
   "peers": [
     {
-      "peer_id": "DMIG",
       "ticker": "DMIG",
-      "club_name": "Damai Indah Golf (BSD + PIK)",
-      "region": "Tangerang BSD City · 북자카르타 PIK",
-      "tier": "A",
-      "data_status": "curated",
-      "headline": {
-        "holes": 36,
-        "year_opened": 1992,
-        "designer": "Robert Trent Jones Jr.",
-        "parent_group": "Sinarmas Land 계열 (DMIG는 IDX 상장 pure-play)"
-      },
-      "revenue": {
-        "annual_rounds_latest": {"value": 120335, "fy": 2023, "source": "AR FY2023 p.21"},
-        "rounds_history": [
-          {"fy": 2021, "value": 85194, "note": "BSD+PIK 합산 추정 (FY2022 보고서 역산)"},
-          {"fy": 2022, "value": 107356, "source": "AR FY2022 p.21"},
-          {"fy": 2023, "value": 120335, "source": "AR FY2023 p.21"}
-        ],
-        "rounds_per_day_avg": {"value": 330, "calc": "120,335 ÷ 365 (36홀 기준)", "note": "BSD 18홀 평균 ~145/일, PIK 18홀 평균 ~185/일"},
-        "total_revenue_idr_bn": {"value": 244.99, "fy": 2023, "source": "AR FY2023 p.46"},
-        "golf_revenue_idr_bn": {"value": 127.13, "share_pct": 51.9, "fy": 2023, "source": "AR FY2023 p.46"},
-        "fb_revenue_idr_bn": {"value": 37.69, "share_pct": 15.4, "fy": 2023, "breakdown": "BSD 17.24 + PIK 20.45 + 수영장 매점 0.30", "source": "AR FY2023 p.15"},
-        "fb_per_round_estimate_idr_k": {"value": 313, "calc": "37.69 bn ÷ 120,335 rounds"},
-        "the_range_revenue_idr_bn": {"value": 31.35, "fy": 2023, "note": "Driving range 78 bays + mini golf + F&B + sponsorship + tenant"},
-        "membership_model": {
-          "refundable": {"balance_idr_bn": 50.10, "fy": 2024, "refund_period_y": 30, "buy_in_idr_mn_range": [150, 180], "note": "신규 발행 중단"},
-          "transferable": {"amortization": "증서 수명 동안", "since": 2020, "note": "2012년 신규 도입"}
-        },
-        "green_fee_disclosure": "— 미공시 (별도 웹사이트 확인 필요)",
-        "tournament_revenue_disclosure": "— Golf course 매출 라인에 통합 (개별 토너먼트 명세 없음)"
-      },
-      "cost_hr": {
-        "total_headcount": {"value": 196, "fy": 2022, "source": "AR FY2022 p.101", "note": "FY2021 = 342 → COVID 후 슬림화"},
-        "headcount_per_hole": {"value": 5.4, "calc": "196 ÷ 36 홀"},
-        "department_partial": {
-          "fy": 2023,
-          "Golf Operation": {"BSD": 7, "PIK": 6, "total": 13},
-          "Driving Range BSD": {"value": 2, "fy2022": 4},
-          "other_departments": "— 미공시 (BSD/PIK 분할 표 일부만 추출됨, 추가 큐레이션 필요)"
-        },
-        "caddy_model": "— 미공시",
-        "outsourcing": "— 미공시 (청소·보안·조경 외주 비율 비명세)",
-        "cogs_breakdown_fy2023_idr_bn": {
-          "golf_course": 51.23,
-          "restaurant": 21.82,
-          "recreation": 1.24,
-          "total": 74.29,
-          "source": "AR FY2023 p.21"
-        },
-        "employee_benefit_liability_idr_bn": {"value": 12.4, "fy": 2024, "method": "Projected Unit Credit", "source": "AR FY2024 p.84"},
-        "salary_per_role": "— 미공시"
-      },
-      "assets": {
-        "land_ha": {"total": 156, "bsd": 76, "pik": 80, "fy": 2024, "source": "AR FY2024 p.80"},
-        "holes": 36,
-        "par": 72,
-        "designer": "Robert Trent Jones Jr.",
-        "year_opened": 1992,
-        "clubhouse": {"m2": "— 미공시", "renovation": "FY2022 BSD 클럽하우스 보수 + VVIP룸 신설"},
-        "driving_range": {"location": "PIK", "bays": 78, "tech": "Inrange 52 baying + auto tee-up", "open_year": 2022, "note": "인도네시아 최초 골프테인먼트"},
-        "mini_golf": {"location": "PIK The Range", "holes": 18, "type": "short course"},
-        "ancillary": ["BSD 수영장 (수영 챔피언십 개최)", "PIK Food court (테넌트 7곳)", "Pro Shop × 4 (PIK)", "BSD 컨퍼런스/연회"],
-        "cart_fleet": "— 미공시 (대수 비명세)",
-        "total_assets_idr_bn": {"value": 690.5, "fy": 2024, "source": "AR FY2024 p.20"},
-        "insurance_coverage": {"idr_bn": 465.7, "usd_mn": 2.0, "fy": 2024, "scope": "고정자산 (토지 제외)", "source": "AR FY2024 p.79"}
-      },
-      "risk": {
-        "legal_form": "PT (Perseroan Terbatas) Tbk + PMA 지위",
-        "ipo": {"year": 2002, "letter_ref": "S-603/PM/2002 (2002-03-27 effective)"},
-        "authorized_capital_idr_bn": 68.25,
-        "shares": "Series A 516 + Series B 1,759 (Rp30mn nominal each)",
-        "parent_group": "Sinarmas Land 계열 — 주요주주 PT Mandara Permai, PT Bumi Serpong Damai",
-        "ownership_change": "Obayashi Corporation → PT Ciputra Residence 지분 이전 진행 중 (FY2022–FY2023 부속 첨부)",
-        "land_rights": {
-          "type": "Hak atas tanah (HGB 추정) + deferred extension cost 자산화",
-          "expiry": "— 미공시 (정확한 만료년도 미명세)",
-          "extension_cost_amortization": "토지권 기간 동안 정액 상각",
-          "investor_action": "토지권 만료 시점 + HGB→HGU 전환 가능성 별도 확인 필요"
-        },
-        "lessor": "자체 토지 보유 (제3자 임대 없음)",
-        "permits": {
-          "iso_14001": "없음",
-          "audubon_geo": "없음",
-          "amdal_slf": "— 미공시",
-          "environmental_award": "1997 Tangerang Local Govt Lv.2 환경상 (BSD)"
-        },
-        "tax": {
-          "structure": "PPh 법인세 22%, PPN VAT 11%, PPh Pasal 4(2) 임대",
-          "audit_history": "FY2017 PPh 4(2) + PPN 부족분 통지 (2022-11). 이의신청 → KEP-03674/KEB/PJ/WPJ.07/2023 일부 인용",
-          "source": "AR FY2023 p.92–95"
-        },
-        "labour": {
-          "bpjs": "— 미공시 (의무가입 추정)",
-          "union": "— 미공시",
-          "turnover": "— 미공시"
-        },
-        "litigation": "FY2023 시점 중대한 소송·청구 없음 (AR FY2023 p.13)"
+      "club_name": "Damai Indah Golf -- BSD Course + PIK Course",
+      "legal_entity": "PT Damai Indah Golf Tbk",
+      "parent_group": "Sinarmas Land (PT Mandara Permai + PT Bumi Serpong Damai indirect ownership)",
+      "region": "BSD City (Tangerang) + PIK (North Jakarta)",
+      "holes": "36 (BSD 18 + PIK 18)",
+      "par": "N/A -- Not Disclosed in AR",
+      "area_ha": "PIK 80 ha (BSD area not separately disclosed in AR)",
+      "designer": "Robert Trent Jones Jr. (PIK Course); BSD designer N/A in AR",
+      "year_opened": "PT Damai Indah Golf founded -- exact year N/A in AR; PIK Course theme: \"Spirit of the Sea\"",
+      "financials_latest": {
+        "fy": "FY2024",
+        "revenue_idr_bn": null,
+        "net_profit_idr_bn": null,
+        "total_assets_idr_bn": 648.9,
+        "segment_revenue_idr_bn": null,
+        "net_margin_pct": null
       }
     },
-    {"peer_id": "KPIG", "ticker": "KPIG", "club_name": "Trump International Golf Club Lido", "tier": "A", "data_status": "pending"},
-    {"peer_id": "MKPI", "ticker": "MKPI", "club_name": "Pondok Indah Golf Course (via PIPG)", "tier": "A", "data_status": "pending"},
-    {"peer_id": "PIPG", "ticker": "PIPG", "club_name": "Pondok Indah Padang Golf", "tier": "A", "data_status": "pending"},
-    {"peer_id": "BSDE", "ticker": "BSDE", "club_name": "Damai Indah / Karawang Bukit Golf", "tier": "A", "data_status": "pending"},
-    {"peer_id": "DILD", "ticker": "DILD", "club_name": "Graha Famili & Country Club", "tier": "A-", "data_status": "pending"},
-    {"peer_id": "GOLF", "ticker": "GOLF", "club_name": "Bali Beach Golf (NKG)", "tier": "A-", "data_status": "pending"},
-    {"peer_id": "MDLN", "ticker": "MDLN", "club_name": "Modern Golf & Country Club", "tier": "A-", "data_status": "pending"},
-    {"peer_id": "SMRA", "ticker": "SMRA", "club_name": "Gading Raya Padang Golf", "tier": "A-", "data_status": "pending"},
-    {"peer_id": "SMDM", "ticker": "SMDM", "club_name": "Rancamaya Golf Estate", "tier": "A-", "data_status": "pending"},
-    {"peer_id": "KIJA", "ticker": "KIJA", "club_name": "Jababeka Golf & Country Club", "tier": "B+", "data_status": "pending"},
-    {"peer_id": "BKDP", "ticker": "BKDP", "club_name": "Bukit Darmo Golf", "tier": "B+", "data_status": "pending"},
-    {"peer_id": "BKSL", "ticker": "BKSL", "club_name": "Palm Hill Golf / Sentul Highlands", "tier": "B+", "data_status": "pending"}
+    {
+      "ticker": "KPIG",
+      "club_name": "Trump International Golf Club Lido (Lido) + (planned) Phil Mickelson beach-club golf (Bali)",
+      "legal_entity": "PT MNC Land Tbk + subsidiary operators",
+      "parent_group": "MNC Group (Hary Tanoesoedibjo founder; Liliana Tanaja Tanoesoedibjo)",
+      "region": "Lido (Bogor Regency, West Java) + Bali (planned)",
+      "holes": "18",
+      "par": "World Championship standard -- par N/A explicitly in AR",
+      "area_ha": "83 (Lido course)",
+      "designer": "Ernie Els (Lido); Phil Mickelson (planned Bali beach course)",
+      "year_opened": "Lido grand opening: soft launch 2024 (per FY2024 AR); MNC Land subsidiary structure dating from 1997-2009; Lido Lakes Resort renovated 2018",
+      "financials_latest": {
+        "fy": "FY2024",
+        "revenue_idr_bn": 1770.0,
+        "net_profit_idr_bn": 658.6,
+        "total_assets_idr_bn": 35830.0,
+        "segment_revenue_idr_bn": null,
+        "net_margin_pct": 37.2
+      }
+    },
+    {
+      "ticker": "MKPI",
+      "club_name": "(no direct golf -- holds 0.38% in PIPG associate per FY2023; manages adjacent Pondok Indah Golf Apartment)",
+      "legal_entity": "PT Metropolitan Kentjana Tbk",
+      "parent_group": "Pondok Indah Group / Salim-affiliated",
+      "region": "South Jakarta (Pondok Indah area)",
+      "holes": "N/A",
+      "par": "N/A",
+      "area_ha": "N/A (developer of surrounding township; golf operations are in PIPG associate)",
+      "designer": "N/A",
+      "year_opened": "Founded 1972; IPO 2009",
+      "financials_latest": {
+        "fy": "N/A",
+        "revenue_idr_bn": null,
+        "net_profit_idr_bn": null,
+        "total_assets_idr_bn": null,
+        "segment_revenue_idr_bn": null,
+        "net_margin_pct": null
+      }
+    },
+    {
+      "ticker": "PIPG",
+      "club_name": "Pondok Indah Padang Golf",
+      "legal_entity": "PT Pondok Indah Padang Golf Tbk",
+      "parent_group": "Salim-affiliated cluster (Anthony Salim 7.71%, Djuhar Sutanto 5.63%, Murdaya Widyawimarta -- Pres. Director -- 4.17%, Pudjianto Gondosasmito 2.92%, Teddy Djuhar 2.92%; remainder dispersed); MKPI holds 0.38%",
+      "region": "South Jakarta (Pondok Indah)",
+      "holes": "18 (implied; not explicitly stated in AR snippets reviewed)",
+      "par": "N/A -- Not Disclosed in AR",
+      "area_ha": "N/A -- Not Disclosed in AR",
+      "designer": "N/A -- Not Disclosed in AR (course maintenance equipment incl. Coring Fairway / Green Top Dresser / Rough Mower)",
+      "year_opened": "N/A -- Not Disclosed in AR",
+      "financials_latest": {
+        "fy": "FY2024",
+        "revenue_idr_bn": 197.6,
+        "net_profit_idr_bn": 55.9,
+        "total_assets_idr_bn": 446.1,
+        "segment_revenue_idr_bn": null,
+        "net_margin_pct": 28.3
+      }
+    },
+    {
+      "ticker": "BSDE",
+      "club_name": "Damai Indah Golf BSD (via DMIG associate); Karawang Bukit Golf (PT Karawang Bukit Golf, direct subsidiary); residential \"Rancamaya Golf\" expansion (FY2024)",
+      "legal_entity": "PT Bumi Serpong Damai Tbk",
+      "parent_group": "Sinarmas Land",
+      "region": "BSD City (Tangerang); Karawang (Karawang Bukit Golf, Tol Jakarta-Cikampek KM47, Telukjambe Timur); Rancamaya residential (Bogor)",
+      "holes": "N/A in AR (DMIG provides 36-hole; Karawang Bukit Golf hole count not disclosed)",
+      "par": "N/A -- Not Disclosed in AR",
+      "area_ha": "N/A -- Not Disclosed in AR (BSD City total >6000 ha; golf is small fraction)",
+      "designer": "N/A -- Not Disclosed in AR (DMIG PIK course = Robert Trent Jones Jr.)",
+      "year_opened": "N/A -- Not Disclosed in AR",
+      "financials_latest": {
+        "fy": "FY2024",
+        "revenue_idr_bn": null,
+        "net_profit_idr_bn": null,
+        "total_assets_idr_bn": 648.9,
+        "segment_revenue_idr_bn": null,
+        "net_margin_pct": null
+      }
+    },
+    {
+      "ticker": "DILD",
+      "club_name": "Graha Famili & Country Club; Talaga Bestari Sports Club",
+      "legal_entity": "PT Intiland Development Tbk",
+      "parent_group": "Intiland Group (founder Hendro S. Gondokusumo)",
+      "region": "Surabaya West (Graha Famili & Country Club); Tangerang (Talaga Bestari)",
+      "holes": "18 (Graha Famili)",
+      "par": "72",
+      "area_ha": "N/A -- Not Disclosed in AR",
+      "designer": "N/A -- Not Disclosed in AR (snippet refs Thomas Elliot for 1Park Homes residential -- not golf course)",
+      "year_opened": "Member of Golf Club Manager Association of Indonesia since 2000 (per Graha Famili); Intiland founded earlier; Surabaya Porong toll road access",
+      "financials_latest": {
+        "fy": "FY2024",
+        "revenue_idr_bn": 2553.3,
+        "net_profit_idr_bn": 174.8,
+        "total_assets_idr_bn": 13703.6,
+        "segment_revenue_idr_bn": null,
+        "net_margin_pct": 6.8
+      }
+    },
+    {
+      "ticker": "GOLF",
+      "club_name": "New Kuta Golf Club (Pecatu Bali) + Black Rocks Hotel & Golf Club (Belitung) + (planned) The Links Golf Villa",
+      "legal_entity": "PT Intra GolfLink Resorts Tbk",
+      "parent_group": "Independent listed (IPO June 28 2024 per OJK effective statement; Notarial Deed No. 32 dated March 13 2024 changed status from private to public)",
+      "region": "Pecatu, South Kuta, Badung Regency (Bali); Belitung (Tanjung Pandan area)",
+      "holes": "18 (New Kuta Golf championship-standard)",
+      "par": "72",
+      "area_ha": "85.1 (NKG/New Kuta Golf, Bali); + 6.2 (planned The Links Golf Villa residential, 4 clusters)",
+      "designer": "\"links style layout pertama di Indonesia\" (first links-style course in Indonesia) -- specific architect name N/A in AR snippets reviewed",
+      "year_opened": "PT New Kuta Golf and Ocean View established earlier; PT Intra GolfLink Resorts Tbk listed 2024",
+      "financials_latest": {
+        "fy": "FY2024",
+        "revenue_idr_bn": 198.0,
+        "net_profit_idr_bn": 67.6,
+        "total_assets_idr_bn": 8637.5,
+        "segment_revenue_idr_bn": null,
+        "net_margin_pct": 34.1
+      }
+    },
+    {
+      "ticker": "MDLN",
+      "club_name": "Modern Golf & Country Club (MGCC)",
+      "legal_entity": "PT Modernland Realty Tbk",
+      "parent_group": "Modernland Group",
+      "region": "Kota Modern, Tangerang",
+      "holes": "18",
+      "par": "N/A -- Not Disclosed in AR",
+      "area_ha": "N/A -- Not Disclosed in AR",
+      "designer": "Peter Thomson (5x British Open winner)",
+      "year_opened": "N/A -- Not Disclosed in AR",
+      "financials_latest": {
+        "fy": "FY2024",
+        "revenue_idr_bn": 1017.0,
+        "net_profit_idr_bn": -690.3,
+        "total_assets_idr_bn": 13561.5,
+        "segment_revenue_idr_bn": 74.3,
+        "net_margin_pct": -67.9
+      }
+    },
+    {
+      "ticker": "SMRA",
+      "club_name": "Gading Raya Padang Golf & Klub",
+      "legal_entity": "PT Summarecon Agung Tbk",
+      "parent_group": "Summarecon Group",
+      "region": "Serpong, Tangerang (golf course + Sports Club); plus Klub Kelapa Gading (community club, North Jakarta) -- not golf",
+      "holes": "18",
+      "par": "N/A -- Not Disclosed in AR",
+      "area_ha": "N/A -- Not Disclosed in AR",
+      "designer": "N/A -- Not Disclosed in AR",
+      "year_opened": "Gading Raya golf course operational; The Springs Club opened May 2014 (residential rec center -- not golf)",
+      "financials_latest": {
+        "fy": "FY2024",
+        "revenue_idr_bn": 10620.0,
+        "net_profit_idr_bn": 1370.0,
+        "total_assets_idr_bn": 33530.0,
+        "segment_revenue_idr_bn": null,
+        "net_margin_pct": 12.9
+      }
+    },
+    {
+      "ticker": "SMDM",
+      "club_name": "Rancamaya Golf Estate (private members)",
+      "legal_entity": "PT Suryamas Dutamakmur Tbk",
+      "parent_group": "Suryamas Group (founders)",
+      "region": "Rancamaya, Bogor (~400m elevation, hilly)",
+      "holes": "18",
+      "par": "N/A -- Not Disclosed in AR",
+      "area_ha": "400 (Rancamaya Golf Estate total resort -- includes residential + golf course + R Hotel)",
+      "designer": "N/A -- Not Disclosed in AR (course recognised: \"\"One of The World's Top 1000 Golf Course\"\" by ROLEX; \"\"Best Golf Club in South East Asia 2008-2010\"\" by HAPA)",
+      "year_opened": "PT Suryamas Dutamakmur founded Sep 21 1989; Rancamaya Golf Estate launched 1993",
+      "financials_latest": {
+        "fy": "FY2024",
+        "revenue_idr_bn": 694.0,
+        "net_profit_idr_bn": 123.8,
+        "total_assets_idr_bn": 3462.3,
+        "segment_revenue_idr_bn": null,
+        "net_margin_pct": 17.8
+      }
+    },
+    {
+      "ticker": "KIJA",
+      "club_name": "Jababeka Golf & Country Club",
+      "legal_entity": "PT Kawasan Industri Jababeka Tbk",
+      "parent_group": "Jababeka Group",
+      "region": "Cikarang (Bekasi)",
+      "holes": "N/A -- Not Disclosed in AR",
+      "par": "N/A -- Not Disclosed in AR",
+      "area_ha": "N/A -- Not Disclosed in AR",
+      "designer": "N/A -- Not Disclosed in AR",
+      "year_opened": "N/A in AR -- Jababeka township golf established as part of Cikarang industrial estate development",
+      "financials_latest": {
+        "fy": "FY2024",
+        "revenue_idr_bn": 4600.0,
+        "net_profit_idr_bn": 363.3,
+        "total_assets_idr_bn": 14010.0,
+        "segment_revenue_idr_bn": null,
+        "net_margin_pct": 7.9
+      }
+    },
+    {
+      "ticker": "BKDP",
+      "club_name": "Bukit Darmo Golf",
+      "legal_entity": "PT Bukit Darmo Property Tbk",
+      "parent_group": "Bukit Darmo / Adhiwangsa Group",
+      "region": "West Surabaya (along Bukit Darmo Boulevard)",
+      "holes": "239 m2 (~5 ha) for adjacent Adhiwangsa Golf Residence condominium block; Bukit Darmo Golf course area not separately disclosed in AR",
+      "par": "18",
+      "area_ha": "50",
+      "designer": "N/A -- Not Disclosed in AR",
+      "year_opened": "Jack Nicklaus II (designed)",
+      "financials_latest": {
+        "fy": "FY2024",
+        "revenue_idr_bn": 30.5,
+        "net_profit_idr_bn": -35.9,
+        "total_assets_idr_bn": 752.2,
+        "segment_revenue_idr_bn": null,
+        "net_margin_pct": -117.7
+      }
+    },
+    {
+      "ticker": "BKSL",
+      "club_name": "(Sentul-area golf operations via related party PT Padang Golf Bukit Sentul)",
+      "legal_entity": "PT Sentul City Tbk",
+      "parent_group": "Sentul City Group",
+      "region": "Sentul, Babakan Madang (Bogor)",
+      "holes": "N/A -- Not Disclosed in AR",
+      "par": "N/A -- Not Disclosed in AR",
+      "area_ha": "N/A -- Not Disclosed in AR (most BKSL AR text extraction garbled in vector index -- supplementary public-source research recommended)",
+      "designer": "N/A -- Not Disclosed in AR",
+      "year_opened": "N/A -- Not Disclosed in AR",
+      "financials_latest": {
+        "fy": "FY2024",
+        "revenue_idr_bn": 744.1,
+        "net_profit_idr_bn": 17.4,
+        "total_assets_idr_bn": 21188.3,
+        "segment_revenue_idr_bn": null,
+        "net_margin_pct": 2.3
+      }
+    }
   ]
 }
