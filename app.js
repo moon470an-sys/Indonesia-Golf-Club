@@ -3478,7 +3478,7 @@ const I18N = {
     'tab.table': '가격 데이터',
     'tab.finance': '재무 분석',
     'tab.analytics': '대시보드',
-    'tab.operations': 'Operations ↗',
+    'tab.operations': '운영 벤치마크 ↗',
 
     'finance.hint': '💡 <strong>티커</strong> 클릭 시 Yahoo Finance가 새 탭으로 열립니다. <strong>재무 추이</strong> 셀을 클릭하면 5년 매출·순이익·자산 그래프를 볼 수 있습니다.',
 
@@ -3911,7 +3911,7 @@ const I18N = {
     'tab.table': 'Price Data',
     'tab.finance': 'Financials',
     'tab.analytics': 'Dashboard',
-    'tab.operations': 'Operations ↗',
+    'tab.operations': 'Operations Benchmark ↗',
 
     'finance.hint': '💡 Click <strong>Ticker</strong> to open Yahoo Finance in a new tab. Click the <strong>Trend</strong> cell to view 5-year revenue / net profit / total assets charts.',
 

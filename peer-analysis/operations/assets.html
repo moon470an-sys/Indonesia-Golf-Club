@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>자산·시설 — 인도네시아 골프 운영 벤치마크</title>
+<meta name="description" content="인도네시아 IDX 상장 골프장 13개사의 토지 면적, 홀 수, 클럽하우스, 부속 시설, 총자산. Annual Report 기반." />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/peer-style.css?v=20260511d" />
+<style>
+  table.bench { width: 100%; border-collapse: collapse; font-size: 14px; background: white; box-shadow: var(--shadow-sm); border-radius: var(--radius-md); overflow: hidden; margin-top: 12px; }
+  table.bench th { background: var(--forest-green); color: white; font-weight: 600; text-align: left; padding: 10px 12px; font-size: 12.5px; }
+  table.bench th.num, table.bench td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  table.bench td { padding: 11px 12px; border-bottom: 1px solid var(--slate-200); vertical-align: top; color: var(--charcoal); }
+  table.bench tr:last-child td { border-bottom: none; }
+  table.bench .peer { font-weight: 600; color: var(--forest-green-dark); }
+  table.bench .sub { color: var(--slate-500); font-size: 12px; display: block; margin-top: 2px; }
+  table.bench .pending { color: var(--slate-500); font-style: italic; font-size: 13px; }
+  table.bench tr.curated { background: #fefce8; }
+  .insight { background: white; border: 1px solid var(--slate-200); border-left: 4px solid var(--forest-green-light); padding: 14px 18px; border-radius: var(--radius-md); margin: 14px 0; }
+  .insight h5 { margin: 0 0 6px; font-size: 14.5px; color: var(--charcoal); }
+  .insight p { margin: 0; font-size: 13.5px; color: var(--charcoal-soft); line-height: 1.6; }
+  .pa-footer { background: var(--forest-green); color: rgba(255,255,255,0.85); padding: 24px 0; margin-top: 56px; font-size: 13px; }
+  .pa-footer p { margin: 0; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<header class="pa-header">
+  <div class="container">
+    <div class="pa-brand">
+      <div class="pa-logo">⛳</div>
+      <div>
+        <h1>인도네시아 골프 운영 벤치마크</h1>
+        <div class="subtitle">자산·시설 · 토지 / 홀 / 클럽하우스 / 부속</div>
+      </div>
+    </div>
+    <nav class="pa-nav">
+      <a href="index.html">한눈에</a>
+      <a href="revenue.html">매출 운영</a>
+      <a href="cost-hr.html">비용·인력</a>
+      <a href="assets.html" class="active">자산·시설</a>
+      <a href="risk.html">구조·위험</a>
+      <a href="../../index.html">← 지도</a>
+    </nav>
+  </div>
+</header>
+
+<section class="pa-section">
+  <div class="container">
+    <h2 style="font-size: 28px; margin: 8px 0 6px;">자산·시설</h2>
+    <p class="lede">물리적 자산 — 토지 면적, 홀, 설계자, 부속 시설(드라이빙 레인지·수영장·호텔), 카트 fleet, 총자산.</p>
+
+    <h3 id="land" style="margin-top: 24px;">1. 토지 / 코스 기본 정보</h3>
+    <table class="bench">
+      <thead>
+        <tr><th>Peer</th><th>클럽</th><th class="num">홀</th><th class="num">Par</th><th class="num">토지 (ha)</th><th>설계자</th><th class="num">개장년</th></tr>
+      </thead>
+      <tbody>
+        <tr class="curated"><td class="peer">P001</td><td>Damai Indah Golf (BSD+PIK)</td><td class="num">36</td><td class="num">72</td><td class="num">156<span class="sub">BSD 76 + PIK 80</span></td><td>Robert Trent Jones Jr.</td><td class="num">1992</td></tr>
+        <tr><td class="peer">P002</td><td>Trump Int'l Golf Club Lido</td><td class="num">18</td><td class="num">72</td><td class="num">83<span class="sub">resort 전체</span></td><td>Ernie Els</td><td class="num">2023</td></tr>
+        <tr><td class="peer">P003</td><td>Pondok Indah (via PIPG)</td><td class="num">18</td><td class="num">72</td><td colspan="2" class="pending">— 데이터 추출 대기</td><td class="num pending">—</td></tr>
+        <tr><td class="peer">P004</td><td>Pondok Indah Padang Golf</td><td class="num">18</td><td class="num">72</td><td class="num pending">—</td><td>Robert Trent Jones Jr.</td><td class="num">1976</td></tr>
+        <tr><td class="peer">P005</td><td>BSDE 골프 자산</td><td class="num">36+</td><td colspan="4" class="pending">— 데이터 추출 대기</td></tr>
+        <tr><td class="peer">P006</td><td>Graha Famili & Country Club</td><td class="num">18</td><td class="num">72</td><td class="num pending">—</td><td>Palmer/Grantham/Robbins</td><td class="num">1995</td></tr>
+        <tr><td class="peer">P007</td><td>Bali Beach Golf (NKG)</td><td class="num">18</td><td class="num">72</td><td class="num">85.1<span class="sub">resort 전체</span></td><td class="pending">—</td><td class="num">2007</td></tr>
+        <tr><td class="peer">P008</td><td>Modern Golf & Country Club</td><td class="num">18</td><td class="num">72</td><td class="num pending">—</td><td>Peter Thomson</td><td class="num">1998</td></tr>
+        <tr><td class="peer">P009</td><td>Gading Raya Padang Golf</td><td class="num">18</td><td class="num">72</td><td class="num pending">—</td><td>Graham Marsh</td><td class="num">1996</td></tr>
+        <tr><td class="peer">P010</td><td>Rancamaya Golf Estate</td><td class="num">18</td><td class="num">72</td><td class="num">400<span class="sub">resort 전체</span></td><td>Ted Robinson</td><td class="num">1995</td></tr>
+        <tr><td class="peer">P011</td><td>Jababeka Golf & Country Club</td><td class="num">18</td><td class="num">72</td><td class="num pending">—</td><td>Nick Faldo</td><td class="num">1996</td></tr>
+        <tr><td class="peer">P012</td><td>Bukit Darmo Golf</td><td class="num">18</td><td class="num">72</td><td class="num pending">—</td><td>Jack Nicklaus II</td><td class="num">1995</td></tr>
+        <tr><td class="peer">P013</td><td>Palm Hill / Sentul Highlands</td><td class="num">54</td><td class="num">72</td><td class="num pending">—</td><td>Gary Player</td><td class="num">1997</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size: 12.5px; color: var(--slate-500); margin-top: 6px;">홀 수·설계자·개장년은 기존 Phase A 큐레이션에서 확인된 값. 토지 면적은 AR 공시 기반 — 일부 peer는 resort 전체 면적이며 코스 단독 ha 분리 필요.</p>
+
+    <h3 style="margin-top: 28px;">2. 클럽하우스 / 부속 시설 (P001 상세)</h3>
+    <table class="bench">
+      <thead>
+        <tr><th>항목</th><th>P001 상태</th><th>특이사항</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>클럽하우스 면적 (m²)</td><td class="pending">— 미공시</td><td>FY2022 BSD 클럽하우스 보수 + VVIP룸 신설 공시 (면적 미명세)</td></tr>
+        <tr><td>드라이빙 레인지</td><td>78 베이 (PIK · The Range)</td><td>52 베이 Inrange + auto tee-up · 인도네시아 최초 골프테인먼트 (2022 개장)</td></tr>
+        <tr><td>아카데미</td><td class="pending">— 미공시</td><td>The Range에 골프 instruction 가능성 — 별도 확인 필요</td></tr>
+        <tr><td>Pro Shop</td><td>PIK The Range 내 4개 브랜드 매장</td><td>인도네시아 4대 골프 브랜드 입점 (테넌트형)</td></tr>
+        <tr><td>Locker / Spa</td><td class="pending">— 미공시</td><td>—</td></tr>
+        <tr><td>수영장</td><td>BSD 코스 내 수영장</td><td>수영 챔피언십 개최. 캔틴 매출 FY2023 IDR 296mn.</td></tr>
+        <tr><td>미니 골프 / 쇼트 코스</td><td>PIK The Range 18홀 short course</td><td>FY2023 매출 IDR 523mn</td></tr>
+        <tr><td>골프 카트 fleet</td><td class="pending">— 대수 미공시</td><td>'골프 카트 운전 시 편의' 언급은 있으나 fleet 규모 미명세</td></tr>
+        <tr><td>발전기 / 백업</td><td class="pending">— 미공시</td><td>—</td></tr>
+        <tr><td>주차</td><td class="pending">— 미공시</td><td>—</td></tr>
+        <tr><td>보안 (CCTV·출입통제)</td><td class="pending">— 미공시</td><td>—</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin-top: 28px;">3. 총자산 + 보험</h3>
+    <table class="bench">
+      <thead>
+        <tr><th>Peer</th><th class="num">총자산 (bn)</th><th class="num">FY</th><th>보험 커버리지</th><th>출처</th></tr>
+      </thead>
+      <tbody>
+        <tr class="curated"><td class="peer">P001</td><td class="num">690.5</td><td>FY2024</td><td>IDR 465.7 bn + USD 2 mn (고정자산, 토지 제외)</td><td>AR FY2024 p.20, 79</td></tr>
+        <tr><td class="peer">P002</td><td class="num">35,830</td><td>FY2024</td><td class="pending">—</td><td>peer 기존 자료</td></tr>
+        <tr><td class="peer">P004</td><td class="num">446.1</td><td>FY2024</td><td class="pending">—</td><td>peer 기존 자료</td></tr>
+        <tr><td class="peer">P006</td><td class="num">13,703.6</td><td>FY2024</td><td class="pending">—</td><td>peer 기존 자료 (그룹 전체)</td></tr>
+        <tr><td class="peer">P008</td><td class="num">13,561.5</td><td>FY2024</td><td class="pending">—</td><td>peer 기존 자료 (그룹 전체)</td></tr>
+        <tr><td class="peer">P009</td><td class="num">33,530.0</td><td>FY2024</td><td class="pending">—</td><td>peer 기존 자료 (그룹 전체)</td></tr>
+        <tr><td class="peer">P010</td><td class="num">3,462.3</td><td>FY2024</td><td class="pending">—</td><td>peer 기존 자료 (그룹 전체)</td></tr>
+        <tr><td class="peer">P011</td><td class="num">14,010.0</td><td>FY2024</td><td class="pending">—</td><td>peer 기존 자료 (그룹 전체)</td></tr>
+        <tr><td class="peer">P012</td><td class="num">752.2</td><td>FY2024</td><td class="pending">—</td><td>peer 기존 자료</td></tr>
+        <tr><td class="peer">P013</td><td class="num">21,188.3</td><td>FY2024</td><td class="pending">—</td><td>peer 기존 자료 (그룹 전체)</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size: 12.5px; color: var(--slate-500); margin-top: 6px;">Pure-play (P001, P004)는 골프장 단독 자산. 부동산 그룹(P006, P008, P009, P011, P013)은 그룹 전체 자산이며 골프 자산만 분리하려면 부문 자산 공시 별도 검토 필요.</p>
+
+    <div class="insight">
+      <h5>관찰 · Pure-play vs 그룹 자산 비교의 함정</h5>
+      <p>P009(SMRA) 총자산 33 조 IDR과 P001(DMIG) 690 bn IDR을 단순 비교하면 안 됨. SMRA는 대규모 부동산 개발 그룹이고 골프장은 그 일부. DMIG는 골프장 단독 법인. 골프장 운영 효율을 비교할 때는 pure-play(DMIG·PIPG·GOLF)와 부문 매출 공시되는 peer(BKDP·MDLN·KIJA 등) 분리 분석이 필요.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="pa-footer">
+  <div class="container">
+    <p>데이터 출처: 공개 IDX 연차보고서 (FY2022–FY2024). 독립 산업 연구 · 발주처 무관. 마지막 갱신: 2026-05-11.</p>
+  </div>
+</footer>
+
+</body>
+</html>

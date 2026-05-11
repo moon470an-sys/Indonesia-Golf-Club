@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>매출 운영 — 인도네시아 골프 운영 벤치마크</title>
+<meta name="description" content="인도네시아 IDX 상장 골프장 13개사의 라운드 수, 그린피 구조, 회원권, F&B 매출 비교. Annual Report 기반." />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/peer-style.css?v=20260511d" />
+<style>
+  table.bench {
+    width: 100%; border-collapse: collapse; font-size: 14px;
+    background: white; box-shadow: var(--shadow-sm); border-radius: var(--radius-md);
+    overflow: hidden; margin-top: 12px;
+  }
+  table.bench th {
+    background: var(--forest-green); color: white; font-weight: 600;
+    text-align: left; padding: 10px 12px; font-size: 12.5px;
+    letter-spacing: 0.02em;
+  }
+  table.bench th.num, table.bench td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  table.bench td {
+    padding: 11px 12px; border-bottom: 1px solid var(--slate-200);
+    vertical-align: top; color: var(--charcoal);
+  }
+  table.bench tr:last-child td { border-bottom: none; }
+  table.bench .peer { font-weight: 600; color: var(--forest-green-dark); }
+  table.bench .sub { color: var(--slate-500); font-size: 12px; display: block; margin-top: 2px; }
+  table.bench .pending { color: var(--slate-500); font-style: italic; font-size: 13px; }
+  table.bench .na { color: var(--slate-500); font-style: italic; }
+  table.bench tr.curated { background: #fefce8; }
+  table.bench tr.curated:hover { background: #fef9c3; }
+
+  .insight {
+    background: white; border: 1px solid var(--slate-200);
+    border-left: 4px solid var(--forest-green-light);
+    padding: 14px 18px; border-radius: var(--radius-md); margin: 14px 0;
+  }
+  .insight h5 { margin: 0 0 6px; font-size: 14.5px; color: var(--charcoal); }
+  .insight p { margin: 0; font-size: 13.5px; color: var(--charcoal-soft); line-height: 1.6; }
+
+  .pa-footer { background: var(--forest-green); color: rgba(255,255,255,0.85); padding: 24px 0; margin-top: 56px; font-size: 13px; }
+  .pa-footer p { margin: 0; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<header class="pa-header">
+  <div class="container">
+    <div class="pa-brand">
+      <div class="pa-logo">⛳</div>
+      <div>
+        <h1>인도네시아 골프 운영 벤치마크</h1>
+        <div class="subtitle">매출 운영 · 라운드 / 그린피 / 회원권 / F&amp;B</div>
+      </div>
+    </div>
+    <nav class="pa-nav">
+      <a href="index.html">한눈에</a>
+      <a href="revenue.html" class="active">매출 운영</a>
+      <a href="cost-hr.html">비용·인력</a>
+      <a href="assets.html">자산·시설</a>
+      <a href="risk.html">구조·위험</a>
+      <a href="../../index.html">← 지도</a>
+    </nav>
+  </div>
+</header>
+
+<section class="pa-section">
+  <div class="container">
+    <h2 style="font-size: 28px; margin: 8px 0 6px;">매출 운영</h2>
+    <p class="lede">골프장이 어떻게 매출을 만드는가 — 라운드 수, 그린피 구조, 회원권 모델, F&amp;B 매출. P001 데이터로 표 구조 시연. P002–P013은 추출 후 자동 채움.</p>
+
+    <h3 id="rounds" style="margin-top: 24px;">1. 연간 라운드 수</h3>
+    <table class="bench">
+      <thead>
+        <tr><th>Peer</th><th>클럽</th><th class="num">홀</th><th class="num">FY2023 라운드</th><th class="num">FY2022 라운드</th><th class="num">3년 증감</th><th>출처</th></tr>
+      </thead>
+      <tbody>
+        <tr class="curated"><td class="peer">P001</td><td>Damai Indah Golf (BSD+PIK)<span class="sub">Tangerang · 북자카르타</span></td><td class="num">36</td><td class="num">120,335</td><td class="num">107,356</td><td class="num">+41% (vs FY2021 85k)</td><td>AR FY2023 p.21</td></tr>
+        <tr><td class="peer">P002</td><td>Trump Int'l Golf Club Lido<span class="sub">Bogor</span></td><td class="num">18</td><td colspan="4" class="pending">— 데이터 추출 대기</td></tr>
+        <tr><td class="peer">P003</td><td>Pondok Indah (via PIPG)<span class="sub">남자카르타</span></td><td class="num">18</td><td colspan="4" class="pending">— 데이터 추출 대기</td></tr>
+        <tr><td class="peer">P004</td><td>Pondok Indah Padang Golf<span class="sub">남자카르타</span></td><td class="num">18</td><td colspan="4" class="pending">— 데이터 추출 대기</td></tr>
+        <tr><td class="peer">P005</td><td>Damai Indah / Karawang Bukit<span class="sub">BSD · Karawang</span></td><td class="num">36+</td><td colspan="4" class="pending">— 데이터 추출 대기</td></tr>
+        <tr><td class="peer">P006</td><td>Graha Famili & Country Club<span class="sub">Surabaya</span></td><td class="num">18</td><td colspan="4" class="pending">— 데이터 추출 대기</td></tr>
+        <tr><td class="peer">P007</td><td>Bali Beach Golf (NKG)<span class="sub">Bali</span></td><td class="num">18</td><td colspan="4" class="pending">— 데이터 추출 대기</td></tr>
+        <tr><td class="peer">P008</td><td>Modern Golf & Country Club<span class="sub">Tangerang</span></td><td class="num">18</td><td colspan="4" class="pending">— 데이터 추출 대기</td></tr>
+        <tr><td class="peer">P009</td><td>Gading Raya Padang Golf<span class="sub">Tangerang</span></td><td class="num">18</td><td colspan="4" class="pending">— 데이터 추출 대기</td></tr>
+        <tr><td class="peer">P010</td><td>Rancamaya Golf Estate<span class="sub">Bogor</span></td><td class="num">18</td><td colspan="4" class="pending">— 데이터 추출 대기</td></tr>
+        <tr><td class="peer">P011</td><td>Jababeka Golf & Country Club<span class="sub">Cikarang</span></td><td class="num">18</td><td colspan="4" class="pending">— 데이터 추출 대기</td></tr>
+        <tr><td class="peer">P012</td><td>Bukit Darmo Golf<span class="sub">Surabaya</span></td><td class="num">18</td><td colspan="4" class="pending">— 데이터 추출 대기</td></tr>
+        <tr><td class="peer">P013</td><td>Palm Hill / Sentul Highlands<span class="sub">Bogor</span></td><td class="num">18</td><td colspan="4" class="pending">— 데이터 추출 대기</td></tr>
+      </tbody>
+    </table>
+    <div class="insight">
+      <h5>P001 관찰</h5>
+      <p>FY2021 85k → FY2023 120k. COVID 회복 + The Range 신규 오픈이 라운드 회복을 견인. PIK 18홀이 BSD 18홀 대비 ~30% 더 많은 월평균 라운드 기록(PIK ~5,800 vs BSD ~4,400/월) — 입지·접근성 차이.</p>
+    </div>
+
+    <h3 style="margin-top: 28px;">2. 매출 구성 (FY2023)</h3>
+    <table class="bench">
+      <thead>
+        <tr><th>Peer</th><th class="num">총매출 (bn)</th><th class="num">Golf 매출 (bn)</th><th class="num">Golf 비중</th><th class="num">F&amp;B 매출 (bn)</th><th class="num">F&amp;B 비중</th><th class="num">기타</th></tr>
+      </thead>
+      <tbody>
+        <tr class="curated"><td class="peer">P001</td><td class="num">244.99</td><td class="num">127.13</td><td class="num">51.9%</td><td class="num">37.69</td><td class="num">15.4%</td><td class="num">The Range 31.35 + 수영장 etc.</td></tr>
+        <tr><td class="peer">P002–P013</td><td colspan="6" class="pending">— 데이터 추출 대기</td></tr>
+      </tbody>
+    </table>
+
+    <h3 id="membership" style="margin-top: 28px;">3. 회원권 모델</h3>
+    <table class="bench">
+      <thead>
+        <tr><th>Peer</th><th>모델</th><th class="num">Buy-in (mn)</th><th class="num">잔액 (bn, 최신)</th><th>특이사항</th><th>출처</th></tr>
+      </thead>
+      <tbody>
+        <tr class="curated"><td class="peer">P001</td><td>Refundable + Transferable 혼합</td><td class="num">150–180</td><td class="num">50.1 (FY2024)</td><td>Refundable 30년 환매. Transferable 신규 발행은 증서 수명 동안 상각 (2012년 도입)</td><td>AR FY2023 p.85, FY2024 p.82</td></tr>
+        <tr><td class="peer">P002–P013</td><td colspan="5" class="pending">— 데이터 추출 대기</td></tr>
+      </tbody>
+    </table>
+
+    <h3 id="fb" style="margin-top: 28px;">4. F&amp;B 매출 세부 (FY2023)</h3>
+    <table class="bench">
+      <thead>
+        <tr><th>Peer</th><th class="num">F&amp;B 매출 (bn)</th><th class="num">YoY 증감</th><th class="num">라운드당 1인 추정 객단가</th><th>운영 모델</th><th>출처</th></tr>
+      </thead>
+      <tbody>
+        <tr class="curated"><td class="peer">P001</td><td class="num">37.69</td><td class="num">+34% (28.1 → 37.7)</td><td class="num">IDR 313k</td><td>BSD/PIK 본관 식당 자체 + The Range food court 테넌트형 (7곳)</td><td>AR FY2023 p.15, 18</td></tr>
+        <tr><td class="peer">P002–P013</td><td colspan="5" class="pending">— 데이터 추출 대기</td></tr>
+      </tbody>
+    </table>
+    <div class="insight">
+      <h5>F&amp;B 객단가 해석</h5>
+      <p>라운드당 1인 IDR 313k(~25 USD)는 18홀 라운드 후 점심·맥주 1잔 수준의 평균 지출. 클럽하우스 메뉴 단가, 멤버·게스트 비율, banquet 발생 빈도가 모두 섞인 수치. 객단가가 IDR 500k+ 이면 멤버 게스트·이벤트 비중 높음, IDR 200k 이하면 캐주얼 워크인 비중 높음으로 해석.</p>
+    </div>
+
+    <h3 style="margin-top: 28px;">미공시 / 별도 확인 필요</h3>
+    <table class="bench">
+      <thead><tr><th>항목</th><th>이유</th></tr></thead>
+      <tbody>
+        <tr><td>그린피 단가표 (위크데이/위크엔드 · 멤버/비멤버)</td><td>AR에 단가 미명세. 클럽 공식 웹사이트 직접 조회 필요.</td></tr>
+        <tr><td>일일 슬롯 capacity / Tee sheet 점유율</td><td>운영 KPI로 공시되지 않음. 산업 표준은 18홀 90–120 슬롯/일.</td></tr>
+        <tr><td>토너먼트 명단·횟수·매출</td><td>총 골프 매출 라인에 통합. 개별 토너먼트 명칭 미공시.</td></tr>
+        <tr><td>Tee Time 예약 플랫폼 종류</td><td>AR 범위 밖. 운영자 인터뷰로 확인.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer class="pa-footer">
+  <div class="container">
+    <p>데이터 출처: 공개 IDX 연차보고서 (FY2022–FY2024). 독립 산업 연구 · 발주처 무관. 마지막 갱신: 2026-05-11.</p>
+  </div>
+</footer>
+
+</body>
+</html>

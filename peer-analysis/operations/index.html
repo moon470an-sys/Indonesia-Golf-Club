@@ -1,60 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Operations — Indonesia Golf Industry Peer Analysis</title>
-<meta name="description" content="Eight-dimension operational practice analysis of Indonesian golf course operators, sourced from publicly available annual reports. Independent industry research." />
+<title>운영 벤치마크 한눈에 — 인도네시아 골프 13개 상장사</title>
+<meta name="description" content="인도네시아 IDX 상장 골프장 13개 운영사의 라운드·매출·인력·자산 지표를 한 화면에 모아 보는 페이지. Annual Report 기반 독립 분석." />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="../assets/peer-style.css?v=20260511c" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/peer-style.css?v=20260511d" />
 <style>
-  .ops-grid {
+  /* Operations-specific overlay */
+  .kpi-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 18px;
     margin-top: 24px;
   }
-  .ops-card {
+  .kpi-card {
     background: white;
     border: 1px solid var(--slate-200);
     border-radius: var(--radius-md);
-    padding: 22px 20px 18px;
+    padding: 20px 22px 18px;
+    text-decoration: none; color: inherit;
     transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
     display: flex; flex-direction: column; gap: 8px;
-    text-decoration: none; color: inherit;
   }
-  .ops-card:hover {
+  .kpi-card:hover {
     transform: translateY(-3px);
     box-shadow: var(--shadow-lg);
     border-color: var(--forest-green-light);
     text-decoration: none;
   }
-  .ops-card .num {
-    font-size: 13px; font-weight: 700; color: var(--forest-green);
-    letter-spacing: 0.04em;
+  .kpi-card .label { font-size: 13px; color: var(--charcoal-soft); font-weight: 500; letter-spacing: 0.01em; }
+  .kpi-card .name  { font-size: 18px; color: var(--charcoal); font-weight: 700; margin: 2px 0 4px; }
+  .kpi-card .figure { font-size: 28px; color: var(--forest-green); font-weight: 700; line-height: 1.1; }
+  .kpi-card .figure .unit { font-size: 14px; color: var(--charcoal-soft); font-weight: 500; margin-left: 4px; }
+  .kpi-card .subtext { font-size: 12.5px; color: var(--slate-500); line-height: 1.5; margin-top: 4px; }
+  .kpi-card .more { font-size: 12px; color: var(--forest-green); margin-top: auto; padding-top: 6px; font-weight: 600; }
+  .kpi-card .more::after { content: " →"; }
+
+  .coverage-bar {
+    background: #fff7ed; border: 1px solid #fed7aa;
+    padding: 12px 16px; border-radius: var(--radius-md); margin: 16px 0 24px;
+    font-size: 13.5px; color: #7c2d12;
   }
-  .ops-card h4 {
-    font-size: 17px; font-weight: 700; color: var(--charcoal);
-    margin: 0;
+  .coverage-bar strong { color: #7c2d12; }
+
+  .pa-footer {
+    background: var(--forest-green); color: rgba(255,255,255,0.85);
+    padding: 24px 0; margin-top: 56px; font-size: 13px;
   }
-  .ops-card p {
-    font-size: 13.5px; color: var(--charcoal-soft); margin: 6px 0 0;
-    line-height: 1.5;
-  }
-  .ops-card .meta {
-    font-size: 12px; color: var(--slate-500); margin-top: auto; padding-top: 8px;
-  }
-  .ops-card.placeholder {
-    opacity: 0.55; pointer-events: none; background: var(--slate-50);
-  }
-  .ops-card.placeholder:hover { transform: none; box-shadow: var(--shadow-sm); border-color: var(--slate-200); }
-  .availability-note {
-    background: #fff7ed; border: 1px solid #fed7aa; padding: 14px 18px;
-    border-radius: var(--radius-md); margin-top: 18px;
-    font-size: 14px; color: #9a3412;
-  }
-  .availability-note strong { color: #7c2d12; }
+  .pa-footer p { margin: 0; line-height: 1.6; }
 </style>
 </head>
 <body>
@@ -64,95 +60,90 @@
     <div class="pa-brand">
       <div class="pa-logo">⛳</div>
       <div>
-        <h1>Indonesia Golf Industry — Peer Analysis</h1>
-        <div class="subtitle">Operations · 8-dimension operational practice analysis</div>
+        <h1>인도네시아 골프 운영 벤치마크</h1>
+        <div class="subtitle">IDX 상장 13개사 · Annual Report 기반 독립 분석</div>
       </div>
     </div>
     <nav class="pa-nav">
-      <a href="index.html" class="active">Operations</a>
-      <a href="agronomy.html">Agronomy</a>
-      <a href="../../index.html">← Map</a>
+      <a href="index.html" class="active">한눈에</a>
+      <a href="revenue.html">매출 운영</a>
+      <a href="cost-hr.html">비용·인력</a>
+      <a href="assets.html">자산·시설</a>
+      <a href="risk.html">구조·위험</a>
+      <a href="../../index.html">← 지도</a>
     </nav>
   </div>
 </header>
 
 <section class="pa-hero">
   <div class="container">
-    <h2>How Indonesia's golf clubs are actually run</h2>
-    <p>Eight dimensions of operational practice — agronomy, headcount, revenue operations, F&amp;B, facilities, governance, digital systems, marketing — extracted from publicly available annual reports of 13 IDX-listed peer golf operators. Independent industry research; no commercial affiliation. Fields where annual reports do not disclose the data are marked <em>Not Disclosed</em>, never imputed.</p>
+    <h2>골프장 운영 데이터, 한 화면에</h2>
+    <p>인도네시아거래소(IDX) 상장 13개 골프장 운영사가 공시하는 운영 지표 — 라운드 수, 회원 규모, 매출 구성, 인력, 자산 — 을 한 화면에 모았습니다. 운영자가 자기 클럽의 위치를 가늠하고 개선 여지를 찾기 위한 벤치마크입니다. 공시되지 않은 항목은 <em>— 미공시</em> 로 표시하며 추정하지 않습니다.</p>
     <div class="pa-stats">
-      <div class="pa-stat"><div class="v">13</div><div class="l">Peer Operators</div></div>
-      <div class="pa-stat"><div class="v">8</div><div class="l">Operational Dimensions</div></div>
-      <div class="pa-stat"><div class="v">FY2022–2024</div><div class="l">Annual Report Vintage</div></div>
-      <div class="pa-stat"><div class="v">99,618</div><div class="l">Indexed AR Chunks</div></div>
+      <div class="pa-stat"><div class="v">13</div><div class="l">상장사 peer</div></div>
+      <div class="pa-stat"><div class="v">FY2022–2024</div><div class="l">Annual Report 회계연도</div></div>
+      <div class="pa-stat"><div class="v">99,618</div><div class="l">색인된 AR 단위</div></div>
+      <div class="pa-stat"><div class="v">1 / 13</div><div class="l">현재 큐레이션 완료 peer</div></div>
     </div>
   </div>
 </section>
 
 <section class="pa-section">
   <div class="container">
-    <h3>Operational Dimensions</h3>
-    <p class="lede">Each dimension is one focus area an operator (or an acquirer running operational due diligence) needs to understand. Click a card to drill into peer-level disclosure and the gap between what is publicly visible and what requires private-channel diligence.</p>
-
-    <div class="availability-note">
-      <strong>Pilot release.</strong> Detailed pages for the remaining seven dimensions follow the same structure as Agronomy. Curation across all 13 peers will populate the comparison tables and industry aggregates in the next release.
+    <div class="coverage-bar">
+      <strong>현재 상태:</strong> 13개 peer 중 P001(Damai Indah Golf)만 큐레이션 완료. 카드의 산업 분포 차트와 비교 표는 P002–P013 데이터가 채워지면 자동 활성화됩니다. 본 페이지는 정보 구조 검증용 데모입니다.
     </div>
 
-    <div class="ops-grid">
-      <a href="agronomy.html" class="ops-card">
-        <div class="num">01</div>
-        <h4>Course Operations &amp; Agronomy</h4>
-        <p>Turf species, irrigation, water source, fertiliser, renovation cadence — the single largest operating expense line for any golf course.</p>
-        <div class="meta">Live · Pilot data</div>
+    <h3>운영 KPI 6개</h3>
+    <p class="lede">각 카드는 해당 KPI의 산업 분포(13 peer)와 산업 중앙값을 보여주고, 카드 클릭 시 카테고리 상세 페이지로 이동합니다.</p>
+
+    <div class="kpi-grid">
+      <a href="revenue.html#rounds" class="kpi-card">
+        <div class="label">매출 운영</div>
+        <div class="name">연간 라운드 수</div>
+        <div class="figure">120,335<span class="unit">P001 · FY2023</span></div>
+        <div class="subtext">P001 (36홀, BSD+PIK): FY2021 85k → FY2023 120k. +41% 3년 성장. 산업 분포는 P002–P013 추출 후 표시.</div>
+        <div class="more">매출 운영 상세 보기</div>
       </a>
 
-      <a href="#" class="ops-card placeholder">
-        <div class="num">02</div>
-        <h4>Headcount &amp; Organisation</h4>
-        <p>Total workforce, departmental split, caddy operating model, outsourcing footprint — the second largest OpEx item.</p>
-        <div class="meta">Coming next release</div>
+      <a href="revenue.html#membership" class="kpi-card">
+        <div class="label">매출 운영</div>
+        <div class="name">회원권 잔액 (refundable)</div>
+        <div class="figure">50.1<span class="unit">IDR bn · P001 · FY2024</span></div>
+        <div class="subtext">Buy-in Rp 150–180mn/멤버, 30년 환매. 신규 발행은 transferable 모델로 전환 (2012~). 산업 분포 대기 중.</div>
+        <div class="more">매출 운영 상세 보기</div>
       </a>
 
-      <a href="#" class="ops-card placeholder">
-        <div class="num">03</div>
-        <h4>Revenue Operations</h4>
-        <p>Green-fee rate cards, tee-time platform, daily slot capacity, round volume, membership categories and pricing.</p>
-        <div class="meta">Coming next release</div>
+      <a href="revenue.html#fb" class="kpi-card">
+        <div class="label">매출 운영</div>
+        <div class="name">F&amp;B 매출</div>
+        <div class="figure">37.7<span class="unit">IDR bn · P001 · FY2023</span></div>
+        <div class="subtext">BSD 17.2 + PIK 20.5 + 수영장 0.3. 총매출의 15.4%. 라운드당 1인 추정 객단가 IDR 313k. 산업 분포 대기 중.</div>
+        <div class="more">매출 운영 상세 보기</div>
       </a>
 
-      <a href="#" class="ops-card placeholder">
-        <div class="num">04</div>
-        <h4>Food &amp; Beverage</h4>
-        <p>Restaurant outlets, banquet capacity, F&amp;B share of revenue, capture rate, in-house vs outsourced operating model.</p>
-        <div class="meta">Coming next release</div>
+      <a href="cost-hr.html#headcount" class="kpi-card">
+        <div class="label">비용·인력</div>
+        <div class="name">총 인력</div>
+        <div class="figure">196<span class="unit">P001 · FY2022</span></div>
+        <div class="subtext">FY2021 342명 → COVID 후 슬림화. 36홀 기준 1홀당 5.4명. 부서별 표는 BSD/PIK 분리 공시. 산업 분포 대기 중.</div>
+        <div class="more">비용·인력 상세 보기</div>
       </a>
 
-      <a href="#" class="ops-card placeholder">
-        <div class="num">05</div>
-        <h4>Facilities &amp; Assets</h4>
-        <p>Land area, clubhouse, driving range, academy, locker, spa, cart fleet, parking, generator, security infrastructure.</p>
-        <div class="meta">Coming next release</div>
+      <a href="assets.html#land" class="kpi-card">
+        <div class="label">자산·시설</div>
+        <div class="name">토지 면적</div>
+        <div class="figure">156<span class="unit">ha · P001 · FY2024</span></div>
+        <div class="subtext">BSD 76 ha + PIK 80 ha. HGB 토지권 + 연장비 자산화. 총자산 IDR 690.5 bn, 보험 IDR 465.7 bn + USD 2 mn. 산업 분포 대기.</div>
+        <div class="more">자산·시설 상세 보기</div>
       </a>
 
-      <a href="#" class="ops-card placeholder">
-        <div class="num">06</div>
-        <h4>Governance &amp; Regulatory</h4>
-        <p>Legal entity, shareholder structure, land rights (HGB/HGU/BOT), permits, taxation, environmental and labour certifications.</p>
-        <div class="meta">Coming next release</div>
-      </a>
-
-      <a href="#" class="ops-card placeholder">
-        <div class="num">07</div>
-        <h4>Digital &amp; Systems</h4>
-        <p>POS, tee-time booking platform, CRM, accounting software, cart GPS, IoT, member mobile app, WiFi coverage.</p>
-        <div class="meta">Coming next release</div>
-      </a>
-
-      <a href="#" class="ops-card placeholder">
-        <div class="num">08</div>
-        <h4>Marketing &amp; Member Experience</h4>
-        <p>Marketing spend share, channels, member events, reciprocal access, hotel/airline partnerships, tournament hosting.</p>
-        <div class="meta">Coming next release</div>
+      <a href="risk.html#land-rights" class="kpi-card">
+        <div class="label">구조·위험</div>
+        <div class="name">법인 + 토지권</div>
+        <div class="figure">PT PMA<span class="unit">Tbk · IPO 2002</span></div>
+        <div class="subtext">Sinarmas Land 계열 pure-play. HGB 토지권 (만료일 미공시 → 별도 확인). 세무조사 이의신청 1건 일부 인용. 산업 분포 대기.</div>
+        <div class="more">구조·위험 상세 보기</div>
       </a>
     </div>
   </div>
@@ -160,23 +151,23 @@
 
 <section class="pa-section" style="background: white;">
   <div class="container">
-    <h3>A note on disclosure quality</h3>
-    <p class="lede">Indonesian listed golf-operator annual reports prioritise financial statements, ownership structure, board profiles, and segment-level revenue commentary. Operational specifics — grass varieties, irrigation vendor, fertiliser cost, POS system, booking platform, caddy operating structure, cart fleet — are systematically absent from public filings. The richest publicly available disclosure areas are:</p>
-    <ul style="font-size: 15px; color: var(--charcoal-soft); line-height: 1.75; padding-left: 22px;">
-      <li>Total headcount and departmental count (for pure-play operators)</li>
-      <li>Annual round volume and monthly distribution</li>
-      <li>F&amp;B revenue split by outlet</li>
-      <li>Membership accounting (refundable vs transferable, balances)</li>
-      <li>Land area and insurance coverage</li>
-      <li>Tax audit history and corporate-tax position</li>
+    <h3>이 페이지가 답하지 <em>못</em>하는 것</h3>
+    <p style="font-size: 14.5px; color: var(--charcoal-soft); line-height: 1.65;">Annual Report는 사업 부문 요약·재무제표·이사회·주주 구조에 집중합니다. 다음 항목은 13 peer 어디에서도 일관되게 공시하지 않으므로 본 사이트의 분석 범위 밖이며, 별도 채널(현장 실사, 운영진 인터뷰, 벤더 확인)을 통해 확인해야 합니다.</p>
+    <ul style="font-size: 14px; color: var(--charcoal-soft); line-height: 1.85; padding-left: 22px;">
+      <li>잔디 품종 (페어웨이/그린/러프), 관개 시스템 벤더, 물 수원·사용량, 농약·비료 단가</li>
+      <li>그린피 단가표 (위크데이/위크엔드, 멤버/비멤버 — 공시 대신 클럽 웹사이트 직접 확인 필요)</li>
+      <li>캐디 운영 모델 (정직원/프리랜서 비율, 라운드당 fee)</li>
+      <li>POS · Tee Time 예약 플랫폼 · CRM · 카트 GPS 등 IT 스택</li>
+      <li>마케팅 예산 / 채널 / 인플루언서 협력 / 호텔·항공 제휴</li>
+      <li>골프 카트 fleet 대수 · 운영 모델</li>
     </ul>
-    <p style="font-size: 14px; color: var(--charcoal-soft); margin-top: 16px;">For investment-grade due diligence on the 'silent' dimensions (agronomy specifics, digital stack, marketing budget, caddy economics, vendor contracts), private-channel diligence — site visit, management interview, vendor confirmation — is required. This site documents what <em>is</em> in the public record so private diligence can focus its scope.</p>
+    <p style="font-size: 13.5px; color: var(--slate-500); margin-top: 16px;">본 사이트의 가치는 <strong>"공개 영역에서 비교 가능한 것"</strong> 을 명확히 보여주고, <strong>"비공개 영역에서 따로 물어야 할 것"</strong> 의 스코프를 잡아주는 데 있습니다.</p>
   </div>
 </section>
 
 <footer class="pa-footer">
   <div class="container">
-    <p>Data sourced from publicly available IDX annual reports (FY2022–FY2024) and indexed via a multilingual embedding model (intfloat/multilingual-e5-small). Independent industry research — no commercial affiliation. Last updated: 2026-05-11.</p>
+    <p>데이터 출처: 공개 IDX 연차보고서 (FY2022–FY2024). 다국어 임베딩 모델(intfloat/multilingual-e5-small)로 색인 + 검색. 독립 산업 연구 · 발주처 무관. 마지막 갱신: 2026-05-11.</p>
   </div>
 </footer>
 
