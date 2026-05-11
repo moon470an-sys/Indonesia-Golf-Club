@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0-operator",
   "last_updated": "2026-05-11",
-  "coverage": "P001 시연. P002–P013은 다음 추출 단계에서 채움.",
+  "coverage": "DMIG 시연. 나머지 12개사은 다음 추출 단계에서 채움.",
   "currency": "IDR (별도 표기 없으면). bn=십억, mn=백만.",
   "missing_value_label": "— 미공시",
   "source_format": "AR FY{연도} p.{면}",
@@ -13,7 +13,7 @@
   },
   "peers": [
     {
-      "peer_id": "P001",
+      "peer_id": "DMIG",
       "ticker": "DMIG",
       "club_name": "Damai Indah Golf (BSD + PIK)",
       "region": "Tangerang BSD City · 북자카르타 PIK",
@@ -113,17 +113,17 @@
         "litigation": "FY2023 시점 중대한 소송·청구 없음 (AR FY2023 p.13)"
       }
     },
-    {"peer_id": "P002", "ticker": "KPIG", "club_name": "Trump International Golf Club Lido", "tier": "A", "data_status": "pending"},
-    {"peer_id": "P003", "ticker": "MKPI", "club_name": "Pondok Indah Golf Course (via PIPG)", "tier": "A", "data_status": "pending"},
-    {"peer_id": "P004", "ticker": "PIPG", "club_name": "Pondok Indah Padang Golf", "tier": "A", "data_status": "pending"},
-    {"peer_id": "P005", "ticker": "BSDE", "club_name": "Damai Indah / Karawang Bukit Golf", "tier": "A", "data_status": "pending"},
-    {"peer_id": "P006", "ticker": "DILD", "club_name": "Graha Famili & Country Club", "tier": "A-", "data_status": "pending"},
-    {"peer_id": "P007", "ticker": "GOLF", "club_name": "Bali Beach Golf (NKG)", "tier": "A-", "data_status": "pending"},
-    {"peer_id": "P008", "ticker": "MDLN", "club_name": "Modern Golf & Country Club", "tier": "A-", "data_status": "pending"},
-    {"peer_id": "P009", "ticker": "SMRA", "club_name": "Gading Raya Padang Golf", "tier": "A-", "data_status": "pending"},
-    {"peer_id": "P010", "ticker": "SMDM", "club_name": "Rancamaya Golf Estate", "tier": "A-", "data_status": "pending"},
-    {"peer_id": "P011", "ticker": "KIJA", "club_name": "Jababeka Golf & Country Club", "tier": "B+", "data_status": "pending"},
-    {"peer_id": "P012", "ticker": "BKDP", "club_name": "Bukit Darmo Golf", "tier": "B+", "data_status": "pending"},
-    {"peer_id": "P013", "ticker": "BKSL", "club_name": "Palm Hill Golf / Sentul Highlands", "tier": "B+", "data_status": "pending"}
+    {"peer_id": "KPIG", "ticker": "KPIG", "club_name": "Trump International Golf Club Lido", "tier": "A", "data_status": "pending"},
+    {"peer_id": "MKPI", "ticker": "MKPI", "club_name": "Pondok Indah Golf Course (via PIPG)", "tier": "A", "data_status": "pending"},
+    {"peer_id": "PIPG", "ticker": "PIPG", "club_name": "Pondok Indah Padang Golf", "tier": "A", "data_status": "pending"},
+    {"peer_id": "BSDE", "ticker": "BSDE", "club_name": "Damai Indah / Karawang Bukit Golf", "tier": "A", "data_status": "pending"},
+    {"peer_id": "DILD", "ticker": "DILD", "club_name": "Graha Famili & Country Club", "tier": "A-", "data_status": "pending"},
+    {"peer_id": "GOLF", "ticker": "GOLF", "club_name": "Bali Beach Golf (NKG)", "tier": "A-", "data_status": "pending"},
+    {"peer_id": "MDLN", "ticker": "MDLN", "club_name": "Modern Golf & Country Club", "tier": "A-", "data_status": "pending"},
+    {"peer_id": "SMRA", "ticker": "SMRA", "club_name": "Gading Raya Padang Golf", "tier": "A-", "data_status": "pending"},
+    {"peer_id": "SMDM", "ticker": "SMDM", "club_name": "Rancamaya Golf Estate", "tier": "A-", "data_status": "pending"},
+    {"peer_id": "KIJA", "ticker": "KIJA", "club_name": "Jababeka Golf & Country Club", "tier": "B+", "data_status": "pending"},
+    {"peer_id": "BKDP", "ticker": "BKDP", "club_name": "Bukit Darmo Golf", "tier": "B+", "data_status": "pending"},
+    {"peer_id": "BKSL", "ticker": "BKSL", "club_name": "Palm Hill Golf / Sentul Highlands", "tier": "B+", "data_status": "pending"}
   ]
 }
