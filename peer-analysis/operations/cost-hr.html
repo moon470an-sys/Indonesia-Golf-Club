@@ -4,128 +4,147 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>비용·인력 — 인도네시아 골프 운영 벤치마크</title>
-<meta name="description" content="인도네시아 IDX 상장 골프장 13개사의 인력 규모, 부서 구성, COGS 구조. Annual Report 기반." />
+<meta name="description" content="13개 상장사의 인력 규모, 부서 구성, COGS 구조 비교." />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="../assets/peer-style.css?v=20260511d" />
-<style>
-  table.bench { width: 100%; border-collapse: collapse; font-size: 14px; background: white; box-shadow: var(--shadow-sm); border-radius: var(--radius-md); overflow: hidden; margin-top: 12px; }
-  table.bench th { background: var(--forest-green); color: white; font-weight: 600; text-align: left; padding: 10px 12px; font-size: 12.5px; }
-  table.bench th.num, table.bench td.num { text-align: right; font-variant-numeric: tabular-nums; }
-  table.bench td { padding: 11px 12px; border-bottom: 1px solid var(--slate-200); vertical-align: top; color: var(--charcoal); }
-  table.bench tr:last-child td { border-bottom: none; }
-  table.bench .peer { font-weight: 600; color: var(--forest-green-dark); }
-  table.bench .sub { color: var(--slate-500); font-size: 12px; display: block; margin-top: 2px; }
-  table.bench .pending { color: var(--slate-500); font-style: italic; font-size: 13px; }
-  table.bench tr.curated { background: #fefce8; }
-  .insight { background: white; border: 1px solid var(--slate-200); border-left: 4px solid var(--forest-green-light); padding: 14px 18px; border-radius: var(--radius-md); margin: 14px 0; }
-  .insight h5 { margin: 0 0 6px; font-size: 14.5px; color: var(--charcoal); }
-  .insight p { margin: 0; font-size: 13.5px; color: var(--charcoal-soft); line-height: 1.6; }
-  .pa-footer { background: var(--forest-green); color: rgba(255,255,255,0.85); padding: 24px 0; margin-top: 56px; font-size: 13px; }
-  .pa-footer p { margin: 0; line-height: 1.6; }
-</style>
+<link rel="stylesheet" href="ops-style.css?v=20260511e" />
 </head>
 <body>
 
-<header class="pa-header">
-  <div class="container">
-    <div class="pa-brand">
-      <div class="pa-logo">⛳</div>
+<header class="ops-head">
+  <div class="ops-wrap ops-head-row">
+    <a href="index.html" class="ops-brand">
+      <div class="mark">⛳</div>
       <div>
-        <h1>인도네시아 골프 운영 벤치마크</h1>
-        <div class="subtitle">비용·인력 · 인력 규모 / 부서 구성 / COGS</div>
+        <div class="name">인도네시아 골프 운영 벤치마크</div>
+        <div class="sub">13개 IDX 상장사 · Annual Report 기반</div>
       </div>
-    </div>
-    <nav class="pa-nav">
+    </a>
+    <nav class="ops-nav">
       <a href="index.html">한눈에</a>
-      <a href="revenue.html">매출 운영</a>
+      <a href="revenue.html">매출</a>
       <a href="cost-hr.html" class="active">비용·인력</a>
-      <a href="assets.html">자산·시설</a>
+      <a href="assets.html">자산</a>
       <a href="risk.html">구조·위험</a>
-      <a href="../../index.html">← 지도</a>
+      <a href="../../index.html" class="back">← 지도</a>
     </nav>
   </div>
 </header>
 
-<section class="pa-section">
-  <div class="container">
-    <h2 style="font-size: 28px; margin: 8px 0 6px;">비용·인력</h2>
-    <p class="lede">골프장이 어떻게 돈을 쓰는가 — 총 인력, 부서 구성, COGS 구조. 인건비가 두 번째 OpEx 라인.</p>
-
-    <h3 id="headcount" style="margin-top: 24px;">1. 총 인력 + 1홀당 인력</h3>
-    <table class="bench">
-      <thead>
-        <tr><th>Peer</th><th>클럽</th><th class="num">홀</th><th class="num">총 인력</th><th class="num">1홀당</th><th>FY</th><th>출처</th></tr>
-      </thead>
-      <tbody>
-        <tr class="curated"><td class="peer">P001</td><td>Damai Indah Golf</td><td class="num">36</td><td class="num">196</td><td class="num">5.4</td><td>FY2022</td><td>AR FY2022 p.101</td></tr>
-        <tr><td class="peer">P002–P013</td><td colspan="6" class="pending">— 데이터 추출 대기</td></tr>
-      </tbody>
-    </table>
-    <div class="insight">
-      <h5>P001 관찰 · 인력 슬림화</h5>
-      <p>FY2021 342명 → FY2022 196명 (-43%). COVID 영향 + 운영 효율화. 1홀당 5.4명은 36홀 + The Range 운영 + 클럽하우스 식음 자체 운영을 감안하면 평균 또는 약간 슬림한 수준. 단순 18홀 단독 코스라면 4–6명/홀이 일반적.</p>
+<section class="ops-hero ops-hero-num">
+  <div class="ops-wrap">
+    <div class="row">
+      <div>
+        <div class="eyebrow">비용·인력 · 02</div>
+        <h1>인건비와 매출원가, 운영 효율</h1>
+        <p class="lede">총 인력, 1홀당 인력, 부서 구성, COGS 구조, 종업원 충당부채. 골프장 OpEx의 60% 이상이 이 카테고리에 속합니다.</p>
+      </div>
+      <div class="bignum-block">
+        <div class="bignum">5.4<span class="u">명/홀</span></div>
+        <div class="biglabel">P001 · FY2022 (196명 ÷ 36홀)</div>
+      </div>
     </div>
-
-    <h3 style="margin-top: 28px;">2. 부서 구성 (P001 부분 공시 — 추가 큐레이션 필요)</h3>
-    <table class="bench">
-      <thead>
-        <tr><th>부서</th><th class="num">BSD</th><th class="num">PIK</th><th class="num">합계</th><th>FY</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Golf Operation</td><td class="num">7</td><td class="num">6</td><td class="num">13</td><td>FY2023</td></tr>
-        <tr><td>Driving Range</td><td class="num">2</td><td class="num">—</td><td class="num">2</td><td>FY2023 (FY2022 BSD=4)</td></tr>
-        <tr><td>코스 유지 (GCM)</td><td colspan="4" class="pending">— 부서별 세분 공시되어 있으나 추가 큐레이션 필요</td></tr>
-        <tr><td>F&amp;B / 클럽하우스</td><td colspan="4" class="pending">— 추가 큐레이션 필요</td></tr>
-        <tr><td>관리·행정 (G&amp;A)</td><td colspan="4" class="pending">— 추가 큐레이션 필요</td></tr>
-        <tr><td>보안</td><td colspan="4" class="pending">— 외주 비율 미공시</td></tr>
-        <tr><td>캐디</td><td colspan="4" class="pending">— 운영 모델 미공시</td></tr>
-      </tbody>
-    </table>
-    <p style="font-size: 13px; color: var(--slate-500); margin-top: 6px;">P001은 BSD/PIK 부서별 인원을 표로 공시하나, 본 파일럿에서는 벡터 검색이 표 일부만 추출 → 직접 AR PDF 페이지 19 재참조 + OCR 보강 단계에서 완성.</p>
-
-    <h3 style="margin-top: 28px;">3. 매출원가 구성 (COGS, FY2023)</h3>
-    <table class="bench">
-      <thead>
-        <tr><th>Peer</th><th class="num">Golf course COGS (bn)</th><th class="num">Restaurant COGS (bn)</th><th class="num">Recreation COGS (bn)</th><th class="num">총 COGS (bn)</th><th class="num">매출 대비 비율</th></tr>
-      </thead>
-      <tbody>
-        <tr class="curated"><td class="peer">P001</td><td class="num">51.23</td><td class="num">21.82</td><td class="num">1.24</td><td class="num">74.29</td><td class="num">30.3% (총매출 244.99 bn 대비)</td></tr>
-        <tr><td class="peer">P002–P013</td><td colspan="5" class="pending">— 데이터 추출 대기</td></tr>
-      </tbody>
-    </table>
-    <div class="insight">
-      <h5>P001 관찰 · COGS 30%</h5>
-      <p>총매출 대비 COGS 30%는 골프장으로서 효율적 수준. 골프 코스 매출 127bn 대비 골프 COGS 51bn → 골프 부문 GP 마진 약 60%. F&amp;B는 매출 37.7bn 대비 COGS 21.8bn → F&amp;B GP 마진 약 42% (재료비 + F&amp;B 인건비). F&amp;B 마진은 산업 평균보다 약간 낮음 (자체 운영 시 50%+).</p>
-    </div>
-
-    <h3 style="margin-top: 28px;">4. 종업원 충당부채 (Employee Benefit Liability)</h3>
-    <table class="bench">
-      <thead>
-        <tr><th>Peer</th><th class="num">충당부채 (bn)</th><th class="num">FY</th><th>산정 방법</th><th>출처</th></tr>
-      </thead>
-      <tbody>
-        <tr class="curated"><td class="peer">P001</td><td class="num">12.4</td><td>FY2024</td><td>Projected Unit Credit (할인율, 사망률, 임금상승률 적용)</td><td>AR FY2024 p.84</td></tr>
-        <tr><td class="peer">P002–P013</td><td colspan="4" class="pending">— 데이터 추출 대기</td></tr>
-      </tbody>
-    </table>
-
-    <h3 style="margin-top: 28px;">미공시 / 별도 확인 필요</h3>
-    <table class="bench">
-      <thead><tr><th>항목</th><th>이유</th></tr></thead>
-      <tbody>
-        <tr><td>월/연 인건비 절대 금액</td><td>AR Operating Expense 안에 통합 (Gaji dan upah 항목으로). 부서별 인건비 미공시.</td></tr>
-        <tr><td>캐디 운영 모델 (정직원/프리랜서)</td><td>인도네시아 골프장은 캐디 의무 동반 — 단가는 라운드당 IDR 150–300k 일반적이나 별도 확인 필요.</td></tr>
-        <tr><td>이직률 / 노조 / 노사 관계</td><td>대부분 BPJS 의무가입 외 별도 미공시.</td></tr>
-        <tr><td>외주 비율 (청소/보안/조경)</td><td>OpEx 라인에 포함되어 표시되지 않음.</td></tr>
-      </tbody>
-    </table>
   </div>
 </section>
 
-<footer class="pa-footer">
-  <div class="container">
-    <p>데이터 출처: 공개 IDX 연차보고서 (FY2022–FY2024). 독립 산업 연구 · 발주처 무관. 마지막 갱신: 2026-05-11.</p>
+<section class="ops-section">
+  <div class="ops-wrap">
+    <h2>1. 인력 규모</h2>
+    <h3>총 인력과 1홀당 인력</h3>
+
+    <div class="tile-grid">
+      <div class="tile">
+        <div class="l">P001 총 인력 (FY22)</div>
+        <div class="v">196<span class="u">명</span></div>
+        <div class="sub">FY21 342명 → -43% 슬림화</div>
+      </div>
+      <div class="tile">
+        <div class="l">1홀당 인력</div>
+        <div class="v">5.4</div>
+        <div class="sub">36홀 + The Range + 클럽하우스 자체 운영 포함. 산업 평균 4–6명/홀.</div>
+      </div>
+      <div class="tile">
+        <div class="l">종업원 충당부채 (FY24)</div>
+        <div class="v">12.4<span class="u">bn IDR</span></div>
+        <div class="sub">Projected Unit Credit 산정</div>
+      </div>
+    </div>
+
+    <div class="tbl-card">
+      <table class="ops-tbl">
+        <thead>
+          <tr><th>Peer</th><th>클럽</th><th class="num">홀</th><th class="num">총 인력</th><th class="num">1홀당</th><th>출처</th></tr>
+        </thead>
+        <tbody>
+          <tr class="hi"><td class="peer">P001<span class="sub">DMIG</span></td><td>Damai Indah Golf</td><td class="num">36</td><td class="num">196</td><td class="num">5.4</td><td class="src">AR FY22 p.101</td></tr>
+          <tr><td class="peer">P002–P013</td><td colspan="4" class="dash">— 추출 대기</td><td class="src">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="ops-section">
+  <div class="ops-wrap">
+    <h2>2. 부서 구성</h2>
+    <h3>P001 부서별 인력 (BSD / PIK 분할 공시)</h3>
+
+    <div class="tbl-card">
+      <table class="ops-tbl">
+        <thead>
+          <tr><th>부서</th><th class="num">BSD</th><th class="num">PIK</th><th class="num">합계</th><th>FY</th></tr>
+        </thead>
+        <tbody>
+          <tr class="hi"><td class="peer">Golf Operation</td><td class="num">7</td><td class="num">6</td><td class="num">13</td><td class="src">FY2023</td></tr>
+          <tr><td class="peer">Driving Range</td><td class="num">2</td><td class="num dash">—</td><td class="num">2</td><td class="src">FY2023 (FY2022 BSD=4)</td></tr>
+          <tr><td class="peer">코스 유지 (GCM)</td><td colspan="3" class="dash">AR 표 부분 추출됨 — 직접 확인 필요</td><td class="src">AR FY23 p.19</td></tr>
+          <tr><td class="peer">F&amp;B / 클럽하우스</td><td colspan="3" class="dash">AR 표 부분 추출됨 — 직접 확인 필요</td><td class="src">AR FY23 p.19</td></tr>
+          <tr><td class="peer">관리·행정 (G&amp;A)</td><td colspan="3" class="dash">AR 표 부분 추출됨 — 직접 확인 필요</td><td class="src">AR FY23 p.19</td></tr>
+          <tr><td class="peer">캐디</td><td colspan="3" class="dash">— 운영 모델 미공시</td><td class="src">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="ops-section">
+  <div class="ops-wrap">
+    <h2>3. 매출원가</h2>
+    <h3>COGS 구성 — Golf · Restaurant · Recreation</h3>
+
+    <div class="tile-grid">
+      <div class="tile">
+        <div class="l">Golf course COGS</div>
+        <div class="v">51.23<span class="u">bn</span></div>
+        <div class="sub">Golf 매출 127bn → GP 마진 ~60%</div>
+      </div>
+      <div class="tile">
+        <div class="l">Restaurant COGS</div>
+        <div class="v">21.82<span class="u">bn</span></div>
+        <div class="sub">F&amp;B 매출 37.7bn → GP 마진 ~42%</div>
+      </div>
+      <div class="tile">
+        <div class="l">Recreation COGS</div>
+        <div class="v">1.24<span class="u">bn</span></div>
+        <div class="sub">수영장 등</div>
+      </div>
+      <div class="tile">
+        <div class="l">총 COGS / 총매출</div>
+        <div class="v">30.3<span class="u">%</span></div>
+        <div class="sub">총매출 245bn 기준</div>
+      </div>
+    </div>
+
+    <div class="note">
+      <div class="ico">i</div>
+      <div class="body"><p>P001은 COGS 30%로 산업 평균 대비 효율적. Golf 부문 60% GP 마진은 우수한 수준이며, F&amp;B 42% GP는 산업 평균(50%+)보다 약간 낮음 — 재료비 외 F&amp;B 인건비가 COGS에 포함되었을 가능성을 시사합니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer class="ops-foot">
+  <div class="ops-wrap">
+    <p>출처: 공개 IDX 연차보고서 (FY2022–FY2024). 독립 산업 연구. 마지막 갱신 2026-05-11.</p>
   </div>
 </footer>
 

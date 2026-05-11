@@ -1,0 +1,277 @@
+/* Operations Benchmark — dedicated styles. Built on top of peer-style.css. */
+
+:root {
+  --ops-bg: #fafaf7;
+  --ops-surface: #ffffff;
+  --ops-ink: #111111;
+  --ops-ink-soft: #4b4b4b;
+  --ops-muted: #8a8a8a;
+  --ops-line: #ebe9e0;
+  --ops-line-strong: #d4d0c0;
+  --ops-green: #2d5016;
+  --ops-green-soft: #4a7c30;
+  --ops-green-tint: #e8f0e2;
+  --ops-accent: #c08a2e;
+  --ops-danger: #b91c1c;
+  --ops-cite: #6b7280;
+  --ops-row-hi: #fbf9ed;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0; padding: 0;
+  background: var(--ops-bg);
+  color: var(--ops-ink);
+  font-family: 'Pretendard', 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--ops-green); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.ops-wrap { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
+
+/* ============== Header ============== */
+.ops-head {
+  background: var(--ops-surface);
+  border-bottom: 1px solid var(--ops-line);
+  padding: 18px 0;
+  position: sticky; top: 0; z-index: 10;
+  backdrop-filter: blur(8px);
+}
+.ops-head-row { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+.ops-brand { display: flex; align-items: center; gap: 10px; }
+.ops-brand .mark {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--ops-green); color: white;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+}
+.ops-brand .name { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; color: var(--ops-ink); }
+.ops-brand .sub  { font-size: 12px; color: var(--ops-muted); margin-top: 1px; letter-spacing: 0.01em; }
+.ops-nav { display: flex; gap: 4px; flex-wrap: wrap; }
+.ops-nav a {
+  padding: 8px 14px;
+  font-size: 14px; font-weight: 500;
+  color: var(--ops-ink-soft);
+  border-radius: 999px;
+  transition: background 0.15s, color 0.15s;
+}
+.ops-nav a:hover { background: var(--ops-green-tint); color: var(--ops-green); text-decoration: none; }
+.ops-nav a.active { background: var(--ops-green); color: white; }
+.ops-nav a.back { color: var(--ops-muted); padding-left: 6px; padding-right: 6px; }
+
+/* ============== Hero ============== */
+.ops-hero {
+  background: linear-gradient(180deg, #fff 0%, var(--ops-bg) 100%);
+  padding: 72px 0 56px;
+  border-bottom: 1px solid var(--ops-line);
+}
+.ops-hero .eyebrow {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.14em;
+  color: var(--ops-green); text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.ops-hero h1 {
+  font-size: 44px; font-weight: 700; line-height: 1.1;
+  letter-spacing: -0.025em; color: var(--ops-ink);
+  margin: 0 0 16px;
+  max-width: 860px;
+}
+.ops-hero .lede {
+  font-size: 17px; line-height: 1.6; color: var(--ops-ink-soft);
+  max-width: 720px; margin: 0;
+}
+
+/* Hero — big number variant for category pages */
+.ops-hero-num { padding: 64px 0 48px; }
+.ops-hero-num .row { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 48px; align-items: end; }
+.ops-hero-num h1 { font-size: 38px; margin: 0 0 14px; }
+.ops-hero-num .lede { font-size: 15px; }
+.ops-hero-num .bignum-block { text-align: right; }
+.ops-hero-num .bignum { font-size: 80px; font-weight: 700; line-height: 0.95; color: var(--ops-green); letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
+.ops-hero-num .bignum .u { font-size: 22px; font-weight: 500; color: var(--ops-ink-soft); margin-left: 8px; }
+.ops-hero-num .biglabel { font-size: 13px; color: var(--ops-muted); margin-top: 6px; letter-spacing: 0.04em; text-transform: uppercase; font-weight: 600; }
+
+@media (max-width: 760px) {
+  .ops-hero-num .row { grid-template-columns: 1fr; gap: 24px; }
+  .ops-hero-num .bignum-block { text-align: left; }
+  .ops-hero-num .bignum { font-size: 64px; }
+  .ops-hero h1, .ops-hero-num h1 { font-size: 32px; }
+}
+
+/* ============== Section ============== */
+.ops-section { padding: 64px 0; }
+.ops-section + .ops-section { padding-top: 0; }
+.ops-section h2 {
+  font-size: 13px; font-weight: 700; letter-spacing: 0.14em;
+  color: var(--ops-muted); text-transform: uppercase;
+  margin: 0 0 8px;
+}
+.ops-section h3 {
+  font-size: 26px; font-weight: 700; line-height: 1.25;
+  color: var(--ops-ink); letter-spacing: -0.02em;
+  margin: 0 0 24px;
+}
+.ops-section p { color: var(--ops-ink-soft); font-size: 15px; line-height: 1.65; }
+.ops-section p.lede { font-size: 16px; max-width: 760px; margin: 0 0 24px; }
+
+/* ============== Category cards (랜딩 한눈에) ============== */
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 28px;
+}
+.cat-card {
+  background: var(--ops-surface);
+  border: 1px solid var(--ops-line);
+  border-radius: 14px;
+  padding: 28px 28px 24px;
+  display: flex; flex-direction: column; gap: 14px;
+  text-decoration: none; color: inherit;
+  transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+.cat-card:hover {
+  text-decoration: none;
+  border-color: var(--ops-green-soft);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(45, 80, 22, 0.08);
+}
+.cat-card .badge {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+  color: var(--ops-green); text-transform: uppercase;
+}
+.cat-card h4 { font-size: 20px; font-weight: 700; color: var(--ops-ink); margin: 0; letter-spacing: -0.015em; }
+.cat-card .desc { font-size: 14px; color: var(--ops-ink-soft); line-height: 1.55; margin: 0; flex: 1; }
+.cat-card .arrow { font-size: 14px; color: var(--ops-green); font-weight: 600; margin-top: auto; }
+.cat-card .arrow::after { content: " →"; }
+
+/* ============== Big number row (hero alt) ============== */
+.bignum-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 32px;
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid var(--ops-line);
+}
+.bignum-row .item .v {
+  font-size: 36px; font-weight: 700; color: var(--ops-ink);
+  letter-spacing: -0.025em; line-height: 1; font-variant-numeric: tabular-nums;
+}
+.bignum-row .item .v .u { font-size: 14px; font-weight: 500; color: var(--ops-muted); margin-left: 6px; }
+.bignum-row .item .l { font-size: 12px; color: var(--ops-muted); margin-top: 6px; letter-spacing: 0.04em; text-transform: uppercase; font-weight: 600; }
+
+/* ============== Stat tiles (in-page) ============== */
+.tile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin: 24px 0 32px;
+}
+.tile {
+  background: var(--ops-surface);
+  border: 1px solid var(--ops-line);
+  border-radius: 12px;
+  padding: 22px;
+}
+.tile .l { font-size: 12px; color: var(--ops-muted); letter-spacing: 0.04em; text-transform: uppercase; font-weight: 600; }
+.tile .v { font-size: 30px; font-weight: 700; color: var(--ops-ink); letter-spacing: -0.02em; line-height: 1.1; margin-top: 8px; font-variant-numeric: tabular-nums; }
+.tile .v .u { font-size: 14px; font-weight: 500; color: var(--ops-muted); margin-left: 4px; }
+.tile .sub { font-size: 12.5px; color: var(--ops-muted); margin-top: 8px; line-height: 1.5; }
+
+/* ============== Table ============== */
+table.ops-tbl {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--ops-surface);
+  font-size: 14px;
+}
+table.ops-tbl thead th {
+  text-align: left; padding: 14px 16px;
+  font-size: 11.5px; font-weight: 700; letter-spacing: 0.06em;
+  color: var(--ops-muted); text-transform: uppercase;
+  border-bottom: 1px solid var(--ops-line-strong);
+  background: transparent;
+}
+table.ops-tbl tbody td {
+  padding: 16px;
+  border-bottom: 1px solid var(--ops-line);
+  vertical-align: middle;
+  color: var(--ops-ink);
+}
+table.ops-tbl tbody tr:last-child td { border-bottom: none; }
+table.ops-tbl tbody tr.hi { background: var(--ops-row-hi); }
+table.ops-tbl tbody tr:hover { background: var(--ops-row-hi); }
+table.ops-tbl .num { text-align: right; font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; }
+table.ops-tbl .peer { font-weight: 700; color: var(--ops-ink); font-size: 13.5px; }
+table.ops-tbl .sub  { color: var(--ops-muted); font-size: 12.5px; display: block; margin-top: 2px; font-weight: 400; }
+table.ops-tbl .dash { color: var(--ops-muted); font-weight: 400; }
+.tbl-card {
+  background: var(--ops-surface);
+  border: 1px solid var(--ops-line);
+  border-radius: 14px;
+  overflow: hidden;
+  margin: 16px 0 0;
+}
+
+/* ============== Source line ============== */
+.src { color: var(--ops-cite); font-size: 12px; }
+
+/* ============== Insight (subtle, integrated) ============== */
+.note {
+  background: var(--ops-green-tint);
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin: 20px 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  align-items: start;
+}
+.note .ico {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--ops-green); color: white;
+  font-size: 12px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 2px;
+}
+.note .body p { margin: 0; font-size: 14px; line-height: 1.6; color: var(--ops-ink); }
+.note .body strong { color: var(--ops-green); }
+.note.danger { background: #fef2f2; }
+.note.danger .ico { background: var(--ops-danger); }
+.note.danger .body strong { color: var(--ops-danger); }
+
+/* ============== Risk row (key:value cards) ============== */
+.kv-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+.kv {
+  background: var(--ops-surface);
+  border: 1px solid var(--ops-line);
+  border-radius: 12px;
+  padding: 18px 22px;
+}
+.kv .k { font-size: 12px; color: var(--ops-muted); letter-spacing: 0.04em; text-transform: uppercase; font-weight: 600; }
+.kv .v { font-size: 17px; color: var(--ops-ink); font-weight: 600; margin-top: 6px; line-height: 1.4; }
+.kv .v.small { font-size: 14px; font-weight: 500; }
+.kv .src { margin-top: 8px; display: block; }
+
+/* ============== Footer ============== */
+.ops-foot {
+  background: var(--ops-ink);
+  color: rgba(255,255,255,0.7);
+  padding: 32px 0;
+  margin-top: 96px;
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+.ops-foot p { margin: 0; }
+.ops-foot a { color: rgba(255,255,255,0.85); }
