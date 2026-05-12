@@ -6,7 +6,32 @@
 <title>시설 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260512c52" />
+<link rel="stylesheet" href="ops-style.css?v=20260512c54" />
+<style>
+  .ast-tab-bar { display:flex; gap:6px; flex-wrap:wrap; margin:16px 0 20px 0; border-bottom:2px solid var(--ops-line); }
+  .ast-tab { padding:10px 18px; cursor:pointer; font-size:13px; font-weight:600; color:var(--ops-ink-soft); border-bottom:3px solid transparent; margin-bottom:-2px; }
+  .ast-tab.active { color:var(--ops-green); border-bottom-color:var(--ops-green); }
+  .ast-panel { display:none; }
+  .ast-panel.active { display:block; }
+  /* Sortable headers */
+  .sortable { cursor:pointer; user-select:none; position:relative; padding-right:18px !important; }
+  .sortable:hover { background:rgba(45,80,22,0.06); }
+  .sortable::after { content:'⇅'; position:absolute; right:6px; top:50%; transform:translateY(-50%); opacity:0.25; font-size:10px; }
+  .sortable.asc::after { content:'▲'; opacity:1; color:var(--ops-green); }
+  .sortable.desc::after { content:'▼'; opacity:1; color:var(--ops-green); }
+  /* Heat bar inside cell */
+  .heat { position:relative; }
+  .heat-bar { position:absolute; left:4px; right:4px; bottom:2px; height:2px; border-radius:1px; }
+  /* Disclosure badge */
+  .discl-summary { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0; font-size:11.5px; color:var(--ops-ink-soft); }
+  .discl-pill { display:inline-flex; align-items:center; gap:5px; padding:3px 9px; border:1px solid var(--ops-line); border-radius:999px; background:var(--ops-surface); }
+  .discl-dot { width:8px; height:8px; border-radius:50%; display:inline-block; }
+  .discl-dot.full { background:#16a34a; }
+  .discl-dot.partial { background:#f59e0b; }
+  .discl-dot.minimal { background:#b91c1c; }
+  /* Term tooltip */
+  .tip { border-bottom:1px dotted var(--ops-muted); cursor:help; }
+</style>
 </head>
 <body>
 <header class="ops-head">
@@ -24,184 +49,378 @@
 
 <section class="ops-hero">
   <div class="ops-wrap">
-    <h1>시설 구성 비교</h1>
-    <p class="lede">13 peer 골프 코스 시설 구성 한 표.</p>
+    <h1>시설 · 자산</h1>
+    <p class="lede">물리적 시설 구성 + 재무·자산 효율성. 13 peer 한 표.</p>
+    <div class="ast-tab-bar">
+      <div class="ast-tab active" data-panel="phy">① 시설 구성</div>
+      <div class="ast-tab" data-panel="prod">② 자산 생산성 (FY2024)</div>
+    </div>
   </div>
 </section>
 
 <section class="ops-section">
   <div class="ops-wrap">
-    <div class="tbl-card scroll-x">
-      <table class="ops-tbl">
-        <thead>
-          <tr>
-            <th>Peer</th>
-            <th>분류</th>
-            <th>클럽 · 지역</th>
-            <th class="num">코스 수</th>
-            <th class="num">홀</th>
-            <th class="num">면적 (ha)</th>
-            <th>설계자</th>
-            <th class="num">개장년</th>
-            <th class="num">정규직</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="peer"><a href="clubs/dmig.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">DMIG</a><span class="peer-tag peer-tag-pp">🟦 Pure-play</span></td>
-            <td>Pure-play</td>
-            <td>Damai Indah Golf — BSD + PIK</td>
-            <td class="num">2</td>
-            <td class="num">36</td>
-            <td class="num">156</td>
-            <td>—</td>
-            <td class="num">—</td>
-            <td class="num">198</td>
-          </tr>
-          <tr>
-            <td class="peer"><a href="clubs/pipg.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">PIPG</a><span class="peer-tag peer-tag-pp">🟦 Pure-play</span></td>
-            <td>Pure-play</td>
-            <td>Pondok Indah Padang Golf — South Jakarta</td>
-            <td class="num">1</td>
-            <td class="num">18</td>
-            <td class="num">53.01</td>
-            <td>—</td>
-            <td class="num">—</td>
-            <td class="num">254</td>
-          </tr>
-          <tr>
-            <td class="peer"><a href="clubs/golf.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">GOLF</a><span class="peer-tag peer-tag-resort">🟨 Resort</span></td>
-            <td>Resort</td>
-            <td>New Kuta (Bali) + Black Rocks (Belitung BGR)</td>
-            <td class="num">2 + 1*</td>
-            <td class="num">36 + 18</td>
-            <td class="num">171.2 + 72.2*</td>
-            <td>—</td>
-            <td class="num">—</td>
-            <td class="num">—</td>
-          </tr>
-          <tr>
-            <td class="peer"><a href="clubs/mdln.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">MDLN</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
-            <td>Township</td>
-            <td>Modern Golf & Country Club — Tangerang</td>
-            <td class="num">1</td>
-            <td class="num">18</td>
-            <td class="num">—</td>
-            <td>Peter Thomson</td>
-            <td class="num">—</td>
-            <td class="num">—</td>
-          </tr>
-          <tr>
-            <td class="peer"><a href="clubs/kija.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">KIJA</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
-            <td>Township</td>
-            <td>Jababeka Golf + Borobudur International</td>
-            <td class="num">2</td>
-            <td class="num">—</td>
-            <td class="num">—</td>
-            <td>—</td>
-            <td class="num">—</td>
-            <td class="num">—</td>
-          </tr>
-          <tr>
-            <td class="peer"><a href="clubs/smdm.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">SMDM</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
-            <td>Township</td>
-            <td>Rancamaya Golf Estate — Bogor</td>
-            <td class="num">1</td>
-            <td class="num">18</td>
-            <td class="num">400 (estate)</td>
-            <td>—</td>
-            <td class="num">1989</td>
-            <td class="num">—</td>
-          </tr>
-          <tr>
-            <td class="peer"><a href="clubs/kpig.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">KPIG</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
-            <td>Township</td>
-            <td>Trump International Lido + Phil Mickelson (planned)</td>
-            <td class="num">1 + 1**</td>
-            <td class="num">18</td>
-            <td class="num">83</td>
-            <td>Ernie Els / Phil Mickelson</td>
-            <td class="num">2024</td>
-            <td class="num">—</td>
-          </tr>
-          <tr>
-            <td class="peer"><a href="clubs/smra.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">SMRA</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
-            <td>Township</td>
-            <td>Gading Raya Padang Golf — Serpong</td>
-            <td class="num">1</td>
-            <td class="num">18</td>
-            <td class="num">—</td>
-            <td>—</td>
-            <td class="num">2014</td>
-            <td class="num">—</td>
-          </tr>
-          <tr>
-            <td class="peer"><a href="clubs/bsde.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">BSDE</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
-            <td>Township</td>
-            <td>Palm Springs Karawang + Batam (Sinarmas Land)</td>
-            <td class="num">2</td>
-            <td class="num">—</td>
-            <td class="num">—</td>
-            <td>—</td>
-            <td class="num">—</td>
-            <td class="num">—</td>
-          </tr>
-          <tr>
-            <td class="peer"><a href="clubs/ctra.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">CTRA</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
-            <td>Township</td>
-            <td>Ciputra Surabaya + Taman Dayu (Pasuruan)</td>
-            <td class="num">2</td>
-            <td class="num">36</td>
-            <td class="num">—</td>
-            <td>—</td>
-            <td class="num">—</td>
-            <td class="num">—</td>
-          </tr>
-          <tr>
-            <td class="peer"><a href="clubs/elty.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">ELTY</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
-            <td>Township</td>
-            <td>Gunung Geulis + Klub Golf Bogor Raya</td>
-            <td class="num">2</td>
-            <td class="num">36</td>
-            <td class="num">—</td>
-            <td>—</td>
-            <td class="num">—</td>
-            <td class="num">—</td>
-          </tr>
-          <tr>
-            <td class="peer"><a href="clubs/lpkr.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">LPKR</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
-            <td>Township</td>
-            <td>Imperial Klub Golf — Lippo Karawaci</td>
-            <td class="num">1</td>
-            <td class="num">18</td>
-            <td class="num">—</td>
-            <td>—</td>
-            <td class="num">—</td>
-            <td class="num">—</td>
-          </tr>
-          <tr>
-            <td class="peer"><a href="clubs/pwon.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">PWON</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
-            <td>Township</td>
-            <td>Pakuwon Golf & Family Club — Surabaya</td>
-            <td class="num">1</td>
-            <td class="num">18</td>
-            <td class="num">—</td>
-            <td>—</td>
-            <td class="num">—</td>
-            <td class="num">—</td>
-          </tr>
-        </tbody>
-      </table>
+
+    <!-- TAB 1: 시설 구성 -->
+    <div class="ast-panel active" id="panel-phy">
+      <div class="tbl-card scroll-x">
+        <table class="ops-tbl">
+          <thead>
+            <tr>
+              <th>Peer</th>
+              <th>분류</th>
+              <th>클럽 · 지역</th>
+              <th class="num">코스 수</th>
+              <th class="num">홀</th>
+              <th class="num">면적 (ha)</th>
+              <th>설계자</th>
+              <th class="num">개장년</th>
+              <th class="num">정규직</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="peer"><a href="clubs/dmig.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">DMIG</a><span class="peer-tag peer-tag-pp">🟦 Pure-play</span></td>
+              <td>Pure-play</td>
+              <td>Damai Indah Golf — BSD + PIK</td>
+              <td class="num">2</td>
+              <td class="num">36</td>
+              <td class="num">156</td>
+              <td>—</td>
+              <td class="num">—</td>
+              <td class="num">198</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/pipg.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">PIPG</a><span class="peer-tag peer-tag-pp">🟦 Pure-play</span></td>
+              <td>Pure-play</td>
+              <td>Pondok Indah Padang Golf — South Jakarta</td>
+              <td class="num">1</td>
+              <td class="num">18</td>
+              <td class="num">53.01</td>
+              <td>—</td>
+              <td class="num">—</td>
+              <td class="num">254</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/golf.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">GOLF</a><span class="peer-tag peer-tag-resort">🟨 Resort</span></td>
+              <td>Resort</td>
+              <td>New Kuta (Bali) + Black Rocks (Belitung BGR)</td>
+              <td class="num">2 + 1*</td>
+              <td class="num">36 + 18</td>
+              <td class="num">171.2 + 72.2*</td>
+              <td>—</td>
+              <td class="num">—</td>
+              <td class="num">—</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/mdln.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">MDLN</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
+              <td>Township</td>
+              <td>Modern Golf & Country Club — Tangerang</td>
+              <td class="num">1</td>
+              <td class="num">18</td>
+              <td class="num">—</td>
+              <td>Peter Thomson</td>
+              <td class="num">—</td>
+              <td class="num">—</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/kija.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">KIJA</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
+              <td>Township</td>
+              <td>Jababeka Golf + Borobudur International</td>
+              <td class="num">2</td>
+              <td class="num">—</td>
+              <td class="num">—</td>
+              <td>—</td>
+              <td class="num">—</td>
+              <td class="num">—</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/smdm.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">SMDM</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
+              <td>Township</td>
+              <td>Rancamaya Golf Estate — Bogor</td>
+              <td class="num">1</td>
+              <td class="num">18</td>
+              <td class="num">400 (estate)</td>
+              <td>—</td>
+              <td class="num">1989</td>
+              <td class="num">—</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/kpig.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">KPIG</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
+              <td>Township</td>
+              <td>Trump International Lido + Phil Mickelson (planned)</td>
+              <td class="num">1 + 1**</td>
+              <td class="num">18</td>
+              <td class="num">83</td>
+              <td>Ernie Els / Phil Mickelson</td>
+              <td class="num">2024</td>
+              <td class="num">—</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/smra.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">SMRA</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
+              <td>Township</td>
+              <td>Gading Raya Padang Golf — Serpong</td>
+              <td class="num">1</td>
+              <td class="num">18</td>
+              <td class="num">—</td>
+              <td>—</td>
+              <td class="num">2014</td>
+              <td class="num">—</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/bsde.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">BSDE</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
+              <td>Township</td>
+              <td>Palm Springs Karawang + Batam (Sinarmas Land)</td>
+              <td class="num">2</td>
+              <td class="num">—</td>
+              <td class="num">—</td>
+              <td>—</td>
+              <td class="num">—</td>
+              <td class="num">—</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/ctra.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">CTRA</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
+              <td>Township</td>
+              <td>Ciputra Surabaya + Taman Dayu (Pasuruan)</td>
+              <td class="num">2</td>
+              <td class="num">36</td>
+              <td class="num">—</td>
+              <td>—</td>
+              <td class="num">—</td>
+              <td class="num">—</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/elty.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">ELTY</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
+              <td>Township</td>
+              <td>Gunung Geulis + Klub Golf Bogor Raya</td>
+              <td class="num">2</td>
+              <td class="num">36</td>
+              <td class="num">—</td>
+              <td>—</td>
+              <td class="num">—</td>
+              <td class="num">—</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/lpkr.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">LPKR</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
+              <td>Township</td>
+              <td>Imperial Klub Golf — Lippo Karawaci</td>
+              <td class="num">1</td>
+              <td class="num">18</td>
+              <td class="num">—</td>
+              <td>—</td>
+              <td class="num">—</td>
+              <td class="num">—</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/pwon.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">PWON</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
+              <td>Township</td>
+              <td>Pakuwon Golf & Family Club — Surabaya</td>
+              <td class="num">1</td>
+              <td class="num">18</td>
+              <td class="num">—</td>
+              <td>—</td>
+              <td class="num">—</td>
+              <td class="num">—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="discl-summary">
+        <span>📊 시설 공시 완성도:</span>
+        <span class="discl-pill"><span class="discl-dot full"></span>설계자·개장년·정규직 모두 공시: <strong>0/13</strong></span>
+        <span class="discl-pill"><span class="discl-dot partial"></span>부분 공시 (1~2개): <strong>5/13</strong> (DMIG, PIPG, MDLN, SMDM, KPIG, SMRA)</span>
+        <span class="discl-pill"><span class="discl-dot minimal"></span>설계자·개장년·정규직 모두 미공시: <strong>7/13</strong></span>
+      </div>
     </div>
+
+    <!-- TAB 2: 자산 생산성 -->
+    <div class="ast-panel" id="panel-prod">
+      <h2 style="font-size:17px; margin:0 0 10px 0;">자산 생산성 FY2024 — 그룹 P&amp;L · 시설 단위 정규화</h2>
+      <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">
+        <span class="tip" title="자산회전율 = 매출 / 총자산 — 자산 1단위가 만든 매출(IDR/IDR)">자산회전율</span> ·
+        <span class="tip" title="ROA = 순이익 / 총자산 — 자산이 만든 순이익률">ROA</span> ·
+        <span class="tip" title="부채비율 = 총부채 / 총자산">부채비율</span> ·
+        면적·홀 단위로 정규화한 매출·자산 밀도. <strong>헤더 클릭 정렬</strong>, 셀 하단 막대는 peer 그룹 내 상대 순위.
+        ⚠ 매출/자산 비율은 township은 골프 외 자산 포함이라 단순 비교는 주의 — Pure-play(DMIG/PIPG) 끼리 비교가 가장 정밀.
+      </p>
+      <div class="tbl-card scroll-x">
+        <table class="ops-tbl" id="prod-tbl">
+          <thead>
+            <tr>
+              <th>Peer</th>
+              <th>Tier</th>
+              <th class="num">홀</th>
+              <th class="num">면적 (ha)</th>
+              <th class="num sortable" data-sort="ta">총자산</th>
+              <th class="num sortable" data-sort="rev">매출</th>
+              <th class="num sortable desc" data-sort="turnover">자산회전율</th>
+              <th class="num sortable" data-sort="roa">ROA</th>
+              <th class="num sortable" data-sort="debt">부채비율</th>
+              <th class="num sortable" data-sort="taPerHole">홀당 자산</th>
+              <th class="num sortable" data-sort="taPerHa">ha당 자산</th>
+            </tr>
+          </thead>
+          <tbody id="prod-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <footer class="ops-foot">
   <div class="ops-wrap">
-    <p>* GOLF associate (BGR) 비연결. ** KPIG Phil Mickelson 코스 계획 단계. — 미공시.</p>
+    <p>* GOLF associate (BGR) 비연결. ** KPIG Phil Mickelson 코스 계획 단계. — 미공시. FY2024 연결 P&amp;L + 대차대조표.</p>
   </div>
 </footer>
 
 <script src="operations.js?v=20260512c2" defer></script>
+<script>
+// FY2024 financial data from company_financials_5y.json (IDR)
+const FIN_2024 = {"DMIG": {"rev": 253102440194, "np": 82404512711, "ta": 690534136219, "tl": 187722459859}, "PIPG": {"rev": 197570521436, "np": 55903815772, "ta": 446060061475, "tl": 88175251972}, "GOLF": {"rev": 197993814652, "np": 67574993523, "ta": 8637499132483, "tl": 656711721232}, "MDLN": {"rev": 1017570000000, "np": -690272000000, "ta": 13561474000000, "tl": 10108095000000}, "KIJA": {"rev": 4602648000000, "np": 363308000000, "ta": 14017356000000, "tl": 6478399000000}, "SMDM": {"rev": 694045000000, "np": 123778000000, "ta": 3462272000000, "tl": 251618000000}, "KPIG": {"rev": 1770144398000, "np": 658629034000, "ta": 35827499061000, "tl": 7312392000000}, "SMRA": {"rev": 10623400000000, "np": 1373400000000, "ta": 33534100000000, "tl": 19701600000000}, "BSDE": {"rev": 13796572149000, "np": 4359063784000, "ta": 76023348887000, "tl": 28704021000000}, "CTRA": {"rev": 11187565000000, "np": 2126288000000, "ta": 47022702000000, "tl": 22407372000000}, "ELTY": {"rev": 1208198000000, "np": -68528000000, "ta": 8742017000000, "tl": 2717802000000}, "LPKR": {"rev": 11347979000000, "np": 18746045000000, "ta": 53783859000000, "tl": 22836790000000}, "PWON": {"rev": 6670809000000, "np": 2074731000000, "ta": 35371085000000, "tl": 10629088000000}};
+
+const PEER_META = {
+  DMIG: {name:'Damai Indah Golf', tier:'pp', tier_label:'🟦 Pure-play', holes:36, area:156.0},
+  PIPG: {name:'Pondok Indah Padang Golf', tier:'pp', tier_label:'🟦 Pure-play', holes:18, area:53.01},
+  GOLF: {name:'Intra GolfLink Resorts', tier:'resort', tier_label:'🟨 Resort', holes:36, area:171.2},
+  MDLN: {name:'Modern Golf & Country Club', tier:'twn', tier_label:'🟩 Township', holes:18, area:null},
+  KIJA: {name:'Jababeka Golf', tier:'twn', tier_label:'🟩 Township', holes:null, area:null},
+  SMDM: {name:'Rancamaya Golf Estate', tier:'twn', tier_label:'🟩 Township', holes:18, area:null},
+  KPIG: {name:'Trump International Lido', tier:'twn', tier_label:'🟩 Township', holes:18, area:83.0},
+  SMRA: {name:'Gading Raya Padang Golf', tier:'twn', tier_label:'🟩 Township', holes:18, area:null},
+  BSDE: {name:'Palm Springs Karawang+Batam', tier:'twn', tier_label:'🟩 Township', holes:null, area:null},
+  CTRA: {name:'Ciputra Surabaya+Taman Dayu', tier:'twn', tier_label:'🟩 Township', holes:36, area:null},
+  ELTY: {name:'Gunung Geulis+Bogor Raya', tier:'twn', tier_label:'🟩 Township', holes:36, area:null},
+  LPKR: {name:'Imperial Klub Golf', tier:'twn', tier_label:'🟩 Township', holes:18, area:null},
+  PWON: {name:'Pakuwon Golf', tier:'twn', tier_label:'🟩 Township', holes:18, area:null},
+};
+const PEER_ORDER = ['DMIG','PIPG','GOLF','MDLN','KIJA','SMDM','KPIG','SMRA','BSDE','CTRA','ELTY','LPKR','PWON'];
+
+function fmtBn(v) {
+  if (v === null || v === undefined) return '—';
+  if (Math.abs(v) >= 1e12) return (v/1e12).toFixed(2)+'T';
+  if (Math.abs(v) >= 1e9) return (v/1e9).toFixed(1)+'B';
+  if (Math.abs(v) >= 1e6) return (v/1e6).toFixed(0)+'M';
+  return v.toFixed(0);
+}
+function fmtPct(v, dp) {
+  if (v === null || v === undefined) return '—';
+  dp = (dp === undefined) ? 1 : dp;
+  const col = (v >= 0) ? '#16a34a' : '#b91c1c';
+  return `<span style="color:${col}; font-weight:600;">${v.toFixed(dp)}%</span>`;
+}
+function fmtRatio(v) {
+  if (v === null || v === undefined) return '—';
+  return v.toFixed(3);
+}
+function fmtNum(v, dp) {
+  if (v === null || v === undefined) return '—';
+  dp = (dp === undefined) ? 0 : dp;
+  return v.toFixed(dp);
+}
+
+function heatBar(value, min, max, higherBetter){
+  if (value === null || value === undefined || min === max) return '';
+  let t = (value - min) / (max - min);
+  if (!higherBetter) t = 1 - t;
+  let r, g, b;
+  if (t >= 0.5) {
+    const k = (t - 0.5) * 2;
+    r = Math.round(245 + (22 - 245) * k);
+    g = Math.round(158 + (163 - 158) * k);
+    b = Math.round(11 + (74 - 11) * k);
+  } else {
+    const k = t * 2;
+    r = Math.round(185 + (245 - 185) * k);
+    g = Math.round(28 + (158 - 28) * k);
+    b = Math.round(28 + (11 - 28) * k);
+  }
+  const w = (t * 100).toFixed(0);
+  return `<div class="heat-bar" style="width:${w}%; background:rgb(${r},${g},${b});"></div>`;
+}
+
+let sortState = { key: 'turnover', dir: 'desc' };
+
+function computeRows() {
+  return PEER_ORDER.map(t => {
+    const m = PEER_META[t];
+    const f = FIN_2024[t] || {};
+    return {
+      t, m,
+      ta: f.ta, rev: f.rev, np: f.np, tl: f.tl,
+      turnover: (f.rev && f.ta) ? f.rev / f.ta : null,
+      roa: (f.np !== undefined && f.np !== null && f.ta) ? (f.np / f.ta * 100) : null,
+      debt: (f.tl && f.ta) ? (f.tl / f.ta * 100) : null,
+      taPerHole: (f.ta && m.holes) ? f.ta / m.holes : null,
+      taPerHa: (f.ta && m.area) ? f.ta / m.area : null,
+    };
+  });
+}
+
+function renderProd() {
+  const rows = computeRows();
+  const heatMetrics = {
+    turnover: { higher: true },
+    roa: { higher: true },
+    debt: { higher: false },
+    taPerHole: { higher: false },
+    taPerHa: { higher: false },
+  };
+  const stats = {};
+  Object.keys(heatMetrics).forEach(k => {
+    const vals = rows.map(r => r[k]).filter(v => v !== null && v !== undefined);
+    stats[k] = vals.length ? { min: Math.min(...vals), max: Math.max(...vals) } : null;
+  });
+  const sorted = rows.slice();
+  if (sortState.key) {
+    sorted.sort((a,b) => {
+      const va = a[sortState.key]; const vb = b[sortState.key];
+      if (va === null || va === undefined) return 1;
+      if (vb === null || vb === undefined) return -1;
+      return sortState.dir === 'desc' ? (vb - va) : (va - vb);
+    });
+  }
+  const heat = (key, val, fmt) => {
+    const s = stats[key];
+    const bar = (s && val !== null && val !== undefined) ? heatBar(val, s.min, s.max, heatMetrics[key].higher) : '';
+    return `<td class="num heat">${fmt}${bar}</td>`;
+  };
+  document.getElementById('prod-tbody').innerHTML = sorted.map(r => `<tr>
+    <td class="peer"><a href="clubs/${r.t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${r.t}</a></td>
+    <td><span class="peer-tag peer-tag-${r.m.tier}" style="font-size:10px;">${r.m.tier_label}</span></td>
+    <td class="num">${fmtNum(r.m.holes)}</td>
+    <td class="num">${fmtNum(r.m.area, 1)}</td>
+    <td class="num">${fmtBn(r.ta)}</td>
+    <td class="num">${fmtBn(r.rev)}</td>
+    ${heat('turnover', r.turnover, `<strong>${fmtRatio(r.turnover)}</strong>`)}
+    ${heat('roa', r.roa, fmtPct(r.roa))}
+    ${heat('debt', r.debt, fmtPct(r.debt, 1))}
+    ${heat('taPerHole', r.taPerHole, fmtBn(r.taPerHole))}
+    ${heat('taPerHa', r.taPerHa, fmtBn(r.taPerHa))}
+  </tr>`).join('');
+  document.querySelectorAll('#prod-tbl .sortable').forEach(th => {
+    th.classList.remove('asc','desc');
+    if (th.dataset.sort === sortState.key) th.classList.add(sortState.dir);
+  });
+}
+
+(function(){
+  document.querySelectorAll('.ast-tab').forEach(t => t.addEventListener('click', () => {
+    document.querySelectorAll('.ast-tab').forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('.ast-panel').forEach(p => p.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById('panel-' + t.dataset.panel).classList.add('active');
+  }));
+  document.querySelectorAll('#prod-tbl .sortable').forEach(th => {
+    th.addEventListener('click', () => {
+      const k = th.dataset.sort;
+      if (sortState.key === k) sortState.dir = (sortState.dir === 'desc') ? 'asc' : 'desc';
+      else { sortState.key = k; sortState.dir = 'desc'; }
+      renderProd();
+    });
+  });
+  renderProd();
+})();
+</script>
 </body>
 </html>
