@@ -90,6 +90,20 @@ html = '''<!DOCTYPE html>
   .year-btn { padding:6px 14px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:6px; font-size:12.5px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
   .year-btn.active { background:var(--ops-green); color:white; border-color:var(--ops-green); }
   .year-btn:hover:not(.active) { background:rgba(45,80,22,0.05); }
+  /* Sortable headers */
+  .sortable { cursor:pointer; user-select:none; position:relative; padding-right:18px !important; }
+  .sortable:hover { background:rgba(45,80,22,0.06); }
+  .sortable::after { content:'⇅'; position:absolute; right:6px; top:50%; transform:translateY(-50%); opacity:0.25; font-size:10px; }
+  .sortable.asc::after { content:'▲'; opacity:1; color:var(--ops-green); }
+  .sortable.desc::after { content:'▼'; opacity:1; color:var(--ops-green); }
+  /* Heat-map cells — better = greener, worse = redder, null = neutral */
+  .heat { position:relative; }
+  .heat-bar { position:absolute; left:4px; right:4px; bottom:2px; height:2px; border-radius:1px; }
+  /* Term tooltip — dotted underline + native title */
+  .tip { border-bottom:1px dotted var(--ops-muted); cursor:help; }
+  /* Sticky first column on wide tables */
+  .sticky-first th:first-child, .sticky-first td:first-child { position:sticky; left:0; background:var(--ops-surface); z-index:1; box-shadow:1px 0 0 var(--ops-line); }
+  .sticky-first thead th:first-child { background:var(--ops-bg); z-index:2; }
 </style>
 </head>
 <body>
@@ -124,22 +138,27 @@ html = '''<!DOCTYPE html>
 <section class="ops-section">
   <div class="ops-wrap">
     <h2 style="font-size:17px; margin:0 0 14px 0;">① 13-peer 단위 경제 — <span id="yr1">FY2024</span></h2>
-    <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">홀당·ha당 매출 = 골프 부문 매출 ÷ 단위 (Pure-play는 그룹 매출). 1인당 매출·영업이익은 그룹 P&L.</p>
+    <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">
+      홀당·<span class="tip" title="ha = 헥타르 (10,000 m²). 1 ha ≈ 3,025 평">ha</span>당 매출 = 골프 부문 매출 ÷ 단위
+      (<span class="tip" title="Pure-play = 그룹 매출 거의 전부가 골프 사업인 회사 (DMIG, PIPG). Township/Resort에서는 골프 segment 매출만 사용.">Pure-play</span>는 그룹 매출).
+      1인당 매출·영업이익은 그룹 <span class="tip" title="Profit &amp; Loss statement, 손익계산서">P&amp;L</span>.
+      <strong style="margin-left:8px;">💡 헤더 클릭으로 정렬</strong> · <strong>히트맵 막대</strong>: 진할수록 우수 (회색=데이터 없음).
+    </p>
     <div class="tbl-card scroll-x">
-      <table class="ops-tbl">
+      <table class="ops-tbl sticky-first" id="main-table">
         <thead>
           <tr>
             <th>Peer</th>
             <th>그룹명</th>
-            <th class="num">홀</th>
-            <th class="num">면적 (ha)</th>
-            <th class="num">정직원</th>
-            <th class="num">골프 매출</th>
-            <th class="num">홀당 매출</th>
-            <th class="num">ha당 매출</th>
-            <th class="num">1인당 매출</th>
-            <th class="num">영업이익률</th>
-            <th class="num">1인당 영업이익</th>
+            <th class="num sortable" data-sort="holes">홀</th>
+            <th class="num sortable" data-sort="area">면적 (ha)</th>
+            <th class="num sortable" data-sort="emp">정직원</th>
+            <th class="num sortable" data-sort="golfRev">골프 매출</th>
+            <th class="num sortable desc" data-sort="revPerHole">홀당 매출</th>
+            <th class="num sortable" data-sort="revPerHa">ha당 매출</th>
+            <th class="num sortable" data-sort="revPerEmp">1인당 매출</th>
+            <th class="num sortable" data-sort="opMargin">영업이익률</th>
+            <th class="num sortable" data-sort="opPerEmp">1인당 영업이익</th>
           </tr>
         </thead>
         <tbody id="main-tbody"></tbody>
@@ -229,13 +248,11 @@ function fmtPerUnit(rev_bn, divisor){
   return v.toFixed(2) + 'B';
 }
 
-function render(year){
-  // Update year labels
-  ['yr1','yr2','yr3'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = 'FY' + year; });
+// State for sorting (persists across year changes)
+let sortState = { key: 'revPerHole', dir: 'desc' };
 
-  // Section 1: main per-unit table
-  const main = [];
-  PEER_ORDER.forEach(t => {
+function computeMainRows(year){
+  return PEER_ORDER.map(t => {
     const d = PEER_DATA[t];
     const yy = d.yearly[year] || {};
     const golfRev = (d.golf_seg && d.golf_seg[year]) ? d.golf_seg[year] : null;
@@ -246,21 +263,100 @@ function render(year){
     const golfRevBn = golfRev ? golfRev/1e9 : null;
     const grpRevBn = grpRev ? grpRev/1e9 : null;
     const grpOpBn = (grpOp !== null && grpOp !== undefined) ? grpOp/1e9 : null;
-    main.push(`<tr>
-      <td class="peer"><a href="clubs/${t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${t}</a><span class="peer-tag peer-tag-${d.tier}">${d.tier_label}</span></td>
-      <td>${d.name.slice(0,22)}</td>
-      <td class="num">${fmtNum(d.holes)}</td>
-      <td class="num">${fmtNum(d.area, 1)}</td>
-      <td class="num">${fmtNum(emp)}</td>
-      <td class="num">${golfRevBn !== null ? golfRevBn.toFixed(1)+'B' : '—'}</td>
-      <td class="num"><strong>${fmtPerUnit(golfRevBn, d.holes)}</strong></td>
-      <td class="num">${fmtPerUnit(golfRevBn, d.area)}</td>
-      <td class="num">${fmtPerUnit(grpRevBn, emp)}</td>
-      <td class="num">${fmtPct(opMargin)}</td>
-      <td class="num">${fmtPerUnit(grpOpBn, emp)}</td>
-    </tr>`);
+    return {
+      t, d,
+      holes: d.holes, area: d.area, emp,
+      golfRev: golfRevBn,
+      revPerHole: (golfRevBn && d.holes) ? golfRevBn / d.holes : null,
+      revPerHa:   (golfRevBn && d.area)  ? golfRevBn / d.area  : null,
+      revPerEmp:  (grpRevBn  && emp)     ? grpRevBn  / emp     : null,
+      opMargin,
+      opPerEmp:   (grpOpBn !== null && grpOpBn !== undefined && emp) ? grpOpBn / emp : null,
+    };
   });
-  document.getElementById('main-tbody').innerHTML = main.join('');
+}
+
+// Build heat-map color band per metric (green high → red low for "higher is better" metrics)
+function heatBar(value, min, max, higherBetter){
+  if (value === null || value === undefined || min === max) return '';
+  let t = (value - min) / (max - min);  // 0..1
+  if (!higherBetter) t = 1 - t;
+  // green (good) #16a34a → amber #f59e0b → red #b91c1c
+  let r, g, b;
+  if (t >= 0.5) {
+    const k = (t - 0.5) * 2;  // 0..1 amber→green
+    r = Math.round(245 + (22  - 245) * k);
+    g = Math.round(158 + (163 - 158) * k);
+    b = Math.round(11  + (74  - 11)  * k);
+  } else {
+    const k = t * 2;  // 0..1 red→amber
+    r = Math.round(185 + (245 - 185) * k);
+    g = Math.round(28  + (158 - 28)  * k);
+    b = Math.round(28  + (11  - 28)  * k);
+  }
+  const w = (t * 100).toFixed(0);
+  return `<div class="heat-bar" style="width:${w}%; background:rgb(${r},${g},${b});"></div>`;
+}
+
+function renderMain(year){
+  const rows = computeMainRows(year);
+  // Determine min/max per heat-map metric
+  const metrics = {
+    revPerHole: { higher:true },
+    revPerHa:   { higher:true },
+    revPerEmp:  { higher:true },
+    opMargin:   { higher:true },
+    opPerEmp:   { higher:true },
+  };
+  const stats = {};
+  Object.keys(metrics).forEach(k => {
+    const vals = rows.map(r => r[k]).filter(v => v !== null && v !== undefined);
+    stats[k] = vals.length ? { min: Math.min(...vals), max: Math.max(...vals) } : null;
+  });
+  // Sort
+  const sorted = rows.slice();
+  if (sortState.key) {
+    sorted.sort((a, b) => {
+      const va = a[sortState.key]; const vb = b[sortState.key];
+      // Nulls always to bottom regardless of direction
+      if (va === null || va === undefined) return 1;
+      if (vb === null || vb === undefined) return -1;
+      return sortState.dir === 'desc' ? (vb - va) : (va - vb);
+    });
+  }
+  // Build cells
+  const heat = (key, val, fmt) => {
+    const s = stats[key];
+    const bar = (s && val !== null && val !== undefined) ? heatBar(val, s.min, s.max, metrics[key].higher) : '';
+    return `<td class="num heat">${fmt}${bar}</td>`;
+  };
+  const html = sorted.map(r => {
+    return `<tr>
+      <td class="peer"><a href="clubs/${r.t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${r.t}</a><span class="peer-tag peer-tag-${r.d.tier}">${r.d.tier_label}</span></td>
+      <td>${r.d.name.slice(0,22)}</td>
+      <td class="num">${fmtNum(r.holes)}</td>
+      <td class="num">${fmtNum(r.area, 1)}</td>
+      <td class="num">${fmtNum(r.emp)}</td>
+      <td class="num">${r.golfRev !== null ? r.golfRev.toFixed(1)+'B' : '—'}</td>
+      ${heat('revPerHole', r.revPerHole, `<strong>${r.revPerHole !== null ? (r.revPerHole < 1 ? (r.revPerHole*1000).toFixed(0)+'M' : r.revPerHole.toFixed(2)+'B') : '—'}</strong>`)}
+      ${heat('revPerHa',   r.revPerHa,   r.revPerHa !== null ? (r.revPerHa < 1 ? (r.revPerHa*1000).toFixed(0)+'M' : r.revPerHa.toFixed(2)+'B') : '—')}
+      ${heat('revPerEmp',  r.revPerEmp,  r.revPerEmp !== null ? (r.revPerEmp < 1 ? (r.revPerEmp*1000).toFixed(0)+'M' : r.revPerEmp.toFixed(2)+'B') : '—')}
+      ${heat('opMargin',   r.opMargin,   fmtPct(r.opMargin))}
+      ${heat('opPerEmp',   r.opPerEmp,   r.opPerEmp !== null ? (Math.abs(r.opPerEmp) < 1 ? (r.opPerEmp*1000).toFixed(0)+'M' : r.opPerEmp.toFixed(2)+'B') : '—')}
+    </tr>`;
+  });
+  document.getElementById('main-tbody').innerHTML = html.join('');
+  // Update header indicators
+  document.querySelectorAll('#main-table .sortable').forEach(th => {
+    th.classList.remove('asc','desc');
+    if (th.dataset.sort === sortState.key) th.classList.add(sortState.dir);
+  });
+}
+
+function render(year){
+  // Update year labels
+  ['yr1','yr2','yr3'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = 'FY' + year; });
+  renderMain(year);
 
   // Section 2: leaderboard (rev/hole, only peers w/ both)
   const lb = [];
@@ -307,15 +403,31 @@ function render(year){
   document.getElementById('tier-tbody').innerHTML = tierRows.join('');
 }
 
+let currentYear = '2024';
 (function(){
   document.querySelectorAll('.year-btn').forEach(b => {
     b.addEventListener('click', () => {
       document.querySelectorAll('.year-btn').forEach(x => x.classList.remove('active'));
       b.classList.add('active');
-      render(b.dataset.year);
+      currentYear = b.dataset.year;
+      render(currentYear);
     });
   });
-  render('2024');
+  // Sortable header click
+  document.querySelectorAll('#main-table .sortable').forEach(th => {
+    th.addEventListener('click', () => {
+      const k = th.dataset.sort;
+      if (sortState.key === k) {
+        sortState.dir = (sortState.dir === 'desc') ? 'asc' : 'desc';
+      } else {
+        sortState.key = k;
+        // Default direction: higher-is-better metrics desc; counts/area/emp use desc too
+        sortState.dir = 'desc';
+      }
+      renderMain(currentYear);
+    });
+  });
+  render(currentYear);
 })();
 </script>
 </body>
