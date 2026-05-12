@@ -437,6 +437,32 @@ html = '''<!DOCTYPE html>
   .cost-panel { display:none; }
   .cost-panel.active { display:block; }
   .yr-hl { background:rgba(245,158,11,0.10); font-weight:700; }
+  /* Sticky thead + first-column for wide cmp tables */
+  .sticky-tbl thead th { position:sticky; top:0; background:var(--ops-bg); z-index:2; box-shadow:inset 0 -2px 0 var(--ops-line); }
+  .sticky-tbl tbody td:first-child, .sticky-tbl thead th:first-child { position:sticky; left:0; background:var(--ops-surface); z-index:1; box-shadow:1px 0 0 var(--ops-line); }
+  .sticky-tbl thead th:first-child { background:var(--ops-bg); z-index:3; }
+  /* Sortable headers */
+  .sortable { cursor:pointer; user-select:none; position:relative; padding-right:18px !important; }
+  .sortable:hover { background:rgba(45,80,22,0.06); }
+  .sortable::after { content:'⇅'; position:absolute; right:6px; top:50%; transform:translateY(-50%); opacity:0.25; font-size:10px; }
+  .sortable.asc::after { content:'▲'; opacity:1; color:var(--ops-green); }
+  .sortable.desc::after { content:'▼'; opacity:1; color:var(--ops-green); }
+  /* Category mix stacked bar visualization */
+  .mix-bar-section { background:var(--ops-surface); border:1px solid var(--ops-line); border-radius:10px; padding:18px 20px; margin:0 0 24px 0; }
+  .mix-bar-row { display:grid; grid-template-columns: 120px 1fr 90px; gap:12px; align-items:center; margin:6px 0; font-size:12px; }
+  .mix-bar-label { font-weight:700; color:var(--ops-ink); }
+  .mix-bar-label .tag { display:inline-block; font-size:9.5px; font-weight:600; padding:1px 5px; border-radius:3px; margin-left:4px; vertical-align:middle; }
+  .mix-bar-track { display:flex; height:22px; background:var(--ops-bg); border-radius:4px; overflow:hidden; }
+  .mix-bar-seg { display:flex; align-items:center; justify-content:center; font-size:10px; color:white; font-weight:600; white-space:nowrap; cursor:default; transition:opacity 0.15s; }
+  .mix-bar-seg:hover { opacity:0.85; }
+  .mix-bar-total { text-align:right; font-weight:700; color:var(--ops-ink); font-size:12px; font-variant-numeric:tabular-nums; }
+  .mix-legend { display:flex; flex-wrap:wrap; gap:8px 14px; margin:14px 0 4px 0; font-size:11.5px; color:var(--ops-ink-soft); }
+  .mix-legend-item { display:inline-flex; align-items:center; gap:5px; }
+  .mix-legend-swatch { width:11px; height:11px; border-radius:2px; display:inline-block; }
+  @media (max-width: 720px) {
+    .mix-bar-row { grid-template-columns: 80px 1fr 70px; gap:8px; font-size:11px; }
+    .mix-bar-seg { font-size:9px; }
+  }
 </style>
 </head>
 <body>
@@ -489,7 +515,7 @@ html = '''<!DOCTYPE html>
       <h2 style="font-size:17px; margin:0 0 14px 0;">13-peer 비용 구조 — <span class="yr-label">FY2024</span></h2>
       <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">선택 연도 그룹 P&L 기반. 총 비용 = 매출 − 영업이익. EBITDA·순이익 마진 포함.</p>
       <div class="tbl-card scroll-x">
-        <table class="ops-tbl">
+        <table class="ops-tbl sticky-tbl">
           <thead>
             <tr>
               <th>Peer</th>
@@ -548,6 +574,13 @@ __COGS_SECTION__
         </table>
       </div>
 
+      <h3 style="font-size:15px; margin:24px 0 10px 0;">📊 비용 구성 시각화 (COGS+OpEx) — <span class="yr-label">FY2024</span></h3>
+      <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">각 peer 운영비의 카테고리별 100% 누적 막대. 호버 시 카테고리별 절대값·비중 툴팁. peer별 비용 프로필을 즉시 시각 인식 가능.</p>
+      <div class="mix-bar-section" id="mix-bar-section">
+        <div class="mix-legend" id="mix-legend"></div>
+        <div id="mix-bar-rows"></div>
+      </div>
+
       <h3 style="font-size:15px; margin:24px 0 10px 0;">운영비 카테고리 매트릭스 (COGS+OpEx 통합) — <span class="yr-label">FY2024</span></h3>
       <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">peer × 12 카테고리. <strong>분류 체계 차이 상쇄용</strong>: MDLN처럼 인건비·감가를 매출원가에 분류하는 peer는 COGS 라인도 카테고리화해서 합산 → DMIG/PIPG(판관비에 분류)와 같은 차원에서 비교. AR 라인 라벨을 인도네시아어 키워드로 자동 분류. <span style="color:var(--ops-green); font-weight:600;">출처 셀: ⓒ = COGS+OpEx 합산, ⓞ = OpEx만</span>.</p>
       <div class="tbl-card scroll-x" style="margin-bottom:28px;">
@@ -571,7 +604,7 @@ __OPEX_SECTION__
         <strong>주의</strong>: KPIG는 COGS 공시 없이 그룹 G&amp;A만이므로 합산 비율 비교에서 제외.
       </div>
       <div class="tbl-card scroll-x" style="margin-bottom:24px;">
-        <table class="ops-tbl">
+        <table class="ops-tbl sticky-tbl">
           <thead>
             <tr>
               <th>Peer</th>
@@ -615,6 +648,61 @@ function fmtPct(v, dp){
   if (v === null || v === undefined) return '—';
   dp = (dp === undefined) ? 1 : dp;
   return v.toFixed(dp) + '%';
+}
+
+// Category color palette — semantic + accessible
+const CAT_COLORS = {
+  '인건비':      '#2563eb',  // blue (people)
+  '감가상각':    '#7c3aed',  // purple (capital)
+  '시설관리':    '#0891b2',  // cyan (maintenance)
+  '세금·법률':   '#dc2626',  // red (compliance)
+  '수도광열':    '#f59e0b',  // amber (utility)
+  '광고·마케팅': '#ec4899',  // pink (sales)
+  '보험':        '#84cc16',  // lime
+  '통신·IT':     '#06b6d4',  // teal
+  '사무·소모품': '#f97316',  // orange
+  '청소·보안':   '#10b981',  // emerald (services)
+  '운송·출장':   '#8b5cf6',  // violet
+  '기타':        '#9ca3af',  // gray
+};
+
+function renderMixBars(year, peers, mergedByPeer){
+  const legendEl = document.getElementById('mix-legend');
+  const rowsEl = document.getElementById('mix-bar-rows');
+  if (!legendEl || !rowsEl) return;
+  // Legend (only categories that appear in at least one peer this year)
+  const usedCats = new Set();
+  peers.forEach(t => {
+    Object.keys(mergedByPeer[t] || {}).forEach(c => {
+      if ((mergedByPeer[t][c] || 0) > 0) usedCats.add(c);
+    });
+  });
+  const orderedUsed = CAT_ORDER.filter(c => usedCats.has(c));
+  legendEl.innerHTML = orderedUsed.map(c =>
+    `<span class="mix-legend-item"><span class="mix-legend-swatch" style="background:${CAT_COLORS[c]||'#888'};"></span>${c}</span>`
+  ).join('');
+  // Rows: peer per row, stacked bar segments by category share
+  rowsEl.innerHTML = peers.map(t => {
+    const d = PEER_DATA[t];
+    const cats = mergedByPeer[t] || {};
+    const total = Object.values(cats).reduce((s,v) => s+(v||0), 0);
+    if (total === 0) return '';
+    // Build segments in CAT_ORDER, only positive
+    const segs = orderedUsed.map(c => {
+      const v = cats[c] || 0;
+      if (v <= 0) return null;
+      const pct = (v/total*100);
+      const valStr = (v >= 1e12) ? (v/1e12).toFixed(1)+'T' : (v >= 1e9) ? (v/1e9).toFixed(1)+'B' : (v/1e6).toFixed(0)+'M';
+      const showText = pct >= 6;  // hide label in tiny slices
+      return `<div class="mix-bar-seg" style="width:${pct.toFixed(2)}%; background:${CAT_COLORS[c]||'#888'};" title="${c}: ${valStr} (${pct.toFixed(1)}%)">${showText ? c.replace(/·.+/,'')+' '+pct.toFixed(0)+'%' : ''}</div>`;
+    }).filter(Boolean).join('');
+    const totalStr = (total >= 1e12) ? (total/1e12).toFixed(1)+'T' : (total >= 1e9) ? (total/1e9).toFixed(0)+'B' : (total/1e6).toFixed(0)+'M';
+    return `<div class="mix-bar-row">
+      <div class="mix-bar-label"><a href="clubs/${t.toLowerCase()}.html" style="color:inherit; text-decoration:none;">${t}</a> <span class="peer-tag peer-tag-${d.tier}" style="font-size:9px; padding:1px 5px;">${d.tier_label.replace(/^[^ ]+ /,'')}</span></div>
+      <div class="mix-bar-track">${segs}</div>
+      <div class="mix-bar-total">${totalStr}</div>
+    </div>`;
+  }).join('');
 }
 
 function render(year){
@@ -726,6 +814,9 @@ function render(year){
   }).join('');
   bodyRows.push(`<tr style="background:rgba(45,80,22,0.06); font-weight:700;"><td>합계 (COGS+OpEx)</td>${totalCells}</tr>`);
   document.getElementById('opex-cat-tbody').innerHTML = bodyRows.join('');
+
+  // === Tab 3: 비용 구성 시각화 (stacked horizontal bar) ===
+  renderMixBars(year, opexCatPeers, mergedByPeer);
 
   // === Tab 4: 총 영업비용 (COGS+OpEx) 동급 비교 ===
   const totalRows = PEER_ORDER.map(t => {
