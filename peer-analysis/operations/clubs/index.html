@@ -6,7 +6,7 @@
 <title>클럽 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="../ops-style.css?v=20260513c85" />
+<link rel="stylesheet" href="../ops-style.css?v=20260513c91" />
 <style>
   .club-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
   .club-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 16px; margin-top: 20px; }
@@ -156,6 +156,13 @@
   .compare-check { position:absolute; top:8px; right:8px; width:22px; height:22px; cursor:pointer; opacity:0.55; transition:opacity 0.15s; z-index:2; }
   .compare-check:hover { opacity:1; }
   .compare-check input { width:100%; height:100%; margin:0; cursor:pointer; }
+  /* Favorite star button — pins peer to top */
+  .fav-star { position:absolute; top:6px; right:36px; width:24px; height:24px; padding:0; border:none; background:transparent; cursor:pointer; font-size:18px; line-height:1; color:var(--ops-muted); opacity:0.5; transition:all 0.15s; z-index:2; border-radius:4px; }
+  .fav-star:hover { opacity:1; background:rgba(245,158,11,0.10); color:#f59e0b; transform:scale(1.1); }
+  .club-card.is-fav .fav-star { color:#f59e0b; opacity:1; }
+  .club-card.is-fav { box-shadow:0 0 0 2px rgba(245,158,11,0.35) inset; }
+  body.theme-dark .club-card.is-fav { box-shadow:0 0 0 2px rgba(245,158,11,0.55) inset; }
+  @media print { .fav-star { display:none !important; } }
   .club-card { position:relative; }
   .club-row.compared, .club-card.compared { box-shadow:0 0 0 2px var(--ops-green) inset; }
   /* Sticky compare bar */
@@ -288,6 +295,7 @@
     <div class="club-grid" id="club-grid">
       <a href="dmig.html" class="club-card" data-tier="pp" data-ticker="DMIG" data-search="dmig damai indah golf bsd course + pik course tangerang + north jakarta sinarmas land (via bsde)" data-rev="253.102440194" data-margin="32.5577709356883" data-roa="11.933445196815839" data-ta="690.534136219" data-ebmargin="42.329358673065755" data-yoy="3.31290909966408" data-name="Damai Indah Golf" data-tier-label="🟦 Pure-play" data-loc="Tangerang + North Jakarta" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #3b82f6; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <label class="compare-check" title="비교 추가/제거" onclick="event.stopPropagation()"><input type="checkbox" class="cmp-cb" data-ticker="DMIG" onclick="event.stopPropagation(); event.preventDefault();" aria-label="비교 선택"></label>
+        <button class="fav-star" data-ticker="DMIG" title="즐겨찾기 (피어 상단 고정)" aria-label="즐겨찾기 토글" aria-pressed="false" onclick="event.stopPropagation(); event.preventDefault();">☆</button>
         <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-right:24px;">
           <div>
             <div style="font-size:11px; font-weight:700; color:var(--ops-muted); letter-spacing:0.06em;">DMIG · IDX</div>
@@ -320,6 +328,7 @@
       </a>
       <a href="pipg.html" class="club-card" data-tier="pp" data-ticker="PIPG" data-search="pipg pondok indah padang golf premium 18-hole jakarta south jakarta (pondok indah) pondok indah group" data-rev="197.570521436" data-margin="28.295625969742254" data-roa="12.532800086863011" data-ta="446.060061475" data-ebmargin="35.76793024453877" data-yoy="-2.71886232566604" data-name="Pondok Indah Padang Golf" data-tier-label="🟦 Pure-play" data-loc="South Jakarta (Pondok Indah)" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #3b82f6; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <label class="compare-check" title="비교 추가/제거" onclick="event.stopPropagation()"><input type="checkbox" class="cmp-cb" data-ticker="PIPG" onclick="event.stopPropagation(); event.preventDefault();" aria-label="비교 선택"></label>
+        <button class="fav-star" data-ticker="PIPG" title="즐겨찾기 (피어 상단 고정)" aria-label="즐겨찾기 토글" aria-pressed="false" onclick="event.stopPropagation(); event.preventDefault();">☆</button>
         <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-right:24px;">
           <div>
             <div style="font-size:11px; font-weight:700; color:var(--ops-muted); letter-spacing:0.06em;">PIPG · IDX</div>
@@ -352,6 +361,7 @@
       </a>
       <a href="golf.html" class="club-card" data-tier="resort" data-ticker="GOLF" data-search="golf intra golflink resorts new kuta bali + black rocks belitung pecatu (bali) + belitung tommy soeharto family" data-rev="197.993814652" data-margin="34.12985079446642" data-roa="0.7823444319533539" data-ta="8637.499132483" data-ebmargin="44.74887266338399" data-yoy="11.494292521268646" data-name="Intra GolfLink Resorts" data-tier-label="🟨 Resort" data-loc="Pecatu (Bali) + Belitung" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #f59e0b; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <label class="compare-check" title="비교 추가/제거" onclick="event.stopPropagation()"><input type="checkbox" class="cmp-cb" data-ticker="GOLF" onclick="event.stopPropagation(); event.preventDefault();" aria-label="비교 선택"></label>
+        <button class="fav-star" data-ticker="GOLF" title="즐겨찾기 (피어 상단 고정)" aria-label="즐겨찾기 토글" aria-pressed="false" onclick="event.stopPropagation(); event.preventDefault();">☆</button>
         <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-right:24px;">
           <div>
             <div style="font-size:11px; font-weight:700; color:var(--ops-muted); letter-spacing:0.06em;">GOLF · IDX</div>
@@ -384,6 +394,7 @@
       </a>
       <a href="bsde.html" class="club-card" data-tier="twn" data-ticker="BSDE" data-search="bsde palm springs karawang + batam + dmig (associate) karawang + batam sinarmas land" data-rev="13796.572149" data-margin="31.595266830942155" data-roa="5.7338486765154855" data-ta="76023.348887" data-ebmargin="40.74141706574132" data-yoy="19.563248684685934" data-name="Palm Springs Karawang + Batam" data-tier-label="🟩 Township" data-loc="Karawang + Batam" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <label class="compare-check" title="비교 추가/제거" onclick="event.stopPropagation()"><input type="checkbox" class="cmp-cb" data-ticker="BSDE" onclick="event.stopPropagation(); event.preventDefault();" aria-label="비교 선택"></label>
+        <button class="fav-star" data-ticker="BSDE" title="즐겨찾기 (피어 상단 고정)" aria-label="즐겨찾기 토글" aria-pressed="false" onclick="event.stopPropagation(); event.preventDefault();">☆</button>
         <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-right:24px;">
           <div>
             <div style="font-size:11px; font-weight:700; color:var(--ops-muted); letter-spacing:0.06em;">BSDE · IDX</div>
@@ -416,6 +427,7 @@
       </a>
       <a href="ctra.html" class="club-card" data-tier="twn" data-ticker="CTRA" data-search="ctra ciputra golf surabaya + taman dayu 2 코스 (citraland + pandaan) surabaya + pasuruan (pandaan) ciputra group" data-rev="11187.565" data-margin="19.00581583213148" data-roa="4.521832879786449" data-ta="47022.702" data-ebmargin="34.16734561989137" data-yoy="21.011641712002728" data-name="Ciputra Golf Surabaya + Taman Dayu" data-tier-label="🟩 Township" data-loc="Surabaya + Pasuruan (Pandaan)" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <label class="compare-check" title="비교 추가/제거" onclick="event.stopPropagation()"><input type="checkbox" class="cmp-cb" data-ticker="CTRA" onclick="event.stopPropagation(); event.preventDefault();" aria-label="비교 선택"></label>
+        <button class="fav-star" data-ticker="CTRA" title="즐겨찾기 (피어 상단 고정)" aria-label="즐겨찾기 토글" aria-pressed="false" onclick="event.stopPropagation(); event.preventDefault();">☆</button>
         <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-right:24px;">
           <div>
             <div style="font-size:11px; font-weight:700; color:var(--ops-muted); letter-spacing:0.06em;">CTRA · IDX</div>
@@ -448,6 +460,7 @@
       </a>
       <a href="elty.html" class="club-card" data-tier="twn" data-ticker="ELTY" data-search="elty gunung geulis + klub golf bogor raya 2 코스 (bakrieland resort) gunung geulis (bogor) bakrie group" data-rev="1208.198" data-margin="-5.671918013438194" data-roa="-0.7838923214173571" data-ta="8742.017" data-ebmargin="12.129468845338263" data-yoy="-1.560836106912833" data-name="Gunung Geulis + Klub Golf Bogor Raya" data-tier-label="🟩 Township" data-loc="Gunung Geulis (Bogor)" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <label class="compare-check" title="비교 추가/제거" onclick="event.stopPropagation()"><input type="checkbox" class="cmp-cb" data-ticker="ELTY" onclick="event.stopPropagation(); event.preventDefault();" aria-label="비교 선택"></label>
+        <button class="fav-star" data-ticker="ELTY" title="즐겨찾기 (피어 상단 고정)" aria-label="즐겨찾기 토글" aria-pressed="false" onclick="event.stopPropagation(); event.preventDefault();">☆</button>
         <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-right:24px;">
           <div>
             <div style="font-size:11px; font-weight:700; color:var(--ops-muted); letter-spacing:0.06em;">ELTY · IDX</div>
@@ -480,6 +493,7 @@
       </a>
       <a href="kija.html" class="club-card" data-tier="twn" data-ticker="KIJA" data-search="kija jababeka golf & country club + borobudur international golf cikarang (bekasi) + magelang jababeka group" data-rev="4602.648" data-margin="7.893456114827813" data-roa="2.5918439968279325" data-ta="14017.356" data-ebmargin="33.62197152595636" data-yoy="39.49121665463994" data-name="Jababeka Golf & Country Club" data-tier-label="🟩 Township" data-loc="Cikarang (Bekasi) + Magelang" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <label class="compare-check" title="비교 추가/제거" onclick="event.stopPropagation()"><input type="checkbox" class="cmp-cb" data-ticker="KIJA" onclick="event.stopPropagation(); event.preventDefault();" aria-label="비교 선택"></label>
+        <button class="fav-star" data-ticker="KIJA" title="즐겨찾기 (피어 상단 고정)" aria-label="즐겨찾기 토글" aria-pressed="false" onclick="event.stopPropagation(); event.preventDefault();">☆</button>
         <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-right:24px;">
           <div>
             <div style="font-size:11px; font-weight:700; color:var(--ops-muted); letter-spacing:0.06em;">KIJA · IDX</div>
@@ -512,6 +526,7 @@
       </a>
       <a href="kpig.html" class="club-card" data-tier="twn" data-ticker="KPIG" data-search="kpig trump international golf club lido + phil mickelson course (planned) lido (bogor regency) mnc group (hary tanoesoedibjo)" data-rev="1770.144398" data-margin="37.207644457940994" data-roa="1.838333825307249" data-ta="35827.499061" data-ebmargin="15.277962651270668" data-yoy="24.569766585588873" data-name="Trump International Golf Club Lido" data-tier-label="🟩 Township" data-loc="Lido (Bogor Regency)" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <label class="compare-check" title="비교 추가/제거" onclick="event.stopPropagation()"><input type="checkbox" class="cmp-cb" data-ticker="KPIG" onclick="event.stopPropagation(); event.preventDefault();" aria-label="비교 선택"></label>
+        <button class="fav-star" data-ticker="KPIG" title="즐겨찾기 (피어 상단 고정)" aria-label="즐겨찾기 토글" aria-pressed="false" onclick="event.stopPropagation(); event.preventDefault();">☆</button>
         <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-right:24px;">
           <div>
             <div style="font-size:11px; font-weight:700; color:var(--ops-muted); letter-spacing:0.06em;">KPIG · IDX</div>
@@ -544,6 +559,7 @@
       </a>
       <a href="lpkr.html" class="club-card" data-tier="twn" data-ticker="LPKR" data-search="lpkr imperial klub golf premium lippo karawaci lippo karawaci, tangerang lippo group" data-rev="11347.979" data-margin="165.1928065781581" data-roa="34.85440678401302" data-ta="53783.859" data-ebmargin="14.775882119626763" data-yoy="-32.056321509985786" data-name="Imperial Klub Golf" data-tier-label="🟩 Township" data-loc="Lippo Karawaci, Tangerang" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <label class="compare-check" title="비교 추가/제거" onclick="event.stopPropagation()"><input type="checkbox" class="cmp-cb" data-ticker="LPKR" onclick="event.stopPropagation(); event.preventDefault();" aria-label="비교 선택"></label>
+        <button class="fav-star" data-ticker="LPKR" title="즐겨찾기 (피어 상단 고정)" aria-label="즐겨찾기 토글" aria-pressed="false" onclick="event.stopPropagation(); event.preventDefault();">☆</button>
         <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-right:24px;">
           <div>
             <div style="font-size:11px; font-weight:700; color:var(--ops-muted); letter-spacing:0.06em;">LPKR · IDX</div>
@@ -576,6 +592,7 @@
       </a>
       <a href="mdln.html" class="club-card" data-tier="twn" data-ticker="MDLN" data-search="mdln modern golf & country club 18-hole tangerang kota modern, tangerang modernland group" data-rev="1017.57" data-margin="-67.83533319575066" data-roa="-5.089948187048104" data-ta="13561.474" data-ebmargin="3.9668032666057376" data-yoy="-11.692880722862292" data-name="Modern Golf & Country Club" data-tier-label="🟩 Township" data-loc="Kota Modern, Tangerang" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <label class="compare-check" title="비교 추가/제거" onclick="event.stopPropagation()"><input type="checkbox" class="cmp-cb" data-ticker="MDLN" onclick="event.stopPropagation(); event.preventDefault();" aria-label="비교 선택"></label>
+        <button class="fav-star" data-ticker="MDLN" title="즐겨찾기 (피어 상단 고정)" aria-label="즐겨찾기 토글" aria-pressed="false" onclick="event.stopPropagation(); event.preventDefault();">☆</button>
         <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-right:24px;">
           <div>
             <div style="font-size:11px; font-weight:700; color:var(--ops-muted); letter-spacing:0.06em;">MDLN · IDX</div>
@@ -608,6 +625,7 @@
       </a>
       <a href="pwon.html" class="club-card" data-tier="twn" data-ticker="PWON" data-search="pwon pakuwon golf & family club surabaya pakuwon city surabaya pakuwon group" data-rev="6670.809" data-margin="31.101639995988496" data-roa="5.865613113083752" data-ta="35371.085" data-ebmargin="53.66143746583061" data-yoy="7.58609311148664" data-name="Pakuwon Golf & Family Club" data-tier-label="🟩 Township" data-loc="Surabaya" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <label class="compare-check" title="비교 추가/제거" onclick="event.stopPropagation()"><input type="checkbox" class="cmp-cb" data-ticker="PWON" onclick="event.stopPropagation(); event.preventDefault();" aria-label="비교 선택"></label>
+        <button class="fav-star" data-ticker="PWON" title="즐겨찾기 (피어 상단 고정)" aria-label="즐겨찾기 토글" aria-pressed="false" onclick="event.stopPropagation(); event.preventDefault();">☆</button>
         <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-right:24px;">
           <div>
             <div style="font-size:11px; font-weight:700; color:var(--ops-muted); letter-spacing:0.06em;">PWON · IDX</div>
@@ -640,6 +658,7 @@
       </a>
       <a href="smdm.html" class="club-card" data-tier="twn" data-ticker="SMDM" data-search="smdm rancamaya golf estate private members (400m elevation) rancamaya, bogor sinarmas land (via bsde, 2024-10)" data-rev="694.045" data-margin="17.834290283771224" data-roa="3.5750512957965177" data-ta="3462.272" data-ebmargin="23.333357347146077" data-yoy="39.78807568207727" data-name="Rancamaya Golf Estate" data-tier-label="🟩 Township" data-loc="Rancamaya, Bogor" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <label class="compare-check" title="비교 추가/제거" onclick="event.stopPropagation()"><input type="checkbox" class="cmp-cb" data-ticker="SMDM" onclick="event.stopPropagation(); event.preventDefault();" aria-label="비교 선택"></label>
+        <button class="fav-star" data-ticker="SMDM" title="즐겨찾기 (피어 상단 고정)" aria-label="즐겨찾기 토글" aria-pressed="false" onclick="event.stopPropagation(); event.preventDefault();">☆</button>
         <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-right:24px;">
           <div>
             <div style="font-size:11px; font-weight:700; color:var(--ops-muted); letter-spacing:0.06em;">SMDM · IDX</div>
@@ -672,6 +691,7 @@
       </a>
       <a href="smra.html" class="club-card" data-tier="twn" data-ticker="SMRA" data-search="smra gading raya padang golf township-attached 18-hole serpong, tangerang summarecon agung" data-rev="10623.4" data-margin="12.928064461471845" data-roa="4.095532607107392" data-ta="33534.1" data-ebmargin="35.88210930587194" data-yoy="59.539663629224734" data-name="Gading Raya Padang Golf" data-tier-label="🟩 Township" data-loc="Serpong, Tangerang" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <label class="compare-check" title="비교 추가/제거" onclick="event.stopPropagation()"><input type="checkbox" class="cmp-cb" data-ticker="SMRA" onclick="event.stopPropagation(); event.preventDefault();" aria-label="비교 선택"></label>
+        <button class="fav-star" data-ticker="SMRA" title="즐겨찾기 (피어 상단 고정)" aria-label="즐겨찾기 토글" aria-pressed="false" onclick="event.stopPropagation(); event.preventDefault();">☆</button>
         <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-right:24px;">
           <div>
             <div style="font-size:11px; font-weight:700; color:var(--ops-muted); letter-spacing:0.06em;">SMRA · IDX</div>
@@ -1082,16 +1102,34 @@ function syncURL() {
   const cardOriginalOrder = Array.from(grid.children).filter(el => el.classList.contains('club-card'));
   const rowOriginalOrder = Array.from(tbody.children).filter(el => el.classList.contains('club-row'));
 
+  // Favorites — Set of ticker strings (localStorage-persisted)
+  let favorites = new Set();
+  try { favorites = new Set(JSON.parse(localStorage.getItem('clubs-favorites') || '[]')); } catch (e) {}
+  function isFav(el) { return favorites.has(el.dataset.ticker); }
+  function saveFavorites() {
+    try { localStorage.setItem('clubs-favorites', JSON.stringify([...favorites])); } catch (e) {}
+  }
   function sortElements(elems, mode) {
-    if (mode === 'tier') return elems;  // original order
-    const [key, dir] = mode.split('-');
-    const sign = dir === 'desc' ? -1 : 1;
-    return elems.slice().sort((a, b) => {
-      if (key === 'name') {
-        return sign * a.dataset.name.localeCompare(b.dataset.name, 'ko');
-      }
-      return sign * (parseFloat(a.dataset[key]) - parseFloat(b.dataset[key]));
-    });
+    let sorted;
+    if (mode === 'tier') {
+      sorted = elems.slice();  // original order
+    } else {
+      const [key, dir] = mode.split('-');
+      const sign = dir === 'desc' ? -1 : 1;
+      sorted = elems.slice().sort((a, b) => {
+        if (key === 'name') {
+          return sign * a.dataset.name.localeCompare(b.dataset.name, 'ko');
+        }
+        return sign * (parseFloat(a.dataset[key]) - parseFloat(b.dataset[key]));
+      });
+    }
+    // Favorites stable-sort to top, preserving relative order within each group
+    if (favorites.size > 0) {
+      const favs = sorted.filter(isFav);
+      const rest = sorted.filter(el => !isFav(el));
+      sorted = favs.concat(rest);
+    }
+    return sorted;
   }
 
   // Cell heat-bar for table view: column indices 6 (rev), 7 (yoy), 8 (margin), 9 (ebmargin), 10 (ta), 11 (roa)
@@ -1482,6 +1520,31 @@ function syncURL() {
       toggleCompare(cb.dataset.ticker);
     });
   });
+  // Wire favorite-star buttons + initial state
+  function updateStarUI(ticker) {
+    const fav = favorites.has(ticker);
+    grid.querySelectorAll(`.club-card[data-ticker="${ticker}"]`).forEach(c => c.classList.toggle('is-fav', fav));
+    grid.querySelectorAll(`.fav-star[data-ticker="${ticker}"]`).forEach(b => {
+      b.textContent = fav ? '★' : '☆';
+      b.setAttribute('aria-pressed', fav ? 'true' : 'false');
+      b.title = fav ? '즐겨찾기 해제' : '즐겨찾기 (피어 상단 고정)';
+    });
+  }
+  function toggleFavorite(ticker) {
+    if (favorites.has(ticker)) favorites.delete(ticker);
+    else favorites.add(ticker);
+    saveFavorites();
+    updateStarUI(ticker);
+    applyState();  // resort with favs-first
+  }
+  grid.querySelectorAll('.fav-star').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault(); e.stopPropagation();
+      toggleFavorite(btn.dataset.ticker);
+    });
+  });
+  // Sync UI for any pre-loaded favorites
+  favorites.forEach(t => updateStarUI(t));
   cmpClear.addEventListener('click', () => {
     Array.from(compared).forEach(t => toggleCompare(t, false));
   });

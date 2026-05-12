@@ -129,6 +129,7 @@ for t in peers_sorted:
         f'style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid {tier_color}; '
         f'border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">\n'
         f'        <label class="compare-check" title="비교 추가/제거" onclick="event.stopPropagation()"><input type="checkbox" class="cmp-cb" data-ticker="{t}" onclick="event.stopPropagation(); event.preventDefault();" aria-label="비교 선택"></label>\n'
+        f'        <button class="fav-star" data-ticker="{t}" title="즐겨찾기 (피어 상단 고정)" aria-label="즐겨찾기 토글" aria-pressed="false" onclick="event.stopPropagation(); event.preventDefault();">☆</button>\n'
         f'        <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-right:24px;">\n'
         f'          <div>\n'
         f'            <div style="font-size:11px; font-weight:700; color:var(--ops-muted); letter-spacing:0.06em;">{t} · IDX</div>\n'
@@ -289,7 +290,7 @@ html = '''<!DOCTYPE html>
 <title>클럽 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="../ops-style.css?v=20260513c85" />
+<link rel="stylesheet" href="../ops-style.css?v=20260513c91" />
 <style>
   .club-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
   .club-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 16px; margin-top: 20px; }
@@ -439,6 +440,13 @@ html = '''<!DOCTYPE html>
   .compare-check { position:absolute; top:8px; right:8px; width:22px; height:22px; cursor:pointer; opacity:0.55; transition:opacity 0.15s; z-index:2; }
   .compare-check:hover { opacity:1; }
   .compare-check input { width:100%; height:100%; margin:0; cursor:pointer; }
+  /* Favorite star button — pins peer to top */
+  .fav-star { position:absolute; top:6px; right:36px; width:24px; height:24px; padding:0; border:none; background:transparent; cursor:pointer; font-size:18px; line-height:1; color:var(--ops-muted); opacity:0.5; transition:all 0.15s; z-index:2; border-radius:4px; }
+  .fav-star:hover { opacity:1; background:rgba(245,158,11,0.10); color:#f59e0b; transform:scale(1.1); }
+  .club-card.is-fav .fav-star { color:#f59e0b; opacity:1; }
+  .club-card.is-fav { box-shadow:0 0 0 2px rgba(245,158,11,0.35) inset; }
+  body.theme-dark .club-card.is-fav { box-shadow:0 0 0 2px rgba(245,158,11,0.55) inset; }
+  @media print { .fav-star { display:none !important; } }
   .club-card { position:relative; }
   .club-row.compared, .club-card.compared { box-shadow:0 0 0 2px var(--ops-green) inset; }
   /* Sticky compare bar */
@@ -756,16 +764,34 @@ function syncURL() {
   const cardOriginalOrder = Array.from(grid.children).filter(el => el.classList.contains('club-card'));
   const rowOriginalOrder = Array.from(tbody.children).filter(el => el.classList.contains('club-row'));
 
+  // Favorites — Set of ticker strings (localStorage-persisted)
+  let favorites = new Set();
+  try { favorites = new Set(JSON.parse(localStorage.getItem('clubs-favorites') || '[]')); } catch (e) {}
+  function isFav(el) { return favorites.has(el.dataset.ticker); }
+  function saveFavorites() {
+    try { localStorage.setItem('clubs-favorites', JSON.stringify([...favorites])); } catch (e) {}
+  }
   function sortElements(elems, mode) {
-    if (mode === 'tier') return elems;  // original order
-    const [key, dir] = mode.split('-');
-    const sign = dir === 'desc' ? -1 : 1;
-    return elems.slice().sort((a, b) => {
-      if (key === 'name') {
-        return sign * a.dataset.name.localeCompare(b.dataset.name, 'ko');
-      }
-      return sign * (parseFloat(a.dataset[key]) - parseFloat(b.dataset[key]));
-    });
+    let sorted;
+    if (mode === 'tier') {
+      sorted = elems.slice();  // original order
+    } else {
+      const [key, dir] = mode.split('-');
+      const sign = dir === 'desc' ? -1 : 1;
+      sorted = elems.slice().sort((a, b) => {
+        if (key === 'name') {
+          return sign * a.dataset.name.localeCompare(b.dataset.name, 'ko');
+        }
+        return sign * (parseFloat(a.dataset[key]) - parseFloat(b.dataset[key]));
+      });
+    }
+    // Favorites stable-sort to top, preserving relative order within each group
+    if (favorites.size > 0) {
+      const favs = sorted.filter(isFav);
+      const rest = sorted.filter(el => !isFav(el));
+      sorted = favs.concat(rest);
+    }
+    return sorted;
   }
 
   // Cell heat-bar for table view: column indices 6 (rev), 7 (yoy), 8 (margin), 9 (ebmargin), 10 (ta), 11 (roa)
@@ -1156,6 +1182,31 @@ function syncURL() {
       toggleCompare(cb.dataset.ticker);
     });
   });
+  // Wire favorite-star buttons + initial state
+  function updateStarUI(ticker) {
+    const fav = favorites.has(ticker);
+    grid.querySelectorAll(`.club-card[data-ticker="${ticker}"]`).forEach(c => c.classList.toggle('is-fav', fav));
+    grid.querySelectorAll(`.fav-star[data-ticker="${ticker}"]`).forEach(b => {
+      b.textContent = fav ? '★' : '☆';
+      b.setAttribute('aria-pressed', fav ? 'true' : 'false');
+      b.title = fav ? '즐겨찾기 해제' : '즐겨찾기 (피어 상단 고정)';
+    });
+  }
+  function toggleFavorite(ticker) {
+    if (favorites.has(ticker)) favorites.delete(ticker);
+    else favorites.add(ticker);
+    saveFavorites();
+    updateStarUI(ticker);
+    applyState();  // resort with favs-first
+  }
+  grid.querySelectorAll('.fav-star').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault(); e.stopPropagation();
+      toggleFavorite(btn.dataset.ticker);
+    });
+  });
+  // Sync UI for any pre-loaded favorites
+  favorites.forEach(t => updateStarUI(t));
   cmpClear.addEventListener('click', () => {
     Array.from(compared).forEach(t => toggleCompare(t, false));
   });
