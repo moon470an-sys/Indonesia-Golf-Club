@@ -550,6 +550,14 @@ html = '''<!DOCTYPE html>
   .help-fab { position:fixed; bottom:18px; right:18px; width:38px; height:38px; border-radius:50%; background:var(--ops-surface); border:1px solid var(--ops-line); cursor:pointer; font-size:16px; color:var(--ops-ink-soft); z-index:50; box-shadow:0 2px 8px rgba(0,0,0,0.10); }
   .help-fab:hover { background:rgba(45,80,22,0.06); color:var(--ops-ink); }
   @media print { .help-fab, .help-overlay { display:none !important; } }
+  /* Auto-insight box */
+  .insights { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:14px 0 6px 0; }
+  .insight { background:linear-gradient(135deg, rgba(45,80,22,0.06), rgba(45,80,22,0.02)); border:1px solid var(--ops-line); border-left:3px solid var(--ops-green); border-radius:8px; padding:10px 14px; font-size:12.5px; color:var(--ops-ink-soft); }
+  .insight strong { color:var(--ops-ink); }
+  .insight .label { display:inline-block; font-size:10.5px; font-weight:700; color:var(--ops-green); letter-spacing:0.04em; text-transform:uppercase; margin-bottom:3px; }
+  body.theme-dark .insight { background:linear-gradient(135deg, rgba(34,197,94,0.08), rgba(34,197,94,0.02)); }
+  @media (max-width:720px) { .insights { grid-template-columns:1fr; } }
+  @media print { .insights { display:none; } }
   /* Category matrix search */
   .cat-search-row { display:flex; gap:8px; align-items:center; margin:4px 0 8px 0; flex-wrap:wrap; }
   .cat-search-row label { font-size:11.5px; color:var(--ops-muted); font-weight:600; }
@@ -588,6 +596,7 @@ html = '''<!DOCTYPE html>
       <strong>해법</strong>: ④ 탭의 <strong>총 영업비용 (COGS+OpEx) / 매출</strong> 단일 지표는 분류 차이를 상쇄하며, ③ 탭의 <strong>카테고리 매트릭스는 COGS+OpEx 통합</strong>으로 인건비·감가 등 cost-type 동급 비교를 제공합니다.
     </div>
     <div class="top-perf" id="top-perf"></div>
+    <div class="insights" id="insights"></div>
     <div class="data-meta">
       📅 데이터: <strong>FY2020-FY2024 연결 P&amp;L</strong>
       <span class="sep">·</span>
@@ -761,6 +770,7 @@ __OPEX_SECTION__
     <button class="close-btn" id="help-close" aria-label="도움말 닫기">✕</button>
     <h2 id="help-title">⌨️ 키보드 단축키</h2>
     <div class="help-row"><span>다크/라이트 모드</span><kbd>d</kbd></div>
+    <div class="help-row"><span>빠른 연도 선택 (FY20-24)</span><kbd>1</kbd>-<kbd>5</kbd></div>
     <div class="help-row"><span>연도·탭·tier 이동</span><kbd>←</kbd> <kbd>→</kbd></div>
     <div class="help-row"><span>도움말 토글</span><kbd>?</kbd> <kbd>Esc</kbd></div>
     <div style="margin-top:12px; padding-top:10px; border-top:1px dashed var(--ops-line); font-size:11.5px; color:var(--ops-muted);">
@@ -912,9 +922,42 @@ function renderTopPerf(year) {
   </div>`).join('');
 }
 
+function renderInsights(year) {
+  const root = document.getElementById('insights');
+  if (!root) return;
+  function median(arr) {
+    const v = arr.filter(x => x !== null && x !== undefined && !isNaN(x)).sort((a,b)=>a-b);
+    return v.length ? (v.length%2 ? v[Math.floor(v.length/2)] : (v[v.length/2-1]+v[v.length/2])/2) : null;
+  }
+  // Tier median op margin and cost ratio
+  const opMarginFor = (t) => {
+    const y = PEER_DATA[t].yearly[year] || {};
+    return (y.rev && y.op !== null && y.op !== undefined) ? (y.op/y.rev*100) : null;
+  };
+  const ppOM = median(PEER_ORDER.filter(t => PEER_DATA[t].tier === 'pp').map(opMarginFor));
+  const twnOM = median(PEER_ORDER.filter(t => PEER_DATA[t].tier === 'twn').map(opMarginFor));
+  // (COGS+OpEx)/scope_rev coverage
+  let totWithCogsOpex = 0;
+  PEER_ORDER.forEach(t => { if (PEER_DATA[t].total_opcost[year]) totWithCogsOpex++; });
+  const insights = [];
+  if (ppOM !== null && twnOM !== null) {
+    const diff = ppOM - twnOM;
+    insights.push({
+      label: '💡 영업이익률 격차',
+      text: `<strong>Pure-play 중위 ${ppOM.toFixed(1)}%</strong> vs Township 중위 ${twnOM.toFixed(1)}% — ${Math.abs(diff).toFixed(1)}%p ${diff >= 0 ? '높음' : '낮음'}.`
+    });
+  }
+  insights.push({
+    label: '📊 COGS+OpEx 공시',
+    text: `<strong>${totWithCogsOpex} / 13 peer</strong>가 매출원가 또는 판관비 공시 (Tab ④ 통합 비교 가능 peer 수).`
+  });
+  root.innerHTML = insights.map(i => `<div class="insight"><div class="label">${i.label}</div>${i.text}</div>`).join('');
+}
+
 function render(year){
   document.querySelectorAll('.yr-label').forEach(el => el.textContent = 'FY' + year);
   renderTopPerf(year);
+  renderInsights(year);
 
   // === Tab 1: 비용 구조 % (group P&L) ===
   const cmpData = [];
@@ -1286,6 +1329,11 @@ function wireExport(copyId, csvId, which, csvName) {
     if (e.target.matches('input,textarea,select')) return;
     if (e.key === 'd') themeBtn.click();
     else if (e.key === '?') { e.preventDefault(); toggleHelp(); }
+    else if (/^[1-5]$/.test(e.key)) {
+      const yr = String(2019 + parseInt(e.key));
+      const btn = document.querySelector(`.year-btn[data-year="${yr}"]`);
+      if (btn) btn.click();
+    }
   });
   // Keyboard arrow nav
   function wireArrowNav(selector) {
