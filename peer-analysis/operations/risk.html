@@ -6,9 +6,35 @@
 <title>위험 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260512c52" />
+<link rel="stylesheet" href="ops-style.css?v=20260512c54" />
 <style>
-  .heat-cell { text-align: center; font-size: 16px; padding: 8px 4px; }
+  .heat-cell { text-align:center; font-size:16px; padding:8px 4px; }
+  .sortable { cursor:pointer; user-select:none; position:relative; padding-right:18px !important; }
+  .sortable:hover { background:rgba(45,80,22,0.06); }
+  .sortable::after { content:'⇅'; position:absolute; right:6px; top:50%; transform:translateY(-50%); opacity:0.25; font-size:10px; }
+  .sortable.asc::after { content:'▲'; opacity:1; color:var(--ops-green); }
+  .sortable.desc::after { content:'▼'; opacity:1; color:var(--ops-green); }
+  /* Risk score badge */
+  .risk-score { display:inline-flex; align-items:center; justify-content:center; padding:3px 9px; border-radius:6px; font-weight:700; font-size:12.5px; min-width:42px; }
+  .risk-low    { background:rgba(22,163,74,0.12);  color:#16a34a; }
+  .risk-med    { background:rgba(245,158,11,0.15); color:#b45309; }
+  .risk-high   { background:rgba(185,28,28,0.12);  color:#b91c1c; }
+  /* Category disclosure rate banner */
+  .cat-rates { display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:10px; margin:14px 0 24px 0; }
+  .cat-rate { background:var(--ops-surface); border:1px solid var(--ops-line); border-radius:10px; padding:12px 16px; }
+  .cat-rate-name { font-size:11px; font-weight:700; color:var(--ops-muted); letter-spacing:0.06em; text-transform:uppercase; }
+  .cat-rate-pct { font-size:22px; font-weight:700; color:var(--ops-ink); margin:6px 0 4px 0; font-variant-numeric:tabular-nums; }
+  .cat-rate-pct .lbl { font-size:11.5px; color:var(--ops-muted); font-weight:500; margin-left:4px; }
+  .cat-rate-bar { display:flex; height:6px; background:var(--ops-bg); border-radius:3px; overflow:hidden; }
+  .cat-rate-seg-clear { background:#16a34a; }
+  .cat-rate-seg-part  { background:#f59e0b; }
+  .cat-rate-seg-unkn  { background:#b91c1c; }
+  .cat-rate-mini { display:flex; gap:10px; margin-top:6px; font-size:10.5px; color:var(--ops-muted); }
+  .cat-rate-mini span strong { color:var(--ops-ink); }
+  /* Row tier-based hover */
+  #risk-tbody tr:hover { background:rgba(45,80,22,0.03); }
+  /* Sticky thead for long table */
+  .sticky-tbl thead th { position:sticky; top:0; background:var(--ops-bg); z-index:2; box-shadow:inset 0 -2px 0 var(--ops-line); }
 </style>
 </head>
 <body>
@@ -27,96 +53,37 @@
 
 <section class="ops-hero">
   <div class="ops-wrap">
-    <h1>리스크 히트맵</h1>
-    <p class="lede">13 peer × 6 항목. ⚪ 공시·낮음 / 🟡 부분 공시 / 🔴 미공시·확인 필요. peer 클릭으로 클럽 상세.</p>
+    <h1>리스크 히트맵 + 종합 스코어</h1>
+    <p class="lede">13 peer × 6 항목. ⚪ 공시·낮음 (0점) / 🟡 부분 공시 (1점) / 🔴 미공시·확인 필요 (2점). 합계 점수 낮을수록 우수. 헤더 클릭 정렬.</p>
   </div>
 </section>
 
 <section class="ops-section">
   <div class="ops-wrap">
+    <h2 style="font-size:15px; margin:0 0 6px 0;">📈 카테고리별 공시 현황</h2>
+    <p style="font-size:11.5px; color:var(--ops-muted); margin:0 0 10px 0;">13 peer 중 각 항목에서 ⚪ 비율. 낮을수록 업계 전체 공시 미흡 → 신규 진입자가 직접 확인 필요.</p>
+    <div class="cat-rates" id="cat-rates"></div>
+
+    <h2 style="font-size:15px; margin:18px 0 10px 0;">🏷️ Peer × 항목 매트릭스</h2>
     <div class="tbl-card scroll-x">
-      <table class="ops-tbl" style="font-size:13px;">
+      <table class="ops-tbl sticky-tbl" id="risk-tbl" style="font-size:13px;">
         <thead>
           <tr>
             <th>Peer</th>
             <th>분류</th>
-            <th class="num">토지권 만료</th>
-            <th class="num">영업 자격</th>
-            <th class="num">우발 부채</th>
-            <th class="num">세무 분쟁</th>
-            <th class="num">노동 BPJS</th>
-            <th class="num">재산세</th>
+            <th class="num sortable" data-sort="land">토지권 만료</th>
+            <th class="num sortable" data-sort="license">영업 자격</th>
+            <th class="num sortable" data-sort="contingent">우발 부채</th>
+            <th class="num sortable" data-sort="tax">세무 분쟁</th>
+            <th class="num sortable" data-sort="bpjs">노동 BPJS</th>
+            <th class="num sortable" data-sort="propTax">재산세</th>
+            <th class="num sortable desc" data-sort="total">합계 ↓</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td class="peer"><a href="clubs/dmig.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">DMIG</a><span class="peer-tag peer-tag-pp">🟦 PP</span></td>
-            <td>Pure-play</td>
-            <td class="heat-cell">🟡</td><td class="heat-cell">⚪</td><td class="heat-cell">⚪</td><td class="heat-cell">⚪</td><td class="heat-cell">⚪</td><td class="heat-cell">⚪</td>
-          </tr>
-          <tr>
-            <td class="peer"><a href="clubs/pipg.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">PIPG</a><span class="peer-tag peer-tag-pp">🟦 PP</span></td>
-            <td>Pure-play</td>
-            <td class="heat-cell">🔴</td><td class="heat-cell">⚪</td><td class="heat-cell">🟡</td><td class="heat-cell">⚪</td><td class="heat-cell">⚪</td><td class="heat-cell">🟡</td>
-          </tr>
-          <tr>
-            <td class="peer"><a href="clubs/golf.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">GOLF</a><span class="peer-tag peer-tag-resort">🟨 R</span></td>
-            <td>Resort</td>
-            <td class="heat-cell">🟡</td><td class="heat-cell">⚪</td><td class="heat-cell">⚪</td><td class="heat-cell">⚪</td><td class="heat-cell">⚪</td><td class="heat-cell">🟡</td>
-          </tr>
-          <tr>
-            <td class="peer"><a href="clubs/mdln.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">MDLN</a><span class="peer-tag peer-tag-twn">🟩 T</span></td>
-            <td>Township</td>
-            <td class="heat-cell">🔴</td><td class="heat-cell">⚪</td><td class="heat-cell">🟡</td><td class="heat-cell">🟡</td><td class="heat-cell">🟡</td><td class="heat-cell">🔴</td>
-          </tr>
-          <tr>
-            <td class="peer"><a href="clubs/kija.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">KIJA</a><span class="peer-tag peer-tag-twn">🟩 T</span></td>
-            <td>Township</td>
-            <td class="heat-cell">🔴</td><td class="heat-cell">⚪</td><td class="heat-cell">⚪</td><td class="heat-cell">⚪</td><td class="heat-cell">⚪</td><td class="heat-cell">🟡</td>
-          </tr>
-          <tr>
-            <td class="peer"><a href="clubs/smdm.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">SMDM</a><span class="peer-tag peer-tag-twn">🟩 T</span></td>
-            <td>Township</td>
-            <td class="heat-cell">🔴</td><td class="heat-cell">⚪</td><td class="heat-cell">🟡</td><td class="heat-cell">⚪</td><td class="heat-cell">⚪</td><td class="heat-cell">🟡</td>
-          </tr>
-          <tr>
-            <td class="peer"><a href="clubs/kpig.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">KPIG</a><span class="peer-tag peer-tag-twn">🟩 T</span></td>
-            <td>Township</td>
-            <td class="heat-cell">🔴</td><td class="heat-cell">🟡</td><td class="heat-cell">🟡</td><td class="heat-cell">⚪</td><td class="heat-cell">⚪</td><td class="heat-cell">🔴</td>
-          </tr>
-          <tr>
-            <td class="peer"><a href="clubs/smra.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">SMRA</a><span class="peer-tag peer-tag-twn">🟩 T</span></td>
-            <td>Township</td>
-            <td class="heat-cell">🔴</td><td class="heat-cell">⚪</td><td class="heat-cell">⚪</td><td class="heat-cell">⚪</td><td class="heat-cell">⚪</td><td class="heat-cell">🔴</td>
-          </tr>
-          <tr>
-            <td class="peer"><a href="clubs/bsde.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">BSDE</a><span class="peer-tag peer-tag-twn">🟩 T</span></td>
-            <td>Township</td>
-            <td class="heat-cell">🔴</td><td class="heat-cell">⚪</td><td class="heat-cell">⚪</td><td class="heat-cell">⚪</td><td class="heat-cell">⚪</td><td class="heat-cell">🔴</td>
-          </tr>
-          <tr>
-            <td class="peer"><a href="clubs/ctra.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">CTRA</a><span class="peer-tag peer-tag-twn">🟩 T</span></td>
-            <td>Township</td>
-            <td class="heat-cell">🔴</td><td class="heat-cell">🟡</td><td class="heat-cell">🟡</td><td class="heat-cell">⚪</td><td class="heat-cell">⚪</td><td class="heat-cell">🔴</td>
-          </tr>
-          <tr>
-            <td class="peer"><a href="clubs/elty.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">ELTY</a><span class="peer-tag peer-tag-twn">🟩 T</span></td>
-            <td>Township</td>
-            <td class="heat-cell">🔴</td><td class="heat-cell">🟡</td><td class="heat-cell">🟡</td><td class="heat-cell">🟡</td><td class="heat-cell">🟡</td><td class="heat-cell">🔴</td>
-          </tr>
-          <tr>
-            <td class="peer"><a href="clubs/lpkr.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">LPKR</a><span class="peer-tag peer-tag-twn">🟩 T</span></td>
-            <td>Township</td>
-            <td class="heat-cell">🔴</td><td class="heat-cell">⚪</td><td class="heat-cell">⚪</td><td class="heat-cell">🟡</td><td class="heat-cell">⚪</td><td class="heat-cell">🔴</td>
-          </tr>
-          <tr>
-            <td class="peer"><a href="clubs/pwon.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">PWON</a><span class="peer-tag peer-tag-twn">🟩 T</span></td>
-            <td>Township</td>
-            <td class="heat-cell">🔴</td><td class="heat-cell">⚪</td><td class="heat-cell">⚪</td><td class="heat-cell">⚪</td><td class="heat-cell">⚪</td><td class="heat-cell">🔴</td>
-          </tr>
-        </tbody>
+        <tbody id="risk-tbody"></tbody>
       </table>
     </div>
+
     <div style="margin-top: 20px;">
       <a href="risk_checklist.md" download style="display:inline-flex; align-items:center; gap:8px; padding:10px 18px; background:var(--ops-green); color:white; border-radius:6px; text-decoration:none; font-size:13px; font-weight:600;">
         📋 Due Diligence 체크리스트 다운로드
@@ -127,10 +94,121 @@
 
 <footer class="ops-foot">
   <div class="ops-wrap">
-    <p>Peer Group v2 · 13 peer × 6 리스크 항목 · IDR.</p>
+    <p>Peer Group v2 · 13 peer × 6 리스크 항목. 점수 체계: ⚪=0, 🟡=1, 🔴=2. 최대 합계 12점.</p>
   </div>
 </footer>
 
 <script src="operations.js?v=20260512c2" defer></script>
+<script>
+// Risk data: 0=⚪ disclosed/low, 1=🟡 partial, 2=🔴 undisclosed/needs-check
+// Categories: land(토지권), license(영업자격), contingent(우발부채), tax(세무), bpjs(BPJS), propTax(재산세)
+const PEER_RISK = {
+  DMIG: { tier:'pp',     tier_label:'🟦 Pure-play', land:1, license:0, contingent:0, tax:0, bpjs:0, propTax:0 },
+  PIPG: { tier:'pp',     tier_label:'🟦 Pure-play', land:2, license:0, contingent:1, tax:0, bpjs:0, propTax:1 },
+  GOLF: { tier:'resort', tier_label:'🟨 Resort',    land:1, license:0, contingent:0, tax:0, bpjs:0, propTax:1 },
+  MDLN: { tier:'twn',    tier_label:'🟩 Township',  land:2, license:0, contingent:1, tax:1, bpjs:1, propTax:2 },
+  KIJA: { tier:'twn',    tier_label:'🟩 Township',  land:2, license:0, contingent:0, tax:0, bpjs:0, propTax:1 },
+  SMDM: { tier:'twn',    tier_label:'🟩 Township',  land:2, license:0, contingent:1, tax:0, bpjs:0, propTax:1 },
+  KPIG: { tier:'twn',    tier_label:'🟩 Township',  land:2, license:1, contingent:1, tax:0, bpjs:0, propTax:2 },
+  SMRA: { tier:'twn',    tier_label:'🟩 Township',  land:2, license:0, contingent:0, tax:0, bpjs:0, propTax:2 },
+  BSDE: { tier:'twn',    tier_label:'🟩 Township',  land:2, license:0, contingent:0, tax:0, bpjs:0, propTax:2 },
+  CTRA: { tier:'twn',    tier_label:'🟩 Township',  land:2, license:1, contingent:1, tax:0, bpjs:0, propTax:2 },
+  ELTY: { tier:'twn',    tier_label:'🟩 Township',  land:2, license:1, contingent:1, tax:1, bpjs:1, propTax:2 },
+  LPKR: { tier:'twn',    tier_label:'🟩 Township',  land:2, license:0, contingent:0, tax:1, bpjs:0, propTax:2 },
+  PWON: { tier:'twn',    tier_label:'🟩 Township',  land:2, license:0, contingent:0, tax:0, bpjs:0, propTax:2 },
+};
+const CAT_KEYS = ['land','license','contingent','tax','bpjs','propTax'];
+const CAT_LABELS = {
+  land: '토지권 만료',
+  license: '영업 자격',
+  contingent: '우발 부채',
+  tax: '세무 분쟁',
+  bpjs: '노동 BPJS',
+  propTax: '재산세'
+};
+const PEER_ORDER = ['DMIG','PIPG','GOLF','MDLN','KIJA','SMDM','KPIG','SMRA','BSDE','CTRA','ELTY','LPKR','PWON'];
+const TIER_SHORT = { pp:'🟦 PP', resort:'🟨 R', twn:'🟩 T' };
+
+function symbolFor(v){
+  return v === 0 ? '⚪' : v === 1 ? '🟡' : '🔴';
+}
+function totalScore(p) {
+  return CAT_KEYS.reduce((s,k) => s + (p[k] || 0), 0);
+}
+function scoreClass(t) {
+  if (t <= 2) return 'risk-low';
+  if (t <= 5) return 'risk-med';
+  return 'risk-high';
+}
+
+// Render category disclosure-rate banner
+function renderCatRates() {
+  const N = PEER_ORDER.length;
+  const html = CAT_KEYS.map(k => {
+    let clear = 0, part = 0, unkn = 0;
+    PEER_ORDER.forEach(t => {
+      const v = PEER_RISK[t][k];
+      if (v === 0) clear++; else if (v === 1) part++; else unkn++;
+    });
+    const clearPct = (clear/N*100);
+    const partPct = (part/N*100);
+    const unknPct = (unkn/N*100);
+    return `<div class="cat-rate">
+      <div class="cat-rate-name">${CAT_LABELS[k]}</div>
+      <div class="cat-rate-pct">${clearPct.toFixed(0)}%<span class="lbl">⚪ 공시·낮음</span></div>
+      <div class="cat-rate-bar">
+        <div class="cat-rate-seg-clear" style="width:${clearPct}%"></div>
+        <div class="cat-rate-seg-part"  style="width:${partPct}%"></div>
+        <div class="cat-rate-seg-unkn"  style="width:${unknPct}%"></div>
+      </div>
+      <div class="cat-rate-mini"><span>⚪ <strong>${clear}</strong></span><span>🟡 <strong>${part}</strong></span><span>🔴 <strong>${unkn}</strong></span></div>
+    </div>`;
+  }).join('');
+  document.getElementById('cat-rates').innerHTML = html;
+}
+
+let sortState = { key: 'total', dir: 'desc' };
+
+function renderTable() {
+  // Compute total for each peer
+  const rows = PEER_ORDER.map(t => {
+    const p = PEER_RISK[t];
+    return { t, p, total: totalScore(p) };
+  });
+  rows.sort((a,b) => {
+    let va, vb;
+    if (sortState.key === 'total') { va = a.total; vb = b.total; }
+    else { va = a.p[sortState.key]; vb = b.p[sortState.key]; }
+    return sortState.dir === 'desc' ? (vb - va) : (va - vb);
+  });
+  const tbody = document.getElementById('risk-tbody');
+  tbody.innerHTML = rows.map(r => {
+    const totalCls = scoreClass(r.total);
+    return `<tr>
+      <td class="peer"><a href="clubs/${r.t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${r.t}</a><span class="peer-tag peer-tag-${r.p.tier}">${TIER_SHORT[r.p.tier]}</span></td>
+      <td>${r.p.tier_label.replace(/^[^ ]+ /,'')}</td>
+      ${CAT_KEYS.map(k => `<td class="heat-cell" title="${CAT_LABELS[k]}: ${r.p[k]}점">${symbolFor(r.p[k])}</td>`).join('')}
+      <td class="num"><span class="risk-score ${totalCls}" title="합계 ${r.total} / 12">${r.total} / 12</span></td>
+    </tr>`;
+  }).join('');
+  document.querySelectorAll('#risk-tbl .sortable').forEach(th => {
+    th.classList.remove('asc','desc');
+    if (th.dataset.sort === sortState.key) th.classList.add(sortState.dir);
+  });
+}
+
+(function(){
+  document.querySelectorAll('#risk-tbl .sortable').forEach(th => {
+    th.addEventListener('click', () => {
+      const k = th.dataset.sort;
+      if (sortState.key === k) sortState.dir = (sortState.dir === 'desc') ? 'asc' : 'desc';
+      else { sortState.key = k; sortState.dir = 'desc'; }
+      renderTable();
+    });
+  });
+  renderCatRates();
+  renderTable();
+})();
+</script>
 </body>
 </html>
