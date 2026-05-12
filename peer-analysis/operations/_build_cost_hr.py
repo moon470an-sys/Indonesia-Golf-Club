@@ -515,6 +515,12 @@ html = '''<!DOCTYPE html>
     .bench-row td { background:#f5f5f5 !important; }
     .mix-bar-seg, .row-max { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
   }
+  /* Category matrix search */
+  .cat-search-row { display:flex; gap:8px; align-items:center; margin:4px 0 8px 0; flex-wrap:wrap; }
+  .cat-search-row label { font-size:11.5px; color:var(--ops-muted); font-weight:600; }
+  .cat-search-row input { padding:5px 10px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:6px; font-size:12px; color:var(--ops-ink); min-width:180px; }
+  .cat-search-row input:focus { outline:none; border-color:var(--ops-green); box-shadow:0 0 0 3px rgba(45,80,22,0.12); }
+  tr.cat-hidden { display:none; }
 </style>
 </head>
 <body>
@@ -647,7 +653,9 @@ __COGS_SECTION__
 
       <h3 style="font-size:15px; margin:24px 0 6px 0;">운영비 카테고리 매트릭스 (COGS+OpEx 통합) — <span class="yr-label">FY2024</span></h3>
       <p style="font-size:12px; color:var(--ops-muted); margin:0 0 6px 0;">peer × 12 카테고리. <strong>분류 체계 차이 상쇄용</strong>: MDLN처럼 인건비·감가를 매출원가에 분류하는 peer는 COGS 라인도 카테고리화해서 합산 → DMIG/PIPG(판관비에 분류)와 같은 차원에서 비교. <strong>각 행의 최대값</strong>은 호박색 배경으로 강조. <span style="color:var(--ops-green); font-weight:600;">ⓒ = COGS+OpEx 합산, ⓞ = OpEx만</span>.</p>
-      <div class="action-bar">
+      <div class="cat-search-row">
+        <label for="cat-search">🔍 카테고리 필터:</label>
+        <input type="search" id="cat-search" placeholder="예: 인건비, 감가, 세금…" aria-label="카테고리 검색">
         <button class="action-btn" id="cat-copy-btn">📋 매트릭스 복사 (TSV)</button>
         <button class="action-btn" id="cat-csv-btn">⬇ 매트릭스 CSV</button>
       </div>
@@ -1113,6 +1121,46 @@ function wireExport(copyId, csvId, which, csvName) {
   document.addEventListener('keydown', (e) => {
     if (e.target.matches('input,textarea,select')) return;
     if (e.key === 'd') themeBtn.click();
+  });
+  // Category search filter (matrix body rows)
+  const catSearch = document.getElementById('cat-search');
+  if (catSearch) {
+    catSearch.addEventListener('input', () => {
+      const q = catSearch.value.trim().toLowerCase();
+      document.querySelectorAll('#opex-cat-tbody tr').forEach(row => {
+        if (!q) { row.classList.remove('cat-hidden'); return; }
+        const label = row.querySelector('td:first-child')?.textContent?.toLowerCase() || '';
+        row.classList.toggle('cat-hidden', !label.includes(q));
+      });
+    });
+  }
+  // localStorage state: year + active tab
+  function saveCostState() {
+    const tab = document.querySelector('.cost-tab.active');
+    try {
+      localStorage.setItem('cost-state', JSON.stringify({
+        year: currentYear,
+        tab: tab ? tab.dataset.panel : 'cmp',
+      }));
+    } catch (e) {}
+  }
+  function loadCostState() {
+    try {
+      const s = JSON.parse(localStorage.getItem('cost-state') || 'null');
+      if (!s) return;
+      if (s.year && ['2020','2021','2022','2023','2024'].includes(s.year)) {
+        currentYear = s.year;
+        document.querySelectorAll('.year-btn').forEach(b => b.classList.toggle('active', b.dataset.year === s.year));
+      }
+      if (s.tab) {
+        document.querySelectorAll('.cost-tab').forEach(x => x.classList.toggle('active', x.dataset.panel === s.tab));
+        document.querySelectorAll('.cost-panel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + s.tab));
+      }
+    } catch (e) {}
+  }
+  loadCostState();
+  document.querySelectorAll('.year-btn, .cost-tab').forEach(el => {
+    el.addEventListener('click', () => setTimeout(saveCostState, 0));
   });
   render(currentYear);
 })();
