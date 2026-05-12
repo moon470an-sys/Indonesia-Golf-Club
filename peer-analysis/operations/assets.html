@@ -38,8 +38,10 @@
   .scatter-svg .axis text { fill:var(--ops-muted); font-size:10.5px; }
   .scatter-svg .gridline { stroke:var(--ops-line); stroke-dasharray:2 3; opacity:0.5; }
   .scatter-svg .label { font-size:11.5px; font-weight:600; }
-  .scatter-svg .bubble { stroke:white; stroke-width:1.5; cursor:pointer; transition:opacity 0.15s; }
-  .scatter-svg .bubble:hover { opacity:0.7; }
+  .scatter-svg .bubble { stroke:white; stroke-width:1.5; cursor:pointer; transition:opacity 0.15s, r 0.15s, stroke-width 0.15s; }
+  .scatter-svg .bubble:hover { opacity:0.7; stroke-width:2.5; }
+  .scatter-svg .bubble.highlighted { stroke:#f59e0b; stroke-width:3; }
+  #prod-tbl tbody tr.scatter-hover { background:rgba(245,158,11,0.10); }
   .scatter-svg .bubble-label { font-size:10px; font-weight:700; fill:var(--ops-ink); pointer-events:none; }
   .scatter-svg .iso-line { stroke:#94a3b8; stroke-dasharray:3 4; stroke-width:1; fill:none; }
   .scatter-svg .iso-label { font-size:9.5px; fill:#94a3b8; }
@@ -796,10 +798,33 @@ function renderScatter(rows) {
     const r = p.m.holes ? 5 + Math.sqrt(p.m.holes) * 0.8 : 6;
     const color = TIER_COLOR[p.m.tier] || '#666';
     const title = `${p.t} ${p.m.name}\n매출: ${(p.rev/1e9).toFixed(0)}B\n총자산: ${(p.ta/1e9).toFixed(0)}B\n회전율: ${p.turnover ? p.turnover.toFixed(3) : '-'}`;
-    svgHTML += `<circle class="bubble" cx="${cx}" cy="${cy}" r="${r}" fill="${color}" fill-opacity="0.72"><title>${title}</title></circle>`;
+    svgHTML += `<a href="clubs/${p.t.toLowerCase()}.html"><circle class="bubble" data-ticker="${p.t}" cx="${cx}" cy="${cy}" r="${r}" fill="${color}" fill-opacity="0.72"><title>${title}</title></circle></a>`;
     svgHTML += `<text class="bubble-label" x="${cx}" y="${cy - r - 3}" text-anchor="middle">${p.t}</text>`;
   });
   svg.innerHTML = svgHTML;
+  // Cross-highlight wiring: hover table row → bubble; hover bubble → table row
+  document.querySelectorAll('#prod-tbody tr[data-tier]').forEach(row => {
+    const link = row.querySelector('a[href^="clubs/"]');
+    if (!link) return;
+    const ticker = link.textContent.trim();
+    row.addEventListener('mouseenter', () => {
+      svg.querySelectorAll(`.bubble[data-ticker="${ticker}"]`).forEach(b => b.classList.add('highlighted'));
+    });
+    row.addEventListener('mouseleave', () => {
+      svg.querySelectorAll(`.bubble[data-ticker="${ticker}"]`).forEach(b => b.classList.remove('highlighted'));
+    });
+  });
+  svg.querySelectorAll('.bubble').forEach(b => {
+    const ticker = b.dataset.ticker;
+    b.addEventListener('mouseenter', () => {
+      document.querySelectorAll(`#prod-tbody tr a[href="clubs/${ticker.toLowerCase()}.html"]`).forEach(a => {
+        a.closest('tr')?.classList.add('scatter-hover');
+      });
+    });
+    b.addEventListener('mouseleave', () => {
+      document.querySelectorAll('#prod-tbody tr.scatter-hover').forEach(tr => tr.classList.remove('scatter-hover'));
+    });
+  });
 }
 
 // CSV/TSV export of productivity table
