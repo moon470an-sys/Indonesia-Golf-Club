@@ -129,6 +129,28 @@ html = '''<!DOCTYPE html>
   body.theme-dark .sticky-first thead th:first-child { background:#0f172a; }
   /* Per-peer mini sparkline (used in main table trend column) */
   .mini-spark { display:inline-block; vertical-align:middle; }
+  /* Print: minimal, expand table */
+  @media print {
+    @page { size: A4 landscape; margin: 10mm; }
+    body { background: white !important; color: black !important; }
+    .ops-head, .ops-foot, .year-bar, .tier-pills, .action-bar, .theme-toggle, .row-count { display: none !important; }
+    .ops-hero { padding: 0 0 6px 0; }
+    .ops-hero h1 { font-size: 17px; margin: 0 0 4px 0; }
+    .ops-hero .lede { font-size: 10px; margin: 0; }
+    .ops-hero .tip { border-bottom: none; }
+    .ops-section h2 { font-size: 14px; margin: 8px 0 4px 0; page-break-after: avoid; }
+    .ops-section h3 { page-break-after: avoid; }
+    .tbl-card { box-shadow: none; }
+    .ops-tbl { font-size: 9px; width: 100%; }
+    .ops-tbl thead th { position: static !important; background: white !important; border-bottom: 1.5px solid black; padding: 4px 5px; }
+    .ops-tbl tbody td { border-bottom: 0.5px solid #ccc; padding: 3px 5px; vertical-align: top; }
+    .ops-tbl tbody tr:hover { background: white !important; }
+    .sortable::after { display: none; }
+    .heat-bar { display: none; }
+    .peer-tag { border: 0.5px solid #888; padding: 0 3px; font-size:8px; }
+    a { color: black !important; text-decoration: none !important; }
+    .mini-spark { width: 60px; height: 18px; }
+  }
 </style>
 </head>
 <body>
@@ -197,6 +219,8 @@ html = '''<!DOCTYPE html>
             <th class="num sortable" data-sort="revPerHa">ha당 매출</th>
             <th class="num sortable" data-sort="revPerEmp">1인당 매출</th>
             <th class="num sortable" data-sort="opMargin">영업이익률</th>
+            <th class="num sortable" data-sort="ebMargin">EBITDA 마진</th>
+            <th class="num sortable" data-sort="ebPerHole">홀당 EBITDA</th>
             <th class="num sortable" data-sort="opPerEmp">1인당 영업이익</th>
           </tr>
         </thead>
@@ -330,11 +354,14 @@ function computeMainRows(year){
     const golfRev = (d.golf_seg && d.golf_seg[year]) ? d.golf_seg[year] : null;
     const grpRev = yy.rev;
     const grpOp = yy.op;
+    const grpEb = yy.ebitda;
     const emp = yy.emp;
     const opMargin = (grpRev && grpOp !== null && grpOp !== undefined) ? (grpOp/grpRev*100) : null;
+    const ebMargin = (grpRev && grpEb !== null && grpEb !== undefined) ? (grpEb/grpRev*100) : null;
     const golfRevBn = golfRev ? golfRev/1e9 : null;
     const grpRevBn = grpRev ? grpRev/1e9 : null;
     const grpOpBn = (grpOp !== null && grpOp !== undefined) ? grpOp/1e9 : null;
+    const grpEbBn = (grpEb !== null && grpEb !== undefined) ? grpEb/1e9 : null;
     return {
       t, d,
       holes: d.holes, area: d.area, emp,
@@ -343,6 +370,8 @@ function computeMainRows(year){
       revPerHa:   (golfRevBn && d.area)  ? golfRevBn / d.area  : null,
       revPerEmp:  (grpRevBn  && emp)     ? grpRevBn  / emp     : null,
       opMargin,
+      ebMargin,
+      ebPerHole:  (grpEbBn !== null && grpEbBn !== undefined && d.holes) ? grpEbBn / d.holes : null,
       opPerEmp:   (grpOpBn !== null && grpOpBn !== undefined && emp) ? grpOpBn / emp : null,
     };
   });
@@ -383,6 +412,8 @@ function renderMain(year){
     revPerHa:   { higher:true },
     revPerEmp:  { higher:true },
     opMargin:   { higher:true },
+    ebMargin:   { higher:true },
+    ebPerHole:  { higher:true },
     opPerEmp:   { higher:true },
   };
   const stats = {};
@@ -421,6 +452,8 @@ function renderMain(year){
       ${heat('revPerHa',   r.revPerHa,   r.revPerHa !== null ? (r.revPerHa < 1 ? (r.revPerHa*1000).toFixed(0)+'M' : r.revPerHa.toFixed(2)+'B') : '—')}
       ${heat('revPerEmp',  r.revPerEmp,  r.revPerEmp !== null ? (r.revPerEmp < 1 ? (r.revPerEmp*1000).toFixed(0)+'M' : r.revPerEmp.toFixed(2)+'B') : '—')}
       ${heat('opMargin',   r.opMargin,   fmtPct(r.opMargin))}
+      ${heat('ebMargin',   r.ebMargin,   fmtPct(r.ebMargin))}
+      ${heat('ebPerHole',  r.ebPerHole,  r.ebPerHole !== null ? (Math.abs(r.ebPerHole) < 1 ? (r.ebPerHole*1000).toFixed(0)+'M' : r.ebPerHole.toFixed(2)+'B') : '—')}
       ${heat('opPerEmp',   r.opPerEmp,   r.opPerEmp !== null ? (Math.abs(r.opPerEmp) < 1 ? (r.opPerEmp*1000).toFixed(0)+'M' : r.opPerEmp.toFixed(2)+'B') : '—')}
     </tr>`;
   });
@@ -498,7 +531,7 @@ function buildTableExport(year, sep) {
       return sortState.dir === 'desc' ? (vb - va) : (va - vb);
     });
   }
-  const headers = ['Peer','그룹명','Tier','홀','면적(ha)','정직원','골프매출(B IDR)','홀당매출(B IDR)','ha당매출(B IDR)','1인당매출(B IDR)','영업이익률(%)','1인당영업이익(B IDR)'];
+  const headers = ['Peer','그룹명','Tier','홀','면적(ha)','정직원','골프매출(B IDR)','홀당매출(B IDR)','ha당매출(B IDR)','1인당매출(B IDR)','영업이익률(%)','EBITDA마진(%)','홀당EBITDA(B IDR)','1인당영업이익(B IDR)'];
   const esc = (v) => {
     if (v === null || v === undefined) return '';
     const s = String(v);
@@ -522,6 +555,8 @@ function buildTableExport(year, sep) {
       fmt(r.revPerHa, 3),
       fmt(r.revPerEmp, 3),
       fmt(r.opMargin, 2),
+      fmt(r.ebMargin, 2),
+      fmt(r.ebPerHole, 3),
       fmt(r.opPerEmp, 3),
     ].join(sep));
   });
