@@ -248,6 +248,16 @@ html = '''<!DOCTYPE html>
   .rev-panel.active { display:block; }
   /* Selected-year column highlighting in line detail tables */
   .yr-hl { background:rgba(245,158,11,0.10); font-weight:700; }
+  /* Sparklines */
+  .spark { display:inline-block; vertical-align:middle; }
+  .spark-line { fill:none; stroke-width:1.6; }
+  .spark-area { opacity:0.18; }
+  .spark-dot { stroke:white; stroke-width:1; }
+  .spark-current { stroke:#f59e0b; stroke-width:2; fill:#f59e0b; }
+  /* CAGR colour-coding */
+  .cagr-pos { color:#16a34a; font-weight:700; }
+  .cagr-neg { color:#b91c1c; font-weight:700; }
+  .cagr-zero { color:#666; }
 </style>
 </head>
 <body>
@@ -288,7 +298,7 @@ html = '''<!DOCTYPE html>
   <div class="ops-wrap">
     <div class="rev-panel active" id="panel-cmp">
       <h2 style="font-size:17px; margin:0 0 14px 0;">13-peer 매출 비교 — <span class="yr-label">FY2024</span></h2>
-      <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">선택 연도 그룹 매출 + 골프 부문 매출(공시 peer) + 골프 비중 + YoY. YoY는 직전 연도 대비.</p>
+      <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">선택 연도 그룹 매출 + 골프 부문 매출(공시 peer) + 골프 비중 + YoY · <strong>5년 추이 sparkline</strong>(FY20→24, 호박색 점 = 선택 연도) · <strong>5Y CAGR</strong>(연평균 성장률).</p>
       <div class="tbl-card scroll-x">
         <table class="ops-tbl">
           <thead>
@@ -296,6 +306,8 @@ html = '''<!DOCTYPE html>
               <th>Peer</th>
               <th>그룹명</th>
               <th class="num">그룹 매출</th>
+              <th class="num">5년 추이</th>
+              <th class="num">5Y CAGR</th>
               <th class="num">골프 매출</th>
               <th class="num">골프 비중</th>
               <th class="num">YoY (그룹)</th>
@@ -347,6 +359,64 @@ function fmtYoY(v){
   return `<span style="color:${col}; font-weight:700;">${v>=0?'+':''}${v.toFixed(1)}%</span>`;
 }
 
+// CAGR = (end/start)^(1/n) - 1.  Skips null endpoints, uses first/last available.
+function calcCAGR(yearly){
+  const years = ['2020','2021','2022','2023','2024'];
+  const series = years.map(y => (yearly[y] ? yearly[y].rev : null));
+  // Find first and last non-null
+  let firstIdx = -1, lastIdx = -1;
+  for (let i = 0; i < series.length; i++) {
+    if (series[i] !== null && series[i] !== undefined && series[i] > 0) {
+      if (firstIdx === -1) firstIdx = i;
+      lastIdx = i;
+    }
+  }
+  if (firstIdx === -1 || lastIdx === firstIdx) return { cagr: null, span: 0 };
+  const span = lastIdx - firstIdx;
+  const cagr = (Math.pow(series[lastIdx] / series[firstIdx], 1/span) - 1) * 100;
+  return { cagr, span };
+}
+
+function fmtCAGR(c){
+  if (c.cagr === null) return '—';
+  const cls = c.cagr > 0 ? 'cagr-pos' : c.cagr < 0 ? 'cagr-neg' : 'cagr-zero';
+  return `<span class="${cls}" title="${c.span}년 구간">${c.cagr>=0?'+':''}${c.cagr.toFixed(1)}%</span>`;
+}
+
+// SVG sparkline: 5-year revenue series. Width 80px, height 26px.
+// Highlights the dot at the selected year in amber.
+function sparkline(yearly, currentYear, color){
+  const years = ['2020','2021','2022','2023','2024'];
+  const series = years.map(y => (yearly[y] ? yearly[y].rev : null));
+  const valid = series.filter(v => v !== null && v !== undefined);
+  if (valid.length < 2) return '<span style="color:var(--ops-muted); font-size:11px;">—</span>';
+  const W = 80, H = 26, padX = 3, padY = 4;
+  const min = Math.min(...valid), max = Math.max(...valid);
+  const range = max - min || 1;
+  const points = [];
+  series.forEach((v, i) => {
+    if (v === null || v === undefined) return;
+    const x = padX + (W - 2*padX) * (i / (years.length - 1));
+    const y = H - padY - (H - 2*padY) * (v - min) / range;
+    points.push({x, y, year: years[i], val: v, idx: i});
+  });
+  if (points.length < 2) return '<span style="color:var(--ops-muted); font-size:11px;">—</span>';
+  const pathD = 'M ' + points.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' L ');
+  const areaD = `${pathD} L ${points[points.length-1].x.toFixed(1)},${H-padY} L ${points[0].x.toFixed(1)},${H-padY} Z`;
+  const dots = points.map(p => {
+    const isCurrent = p.year === currentYear;
+    if (isCurrent) {
+      return `<circle class="spark-current" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3"><title>FY${p.year}: ${(p.val/1e9).toFixed(1)}B</title></circle>`;
+    }
+    return `<circle class="spark-dot" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="1.6" fill="${color}"><title>FY${p.year}: ${(p.val/1e9).toFixed(1)}B</title></circle>`;
+  }).join('');
+  return `<svg class="spark" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" aria-label="5년 매출 추이">
+    <path class="spark-area" d="${areaD}" fill="${color}"/>
+    <path class="spark-line" d="${pathD}" stroke="${color}"/>
+    ${dots}
+  </svg>`;
+}
+
 function render(year){
   document.querySelectorAll('.yr-label').forEach(el => el.textContent = 'FY' + year);
 
@@ -361,10 +431,14 @@ function render(year){
     const share = (rev && golf) ? (golf/rev*100) : null;
     const yoyG = (rev && revPrev) ? ((rev-revPrev)/revPrev*100) : null;
     const yoyGolf = (golf && golfPrev) ? ((golf-golfPrev)/golfPrev*100) : null;
+    const tierColor = d.tier === 'pp' ? '#3b82f6' : d.tier === 'resort' ? '#f59e0b' : '#16a34a';
+    const cagr = calcCAGR(d.yearly);
     return `<tr>
       <td class="peer"><a href="clubs/${t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${t}</a><span class="peer-tag peer-tag-${d.tier}">${d.tier_label}</span></td>
       <td>${d.name.slice(0,24)}</td>
       <td class="num">${fmtBn(rev)}</td>
+      <td class="num" style="padding:4px 8px;">${sparkline(d.yearly, year, tierColor)}</td>
+      <td class="num">${fmtCAGR(cagr)}</td>
       <td class="num"><strong>${fmtBn(golf)}</strong></td>
       <td class="num">${fmtPct(share)}</td>
       <td class="num">${fmtYoY(yoyG)}</td>
