@@ -270,6 +270,28 @@ html = '''<!DOCTYPE html>
   .action-btn { padding:6px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); display:inline-flex; align-items:center; gap:4px; }
   .action-btn:hover { background:rgba(45,80,22,0.05); }
   .action-btn.success { background:#16a34a; color:white; border-color:#16a34a; }
+  /* Theme toggle (shared 'ops-theme' across pages) */
+  .theme-toggle { position:absolute; top:14px; right:14px; padding:5px 10px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:999px; font-size:13px; cursor:pointer; color:var(--ops-ink); z-index:10; }
+  .theme-toggle:hover { background:rgba(45,80,22,0.06); }
+  .ops-hero { position:relative; }
+  body.theme-dark { --ops-bg:#0f172a; --ops-surface:#1e293b; --ops-ink:#e2e8f0; --ops-ink-soft:#cbd5e1; --ops-muted:#94a3b8; --ops-line:#334155; --ops-green:#22c55e; }
+  body.theme-dark .ops-tbl thead th { background:#0f172a; }
+  body.theme-dark .ops-tbl tbody tr:hover { background:rgba(34,197,94,0.06); }
+  body.theme-dark .yoy-matrix th, body.theme-dark .yoy-matrix td { background:#1e293b; }
+  body.theme-dark .yoy-matrix tbody td.peer-cell { background:#1e293b; }
+  /* Tier trend chart */
+  .tier-trend-card { background:var(--ops-surface); border:1px solid var(--ops-line); border-radius:10px; padding:16px 18px; margin:14px 0 24px 0; }
+  .tier-trend-svg { width:100%; max-width:720px; height:260px; display:block; margin:0 auto; }
+  .tier-trend-svg .axis line, .tier-trend-svg .axis path { stroke:var(--ops-line); }
+  .tier-trend-svg .axis text { fill:var(--ops-muted); font-size:10.5px; }
+  .tier-trend-svg .gridline { stroke:var(--ops-line); stroke-dasharray:2 3; opacity:0.5; }
+  .tier-trend-svg .trend-line { fill:none; stroke-width:2.2; }
+  .tier-trend-svg .trend-dot { stroke:white; stroke-width:1.5; }
+  .tier-trend-legend { display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-top:8px; font-size:11.5px; color:var(--ops-ink-soft); }
+  .trend-mode-toggle { display:inline-flex; border:1px solid var(--ops-line); border-radius:6px; overflow:hidden; vertical-align:middle; margin-left:8px; }
+  .trend-mode-toggle button { padding:5px 10px; border:none; background:var(--ops-surface); font-size:11.5px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
+  .trend-mode-toggle button.active { background:var(--ops-green); color:white; }
+  .trend-mode-toggle button + button { border-left:1px solid var(--ops-line); }
 </style>
 </head>
 <body>
@@ -287,6 +309,7 @@ html = '''<!DOCTYPE html>
 </header>
 
 <section class="ops-hero">
+  <button class="theme-toggle" id="theme-toggle" aria-label="다크모드 전환" title="다크/라이트 모드 전환 (d)">🌙</button>
   <div class="ops-wrap">
     <h1>매출 — 동급 비교</h1>
     <p class="lede">기준 연도 선택 → 13 peer 매출 비교. 라인 상세표는 선택 연도 컬럼 하이라이트.</p>
@@ -332,6 +355,23 @@ html = '''<!DOCTYPE html>
           </thead>
           <tbody id="cmp-tbody"></tbody>
         </table>
+      </div>
+
+      <h3 style="font-size:15px; margin:24px 0 6px 0;">📈 Tier 추세 차트 (FY2020→2024)
+        <span class="trend-mode-toggle" role="group" aria-label="추세 모드">
+          <button class="active" data-mode="median">중위</button>
+          <button data-mode="sum">합계</button>
+          <button data-mode="indexed">FY20=100</button>
+        </span>
+      </h3>
+      <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">tier별 그룹 매출 시계열 — 중위/합계/지수(FY20=100) 모드 전환. peer 규모 차이가 큰 township은 합계 모드에서, 추세 비교는 지수 모드에서 가장 명확.</p>
+      <div class="tier-trend-card">
+        <svg id="tier-trend-svg" class="tier-trend-svg" viewBox="0 0 720 260" preserveAspectRatio="xMidYMid meet" aria-label="Tier 추세 차트"></svg>
+        <div class="tier-trend-legend">
+          <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:14px; height:3px; background:#3b82f6; display:inline-block;"></span>🟦 Pure-play</span>
+          <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:14px; height:3px; background:#f59e0b; display:inline-block;"></span>🟨 Resort</span>
+          <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:14px; height:3px; background:#16a34a; display:inline-block;"></span>🟩 Township</span>
+        </div>
       </div>
 
       <h3 style="font-size:15px; margin:24px 0 6px 0;">🌡️ YoY 성장 히트맵 (그룹 매출)</h3>
@@ -481,6 +521,8 @@ function render(year){
   });
   document.getElementById('cmp-tbody').innerHTML = rows.join('');
 
+  // Tier trend chart
+  renderTierTrend();
   // YoY heatmap matrix
   renderYoYMatrix();
 
@@ -580,6 +622,88 @@ function flashSuccess(btn, label){
   setTimeout(() => { btn.textContent = orig; btn.classList.remove('success'); }, 1500);
 }
 
+// Tier trend chart — median/sum/indexed across FY2020-2024 per tier
+let trendMode = 'median';
+const TIER_COLOR = { pp:'#3b82f6', resort:'#f59e0b', twn:'#16a34a' };
+
+function renderTierTrend() {
+  const svg = document.getElementById('tier-trend-svg');
+  if (!svg) return;
+  const years = ['2020','2021','2022','2023','2024'];
+  const med = arr => {
+    const v = arr.filter(x => x !== null && x !== undefined && x > 0).sort((a,b)=>a-b);
+    if (!v.length) return null;
+    return v.length % 2 ? v[Math.floor(v.length/2)] : (v[v.length/2-1]+v[v.length/2])/2;
+  };
+  const sum = arr => arr.filter(x => x !== null && x !== undefined && x > 0).reduce((s,x)=>s+x,0) || null;
+  // Build series per tier
+  const tierSeries = {};
+  ['pp','resort','twn'].forEach(tk => {
+    const peers = PEER_ORDER.filter(t => PEER_DATA[t].tier === tk);
+    if (!peers.length) return;
+    const series = years.map(y => {
+      const vals = peers.map(t => PEER_DATA[t].yearly[y] ? PEER_DATA[t].yearly[y].rev : null);
+      return trendMode === 'sum' ? sum(vals) : med(vals);
+    });
+    // Indexed: divide by first non-null and ×100
+    if (trendMode === 'indexed') {
+      const base = series.find(v => v !== null);
+      if (!base) return;
+      tierSeries[tk] = series.map(v => v !== null ? (v / base * 100) : null);
+    } else {
+      tierSeries[tk] = series;
+    }
+  });
+  const W = 720, H = 260, M = { l:62, r:18, t:14, b:34 };
+  const allVals = [];
+  Object.values(tierSeries).forEach(s => s.forEach(v => { if (v !== null) allVals.push(v); }));
+  if (!allVals.length) { svg.innerHTML = ''; return; }
+  const yMin = trendMode === 'indexed' ? Math.min(...allVals, 100) * 0.95 : 0;
+  const yMax = Math.max(...allVals) * 1.05;
+  const xScale = i => M.l + i / (years.length - 1) * (W - M.l - M.r);
+  const yScale = v => H - M.b - (v - yMin) / (yMax - yMin) * (H - M.t - M.b);
+  const fmtVal = v => {
+    if (trendMode === 'indexed') return v.toFixed(0);
+    if (v >= 1e12) return (v/1e12).toFixed(1) + 'T';
+    if (v >= 1e9) return (v/1e9).toFixed(0) + 'B';
+    return v.toFixed(0);
+  };
+  // Y ticks (5)
+  const yTicks = [];
+  for (let i = 0; i <= 4; i++) yTicks.push(yMin + (yMax - yMin) * i/4);
+  let html = '';
+  // Grid + Y labels
+  yTicks.forEach(v => {
+    html += `<line class="gridline" x1="${M.l}" y1="${yScale(v)}" x2="${W-M.r}" y2="${yScale(v)}"/>`;
+    html += `<text class="axis" x="${M.l-6}" y="${yScale(v)+4}" text-anchor="end">${fmtVal(v)}</text>`;
+  });
+  // X labels
+  years.forEach((y, i) => {
+    html += `<text class="axis" x="${xScale(i)}" y="${H-M.b+18}" text-anchor="middle">FY${y.slice(2)}</text>`;
+  });
+  // Axes
+  html += `<line class="axis" x1="${M.l}" y1="${H-M.b}" x2="${W-M.r}" y2="${H-M.b}" stroke-width="1"/>`;
+  html += `<line class="axis" x1="${M.l}" y1="${M.t}" x2="${M.l}" y2="${H-M.b}" stroke-width="1"/>`;
+  // Lines + dots per tier
+  ['pp','resort','twn'].forEach(tk => {
+    const s = tierSeries[tk];
+    if (!s) return;
+    const pts = [];
+    s.forEach((v, i) => { if (v !== null) pts.push({ x: xScale(i), y: yScale(v), v, year: years[i] }); });
+    if (pts.length < 2) return;
+    const path = 'M ' + pts.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' L ');
+    const col = TIER_COLOR[tk];
+    html += `<path class="trend-line" d="${path}" stroke="${col}"/>`;
+    pts.forEach(p => {
+      html += `<circle class="trend-dot" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3.5" fill="${col}"><title>FY${p.year}: ${fmtVal(p.v)}</title></circle>`;
+    });
+    // End label
+    const last = pts[pts.length-1];
+    html += `<text x="${last.x+5}" y="${last.y+4}" font-size="11" font-weight="700" fill="${col}">${fmtVal(last.v)}</text>`;
+  });
+  svg.innerHTML = html;
+}
+
 let currentYear = '2024';
 (function(){
   document.querySelectorAll('.year-btn').forEach(b => {
@@ -613,6 +737,33 @@ let currentYear = '2024';
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
     URL.revokeObjectURL(url);
     flashSuccess(e.currentTarget, '✓ 다운로드');
+  });
+  // Trend mode toggle
+  document.querySelectorAll('.trend-mode-toggle button').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('.trend-mode-toggle button').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      trendMode = b.dataset.mode;
+      renderTierTrend();
+    });
+  });
+  // Dark mode
+  const themeBtn = document.getElementById('theme-toggle');
+  function applyTheme(theme) {
+    if (theme === 'dark') { document.body.classList.add('theme-dark'); themeBtn.textContent = '☀️'; }
+    else                  { document.body.classList.remove('theme-dark'); themeBtn.textContent = '🌙'; }
+  }
+  const saved = localStorage.getItem('ops-theme');
+  const sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  applyTheme(saved || (sysDark ? 'dark' : 'light'));
+  themeBtn.addEventListener('click', () => {
+    const newT = document.body.classList.contains('theme-dark') ? 'light' : 'dark';
+    localStorage.setItem('ops-theme', newT);
+    applyTheme(newT);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.target.matches('input,textarea,select')) return;
+    if (e.key === 'd') themeBtn.click();
   });
   render(currentYear);
 })();
