@@ -475,6 +475,21 @@ html = '''<!DOCTYPE html>
   .action-btn { padding:6px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); display:inline-flex; align-items:center; gap:4px; }
   .action-btn:hover { background:rgba(45,80,22,0.05); }
   .action-btn.success { background:#16a34a; color:white; border-color:#16a34a; }
+  /* Highest-value cell in matrix row */
+  #opex-cat-tbody td.row-max { background:rgba(245,158,11,0.10); font-weight:700; border-radius:3px; }
+  /* Theme toggle */
+  .theme-toggle { position:absolute; top:14px; right:14px; padding:5px 10px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:999px; font-size:13px; cursor:pointer; color:var(--ops-ink); z-index:10; }
+  .theme-toggle:hover { background:rgba(45,80,22,0.06); }
+  .ops-hero { position:relative; }
+  body.theme-dark { --ops-bg:#0f172a; --ops-surface:#1e293b; --ops-ink:#e2e8f0; --ops-ink-soft:#cbd5e1; --ops-muted:#94a3b8; --ops-line:#334155; --ops-green:#22c55e; }
+  body.theme-dark .ops-tbl thead th { background:#0f172a; }
+  body.theme-dark .ops-tbl tbody tr:hover { background:rgba(34,197,94,0.06); }
+  body.theme-dark .sticky-tbl tbody td:first-child, body.theme-dark .sticky-tbl thead th:first-child { background:#1e293b; }
+  body.theme-dark .sticky-tbl thead th:first-child { background:#0f172a; }
+  body.theme-dark .bench-row td { background:rgba(34,197,94,0.06) !important; }
+  body.theme-dark #opex-cat-tbody td.row-max { background:rgba(245,158,11,0.18); }
+  body.theme-dark .mix-bar-section, body.theme-dark .mix-bar-track { background:#1e293b; }
+  body.theme-dark .mix-bar-track { background:#0f172a; }
 </style>
 </head>
 <body>
@@ -492,6 +507,7 @@ html = '''<!DOCTYPE html>
 </header>
 
 <section class="ops-hero">
+  <button class="theme-toggle" id="theme-toggle" aria-label="다크모드 전환" title="다크/라이트 모드 (d)">🌙</button>
   <div class="ops-wrap">
     <h1>비용 — 동급 비교</h1>
     <p class="lede">기준 연도 선택 → 13 peer 비용 구조 비교. 라인 상세표는 선택 연도 컬럼 하이라이트.</p>
@@ -597,8 +613,12 @@ __COGS_SECTION__
         <div id="mix-bar-rows"></div>
       </div>
 
-      <h3 style="font-size:15px; margin:24px 0 10px 0;">운영비 카테고리 매트릭스 (COGS+OpEx 통합) — <span class="yr-label">FY2024</span></h3>
-      <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">peer × 12 카테고리. <strong>분류 체계 차이 상쇄용</strong>: MDLN처럼 인건비·감가를 매출원가에 분류하는 peer는 COGS 라인도 카테고리화해서 합산 → DMIG/PIPG(판관비에 분류)와 같은 차원에서 비교. AR 라인 라벨을 인도네시아어 키워드로 자동 분류. <span style="color:var(--ops-green); font-weight:600;">출처 셀: ⓒ = COGS+OpEx 합산, ⓞ = OpEx만</span>.</p>
+      <h3 style="font-size:15px; margin:24px 0 6px 0;">운영비 카테고리 매트릭스 (COGS+OpEx 통합) — <span class="yr-label">FY2024</span></h3>
+      <p style="font-size:12px; color:var(--ops-muted); margin:0 0 6px 0;">peer × 12 카테고리. <strong>분류 체계 차이 상쇄용</strong>: MDLN처럼 인건비·감가를 매출원가에 분류하는 peer는 COGS 라인도 카테고리화해서 합산 → DMIG/PIPG(판관비에 분류)와 같은 차원에서 비교. <strong>각 행의 최대값</strong>은 호박색 배경으로 강조. <span style="color:var(--ops-green); font-weight:600;">ⓒ = COGS+OpEx 합산, ⓞ = OpEx만</span>.</p>
+      <div class="action-bar">
+        <button class="action-btn" id="cat-copy-btn">📋 매트릭스 복사 (TSV)</button>
+        <button class="action-btn" id="cat-csv-btn">⬇ 매트릭스 CSV</button>
+      </div>
       <div class="tbl-card scroll-x" style="margin-bottom:28px;">
         <table class="ops-tbl" id="opex-cat-tbl">
           <thead id="opex-cat-thead"></thead>
@@ -835,16 +855,23 @@ function render(year){
   })).join('');
   document.getElementById('opex-cat-thead').innerHTML = '<tr>' + theadCells + '</tr>';
   // Body rows — use scope_rev for ratio (same as ② ③ tabs, honest comparison)
+  // Track max value per row for highlighting
   const bodyRows = CAT_ORDER.map(cat => {
+    // Find max value in this row across peers
+    let maxVal = 0;
+    opexCatPeers.forEach(t => { const v = (mergedByPeer[t] || {})[cat] || 0; if (v > maxVal) maxVal = v; });
     const cells = opexCatPeers.map(t => {
       const v = (mergedByPeer[t] || {})[cat];
       const scopeRev = PEER_DATA[t].scope_rev[year];
       const pct = (v && scopeRev) ? (v/scopeRev*100) : null;
       const pctTxt = pct !== null ? `<br><span style="color:var(--ops-muted); font-size:10.5px;">${pct.toFixed(2)}%</span>` : '';
-      return `<td class="num">${fmtBn(v)}${pctTxt}</td>`;
+      const isMax = (v && v === maxVal && maxVal > 0) ? ' row-max' : '';
+      return `<td class="num${isMax}">${fmtBn(v)}${pctTxt}</td>`;
     }).join('');
     return `<tr><td><strong>${cat}</strong></td>${cells}</tr>`;
   });
+  // Stash for CSV export
+  window._matrixCtx = { cats: CAT_ORDER, peers: opexCatPeers, merged: mergedByPeer, year };
   // Total row — COGS + OpEx grand total (total_opcost)
   const totalCells = opexCatPeers.map(t => {
     const tot = PEER_DATA[t].total_opcost[year];
@@ -968,6 +995,61 @@ function wireExport(copyId, csvId, which, csvName) {
   }));
   wireExport('cmp-copy-btn', 'cmp-csv-btn', 'cmp', 'cost-structure');
   wireExport('total-copy-btn', 'total-csv-btn', 'total', 'cost-total-cogs-opex');
+  // Matrix CSV export
+  function buildMatrixExport(sep) {
+    const ctx = window._matrixCtx; if (!ctx) return '';
+    const esc = v => {
+      if (v === null || v === undefined) return '';
+      const s = String(v);
+      if (sep === ',' && (s.includes(',') || s.includes('"') || s.includes('\n'))) return '"' + s.replace(/"/g,'""') + '"';
+      return s;
+    };
+    const headers = ['카테고리'].concat(ctx.peers);
+    const lines = [headers.map(esc).join(sep)];
+    ctx.cats.forEach(cat => {
+      const row = [esc(cat)];
+      ctx.peers.forEach(t => {
+        const v = (ctx.merged[t] || {})[cat];
+        row.push(v === undefined || v === null ? '' : v);
+      });
+      lines.push(row.join(sep));
+    });
+    return lines.join('\n');
+  }
+  const catCopyBtn = document.getElementById('cat-copy-btn');
+  if (catCopyBtn) catCopyBtn.addEventListener('click', async (e) => {
+    const tsv = buildMatrixExport('\t');
+    try { await navigator.clipboard.writeText(tsv); }
+    catch (err) { const ta = document.createElement('textarea'); ta.value = tsv; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); }
+    flashSuccess(e.currentTarget, '✓ 복사됨');
+  });
+  const catCsvBtn = document.getElementById('cat-csv-btn');
+  if (catCsvBtn) catCsvBtn.addEventListener('click', (e) => {
+    const csv = '﻿' + buildMatrixExport(',');
+    const blob = new Blob([csv], { type:'text/csv;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href = url; a.download = `cost-category-matrix_FY${currentYear}.csv`;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+    flashSuccess(e.currentTarget, '✓ 다운로드');
+  });
+  // Dark mode
+  const themeBtn = document.getElementById('theme-toggle');
+  function applyTheme(theme) {
+    if (theme === 'dark') { document.body.classList.add('theme-dark'); themeBtn.textContent = '☀️'; }
+    else                  { document.body.classList.remove('theme-dark'); themeBtn.textContent = '🌙'; }
+  }
+  const saved = localStorage.getItem('ops-theme');
+  const sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  applyTheme(saved || (sysDark ? 'dark' : 'light'));
+  themeBtn.addEventListener('click', () => {
+    const newT = document.body.classList.contains('theme-dark') ? 'light' : 'dark';
+    localStorage.setItem('ops-theme', newT);
+    applyTheme(newT);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.target.matches('input,textarea,select')) return;
+    if (e.key === 'd') themeBtn.click();
+  });
   render(currentYear);
 })();
 </script>
