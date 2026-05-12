@@ -805,15 +805,18 @@ function flashSuccess(btn, label){
       applyTierFilter();
     });
   });
-  // Dark mode
+  // Dark mode + system pref auto-follow
   const themeBtn = document.getElementById('theme-toggle');
   function applyTheme(theme) {
     if (theme === 'dark') { document.body.classList.add('theme-dark'); themeBtn.textContent = '☀️'; }
     else                  { document.body.classList.remove('theme-dark'); themeBtn.textContent = '🌙'; }
   }
   const saved = localStorage.getItem('ops-theme');
-  const sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  applyTheme(saved || (sysDark ? 'dark' : 'light'));
+  const mql = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+  applyTheme(saved || (mql && mql.matches ? 'dark' : 'light'));
+  if (mql && mql.addEventListener) {
+    mql.addEventListener('change', (e) => { if (!localStorage.getItem('ops-theme')) applyTheme(e.matches ? 'dark' : 'light'); });
+  }
   themeBtn.addEventListener('click', () => {
     const newT = document.body.classList.contains('theme-dark') ? 'light' : 'dark';
     localStorage.setItem('ops-theme', newT);
@@ -850,8 +853,35 @@ function flashSuccess(btn, label){
     } catch (e) {}
   }
   loadAssetState();
+  // URL hash overrides
+  function readAssetHash() {
+    const h = (location.hash || '').replace(/^#/, '');
+    if (!h) return null;
+    const p = new URLSearchParams(h);
+    return { tab: p.get('tab'), tier: p.get('tier') };
+  }
+  function syncAssetHash() {
+    const parts = [];
+    const active = document.querySelector('.ast-tab.active');
+    const tabKey = active ? active.dataset.panel : 'phy';
+    if (tabKey && tabKey !== 'phy') parts.push('tab=' + tabKey);
+    if (prodTierFilter && prodTierFilter !== 'all') parts.push('tier=' + prodTierFilter);
+    const h = parts.join('&');
+    history.replaceState(null, '', h ? '#' + h : location.pathname + location.search);
+  }
+  const fromHash = readAssetHash();
+  if (fromHash) {
+    if (fromHash.tab && ['phy','prod'].includes(fromHash.tab)) {
+      document.querySelectorAll('.ast-tab').forEach(x => x.classList.toggle('active', x.dataset.panel === fromHash.tab));
+      document.querySelectorAll('.ast-panel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + fromHash.tab));
+    }
+    if (fromHash.tier && ['all','pp','resort','twn'].includes(fromHash.tier)) {
+      prodTierFilter = fromHash.tier;
+      document.querySelectorAll('#prod-tier-pills .tier-pill').forEach(p => p.classList.toggle('active', p.dataset.tier === prodTierFilter));
+    }
+  }
   document.querySelectorAll('.ast-tab, #prod-tier-pills .tier-pill, #prod-tbl .sortable').forEach(el => {
-    el.addEventListener('click', () => setTimeout(saveAssetState, 0));
+    el.addEventListener('click', () => setTimeout(() => { saveAssetState(); syncAssetHash(); }, 0));
   });
   // Keyboard arrow nav for tabs and pills
   function wireArrowNav(items) {
