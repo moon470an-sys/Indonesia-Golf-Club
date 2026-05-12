@@ -70,6 +70,34 @@
   @media (max-width:720px) {
     .risk-rank-row { grid-template-columns:60px 1fr 50px; gap:8px; font-size:11px; }
   }
+  /* Tier filter pills */
+  .tier-pills { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:6px 0; }
+  .tier-pill { padding:5px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:999px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
+  .tier-pill.active { background:var(--ops-green); color:white; border-color:var(--ops-green); }
+  .tier-pill:hover:not(.active) { background:rgba(45,80,22,0.05); }
+  .risk-rank-row.tier-hidden, tr.tier-hidden { display:none; }
+  /* Print */
+  @media print {
+    @page { size: A4 landscape; margin: 10mm; }
+    body { background:white !important; color:black !important; }
+    .ops-head, .ops-foot, .action-bar, .tier-pills, .theme-toggle, a[href$=".md"] { display:none !important; }
+    .ops-hero { padding:0 0 6px 0; }
+    .ops-hero h1 { font-size:17px; margin:0 0 4px 0; }
+    .ops-hero .lede { font-size:10px; margin:0; }
+    .ops-section h2 { font-size:13px; margin:8px 0 4px 0; page-break-after:avoid; }
+    .ops-tbl { font-size:9px; }
+    .ops-tbl thead th { background:white !important; border-bottom:1.5px solid black; padding:4px 5px; position:static !important; }
+    .ops-tbl tbody td { border-bottom:0.5px solid #ccc; padding:3px 5px; }
+    .sortable::after { display:none; }
+    .peer-tag { border:0.5px solid #888; padding:0 3px; font-size:8px; }
+    a { color:black !important; text-decoration:none !important; }
+    .heat-cell { color:black !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    .risk-score, .risk-rank-fill, .cat-rate-bar > * { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    .cat-rates { display:grid !important; grid-template-columns:repeat(3, 1fr) !important; gap:8px; }
+    .cat-rate { padding:8px 10px; }
+    .cat-rate-pct { font-size:16px; }
+    .bench-row td { background:#f5f5f5 !important; }
+  }
 </style>
 </head>
 <body>
@@ -105,7 +133,14 @@
     <div class="risk-rank-card" id="risk-rank-card"></div>
 
     <h2 style="font-size:15px; margin:18px 0 6px 0;">🏷️ Peer × 항목 매트릭스</h2>
-    <p style="font-size:11.5px; color:var(--ops-muted); margin:0 0 10px 0;">하단 4개 행: 🟦 Pure-play / 🟨 Resort / 🟩 Township / 📊 전체 — <strong>tier별 평균 스코어</strong>.</p>
+    <p style="font-size:11.5px; color:var(--ops-muted); margin:0 0 6px 0;">하단 4개 행: 🟦 Pure-play / 🟨 Resort / 🟩 Township / 📊 전체 — <strong>tier별 평균 스코어</strong>.</p>
+    <div class="tier-pills" id="risk-tier-pills" role="group" aria-label="Tier 필터">
+      <span style="font-size:11.5px; color:var(--ops-muted); font-weight:600;">Tier:</span>
+      <button class="tier-pill active" data-tier="all">전체</button>
+      <button class="tier-pill" data-tier="pp">🟦 Pure-play</button>
+      <button class="tier-pill" data-tier="resort">🟨 Resort</button>
+      <button class="tier-pill" data-tier="twn">🟩 Township</button>
+    </div>
     <div class="action-bar">
       <button class="action-btn" id="risk-copy-btn">📋 표 복사 (TSV)</button>
       <button class="action-btn" id="risk-csv-btn">⬇ CSV 다운로드</button>
@@ -200,7 +235,7 @@ function renderRiskRank() {
     const pct = r.total / max * 100;
     const cls = scoreClass(r.total);
     const fillColor = cls === 'risk-low' ? '#16a34a' : cls === 'risk-med' ? '#f59e0b' : '#b91c1c';
-    return `<div class="risk-rank-row">
+    return `<div class="risk-rank-row" data-tier="${r.p.tier}">
       <div class="risk-rank-label"><a href="clubs/${r.t.toLowerCase()}.html" style="color:inherit; text-decoration:none;">${r.t}</a><span class="tier-mini peer-tag peer-tag-${r.p.tier}">${TIER_SHORT[r.p.tier]}</span></div>
       <div class="risk-rank-bar" title="${r.p.tier_label} · 합계 ${r.total}/12">
         <div class="risk-rank-fill" style="width:${pct.toFixed(1)}%; background:${fillColor};">${pct >= 12 ? r.total : ''}</div>
@@ -239,6 +274,24 @@ function renderCatRates() {
 }
 
 let sortState = { key: 'total', dir: 'desc' };
+let tierFilter = 'all';
+
+function applyTierFilter() {
+  document.querySelectorAll('#risk-tbody tr').forEach(row => {
+    const rowTier = row.dataset.tier;
+    let show = (tierFilter === 'all');
+    if (!show) {
+      if (rowTier === tierFilter) show = true;
+      else if (row.classList.contains('bench-row') && row.classList.contains('tier-' + tierFilter)) show = true;
+    }
+    row.classList.toggle('tier-hidden', !show);
+  });
+  document.querySelectorAll('#risk-rank-card .risk-rank-row').forEach(row => {
+    const rowTier = row.dataset.tier;
+    const show = (tierFilter === 'all') || (rowTier === tierFilter);
+    row.classList.toggle('tier-hidden', !show);
+  });
+}
 
 function renderTable() {
   // Compute total for each peer
@@ -255,7 +308,7 @@ function renderTable() {
   const tbody = document.getElementById('risk-tbody');
   const peerRows = rows.map(r => {
     const totalCls = scoreClass(r.total);
-    return `<tr>
+    return `<tr data-tier="${r.p.tier}">
       <td class="peer"><a href="clubs/${r.t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${r.t}</a><span class="peer-tag peer-tag-${r.p.tier}">${TIER_SHORT[r.p.tier]}</span></td>
       <td>${r.p.tier_label.replace(/^[^ ]+ /,'')}</td>
       ${CAT_KEYS.map(k => `<td class="heat-cell" title="${CAT_LABELS[k]}: ${r.p[k]}점">${symbolFor(r.p[k])}</td>`).join('')}
@@ -297,6 +350,7 @@ function renderTable() {
     th.classList.remove('asc','desc');
     if (th.dataset.sort === sortState.key) th.classList.add(sortState.dir);
   });
+  applyTierFilter();
 }
 
 // TSV/CSV export
@@ -349,6 +403,15 @@ function flashSuccess(btn, label){
     const a = document.createElement('a'); a.href = url; a.download = 'risk-matrix.csv';
     document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
     flashSuccess(e.currentTarget, '✓ 다운로드');
+  });
+  // Tier pills
+  document.querySelectorAll('#risk-tier-pills .tier-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      document.querySelectorAll('#risk-tier-pills .tier-pill').forEach(x => x.classList.remove('active'));
+      pill.classList.add('active');
+      tierFilter = pill.dataset.tier;
+      applyTierFilter();
+    });
   });
   renderCatRates();
   renderRiskRank();
