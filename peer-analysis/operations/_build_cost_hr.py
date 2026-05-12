@@ -425,7 +425,7 @@ html = '''<!DOCTYPE html>
 <title>비용 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260513c88" />
+<link rel="stylesheet" href="ops-style.css?v=20260513c94" />
 <style>
   .year-bar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:14px 0 4px 0; }
   .year-bar label { font-size:13px; font-weight:600; color:var(--ops-ink-soft); }
@@ -483,6 +483,13 @@ html = '''<!DOCTYPE html>
   body.theme-dark #opex-cat-tbl tbody tr:hover td { background:rgba(34,197,94,0.06); }
   body.theme-dark #opex-cat-tbl tbody tr:hover td:first-child { background:rgba(34,197,94,0.14); }
   #opex-cat-tbl td.col-highlight { outline:2px solid rgba(245,158,11,0.55); outline-offset:-2px; position:relative; z-index:1; }
+  /* Favorite star (cross-page localStorage 'clubs-favorites') */
+  .fav-star { display:inline-block; vertical-align:middle; margin-right:4px; padding:0 2px; border:none; background:transparent; cursor:pointer; font-size:14px; line-height:1; color:var(--ops-muted); opacity:0.45; transition:all 0.15s; border-radius:3px; }
+  .fav-star:hover { opacity:1; color:#f59e0b; background:rgba(245,158,11,0.10); }
+  .fav-star.active { color:#f59e0b; opacity:1; }
+  .ops-tbl tbody tr.is-fav td:first-child { box-shadow:inset 4px 0 0 #f59e0b; }
+  body.theme-dark .ops-tbl tbody tr.is-fav td:first-child { box-shadow:inset 4px 0 0 #fbbf24; }
+  @media print { .fav-star { display:none !important; } }
   /* Top-3 정렬 medal: Tab ① / Tab ④ 정렬 결과 상위 3개 peer 행에 🥇🥈🥉 표시 */
   .ops-tbl tbody tr.peer-row.rank-1 td:first-child,
   .ops-tbl tbody tr.peer-row.rank-2 td:first-child,
@@ -915,6 +922,11 @@ const TIER_LABEL = { pp:'🟦 Pure-play 중위', resort:'🟨 Resort 중위', tw
 
 let cmpSortState = { key: null, dir: 'desc' };
 let totalSortState = { key: null, dir: 'desc' };
+let favorites = new Set();
+try { favorites = new Set(JSON.parse(localStorage.getItem('clubs-favorites') || '[]')); } catch (e) {}
+function saveFavorites() {
+  try { localStorage.setItem('clubs-favorites', JSON.stringify([...favorites])); } catch (e) {}
+}
 
 function renderTopPerf(year) {
   const fmtPct = v => (v === null || v === undefined) ? '—' : `${v >= 0 ? '+' : ''}${v.toFixed(1)}%`;
@@ -1018,7 +1030,7 @@ function render(year){
     cmpData.push({ t, d, tier:d.tier, name:d.name, rev, totalCost, costRatio, opMargin, ebMargin, npMargin });
   });
   // Sort cmpData if requested
-  const cmpSorted = cmpData.slice();
+  let cmpSorted = cmpData.slice();
   if (cmpSortState.key) {
     cmpSorted.sort((a,b) => {
       const va = a[cmpSortState.key]; const vb = b[cmpSortState.key];
@@ -1027,13 +1039,21 @@ function render(year){
       return cmpSortState.dir === 'desc' ? (vb - va) : (va - vb);
     });
   }
+  // Favorites stable-sort to top
+  if (favorites.size > 0) {
+    const favs = cmpSorted.filter(r => favorites.has(r.t));
+    const rest = cmpSorted.filter(r => !favorites.has(r.t));
+    cmpSorted = favs.concat(rest);
+  }
   // Top-3 medals when sorted by numeric metric (낮을수록 좋은 비용 비율 등은 asc 정렬에서 #1이 우수)
   const cmpNumericSort = !!cmpSortState.key;
   const rows = cmpSorted.map((r, i) => {
     const { t, d, rev, totalCost, costRatio, opMargin, ebMargin, npMargin } = r;
     const rankCls = (cmpNumericSort && i < 3) ? ` rank-${i+1}` : '';
-    return `<tr data-tier="${d.tier}" class="peer-row${rankCls}">
-      <td class="peer"><a href="clubs/${t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${t}</a><span class="peer-tag peer-tag-${d.tier}">${d.tier_label}</span></td>
+    const fav = favorites.has(t);
+    const favCls = fav ? ' is-fav' : '';
+    return `<tr data-tier="${d.tier}" class="peer-row${rankCls}${favCls}">
+      <td class="peer"><button class="fav-star${fav ? ' active' : ''}" data-ticker="${t}" title="${fav ? '즐겨찾기 해제' : '즐겨찾기 (피어 상단 고정)'}" aria-label="즐겨찾기 토글" aria-pressed="${fav}">${fav ? '★' : '☆'}</button><a href="clubs/${t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${t}</a><span class="peer-tag peer-tag-${d.tier}">${d.tier_label}</span></td>
       <td class="col-low-prio">${d.name.slice(0,24)}</td>
       <td class="num">${fmtBn(rev)}</td>
       <td class="num col-low-prio">${fmtBn(totalCost)}</td>
@@ -1068,7 +1088,8 @@ function render(year){
     const scopeRev = d.scope_rev[year];
     const cogs = d.cogs_total[year];
     const ratio = (scopeRev && cogs) ? (cogs/scopeRev*100) : null;
-    return `<tr data-tier="${d.tier}">
+    const fav = favorites.has(t);
+    return `<tr data-tier="${d.tier}" class="${fav ? 'is-fav' : ''}">
       <td class="peer"><a href="clubs/${t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${t}</a><span class="peer-tag peer-tag-${d.tier}">${d.tier_label}</span></td>
       <td>${d.name.slice(0,24)}</td>
       <td class="num"><strong>${fmtBn(cogs)}</strong></td>
@@ -1085,7 +1106,8 @@ function render(year){
     const scopeRev = d.scope_rev[year];
     const opex = d.opex_total[year];
     const ratio = (scopeRev && opex) ? (opex/scopeRev*100) : null;
-    return `<tr data-tier="${d.tier}">
+    const fav = favorites.has(t);
+    return `<tr data-tier="${d.tier}" class="${fav ? 'is-fav' : ''}">
       <td class="peer"><a href="clubs/${t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${t}</a><span class="peer-tag peer-tag-${d.tier}">${d.tier_label}</span></td>
       <td>${d.name.slice(0,24)}</td>
       <td class="num"><strong>${fmtBn(opex)}</strong></td>
@@ -1168,7 +1190,7 @@ function render(year){
     totalData.push({ t, d, tier:d.tier, name:d.name, cogs, opex, tot, scopeRev, ratio, cov });
   });
   // Sort if requested
-  const totalSorted = totalData.slice();
+  let totalSorted = totalData.slice();
   if (totalSortState.key) {
     totalSorted.sort((a,b) => {
       const va = a[totalSortState.key]; const vb = b[totalSortState.key];
@@ -1177,13 +1199,20 @@ function render(year){
       return totalSortState.dir === 'desc' ? (vb - va) : (va - vb);
     });
   }
+  if (favorites.size > 0) {
+    const favs = totalSorted.filter(r => favorites.has(r.t));
+    const rest = totalSorted.filter(r => !favorites.has(r.t));
+    totalSorted = favs.concat(rest);
+  }
   // Top-3 medals when sorted by numeric metric in Tab ④
   const totalNumericSort = !!totalSortState.key;
   const totalRows = totalSorted.map((r, i) => {
     const { t, d, cogs, opex, tot, scopeRev, ratio, cov } = r;
     const rankCls = (totalNumericSort && i < 3) ? ` rank-${i+1}` : '';
-    return `<tr data-tier="${d.tier}" class="peer-row${rankCls}">
-      <td class="peer"><a href="clubs/${t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${t}</a><span class="peer-tag peer-tag-${d.tier}">${d.tier_label}</span></td>
+    const fav = favorites.has(t);
+    const favCls = fav ? ' is-fav' : '';
+    return `<tr data-tier="${d.tier}" class="peer-row${rankCls}${favCls}">
+      <td class="peer"><button class="fav-star${fav ? ' active' : ''}" data-ticker="${t}" title="${fav ? '즐겨찾기 해제' : '즐겨찾기 (피어 상단 고정)'}" aria-label="즐겨찾기 토글" aria-pressed="${fav}">${fav ? '★' : '☆'}</button><a href="clubs/${t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${t}</a><span class="peer-tag peer-tag-${d.tier}">${d.tier_label}</span></td>
       <td class="col-low-prio">${d.name.slice(0,24)}</td>
       <td class="num col-low-prio">${fmtBn(cogs)}</td>
       <td class="num col-low-prio">${fmtBn(opex)}</td>
@@ -1525,6 +1554,21 @@ function wireExport(copyId, csvId, which, csvName) {
       const k = th.dataset.sort;
       if (totalSortState.key === k) totalSortState.dir = (totalSortState.dir === 'desc') ? 'asc' : 'desc';
       else { totalSortState.key = k; totalSortState.dir = 'desc'; }
+      render(currentYear);
+    });
+  });
+  // Favorite-star click delegation on Tab ① cmp + Tab ④ total bodies
+  ['cmp-tbody', 'total-cmp-tbody'].forEach(id => {
+    const tb = document.getElementById(id);
+    if (!tb) return;
+    tb.addEventListener('click', (e) => {
+      const btn = e.target.closest('.fav-star');
+      if (!btn) return;
+      e.preventDefault(); e.stopPropagation();
+      const ticker = btn.dataset.ticker;
+      if (favorites.has(ticker)) favorites.delete(ticker);
+      else favorites.add(ticker);
+      saveFavorites();
       render(currentYear);
     });
   });
