@@ -145,6 +145,21 @@ html = '''<!DOCTYPE html>
   .cagr-pos { color:#16a34a; font-weight:700; }
   .cagr-neg { color:#b91c1c; font-weight:700; }
   .cagr-zero { color:#666; }
+  /* Top performer cards */
+  .top-perf { display:grid; grid-template-columns:repeat(auto-fit, minmax(170px, 1fr)); gap:10px; margin:14px 0 10px 0; }
+  .top-perf-card { background:linear-gradient(135deg, rgba(245,158,11,0.08), rgba(245,158,11,0.02)); border:1px solid var(--ops-line); border-left:3px solid #f59e0b; border-radius:8px; padding:8px 12px; }
+  .top-perf-name { font-size:10.5px; font-weight:700; color:var(--ops-muted); letter-spacing:0.04em; text-transform:uppercase; margin-bottom:3px; }
+  .top-perf-winner { font-size:14px; font-weight:700; color:var(--ops-ink); }
+  .top-perf-winner a { color:inherit; text-decoration:none; }
+  .top-perf-value { font-size:11.5px; color:#b45309; font-weight:700; font-variant-numeric:tabular-nums; }
+  body.theme-dark .top-perf-card { background:linear-gradient(135deg, rgba(245,158,11,0.14), rgba(245,158,11,0.04)); }
+  .data-meta { font-size:11px; color:var(--ops-muted); margin-top:6px; padding:6px 0 0 0; border-top:1px dashed var(--ops-line); }
+  .data-meta strong { color:var(--ops-ink-soft); }
+  .data-meta .sep { margin:0 8px; opacity:0.4; }
+  @media print {
+    .top-perf { display:none; }
+    .data-meta { font-size:9px; }
+  }
   /* Print: minimal, expand table */
   @media print {
     @page { size: A4 landscape; margin: 10mm; }
@@ -188,6 +203,14 @@ html = '''<!DOCTYPE html>
   <div class="ops-wrap">
     <h1>단위 경제 (Per-unit Economics)</h1>
     <p class="lede">기준 연도 선택 → 13 peer 동급 비교. 홀·면적·정직원은 고정값, 매출·이익은 연도별.</p>
+    <div class="top-perf" id="top-perf"></div>
+    <div class="data-meta">
+      📅 데이터: <strong>FY2020-FY2024 연결 P&amp;L</strong>
+      <span class="sep">·</span>
+      골프 segment: <strong>AR Note 공시 / Pure-play 그룹 매출</strong>
+      <span class="sep">·</span>
+      출처: <strong>IDX (idx.co.id)</strong>
+    </div>
     <div class="year-bar">
       <label>기준 연도:</label>
       <button class="year-btn" data-year="2020">FY2020</button>
@@ -509,9 +532,37 @@ function renderMain(year){
   });
 }
 
+function renderTopPerf(year) {
+  const rows = computeMainRows(year);
+  const fmtBn = v => (v === null || v === undefined) ? '—' : (v < 1 ? (v*1000).toFixed(0)+'M' : v.toFixed(2)+'B');
+  const fmtPct = v => (v === null || v === undefined) ? '—' : `${v >= 0 ? '+' : ''}${v.toFixed(1)}%`;
+  function top(rowsList, key, fmt) {
+    let best = null, bestV = -Infinity;
+    rowsList.forEach(r => {
+      const v = r[key];
+      if (v !== null && v !== undefined && v > bestV) { bestV = v; best = r; }
+    });
+    return best ? { ticker: best.t, value: bestV, display: fmt(bestV) } : null;
+  }
+  const perfs = [
+    { label: '🏆 홀당 매출 1위', data: top(rows, 'revPerHole', fmtBn) },
+    { label: '🏆 ha당 매출 1위', data: top(rows, 'revPerHa', fmtBn) },
+    { label: '🏆 영업이익률 1위', data: top(rows, 'opMargin', fmtPct) },
+    { label: '🏆 EBITDA 마진 1위', data: top(rows, 'ebMargin', fmtPct) },
+  ];
+  const root = document.getElementById('top-perf');
+  if (!root) return;
+  root.innerHTML = perfs.filter(p => p.data).map(p => `<div class="top-perf-card">
+    <div class="top-perf-name">${p.label}</div>
+    <div class="top-perf-winner"><a href="clubs/${p.data.ticker.toLowerCase()}.html">${p.data.ticker}</a></div>
+    <div class="top-perf-value">${p.data.display}</div>
+  </div>`).join('');
+}
+
 function render(year){
   // Update year labels
   ['yr1','yr2','yr3'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = 'FY' + year; });
+  renderTopPerf(year);
   renderMain(year);
 
   // Section 2: leaderboard (rev/hole, only peers w/ both)
