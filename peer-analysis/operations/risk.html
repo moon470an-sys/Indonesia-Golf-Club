@@ -6,7 +6,7 @@
 <title>위험 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260512c54" />
+<link rel="stylesheet" href="ops-style.css?v=20260512c78" />
 <style>
   .heat-cell { text-align:center; font-size:16px; padding:8px 4px; }
   .sortable { cursor:pointer; user-select:none; position:relative; padding-right:18px !important; }
@@ -75,7 +75,17 @@
   .tier-pill { padding:5px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:999px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
   .tier-pill.active { background:var(--ops-green); color:white; border-color:var(--ops-green); }
   .tier-pill:hover:not(.active) { background:rgba(45,80,22,0.05); }
-  .risk-rank-row.tier-hidden, tr.tier-hidden, .risk-rank-row.search-hidden, tr.search-hidden { display:none; }
+  .risk-rank-row.tier-hidden, tr.tier-hidden, .risk-rank-row.search-hidden, tr.search-hidden,
+  .risk-rank-row.severity-hidden, tr.severity-hidden { display:none; }
+  /* Severity filter chip palette (low/mid/high) */
+  .sev-pill { padding:5px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:999px; font-size:12px; font-weight:700; cursor:pointer; color:var(--ops-ink-soft); }
+  .sev-pill:hover:not(.active) { background:rgba(45,80,22,0.05); }
+  .sev-pill.active.sev-low  { background:#16a34a; color:white; border-color:#16a34a; }
+  .sev-pill.active.sev-med  { background:#f59e0b; color:white; border-color:#f59e0b; }
+  .sev-pill.active.sev-high { background:#b91c1c; color:white; border-color:#b91c1c; }
+  .sev-pill.active.sev-all  { background:var(--ops-green); color:white; border-color:var(--ops-green); }
+  /* Search match highlight */
+  mark.search-hit { background:rgba(245,158,11,0.45); color:inherit; padding:0 1px; border-radius:2px; }
   /* Peer search */
   .peer-search-row { display:flex; gap:8px; align-items:center; margin:6px 0; flex-wrap:wrap; }
   .peer-search-row input { padding:5px 10px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:6px; font-size:12px; color:var(--ops-ink); min-width:200px; }
@@ -207,6 +217,13 @@
       <button class="tier-pill" data-tier="resort">🟨 Resort</button>
       <button class="tier-pill" data-tier="twn">🟩 Township</button>
     </div>
+    <div class="tier-pills" id="risk-sev-pills" role="group" aria-label="리스크 등급 필터">
+      <span style="font-size:11.5px; color:var(--ops-muted); font-weight:600;">등급:</span>
+      <button class="sev-pill sev-all active" data-sev="all">전체</button>
+      <button class="sev-pill sev-low"  data-sev="low"  title="합계 ≤ 2점">🟢 Low</button>
+      <button class="sev-pill sev-med"  data-sev="med"  title="합계 3-5점">🟠 Mid</button>
+      <button class="sev-pill sev-high" data-sev="high" title="합계 ≥ 6점">🔴 High</button>
+    </div>
     <div class="peer-search-row">
       <span style="font-size:11.5px; color:var(--ops-muted); font-weight:600;">🔍 Peer:</span>
       <input type="search" id="risk-search" placeholder="티커 또는 분류 검색 (예: DMIG, township)" aria-label="Peer 검색" autocomplete="off">
@@ -319,7 +336,7 @@ function renderRiskRank() {
     const pct = r.total / max * 100;
     const cls = scoreClass(r.total);
     const fillColor = cls === 'risk-low' ? '#16a34a' : cls === 'risk-med' ? '#f59e0b' : '#b91c1c';
-    return `<div class="risk-rank-row" data-tier="${r.p.tier}">
+    return `<div class="risk-rank-row" data-tier="${r.p.tier}" data-sev="${scoreToSev(r.total)}">
       <div class="risk-rank-label"><a href="clubs/${r.t.toLowerCase()}.html" style="color:inherit; text-decoration:none;">${r.t}</a><span class="tier-mini peer-tag peer-tag-${r.p.tier}">${TIER_SHORT[r.p.tier]}</span></div>
       <div class="risk-rank-bar" title="${r.p.tier_label} · 합계 ${r.total}/12">
         <div class="risk-rank-fill" style="width:${pct.toFixed(1)}%; background:${fillColor};">${pct >= 12 ? r.total : ''}</div>
@@ -359,6 +376,13 @@ function renderCatRates() {
 
 let sortState = { key: 'total', dir: 'desc' };
 let tierFilter = 'all';
+let sevFilter = 'all';   // 'all' | 'low' | 'med' | 'high'
+
+function scoreToSev(t) {
+  if (t <= 2) return 'low';
+  if (t <= 5) return 'med';
+  return 'high';
+}
 
 function renderInsights() {
   const root = document.getElementById('insights');
@@ -441,6 +465,23 @@ function applyTierFilter() {
   });
 }
 
+function applySevFilter() {
+  document.querySelectorAll('#risk-tbody tr').forEach(row => {
+    if (row.classList.contains('bench-row')) {
+      row.classList.remove('severity-hidden');
+      return;
+    }
+    const sev = row.dataset.sev;
+    const show = (sevFilter === 'all') || (sev === sevFilter);
+    row.classList.toggle('severity-hidden', !show);
+  });
+  document.querySelectorAll('#risk-rank-card .risk-rank-row').forEach(row => {
+    const sev = row.dataset.sev;
+    const show = (sevFilter === 'all') || (sev === sevFilter);
+    row.classList.toggle('severity-hidden', !show);
+  });
+}
+
 function renderTable() {
   // Compute total for each peer
   const rows = PEER_ORDER.map(t => {
@@ -456,7 +497,7 @@ function renderTable() {
   const tbody = document.getElementById('risk-tbody');
   const peerRows = rows.map(r => {
     const totalCls = scoreClass(r.total);
-    return `<tr data-tier="${r.p.tier}">
+    return `<tr data-tier="${r.p.tier}" data-sev="${scoreToSev(r.total)}">
       <td class="peer"><a href="clubs/${r.t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${r.t}</a><span class="peer-tag peer-tag-${r.p.tier}">${TIER_SHORT[r.p.tier]}</span></td>
       <td class="col-low-prio">${r.p.tier_label.replace(/^[^ ]+ /,'')}</td>
       ${CAT_KEYS.map((k, i) => {
@@ -504,6 +545,7 @@ function renderTable() {
     if (th.dataset.sort === sortState.key) th.classList.add(sortState.dir);
   });
   applyTierFilter();
+  applySevFilter();
   // Re-apply peer search after rerender
   const si = document.getElementById('risk-search');
   if (si && si.value) {
@@ -575,6 +617,15 @@ function flashSuccess(btn, label){
       applyTierFilter();
     });
   });
+  // Severity pills (Low/Mid/High)
+  document.querySelectorAll('#risk-sev-pills .sev-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      document.querySelectorAll('#risk-sev-pills .sev-pill').forEach(x => x.classList.remove('active'));
+      pill.classList.add('active');
+      sevFilter = pill.dataset.sev;
+      applySevFilter();
+    });
+  });
   // Keyboard arrow nav for tier pills
   const pills = Array.from(document.querySelectorAll('#risk-tier-pills .tier-pill'));
   pills.forEach((el, i) => {
@@ -593,6 +644,7 @@ function flashSuccess(btn, label){
   renderCatRates();
   renderRiskRank();
   renderTable();
+  applySevFilter();
   // Cross-highlight: rank bar row ↔ matrix table row (by ticker)
   function getTickerFromRankRow(row) {
     const a = row.querySelector('a[href^="clubs/"]');
@@ -679,19 +731,34 @@ function flashSuccess(btn, label){
     if (e.key === 'd') themeBtn.click();
     else if (e.key === '?') { e.preventDefault(); toggleHelp(); }
   });
-  // Peer search filter
+  // Peer search filter — adds <mark> highlight to matched ticker text
   const searchInput = document.getElementById('risk-search');
+  function escapeRegex(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+  function applyHitMark(el, q) {
+    // Restore original ticker text first, then mark if there's a query
+    el.querySelectorAll('a[href^="clubs/"]').forEach(a => {
+      const orig = a.dataset.origText || a.textContent;
+      if (!a.dataset.origText) a.dataset.origText = orig;
+      if (!q) { a.textContent = orig; return; }
+      const re = new RegExp(escapeRegex(q), 'ig');
+      a.innerHTML = orig.replace(re, m => `<mark class="search-hit">${m}</mark>`);
+    });
+  }
   function applyPeerSearch() {
     const q = (searchInput.value || '').trim().toLowerCase();
     document.querySelectorAll('#risk-tbody tr').forEach(row => {
-      if (!q) { row.classList.remove('search-hidden'); return; }
+      if (!q) { row.classList.remove('search-hidden'); applyHitMark(row, ''); return; }
       const text = row.textContent.toLowerCase();
-      row.classList.toggle('search-hidden', !text.includes(q));
+      const hit = text.includes(q);
+      row.classList.toggle('search-hidden', !hit);
+      applyHitMark(row, q);
     });
     document.querySelectorAll('#risk-rank-card .risk-rank-row').forEach(row => {
-      if (!q) { row.classList.remove('search-hidden'); return; }
+      if (!q) { row.classList.remove('search-hidden'); applyHitMark(row, ''); return; }
       const text = row.textContent.toLowerCase();
-      row.classList.toggle('search-hidden', !text.includes(q));
+      const hit = text.includes(q);
+      row.classList.toggle('search-hidden', !hit);
+      applyHitMark(row, q);
     });
   }
   searchInput.addEventListener('input', applyPeerSearch);
@@ -699,7 +766,7 @@ function flashSuccess(btn, label){
   function saveRiskState() {
     try {
       localStorage.setItem('risk-state', JSON.stringify({
-        tier: tierFilter, sort: sortState, q: searchInput.value || '',
+        tier: tierFilter, sev: sevFilter, sort: sortState, q: searchInput.value || '',
       }));
     } catch (e) {}
   }
@@ -711,6 +778,10 @@ function flashSuccess(btn, label){
         tierFilter = s.tier;
         document.querySelectorAll('#risk-tier-pills .tier-pill').forEach(p => p.classList.toggle('active', p.dataset.tier === s.tier));
       }
+      if (s.sev && ['all','low','med','high'].includes(s.sev)) {
+        sevFilter = s.sev;
+        document.querySelectorAll('#risk-sev-pills .sev-pill').forEach(p => p.classList.toggle('active', p.dataset.sev === s.sev));
+      }
       if (s.sort && s.sort.key) sortState = s.sort;
       if (s.q) searchInput.value = s.q;
     } catch (e) {}
@@ -721,11 +792,12 @@ function flashSuccess(btn, label){
     const h = (location.hash || '').replace(/^#/, '');
     if (!h) return null;
     const p = new URLSearchParams(h);
-    return { tier: p.get('tier'), q: p.get('q') };
+    return { tier: p.get('tier'), sev: p.get('sev'), q: p.get('q') };
   }
   function syncRiskHash() {
     const parts = [];
     if (tierFilter && tierFilter !== 'all') parts.push('tier=' + tierFilter);
+    if (sevFilter && sevFilter !== 'all') parts.push('sev=' + sevFilter);
     if (searchInput.value) parts.push('q=' + encodeURIComponent(searchInput.value));
     const h = parts.join('&');
     history.replaceState(null, '', h ? '#' + h : location.pathname + location.search);
@@ -736,12 +808,19 @@ function flashSuccess(btn, label){
       tierFilter = fromHash.tier;
       document.querySelectorAll('#risk-tier-pills .tier-pill').forEach(p => p.classList.toggle('active', p.dataset.tier === tierFilter));
     }
+    if (fromHash.sev && ['all','low','med','high'].includes(fromHash.sev)) {
+      sevFilter = fromHash.sev;
+      document.querySelectorAll('#risk-sev-pills .sev-pill').forEach(p => p.classList.toggle('active', p.dataset.sev === sevFilter));
+    }
     if (fromHash.q) { searchInput.value = fromHash.q; }
   }
-  document.querySelectorAll('#risk-tier-pills .tier-pill, #risk-tbl .sortable').forEach(el => {
+  document.querySelectorAll('#risk-tier-pills .tier-pill, #risk-sev-pills .sev-pill, #risk-tbl .sortable').forEach(el => {
     el.addEventListener('click', () => setTimeout(() => { saveRiskState(); syncRiskHash(); }, 0));
   });
   searchInput.addEventListener('input', () => setTimeout(() => { saveRiskState(); syncRiskHash(); }, 0));
+  // Re-apply filters after loadRiskState() has changed them
+  applyTierFilter();
+  applySevFilter();
   applyPeerSearch();
 })();
 </script>
