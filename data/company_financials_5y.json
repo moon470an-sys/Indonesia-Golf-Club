@@ -1,9 +1,9 @@
 {
   "metadata": {
     "title": "6-Year Financial History for Golf-Related Listed Companies",
-    "version": "1.2",
+    "version": "1.3",
     "last_updated": "2026-05-12",
-    "scope": "FY2020-FY2025 audited data for IDX/NYSE/SGX listed parents of Indonesian golf courses (FY2025: 5 peer full + 2 partial + 4 caveat-only + 2 unavailable for golf-related 13-peer)",
+    "scope": "FY2020-FY2025 audited data for IDX/NYSE/SGX listed parents of Indonesian golf courses (FY2025: 7 peer full + 2 partial + 4 caveat — DMIG·PIPG newly added Cycle 167)",
     "currency_notes": "All revenue/profit/asset figures in fiscal-year native currency. Non-IDR tickers (AMMN/FCX/B58) include _idr_equiv at year-end BI rates (2020=14050, 2021=14252, 2022=15592, 2023=15397, 2024=16157).",
     "upgrade_pass": "2026-05-01: PIPG/DMIG/GOLF/B58 upgraded via PDF parsing (pdftotext, PyMuPDF, Wayback Machine). AMMN FY2020 corrected via IPO prospectus.; 2026-05-01 (NCI fix): FY2020 total_equity for BSDE/BKSL/ELTY/DILD/PWON now reports consolidated equity = parent + NCI; added total_equity_parent and non_controlling_interests fields. total_liabilities corrected to consolidated audited figures from primary IDX/IR PDFs.",
     "upgrade_pass_2": "2026-05-01: Added DILD (Graha Famili), PWON (Pakuwon Golf Surabaya), BN4 (Keppel — Ria Bintan JV)",
@@ -16,7 +16,9 @@
         "BSDE",
         "MKPI",
         "BKSL",
-        "SMRA"
+        "SMRA",
+        "DMIG",
+        "PIPG"
       ],
       "partial_fy2025": [
         "GOLF (revenue only)",
@@ -28,10 +30,9 @@
         "SMDM (restatement caveat)",
         "DILD (segment only)"
       ],
-      "unavailable": [
-        "DMIG",
-        "PIPG"
-      ]
+      "unavailable": [],
+      "updated_at": "2026-05-12",
+      "cycle_167_addition": "DMIG·PIPG FY25 AR 신규 다운로드 (damaiindahgolf.com + golfpondokindah.com) → full P&L+BS 추출"
     }
   },
   "companies": [
@@ -333,18 +334,35 @@
           ]
         },
         "2025": {
-          "revenue": null,
-          "operating_profit": null,
-          "net_profit": null,
+          "revenue": 251253870267,
+          "operating_profit": 69446548893,
+          "net_profit": 75023832300,
           "ebitda": null,
-          "total_assets": null,
-          "total_liabilities": null,
-          "total_equity": null,
-          "eps": null,
+          "total_assets": 719678622806,
+          "total_liabilities": 181427732411,
+          "total_equity": 538250890395,
+          "eps": 35828000,
           "dividend_per_share": null,
           "employees": null,
-          "sources": [],
-          "fy2025_note": "FY2025 AR 본 사이트 환경 미수집 (annual_reports/DMIG/FY2025/ 부재) — 별도 source 필요"
+          "sources": [
+            {
+              "url": "https://www.damaiindahgolf.com/documents/2026_Laporan_Tahunan_2025_INA.pdf",
+              "title": "DMIG Laporan Tahunan 2025",
+              "publisher": "Company IR",
+              "date_published": "2026",
+              "date_accessed": "2026-05-12",
+              "page": "AR p.5+, Financial Statement att2 p.13-14"
+            },
+            {
+              "url": "https://www.damaiindahgolf.com/documents/2025_Financial_Statement.pdf",
+              "title": "DMIG Financial Statement 2025",
+              "publisher": "Company IR",
+              "date_published": "2026",
+              "date_accessed": "2026-05-12",
+              "page": "p.13-14 P&L + BS"
+            }
+          ],
+          "fy2025_note": "매출 -0.7% / Op Income -12.0% / Net Income -9.0% / Cost 증가로 수익성 악화. AR 직접 추출 (Cycle 167)."
         }
       },
       "summary_note": "인도네시아 유일 순수 골프장 상장사. PyMuPDF로 10개 PDF 파싱. 매출 Rp 123B→253B(+105%), 순이익 21B→82B(+296%). 사업라인 분리(골프51%/회비18%/F&B20%). 2024 Mandiri Indonesia Open 개최(PIK).",
@@ -2576,18 +2594,35 @@
           ]
         },
         "2025": {
-          "revenue": null,
-          "operating_profit": null,
-          "net_profit": null,
+          "revenue": 185775352369,
+          "operating_profit": 55598750416,
+          "net_profit": 56221968494,
           "ebitda": null,
-          "total_assets": null,
-          "total_liabilities": null,
-          "total_equity": null,
-          "eps": null,
+          "total_assets": 477919451512,
+          "total_liabilities": 90935321734,
+          "total_equity": 386984129778,
+          "eps": 43280961,
           "dividend_per_share": null,
           "employees": null,
-          "sources": [],
-          "fy2025_note": "FY2025 AR 본 사이트 환경 미수집 (annual_reports/PIPG/FY2025/ 부재) — 별도 source 필요"
+          "sources": [
+            {
+              "url": "https://www.golfpondokindah.com/document/2025_Annual_Report.pdf",
+              "title": "PIPG Annual Report 2025",
+              "publisher": "Company IR",
+              "date_published": "2026",
+              "date_accessed": "2026-05-12",
+              "page": "AR + FS att2 p.11"
+            },
+            {
+              "url": "https://www.golfpondokindah.com/document/2025_Final_Report_as_per_31_Dec_2025.pdf",
+              "title": "PIPG Final Report (Audited FS) per 31 Dec 2025",
+              "publisher": "Company IR",
+              "date_published": "2026",
+              "date_accessed": "2026-05-12",
+              "page": "p.9-11 BS + P&L"
+            }
+          ],
+          "fy2025_note": "매출 -6.0% / 그러나 OpEx -17.9% 절감으로 Op Income +4.0% / Net Income +0.6%. AR 직접 추출 (Cycle 167)."
         }
       },
       "summary_note": "Pondok Indah Golf 운영사. PDF 직접 파싱(pdftotext)으로 완성. 매출 Rp 111.7B→197.6B(+77%), 순이익 23.1B→55.9B(+142%). 단 1,299주 발행으로 EPS Rp 4천만대. 5년 연속 배당. OJK Tbk이지만 IDX 미상장(POJK 3/2021).",

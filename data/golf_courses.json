@@ -35,7 +35,7 @@
       "trump-lido": "documented members-only"
     },
     "financials_last_updated": "2026-05-12",
-    "financials_fy_mix": "FY2024 for most, FY2025 for 5 peer (BKDP·BSDE·BKSL·SMRA·GOLF)"
+    "financials_fy_mix": "FY2024 for most, FY2025 for 7 peer (BKDP·BSDE·BKSL·SMRA·GOLF·DMIG·PIPG)"
   },
   "courses": [
     {
@@ -394,8 +394,8 @@
         "parent_group": "Pondok Indah Group (sister entity to PT Metropolitan Kentjana Tbk/MKPI; distinct legal entity)",
         "idx_ticker": "PIPG",
         "listed_status": "tbk-reporting-not-yet-traded",
-        "revenue_idr": 197570521436,
-        "revenue_year": "2024",
+        "revenue_idr": 185775352369,
+        "revenue_year": 2025,
         "net_profit_idr": 55903815772,
         "total_assets_idr": 446060061475,
         "course_segment_disclosed": true,
@@ -490,7 +490,8 @@
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
           }
         ],
-        "parent_company_full_name": "PT Pondok Indah Padang Golf Tbk"
+        "parent_company_full_name": "PT Pondok Indah Padang Golf Tbk",
+        "revenue_idr_fy2024_previous": 197570521436
       },
       "coord_source": "overpass_v1",
       "coord_osm_ref": "way/28420725"
@@ -2442,8 +2443,8 @@
         "parent_group": "Sinar Mas Land / BSDE (ultimate parent) — DMIG operates as separately IDX-listed pure-play golf entity",
         "idx_ticker": "DMIG",
         "listed_status": "listed",
-        "revenue_idr": null,
-        "revenue_year": "2024",
+        "revenue_idr": 251253870267,
+        "revenue_year": 2025,
         "net_profit_idr": null,
         "total_assets_idr": 648850000000,
         "course_segment_disclosed": true,
@@ -2496,7 +2497,8 @@
             "date_published": null,
             "date_accessed": "2026-05-01"
           }
-        ]
+        ],
+        "revenue_idr_fy2024_previous": null
       },
       "coord_source": "overpass_v1",
       "coord_osm_ref": "way/31033059"

@@ -5,6 +5,8 @@
 본 사이트는 IDX 13 peer의 공식 AR 텍스트-PDF 직접 추출에 한정한다.
 이미지 기반 PDF, 회전 표, AR 외부 출처(curated CSV) 등은 한계로 명시한다.
 
+**한계 해소 사례 #2 (Cycle 167)**: DMIG·PIPG FY2025 AR이 IDX/사이트 환경에 부재 (LIMITATIONS 5 FY 시계열 부분 누락) → 각 peer 공식 IR 사이트 직접 다운로드로 해소. damaiindahgolf.com + golfpondokindah.com에서 FY25 AR + Financial Statement att2 확보. 13/13 peer FY22-FY25 4년 series 완성. PDF 부재로 인한 시계열 단절 첫 해소 사례.
+
 **한계 해소 사례 (Cycle 56 → 98)**: BSDE FY24 AR att2 segment Note 추출 실패 (Cycle 56) → BSDE FY25 AR에서 동일 Note 텍스트 추출 성공 (Cycle 98). 일부 image-PDF 추정 한계는 후속 fiscal year AR에서 해소 가능함을 입증.
 
 ---

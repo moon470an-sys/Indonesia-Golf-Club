@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "description": "Consolidated peer notes — 13/13 peer single source for downstream queries",
+    "description": "Consolidated peer notes — 13 peer single source (FY22-FY25)",
     "peer_count": 13,
     "peers_included": [
       "dmig",
@@ -17,10 +17,10 @@
       "mkpi",
       "bksl"
     ],
-    "fiscal_years_covered": "FY2022-FY2025 (peer별 가용 범위 상이)",
-    "sources": "IDX 공식 Annual Reports FY2022-FY2025",
-    "generated_at": "2026-05-11 Cycle 105 (regenerated 9→13 peer 완주)",
-    "prior_versions": "Cycle 33 7 peer (55.7 KB) → Cycle 81 FY25 포함 7 peer (63.8 KB) → Cycle 97 9 peer (67.3 KB) → Cycle 105 13 peer 완주"
+    "fiscal_years_covered": "FY2022-FY2025 (DMIG·PIPG FY25 신규 추가 2026-05-12)",
+    "sources": "IDX 공식 + 각 peer IR 홈페이지",
+    "generated_at": "2026-05-12 Cycle 167 (DMIG·PIPG FY25 통합 후 4번째 regenerate)",
+    "prior_versions": "Cycle 33 7p 55.7KB → 81 +FY25 63.8KB → 97 9p 67.3KB → 105 13p 79.0KB → 167 +DMIG·PIPG FY25"
   },
   "peers": {
     "dmig": {
@@ -32,15 +32,19 @@
         "fiscal_years": [
           "FY2022",
           "FY2023",
-          "FY2024"
+          "FY2024",
+          "FY2025"
         ],
         "source_ar": [
           "annual_reports/DMIG/FY2022/DMIG_AnnualReport2022_ENG.pdf",
           "annual_reports/DMIG/FY2023/DMIG_AnnualReport2023_ENG.pdf",
-          "annual_reports/DMIG/FY2024/DMIG_AnnualReport2024_INA.pdf"
+          "annual_reports/DMIG/FY2024/DMIG_AnnualReport2024_INA.pdf",
+          "annual_reports/DMIG/FY2025/AnnualReport2025-DMIG.pdf",
+          "annual_reports/DMIG/FY2025/AnnualReport2025-DMIG-att2-FinancialStatement.pdf"
         ],
         "extraction_method": "PyMuPDF positional text extraction, manually verified row totals.",
-        "extracted_at": "2026-05-11"
+        "extracted_at": "2026-05-11",
+        "fy2025_added_at": "2026-05-12 Cycle 167"
       },
       "revenue_note": {
         "note_number": {
@@ -319,6 +323,41 @@
             "FY2024": 0.055
           }
         ]
+      },
+      "fy2025_follow_up": {
+        "source": "DMIG FY2025 AR (damaiindahgolf.com newly downloaded 2026-05-12) + Financial Statement att2 p.13-14 P&L+BS (Cycle 167)",
+        "pnl_FY2025": {
+          "revenue": 251253870267,
+          "cogs": 81481474359,
+          "gross_profit": 169772395908,
+          "opex": 100325847015,
+          "operating_income": 69446548893,
+          "net_income": 75023832300,
+          "eps_basic": 35828000,
+          "comprehensive_income": 75266776287
+        },
+        "pnl_FY2024_comparative": {
+          "revenue": 253102440194,
+          "cogs": 77047726868,
+          "gross_profit": 176054713326,
+          "opex": 97128046722,
+          "operating_income": 78926666604,
+          "net_income": 82404512711,
+          "eps_basic": 39352680
+        },
+        "balance_sheet_FY2025": {
+          "total_assets": 719678622806,
+          "total_liabilities": 181427732411,
+          "total_equity": 538250890395
+        },
+        "yoy_changes": {
+          "revenue": -0.0073,
+          "operating_income": -0.1201,
+          "net_income": -0.0896,
+          "cogs": 0.0576,
+          "opex": 0.0329,
+          "comment": "매출 -0.7%로 sticky / COGS +5.8% + OpEx +3.3% 압박 / Op income -12.0% / Net -9.0%. Margin pressure."
+        }
       }
     },
     "pipg": {
@@ -330,13 +369,17 @@
         "fiscal_years": [
           "FY2022",
           "FY2023",
-          "FY2024"
+          "FY2024",
+          "FY2025"
         ],
         "source_ar": [
-          "annual_reports/PIPG/FY2024/PIPG_AnnualReport2024.pdf"
+          "annual_reports/PIPG/FY2024/PIPG_AnnualReport2024.pdf",
+          "annual_reports/PIPG/FY2025/AnnualReport2025-PIPG.pdf",
+          "annual_reports/PIPG/FY2025/AnnualReport2025-PIPG-att2-FinancialStatement.pdf"
         ],
         "extraction_method": "PyMuPDF positional text extraction, FY24 AR comparative columns + Financial Highlights p.11 multi-year",
-        "extracted_at": "2026-05-11 Cycle 2"
+        "extracted_at": "2026-05-11 Cycle 2",
+        "fy2025_added_at": "2026-05-12 Cycle 167"
       },
       "profile": {
         "courses": 1,
@@ -751,6 +794,41 @@
             "notaris": "Utiek R. Abdurachman S.H. No. 07"
           }
         ]
+      },
+      "fy2025_follow_up": {
+        "source": "PIPG FY2025 AR (golfpondokindah.com newly downloaded 2026-05-12) + Financial Statement att2 p.11 P&L (Cycle 167)",
+        "pnl_FY2025": {
+          "revenue": 185775352369,
+          "cogs": 70947439257,
+          "gross_profit": 114827913112,
+          "opex": 62458191346,
+          "operating_income": 55598750416,
+          "net_income": 56221968494,
+          "eps_basic": 43280961,
+          "other_income": 3229028650
+        },
+        "pnl_FY2024_comparative": {
+          "revenue": 197570521436,
+          "cogs": 69576989952,
+          "gross_profit": 127993531484,
+          "opex": 76117491573,
+          "operating_income": 53451361547,
+          "net_income": 55903815772,
+          "eps_basic": 43036040
+        },
+        "balance_sheet_FY2025": {
+          "total_assets": 477919451512,
+          "total_liabilities": 90935321734,
+          "total_equity": 386984129778
+        },
+        "yoy_changes": {
+          "revenue": -0.0597,
+          "cogs": 0.0197,
+          "opex": -0.1795,
+          "operating_income": 0.0402,
+          "net_income": 0.0057,
+          "comment": "매출 -6.0% / 그러나 OpEx -17.9% 대규모 절감 (76→62 bn) → Op Income +4.0% / Net Income +0.6%. 비용 통제로 수익성 유지."
+        }
       }
     },
     "golf": {
