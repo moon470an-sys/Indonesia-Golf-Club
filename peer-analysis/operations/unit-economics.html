@@ -27,6 +27,19 @@
   /* Sticky first column on wide tables */
   .sticky-first th:first-child, .sticky-first td:first-child { position:sticky; left:0; background:var(--ops-surface); z-index:1; box-shadow:1px 0 0 var(--ops-line); }
   .sticky-first thead th:first-child { background:var(--ops-bg); z-index:2; }
+  /* Tier filter pills */
+  .tier-pills { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:10px 0 4px 0; }
+  .tier-pill { padding:5px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:999px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
+  .tier-pill.active { background:var(--ops-green); color:white; border-color:var(--ops-green); }
+  .tier-pill:hover:not(.active) { background:rgba(45,80,22,0.05); }
+  /* Action bar with export */
+  .action-bar { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:6px 0 12px 0; }
+  .action-btn { padding:6px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); display:inline-flex; align-items:center; gap:4px; }
+  .action-btn:hover { background:rgba(45,80,22,0.05); }
+  .action-btn.success { background:#16a34a; color:white; border-color:#16a34a; }
+  .row-count { font-size:12px; color:var(--ops-muted); margin-left:auto; }
+  /* Hidden rows (filtered out) */
+  tr.tier-hidden { display:none; }
 </style>
 </head>
 <body>
@@ -61,12 +74,24 @@
 <section class="ops-section">
   <div class="ops-wrap">
     <h2 style="font-size:17px; margin:0 0 14px 0;">① 13-peer 단위 경제 — <span id="yr1">FY2024</span></h2>
-    <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">
+    <p style="font-size:12px; color:var(--ops-muted); margin:0 0 6px 0;">
       홀당·<span class="tip" title="ha = 헥타르 (10,000 m²). 1 ha ≈ 3,025 평">ha</span>당 매출 = 골프 부문 매출 ÷ 단위
       (<span class="tip" title="Pure-play = 그룹 매출 거의 전부가 골프 사업인 회사 (DMIG, PIPG). Township/Resort에서는 골프 segment 매출만 사용.">Pure-play</span>는 그룹 매출).
       1인당 매출·영업이익은 그룹 <span class="tip" title="Profit &amp; Loss statement, 손익계산서">P&amp;L</span>.
-      <strong style="margin-left:8px;">💡 헤더 클릭으로 정렬</strong> · <strong>히트맵 막대</strong>: 진할수록 우수 (회색=데이터 없음).
+      <strong style="margin-left:8px;">💡 헤더 클릭 정렬</strong> · <strong>히트맵 막대</strong>: 진할수록 우수 (회색=데이터 없음).
     </p>
+    <div class="tier-pills" id="tier-pills" role="group" aria-label="Tier 필터">
+      <span style="font-size:11.5px; color:var(--ops-muted); font-weight:600;">Tier:</span>
+      <button class="tier-pill active" data-tier="all">전체 (13)</button>
+      <button class="tier-pill" data-tier="pp">🟦 Pure-play (2)</button>
+      <button class="tier-pill" data-tier="resort">🟨 Resort (1)</button>
+      <button class="tier-pill" data-tier="twn">🟩 Township (10)</button>
+    </div>
+    <div class="action-bar">
+      <button class="action-btn" id="copy-tsv-btn" aria-label="현재 표를 TSV로 클립보드 복사">📋 표 복사 (TSV)</button>
+      <button class="action-btn" id="download-csv-btn" aria-label="현재 표를 CSV 파일로 다운로드">⬇ CSV 다운로드</button>
+      <span class="row-count" id="row-count">13 / 13 표시</span>
+    </div>
     <div class="tbl-card scroll-x">
       <table class="ops-tbl sticky-first" id="main-table">
         <thead>
@@ -171,8 +196,9 @@ function fmtPerUnit(rev_bn, divisor){
   return v.toFixed(2) + 'B';
 }
 
-// State for sorting (persists across year changes)
+// State for sorting + tier filter (persists across year changes)
 let sortState = { key: 'revPerHole', dir: 'desc' };
+let tierFilter = 'all';
 
 function computeMainRows(year){
   return PEER_ORDER.map(t => {
@@ -222,8 +248,13 @@ function heatBar(value, min, max, higherBetter){
 }
 
 function renderMain(year){
-  const rows = computeMainRows(year);
-  // Determine min/max per heat-map metric
+  const allRows = computeMainRows(year);
+  // Filter by tier
+  const rows = (tierFilter === 'all') ? allRows : allRows.filter(r => r.d.tier === tierFilter);
+  // Update count
+  const rc = document.getElementById('row-count');
+  if (rc) rc.textContent = `${rows.length} / ${allRows.length} 표시`;
+  // Determine min/max per heat-map metric (over filtered rows so heat reflects current peer-group)
   const metrics = {
     revPerHole: { higher:true },
     revPerHa:   { higher:true },
@@ -327,6 +358,60 @@ function render(year){
 }
 
 let currentYear = '2024';
+
+// Export currently rendered Section 1 table as TSV/CSV
+function buildTableExport(year, sep) {
+  const allRows = computeMainRows(year);
+  const rows = (tierFilter === 'all') ? allRows : allRows.filter(r => r.d.tier === tierFilter);
+  // Sort same as render
+  const sorted = rows.slice();
+  if (sortState.key) {
+    sorted.sort((a,b) => {
+      const va = a[sortState.key]; const vb = b[sortState.key];
+      if (va === null || va === undefined) return 1;
+      if (vb === null || vb === undefined) return -1;
+      return sortState.dir === 'desc' ? (vb - va) : (va - vb);
+    });
+  }
+  const headers = ['Peer','그룹명','Tier','홀','면적(ha)','정직원','골프매출(B IDR)','홀당매출(B IDR)','ha당매출(B IDR)','1인당매출(B IDR)','영업이익률(%)','1인당영업이익(B IDR)'];
+  const esc = (v) => {
+    if (v === null || v === undefined) return '';
+    const s = String(v);
+    if (sep === ',' && (s.includes(',') || s.includes('"') || s.includes('
+'))) {
+      return '"' + s.replace(/"/g,'""') + '"';
+    }
+    return s;
+  };
+  const fmt = (v, dp) => (v === null || v === undefined) ? '' : v.toFixed(dp === undefined ? 2 : dp);
+  const lines = [headers.map(esc).join(sep)];
+  sorted.forEach(r => {
+    lines.push([
+      esc(r.t),
+      esc(r.d.name),
+      esc(r.d.tier_label),
+      fmt(r.holes, 0),
+      fmt(r.area, 1),
+      fmt(r.emp, 0),
+      fmt(r.golfRev, 2),
+      fmt(r.revPerHole, 3),
+      fmt(r.revPerHa, 3),
+      fmt(r.revPerEmp, 3),
+      fmt(r.opMargin, 2),
+      fmt(r.opPerEmp, 3),
+    ].join(sep));
+  });
+  return lines.join('
+');
+}
+
+async function flashSuccess(btn, label){
+  const orig = btn.textContent;
+  btn.textContent = label;
+  btn.classList.add('success');
+  setTimeout(() => { btn.textContent = orig; btn.classList.remove('success'); }, 1500);
+}
+
 (function(){
   document.querySelectorAll('.year-btn').forEach(b => {
     b.addEventListener('click', () => {
@@ -344,11 +429,43 @@ let currentYear = '2024';
         sortState.dir = (sortState.dir === 'desc') ? 'asc' : 'desc';
       } else {
         sortState.key = k;
-        // Default direction: higher-is-better metrics desc; counts/area/emp use desc too
         sortState.dir = 'desc';
       }
       renderMain(currentYear);
     });
+  });
+  // Tier filter pills
+  document.querySelectorAll('#tier-pills .tier-pill').forEach(p => {
+    p.addEventListener('click', () => {
+      document.querySelectorAll('#tier-pills .tier-pill').forEach(x => x.classList.remove('active'));
+      p.classList.add('active');
+      tierFilter = p.dataset.tier;
+      renderMain(currentYear);
+    });
+  });
+  // Copy TSV (clipboard-friendly for spreadsheets)
+  document.getElementById('copy-tsv-btn').addEventListener('click', async (e) => {
+    const tsv = buildTableExport(currentYear, '	');
+    try {
+      await navigator.clipboard.writeText(tsv);
+      flashSuccess(e.currentTarget, '✓ 복사됨');
+    } catch (err) {
+      const ta = document.createElement('textarea');
+      ta.value = tsv; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+      flashSuccess(e.currentTarget, '✓ 복사됨');
+    }
+  });
+  // CSV download
+  document.getElementById('download-csv-btn').addEventListener('click', (e) => {
+    const csv = '﻿' + buildTableExport(currentYear, ',');  // BOM for Excel ko-KR
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const tierTag = tierFilter === 'all' ? 'all' : tierFilter;
+    a.href = url; a.download = `unit-economics_FY${currentYear}_${tierTag}.csv`;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    flashSuccess(e.currentTarget, '✓ 다운로드');
   });
   render(currentYear);
 })();
