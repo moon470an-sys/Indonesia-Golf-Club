@@ -519,6 +519,18 @@ html = '''<!DOCTYPE html>
   @media (max-width:720px) {
     .ops-tbl .col-low-prio { display:none; }
   }
+  /* Top performer cards */
+  .top-perf { display:grid; grid-template-columns:repeat(auto-fit, minmax(170px, 1fr)); gap:10px; margin:14px 0 10px 0; }
+  .top-perf-card { background:linear-gradient(135deg, rgba(245,158,11,0.08), rgba(245,158,11,0.02)); border:1px solid var(--ops-line); border-left:3px solid #f59e0b; border-radius:8px; padding:8px 12px; }
+  .top-perf-name { font-size:10.5px; font-weight:700; color:var(--ops-muted); letter-spacing:0.04em; text-transform:uppercase; margin-bottom:3px; }
+  .top-perf-winner { font-size:14px; font-weight:700; color:var(--ops-ink); }
+  .top-perf-winner a { color:inherit; text-decoration:none; }
+  .top-perf-value { font-size:11.5px; color:#b45309; font-weight:700; font-variant-numeric:tabular-nums; }
+  body.theme-dark .top-perf-card { background:linear-gradient(135deg, rgba(245,158,11,0.14), rgba(245,158,11,0.04)); }
+  .data-meta { font-size:11px; color:var(--ops-muted); margin-top:6px; padding:6px 0 0 0; border-top:1px dashed var(--ops-line); }
+  .data-meta strong { color:var(--ops-ink-soft); }
+  .data-meta .sep { margin:0 8px; opacity:0.4; }
+  @media print { .top-perf { display:none; } .data-meta { font-size:9px; } }
   /* Category matrix search */
   .cat-search-row { display:flex; gap:8px; align-items:center; margin:4px 0 8px 0; flex-wrap:wrap; }
   .cat-search-row label { font-size:11.5px; color:var(--ops-muted); font-weight:600; }
@@ -554,6 +566,14 @@ html = '''<!DOCTYPE html>
       • GOLF: 매출원가에 사업부 직접원가, 판관비에 Selling+G&amp;A<br>
       • KPIG: 그룹 G&amp;A만 공시 (매출원가 분리 없음)<br>
       <strong>해법</strong>: ④ 탭의 <strong>총 영업비용 (COGS+OpEx) / 매출</strong> 단일 지표는 분류 차이를 상쇄하며, ③ 탭의 <strong>카테고리 매트릭스는 COGS+OpEx 통합</strong>으로 인건비·감가 등 cost-type 동급 비교를 제공합니다.
+    </div>
+    <div class="top-perf" id="top-perf"></div>
+    <div class="data-meta">
+      📅 데이터: <strong>FY2020-FY2024 연결 P&amp;L</strong>
+      <span class="sep">·</span>
+      COGS/OpEx: <strong>AR Note 25·26·28·29·30·31·32·34 / scope_rev 매칭</strong>
+      <span class="sep">·</span>
+      출처: <strong>IDX (idx.co.id)</strong>
     </div>
     <div class="year-bar">
       <label>기준 연도:</label>
@@ -807,8 +827,60 @@ const TIER_LABEL = { pp:'🟦 Pure-play 중위', resort:'🟨 Resort 중위', tw
 let cmpSortState = { key: null, dir: 'desc' };
 let totalSortState = { key: null, dir: 'desc' };
 
+function renderTopPerf(year) {
+  const fmtPct = v => (v === null || v === undefined) ? '—' : `${v >= 0 ? '+' : ''}${v.toFixed(1)}%`;
+  function bestLow(metricFn, fmt) {
+    let best = null, bestV = Infinity;
+    PEER_ORDER.forEach(t => {
+      const v = metricFn(t);
+      if (v !== null && v !== undefined && v < bestV) { bestV = v; best = t; }
+    });
+    return best ? { ticker: best, display: fmt(bestV) } : null;
+  }
+  function bestHigh(metricFn, fmt) {
+    let best = null, bestV = -Infinity;
+    PEER_ORDER.forEach(t => {
+      const v = metricFn(t);
+      if (v !== null && v !== undefined && v > bestV) { bestV = v; best = t; }
+    });
+    return best ? { ticker: best, display: fmt(bestV) } : null;
+  }
+  // Total cost ratio = (rev - op) / rev
+  const totalCostRatio = (t) => {
+    const y = PEER_DATA[t].yearly[year] || {};
+    return (y.rev && y.op !== null && y.op !== undefined) ? ((y.rev - y.op)/y.rev*100) : null;
+  };
+  const opMarginFn = (t) => {
+    const y = PEER_DATA[t].yearly[year] || {};
+    return (y.rev && y.op !== null && y.op !== undefined) ? (y.op/y.rev*100) : null;
+  };
+  const ebMarginFn = (t) => {
+    const y = PEER_DATA[t].yearly[year] || {};
+    return (y.rev && y.ebitda !== null && y.ebitda !== undefined) ? (y.ebitda/y.rev*100) : null;
+  };
+  const totRatioFn = (t) => {
+    const d = PEER_DATA[t];
+    const sr = d.scope_rev[year]; const tot = d.total_opcost[year];
+    return (sr && tot) ? (tot/sr*100) : null;
+  };
+  const perfs = [
+    { label: '🏆 최저 총비용률', data: bestLow(totalCostRatio, fmtPct) },
+    { label: '🏆 최고 영업이익률', data: bestHigh(opMarginFn, fmtPct) },
+    { label: '🏆 최고 EBITDA 마진', data: bestHigh(ebMarginFn, fmtPct) },
+    { label: '🏆 최저 (COGS+OpEx)/매출', data: bestLow(totRatioFn, fmtPct) },
+  ];
+  const root = document.getElementById('top-perf');
+  if (!root) return;
+  root.innerHTML = perfs.filter(p => p.data).map(p => `<div class="top-perf-card">
+    <div class="top-perf-name">${p.label}</div>
+    <div class="top-perf-winner"><a href="clubs/${p.data.ticker.toLowerCase()}.html">${p.data.ticker}</a></div>
+    <div class="top-perf-value">${p.data.display}</div>
+  </div>`).join('');
+}
+
 function render(year){
   document.querySelectorAll('.yr-label').forEach(el => el.textContent = 'FY' + year);
+  renderTopPerf(year);
 
   // === Tab 1: 비용 구조 % (group P&L) ===
   const cmpData = [];
