@@ -6,7 +6,7 @@
 <title>시설 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260512c77" />
+<link rel="stylesheet" href="ops-style.css?v=20260513c83" />
 <style>
   .ast-tab-bar { display:flex; gap:6px; flex-wrap:wrap; margin:16px 0 20px 0; border-bottom:2px solid var(--ops-line); }
   .ast-tab { padding:10px 18px; cursor:pointer; font-size:13px; font-weight:600; color:var(--ops-ink-soft); border-bottom:3px solid transparent; margin-bottom:-2px; }
@@ -197,16 +197,16 @@
         <table class="ops-tbl" id="phy-tbl">
           <thead>
             <tr>
-              <th>Peer</th>
-              <th>분류</th>
-              <th>클럽 · 지역</th>
-              <th class="num">코스 수</th>
-              <th class="num">홀</th>
-              <th class="num">면적 (ha)</th>
-              <th>설계자</th>
-              <th class="num">개장년</th>
-              <th class="num">정규직</th>
-              <th class="num">공시 점수 <span class="tip" title="홀·면적·설계자·개장년·정규직 5개 메타 필드 중 공시된 비율">?</span></th>
+              <th class="sortable" data-sort="peer" data-type="text">Peer</th>
+              <th class="sortable" data-sort="tier" data-type="text">분류</th>
+              <th class="sortable" data-sort="loc" data-type="text">클럽 · 지역</th>
+              <th class="num sortable" data-sort="courses" data-type="num">코스 수</th>
+              <th class="num sortable" data-sort="holes" data-type="num">홀</th>
+              <th class="num sortable" data-sort="area" data-type="num">면적 (ha)</th>
+              <th class="sortable" data-sort="designer" data-type="text">설계자</th>
+              <th class="num sortable" data-sort="opened" data-type="num">개장년</th>
+              <th class="num sortable" data-sort="emp" data-type="num">정규직</th>
+              <th class="num sortable" data-sort="discl" data-type="num">공시 점수 <span class="tip" title="홀·면적·설계자·개장년·정규직 5개 메타 필드 중 공시된 비율">?</span></th>
             </tr>
           </thead>
           <tbody id="phy-tbody">
@@ -1040,9 +1040,61 @@ function flashSuccess(btn, label){
       td.innerHTML = `<span class="discl-bar"><span class="discl-track"><span class="discl-fill lvl-${lvl}" style="width:${w}%;"></span></span><span class="discl-txt">${disclosed}/5</span></span>`;
       td.setAttribute('data-discl', disclosed);
       tr.appendChild(td);
+      // Stamp data-sort-* attrs on row so sort handlers can read them quickly
+      const sortKeys = ['peer','tier','loc','courses','holes','area','designer','opened','emp','discl'];
+      sortKeys.forEach((key, i) => {
+        const cell = (key === 'discl') ? td : cells[i];
+        if (!cell) return;
+        const txt = (cell.textContent || '').trim();
+        // Parse first number for numeric sort (handles "2 + 1*", "36 + 18", etc.)
+        const m = txt.replace(/,/g,'').match(/-?\d+(\.\d+)?/);
+        const num = m ? parseFloat(m[0]) : NaN;
+        tr.setAttribute('data-' + key, isNaN(num) ? '' : num);
+        tr.setAttribute('data-' + key + '-text', txt);
+      });
+    });
+  }
+  let phySort = { key: null, dir: 'asc' };
+  function sortPhyTable(key, type, dir) {
+    const tbody = document.getElementById('phy-tbody');
+    if (!tbody) return;
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+    rows.sort((a, b) => {
+      let va, vb;
+      if (type === 'num') {
+        va = parseFloat(a.getAttribute('data-' + key));
+        vb = parseFloat(b.getAttribute('data-' + key));
+        // 값 없음(빈/NaN)은 항상 뒤로
+        const an = isNaN(va), bn = isNaN(vb);
+        if (an && bn) return 0;
+        if (an) return 1;
+        if (bn) return -1;
+        return dir === 'desc' ? (vb - va) : (va - vb);
+      }
+      va = (a.getAttribute('data-' + key + '-text') || '').toLowerCase();
+      vb = (b.getAttribute('data-' + key + '-text') || '').toLowerCase();
+      if (va === vb) return 0;
+      return dir === 'desc' ? (va < vb ? 1 : -1) : (va < vb ? -1 : 1);
+    });
+    rows.forEach(r => tbody.appendChild(r));
+  }
+  function wirePhySort() {
+    document.querySelectorAll('#phy-tbl .sortable').forEach(th => {
+      th.addEventListener('click', () => {
+        const k = th.dataset.sort;
+        const type = th.dataset.type;
+        if (phySort.key === k) phySort.dir = (phySort.dir === 'desc') ? 'asc' : 'desc';
+        else { phySort.key = k; phySort.dir = (type === 'num') ? 'desc' : 'asc'; }
+        sortPhyTable(k, type, phySort.dir);
+        document.querySelectorAll('#phy-tbl .sortable').forEach(t => t.classList.remove('asc','desc'));
+        th.classList.add(phySort.dir);
+      });
+      th.setAttribute('tabindex', '0');
+      th.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); th.click(); } });
     });
   }
   decoratePhyTable();
+  wirePhySort();
   renderInsights();
   renderTopPerf();
   renderProd();
