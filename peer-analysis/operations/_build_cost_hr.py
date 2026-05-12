@@ -122,6 +122,28 @@ def extract_opex_by_cat(t):
             add_lines(d[key]['lines'])
     return result
 
+def extract_cogs_by_cat(t):
+    """Categorize COGS lines where the AR breaks COGS down by cost-type rather than sub-segment.
+    Only MDLN reports COGS as Gaji/Penyusutan/Lain-lain (cost-type within each sub-segment).
+    DMIG/PIPG/GOLF report COGS as sub-segments (Lapangan golf, Restoran, ...) which cannot
+    be mapped onto the 11-category cost-type scheme — those return empty dict."""
+    d = notes.get(t, {})
+    result = {}
+    def add_lines(lines):
+        for ln in lines:
+            cat = categorize(ln['id_label'])
+            for ykey, v in ln.items():
+                if not ykey.startswith('FY') or v is None: continue
+                yr = ykey[-4:]
+                result.setdefault(yr, {}).setdefault(cat, 0)
+                result[yr][cat] += v
+    # MDLN — golf + clubhouse direct cost lines (cost-type within sub-segment)
+    if t == 'MDLN' and 'cogs_note_26' in d:
+        n = d['cogs_note_26']
+        add_lines(n.get('golf_course_direct_cost_lines', []))
+        add_lines(n.get('club_house_restaurant_direct_cost_lines', []))
+    return result
+
 # Categories order (display)
 CAT_ORDER = ['인건비','감가상각','시설관리','세금·법률','수도광열','광고·마케팅','보험','통신·IT','사무·소모품','청소·보안','운송·출장','기타']
 
@@ -141,6 +163,14 @@ for t in peers_sorted:
         }
     cogs_tot, opex_tot = extract_totals(t)
     opex_cat = extract_opex_by_cat(t)
+    cogs_cat = extract_cogs_by_cat(t)
+    # Combined operating cost (COGS + OpEx) per year — neutralizes classification differences
+    total_opcost = {}
+    for yr in set(list(cogs_tot.keys()) + list(opex_tot.keys())):
+        cv = cogs_tot.get(yr) or 0
+        ov = opex_tot.get(yr) or 0
+        if cv or ov:
+            total_opcost[yr] = cv + ov
     # Scope revenue — what revenue the COGS/OpEx note actually covers (for honest ratio)
     SCOPE_REV_OVERLAY = {
         'KIJA': {'2024': 85019 * 1e6},                     # golf segment rev
@@ -170,7 +200,9 @@ for t in peers_sorted:
         'yearly': yearly,
         'cogs_total': cogs_tot,    # {'2022': val, ...}
         'opex_total': opex_tot,
+        'total_opcost': total_opcost,  # COGS + OpEx (분류 체계 차이 상쇄용)
         'opex_by_cat': opex_cat,   # {'2023': {'인건비': val, ...}}
+        'cogs_by_cat': cogs_cat,   # MDLN만 데이터 존재
         'scope_rev': scope_rev,
         'cogs_cov': cogs_cov,
         'opex_cov': opex_cov,
@@ -425,6 +457,15 @@ html = '''<!DOCTYPE html>
   <div class="ops-wrap">
     <h1>비용 — 동급 비교</h1>
     <p class="lede">기준 연도 선택 → 13 peer 비용 구조 비교. 라인 상세표는 선택 연도 컬럼 하이라이트.</p>
+    <div style="background:rgba(245,158,11,0.08); border-left:3px solid #f59e0b; padding:10px 14px; margin:12px 0 6px 0; border-radius:4px; font-size:12px; line-height:1.6; color:var(--ops-ink-soft);">
+      <strong>⚠ 매출원가·판관비 분류 체계 차이 안내</strong><br>
+      peer별 AR 분류 관행이 달라 <strong>COGS 단독 비율</strong>·<strong>OpEx 단독 비율</strong>만으로는 동급 비교가 어렵습니다.<br>
+      • DMIG·PIPG (Pure-play): 인건비·감가가 <em>판관비</em>에 분류, 매출원가는 사업부 직접 운영비만<br>
+      • MDLN: 인건비·감가가 <em>매출원가</em>에 포함, 별도 판관비 공시 없음<br>
+      • GOLF: 매출원가에 사업부 직접원가, 판관비에 Selling+G&amp;A<br>
+      • KPIG: 그룹 G&amp;A만 공시 (매출원가 분리 없음)<br>
+      <strong>해법</strong>: ④ 탭의 <strong>총 영업비용 (COGS+OpEx) / 매출</strong> 단일 지표는 분류 차이를 상쇄하며, ③ 탭의 <strong>카테고리 매트릭스는 COGS+OpEx 통합</strong>으로 인건비·감가 등 cost-type 동급 비교를 제공합니다.
+    </div>
     <div class="year-bar">
       <label>기준 연도:</label>
       <button class="year-btn" data-year="2020">FY2020</button>
@@ -435,8 +476,9 @@ html = '''<!DOCTYPE html>
     </div>
     <div class="cost-tab-bar">
       <div class="cost-tab active" data-panel="cmp">① 13-peer 비용 구조 %</div>
-      <div class="cost-tab" data-panel="cogs">② 매출원가 라인 (4 peer)</div>
-      <div class="cost-tab" data-panel="opex">③ 판관비 라인 (4 peer)</div>
+      <div class="cost-tab" data-panel="cogs">② 매출원가 라인</div>
+      <div class="cost-tab" data-panel="opex">③ 판관비 + 통합 카테고리</div>
+      <div class="cost-tab" data-panel="total">④ 총 영업비용 (COGS+OpEx)</div>
     </div>
   </div>
 </section>
@@ -506,8 +548,8 @@ __COGS_SECTION__
         </table>
       </div>
 
-      <h3 style="font-size:15px; margin:24px 0 10px 0;">판관비 카테고리 매트릭스 — <span class="yr-label">FY2024</span></h3>
-      <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">peer × 11 카테고리 (인건비·감가·시설관리·세금·수도광열·광고·보험·통신·사무·청소·운송). AR 라인 라벨을 인도네시아어 키워드로 자동 분류.</p>
+      <h3 style="font-size:15px; margin:24px 0 10px 0;">운영비 카테고리 매트릭스 (COGS+OpEx 통합) — <span class="yr-label">FY2024</span></h3>
+      <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">peer × 12 카테고리. <strong>분류 체계 차이 상쇄용</strong>: MDLN처럼 인건비·감가를 매출원가에 분류하는 peer는 COGS 라인도 카테고리화해서 합산 → DMIG/PIPG(판관비에 분류)와 같은 차원에서 비교. AR 라인 라벨을 인도네시아어 키워드로 자동 분류. <span style="color:var(--ops-green); font-weight:600;">출처 셀: ⓒ = COGS+OpEx 합산, ⓞ = OpEx만</span>.</p>
       <div class="tbl-card scroll-x" style="margin-bottom:28px;">
         <table class="ops-tbl" id="opex-cat-tbl">
           <thead id="opex-cat-thead"></thead>
@@ -517,6 +559,34 @@ __COGS_SECTION__
 
       <h3 style="font-size:15px; margin:24px 0 10px 0;">peer별 판관비 라인 상세</h3>
 __OPEX_SECTION__
+    </div>
+
+    <div class="cost-panel" id="panel-total">
+      <h2 style="font-size:17px; margin:0 0 14px 0;">총 영업비용 (COGS + OpEx) 동급 비교 — <span class="yr-label">FY2024</span></h2>
+      <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">매출원가와 판관비의 <strong>합계</strong>를 동일 범위 매출(scope_rev)로 나눈 비율. peer별 분류 체계 차이(인건비·감가가 COGS에 있는지 OpEx에 있는지)와 무관하게 <strong>총 영업비용 부담</strong>을 동일 차원에서 비교할 수 있습니다.</p>
+      <div style="background:rgba(45,80,22,0.05); padding:8px 12px; margin:0 0 14px 0; border-radius:4px; font-size:11.5px; color:var(--ops-ink-soft);">
+        <strong>해석 가이드</strong>: 비율이 낮을수록 매출 대비 영업비용 효율성이 높음.
+        Pure-play(DMIG·PIPG)는 전사 기준, GOLF는 사업부 합계, MDLN/KIJA/SMDM은 골프 segment 기준 →
+        모두 <em>해당 공시 범위의 매출</em>로 나누어 동일 차원 비교 성립.
+        <strong>주의</strong>: KPIG는 COGS 공시 없이 그룹 G&amp;A만이므로 합산 비율 비교에서 제외.
+      </div>
+      <div class="tbl-card scroll-x" style="margin-bottom:24px;">
+        <table class="ops-tbl">
+          <thead>
+            <tr>
+              <th>Peer</th>
+              <th>그룹명</th>
+              <th class="num">매출원가</th>
+              <th class="num">판관비</th>
+              <th class="num">합계 (COGS+OpEx)</th>
+              <th class="num">대응 매출</th>
+              <th class="num">합계 / 매출</th>
+              <th>공시 범위</th>
+            </tr>
+          </thead>
+          <tbody id="total-cmp-tbody"></tbody>
+        </table>
+      </div>
     </div>
   </div>
 </section>
@@ -608,35 +678,76 @@ function render(year){
   });
   document.getElementById('opex-cmp-tbody').innerHTML = opexRows.join('');
 
-  // === Tab 3: 판관비 카테고리 매트릭스 (peer × category) ===
-  // Only peers with opex_by_cat data for selected year
+  // === Tab 3: 운영비 카테고리 매트릭스 (peer × category, COGS+OpEx 통합) ===
+  // Combine cogs_by_cat (MDLN only) + opex_by_cat for each peer; include peers with either
   const opexCatPeers = PEER_ORDER.filter(t => {
-    const cat = PEER_DATA[t].opex_by_cat[year];
-    return cat && Object.keys(cat).length > 0;
+    const o = PEER_DATA[t].opex_by_cat[year] || {};
+    const c = PEER_DATA[t].cogs_by_cat[year] || {};
+    return Object.keys(o).length > 0 || Object.keys(c).length > 0;
   });
+  // Build merged category map per peer
+  const mergedByPeer = {};   // {peer: {cat: sum}}
+  const sourceByPeer = {};   // {peer: 'C+O' | 'O' | 'C'} (for header annotation)
+  opexCatPeers.forEach(t => {
+    const o = PEER_DATA[t].opex_by_cat[year] || {};
+    const c = PEER_DATA[t].cogs_by_cat[year] || {};
+    const m = {};
+    Object.keys(o).forEach(k => { m[k] = (m[k]||0) + o[k]; });
+    Object.keys(c).forEach(k => { m[k] = (m[k]||0) + c[k]; });
+    mergedByPeer[t] = m;
+    const hasC = Object.keys(c).length > 0;
+    const hasO = Object.keys(o).length > 0;
+    sourceByPeer[t] = (hasC && hasO) ? 'C+O' : (hasC ? 'C' : 'O');
+  });
+  const srcTag = s => s === 'C+O' ? '<span style="font-size:9px; color:var(--ops-green); font-weight:700;">ⓒ</span>' : '<span style="font-size:9px; color:var(--ops-muted);">ⓞ</span>';
   const theadCells = ['<th>카테고리</th>'].concat(opexCatPeers.map(t => {
     const d = PEER_DATA[t];
-    return `<th class="num"><a href="clubs/${t.toLowerCase()}.html" style="color:inherit; text-decoration:none;">${t}</a> <span class="peer-tag peer-tag-${d.tier}" style="font-size:9px; padding:1px 5px;">${d.tier_label.replace(/^[^ ]+ /,'')}</span></th>`;
+    return `<th class="num"><a href="clubs/${t.toLowerCase()}.html" style="color:inherit; text-decoration:none;">${t}</a> ${srcTag(sourceByPeer[t])} <span class="peer-tag peer-tag-${d.tier}" style="font-size:9px; padding:1px 5px;">${d.tier_label.replace(/^[^ ]+ /,'')}</span></th>`;
   })).join('');
   document.getElementById('opex-cat-thead').innerHTML = '<tr>' + theadCells + '</tr>';
-  // Body rows
+  // Body rows — use scope_rev for ratio (same as ② ③ tabs, honest comparison)
   const bodyRows = CAT_ORDER.map(cat => {
     const cells = opexCatPeers.map(t => {
-      const v = (PEER_DATA[t].opex_by_cat[year] || {})[cat];
-      const rev = PEER_DATA[t].yearly[year] ? PEER_DATA[t].yearly[year].rev : null;
-      const pct = (v && rev) ? (v/rev*100) : null;
+      const v = (mergedByPeer[t] || {})[cat];
+      const scopeRev = PEER_DATA[t].scope_rev[year];
+      const pct = (v && scopeRev) ? (v/scopeRev*100) : null;
       const pctTxt = pct !== null ? `<br><span style="color:var(--ops-muted); font-size:10.5px;">${pct.toFixed(2)}%</span>` : '';
       return `<td class="num">${fmtBn(v)}${pctTxt}</td>`;
     }).join('');
     return `<tr><td><strong>${cat}</strong></td>${cells}</tr>`;
   });
-  // Total row
+  // Total row — COGS + OpEx grand total (total_opcost)
   const totalCells = opexCatPeers.map(t => {
-    const tot = PEER_DATA[t].opex_total[year];
-    return `<td class="num"><strong>${fmtBn(tot)}</strong></td>`;
+    const tot = PEER_DATA[t].total_opcost[year];
+    const scopeRev = PEER_DATA[t].scope_rev[year];
+    const pct = (tot && scopeRev) ? (tot/scopeRev*100) : null;
+    const pctTxt = pct !== null ? `<br><span style="color:var(--ops-muted); font-size:10.5px;">${pct.toFixed(2)}%</span>` : '';
+    return `<td class="num"><strong>${fmtBn(tot)}</strong>${pctTxt}</td>`;
   }).join('');
-  bodyRows.push(`<tr style="background:rgba(45,80,22,0.06); font-weight:700;"><td>합계</td>${totalCells}</tr>`);
+  bodyRows.push(`<tr style="background:rgba(45,80,22,0.06); font-weight:700;"><td>합계 (COGS+OpEx)</td>${totalCells}</tr>`);
   document.getElementById('opex-cat-tbody').innerHTML = bodyRows.join('');
+
+  // === Tab 4: 총 영업비용 (COGS+OpEx) 동급 비교 ===
+  const totalRows = PEER_ORDER.map(t => {
+    const d = PEER_DATA[t];
+    const scopeRev = d.scope_rev[year];
+    const cogs = d.cogs_total[year];
+    const opex = d.opex_total[year];
+    const tot = d.total_opcost[year];
+    const ratio = (scopeRev && tot) ? (tot/scopeRev*100) : null;
+    const cov = (d.cogs_cov !== '—' && d.opex_cov !== '—') ? `${d.cogs_cov} / ${d.opex_cov}` : (d.cogs_cov !== '—' ? d.cogs_cov : d.opex_cov);
+    return `<tr>
+      <td class="peer"><a href="clubs/${t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${t}</a><span class="peer-tag peer-tag-${d.tier}">${d.tier_label}</span></td>
+      <td>${d.name.slice(0,24)}</td>
+      <td class="num">${fmtBn(cogs)}</td>
+      <td class="num">${fmtBn(opex)}</td>
+      <td class="num"><strong>${fmtBn(tot)}</strong></td>
+      <td class="num">${fmtBn(scopeRev)}</td>
+      <td class="num"><strong>${fmtPct(ratio)}</strong></td>
+      <td style="font-size:11px; color:var(--ops-muted);">${cov}</td>
+    </tr>`;
+  });
+  document.getElementById('total-cmp-tbody').innerHTML = totalRows.join('');
 
   // Highlight selected year columns in line tables
   document.querySelectorAll('.yr-hl').forEach(el => el.classList.remove('yr-hl'));
