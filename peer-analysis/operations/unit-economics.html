@@ -6,7 +6,7 @@
 <title>단위 경제 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260513c92" />
+<link rel="stylesheet" href="ops-style.css?v=20260513c98" />
 <style>
   .year-bar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:14px 0 4px 0; }
   .year-bar label { font-size:13px; font-weight:600; color:var(--ops-ink-soft); }
@@ -40,6 +40,26 @@
   .row-count { font-size:12px; color:var(--ops-muted); margin-left:auto; }
   /* Hidden rows (filtered out) */
   tr.tier-hidden, tr.search-hidden { display:none; }
+  /* Top-3 정렬 medal: 사용자가 numeric 컬럼으로 정렬 시 상위 3개 행에 🥇🥈🥉 (favorites 제외 첫 3) */
+  .ops-tbl tbody tr.rank-1 td:first-child,
+  .ops-tbl tbody tr.rank-2 td:first-child,
+  .ops-tbl tbody tr.rank-3 td:first-child { position:relative; padding-left:28px !important; }
+  .ops-tbl tbody tr.rank-1 td:first-child::before,
+  .ops-tbl tbody tr.rank-2 td:first-child::before,
+  .ops-tbl tbody tr.rank-3 td:first-child::before {
+    position:absolute; left:6px; top:50%; transform:translateY(-50%); font-size:13px; line-height:1;
+  }
+  .ops-tbl tbody tr.rank-1 td:first-child::before { content:'🥇'; }
+  .ops-tbl tbody tr.rank-2 td:first-child::before { content:'🥈'; }
+  .ops-tbl tbody tr.rank-3 td:first-child::before { content:'🥉'; }
+  @media print {
+    .ops-tbl tbody tr.rank-1 td:first-child::before,
+    .ops-tbl tbody tr.rank-2 td:first-child::before,
+    .ops-tbl tbody tr.rank-3 td:first-child::before { display:none; }
+    .ops-tbl tbody tr.rank-1 td:first-child,
+    .ops-tbl tbody tr.rank-2 td:first-child,
+    .ops-tbl tbody tr.rank-3 td:first-child { padding-left:5px !important; }
+  }
   /* Favorite star (cross-page localStorage 'clubs-favorites') */
   .fav-star { display:inline-block; vertical-align:middle; margin-right:4px; padding:0 2px; border:none; background:transparent; cursor:pointer; font-size:14px; line-height:1; color:var(--ops-muted); opacity:0.45; transition:all 0.15s; border-radius:3px; }
   .fav-star:hover { opacity:1; color:#f59e0b; background:rgba(245,158,11,0.10); }
@@ -549,10 +569,18 @@ function renderMain(year){
     const cls = v > 0 ? 'cagr-pos' : v < 0 ? 'cagr-neg' : 'cagr-zero';
     return `<span class="${cls}">${v >= 0 ? '+' : ''}${v.toFixed(1)}%</span>`;
   };
+  // Track medal rank among non-favorite rows when sort is active
+  const numericSort = !!sortState.key;
+  let nonFavCount = 0;
   const html = sorted.map(r => {
     const color = TIER_COLOR[r.d.tier] || '#666';
     const fav = favorites.has(r.t);
-    return `<tr class="${fav ? 'is-fav' : ''}">
+    let rankCls = '';
+    if (numericSort && !fav) {
+      nonFavCount++;
+      if (nonFavCount <= 3) rankCls = ` rank-${nonFavCount}`;
+    }
+    return `<tr class="${(fav ? 'is-fav' : '') + rankCls}">
       <td class="peer"><button class="fav-star${fav ? ' active' : ''}" data-ticker="${r.t}" title="${fav ? '즐겨찾기 해제' : '즐겨찾기 (피어 상단 고정)'}" aria-label="즐겨찾기 토글" aria-pressed="${fav}">${fav ? '★' : '☆'}</button><a href="clubs/${r.t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${r.t}</a><span class="peer-tag peer-tag-${r.d.tier}">${r.d.tier_label}</span></td>
       <td class="col-low-prio">${r.d.name.slice(0,22)}</td>
       <td class="num">${fmtNum(r.holes)}</td>
