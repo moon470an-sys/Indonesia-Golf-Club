@@ -425,7 +425,7 @@ html = '''<!DOCTYPE html>
 <title>비용 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260513c82" />
+<link rel="stylesheet" href="ops-style.css?v=20260513c88" />
 <style>
   .year-bar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:14px 0 4px 0; }
   .year-bar label { font-size:13px; font-weight:600; color:var(--ops-ink-soft); }
@@ -483,6 +483,26 @@ html = '''<!DOCTYPE html>
   body.theme-dark #opex-cat-tbl tbody tr:hover td { background:rgba(34,197,94,0.06); }
   body.theme-dark #opex-cat-tbl tbody tr:hover td:first-child { background:rgba(34,197,94,0.14); }
   #opex-cat-tbl td.col-highlight { outline:2px solid rgba(245,158,11,0.55); outline-offset:-2px; position:relative; z-index:1; }
+  /* Top-3 정렬 medal: Tab ① / Tab ④ 정렬 결과 상위 3개 peer 행에 🥇🥈🥉 표시 */
+  .ops-tbl tbody tr.peer-row.rank-1 td:first-child,
+  .ops-tbl tbody tr.peer-row.rank-2 td:first-child,
+  .ops-tbl tbody tr.peer-row.rank-3 td:first-child { position:relative; padding-left:28px !important; }
+  .ops-tbl tbody tr.peer-row.rank-1 td:first-child::before,
+  .ops-tbl tbody tr.peer-row.rank-2 td:first-child::before,
+  .ops-tbl tbody tr.peer-row.rank-3 td:first-child::before {
+    position:absolute; left:6px; top:50%; transform:translateY(-50%); font-size:13px; line-height:1;
+  }
+  .ops-tbl tbody tr.peer-row.rank-1 td:first-child::before { content:'🥇'; }
+  .ops-tbl tbody tr.peer-row.rank-2 td:first-child::before { content:'🥈'; }
+  .ops-tbl tbody tr.peer-row.rank-3 td:first-child::before { content:'🥉'; }
+  @media print {
+    .ops-tbl tbody tr.peer-row.rank-1 td:first-child::before,
+    .ops-tbl tbody tr.peer-row.rank-2 td:first-child::before,
+    .ops-tbl tbody tr.peer-row.rank-3 td:first-child::before { display:none; }
+    .ops-tbl tbody tr.peer-row.rank-1 td:first-child,
+    .ops-tbl tbody tr.peer-row.rank-2 td:first-child,
+    .ops-tbl tbody tr.peer-row.rank-3 td:first-child { padding-left:5px !important; }
+  }
   /* Cross-section peer highlight: 4개 peer-row 표 ↔ 카테고리 매트릭스 컬럼 sync */
   .ops-tbl tbody tr.peer-highlight td:first-child { background:rgba(245,158,11,0.18); box-shadow:inset 3px 0 0 #f59e0b; }
   #opex-cat-tbl td.peer-col-highlight { outline:2px dashed rgba(245,158,11,0.7); outline-offset:-2px; position:relative; z-index:1; background:rgba(245,158,11,0.08); }
@@ -1007,9 +1027,12 @@ function render(year){
       return cmpSortState.dir === 'desc' ? (vb - va) : (va - vb);
     });
   }
-  const rows = cmpSorted.map(r => {
+  // Top-3 medals when sorted by numeric metric (낮을수록 좋은 비용 비율 등은 asc 정렬에서 #1이 우수)
+  const cmpNumericSort = !!cmpSortState.key;
+  const rows = cmpSorted.map((r, i) => {
     const { t, d, rev, totalCost, costRatio, opMargin, ebMargin, npMargin } = r;
-    return `<tr data-tier="${d.tier}">
+    const rankCls = (cmpNumericSort && i < 3) ? ` rank-${i+1}` : '';
+    return `<tr data-tier="${d.tier}" class="peer-row${rankCls}">
       <td class="peer"><a href="clubs/${t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${t}</a><span class="peer-tag peer-tag-${d.tier}">${d.tier_label}</span></td>
       <td class="col-low-prio">${d.name.slice(0,24)}</td>
       <td class="num">${fmtBn(rev)}</td>
@@ -1154,9 +1177,12 @@ function render(year){
       return totalSortState.dir === 'desc' ? (vb - va) : (va - vb);
     });
   }
-  const totalRows = totalSorted.map(r => {
+  // Top-3 medals when sorted by numeric metric in Tab ④
+  const totalNumericSort = !!totalSortState.key;
+  const totalRows = totalSorted.map((r, i) => {
     const { t, d, cogs, opex, tot, scopeRev, ratio, cov } = r;
-    return `<tr data-tier="${d.tier}">
+    const rankCls = (totalNumericSort && i < 3) ? ` rank-${i+1}` : '';
+    return `<tr data-tier="${d.tier}" class="peer-row${rankCls}">
       <td class="peer"><a href="clubs/${t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${t}</a><span class="peer-tag peer-tag-${d.tier}">${d.tier_label}</span></td>
       <td class="col-low-prio">${d.name.slice(0,24)}</td>
       <td class="num col-low-prio">${fmtBn(cogs)}</td>
