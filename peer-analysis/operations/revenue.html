@@ -6,13 +6,19 @@
 <title>매출 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260512c53" />
+<link rel="stylesheet" href="ops-style.css?v=20260512c54" />
 <style>
+  .year-bar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:14px 0 4px 0; }
+  .year-bar label { font-size:13px; font-weight:600; color:var(--ops-ink-soft); }
+  .year-btn { padding:6px 14px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:6px; font-size:12.5px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
+  .year-btn.active { background:var(--ops-green); color:white; border-color:var(--ops-green); }
   .rev-tab-bar { display:flex; gap:6px; flex-wrap:wrap; margin:16px 0 24px 0; border-bottom:2px solid var(--ops-line); }
   .rev-tab { padding:10px 18px; cursor:pointer; font-size:13px; font-weight:600; color:var(--ops-ink-soft); border-bottom:3px solid transparent; margin-bottom:-2px; }
   .rev-tab.active { color:var(--ops-green); border-bottom-color:var(--ops-green); }
   .rev-panel { display:none; }
   .rev-panel.active { display:block; }
+  /* Selected-year column highlighting in line detail tables */
+  .yr-hl { background:rgba(245,158,11,0.10); font-weight:700; }
 </style>
 </head>
 <body>
@@ -31,87 +37,100 @@
 
 <section class="ops-hero">
   <div class="ops-wrap">
-    <h1>매출 라인 분해</h1>
-    <p class="lede">Pure-play AR 매출 주석 라인별 분해 + 골프 세그먼트 + 13-peer 그룹 매출 5년.</p>
+    <h1>매출 — 동급 비교</h1>
+    <p class="lede">기준 연도 선택 → 13 peer 매출 비교. 라인 상세표는 선택 연도 컬럼 하이라이트.</p>
+    <div class="year-bar">
+      <label>기준 연도:</label>
+      <button class="year-btn" data-year="2020">FY2020</button>
+      <button class="year-btn" data-year="2021">FY2021</button>
+      <button class="year-btn" data-year="2022">FY2022</button>
+      <button class="year-btn" data-year="2023">FY2023</button>
+      <button class="year-btn active" data-year="2024">FY2024</button>
+    </div>
     <div class="rev-tab-bar">
-      <div class="rev-tab active" data-panel="pp">① Pure-play 매출 라인 (DMIG·PIPG)</div>
-      <div class="rev-tab" data-panel="seg">② 골프 세그먼트 (GOLF·MDLN·KPIG·Tier3)</div>
-      <div class="rev-tab" data-panel="grp">③ 13-peer 그룹 매출 5Y</div>
+      <div class="rev-tab active" data-panel="cmp">① 13-peer 동급 비교</div>
+      <div class="rev-tab" data-panel="pp">② Pure-play 매출 라인</div>
+      <div class="rev-tab" data-panel="seg">③ 골프 세그먼트 라인</div>
     </div>
   </div>
 </section>
 
 <section class="ops-section">
   <div class="ops-wrap">
-    <div class="rev-panel active" id="panel-pp">
+    <div class="rev-panel active" id="panel-cmp">
+      <h2 style="font-size:17px; margin:0 0 14px 0;">13-peer 매출 비교 — <span class="yr-label">FY2024</span></h2>
+      <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">선택 연도 그룹 매출 + 골프 부문 매출(공시 peer) + 골프 비중 + YoY. YoY는 직전 연도 대비.</p>
+      <div class="tbl-card scroll-x">
+        <table class="ops-tbl">
+          <thead>
+            <tr>
+              <th>Peer</th>
+              <th>그룹명</th>
+              <th class="num">그룹 매출</th>
+              <th class="num">골프 매출</th>
+              <th class="num">골프 비중</th>
+              <th class="num">YoY (그룹)</th>
+              <th class="num">YoY (골프)</th>
+            </tr>
+          </thead>
+          <tbody id="cmp-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="rev-panel" id="panel-pp">
       <div style="margin-bottom:32px;">
-        <h3 style="font-size:16px; margin:0 0 10px 0;">🟦 DMIG · 매출 라인 (Note {'FY2022': 23, 'FY2023': 23, 'FY2024': 23})</h3>
+        <h3 style="font-size:16px; margin:0 0 10px 0;">🟦 DMIG · 매출 라인 (Note 23)</h3>
         <p style="font-size:12px; color:var(--ops-muted); margin:0 0 8px 0;">Pure-play — 골프장·F&B·회원권·스폰서·임대 등 7 라인</p>
         <div class="tbl-card scroll-x">
           <table class="ops-tbl">
-            <thead><tr><th>매출 라인</th><th class="num">FY2022</th><th class="num">FY2023</th><th class="num">FY2024</th><th class="num">FY24 비중</th><th class="num">YoY</th></tr></thead>
+            <thead><tr><th>매출 라인</th><th class="num yr-2022">FY2022</th><th class="num yr-2023">FY2023</th><th class="num yr-2024">FY2024</th><th class="num">FY24 비중</th><th class="num">YoY</th></tr></thead>
             <tbody>
             <tr>
               <td>Lapangan golf<br><span style="color:var(--ops-muted); font-size:11px;">Golf course</span></td>
-              <td class="num">98.5B</td>
-              <td class="num">127.1B</td>
-              <td class="num"><strong>127.9B</strong></td>
+              <td class="num yr-2022">98.5B</td><td class="num yr-2023">127.1B</td><td class="num yr-2024">127.9B</td>
               <td class="num">50.5%</td>
               <td class="num"><span style="color:#16a34a; font-weight:700;">+0.6%</span></td>
             </tr>
             <tr>
               <td>Restoran<br><span style="color:var(--ops-muted); font-size:11px;">Restaurant</span></td>
-              <td class="num">34.7B</td>
-              <td class="num">48.5B</td>
-              <td class="num"><strong>50.3B</strong></td>
+              <td class="num yr-2022">34.7B</td><td class="num yr-2023">48.5B</td><td class="num yr-2024">50.3B</td>
               <td class="num">19.9%</td>
               <td class="num"><span style="color:#16a34a; font-weight:700;">+3.6%</span></td>
             </tr>
             <tr>
               <td>Iuran keanggotaan<br><span style="color:var(--ops-muted); font-size:11px;">Membership dues</span></td>
-              <td class="num">42.6B</td>
-              <td class="num">45.8B</td>
-              <td class="num"><strong>46.3B</strong></td>
+              <td class="num yr-2022">42.6B</td><td class="num yr-2023">45.8B</td><td class="num yr-2024">46.3B</td>
               <td class="num">18.3%</td>
               <td class="num"><span style="color:#16a34a; font-weight:700;">+1.2%</span></td>
             </tr>
             <tr>
               <td>Sponsor<br><span style="color:var(--ops-muted); font-size:11px;">Sponsorship</span></td>
-              <td class="num">—</td>
-              <td class="num">7.9B</td>
-              <td class="num"><strong>12.4B</strong></td>
+              <td class="num yr-2022">—</td><td class="num yr-2023">7.9B</td><td class="num yr-2024">12.4B</td>
               <td class="num">4.9%</td>
               <td class="num"><span style="color:#16a34a; font-weight:700;">+57.3%</span></td>
             </tr>
             <tr>
               <td>Sewa ruangan<br><span style="color:var(--ops-muted); font-size:11px;">Room rental</span></td>
-              <td class="num">4.9B</td>
-              <td class="num">9.2B</td>
-              <td class="num"><strong>8.2B</strong></td>
+              <td class="num yr-2022">4.9B</td><td class="num yr-2023">9.2B</td><td class="num yr-2024">8.2B</td>
               <td class="num">3.2%</td>
               <td class="num"><span style="color:#b91c1c; font-weight:700;">-10.3%</span></td>
             </tr>
             <tr>
               <td>Rekreasi<br><span style="color:var(--ops-muted); font-size:11px;">Recreation</span></td>
-              <td class="num">2.4B</td>
-              <td class="num">3.2B</td>
-              <td class="num"><strong>3.0B</strong></td>
+              <td class="num yr-2022">2.4B</td><td class="num yr-2023">3.2B</td><td class="num yr-2024">3.0B</td>
               <td class="num">1.2%</td>
               <td class="num"><span style="color:#b91c1c; font-weight:700;">-4.2%</span></td>
             </tr>
             <tr>
               <td>Lain-lain<br><span style="color:var(--ops-muted); font-size:11px;">Others</span></td>
-              <td class="num">3.5B</td>
-              <td class="num">—</td>
-              <td class="num"><strong>4.9B</strong></td>
+              <td class="num yr-2022">3.5B</td><td class="num yr-2023">—</td><td class="num yr-2024">4.9B</td>
               <td class="num">2.0%</td>
               <td class="num">—</td>
             </tr>
             <tr style="background:rgba(45,80,22,0.06); font-weight:700;">
               <td>합계</td>
-              <td class="num">186.5B</td>
-              <td class="num">245.0B</td>
-              <td class="num">253.1B</td>
+              <td class="num yr-2022">186.5B</td><td class="num yr-2023">245.0B</td><td class="num yr-2024">253.1B</td>
               <td class="num">100.0%</td>
               <td class="num"><span style="color:#16a34a; font-weight:700;">+3.3%</span></td>
             </tr>
@@ -124,89 +143,77 @@
         <p style="font-size:12px; color:var(--ops-muted); margin:0 0 8px 0;">Pure-play — 골프·F&B·회원권·아카데미·드라이빙·임대 등 11 라인</p>
         <div class="tbl-card scroll-x">
           <table class="ops-tbl">
-            <thead><tr><th>매출 라인</th><th class="num">FY2023</th><th class="num">FY2024</th><th class="num">FY24 비중</th><th class="num">YoY</th></tr></thead>
+            <thead><tr><th>매출 라인</th><th class="num yr-2023">FY2023</th><th class="num yr-2024">FY2024</th><th class="num">FY24 비중</th><th class="num">YoY</th></tr></thead>
             <tbody>
             <tr>
               <td>Golf course<br><span style="color:var(--ops-muted); font-size:11px;">Golf course</span></td>
-              <td class="num">51.2B</td>
-              <td class="num"><strong>53.9B</strong></td>
+              <td class="num yr-2023">51.2B</td><td class="num yr-2024">53.9B</td>
               <td class="num">27.3%</td>
               <td class="num"><span style="color:#16a34a; font-weight:700;">+5.3%</span></td>
             </tr>
             <tr>
               <td>Restoran<br><span style="color:var(--ops-muted); font-size:11px;">Restaurant</span></td>
-              <td class="num">33.2B</td>
-              <td class="num"><strong>38.9B</strong></td>
+              <td class="num yr-2023">33.2B</td><td class="num yr-2024">38.9B</td>
               <td class="num">19.7%</td>
               <td class="num"><span style="color:#16a34a; font-weight:700;">+17.3%</span></td>
             </tr>
             <tr>
               <td>Iuran keanggotaan dan pendaftaran<br><span style="color:var(--ops-muted); font-size:11px;">Membership and registration fees</span></td>
-              <td class="num">27.4B</td>
-              <td class="num"><strong>32.7B</strong></td>
+              <td class="num yr-2023">27.4B</td><td class="num yr-2024">32.7B</td>
               <td class="num">16.6%</td>
               <td class="num"><span style="color:#16a34a; font-weight:700;">+19.4%</span></td>
             </tr>
             <tr>
               <td>Driving range<br><span style="color:var(--ops-muted); font-size:11px;">Driving range</span></td>
-              <td class="num">19.3B</td>
-              <td class="num"><strong>18.9B</strong></td>
+              <td class="num yr-2023">19.3B</td><td class="num yr-2024">18.9B</td>
               <td class="num">9.6%</td>
               <td class="num"><span style="color:#b91c1c; font-weight:700;">-2.3%</span></td>
             </tr>
             <tr>
               <td>Sewa<br><span style="color:var(--ops-muted); font-size:11px;">Rent (Note 10)</span></td>
-              <td class="num">16.3B</td>
-              <td class="num"><strong>15.5B</strong></td>
+              <td class="num yr-2023">16.3B</td><td class="num yr-2024">15.5B</td>
               <td class="num">7.9%</td>
               <td class="num"><span style="color:#b91c1c; font-weight:700;">-4.9%</span></td>
             </tr>
             <tr>
               <td>Golf cart<br><span style="color:var(--ops-muted); font-size:11px;">Golf cart</span></td>
-              <td class="num">16.0B</td>
-              <td class="num"><strong>16.2B</strong></td>
+              <td class="num yr-2023">16.0B</td><td class="num yr-2024">16.2B</td>
               <td class="num">8.2%</td>
               <td class="num"><span style="color:#16a34a; font-weight:700;">+1.2%</span></td>
             </tr>
             <tr>
               <td>Branding<br><span style="color:var(--ops-muted); font-size:11px;">Branding</span></td>
-              <td class="num">13.6B</td>
-              <td class="num"><strong>14.4B</strong></td>
+              <td class="num yr-2023">13.6B</td><td class="num yr-2024">14.4B</td>
               <td class="num">7.3%</td>
               <td class="num"><span style="color:#16a34a; font-weight:700;">+6.0%</span></td>
             </tr>
             <tr>
               <td>Bagi hasil<br><span style="color:var(--ops-muted); font-size:11px;">Sharing revenue</span></td>
-              <td class="num">2.5B</td>
-              <td class="num"><strong>3.0B</strong></td>
+              <td class="num yr-2023">2.5B</td><td class="num yr-2024">3.0B</td>
               <td class="num">1.5%</td>
               <td class="num"><span style="color:#16a34a; font-weight:700;">+20.1%</span></td>
             </tr>
             <tr>
               <td>Academy golf<br><span style="color:var(--ops-muted); font-size:11px;">Academy golf</span></td>
-              <td class="num">1.8B</td>
-              <td class="num"><strong>2.3B</strong></td>
+              <td class="num yr-2023">1.8B</td><td class="num yr-2024">2.3B</td>
               <td class="num">1.2%</td>
               <td class="num"><span style="color:#16a34a; font-weight:700;">+25.8%</span></td>
             </tr>
             <tr>
               <td>Gym<br><span style="color:var(--ops-muted); font-size:11px;">Gym</span></td>
-              <td class="num">1.4B</td>
-              <td class="num"><strong>1.7B</strong></td>
+              <td class="num yr-2023">1.4B</td><td class="num yr-2024">1.7B</td>
               <td class="num">0.9%</td>
               <td class="num"><span style="color:#16a34a; font-weight:700;">+18.4%</span></td>
             </tr>
             <tr>
               <td>Sponsor Indonesia open<br><span style="color:var(--ops-muted); font-size:11px;">Indonesia's open sponsor</span></td>
-              <td class="num">20.3B</td>
-              <td class="num"><strong>0</strong></td>
+              <td class="num yr-2023">20.3B</td><td class="num yr-2024">0</td>
               <td class="num">—</td>
               <td class="num">—</td>
             </tr>
             <tr style="background:rgba(45,80,22,0.06); font-weight:700;">
               <td>합계</td>
-              <td class="num">203.1B</td>
-              <td class="num">197.6B</td>
+              <td class="num yr-2023">203.1B</td><td class="num yr-2024">197.6B</td>
               <td class="num">100.0%</td>
               <td class="num"><span style="color:#b91c1c; font-weight:700;">-2.7%</span></td>
             </tr>
@@ -215,46 +222,42 @@
         </div>
       </div>
     </div>
+
     <div class="rev-panel" id="panel-seg">
       <div style="margin-bottom:32px;">
         <h3 style="font-size:16px; margin:0 0 10px 0;">🟨 GOLF · 사업부별 매출 (Note 29)</h3>
-        <p style="font-size:12px; color:var(--ops-muted); margin:0 0 8px 0;">Bali 리조트 — 골프·부동산·F&B 사업부 분해</p>
+        <p style="font-size:12px; color:var(--ops-muted); margin:0 0 8px 0;">Bali 리조트 — 골프·부동산·F&B·기타 사업부 분해</p>
         <div class="tbl-card scroll-x">
           <table class="ops-tbl">
-            <thead><tr><th>사업부</th><th class="num">FY2023</th><th class="num">FY2024</th><th class="num">FY24 비중</th><th class="num">YoY</th></tr></thead>
+            <thead><tr><th>매출 라인</th><th class="num yr-2023">FY2023</th><th class="num yr-2024">FY2024</th><th class="num">FY24 비중</th><th class="num">YoY</th></tr></thead>
             <tbody>
             <tr>
               <td>Golf<br><span style="color:var(--ops-muted); font-size:11px;">Golf</span></td>
-              <td class="num">94.4B</td>
-              <td class="num"><strong>93.0B</strong></td>
+              <td class="num yr-2023">94.4B</td><td class="num yr-2024">93.0B</td>
               <td class="num">47.0%</td>
               <td class="num"><span style="color:#b91c1c; font-weight:700;">-1.5%</span></td>
             </tr>
             <tr>
               <td>Real Estat<br><span style="color:var(--ops-muted); font-size:11px;">Real Estate</span></td>
-              <td class="num">44.6B</td>
-              <td class="num"><strong>67.9B</strong></td>
+              <td class="num yr-2023">44.6B</td><td class="num yr-2024">67.9B</td>
               <td class="num">34.3%</td>
               <td class="num"><span style="color:#16a34a; font-weight:700;">+52.1%</span></td>
             </tr>
             <tr>
               <td>Restoran<br><span style="color:var(--ops-muted); font-size:11px;">Restaurant</span></td>
-              <td class="num">26.2B</td>
-              <td class="num"><strong>27.2B</strong></td>
+              <td class="num yr-2023">26.2B</td><td class="num yr-2024">27.2B</td>
               <td class="num">13.7%</td>
               <td class="num"><span style="color:#16a34a; font-weight:700;">+3.8%</span></td>
             </tr>
             <tr>
               <td>Lain-lain<br><span style="color:var(--ops-muted); font-size:11px;">Other</span></td>
-              <td class="num">12.3B</td>
-              <td class="num"><strong>9.9B</strong></td>
+              <td class="num yr-2023">12.3B</td><td class="num yr-2024">9.9B</td>
               <td class="num">5.0%</td>
               <td class="num"><span style="color:#b91c1c; font-weight:700;">-19.8%</span></td>
             </tr>
             <tr style="background:rgba(45,80,22,0.06); font-weight:700;">
               <td>합계</td>
-              <td class="num">177.6B</td>
-              <td class="num">198.0B</td>
+              <td class="num yr-2023">177.6B</td><td class="num yr-2024">198.0B</td>
               <td class="num">100.0%</td>
               <td class="num"><span style="color:#16a34a; font-weight:700;">+11.5%</span></td>
             </tr>
@@ -264,82 +267,82 @@
       </div>
       <div style="margin-bottom:32px;">
         <h3 style="font-size:16px; margin:0 0 10px 0;">🟩 MDLN · 그룹 매출 라인 (Note 25)</h3>
-        <p style="font-size:12px; color:var(--ops-muted); margin:0 0 8px 0;">Township — 토지·주택·아파트·골프·F&B 등 11 라인 (골프는 비중 작음)</p>
+        <p style="font-size:12px; color:var(--ops-muted); margin:0 0 8px 0;">Township — 토지·주택·아파트·골프·F&B 등 11 라인 (골프 비중 작음)</p>
         <div class="tbl-card scroll-x">
           <table class="ops-tbl">
-            <thead><tr><th>매출 라인</th><th class="num">FY2023</th><th class="num">FY2024</th><th class="num">FY24 비중</th></tr></thead>
+            <thead><tr><th>매출 라인</th><th class="num yr-2023">FY2023</th><th class="num yr-2024">FY2024</th><th class="num">FY24 비중</th><th class="num">YoY</th></tr></thead>
             <tbody>
             <tr>
-              <td>Tanah<br><span style="color:var(--ops-muted); font-size:11px;">Land · Net sales</span></td>
-              <td class="num">395.1B</td>
-              <td class="num"><strong>172.6B</strong></td>
+              <td>Tanah<br><span style="color:var(--ops-muted); font-size:11px;">Land</span></td>
+              <td class="num yr-2023">395.1B</td><td class="num yr-2024">172.6B</td>
               <td class="num">17.0%</td>
+              <td class="num"><span style="color:#b91c1c; font-weight:700;">-56.3%</span></td>
             </tr>
             <tr>
-              <td>Rumah tinggal dan ruko<br><span style="color:var(--ops-muted); font-size:11px;">Residential houses and shophouses · Net sales</span></td>
-              <td class="num">476.2B</td>
-              <td class="num"><strong>600.3B</strong></td>
+              <td>Rumah tinggal dan ruko<br><span style="color:var(--ops-muted); font-size:11px;">Residential houses and shophouses</span></td>
+              <td class="num yr-2023">476.2B</td><td class="num yr-2024">600.3B</td>
               <td class="num">59.0%</td>
+              <td class="num"><span style="color:#16a34a; font-weight:700;">+26.0%</span></td>
             </tr>
             <tr>
-              <td>Apartemen<br><span style="color:var(--ops-muted); font-size:11px;">Apartment · Net sales</span></td>
-              <td class="num">114.1B</td>
-              <td class="num"><strong>53.8B</strong></td>
+              <td>Apartemen<br><span style="color:var(--ops-muted); font-size:11px;">Apartment</span></td>
+              <td class="num yr-2023">114.1B</td><td class="num yr-2024">53.8B</td>
               <td class="num">5.3%</td>
+              <td class="num"><span style="color:#b91c1c; font-weight:700;">-52.9%</span></td>
             </tr>
             <tr>
-              <td>EPS dan Wiremesh<br><span style="color:var(--ops-muted); font-size:11px;">— · Net sales</span></td>
-              <td class="num">18.5B</td>
-              <td class="num"><strong>24.1B</strong></td>
+              <td>EPS dan Wiremesh<br><span style="color:var(--ops-muted); font-size:11px;">—</span></td>
+              <td class="num yr-2023">18.5B</td><td class="num yr-2024">24.1B</td>
               <td class="num">2.4%</td>
+              <td class="num"><span style="color:#16a34a; font-weight:700;">+30.4%</span></td>
             </tr>
             <tr>
-              <td>[Subtotal: Penjualan bersih]<br><span style="color:var(--ops-muted); font-size:11px;">— · Net sales subtotal</span></td>
-              <td class="num">1.0T</td>
-              <td class="num"><strong>850.7B</strong></td>
+              <td>[Subtotal: Penjualan bersih]<br><span style="color:var(--ops-muted); font-size:11px;">—</span></td>
+              <td class="num yr-2023">1.0T</td><td class="num yr-2024">850.7B</td>
               <td class="num">83.6%</td>
+              <td class="num"><span style="color:#b91c1c; font-weight:700;">-15.3%</span></td>
             </tr>
             <tr>
-              <td>Pendapatan dari hotel dan sewa<br><span style="color:var(--ops-muted); font-size:11px;">Hotel and rental income · Hospitality</span></td>
-              <td class="num">79.4B</td>
-              <td class="num"><strong>92.5B</strong></td>
+              <td>Pendapatan dari hotel dan sewa<br><span style="color:var(--ops-muted); font-size:11px;">Hotel and rental income</span></td>
+              <td class="num yr-2023">79.4B</td><td class="num yr-2024">92.5B</td>
               <td class="num">9.1%</td>
+              <td class="num"><span style="color:#16a34a; font-weight:700;">+16.4%</span></td>
             </tr>
             <tr>
-              <td>Lapangan golf - Green fees<br><span style="color:var(--ops-muted); font-size:11px;">— · Golf</span></td>
-              <td class="num">10.2B</td>
-              <td class="num"><strong>12.4B</strong></td>
+              <td>Lapangan golf - Green fees<br><span style="color:var(--ops-muted); font-size:11px;">—</span></td>
+              <td class="num yr-2023">10.2B</td><td class="num yr-2024">12.4B</td>
               <td class="num">1.2%</td>
+              <td class="num"><span style="color:#16a34a; font-weight:700;">+21.9%</span></td>
             </tr>
             <tr>
-              <td>Lapangan golf - Keanggotaan<br><span style="color:var(--ops-muted); font-size:11px;">Golf Membership fees · Golf</span></td>
-              <td class="num">10.2B</td>
-              <td class="num"><strong>9.6B</strong></td>
+              <td>Lapangan golf - Keanggotaan<br><span style="color:var(--ops-muted); font-size:11px;">Golf Membership fees</span></td>
+              <td class="num yr-2023">10.2B</td><td class="num yr-2024">9.6B</td>
               <td class="num">0.9%</td>
+              <td class="num"><span style="color:#b91c1c; font-weight:700;">-5.9%</span></td>
             </tr>
             <tr>
-              <td>Lapangan golf - Lain-lain<br><span style="color:var(--ops-muted); font-size:11px;">— · Golf</span></td>
-              <td class="num">31.7B</td>
-              <td class="num"><strong>34.7B</strong></td>
+              <td>Lapangan golf - Lain-lain<br><span style="color:var(--ops-muted); font-size:11px;">—</span></td>
+              <td class="num yr-2023">31.7B</td><td class="num yr-2024">34.7B</td>
               <td class="num">3.4%</td>
+              <td class="num"><span style="color:#16a34a; font-weight:700;">+9.3%</span></td>
             </tr>
             <tr>
-              <td>Restoran club house<br><span style="color:var(--ops-muted); font-size:11px;">Club house restaurant · Golf F&B</span></td>
-              <td class="num">16.9B</td>
-              <td class="num"><strong>17.7B</strong></td>
+              <td>Restoran club house<br><span style="color:var(--ops-muted); font-size:11px;">Club house restaurant</span></td>
+              <td class="num yr-2023">16.9B</td><td class="num yr-2024">17.7B</td>
               <td class="num">1.7%</td>
+              <td class="num"><span style="color:#16a34a; font-weight:700;">+4.8%</span></td>
             </tr>
             <tr>
-              <td>[Subtotal: Lapangan golf dan restoran club house]<br><span style="color:var(--ops-muted); font-size:11px;">— · Golf+F&B subtotal</span></td>
-              <td class="num">69.0B</td>
-              <td class="num"><strong>74.4B</strong></td>
+              <td>[Subtotal: Lapangan golf dan restoran club house]<br><span style="color:var(--ops-muted); font-size:11px;">—</span></td>
+              <td class="num yr-2023">69.0B</td><td class="num yr-2024">74.4B</td>
               <td class="num">7.3%</td>
+              <td class="num"><span style="color:#16a34a; font-weight:700;">+7.8%</span></td>
             </tr>
             <tr style="background:rgba(45,80,22,0.06); font-weight:700;">
               <td>합계</td>
-              <td class="num">1.2T</td>
-              <td class="num">1.0T</td>
+              <td class="num yr-2023">1.2T</td><td class="num yr-2024">1.0T</td>
               <td class="num">100.0%</td>
+              <td class="num"><span style="color:#b91c1c; font-weight:700;">-11.7%</span></td>
             </tr>
             </tbody>
           </table>
@@ -350,74 +353,74 @@
         <p style="font-size:12px; color:var(--ops-muted); margin:0 0 8px 0;">Township — 호텔·리조트·골프 번들 / 부동산관리 / 임대 / 기타</p>
         <div class="tbl-card scroll-x">
           <table class="ops-tbl">
-            <thead><tr><th>매출 라인</th><th class="num">FY2023</th><th class="num">FY2024</th><th class="num">FY24 비중</th></tr></thead>
+            <thead><tr><th>매출 라인</th><th class="num yr-2023">FY2023</th><th class="num yr-2024">FY2024</th><th class="num">FY24 비중</th><th class="num">YoY</th></tr></thead>
             <tbody>
             <tr>
-              <td>Hotel, resor dan golf <span style="color:#b91c1c; font-size:10.5px;">※ 골프 별도 미공시</span><br><span style="color:var(--ops-muted); font-size:11px;">Hotel, resort and golf</span></td>
-              <td class="num">811.9B</td>
-              <td class="num"><strong>960.2B</strong></td>
+              <td>Hotel, resor dan golf<br><span style="color:var(--ops-muted); font-size:11px;">Hotel, resort and golf</span></td>
+              <td class="num yr-2023">811.9B</td><td class="num yr-2024">960.2B</td>
               <td class="num">54.2%</td>
+              <td class="num"><span style="color:#16a34a; font-weight:700;">+18.3%</span></td>
             </tr>
             <tr>
               <td>Manajemen properti dan jasa lainnya<br><span style="color:var(--ops-muted); font-size:11px;">Property management and other services</span></td>
-              <td class="num">422.8B</td>
-              <td class="num"><strong>617.8B</strong></td>
+              <td class="num yr-2023">422.8B</td><td class="num yr-2024">617.8B</td>
               <td class="num">34.9%</td>
+              <td class="num"><span style="color:#16a34a; font-weight:700;">+46.1%</span></td>
             </tr>
             <tr>
               <td>Sewa ruang perkantoran<br><span style="color:var(--ops-muted); font-size:11px;">Office space rental</span></td>
-              <td class="num">172.7B</td>
-              <td class="num"><strong>139.1B</strong></td>
+              <td class="num yr-2023">172.7B</td><td class="num yr-2024">139.1B</td>
               <td class="num">7.9%</td>
+              <td class="num"><span style="color:#b91c1c; font-weight:700;">-19.4%</span></td>
             </tr>
             <tr>
               <td>Apartemen dan properti lainnya<br><span style="color:var(--ops-muted); font-size:11px;">Apartment and other properties</span></td>
-              <td class="num">13.7B</td>
-              <td class="num"><strong>53.0B</strong></td>
+              <td class="num yr-2023">13.7B</td><td class="num yr-2024">53.0B</td>
               <td class="num">3.0%</td>
+              <td class="num"><span style="color:#16a34a; font-weight:700;">+287.7%</span></td>
             </tr>
             <tr style="background:rgba(45,80,22,0.06); font-weight:700;">
               <td>합계</td>
-              <td class="num">1.4T</td>
-              <td class="num">1.8T</td>
+              <td class="num yr-2023">1.4T</td><td class="num yr-2024">1.8T</td>
               <td class="num">100.0%</td>
+              <td class="num"><span style="color:#16a34a; font-weight:700;">+24.6%</span></td>
             </tr>
             </tbody>
           </table>
         </div>
       </div>
       <div style="margin-bottom:32px;">
-        <h3 style="font-size:16px; margin:0 0 10px 0;">🟩 Tier-3 골프 세그먼트 요약</h3>
-        <p style="font-size:12px; color:var(--ops-muted); margin:0 0 8px 0;">KIJA·SMDM·SMRA — segment note 기반 골프 부문 매출/원가/마진</p>
+        <h3 style="font-size:16px; margin:0 0 10px 0;">🟩 Tier-3 골프 세그먼트 요약 (FY2024)</h3>
+        <p style="font-size:12px; color:var(--ops-muted); margin:0 0 8px 0;">KIJA·SMDM·SMRA — segment note 기반 골프 부문 단년 공시</p>
         <div class="tbl-card scroll-x">
           <table class="ops-tbl">
-            <thead><tr><th>Peer</th><th>세그먼트</th><th class="num">매출 FY24</th><th class="num">매출원가</th><th class="num">매출총이익</th><th class="num">영업이익</th><th class="num">GP 마진</th></tr></thead>
+            <thead><tr><th>Peer</th><th>세그먼트</th><th class="num">연도</th><th class="num">매출</th><th class="num">매출원가</th><th class="num">매출총이익</th><th class="num">GP 마진</th></tr></thead>
             <tbody>
             <tr>
               <td class="peer"><a href="clubs/kija.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">KIJA</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
               <td>Golf 세그먼트 (Jababeka + Borobudur)</td>
+              <td class="num">FY2024</td>
               <td class="num"><strong>85.0B</strong></td>
               <td class="num">49.6B</td>
               <td class="num">35.4B</td>
-              <td class="num">5.1B</td>
               <td class="num">41.6%</td>
             </tr>
             <tr>
               <td class="peer"><a href="clubs/smdm.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">SMDM</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
               <td>Golf dan Country Club (Rancamaya)</td>
+              <td class="num">FY2024</td>
               <td class="num"><strong>63.3B</strong></td>
               <td class="num">38.7B</td>
               <td class="num">24.6B</td>
-              <td class="num">-213.0M</td>
               <td class="num">38.9%</td>
             </tr>
             <tr>
               <td class="peer"><a href="clubs/smra.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">SMRA</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
               <td>Rekreasi/Leisure (Gading Raya 포함)</td>
+              <td class="num">FY2024</td>
               <td class="num"><strong>66.7B</strong></td>
               <td class="num">54.7B</td>
               <td class="num">12.0B</td>
-              <td class="num">—</td>
               <td class="num">18.0%</td>
             </tr>
             </tbody>
@@ -425,204 +428,87 @@
         </div>
       </div>
     </div>
-    <div class="rev-panel" id="panel-grp">
-      <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">그룹 연결 매출 (IDR). 골프 매출은 segment note 직접 공시 (DMIG·PIPG·GOLF·MDLN·KIJA·SMDM) 또는 라인 추정 (KPIG·SMRA).</p>
-      <div class="tbl-card scroll-x">
-        <table class="ops-tbl">
-          <thead>
-            <tr>
-              <th>Peer</th>
-              <th>그룹명</th>
-              <th class="num">FY2020</th>
-              <th class="num">FY2021</th>
-              <th class="num">FY2022</th>
-              <th class="num">FY2023</th>
-              <th class="num">FY2024</th>
-              <th class="num">YoY</th>
-              <th class="num">4Y CAGR</th>
-              <th>골프 매출 FY24</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="peer"><a href="clubs/dmig.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">DMIG</a><span class="peer-tag peer-tag-pp">🟦 Pure-play</span></td>
-              <td>Damai Indah Golf</td>
-              <td class="num">123.3B</td>
-              <td class="num">139.7B</td>
-              <td class="num">186.5B</td>
-              <td class="num">245.0B</td>
-              <td class="num"><strong>253.1B</strong></td>
-              <td class="num"><span style="color:#16a34a; font-weight:700;">+3.3%</span></td>
-              <td class="num">19.7%</td>
-              <td>253.1 bn</td>
-            </tr>
-            <tr>
-              <td class="peer"><a href="clubs/pipg.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">PIPG</a><span class="peer-tag peer-tag-pp">🟦 Pure-play</span></td>
-              <td>Pondok Indah Padang Golf</td>
-              <td class="num">111.7B</td>
-              <td class="num">134.4B</td>
-              <td class="num">162.6B</td>
-              <td class="num">203.1B</td>
-              <td class="num"><strong>197.6B</strong></td>
-              <td class="num"><span style="color:#b91c1c; font-weight:700;">-2.7%</span></td>
-              <td class="num">15.3%</td>
-              <td>197.6 bn</td>
-            </tr>
-            <tr>
-              <td class="peer"><a href="clubs/golf.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">GOLF</a><span class="peer-tag peer-tag-resort">🟨 Resort</span></td>
-              <td>Intra GolfLink Resorts</td>
-              <td class="num">—</td>
-              <td class="num">72.7B</td>
-              <td class="num">111.6B</td>
-              <td class="num">177.6B</td>
-              <td class="num"><strong>198.0B</strong></td>
-              <td class="num"><span style="color:#16a34a; font-weight:700;">+11.5%</span></td>
-              <td class="num">—</td>
-              <td>93.0 bn</td>
-            </tr>
-            <tr>
-              <td class="peer"><a href="clubs/bsde.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">BSDE</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
-              <td>Palm Springs Karawang + </td>
-              <td class="num">6.2T</td>
-              <td class="num">7.7T</td>
-              <td class="num">10.2T</td>
-              <td class="num">11.5T</td>
-              <td class="num"><strong>13.8T</strong></td>
-              <td class="num"><span style="color:#16a34a; font-weight:700;">+19.6%</span></td>
-              <td class="num">22.2%</td>
-              <td>미공시</td>
-            </tr>
-            <tr>
-              <td class="peer"><a href="clubs/ctra.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">CTRA</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
-              <td>Ciputra Golf Surabaya + </td>
-              <td class="num">8.1T</td>
-              <td class="num">9.7T</td>
-              <td class="num">9.1T</td>
-              <td class="num">9.2T</td>
-              <td class="num"><strong>11.2T</strong></td>
-              <td class="num"><span style="color:#16a34a; font-weight:700;">+21.0%</span></td>
-              <td class="num">8.5%</td>
-              <td>미공시</td>
-            </tr>
-            <tr>
-              <td class="peer"><a href="clubs/elty.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">ELTY</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
-              <td>Gunung Geulis + Klub Gol</td>
-              <td class="num">616.2B</td>
-              <td class="num">784.4B</td>
-              <td class="num">1.0T</td>
-              <td class="num">1.2T</td>
-              <td class="num"><strong>1.2T</strong></td>
-              <td class="num"><span style="color:#b91c1c; font-weight:700;">-1.6%</span></td>
-              <td class="num">18.3%</td>
-              <td>미공시</td>
-            </tr>
-            <tr>
-              <td class="peer"><a href="clubs/kija.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">KIJA</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
-              <td>Jababeka Golf & Country </td>
-              <td class="num">2.4T</td>
-              <td class="num">2.5T</td>
-              <td class="num">2.7T</td>
-              <td class="num">3.3T</td>
-              <td class="num"><strong>4.6T</strong></td>
-              <td class="num"><span style="color:#16a34a; font-weight:700;">+39.5%</span></td>
-              <td class="num">17.7%</td>
-              <td>85.0 bn</td>
-            </tr>
-            <tr>
-              <td class="peer"><a href="clubs/kpig.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">KPIG</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
-              <td>Trump International Golf</td>
-              <td class="num">678.0B</td>
-              <td class="num">700.0B</td>
-              <td class="num">1.1T</td>
-              <td class="num">1.4T</td>
-              <td class="num"><strong>1.8T</strong></td>
-              <td class="num"><span style="color:#16a34a; font-weight:700;">+24.6%</span></td>
-              <td class="num">27.1%</td>
-              <td>미공시</td>
-            </tr>
-            <tr>
-              <td class="peer"><a href="clubs/lpkr.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">LPKR</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
-              <td>Imperial Klub Golf</td>
-              <td class="num">12.0T</td>
-              <td class="num">16.1T</td>
-              <td class="num">14.7T</td>
-              <td class="num">16.7T</td>
-              <td class="num"><strong>11.3T</strong></td>
-              <td class="num"><span style="color:#b91c1c; font-weight:700;">-32.1%</span></td>
-              <td class="num">-1.3%</td>
-              <td>미공시</td>
-            </tr>
-            <tr>
-              <td class="peer"><a href="clubs/mdln.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">MDLN</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
-              <td>Modern Golf & Country Cl</td>
-              <td class="num">731.5B</td>
-              <td class="num">2.0T</td>
-              <td class="num">1.1T</td>
-              <td class="num">1.2T</td>
-              <td class="num"><strong>1.0T</strong></td>
-              <td class="num"><span style="color:#b91c1c; font-weight:700;">-11.7%</span></td>
-              <td class="num">8.6%</td>
-              <td>74.4 bn</td>
-            </tr>
-            <tr>
-              <td class="peer"><a href="clubs/pwon.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">PWON</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
-              <td>Pakuwon Golf & Family Cl</td>
-              <td class="num">4.0T</td>
-              <td class="num">5.7T</td>
-              <td class="num">6.0T</td>
-              <td class="num">6.2T</td>
-              <td class="num"><strong>6.7T</strong></td>
-              <td class="num"><span style="color:#16a34a; font-weight:700;">+7.6%</span></td>
-              <td class="num">13.8%</td>
-              <td>미공시</td>
-            </tr>
-            <tr>
-              <td class="peer"><a href="clubs/smdm.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">SMDM</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
-              <td>Rancamaya Golf Estate</td>
-              <td class="num">386.5B</td>
-              <td class="num">567.1B</td>
-              <td class="num">566.4B</td>
-              <td class="num">496.5B</td>
-              <td class="num"><strong>694.0B</strong></td>
-              <td class="num"><span style="color:#16a34a; font-weight:700;">+39.8%</span></td>
-              <td class="num">15.8%</td>
-              <td>63.3 bn</td>
-            </tr>
-            <tr>
-              <td class="peer"><a href="clubs/smra.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">SMRA</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
-              <td>Gading Raya Padang Golf</td>
-              <td class="num">5.0T</td>
-              <td class="num">5.6T</td>
-              <td class="num">5.7T</td>
-              <td class="num">6.7T</td>
-              <td class="num"><strong>10.6T</strong></td>
-              <td class="num"><span style="color:#16a34a; font-weight:700;">+59.5%</span></td>
-              <td class="num">20.6%</td>
-              <td>미공시</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
   </div>
 </section>
 
 <footer class="ops-foot">
   <div class="ops-wrap">
-    <p>매출 라인은 AR 주석 (Note). 그룹 매출은 연결 P&L. 골프 매출은 segment note 또는 라인 합산.</p>
+    <p>그룹 매출: 연결 P&L FY2020-FY2024. 골프 매출: segment note 공시 또는 pure-play. 라인 상세: AR Note 22·25·27·29·31.</p>
   </div>
 </footer>
 
 <script src="operations.js?v=20260512c3" defer></script>
 <script>
+const PEER_DATA = {"DMIG": {"name": "Damai Indah Golf", "tier": "pp", "tier_label": "🟦 Pure-play", "yearly": {"2020": {"rev": 123308738612}, "2021": {"rev": 139668124665}, "2022": {"rev": 186454207000}, "2023": {"rev": 244986267834}, "2024": {"rev": 253102440194}}, "golf_seg": {"2020": 123308738612, "2021": 139668124665, "2022": 186454207000, "2023": 244986267834, "2024": 253102440194}, "pure_play": true}, "PIPG": {"name": "Pondok Indah Padang Golf", "tier": "pp", "tier_label": "🟦 Pure-play", "yearly": {"2020": {"rev": 111672657675}, "2021": {"rev": 134430612405}, "2022": {"rev": 162573493394}, "2023": {"rev": 203092322067}, "2024": {"rev": 197570521436}}, "golf_seg": {"2020": 111672657675, "2021": 134430612405, "2022": 162573493394, "2023": 203092322067, "2024": 197570521436}, "pure_play": true}, "GOLF": {"name": "Intra GolfLink Resorts", "tier": "resort", "tier_label": "🟨 Resort", "yearly": {"2020": {"rev": null}, "2021": {"rev": 72658242193}, "2022": {"rev": 111630826260}, "2023": {"rev": 177582018034}, "2024": {"rev": 197993814652}}, "golf_seg": {"2023": 94436855876, "2024": 93042072774}, "pure_play": false}, "BSDE": {"name": "Palm Springs Karawang + Batam", "tier": "twn", "tier_label": "🟩 Township", "yearly": {"2020": {"rev": 6180589086059}, "2021": {"rev": 7654802250986}, "2022": {"rev": 10235479955727}, "2023": {"rev": 11539141250155}, "2024": {"rev": 13796572149000}}, "golf_seg": {}, "pure_play": false}, "CTRA": {"name": "Ciputra Golf Surabaya + Taman Dayu", "tier": "twn", "tier_label": "🟩 Township", "yearly": {"2020": {"rev": 8070737000000}, "2021": {"rev": 9729651000000}, "2022": {"rev": 9126799000000}, "2023": {"rev": 9245032000000}, "2024": {"rev": 11187565000000}}, "golf_seg": {}, "pure_play": false}, "ELTY": {"name": "Gunung Geulis + Klub Golf Bogor Raya", "tier": "twn", "tier_label": "🟩 Township", "yearly": {"2020": {"rev": 616210000000}, "2021": {"rev": 784410000000}, "2022": {"rev": 1011006000000}, "2023": {"rev": 1227355000000}, "2024": {"rev": 1208198000000}}, "golf_seg": {}, "pure_play": false}, "KIJA": {"name": "Jababeka Golf & Country Club", "tier": "twn", "tier_label": "🟩 Township", "yearly": {"2020": {"rev": 2396100000000}, "2021": {"rev": 2490256000000}, "2022": {"rev": 2747185000000}, "2023": {"rev": 3299597000000}, "2024": {"rev": 4602648000000}}, "golf_seg": {"2024": 85019000000}, "pure_play": false}, "KPIG": {"name": "Trump International Golf Club Lido", "tier": "twn", "tier_label": "🟩 Township", "yearly": {"2020": {"rev": 678039010000}, "2021": {"rev": 699975340000}, "2022": {"rev": 1121876641000}, "2023": {"rev": 1421006434000}, "2024": {"rev": 1770144398000}}, "golf_seg": {}, "pure_play": false}, "LPKR": {"name": "Imperial Klub Golf", "tier": "twn", "tier_label": "🟩 Township", "yearly": {"2020": {"rev": 11966300000000}, "2021": {"rev": 16138531000000}, "2022": {"rev": 14674086000000}, "2023": {"rev": 16702038000000}, "2024": {"rev": 11347979000000}}, "golf_seg": {}, "pure_play": false}, "MDLN": {"name": "Modern Golf & Country Club", "tier": "twn", "tier_label": "🟩 Township", "yearly": {"2020": {"rev": 731500000000}, "2021": {"rev": 2008646000000}, "2022": {"rev": 1098860000000}, "2023": {"rev": 1152308000000}, "2024": {"rev": 1017570000000}}, "golf_seg": {"2024": 74400000000}, "pure_play": false}, "PWON": {"name": "Pakuwon Golf & Family Club", "tier": "twn", "tier_label": "🟩 Township", "yearly": {"2020": {"rev": 3977211311000}, "2021": {"rev": 5713273000000}, "2022": {"rev": 5987433000000}, "2023": {"rev": 6200438000000}, "2024": {"rev": 6670809000000}}, "golf_seg": {}, "pure_play": false}, "SMDM": {"name": "Rancamaya Golf Estate", "tier": "twn", "tier_label": "🟩 Township", "yearly": {"2020": {"rev": 386500000000}, "2021": {"rev": 567052000000}, "2022": {"rev": 566403000000}, "2023": {"rev": 496498000000}, "2024": {"rev": 694045000000}}, "golf_seg": {"2022": null, "2023": null, "2024": 63282214554}, "pure_play": false}, "SMRA": {"name": "Gading Raya Padang Golf", "tier": "twn", "tier_label": "🟩 Township", "yearly": {"2020": {"rev": 5030000000000}, "2021": {"rev": 5567913000000}, "2022": {"rev": 5719396000000}, "2023": {"rev": 6658783000000}, "2024": {"rev": 10623400000000}}, "golf_seg": {"2024": 66672127000}, "pure_play": false}};
+const PEER_ORDER = ["DMIG", "PIPG", "GOLF", "BSDE", "CTRA", "ELTY", "KIJA", "KPIG", "LPKR", "MDLN", "PWON", "SMDM", "SMRA"];
+
+function fmtBn(v, dp){
+  if (v === null || v === undefined) return '—';
+  dp = (dp === undefined) ? 1 : dp;
+  if (Math.abs(v) >= 1e12) return (v/1e12).toFixed(dp) + 'T';
+  if (Math.abs(v) >= 1e9)  return (v/1e9).toFixed(dp) + 'B';
+  if (Math.abs(v) >= 1e6)  return (v/1e6).toFixed(dp) + 'M';
+  return Math.round(v).toLocaleString();
+}
+function fmtPct(v, dp){
+  if (v === null || v === undefined) return '—';
+  dp = (dp === undefined) ? 1 : dp;
+  return v.toFixed(dp) + '%';
+}
+function fmtYoY(v){
+  if (v === null || v === undefined) return '—';
+  const col = v > 0 ? '#16a34a' : v < 0 ? '#b91c1c' : '#666';
+  return `<span style="color:${col}; font-weight:700;">${v>=0?'+':''}${v.toFixed(1)}%</span>`;
+}
+
+function render(year){
+  document.querySelectorAll('.yr-label').forEach(el => el.textContent = 'FY' + year);
+
+  // Cross-peer comparison
+  const prevYear = String(parseInt(year)-1);
+  const rows = PEER_ORDER.map(t => {
+    const d = PEER_DATA[t];
+    const rev = d.yearly[year] ? d.yearly[year].rev : null;
+    const revPrev = d.yearly[prevYear] ? d.yearly[prevYear].rev : null;
+    const golf = d.golf_seg[year];
+    const golfPrev = d.golf_seg[prevYear];
+    const share = (rev && golf) ? (golf/rev*100) : null;
+    const yoyG = (rev && revPrev) ? ((rev-revPrev)/revPrev*100) : null;
+    const yoyGolf = (golf && golfPrev) ? ((golf-golfPrev)/golfPrev*100) : null;
+    return `<tr>
+      <td class="peer"><a href="clubs/${t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${t}</a><span class="peer-tag peer-tag-${d.tier}">${d.tier_label}</span></td>
+      <td>${d.name.slice(0,24)}</td>
+      <td class="num">${fmtBn(rev)}</td>
+      <td class="num"><strong>${fmtBn(golf)}</strong></td>
+      <td class="num">${fmtPct(share)}</td>
+      <td class="num">${fmtYoY(yoyG)}</td>
+      <td class="num">${fmtYoY(yoyGolf)}</td>
+    </tr>`;
+  });
+  document.getElementById('cmp-tbody').innerHTML = rows.join('');
+
+  // Highlight selected year columns in line tables
+  document.querySelectorAll('[class*="yr-"]').forEach(el => {
+    el.classList.remove('yr-hl');
+  });
+  document.querySelectorAll('.yr-' + year).forEach(el => el.classList.add('yr-hl'));
+}
+
 (function(){
-  const tabs = document.querySelectorAll('.rev-tab');
-  tabs.forEach(t => t.addEventListener('click', () => {
-    tabs.forEach(x => x.classList.remove('active'));
+  document.querySelectorAll('.year-btn').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('.year-btn').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      render(b.dataset.year);
+    });
+  });
+  document.querySelectorAll('.rev-tab').forEach(t => t.addEventListener('click', () => {
+    document.querySelectorAll('.rev-tab').forEach(x => x.classList.remove('active'));
     document.querySelectorAll('.rev-panel').forEach(p => p.classList.remove('active'));
     t.classList.add('active');
     document.getElementById('panel-' + t.dataset.panel).classList.add('active');
   }));
+  render('2024');
 })();
 </script>
 </body>

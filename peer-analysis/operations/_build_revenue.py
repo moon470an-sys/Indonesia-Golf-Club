@@ -1,4 +1,4 @@
-"""Build revenue.html — revenue line breakdown + golf segment + 13-peer comparison."""
+"""Build revenue.html — year selector + 13-peer comparison + line breakdowns."""
 import sys
 sys.stdout.reconfigure(encoding='utf-8')
 import json
@@ -9,19 +9,6 @@ d5y = json.load(open('../../data/company_financials_5y.json','r',encoding='utf-8
 fin = {c['ticker']: c for c in d5y['companies'] if 'ticker' in c}
 peers_v2 = ['DMIG','PIPG','GOLF','MDLN','KIJA','SMDM','KPIG','SMRA','BSDE','CTRA','ELTY','LPKR','PWON']
 def torder(t): return {'pp':1,'resort':2,'twn':3}.get(clubs[t]['tier'], 9)
-def fmt_bn(v):
-    if v is None: return '—'
-    if abs(v) >= 1e12: return f'{v/1e12:,.1f}T'
-    if abs(v) >= 1e9: return f'{v/1e9:,.1f}B'
-    if abs(v) >= 1e6: return f'{v/1e6:,.1f}M'
-    return f'{v:,.0f}'
-def fmt_pct(v, dp=1):
-    if v is None: return '—'
-    return f'{v:,.{dp}f}%'
-def fmt_yoy(v):
-    if v is None: return '—'
-    col = '#16a34a' if v>0 else '#b91c1c' if v<0 else '#666'
-    return f'<span style="color:{col}; font-weight:700;">{v:+.1f}%</span>'
 
 notes = {}
 for t in peers_v2:
@@ -29,254 +16,208 @@ for t in peers_v2:
     if os.path.exists(path):
         notes[t] = json.load(open(path,'r',encoding='utf-8'))
 
-# ============================================================
-# TAB 1: Pure-play 매출 라인 — DMIG 7 + PIPG 11
-# ============================================================
-pp_section = []
+# Golf segment revenue per year (IDR)
+GOLF_SEG_REV = {
+    'DMIG': 'pure-play',  # = group revenue all years
+    'PIPG': 'pure-play',
+    'GOLF': {'2023': 94436855876, '2024': 93042072774},
+    'MDLN': {'2024': 74400000000},  # placeholder; check segment notes
+    'KIJA': {'2024': 85019000000},
+    'SMDM': {'2022': None, '2023': None, '2024': 63282214554},
+    'SMRA': {'2024': 66672127000},  # FY2024_comparative * 1000
+}
 
-# DMIG revenue (7 lines, FY22-FY24)
-d = notes['DMIG']['revenue_note']
-rows = []
-tot24 = d['total'].get('FY2024',1)
-for ln in d['lines']:
-    pct = (ln.get('FY2024')/tot24*100) if (ln.get('FY2024') and tot24) else None
-    y23 = ln.get('FY2023'); y24 = ln.get('FY2024')
-    yoy = ((y24-y23)/y23*100) if (y23 and y24) else None
-    rows.append(f'''            <tr>
+# Build PEER_DATA payload for JS
+peers_sorted = sorted(peers_v2, key=lambda t: (torder(t), t))
+
+peer_data = {}
+for t in peers_sorted:
+    c = clubs[t]
+    cy = fin.get(t,{}).get('yearly',{})
+    yearly = {}
+    for y in ['2020','2021','2022','2023','2024']:
+        yy = cy.get(y, {})
+        yearly[y] = {'rev': yy.get('revenue')}
+    # Golf seg
+    seg = GOLF_SEG_REV.get(t)
+    if seg == 'pure-play':
+        golf_seg = {y: yearly[y]['rev'] for y in yearly}
+    elif isinstance(seg, dict):
+        golf_seg = seg
+    else:
+        golf_seg = {}
+    peer_data[t] = {
+        'name': c['name'],
+        'tier': c['tier'],
+        'tier_label': c['tier_label'],
+        'yearly': yearly,
+        'golf_seg': golf_seg,
+        'pure_play': (seg == 'pure-play'),
+    }
+
+peer_data_json = json.dumps(peer_data, ensure_ascii=False)
+
+# ============================================================
+# Line detail tables — multi-year, selected year column gets "yr-{year}" class for JS highlight
+# ============================================================
+def fmt_bn_py(v):
+    if v is None: return '—'
+    if abs(v) >= 1e12: return f'{v/1e12:,.1f}T'
+    if abs(v) >= 1e9: return f'{v/1e9:,.1f}B'
+    if abs(v) >= 1e6: return f'{v/1e6:,.1f}M'
+    return f'{v:,.0f}'
+def fmt_pct_py(v):
+    if v is None: return '—'
+    return f'{v:,.1f}%'
+
+def build_line_table(title, subtitle, lines_data, year_cols, tier_emoji):
+    """lines_data: list of dicts with id_label/en_label/FY2022/FY2023/FY2024 keys.
+       year_cols: list of years to render columns for, e.g. ['FY2022','FY2023','FY2024']."""
+    head_cells = ''.join(f'<th class="num yr-{y[-4:]}">{y}</th>' for y in year_cols)
+    head_cells += '<th class="num">FY24 비중</th><th class="num">YoY</th>'
+    rows = []
+    # total for share calc
+    total_year = lines_data['total'].get('FY2024') if 'total' in lines_data else None
+    for ln in lines_data['lines']:
+        cells = ''
+        for y in year_cols:
+            v = ln.get(y)
+            cells += f'<td class="num yr-{y[-4:]}">{fmt_bn_py(v)}</td>'
+        share = (ln.get('FY2024')/total_year*100) if (total_year and ln.get('FY2024')) else None
+        y23 = ln.get('FY2023'); y24 = ln.get('FY2024')
+        yoy = ((y24-y23)/y23*100) if (y23 and y24) else None
+        yoy_html = '—'
+        if yoy is not None:
+            col = '#16a34a' if yoy>0 else '#b91c1c'
+            yoy_html = f'<span style="color:{col}; font-weight:700;">{yoy:+.1f}%</span>'
+        rows.append(f'''            <tr>
               <td>{ln["id_label"]}<br><span style="color:var(--ops-muted); font-size:11px;">{ln.get("en_label","—")}</span></td>
-              <td class="num">{fmt_bn(ln.get("FY2022"))}</td>
-              <td class="num">{fmt_bn(y23)}</td>
-              <td class="num"><strong>{fmt_bn(y24)}</strong></td>
-              <td class="num">{fmt_pct(pct)}</td>
-              <td class="num">{fmt_yoy(yoy)}</td>
+              {cells}
+              <td class="num">{fmt_pct_py(share)}</td>
+              <td class="num">{yoy_html}</td>
             </tr>''')
-total = d['total']
-rows.append(f'''            <tr style="background:rgba(45,80,22,0.06); font-weight:700;">
+    # total row
+    tot = lines_data.get('total',{})
+    total_cells = ''.join(f'<td class="num yr-{y[-4:]}">{fmt_bn_py(tot.get(y))}</td>' for y in year_cols)
+    yoy_t = ((tot.get('FY2024')-tot.get('FY2023'))/tot.get('FY2023')*100) if tot.get('FY2023') else None
+    yoy_t_html = '—'
+    if yoy_t is not None:
+        col = '#16a34a' if yoy_t>0 else '#b91c1c'
+        yoy_t_html = f'<span style="color:{col}; font-weight:700;">{yoy_t:+.1f}%</span>'
+    rows.append(f'''            <tr style="background:rgba(45,80,22,0.06); font-weight:700;">
               <td>합계</td>
-              <td class="num">{fmt_bn(total.get("FY2022"))}</td>
-              <td class="num">{fmt_bn(total.get("FY2023"))}</td>
-              <td class="num">{fmt_bn(total.get("FY2024"))}</td>
+              {total_cells}
               <td class="num">100.0%</td>
-              <td class="num">{fmt_yoy((total.get("FY2024")-total.get("FY2023"))/total.get("FY2023")*100 if total.get("FY2023") else None)}</td>
+              <td class="num">{yoy_t_html}</td>
             </tr>''')
-pp_section.append(f'''      <div style="margin-bottom:32px;">
-        <h3 style="font-size:16px; margin:0 0 10px 0;">🟦 DMIG · 매출 라인 (Note {d["note_number"]})</h3>
-        <p style="font-size:12px; color:var(--ops-muted); margin:0 0 8px 0;">Pure-play — 골프장·F&B·회원권·스폰서·임대 등 7 라인</p>
+    return f'''      <div style="margin-bottom:32px;">
+        <h3 style="font-size:16px; margin:0 0 10px 0;">{tier_emoji} {title}</h3>
+        <p style="font-size:12px; color:var(--ops-muted); margin:0 0 8px 0;">{subtitle}</p>
         <div class="tbl-card scroll-x">
           <table class="ops-tbl">
-            <thead><tr><th>매출 라인</th><th class="num">FY2022</th><th class="num">FY2023</th><th class="num">FY2024</th><th class="num">FY24 비중</th><th class="num">YoY</th></tr></thead>
+            <thead><tr><th>매출 라인</th>{head_cells}</tr></thead>
             <tbody>
 {chr(10).join(rows)}
             </tbody>
           </table>
         </div>
-      </div>''')
+      </div>'''
 
-# PIPG revenue_27 (11 lines)
-d = notes['PIPG']['revenue_note_27']
-rows = []
-tot24 = d['total'].get('FY2024',1)
-for ln in d['lines']:
-    pct = (ln.get('FY2024')/tot24*100) if (ln.get('FY2024') and tot24) else None
-    y23 = ln.get('FY2023'); y24 = ln.get('FY2024')
-    yoy = ((y24-y23)/y23*100) if (y23 and y24) else None
-    rows.append(f'''            <tr>
-              <td>{ln["id_label"]}<br><span style="color:var(--ops-muted); font-size:11px;">{ln.get("en_label","—")}</span></td>
-              <td class="num">{fmt_bn(y23)}</td>
-              <td class="num"><strong>{fmt_bn(y24)}</strong></td>
-              <td class="num">{fmt_pct(pct)}</td>
-              <td class="num">{fmt_yoy(yoy)}</td>
-            </tr>''')
-total = d['total']
-yoy_tot = ((total.get("FY2024")-total.get("FY2023"))/total.get("FY2023")*100) if total.get("FY2023") else None
-rows.append(f'''            <tr style="background:rgba(45,80,22,0.06); font-weight:700;">
-              <td>합계</td>
-              <td class="num">{fmt_bn(total.get("FY2023"))}</td>
-              <td class="num">{fmt_bn(total.get("FY2024"))}</td>
-              <td class="num">100.0%</td>
-              <td class="num">{fmt_yoy(yoy_tot)}</td>
-            </tr>''')
-pp_section.append(f'''      <div style="margin-bottom:32px;">
-        <h3 style="font-size:16px; margin:0 0 10px 0;">🟦 PIPG · 매출 라인 (Note 27)</h3>
-        <p style="font-size:12px; color:var(--ops-muted); margin:0 0 8px 0;">Pure-play — 골프·F&B·회원권·아카데미·드라이빙·임대 등 11 라인</p>
-        <div class="tbl-card scroll-x">
-          <table class="ops-tbl">
-            <thead><tr><th>매출 라인</th><th class="num">FY2023</th><th class="num">FY2024</th><th class="num">FY24 비중</th><th class="num">YoY</th></tr></thead>
-            <tbody>
-{chr(10).join(rows)}
-            </tbody>
-          </table>
-        </div>
-      </div>''')
+# DMIG revenue (FY22-FY24, 7 lines)
+dmig_table = build_line_table(
+    'DMIG · 매출 라인 (Note 23)',
+    'Pure-play — 골프장·F&B·회원권·스폰서·임대 등 7 라인',
+    notes['DMIG']['revenue_note'],
+    ['FY2022','FY2023','FY2024'],
+    '🟦'
+)
 
-# ============================================================
-# TAB 2: Golf segment (peers with golf segment disclosed)
-# ============================================================
-seg_section = []
+# PIPG revenue_27 (FY23-FY24, 11 lines)
+pipg_table = build_line_table(
+    'PIPG · 매출 라인 (Note 27)',
+    'Pure-play — 골프·F&B·회원권·아카데미·드라이빙·임대 등 11 라인',
+    notes['PIPG']['revenue_note_27'],
+    ['FY2023','FY2024'],
+    '🟦'
+)
 
-# GOLF revenue_29 by operations
+# Tab 2 panels = pp_section
+pp_section = dmig_table + '\n' + pipg_table
+
+# Segment tables for tab 3
+seg_section_parts = []
+
+# GOLF (4 sub-segments, FY23-FY24)
 g = notes['GOLF']['revenue_note_29']
-by_ops = g.get('by_operations',{})
-rows = []
-go_total = by_ops.get('total',{}).get('FY2024',1)
-for ln in by_ops.get('lines',[]):
-    y23 = ln.get('FY2023'); y24 = ln.get('FY2024')
-    yoy = ((y24-y23)/y23*100) if (y23 and y24) else None
-    pct = (y24/go_total*100) if (y24 and go_total) else None
-    rows.append(f'''            <tr>
-              <td>{ln["id_label"]}<br><span style="color:var(--ops-muted); font-size:11px;">{ln.get("en_label","—")}</span></td>
-              <td class="num">{fmt_bn(y23)}</td>
-              <td class="num"><strong>{fmt_bn(y24)}</strong></td>
-              <td class="num">{fmt_pct(pct)}</td>
-              <td class="num">{fmt_yoy(yoy)}</td>
-            </tr>''')
-go_tot = by_ops.get('total',{})
-yoy_t = ((go_tot.get("FY2024")-go_tot.get("FY2023"))/go_tot.get("FY2023")*100) if go_tot.get("FY2023") else None
-rows.append(f'''            <tr style="background:rgba(45,80,22,0.06); font-weight:700;">
-              <td>합계</td>
-              <td class="num">{fmt_bn(go_tot.get("FY2023"))}</td>
-              <td class="num">{fmt_bn(go_tot.get("FY2024"))}</td>
-              <td class="num">100.0%</td>
-              <td class="num">{fmt_yoy(yoy_t)}</td>
-            </tr>''')
-if rows:
-    seg_section.append(f'''      <div style="margin-bottom:32px;">
-        <h3 style="font-size:16px; margin:0 0 10px 0;">🟨 GOLF · 사업부별 매출 (Note 29)</h3>
-        <p style="font-size:12px; color:var(--ops-muted); margin:0 0 8px 0;">Bali 리조트 — 골프·부동산·F&B 사업부 분해</p>
-        <div class="tbl-card scroll-x">
-          <table class="ops-tbl">
-            <thead><tr><th>사업부</th><th class="num">FY2023</th><th class="num">FY2024</th><th class="num">FY24 비중</th><th class="num">YoY</th></tr></thead>
-            <tbody>
-{chr(10).join(rows)}
-            </tbody>
-          </table>
-        </div>
-      </div>''')
+seg_section_parts.append(build_line_table(
+    'GOLF · 사업부별 매출 (Note 29)',
+    'Bali 리조트 — 골프·부동산·F&B·기타 사업부 분해',
+    g['by_operations'],
+    ['FY2023','FY2024'],
+    '🟨'
+))
 
-# MDLN revenue (segment level) + golf-specific from segment_note_32
-m_rev = notes['MDLN']['revenue_note_25']
-rows = []
-tot24 = m_rev['total'].get('FY2024',1)
-for ln in m_rev['lines']:
-    pct = (ln.get('FY2024')/tot24*100) if (ln.get('FY2024') and tot24) else None
-    y23 = ln.get('FY2023'); y24 = ln.get('FY2024')
-    rows.append(f'''            <tr>
-              <td>{ln["id_label"]}<br><span style="color:var(--ops-muted); font-size:11px;">{ln.get("en_label","—")} · {ln.get("category","")}</span></td>
-              <td class="num">{fmt_bn(y23)}</td>
-              <td class="num"><strong>{fmt_bn(y24)}</strong></td>
-              <td class="num">{fmt_pct(pct)}</td>
-            </tr>''')
-total = m_rev['total']
-rows.append(f'''            <tr style="background:rgba(45,80,22,0.06); font-weight:700;">
-              <td>합계</td>
-              <td class="num">{fmt_bn(total.get("FY2023"))}</td>
-              <td class="num">{fmt_bn(total.get("FY2024"))}</td>
-              <td class="num">100.0%</td>
-            </tr>''')
-seg_section.append(f'''      <div style="margin-bottom:32px;">
-        <h3 style="font-size:16px; margin:0 0 10px 0;">🟩 MDLN · 그룹 매출 라인 (Note 25)</h3>
-        <p style="font-size:12px; color:var(--ops-muted); margin:0 0 8px 0;">Township — 토지·주택·아파트·골프·F&B 등 11 라인 (골프는 비중 작음)</p>
-        <div class="tbl-card scroll-x">
-          <table class="ops-tbl">
-            <thead><tr><th>매출 라인</th><th class="num">FY2023</th><th class="num">FY2024</th><th class="num">FY24 비중</th></tr></thead>
-            <tbody>
-{chr(10).join(rows)}
-            </tbody>
-          </table>
-        </div>
-      </div>''')
+# MDLN revenue_25 (11 lines, FY23-FY24)
+seg_section_parts.append(build_line_table(
+    'MDLN · 그룹 매출 라인 (Note 25)',
+    'Township — 토지·주택·아파트·골프·F&B 등 11 라인 (골프 비중 작음)',
+    notes['MDLN']['revenue_note_25'],
+    ['FY2023','FY2024'],
+    '🟩'
+))
 
-# KPIG revenue_31 (4 lines, golf bundled with hotel-resort)
-k = notes['KPIG']['revenue_note_31']
-rows = []
-tot24 = k['total'].get('FY2024',1)
-for ln in k['lines']:
-    pct = (ln.get('FY2024')/tot24*100) if (ln.get('FY2024') and tot24) else None
-    y23 = ln.get('FY2023'); y24 = ln.get('FY2024')
-    note_extra = f' <span style="color:#b91c1c; font-size:10.5px;">※ 골프 별도 미공시</span>' if ln.get('note') else ''
-    rows.append(f'''            <tr>
-              <td>{ln["id_label"]}{note_extra}<br><span style="color:var(--ops-muted); font-size:11px;">{ln.get("en_label","—")}</span></td>
-              <td class="num">{fmt_bn(y23)}</td>
-              <td class="num"><strong>{fmt_bn(y24)}</strong></td>
-              <td class="num">{fmt_pct(pct)}</td>
-            </tr>''')
-total = k['total']
-rows.append(f'''            <tr style="background:rgba(45,80,22,0.06); font-weight:700;">
-              <td>합계</td>
-              <td class="num">{fmt_bn(total.get("FY2023"))}</td>
-              <td class="num">{fmt_bn(total.get("FY2024"))}</td>
-              <td class="num">100.0%</td>
-            </tr>''')
-seg_section.append(f'''      <div style="margin-bottom:32px;">
-        <h3 style="font-size:16px; margin:0 0 10px 0;">🟩 KPIG · 그룹 매출 라인 (Note 31)</h3>
-        <p style="font-size:12px; color:var(--ops-muted); margin:0 0 8px 0;">Township — 호텔·리조트·골프 번들 / 부동산관리 / 임대 / 기타</p>
-        <div class="tbl-card scroll-x">
-          <table class="ops-tbl">
-            <thead><tr><th>매출 라인</th><th class="num">FY2023</th><th class="num">FY2024</th><th class="num">FY24 비중</th></tr></thead>
-            <tbody>
-{chr(10).join(rows)}
-            </tbody>
-          </table>
-        </div>
-      </div>''')
+# KPIG revenue_31 (4 lines, FY23-FY24)
+seg_section_parts.append(build_line_table(
+    'KPIG · 그룹 매출 라인 (Note 31)',
+    'Township — 호텔·리조트·골프 번들 / 부동산관리 / 임대 / 기타',
+    notes['KPIG']['revenue_note_31'],
+    ['FY2023','FY2024'],
+    '🟩'
+))
 
-# Tier-3 골프 segment summary (KIJA · SMDM · SMRA)
+# Tier-3 segment summary (KIJA·SMDM·SMRA)
 seg_summary_rows = []
-# KIJA golf segment_FY2024 (unit Rp million)
 kg = notes['KIJA']['segment_info_note_34']['golf_segment_FY2024']
 seg_summary_rows.append(f'''            <tr>
               <td class="peer"><a href="clubs/kija.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">KIJA</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
               <td>Golf 세그먼트 (Jababeka + Borobudur)</td>
-              <td class="num"><strong>{fmt_bn(kg["revenue"]*1e6)}</strong></td>
-              <td class="num">{fmt_bn(kg["cogs"]*1e6)}</td>
-              <td class="num">{fmt_bn(kg["gross_profit"]*1e6)}</td>
-              <td class="num">{fmt_bn(kg["operating_income_calc"]*1e6)}</td>
-              <td class="num">{fmt_pct(kg["gross_profit"]/kg["revenue"]*100)}</td>
+              <td class="num">FY2024</td>
+              <td class="num"><strong>{fmt_bn_py(kg["revenue"]*1e6)}</strong></td>
+              <td class="num">{fmt_bn_py(kg["cogs"]*1e6)}</td>
+              <td class="num">{fmt_bn_py(kg["gross_profit"]*1e6)}</td>
+              <td class="num">{fmt_pct_py(kg["gross_profit"]/kg["revenue"]*100)}</td>
             </tr>''')
-# SMDM golf segment (cogs is negative by sign convention)
 sg = notes['SMDM']['segment_info_note_29']['FY2024']['Golf dan Country Club']
-sg_rev = sg.get('revenue')
 sg_cogs = abs(sg.get('cogs',0)) if sg.get('cogs') is not None else None
-sg_gp = sg.get('gross_profit')
-sg_op = None
-if sg_rev and sg.get('selling') is not None and sg.get('ga') is not None:
-    sg_op = sg_gp + sg.get('selling') + sg.get('ga')
-if sg_rev:
-    seg_summary_rows.append(f'''            <tr>
+seg_summary_rows.append(f'''            <tr>
               <td class="peer"><a href="clubs/smdm.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">SMDM</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
               <td>Golf dan Country Club (Rancamaya)</td>
-              <td class="num"><strong>{fmt_bn(sg_rev)}</strong></td>
-              <td class="num">{fmt_bn(sg_cogs)}</td>
-              <td class="num">{fmt_bn(sg_gp)}</td>
-              <td class="num">{fmt_bn(sg_op)}</td>
-              <td class="num">{fmt_pct(sg_gp/sg_rev*100) if (sg_gp and sg_rev) else "—"}</td>
+              <td class="num">FY2024</td>
+              <td class="num"><strong>{fmt_bn_py(sg["revenue"])}</strong></td>
+              <td class="num">{fmt_bn_py(sg_cogs)}</td>
+              <td class="num">{fmt_bn_py(sg["gross_profit"])}</td>
+              <td class="num">{fmt_pct_py(sg["gross_profit"]/sg["revenue"]*100)}</td>
             </tr>''')
-# SMRA Rekreasi (Leisure) — values are in thousand IDR per unit_after_conversion note
 sm = notes['SMRA']['revenue_note_31']['Rekreasi_Leisure']
 sm_cogs_d = notes['SMRA']['cogs_note_32']['Rekreasi_Leisure_COGS']
-sm_rev = sm.get('FY2024_comparative')  # FY2024
-sm_cogs = sm_cogs_d.get('FY2024_comparative')
-if sm_rev: sm_rev *= 1000  # thousand → IDR
-if sm_cogs: sm_cogs *= 1000
-sm_gp = (sm_rev - sm_cogs) if (sm_rev and sm_cogs) else None
-if sm_rev:
-    seg_summary_rows.append(f'''            <tr>
+sm_rev = sm.get('FY2024_comparative',0)*1000
+sm_cogs = sm_cogs_d.get('FY2024_comparative',0)*1000
+sm_gp = sm_rev - sm_cogs
+seg_summary_rows.append(f'''            <tr>
               <td class="peer"><a href="clubs/smra.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">SMRA</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
               <td>Rekreasi/Leisure (Gading Raya 포함)</td>
-              <td class="num"><strong>{fmt_bn(sm_rev)}</strong></td>
-              <td class="num">{fmt_bn(sm_cogs)}</td>
-              <td class="num">{fmt_bn(sm_gp)}</td>
-              <td class="num">—</td>
-              <td class="num">{fmt_pct(sm_gp/sm_rev*100) if (sm_gp and sm_rev) else "—"}</td>
+              <td class="num">FY2024</td>
+              <td class="num"><strong>{fmt_bn_py(sm_rev)}</strong></td>
+              <td class="num">{fmt_bn_py(sm_cogs)}</td>
+              <td class="num">{fmt_bn_py(sm_gp)}</td>
+              <td class="num">{fmt_pct_py(sm_gp/sm_rev*100) if sm_rev else "—"}</td>
             </tr>''')
-
-if seg_summary_rows:
-    seg_section.append(f'''      <div style="margin-bottom:32px;">
-        <h3 style="font-size:16px; margin:0 0 10px 0;">🟩 Tier-3 골프 세그먼트 요약</h3>
-        <p style="font-size:12px; color:var(--ops-muted); margin:0 0 8px 0;">KIJA·SMDM·SMRA — segment note 기반 골프 부문 매출/원가/마진</p>
+seg_section_parts.append(f'''      <div style="margin-bottom:32px;">
+        <h3 style="font-size:16px; margin:0 0 10px 0;">🟩 Tier-3 골프 세그먼트 요약 (FY2024)</h3>
+        <p style="font-size:12px; color:var(--ops-muted); margin:0 0 8px 0;">KIJA·SMDM·SMRA — segment note 기반 골프 부문 단년 공시</p>
         <div class="tbl-card scroll-x">
           <table class="ops-tbl">
-            <thead><tr><th>Peer</th><th>세그먼트</th><th class="num">매출 FY24</th><th class="num">매출원가</th><th class="num">매출총이익</th><th class="num">영업이익</th><th class="num">GP 마진</th></tr></thead>
+            <thead><tr><th>Peer</th><th>세그먼트</th><th class="num">연도</th><th class="num">매출</th><th class="num">매출원가</th><th class="num">매출총이익</th><th class="num">GP 마진</th></tr></thead>
             <tbody>
 {chr(10).join(seg_summary_rows)}
             </tbody>
@@ -284,38 +225,9 @@ if seg_summary_rows:
         </div>
       </div>''')
 
-# ============================================================
-# TAB 3: 13-peer 그룹 매출 + 골프 매출 비중 (5Y)
-# ============================================================
-peers_sorted = sorted(peers_v2, key=lambda t: (torder(t), t))
-ratio_rows = []
-for t in peers_sorted:
-    c = clubs[t]
-    cy = fin.get(t,{}).get('yearly',{})
-    y24 = cy.get('2024',{}).get('revenue')
-    y23 = cy.get('2023',{}).get('revenue')
-    y22 = cy.get('2022',{}).get('revenue')
-    y21 = cy.get('2021',{}).get('revenue')
-    y20 = cy.get('2020',{}).get('revenue')
-    cagr = ((y24/y20)**(1/4) - 1)*100 if (y24 and y20 and y20>0) else None
-    yoy = ((y24-y23)/y23*100) if (y23 and y24) else None
-    # Golf rev FY24 (from clubs meta as string)
-    golf_rev_str = c.get('golf_rev_fy24','—')
-    ratio_rows.append(f'''            <tr>
-              <td class="peer"><a href="clubs/{t.lower()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">{t}</a><span class="peer-tag peer-tag-{c["tier"]}">{c["tier_label"]}</span></td>
-              <td>{c["name"][:24]}</td>
-              <td class="num">{fmt_bn(y20)}</td>
-              <td class="num">{fmt_bn(y21)}</td>
-              <td class="num">{fmt_bn(y22)}</td>
-              <td class="num">{fmt_bn(y23)}</td>
-              <td class="num"><strong>{fmt_bn(y24)}</strong></td>
-              <td class="num">{fmt_yoy(yoy)}</td>
-              <td class="num">{fmt_pct(cagr)}</td>
-              <td>{golf_rev_str}</td>
-            </tr>''')
+seg_section = '\n'.join(seg_section_parts)
 
-# Assemble HTML
-html = f'''<!DOCTYPE html>
+html = '''<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8" />
@@ -323,13 +235,19 @@ html = f'''<!DOCTYPE html>
 <title>매출 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260512c53" />
+<link rel="stylesheet" href="ops-style.css?v=20260512c54" />
 <style>
-  .rev-tab-bar {{ display:flex; gap:6px; flex-wrap:wrap; margin:16px 0 24px 0; border-bottom:2px solid var(--ops-line); }}
-  .rev-tab {{ padding:10px 18px; cursor:pointer; font-size:13px; font-weight:600; color:var(--ops-ink-soft); border-bottom:3px solid transparent; margin-bottom:-2px; }}
-  .rev-tab.active {{ color:var(--ops-green); border-bottom-color:var(--ops-green); }}
-  .rev-panel {{ display:none; }}
-  .rev-panel.active {{ display:block; }}
+  .year-bar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:14px 0 4px 0; }
+  .year-bar label { font-size:13px; font-weight:600; color:var(--ops-ink-soft); }
+  .year-btn { padding:6px 14px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:6px; font-size:12.5px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
+  .year-btn.active { background:var(--ops-green); color:white; border-color:var(--ops-green); }
+  .rev-tab-bar { display:flex; gap:6px; flex-wrap:wrap; margin:16px 0 24px 0; border-bottom:2px solid var(--ops-line); }
+  .rev-tab { padding:10px 18px; cursor:pointer; font-size:13px; font-weight:600; color:var(--ops-ink-soft); border-bottom:3px solid transparent; margin-bottom:-2px; }
+  .rev-tab.active { color:var(--ops-green); border-bottom-color:var(--ops-green); }
+  .rev-panel { display:none; }
+  .rev-panel.active { display:block; }
+  /* Selected-year column highlighting in line detail tables */
+  .yr-hl { background:rgba(245,158,11,0.10); font-weight:700; }
 </style>
 </head>
 <body>
@@ -348,72 +266,145 @@ html = f'''<!DOCTYPE html>
 
 <section class="ops-hero">
   <div class="ops-wrap">
-    <h1>매출 라인 분해</h1>
-    <p class="lede">Pure-play AR 매출 주석 라인별 분해 + 골프 세그먼트 + 13-peer 그룹 매출 5년.</p>
+    <h1>매출 — 동급 비교</h1>
+    <p class="lede">기준 연도 선택 → 13 peer 매출 비교. 라인 상세표는 선택 연도 컬럼 하이라이트.</p>
+    <div class="year-bar">
+      <label>기준 연도:</label>
+      <button class="year-btn" data-year="2020">FY2020</button>
+      <button class="year-btn" data-year="2021">FY2021</button>
+      <button class="year-btn" data-year="2022">FY2022</button>
+      <button class="year-btn" data-year="2023">FY2023</button>
+      <button class="year-btn active" data-year="2024">FY2024</button>
+    </div>
     <div class="rev-tab-bar">
-      <div class="rev-tab active" data-panel="pp">① Pure-play 매출 라인 (DMIG·PIPG)</div>
-      <div class="rev-tab" data-panel="seg">② 골프 세그먼트 (GOLF·MDLN·KPIG·Tier3)</div>
-      <div class="rev-tab" data-panel="grp">③ 13-peer 그룹 매출 5Y</div>
+      <div class="rev-tab active" data-panel="cmp">① 13-peer 동급 비교</div>
+      <div class="rev-tab" data-panel="pp">② Pure-play 매출 라인</div>
+      <div class="rev-tab" data-panel="seg">③ 골프 세그먼트 라인</div>
     </div>
   </div>
 </section>
 
 <section class="ops-section">
   <div class="ops-wrap">
-    <div class="rev-panel active" id="panel-pp">
-{chr(10).join(pp_section)}
-    </div>
-    <div class="rev-panel" id="panel-seg">
-{chr(10).join(seg_section)}
-    </div>
-    <div class="rev-panel" id="panel-grp">
-      <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">그룹 연결 매출 (IDR). 골프 매출은 segment note 직접 공시 (DMIG·PIPG·GOLF·MDLN·KIJA·SMDM) 또는 라인 추정 (KPIG·SMRA).</p>
+    <div class="rev-panel active" id="panel-cmp">
+      <h2 style="font-size:17px; margin:0 0 14px 0;">13-peer 매출 비교 — <span class="yr-label">FY2024</span></h2>
+      <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">선택 연도 그룹 매출 + 골프 부문 매출(공시 peer) + 골프 비중 + YoY. YoY는 직전 연도 대비.</p>
       <div class="tbl-card scroll-x">
         <table class="ops-tbl">
           <thead>
             <tr>
               <th>Peer</th>
               <th>그룹명</th>
-              <th class="num">FY2020</th>
-              <th class="num">FY2021</th>
-              <th class="num">FY2022</th>
-              <th class="num">FY2023</th>
-              <th class="num">FY2024</th>
-              <th class="num">YoY</th>
-              <th class="num">4Y CAGR</th>
-              <th>골프 매출 FY24</th>
+              <th class="num">그룹 매출</th>
+              <th class="num">골프 매출</th>
+              <th class="num">골프 비중</th>
+              <th class="num">YoY (그룹)</th>
+              <th class="num">YoY (골프)</th>
             </tr>
           </thead>
-          <tbody>
-{chr(10).join(ratio_rows)}
-          </tbody>
+          <tbody id="cmp-tbody"></tbody>
         </table>
       </div>
+    </div>
+
+    <div class="rev-panel" id="panel-pp">
+__PP_SECTION__
+    </div>
+
+    <div class="rev-panel" id="panel-seg">
+__SEG_SECTION__
     </div>
   </div>
 </section>
 
 <footer class="ops-foot">
   <div class="ops-wrap">
-    <p>매출 라인은 AR 주석 (Note). 그룹 매출은 연결 P&L. 골프 매출은 segment note 또는 라인 합산.</p>
+    <p>그룹 매출: 연결 P&L FY2020-FY2024. 골프 매출: segment note 공시 또는 pure-play. 라인 상세: AR Note 22·25·27·29·31.</p>
   </div>
 </footer>
 
 <script src="operations.js?v=20260512c3" defer></script>
 <script>
-(function(){{
-  const tabs = document.querySelectorAll('.rev-tab');
-  tabs.forEach(t => t.addEventListener('click', () => {{
-    tabs.forEach(x => x.classList.remove('active'));
+const PEER_DATA = __PEER_DATA__;
+const PEER_ORDER = __PEER_ORDER__;
+
+function fmtBn(v, dp){
+  if (v === null || v === undefined) return '—';
+  dp = (dp === undefined) ? 1 : dp;
+  if (Math.abs(v) >= 1e12) return (v/1e12).toFixed(dp) + 'T';
+  if (Math.abs(v) >= 1e9)  return (v/1e9).toFixed(dp) + 'B';
+  if (Math.abs(v) >= 1e6)  return (v/1e6).toFixed(dp) + 'M';
+  return Math.round(v).toLocaleString();
+}
+function fmtPct(v, dp){
+  if (v === null || v === undefined) return '—';
+  dp = (dp === undefined) ? 1 : dp;
+  return v.toFixed(dp) + '%';
+}
+function fmtYoY(v){
+  if (v === null || v === undefined) return '—';
+  const col = v > 0 ? '#16a34a' : v < 0 ? '#b91c1c' : '#666';
+  return `<span style="color:${col}; font-weight:700;">${v>=0?'+':''}${v.toFixed(1)}%</span>`;
+}
+
+function render(year){
+  document.querySelectorAll('.yr-label').forEach(el => el.textContent = 'FY' + year);
+
+  // Cross-peer comparison
+  const prevYear = String(parseInt(year)-1);
+  const rows = PEER_ORDER.map(t => {
+    const d = PEER_DATA[t];
+    const rev = d.yearly[year] ? d.yearly[year].rev : null;
+    const revPrev = d.yearly[prevYear] ? d.yearly[prevYear].rev : null;
+    const golf = d.golf_seg[year];
+    const golfPrev = d.golf_seg[prevYear];
+    const share = (rev && golf) ? (golf/rev*100) : null;
+    const yoyG = (rev && revPrev) ? ((rev-revPrev)/revPrev*100) : null;
+    const yoyGolf = (golf && golfPrev) ? ((golf-golfPrev)/golfPrev*100) : null;
+    return `<tr>
+      <td class="peer"><a href="clubs/${t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${t}</a><span class="peer-tag peer-tag-${d.tier}">${d.tier_label}</span></td>
+      <td>${d.name.slice(0,24)}</td>
+      <td class="num">${fmtBn(rev)}</td>
+      <td class="num"><strong>${fmtBn(golf)}</strong></td>
+      <td class="num">${fmtPct(share)}</td>
+      <td class="num">${fmtYoY(yoyG)}</td>
+      <td class="num">${fmtYoY(yoyGolf)}</td>
+    </tr>`;
+  });
+  document.getElementById('cmp-tbody').innerHTML = rows.join('');
+
+  // Highlight selected year columns in line tables
+  document.querySelectorAll('[class*="yr-"]').forEach(el => {
+    el.classList.remove('yr-hl');
+  });
+  document.querySelectorAll('.yr-' + year).forEach(el => el.classList.add('yr-hl'));
+}
+
+(function(){
+  document.querySelectorAll('.year-btn').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('.year-btn').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      render(b.dataset.year);
+    });
+  });
+  document.querySelectorAll('.rev-tab').forEach(t => t.addEventListener('click', () => {
+    document.querySelectorAll('.rev-tab').forEach(x => x.classList.remove('active'));
     document.querySelectorAll('.rev-panel').forEach(p => p.classList.remove('active'));
     t.classList.add('active');
     document.getElementById('panel-' + t.dataset.panel).classList.add('active');
-  }}));
-}})();
+  }));
+  render('2024');
+})();
 </script>
 </body>
 </html>
 '''
+
+html = html.replace('__PEER_DATA__', peer_data_json)
+html = html.replace('__PEER_ORDER__', json.dumps(peers_sorted))
+html = html.replace('__PP_SECTION__', pp_section)
+html = html.replace('__SEG_SECTION__', seg_section)
 
 with open('revenue.html','w',encoding='utf-8') as f:
     f.write(html)
