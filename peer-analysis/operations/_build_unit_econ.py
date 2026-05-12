@@ -160,6 +160,11 @@ html = '''<!DOCTYPE html>
     .top-perf { display:none; }
     .data-meta { font-size:9px; }
   }
+  /* Accessibility — focus indicators + skip-link */
+  *:focus-visible { outline:2px solid var(--ops-green); outline-offset:2px; border-radius:3px; }
+  .year-btn:focus-visible, .tier-pill:focus-visible { outline-offset:1px; }
+  .skip-link { position:absolute; left:-1000px; top:8px; padding:6px 12px; background:var(--ops-green); color:white; border-radius:6px; font-weight:700; z-index:200; text-decoration:none; }
+  .skip-link:focus { left:8px; }
   /* Print: minimal, expand table */
   @media print {
     @page { size: A4 landscape; margin: 10mm; }
@@ -185,6 +190,7 @@ html = '''<!DOCTYPE html>
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main-content">메인 콘텐츠로 건너뛰기</a>
 <header class="ops-head">
   <div class="ops-wrap ops-head-row">
     <a href="clubs/index.html" class="ops-brand">
@@ -222,9 +228,9 @@ html = '''<!DOCTYPE html>
   </div>
 </section>
 
-<section class="ops-section">
+<section class="ops-section" id="main-content">
   <div class="ops-wrap">
-    <h2 class="anchor-target" id="sec-main" style="font-size:17px; margin:0 0 6px 0;">① 13-peer 단위 경제 — <span id="yr1">FY2024</span></h2>
+    <h2 class="anchor-target" id="sec-main" tabindex="-1" style="font-size:17px; margin:0 0 6px 0;">① 13-peer 단위 경제 — <span id="yr1">FY2024</span></h2>
     <nav class="anchor-nav" aria-label="페이지 내 점프">
       <a href="#sec-main">① 메인 표</a>
       <a href="#sec-leaderboard">② 홀당 리더보드</a>
@@ -778,6 +784,23 @@ async function flashSuccess(btn, label){
   document.querySelectorAll('.year-btn, #tier-pills .tier-pill, #main-table .sortable').forEach(el => {
     el.addEventListener('click', () => setTimeout(saveState, 0));
   });
+  // Keyboard arrow nav for year buttons and tier pills (radiogroup-like)
+  function wireArrowNav(selector) {
+    const items = Array.from(document.querySelectorAll(selector));
+    items.forEach((el, i) => {
+      el.setAttribute('tabindex', '0');
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+          e.preventDefault();
+          const next = e.key === 'ArrowRight' ? (i + 1) % items.length : (i - 1 + items.length) % items.length;
+          items[next].focus();
+          items[next].click();
+        }
+      });
+    });
+  }
+  wireArrowNav('.year-btn');
+  wireArrowNav('#tier-pills .tier-pill');
   render(currentYear);
 })();
 </script>
