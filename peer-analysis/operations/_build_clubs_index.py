@@ -279,6 +279,10 @@ html = '''<!DOCTYPE html>
   .club-table tbody td { padding:10px 8px; border-bottom:1px solid var(--ops-line); vertical-align:middle; }
   .club-table tbody td.num { text-align:right; white-space:nowrap; }
   .club-table tbody tr:hover { background:rgba(45,80,22,0.03); }
+  /* Cell heat-bar for table view numeric columns */
+  .club-table td.num.heat { position:relative; }
+  .club-table td.num.heat .heat-bar { position:absolute; left:4px; right:4px; bottom:2px; height:2px; border-radius:1px; opacity:0.85; }
+  body.theme-dark .club-table td.num.heat .heat-bar { opacity:0.7; }
   .table-wrap { display:none; margin-top:20px; overflow-x:auto; background:var(--ops-surface); border:1px solid var(--ops-line); border-radius:10px; }
   .table-wrap.active { display:block; }
   .club-grid.hidden { display:none; }
@@ -678,6 +682,57 @@ function syncURL() {
     });
   }
 
+  // Cell heat-bar for table view: column indices 6 (rev), 7 (yoy), 8 (margin), 9 (ebmargin), 10 (ta), 11 (roa)
+  // Higher = better for all except col 8 (margin), 11 (roa) where neg vs pos colors handled. We use simple high-better palette across visible rows.
+  const HEAT_COLS = [
+    { idx: 6, attr: 'rev',      higher: true },
+    { idx: 7, attr: 'yoy',      higher: true },
+    { idx: 8, attr: 'margin',   higher: true },
+    { idx: 9, attr: 'ebmargin', higher: true },
+    { idx: 10,attr: 'ta',       higher: true },
+    { idx: 11,attr: 'roa',      higher: true },
+  ];
+  function heatColor(t, higherBetter) {
+    if (!higherBetter) t = 1 - t;
+    let r, g, b;
+    if (t >= 0.5) {
+      const k = (t - 0.5) * 2;
+      r = Math.round(245 + (22  - 245) * k);
+      g = Math.round(158 + (163 - 158) * k);
+      b = Math.round(11  + (74  - 11)  * k);
+    } else {
+      const k = t * 2;
+      r = Math.round(185 + (245 - 185) * k);
+      g = Math.round(28  + (158 - 28)  * k);
+      b = Math.round(28  + (11  - 28)  * k);
+    }
+    return `rgb(${r},${g},${b})`;
+  }
+  function applyTableHeat() {
+    const visibleRows = Array.from(tbody.querySelectorAll('.club-row')).filter(r => r.style.display !== 'none');
+    HEAT_COLS.forEach(col => {
+      const vals = visibleRows.map(r => parseFloat(r.dataset[col.attr])).filter(v => !isNaN(v) && v > -1e14);
+      if (vals.length < 2) return;
+      const mn = Math.min(...vals), mx = Math.max(...vals);
+      const rng = mx - mn || 1;
+      visibleRows.forEach(row => {
+        const cell = row.children[col.idx];
+        if (!cell) return;
+        cell.classList.remove('heat');
+        // Remove existing heat-bar if any
+        const old = cell.querySelector('.heat-bar'); if (old) old.remove();
+        const v = parseFloat(row.dataset[col.attr]);
+        if (isNaN(v) || v <= -1e14) return;
+        const t = (v - mn) / rng;
+        cell.classList.add('heat');
+        const bar = document.createElement('div');
+        bar.className = 'heat-bar';
+        bar.style.width = (t * 100).toFixed(0) + '%';
+        bar.style.background = heatColor(t, col.higher);
+        cell.appendChild(bar);
+      });
+    });
+  }
   function applyState() {
     // 1) Sort
     const sortedCards = sortElements(cardOriginalOrder, state.sort);
@@ -713,6 +768,8 @@ function syncURL() {
       grid.classList.add('hidden');
       tableWrap.classList.add('active');
     }
+    // 4) Cell heat-map for visible rows
+    applyTableHeat();
   }
 
   tierButtons.forEach(b => b.addEventListener('click', () => {
