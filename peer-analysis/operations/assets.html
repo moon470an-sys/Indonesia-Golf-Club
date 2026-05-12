@@ -69,6 +69,11 @@
   body.theme-dark .scatter-card, body.theme-dark .discl-pill { background:#1e293b; }
   /* Mini sparkline cell for 5Y total_assets trend */
   .mini-spark { display:inline-block; vertical-align:middle; }
+  /* Mobile column priority */
+  @media (max-width:720px) {
+    .ops-tbl .col-low-prio { display:none; }
+  }
+  .tip { cursor:help; font-size:9px; vertical-align:super; opacity:0.7; }
   /* Tier filter pills */
   .tier-pills { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:6px 0; }
   .tier-pill { padding:5px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:999px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
@@ -324,17 +329,18 @@
           <thead>
             <tr>
               <th>Peer</th>
-              <th>Tier</th>
-              <th class="num">홀</th>
-              <th class="num">면적 (ha)</th>
+              <th class="col-low-prio">Tier</th>
+              <th class="num col-low-prio">홀</th>
+              <th class="num col-low-prio">면적 (ha)</th>
               <th class="num sortable" data-sort="ta">총자산</th>
-              <th class="num">5Y 추이</th>
-              <th class="num sortable" data-sort="rev">매출</th>
+              <th class="num col-low-prio">5Y 추이</th>
+              <th class="num sortable col-low-prio" data-sort="rev">매출</th>
               <th class="num sortable desc" data-sort="turnover">자산회전율</th>
               <th class="num sortable" data-sort="roa">ROA</th>
               <th class="num sortable" data-sort="debt">부채비율</th>
-              <th class="num sortable" data-sort="taPerHole">홀당 자산</th>
-              <th class="num sortable" data-sort="taPerHa">ha당 자산</th>
+              <th class="num sortable col-low-prio" data-sort="leverage">자기자본<br>승수 <span class="tip" title="총자산 / 자기자본 — 높을수록 부채 의존도 큼 (1.0 = 자본 100% 자기자본)">?</span></th>
+              <th class="num sortable col-low-prio" data-sort="taPerHole">홀당 자산</th>
+              <th class="num sortable col-low-prio" data-sort="taPerHa">ha당 자산</th>
             </tr>
           </thead>
           <tbody id="prod-tbody"></tbody>
@@ -395,7 +401,7 @@ function miniSpark(yearly, color) {
 }
 
 // FY2024 financial data from company_financials_5y.json (IDR)
-const FIN_2024 ={"DMIG": {"rev": 253102440194, "np": 82404512711, "ta": 690534136219, "tl": 187722459859}, "PIPG": {"rev": 197570521436, "np": 55903815772, "ta": 446060061475, "tl": 88175251972}, "GOLF": {"rev": 197993814652, "np": 67574993523, "ta": 8637499132483, "tl": 656711721232}, "MDLN": {"rev": 1017570000000, "np": -690272000000, "ta": 13561474000000, "tl": 10108095000000}, "KIJA": {"rev": 4602648000000, "np": 363308000000, "ta": 14017356000000, "tl": 6478399000000}, "SMDM": {"rev": 694045000000, "np": 123778000000, "ta": 3462272000000, "tl": 251618000000}, "KPIG": {"rev": 1770144398000, "np": 658629034000, "ta": 35827499061000, "tl": 7312392000000}, "SMRA": {"rev": 10623400000000, "np": 1373400000000, "ta": 33534100000000, "tl": 19701600000000}, "BSDE": {"rev": 13796572149000, "np": 4359063784000, "ta": 76023348887000, "tl": 28704021000000}, "CTRA": {"rev": 11187565000000, "np": 2126288000000, "ta": 47022702000000, "tl": 22407372000000}, "ELTY": {"rev": 1208198000000, "np": -68528000000, "ta": 8742017000000, "tl": 2717802000000}, "LPKR": {"rev": 11347979000000, "np": 18746045000000, "ta": 53783859000000, "tl": 22836790000000}, "PWON": {"rev": 6670809000000, "np": 2074731000000, "ta": 35371085000000, "tl": 10629088000000}};
+const FIN_2024 ={"DMIG": {"rev": 253102440194, "np": 82404512711, "ta": 690534136219, "tl": 187722459859, "te": 502811676360}, "PIPG": {"rev": 197570521436, "np": 55903815772, "ta": 446060061475, "tl": 88175251972, "te": 357884809503}, "GOLF": {"rev": 197993814652, "np": 67574993523, "ta": 8637499132483, "tl": 656711721232, "te": 7980787411251}, "MDLN": {"rev": 1017570000000, "np": -690272000000, "ta": 13561474000000, "tl": 10108095000000, "te": 3453379000000}, "KIJA": {"rev": 4602648000000, "np": 363308000000, "ta": 14017356000000, "tl": 6478399000000, "te": 7538957000000}, "SMDM": {"rev": 694045000000, "np": 123778000000, "ta": 3462272000000, "tl": 251618000000, "te": 3210654000000}, "KPIG": {"rev": 1770144398000, "np": 658629034000, "ta": 35827499061000, "tl": 7312392000000, "te": 28515107000000}, "SMRA": {"rev": 10623400000000, "np": 1373400000000, "ta": 33534100000000, "tl": 19701600000000, "te": 13832500000000}, "BSDE": {"rev": 13796572149000, "np": 4359063784000, "ta": 76023348887000, "tl": 28704021000000, "te": 47319328000000}, "CTRA": {"rev": 11187565000000, "np": 2126288000000, "ta": 47022702000000, "tl": 22407372000000, "te": 24615330000000}, "ELTY": {"rev": 1208198000000, "np": -68528000000, "ta": 8742017000000, "tl": 2717802000000, "te": 6024215000000}, "LPKR": {"rev": 11347979000000, "np": 18746045000000, "ta": 53783859000000, "tl": 22836790000000, "te": 30947069000000}, "PWON": {"rev": 6670809000000, "np": 2074731000000, "ta": 35371085000000, "tl": 10629088000000, "te": 24741997000000}};
 
 const PEER_META = {
   DMIG: {name:'Damai Indah Golf', tier:'pp', tier_label:'🟦 Pure-play', holes:36, area:156.0},
@@ -466,10 +472,11 @@ function computeRows() {
     const f = FIN_2024[t] || {};
     return {
       t, m,
-      ta: f.ta, rev: f.rev, np: f.np, tl: f.tl,
+      ta: f.ta, rev: f.rev, np: f.np, tl: f.tl, te: f.te,
       turnover: (f.rev && f.ta) ? f.rev / f.ta : null,
       roa: (f.np !== undefined && f.np !== null && f.ta) ? (f.np / f.ta * 100) : null,
       debt: (f.tl && f.ta) ? (f.tl / f.ta * 100) : null,
+      leverage: (f.ta && f.te && f.te > 0) ? (f.ta / f.te) : null,
       taPerHole: (f.ta && m.holes) ? f.ta / m.holes : null,
       taPerHa: (f.ta && m.area) ? f.ta / m.area : null,
     };
@@ -496,6 +503,7 @@ function renderProd() {
     turnover: { higher: true },
     roa: { higher: true },
     debt: { higher: false },
+    leverage: { higher: false },
     taPerHole: { higher: false },
     taPerHa: { higher: false },
   };
@@ -522,17 +530,18 @@ function renderProd() {
     const tierColor = r.m.tier === 'pp' ? '#3b82f6' : r.m.tier === 'resort' ? '#f59e0b' : '#16a34a';
     return `<tr data-tier="${r.m.tier}">
     <td class="peer"><a href="clubs/${r.t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${r.t}</a></td>
-    <td><span class="peer-tag peer-tag-${r.m.tier}" style="font-size:10px;">${r.m.tier_label}</span></td>
-    <td class="num">${fmtNum(r.m.holes)}</td>
-    <td class="num">${fmtNum(r.m.area, 1)}</td>
+    <td class="col-low-prio"><span class="peer-tag peer-tag-${r.m.tier}" style="font-size:10px;">${r.m.tier_label}</span></td>
+    <td class="num col-low-prio">${fmtNum(r.m.holes)}</td>
+    <td class="num col-low-prio">${fmtNum(r.m.area, 1)}</td>
     <td class="num">${fmtBn(r.ta)}</td>
-    <td class="num" style="padding:4px 8px;">${miniSpark(TA_5Y[r.t] || {}, tierColor)}</td>
-    <td class="num">${fmtBn(r.rev)}</td>
+    <td class="num col-low-prio" style="padding:4px 8px;">${miniSpark(TA_5Y[r.t] || {}, tierColor)}</td>
+    <td class="num col-low-prio">${fmtBn(r.rev)}</td>
     ${heat('turnover', r.turnover, `<strong>${fmtRatio(r.turnover)}</strong>`)}
     ${heat('roa', r.roa, fmtPct(r.roa))}
     ${heat('debt', r.debt, fmtPct(r.debt, 1))}
-    ${heat('taPerHole', r.taPerHole, fmtBn(r.taPerHole))}
-    ${heat('taPerHa', r.taPerHa, fmtBn(r.taPerHa))}
+    ${heat('leverage', r.leverage, r.leverage !== null ? r.leverage.toFixed(2)+'×' : '—').replace('class="num heat"','class="num heat col-low-prio"')}
+    ${heat('taPerHole', r.taPerHole, fmtBn(r.taPerHole)).replace('class="num heat"','class="num heat col-low-prio"')}
+    ${heat('taPerHa', r.taPerHa, fmtBn(r.taPerHa)).replace('class="num heat"','class="num heat col-low-prio"')}
   </tr>`;
   });
   // Tier median benchmark rows
@@ -548,37 +557,41 @@ function renderProd() {
     if (!tdata.length) return;
     const med = key => median(tdata.map(r => r[key]));
     const medM = key => median(tdata.map(r => r.m[key]));
+    const lev = med('leverage');
     benchRows.push(`<tr class="bench-row tier-${tk}">
       <td>${tierLabelMap[tk]}</td>
-      <td>N=${tdata.length}</td>
-      <td class="num">${fmtNum(medM('holes'))}</td>
-      <td class="num">${fmtNum(medM('area'), 1)}</td>
+      <td class="col-low-prio">N=${tdata.length}</td>
+      <td class="num col-low-prio">${fmtNum(medM('holes'))}</td>
+      <td class="num col-low-prio">${fmtNum(medM('area'), 1)}</td>
       <td class="num">${fmtBn(med('ta'))}</td>
-      <td class="num">—</td>
-      <td class="num">${fmtBn(med('rev'))}</td>
+      <td class="num col-low-prio">—</td>
+      <td class="num col-low-prio">${fmtBn(med('rev'))}</td>
       <td class="num"><strong>${fmtRatio(med('turnover'))}</strong></td>
       <td class="num">${fmtPct(med('roa'))}</td>
       <td class="num">${fmtPct(med('debt'), 1)}</td>
-      <td class="num">${fmtBn(med('taPerHole'))}</td>
-      <td class="num">${fmtBn(med('taPerHa'))}</td>
+      <td class="num col-low-prio">${lev !== null ? lev.toFixed(2)+'×' : '—'}</td>
+      <td class="num col-low-prio">${fmtBn(med('taPerHole'))}</td>
+      <td class="num col-low-prio">${fmtBn(med('taPerHa'))}</td>
     </tr>`);
   });
   // Overall median
   const medAll = key => median(rows.map(r => r[key]));
   const medAllM = key => median(rows.map(r => r.m[key]));
+  const levAll = medAll('leverage');
   benchRows.push(`<tr class="bench-row overall">
     <td>📊 전체 중위</td>
-    <td>N=${rows.length}</td>
-    <td class="num">${fmtNum(medAllM('holes'))}</td>
-    <td class="num">${fmtNum(medAllM('area'), 1)}</td>
+    <td class="col-low-prio">N=${rows.length}</td>
+    <td class="num col-low-prio">${fmtNum(medAllM('holes'))}</td>
+    <td class="num col-low-prio">${fmtNum(medAllM('area'), 1)}</td>
     <td class="num">${fmtBn(medAll('ta'))}</td>
-    <td class="num">—</td>
-    <td class="num">${fmtBn(medAll('rev'))}</td>
+    <td class="num col-low-prio">—</td>
+    <td class="num col-low-prio">${fmtBn(medAll('rev'))}</td>
     <td class="num"><strong>${fmtRatio(medAll('turnover'))}</strong></td>
     <td class="num">${fmtPct(medAll('roa'))}</td>
     <td class="num">${fmtPct(medAll('debt'), 1)}</td>
-    <td class="num">${fmtBn(medAll('taPerHole'))}</td>
-    <td class="num">${fmtBn(medAll('taPerHa'))}</td>
+    <td class="num col-low-prio">${levAll !== null ? levAll.toFixed(2)+'×' : '—'}</td>
+    <td class="num col-low-prio">${fmtBn(medAll('taPerHole'))}</td>
+    <td class="num col-low-prio">${fmtBn(medAll('taPerHa'))}</td>
   </tr>`);
   document.getElementById('prod-tbody').innerHTML = peerRows.join('') + benchRows.join('');
   applyTierFilter();
@@ -667,7 +680,7 @@ function buildProdExport(rows, sep) {
   };
   const num = v => (v === null || v === undefined) ? '' : v;
   const dec = (v, d) => (v === null || v === undefined) ? '' : v.toFixed(d);
-  const headers = ['Peer','Tier','홀','면적(ha)','총자산(IDR)','매출(IDR)','자산회전율','ROA(%)','부채비율(%)','홀당자산(IDR)','ha당자산(IDR)'];
+  const headers = ['Peer','Tier','홀','면적(ha)','총자산(IDR)','매출(IDR)','자산회전율','ROA(%)','부채비율(%)','자기자본승수(×)','홀당자산(IDR)','ha당자산(IDR)'];
   const lines = [headers.map(esc).join(sep)];
   rows.forEach(r => {
     lines.push([
@@ -675,6 +688,7 @@ function buildProdExport(rows, sep) {
       num(r.m.holes), dec(r.m.area, 1),
       num(r.ta), num(r.rev),
       dec(r.turnover, 4), dec(r.roa, 2), dec(r.debt, 2),
+      dec(r.leverage, 3),
       num(r.taPerHole), num(r.taPerHa),
     ].join(sep));
   });
