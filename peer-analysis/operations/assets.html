@@ -86,6 +86,11 @@
   .data-meta strong { color:var(--ops-ink-soft); }
   .data-meta .sep { margin:0 8px; opacity:0.4; }
   @media print { .top-perf { display:none; } .data-meta { font-size:9px; } }
+  /* Accessibility */
+  *:focus-visible { outline:2px solid var(--ops-green); outline-offset:2px; border-radius:3px; }
+  .ast-tab:focus-visible, .tier-pill:focus-visible { outline-offset:1px; }
+  .skip-link { position:absolute; left:-1000px; top:8px; padding:6px 12px; background:var(--ops-green); color:white; border-radius:6px; font-weight:700; z-index:200; text-decoration:none; }
+  .skip-link:focus { left:8px; }
   /* Tier filter pills */
   .tier-pills { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:6px 0; }
   .tier-pill { padding:5px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:999px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
@@ -115,6 +120,7 @@
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main-content">메인 콘텐츠로 건너뛰기</a>
 <header class="ops-head">
   <div class="ops-wrap ops-head-row">
     <a href="clubs/index.html" class="ops-brand">
@@ -148,7 +154,7 @@
   </div>
 </section>
 
-<section class="ops-section">
+<section class="ops-section" id="main-content">
   <div class="ops-wrap">
 
     <!-- TAB 1: 시설 구성 -->
@@ -847,6 +853,22 @@ function flashSuccess(btn, label){
   document.querySelectorAll('.ast-tab, #prod-tier-pills .tier-pill, #prod-tbl .sortable').forEach(el => {
     el.addEventListener('click', () => setTimeout(saveAssetState, 0));
   });
+  // Keyboard arrow nav for tabs and pills
+  function wireArrowNav(items) {
+    items.forEach((el, i) => {
+      el.setAttribute('tabindex', '0');
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+          e.preventDefault();
+          const next = e.key === 'ArrowRight' ? (i + 1) % items.length : (i - 1 + items.length) % items.length;
+          items[next].focus();
+          items[next].click();
+        }
+      });
+    });
+  }
+  wireArrowNav(Array.from(document.querySelectorAll('.ast-tab')));
+  wireArrowNav(Array.from(document.querySelectorAll('#prod-tier-pills .tier-pill')));
   renderTopPerf();
   renderProd();
 })();
