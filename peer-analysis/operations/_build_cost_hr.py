@@ -463,6 +463,18 @@ html = '''<!DOCTYPE html>
     .mix-bar-row { grid-template-columns: 80px 1fr 70px; gap:8px; font-size:11px; }
     .mix-bar-seg { font-size:9px; }
   }
+  /* Tier benchmark rows */
+  .bench-row td { background:rgba(45,80,22,0.04) !important; font-size:12px; color:var(--ops-ink-soft); border-top:2px solid var(--ops-line); }
+  .bench-row td:first-child { font-weight:700; color:var(--ops-ink); }
+  .bench-row.tier-pp    td:first-child { color:#3b82f6; }
+  .bench-row.tier-resort td:first-child { color:#f59e0b; }
+  .bench-row.tier-twn   td:first-child { color:#16a34a; }
+  .bench-row.overall td:first-child { color:var(--ops-green); }
+  /* Action bar */
+  .action-bar { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:6px 0 12px 0; }
+  .action-btn { padding:6px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); display:inline-flex; align-items:center; gap:4px; }
+  .action-btn:hover { background:rgba(45,80,22,0.05); }
+  .action-btn.success { background:#16a34a; color:white; border-color:#16a34a; }
 </style>
 </head>
 <body>
@@ -513,7 +525,11 @@ html = '''<!DOCTYPE html>
   <div class="ops-wrap">
     <div class="cost-panel active" id="panel-cmp">
       <h2 style="font-size:17px; margin:0 0 14px 0;">13-peer 비용 구조 — <span class="yr-label">FY2024</span></h2>
-      <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">선택 연도 그룹 P&L 기반. 총 비용 = 매출 − 영업이익. EBITDA·순이익 마진 포함.</p>
+      <p style="font-size:12px; color:var(--ops-muted); margin:0 0 6px 0;">선택 연도 그룹 P&L 기반. 총 비용 = 매출 − 영업이익. EBITDA·순이익 마진 포함. <strong>Tier별 중위 벤치마크 행</strong> 포함 (3 tier + 전체).</p>
+      <div class="action-bar">
+        <button class="action-btn" id="cmp-copy-btn">📋 표 복사 (TSV)</button>
+        <button class="action-btn" id="cmp-csv-btn">⬇ CSV 다운로드</button>
+      </div>
       <div class="tbl-card scroll-x">
         <table class="ops-tbl sticky-tbl">
           <thead>
@@ -602,6 +618,10 @@ __OPEX_SECTION__
         Pure-play(DMIG·PIPG)는 전사 기준, GOLF는 사업부 합계, MDLN/KIJA/SMDM은 골프 segment 기준 →
         모두 <em>해당 공시 범위의 매출</em>로 나누어 동일 차원 비교 성립.
         <strong>주의</strong>: KPIG는 COGS 공시 없이 그룹 G&amp;A만이므로 합산 비율 비교에서 제외.
+      </div>
+      <div class="action-bar">
+        <button class="action-btn" id="total-copy-btn">📋 표 복사 (TSV)</button>
+        <button class="action-btn" id="total-csv-btn">⬇ CSV 다운로드</button>
       </div>
       <div class="tbl-card scroll-x" style="margin-bottom:24px;">
         <table class="ops-tbl sticky-tbl">
@@ -705,10 +725,19 @@ function renderMixBars(year, peers, mergedByPeer){
   }).join('');
 }
 
+// Compute median of numeric array (null-aware)
+function median(xs){
+  const v = xs.filter(x => x !== null && x !== undefined).sort((a,b) => a-b);
+  if (!v.length) return null;
+  return v.length % 2 === 1 ? v[Math.floor(v.length/2)] : (v[v.length/2-1] + v[v.length/2]) / 2;
+}
+const TIER_LABEL = { pp:'🟦 Pure-play 중위', resort:'🟨 Resort 중위', twn:'🟩 Township 중위' };
+
 function render(year){
   document.querySelectorAll('.yr-label').forEach(el => el.textContent = 'FY' + year);
 
   // === Tab 1: 비용 구조 % (group P&L) ===
+  const cmpData = [];
   const rows = PEER_ORDER.map(t => {
     const d = PEER_DATA[t];
     const y = d.yearly[year] || {};
@@ -718,6 +747,7 @@ function render(year){
     const opMargin = (rev && op !== null && op !== undefined) ? (op/rev*100) : null;
     const ebMargin = (rev && ebitda !== null && ebitda !== undefined) ? (ebitda/rev*100) : null;
     const npMargin = (rev && np !== null && np !== undefined) ? (np/rev*100) : null;
+    cmpData.push({ t, tier:d.tier, name:d.name, rev, totalCost, costRatio, opMargin, ebMargin, npMargin });
     return `<tr>
       <td class="peer"><a href="clubs/${t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${t}</a><span class="peer-tag peer-tag-${d.tier}">${d.tier_label}</span></td>
       <td>${d.name.slice(0,24)}</td>
@@ -729,7 +759,18 @@ function render(year){
       <td class="num">${fmtPct(npMargin)}</td>
     </tr>`;
   });
-  document.getElementById('cmp-tbody').innerHTML = rows.join('');
+  // Tier median benchmark rows + overall
+  const benchRows = [];
+  ['pp','resort','twn'].forEach(tk => {
+    const tdata = cmpData.filter(r => r.tier === tk);
+    if (!tdata.length) return;
+    const med = (key) => median(tdata.map(r => r[key]));
+    benchRows.push(`<tr class="bench-row tier-${tk}"><td>${TIER_LABEL[tk]}</td><td>N=${tdata.length}</td><td class="num">${fmtBn(med('rev'))}</td><td class="num">${fmtBn(med('totalCost'))}</td><td class="num">${fmtPct(med('costRatio'))}</td><td class="num"><strong>${fmtPct(med('opMargin'))}</strong></td><td class="num">${fmtPct(med('ebMargin'))}</td><td class="num">${fmtPct(med('npMargin'))}</td></tr>`);
+  });
+  const medAll = (key) => median(cmpData.map(r => r[key]));
+  benchRows.push(`<tr class="bench-row overall"><td>📊 전체 중위</td><td>N=${cmpData.length}</td><td class="num">${fmtBn(medAll('rev'))}</td><td class="num">${fmtBn(medAll('totalCost'))}</td><td class="num">${fmtPct(medAll('costRatio'))}</td><td class="num"><strong>${fmtPct(medAll('opMargin'))}</strong></td><td class="num">${fmtPct(medAll('ebMargin'))}</td><td class="num">${fmtPct(medAll('npMargin'))}</td></tr>`);
+  document.getElementById('cmp-tbody').innerHTML = rows.join('') + benchRows.join('');
+  window._cmpData = cmpData;
 
   // === Tab 2: 매출원가 동급 비교 (top) ===
   // Ratio uses scope_rev (matches the actual coverage of the COGS note) for honest comparison
@@ -819,6 +860,7 @@ function render(year){
   renderMixBars(year, opexCatPeers, mergedByPeer);
 
   // === Tab 4: 총 영업비용 (COGS+OpEx) 동급 비교 ===
+  const totalData = [];
   const totalRows = PEER_ORDER.map(t => {
     const d = PEER_DATA[t];
     const scopeRev = d.scope_rev[year];
@@ -827,6 +869,7 @@ function render(year){
     const tot = d.total_opcost[year];
     const ratio = (scopeRev && tot) ? (tot/scopeRev*100) : null;
     const cov = (d.cogs_cov !== '—' && d.opex_cov !== '—') ? `${d.cogs_cov} / ${d.opex_cov}` : (d.cogs_cov !== '—' ? d.cogs_cov : d.opex_cov);
+    totalData.push({ t, tier:d.tier, name:d.name, cogs, opex, tot, scopeRev, ratio, cov });
     return `<tr>
       <td class="peer"><a href="clubs/${t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${t}</a><span class="peer-tag peer-tag-${d.tier}">${d.tier_label}</span></td>
       <td>${d.name.slice(0,24)}</td>
@@ -838,11 +881,74 @@ function render(year){
       <td style="font-size:11px; color:var(--ops-muted);">${cov}</td>
     </tr>`;
   });
-  document.getElementById('total-cmp-tbody').innerHTML = totalRows.join('');
+  // Tier median benchmark rows for Tab ④ (only peers with data)
+  const totalBenchRows = [];
+  ['pp','resort','twn'].forEach(tk => {
+    const tdata = totalData.filter(r => r.tier === tk && r.tot);
+    if (!tdata.length) return;
+    const med = key => median(tdata.map(r => r[key]));
+    totalBenchRows.push(`<tr class="bench-row tier-${tk}"><td>${TIER_LABEL[tk]}</td><td>N=${tdata.length}</td><td class="num">${fmtBn(med('cogs'))}</td><td class="num">${fmtBn(med('opex'))}</td><td class="num"><strong>${fmtBn(med('tot'))}</strong></td><td class="num">${fmtBn(med('scopeRev'))}</td><td class="num"><strong>${fmtPct(med('ratio'))}</strong></td><td>—</td></tr>`);
+  });
+  const totalAvail = totalData.filter(r => r.tot);
+  if (totalAvail.length) {
+    const medAll = key => median(totalAvail.map(r => r[key]));
+    totalBenchRows.push(`<tr class="bench-row overall"><td>📊 전체 중위</td><td>N=${totalAvail.length}</td><td class="num">${fmtBn(medAll('cogs'))}</td><td class="num">${fmtBn(medAll('opex'))}</td><td class="num"><strong>${fmtBn(medAll('tot'))}</strong></td><td class="num">${fmtBn(medAll('scopeRev'))}</td><td class="num"><strong>${fmtPct(medAll('ratio'))}</strong></td><td>—</td></tr>`);
+  }
+  document.getElementById('total-cmp-tbody').innerHTML = totalRows.join('') + totalBenchRows.join('');
+  window._totalData = totalData;
 
   // Highlight selected year columns in line tables
   document.querySelectorAll('.yr-hl').forEach(el => el.classList.remove('yr-hl'));
   document.querySelectorAll('.yr-' + year).forEach(el => el.classList.add('yr-hl'));
+}
+
+let currentYear = '2024';
+
+// Build TSV/CSV exporter for cmp/total tables
+function buildExport(which, sep) {
+  const esc = v => {
+    if (v === null || v === undefined) return '';
+    const s = String(v);
+    if (sep === ',' && (s.includes(',') || s.includes('"') || s.includes('\n'))) return '"' + s.replace(/"/g,'""') + '"';
+    return s;
+  };
+  const num = v => (v === null || v === undefined) ? '' : v;
+  const pct = v => (v === null || v === undefined) ? '' : v.toFixed(2);
+  let headers, rowsFn;
+  if (which === 'cmp') {
+    headers = ['Peer','그룹명','Tier','매출(IDR)','총비용(IDR)','총비용/매출(%)','영업이익률(%)','EBITDA마진(%)','순이익률(%)'];
+    rowsFn = () => (window._cmpData || []).map(r => [esc(r.t), esc(r.name), esc(r.tier), num(r.rev), num(r.totalCost), pct(r.costRatio), pct(r.opMargin), pct(r.ebMargin), pct(r.npMargin)]);
+  } else {
+    headers = ['Peer','그룹명','Tier','매출원가(IDR)','판관비(IDR)','합계COGS+OpEx(IDR)','대응매출(IDR)','합계/매출(%)','공시범위'];
+    rowsFn = () => (window._totalData || []).map(r => [esc(r.t), esc(r.name), esc(r.tier), num(r.cogs), num(r.opex), num(r.tot), num(r.scopeRev), pct(r.ratio), esc(r.cov)]);
+  }
+  const lines = [headers.map(esc).join(sep)];
+  rowsFn().forEach(row => lines.push(row.join(sep)));
+  return lines.join('\n');
+}
+function flashSuccess(btn, label){
+  const orig = btn.textContent;
+  btn.textContent = label;
+  btn.classList.add('success');
+  setTimeout(() => { btn.textContent = orig; btn.classList.remove('success'); }, 1500);
+}
+function wireExport(copyId, csvId, which, csvName) {
+  const cb = document.getElementById(copyId);
+  if (cb) cb.addEventListener('click', async (e) => {
+    const tsv = buildExport(which, '\t');
+    try { await navigator.clipboard.writeText(tsv); }
+    catch (err) { const ta = document.createElement('textarea'); ta.value = tsv; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); }
+    flashSuccess(e.currentTarget, '✓ 복사됨');
+  });
+  const db = document.getElementById(csvId);
+  if (db) db.addEventListener('click', (e) => {
+    const csv = '﻿' + buildExport(which, ',');
+    const blob = new Blob([csv], { type:'text/csv;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href = url; a.download = `${csvName}_FY${currentYear}.csv`;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+    flashSuccess(e.currentTarget, '✓ 다운로드');
+  });
 }
 
 (function(){
@@ -850,7 +956,8 @@ function render(year){
     b.addEventListener('click', () => {
       document.querySelectorAll('.year-btn').forEach(x => x.classList.remove('active'));
       b.classList.add('active');
-      render(b.dataset.year);
+      currentYear = b.dataset.year;
+      render(currentYear);
     });
   });
   document.querySelectorAll('.cost-tab').forEach(t => t.addEventListener('click', () => {
@@ -859,7 +966,9 @@ function render(year){
     t.classList.add('active');
     document.getElementById('panel-' + t.dataset.panel).classList.add('active');
   }));
-  render('2024');
+  wireExport('cmp-copy-btn', 'cmp-csv-btn', 'cmp', 'cost-structure');
+  wireExport('total-copy-btn', 'total-csv-btn', 'total', 'cost-total-cogs-opex');
+  render(currentYear);
 })();
 </script>
 </body>
