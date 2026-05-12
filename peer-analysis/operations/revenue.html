@@ -7,7 +7,7 @@
 <meta name="description" content="13개사 골프 부문 매출 세그먼트 공시 매트릭스 + DMIG Note 23 라인별 분해 100% stacked bar." />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260511c51" />
+<link rel="stylesheet" href="ops-style.css?v=20260512c52" />
 <style>
   table.ops-tbl tr.tot { background: #f3f1e6; font-weight: 700; }
   table.ops-tbl .nd { color: var(--ops-muted); font-style: italic; font-size: 12.5px; }
@@ -635,144 +635,192 @@
 <!-- ============================================================ -->
 <section class="ops-section">
   <div class="ops-wrap">
-    <h2>4. 그룹 합산 매출 vs 골프 단독 매출</h2>
-    <h3>13개사 FY2024 audited</h3>
-    <p class="lede">그룹 매출은 골프 외 부동산·산업단지·호텔 매출을 포함. 단순 절대값 비교는 의미 없음. 골프 부문 단독 매출이 공시된 peer만 정확한 골프 비교 가능.</p>
+    <h2>4. 매출·순이익 비교 (Peer Group v2 · Cycle 168)</h2>
+    <h3>13개사 FY2024 audited — Tier별 분리 표</h3>
+    <p class="lede"><strong>⚠️ 그룹 매출과 골프 단독 매출을 한 표에 섞으면 비교가 왜곡됩니다.</strong> 이 섹션은 두 그룹으로 분리: <strong>Table A</strong> = 골프 부문 직접 비교 가능 (6 peer 골프 segment 공시) · <strong>Table B</strong> = 그룹 합산만 (7 peer, 골프 단독 미공시 — 참고용).</p>
+
+    <h3 style="margin-top: 28px; color: var(--ops-green);">📊 Table A — 골프 부문 직접 비교 가능 (6 peer)</h3>
+    <p class="lede" style="background:#ecfdf5; padding:10px 14px; border-left:4px solid var(--ops-green); margin-bottom: 12px;">
+      <strong>Pure-play 골프 + Golf segment 분리 공시 peer.</strong> 이 6개사는 골프 사업의 직접 비교 (매출 · 비중 · 마진)가 가능합니다.
+    </p>
     <div class="tbl-card scroll-x">
       <table class="ops-tbl">
         <thead>
           <tr>
             <th>Peer</th>
-            <th>그룹 매출 (Rp bn)</th>
-            <th>골프 단독 매출 (Rp bn)</th>
-            <th class="num">골프 비중</th>
-            <th class="num">총자산 (Rp bn)</th>
-            <th class="num">ROA</th>
-            <th>출처</th>
+            <th>분류</th>
+            <th class="num">골프 부문 매출<br>(Rp bn)</th>
+            <th class="num">골프 비중<br>(% of 총매출)</th>
+            <th class="num">총매출<br>(Rp bn)</th>
+            <th class="num">순이익률</th>
+            <th>데이터 빈티지</th>
           </tr>
         </thead>
         <tbody>
           <tr class="hi">
             <td class="peer">DMIG</td>
-            <td class="num">253.1</td>
+            <td><span style="display:inline-block;padding:2px 8px;background:#dbeafe;color:#1e40af;border-radius:10px;font-size:11px;font-weight:700;">🟦 Pure-play</span></td>
             <td class="num">253.1</td>
             <td class="num">100%</td>
-            <td class="num">648.9</td>
-            <td class="num">12.7%</td>
-            <td><span class="src">Note 23 + curated assets</span></td>
+            <td class="num">253.1</td>
+            <td class="num" style="color:var(--ops-green);font-weight:700;">32.6%</td>
+            <td><span class="src">FY2024 audited · Note 23</span></td>
           </tr>
           <tr class="hi">
             <td class="peer">PIPG</td>
-            <td class="num">197.6</td>
+            <td><span style="display:inline-block;padding:2px 8px;background:#dbeafe;color:#1e40af;border-radius:10px;font-size:11px;font-weight:700;">🟦 Pure-play</span></td>
             <td class="num">197.6</td>
             <td class="num">100%</td>
-            <td class="num">446.1</td>
-            <td class="num">12.5%</td>
-            <td><span class="src">curated FY24</span></td>
+            <td class="num">197.6</td>
+            <td class="num" style="color:var(--ops-green);font-weight:700;">28.3%</td>
+            <td><span class="src">FY2024 audited · Note 27</span></td>
           </tr>
           <tr class="hi">
             <td class="peer">GOLF</td>
-            <td class="num">197.994</td>
-            <td class="num">93.042</td>
+            <td><span style="display:inline-block;padding:2px 8px;background:#fef3c7;color:#92400e;border-radius:10px;font-size:11px;font-weight:700;">🟨 Resort</span></td>
+            <td class="num">93.0</td>
             <td class="num">47.0%</td>
-            <td class="num">8,637</td>
-            <td class="num">0.78%</td>
-            <td><span class="src">FY24 AR p.210 Note 29 a (Golf 93,042 m) + p.10 Ikhtisar 매출/총자산 + curated 자산</span></td>
+            <td class="num">198.0</td>
+            <td class="num" style="color:var(--ops-green);font-weight:700;">34.1%</td>
+            <td><span class="src">FY2024 audited · AR p.210 Note 29</span></td>
           </tr>
           <tr class="hi">
             <td class="peer">MDLN</td>
-            <td class="num">1,017.570</td>
-            <td class="num">74.375<span class="cite-inline">(Lapangan golf 56.640 + Club house 17.735)</span></td>
-            <td class="num">7.31%</td>
-            <td class="num">13,561</td>
-            <td class="num">-5.1%</td>
-            <td><span class="src">FY24 AR att2 p.318 Note 25 + p.323-324 Note 32 (Hospitaliti 148.72 bn = Hotel+Golf+CC 통합)</span></td>
+            <td><span style="display:inline-block;padding:2px 8px;background:#dcfce7;color:#166534;border-radius:10px;font-size:11px;font-weight:700;">🟩 Township</span></td>
+            <td class="num">74.4<span class="cite-inline">(Lapangan golf 56.6 + Club house 17.7)</span></td>
+            <td class="num">7.3%</td>
+            <td class="num">1,017.6</td>
+            <td class="num" style="color:#c0392b;font-weight:700;">-67.9%</td>
+            <td><span class="src">FY2024 audited · Note 25+32 (Hospitaliti)</span></td>
           </tr>
           <tr class="hi">
             <td class="peer">KIJA</td>
-            <td class="num">4,600</td>
-            <td class="num">85.019<span class="cite-inline">(AR Note 34 직접)</span></td>
+            <td><span style="display:inline-block;padding:2px 8px;background:#dcfce7;color:#166534;border-radius:10px;font-size:11px;font-weight:700;">🟩 Township</span></td>
+            <td class="num">85.0<span class="cite-inline">(AR Note 34 직접)</span></td>
             <td class="num">1.85%</td>
-            <td class="num">14,010</td>
-            <td class="num">2.6%</td>
-            <td><span class="src">FY24 AR att1 p.523-524 Note 34 + 그룹 매출 curated</span></td>
+            <td class="num">4,602.6</td>
+            <td class="num">16.7%</td>
+            <td><span class="src">FY2024 audited · Note 34 segment</span></td>
           </tr>
           <tr class="hi">
             <td class="peer">SMDM</td>
-            <td class="num">694.045</td>
-            <td class="num">63.282<span class="cite-inline">(Golf &amp; CC segment)</span></td>
+            <td><span style="display:inline-block;padding:2px 8px;background:#dcfce7;color:#166534;border-radius:10px;font-size:11px;font-weight:700;">🟩 Township</span></td>
+            <td class="num">63.3<span class="cite-inline">(Golf &amp; CC segment)</span></td>
             <td class="num">9.12%</td>
-            <td class="num">3,462</td>
-            <td class="num">3.6%</td>
-            <td><span class="src">FY24 AR att1 p.219 Note 29 + 그룹 매출 AR Note 29 + curated 자산</span></td>
-          </tr>
-          <tr>
-            <td class="peer">KPIG</td>
-            <td class="num">1,770.144</td>
-            <td class="num"><span class="nd">"Hotel, resor dan golf" 통합 960.228 bn (분리 X)</span></td>
-            <td class="num">—</td>
-            <td class="num">35,830</td>
-            <td class="num">1.84%</td>
-            <td><span class="src">FY24 AR att1 p.315 Note 31. 골프 단독 라인 없음</span></td>
-          </tr>
-          <tr>
-            <td class="peer">SMRA</td>
-            <td class="num">10,620</td>
-            <td class="num"><span class="nd">공시 없음</span></td>
-            <td class="num">—</td>
-            <td class="num">33,530</td>
-            <td class="num">4.1%</td>
-            <td><span class="src">curated FY24 (Leisure&amp;Hospitality 통합)</span></td>
-          </tr>
-          <tr>
-            <td class="peer">DILD</td>
-            <td class="num">2,553</td>
-            <td class="num"><span class="nd">공시 없음</span></td>
-            <td class="num">—</td>
-            <td class="num">13,704</td>
-            <td class="num">1.3%</td>
-            <td><span class="src">curated FY24</span></td>
-          </tr>
-          <tr>
-            <td class="peer">BKSL</td>
-            <td class="num">744.1</td>
-            <td class="num"><span class="nd">공시 없음 (관계사 운영)</span></td>
-            <td class="num">—</td>
-            <td class="num">21,188</td>
-            <td class="num">0.1%</td>
-            <td><span class="src">curated FY24</span></td>
-          </tr>
-          <tr>
-            <td class="peer">BKDP</td>
-            <td class="num">30.5</td>
-            <td class="num"><span class="nd">공시 없음</span></td>
-            <td class="num">—</td>
-            <td class="num">752.2</td>
-            <td class="num">-4.8%</td>
-            <td><span class="src">curated FY24 (적자)</span></td>
-          </tr>
-          <tr>
-            <td class="peer">BSDE</td>
-            <td class="num"><span class="nd">N/A</span></td>
-            <td class="num"><span class="nd">DMIG associate 합산만</span></td>
-            <td class="num">—</td>
-            <td class="num"><span class="nd">N/A</span></td>
-            <td class="num">—</td>
-            <td><span class="src">BSDE 그룹 매출 미수집</span></td>
-          </tr>
-          <tr>
-            <td class="peer">MKPI</td>
-            <td class="num"><span class="nd">N/A</span></td>
-            <td class="num"><span class="nd">직접 골프 없음</span></td>
-            <td class="num">—</td>
-            <td class="num"><span class="nd">N/A</span></td>
-            <td class="num">—</td>
-            <td><span class="src">PIPG associate 보유만</span></td>
+            <td class="num">694.0</td>
+            <td class="num">17.8%</td>
+            <td><span class="src">FY2024 audited · Note 29 segment</span></td>
           </tr>
         </tbody>
       </table>
     </div>
-    <p class="src" style="margin-top:8px;">DMIG ROA = 82.4 / 648.9 = 12.7% (FY24 audited curated). 골프 단독 운영 peer (DMIG·PIPG) ROA 12.5~12.7%로 그룹 합산 peer ROA(0.1~4.1%)보다 자산 회전 효율이 명백히 높음 (그룹 합산은 매출 대비 토지·건설 자산 비중 큼). 단, 비교 단위가 다르므로 동일 척도 평가는 부적절.</p>
+    <p class="src" style="margin-top:8px;">
+      <strong>핵심 관찰</strong>: Pure-play 2개사 평균 순이익률 30.4% (DMIG 32.6% + PIPG 28.3%). Resort GOLF 34.1% (호텔·부동산 mix 효과). 그룹 내 Golf segment 평균 -11.1% (MDLN 적자 영향). 그룹 차원에서 골프 단독 마진을 알 수 있는 peer는 6개에 불과합니다.
+    </p>
+
+    <h3 style="margin-top: 32px; color: #92400e;">📁 Table B — 그룹 합산만 공시 (7 peer, 참고용)</h3>
+    <p class="lede" style="background:#fef3c7; padding:10px 14px; border-left:4px solid #f59e0b; margin-bottom: 12px;">
+      <strong>⚠️ 그룹 매출은 골프 단독 마진을 반영하지 않습니다.</strong> 비교 자체보다 <strong>그룹 내 골프 사업의 위상 파악</strong> 용도로만 사용하세요. 모회사가 부동산·호텔·산업단지·헬스케어 등 multi-segment 그룹.
+    </p>
+    <div class="tbl-card scroll-x">
+      <table class="ops-tbl">
+        <thead>
+          <tr>
+            <th>Peer</th>
+            <th>분류</th>
+            <th>모회사 주력</th>
+            <th class="num">그룹 총매출<br>(Rp bn)</th>
+            <th class="num">순이익률</th>
+            <th class="num">총자산<br>(Rp bn)</th>
+            <th class="num">ROA</th>
+            <th>데이터 빈티지</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="peer">KPIG</td>
+            <td><span style="display:inline-block;padding:2px 8px;background:#dcfce7;color:#166534;border-radius:10px;font-size:11px;font-weight:700;">🟩 Township</span></td>
+            <td>Hotel+Resort+Golf 통합 (MNC Tourism)</td>
+            <td class="num">1,770.1</td>
+            <td class="num">37.2%</td>
+            <td class="num">35,827</td>
+            <td class="num">1.84%</td>
+            <td><span class="src">FY2024 · Note 31 (Trump Lido)</span></td>
+          </tr>
+          <tr>
+            <td class="peer">SMRA</td>
+            <td><span style="display:inline-block;padding:2px 8px;background:#dcfce7;color:#166534;border-radius:10px;font-size:11px;font-weight:700;">🟩 Township</span></td>
+            <td>Property + Leisure (Summarecon)</td>
+            <td class="num">10,623.4</td>
+            <td class="num">12.9%</td>
+            <td class="num">33,534</td>
+            <td class="num">4.10%</td>
+            <td><span class="src">FY2024 audited · Note 31</span></td>
+          </tr>
+          <tr>
+            <td class="peer">BSDE</td>
+            <td><span style="display:inline-block;padding:2px 8px;background:#dcfce7;color:#166534;border-radius:10px;font-size:11px;font-weight:700;">🟩 Township</span></td>
+            <td>Sinarmas Land (DMIG 모회사)</td>
+            <td class="num">13,796.6</td>
+            <td class="num">31.6%</td>
+            <td class="num">76,023</td>
+            <td class="num">5.73%</td>
+            <td><span class="src">FY2024 audited · Note 34</span></td>
+          </tr>
+          <tr>
+            <td class="peer">CTRA</td>
+            <td><span style="display:inline-block;padding:2px 8px;background:#dcfce7;color:#166534;border-radius:10px;font-size:11px;font-weight:700;">🟩 Township</span></td>
+            <td>Property (Ciputra Group)</td>
+            <td class="num">11,187.6</td>
+            <td class="num">19.0%</td>
+            <td class="num">47,022</td>
+            <td class="num">4.52%</td>
+            <td><span class="src">FY2024 audited · 2 코스 (Surabaya + Taman Dayu)</span></td>
+          </tr>
+          <tr>
+            <td class="peer">ELTY</td>
+            <td><span style="display:inline-block;padding:2px 8px;background:#dcfce7;color:#166534;border-radius:10px;font-size:11px;font-weight:700;">🟩 Township</span></td>
+            <td>Property (Bakrieland)</td>
+            <td class="num">1,208.2</td>
+            <td class="num" style="color:#c0392b;">-5.7%</td>
+            <td class="num">8,742</td>
+            <td class="num" style="color:#c0392b;">-0.78%</td>
+            <td><span class="src">FY2024 audited · 2 코스 (Gunung Geulis + Bogor Raya)</span></td>
+          </tr>
+          <tr>
+            <td class="peer">LPKR</td>
+            <td><span style="display:inline-block;padding:2px 8px;background:#dcfce7;color:#166534;border-radius:10px;font-size:11px;font-weight:700;">🟩 Township</span></td>
+            <td>Property + Healthcare (Lippo)</td>
+            <td class="num">11,348.0</td>
+            <td class="num">165.2%<span class="cite-inline" style="color:#92400e;">(FY24 일회성 이익 caveat — 자산 매각 가능성)</span></td>
+            <td class="num">53,784</td>
+            <td class="num">34.85%</td>
+            <td><span class="src">FY2024 audited · Imperial Klub Golf</span></td>
+          </tr>
+          <tr>
+            <td class="peer">PWON</td>
+            <td><span style="display:inline-block;padding:2px 8px;background:#dcfce7;color:#166534;border-radius:10px;font-size:11px;font-weight:700;">🟩 Township</span></td>
+            <td>Property + Mall (Pakuwon)</td>
+            <td class="num">6,670.8</td>
+            <td class="num">31.1%</td>
+            <td class="num">35,371</td>
+            <td class="num">5.87%</td>
+            <td><span class="src">FY2024 audited · Pakuwon Golf Family Club</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src" style="margin-top:8px;">
+      <strong>해석 주의</strong>: LPKR FY24 순이익률 165%는 일회성 회계 이벤트로 추정 (자산 매각·재평가). 정상 영업 수익률 아님. 그룹 차원 골프 사업 가치 추정 시 — KPIG/CTRA/PWON은 부동산 부속 골프장 (mid-range), BSDE/SMRA는 township 부속 골프장 (premium positioning 가능). 그룹 ROA 1.84-5.87% 범위는 부동산 그룹 평균값 (Pure-play 골프 ROA 12.5-12.7%와 비교 부적절).
+    </p>
+
+    <h3 style="margin-top: 28px;">🧭 Table A·B 종합 (시장 정보 사이트 관점)</h3>
+    <p class="lede">
+      <strong>13개 IDX 상장사 중 골프 단독 마진을 알 수 있는 곳은 6곳입니다.</strong> 나머지 7곳은 부동산·township·hotel 그룹의 일부로, 그룹 합산 매출은 골프 사업의 실제 수익성을 반영하지 않습니다. <strong>인수 검토 시 그룹 P&amp;L로 골프 단독 가치를 추정하지 마세요.</strong>
+    </p>
+    <p class="src" style="margin-top:8px;">
+      Peer Group v2 (Cycle 168, 2026-05-12) 재편 후. 구 13 peer 중 MKPI·BKDP·BKSL·DILD는 골프 운영 정보 부재로 archived. CTRA·ELTY·LPKR·PWON은 부동산 그룹의 골프 자산 보유 peer로 신규 추가. <a href="../../site/peer-analysis/operations/data/archived/" style="color:var(--ops-cite);">archived 4 peer JSON</a> 보존.
+    </p>
   </div>
 </section>
 
