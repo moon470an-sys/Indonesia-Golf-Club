@@ -41,6 +41,15 @@
   .club-grid.hidden { display:none; }
   .empty-state { text-align:center; padding:60px 20px; color:var(--ops-muted); font-size:14px; display:none; }
   .empty-state.active { display:block; }
+  .empty-state .es-title { font-size:18px; color:var(--ops-ink); margin-bottom:6px; }
+  .empty-state .es-hint { margin:8px 0 16px 0; }
+  .empty-state .es-actions { display:inline-flex; gap:8px; flex-wrap:wrap; justify-content:center; }
+  .empty-state .es-actions button { padding:6px 14px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:6px; font-size:12.5px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
+  .empty-state .es-actions button:hover { background:rgba(45,80,22,0.06); color:var(--ops-ink); }
+  /* Reset-all button (active state) */
+  .reset-btn { padding:6px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
+  .reset-btn:hover { background:rgba(185,28,28,0.06); color:#b91c1c; border-color:#b91c1c; }
+  .reset-btn.hidden { display:none; }
   @media (max-width: 720px) {
     .control-bar input[type="search"] { min-width:0; flex:1 1 100%; }
     .results-info { margin-left:0; flex:1 1 100%; text-align:right; }
@@ -227,6 +236,7 @@
         <button class="active" data-view="cards" role="tab" aria-selected="true">🃏 카드</button>
         <button data-view="table" role="tab" aria-selected="false">📋 표</button>
       </div>
+      <button class="reset-btn hidden" id="reset-btn" aria-label="모든 필터·검색·정렬 초기화">↺ 초기화</button>
       <button class="share-btn" id="share-btn" aria-label="현재 필터 링크 복사">🔗 링크 복사</button>
       <button class="export-btn" id="export-all-btn" aria-label="전체 데이터 CSV 다운로드">⬇ 전체 CSV</button>
       <div class="results-info" id="results-info">13 / 13 표시</div>
@@ -879,7 +889,15 @@
         </tbody>
       </table>
     </div>
-    <div class="empty-state" id="empty-state">🔍 검색 결과가 없습니다. 다른 키워드로 시도해보세요.</div>
+    <div class="empty-state" id="empty-state">
+      <div class="es-title">🔍 검색 결과 없음</div>
+      <div class="es-hint" id="empty-hint">현재 필터 조합으로 표시할 peer가 없습니다.</div>
+      <div class="es-actions">
+        <button id="es-clear-search">🗑 검색어 지우기</button>
+        <button id="es-all-tiers">📂 모든 Tier 보기</button>
+        <button id="es-reset-all">↺ 전체 초기화</button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1163,6 +1181,23 @@ function syncURL() {
     });
     resultsInfo.textContent = `${visible} / ${cardOriginalOrder.length} 표시`;
     emptyState.classList.toggle('active', visible === 0);
+    // Dynamic empty-state hint
+    const hint = document.getElementById('empty-hint');
+    if (hint) {
+      const parts = [];
+      if (q) parts.push(`검색어 "<strong>${q.replace(/[<>&]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]))}</strong>"`);
+      if (state.tier !== 'all') {
+        const tierName = { pp:'🟦 Pure-play', resort:'🟨 Resort', twn:'🟩 Township' }[state.tier];
+        parts.push(`Tier "<strong>${tierName}</strong>"`);
+      }
+      hint.innerHTML = parts.length ? parts.join(' + ') + ' 조건에 맞는 peer 없음.' : '현재 필터 조합으로 표시할 peer가 없습니다.';
+    }
+    // Toggle reset button visibility
+    const resetBtn = document.getElementById('reset-btn');
+    if (resetBtn) {
+      const dirty = state.tier !== 'all' || !!state.q || state.sort !== 'tier' || state.view !== 'cards';
+      resetBtn.classList.toggle('hidden', !dirty);
+    }
 
     // 3) View toggle
     if (state.view === 'cards') {
@@ -1454,6 +1489,38 @@ function syncURL() {
       }
     });
   });
+  // Reset all filters/search/sort to default
+  function resetAll() {
+    state.tier = 'all';
+    state.q = '';
+    state.sort = 'tier';
+    state.view = 'cards';
+    searchInput.value = '';
+    sortSelect.value = 'tier';
+    tierButtons.forEach(b => b.classList.toggle('active', b.dataset.filter === 'all'));
+    viewButtons.forEach(b => {
+      const a = b.dataset.view === 'cards';
+      b.classList.toggle('active', a); b.setAttribute('aria-selected', a ? 'true' : 'false');
+    });
+    applyState();
+    renderTierStats(null);
+    syncURL();
+  }
+  const resetBtn = document.getElementById('reset-btn');
+  if (resetBtn) resetBtn.addEventListener('click', resetAll);
+  // Empty-state action buttons
+  document.getElementById('es-clear-search')?.addEventListener('click', () => {
+    searchInput.value = ''; state.q = ''; applyState(); syncURL();
+    searchInput.focus();
+  });
+  document.getElementById('es-all-tiers')?.addEventListener('click', () => {
+    state.tier = 'all';
+    tierButtons.forEach(b => b.classList.toggle('active', b.dataset.filter === 'all'));
+    applyState();
+    renderTierStats(null);
+    syncURL();
+  });
+  document.getElementById('es-reset-all')?.addEventListener('click', resetAll);
   // Full 13-peer CSV export
   const exportAllBtn = document.getElementById('export-all-btn');
   if (exportAllBtn) exportAllBtn.addEventListener('click', (e) => {
