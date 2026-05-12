@@ -39,8 +39,17 @@ for t in peers_sorted:
     roa = (np_/ta*100) if (ta and np_) else None
     tier_color = {'pp':'#3b82f6','resort':'#f59e0b','twn':'#16a34a'}[c['tier']]
 
+    # Sort keys (use raw numbers; null treated as -Infinity so they fall to bottom on desc sort)
+    sort_rev = rev_bn if rev_bn is not None else -1e15
+    sort_margin = margin if margin is not None else -1e15
+    sort_roa = roa if roa is not None else -1e15
+    sort_ta = ta_bn if ta_bn is not None else -1e15
+    # Search text (lowercase, concatenated)
+    search_blob = f'{t} {c["name"]} {c["sub"]} {c["loc"]} {c["parent"]}'.lower()
     cards_html.append(
         f'      <a href="{t.lower()}.html" class="club-card" data-tier="{c["tier"]}" data-ticker="{t}" '
+        f'data-search="{search_blob}" '
+        f'data-rev="{sort_rev}" data-margin="{sort_margin}" data-roa="{sort_roa}" data-ta="{sort_ta}" data-name="{c["name"]}" '
         f'style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid {tier_color}; '
         f'border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">\n'
         f'        <div style="display:flex; justify-content:space-between; align-items:flex-start;">\n'
@@ -72,6 +81,46 @@ for t in peers_sorted:
 
 cards_section = '\n'.join(cards_html)
 
+# ============================================================
+# Compact table rows (mirrors card data for table view)
+# ============================================================
+table_rows = []
+for t in peers_sorted:
+    c = clubs[t]
+    c5y = fin.get(t,{})
+    y24 = c5y.get('yearly',{}).get('2024',{})
+    rev = y24.get('revenue')
+    np_ = y24.get('net_profit')
+    ta = y24.get('total_assets')
+    rev_bn = rev/1e9 if rev else None
+    ta_bn = ta/1e9 if ta else None
+    margin = (np_/rev*100) if (rev and np_) else None
+    roa = (np_/ta*100) if (ta and np_) else None
+    tier_color = {'pp':'#3b82f6','resort':'#f59e0b','twn':'#16a34a'}[c['tier']]
+    sort_rev = rev_bn if rev_bn is not None else -1e15
+    sort_margin = margin if margin is not None else -1e15
+    sort_roa = roa if roa is not None else -1e15
+    sort_ta = ta_bn if ta_bn is not None else -1e15
+    search_blob = f'{t} {c["name"]} {c["sub"]} {c["loc"]} {c["parent"]}'.lower()
+    table_rows.append(
+        f'      <tr class="club-row" data-tier="{c["tier"]}" data-ticker="{t}" '
+        f'data-search="{search_blob}" '
+        f'data-rev="{sort_rev}" data-margin="{sort_margin}" data-roa="{sort_roa}" data-ta="{sort_ta}" data-name="{c["name"]}">\n'
+        f'        <td style="white-space:nowrap;"><span style="display:inline-block; width:3px; height:14px; background:{tier_color}; vertical-align:middle; margin-right:6px; border-radius:2px;"></span><a href="{t.lower()}.html" style="font-weight:700; color:var(--ops-ink); text-decoration:none;">{t}</a></td>\n'
+        f'        <td><a href="{t.lower()}.html" style="color:var(--ops-ink); text-decoration:none;">{c["name"]}</a><br><span style="font-size:11px; color:var(--ops-muted);">{c["sub"]}</span></td>\n'
+        f'        <td><span class="peer-tag peer-tag-{c["tier"]}" style="font-size:10px;">{c["tier_label"]}</span></td>\n'
+        f'        <td style="font-size:12px;">{c["loc"]}</td>\n'
+        f'        <td style="font-size:12px;">{c["holes"]}</td>\n'
+        f'        <td style="font-size:12px;">{c["area"]}</td>\n'
+        f'        <td class="num" style="font-weight:700;">{fmtBn(rev_bn)}</td>\n'
+        f'        <td class="num">{fmtPct(margin)}</td>\n'
+        f'        <td class="num">{fmtBn(ta_bn)}</td>\n'
+        f'        <td class="num">{fmtPct(roa)}</td>\n'
+        f'        <td class="num" style="color:var(--ops-green); font-weight:700;">Rp {c["golf_rev_fy24"]}</td>\n'
+        f'      </tr>'
+    )
+table_section = '\n'.join(table_rows)
+
 html = '''<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -84,9 +133,34 @@ html = '''<!DOCTYPE html>
 <style>
   .club-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
   .club-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 16px; margin-top: 20px; }
-  .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; margin: 12px 0; }
+  .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; margin: 12px 0; align-items:center; }
   .filter-btn { padding: 6px 14px; border: 1px solid var(--ops-line); background: var(--ops-surface); border-radius: 999px; font-size: 12.5px; font-weight: 600; cursor: pointer; color: var(--ops-ink-soft); }
   .filter-btn.active { background: var(--ops-green); color: white; border-color: var(--ops-green); }
+  .control-bar { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin:14px 0 4px 0; }
+  .control-bar input[type="search"] { padding:7px 12px; border:1px solid var(--ops-line); border-radius:6px; font-size:13px; min-width:240px; color:var(--ops-ink); background:var(--ops-surface); }
+  .control-bar input[type="search"]:focus { outline:none; border-color:var(--ops-green); box-shadow:0 0 0 3px rgba(45,80,22,0.12); }
+  .control-bar select { padding:7px 10px; border:1px solid var(--ops-line); border-radius:6px; font-size:12.5px; background:var(--ops-surface); color:var(--ops-ink); cursor:pointer; }
+  .control-bar label { font-size:12px; font-weight:600; color:var(--ops-muted); }
+  .view-toggle { display:inline-flex; border:1px solid var(--ops-line); border-radius:6px; overflow:hidden; }
+  .view-toggle button { padding:7px 14px; border:none; background:var(--ops-surface); font-size:12.5px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
+  .view-toggle button.active { background:var(--ops-green); color:white; }
+  .view-toggle button + button { border-left:1px solid var(--ops-line); }
+  .results-info { font-size:12px; color:var(--ops-muted); margin-left:auto; }
+  .club-table { width:100%; border-collapse:collapse; font-size:13px; }
+  .club-table thead th { text-align:left; padding:10px 8px; background:var(--ops-bg); border-bottom:2px solid var(--ops-line); font-size:11.5px; font-weight:700; color:var(--ops-muted); letter-spacing:0.04em; text-transform:uppercase; position:sticky; top:0; }
+  .club-table thead th.num { text-align:right; }
+  .club-table tbody td { padding:10px 8px; border-bottom:1px solid var(--ops-line); vertical-align:middle; }
+  .club-table tbody td.num { text-align:right; white-space:nowrap; }
+  .club-table tbody tr:hover { background:rgba(45,80,22,0.03); }
+  .table-wrap { display:none; margin-top:20px; overflow-x:auto; background:var(--ops-surface); border:1px solid var(--ops-line); border-radius:10px; }
+  .table-wrap.active { display:block; }
+  .club-grid.hidden { display:none; }
+  .empty-state { text-align:center; padding:60px 20px; color:var(--ops-muted); font-size:14px; display:none; }
+  .empty-state.active { display:block; }
+  @media (max-width: 720px) {
+    .control-bar input[type="search"] { min-width:0; flex:1 1 100%; }
+    .results-info { margin-left:0; flex:1 1 100%; text-align:right; }
+  }
 </style>
 </head>
 <body>
@@ -106,12 +180,32 @@ html = '''<!DOCTYPE html>
 <section class="ops-hero">
   <div class="ops-wrap">
     <h1>13 클럽 일람</h1>
-    <p class="lede">IDX 상장 13개 골프 운영사. 클럽명·시설·재무 한 카드. 카드 클릭으로 클럽 상세.</p>
+    <p class="lede">IDX 상장 13개 골프 운영사. 검색·정렬·뷰 전환으로 빠르게 비교. 카드/행 클릭으로 클럽 상세.</p>
     <div class="filter-bar" id="tier-filter">
       <button class="filter-btn active" data-filter="all">전체 (13)</button>
       <button class="filter-btn" data-filter="pp">🟦 Pure-play (2)</button>
       <button class="filter-btn" data-filter="resort">🟨 Resort (1)</button>
       <button class="filter-btn" data-filter="twn">🟩 Township (10)</button>
+    </div>
+    <div class="control-bar">
+      <input type="search" id="club-search" placeholder="🔍 검색: 티커·이름·위치·모회사…" aria-label="클럽 검색" autocomplete="off">
+      <label for="club-sort">정렬:</label>
+      <select id="club-sort" aria-label="정렬 기준">
+        <option value="tier">기본 (Tier 순)</option>
+        <option value="rev-desc">매출 ↓</option>
+        <option value="rev-asc">매출 ↑</option>
+        <option value="margin-desc">순이익률 ↓</option>
+        <option value="margin-asc">순이익률 ↑</option>
+        <option value="roa-desc">ROA ↓</option>
+        <option value="roa-asc">ROA ↑</option>
+        <option value="ta-desc">총자산 ↓</option>
+        <option value="name-asc">이름 A→Z</option>
+      </select>
+      <div class="view-toggle" role="tablist" aria-label="뷰 전환">
+        <button class="active" data-view="cards" role="tab" aria-selected="true">🃏 카드</button>
+        <button data-view="table" role="tab" aria-selected="false">📋 표</button>
+      </div>
+      <div class="results-info" id="results-info">13 / 13 표시</div>
     </div>
   </div>
 </section>
@@ -121,6 +215,29 @@ html = '''<!DOCTYPE html>
     <div class="club-grid" id="club-grid">
 __CARDS__
     </div>
+    <div class="table-wrap" id="club-table-wrap">
+      <table class="club-table" id="club-table">
+        <thead>
+          <tr>
+            <th>Ticker</th>
+            <th>클럽명</th>
+            <th>Tier</th>
+            <th>위치</th>
+            <th>홀</th>
+            <th>면적</th>
+            <th class="num">FY24 매출</th>
+            <th class="num">순이익률</th>
+            <th class="num">총자산</th>
+            <th class="num">ROA</th>
+            <th class="num">골프 매출 FY24</th>
+          </tr>
+        </thead>
+        <tbody id="club-tbody">
+__TABLE_ROWS__
+        </tbody>
+      </table>
+    </div>
+    <div class="empty-state" id="empty-state">🔍 검색 결과가 없습니다. 다른 키워드로 시도해보세요.</div>
   </div>
 </section>
 
@@ -133,18 +250,103 @@ __CARDS__
 <script src="../operations.js?v=20260512c3" defer></script>
 <script>
 (function(){
-  const buttons = document.querySelectorAll('#tier-filter .filter-btn');
+  const tierButtons = document.querySelectorAll('#tier-filter .filter-btn');
+  const viewButtons = document.querySelectorAll('.view-toggle button');
   const grid = document.getElementById('club-grid');
-  buttons.forEach(b => {
-    b.addEventListener('click', () => {
-      buttons.forEach(x => x.classList.remove('active'));
-      b.classList.add('active');
-      const f = b.dataset.filter;
-      grid.querySelectorAll('.club-card').forEach(c => {
-        c.style.display = (f === 'all' || c.dataset.tier === f) ? '' : 'none';
-      });
+  const tableWrap = document.getElementById('club-table-wrap');
+  const tbody = document.getElementById('club-tbody');
+  const searchInput = document.getElementById('club-search');
+  const sortSelect = document.getElementById('club-sort');
+  const resultsInfo = document.getElementById('results-info');
+  const emptyState = document.getElementById('empty-state');
+
+  let state = { tier: 'all', q: '', sort: 'tier', view: 'cards' };
+
+  // Preserve original DOM order for "tier" (default) sort
+  const cardOriginalOrder = Array.from(grid.children).filter(el => el.classList.contains('club-card'));
+  const rowOriginalOrder = Array.from(tbody.children).filter(el => el.classList.contains('club-row'));
+
+  function sortElements(elems, mode) {
+    if (mode === 'tier') return elems;  // original order
+    const [key, dir] = mode.split('-');
+    const sign = dir === 'desc' ? -1 : 1;
+    return elems.slice().sort((a, b) => {
+      if (key === 'name') {
+        return sign * a.dataset.name.localeCompare(b.dataset.name, 'ko');
+      }
+      return sign * (parseFloat(a.dataset[key]) - parseFloat(b.dataset[key]));
     });
+  }
+
+  function applyState() {
+    // 1) Sort
+    const sortedCards = sortElements(cardOriginalOrder, state.sort);
+    const sortedRows = sortElements(rowOriginalOrder, state.sort);
+    // Re-attach in sorted order
+    sortedCards.forEach(el => grid.appendChild(el));
+    sortedRows.forEach(el => tbody.appendChild(el));
+
+    // 2) Filter (tier + search) — apply to both views; track visible count
+    const q = state.q.trim().toLowerCase();
+    let visible = 0;
+    const matches = (el) => {
+      const tierOk = (state.tier === 'all' || el.dataset.tier === state.tier);
+      const searchOk = (!q || el.dataset.search.includes(q));
+      return tierOk && searchOk;
+    };
+    sortedCards.forEach(el => {
+      const ok = matches(el);
+      el.style.display = ok ? '' : 'none';
+      if (ok) visible++;
+    });
+    sortedRows.forEach(el => {
+      el.style.display = matches(el) ? '' : 'none';
+    });
+    resultsInfo.textContent = `${visible} / ${cardOriginalOrder.length} 표시`;
+    emptyState.classList.toggle('active', visible === 0);
+
+    // 3) View toggle
+    if (state.view === 'cards') {
+      grid.classList.remove('hidden');
+      tableWrap.classList.remove('active');
+    } else {
+      grid.classList.add('hidden');
+      tableWrap.classList.add('active');
+    }
+  }
+
+  tierButtons.forEach(b => b.addEventListener('click', () => {
+    tierButtons.forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    state.tier = b.dataset.filter;
+    applyState();
+  }));
+
+  viewButtons.forEach(b => b.addEventListener('click', () => {
+    viewButtons.forEach(x => { x.classList.remove('active'); x.setAttribute('aria-selected','false'); });
+    b.classList.add('active'); b.setAttribute('aria-selected','true');
+    state.view = b.dataset.view;
+    applyState();
+  }));
+
+  searchInput.addEventListener('input', (e) => {
+    state.q = e.target.value;
+    applyState();
   });
+
+  sortSelect.addEventListener('change', (e) => {
+    state.sort = e.target.value;
+    applyState();
+  });
+
+  // Keyboard: '/' focuses search
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '/' && document.activeElement !== searchInput) {
+      e.preventDefault(); searchInput.focus();
+    }
+  });
+
+  applyState();
 })();
 </script>
 </body>
@@ -152,6 +354,7 @@ __CARDS__
 '''
 
 html = html.replace('__CARDS__', cards_section)
+html = html.replace('__TABLE_ROWS__', table_section)
 with open('clubs/index.html','w',encoding='utf-8') as f:
     f.write(html)
 print(f'clubs/index.html: {os.path.getsize("clubs/index.html")/1024:.1f} KB')

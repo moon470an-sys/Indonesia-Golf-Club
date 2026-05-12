@@ -10,9 +10,34 @@
 <style>
   .club-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
   .club-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 16px; margin-top: 20px; }
-  .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; margin: 12px 0; }
+  .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; margin: 12px 0; align-items:center; }
   .filter-btn { padding: 6px 14px; border: 1px solid var(--ops-line); background: var(--ops-surface); border-radius: 999px; font-size: 12.5px; font-weight: 600; cursor: pointer; color: var(--ops-ink-soft); }
   .filter-btn.active { background: var(--ops-green); color: white; border-color: var(--ops-green); }
+  .control-bar { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin:14px 0 4px 0; }
+  .control-bar input[type="search"] { padding:7px 12px; border:1px solid var(--ops-line); border-radius:6px; font-size:13px; min-width:240px; color:var(--ops-ink); background:var(--ops-surface); }
+  .control-bar input[type="search"]:focus { outline:none; border-color:var(--ops-green); box-shadow:0 0 0 3px rgba(45,80,22,0.12); }
+  .control-bar select { padding:7px 10px; border:1px solid var(--ops-line); border-radius:6px; font-size:12.5px; background:var(--ops-surface); color:var(--ops-ink); cursor:pointer; }
+  .control-bar label { font-size:12px; font-weight:600; color:var(--ops-muted); }
+  .view-toggle { display:inline-flex; border:1px solid var(--ops-line); border-radius:6px; overflow:hidden; }
+  .view-toggle button { padding:7px 14px; border:none; background:var(--ops-surface); font-size:12.5px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
+  .view-toggle button.active { background:var(--ops-green); color:white; }
+  .view-toggle button + button { border-left:1px solid var(--ops-line); }
+  .results-info { font-size:12px; color:var(--ops-muted); margin-left:auto; }
+  .club-table { width:100%; border-collapse:collapse; font-size:13px; }
+  .club-table thead th { text-align:left; padding:10px 8px; background:var(--ops-bg); border-bottom:2px solid var(--ops-line); font-size:11.5px; font-weight:700; color:var(--ops-muted); letter-spacing:0.04em; text-transform:uppercase; position:sticky; top:0; }
+  .club-table thead th.num { text-align:right; }
+  .club-table tbody td { padding:10px 8px; border-bottom:1px solid var(--ops-line); vertical-align:middle; }
+  .club-table tbody td.num { text-align:right; white-space:nowrap; }
+  .club-table tbody tr:hover { background:rgba(45,80,22,0.03); }
+  .table-wrap { display:none; margin-top:20px; overflow-x:auto; background:var(--ops-surface); border:1px solid var(--ops-line); border-radius:10px; }
+  .table-wrap.active { display:block; }
+  .club-grid.hidden { display:none; }
+  .empty-state { text-align:center; padding:60px 20px; color:var(--ops-muted); font-size:14px; display:none; }
+  .empty-state.active { display:block; }
+  @media (max-width: 720px) {
+    .control-bar input[type="search"] { min-width:0; flex:1 1 100%; }
+    .results-info { margin-left:0; flex:1 1 100%; text-align:right; }
+  }
 </style>
 </head>
 <body>
@@ -32,12 +57,32 @@
 <section class="ops-hero">
   <div class="ops-wrap">
     <h1>13 클럽 일람</h1>
-    <p class="lede">IDX 상장 13개 골프 운영사. 클럽명·시설·재무 한 카드. 카드 클릭으로 클럽 상세.</p>
+    <p class="lede">IDX 상장 13개 골프 운영사. 검색·정렬·뷰 전환으로 빠르게 비교. 카드/행 클릭으로 클럽 상세.</p>
     <div class="filter-bar" id="tier-filter">
       <button class="filter-btn active" data-filter="all">전체 (13)</button>
       <button class="filter-btn" data-filter="pp">🟦 Pure-play (2)</button>
       <button class="filter-btn" data-filter="resort">🟨 Resort (1)</button>
       <button class="filter-btn" data-filter="twn">🟩 Township (10)</button>
+    </div>
+    <div class="control-bar">
+      <input type="search" id="club-search" placeholder="🔍 검색: 티커·이름·위치·모회사…" aria-label="클럽 검색" autocomplete="off">
+      <label for="club-sort">정렬:</label>
+      <select id="club-sort" aria-label="정렬 기준">
+        <option value="tier">기본 (Tier 순)</option>
+        <option value="rev-desc">매출 ↓</option>
+        <option value="rev-asc">매출 ↑</option>
+        <option value="margin-desc">순이익률 ↓</option>
+        <option value="margin-asc">순이익률 ↑</option>
+        <option value="roa-desc">ROA ↓</option>
+        <option value="roa-asc">ROA ↑</option>
+        <option value="ta-desc">총자산 ↓</option>
+        <option value="name-asc">이름 A→Z</option>
+      </select>
+      <div class="view-toggle" role="tablist" aria-label="뷰 전환">
+        <button class="active" data-view="cards" role="tab" aria-selected="true">🃏 카드</button>
+        <button data-view="table" role="tab" aria-selected="false">📋 표</button>
+      </div>
+      <div class="results-info" id="results-info">13 / 13 표시</div>
     </div>
   </div>
 </section>
@@ -45,7 +90,7 @@
 <section class="ops-section">
   <div class="ops-wrap">
     <div class="club-grid" id="club-grid">
-      <a href="dmig.html" class="club-card" data-tier="pp" data-ticker="DMIG" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #3b82f6; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
+      <a href="dmig.html" class="club-card" data-tier="pp" data-ticker="DMIG" data-search="dmig damai indah golf bsd course + pik course tangerang + north jakarta sinarmas land (via bsde)" data-rev="253.102440194" data-margin="32.5577709356883" data-roa="11.933445196815839" data-ta="690.534136219" data-name="Damai Indah Golf" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #3b82f6; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <div style="display:flex; justify-content:space-between; align-items:flex-start;">
           <div>
             <div style="font-size:11px; font-weight:700; color:var(--ops-muted); letter-spacing:0.06em;">DMIG · IDX</div>
@@ -71,7 +116,7 @@
           <div style="text-align:right; align-self:flex-end; font-weight:700; color:#3b82f6;">상세 →</div>
         </div>
       </a>
-      <a href="pipg.html" class="club-card" data-tier="pp" data-ticker="PIPG" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #3b82f6; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
+      <a href="pipg.html" class="club-card" data-tier="pp" data-ticker="PIPG" data-search="pipg pondok indah padang golf premium 18-hole jakarta south jakarta (pondok indah) pondok indah group" data-rev="197.570521436" data-margin="28.295625969742254" data-roa="12.532800086863011" data-ta="446.060061475" data-name="Pondok Indah Padang Golf" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #3b82f6; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <div style="display:flex; justify-content:space-between; align-items:flex-start;">
           <div>
             <div style="font-size:11px; font-weight:700; color:var(--ops-muted); letter-spacing:0.06em;">PIPG · IDX</div>
@@ -97,7 +142,7 @@
           <div style="text-align:right; align-self:flex-end; font-weight:700; color:#3b82f6;">상세 →</div>
         </div>
       </a>
-      <a href="golf.html" class="club-card" data-tier="resort" data-ticker="GOLF" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #f59e0b; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
+      <a href="golf.html" class="club-card" data-tier="resort" data-ticker="GOLF" data-search="golf intra golflink resorts new kuta bali + black rocks belitung pecatu (bali) + belitung tommy soeharto family" data-rev="197.993814652" data-margin="34.12985079446642" data-roa="0.7823444319533539" data-ta="8637.499132483" data-name="Intra GolfLink Resorts" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #f59e0b; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <div style="display:flex; justify-content:space-between; align-items:flex-start;">
           <div>
             <div style="font-size:11px; font-weight:700; color:var(--ops-muted); letter-spacing:0.06em;">GOLF · IDX</div>
@@ -123,7 +168,7 @@
           <div style="text-align:right; align-self:flex-end; font-weight:700; color:#f59e0b;">상세 →</div>
         </div>
       </a>
-      <a href="bsde.html" class="club-card" data-tier="twn" data-ticker="BSDE" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
+      <a href="bsde.html" class="club-card" data-tier="twn" data-ticker="BSDE" data-search="bsde palm springs karawang + batam + dmig (associate) karawang + batam sinarmas land" data-rev="13796.572149" data-margin="31.595266830942155" data-roa="5.7338486765154855" data-ta="76023.348887" data-name="Palm Springs Karawang + Batam" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <div style="display:flex; justify-content:space-between; align-items:flex-start;">
           <div>
             <div style="font-size:11px; font-weight:700; color:var(--ops-muted); letter-spacing:0.06em;">BSDE · IDX</div>
@@ -149,7 +194,7 @@
           <div style="text-align:right; align-self:flex-end; font-weight:700; color:#16a34a;">상세 →</div>
         </div>
       </a>
-      <a href="ctra.html" class="club-card" data-tier="twn" data-ticker="CTRA" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
+      <a href="ctra.html" class="club-card" data-tier="twn" data-ticker="CTRA" data-search="ctra ciputra golf surabaya + taman dayu 2 코스 (citraland + pandaan) surabaya + pasuruan (pandaan) ciputra group" data-rev="11187.565" data-margin="19.00581583213148" data-roa="4.521832879786449" data-ta="47022.702" data-name="Ciputra Golf Surabaya + Taman Dayu" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <div style="display:flex; justify-content:space-between; align-items:flex-start;">
           <div>
             <div style="font-size:11px; font-weight:700; color:var(--ops-muted); letter-spacing:0.06em;">CTRA · IDX</div>
@@ -175,7 +220,7 @@
           <div style="text-align:right; align-self:flex-end; font-weight:700; color:#16a34a;">상세 →</div>
         </div>
       </a>
-      <a href="elty.html" class="club-card" data-tier="twn" data-ticker="ELTY" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
+      <a href="elty.html" class="club-card" data-tier="twn" data-ticker="ELTY" data-search="elty gunung geulis + klub golf bogor raya 2 코스 (bakrieland resort) gunung geulis (bogor) bakrie group" data-rev="1208.198" data-margin="-5.671918013438194" data-roa="-0.7838923214173571" data-ta="8742.017" data-name="Gunung Geulis + Klub Golf Bogor Raya" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <div style="display:flex; justify-content:space-between; align-items:flex-start;">
           <div>
             <div style="font-size:11px; font-weight:700; color:var(--ops-muted); letter-spacing:0.06em;">ELTY · IDX</div>
@@ -201,7 +246,7 @@
           <div style="text-align:right; align-self:flex-end; font-weight:700; color:#16a34a;">상세 →</div>
         </div>
       </a>
-      <a href="kija.html" class="club-card" data-tier="twn" data-ticker="KIJA" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
+      <a href="kija.html" class="club-card" data-tier="twn" data-ticker="KIJA" data-search="kija jababeka golf & country club + borobudur international golf cikarang (bekasi) + magelang jababeka group" data-rev="4602.648" data-margin="7.893456114827813" data-roa="2.5918439968279325" data-ta="14017.356" data-name="Jababeka Golf & Country Club" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <div style="display:flex; justify-content:space-between; align-items:flex-start;">
           <div>
             <div style="font-size:11px; font-weight:700; color:var(--ops-muted); letter-spacing:0.06em;">KIJA · IDX</div>
@@ -227,7 +272,7 @@
           <div style="text-align:right; align-self:flex-end; font-weight:700; color:#16a34a;">상세 →</div>
         </div>
       </a>
-      <a href="kpig.html" class="club-card" data-tier="twn" data-ticker="KPIG" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
+      <a href="kpig.html" class="club-card" data-tier="twn" data-ticker="KPIG" data-search="kpig trump international golf club lido + phil mickelson course (planned) lido (bogor regency) mnc group (hary tanoesoedibjo)" data-rev="1770.144398" data-margin="37.207644457940994" data-roa="1.838333825307249" data-ta="35827.499061" data-name="Trump International Golf Club Lido" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <div style="display:flex; justify-content:space-between; align-items:flex-start;">
           <div>
             <div style="font-size:11px; font-weight:700; color:var(--ops-muted); letter-spacing:0.06em;">KPIG · IDX</div>
@@ -253,7 +298,7 @@
           <div style="text-align:right; align-self:flex-end; font-weight:700; color:#16a34a;">상세 →</div>
         </div>
       </a>
-      <a href="lpkr.html" class="club-card" data-tier="twn" data-ticker="LPKR" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
+      <a href="lpkr.html" class="club-card" data-tier="twn" data-ticker="LPKR" data-search="lpkr imperial klub golf premium lippo karawaci lippo karawaci, tangerang lippo group" data-rev="11347.979" data-margin="165.1928065781581" data-roa="34.85440678401302" data-ta="53783.859" data-name="Imperial Klub Golf" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <div style="display:flex; justify-content:space-between; align-items:flex-start;">
           <div>
             <div style="font-size:11px; font-weight:700; color:var(--ops-muted); letter-spacing:0.06em;">LPKR · IDX</div>
@@ -279,7 +324,7 @@
           <div style="text-align:right; align-self:flex-end; font-weight:700; color:#16a34a;">상세 →</div>
         </div>
       </a>
-      <a href="mdln.html" class="club-card" data-tier="twn" data-ticker="MDLN" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
+      <a href="mdln.html" class="club-card" data-tier="twn" data-ticker="MDLN" data-search="mdln modern golf & country club 18-hole tangerang kota modern, tangerang modernland group" data-rev="1017.57" data-margin="-67.83533319575066" data-roa="-5.089948187048104" data-ta="13561.474" data-name="Modern Golf & Country Club" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <div style="display:flex; justify-content:space-between; align-items:flex-start;">
           <div>
             <div style="font-size:11px; font-weight:700; color:var(--ops-muted); letter-spacing:0.06em;">MDLN · IDX</div>
@@ -305,7 +350,7 @@
           <div style="text-align:right; align-self:flex-end; font-weight:700; color:#16a34a;">상세 →</div>
         </div>
       </a>
-      <a href="pwon.html" class="club-card" data-tier="twn" data-ticker="PWON" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
+      <a href="pwon.html" class="club-card" data-tier="twn" data-ticker="PWON" data-search="pwon pakuwon golf & family club surabaya pakuwon city surabaya pakuwon group" data-rev="6670.809" data-margin="31.101639995988496" data-roa="5.865613113083752" data-ta="35371.085" data-name="Pakuwon Golf & Family Club" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <div style="display:flex; justify-content:space-between; align-items:flex-start;">
           <div>
             <div style="font-size:11px; font-weight:700; color:var(--ops-muted); letter-spacing:0.06em;">PWON · IDX</div>
@@ -331,7 +376,7 @@
           <div style="text-align:right; align-self:flex-end; font-weight:700; color:#16a34a;">상세 →</div>
         </div>
       </a>
-      <a href="smdm.html" class="club-card" data-tier="twn" data-ticker="SMDM" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
+      <a href="smdm.html" class="club-card" data-tier="twn" data-ticker="SMDM" data-search="smdm rancamaya golf estate private members (400m elevation) rancamaya, bogor sinarmas land (via bsde, 2024-10)" data-rev="694.045" data-margin="17.834290283771224" data-roa="3.5750512957965177" data-ta="3462.272" data-name="Rancamaya Golf Estate" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <div style="display:flex; justify-content:space-between; align-items:flex-start;">
           <div>
             <div style="font-size:11px; font-weight:700; color:var(--ops-muted); letter-spacing:0.06em;">SMDM · IDX</div>
@@ -357,7 +402,7 @@
           <div style="text-align:right; align-self:flex-end; font-weight:700; color:#16a34a;">상세 →</div>
         </div>
       </a>
-      <a href="smra.html" class="club-card" data-tier="twn" data-ticker="SMRA" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
+      <a href="smra.html" class="club-card" data-tier="twn" data-ticker="SMRA" data-search="smra gading raya padang golf township-attached 18-hole serpong, tangerang summarecon agung" data-rev="10623.4" data-margin="12.928064461471845" data-roa="4.095532607107392" data-ta="33534.1" data-name="Gading Raya Padang Golf" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <div style="display:flex; justify-content:space-between; align-items:flex-start;">
           <div>
             <div style="font-size:11px; font-weight:700; color:var(--ops-muted); letter-spacing:0.06em;">SMRA · IDX</div>
@@ -384,6 +429,197 @@
         </div>
       </a>
     </div>
+    <div class="table-wrap" id="club-table-wrap">
+      <table class="club-table" id="club-table">
+        <thead>
+          <tr>
+            <th>Ticker</th>
+            <th>클럽명</th>
+            <th>Tier</th>
+            <th>위치</th>
+            <th>홀</th>
+            <th>면적</th>
+            <th class="num">FY24 매출</th>
+            <th class="num">순이익률</th>
+            <th class="num">총자산</th>
+            <th class="num">ROA</th>
+            <th class="num">골프 매출 FY24</th>
+          </tr>
+        </thead>
+        <tbody id="club-tbody">
+      <tr class="club-row" data-tier="pp" data-ticker="DMIG" data-search="dmig damai indah golf bsd course + pik course tangerang + north jakarta sinarmas land (via bsde)" data-rev="253.102440194" data-margin="32.5577709356883" data-roa="11.933445196815839" data-ta="690.534136219" data-name="Damai Indah Golf">
+        <td style="white-space:nowrap;"><span style="display:inline-block; width:3px; height:14px; background:#3b82f6; vertical-align:middle; margin-right:6px; border-radius:2px;"></span><a href="dmig.html" style="font-weight:700; color:var(--ops-ink); text-decoration:none;">DMIG</a></td>
+        <td><a href="dmig.html" style="color:var(--ops-ink); text-decoration:none;">Damai Indah Golf</a><br><span style="font-size:11px; color:var(--ops-muted);">BSD Course + PIK Course</span></td>
+        <td><span class="peer-tag peer-tag-pp" style="font-size:10px;">🟦 Pure-play</span></td>
+        <td style="font-size:12px;">Tangerang + North Jakarta</td>
+        <td style="font-size:12px;">36 (BSD 18 + PIK 18)</td>
+        <td style="font-size:12px;">156 ha</td>
+        <td class="num" style="font-weight:700;">Rp 253B</td>
+        <td class="num"><span style="color:#16a34a; font-weight:700;">+32.6%</span></td>
+        <td class="num">Rp 691B</td>
+        <td class="num"><span style="color:#16a34a; font-weight:700;">+11.9%</span></td>
+        <td class="num" style="color:var(--ops-green); font-weight:700;">Rp 253.1 bn</td>
+      </tr>
+      <tr class="club-row" data-tier="pp" data-ticker="PIPG" data-search="pipg pondok indah padang golf premium 18-hole jakarta south jakarta (pondok indah) pondok indah group" data-rev="197.570521436" data-margin="28.295625969742254" data-roa="12.532800086863011" data-ta="446.060061475" data-name="Pondok Indah Padang Golf">
+        <td style="white-space:nowrap;"><span style="display:inline-block; width:3px; height:14px; background:#3b82f6; vertical-align:middle; margin-right:6px; border-radius:2px;"></span><a href="pipg.html" style="font-weight:700; color:var(--ops-ink); text-decoration:none;">PIPG</a></td>
+        <td><a href="pipg.html" style="color:var(--ops-ink); text-decoration:none;">Pondok Indah Padang Golf</a><br><span style="font-size:11px; color:var(--ops-muted);">Premium 18-hole Jakarta</span></td>
+        <td><span class="peer-tag peer-tag-pp" style="font-size:10px;">🟦 Pure-play</span></td>
+        <td style="font-size:12px;">South Jakarta (Pondok Indah)</td>
+        <td style="font-size:12px;">18</td>
+        <td style="font-size:12px;">53.01 ha</td>
+        <td class="num" style="font-weight:700;">Rp 198B</td>
+        <td class="num"><span style="color:#16a34a; font-weight:700;">+28.3%</span></td>
+        <td class="num">Rp 446B</td>
+        <td class="num"><span style="color:#16a34a; font-weight:700;">+12.5%</span></td>
+        <td class="num" style="color:var(--ops-green); font-weight:700;">Rp 197.6 bn</td>
+      </tr>
+      <tr class="club-row" data-tier="resort" data-ticker="GOLF" data-search="golf intra golflink resorts new kuta bali + black rocks belitung pecatu (bali) + belitung tommy soeharto family" data-rev="197.993814652" data-margin="34.12985079446642" data-roa="0.7823444319533539" data-ta="8637.499132483" data-name="Intra GolfLink Resorts">
+        <td style="white-space:nowrap;"><span style="display:inline-block; width:3px; height:14px; background:#f59e0b; vertical-align:middle; margin-right:6px; border-radius:2px;"></span><a href="golf.html" style="font-weight:700; color:var(--ops-ink); text-decoration:none;">GOLF</a></td>
+        <td><a href="golf.html" style="color:var(--ops-ink); text-decoration:none;">Intra GolfLink Resorts</a><br><span style="font-size:11px; color:var(--ops-muted);">New Kuta Bali + Black Rocks Belitung</span></td>
+        <td><span class="peer-tag peer-tag-resort" style="font-size:10px;">🟨 Resort</span></td>
+        <td style="font-size:12px;">Pecatu (Bali) + Belitung</td>
+        <td style="font-size:12px;">36 연결 + 18 BGR</td>
+        <td style="font-size:12px;">171.2 ha (BGR 비연결 +72)</td>
+        <td class="num" style="font-weight:700;">Rp 198B</td>
+        <td class="num"><span style="color:#16a34a; font-weight:700;">+34.1%</span></td>
+        <td class="num">Rp 8.6T</td>
+        <td class="num"><span style="color:#16a34a; font-weight:700;">+0.8%</span></td>
+        <td class="num" style="color:var(--ops-green); font-weight:700;">Rp 93.0 bn</td>
+      </tr>
+      <tr class="club-row" data-tier="twn" data-ticker="BSDE" data-search="bsde palm springs karawang + batam + dmig (associate) karawang + batam sinarmas land" data-rev="13796.572149" data-margin="31.595266830942155" data-roa="5.7338486765154855" data-ta="76023.348887" data-name="Palm Springs Karawang + Batam">
+        <td style="white-space:nowrap;"><span style="display:inline-block; width:3px; height:14px; background:#16a34a; vertical-align:middle; margin-right:6px; border-radius:2px;"></span><a href="bsde.html" style="font-weight:700; color:var(--ops-ink); text-decoration:none;">BSDE</a></td>
+        <td><a href="bsde.html" style="color:var(--ops-ink); text-decoration:none;">Palm Springs Karawang + Batam</a><br><span style="font-size:11px; color:var(--ops-muted);">+ DMIG (associate)</span></td>
+        <td><span class="peer-tag peer-tag-twn" style="font-size:10px;">🟩 Township</span></td>
+        <td style="font-size:12px;">Karawang + Batam</td>
+        <td style="font-size:12px;">미공시</td>
+        <td style="font-size:12px;">미공시</td>
+        <td class="num" style="font-weight:700;">Rp 13.8T</td>
+        <td class="num"><span style="color:#16a34a; font-weight:700;">+31.6%</span></td>
+        <td class="num">Rp 76.0T</td>
+        <td class="num"><span style="color:#16a34a; font-weight:700;">+5.7%</span></td>
+        <td class="num" style="color:var(--ops-green); font-weight:700;">Rp 미공시</td>
+      </tr>
+      <tr class="club-row" data-tier="twn" data-ticker="CTRA" data-search="ctra ciputra golf surabaya + taman dayu 2 코스 (citraland + pandaan) surabaya + pasuruan (pandaan) ciputra group" data-rev="11187.565" data-margin="19.00581583213148" data-roa="4.521832879786449" data-ta="47022.702" data-name="Ciputra Golf Surabaya + Taman Dayu">
+        <td style="white-space:nowrap;"><span style="display:inline-block; width:3px; height:14px; background:#16a34a; vertical-align:middle; margin-right:6px; border-radius:2px;"></span><a href="ctra.html" style="font-weight:700; color:var(--ops-ink); text-decoration:none;">CTRA</a></td>
+        <td><a href="ctra.html" style="color:var(--ops-ink); text-decoration:none;">Ciputra Golf Surabaya + Taman Dayu</a><br><span style="font-size:11px; color:var(--ops-muted);">2 코스 (Citraland + Pandaan)</span></td>
+        <td><span class="peer-tag peer-tag-twn" style="font-size:10px;">🟩 Township</span></td>
+        <td style="font-size:12px;">Surabaya + Pasuruan (Pandaan)</td>
+        <td style="font-size:12px;">18 each (36 합)</td>
+        <td style="font-size:12px;">미공시</td>
+        <td class="num" style="font-weight:700;">Rp 11.2T</td>
+        <td class="num"><span style="color:#16a34a; font-weight:700;">+19.0%</span></td>
+        <td class="num">Rp 47.0T</td>
+        <td class="num"><span style="color:#16a34a; font-weight:700;">+4.5%</span></td>
+        <td class="num" style="color:var(--ops-green); font-weight:700;">Rp 미공시</td>
+      </tr>
+      <tr class="club-row" data-tier="twn" data-ticker="ELTY" data-search="elty gunung geulis + klub golf bogor raya 2 코스 (bakrieland resort) gunung geulis (bogor) bakrie group" data-rev="1208.198" data-margin="-5.671918013438194" data-roa="-0.7838923214173571" data-ta="8742.017" data-name="Gunung Geulis + Klub Golf Bogor Raya">
+        <td style="white-space:nowrap;"><span style="display:inline-block; width:3px; height:14px; background:#16a34a; vertical-align:middle; margin-right:6px; border-radius:2px;"></span><a href="elty.html" style="font-weight:700; color:var(--ops-ink); text-decoration:none;">ELTY</a></td>
+        <td><a href="elty.html" style="color:var(--ops-ink); text-decoration:none;">Gunung Geulis + Klub Golf Bogor Raya</a><br><span style="font-size:11px; color:var(--ops-muted);">2 코스 (Bakrieland resort)</span></td>
+        <td><span class="peer-tag peer-tag-twn" style="font-size:10px;">🟩 Township</span></td>
+        <td style="font-size:12px;">Gunung Geulis (Bogor)</td>
+        <td style="font-size:12px;">18 each</td>
+        <td style="font-size:12px;">미공시</td>
+        <td class="num" style="font-weight:700;">Rp 1.2T</td>
+        <td class="num"><span style="color:#b91c1c; font-weight:700;">-5.7%</span></td>
+        <td class="num">Rp 8.7T</td>
+        <td class="num"><span style="color:#b91c1c; font-weight:700;">-0.8%</span></td>
+        <td class="num" style="color:var(--ops-green); font-weight:700;">Rp 미공시</td>
+      </tr>
+      <tr class="club-row" data-tier="twn" data-ticker="KIJA" data-search="kija jababeka golf & country club + borobudur international golf cikarang (bekasi) + magelang jababeka group" data-rev="4602.648" data-margin="7.893456114827813" data-roa="2.5918439968279325" data-ta="14017.356" data-name="Jababeka Golf & Country Club">
+        <td style="white-space:nowrap;"><span style="display:inline-block; width:3px; height:14px; background:#16a34a; vertical-align:middle; margin-right:6px; border-radius:2px;"></span><a href="kija.html" style="font-weight:700; color:var(--ops-ink); text-decoration:none;">KIJA</a></td>
+        <td><a href="kija.html" style="color:var(--ops-ink); text-decoration:none;">Jababeka Golf & Country Club</a><br><span style="font-size:11px; color:var(--ops-muted);">+ Borobudur International Golf</span></td>
+        <td><span class="peer-tag peer-tag-twn" style="font-size:10px;">🟩 Township</span></td>
+        <td style="font-size:12px;">Cikarang (Bekasi) + Magelang</td>
+        <td style="font-size:12px;">미공시</td>
+        <td style="font-size:12px;">미공시</td>
+        <td class="num" style="font-weight:700;">Rp 4.6T</td>
+        <td class="num"><span style="color:#16a34a; font-weight:700;">+7.9%</span></td>
+        <td class="num">Rp 14.0T</td>
+        <td class="num"><span style="color:#16a34a; font-weight:700;">+2.6%</span></td>
+        <td class="num" style="color:var(--ops-green); font-weight:700;">Rp 85.0 bn</td>
+      </tr>
+      <tr class="club-row" data-tier="twn" data-ticker="KPIG" data-search="kpig trump international golf club lido + phil mickelson course (planned) lido (bogor regency) mnc group (hary tanoesoedibjo)" data-rev="1770.144398" data-margin="37.207644457940994" data-roa="1.838333825307249" data-ta="35827.499061" data-name="Trump International Golf Club Lido">
+        <td style="white-space:nowrap;"><span style="display:inline-block; width:3px; height:14px; background:#16a34a; vertical-align:middle; margin-right:6px; border-radius:2px;"></span><a href="kpig.html" style="font-weight:700; color:var(--ops-ink); text-decoration:none;">KPIG</a></td>
+        <td><a href="kpig.html" style="color:var(--ops-ink); text-decoration:none;">Trump International Golf Club Lido</a><br><span style="font-size:11px; color:var(--ops-muted);">+ Phil Mickelson course (planned)</span></td>
+        <td><span class="peer-tag peer-tag-twn" style="font-size:10px;">🟩 Township</span></td>
+        <td style="font-size:12px;">Lido (Bogor Regency)</td>
+        <td style="font-size:12px;">18</td>
+        <td style="font-size:12px;">83 ha</td>
+        <td class="num" style="font-weight:700;">Rp 1.8T</td>
+        <td class="num"><span style="color:#16a34a; font-weight:700;">+37.2%</span></td>
+        <td class="num">Rp 35.8T</td>
+        <td class="num"><span style="color:#16a34a; font-weight:700;">+1.8%</span></td>
+        <td class="num" style="color:var(--ops-green); font-weight:700;">Rp 미공시</td>
+      </tr>
+      <tr class="club-row" data-tier="twn" data-ticker="LPKR" data-search="lpkr imperial klub golf premium lippo karawaci lippo karawaci, tangerang lippo group" data-rev="11347.979" data-margin="165.1928065781581" data-roa="34.85440678401302" data-ta="53783.859" data-name="Imperial Klub Golf">
+        <td style="white-space:nowrap;"><span style="display:inline-block; width:3px; height:14px; background:#16a34a; vertical-align:middle; margin-right:6px; border-radius:2px;"></span><a href="lpkr.html" style="font-weight:700; color:var(--ops-ink); text-decoration:none;">LPKR</a></td>
+        <td><a href="lpkr.html" style="color:var(--ops-ink); text-decoration:none;">Imperial Klub Golf</a><br><span style="font-size:11px; color:var(--ops-muted);">Premium Lippo Karawaci</span></td>
+        <td><span class="peer-tag peer-tag-twn" style="font-size:10px;">🟩 Township</span></td>
+        <td style="font-size:12px;">Lippo Karawaci, Tangerang</td>
+        <td style="font-size:12px;">18</td>
+        <td style="font-size:12px;">미공시</td>
+        <td class="num" style="font-weight:700;">Rp 11.3T</td>
+        <td class="num"><span style="color:#16a34a; font-weight:700;">+165.2%</span></td>
+        <td class="num">Rp 53.8T</td>
+        <td class="num"><span style="color:#16a34a; font-weight:700;">+34.9%</span></td>
+        <td class="num" style="color:var(--ops-green); font-weight:700;">Rp 미공시</td>
+      </tr>
+      <tr class="club-row" data-tier="twn" data-ticker="MDLN" data-search="mdln modern golf & country club 18-hole tangerang kota modern, tangerang modernland group" data-rev="1017.57" data-margin="-67.83533319575066" data-roa="-5.089948187048104" data-ta="13561.474" data-name="Modern Golf & Country Club">
+        <td style="white-space:nowrap;"><span style="display:inline-block; width:3px; height:14px; background:#16a34a; vertical-align:middle; margin-right:6px; border-radius:2px;"></span><a href="mdln.html" style="font-weight:700; color:var(--ops-ink); text-decoration:none;">MDLN</a></td>
+        <td><a href="mdln.html" style="color:var(--ops-ink); text-decoration:none;">Modern Golf & Country Club</a><br><span style="font-size:11px; color:var(--ops-muted);">18-hole Tangerang</span></td>
+        <td><span class="peer-tag peer-tag-twn" style="font-size:10px;">🟩 Township</span></td>
+        <td style="font-size:12px;">Kota Modern, Tangerang</td>
+        <td style="font-size:12px;">18</td>
+        <td style="font-size:12px;">미공시</td>
+        <td class="num" style="font-weight:700;">Rp 1.0T</td>
+        <td class="num"><span style="color:#b91c1c; font-weight:700;">-67.8%</span></td>
+        <td class="num">Rp 13.6T</td>
+        <td class="num"><span style="color:#b91c1c; font-weight:700;">-5.1%</span></td>
+        <td class="num" style="color:var(--ops-green); font-weight:700;">Rp 74.4 bn</td>
+      </tr>
+      <tr class="club-row" data-tier="twn" data-ticker="PWON" data-search="pwon pakuwon golf & family club surabaya pakuwon city surabaya pakuwon group" data-rev="6670.809" data-margin="31.101639995988496" data-roa="5.865613113083752" data-ta="35371.085" data-name="Pakuwon Golf & Family Club">
+        <td style="white-space:nowrap;"><span style="display:inline-block; width:3px; height:14px; background:#16a34a; vertical-align:middle; margin-right:6px; border-radius:2px;"></span><a href="pwon.html" style="font-weight:700; color:var(--ops-ink); text-decoration:none;">PWON</a></td>
+        <td><a href="pwon.html" style="color:var(--ops-ink); text-decoration:none;">Pakuwon Golf & Family Club</a><br><span style="font-size:11px; color:var(--ops-muted);">Surabaya Pakuwon City</span></td>
+        <td><span class="peer-tag peer-tag-twn" style="font-size:10px;">🟩 Township</span></td>
+        <td style="font-size:12px;">Surabaya</td>
+        <td style="font-size:12px;">18</td>
+        <td style="font-size:12px;">미공시</td>
+        <td class="num" style="font-weight:700;">Rp 6.7T</td>
+        <td class="num"><span style="color:#16a34a; font-weight:700;">+31.1%</span></td>
+        <td class="num">Rp 35.4T</td>
+        <td class="num"><span style="color:#16a34a; font-weight:700;">+5.9%</span></td>
+        <td class="num" style="color:var(--ops-green); font-weight:700;">Rp 미공시</td>
+      </tr>
+      <tr class="club-row" data-tier="twn" data-ticker="SMDM" data-search="smdm rancamaya golf estate private members (400m elevation) rancamaya, bogor sinarmas land (via bsde, 2024-10)" data-rev="694.045" data-margin="17.834290283771224" data-roa="3.5750512957965177" data-ta="3462.272" data-name="Rancamaya Golf Estate">
+        <td style="white-space:nowrap;"><span style="display:inline-block; width:3px; height:14px; background:#16a34a; vertical-align:middle; margin-right:6px; border-radius:2px;"></span><a href="smdm.html" style="font-weight:700; color:var(--ops-ink); text-decoration:none;">SMDM</a></td>
+        <td><a href="smdm.html" style="color:var(--ops-ink); text-decoration:none;">Rancamaya Golf Estate</a><br><span style="font-size:11px; color:var(--ops-muted);">Private members (400m elevation)</span></td>
+        <td><span class="peer-tag peer-tag-twn" style="font-size:10px;">🟩 Township</span></td>
+        <td style="font-size:12px;">Rancamaya, Bogor</td>
+        <td style="font-size:12px;">18</td>
+        <td style="font-size:12px;">400 ha (estate 전체)</td>
+        <td class="num" style="font-weight:700;">Rp 694B</td>
+        <td class="num"><span style="color:#16a34a; font-weight:700;">+17.8%</span></td>
+        <td class="num">Rp 3.5T</td>
+        <td class="num"><span style="color:#16a34a; font-weight:700;">+3.6%</span></td>
+        <td class="num" style="color:var(--ops-green); font-weight:700;">Rp 63.3 bn</td>
+      </tr>
+      <tr class="club-row" data-tier="twn" data-ticker="SMRA" data-search="smra gading raya padang golf township-attached 18-hole serpong, tangerang summarecon agung" data-rev="10623.4" data-margin="12.928064461471845" data-roa="4.095532607107392" data-ta="33534.1" data-name="Gading Raya Padang Golf">
+        <td style="white-space:nowrap;"><span style="display:inline-block; width:3px; height:14px; background:#16a34a; vertical-align:middle; margin-right:6px; border-radius:2px;"></span><a href="smra.html" style="font-weight:700; color:var(--ops-ink); text-decoration:none;">SMRA</a></td>
+        <td><a href="smra.html" style="color:var(--ops-ink); text-decoration:none;">Gading Raya Padang Golf</a><br><span style="font-size:11px; color:var(--ops-muted);">Township-attached 18-hole</span></td>
+        <td><span class="peer-tag peer-tag-twn" style="font-size:10px;">🟩 Township</span></td>
+        <td style="font-size:12px;">Serpong, Tangerang</td>
+        <td style="font-size:12px;">18</td>
+        <td style="font-size:12px;">미공시</td>
+        <td class="num" style="font-weight:700;">Rp 10.6T</td>
+        <td class="num"><span style="color:#16a34a; font-weight:700;">+12.9%</span></td>
+        <td class="num">Rp 33.5T</td>
+        <td class="num"><span style="color:#16a34a; font-weight:700;">+4.1%</span></td>
+        <td class="num" style="color:var(--ops-green); font-weight:700;">Rp 미공시</td>
+      </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="empty-state" id="empty-state">🔍 검색 결과가 없습니다. 다른 키워드로 시도해보세요.</div>
   </div>
 </section>
 
@@ -396,18 +632,103 @@
 <script src="../operations.js?v=20260512c3" defer></script>
 <script>
 (function(){
-  const buttons = document.querySelectorAll('#tier-filter .filter-btn');
+  const tierButtons = document.querySelectorAll('#tier-filter .filter-btn');
+  const viewButtons = document.querySelectorAll('.view-toggle button');
   const grid = document.getElementById('club-grid');
-  buttons.forEach(b => {
-    b.addEventListener('click', () => {
-      buttons.forEach(x => x.classList.remove('active'));
-      b.classList.add('active');
-      const f = b.dataset.filter;
-      grid.querySelectorAll('.club-card').forEach(c => {
-        c.style.display = (f === 'all' || c.dataset.tier === f) ? '' : 'none';
-      });
+  const tableWrap = document.getElementById('club-table-wrap');
+  const tbody = document.getElementById('club-tbody');
+  const searchInput = document.getElementById('club-search');
+  const sortSelect = document.getElementById('club-sort');
+  const resultsInfo = document.getElementById('results-info');
+  const emptyState = document.getElementById('empty-state');
+
+  let state = { tier: 'all', q: '', sort: 'tier', view: 'cards' };
+
+  // Preserve original DOM order for "tier" (default) sort
+  const cardOriginalOrder = Array.from(grid.children).filter(el => el.classList.contains('club-card'));
+  const rowOriginalOrder = Array.from(tbody.children).filter(el => el.classList.contains('club-row'));
+
+  function sortElements(elems, mode) {
+    if (mode === 'tier') return elems;  // original order
+    const [key, dir] = mode.split('-');
+    const sign = dir === 'desc' ? -1 : 1;
+    return elems.slice().sort((a, b) => {
+      if (key === 'name') {
+        return sign * a.dataset.name.localeCompare(b.dataset.name, 'ko');
+      }
+      return sign * (parseFloat(a.dataset[key]) - parseFloat(b.dataset[key]));
     });
+  }
+
+  function applyState() {
+    // 1) Sort
+    const sortedCards = sortElements(cardOriginalOrder, state.sort);
+    const sortedRows = sortElements(rowOriginalOrder, state.sort);
+    // Re-attach in sorted order
+    sortedCards.forEach(el => grid.appendChild(el));
+    sortedRows.forEach(el => tbody.appendChild(el));
+
+    // 2) Filter (tier + search) — apply to both views; track visible count
+    const q = state.q.trim().toLowerCase();
+    let visible = 0;
+    const matches = (el) => {
+      const tierOk = (state.tier === 'all' || el.dataset.tier === state.tier);
+      const searchOk = (!q || el.dataset.search.includes(q));
+      return tierOk && searchOk;
+    };
+    sortedCards.forEach(el => {
+      const ok = matches(el);
+      el.style.display = ok ? '' : 'none';
+      if (ok) visible++;
+    });
+    sortedRows.forEach(el => {
+      el.style.display = matches(el) ? '' : 'none';
+    });
+    resultsInfo.textContent = `${visible} / ${cardOriginalOrder.length} 표시`;
+    emptyState.classList.toggle('active', visible === 0);
+
+    // 3) View toggle
+    if (state.view === 'cards') {
+      grid.classList.remove('hidden');
+      tableWrap.classList.remove('active');
+    } else {
+      grid.classList.add('hidden');
+      tableWrap.classList.add('active');
+    }
+  }
+
+  tierButtons.forEach(b => b.addEventListener('click', () => {
+    tierButtons.forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    state.tier = b.dataset.filter;
+    applyState();
+  }));
+
+  viewButtons.forEach(b => b.addEventListener('click', () => {
+    viewButtons.forEach(x => { x.classList.remove('active'); x.setAttribute('aria-selected','false'); });
+    b.classList.add('active'); b.setAttribute('aria-selected','true');
+    state.view = b.dataset.view;
+    applyState();
+  }));
+
+  searchInput.addEventListener('input', (e) => {
+    state.q = e.target.value;
+    applyState();
   });
+
+  sortSelect.addEventListener('change', (e) => {
+    state.sort = e.target.value;
+    applyState();
+  });
+
+  // Keyboard: '/' focuses search
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '/' && document.activeElement !== searchInput) {
+      e.preventDefault(); searchInput.focus();
+    }
+  });
+
+  applyState();
 })();
 </script>
 </body>
