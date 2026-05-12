@@ -81,7 +81,13 @@
   .yoy-matrix thead th { font-size:11px; font-weight:700; color:var(--ops-muted); letter-spacing:0.04em; text-transform:uppercase; }
   .yoy-matrix tbody td { text-align:center; font-variant-numeric:tabular-nums; }
   .yoy-matrix tbody td.peer-cell { text-align:left; font-weight:700; }
-  .yoy-cell { color:var(--ops-ink); font-weight:600; }
+  .yoy-cell { color:var(--ops-ink); font-weight:600; transition:transform 0.12s; }
+  .yoy-cell:hover { transform:scale(1.05); z-index:2; box-shadow:0 0 0 1px var(--ops-green); }
+  /* Row hover highlight in YoY matrix */
+  .yoy-matrix tbody tr:hover td { box-shadow:inset 0 -2px 0 var(--ops-green); }
+  .yoy-matrix tbody tr:hover td.peer-cell { background:rgba(45,80,22,0.08); }
+  body.theme-dark .yoy-matrix tbody tr:hover td.peer-cell { background:rgba(34,197,94,0.12); }
+  .yoy-matrix td.col-highlight { outline:2px solid rgba(245,158,11,0.5); outline-offset:-2px; }
   /* Action bar */
   .action-bar { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:6px 0 12px 0; }
   .action-btn { padding:6px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); display:inline-flex; align-items:center; gap:4px; }
@@ -252,10 +258,10 @@
           <thead>
             <tr>
               <th style="text-align:left;">Peer</th>
-              <th>FY20→21</th>
-              <th>FY21→22</th>
-              <th>FY22→23</th>
-              <th>FY23→24</th>
+              <th data-col="0">FY20→21</th>
+              <th data-col="1">FY21→22</th>
+              <th data-col="2">FY22→23</th>
+              <th data-col="3">FY23→24</th>
               <th>5Y CAGR</th>
             </tr>
           </thead>
@@ -895,12 +901,12 @@ function renderYoYMatrix() {
   const yrSpans = [['2020','2021'],['2021','2022'],['2022','2023'],['2023','2024']];
   const html = PEER_ORDER.map(t => {
     const d = PEER_DATA[t];
-    const cells = yrSpans.map(([y0, y1]) => {
+    const cells = yrSpans.map(([y0, y1], i) => {
       const r0 = d.yearly[y0] ? d.yearly[y0].rev : null;
       const r1 = d.yearly[y1] ? d.yearly[y1].rev : null;
       const pct = (r0 && r1) ? ((r1 - r0)/r0 * 100) : null;
       const c = yoyColor(pct);
-      return `<td class="yoy-cell" style="background:${c.bg}; color:${c.fg};" title="FY${y0} → FY${y1}">${c.txt}</td>`;
+      return `<td class="yoy-cell" data-col="${i}" style="background:${c.bg}; color:${c.fg};" title="FY${y0} → FY${y1}">${c.txt}</td>`;
     }).join('');
     const cagr = calcCAGR(d.yearly);
     const ccol = cagr.cagr === null ? {bg:'transparent', fg:'var(--ops-muted)', txt:'—'} : yoyColor(cagr.cagr);
@@ -1158,6 +1164,16 @@ let currentYear = '2024';
   wireArrowNav('.year-btn');
   wireArrowNav('.rev-tab');
   wireArrowNav('.trend-mode-toggle button');
+  // YoY matrix column hover highlight
+  document.querySelectorAll('#yoy-matrix thead th[data-col]').forEach(th => {
+    const col = th.dataset.col;
+    th.addEventListener('mouseenter', () => {
+      document.querySelectorAll(`#yoy-matrix-body td[data-col="${col}"]`).forEach(c => c.classList.add('col-highlight'));
+    });
+    th.addEventListener('mouseleave', () => {
+      document.querySelectorAll(`#yoy-matrix-body td[data-col="${col}"]`).forEach(c => c.classList.remove('col-highlight'));
+    });
+  });
   // localStorage state: year + active tab + trend mode
   function saveRevState() {
     const tab = document.querySelector('.rev-tab.active');
