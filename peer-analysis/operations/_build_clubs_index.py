@@ -23,6 +23,41 @@ def fmtPct(v):
     col = '#16a34a' if v > 0 else '#b91c1c' if v < 0 else '#666'
     return f'<span style="color:{col}; font-weight:700;">{v:+.1f}%</span>'
 
+def build_sparkline(c5y, color):
+    """5-year revenue sparkline (FY20-FY24) as inline SVG, 120×30."""
+    years = ['2020','2021','2022','2023','2024']
+    series = [c5y.get('yearly',{}).get(y,{}).get('revenue') for y in years]
+    valid = [v for v in series if v]
+    if len(valid) < 2:
+        return '<span style="color:var(--ops-muted); font-size:11px;">—</span>'
+    W, H, padX, padY = 120, 30, 3, 4
+    mn, mx = min(valid), max(valid)
+    rng = mx - mn if mx > mn else 1
+    pts = []
+    for i, v in enumerate(series):
+        if v is None: continue
+        x = padX + (W - 2*padX) * (i / (len(years)-1))
+        y = H - padY - (H - 2*padY) * (v - mn) / rng
+        pts.append((x, y, v, years[i]))
+    if len(pts) < 2:
+        return '<span style="color:var(--ops-muted); font-size:11px;">—</span>'
+    path_d = 'M ' + ' L '.join(f'{x:.1f},{y:.1f}' for x,y,_,_ in pts)
+    area_d = f'{path_d} L {pts[-1][0]:.1f},{H-padY} L {pts[0][0]:.1f},{H-padY} Z'
+    # Mark last point larger
+    last = pts[-1]
+    dots = ''
+    for i, (x, y, v, yr) in enumerate(pts):
+        if i == len(pts) - 1:
+            dots += f'<circle cx="{x:.1f}" cy="{y:.1f}" r="2.5" fill="{color}" stroke="white" stroke-width="1.2"><title>FY{yr}: {v/1e9:.1f}B</title></circle>'
+        else:
+            dots += f'<circle cx="{x:.1f}" cy="{y:.1f}" r="1.4" fill="{color}" stroke="white" stroke-width="0.8"><title>FY{yr}: {v/1e9:.1f}B</title></circle>'
+    return (
+        f'<svg width="{W}" height="{H}" viewBox="0 0 {W} {H}" style="display:block;" aria-label="5년 매출 추이">'
+        f'<path d="{area_d}" fill="{color}" opacity="0.16"/>'
+        f'<path d="{path_d}" stroke="{color}" stroke-width="1.6" fill="none"/>'
+        f'{dots}</svg>'
+    )
+
 cards_html = []
 peers_sorted = sorted(peers_v2, key=lambda t: (torder(t), t))
 
@@ -46,6 +81,7 @@ for t in peers_sorted:
     sort_ta = ta_bn if ta_bn is not None else -1e15
     # Search text (lowercase, concatenated)
     search_blob = f'{t} {c["name"]} {c["sub"]} {c["loc"]} {c["parent"]}'.lower()
+    spark_svg = build_sparkline(c5y, tier_color)
     cards_html.append(
         f'      <a href="{t.lower()}.html" class="club-card" data-tier="{c["tier"]}" data-ticker="{t}" '
         f'data-search="{search_blob}" '
@@ -72,9 +108,12 @@ for t in peers_sorted:
         f'          <div><strong style="color:var(--ops-muted);">총자산</strong><br><span style="color:var(--ops-ink);">{fmtBn(ta_bn)}</span></div>\n'
         f'          <div><strong style="color:var(--ops-muted);">ROA</strong><br>{fmtPct(roa)}</div>\n'
         f'        </div>\n'
-        f'        <div style="display:flex; justify-content:space-between; font-size:11.5px;">\n'
-        f'          <div><strong style="color:var(--ops-muted);">골프 매출 FY24</strong><br><span style="font-weight:700; color:var(--ops-green);">Rp {c["golf_rev_fy24"]}</span></div>\n'
+        f'        <div style="display:flex; justify-content:space-between; align-items:flex-end; font-size:11.5px;">\n'
+        f'          <div style="flex:1;"><strong style="color:var(--ops-muted);">5년 매출 추이 (FY20→24)</strong><br>{spark_svg}</div>\n'
         f'          <div style="text-align:right; align-self:flex-end; font-weight:700; color:{tier_color};">상세 →</div>\n'
+        f'        </div>\n'
+        f'        <div style="font-size:11.5px; padding-top:4px; border-top:1px dashed var(--ops-line);">\n'
+        f'          <strong style="color:var(--ops-muted);">골프 매출 FY24</strong>: <span style="font-weight:700; color:var(--ops-green);">Rp {c["golf_rev_fy24"]}</span>\n'
         f'        </div>\n'
         f'      </a>'
     )
@@ -217,6 +256,30 @@ html = '''<!DOCTYPE html>
   .share-btn { padding:6px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
   .share-btn:hover { background:rgba(45,80,22,0.05); }
   .share-btn.copied { background:#16a34a; color:white; border-color:#16a34a; }
+  /* Theme toggle button (floats at top-right of hero) */
+  .theme-toggle { position:absolute; top:14px; right:14px; padding:5px 10px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:999px; font-size:13px; cursor:pointer; color:var(--ops-ink); z-index:10; }
+  .theme-toggle:hover { background:rgba(45,80,22,0.06); }
+  .ops-hero { position:relative; }
+  /* Dark mode — invert key tokens; data viz colors preserved */
+  body.theme-dark {
+    --ops-bg:#0f172a;
+    --ops-surface:#1e293b;
+    --ops-ink:#e2e8f0;
+    --ops-ink-soft:#cbd5e1;
+    --ops-muted:#94a3b8;
+    --ops-line:#334155;
+    --ops-green:#22c55e;
+  }
+  body.theme-dark .club-card { background:#1e293b !important; }
+  body.theme-dark .club-card .ops-ink, body.theme-dark .club-card span { color:inherit; }
+  body.theme-dark .club-card div[style*="color:var(--ops-ink)"] { color:#e2e8f0 !important; }
+  body.theme-dark .club-card div[style*="color:var(--ops-muted)"] { color:#94a3b8 !important; }
+  body.theme-dark .club-card div[style*="color:var(--ops-ink-soft)"] { color:#cbd5e1 !important; }
+  body.theme-dark .club-table tbody tr:hover { background:rgba(34,197,94,0.06); }
+  body.theme-dark .club-table thead th { background:#0f172a; }
+  body.theme-dark .table-wrap { background:#1e293b; }
+  body.theme-dark .empty-state { color:#94a3b8; }
+  body.theme-dark .tier-stat-card.active-filter { background:rgba(34,197,94,0.08); }
 </style>
 </head>
 <body>
@@ -234,6 +297,7 @@ html = '''<!DOCTYPE html>
 </header>
 
 <section class="ops-hero">
+  <button class="theme-toggle" id="theme-toggle" aria-label="다크모드 전환" title="다크/라이트 모드 전환 (단축키: d)">🌙</button>
   <div class="ops-wrap">
     <h1>13 클럽 일람</h1>
     <p class="lede">IDX 상장 13개 골프 운영사. 검색·정렬·뷰 전환으로 빠르게 비교. 카드/행 클릭으로 클럽 상세.</p>
@@ -519,6 +583,26 @@ function syncURL() {
   viewButtons.forEach(b => {
     const a = b.dataset.view === state.view;
     b.classList.toggle('active', a); b.setAttribute('aria-selected', a ? 'true' : 'false');
+  });
+
+  // Dark mode toggle (persists in localStorage, also follows system pref on first visit)
+  const themeBtn = document.getElementById('theme-toggle');
+  function applyTheme(theme) {
+    if (theme === 'dark') { document.body.classList.add('theme-dark'); themeBtn.textContent = '☀️'; themeBtn.setAttribute('title','라이트 모드로 전환 (d)'); }
+    else                  { document.body.classList.remove('theme-dark'); themeBtn.textContent = '🌙'; themeBtn.setAttribute('title','다크 모드로 전환 (d)'); }
+  }
+  const savedTheme = localStorage.getItem('ops-theme');
+  const sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  applyTheme(savedTheme || (sysDark ? 'dark' : 'light'));
+  themeBtn.addEventListener('click', () => {
+    const newT = document.body.classList.contains('theme-dark') ? 'light' : 'dark';
+    localStorage.setItem('ops-theme', newT);
+    applyTheme(newT);
+  });
+  // 'd' key shortcut
+  document.addEventListener('keydown', (e) => {
+    if (e.target.matches('input,textarea,select')) return;
+    if (e.key === 'd') { themeBtn.click(); }
   });
 
   renderTierStats(state.tier === 'all' ? null : state.tier);
