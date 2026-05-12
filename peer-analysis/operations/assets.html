@@ -51,6 +51,22 @@
   .action-btn { padding:6px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); display:inline-flex; align-items:center; gap:4px; }
   .action-btn:hover { background:rgba(45,80,22,0.05); }
   .action-btn.success { background:#16a34a; color:white; border-color:#16a34a; }
+  /* Tier benchmark rows */
+  .bench-row td { background:rgba(45,80,22,0.05) !important; font-size:12px; color:var(--ops-ink-soft); border-top:2px solid var(--ops-line); }
+  .bench-row td:first-child { font-weight:700; color:var(--ops-ink); }
+  .bench-row.tier-pp    td:first-child { color:#3b82f6; }
+  .bench-row.tier-resort td:first-child { color:#f59e0b; }
+  .bench-row.tier-twn   td:first-child { color:#16a34a; }
+  .bench-row.overall   td:first-child { color:var(--ops-green); }
+  /* Theme toggle */
+  .theme-toggle { position:absolute; top:14px; right:14px; padding:5px 10px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:999px; font-size:13px; cursor:pointer; color:var(--ops-ink); z-index:10; }
+  .theme-toggle:hover { background:rgba(45,80,22,0.06); }
+  .ops-hero { position:relative; }
+  body.theme-dark { --ops-bg:#0f172a; --ops-surface:#1e293b; --ops-ink:#e2e8f0; --ops-ink-soft:#cbd5e1; --ops-muted:#94a3b8; --ops-line:#334155; --ops-green:#22c55e; }
+  body.theme-dark .ops-tbl thead th { background:#0f172a; }
+  body.theme-dark .ops-tbl tbody tr:hover { background:rgba(34,197,94,0.06); }
+  body.theme-dark .bench-row td { background:rgba(34,197,94,0.06) !important; }
+  body.theme-dark .scatter-card, body.theme-dark .discl-pill { background:#1e293b; }
 </style>
 </head>
 <body>
@@ -68,6 +84,7 @@
 </header>
 
 <section class="ops-hero">
+  <button class="theme-toggle" id="theme-toggle" aria-label="다크모드 전환" title="다크/라이트 모드 (d)">🌙</button>
   <div class="ops-wrap">
     <h1>시설 · 자산</h1>
     <p class="lede">물리적 시설 구성 + 재무·자산 효율성. 13 peer 한 표.</p>
@@ -423,7 +440,7 @@ function renderProd() {
     const bar = (s && val !== null && val !== undefined) ? heatBar(val, s.min, s.max, heatMetrics[key].higher) : '';
     return `<td class="num heat">${fmt}${bar}</td>`;
   };
-  document.getElementById('prod-tbody').innerHTML = sorted.map(r => `<tr>
+  const peerRows = sorted.map(r => `<tr>
     <td class="peer"><a href="clubs/${r.t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${r.t}</a></td>
     <td><span class="peer-tag peer-tag-${r.m.tier}" style="font-size:10px;">${r.m.tier_label}</span></td>
     <td class="num">${fmtNum(r.m.holes)}</td>
@@ -435,7 +452,51 @@ function renderProd() {
     ${heat('debt', r.debt, fmtPct(r.debt, 1))}
     ${heat('taPerHole', r.taPerHole, fmtBn(r.taPerHole))}
     ${heat('taPerHa', r.taPerHa, fmtBn(r.taPerHa))}
-  </tr>`).join('');
+  </tr>`);
+  // Tier median benchmark rows
+  function median(xs) {
+    const v = xs.filter(x => x !== null && x !== undefined).sort((a,b) => a-b);
+    if (!v.length) return null;
+    return v.length % 2 ? v[Math.floor(v.length/2)] : (v[v.length/2-1] + v[v.length/2]) / 2;
+  }
+  const tierLabelMap = { pp:'🟦 Pure-play 중위', resort:'🟨 Resort 중위', twn:'🟩 Township 중위' };
+  const benchRows = [];
+  ['pp','resort','twn'].forEach(tk => {
+    const tdata = rows.filter(r => r.m.tier === tk);
+    if (!tdata.length) return;
+    const med = key => median(tdata.map(r => r[key]));
+    const medM = key => median(tdata.map(r => r.m[key]));
+    benchRows.push(`<tr class="bench-row tier-${tk}">
+      <td>${tierLabelMap[tk]}</td>
+      <td>N=${tdata.length}</td>
+      <td class="num">${fmtNum(medM('holes'))}</td>
+      <td class="num">${fmtNum(medM('area'), 1)}</td>
+      <td class="num">${fmtBn(med('ta'))}</td>
+      <td class="num">${fmtBn(med('rev'))}</td>
+      <td class="num"><strong>${fmtRatio(med('turnover'))}</strong></td>
+      <td class="num">${fmtPct(med('roa'))}</td>
+      <td class="num">${fmtPct(med('debt'), 1)}</td>
+      <td class="num">${fmtBn(med('taPerHole'))}</td>
+      <td class="num">${fmtBn(med('taPerHa'))}</td>
+    </tr>`);
+  });
+  // Overall median
+  const medAll = key => median(rows.map(r => r[key]));
+  const medAllM = key => median(rows.map(r => r.m[key]));
+  benchRows.push(`<tr class="bench-row overall">
+    <td>📊 전체 중위</td>
+    <td>N=${rows.length}</td>
+    <td class="num">${fmtNum(medAllM('holes'))}</td>
+    <td class="num">${fmtNum(medAllM('area'), 1)}</td>
+    <td class="num">${fmtBn(medAll('ta'))}</td>
+    <td class="num">${fmtBn(medAll('rev'))}</td>
+    <td class="num"><strong>${fmtRatio(medAll('turnover'))}</strong></td>
+    <td class="num">${fmtPct(medAll('roa'))}</td>
+    <td class="num">${fmtPct(medAll('debt'), 1)}</td>
+    <td class="num">${fmtBn(medAll('taPerHole'))}</td>
+    <td class="num">${fmtBn(medAll('taPerHa'))}</td>
+  </tr>`);
+  document.getElementById('prod-tbody').innerHTML = peerRows.join('') + benchRows.join('');
   document.querySelectorAll('#prod-tbl .sortable').forEach(th => {
     th.classList.remove('asc','desc');
     if (th.dataset.sort === sortState.key) th.classList.add(sortState.dir);
@@ -574,6 +635,24 @@ function flashSuccess(btn, label){
     const a = document.createElement('a'); a.href = url; a.download = 'assets-productivity_FY2024.csv';
     document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
     flashSuccess(e.currentTarget, '✓ 다운로드');
+  });
+  // Dark mode
+  const themeBtn = document.getElementById('theme-toggle');
+  function applyTheme(theme) {
+    if (theme === 'dark') { document.body.classList.add('theme-dark'); themeBtn.textContent = '☀️'; }
+    else                  { document.body.classList.remove('theme-dark'); themeBtn.textContent = '🌙'; }
+  }
+  const saved = localStorage.getItem('ops-theme');
+  const sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  applyTheme(saved || (sysDark ? 'dark' : 'light'));
+  themeBtn.addEventListener('click', () => {
+    const newT = document.body.classList.contains('theme-dark') ? 'light' : 'dark';
+    localStorage.setItem('ops-theme', newT);
+    applyTheme(newT);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.target.matches('input,textarea,select')) return;
+    if (e.key === 'd') themeBtn.click();
   });
   renderProd();
 })();
