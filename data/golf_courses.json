@@ -33,7 +33,9 @@
         "jaya-ancol-golf"
       ],
       "trump-lido": "documented members-only"
-    }
+    },
+    "financials_last_updated": "2026-05-12",
+    "financials_fy_mix": "FY2024 for most, FY2025 for 5 peer (BKDP·BSDE·BKSL·SMRA·GOLF)"
   },
   "courses": [
     {
@@ -1944,8 +1946,8 @@
         "parent_group": "Summarecon Agung-related / Gading Serpong Group (originally jointly developed by Summarecon and Paramount/Gading Serpong consortium)",
         "idx_ticker": "SMRA",
         "listed_status": "subsidiary-of-listed",
-        "revenue_idr": 10620000000000,
-        "revenue_year": "2024",
+        "revenue_idr": 8766927470000,
+        "revenue_year": 2025,
         "net_profit_idr": 1370000000000,
         "total_assets_idr": 33530000000000,
         "course_segment_disclosed": false,
@@ -1999,7 +2001,8 @@
             "date_published": null,
             "date_accessed": "2026-05-01"
           }
-        ]
+        ],
+        "revenue_idr_fy2024_previous": 10620000000000
       },
       "coord_source": "overpass_v1",
       "coord_osm_ref": "way/362673650"
@@ -3992,8 +3995,8 @@
         "parent_group": "Sentul City Group",
         "idx_ticker": "BKSL",
         "listed_status": "subsidiary-of-listed",
-        "revenue_idr": 744068000000,
-        "revenue_year": "2024",
+        "revenue_idr": 2757463756020,
+        "revenue_year": 2025,
         "net_profit_idr": 17400000000,
         "total_assets_idr": 21188291000000,
         "course_segment_disclosed": false,
@@ -4046,7 +4049,8 @@
             "note": "BKSL FY2024 total assets Rp 21.19T.",
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
           }
-        ]
+        ],
+        "revenue_idr_fy2024_previous": 744068000000
       },
       "coord_source": "overpass_v1",
       "coord_osm_ref": "relation/12485745"
@@ -4301,8 +4305,8 @@
         "parent_group": "Sentul City Group",
         "idx_ticker": "BKSL",
         "listed_status": "subsidiary-of-listed",
-        "revenue_idr": 744068000000,
-        "revenue_year": "2024",
+        "revenue_idr": 2757463756020,
+        "revenue_year": 2025,
         "net_profit_idr": 17400000000,
         "total_assets_idr": 21188291000000,
         "course_segment_disclosed": false,
@@ -4355,7 +4359,8 @@
             "note": "BKSL FY2024 total assets Rp 21.19T.",
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
           }
-        ]
+        ],
+        "revenue_idr_fy2024_previous": 744068000000
       }
     },
     {
@@ -4807,8 +4812,8 @@
         "parent_group": "Sentul City Group",
         "idx_ticker": "BKSL",
         "listed_status": "subsidiary-of-listed",
-        "revenue_idr": 744068000000,
-        "revenue_year": "2024",
+        "revenue_idr": 2757463756020,
+        "revenue_year": 2025,
         "net_profit_idr": 17400000000,
         "total_assets_idr": 21188291000000,
         "course_segment_disclosed": false,
@@ -4861,7 +4866,8 @@
             "note": "BKSL FY2024 total assets Rp 21.19T.",
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
           }
-        ]
+        ],
+        "revenue_idr_fy2024_previous": 744068000000
       },
       "coord_source": "overpass_v1",
       "coord_osm_ref": "relation/14264143"
@@ -5820,8 +5826,8 @@
         "parent_group": "Sinar Mas Land",
         "idx_ticker": "BSDE",
         "listed_status": "subsidiary-of-listed",
-        "revenue_idr": 13800000000000,
-        "revenue_year": "2024",
+        "revenue_idr": 12788452336734,
+        "revenue_year": 2025,
         "net_profit_idr": 4360000000000,
         "total_assets_idr": 76020000000000,
         "course_segment_disclosed": true,
@@ -5856,7 +5862,8 @@
             "date_accessed": "2026-05-01"
           }
         ],
-        "course_segment_notes": "Sits inside Sinar Mas Land's Kota Deltamas/Karawang area but not separately broken out in BSDE consolidated segment notes. Note: Palm Springs Batam (separate entity) had Rp 42B segment-disclosed FY2024 contribution to BSDE."
+        "course_segment_notes": "Sits inside Sinar Mas Land's Kota Deltamas/Karawang area but not separately broken out in BSDE consolidated segment notes. Note: Palm Springs Batam (separate entity) had Rp 42B segment-disclosed FY2024 contribution to BSDE.",
+        "revenue_idr_fy2024_previous": 13800000000000
       }
     },
     {
@@ -8230,8 +8237,8 @@
         "parent_group": "PT Bukit Darmo Property Tbk (Sumampow Family)",
         "idx_ticker": "BKDP",
         "listed_status": "listed",
-        "revenue_idr": 30520000000,
-        "revenue_year": "2024",
+        "revenue_idr": 36632337898,
+        "revenue_year": 2025,
         "net_profit_idr": -35914000000,
         "total_assets_idr": 752245000000,
         "course_segment_disclosed": false,
@@ -8276,7 +8283,8 @@
             "note": "BKDP total assets at Dec 31 2024 = Rp 752.24B.",
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_2_result.json"
           }
-        ]
+        ],
+        "revenue_idr_fy2024_previous": 30520000000
       },
       "coord_source": "overpass_v1",
       "coord_osm_ref": "way/160043626"
@@ -11651,8 +11659,8 @@
         "idx_ticker": "BSDE",
         "foreign_ticker": "SGX:A26 (Sinarmas Land)",
         "listed_status": "subsidiary-of-listed",
-        "revenue_idr": 13800000000000,
-        "revenue_year": "2024",
+        "revenue_idr": 12788452336734,
+        "revenue_year": 2025,
         "net_profit_idr": 4360000000000,
         "total_assets_idr": 76023000000000,
         "course_segment_disclosed": true,
@@ -11689,7 +11697,8 @@
             "note": "BSDE FY2024 total assets approximately Rp 76.023 trillion per Q4 2024 financial statements.",
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_3_result.json"
           }
-        ]
+        ],
+        "revenue_idr_fy2024_previous": 13800000000000
       }
     },
     {
@@ -12901,8 +12910,8 @@
         "idx_ticker": "GOLF",
         "foreign_ticker": null,
         "listed_status": "subsidiary-of-listed (since 8 July 2024 IPO of GOLF on IDX)",
-        "revenue_idr": 197990000000,
-        "revenue_year": "2024",
+        "revenue_idr": 215519000000,
+        "revenue_year": 2025,
         "net_profit_idr": 67570000000,
         "total_assets_idr": 8637499000000,
         "course_segment_disclosed": true,
@@ -12958,7 +12967,8 @@
             "note": "Updated to FY2024 audited figures.",
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_3_result.json"
           }
-        ]
+        ],
+        "revenue_idr_fy2024_previous": 197990000000
       }
     },
     {

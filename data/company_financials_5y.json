@@ -1,13 +1,38 @@
 {
   "metadata": {
-    "title": "5-Year Financial History for Golf-Related Listed Companies",
-    "version": "1.1",
-    "last_updated": "2026-05-01",
-    "scope": "FY2020-FY2024 audited data for IDX/NYSE/SGX listed parents of Indonesian golf courses",
+    "title": "6-Year Financial History for Golf-Related Listed Companies",
+    "version": "1.2",
+    "last_updated": "2026-05-12",
+    "scope": "FY2020-FY2025 audited data for IDX/NYSE/SGX listed parents of Indonesian golf courses (FY2025: 5 peer full + 2 partial + 4 caveat-only + 2 unavailable for golf-related 13-peer)",
     "currency_notes": "All revenue/profit/asset figures in fiscal-year native currency. Non-IDR tickers (AMMN/FCX/B58) include _idr_equiv at year-end BI rates (2020=14050, 2021=14252, 2022=15592, 2023=15397, 2024=16157).",
     "upgrade_pass": "2026-05-01: PIPG/DMIG/GOLF/B58 upgraded via PDF parsing (pdftotext, PyMuPDF, Wayback Machine). AMMN FY2020 corrected via IPO prospectus.; 2026-05-01 (NCI fix): FY2020 total_equity for BSDE/BKSL/ELTY/DILD/PWON now reports consolidated equity = parent + NCI; added total_equity_parent and non_controlling_interests fields. total_liabilities corrected to consolidated audited figures from primary IDX/IR PDFs.",
     "upgrade_pass_2": "2026-05-01: Added DILD (Graha Famili), PWON (Pakuwon Golf Surabaya), BN4 (Keppel — Ria Bintan JV)",
-    "upgrade_pass_3": "2026-05-01: Added BKDP (bukit-darmo direct operator) and CTRA (Ciputra group, multi-course township amenity)"
+    "upgrade_pass_3": "2026-05-01: Added BKDP (bukit-darmo direct operator) and CTRA (Ciputra group, multi-course township amenity)",
+    "fy2025_addendum": {
+      "added_at": "2026-05-12",
+      "note": "FY2025 data merged from operations/data/*_notes.json (AR Note 직접 추출). DMIG·PIPG FY2025 AR 미수집 → null. MDLN·KIJA·SMDM·DILD는 segment-level only (company-level 미추출).",
+      "full_company_level_fy2025": [
+        "BKDP",
+        "BSDE",
+        "MKPI",
+        "BKSL",
+        "SMRA"
+      ],
+      "partial_fy2025": [
+        "GOLF (revenue only)",
+        "KPIG (Hotel+Resort+Golf segment only)"
+      ],
+      "caveat_only": [
+        "MDLN (Golf segment only)",
+        "KIJA (FY24 cross-validate only)",
+        "SMDM (restatement caveat)",
+        "DILD (segment only)"
+      ],
+      "unavailable": [
+        "DMIG",
+        "PIPG"
+      ]
+    }
   },
   "companies": [
     {
@@ -143,6 +168,29 @@
               "date_accessed": "2026-05-01"
             }
           ]
+        },
+        "2025": {
+          "revenue": 12788452336734,
+          "operating_profit": 3447178841678,
+          "net_profit": 2857738492944,
+          "ebitda": null,
+          "total_assets": null,
+          "total_liabilities": null,
+          "total_equity": null,
+          "eps": null,
+          "dividend_per_share": null,
+          "employees": null,
+          "sources": [
+            {
+              "url": "(Annual Report 2025 — BSDE)",
+              "title": "BSDE Laporan Tahunan 2025",
+              "publisher": "Company IR / IDX 공시",
+              "date_published": "2026",
+              "date_accessed": "2026-05-12",
+              "page": "FY25 AR att2 p.491 INFORMASI SEGMEN OPERASI"
+            }
+          ],
+          "fy2025_note": "Real Estat 압도 / Hotel +193.7% YoY / Toll road -85.0% YoY (segment 분포 dramatic shift)"
         }
       },
       "summary_note": "Strong revenue rebound from COVID lows (Rp 6.2T in 2020 to Rp 13.8T in 2024); net profit up ~9x. SMDM (Rancamaya) acquired Oct 2024 for Rp 2.33T.",
@@ -283,6 +331,20 @@
               "page": "p.14, 19, 20, 51-52, 79"
             }
           ]
+        },
+        "2025": {
+          "revenue": null,
+          "operating_profit": null,
+          "net_profit": null,
+          "ebitda": null,
+          "total_assets": null,
+          "total_liabilities": null,
+          "total_equity": null,
+          "eps": null,
+          "dividend_per_share": null,
+          "employees": null,
+          "sources": [],
+          "fy2025_note": "FY2025 AR 본 사이트 환경 미수집 (annual_reports/DMIG/FY2025/ 부재) — 별도 source 필요"
         }
       },
       "summary_note": "인도네시아 유일 순수 골프장 상장사. PyMuPDF로 10개 PDF 파싱. 매출 Rp 123B→253B(+105%), 순이익 21B→82B(+296%). 사업라인 분리(골프51%/회비18%/F&B20%). 2024 Mandiri Indonesia Open 개최(PIK).",
@@ -413,6 +475,32 @@
               "date_accessed": "2026-05-01"
             }
           ]
+        },
+        "2025": {
+          "revenue": null,
+          "operating_profit": null,
+          "net_profit": null,
+          "ebitda": null,
+          "total_assets": null,
+          "total_liabilities": null,
+          "total_equity": null,
+          "eps": null,
+          "dividend_per_share": null,
+          "employees": null,
+          "sources": [
+            {
+              "url": "(Annual Report 2025 — KPIG)",
+              "title": "KPIG Laporan Tahunan 2025",
+              "publisher": "Company IR / IDX 공시",
+              "date_published": "2026",
+              "date_accessed": "2026-05-12",
+              "page": "KPIG FY25 AR att1 p.325 Note 31 (Cycle 71)"
+            }
+          ],
+          "fy2025_note": "회사명 변경 PT MNC LAND → PT MNC TOURISM INDONESIA (2025-07). Hotel+Resort+Golf 통합 +10.4% YoY",
+          "fy2025_breakdown": {
+            "hotel_resort_golf_combined": 1059832083248
+          }
         }
       },
       "summary_note": "Strong growth driven by Lido City/Trump golf development; revenue Rp 678B→1.77T (~2.6x). Net profit jumped to Rp 659B in 2024 (+96% YoY).",
@@ -553,6 +641,29 @@
               "date_accessed": "2026-05-01"
             }
           ]
+        },
+        "2025": {
+          "revenue": 2757463756020,
+          "operating_profit": 842653443085,
+          "net_profit": 832860131829,
+          "ebitda": null,
+          "total_assets": 21261038603556,
+          "total_liabilities": null,
+          "total_equity": null,
+          "eps": null,
+          "dividend_per_share": null,
+          "employees": null,
+          "sources": [
+            {
+              "url": "(Annual Report 2025 — BKSL)",
+              "title": "BKSL Laporan Tahunan 2025",
+              "publisher": "Company IR / IDX 공시",
+              "date_published": "2026",
+              "date_accessed": "2026-05-12",
+              "page": "FY25 AR att1 p.299 Note 37 SEGMEN OPERASI"
+            }
+          ],
+          "fy2025_note": "2 segment (Real Estat primary + Others). Golf 없음 (관계사 운영)"
         }
       },
       "summary_note": "Volatile: COVID losses (2020), recovery (2021), losses (2022), spike (2023), thin profit (2024). Revenue Rp 1.72T (2023) dropped to Rp 744B (2024). Total assets Rp 21.2T.",
@@ -809,6 +920,29 @@
               "date_accessed": "2026-05-01"
             }
           ]
+        },
+        "2025": {
+          "revenue": null,
+          "operating_profit": null,
+          "net_profit": null,
+          "ebitda": null,
+          "total_assets": null,
+          "total_liabilities": null,
+          "total_equity": null,
+          "eps": null,
+          "dividend_per_share": null,
+          "employees": null,
+          "sources": [
+            {
+              "url": "(Annual Report 2025 — MDLN)",
+              "title": "MDLN Laporan Tahunan 2025",
+              "publisher": "Company IR / IDX 공시",
+              "date_published": "2026",
+              "date_accessed": "2026-05-12",
+              "page": "MDLN FY25 AR att2 p.302-303 Note 25/26 (Cycle 66·69)"
+            }
+          ],
+          "fy2025_note": "Golf+F&B segment only (company-level FY25 P&L 미추출). Golf pure +31.4% YoY / GP 마진 stable 43.6%"
         }
       },
       "summary_note": "Modern Golf 모회사. 변동성 심함. 2024 골프장+클럽하우스 레스토랑 세그먼트 매출 Rp 74.3B 별도 공시 (희귀 사례).",
@@ -932,6 +1066,29 @@
               "date_accessed": "2026-05-01"
             }
           ]
+        },
+        "2025": {
+          "revenue": null,
+          "operating_profit": null,
+          "net_profit": null,
+          "ebitda": null,
+          "total_assets": null,
+          "total_liabilities": null,
+          "total_equity": null,
+          "eps": null,
+          "dividend_per_share": null,
+          "employees": null,
+          "sources": [
+            {
+              "url": "(Annual Report 2025 — KIJA)",
+              "title": "KIJA Laporan Tahunan 2025",
+              "publisher": "Company IR / IDX 공시",
+              "date_published": "2026",
+              "date_accessed": "2026-05-12",
+              "page": "KIJA FY25 AR att1 p.557-559 Note 34 (Cycle 65)"
+            }
+          ],
+          "fy2025_note": "FY25 AR comparative로 FY24 데이터 100% cross-validated. FY25 specific segment 회전 표 한계로 부분 추출만."
         }
       },
       "summary_note": "만성 적자에서 흑자 전환 — 2023부터 흑자, 2024 매출 Rp 4.6T 사상 최대. 2024 첫 배당 Rp 1.792.",
@@ -1178,6 +1335,29 @@
               "date_accessed": "2026-05-01"
             }
           ]
+        },
+        "2025": {
+          "revenue": null,
+          "operating_profit": null,
+          "net_profit": null,
+          "ebitda": null,
+          "total_assets": null,
+          "total_liabilities": null,
+          "total_equity": null,
+          "eps": null,
+          "dividend_per_share": null,
+          "employees": null,
+          "sources": [
+            {
+              "url": "(Annual Report 2025 — SMDM)",
+              "title": "SMDM Laporan Tahunan 2025",
+              "publisher": "Company IR / IDX 공시",
+              "date_published": "2026",
+              "date_accessed": "2026-05-12",
+              "page": "SMDM FY25 AR att2 p.297-300 Note 43 + Cycle 64·67"
+            }
+          ],
+          "fy2025_note": "FY25 AR p.300 restatement 표 발견 (Cycle 67 caveat). Golf segment GP 38.9%→88.6% 대전환은 BSDE 인수 후 회계 재분류 가능성. company-level FY25 미추출."
         }
       },
       "summary_note": "Rancamaya 모회사. 2024년 10월 BSDE에 91.99% 인수(Rp 2.33T). 매출 Rp 387B→694B, 순이익 -0.8B→123.8B 회복.",
@@ -1431,6 +1611,29 @@
               "date_accessed": "2026-05-01"
             }
           ]
+        },
+        "2025": {
+          "revenue": 8766927470000,
+          "operating_profit": null,
+          "net_profit": null,
+          "ebitda": null,
+          "total_assets": null,
+          "total_liabilities": null,
+          "total_equity": null,
+          "eps": null,
+          "dividend_per_share": null,
+          "employees": null,
+          "sources": [
+            {
+              "url": "(Annual Report 2025 — SMRA)",
+              "title": "SMRA Laporan Tahunan 2025",
+              "publisher": "Company IR / IDX 공시",
+              "date_published": "2026",
+              "date_accessed": "2026-05-12",
+              "page": "FY25 AR att2 p.319 Note 31 PENDAPATAN NETO"
+            }
+          ],
+          "fy2025_note": "Rekreasi GP 마진 18.0%→10.8% (-7.2pp). 그룹 총매출 -17.5% YoY"
         }
       },
       "summary_note": "Gading Raya 모회사. COVID 직격 후 강한 회복 — 매출 Rp 5T→10.6T(+111%), 순이익 180B→1.37T(+664%). 2024 산업단지 매각 효과.",
@@ -1547,6 +1750,29 @@
               "date_accessed": "2026-05-01"
             }
           ]
+        },
+        "2025": {
+          "revenue": 2603313037000,
+          "operating_profit": 1239886316000,
+          "net_profit": 1122176939000,
+          "ebitda": null,
+          "total_assets": 9463752773000,
+          "total_liabilities": null,
+          "total_equity": null,
+          "eps": null,
+          "dividend_per_share": null,
+          "employees": null,
+          "sources": [
+            {
+              "url": "(Annual Report 2025 — MKPI)",
+              "title": "MKPI Laporan Tahunan 2025",
+              "publisher": "Company IR / IDX 공시",
+              "date_published": "2026",
+              "date_accessed": "2026-05-12",
+              "page": "FY25 AR att1 p.223 Note 37 INFORMASI SEGMEN USAHA"
+            }
+          ],
+          "fy2025_note": "6 segment (Shopping center · Office · Apartment · Real estate · Water park · Hotel) — Golf 없음"
         }
       },
       "summary_note": "Pondok Indah Group 자매사 (몰/오피스/주거 — 골프장 운영 NOT). 5년 연속 안정적 흑자. 매출 Rp 1.08T→2.48T(+129%), 배당 Rp 158→535 급성장.",
@@ -2043,6 +2269,33 @@
               "page": "p.7-9"
             }
           ]
+        },
+        "2025": {
+          "revenue": 215519000000,
+          "operating_profit": null,
+          "net_profit": null,
+          "ebitda": null,
+          "total_assets": null,
+          "total_liabilities": null,
+          "total_equity": null,
+          "eps": null,
+          "dividend_per_share": null,
+          "employees": null,
+          "sources": [
+            {
+              "url": "(Annual Report 2025 — GOLF)",
+              "title": "GOLF Laporan Tahunan 2025",
+              "publisher": "Company IR / IDX 공시",
+              "date_published": "2026",
+              "date_accessed": "2026-05-12",
+              "page": "GOLF FY25 AR p.6-7 (Cycle 62)"
+            }
+          ],
+          "fy2025_note": "Total +8.85% / Golf line -14.7% (segment 재정의 가능성)",
+          "fy2025_breakdown": {
+            "golf_line": 79390000000,
+            "real_estate_line": 101930000000
+          }
         }
       },
       "summary_note": "Black Rocks Belitung 운영(48.07% 관계회사, 비연결). 자회사: New Kuta Bali(매출 91B), Palm Hill Sentul(105B). 2024 매출 Rp 198B (golf 47% + 부동산 34% + F&B 14%). EBITDA margin 44.7%. FY2020은 OJK 규정상 미공개(IPO 프로스펙터스 3년 한정).",
@@ -2321,6 +2574,20 @@
               "page": "p.10-11, 41-44, 59, 77"
             }
           ]
+        },
+        "2025": {
+          "revenue": null,
+          "operating_profit": null,
+          "net_profit": null,
+          "ebitda": null,
+          "total_assets": null,
+          "total_liabilities": null,
+          "total_equity": null,
+          "eps": null,
+          "dividend_per_share": null,
+          "employees": null,
+          "sources": [],
+          "fy2025_note": "FY2025 AR 본 사이트 환경 미수집 (annual_reports/PIPG/FY2025/ 부재) — 별도 source 필요"
         }
       },
       "summary_note": "Pondok Indah Golf 운영사. PDF 직접 파싱(pdftotext)으로 완성. 매출 Rp 111.7B→197.6B(+77%), 순이익 23.1B→55.9B(+142%). 단 1,299주 발행으로 EPS Rp 4천만대. 5년 연속 배당. OJK Tbk이지만 IDX 미상장(POJK 3/2021).",
@@ -2787,6 +3054,29 @@
               "date_accessed": "2026-05-01"
             }
           ]
+        },
+        "2025": {
+          "revenue": null,
+          "operating_profit": null,
+          "net_profit": null,
+          "ebitda": null,
+          "total_assets": null,
+          "total_liabilities": null,
+          "total_equity": null,
+          "eps": null,
+          "dividend_per_share": null,
+          "employees": null,
+          "sources": [
+            {
+              "url": "(Annual Report 2025 — DILD)",
+              "title": "DILD Laporan Tahunan 2025",
+              "publisher": "Company IR / IDX 공시",
+              "date_published": "2026",
+              "date_accessed": "2026-05-12",
+              "page": "DILD FY25 AR att2 p.445 (Cycle 101)"
+            }
+          ],
+          "fy2025_note": "Segment Note 직접 추출 (Cycle 101). 6 segment Land·High Rise·Industri Perkantoran·Estate Facilities·Hotels·Lainnya — Golf 없음. Segment results FY25: Land +72.8% / High Rise -49.6%. Consolidated 자산 12,756 bn."
         }
       },
       "summary_note": "Graha Famili 수라바야 운영(자회사 PT Grande Famili View). 매출 Rp 2.89T(2020) → 2.55T(2024). 2023 정점(3.91T) 후 하락. 5년 무배당.",
@@ -3181,6 +3471,29 @@
               "date_accessed": "2026-05-01"
             }
           ]
+        },
+        "2025": {
+          "revenue": 36632337898,
+          "operating_profit": -29096870620,
+          "net_profit": -35573382387,
+          "ebitda": null,
+          "total_assets": null,
+          "total_liabilities": null,
+          "total_equity": null,
+          "eps": -4.73,
+          "dividend_per_share": null,
+          "employees": null,
+          "sources": [
+            {
+              "url": "(Annual Report 2025 — BKDP)",
+              "title": "BKDP Laporan Tahunan 2025",
+              "publisher": "Company IR / IDX 공시",
+              "date_published": "2026",
+              "date_accessed": "2026-05-12",
+              "page": "FY25 AR att2 p.70 LAPORAN LABA RUGI KONSOLIDASIAN"
+            }
+          ],
+          "fy2025_note": "Going Concern context (FY24 uncertainty 유지)"
         }
       },
       "summary_note": "Bukit Darmo Surabaya 골프코스(Jack Nicklaus II, 1995) 직접 운영사. 매출 Rp 20-30B 수준 초소형 emiten. 5년 연속 영업/순손실, 자본잠식 진행 중(자본 Rp 481B→346B). 무배당.",
