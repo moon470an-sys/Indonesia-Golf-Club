@@ -48,6 +48,11 @@
   .data-meta strong { color:var(--ops-ink-soft); }
   .data-meta .sep { margin:0 8px; opacity:0.4; }
   @media print { .top-perf { display:none; } .data-meta { font-size:9px; } }
+  /* Accessibility */
+  *:focus-visible { outline:2px solid var(--ops-green); outline-offset:2px; border-radius:3px; }
+  .year-btn:focus-visible, .rev-tab:focus-visible, .trend-mode-toggle button:focus-visible { outline-offset:1px; }
+  .skip-link { position:absolute; left:-1000px; top:8px; padding:6px 12px; background:var(--ops-green); color:white; border-radius:6px; font-weight:700; z-index:200; text-decoration:none; }
+  .skip-link:focus { left:8px; }
   /* YoY heatmap matrix */
   .yoy-matrix { width:100%; border-collapse:separate; border-spacing:1px; background:var(--ops-line); font-size:12px; }
   .yoy-matrix th, .yoy-matrix td { background:var(--ops-surface); padding:8px 6px; }
@@ -123,6 +128,7 @@
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main-content">메인 콘텐츠로 건너뛰기</a>
 <header class="ops-head">
   <div class="ops-wrap ops-head-row">
     <a href="clubs/index.html" class="ops-brand">
@@ -165,7 +171,7 @@
   </div>
 </section>
 
-<section class="ops-section">
+<section class="ops-section" id="main-content">
   <div class="ops-wrap">
     <div class="rev-panel active" id="panel-cmp">
       <h2 class="anchor-target" id="sec-table" style="font-size:17px; margin:0 0 6px 0;">13-peer 매출 비교 — <span class="yr-label">FY2024</span></h2>
@@ -1032,6 +1038,24 @@ let currentYear = '2024';
     updateActiveAnchor();
     window.addEventListener('scroll', updateActiveAnchor, { passive: true });
   }
+  // Keyboard arrow nav
+  function wireArrowNav(selector) {
+    const items = Array.from(document.querySelectorAll(selector));
+    items.forEach((el, i) => {
+      el.setAttribute('tabindex', '0');
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+          e.preventDefault();
+          const next = e.key === 'ArrowRight' ? (i + 1) % items.length : (i - 1 + items.length) % items.length;
+          items[next].focus();
+          items[next].click();
+        }
+      });
+    });
+  }
+  wireArrowNav('.year-btn');
+  wireArrowNav('.rev-tab');
+  wireArrowNav('.trend-mode-toggle button');
   // localStorage state: year + active tab + trend mode
   function saveRevState() {
     const tab = document.querySelector('.rev-tab.active');
