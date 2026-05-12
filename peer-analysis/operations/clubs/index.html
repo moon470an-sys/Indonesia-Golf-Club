@@ -38,6 +38,30 @@
     .control-bar input[type="search"] { min-width:0; flex:1 1 100%; }
     .results-info { margin-left:0; flex:1 1 100%; text-align:right; }
   }
+  /* Tier statistic summary cards */
+  .tier-stats { display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; margin:18px 0 4px 0; }
+  .tier-stat-card { background:var(--ops-surface); border:1px solid var(--ops-line); border-radius:10px; padding:12px 14px; border-left:4px solid; transition:all 0.15s; cursor:pointer; }
+  .tier-stat-card:hover { transform:translateY(-1px); box-shadow:0 4px 12px rgba(0,0,0,0.06); }
+  .tier-stat-card.active-filter { background:rgba(45,80,22,0.04); box-shadow:0 0 0 2px var(--ops-green) inset; }
+  .tier-stat-card.tier-pp     { border-left-color:#3b82f6; }
+  .tier-stat-card.tier-resort { border-left-color:#f59e0b; }
+  .tier-stat-card.tier-twn    { border-left-color:#16a34a; }
+  .tier-stat-head { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px; }
+  .tier-stat-name { font-size:12.5px; font-weight:700; color:var(--ops-ink); }
+  .tier-stat-count { font-size:11px; color:var(--ops-muted); font-weight:600; }
+  .tier-stat-grid { display:grid; grid-template-columns:1fr 1fr; gap:4px 12px; font-size:11px; }
+  .tier-stat-grid .lbl { color:var(--ops-muted); }
+  .tier-stat-grid .val { color:var(--ops-ink); font-weight:700; text-align:right; font-variant-numeric:tabular-nums; }
+  .tier-stat-grid .val.pos { color:#16a34a; }
+  .tier-stat-grid .val.neg { color:#b91c1c; }
+  .tier-stat-range { font-size:10.5px; color:var(--ops-muted); margin-top:6px; padding-top:6px; border-top:1px dashed var(--ops-line); }
+  @media (max-width: 720px) {
+    .tier-stats { grid-template-columns:1fr; }
+  }
+  /* Share link button */
+  .share-btn { padding:6px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
+  .share-btn:hover { background:rgba(45,80,22,0.05); }
+  .share-btn.copied { background:#16a34a; color:white; border-color:#16a34a; }
 </style>
 </head>
 <body>
@@ -58,6 +82,7 @@
   <div class="ops-wrap">
     <h1>13 클럽 일람</h1>
     <p class="lede">IDX 상장 13개 골프 운영사. 검색·정렬·뷰 전환으로 빠르게 비교. 카드/행 클릭으로 클럽 상세.</p>
+    <div class="tier-stats" id="tier-stats"></div>
     <div class="filter-bar" id="tier-filter">
       <button class="filter-btn active" data-filter="all">전체 (13)</button>
       <button class="filter-btn" data-filter="pp">🟦 Pure-play (2)</button>
@@ -82,6 +107,7 @@
         <button class="active" data-view="cards" role="tab" aria-selected="true">🃏 카드</button>
         <button data-view="table" role="tab" aria-selected="false">📋 표</button>
       </div>
+      <button class="share-btn" id="share-btn" aria-label="현재 필터 링크 복사">🔗 링크 복사</button>
       <div class="results-info" id="results-info">13 / 13 표시</div>
     </div>
   </div>
@@ -631,6 +657,83 @@
 
 <script src="../operations.js?v=20260512c3" defer></script>
 <script>
+const TIER_STATS = {"pp": {"count": 2, "median_rev": 225.33648081500002, "median_margin": 30.42669845271528, "median_roa": 12.233122641839426, "median_ta": 568.2970988469999, "min_rev": 197.570521436, "max_rev": 253.102440194}, "resort": {"count": 1, "median_rev": 197.993814652, "median_margin": 34.12985079446642, "median_roa": 0.7823444319533539, "median_ta": 8637.499132483, "min_rev": 197.993814652, "max_rev": 197.993814652}, "twn": {"count": 10, "median_rev": 5636.7285, "median_margin": 18.42005305795135, "median_roa": 3.8352919514519552, "median_ta": 34452.5925, "min_rev": 694.045, "max_rev": 13796.572149}};
+const TIER_LABEL = { pp: '🟦 Pure-play', resort: '🟨 Resort', twn: '🟩 Township' };
+
+function renderTierStats(activeTier) {
+  const root = document.getElementById('tier-stats');
+  const fmtBn = (v, dp) => {
+    if (v === null || v === undefined) return '—';
+    if (Math.abs(v) >= 1000) return (v/1000).toFixed(dp === undefined ? 2 : dp) + 'T';
+    return v.toFixed(dp === undefined ? 0 : dp) + 'B';
+  };
+  const fmtPct = (v) => {
+    if (v === null || v === undefined) return '—';
+    const cls = v > 0 ? 'pos' : v < 0 ? 'neg' : '';
+    return `<span class="val ${cls}">${v >= 0 ? '+' : ''}${v.toFixed(1)}%</span>`;
+  };
+  root.innerHTML = ['pp','resort','twn'].map(k => {
+    const s = TIER_STATS[k];
+    const isActive = activeTier === k;
+    return `<div class="tier-stat-card tier-${k} ${isActive ? 'active-filter' : ''}" data-tier="${k}" role="button" tabindex="0" aria-pressed="${isActive}">
+      <div class="tier-stat-head">
+        <span class="tier-stat-name">${TIER_LABEL[k]}</span>
+        <span class="tier-stat-count">N=${s.count}</span>
+      </div>
+      <div class="tier-stat-grid">
+        <span class="lbl">중위 매출</span><span class="val">Rp ${fmtBn(s.median_rev, 1)}</span>
+        <span class="lbl">중위 순이익률</span>${fmtPct(s.median_margin)}
+        <span class="lbl">중위 ROA</span>${fmtPct(s.median_roa)}
+        <span class="lbl">중위 총자산</span><span class="val">Rp ${fmtBn(s.median_ta, 1)}</span>
+      </div>
+      <div class="tier-stat-range">매출 범위: ${fmtBn(s.min_rev,1)} – ${fmtBn(s.max_rev,1)}</div>
+    </div>`;
+  }).join('');
+  // Click handler on tier-stat-card to filter
+  root.querySelectorAll('.tier-stat-card').forEach(card => {
+    const handler = () => {
+      const t = card.dataset.tier;
+      // Toggle: if already active, clear filter; otherwise set
+      const newTier = (state.tier === t) ? 'all' : t;
+      setTier(newTier);
+    };
+    card.addEventListener('click', handler);
+    card.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handler(); } });
+  });
+}
+
+function setTier(tier) {
+  state.tier = tier;
+  // Sync tier filter buttons
+  document.querySelectorAll('#tier-filter .filter-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.filter === tier);
+  });
+  applyState();
+  renderTierStats(tier === 'all' ? null : tier);
+  syncURL();
+}
+
+// URL state persistence — hash-based so it survives page refresh and can be shared
+function readURL() {
+  const hash = (location.hash || '').replace(/^#/, '');
+  const params = new URLSearchParams(hash);
+  return {
+    tier: params.get('tier') || 'all',
+    q: params.get('q') || '',
+    sort: params.get('sort') || 'tier',
+    view: params.get('view') || 'cards',
+  };
+}
+function syncURL() {
+  const parts = [];
+  if (state.tier !== 'all') parts.push('tier=' + encodeURIComponent(state.tier));
+  if (state.q) parts.push('q=' + encodeURIComponent(state.q));
+  if (state.sort !== 'tier') parts.push('sort=' + encodeURIComponent(state.sort));
+  if (state.view !== 'cards') parts.push('view=' + encodeURIComponent(state.view));
+  const h = parts.join('&');
+  history.replaceState(null, '', h ? '#' + h : location.pathname + location.search);
+}
+
 (function(){
   const tierButtons = document.querySelectorAll('#tier-filter .filter-btn');
   const viewButtons = document.querySelectorAll('.view-toggle button');
@@ -641,8 +744,11 @@
   const sortSelect = document.getElementById('club-sort');
   const resultsInfo = document.getElementById('results-info');
   const emptyState = document.getElementById('empty-state');
+  const shareBtn = document.getElementById('share-btn');
 
-  let state = { tier: 'all', q: '', sort: 'tier', view: 'cards' };
+  // Read initial state from URL hash
+  window.state = readURL();
+  var state = window.state;
 
   // Preserve original DOM order for "tier" (default) sort
   const cardOriginalOrder = Array.from(grid.children).filter(el => el.classList.contains('club-card'));
@@ -702,6 +808,8 @@
     b.classList.add('active');
     state.tier = b.dataset.filter;
     applyState();
+    renderTierStats(state.tier === 'all' ? null : state.tier);
+    syncURL();
   }));
 
   viewButtons.forEach(b => b.addEventListener('click', () => {
@@ -709,25 +817,61 @@
     b.classList.add('active'); b.setAttribute('aria-selected','true');
     state.view = b.dataset.view;
     applyState();
+    syncURL();
   }));
 
   searchInput.addEventListener('input', (e) => {
     state.q = e.target.value;
     applyState();
+    syncURL();
   });
 
   sortSelect.addEventListener('change', (e) => {
     state.sort = e.target.value;
     applyState();
+    syncURL();
   });
 
-  // Keyboard: '/' focuses search
-  document.addEventListener('keydown', (e) => {
-    if (e.key === '/' && document.activeElement !== searchInput) {
-      e.preventDefault(); searchInput.focus();
+  shareBtn.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(location.href);
+      const orig = shareBtn.textContent;
+      shareBtn.textContent = '✓ 복사됨';
+      shareBtn.classList.add('copied');
+      setTimeout(() => { shareBtn.textContent = orig; shareBtn.classList.remove('copied'); }, 1600);
+    } catch (err) {
+      // Fallback: select-and-copy via temp input
+      const ta = document.createElement('textarea');
+      ta.value = location.href; document.body.appendChild(ta);
+      ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+      shareBtn.textContent = '✓ 복사됨'; shareBtn.classList.add('copied');
+      setTimeout(() => { shareBtn.textContent = '🔗 링크 복사'; shareBtn.classList.remove('copied'); }, 1600);
     }
   });
 
+  // Keyboard shortcuts: '/' focus search, 'g' grid, 't' table, 'Esc' clear search
+  document.addEventListener('keydown', (e) => {
+    if (e.target.matches('input,textarea,select')) {
+      if (e.key === 'Escape' && e.target === searchInput) {
+        searchInput.value = ''; state.q = ''; applyState(); syncURL(); e.target.blur();
+      }
+      return;
+    }
+    if (e.key === '/') { e.preventDefault(); searchInput.focus(); }
+    else if (e.key === 'g') { document.querySelector('.view-toggle button[data-view="cards"]').click(); }
+    else if (e.key === 't') { document.querySelector('.view-toggle button[data-view="table"]').click(); }
+  });
+
+  // Sync initial UI state from URL
+  searchInput.value = state.q;
+  sortSelect.value = state.sort;
+  tierButtons.forEach(b => b.classList.toggle('active', b.dataset.filter === state.tier));
+  viewButtons.forEach(b => {
+    const a = b.dataset.view === state.view;
+    b.classList.toggle('active', a); b.setAttribute('aria-selected', a ? 'true' : 'false');
+  });
+
+  renderTierStats(state.tier === 'all' ? null : state.tier);
   applyState();
 })();
 </script>
