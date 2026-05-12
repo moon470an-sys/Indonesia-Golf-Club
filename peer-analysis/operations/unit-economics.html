@@ -6,7 +6,7 @@
 <title>단위 경제 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260513c80" />
+<link rel="stylesheet" href="ops-style.css?v=20260513c86" />
 <style>
   .year-bar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:14px 0 4px 0; }
   .year-bar label { font-size:13px; font-weight:600; color:var(--ops-ink-soft); }
@@ -74,6 +74,15 @@
   @media (max-width: 720px) {
     .ops-tbl .col-low-prio { display:none; }
   }
+  /* Density mode: essential — hide low-priority columns even on desktop */
+  body.density-essential .ops-tbl .col-low-prio { display:none; }
+  /* Density toggle UI (mimics view-toggle look) */
+  .density-toggle { display:inline-flex; border:1px solid var(--ops-line); border-radius:6px; overflow:hidden; vertical-align:middle; }
+  .density-toggle button { padding:6px 12px; border:none; background:var(--ops-surface); font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
+  .density-toggle button.active { background:var(--ops-green); color:white; }
+  .density-toggle button + button { border-left:1px solid var(--ops-line); }
+  body.theme-dark .density-toggle button:not(.active) { background:#0f172a; }
+  @media print { .density-toggle { display:none !important; } }
   /* CAGR cell color coding */
   .cagr-pos { color:#16a34a; font-weight:700; }
   .cagr-neg { color:#b91c1c; font-weight:700; }
@@ -207,6 +216,10 @@
     </div>
     <div class="action-bar">
       <input type="search" class="peer-search" id="ue-search" placeholder="🔍 Peer 검색 (티커·그룹명)" aria-label="Peer 검색" autocomplete="off">
+      <div class="density-toggle" role="group" aria-label="컬럼 밀도">
+        <button data-density="all" class="active" title="모든 컬럼 표시 (15개)">전체</button>
+        <button data-density="essential" title="핵심 컬럼만 (6개): Peer·홀·골프매출·CAGR·홀당매출·영업이익률">핵심</button>
+      </div>
       <button class="action-btn" id="copy-tsv-btn" aria-label="현재 표를 TSV로 클립보드 복사">📋 표 복사 (TSV)</button>
       <button class="action-btn" id="download-csv-btn" aria-label="현재 표를 CSV 파일로 다운로드">⬇ CSV 다운로드</button>
       <span class="row-count" id="row-count">13 / 13 표시</span>
@@ -772,6 +785,18 @@ async function flashSuccess(btn, label){
       applyPeerSearchFilter();
     });
   }
+  // Density toggle (핵심/전체)
+  let densityMode = 'all';
+  function applyDensity(mode) {
+    document.body.classList.toggle('density-essential', mode === 'essential');
+    document.querySelectorAll('.density-toggle button').forEach(b => b.classList.toggle('active', b.dataset.density === mode));
+  }
+  document.querySelectorAll('.density-toggle button').forEach(b => {
+    b.addEventListener('click', () => {
+      densityMode = b.dataset.density;
+      applyDensity(densityMode);
+    });
+  });
   // Copy TSV (clipboard-friendly for spreadsheets)
   document.getElementById('copy-tsv-btn').addEventListener('click', async (e) => {
     const tsv = buildTableExport(currentYear, '	');
@@ -861,7 +886,7 @@ async function flashSuccess(btn, label){
   // localStorage persistence: year + tier + sort
   function saveState() {
     try {
-      localStorage.setItem('ue-state', JSON.stringify({ year: currentYear, tier: tierFilter, sort: sortState, q: searchQ }));
+      localStorage.setItem('ue-state', JSON.stringify({ year: currentYear, tier: tierFilter, sort: sortState, q: searchQ, density: densityMode }));
     } catch (e) {}
   }
   function loadState() {
@@ -882,6 +907,10 @@ async function flashSuccess(btn, label){
         const si = document.getElementById('ue-search');
         if (si) si.value = s.q;
       }
+      if (s.density && ['all','essential'].includes(s.density)) {
+        densityMode = s.density;
+        applyDensity(densityMode);
+      }
     } catch (e) {}
   }
   // URL hash overrides localStorage if present (shareable links)
@@ -893,6 +922,7 @@ async function flashSuccess(btn, label){
       year: p.get('year'),
       tier: p.get('tier'),
       q: p.get('q'),
+      density: p.get('density'),
     };
   }
   function syncHash() {
@@ -900,6 +930,7 @@ async function flashSuccess(btn, label){
     if (currentYear && currentYear !== '2024') parts.push('year=' + currentYear);
     if (tierFilter && tierFilter !== 'all') parts.push('tier=' + tierFilter);
     if (searchQ) parts.push('q=' + encodeURIComponent(searchQ));
+    if (densityMode && densityMode !== 'all') parts.push('density=' + densityMode);
     const h = parts.join('&');
     history.replaceState(null, '', h ? '#' + h : location.pathname + location.search);
   }
@@ -919,9 +950,13 @@ async function flashSuccess(btn, label){
       const si = document.getElementById('ue-search');
       if (si) si.value = fromHash.q;
     }
+    if (fromHash.density && ['all','essential'].includes(fromHash.density)) {
+      densityMode = fromHash.density;
+      applyDensity(densityMode);
+    }
   }
-  // Save state on every user-driven change (year, tier, sort, search) + sync URL hash
-  document.querySelectorAll('.year-btn, #tier-pills .tier-pill, #main-table .sortable').forEach(el => {
+  // Save state on every user-driven change (year, tier, sort, search, density) + sync URL hash
+  document.querySelectorAll('.year-btn, #tier-pills .tier-pill, #main-table .sortable, .density-toggle button').forEach(el => {
     el.addEventListener('click', () => setTimeout(() => { saveState(); syncHash(); }, 0));
   });
   if (ueSearch) ueSearch.addEventListener('input', () => setTimeout(() => { saveState(); syncHash(); }, 0));
