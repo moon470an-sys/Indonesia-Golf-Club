@@ -67,6 +67,32 @@
   body.theme-dark .ops-tbl tbody tr:hover { background:rgba(34,197,94,0.06); }
   body.theme-dark .bench-row td { background:rgba(34,197,94,0.06) !important; }
   body.theme-dark .scatter-card, body.theme-dark .discl-pill { background:#1e293b; }
+  /* Tier filter pills */
+  .tier-pills { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:6px 0; }
+  .tier-pill { padding:5px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:999px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
+  .tier-pill.active { background:var(--ops-green); color:white; border-color:var(--ops-green); }
+  .tier-pill:hover:not(.active) { background:rgba(45,80,22,0.05); }
+  tr.tier-hidden { display:none; }
+  /* Print */
+  @media print {
+    @page { size: A4 landscape; margin: 10mm; }
+    body { background:white !important; color:black !important; }
+    .ops-head, .ops-foot, .ast-tab-bar, .tier-pills, .action-bar, .theme-toggle, .discl-summary { display:none !important; }
+    .ops-hero { padding:0 0 6px 0; }
+    .ops-hero h1 { font-size:17px; margin:0 0 4px 0; }
+    .ops-hero .lede { display:none; }
+    .ast-panel { display:block !important; page-break-before:always; }
+    .ast-panel:first-of-type { page-break-before:auto; }
+    .ops-tbl { font-size:9px; }
+    .ops-tbl thead th { background:white !important; border-bottom:1.5px solid black; padding:4px 5px; position:static !important; }
+    .ops-tbl tbody td { border-bottom:0.5px solid #ccc; padding:3px 5px; }
+    .sortable::after { display:none; }
+    .heat-bar { display:none; }
+    .peer-tag { border:0.5px solid #888; padding:0 3px; font-size:8px; }
+    a { color:black !important; text-decoration:none !important; }
+    .bench-row td { background:#f5f5f5 !important; }
+    .scatter-svg { max-width:100%; height:auto; }
+  }
 </style>
 </head>
 <body>
@@ -280,6 +306,13 @@
         면적·홀 단위로 정규화한 매출·자산 밀도. <strong>헤더 클릭 정렬</strong>, 셀 하단 막대는 peer 그룹 내 상대 순위.
         ⚠ 매출/자산 비율은 township은 골프 외 자산 포함이라 단순 비교는 주의 — Pure-play(DMIG/PIPG) 끼리 비교가 가장 정밀.
       </p>
+      <div class="tier-pills" id="prod-tier-pills" role="group" aria-label="Tier 필터">
+        <span style="font-size:11.5px; color:var(--ops-muted); font-weight:600;">Tier:</span>
+        <button class="tier-pill active" data-tier="all">전체</button>
+        <button class="tier-pill" data-tier="pp">🟦 Pure-play</button>
+        <button class="tier-pill" data-tier="resort">🟨 Resort</button>
+        <button class="tier-pill" data-tier="twn">🟩 Township</button>
+      </div>
       <div class="action-bar">
         <button class="action-btn" id="prod-copy-btn">📋 표 복사 (TSV)</button>
         <button class="action-btn" id="prod-csv-btn">⬇ CSV 다운로드</button>
@@ -395,6 +428,7 @@ function heatBar(value, min, max, higherBetter){
 }
 
 let sortState = { key: 'turnover', dir: 'desc' };
+let prodTierFilter = 'all';
 
 function computeRows() {
   return PEER_ORDER.map(t => {
@@ -409,6 +443,20 @@ function computeRows() {
       taPerHole: (f.ta && m.holes) ? f.ta / m.holes : null,
       taPerHa: (f.ta && m.area) ? f.ta / m.area : null,
     };
+  });
+}
+
+function applyTierFilter() {
+  const tbody = document.getElementById('prod-tbody');
+  if (!tbody) return;
+  tbody.querySelectorAll('tr').forEach(row => {
+    const rowTier = row.dataset.tier;
+    let show = (prodTierFilter === 'all');
+    if (!show) {
+      if (rowTier === prodTierFilter) show = true;
+      else if (row.classList.contains('bench-row') && row.classList.contains('tier-' + prodTierFilter)) show = true;
+    }
+    row.classList.toggle('tier-hidden', !show);
   });
 }
 
@@ -440,7 +488,7 @@ function renderProd() {
     const bar = (s && val !== null && val !== undefined) ? heatBar(val, s.min, s.max, heatMetrics[key].higher) : '';
     return `<td class="num heat">${fmt}${bar}</td>`;
   };
-  const peerRows = sorted.map(r => `<tr>
+  const peerRows = sorted.map(r => `<tr data-tier="${r.m.tier}">
     <td class="peer"><a href="clubs/${r.t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${r.t}</a></td>
     <td><span class="peer-tag peer-tag-${r.m.tier}" style="font-size:10px;">${r.m.tier_label}</span></td>
     <td class="num">${fmtNum(r.m.holes)}</td>
@@ -497,6 +545,7 @@ function renderProd() {
     <td class="num">${fmtBn(medAll('taPerHa'))}</td>
   </tr>`);
   document.getElementById('prod-tbody').innerHTML = peerRows.join('') + benchRows.join('');
+  applyTierFilter();
   document.querySelectorAll('#prod-tbl .sortable').forEach(th => {
     th.classList.remove('asc','desc');
     if (th.dataset.sort === sortState.key) th.classList.add(sortState.dir);
@@ -635,6 +684,15 @@ function flashSuccess(btn, label){
     const a = document.createElement('a'); a.href = url; a.download = 'assets-productivity_FY2024.csv';
     document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
     flashSuccess(e.currentTarget, '✓ 다운로드');
+  });
+  // Tier pills
+  document.querySelectorAll('#prod-tier-pills .tier-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      document.querySelectorAll('#prod-tier-pills .tier-pill').forEach(x => x.classList.remove('active'));
+      pill.classList.add('active');
+      prodTierFilter = pill.dataset.tier;
+      applyTierFilter();
+    });
   });
   // Dark mode
   const themeBtn = document.getElementById('theme-toggle');
