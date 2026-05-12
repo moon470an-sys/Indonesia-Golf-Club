@@ -1,0 +1,81 @@
+{
+  "_meta": {
+    "ticker": "CTRA",
+    "parent": "PT Ciputra Development Tbk (Ciputra Group)",
+    "sector": "Property Development",
+    "currency": "IDR",
+    "unit": "rupiah (absolute)",
+    "fiscal_years": [
+      "2020",
+      "2021",
+      "2022",
+      "2023",
+      "2024"
+    ],
+    "source_5y_curated": "site/data/company_financials_5y.json",
+    "source_ar": "annual_reports/CTRA/FY*/AnnualReport*-CTRA-*.pdf (raw PDFs, Note 추출 미실행)",
+    "extraction_method": "Cycle 168 seed only — 5y curated + golf_courses.json 매핑",
+    "extracted_at": "2026-05-12 Cycle 168"
+  },
+  "golf_operations": {
+    "course_count": 2,
+    "courses": [
+      {
+        "course_name": "Ciputra Golf Club & Hotel Surabaya",
+        "location": {},
+        "holes": 27,
+        "area_ha": null,
+        "listed_status": "subsidiary-of-listed",
+        "parent_group": "PT Ciputra Development Tbk (Ciputra Group)"
+      },
+      {
+        "course_name": "Taman Dayu Golf Club & Resort",
+        "location": {},
+        "holes": 18,
+        "area_ha": null,
+        "listed_status": "subsidiary-of-listed",
+        "parent_group": "PT Ciputra Development Tbk (Ciputra Group)"
+      }
+    ],
+    "parent_group": "PT Ciputra Development Tbk (Ciputra Group)"
+  },
+  "company_financials_curated": {
+    "FY2020": {
+      "revenue": 8070737000000,
+      "operating_profit": 2648089000000,
+      "net_profit": 1320754000000,
+      "total_assets": 39255187000000,
+      "total_equity": 15332128000000
+    },
+    "FY2021": {
+      "revenue": 9729651000000,
+      "operating_profit": 3328077000000,
+      "net_profit": 1735329000000,
+      "total_assets": 40668411000000,
+      "total_equity": 19394197000000
+    },
+    "FY2022": {
+      "revenue": 9126799000000,
+      "operating_profit": 3057323000000,
+      "net_profit": 1862403000000,
+      "total_assets": 42032615000000,
+      "total_equity": 21014930000000
+    },
+    "FY2023": {
+      "revenue": 9245032000000,
+      "operating_profit": 2932834000000,
+      "net_profit": 1846087000000,
+      "total_assets": 44115215000000,
+      "total_equity": 22624716000000
+    },
+    "FY2024": {
+      "revenue": 11187565000000,
+      "operating_profit": 3446378000000,
+      "net_profit": 2126288000000,
+      "total_assets": 47022702000000,
+      "total_equity": 24615330000000
+    }
+  },
+  "notes_extraction_status": "pending — AR Note-level extraction 미실행 (Cycle 168 seed only)",
+  "tier_classification": "Tier 4 — Property group + 운영 골프장 (Cycle 168 Peer Group v2)"
+}

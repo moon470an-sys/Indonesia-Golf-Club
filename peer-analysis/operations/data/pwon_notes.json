@@ -1,0 +1,73 @@
+{
+  "_meta": {
+    "ticker": "PWON",
+    "parent": "PT Pakuwon Jati Tbk (Pakuwon Group)",
+    "sector": "Property Development",
+    "currency": "IDR",
+    "unit": "rupiah (absolute)",
+    "fiscal_years": [
+      "2020",
+      "2021",
+      "2022",
+      "2023",
+      "2024"
+    ],
+    "source_5y_curated": "site/data/company_financials_5y.json",
+    "source_ar": "annual_reports/PWON/FY*/AnnualReport*-PWON-*.pdf (raw PDFs, Note 추출 미실행)",
+    "extraction_method": "Cycle 168 seed only — 5y curated + golf_courses.json 매핑",
+    "extracted_at": "2026-05-12 Cycle 168"
+  },
+  "golf_operations": {
+    "course_count": 1,
+    "courses": [
+      {
+        "course_name": "Pakuwon Golf & Family Club",
+        "location": {},
+        "holes": 18,
+        "area_ha": null,
+        "listed_status": "listed",
+        "parent_group": "PT Pakuwon Jati Tbk (Pakuwon Group)"
+      }
+    ],
+    "parent_group": "PT Pakuwon Jati Tbk (Pakuwon Group)"
+  },
+  "company_financials_curated": {
+    "FY2020": {
+      "revenue": 3977211311000,
+      "operating_profit": null,
+      "net_profit": 929918580000,
+      "total_assets": 26458805377000,
+      "total_equity": 17598695271000
+    },
+    "FY2021": {
+      "revenue": 5713273000000,
+      "operating_profit": 2269895000000,
+      "net_profit": 1382548000000,
+      "total_assets": 28866081000000,
+      "total_equity": 19178438000000
+    },
+    "FY2022": {
+      "revenue": 5987433000000,
+      "operating_profit": 2601974000000,
+      "net_profit": 1538835000000,
+      "total_assets": 30602180000000,
+      "total_equity": 20718276000000
+    },
+    "FY2023": {
+      "revenue": 6200438000000,
+      "operating_profit": 2660291000000,
+      "net_profit": 2105210000000,
+      "total_assets": 32710787000000,
+      "total_equity": 22795334000000
+    },
+    "FY2024": {
+      "revenue": 6670809000000,
+      "operating_profit": 2900946000000,
+      "net_profit": 2074731000000,
+      "total_assets": 35371085000000,
+      "total_equity": 24741997000000
+    }
+  },
+  "notes_extraction_status": "pending — Pakuwon Golf Family Club segment 공시 여부 확인 필요",
+  "tier_classification": "Tier 4 — Property group + 운영 골프장 (Cycle 168 Peer Group v2)"
+}

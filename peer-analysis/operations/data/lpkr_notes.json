@@ -1,0 +1,73 @@
+{
+  "_meta": {
+    "ticker": "LPKR",
+    "parent": "PT Lippo Karawaci Tbk (Lippo Group)",
+    "sector": "Property + Healthcare",
+    "currency": "IDR",
+    "unit": "rupiah (absolute)",
+    "fiscal_years": [
+      "2020",
+      "2021",
+      "2022",
+      "2023",
+      "2024"
+    ],
+    "source_5y_curated": "site/data/company_financials_5y.json",
+    "source_ar": "annual_reports/LPKR/FY*/AnnualReport*-LPKR-*.pdf (raw PDFs, Note 추출 미실행)",
+    "extraction_method": "Cycle 168 seed only — 5y curated + golf_courses.json 매핑",
+    "extracted_at": "2026-05-12 Cycle 168"
+  },
+  "golf_operations": {
+    "course_count": 1,
+    "courses": [
+      {
+        "course_name": "Imperial Klub Golf",
+        "location": {},
+        "holes": 18,
+        "area_ha": null,
+        "listed_status": "subsidiary-of-listed",
+        "parent_group": "Lippo Group (Lippo Karawaci)"
+      }
+    ],
+    "parent_group": "Lippo Group (Lippo Karawaci)"
+  },
+  "company_financials_curated": {
+    "FY2020": {
+      "revenue": 11966300000000,
+      "operating_profit": -4962400000000,
+      "net_profit": -8891100000000,
+      "total_assets": 51865500000000,
+      "total_equity": 23573700000000
+    },
+    "FY2021": {
+      "revenue": 16138531000000,
+      "operating_profit": 796408000000,
+      "net_profit": -1602894000000,
+      "total_assets": 52080936000000,
+      "total_equity": 22486009000000
+    },
+    "FY2022": {
+      "revenue": 14674086000000,
+      "operating_profit": 1342867000000,
+      "net_profit": -2692075000000,
+      "total_assets": 49870897000000,
+      "total_equity": 19139891000000
+    },
+    "FY2023": {
+      "revenue": 16702038000000,
+      "operating_profit": 2354897000000,
+      "net_profit": 50140000000,
+      "total_assets": 49570824000000,
+      "total_equity": 19606431000000
+    },
+    "FY2024": {
+      "revenue": 11347979000000,
+      "operating_profit": 1389947000000,
+      "net_profit": 18746045000000,
+      "total_assets": 53783859000000,
+      "total_equity": 30947069000000
+    }
+  },
+  "notes_extraction_status": "pending — Imperial Klub Golf segment 공시 여부 확인 필요",
+  "tier_classification": "Tier 4 — Property group + 운영 골프장 (Cycle 168 Peer Group v2)"
+}

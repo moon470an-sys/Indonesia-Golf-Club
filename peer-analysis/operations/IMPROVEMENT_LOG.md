@@ -2383,6 +2383,47 @@ overview.html footer Cycle 48 → Cycle 76 + 메타 일관성. index.html 카운
 
 ---
 
+## Cycle 168 — 2026-05-12 — ★ Peer Group v2 재편 (4 swap, Tier framework) ★
+
+**사용자 요청**: "Peer Group에서 골프장 정보가 아예 없는 곳도 있던데 불필요한 회사는 Peer Group에서 제외하여 주고 다른 재무제표 보유 회사 중 골프장 정보가 있는 회사를 Peer Group에 추가해줘".
+
+### 4-tier framework 도입
+- Tier 1 Pure-play 골프 (DMIG·PIPG·GOLF) ★★★★★
+- Tier 2 Group + Golf segment 분리 (MDLN·KIJA·SMDM) ★★★★
+- Tier 3 Adjacent (Hotel/Leisure 통합) (KPIG·SMRA) ★★★
+- Tier 4 부동산 그룹 + 운영 골프장 (BSDE·CTRA·ELTY·LPKR·PWON) ★★★
+
+### REMOVE (4 peer → archived/)
+- **MKPI**: PIPG 0.38% associate만 / 0 골프. Cycle 102 verified no Golf segment
+- **BKDP**: CORRECTIONS #10 매출 = 쇼핑센터 임대. Bukit Darmo Golf 사실상 비활성
+- **BKSL**: Sentul Highlands·Rainbow Hills·Permata Sentul 3개 모두 PT Padang Golf Bukit Sentul (관계사) 운영
+- **DILD**: Cycle 101 verified no Golf segment. Golf Graha Famili AR 분리 공시 0
+
+### ADD (4 peer 신규 seed)
+- **CTRA** (PT Ciputra Development): Ciputra Surabaya + Taman Dayu (2 코스) / FY24 Rp 11.19T
+- **ELTY** (PT Bakrieland): Gunung Geulis + Klub Golf Bogor Raya (2 코스) / FY24 Rp 1.21T
+- **LPKR** (PT Lippo Karawaci): Imperial Klub Golf (premium Jakarta) / FY24 Rp 11.35T
+- **PWON** (PT Pakuwon Jati): Pakuwon Golf & Family Club / FY24 Rp 6.67T
+
+### 산출물 변경
+- `operations/data/archived/{mkpi,bkdp,bksl,dild}_notes.json` — 데이터 보존 (history)
+- `operations/data/{ctra,elty,lpkr,pwon}_notes.json` — seed (5y curated + golf_courses 매핑, AR Note 추출은 후속 cycle)
+- `operations/data/peers_summary.json` v2 — 13 peer regenerate 82.9 KB, Tier 분류 metadata 포함
+- `site/data/company_financials_5y.json` v1.4 — peer_group_v2 framework + 제거/추가 사유 metadata
+- HTML 7 페이지 — index hero banner + overview h2/h3 + 5 페이지 footer note (Peer Group v2 prominent display)
+- 6 메타 문서 — README·IMPROVEMENT_LOG·verification_log·CORRECTIONS·LIMITATIONS·INVENTORY 모두 v2 반영
+
+### 정량 효과
+- 골프 운영 직접 보유 peer: 8 → **12** (+CTRA·ELTY·LPKR·PWON)
+- 골프 정보 0 peer: 1 (MKPI) → **0**
+- 부동산 그룹 골프 비교: 1 (BSDE) → **5** (+CTRA·ELTY·LPKR·PWON)
+- Pure-play 직접 비교: 2 → **3** (DMIG·PIPG + GOLF 반-pure)
+
+### Cycle 167 (생략)
+숫자 누락 (Cycle 166 → 168 jump). 향후 entry 작성 시 numbering 일관성 유지.
+
+---
+
 ## Cycle 166 — 2026-05-11 — history table Cycle 165 1행 추가
 
 History table에 Cycle 165 (1행) 추가. 166 cycle 누적 history.

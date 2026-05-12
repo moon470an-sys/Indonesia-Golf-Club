@@ -1,9 +1,9 @@
 {
   "metadata": {
     "title": "6-Year Financial History for Golf-Related Listed Companies",
-    "version": "1.3",
+    "version": "1.4",
     "last_updated": "2026-05-12",
-    "scope": "FY2020-FY2025 audited data for IDX/NYSE/SGX listed parents of Indonesian golf courses (FY2025: 7 peer full + 2 partial + 4 caveat — DMIG·PIPG newly added Cycle 167)",
+    "scope": "FY2020-FY2025 audited data for IDX/NYSE/SGX listed parents of Indonesian golf operating companies. Peer Group v2 (Cycle 168): 4-tier framework, 13 peer with direct golf operation",
     "currency_notes": "All revenue/profit/asset figures in fiscal-year native currency. Non-IDR tickers (AMMN/FCX/B58) include _idr_equiv at year-end BI rates (2020=14050, 2021=14252, 2022=15592, 2023=15397, 2024=16157).",
     "upgrade_pass": "2026-05-01: PIPG/DMIG/GOLF/B58 upgraded via PDF parsing (pdftotext, PyMuPDF, Wayback Machine). AMMN FY2020 corrected via IPO prospectus.; 2026-05-01 (NCI fix): FY2020 total_equity for BSDE/BKSL/ELTY/DILD/PWON now reports consolidated equity = parent + NCI; added total_equity_parent and non_controlling_interests fields. total_liabilities corrected to consolidated audited figures from primary IDX/IR PDFs.",
     "upgrade_pass_2": "2026-05-01: Added DILD (Graha Famili), PWON (Pakuwon Golf Surabaya), BN4 (Keppel — Ria Bintan JV)",
@@ -33,6 +33,73 @@
       "unavailable": [],
       "updated_at": "2026-05-12",
       "cycle_167_addition": "DMIG·PIPG FY25 AR 신규 다운로드 (damaiindahgolf.com + golfpondokindah.com) → full P&L+BS 추출"
+    },
+    "peer_group_v2": {
+      "effective_cycle": 168,
+      "reorganization_date": "2026-05-12",
+      "rationale": "관리 관점 — 골프 운영 직접 보유 + 비교 가치 기준 재편. MKPI(0 golf) + BKDP(defunct) + BKSL(관계사 운영) + DILD(segment X) 4 peer 제거 + CTRA·ELTY·LPKR·PWON 4 peer 추가",
+      "tier_1_pure_play_golf": {
+        "peers": [
+          "DMIG",
+          "PIPG",
+          "GOLF"
+        ],
+        "definition": "골프장이 100% 또는 압도적 주력 사업",
+        "compare_priority": "★★★★★ direct apples-to-apples"
+      },
+      "tier_2_group_with_golf_segment_disclosed": {
+        "peers": [
+          "MDLN",
+          "KIJA",
+          "SMDM"
+        ],
+        "definition": "AR에서 골프 segment 매출·비용 별도 라인 공시",
+        "compare_priority": "★★★★ segment-level financial comparison"
+      },
+      "tier_3_adjacent_bundled": {
+        "peers": [
+          "KPIG",
+          "SMRA"
+        ],
+        "definition": "골프가 Hotel/Resort/Leisure 통합 라인에 포함",
+        "compare_priority": "★★★ adjacent market 큰 그림"
+      },
+      "tier_4_property_group_with_golf_operations": {
+        "peers": [
+          "BSDE",
+          "CTRA",
+          "ELTY",
+          "LPKR",
+          "PWON"
+        ],
+        "definition": "메인 사업은 부동산이나 1개 이상 운영 골프장 보유",
+        "compare_priority": "★★★ industry benchmark"
+      },
+      "total_peer_count": 13,
+      "removed_cycle_168": [
+        "MKPI",
+        "BKDP",
+        "BKSL",
+        "DILD"
+      ],
+      "removal_reasons": {
+        "MKPI": "PIPG 0.38% associate만 외 0 골프 — Cycle 102 verified no Golf segment",
+        "BKDP": "CORRECTIONS #10: 매출 = 쇼핑센터 임대. Bukit Darmo Golf 사실상 비활성",
+        "BKSL": "Sentul Highlands·Rainbow Hills·Permata Sentul 3개 모두 PT Padang Golf Bukit Sentul (관계사) 운영",
+        "DILD": "Cycle 101 verified no Golf segment. Golf Graha Famili 1코스 있으나 AR 분리 공시 0"
+      },
+      "added_cycle_168": [
+        "CTRA",
+        "ELTY",
+        "LPKR",
+        "PWON"
+      ],
+      "addition_reasons": {
+        "CTRA": "Ciputra Surabaya + Taman Dayu 2 course operating. FY24 Rp 11.19T 매출",
+        "ELTY": "Gunung Geulis + Klub Golf Bogor Raya 2 course. FY24 Rp 1.21T (골프 비중 상대적 큼)",
+        "LPKR": "Imperial Klub Golf 1 premium Jakarta. FY24 Rp 11.35T",
+        "PWON": "Pakuwon Golf & Family Club 1 course. FY24 Rp 6.67T"
+      }
     }
   },
   "companies": [

@@ -7,6 +7,8 @@
 
 **한계 해소 사례 #2 (Cycle 167)**: DMIG·PIPG FY2025 AR이 IDX/사이트 환경에 부재 (LIMITATIONS 5 FY 시계열 부분 누락) → 각 peer 공식 IR 사이트 직접 다운로드로 해소. damaiindahgolf.com + golfpondokindah.com에서 FY25 AR + Financial Statement att2 확보. 13/13 peer FY22-FY25 4년 series 완성. PDF 부재로 인한 시계열 단절 첫 해소 사례.
 
+**한계 해소 사례 #3 (Cycle 168) — Peer Group 분류 자체 재편**: 일부 peer (MKPI·BKDP·BKSL·DILD)가 LIMITATIONS cat.3 (AR 분리 미공시)에 속해 분석 가치 낮음 → Peer Group v2로 4 swap. 제거된 4 peer는 `operations/data/archived/`에 보존 (history). 신규 추가 4 peer (CTRA·ELTY·LPKR·PWON)는 운영 골프장 직접 보유한 부동산 그룹. **결과**: 골프 운영 정보 0 peer가 1 → 0으로 감소. AR 분리 미공시 한계가 framework 차원에서 부분 해소 (분석 우선순위 명확화).
+
 **한계 해소 사례 (Cycle 56 → 98)**: BSDE FY24 AR att2 segment Note 추출 실패 (Cycle 56) → BSDE FY25 AR에서 동일 Note 텍스트 추출 성공 (Cycle 98). 일부 image-PDF 추정 한계는 후속 fiscal year AR에서 해소 가능함을 입증.
 
 ---

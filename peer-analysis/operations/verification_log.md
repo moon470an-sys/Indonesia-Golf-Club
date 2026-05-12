@@ -198,6 +198,33 @@
 
 ---
 
+## Cycle 168 검증 summary — Peer Group v2 재편
+
+### 재편 근거 검증
+
+| Peer | 제거/추가 | 근거 (이전 cycle) |
+|------|----------|------------------|
+| MKPI 제거 | Cycle 102 verified no Golf segment | Note 37 Informasi Segmen Usaha 6 segments에 Golf 없음 |
+| BKDP 제거 | Cycle 12·24 CORRECTIONS #10 | "매출 = 쇼핑센터 임대 (골프 운영 없음)" + Cycle 92 FY25 P&L도 비골프 매출 |
+| BKSL 제거 | Cycle 103 verified | Note 37 2 segments (Real Estat + Lain-lain), Golf 없음. 관계사 PT Padang Golf Bukit Sentul 운영 |
+| DILD 제거 | Cycle 101 verified | Note Informasi Segmen 6 segments (Land·High Rise·Industri Perkantoran·Estate Facilities·Hotels·Lainnya), Golf 없음 |
+| CTRA 추가 | golf_courses.json 매핑 | Ciputra Golf Club Surabaya + Taman Dayu (2 코스 listed under CTRA ticker) |
+| ELTY 추가 | golf_courses.json 매핑 | Gunung Geulis + Klub Golf Bogor Raya (2 코스 listed) |
+| LPKR 추가 | golf_courses.json 매핑 | Imperial Klub Golf (1 코스 listed) |
+| PWON 추가 | golf_courses.json 매핑 | Pakuwon Golf & Family Club (1 코스 listed) |
+
+### 데이터 일관성 검증
+- 새 4 peer (CTRA·ELTY·LPKR·PWON): company_financials_5y.json에 이미 FY2020-2024 데이터 보유 (audited curated)
+- peers_summary.json v2 (82.9 KB) regenerate — 13 peer 단일 source 유지
+- 4 archived peer JSONs (mkpi·bkdp·bksl·dild) 보존 → history 추적 가능
+
+### 잔여 작업 (후속 cycle)
+- 4 신규 peer (CTRA·ELTY·LPKR·PWON) AR Note 직접 추출 미실행 (seed only)
+- HTML 13-peer 매트릭스 테이블 cell의 BKDP/BKSL/MKPI/DILD 표기 → 역사 데이터로 보존 (banner+footer가 v2 framework 안내)
+- 향후 Tier 4 peer 분석 깊이 확장 (Claude Code Read tool로 AR Notes 점진 추출)
+
+---
+
 ## Cycle 132-137 검증 summary (Cycle 137)
 
 ### Stale placeholder 정리 (Cycle 132-136)

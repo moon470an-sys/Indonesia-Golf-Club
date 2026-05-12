@@ -33,7 +33,9 @@ Cycle 1-57 누적 결과 기준 (마지막 갱신 Cycle 57).
 
 ---
 
-## 3. 데이터 JSON (13개 peer + 통합 + 기존 = 15개, data/ 하위) — **13/13 완주 (Cycle 103)**
+## 3. 데이터 JSON (13개 peer v2 + 통합 + archived 4 + 기존 = 19개, data/ 하위)
+
+> **Peer Group v2 (Cycle 168)**: MKPI·BKDP·BKSL·DILD 4개 → `data/archived/`. CTRA·ELTY·LPKR·PWON 4개 신규 추가 (seed only).
 
 | 파일 | peer | 내용 |
 |------|------|------|
@@ -50,7 +52,9 @@ Cycle 1-57 누적 결과 기준 (마지막 갱신 Cycle 57).
 | `dild_notes.json` | DILD (Cycle 101 신규) | **FY25 Informasi Segmen 직접 추출**: 6 segment Land·High Rise·Industri Perkantoran·Estate Facilities·Hotels·Lainnya — **Golf segment 없음 확인**. Segment results: Land +72.8% / High Rise -49.6% / Hotels +25.9%. Consolidated 자산 12,756 bn. |
 | `mkpi_notes.json` | MKPI (Cycle 102 신규) | **FY25 Note 37 Informasi Segmen Usaha 직접 추출**: 6 segment Shopping Center·Office·Apartment·Real Estate·Water Park·Hotel — **Golf segment 없음**. Pondok Indah Golf은 PIPG (associate) 운영. Operating income Rp 1,240 bn / Net Rp 1,122 bn. |
 | `bksl_notes.json` | BKSL (Cycle 103 신규 — **13/13 완주**) | **FY25 Note 37 Segmen Operasi 직접 추출**: 2 segment Real Estat(primary) + Lain-lain(restoran·taman hiburan·pengelolaan kota) — **Golf segment 없음 확인**. Sentul Golf은 PT Padang Golf Bukit Sentul (관계사) 운영 (Cycle 24 일관). Net profit Rp 833 bn. |
-| `peers_summary.json` | 13 peer 통합 (Cycle 33·81·97·105 regenerate) | 위 13 JSON merge + _meta (peer_count, FY 범위, 출처). **Cycle 105 79.0 KB (13/13 완주 — BSDE·DILD·MKPI·BKSL 추가)**. downstream consumer가 단일 파일로 query 가능. |
+| `peers_summary.json` | 13 peer 통합 v2 (Cycle 33·81·97·105·168 regenerate) | 위 13 JSON merge + _meta (peer_count, FY 범위, Tier 분류). **Cycle 168 82.9 KB (v2: -MKPI·BKDP·BKSL·DILD +CTRA·ELTY·LPKR·PWON)**. downstream single source. |
+| `archived/{mkpi,bkdp,bksl,dild}_notes.json` | Cycle 168 archived | Peer Group v2 재편으로 active set 제외. History 보존용. Cycle 102·12·24·103·101 추출 데이터 그대로 보존. |
+| `{ctra,elty,lpkr,pwon}_notes.json` | Cycle 168 신규 seed | 5y curated + golf_courses.json 매핑 기반 seed. AR Note 직접 추출은 후속 cycle 점진 진행. Tier 4 (부동산 그룹 + 운영 골프장). |
 
 **JSON 파일 크기 분포 (Cycle 143 audit)**:
 - 가장 큰 peer JSON: pipg_notes.json (8.9 KB) — Pure-play golf, Note 27·28·29 + 5 agreements + HGB 토지권 + SDM 254명

@@ -1,6 +1,21 @@
-# 인도네시아 골프 운영 벤치마크 — IDX 13 peer
+# 인도네시아 골프 운영 벤치마크 — IDX 13 peer (v2)
 
 > **메타 문서 cross-reference**: README.md (본 문서) · [IMPROVEMENT_LOG.md](IMPROVEMENT_LOG.md) (사이클 변경) · [verification_log.md](verification_log.md) (검증) · [CORRECTIONS.md](CORRECTIONS.md) (11건 정정) · [LIMITATIONS.md](LIMITATIONS.md) (6 한계) · [INVENTORY.md](INVENTORY.md) (종합)
+
+## 🆕 Peer Group v2 (Cycle 168, 2026-05-12)
+
+골프 운영 정보 깊이 기준 4-tier framework로 13 peer 재구성:
+
+| Tier | 정의 | Peer (count) |
+|------|------|--------------|
+| **1. Pure-play 골프** | 골프장이 100% 또는 압도적 주력 | DMIG · PIPG · GOLF (3) |
+| **2. Group + Golf segment 분리 공시** | AR에서 골프 매출·비용 별도 라인 | MDLN · KIJA · SMDM (3) |
+| **3. Adjacent (Hotel/Leisure 통합)** | Hotel·Resort·Leisure에 골프 포함 | KPIG · SMRA (2) |
+| **4. 부동산 그룹 + 운영 골프장** | 메인은 부동산이나 1+ 운영 골프장 | BSDE · CTRA · ELTY · LPKR · PWON (5) |
+
+**v1 → v2 변경 (4 swap)**:
+- **REMOVE**: MKPI (0 골프) · BKDP (defunct, 쇼핑센터) · BKSL (관계사 운영) · DILD (Golf segment X) → `operations/data/archived/`
+- **ADD**: CTRA (Ciputra 2 코스) · ELTY (Bakrieland 2 코스) · LPKR (Lippo Imperial Klub) · PWON (Pakuwon Golf)
 
 운영 총괄 관점 + AR Note 직접 인용 기반 벤치마크 사이트.
 13개 IDX 상장사 (DMIG·KPIG·MKPI·PIPG·BSDE·DILD·GOLF·MDLN·SMRA·SMDM·KIJA·BKDP·BKSL)의 FY2022-FY2024 골프 부문 운영을 비교.

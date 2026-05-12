@@ -1,0 +1,81 @@
+{
+  "_meta": {
+    "ticker": "ELTY",
+    "parent": "PT Bakrieland Development Tbk (Bakrie Group / 역사적 운영)",
+    "sector": "Property Development",
+    "currency": "IDR",
+    "unit": "rupiah (absolute)",
+    "fiscal_years": [
+      "2020",
+      "2021",
+      "2022",
+      "2023",
+      "2024"
+    ],
+    "source_5y_curated": "site/data/company_financials_5y.json",
+    "source_ar": "annual_reports/ELTY/FY*/AnnualReport*-ELTY-*.pdf (raw PDFs, Note 추출 미실행)",
+    "extraction_method": "Cycle 168 seed only — 5y curated + golf_courses.json 매핑",
+    "extracted_at": "2026-05-12 Cycle 168"
+  },
+  "golf_operations": {
+    "course_count": 2,
+    "courses": [
+      {
+        "course_name": "Gunung Geulis Country Club",
+        "location": {},
+        "holes": 36,
+        "area_ha": null,
+        "listed_status": "subsidiary-of-listed",
+        "parent_group": "Bakrie Group / Bakrieland Development (historical) — current ownership private/affiliated"
+      },
+      {
+        "course_name": "Klub Golf Bogor Raya",
+        "location": {},
+        "holes": 18,
+        "area_ha": null,
+        "listed_status": "subsidiary-of-listed",
+        "parent_group": "Bakrieland Development (historical) / current Bogor Raya Resort owners"
+      }
+    ],
+    "parent_group": "Bakrie Group / Bakrieland Development (historical) — current ownership private/affiliated"
+  },
+  "company_financials_curated": {
+    "FY2020": {
+      "revenue": 616210000000,
+      "operating_profit": null,
+      "net_profit": -326350000000,
+      "total_assets": 11823436000000,
+      "total_equity": 8435792000000
+    },
+    "FY2021": {
+      "revenue": 784410000000,
+      "operating_profit": -116294000000,
+      "net_profit": -201910000000,
+      "total_assets": 11681203000000,
+      "total_equity": 8147635000000
+    },
+    "FY2022": {
+      "revenue": 1011006000000,
+      "operating_profit": -17950000000,
+      "net_profit": -245309000000,
+      "total_assets": 9913459000000,
+      "total_equity": 7241847000000
+    },
+    "FY2023": {
+      "revenue": 1227355000000,
+      "operating_profit": -183152000000,
+      "net_profit": -1079192000000,
+      "total_assets": 8639053000000,
+      "total_equity": 6131245000000
+    },
+    "FY2024": {
+      "revenue": 1208198000000,
+      "operating_profit": 75117000000,
+      "net_profit": -68528000000,
+      "total_assets": 8742017000000,
+      "total_equity": 6024215000000
+    }
+  },
+  "notes_extraction_status": "pending — Gunung Geulis + Bogor Raya 실 운영 주체 확인 필요",
+  "tier_classification": "Tier 4 — Property group + 운영 골프장 (Cycle 168 Peer Group v2)"
+}

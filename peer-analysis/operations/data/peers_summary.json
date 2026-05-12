@@ -1,6 +1,7 @@
 {
   "_meta": {
-    "description": "Consolidated peer notes — 13 peer single source (FY22-FY25)",
+    "description": "Consolidated peer notes — Peer Group v2 (Cycle 168) 13 peer single source",
+    "version": 2,
     "peer_count": 13,
     "peers_included": [
       "dmig",
@@ -10,17 +11,47 @@
       "kija",
       "smdm",
       "kpig",
-      "bkdp",
       "smra",
       "bsde",
-      "dild",
-      "mkpi",
-      "bksl"
+      "ctra",
+      "elty",
+      "lpkr",
+      "pwon"
     ],
-    "fiscal_years_covered": "FY2022-FY2025 (DMIG·PIPG FY25 신규 추가 2026-05-12)",
-    "sources": "IDX 공식 + 각 peer IR 홈페이지",
-    "generated_at": "2026-05-12 Cycle 167 (DMIG·PIPG FY25 통합 후 4번째 regenerate)",
-    "prior_versions": "Cycle 33 7p 55.7KB → 81 +FY25 63.8KB → 97 9p 67.3KB → 105 13p 79.0KB → 167 +DMIG·PIPG FY25"
+    "tier_classification": {
+      "tier_1_pure_play": [
+        "dmig",
+        "pipg",
+        "golf"
+      ],
+      "tier_2_segment_disclosed": [
+        "mdln",
+        "kija",
+        "smdm"
+      ],
+      "tier_3_bundled": [
+        "kpig",
+        "smra"
+      ],
+      "tier_4_property_group_with_golf": [
+        "bsde",
+        "ctra",
+        "elty",
+        "lpkr",
+        "pwon"
+      ]
+    },
+    "fiscal_years_covered": "FY2020-FY2025 (depth varies by peer)",
+    "sources": "IDX 공식 AR + 각 peer IR + curated 5y data",
+    "generated_at": "2026-05-12 Cycle 168 (Peer Group reorganization)",
+    "prior_versions": "v1 Cycle 33·81·97·105·167 (MKPI·BKDP·BKSL·DILD 포함 13 peer) → v2 Cycle 168 (4 swap: -MKPI·BKDP·BKSL·DILD +CTRA·ELTY·LPKR·PWON)",
+    "archived_peers_cycle_168": [
+      "mkpi",
+      "bkdp",
+      "bksl",
+      "dild"
+    ],
+    "archive_location": "operations/data/archived/"
   },
   "peers": {
     "dmig": {
@@ -1990,54 +2021,6 @@
         "golf_segment_disclosure": "Hotel + Resort + Golf 통합 라인 유지 (FY24과 동일 패턴). Golf 단독 분리 여전히 없음. 본 사이트 6-peer 비교 대상 외 유지."
       }
     },
-    "bkdp": {
-      "_meta": {
-        "ticker": "BKDP",
-        "parent": "PT Bukit Darmo Property Tbk dan Entitas Anak / and Subsidiaries",
-        "currency": "IDR",
-        "unit": "rupiah (absolute)",
-        "fiscal_years": [
-          "FY2024",
-          "FY2025"
-        ],
-        "source_ar": [
-          "annual_reports/BKDP/FY2025/AnnualReport2025-BKDP-att2.pdf"
-        ],
-        "extraction_method": "PyMuPDF positional text extraction",
-        "extracted_at": "2026-05-11 Cycle 92"
-      },
-      "note": "BKDP is NOT a golf operator. Per Cycle 24 finding (CORRECTIONS #10), BKDP main revenue is shopping centre rental (Plaza). Included here for risk.html Going Concern context only.",
-      "fy2025_pnl": {
-        "source_page": "FY25 AR att2 p.70 LAPORAN LABA RUGI KONSOLIDASIAN",
-        "revenue_FY2025": 36632337898,
-        "revenue_FY2024_comparative": 30520490000,
-        "yoy_revenue": 0.2002,
-        "cogs_FY2025": 42364344871,
-        "cogs_FY2024_comparative": 38645057443,
-        "gross_loss_FY2025": -5732006973,
-        "gross_loss_FY2024_comparative": -8124567443,
-        "gross_loss_improvement": 0.294,
-        "operating_expenses_FY2025": -23435859898,
-        "operating_expenses_FY2024_comparative": -22524734239,
-        "loss_from_operation_FY2025": -29096870620,
-        "loss_from_operation_FY2024_comparative": -30550273161,
-        "final_tax_expense_FY2025": -4312126340,
-        "financial_charge_FY2025": -2251297159,
-        "loss_for_year_FY2025_total": -35573382387,
-        "loss_for_year_FY2024_total": -35914000850,
-        "loss_attributable_to_parent_FY2025": -35556555414,
-        "loss_attributable_to_NCI_FY2025": -16826973,
-        "eps_basic_FY2025": -4.73,
-        "eps_basic_FY2024_comparative": -4.78,
-        "total_comprehensive_loss_FY2025": -36798458126
-      },
-      "going_concern_FY2025": {
-        "auditor_pages": "p.58-67 (image-based PDF — PyMuPDF returns empty text)",
-        "status": "image PDF limitation 동일 (FY24 AR도 image PDF). FY25 auditor opinion 텍스트 직접 추출 불가 (LIMITATIONS category 1).",
-        "operational_facts_FY2025": "Revenue +20.0% YoY (Rp 30.52 bn → 36.63 bn). Gross Loss 지속 (Rp -5.73 bn / FY24 -8.12 bn). Net Loss 지속 (Rp -35.57 bn / FY24 -35.91 bn). EPS Basic -4.73 (FY24 -4.78). 매출 성장 + 손실 지속.",
-        "fy24_going_concern_reference": "Cycle 12 verified FY24 AR Going Concern uncertainty (per CORRECTIONS.md). FY25 auditor opinion 본 사이트 미추출."
-      }
-    },
     "smra": {
       "_meta": {
         "ticker": "SMRA",
@@ -2163,199 +2146,313 @@
         "current_status_FY2025": "31 Desember 2025 기준, 그룹 추가 중대 소송 없음 (그룹 입장)."
       }
     },
-    "dild": {
+    "ctra": {
       "_meta": {
-        "ticker": "DILD",
-        "parent": "PT Intiland Development Tbk dan Entitas Anak / and Its Subsidiaries",
+        "ticker": "CTRA",
+        "parent": "PT Ciputra Development Tbk (Ciputra Group)",
+        "sector": "Property Development",
         "currency": "IDR",
         "unit": "rupiah (absolute)",
         "fiscal_years": [
-          "FY2024",
-          "FY2025"
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024"
         ],
-        "source_ar": [
-          "annual_reports/DILD/FY2025/AnnualReport2025-DILD-att2.pdf"
-        ],
-        "extraction_method": "PyMuPDF positional text extraction",
-        "extracted_at": "2026-05-11 Cycle 101"
+        "source_5y_curated": "site/data/company_financials_5y.json",
+        "source_ar": "annual_reports/CTRA/FY*/AnnualReport*-CTRA-*.pdf (raw PDFs, Note 추출 미실행)",
+        "extraction_method": "Cycle 168 seed only — 5y curated + golf_courses.json 매핑",
+        "extracted_at": "2026-05-12 Cycle 168"
       },
-      "segment_note_FY2025": {
-        "source_page": "FY25 AR att2 p.445 Note INFORMASI SEGMEN OPERASI",
-        "segments_listed_FY2025": [
-          "Kawasan Perumahan (Land)",
-          "High Rise",
-          "Industri Perkantoran (Industrial Offices)",
-          "Estate Facilities",
-          "Hotels",
-          "Lainnya (Others)"
+      "golf_operations": {
+        "course_count": 2,
+        "courses": [
+          {
+            "course_name": "Ciputra Golf Club & Hotel Surabaya",
+            "location": {},
+            "holes": 27,
+            "area_ha": null,
+            "listed_status": "subsidiary-of-listed",
+            "parent_group": "PT Ciputra Development Tbk (Ciputra Group)"
+          },
+          {
+            "course_name": "Taman Dayu Golf Club & Resort",
+            "location": {},
+            "holes": 18,
+            "area_ha": null,
+            "listed_status": "subsidiary-of-listed",
+            "parent_group": "PT Ciputra Development Tbk (Ciputra Group)"
+          }
         ],
-        "golf_segment": "NONE — DILD FY25 operating segments include Hotels and Estate Facilities but no standalone Golf segment. FY24 comparative column confirmed identical segment definition.",
-        "segment_results_FY2025": {
-          "Kawasan_Perumahan_Land": 453548443847,
-          "High_Rise": 67551766420,
-          "Industri_Perkantoran": 127242771060,
-          "Estate_Facilities": 248899595473,
-          "Hotels": 47835399614,
-          "Lainnya_Others": 15409193526,
-          "Eliminasi": 0,
-          "Konsolidasi_unverified": "Total 정량 추가 추출 필요"
+        "parent_group": "PT Ciputra Development Tbk (Ciputra Group)"
+      },
+      "company_financials_curated": {
+        "FY2020": {
+          "revenue": 8070737000000,
+          "operating_profit": 2648089000000,
+          "net_profit": 1320754000000,
+          "total_assets": 39255187000000,
+          "total_equity": 15332128000000
         },
-        "segment_results_FY2024_comparative": {
-          "Kawasan_Perumahan_Land": 262452881449,
-          "High_Rise": 133980954022,
-          "Industri_Perkantoran": 117640406290,
-          "Estate_Facilities": 221432601279,
-          "Hotels": 38006417279,
-          "Lainnya_Others": 11838743443
+        "FY2021": {
+          "revenue": 9729651000000,
+          "operating_profit": 3328077000000,
+          "net_profit": 1735329000000,
+          "total_assets": 40668411000000,
+          "total_equity": 19394197000000
         },
-        "yoy_changes_segment_results": {
-          "Kawasan_Perumahan_yoy": 0.728,
-          "High_Rise_yoy": -0.496,
-          "Industri_Perkantoran_yoy": 0.082,
-          "Estate_Facilities_yoy": 0.124,
-          "Hotels_yoy": 0.259,
-          "Lainnya_yoy": 0.302,
-          "comment": "Land 부문 segment result 대폭 증가 (+72.8%). High Rise -49.6% 감소. Hotels +25.9%."
+        "FY2022": {
+          "revenue": 9126799000000,
+          "operating_profit": 3057323000000,
+          "net_profit": 1862403000000,
+          "total_assets": 42032615000000,
+          "total_equity": 21014930000000
         },
-        "segment_assets_FY2025": {
-          "Kawasan_Perumahan_Land": 3135446991766,
-          "High_Rise": 7047496377447,
-          "Industri_Perkantoran": 1216126456225,
-          "Estate_Facilities": 1161435721719,
-          "Hotels": 744346627515,
-          "Lainnya_Others": 8313580670,
-          "Eliminasi": -556944598488,
-          "Konsolidasi": 12756221156854,
-          "comment": "Hotels segment assets Rp 744.3 bn (FY24 700.8 bn). 6 segment 전체 자산 Rp 12,756 bn."
+        "FY2023": {
+          "revenue": 9245032000000,
+          "operating_profit": 2932834000000,
+          "net_profit": 1846087000000,
+          "total_assets": 44115215000000,
+          "total_equity": 22624716000000
         },
-        "segment_liabilities_FY2025": {
-          "Konsolidasi": 6330130612128,
-          "FY2024_comparative": 6956640610515,
-          "yoy": -0.0901
+        "FY2024": {
+          "revenue": 11187565000000,
+          "operating_profit": 3446378000000,
+          "net_profit": 2126288000000,
+          "total_assets": 47022702000000,
+          "total_equity": 24615330000000
         }
       },
-      "geographic_segment": "Operasi Grup berlokasi di wilayah Indonesia, terutama Pulau Jawa (Seluruh pendapatan Grup adalah pendapatan domestik / All revenues domestic)."
+      "notes_extraction_status": "pending — AR Note-level extraction 미실행 (Cycle 168 seed only)",
+      "tier_classification": "Tier 4 — Property group + 운영 골프장 (Cycle 168 Peer Group v2)"
     },
-    "mkpi": {
+    "elty": {
       "_meta": {
-        "ticker": "MKPI",
-        "parent": "PT Metropolitan Kentjana Tbk dan Entitas Anak / and Subsidiaries",
-        "currency": "IDR",
-        "unit": "thousand Rupiah (per AR 'Disajikan dalam Rupiah, kecuali dinyatakan lain' — Rp'000 in segment table)",
-        "fiscal_years": [
-          "FY2025"
-        ],
-        "source_ar": [
-          "annual_reports/MKPI/FY2025/AnnualReport2025-MKPI-att1.pdf"
-        ],
-        "extraction_method": "PyMuPDF positional text extraction",
-        "extracted_at": "2026-05-11 Cycle 102"
-      },
-      "operations_scope": "MKPI = PT Metropolitan Kentjana Tbk = Pondok Indah Group property management. Operates: Pondok Indah Mall, Pondok Indah Office Tower, Pondok Indah Golf Apartment. **GOLF operations 직접 운영 없음** — Pondok Indah Padang Golf은 PIPG (associate) 운영. MKPI 자체는 골프 시설 운영 매출 없음.",
-      "segment_note_37_FY2025": {
-        "source_page": "FY25 AR att1 p.223 Note 37 INFORMASI SEGMEN USAHA",
-        "segments_listed": [
-          "Pusat Perbelanjaan (Shopping center)",
-          "Perkantoran (Office)",
-          "Apartemen",
-          "Real Estat",
-          "Taman Air (Water park)",
-          "Hotel"
-        ],
-        "golf_segment": "NONE — MKPI FY25 operating segments do NOT include Golf. 6 segments cover shopping, office, apartment, real estate, water park, hotel.",
-        "segment_revenue_FY2025_thousand_Rp": {
-          "Pusat_Perbelanjaan": 1400894857,
-          "Perkantoran": 306777050,
-          "Apartemen": 167330484,
-          "Real_Estat": 271131228,
-          "Taman_Air": 12674335,
-          "Hotel": 445638083,
-          "Subtotal": 2604446037,
-          "Eliminasi": -1133000,
-          "Konsolidasi": 2603313037,
-          "unit_conversion": "Rp 2,603 bn consolidated revenue FY25"
-        },
-        "segment_income_FY2025_thousand_Rp": {
-          "Pusat_Perbelanjaan": 911831287,
-          "Perkantoran": 130148382,
-          "Apartemen": 68253539,
-          "Real_Estat": 64478132,
-          "Taman_Air": 2091711,
-          "Hotel": 63577719,
-          "Subtotal_segment_income": 1240380770,
-          "Eliminasi": -494454,
-          "Operating_income": 1239886316,
-          "unit_conversion": "Operating income Rp 1,240 bn FY25"
-        },
-        "net_income_FY2025": 1122176939,
-        "net_income_unit_conversion": "Rp 1,122 bn FY25",
-        "total_assets_FY2025": 9463752773,
-        "total_assets_unit_conversion": "Rp 9,464 bn FY25",
-        "depreciation_FY2025_total": 305342347,
-        "capex_FY2025_total": 254893027
-      }
-    },
-    "bksl": {
-      "_meta": {
-        "ticker": "BKSL",
-        "parent": "PT Sentul City Tbk dan Entitas Anak / and Subsidiaries",
+        "ticker": "ELTY",
+        "parent": "PT Bakrieland Development Tbk (Bakrie Group / 역사적 운영)",
+        "sector": "Property Development",
         "currency": "IDR",
         "unit": "rupiah (absolute)",
         "fiscal_years": [
-          "FY2025"
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024"
         ],
-        "source_ar": [
-          "annual_reports/BKSL/FY2025/AnnualReport2025-BKSL-att1.pdf"
-        ],
-        "extraction_method": "PyMuPDF positional text extraction",
-        "extracted_at": "2026-05-11 Cycle 103"
+        "source_5y_curated": "site/data/company_financials_5y.json",
+        "source_ar": "annual_reports/ELTY/FY*/AnnualReport*-ELTY-*.pdf (raw PDFs, Note 추출 미실행)",
+        "extraction_method": "Cycle 168 seed only — 5y curated + golf_courses.json 매핑",
+        "extracted_at": "2026-05-12 Cycle 168"
       },
-      "operations_scope": "BKSL = PT Sentul City Tbk = Sentul City 부동산 개발. **Sentul Golf은 PT Padang Golf Bukit Sentul (관계사) 운영 — BKSL 직접 매출에 포함되지 않음** (Cycle 24 finding 유지).",
-      "segment_note_37_FY2025": {
-        "source_page": "FY25 AR att1 p.299 Note 37 SEGMEN OPERASI",
-        "segments_listed_FY2025": [
-          "Real Estat (Primary)",
-          "Lain-lain (Others: restoran, taman hiburan, pengelolaan kota)"
+      "golf_operations": {
+        "course_count": 2,
+        "courses": [
+          {
+            "course_name": "Gunung Geulis Country Club",
+            "location": {},
+            "holes": 36,
+            "area_ha": null,
+            "listed_status": "subsidiary-of-listed",
+            "parent_group": "Bakrie Group / Bakrieland Development (historical) — current ownership private/affiliated"
+          },
+          {
+            "course_name": "Klub Golf Bogor Raya",
+            "location": {},
+            "holes": 18,
+            "area_ha": null,
+            "listed_status": "subsidiary-of-listed",
+            "parent_group": "Bakrieland Development (historical) / current Bogor Raya Resort owners"
+          }
         ],
-        "golf_segment": "NONE — BKSL FY25 segments are: Real Estat (primary) + Lain-lain (restaurant, amusement park, town management). **Golf segment 없음.** Sentul Golf은 BKSL 관계사 operated 별도 entity.",
-        "segment_revenue_FY2025": {
-          "Real_Estat_external": 2490479649184,
-          "Lain_lain_external": 266984106836,
-          "Total_external_revenue": 2757463756020,
-          "unit_conversion": "Real Estat Rp 2,490 bn / Others Rp 267 bn / Total Rp 2,757 bn"
+        "parent_group": "Bakrie Group / Bakrieland Development (historical) — current ownership private/affiliated"
+      },
+      "company_financials_curated": {
+        "FY2020": {
+          "revenue": 616210000000,
+          "operating_profit": null,
+          "net_profit": -326350000000,
+          "total_assets": 11823436000000,
+          "total_equity": 8435792000000
         },
-        "segment_results_FY2025": {
-          "Real_Estat": 1518084542641,
-          "Lain_lain": 52052940856,
-          "Total": 1570137483497,
-          "unit_conversion": "Real Estat Rp 1,518 bn / Others Rp 52 bn / Total Rp 1,570 bn"
+        "FY2021": {
+          "revenue": 784410000000,
+          "operating_profit": -116294000000,
+          "net_profit": -201910000000,
+          "total_assets": 11681203000000,
+          "total_equity": 8147635000000
         },
-        "operating_expenses_FY2025": {
-          "Real_Estat": -241699433519,
-          "Lain_lain": -59104222023,
-          "Total": -300803655542
+        "FY2022": {
+          "revenue": 1011006000000,
+          "operating_profit": -17950000000,
+          "net_profit": -245309000000,
+          "total_assets": 9913459000000,
+          "total_equity": 7241847000000
         },
-        "other_expenses_net_FY2025": {
-          "Total": -426700384870
+        "FY2023": {
+          "revenue": 1227355000000,
+          "operating_profit": -183152000000,
+          "net_profit": -1079192000000,
+          "total_assets": 8639053000000,
+          "total_equity": 6131245000000
         },
-        "income_before_tax_FY2025": {
-          "Real_Estat": 916003449365,
-          "Lain_lain": -73350006280,
-          "Total": 842653443085
-        },
-        "net_profit_FY2025": {
-          "Real_Estat": 907369298335,
-          "Lain_lain": -74509166506,
-          "Total": 832860131829,
-          "unit_conversion": "Rp 833 bn 그룹 순이익"
-        },
-        "segment_assets_FY2025_after_elimination": {
-          "Real_Estat": 21000582413033,
-          "Lain_lain": 260456190523,
-          "Total_net": 21261038603556,
-          "unit_conversion": "Rp 21,261 bn net 자산"
+        "FY2024": {
+          "revenue": 1208198000000,
+          "operating_profit": 75117000000,
+          "net_profit": -68528000000,
+          "total_assets": 8742017000000,
+          "total_equity": 6024215000000
         }
-      }
+      },
+      "notes_extraction_status": "pending — Gunung Geulis + Bogor Raya 실 운영 주체 확인 필요",
+      "tier_classification": "Tier 4 — Property group + 운영 골프장 (Cycle 168 Peer Group v2)"
+    },
+    "lpkr": {
+      "_meta": {
+        "ticker": "LPKR",
+        "parent": "PT Lippo Karawaci Tbk (Lippo Group)",
+        "sector": "Property + Healthcare",
+        "currency": "IDR",
+        "unit": "rupiah (absolute)",
+        "fiscal_years": [
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024"
+        ],
+        "source_5y_curated": "site/data/company_financials_5y.json",
+        "source_ar": "annual_reports/LPKR/FY*/AnnualReport*-LPKR-*.pdf (raw PDFs, Note 추출 미실행)",
+        "extraction_method": "Cycle 168 seed only — 5y curated + golf_courses.json 매핑",
+        "extracted_at": "2026-05-12 Cycle 168"
+      },
+      "golf_operations": {
+        "course_count": 1,
+        "courses": [
+          {
+            "course_name": "Imperial Klub Golf",
+            "location": {},
+            "holes": 18,
+            "area_ha": null,
+            "listed_status": "subsidiary-of-listed",
+            "parent_group": "Lippo Group (Lippo Karawaci)"
+          }
+        ],
+        "parent_group": "Lippo Group (Lippo Karawaci)"
+      },
+      "company_financials_curated": {
+        "FY2020": {
+          "revenue": 11966300000000,
+          "operating_profit": -4962400000000,
+          "net_profit": -8891100000000,
+          "total_assets": 51865500000000,
+          "total_equity": 23573700000000
+        },
+        "FY2021": {
+          "revenue": 16138531000000,
+          "operating_profit": 796408000000,
+          "net_profit": -1602894000000,
+          "total_assets": 52080936000000,
+          "total_equity": 22486009000000
+        },
+        "FY2022": {
+          "revenue": 14674086000000,
+          "operating_profit": 1342867000000,
+          "net_profit": -2692075000000,
+          "total_assets": 49870897000000,
+          "total_equity": 19139891000000
+        },
+        "FY2023": {
+          "revenue": 16702038000000,
+          "operating_profit": 2354897000000,
+          "net_profit": 50140000000,
+          "total_assets": 49570824000000,
+          "total_equity": 19606431000000
+        },
+        "FY2024": {
+          "revenue": 11347979000000,
+          "operating_profit": 1389947000000,
+          "net_profit": 18746045000000,
+          "total_assets": 53783859000000,
+          "total_equity": 30947069000000
+        }
+      },
+      "notes_extraction_status": "pending — Imperial Klub Golf segment 공시 여부 확인 필요",
+      "tier_classification": "Tier 4 — Property group + 운영 골프장 (Cycle 168 Peer Group v2)"
+    },
+    "pwon": {
+      "_meta": {
+        "ticker": "PWON",
+        "parent": "PT Pakuwon Jati Tbk (Pakuwon Group)",
+        "sector": "Property Development",
+        "currency": "IDR",
+        "unit": "rupiah (absolute)",
+        "fiscal_years": [
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024"
+        ],
+        "source_5y_curated": "site/data/company_financials_5y.json",
+        "source_ar": "annual_reports/PWON/FY*/AnnualReport*-PWON-*.pdf (raw PDFs, Note 추출 미실행)",
+        "extraction_method": "Cycle 168 seed only — 5y curated + golf_courses.json 매핑",
+        "extracted_at": "2026-05-12 Cycle 168"
+      },
+      "golf_operations": {
+        "course_count": 1,
+        "courses": [
+          {
+            "course_name": "Pakuwon Golf & Family Club",
+            "location": {},
+            "holes": 18,
+            "area_ha": null,
+            "listed_status": "listed",
+            "parent_group": "PT Pakuwon Jati Tbk (Pakuwon Group)"
+          }
+        ],
+        "parent_group": "PT Pakuwon Jati Tbk (Pakuwon Group)"
+      },
+      "company_financials_curated": {
+        "FY2020": {
+          "revenue": 3977211311000,
+          "operating_profit": null,
+          "net_profit": 929918580000,
+          "total_assets": 26458805377000,
+          "total_equity": 17598695271000
+        },
+        "FY2021": {
+          "revenue": 5713273000000,
+          "operating_profit": 2269895000000,
+          "net_profit": 1382548000000,
+          "total_assets": 28866081000000,
+          "total_equity": 19178438000000
+        },
+        "FY2022": {
+          "revenue": 5987433000000,
+          "operating_profit": 2601974000000,
+          "net_profit": 1538835000000,
+          "total_assets": 30602180000000,
+          "total_equity": 20718276000000
+        },
+        "FY2023": {
+          "revenue": 6200438000000,
+          "operating_profit": 2660291000000,
+          "net_profit": 2105210000000,
+          "total_assets": 32710787000000,
+          "total_equity": 22795334000000
+        },
+        "FY2024": {
+          "revenue": 6670809000000,
+          "operating_profit": 2900946000000,
+          "net_profit": 2074731000000,
+          "total_assets": 35371085000000,
+          "total_equity": 24741997000000
+        }
+      },
+      "notes_extraction_status": "pending — Pakuwon Golf Family Club segment 공시 여부 확인 필요",
+      "tier_classification": "Tier 4 — Property group + 운영 골프장 (Cycle 168 Peer Group v2)"
     }
   }
 }

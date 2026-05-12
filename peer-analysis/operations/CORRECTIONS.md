@@ -158,7 +158,9 @@ curated CSV / 큐레이션 데이터 vs AR Note 직접 추출 정정 사항을 �
 | 25-85 | 0 | 시각화·meta 문서·FY25 follow-up 추출·milestone retrospective (정정 없음) |
 | 86 | 1 | (Self) cost-hr.html FY25 follow-up 작성 중 MDLN FY24 Golf course COGS 라인 fabrication 즉시 정정 (Gaji 17,418→19,250 / Penyusutan 5,043→2,756 / Lain-lain 8,824→9,425 / 합계 31,285→31,431 m). mdln_notes.json 재대조 후 동일 사이클 내 자동 정정. |
 | 87-130 | 0 | 13/13 peer 추출 완주 (Cycle 92-103) + 메타 sync + 한계 해소 (정정 없음) |
-| 누적 | **11건** | 모두 AR 직접 추출로 보강 |
+| 131-167 | 0 | placeholder cleanup · stale ref 정리 · DMIG·PIPG FY25 추가 다운로드·통합 (정정 없음) |
+| **168** | 0 | **Peer Group v2 재편** (4 swap). MKPI·BKDP·BKSL·DILD 제거 → archived. CTRA·ELTY·LPKR·PWON 신규 추가. Tier framework 도입. 정정이 아닌 분류 체계 변경 — 기존 11건 historical 보존. |
+| 누적 | **11건** | 모두 AR 직접 추출로 보강 (Peer Group v2 재편은 정정 아님) |
 
 ---
 
