@@ -6,14 +6,7 @@
 <title>단위 경제 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260512c52" />
-<style>
-  .year-selector { display: flex; gap: 6px; margin: 16px 0; }
-  .year-btn { padding: 8px 18px; border: 1px solid var(--ops-line); background: var(--ops-surface); border-radius: 6px; font-size: 13px; font-weight: 700; cursor: pointer; color: var(--ops-ink-soft); transition: all 0.15s; }
-  .year-btn.active { background: var(--ops-green); color: white; border-color: var(--ops-green); }
-  .year-btn:hover:not(.active) { border-color: var(--ops-green); color: var(--ops-green); }
-  .year-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-</style>
+<link rel="stylesheet" href="ops-style.css?v=20260512c53" />
 </head>
 <body>
 <header class="ops-head">
@@ -25,35 +18,327 @@
         <div class="sub">13개 IDX 상장사</div>
       </div>
     </a>
-    <nav class="ops-nav"><a href="clubs/index.html">⛳ 클럽별</a><a href="overview.html">Peer 카드</a><a href="unit-economics.html" class="active">단위 경제</a><a href="revenue.html">매출</a><a href="cost-hr.html">비용</a><a href="assets.html">시설</a><a href="risk.html">위험</a><a href="../../index.html" class="back">← 지도</a></nav>
+    <nav class="ops-nav"><a href="clubs/index.html">⛳ 클럽</a><a href="unit-economics.html" class="active">단위 경제</a><a href="revenue.html">매출</a><a href="cost-hr.html">비용</a><a href="assets.html">시설</a><a href="risk.html">위험</a><a href="../../index.html" class="back">← 지도</a></nav>
   </div>
 </header>
 
 <section class="ops-hero">
   <div class="ops-wrap">
-    <h1>단위 경제</h1>
-    <p class="lede">13 peer 그룹 P&L + 골프 부문 단위 경제. 연도 선택으로 시계열 비교.</p>
-    <div class="year-selector" id="year-selector">
-      <button class="year-btn" data-year="2022">FY2022</button>
-      <button class="year-btn" data-year="2023">FY2023</button>
-      <button class="year-btn active" data-year="2024">FY2024</button>
-      <button class="year-btn" data-year="2025">FY2025</button>
+    <h1>단위 경제 (Per-unit Economics)</h1>
+    <p class="lede">홀 · ha · 정직원 대비 매출/이익 — 13 peer FY2024. 일부 peer는 정직원·면적 미공시.</p>
+  </div>
+</section>
+
+<section class="ops-section">
+  <div class="ops-wrap">
+    <h2 style="font-size:17px; margin:0 0 14px 0;">① 13-peer 단위 경제 (FY2024)</h2>
+    <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">홀당·ha당 매출은 골프 부문 매출 / 해당 단위. 1인당 매출·영업이익은 그룹 연결 P&L 기준 (그룹 직원 수). Pure-play의 골프 매출은 곧 그룹 매출.</p>
+    <div class="tbl-card scroll-x">
+      <table class="ops-tbl">
+        <thead>
+          <tr>
+            <th>Peer</th>
+            <th>그룹명</th>
+            <th class="num">홀</th>
+            <th class="num">면적 (ha)</th>
+            <th class="num">정직원</th>
+            <th class="num">골프 매출 FY24</th>
+            <th class="num">홀당 매출</th>
+            <th class="num">ha당 매출</th>
+            <th class="num">1인당 매출</th>
+            <th class="num">영업이익률</th>
+            <th class="num">1인당 영업이익</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td class="peer"><a href="clubs/dmig.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">DMIG</a><span class="peer-tag peer-tag-pp">🟦 Pure-play</span></td>
+              <td>Damai Indah Golf</td>
+              <td class="num">36</td>
+              <td class="num">156.0</td>
+              <td class="num">198</td>
+              <td class="num">253.1B</td>
+              <td class="num"><strong>7.03B</strong></td>
+              <td class="num">1.62B</td>
+              <td class="num">1.28B</td>
+              <td class="num">31.2%</td>
+              <td class="num">399M</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/pipg.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">PIPG</a><span class="peer-tag peer-tag-pp">🟦 Pure-play</span></td>
+              <td>Pondok Indah Padang Go</td>
+              <td class="num">18</td>
+              <td class="num">53.0</td>
+              <td class="num">254</td>
+              <td class="num">197.6B</td>
+              <td class="num"><strong>10.98B</strong></td>
+              <td class="num">3.73B</td>
+              <td class="num">778M</td>
+              <td class="num">27.1%</td>
+              <td class="num">210M</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/golf.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">GOLF</a><span class="peer-tag peer-tag-resort">🟨 Resort</span></td>
+              <td>Intra GolfLink Resorts</td>
+              <td class="num">36</td>
+              <td class="num">171.2</td>
+              <td class="num">252</td>
+              <td class="num">93.0B</td>
+              <td class="num"><strong>2.58B</strong></td>
+              <td class="num">543M</td>
+              <td class="num">786M</td>
+              <td class="num">36.6%</td>
+              <td class="num">288M</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/bsde.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">BSDE</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
+              <td>Palm Springs Karawang </td>
+              <td class="num">—</td>
+              <td class="num">—</td>
+              <td class="num">—</td>
+              <td class="num">—</td>
+              <td class="num"><strong>—</strong></td>
+              <td class="num">—</td>
+              <td class="num">—</td>
+              <td class="num">35.3%</td>
+              <td class="num">—</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/ctra.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">CTRA</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
+              <td>Ciputra Golf Surabaya </td>
+              <td class="num">36</td>
+              <td class="num">—</td>
+              <td class="num">—</td>
+              <td class="num">—</td>
+              <td class="num"><strong>—</strong></td>
+              <td class="num">—</td>
+              <td class="num">—</td>
+              <td class="num">30.8%</td>
+              <td class="num">—</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/elty.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">ELTY</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
+              <td>Gunung Geulis + Klub G</td>
+              <td class="num">36</td>
+              <td class="num">—</td>
+              <td class="num">—</td>
+              <td class="num">—</td>
+              <td class="num"><strong>—</strong></td>
+              <td class="num">—</td>
+              <td class="num">—</td>
+              <td class="num">6.2%</td>
+              <td class="num">—</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/kija.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">KIJA</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
+              <td>Jababeka Golf & Countr</td>
+              <td class="num">—</td>
+              <td class="num">—</td>
+              <td class="num">723</td>
+              <td class="num">85.0B</td>
+              <td class="num"><strong>—</strong></td>
+              <td class="num">—</td>
+              <td class="num">6.37B</td>
+              <td class="num">29.6%</td>
+              <td class="num">1.89B</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/kpig.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">KPIG</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
+              <td>Trump International Go</td>
+              <td class="num">18</td>
+              <td class="num">83.0</td>
+              <td class="num">—</td>
+              <td class="num">—</td>
+              <td class="num"><strong>—</strong></td>
+              <td class="num">—</td>
+              <td class="num">—</td>
+              <td class="num">7.3%</td>
+              <td class="num">—</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/lpkr.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">LPKR</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
+              <td>Imperial Klub Golf</td>
+              <td class="num">18</td>
+              <td class="num">—</td>
+              <td class="num">1,708</td>
+              <td class="num">—</td>
+              <td class="num"><strong>—</strong></td>
+              <td class="num">—</td>
+              <td class="num">6.64B</td>
+              <td class="num">12.2%</td>
+              <td class="num">814M</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/mdln.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">MDLN</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
+              <td>Modern Golf & Country </td>
+              <td class="num">18</td>
+              <td class="num">—</td>
+              <td class="num">947</td>
+              <td class="num">74.4B</td>
+              <td class="num"><strong>4.13B</strong></td>
+              <td class="num">—</td>
+              <td class="num">1.07B</td>
+              <td class="num">-2.0%</td>
+              <td class="num">-22M</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/pwon.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">PWON</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
+              <td>Pakuwon Golf & Family </td>
+              <td class="num">18</td>
+              <td class="num">—</td>
+              <td class="num">3,303</td>
+              <td class="num">—</td>
+              <td class="num"><strong>—</strong></td>
+              <td class="num">—</td>
+              <td class="num">2.02B</td>
+              <td class="num">43.5%</td>
+              <td class="num">878M</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/smdm.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">SMDM</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
+              <td>Rancamaya Golf Estate</td>
+              <td class="num">18</td>
+              <td class="num">—</td>
+              <td class="num">262</td>
+              <td class="num">63.3B</td>
+              <td class="num"><strong>3.52B</strong></td>
+              <td class="num">—</td>
+              <td class="num">2.65B</td>
+              <td class="num">21.4%</td>
+              <td class="num">568M</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/smra.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">SMRA</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
+              <td>Gading Raya Padang Gol</td>
+              <td class="num">18</td>
+              <td class="num">—</td>
+              <td class="num">2,637</td>
+              <td class="num">66.7B</td>
+              <td class="num"><strong>3.70B</strong></td>
+              <td class="num">—</td>
+              <td class="num">4.03B</td>
+              <td class="num">35.1%</td>
+              <td class="num">1.42B</td>
+            </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </section>
 
 <section class="ops-section">
   <div class="ops-wrap">
+    <h2 style="font-size:17px; margin:0 0 14px 0;">② 홀당 매출 리더보드</h2>
+    <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">골프 부문 매출/홀 수 기준 (공시된 peer만).</p>
     <div class="tbl-card scroll-x">
-      <table class="ops-tbl" id="peer-tbl">
+      <table class="ops-tbl">
         <thead>
           <tr>
+            <th class="num">#</th>
             <th>Peer</th>
-            <th>분류</th>
-<th class="num">그룹 매출 (Rp bn)</th><th class="num">영업이익 (Rp bn)</th><th class="num">순이익 (Rp bn)</th><th class="num">순이익률</th><th class="num">홀당 골프 매출 (Rp m)</th>
+            <th>그룹명</th>
+            <th class="num">홀</th>
+            <th class="num">골프 매출 FY24</th>
+            <th class="num">홀당 매출</th>
           </tr>
         </thead>
-        <tbody id="peer-tbody"></tbody>
+        <tbody>
+            <tr>
+              <td class="num"><strong>1</strong></td>
+              <td class="peer"><a href="clubs/pipg.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">PIPG</a><span class="peer-tag peer-tag-pp">🟦 Pure-play</span></td>
+              <td>Pondok Indah Padang Golf</td>
+              <td class="num">18</td>
+              <td class="num">197.6B</td>
+              <td class="num"><strong style="color:var(--ops-green);">10.98B</strong></td>
+            </tr>
+            <tr>
+              <td class="num"><strong>2</strong></td>
+              <td class="peer"><a href="clubs/dmig.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">DMIG</a><span class="peer-tag peer-tag-pp">🟦 Pure-play</span></td>
+              <td>Damai Indah Golf</td>
+              <td class="num">36</td>
+              <td class="num">253.1B</td>
+              <td class="num"><strong style="color:var(--ops-green);">7.03B</strong></td>
+            </tr>
+            <tr>
+              <td class="num"><strong>3</strong></td>
+              <td class="peer"><a href="clubs/mdln.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">MDLN</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
+              <td>Modern Golf & Country Club</td>
+              <td class="num">18</td>
+              <td class="num">74.4B</td>
+              <td class="num"><strong style="color:var(--ops-green);">4.13B</strong></td>
+            </tr>
+            <tr>
+              <td class="num"><strong>4</strong></td>
+              <td class="peer"><a href="clubs/smra.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">SMRA</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
+              <td>Gading Raya Padang Golf</td>
+              <td class="num">18</td>
+              <td class="num">66.7B</td>
+              <td class="num"><strong style="color:var(--ops-green);">3.70B</strong></td>
+            </tr>
+            <tr>
+              <td class="num"><strong>5</strong></td>
+              <td class="peer"><a href="clubs/smdm.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">SMDM</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
+              <td>Rancamaya Golf Estate</td>
+              <td class="num">18</td>
+              <td class="num">63.3B</td>
+              <td class="num"><strong style="color:var(--ops-green);">3.52B</strong></td>
+            </tr>
+            <tr>
+              <td class="num"><strong>6</strong></td>
+              <td class="peer"><a href="clubs/golf.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">GOLF</a><span class="peer-tag peer-tag-resort">🟨 Resort</span></td>
+              <td>Intra GolfLink Resorts</td>
+              <td class="num">36</td>
+              <td class="num">93.0B</td>
+              <td class="num"><strong style="color:var(--ops-green);">2.58B</strong></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="ops-section">
+  <div class="ops-wrap">
+    <h2 style="font-size:17px; margin:0 0 14px 0;">③ Tier 평균</h2>
+    <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">Tier별 공시 peer 평균. N개 peer 중 면적·홀 미공시는 제외.</p>
+    <div class="tbl-card scroll-x">
+      <table class="ops-tbl">
+        <thead>
+          <tr>
+            <th>Tier</th>
+            <th class="num">N</th>
+            <th class="num">평균 홀</th>
+            <th class="num">평균 면적 (ha)</th>
+            <th class="num">평균 홀당 매출</th>
+            <th class="num">평균 ha당 매출</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td><strong>🟦 Pure-play</strong></td>
+              <td class="num">2</td>
+              <td class="num">27</td>
+              <td class="num">104.5</td>
+              <td class="num"><strong>9.00B</strong></td>
+              <td class="num">2.67B</td>
+            </tr>
+            <tr>
+              <td><strong>🟨 Resort</strong></td>
+              <td class="num">1</td>
+              <td class="num">36</td>
+              <td class="num">171.2</td>
+              <td class="num"><strong>2.58B</strong></td>
+              <td class="num">543M</td>
+            </tr>
+            <tr>
+              <td><strong>🟩 Township</strong></td>
+              <td class="num">10</td>
+              <td class="num">22</td>
+              <td class="num">83.0</td>
+              <td class="num"><strong>3.78B</strong></td>
+              <td class="num">—</td>
+            </tr>
+        </tbody>
       </table>
     </div>
   </div>
@@ -61,56 +346,10 @@
 
 <footer class="ops-foot">
   <div class="ops-wrap">
-    <p>Peer Group v2 · IDR · 13 peer 비교.</p>
+    <p>홀·면적·정직원은 AR Profile + 자사 공시. 골프 매출은 segment note (있을 때) / 그룹 매출 (pure-play).</p>
   </div>
 </footer>
 
-<script src="operations.js?v=20260512c2" defer></script>
-<script>
-(function(){
-  const data = {"2022": [{"rev": 186.454207, "op": 52.873, "np": 53.028783508, "margin": 28.440647363885972, "rev_per_hole": 6047.222222222223, "_ticker": "DMIG", "_name": "Damai Indah Golf", "_tier": "pp", "_tier_label": "🟦 Pure-play"}, {"rev": 162.573493394, "op": 42.572546838, "np": 42.297244404, "margin": 26.01730670909052, "rev_per_hole": 9016.666666666666, "_ticker": "PIPG", "_name": "Pondok Indah Padang Golf", "_tier": "pp", "_tier_label": "🟦 Pure-play"}, {"rev": 111.63082626, "op": 32.264940858, "np": 25.533501208, "margin": 22.873163321867544, "rev_per_hole": null, "_ticker": "GOLF", "_name": "Intra GolfLink Resorts", "_tier": "resort", "_tier_label": "🟨 Resort"}, {"rev": 10235.479955727, "op": 4039.314, "np": 2433.146905387, "margin": 23.771693324704284, "rev_per_hole": null, "_ticker": "BSDE", "_name": "Palm Springs Karawang + Batam", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 9126.799, "op": 3057.323, "np": 1862.403, "margin": 20.40587285860026, "rev_per_hole": null, "_ticker": "CTRA", "_name": "Ciputra Golf Surabaya + Taman Dayu", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 1011.006, "op": -17.95, "np": -245.309, "margin": -24.263852044399343, "rev_per_hole": null, "_ticker": "ELTY", "_name": "Gunung Geulis + Klub Golf Bogor Raya", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 2747.185, "op": 986.474, "np": -64.035, "margin": -2.330931480770316, "rev_per_hole": null, "_ticker": "KIJA", "_name": "Jababeka Golf & Country Club", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 1121.876641, "op": 126.385, "np": 177.77154, "margin": 15.845907963779416, "rev_per_hole": null, "_ticker": "KPIG", "_name": "Trump International Golf Club Lido", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 14674.086, "op": 1342.867, "np": -2692.075, "margin": -18.34577635704193, "rev_per_hole": null, "_ticker": "LPKR", "_name": "Imperial Klub Golf", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 1098.86, "op": 116.864, "np": 20.171, "margin": 1.8356296525490052, "rev_per_hole": null, "_ticker": "MDLN", "_name": "Modern Golf & Country Club", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 5987.433, "op": 2601.974, "np": 1538.835, "margin": 25.701080913974316, "rev_per_hole": null, "_ticker": "PWON", "_name": "Pakuwon Golf & Family Club", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 566.403, "op": 196.874, "np": 163.777, "margin": 28.91527763800686, "rev_per_hole": 2872.222222222222, "_ticker": "SMDM", "_name": "Rancamaya Golf Estate", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 5719.396, "op": 1708.418, "np": 625.377, "margin": 10.934318938573234, "rev_per_hole": null, "_ticker": "SMRA", "_name": "Gading Raya Padang Golf", "_tier": "twn", "_tier_label": "🟩 Township"}], "2023": [{"rev": 244.986267834, "op": 76.537335834, "np": 71.268571841, "margin": 29.090843528132275, "rev_per_hole": 6805.555555555556, "_ticker": "DMIG", "_name": "Damai Indah Golf", "_tier": "pp", "_tier_label": "🟦 Pure-play"}, {"rev": 203.092322067, "op": 53.814730325, "np": 52.475087302, "margin": 25.83804585418473, "rev_per_hole": 9844.444444444445, "_ticker": "PIPG", "_name": "Pondok Indah Padang Golf", "_tier": "pp", "_tier_label": "🟦 Pure-play"}, {"rev": 177.582018034, "op": 71.448309127, "np": 60.176060893, "margin": 33.8863481557455, "rev_per_hole": null, "_ticker": "GOLF", "_name": "Intra GolfLink Resorts", "_tier": "resort", "_tier_label": "🟨 Resort"}, {"rev": 11539.141250155, "op": 3298.781, "np": 1945.467441301, "margin": 16.859724646102823, "rev_per_hole": null, "_ticker": "BSDE", "_name": "Palm Springs Karawang + Batam", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 9245.032, "op": 2932.834, "np": 1846.087, "margin": 19.968421958950493, "rev_per_hole": null, "_ticker": "CTRA", "_name": "Ciputra Golf Surabaya + Taman Dayu", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 1227.355, "op": -183.152, "np": -1079.192, "margin": -87.9282685123701, "rev_per_hole": null, "_ticker": "ELTY", "_name": "Gunung Geulis + Klub Golf Bogor Raya", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 3299.597, "op": 728.477, "np": 305.576, "margin": 9.261009753615365, "rev_per_hole": null, "_ticker": "KIJA", "_name": "Jababeka Golf & Country Club", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 1421.006434, "op": 135.473, "np": 329.809865, "margin": 23.209596882092654, "rev_per_hole": null, "_ticker": "KPIG", "_name": "Trump International Golf Club Lido", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 16702.038, "op": 2354.897, "np": 50.14, "margin": 0.30020288542033013, "rev_per_hole": null, "_ticker": "LPKR", "_name": "Imperial Klub Golf", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 1152.308, "op": 101.316, "np": -101.974, "margin": -8.849543698386194, "rev_per_hole": 3772.222222222222, "_ticker": "MDLN", "_name": "Modern Golf & Country Club", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 6200.438, "op": 2660.291, "np": 2105.21, "margin": 33.952601412996955, "rev_per_hole": null, "_ticker": "PWON", "_name": "Pakuwon Golf & Family Club", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 496.498, "op": 115.421, "np": 104.238, "margin": 20.99464650411482, "rev_per_hole": 3383.3333333333335, "_ticker": "SMDM", "_name": "Rancamaya Golf Estate", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 6658.783, "op": 1911.672, "np": 765.97, "margin": 11.503153053643587, "rev_per_hole": null, "_ticker": "SMRA", "_name": "Gading Raya Padang Golf", "_tier": "twn", "_tier_label": "🟩 Township"}], "2024": [{"rev": 253.102440194, "op": 78.926666604, "np": 82.404512711, "margin": 32.5577709356883, "rev_per_hole": 7030.555555555556, "_ticker": "DMIG", "_name": "Damai Indah Golf", "_tier": "pp", "_tier_label": "🟦 Pure-play"}, {"rev": 197.570521436, "op": 53.451361547, "np": 55.903815772, "margin": 28.295625969742254, "rev_per_hole": 10977.777777777777, "_ticker": "PIPG", "_name": "Pondok Indah Padang Golf", "_tier": "pp", "_tier_label": "🟦 Pure-play"}, {"rev": 197.993814652, "op": 72.469171724, "np": 67.574993523, "margin": 34.12985079446642, "rev_per_hole": 2583.3333333333335, "_ticker": "GOLF", "_name": "Intra GolfLink Resorts", "_tier": "resort", "_tier_label": "🟨 Resort"}, {"rev": 13796.572149, "op": 4874.328, "np": 4359.063784, "margin": 31.595266830942155, "rev_per_hole": null, "_ticker": "BSDE", "_name": "Palm Springs Karawang + Batam", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 11187.565, "op": 3446.378, "np": 2126.288, "margin": 19.00581583213148, "rev_per_hole": null, "_ticker": "CTRA", "_name": "Ciputra Golf Surabaya + Taman Dayu", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 1208.198, "op": 75.117, "np": -68.528, "margin": -5.671918013438194, "rev_per_hole": null, "_ticker": "ELTY", "_name": "Gunung Geulis + Klub Golf Bogor Raya", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 4602.648, "op": 1363.016, "np": 363.308, "margin": 7.893456114827813, "rev_per_hole": null, "_ticker": "KIJA", "_name": "Jababeka Golf & Country Club", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 1770.144398, "op": 129.385, "np": 658.629034, "margin": 37.207644457940994, "rev_per_hole": null, "_ticker": "KPIG", "_name": "Trump International Golf Club Lido", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 11347.979, "op": 1389.947, "np": 18746.045, "margin": 165.1928065781581, "rev_per_hole": null, "_ticker": "LPKR", "_name": "Imperial Klub Golf", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 1017.57, "op": -20.448, "np": -690.272, "margin": -67.83533319575066, "rev_per_hole": 4133.333333333333, "_ticker": "MDLN", "_name": "Modern Golf & Country Club", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 6670.809, "op": 2900.946, "np": 2074.731, "margin": 31.101639995988496, "rev_per_hole": null, "_ticker": "PWON", "_name": "Pakuwon Golf & Family Club", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 694.045, "op": 148.817, "np": 123.778, "margin": 17.834290283771224, "rev_per_hole": 3516.6666666666665, "_ticker": "SMDM", "_name": "Rancamaya Golf Estate", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 10623.4, "op": 3732.4, "np": 1373.4, "margin": 12.928064461471845, "rev_per_hole": null, "_ticker": "SMRA", "_name": "Gading Raya Padang Golf", "_tier": "twn", "_tier_label": "🟩 Township"}], "2025": [{"rev": 251.253870267, "op": 69.446548893, "np": 75.0238323, "margin": 29.859771799843088, "rev_per_hole": 6980.555555555556, "_ticker": "DMIG", "_name": "Damai Indah Golf", "_tier": "pp", "_tier_label": "🟦 Pure-play"}, {"rev": 185.775352369, "op": 55.598750416, "np": 56.221968494, "margin": 30.26341642045603, "rev_per_hole": 10322.222222222223, "_ticker": "PIPG", "_name": "Pondok Indah Padang Golf", "_tier": "pp", "_tier_label": "🟦 Pure-play"}, {"rev": 215.519, "op": null, "np": null, "margin": null, "rev_per_hole": 2205.5555555555557, "_ticker": "GOLF", "_name": "Intra GolfLink Resorts", "_tier": "resort", "_tier_label": "🟨 Resort"}, {"rev": 12788.452336734, "op": 3447.178841678, "np": 2857.738492944, "margin": 22.346241888358385, "rev_per_hole": null, "_ticker": "BSDE", "_name": "Palm Springs Karawang + Batam", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": null, "op": null, "np": null, "margin": null, "rev_per_hole": null, "_ticker": "CTRA", "_name": "Ciputra Golf Surabaya + Taman Dayu", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": null, "op": null, "np": null, "margin": null, "rev_per_hole": null, "_ticker": "ELTY", "_name": "Gunung Geulis + Klub Golf Bogor Raya", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": null, "op": null, "np": null, "margin": null, "rev_per_hole": null, "_ticker": "KIJA", "_name": "Jababeka Golf & Country Club", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": null, "op": null, "np": null, "margin": null, "rev_per_hole": null, "_ticker": "KPIG", "_name": "Trump International Golf Club Lido", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": null, "op": null, "np": null, "margin": null, "rev_per_hole": null, "_ticker": "LPKR", "_name": "Imperial Klub Golf", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": null, "op": null, "np": null, "margin": null, "rev_per_hole": 5294.444444444444, "_ticker": "MDLN", "_name": "Modern Golf & Country Club", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": null, "op": null, "np": null, "margin": null, "rev_per_hole": null, "_ticker": "PWON", "_name": "Pakuwon Golf & Family Club", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": null, "op": null, "np": null, "margin": null, "rev_per_hole": null, "_ticker": "SMDM", "_name": "Rancamaya Golf Estate", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 8766.92747, "op": null, "np": null, "margin": null, "rev_per_hole": null, "_ticker": "SMRA", "_name": "Gading Raya Padang Golf", "_tier": "twn", "_tier_label": "🟩 Township"}]};
-  const cols = ["rev", "op", "np", "margin", "rev_per_hole"];
-  const tbody = document.getElementById('peer-tbody');
-
-  function fmt(v) {
-    if (v === null || v === undefined) return '<span style="color:#94a3b8;">—</span>';
-    if (typeof v !== 'number') return v;
-    if (Math.abs(v) >= 1000) return (v/1000).toFixed(2) + 'T';
-    if (Math.abs(v) >= 10) return v.toFixed(1);
-    return v.toFixed(2);
-  }
-  function fmtPct(v) {
-    if (v === null || v === undefined) return '<span style="color:#94a3b8;">—</span>';
-    var col = v > 0 ? 'color:#16a34a;' : (v < 0 ? 'color:#b91c1c;' : '');
-    return '<span style="' + col + 'font-weight:700;">' + v.toFixed(1) + '%</span>';
-  }
-
-  function render(year) {
-    const rows = data[year] || [];
-    tbody.innerHTML = rows.map(function(r) {
-      var tdPeer = '<td class="peer"><a href="clubs/' + r._ticker.toLowerCase() + '.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">' + r._ticker + '</a><span class="peer-tag peer-tag-' + r._tier + '">' + r._tier_label + '</span></td>';
-      var tdName = '<td><a href="clubs/' + r._ticker.toLowerCase() + '.html" style="color:var(--ops-ink-soft); font-size:11.5px; text-decoration:none;">' + r._name + '</a></td>';
-      var tdData = cols.map(function(k){
-        var v = r[k];
-        if (k === 'margin' || k === 'opmargin' || k === 'roa' || k === 'debt_ratio') {
-          return '<td class="num">' + fmtPct(v) + '</td>';
-        }
-        return '<td class="num">' + fmt(v) + '</td>';
-      }).join('');
-      return '<tr>' + tdPeer + tdName + tdData + '</tr>';
-    }).join('');
-  }
-
-  document.querySelectorAll('.year-btn').forEach(function(b){
-    b.addEventListener('click', function(){
-      document.querySelectorAll('.year-btn').forEach(function(x){x.classList.remove('active');});
-      b.classList.add('active');
-      render(b.dataset.year);
-    });
-  });
-
-  render('2024');
-})();
-</script>
+<script src="operations.js?v=20260512c3" defer></script>
 </body>
 </html>

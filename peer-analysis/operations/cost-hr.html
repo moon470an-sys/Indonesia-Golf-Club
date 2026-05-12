@@ -6,13 +6,13 @@
 <title>비용 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260512c52" />
+<link rel="stylesheet" href="ops-style.css?v=20260512c53" />
 <style>
-  .year-selector { display: flex; gap: 6px; margin: 16px 0; }
-  .year-btn { padding: 8px 18px; border: 1px solid var(--ops-line); background: var(--ops-surface); border-radius: 6px; font-size: 13px; font-weight: 700; cursor: pointer; color: var(--ops-ink-soft); transition: all 0.15s; }
-  .year-btn.active { background: var(--ops-green); color: white; border-color: var(--ops-green); }
-  .year-btn:hover:not(.active) { border-color: var(--ops-green); color: var(--ops-green); }
-  .year-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .cost-tab-bar { display:flex; gap:6px; flex-wrap:wrap; margin:16px 0 24px 0; border-bottom:2px solid var(--ops-line); }
+  .cost-tab { padding:10px 18px; cursor:pointer; font-size:13px; font-weight:600; color:var(--ops-ink-soft); border-bottom:3px solid transparent; margin-bottom:-2px; }
+  .cost-tab.active { color:var(--ops-green); border-bottom-color:var(--ops-green); }
+  .cost-panel { display:none; }
+  .cost-panel.active { display:block; }
 </style>
 </head>
 <body>
@@ -25,91 +25,813 @@
         <div class="sub">13개 IDX 상장사</div>
       </div>
     </a>
-    <nav class="ops-nav"><a href="clubs/index.html">⛳ 클럽별</a><a href="overview.html">Peer 카드</a><a href="unit-economics.html">단위 경제</a><a href="revenue.html">매출</a><a href="cost-hr.html" class="active">비용</a><a href="assets.html">시설</a><a href="risk.html">위험</a><a href="../../index.html" class="back">← 지도</a></nav>
+    <nav class="ops-nav"><a href="clubs/index.html">⛳ 클럽</a><a href="unit-economics.html">단위 경제</a><a href="revenue.html">매출</a><a href="cost-hr.html" class="active">비용</a><a href="assets.html">시설</a><a href="risk.html">위험</a><a href="../../index.html" class="back">← 지도</a></nav>
   </div>
 </header>
 
 <section class="ops-hero">
   <div class="ops-wrap">
-    <h1>비용</h1>
-    <p class="lede">매출 대비 비용 구조 (영업이익률 + 순이익률). 연도 선택으로 시계열 비교.</p>
-    <div class="year-selector" id="year-selector">
-      <button class="year-btn" data-year="2022">FY2022</button>
-      <button class="year-btn" data-year="2023">FY2023</button>
-      <button class="year-btn active" data-year="2024">FY2024</button>
-      <button class="year-btn" data-year="2025">FY2025</button>
+    <h1>비용 상세 비교</h1>
+    <p class="lede">라인 단위 매출원가 · 판관비 + 13 peer 비용 구조 비율. 단위 IDR (1B = 10억 루피아).</p>
+    <div class="cost-tab-bar">
+      <div class="cost-tab active" data-panel="cogs">① 매출원가 라인 (4 peer)</div>
+      <div class="cost-tab" data-panel="opex">② 판관비 라인 (4 peer)</div>
+      <div class="cost-tab" data-panel="ratio">③ 13-peer 비용 구조 %</div>
     </div>
   </div>
 </section>
 
 <section class="ops-section">
   <div class="ops-wrap">
-    <div class="tbl-card scroll-x">
-      <table class="ops-tbl" id="peer-tbl">
-        <thead>
-          <tr>
-            <th>Peer</th>
-            <th>분류</th>
-<th class="num">매출 (Rp bn)</th><th class="num">매출원가+OpEx 합산 추정 (Rp bn)</th><th class="num">영업이익 (Rp bn)</th><th class="num">영업이익률</th><th class="num">순이익</th><th class="num">순이익률</th>
-          </tr>
-        </thead>
-        <tbody id="peer-tbody"></tbody>
-      </table>
+    <div class="cost-panel active" id="panel-cogs">
+      <div style="margin-bottom:32px;">
+        <h3 style="font-size:16px; margin:0 0 10px 0;">🟦 DMIG · 매출원가 (Note {'FY2022': 24, 'FY2023': 24, 'FY2024': 24})</h3>
+        <p style="font-size:12px; color:var(--ops-muted); margin:0 0 8px 0;">사업부별 직접원가 — 3 라인 공시</p>
+        <div class="tbl-card scroll-x">
+          <table class="ops-tbl">
+            <thead><tr><th>비용 라인</th><th class="num">FY2022</th><th class="num">FY2023</th><th class="num">FY2024</th></tr></thead>
+            <tbody>
+            <tr>
+              <td>Lapangan golf<br><span style="color:var(--ops-muted); font-size:11px;">Golf course</span></td>
+              <td class="num">39.2B</td>
+              <td class="num">51.2B</td>
+              <td class="num"><strong>52.9B</strong></td>
+            </tr>
+            <tr>
+              <td>Restoran<br><span style="color:var(--ops-muted); font-size:11px;">Restaurant</span></td>
+              <td class="num">19.5B</td>
+              <td class="num">21.8B</td>
+              <td class="num"><strong>22.8B</strong></td>
+            </tr>
+            <tr>
+              <td>Rekreasi<br><span style="color:var(--ops-muted); font-size:11px;">Recreation</span></td>
+              <td class="num">1.1B</td>
+              <td class="num">1.2B</td>
+              <td class="num"><strong>1.4B</strong></td>
+            </tr>
+            <tr style="background:rgba(45,80,22,0.06); font-weight:700;">
+              <td>합계</td>
+              <td class="num">59.8B</td>
+              <td class="num">74.3B</td>
+              <td class="num">77.0B</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div style="margin-bottom:32px;">
+        <h3 style="font-size:16px; margin:0 0 10px 0;">🟦 PIPG · 매출원가 (Note 28)</h3>
+        <p style="font-size:12px; color:var(--ops-muted); margin:0 0 8px 0;">시설별 운영 비용 — 11 라인 공시</p>
+        <div class="tbl-card scroll-x">
+          <table class="ops-tbl">
+            <thead><tr><th>비용 라인</th><th class="num">FY2023</th><th class="num">FY2024</th></tr></thead>
+            <tbody>
+            <tr>
+              <td>Restoran<br><span style="color:var(--ops-muted); font-size:11px;">Restaurant</span></td>
+              <td class="num">22.8B</td>
+              <td class="num"><strong>26.8B</strong></td>
+            </tr>
+            <tr>
+              <td>Golf course<br><span style="color:var(--ops-muted); font-size:11px;">Golf course</span></td>
+              <td class="num">19.9B</td>
+              <td class="num"><strong>19.7B</strong></td>
+            </tr>
+            <tr>
+              <td>Golf cart<br><span style="color:var(--ops-muted); font-size:11px;">Golf cart</span></td>
+              <td class="num">7.8B</td>
+              <td class="num"><strong>7.9B</strong></td>
+            </tr>
+            <tr>
+              <td>Driving range<br><span style="color:var(--ops-muted); font-size:11px;">Driving range</span></td>
+              <td class="num">3.4B</td>
+              <td class="num"><strong>4.0B</strong></td>
+            </tr>
+            <tr>
+              <td>Keanggotaan<br><span style="color:var(--ops-muted); font-size:11px;">Membership</span></td>
+              <td class="num">3.3B</td>
+              <td class="num"><strong>3.8B</strong></td>
+            </tr>
+            <tr>
+              <td>Sewa - penyusutan<br><span style="color:var(--ops-muted); font-size:11px;">Rent - depreciation (Note 10)</span></td>
+              <td class="num">2.4B</td>
+              <td class="num"><strong>2.4B</strong></td>
+            </tr>
+            <tr>
+              <td>Academy golf<br><span style="color:var(--ops-muted); font-size:11px;">Academy golf</span></td>
+              <td class="num">2.1B</td>
+              <td class="num"><strong>2.2B</strong></td>
+            </tr>
+            <tr>
+              <td>Branding<br><span style="color:var(--ops-muted); font-size:11px;">Branding</span></td>
+              <td class="num">3.6B</td>
+              <td class="num"><strong>1.2B</strong></td>
+            </tr>
+            <tr>
+              <td>Gym<br><span style="color:var(--ops-muted); font-size:11px;">Gym</span></td>
+              <td class="num">1.1B</td>
+              <td class="num"><strong>1.2B</strong></td>
+            </tr>
+            <tr>
+              <td>Sewa - pajak bumi dan bangunan<br><span style="color:var(--ops-muted); font-size:11px;">Rent - land and building tax</span></td>
+              <td class="num">307.0M</td>
+              <td class="num"><strong>307.0M</strong></td>
+            </tr>
+            <tr>
+              <td>Tournament Indonesia open<br><span style="color:var(--ops-muted); font-size:11px;">Tournament Indonesia open</span></td>
+              <td class="num">18.3B</td>
+              <td class="num"><strong>0</strong></td>
+            </tr>
+            <tr style="background:rgba(45,80,22,0.06); font-weight:700;">
+              <td>합계</td>
+              <td class="num">85.1B</td>
+              <td class="num">69.6B</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div style="margin-bottom:32px;">
+        <h3 style="font-size:16px; margin:0 0 10px 0;">🟨 GOLF · 매출원가 (Note 30)</h3>
+        <p style="font-size:12px; color:var(--ops-muted); margin:0 0 8px 0;">사업부별 직접원가 (골프·부동산·호텔·F&B)</p>
+        <div class="tbl-card scroll-x">
+          <table class="ops-tbl">
+            <thead><tr><th>비용 라인</th><th class="num">FY2023</th><th class="num">FY2024</th></tr></thead>
+            <tbody>
+            <tr>
+              <td>Golf</td>
+              <td class="num">30.4B</td>
+              <td class="num"><strong>32.0B</strong></td>
+            </tr>
+            <tr>
+              <td>Real Estat</td>
+              <td class="num">15.2B</td>
+              <td class="num"><strong>24.3B</strong></td>
+            </tr>
+            <tr>
+              <td>Restoran</td>
+              <td class="num">13.9B</td>
+              <td class="num"><strong>14.7B</strong></td>
+            </tr>
+            <tr>
+              <td>Lain-lain</td>
+              <td class="num">5.7B</td>
+              <td class="num"><strong>7.3B</strong></td>
+            </tr>
+            <tr style="background:rgba(45,80,22,0.06); font-weight:700;">
+              <td>합계</td>
+              <td class="num">65.1B</td>
+              <td class="num">78.3B</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div style="margin-bottom:32px;">
+        <h3 style="font-size:16px; margin:0 0 10px 0;">🟩 MDLN · 매출원가 (Note 26)</h3>
+        <p style="font-size:12px; color:var(--ops-muted); margin:0 0 8px 0;">골프·클럽하우스 부문별 직접원가 (호텔 부문 제외)</p>
+        <div class="tbl-card scroll-x">
+          <table class="ops-tbl">
+            <thead><tr><th>비용 라인</th><th class="num">FY2023</th><th class="num">FY2024</th></tr></thead>
+            <tbody>
+            <tr style="background:rgba(245,158,11,0.08); font-weight:700;"><td colspan="3">골프 코스 직접원가</td></tr>
+            <tr>
+              <td style="padding-left:24px;">Gaji dan tunjangan lainnya</td>
+              <td class="num">18.0B</td>
+              <td class="num">19.3B</td>
+            </tr>
+            <tr>
+              <td style="padding-left:24px;">Beban penyusutan (Note 11)</td>
+              <td class="num">2.2B</td>
+              <td class="num">2.8B</td>
+            </tr>
+            <tr>
+              <td style="padding-left:24px;">Lain-lain</td>
+              <td class="num">9.4B</td>
+              <td class="num">9.4B</td>
+            </tr>
+            <tr style="font-weight:600;">
+              <td style="padding-left:24px;">— 골프 소계</td>
+              <td class="num">29.6B</td>
+              <td class="num">31.4B</td>
+            </tr>
+            <tr style="background:rgba(245,158,11,0.08); font-weight:700;"><td colspan="3">클럽하우스·F&B 직접원가</td></tr>
+            <tr>
+              <td style="padding-left:24px;">Gaji dan tunjangan</td>
+              <td class="num">5.4B</td>
+              <td class="num">5.9B</td>
+            </tr>
+            <tr>
+              <td style="padding-left:24px;">Makanan dan minuman</td>
+              <td class="num">5.4B</td>
+              <td class="num">5.8B</td>
+            </tr>
+            <tr>
+              <td style="padding-left:24px;">Lain-lain</td>
+              <td class="num">2.5B</td>
+              <td class="num">1.7B</td>
+            </tr>
+            <tr style="font-weight:600;">
+              <td style="padding-left:24px;">— 클럽하우스 소계</td>
+              <td class="num">13.3B</td>
+              <td class="num">13.4B</td>
+            </tr>
+            <tr style="background:rgba(45,80,22,0.06); font-weight:700;">
+              <td>골프+클럽하우스 합계</td>
+              <td class="num">42.9B</td>
+              <td class="num">44.9B</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="cost-panel" id="panel-opex">
+      <div style="margin-bottom:32px;">
+        <h3 style="font-size:16px; margin:0 0 10px 0;">🟦 DMIG · 판관비 (Note {'FY2022': 25, 'FY2023': 25, 'FY2024': 25})</h3>
+        <p style="font-size:12px; color:var(--ops-muted); margin:0 0 8px 0;">17 라인 — 인건비·시설관리·세금·감가상각 등</p>
+        <div class="tbl-card scroll-x">
+          <table class="ops-tbl">
+            <thead><tr><th>비용 라인</th><th class="num">FY2022</th><th class="num">FY2023</th><th class="num">FY2024</th></tr></thead>
+            <tbody>
+            <tr>
+              <td>Gaji dan upah<br><span style="color:var(--ops-muted); font-size:11px;">Salaries and wages</span></td>
+              <td class="num">24.9B</td>
+              <td class="num">28.3B</td>
+              <td class="num"><strong>28.6B</strong></td>
+            </tr>
+            <tr>
+              <td>Penyusutan<br><span style="color:var(--ops-muted); font-size:11px;">Depreciation</span></td>
+              <td class="num">16.6B</td>
+              <td class="num">25.9B</td>
+              <td class="num"><strong>28.2B</strong></td>
+            </tr>
+            <tr>
+              <td>Pajak bumi dan bangunan<br><span style="color:var(--ops-muted); font-size:11px;">Land and building tax</span></td>
+              <td class="num">9.1B</td>
+              <td class="num">10.2B</td>
+              <td class="num"><strong>10.4B</strong></td>
+            </tr>
+            <tr>
+              <td>Jasa kebersihan dan pelayanan<br><span style="color:var(--ops-muted); font-size:11px;">Cleaning service</span></td>
+              <td class="num">7.8B</td>
+              <td class="num">8.3B</td>
+              <td class="num"><strong>8.7B</strong></td>
+            </tr>
+            <tr>
+              <td>Listrik dan air<br><span style="color:var(--ops-muted); font-size:11px;">Electricity and water</span></td>
+              <td class="num">4.0B</td>
+              <td class="num">4.3B</td>
+              <td class="num"><strong>4.5B</strong></td>
+            </tr>
+            <tr>
+              <td>Amortisasi<br><span style="color:var(--ops-muted); font-size:11px;">Amortization</span></td>
+              <td class="num">2.6B</td>
+              <td class="num">2.6B</td>
+              <td class="num"><strong>2.6B</strong></td>
+            </tr>
+            <tr>
+              <td>Perbaikan dan pemeliharaan<br><span style="color:var(--ops-muted); font-size:11px;">Repair and maintenance</span></td>
+              <td class="num">1.8B</td>
+              <td class="num">2.2B</td>
+              <td class="num"><strong>2.3B</strong></td>
+            </tr>
+            <tr>
+              <td>Imbalan kerja karyawan<br><span style="color:var(--ops-muted); font-size:11px;">Employee benefits</span></td>
+              <td class="num">0</td>
+              <td class="num">2.1B</td>
+              <td class="num"><strong>2.4B</strong></td>
+            </tr>
+            <tr>
+              <td>Administrasi bank<br><span style="color:var(--ops-muted); font-size:11px;">Bank administration</span></td>
+              <td class="num">1.4B</td>
+              <td class="num">1.9B</td>
+              <td class="num"><strong>2.0B</strong></td>
+            </tr>
+            <tr>
+              <td>Pajak dan perizinan<br><span style="color:var(--ops-muted); font-size:11px;">Tax and licensing</span></td>
+              <td class="num">1.2B</td>
+              <td class="num">3.2B</td>
+              <td class="num"><strong>1.6B</strong></td>
+            </tr>
+            <tr>
+              <td>Jasa tenaga ahli<br><span style="color:var(--ops-muted); font-size:11px;">Professional fee</span></td>
+              <td class="num">797.1M</td>
+              <td class="num">503.0M</td>
+              <td class="num"><strong>1.1B</strong></td>
+            </tr>
+            <tr>
+              <td>Kesejahteraan karyawan<br><span style="color:var(--ops-muted); font-size:11px;">Employee welfare</span></td>
+              <td class="num">574.8M</td>
+              <td class="num">993.4M</td>
+              <td class="num"><strong>998.8M</strong></td>
+            </tr>
+            <tr>
+              <td>Transportasi<br><span style="color:var(--ops-muted); font-size:11px;">Transportation</span></td>
+              <td class="num">612.5M</td>
+              <td class="num">952.6M</td>
+              <td class="num"><strong>932.9M</strong></td>
+            </tr>
+            <tr>
+              <td>Beban Asuransi<br><span style="color:var(--ops-muted); font-size:11px;">Insurance</span></td>
+              <td class="num">430.2M</td>
+              <td class="num">592.6M</td>
+              <td class="num"><strong>571.0M</strong></td>
+            </tr>
+            <tr>
+              <td>Alat-alat tulis dan cetakan<br><span style="color:var(--ops-muted); font-size:11px;">Stationery and printing</span></td>
+              <td class="num">658.6M</td>
+              <td class="num">516.5M</td>
+              <td class="num"><strong>561.4M</strong></td>
+            </tr>
+            <tr>
+              <td>Telepon dan teleks<br><span style="color:var(--ops-muted); font-size:11px;">Telephone and telex</span></td>
+              <td class="num">222.9M</td>
+              <td class="num">269.2M</td>
+              <td class="num"><strong>267.9M</strong></td>
+            </tr>
+            <tr>
+              <td>Lain-lain<br><span style="color:var(--ops-muted); font-size:11px;">Others (each below Rp100m)</span></td>
+              <td class="num">1.1B</td>
+              <td class="num">1.2B</td>
+              <td class="num"><strong>1.3B</strong></td>
+            </tr>
+            <tr style="background:rgba(45,80,22,0.06); font-weight:700;">
+              <td>합계</td>
+              <td class="num">73.8B</td>
+              <td class="num">94.2B</td>
+              <td class="num">97.1B</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div style="margin-bottom:32px;">
+        <h3 style="font-size:16px; margin:0 0 10px 0;">🟦 PIPG · 판관비 (Note 29)</h3>
+        <p style="font-size:12px; color:var(--ops-muted); margin:0 0 8px 0;">17 라인 — 세금·인허가·인건비·법률·감가 등</p>
+        <div class="tbl-card scroll-x">
+          <table class="ops-tbl">
+            <thead><tr><th>비용 라인</th><th class="num">FY2023</th><th class="num">FY2024</th></tr></thead>
+            <tbody>
+            <tr>
+              <td>Pajak dan perijinan<br><span style="color:var(--ops-muted); font-size:11px;">Tax and legal</span></td>
+              <td class="num">20.7B</td>
+              <td class="num"><strong>24.2B</strong></td>
+            </tr>
+            <tr>
+              <td>Beban gaji dan tunjangan karyawan<br><span style="color:var(--ops-muted); font-size:11px;">Salary and allowances</span></td>
+              <td class="num">15.2B</td>
+              <td class="num"><strong>17.9B</strong></td>
+            </tr>
+            <tr>
+              <td>Perbaikan dan pemeliharaan<br><span style="color:var(--ops-muted); font-size:11px;">Repair and maintenance</span></td>
+              <td class="num">10.6B</td>
+              <td class="num"><strong>11.6B</strong></td>
+            </tr>
+            <tr>
+              <td>Penyusutan<br><span style="color:var(--ops-muted); font-size:11px;">Depreciation (Notes 9, 13)</span></td>
+              <td class="num">9.5B</td>
+              <td class="num"><strong>11.3B</strong></td>
+            </tr>
+            <tr>
+              <td>Amortisasi beban tangguhan<br><span style="color:var(--ops-muted); font-size:11px;">Amortization of deferred charge (Note 12)</span></td>
+              <td class="num">2.6B</td>
+              <td class="num"><strong>2.7B</strong></td>
+            </tr>
+            <tr>
+              <td>Penyisihan imbalan pasca kerja karyawan<br><span style="color:var(--ops-muted); font-size:11px;">Provision for employee benefit (Note 22)</span></td>
+              <td class="num">1.3B</td>
+              <td class="num"><strong>2.5B</strong></td>
+            </tr>
+            <tr>
+              <td>Listrik dan air<br><span style="color:var(--ops-muted); font-size:11px;">Electricity and water</span></td>
+              <td class="num">2.2B</td>
+              <td class="num"><strong>2.2B</strong></td>
+            </tr>
+            <tr>
+              <td>Perlengkapan dan peralatan kantor<br><span style="color:var(--ops-muted); font-size:11px;">Supplies and office equipment</span></td>
+              <td class="num">1.2B</td>
+              <td class="num"><strong>1.4B</strong></td>
+            </tr>
+            <tr>
+              <td>Sumbangan dan kontribusi<br><span style="color:var(--ops-muted); font-size:11px;">Donation and contribution</span></td>
+              <td class="num">895.3M</td>
+              <td class="num"><strong>1.1B</strong></td>
+            </tr>
+            <tr>
+              <td>Asuransi<br><span style="color:var(--ops-muted); font-size:11px;">Insurance</span></td>
+              <td class="num">327.9M</td>
+              <td class="num"><strong>355.7M</strong></td>
+            </tr>
+            <tr>
+              <td>Beban diklat<br><span style="color:var(--ops-muted); font-size:11px;">Training expenses</span></td>
+              <td class="num">197.6M</td>
+              <td class="num"><strong>353.4M</strong></td>
+            </tr>
+            <tr>
+              <td>Audit dan konsultan<br><span style="color:var(--ops-muted); font-size:11px;">Audit and consultant</span></td>
+              <td class="num">290.9M</td>
+              <td class="num"><strong>192.3M</strong></td>
+            </tr>
+            <tr>
+              <td>Transportasi dan perjalanan dinas<br><span style="color:var(--ops-muted); font-size:11px;">Transportation and travels</span></td>
+              <td class="num">166.3M</td>
+              <td class="num"><strong>163.0M</strong></td>
+            </tr>
+            <tr>
+              <td>Penyisihan penurunan nilai piutang<br><span style="color:var(--ops-muted); font-size:11px;">Allowance for impairment of receivable (Note 6)</span></td>
+              <td class="num">0</td>
+              <td class="num"><strong>120.2M</strong></td>
+            </tr>
+            <tr>
+              <td>Pos, telepon dan fax<br><span style="color:var(--ops-muted); font-size:11px;">Post, telephone and fax</span></td>
+              <td class="num">61.7M</td>
+              <td class="num"><strong>41.1M</strong></td>
+            </tr>
+            <tr>
+              <td>Penghapusan persediaan<br><span style="color:var(--ops-muted); font-size:11px;">Write-off inventory</span></td>
+              <td class="num">803,666</td>
+              <td class="num"><strong>7.5M</strong></td>
+            </tr>
+            <tr>
+              <td>Penyisihan persediaan<br><span style="color:var(--ops-muted); font-size:11px;">Allowance of inventories</span></td>
+              <td class="num">202.1M</td>
+              <td class="num"><strong>0</strong></td>
+            </tr>
+            <tr style="background:rgba(45,80,22,0.06); font-weight:700;">
+              <td>합계</td>
+              <td class="num">65.5B</td>
+              <td class="num">76.1B</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div style="margin-bottom:32px;">
+        <h3 style="font-size:16px; margin:0 0 10px 0;">🟨 GOLF · 판매비 + 일반관리비 (Note 31·32)</h3>
+        <p style="font-size:12px; color:var(--ops-muted); margin:0 0 8px 0;">판매비 5 라인 + G&A 16 라인</p>
+        <div class="tbl-card scroll-x">
+          <table class="ops-tbl">
+            <thead><tr><th>비용 라인</th><th class="num">FY2023</th><th class="num">FY2024</th></tr></thead>
+            <tbody>
+            <tr style="background:rgba(245,158,11,0.08); font-weight:700;"><td colspan="3">판매비 (Note 31)</td></tr>
+            <tr>
+              <td style="padding-left:24px;">Iklan dan promosi<br><span style="color:var(--ops-muted); font-size:11px;">Advertising and promotion</span></td>
+              <td class="num">972.7M</td>
+              <td class="num">4.2B</td>
+            </tr>
+            <tr>
+              <td style="padding-left:24px;">Perlengkapan pemasaran<br><span style="color:var(--ops-muted); font-size:11px;">Marketing tools</span></td>
+              <td class="num">164.3M</td>
+              <td class="num">688.1M</td>
+            </tr>
+            <tr>
+              <td style="padding-left:24px;">Transportasi<br><span style="color:var(--ops-muted); font-size:11px;">—</span></td>
+              <td class="num">81.1M</td>
+              <td class="num">85.6M</td>
+            </tr>
+            <tr>
+              <td style="padding-left:24px;">Komisi penjualan<br><span style="color:var(--ops-muted); font-size:11px;">Sales commission</span></td>
+              <td class="num">26.0M</td>
+              <td class="num">154.8M</td>
+            </tr>
+            <tr>
+              <td style="padding-left:24px;">Lain-lain<br><span style="color:var(--ops-muted); font-size:11px;">—</span></td>
+              <td class="num">31.8M</td>
+              <td class="num">295.3M</td>
+            </tr>
+            <tr style="font-weight:600;">
+              <td style="padding-left:24px;">— 판매비 소계</td>
+              <td class="num">1.3B</td>
+              <td class="num">5.4B</td>
+            </tr>
+            <tr style="background:rgba(245,158,11,0.08); font-weight:700;"><td colspan="3">일반관리비 (Note 32)</td></tr>
+            <tr>
+              <td style="padding-left:24px;">Gaji dan tunjangan<br><span style="color:var(--ops-muted); font-size:11px;">Salaries and allowances</span></td>
+              <td class="num">14.4B</td>
+              <td class="num">15.7B</td>
+            </tr>
+            <tr>
+              <td style="padding-left:24px;">Utilitas<br><span style="color:var(--ops-muted); font-size:11px;">Utility</span></td>
+              <td class="num">4.0B</td>
+              <td class="num">4.0B</td>
+            </tr>
+            <tr>
+              <td style="padding-left:24px;">Perbaikan dan perawatan<br><span style="color:var(--ops-muted); font-size:11px;">Repairs and maintenance</span></td>
+              <td class="num">2.0B</td>
+              <td class="num">2.5B</td>
+            </tr>
+            <tr>
+              <td style="padding-left:24px;">Penyusutan aset tetap<br><span style="color:var(--ops-muted); font-size:11px;">Depreciation (Note 13)</span></td>
+              <td class="num">2.9B</td>
+              <td class="num">2.5B</td>
+            </tr>
+            <tr>
+              <td style="padding-left:24px;">Jasa profesional<br><span style="color:var(--ops-muted); font-size:11px;">Professional fees</span></td>
+              <td class="num">3.8B</td>
+              <td class="num">2.4B</td>
+            </tr>
+            <tr>
+              <td style="padding-left:24px;">Pajak bumi dan bangunan<br><span style="color:var(--ops-muted); font-size:11px;">Land and building tax</span></td>
+              <td class="num">3.4B</td>
+              <td class="num">2.4B</td>
+            </tr>
+            <tr>
+              <td style="padding-left:24px;">Beban imbalan kerja karyawan<br><span style="color:var(--ops-muted); font-size:11px;">Employee benefits (Note 23)</span></td>
+              <td class="num">2.2B</td>
+              <td class="num">2.0B</td>
+            </tr>
+            <tr>
+              <td style="padding-left:24px;">Keamanan<br><span style="color:var(--ops-muted); font-size:11px;">Security</span></td>
+              <td class="num">1.9B</td>
+              <td class="num">1.9B</td>
+            </tr>
+            <tr>
+              <td style="padding-left:24px;">Transportasi dan akomodasi<br><span style="color:var(--ops-muted); font-size:11px;">—</span></td>
+              <td class="num">380.4M</td>
+              <td class="num">1.6B</td>
+            </tr>
+            <tr>
+              <td style="padding-left:24px;">Sumbangan dan donasi<br><span style="color:var(--ops-muted); font-size:11px;">—</span></td>
+              <td class="num">122.6M</td>
+              <td class="num">1.4B</td>
+            </tr>
+            <tr>
+              <td style="padding-left:24px;">Legal dan perizinan<br><span style="color:var(--ops-muted); font-size:11px;">—</span></td>
+              <td class="num">835.0M</td>
+              <td class="num">1.3B</td>
+            </tr>
+            <tr>
+              <td style="padding-left:24px;">Biaya kartu kredit<br><span style="color:var(--ops-muted); font-size:11px;">—</span></td>
+              <td class="num">1.1B</td>
+              <td class="num">1.2B</td>
+            </tr>
+            <tr>
+              <td style="padding-left:24px;">Asuransi<br><span style="color:var(--ops-muted); font-size:11px;">—</span></td>
+              <td class="num">840.0M</td>
+              <td class="num">807.2M</td>
+            </tr>
+            <tr>
+              <td style="padding-left:24px;">Perlengkapan kantor<br><span style="color:var(--ops-muted); font-size:11px;">—</span></td>
+              <td class="num">111.4M</td>
+              <td class="num">748.5M</td>
+            </tr>
+            <tr>
+              <td style="padding-left:24px;">Perjalanan dinas<br><span style="color:var(--ops-muted); font-size:11px;">—</span></td>
+              <td class="num">666.7M</td>
+              <td class="num">571.6M</td>
+            </tr>
+            <tr>
+              <td style="padding-left:24px;">Lain-lain<br><span style="color:var(--ops-muted); font-size:11px;">—</span></td>
+              <td class="num">1.1B</td>
+              <td class="num">788.5M</td>
+            </tr>
+            <tr style="font-weight:600;">
+              <td style="padding-left:24px;">— G&A 소계</td>
+              <td class="num">39.7B</td>
+              <td class="num">41.9B</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div style="margin-bottom:32px;">
+        <h3 style="font-size:16px; margin:0 0 10px 0;">🟩 KPIG · 일반관리비 (Note 34)</h3>
+        <p style="font-size:12px; color:var(--ops-muted); margin:0 0 8px 0;">그룹 G&A 13 라인 — 골프 포함 전 사업부</p>
+        <div class="tbl-card scroll-x">
+          <table class="ops-tbl">
+            <thead><tr><th>비용 라인</th><th class="num">FY2023</th><th class="num">FY2024</th></tr></thead>
+            <tbody>
+            <tr>
+              <td>Gaji dan tunjangan</td>
+              <td class="num">133.1B</td>
+              <td class="num"><strong>120.5B</strong></td>
+            </tr>
+            <tr>
+              <td>Perbaikan dan perawatan</td>
+              <td class="num">34.6B</td>
+              <td class="num"><strong>48.6B</strong></td>
+            </tr>
+            <tr>
+              <td>Jasa manajemen</td>
+              <td class="num">29.9B</td>
+              <td class="num"><strong>30.7B</strong></td>
+            </tr>
+            <tr>
+              <td>Pajak dan perijinan</td>
+              <td class="num">12.0B</td>
+              <td class="num"><strong>24.6B</strong></td>
+            </tr>
+            <tr>
+              <td>Penyusutan (Note 12)</td>
+              <td class="num">19.3B</td>
+              <td class="num"><strong>18.9B</strong></td>
+            </tr>
+            <tr>
+              <td>Perangkat lunak dan teknologi informasi</td>
+              <td class="num">28.1B</td>
+              <td class="num"><strong>14.1B</strong></td>
+            </tr>
+            <tr>
+              <td>Asuransi</td>
+              <td class="num">12.4B</td>
+              <td class="num"><strong>12.4B</strong></td>
+            </tr>
+            <tr>
+              <td>Imbalan kerja</td>
+              <td class="num">3.3B</td>
+              <td class="num"><strong>9.9B</strong></td>
+            </tr>
+            <tr>
+              <td>Utilitas</td>
+              <td class="num">6.6B</td>
+              <td class="num"><strong>9.5B</strong></td>
+            </tr>
+            <tr>
+              <td>Transportasi dan akomodasi</td>
+              <td class="num">5.5B</td>
+              <td class="num"><strong>5.3B</strong></td>
+            </tr>
+            <tr>
+              <td>Jasa profesional</td>
+              <td class="num">3.5B</td>
+              <td class="num"><strong>3.7B</strong></td>
+            </tr>
+            <tr>
+              <td>Perlengkapan dan administrasi kantor</td>
+              <td class="num">5.5B</td>
+              <td class="num"><strong>3.0B</strong></td>
+            </tr>
+            <tr>
+              <td>Lain-lain</td>
+              <td class="num">41.6B</td>
+              <td class="num"><strong>53.8B</strong></td>
+            </tr>
+            <tr style="background:rgba(45,80,22,0.06); font-weight:700;">
+              <td>합계</td>
+              <td class="num">335.5B</td>
+              <td class="num">355.1B</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="cost-panel" id="panel-ratio">
+      <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">FY2024 연결 P&L 기준. 비용 비율 = (매출 − 영업이익) / 매출. EBITDA 비율은 EBITDA / 매출.</p>
+      <div class="tbl-card scroll-x">
+        <table class="ops-tbl">
+          <thead>
+            <tr>
+              <th>Peer</th>
+              <th>그룹명</th>
+              <th class="num">매출 (IDR)</th>
+              <th class="num">총 비용 / 매출</th>
+              <th class="num">영업이익률</th>
+              <th class="num">EBITDA 마진</th>
+              <th class="num">순이익률</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="peer"><a href="clubs/dmig.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">DMIG</a><span class="peer-tag peer-tag-pp">🟦 Pure-play</span></td>
+              <td>Damai Indah Golf</td>
+              <td class="num">253.1B</td>
+              <td class="num">68.8%</td>
+              <td class="num"><strong>31.2%</strong></td>
+              <td class="num">42.3%</td>
+              <td class="num">32.6%</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/pipg.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">PIPG</a><span class="peer-tag peer-tag-pp">🟦 Pure-play</span></td>
+              <td>Pondok Indah Padang Golf</td>
+              <td class="num">197.6B</td>
+              <td class="num">72.9%</td>
+              <td class="num"><strong>27.1%</strong></td>
+              <td class="num">35.8%</td>
+              <td class="num">28.3%</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/golf.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">GOLF</a><span class="peer-tag peer-tag-resort">🟨 Resort</span></td>
+              <td>Intra GolfLink Resorts</td>
+              <td class="num">198.0B</td>
+              <td class="num">63.4%</td>
+              <td class="num"><strong>36.6%</strong></td>
+              <td class="num">44.7%</td>
+              <td class="num">34.1%</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/bsde.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">BSDE</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
+              <td>Palm Springs Karawang + </td>
+              <td class="num">13.8T</td>
+              <td class="num">64.7%</td>
+              <td class="num"><strong>35.3%</strong></td>
+              <td class="num">40.7%</td>
+              <td class="num">31.6%</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/ctra.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">CTRA</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
+              <td>Ciputra Golf Surabaya + </td>
+              <td class="num">11.2T</td>
+              <td class="num">69.2%</td>
+              <td class="num"><strong>30.8%</strong></td>
+              <td class="num">34.2%</td>
+              <td class="num">19.0%</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/elty.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">ELTY</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
+              <td>Gunung Geulis + Klub Gol</td>
+              <td class="num">1.2T</td>
+              <td class="num">93.8%</td>
+              <td class="num"><strong>6.2%</strong></td>
+              <td class="num">12.1%</td>
+              <td class="num">-5.7%</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/kija.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">KIJA</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
+              <td>Jababeka Golf & Country </td>
+              <td class="num">4.6T</td>
+              <td class="num">70.4%</td>
+              <td class="num"><strong>29.6%</strong></td>
+              <td class="num">33.6%</td>
+              <td class="num">7.9%</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/kpig.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">KPIG</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
+              <td>Trump International Golf</td>
+              <td class="num">1.8T</td>
+              <td class="num">92.7%</td>
+              <td class="num"><strong>7.3%</strong></td>
+              <td class="num">15.3%</td>
+              <td class="num">37.2%</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/lpkr.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">LPKR</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
+              <td>Imperial Klub Golf</td>
+              <td class="num">11.3T</td>
+              <td class="num">87.8%</td>
+              <td class="num"><strong>12.2%</strong></td>
+              <td class="num">14.8%</td>
+              <td class="num">165.2%</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/mdln.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">MDLN</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
+              <td>Modern Golf & Country Cl</td>
+              <td class="num">1.0T</td>
+              <td class="num">102.0%</td>
+              <td class="num"><strong>-2.0%</strong></td>
+              <td class="num">4.0%</td>
+              <td class="num">-67.8%</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/pwon.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">PWON</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
+              <td>Pakuwon Golf & Family Cl</td>
+              <td class="num">6.7T</td>
+              <td class="num">56.5%</td>
+              <td class="num"><strong>43.5%</strong></td>
+              <td class="num">53.7%</td>
+              <td class="num">31.1%</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/smdm.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">SMDM</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
+              <td>Rancamaya Golf Estate</td>
+              <td class="num">694.0B</td>
+              <td class="num">78.6%</td>
+              <td class="num"><strong>21.4%</strong></td>
+              <td class="num">23.3%</td>
+              <td class="num">17.8%</td>
+            </tr>
+            <tr>
+              <td class="peer"><a href="clubs/smra.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">SMRA</a><span class="peer-tag peer-tag-twn">🟩 Township</span></td>
+              <td>Gading Raya Padang Golf</td>
+              <td class="num">10.6T</td>
+              <td class="num">64.9%</td>
+              <td class="num"><strong>35.1%</strong></td>
+              <td class="num">35.9%</td>
+              <td class="num">12.9%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </section>
 
 <footer class="ops-foot">
   <div class="ops-wrap">
-    <p>Peer Group v2 · IDR · 13 peer 비교.</p>
+    <p>매출원가·판관비 라인은 AR 주석(Note) 기반 — DMIG·PIPG·GOLF·MDLN·KPIG 라인 공시. 비율은 연결 P&L FY2024.</p>
   </div>
 </footer>
 
-<script src="operations.js?v=20260512c2" defer></script>
+<script src="operations.js?v=20260512c3" defer></script>
 <script>
 (function(){
-  const data = {"2022": [{"rev": 186.454207, "op": 52.873, "np": 53.028783508, "opmargin": 28.35709681787979, "margin": 28.440647363885972, "cogs_est": 133.581207, "_ticker": "DMIG", "_name": "Damai Indah Golf", "_tier": "pp", "_tier_label": "🟦 Pure-play"}, {"rev": 162.573493394, "op": 42.572546838, "np": 42.297244404, "opmargin": 26.186647004517894, "margin": 26.01730670909052, "cogs_est": 120.000946556, "_ticker": "PIPG", "_name": "Pondok Indah Padang Golf", "_tier": "pp", "_tier_label": "🟦 Pure-play"}, {"rev": 111.63082626, "op": 32.264940858, "np": 25.533501208, "opmargin": 28.903253643264755, "margin": 22.873163321867544, "cogs_est": 79.365885402, "_ticker": "GOLF", "_name": "Intra GolfLink Resorts", "_tier": "resort", "_tier_label": "🟨 Resort"}, {"rev": 10235.479955727, "op": 4039.314, "np": 2433.146905387, "opmargin": 39.46384553994369, "margin": 23.771693324704284, "cogs_est": 6196.1659557269995, "_ticker": "BSDE", "_name": "Palm Springs Karawang + Batam", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 9126.799, "op": 3057.323, "np": 1862.403, "opmargin": 33.49830537519233, "margin": 20.40587285860026, "cogs_est": 6069.476000000001, "_ticker": "CTRA", "_name": "Ciputra Golf Surabaya + Taman Dayu", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 1011.006, "op": -17.95, "np": -245.309, "opmargin": -1.7754592949992383, "margin": -24.263852044399343, "cogs_est": 1028.956, "_ticker": "ELTY", "_name": "Gunung Geulis + Klub Golf Bogor Raya", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 2747.185, "op": 986.474, "np": -64.035, "opmargin": 35.90853910457432, "margin": -2.330931480770316, "cogs_est": 1760.7109999999998, "_ticker": "KIJA", "_name": "Jababeka Golf & Country Club", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 1121.876641, "op": 126.385, "np": 177.77154, "opmargin": 11.265498841953338, "margin": 15.845907963779416, "cogs_est": 995.4916410000001, "_ticker": "KPIG", "_name": "Trump International Golf Club Lido", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 14674.086, "op": 1342.867, "np": -2692.075, "opmargin": 9.15128206281468, "margin": -18.34577635704193, "cogs_est": 13331.219, "_ticker": "LPKR", "_name": "Imperial Klub Golf", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 1098.86, "op": 116.864, "np": 20.171, "opmargin": 10.635021749813443, "margin": 1.8356296525490052, "cogs_est": 981.9959999999999, "_ticker": "MDLN", "_name": "Modern Golf & Country Club", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 5987.433, "op": 2601.974, "np": 1538.835, "opmargin": 43.45725455299458, "margin": 25.701080913974316, "cogs_est": 3385.459, "_ticker": "PWON", "_name": "Pakuwon Golf & Family Club", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 566.403, "op": 196.874, "np": 163.777, "opmargin": 34.75864358063075, "margin": 28.91527763800686, "cogs_est": 369.529, "_ticker": "SMDM", "_name": "Rancamaya Golf Estate", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 5719.396, "op": 1708.418, "np": 625.377, "opmargin": 29.87060172088102, "margin": 10.934318938573234, "cogs_est": 4010.978, "_ticker": "SMRA", "_name": "Gading Raya Padang Golf", "_tier": "twn", "_tier_label": "🟩 Township"}], "2023": [{"rev": 244.986267834, "op": 76.537335834, "np": 71.268571841, "opmargin": 31.24147998607859, "margin": 29.090843528132275, "cogs_est": 168.44893199999999, "_ticker": "DMIG", "_name": "Damai Indah Golf", "_tier": "pp", "_tier_label": "🟦 Pure-play"}, {"rev": 203.092322067, "op": 53.814730325, "np": 52.475087302, "opmargin": 26.49766853679804, "margin": 25.83804585418473, "cogs_est": 149.277591742, "_ticker": "PIPG", "_name": "Pondok Indah Padang Golf", "_tier": "pp", "_tier_label": "🟦 Pure-play"}, {"rev": 177.582018034, "op": 71.448309127, "np": 60.176060893, "opmargin": 40.23397747024164, "margin": 33.8863481557455, "cogs_est": 106.13370890699998, "_ticker": "GOLF", "_name": "Intra GolfLink Resorts", "_tier": "resort", "_tier_label": "🟨 Resort"}, {"rev": 11539.141250155, "op": 3298.781, "np": 1945.467441301, "opmargin": 28.58775127616788, "margin": 16.859724646102823, "cogs_est": 8240.360250155001, "_ticker": "BSDE", "_name": "Palm Springs Karawang + Batam", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 9245.032, "op": 2932.834, "np": 1846.087, "opmargin": 31.723351525446315, "margin": 19.968421958950493, "cogs_est": 6312.197999999999, "_ticker": "CTRA", "_name": "Ciputra Golf Surabaya + Taman Dayu", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 1227.355, "op": -183.152, "np": -1079.192, "opmargin": -14.922495936383523, "margin": -87.9282685123701, "cogs_est": 1410.507, "_ticker": "ELTY", "_name": "Gunung Geulis + Klub Golf Bogor Raya", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 3299.597, "op": 728.477, "np": 305.576, "opmargin": 22.07775676847809, "margin": 9.261009753615365, "cogs_est": 2571.1200000000003, "_ticker": "KIJA", "_name": "Jababeka Golf & Country Club", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 1421.006434, "op": 135.473, "np": 329.809865, "opmargin": 9.533595116712892, "margin": 23.209596882092654, "cogs_est": 1285.533434, "_ticker": "KPIG", "_name": "Trump International Golf Club Lido", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 16702.038, "op": 2354.897, "np": 50.14, "opmargin": 14.099459000153155, "margin": 0.30020288542033013, "cogs_est": 14347.141, "_ticker": "LPKR", "_name": "Imperial Klub Golf", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 1152.308, "op": 101.316, "np": -101.974, "opmargin": 8.79244090989562, "margin": -8.849543698386194, "cogs_est": 1050.992, "_ticker": "MDLN", "_name": "Modern Golf & Country Club", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 6200.438, "op": 2660.291, "np": 2105.21, "opmargin": 42.90488833208235, "margin": 33.952601412996955, "cogs_est": 3540.147, "_ticker": "PWON", "_name": "Pakuwon Golf & Family Club", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 496.498, "op": 115.421, "np": 104.238, "opmargin": 23.247022143090206, "margin": 20.99464650411482, "cogs_est": 381.077, "_ticker": "SMDM", "_name": "Rancamaya Golf Estate", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 6658.783, "op": 1911.672, "np": 765.97, "opmargin": 28.709029863264803, "margin": 11.503153053643587, "cogs_est": 4747.111000000001, "_ticker": "SMRA", "_name": "Gading Raya Padang Golf", "_tier": "twn", "_tier_label": "🟩 Township"}], "2024": [{"rev": 253.102440194, "op": 78.926666604, "np": 82.404512711, "opmargin": 31.183684575898855, "margin": 32.5577709356883, "cogs_est": 174.17577359, "_ticker": "DMIG", "_name": "Damai Indah Golf", "_tier": "pp", "_tier_label": "🟦 Pure-play"}, {"rev": 197.570521436, "op": 53.451361547, "np": 55.903815772, "opmargin": 27.054320228797273, "margin": 28.295625969742254, "cogs_est": 144.119159889, "_ticker": "PIPG", "_name": "Pondok Indah Padang Golf", "_tier": "pp", "_tier_label": "🟦 Pure-play"}, {"rev": 197.993814652, "op": 72.469171724, "np": 67.574993523, "opmargin": 36.60173518620975, "margin": 34.12985079446642, "cogs_est": 125.52464292799999, "_ticker": "GOLF", "_name": "Intra GolfLink Resorts", "_tier": "resort", "_tier_label": "🟨 Resort"}, {"rev": 13796.572149, "op": 4874.328, "np": 4359.063784, "opmargin": 35.32999318496153, "margin": 31.595266830942155, "cogs_est": 8922.244148999998, "_ticker": "BSDE", "_name": "Palm Springs Karawang + Batam", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 11187.565, "op": 3446.378, "np": 2126.288, "opmargin": 30.805434426526233, "margin": 19.00581583213148, "cogs_est": 7741.187, "_ticker": "CTRA", "_name": "Ciputra Golf Surabaya + Taman Dayu", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 1208.198, "op": 75.117, "np": -68.528, "opmargin": 6.217275645217092, "margin": -5.671918013438194, "cogs_est": 1133.0810000000001, "_ticker": "ELTY", "_name": "Gunung Geulis + Klub Golf Bogor Raya", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 4602.648, "op": 1363.016, "np": 363.308, "opmargin": 29.613735397536374, "margin": 7.893456114827813, "cogs_est": 3239.632, "_ticker": "KIJA", "_name": "Jababeka Golf & Country Club", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 1770.144398, "op": 129.385, "np": 658.629034, "opmargin": 7.309290707932405, "margin": 37.207644457940994, "cogs_est": 1640.759398, "_ticker": "KPIG", "_name": "Trump International Golf Club Lido", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 11347.979, "op": 1389.947, "np": 18746.045, "opmargin": 12.248410047286834, "margin": 165.1928065781581, "cogs_est": 9958.032, "_ticker": "LPKR", "_name": "Imperial Klub Golf", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 1017.57, "op": -20.448, "np": -690.272, "opmargin": -2.009493204398715, "margin": -67.83533319575066, "cogs_est": 1038.018, "_ticker": "MDLN", "_name": "Modern Golf & Country Club", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 6670.809, "op": 2900.946, "np": 2074.731, "opmargin": 43.48716924738814, "margin": 31.101639995988496, "cogs_est": 3769.8630000000003, "_ticker": "PWON", "_name": "Pakuwon Golf & Family Club", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 694.045, "op": 148.817, "np": 123.778, "opmargin": 21.44198142771722, "margin": 17.834290283771224, "cogs_est": 545.228, "_ticker": "SMDM", "_name": "Rancamaya Golf Estate", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 10623.4, "op": 3732.4, "np": 1373.4, "opmargin": 35.13376131935162, "margin": 12.928064461471845, "cogs_est": 6891.0, "_ticker": "SMRA", "_name": "Gading Raya Padang Golf", "_tier": "twn", "_tier_label": "🟩 Township"}], "2025": [{"rev": 251.253870267, "op": 69.446548893, "np": 75.0238323, "opmargin": 27.63999170209845, "margin": 29.859771799843088, "cogs_est": 181.807321374, "_ticker": "DMIG", "_name": "Damai Indah Golf", "_tier": "pp", "_tier_label": "🟦 Pure-play"}, {"rev": 185.775352369, "op": 55.598750416, "np": 56.221968494, "opmargin": 29.927947764333062, "margin": 30.26341642045603, "cogs_est": 130.176601953, "_ticker": "PIPG", "_name": "Pondok Indah Padang Golf", "_tier": "pp", "_tier_label": "🟦 Pure-play"}, {"rev": 215.519, "op": null, "np": null, "opmargin": null, "margin": null, "cogs_est": null, "_ticker": "GOLF", "_name": "Intra GolfLink Resorts", "_tier": "resort", "_tier_label": "🟨 Resort"}, {"rev": 12788.452336734, "op": 3447.178841678, "np": 2857.738492944, "opmargin": 26.955402818965062, "margin": 22.346241888358385, "cogs_est": 9341.273495056, "_ticker": "BSDE", "_name": "Palm Springs Karawang + Batam", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": null, "op": null, "np": null, "opmargin": null, "margin": null, "cogs_est": null, "_ticker": "CTRA", "_name": "Ciputra Golf Surabaya + Taman Dayu", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": null, "op": null, "np": null, "opmargin": null, "margin": null, "cogs_est": null, "_ticker": "ELTY", "_name": "Gunung Geulis + Klub Golf Bogor Raya", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": null, "op": null, "np": null, "opmargin": null, "margin": null, "cogs_est": null, "_ticker": "KIJA", "_name": "Jababeka Golf & Country Club", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": null, "op": null, "np": null, "opmargin": null, "margin": null, "cogs_est": null, "_ticker": "KPIG", "_name": "Trump International Golf Club Lido", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": null, "op": null, "np": null, "opmargin": null, "margin": null, "cogs_est": null, "_ticker": "LPKR", "_name": "Imperial Klub Golf", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": null, "op": null, "np": null, "opmargin": null, "margin": null, "cogs_est": null, "_ticker": "MDLN", "_name": "Modern Golf & Country Club", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": null, "op": null, "np": null, "opmargin": null, "margin": null, "cogs_est": null, "_ticker": "PWON", "_name": "Pakuwon Golf & Family Club", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": null, "op": null, "np": null, "opmargin": null, "margin": null, "cogs_est": null, "_ticker": "SMDM", "_name": "Rancamaya Golf Estate", "_tier": "twn", "_tier_label": "🟩 Township"}, {"rev": 8766.92747, "op": null, "np": null, "opmargin": null, "margin": null, "cogs_est": null, "_ticker": "SMRA", "_name": "Gading Raya Padang Golf", "_tier": "twn", "_tier_label": "🟩 Township"}]};
-  const cols = ["rev", "cogs_est", "op", "opmargin", "np", "margin"];
-  const tbody = document.getElementById('peer-tbody');
-
-  function fmt(v) {
-    if (v === null || v === undefined) return '<span style="color:#94a3b8;">—</span>';
-    if (typeof v !== 'number') return v;
-    if (Math.abs(v) >= 1000) return (v/1000).toFixed(2) + 'T';
-    if (Math.abs(v) >= 10) return v.toFixed(1);
-    return v.toFixed(2);
-  }
-  function fmtPct(v) {
-    if (v === null || v === undefined) return '<span style="color:#94a3b8;">—</span>';
-    var col = v > 0 ? 'color:#16a34a;' : (v < 0 ? 'color:#b91c1c;' : '');
-    return '<span style="' + col + 'font-weight:700;">' + v.toFixed(1) + '%</span>';
-  }
-
-  function render(year) {
-    const rows = data[year] || [];
-    tbody.innerHTML = rows.map(function(r) {
-      var tdPeer = '<td class="peer"><a href="clubs/' + r._ticker.toLowerCase() + '.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">' + r._ticker + '</a><span class="peer-tag peer-tag-' + r._tier + '">' + r._tier_label + '</span></td>';
-      var tdName = '<td><a href="clubs/' + r._ticker.toLowerCase() + '.html" style="color:var(--ops-ink-soft); font-size:11.5px; text-decoration:none;">' + r._name + '</a></td>';
-      var tdData = cols.map(function(k){
-        var v = r[k];
-        if (k === 'margin' || k === 'opmargin' || k === 'roa' || k === 'debt_ratio') {
-          return '<td class="num">' + fmtPct(v) + '</td>';
-        }
-        return '<td class="num">' + fmt(v) + '</td>';
-      }).join('');
-      return '<tr>' + tdPeer + tdName + tdData + '</tr>';
-    }).join('');
-  }
-
-  document.querySelectorAll('.year-btn').forEach(function(b){
-    b.addEventListener('click', function(){
-      document.querySelectorAll('.year-btn').forEach(function(x){x.classList.remove('active');});
-      b.classList.add('active');
-      render(b.dataset.year);
-    });
-  });
-
-  render('2024');
+  const tabs = document.querySelectorAll('.cost-tab');
+  tabs.forEach(t => t.addEventListener('click', () => {
+    tabs.forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('.cost-panel').forEach(p => p.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById('panel-' + t.dataset.panel).classList.add('active');
+  }));
 })();
 </script>
 </body>
