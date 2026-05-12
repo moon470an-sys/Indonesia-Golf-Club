@@ -120,6 +120,12 @@
   .compare-bar-title .count { font-size:11.5px; color:var(--ops-muted); font-weight:600; margin-left:6px; }
   .compare-bar-clear { padding:4px 10px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:5px; font-size:11.5px; cursor:pointer; color:var(--ops-ink-soft); }
   .compare-bar-clear:hover { background:rgba(185,28,28,0.08); color:#b91c1c; border-color:#b91c1c; }
+  .compare-bar-export { padding:4px 10px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:5px; font-size:11.5px; cursor:pointer; color:var(--ops-ink-soft); margin-right:6px; }
+  .compare-bar-export:hover { background:rgba(45,80,22,0.06); color:var(--ops-green); border-color:var(--ops-green); }
+  .compare-bar-export.copied { background:#16a34a; color:white; border-color:#16a34a; }
+  /* Focus indicators (accessibility) */
+  *:focus-visible { outline:2px solid var(--ops-green); outline-offset:2px; border-radius:3px; }
+  .filter-btn:focus-visible, .tier-pill:focus-visible { outline-offset:1px; }
   .compare-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:8px; }
   .compare-col { background:var(--ops-bg); border:1px solid var(--ops-line); border-radius:6px; padding:8px 10px; position:relative; }
   .compare-col-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; }
@@ -862,7 +868,10 @@
   <div class="ops-wrap">
     <div class="compare-bar-head">
       <div class="compare-bar-title">⚖️ Peer 비교 <span class="count" id="compare-count">0/4</span></div>
-      <button class="compare-bar-clear" id="compare-clear" aria-label="비교 모두 해제">모두 해제</button>
+      <div>
+        <button class="compare-bar-export" id="compare-export" aria-label="비교 데이터를 클립보드로 복사">📋 비교 복사</button>
+        <button class="compare-bar-clear" id="compare-clear" aria-label="비교 모두 해제">모두 해제</button>
+      </div>
     </div>
     <div class="compare-grid" id="compare-grid"></div>
   </div>
@@ -1247,6 +1256,52 @@ function syncURL() {
   });
   cmpClear.addEventListener('click', () => {
     Array.from(compared).forEach(t => toggleCompare(t, false));
+  });
+  // Compare panel CSV/TSV export to clipboard
+  const cmpExport = document.getElementById('compare-export');
+  if (cmpExport) cmpExport.addEventListener('click', async () => {
+    if (compared.size === 0) return;
+    const headers = ['Ticker','Name','Tier','Location','FY24매출','매출YoY','순이익률','EBITDA마진','총자산','ROA'];
+    const lines = [headers.join('	')];
+    Array.from(compared).forEach(t => {
+      const card = grid.querySelector(`.club-card[data-ticker="${t}"]`);
+      if (!card) return;
+      const stripHtml = s => s.replace(/<[^>]+>/g, '').trim();
+      const num = v => (v === '' || v === undefined || v === null || parseFloat(v) <= -1e14) ? '' : v;
+      lines.push([
+        t,
+        card.dataset.name || '',
+        (card.dataset.tierLabel || '').replace(/^[^ ]+ /,''),
+        card.dataset.loc || '',
+        num(card.dataset.rev),
+        num(card.dataset.yoy),
+        num(card.dataset.margin),
+        num(card.dataset.ebmargin),
+        num(card.dataset.ta),
+        num(card.dataset.roa),
+      ].join('	'));
+    });
+    const tsv = lines.join('
+');
+    try { await navigator.clipboard.writeText(tsv); }
+    catch (err) {
+      const ta = document.createElement('textarea'); ta.value = tsv; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+    }
+    cmpExport.textContent = '✓ 복사됨'; cmpExport.classList.add('copied');
+    setTimeout(() => { cmpExport.textContent = '📋 비교 복사'; cmpExport.classList.remove('copied'); }, 1600);
+  });
+  // Keyboard arrow nav for filter pills
+  const filterPills = Array.from(tierButtons);
+  filterPills.forEach((p, i) => {
+    p.setAttribute('tabindex', '0');
+    p.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        const next = e.key === 'ArrowRight' ? (i + 1) % filterPills.length : (i - 1 + filterPills.length) % filterPills.length;
+        filterPills[next].focus();
+        filterPills[next].click();
+      }
+    });
   });
 
   applyState();
