@@ -31,6 +31,26 @@
   .discl-dot.minimal { background:#b91c1c; }
   /* Term tooltip */
   .tip { border-bottom:1px dotted var(--ops-muted); cursor:help; }
+  /* Scatter plot */
+  .scatter-card { background:var(--ops-surface); border:1px solid var(--ops-line); border-radius:10px; padding:18px 20px; margin:14px 0; }
+  .scatter-svg { width:100%; max-width:760px; height:380px; display:block; margin:0 auto; }
+  .scatter-svg .axis line, .scatter-svg .axis path { stroke:var(--ops-line); stroke-width:1; }
+  .scatter-svg .axis text { fill:var(--ops-muted); font-size:10.5px; }
+  .scatter-svg .gridline { stroke:var(--ops-line); stroke-dasharray:2 3; opacity:0.5; }
+  .scatter-svg .label { font-size:11.5px; font-weight:600; }
+  .scatter-svg .bubble { stroke:white; stroke-width:1.5; cursor:pointer; transition:opacity 0.15s; }
+  .scatter-svg .bubble:hover { opacity:0.7; }
+  .scatter-svg .bubble-label { font-size:10px; font-weight:700; fill:var(--ops-ink); pointer-events:none; }
+  .scatter-svg .iso-line { stroke:#94a3b8; stroke-dasharray:3 4; stroke-width:1; fill:none; }
+  .scatter-svg .iso-label { font-size:9.5px; fill:#94a3b8; }
+  .scatter-legend { display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-top:8px; font-size:11.5px; color:var(--ops-ink-soft); }
+  .scatter-legend-item { display:inline-flex; align-items:center; gap:5px; }
+  .scatter-legend-dot { width:11px; height:11px; border-radius:50%; display:inline-block; }
+  /* Action bar */
+  .action-bar { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:6px 0 12px 0; }
+  .action-btn { padding:6px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); display:inline-flex; align-items:center; gap:4px; }
+  .action-btn:hover { background:rgba(45,80,22,0.05); }
+  .action-btn.success { background:#16a34a; color:white; border-color:#16a34a; }
 </style>
 </head>
 <body>
@@ -243,6 +263,10 @@
         면적·홀 단위로 정규화한 매출·자산 밀도. <strong>헤더 클릭 정렬</strong>, 셀 하단 막대는 peer 그룹 내 상대 순위.
         ⚠ 매출/자산 비율은 township은 골프 외 자산 포함이라 단순 비교는 주의 — Pure-play(DMIG/PIPG) 끼리 비교가 가장 정밀.
       </p>
+      <div class="action-bar">
+        <button class="action-btn" id="prod-copy-btn">📋 표 복사 (TSV)</button>
+        <button class="action-btn" id="prod-csv-btn">⬇ CSV 다운로드</button>
+      </div>
       <div class="tbl-card scroll-x">
         <table class="ops-tbl" id="prod-tbl">
           <thead>
@@ -262,6 +286,20 @@
           </thead>
           <tbody id="prod-tbody"></tbody>
         </table>
+      </div>
+
+      <h3 style="font-size:15px; margin:24px 0 6px 0;">📈 매출 vs 총자산 산점도 (log-log, FY2024)</h3>
+      <p style="font-size:12px; color:var(--ops-muted); margin:0 0 8px 0;">
+        X축: 총자산 (log) · Y축: 매출 (log) · 색상: Tier. <strong>대각선 점선</strong>은 자산회전율 등고선
+        (왼쪽위 = 효율 ↑ / 오른쪽아래 = 효율 ↓). 점 호버 시 peer 상세 툴팁.
+      </p>
+      <div class="scatter-card">
+        <svg id="scatter-svg" class="scatter-svg" viewBox="0 0 760 380" preserveAspectRatio="xMidYMid meet" aria-label="매출 vs 총자산 산점도"></svg>
+        <div class="scatter-legend">
+          <span class="scatter-legend-item"><span class="scatter-legend-dot" style="background:#3b82f6"></span>🟦 Pure-play</span>
+          <span class="scatter-legend-item"><span class="scatter-legend-dot" style="background:#f59e0b"></span>🟨 Resort</span>
+          <span class="scatter-legend-item"><span class="scatter-legend-dot" style="background:#16a34a"></span>🟩 Township</span>
+        </div>
       </div>
     </div>
 
@@ -402,6 +440,105 @@ function renderProd() {
     th.classList.remove('asc','desc');
     if (th.dataset.sort === sortState.key) th.classList.add(sortState.dir);
   });
+  renderScatter(rows);
+}
+
+// SVG scatter: X=log(ta), Y=log(rev), color by tier
+function renderScatter(rows) {
+  const svg = document.getElementById('scatter-svg');
+  if (!svg) return;
+  const W = 760, H = 380;
+  const M = { l:60, r:30, t:20, b:46 };
+  const pts = rows.filter(r => r.ta && r.rev).map(r => ({ ...r, lx: Math.log10(r.ta/1e9), ly: Math.log10(r.rev/1e9) }));
+  if (!pts.length) { svg.innerHTML = ''; return; }
+  const xMin = Math.floor(Math.min(...pts.map(p => p.lx)) - 0.2);
+  const xMax = Math.ceil(Math.max(...pts.map(p => p.lx)) + 0.2);
+  const yMin = Math.floor(Math.min(...pts.map(p => p.ly)) - 0.2);
+  const yMax = Math.ceil(Math.max(...pts.map(p => p.ly)) + 0.2);
+  const xScale = lx => M.l + (lx - xMin) / (xMax - xMin) * (W - M.l - M.r);
+  const yScale = ly => H - M.b - (ly - yMin) / (yMax - yMin) * (H - M.t - M.b);
+  const fmtAxis = lx => {
+    const v = Math.pow(10, lx);
+    if (v >= 1000) return (v/1000).toFixed(0) + 'T';
+    if (v >= 1) return v.toFixed(0) + 'B';
+    return (v*1000).toFixed(0) + 'M';
+  };
+  const TIER_COLOR = { pp:'#3b82f6', resort:'#f59e0b', twn:'#16a34a' };
+  // Build axis labels (integer powers of 10)
+  const xTicks = []; for (let i = xMin; i <= xMax; i++) xTicks.push(i);
+  const yTicks = []; for (let i = yMin; i <= yMax; i++) yTicks.push(i);
+  let svgHTML = '';
+  // Gridlines
+  xTicks.forEach(t => { svgHTML += `<line class="gridline" x1="${xScale(t)}" y1="${M.t}" x2="${xScale(t)}" y2="${H-M.b}"/>`; });
+  yTicks.forEach(t => { svgHTML += `<line class="gridline" x1="${M.l}" y1="${yScale(t)}" x2="${W-M.r}" y2="${yScale(t)}"/>`; });
+  // Iso-turnover diagonals (ratios 0.01, 0.05, 0.1, 0.5)
+  const ratios = [0.01, 0.05, 0.1, 0.5];
+  ratios.forEach(r => {
+    const lr = Math.log10(r);
+    // ly = lx + lr  →  draw line through y = x + lr
+    // Determine endpoints clipped to chart area
+    const x1 = xMin, y1 = x1 + lr;
+    const x2 = xMax, y2 = x2 + lr;
+    if ((y1 < yMin && y2 < yMin) || (y1 > yMax && y2 > yMax)) return;
+    let p1x = x1, p1y = y1, p2x = x2, p2y = y2;
+    if (p1y < yMin) { p1y = yMin; p1x = yMin - lr; }
+    if (p1y > yMax) { p1y = yMax; p1x = yMax - lr; }
+    if (p2y < yMin) { p2y = yMin; p2x = yMin - lr; }
+    if (p2y > yMax) { p2y = yMax; p2x = yMax - lr; }
+    svgHTML += `<line class="iso-line" x1="${xScale(p1x)}" y1="${yScale(p1y)}" x2="${xScale(p2x)}" y2="${yScale(p2y)}"/>`;
+    // Label near center
+    const midX = (p1x + p2x) / 2;
+    const midY = (p1y + p2y) / 2;
+    svgHTML += `<text class="iso-label" x="${xScale(midX)+3}" y="${yScale(midY)-3}">회전율 ${r}</text>`;
+  });
+  // Axes
+  svgHTML += `<line class="axis" x1="${M.l}" y1="${H-M.b}" x2="${W-M.r}" y2="${H-M.b}"/>`;
+  svgHTML += `<line class="axis" x1="${M.l}" y1="${M.t}" x2="${M.l}" y2="${H-M.b}"/>`;
+  xTicks.forEach(t => { svgHTML += `<text class="axis" x="${xScale(t)}" y="${H-M.b+14}" text-anchor="middle">${fmtAxis(t)}</text>`; });
+  yTicks.forEach(t => { svgHTML += `<text class="axis" x="${M.l-6}" y="${yScale(t)+4}" text-anchor="end">${fmtAxis(t)}</text>`; });
+  // Axis labels
+  svgHTML += `<text class="label" x="${W/2}" y="${H-8}" text-anchor="middle" fill="var(--ops-ink)">총자산 (log, IDR)</text>`;
+  svgHTML += `<text class="label" x="-${H/2}" y="14" text-anchor="middle" fill="var(--ops-ink)" transform="rotate(-90)">매출 (log, IDR)</text>`;
+  // Bubbles + labels (size based on holes, default 6)
+  pts.forEach(p => {
+    const cx = xScale(p.lx), cy = yScale(p.ly);
+    const r = p.m.holes ? 5 + Math.sqrt(p.m.holes) * 0.8 : 6;
+    const color = TIER_COLOR[p.m.tier] || '#666';
+    const title = `${p.t} ${p.m.name}\n매출: ${(p.rev/1e9).toFixed(0)}B\n총자산: ${(p.ta/1e9).toFixed(0)}B\n회전율: ${p.turnover ? p.turnover.toFixed(3) : '-'}`;
+    svgHTML += `<circle class="bubble" cx="${cx}" cy="${cy}" r="${r}" fill="${color}" fill-opacity="0.72"><title>${title}</title></circle>`;
+    svgHTML += `<text class="bubble-label" x="${cx}" y="${cy - r - 3}" text-anchor="middle">${p.t}</text>`;
+  });
+  svg.innerHTML = svgHTML;
+}
+
+// CSV/TSV export of productivity table
+function buildProdExport(rows, sep) {
+  const esc = v => {
+    if (v === null || v === undefined) return '';
+    const s = String(v);
+    if (sep === ',' && (s.includes(',') || s.includes('"') || s.includes('\n'))) return '"' + s.replace(/"/g,'""') + '"';
+    return s;
+  };
+  const num = v => (v === null || v === undefined) ? '' : v;
+  const dec = (v, d) => (v === null || v === undefined) ? '' : v.toFixed(d);
+  const headers = ['Peer','Tier','홀','면적(ha)','총자산(IDR)','매출(IDR)','자산회전율','ROA(%)','부채비율(%)','홀당자산(IDR)','ha당자산(IDR)'];
+  const lines = [headers.map(esc).join(sep)];
+  rows.forEach(r => {
+    lines.push([
+      esc(r.t), esc(r.m.tier_label),
+      num(r.m.holes), dec(r.m.area, 1),
+      num(r.ta), num(r.rev),
+      dec(r.turnover, 4), dec(r.roa, 2), dec(r.debt, 2),
+      num(r.taPerHole), num(r.taPerHa),
+    ].join(sep));
+  });
+  return lines.join('\n');
+}
+function flashSuccess(btn, label){
+  const orig = btn.textContent;
+  btn.textContent = label;
+  btn.classList.add('success');
+  setTimeout(() => { btn.textContent = orig; btn.classList.remove('success'); }, 1500);
 }
 
 (function(){
@@ -418,6 +555,25 @@ function renderProd() {
       else { sortState.key = k; sortState.dir = 'desc'; }
       renderProd();
     });
+  });
+  // CSV / TSV buttons
+  const copyBtn = document.getElementById('prod-copy-btn');
+  if (copyBtn) copyBtn.addEventListener('click', async (e) => {
+    const rows = computeRows();
+    const tsv = buildProdExport(rows, '\t');
+    try { await navigator.clipboard.writeText(tsv); }
+    catch (err) { const ta = document.createElement('textarea'); ta.value = tsv; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); }
+    flashSuccess(e.currentTarget, '✓ 복사됨');
+  });
+  const dlBtn = document.getElementById('prod-csv-btn');
+  if (dlBtn) dlBtn.addEventListener('click', (e) => {
+    const rows = computeRows();
+    const csv = '﻿' + buildProdExport(rows, ',');
+    const blob = new Blob([csv], { type:'text/csv;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href = url; a.download = 'assets-productivity_FY2024.csv';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+    flashSuccess(e.currentTarget, '✓ 다운로드');
   });
   renderProd();
 })();
