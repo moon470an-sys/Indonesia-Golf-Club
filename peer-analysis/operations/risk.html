@@ -6,7 +6,7 @@
 <title>위험 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260513c96" />
+<link rel="stylesheet" href="ops-style.css?v=20260513fy25b" />
 <style>
   .heat-cell { text-align:center; font-size:16px; padding:8px 4px; }
   .sortable { cursor:pointer; user-select:none; position:relative; padding-right:18px !important; }
@@ -93,6 +93,14 @@
   .sev-pill.active.sev-all  { background:var(--ops-green); color:white; border-color:var(--ops-green); }
   /* Search match highlight */
   mark.search-hit { background:rgba(245,158,11,0.45); color:inherit; padding:0 1px; border-radius:2px; }
+  /* Mini disclosure bar in category column header — 3-segment stacked */
+  .cat-hdr-bar { display:flex; height:4px; margin:4px auto 0; max-width:80%; border-radius:2px; overflow:hidden; opacity:0.85; }
+  .cat-hdr-bar > span { display:block; height:100%; }
+  .cat-hdr-bar .seg-clear { background:#16a34a; }
+  .cat-hdr-bar .seg-part  { background:#f59e0b; }
+  .cat-hdr-bar .seg-unkn  { background:#b91c1c; }
+  .cat-hdr-counts { display:block; font-size:9.5px; color:var(--ops-muted); margin-top:2px; font-weight:600; font-variant-numeric:tabular-nums; letter-spacing:0; text-transform:none; }
+  @media print { .cat-hdr-bar { -webkit-print-color-adjust:exact; print-color-adjust:exact; } }
   /* Favorite star (cross-page localStorage 'clubs-favorites') */
   .fav-star { display:inline-block; vertical-align:middle; margin-right:4px; padding:0 2px; border:none; background:transparent; cursor:pointer; font-size:13px; line-height:1; color:var(--ops-muted); opacity:0.45; transition:all 0.15s; border-radius:3px; }
   .fav-star:hover { opacity:1; color:#f59e0b; background:rgba(245,158,11,0.10); }
@@ -749,6 +757,30 @@ function flashSuccess(btn, label){
       }
     });
   });
+  // Decorate category column headers with mini disclosure-rate bars (one-time)
+  (function decorateCatHeaders() {
+    const N = PEER_ORDER.length;
+    CAT_KEYS.forEach((k, i) => {
+      let clear = 0, part = 0, unkn = 0;
+      PEER_ORDER.forEach(t => {
+        const v = PEER_RISK[t][k];
+        if (v === 0) clear++; else if (v === 1) part++; else unkn++;
+      });
+      const cp = (clear/N*100), pp = (part/N*100), up = (unkn/N*100);
+      const th = document.querySelector(`#risk-tbl thead th[data-col="${i}"]`);
+      if (!th) return;
+      // Append bar + counts (don't overwrite the existing label/sort indicator)
+      const bar = document.createElement('div');
+      bar.className = 'cat-hdr-bar';
+      bar.title = `⚪ ${clear} · 🟡 ${part} · 🔴 ${unkn} (/${N})`;
+      bar.innerHTML = `<span class="seg-clear" style="width:${cp}%"></span><span class="seg-part" style="width:${pp}%"></span><span class="seg-unkn" style="width:${up}%"></span>`;
+      const cnt = document.createElement('div');
+      cnt.className = 'cat-hdr-counts';
+      cnt.textContent = `⚪${clear}·🟡${part}·🔴${unkn}`;
+      th.appendChild(bar);
+      th.appendChild(cnt);
+    });
+  })();
   renderInsights();
   renderTopPerf();
   renderCatRates();
