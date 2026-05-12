@@ -6,7 +6,7 @@
 <title>시설 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260512c54" />
+<link rel="stylesheet" href="ops-style.css?v=20260512c77" />
 <style>
   .ast-tab-bar { display:flex; gap:6px; flex-wrap:wrap; margin:16px 0 20px 0; border-bottom:2px solid var(--ops-line); }
   .ast-tab { padding:10px 18px; cursor:pointer; font-size:13px; font-weight:600; color:var(--ops-ink-soft); border-bottom:3px solid transparent; margin-bottom:-2px; }
@@ -120,6 +120,15 @@
   .tier-pill.active { background:var(--ops-green); color:white; border-color:var(--ops-green); }
   .tier-pill:hover:not(.active) { background:rgba(45,80,22,0.05); }
   tr.tier-hidden { display:none; }
+  /* Disclosure score pill (Tab 1) — 5 메타 필드 공시 비율 */
+  .discl-bar { display:inline-flex; align-items:center; gap:6px; font-variant-numeric:tabular-nums; }
+  .discl-bar .discl-track { position:relative; width:60px; height:8px; background:var(--ops-line); border-radius:4px; overflow:hidden; }
+  .discl-bar .discl-fill { position:absolute; left:0; top:0; bottom:0; border-radius:4px; }
+  .discl-bar .discl-fill.lvl-0 { background:#dc2626; }
+  .discl-bar .discl-fill.lvl-1 { background:#f59e0b; }
+  .discl-bar .discl-fill.lvl-2 { background:#16a34a; }
+  .discl-bar .discl-txt { font-size:11px; font-weight:700; color:var(--ops-ink-soft); }
+  body.theme-dark .discl-bar .discl-track { background:#334155; }
   /* Print */
   @media print {
     @page { size: A4 landscape; margin: 10mm; }
@@ -183,8 +192,9 @@
 
     <!-- TAB 1: 시설 구성 -->
     <div class="ast-panel active" id="panel-phy">
+      <p style="font-size:12px; color:var(--ops-muted); margin:0 0 6px 0;">13 peer 시설 메타. 우측 <strong>공시 점수</strong> 막대는 5개 메타 필드(홀·면적·설계자·개장년·정규직) 중 공시된 비율 — 채워질수록 정보 완성도 높음.</p>
       <div class="tbl-card scroll-x">
-        <table class="ops-tbl">
+        <table class="ops-tbl" id="phy-tbl">
           <thead>
             <tr>
               <th>Peer</th>
@@ -196,9 +206,10 @@
               <th>설계자</th>
               <th class="num">개장년</th>
               <th class="num">정규직</th>
+              <th class="num">공시 점수 <span class="tip" title="홀·면적·설계자·개장년·정규직 5개 메타 필드 중 공시된 비율">?</span></th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="phy-tbody">
             <tr>
               <td class="peer"><a href="clubs/dmig.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">DMIG</a><span class="peer-tag peer-tag-pp">🟦 Pure-play</span></td>
               <td>Pure-play</td>
@@ -1008,6 +1019,30 @@ function flashSuccess(btn, label){
   }
   wireArrowNav(Array.from(document.querySelectorAll('.ast-tab')));
   wireArrowNav(Array.from(document.querySelectorAll('#prod-tier-pills .tier-pill')));
+  // Tab 1 (시설 구성) 공시 점수 컬럼 동적 추가 — 5 메타 필드 (홀·면적·설계자·개장년·정규직)
+  function decoratePhyTable() {
+    const tbody = document.getElementById('phy-tbody');
+    if (!tbody) return;
+    // 메타 필드는 헤더의 4·5·6·7·8 컬럼 (코스 수 제외) — 0-indexed: 4, 5, 6, 7, 8
+    const metaIdx = [4, 5, 6, 7, 8];
+    tbody.querySelectorAll('tr').forEach(tr => {
+      const cells = tr.querySelectorAll('td');
+      let disclosed = 0;
+      metaIdx.forEach(i => {
+        const txt = (cells[i]?.textContent || '').trim();
+        if (txt && txt !== '—' && txt !== '-') disclosed++;
+      });
+      const ratio = disclosed / metaIdx.length;
+      const w = Math.round(ratio * 100);
+      const lvl = disclosed >= 4 ? 2 : disclosed >= 2 ? 1 : 0;
+      const td = document.createElement('td');
+      td.className = 'num';
+      td.innerHTML = `<span class="discl-bar"><span class="discl-track"><span class="discl-fill lvl-${lvl}" style="width:${w}%;"></span></span><span class="discl-txt">${disclosed}/5</span></span>`;
+      td.setAttribute('data-discl', disclosed);
+      tr.appendChild(td);
+    });
+  }
+  decoratePhyTable();
   renderInsights();
   renderTopPerf();
   renderProd();
