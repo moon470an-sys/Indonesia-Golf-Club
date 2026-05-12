@@ -83,7 +83,7 @@ html = '''<!DOCTYPE html>
 <title>단위 경제 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260513c98" />
+<link rel="stylesheet" href="ops-style.css?v=20260513c102fix" />
 <style>
   .year-bar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:14px 0 4px 0; }
   .year-bar label { font-size:13px; font-weight:600; color:var(--ops-ink-soft); }
@@ -464,7 +464,7 @@ function saveFavorites() {
   try { localStorage.setItem('clubs-favorites', JSON.stringify([...favorites])); } catch (e) {}
 }
 
-function escapeRegex(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+function escapeRegex(s) { return s.replace(/[.*+?^${}()|[\\]]/g, '\\\\$&'); }
 function markHits(scopeRoot, q) {
   scopeRoot.querySelectorAll('a[href^="clubs/"]').forEach(a => {
     const orig = a.dataset.origText || a.textContent;
@@ -833,7 +833,7 @@ function buildTableExport(year, sep) {
   const esc = (v) => {
     if (v === null || v === undefined) return '';
     const s = String(v);
-    if (sep === ',' && (s.includes(',') || s.includes('"') || s.includes('\n'))) {
+    if (sep === ',' && (s.includes(',') || s.includes('"') || s.includes('\\n'))) {
       return '"' + s.replace(/"/g,'""') + '"';
     }
     return s;
@@ -859,7 +859,7 @@ function buildTableExport(year, sep) {
       fmt(r.opPerEmp, 3),
     ].join(sep));
   });
-  return lines.join('\n');
+  return lines.join('\\n');
 }
 
 async function flashSuccess(btn, label){
