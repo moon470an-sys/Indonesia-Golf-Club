@@ -1,4 +1,4 @@
-"""Build unit-economics.html — per-unit metrics with year selector (FY2020-FY2024)."""
+"""Build unit-economics.html — per-unit metrics with year selector (FY2020-FY2025)."""
 import sys
 sys.stdout.reconfigure(encoding='utf-8')
 import json
@@ -47,7 +47,7 @@ for t in peers_sorted:
     u = UNIT_INPUTS[t]
     cy = fin.get(t,{}).get('yearly',{})
     yearly = {}
-    for y in ['2020','2021','2022','2023','2024']:
+    for y in ['2020','2021','2022','2023','2024','2025']:
         yy = cy.get(y, {})
         emp = yy.get('employees') or u['employees']
         yearly[y] = {
@@ -83,7 +83,7 @@ html = '''<!DOCTYPE html>
 <title>단위 경제 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260513c102fix" />
+<link rel="stylesheet" href="ops-style.css?v=20260513fy25a" />
 <style>
   .year-bar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:14px 0 4px 0; }
   .year-bar label { font-size:13px; font-weight:600; color:var(--ops-ink-soft); }
@@ -280,7 +280,7 @@ html = '''<!DOCTYPE html>
     <div class="top-perf" id="top-perf"></div>
     <div class="insights" id="insights"></div>
     <div class="data-meta">
-      📅 데이터: <strong>FY2020-FY2024 연결 P&amp;L</strong>
+      📅 데이터: <strong>FY2020-FY2025 연결 P&amp;L</strong>
       <span class="sep">·</span>
       골프 segment: <strong>AR Note 공시 / Pure-play 그룹 매출</strong>
       <span class="sep">·</span>
@@ -293,6 +293,7 @@ html = '''<!DOCTYPE html>
       <button class="year-btn" data-year="2022">FY2022</button>
       <button class="year-btn" data-year="2023">FY2023</button>
       <button class="year-btn active" data-year="2024">FY2024</button>
+      <button class="year-btn" data-year="2025">FY2025 <span style="font-size:10px; opacity:0.7;">⚠ 일부</span></button>
     </div>
   </div>
 </section>
@@ -405,7 +406,7 @@ html = '''<!DOCTYPE html>
     <button class="close-btn" id="help-close" aria-label="도움말 닫기">✕</button>
     <h2 id="help-title">⌨️ 키보드 단축키</h2>
     <div class="help-row"><span>다크/라이트 모드 전환</span><kbd>d</kbd></div>
-    <div class="help-row"><span>빠른 연도 선택 (FY20-24)</span><kbd>1</kbd>-<kbd>5</kbd></div>
+    <div class="help-row"><span>빠른 연도 선택 (FY20-25)</span><kbd>1</kbd>-<kbd>6</kbd></div>
     <div class="help-row"><span>연도·Tier 버튼 이동</span><kbd>←</kbd> <kbd>→</kbd></div>
     <div class="help-row"><span>Peer 검색 포커스</span><kbd>/</kbd></div>
     <div class="help-row"><span>검색 초기화 (포커스 시)</span><kbd>Esc</kbd></div>
@@ -418,7 +419,7 @@ html = '''<!DOCTYPE html>
 
 <footer class="ops-foot">
   <div class="ops-wrap">
-    <p>홀·면적·정직원: AR Profile + 자사 공시 (고정). 매출·이익: 연결 P&L FY2020-FY2024. 골프 매출은 segment note 또는 그룹 매출(pure-play).</p>
+    <p>홀·면적·정직원: AR Profile + 자사 공시 (고정). 매출·이익: 연결 P&L FY2020-FY2025. 골프 매출은 segment note 또는 그룹 매출(pure-play).</p>
   </div>
 </footer>
 
@@ -500,7 +501,7 @@ const TIER_COLOR = { pp:'#3b82f6', resort:'#f59e0b', twn:'#16a34a' };
 
 // Mini-sparkline for group revenue trend FY20-24
 function miniSpark(yearly, color, currentYear) {
-  const years = ['2020','2021','2022','2023','2024'];
+  const years = ['2020','2021','2022','2023','2024','2025'];
   const series = years.map(y => yearly[y] ? yearly[y].rev : null);
   const valid = series.filter(v => v !== null && v !== undefined && v > 0);
   if (valid.length < 2) return '<span style="color:var(--ops-muted); font-size:11px;">—</span>';
@@ -544,7 +545,7 @@ function computeMainRows(year){
     const grpOpBn = (grpOp !== null && grpOp !== undefined) ? grpOp/1e9 : null;
     const grpEbBn = (grpEb !== null && grpEb !== undefined) ? grpEb/1e9 : null;
     // 5Y CAGR of group revenue (first non-null to last non-null in 2020-2024)
-    const years = ['2020','2021','2022','2023','2024'];
+    const years = ['2020','2021','2022','2023','2024','2025'];
     const series = years.map(y => d.yearly[y] ? d.yearly[y].rev : null);
     let firstIdx = -1, lastIdx = -1;
     for (let i = 0; i < series.length; i++) {
@@ -997,8 +998,8 @@ async function flashSuccess(btn, label){
     if (e.key === 'd') themeBtn.click();
     else if (e.key === '?') { e.preventDefault(); toggleHelp(); }
     else if (e.key === '/') { e.preventDefault(); ueSearch?.focus(); }
-    else if (/^[1-5]$/.test(e.key)) {
-      // 1=FY2020, 2=FY2021 ... 5=FY2024
+    else if (/^[1-6]$/.test(e.key)) {
+      // 1=FY2020 ... 6=FY2025
       const yr = String(2019 + parseInt(e.key));
       const btn = document.querySelector(`.year-btn[data-year="${yr}"]`);
       if (btn) btn.click();
@@ -1027,7 +1028,7 @@ async function flashSuccess(btn, label){
     try {
       const s = JSON.parse(localStorage.getItem('ue-state') || 'null');
       if (!s) return;
-      if (s.year && ['2020','2021','2022','2023','2024'].includes(s.year)) {
+      if (s.year && ['2020','2021','2022','2023','2024','2025'].includes(s.year)) {
         currentYear = s.year;
         document.querySelectorAll('.year-btn').forEach(b => b.classList.toggle('active', b.dataset.year === s.year));
       }
@@ -1071,7 +1072,7 @@ async function flashSuccess(btn, label){
   const fromHash = readHash();
   loadState();
   if (fromHash) {
-    if (fromHash.year && ['2020','2021','2022','2023','2024'].includes(fromHash.year)) {
+    if (fromHash.year && ['2020','2021','2022','2023','2024','2025'].includes(fromHash.year)) {
       currentYear = fromHash.year;
       document.querySelectorAll('.year-btn').forEach(b => b.classList.toggle('active', b.dataset.year === currentYear));
     }

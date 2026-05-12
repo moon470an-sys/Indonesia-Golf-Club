@@ -25,7 +25,7 @@ def fmtPct(v):
 
 def build_sparkline(c5y, color):
     """5-year revenue sparkline (FY20-FY24) as inline SVG, 120×30."""
-    years = ['2020','2021','2022','2023','2024']
+    years = ['2020','2021','2022','2023','2024','2025']
     series = [c5y.get('yearly',{}).get(y,{}).get('revenue') for y in years]
     valid = [v for v in series if v]
     if len(valid) < 2:
@@ -52,7 +52,7 @@ def build_sparkline(c5y, color):
         else:
             dots += f'<circle cx="{x:.1f}" cy="{y:.1f}" r="1.4" fill="{color}" stroke="white" stroke-width="0.8"><title>FY{yr}: {v/1e9:.1f}B</title></circle>'
     return (
-        f'<svg width="{W}" height="{H}" viewBox="0 0 {W} {H}" style="display:block;" aria-label="5년 매출 추이">'
+        f'<svg width="{W}" height="{H}" viewBox="0 0 {W} {H}" style="display:block;" aria-label="6년 매출 추이">'
         f'<path d="{area_d}" fill="{color}" opacity="0.16"/>'
         f'<path d="{path_d}" stroke="{color}" stroke-width="1.6" fill="none"/>'
         f'{dots}</svg>'
@@ -153,7 +153,7 @@ for t in peers_sorted:
         f'          <div><strong style="color:var(--ops-muted);">ROA</strong><br>{fmtPct(roa)}{_tertile_dot(roa, "roa")}</div>\n'
         f'        </div>\n'
         f'        <div style="display:flex; justify-content:space-between; align-items:flex-end; font-size:11.5px;">\n'
-        f'          <div style="flex:1;"><strong style="color:var(--ops-muted);">5년 매출 추이 (FY20→24)</strong><br>{spark_svg}</div>\n'
+        f'          <div style="flex:1;"><strong style="color:var(--ops-muted);">6년 매출 추이 (FY20→25)</strong><br>{spark_svg}</div>\n'
         f'          <div style="text-align:right; align-self:flex-end; font-weight:700; color:{tier_color};">상세 →</div>\n'
         f'        </div>\n'
         f'        <div style="font-size:11.5px; padding-top:4px; border-top:1px dashed var(--ops-line);">\n'
@@ -290,7 +290,7 @@ html = '''<!DOCTYPE html>
 <title>클럽 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="../ops-style.css?v=20260513c102fix" />
+<link rel="stylesheet" href="../ops-style.css?v=20260513fy25a" />
 <style>
   .club-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
   .club-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 16px; margin-top: 20px; }
@@ -579,7 +579,7 @@ html = '''<!DOCTYPE html>
     <div class="data-meta">
       📅 데이터 빌드: <strong>__BUILD_DATE__</strong>
       <span class="sep">·</span>
-      재무 데이터: <strong>FY2020-FY2024 연결 P&amp;L · 대차대조표</strong>
+      재무 데이터: <strong>FY2020-FY2025 연결 P&amp;L · 대차대조표</strong>
       <span class="sep">·</span>
       출처: <strong>IDX 공시 (idx.co.id) · 연차보고서</strong>
       <span class="sep">·</span>
@@ -1130,7 +1130,7 @@ function syncURL() {
     const fmtB = v => { if (v === null || isNaN(v) || v <= -1e14) return '—'; if (Math.abs(v) >= 1000) return (v/1000).toFixed(2)+'T'; return v.toFixed(0)+'B'; };
     const fmtP = v => { if (v === null || isNaN(v) || v <= -1e14) return '—'; const c = v > 0 ? '#16a34a' : v < 0 ? '#b91c1c' : '#666'; return `<span style="color:${c};">${v >= 0 ? '+' : ''}${v.toFixed(1)}%</span>`; };
     // Clone the existing 5Y revenue sparkline SVG from the card
-    const sparkSvg = card.querySelector('svg[aria-label="5년 매출 추이"]');
+    const sparkSvg = card.querySelector('svg[aria-label="6년 매출 추이"]');
     return {
       ticker,
       name: card.dataset.name,

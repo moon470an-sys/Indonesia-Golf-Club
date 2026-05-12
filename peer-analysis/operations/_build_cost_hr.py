@@ -153,7 +153,7 @@ for t in peers_sorted:
     c = clubs[t]
     cy = fin.get(t,{}).get('yearly',{})
     yearly = {}
-    for y in ['2020','2021','2022','2023','2024']:
+    for y in ['2020','2021','2022','2023','2024','2025']:
         yy = cy.get(y, {})
         yearly[y] = {
             'rev': yy.get('revenue'),
@@ -180,7 +180,7 @@ for t in peers_sorted:
     }
     scope_rev = {}
     overlay = SCOPE_REV_OVERLAY.get(t, {})
-    for yr in ['2020','2021','2022','2023','2024']:
+    for yr in ['2020','2021','2022','2023','2024','2025']:
         scope_rev[yr] = overlay.get(yr) or (yearly[yr]['rev'])
     # Coverage label — what does COGS/OpEx note actually represent
     cogs_cov = {
@@ -425,7 +425,7 @@ html = '''<!DOCTYPE html>
 <title>비용 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260513c102fix" />
+<link rel="stylesheet" href="ops-style.css?v=20260513fy25a" />
 <style>
   .year-bar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:14px 0 4px 0; }
   .year-bar label { font-size:13px; font-weight:600; color:var(--ops-ink-soft); }
@@ -643,7 +643,7 @@ html = '''<!DOCTYPE html>
     <div class="top-perf" id="top-perf"></div>
     <div class="insights" id="insights"></div>
     <div class="data-meta">
-      📅 데이터: <strong>FY2020-FY2024 연결 P&amp;L</strong>
+      📅 데이터: <strong>FY2020-FY2025 연결 P&amp;L</strong>
       <span class="sep">·</span>
       COGS/OpEx: <strong>AR Note 25·26·28·29·30·31·32·34 / scope_rev 매칭</strong>
       <span class="sep">·</span>
@@ -656,6 +656,7 @@ html = '''<!DOCTYPE html>
       <button class="year-btn" data-year="2022">FY2022</button>
       <button class="year-btn" data-year="2023">FY2023</button>
       <button class="year-btn active" data-year="2024">FY2024</button>
+      <button class="year-btn" data-year="2025">FY2025 <span style="font-size:10px; opacity:0.7;">⚠ 부분</span></button>
     </div>
     <div class="peer-search-wrap" style="display:flex; gap:8px; align-items:center; margin:10px 0 4px 0; flex-wrap:wrap;">
       <input type="search" class="peer-search-input" id="ch-search" placeholder="🔍 Peer 검색 (티커·그룹명) — 4개 표 동시 필터" aria-label="Peer 검색" autocomplete="off">
@@ -844,7 +845,7 @@ __OPEX_SECTION__
 
 <footer class="ops-foot">
   <div class="ops-wrap">
-    <p>비용 구조 비율: 연결 P&L FY2020-FY2024. 라인 상세: AR Note 23·24·26·28·29·30·31·32·34. 단위 IDR.</p>
+    <p>비용 구조 비율: 연결 P&L FY2020-FY2025. 라인 상세: AR Note 23·24·26·28·29·30·31·32·34. 단위 IDR.</p>
   </div>
 </footer>
 
@@ -1464,7 +1465,7 @@ function wireExport(copyId, csvId, which, csvName) {
     if (e.target.matches('input,textarea,select')) return;
     if (e.key === 'd') themeBtn.click();
     else if (e.key === '?') { e.preventDefault(); toggleHelp(); }
-    else if (/^[1-5]$/.test(e.key)) {
+    else if (/^[1-6]$/.test(e.key)) {
       const yr = String(2019 + parseInt(e.key));
       const btn = document.querySelector(`.year-btn[data-year="${yr}"]`);
       if (btn) btn.click();
@@ -1528,7 +1529,7 @@ function wireExport(copyId, csvId, which, csvName) {
     try {
       const s = JSON.parse(localStorage.getItem('cost-state') || 'null');
       if (!s) return;
-      if (s.year && ['2020','2021','2022','2023','2024'].includes(s.year)) {
+      if (s.year && ['2020','2021','2022','2023','2024','2025'].includes(s.year)) {
         currentYear = s.year;
         document.querySelectorAll('.year-btn').forEach(b => b.classList.toggle('active', b.dataset.year === s.year));
       }
@@ -1557,7 +1558,7 @@ function wireExport(copyId, csvId, which, csvName) {
   }
   const fromHash = readCostHash();
   if (fromHash) {
-    if (fromHash.year && ['2020','2021','2022','2023','2024'].includes(fromHash.year)) {
+    if (fromHash.year && ['2020','2021','2022','2023','2024','2025'].includes(fromHash.year)) {
       currentYear = fromHash.year;
       document.querySelectorAll('.year-btn').forEach(b => b.classList.toggle('active', b.dataset.year === currentYear));
     }

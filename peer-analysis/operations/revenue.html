@@ -6,7 +6,7 @@
 <title>매출 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260513c102fix" />
+<link rel="stylesheet" href="ops-style.css?v=20260513fy25a" />
 <style>
   .year-bar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:14px 0 4px 0; }
   .year-bar label { font-size:13px; font-weight:600; color:var(--ops-ink-soft); }
@@ -224,7 +224,7 @@
     <div class="top-perf" id="top-perf"></div>
     <div class="insights" id="insights"></div>
     <div class="data-meta">
-      📅 데이터: <strong>FY2020-FY2024 연결 P&amp;L</strong>
+      📅 데이터: <strong>FY2020-FY2025 연결 P&amp;L</strong>
       <span class="sep">·</span>
       골프 부문: <strong>segment note 공시 또는 Pure-play 그룹 매출</strong>
       <span class="sep">·</span>
@@ -237,6 +237,7 @@
       <button class="year-btn" data-year="2022">FY2022</button>
       <button class="year-btn" data-year="2023">FY2023</button>
       <button class="year-btn active" data-year="2024">FY2024</button>
+      <button class="year-btn" data-year="2025">FY2025 <span style="font-size:10px; opacity:0.7;">⚠ 부분</span></button>
     </div>
     <div class="rev-tab-bar">
       <div class="rev-tab active" data-panel="cmp">① 13-peer 동급 비교</div>
@@ -255,7 +256,7 @@
         <a href="#sec-trend">📈 Tier 추세 차트</a>
         <a href="#sec-yoy">🌡️ YoY 히트맵</a>
       </nav>
-      <p style="font-size:12px; color:var(--ops-muted); margin:0 0 6px 0;">선택 연도 그룹 매출 + 골프 부문 매출(공시 peer) + 골프 비중 + YoY · <strong>5년 추이 sparkline</strong>(FY20→24, 호박색 점 = 선택 연도) · <strong>5Y CAGR</strong>(연평균 성장률).</p>
+      <p style="font-size:12px; color:var(--ops-muted); margin:0 0 6px 0;">선택 연도 그룹 매출 + 골프 부문 매출(공시 peer) + 골프 비중 + YoY · <strong>6년 추이 sparkline</strong>(FY20→25, 호박색 점 = 선택 연도) · <strong>최대 5Y CAGR</strong>(연평균 성장률).</p>
       <div class="tier-pills" id="rev-tier-pills" role="group" aria-label="Tier 필터">
         <span style="font-size:11.5px; color:var(--ops-muted); font-weight:600;">Tier:</span>
         <button class="tier-pill active" data-tier="all">전체 (13)</button>
@@ -316,6 +317,7 @@
               <th data-col="1">FY21→22</th>
               <th data-col="2">FY22→23</th>
               <th data-col="3">FY23→24</th>
+              <th data-col="4">FY24→25</th>
               <th>5Y CAGR</th>
             </tr>
           </thead>
@@ -683,7 +685,7 @@
     <button class="close-btn" id="help-close" aria-label="도움말 닫기">✕</button>
     <h2 id="help-title">⌨️ 키보드 단축키</h2>
     <div class="help-row"><span>다크/라이트 모드</span><kbd>d</kbd></div>
-    <div class="help-row"><span>빠른 연도 선택 (FY20-24)</span><kbd>1</kbd>-<kbd>5</kbd></div>
+    <div class="help-row"><span>빠른 연도 선택 (FY20-25)</span><kbd>1</kbd>-<kbd>6</kbd></div>
     <div class="help-row"><span>연도·탭·모드 이동</span><kbd>←</kbd> <kbd>→</kbd></div>
     <div class="help-row"><span>도움말 토글</span><kbd>?</kbd> <kbd>Esc</kbd></div>
     <div style="margin-top:12px; padding-top:10px; border-top:1px dashed var(--ops-line); font-size:11.5px; color:var(--ops-muted);">
@@ -694,13 +696,13 @@
 
 <footer class="ops-foot">
   <div class="ops-wrap">
-    <p>그룹 매출: 연결 P&L FY2020-FY2024. 골프 매출: segment note 공시 또는 pure-play. 라인 상세: AR Note 22·25·27·29·31.</p>
+    <p>그룹 매출: 연결 P&L FY2020-FY2025. 골프 매출: segment note 공시 또는 pure-play. 라인 상세: AR Note 22·25·27·29·31.</p>
   </div>
 </footer>
 
 <script src="operations.js?v=20260512c3" defer></script>
 <script>
-const PEER_DATA = {"DMIG": {"name": "Damai Indah Golf", "tier": "pp", "tier_label": "🟦 Pure-play", "yearly": {"2020": {"rev": 123308738612}, "2021": {"rev": 139668124665}, "2022": {"rev": 186454207000}, "2023": {"rev": 244986267834}, "2024": {"rev": 253102440194}}, "golf_seg": {"2020": 123308738612, "2021": 139668124665, "2022": 186454207000, "2023": 244986267834, "2024": 253102440194}, "pure_play": true}, "PIPG": {"name": "Pondok Indah Padang Golf", "tier": "pp", "tier_label": "🟦 Pure-play", "yearly": {"2020": {"rev": 111672657675}, "2021": {"rev": 134430612405}, "2022": {"rev": 162573493394}, "2023": {"rev": 203092322067}, "2024": {"rev": 197570521436}}, "golf_seg": {"2020": 111672657675, "2021": 134430612405, "2022": 162573493394, "2023": 203092322067, "2024": 197570521436}, "pure_play": true}, "GOLF": {"name": "Intra GolfLink Resorts", "tier": "resort", "tier_label": "🟨 Resort", "yearly": {"2020": {"rev": null}, "2021": {"rev": 72658242193}, "2022": {"rev": 111630826260}, "2023": {"rev": 177582018034}, "2024": {"rev": 197993814652}}, "golf_seg": {"2023": 94436855876, "2024": 93042072774}, "pure_play": false}, "BSDE": {"name": "Palm Springs Karawang + Batam", "tier": "twn", "tier_label": "🟩 Township", "yearly": {"2020": {"rev": 6180589086059}, "2021": {"rev": 7654802250986}, "2022": {"rev": 10235479955727}, "2023": {"rev": 11539141250155}, "2024": {"rev": 13796572149000}}, "golf_seg": {}, "pure_play": false}, "CTRA": {"name": "Ciputra Golf Surabaya + Taman Dayu", "tier": "twn", "tier_label": "🟩 Township", "yearly": {"2020": {"rev": 8070737000000}, "2021": {"rev": 9729651000000}, "2022": {"rev": 9126799000000}, "2023": {"rev": 9245032000000}, "2024": {"rev": 11187565000000}}, "golf_seg": {}, "pure_play": false}, "ELTY": {"name": "Gunung Geulis + Klub Golf Bogor Raya", "tier": "twn", "tier_label": "🟩 Township", "yearly": {"2020": {"rev": 616210000000}, "2021": {"rev": 784410000000}, "2022": {"rev": 1011006000000}, "2023": {"rev": 1227355000000}, "2024": {"rev": 1208198000000}}, "golf_seg": {}, "pure_play": false}, "KIJA": {"name": "Jababeka Golf & Country Club", "tier": "twn", "tier_label": "🟩 Township", "yearly": {"2020": {"rev": 2396100000000}, "2021": {"rev": 2490256000000}, "2022": {"rev": 2747185000000}, "2023": {"rev": 3299597000000}, "2024": {"rev": 4602648000000}}, "golf_seg": {"2024": 85019000000}, "pure_play": false}, "KPIG": {"name": "Trump International Golf Club Lido", "tier": "twn", "tier_label": "🟩 Township", "yearly": {"2020": {"rev": 678039010000}, "2021": {"rev": 699975340000}, "2022": {"rev": 1121876641000}, "2023": {"rev": 1421006434000}, "2024": {"rev": 1770144398000}}, "golf_seg": {}, "pure_play": false}, "LPKR": {"name": "Imperial Klub Golf", "tier": "twn", "tier_label": "🟩 Township", "yearly": {"2020": {"rev": 11966300000000}, "2021": {"rev": 16138531000000}, "2022": {"rev": 14674086000000}, "2023": {"rev": 16702038000000}, "2024": {"rev": 11347979000000}}, "golf_seg": {}, "pure_play": false}, "MDLN": {"name": "Modern Golf & Country Club", "tier": "twn", "tier_label": "🟩 Township", "yearly": {"2020": {"rev": 731500000000}, "2021": {"rev": 2008646000000}, "2022": {"rev": 1098860000000}, "2023": {"rev": 1152308000000}, "2024": {"rev": 1017570000000}}, "golf_seg": {"2024": 74400000000}, "pure_play": false}, "PWON": {"name": "Pakuwon Golf & Family Club", "tier": "twn", "tier_label": "🟩 Township", "yearly": {"2020": {"rev": 3977211311000}, "2021": {"rev": 5713273000000}, "2022": {"rev": 5987433000000}, "2023": {"rev": 6200438000000}, "2024": {"rev": 6670809000000}}, "golf_seg": {}, "pure_play": false}, "SMDM": {"name": "Rancamaya Golf Estate", "tier": "twn", "tier_label": "🟩 Township", "yearly": {"2020": {"rev": 386500000000}, "2021": {"rev": 567052000000}, "2022": {"rev": 566403000000}, "2023": {"rev": 496498000000}, "2024": {"rev": 694045000000}}, "golf_seg": {"2022": null, "2023": null, "2024": 63282214554}, "pure_play": false}, "SMRA": {"name": "Gading Raya Padang Golf", "tier": "twn", "tier_label": "🟩 Township", "yearly": {"2020": {"rev": 5030000000000}, "2021": {"rev": 5567913000000}, "2022": {"rev": 5719396000000}, "2023": {"rev": 6658783000000}, "2024": {"rev": 10623400000000}}, "golf_seg": {"2024": 66672127000}, "pure_play": false}};
+const PEER_DATA = {"DMIG": {"name": "Damai Indah Golf", "tier": "pp", "tier_label": "🟦 Pure-play", "yearly": {"2020": {"rev": 123308738612}, "2021": {"rev": 139668124665}, "2022": {"rev": 186454207000}, "2023": {"rev": 244986267834}, "2024": {"rev": 253102440194}, "2025": {"rev": 251253870267}}, "golf_seg": {"2020": 123308738612, "2021": 139668124665, "2022": 186454207000, "2023": 244986267834, "2024": 253102440194, "2025": 251253870267}, "pure_play": true}, "PIPG": {"name": "Pondok Indah Padang Golf", "tier": "pp", "tier_label": "🟦 Pure-play", "yearly": {"2020": {"rev": 111672657675}, "2021": {"rev": 134430612405}, "2022": {"rev": 162573493394}, "2023": {"rev": 203092322067}, "2024": {"rev": 197570521436}, "2025": {"rev": 185775352369}}, "golf_seg": {"2020": 111672657675, "2021": 134430612405, "2022": 162573493394, "2023": 203092322067, "2024": 197570521436, "2025": 185775352369}, "pure_play": true}, "GOLF": {"name": "Intra GolfLink Resorts", "tier": "resort", "tier_label": "🟨 Resort", "yearly": {"2020": {"rev": null}, "2021": {"rev": 72658242193}, "2022": {"rev": 111630826260}, "2023": {"rev": 177582018034}, "2024": {"rev": 197993814652}, "2025": {"rev": 215519000000}}, "golf_seg": {"2023": 94436855876, "2024": 93042072774}, "pure_play": false}, "BSDE": {"name": "Palm Springs Karawang + Batam", "tier": "twn", "tier_label": "🟩 Township", "yearly": {"2020": {"rev": 6180589086059}, "2021": {"rev": 7654802250986}, "2022": {"rev": 10235479955727}, "2023": {"rev": 11539141250155}, "2024": {"rev": 13796572149000}, "2025": {"rev": 12788452336734}}, "golf_seg": {}, "pure_play": false}, "CTRA": {"name": "Ciputra Golf Surabaya + Taman Dayu", "tier": "twn", "tier_label": "🟩 Township", "yearly": {"2020": {"rev": 8070737000000}, "2021": {"rev": 9729651000000}, "2022": {"rev": 9126799000000}, "2023": {"rev": 9245032000000}, "2024": {"rev": 11187565000000}, "2025": {"rev": null}}, "golf_seg": {}, "pure_play": false}, "ELTY": {"name": "Gunung Geulis + Klub Golf Bogor Raya", "tier": "twn", "tier_label": "🟩 Township", "yearly": {"2020": {"rev": 616210000000}, "2021": {"rev": 784410000000}, "2022": {"rev": 1011006000000}, "2023": {"rev": 1227355000000}, "2024": {"rev": 1208198000000}, "2025": {"rev": null}}, "golf_seg": {}, "pure_play": false}, "KIJA": {"name": "Jababeka Golf & Country Club", "tier": "twn", "tier_label": "🟩 Township", "yearly": {"2020": {"rev": 2396100000000}, "2021": {"rev": 2490256000000}, "2022": {"rev": 2747185000000}, "2023": {"rev": 3299597000000}, "2024": {"rev": 4602648000000}, "2025": {"rev": null}}, "golf_seg": {"2024": 85019000000}, "pure_play": false}, "KPIG": {"name": "Trump International Golf Club Lido", "tier": "twn", "tier_label": "🟩 Township", "yearly": {"2020": {"rev": 678039010000}, "2021": {"rev": 699975340000}, "2022": {"rev": 1121876641000}, "2023": {"rev": 1421006434000}, "2024": {"rev": 1770144398000}, "2025": {"rev": null}}, "golf_seg": {}, "pure_play": false}, "LPKR": {"name": "Imperial Klub Golf", "tier": "twn", "tier_label": "🟩 Township", "yearly": {"2020": {"rev": 11966300000000}, "2021": {"rev": 16138531000000}, "2022": {"rev": 14674086000000}, "2023": {"rev": 16702038000000}, "2024": {"rev": 11347979000000}, "2025": {"rev": null}}, "golf_seg": {}, "pure_play": false}, "MDLN": {"name": "Modern Golf & Country Club", "tier": "twn", "tier_label": "🟩 Township", "yearly": {"2020": {"rev": 731500000000}, "2021": {"rev": 2008646000000}, "2022": {"rev": 1098860000000}, "2023": {"rev": 1152308000000}, "2024": {"rev": 1017570000000}, "2025": {"rev": 1644143359549}}, "golf_seg": {"2024": 74400000000}, "pure_play": false}, "PWON": {"name": "Pakuwon Golf & Family Club", "tier": "twn", "tier_label": "🟩 Township", "yearly": {"2020": {"rev": 3977211311000}, "2021": {"rev": 5713273000000}, "2022": {"rev": 5987433000000}, "2023": {"rev": 6200438000000}, "2024": {"rev": 6670809000000}, "2025": {"rev": null}}, "golf_seg": {}, "pure_play": false}, "SMDM": {"name": "Rancamaya Golf Estate", "tier": "twn", "tier_label": "🟩 Township", "yearly": {"2020": {"rev": 386500000000}, "2021": {"rev": 567052000000}, "2022": {"rev": 566403000000}, "2023": {"rev": 496498000000}, "2024": {"rev": 694045000000}, "2025": {"rev": 383119751628}}, "golf_seg": {"2022": null, "2023": null, "2024": 63282214554}, "pure_play": false}, "SMRA": {"name": "Gading Raya Padang Golf", "tier": "twn", "tier_label": "🟩 Township", "yearly": {"2020": {"rev": 5030000000000}, "2021": {"rev": 5567913000000}, "2022": {"rev": 5719396000000}, "2023": {"rev": 6658783000000}, "2024": {"rev": 10623400000000}, "2025": {"rev": 8766927470000}}, "golf_seg": {"2024": 66672127000}, "pure_play": false}};
 const PEER_ORDER = ["DMIG", "PIPG", "GOLF", "BSDE", "CTRA", "ELTY", "KIJA", "KPIG", "LPKR", "MDLN", "PWON", "SMDM", "SMRA"];
 
 function fmtBn(v, dp){
@@ -724,7 +726,7 @@ function fmtYoY(v){
 
 // CAGR = (end/start)^(1/n) - 1.  Skips null endpoints, uses first/last available.
 function calcCAGR(yearly){
-  const years = ['2020','2021','2022','2023','2024'];
+  const years = ['2020','2021','2022','2023','2024','2025'];
   const series = years.map(y => (yearly[y] ? yearly[y].rev : null));
   // Find first and last non-null
   let firstIdx = -1, lastIdx = -1;
@@ -749,7 +751,7 @@ function fmtCAGR(c){
 // SVG sparkline: 5-year revenue series. Width 80px, height 26px.
 // Highlights the dot at the selected year in amber.
 function sparkline(yearly, currentYear, color){
-  const years = ['2020','2021','2022','2023','2024'];
+  const years = ['2020','2021','2022','2023','2024','2025'];
   const series = years.map(y => (yearly[y] ? yearly[y].rev : null));
   const valid = series.filter(v => v !== null && v !== undefined);
   if (valid.length < 2) return '<span style="color:var(--ops-muted); font-size:11px;">—</span>';
@@ -854,7 +856,7 @@ function renderInsights(year) {
   let atPeak = 0, total = 0;
   PEER_ORDER.forEach(t => {
     const rev = PEER_DATA[t].yearly[year]?.rev;
-    const fy5 = ['2020','2021','2022','2023','2024'].map(y => PEER_DATA[t].yearly[y] ? PEER_DATA[t].yearly[y].rev : null).filter(v => v && v > 0);
+    const fy5 = ['2020','2021','2022','2023','2024','2025'].map(y => PEER_DATA[t].yearly[y] ? PEER_DATA[t].yearly[y].rev : null).filter(v => v && v > 0);
     if (fy5.length >= 2 && rev) {
       total++;
       if (rev >= Math.max(...fy5) * 0.995) atPeak++;
@@ -894,7 +896,7 @@ function render(year){
     const yoyG = (rev && revPrev) ? ((rev-revPrev)/revPrev*100) : null;
     const yoyGolf = (golf && golfPrev) ? ((golf-golfPrev)/golfPrev*100) : null;
     const cagr = calcCAGR(d.yearly);
-    const fy5 = ['2020','2021','2022','2023','2024'].map(y => d.yearly[y] ? d.yearly[y].rev : null).filter(v => v && v > 0);
+    const fy5 = ['2020','2021','2022','2023','2024','2025'].map(y => d.yearly[y] ? d.yearly[y].rev : null).filter(v => v && v > 0);
     const peak = (fy5.length >= 2 && rev) ? (rev / Math.max(...fy5) * 100) : null;
     return { t, d, rev, golf, share, yoyG, yoyGolf, cagr: cagr.cagr, peak };
   });
@@ -1008,7 +1010,7 @@ function yoyColor(pct) {
 function renderYoYMatrix() {
   const body = document.getElementById('yoy-matrix-body');
   if (!body) return;
-  const yrSpans = [['2020','2021'],['2021','2022'],['2022','2023'],['2023','2024']];
+  const yrSpans = [['2020','2021'],['2021','2022'],['2022','2023'],['2023','2024'],['2024','2025']];
   const html = PEER_ORDER.map(t => {
     const d = PEER_DATA[t];
     const cells = yrSpans.map(([y0, y1], i) => {
@@ -1056,7 +1058,7 @@ function buildExport(year, sep) {
     const num = v => v === null || v === undefined ? '' : v;
     const pct = v => v === null || v === undefined ? '' : v.toFixed(2);
     // Peak position
-    const fy5vals = ['2020','2021','2022','2023','2024'].map(y => d.yearly[y] ? d.yearly[y].rev : null).filter(v => v && v > 0);
+    const fy5vals = ['2020','2021','2022','2023','2024','2025'].map(y => d.yearly[y] ? d.yearly[y].rev : null).filter(v => v && v > 0);
     const peakRatio = (rev && fy5vals.length) ? (rev / Math.max(...fy5vals) * 100) : null;
     lines.push([
       esc(t), esc(d.name), esc(d.tier_label),
@@ -1082,7 +1084,7 @@ const TIER_COLOR = { pp:'#3b82f6', resort:'#f59e0b', twn:'#16a34a' };
 function renderTierTrend() {
   const svg = document.getElementById('tier-trend-svg');
   if (!svg) return;
-  const years = ['2020','2021','2022','2023','2024'];
+  const years = ['2020','2021','2022','2023','2024','2025'];
   const med = arr => {
     const v = arr.filter(x => x !== null && x !== undefined && x > 0).sort((a,b)=>a-b);
     if (!v.length) return null;
@@ -1254,7 +1256,7 @@ let currentYear = '2024';
     if (e.target.matches('input,textarea,select')) return;
     if (e.key === 'd') themeBtn.click();
     else if (e.key === '?') { e.preventDefault(); toggleHelp(); }
-    else if (/^[1-5]$/.test(e.key)) {
+    else if (/^[1-6]$/.test(e.key)) {
       const yr = String(2019 + parseInt(e.key));
       const btn = document.querySelector(`.year-btn[data-year="${yr}"]`);
       if (btn) btn.click();
@@ -1353,7 +1355,7 @@ let currentYear = '2024';
     try {
       const s = JSON.parse(localStorage.getItem('rev-state') || 'null');
       if (!s) return;
-      if (s.year && ['2020','2021','2022','2023','2024'].includes(s.year)) {
+      if (s.year && ['2020','2021','2022','2023','2024','2025'].includes(s.year)) {
         currentYear = s.year;
         document.querySelectorAll('.year-btn').forEach(b => b.classList.toggle('active', b.dataset.year === s.year));
       }
@@ -1391,7 +1393,7 @@ let currentYear = '2024';
   }
   const fromHash = readRevHash();
   if (fromHash) {
-    if (fromHash.year && ['2020','2021','2022','2023','2024'].includes(fromHash.year)) {
+    if (fromHash.year && ['2020','2021','2022','2023','2024','2025'].includes(fromHash.year)) {
       currentYear = fromHash.year;
       document.querySelectorAll('.year-btn').forEach(b => b.classList.toggle('active', b.dataset.year === currentYear));
     }
