@@ -258,6 +258,18 @@ html = '''<!DOCTYPE html>
   .cagr-pos { color:#16a34a; font-weight:700; }
   .cagr-neg { color:#b91c1c; font-weight:700; }
   .cagr-zero { color:#666; }
+  /* YoY heatmap matrix */
+  .yoy-matrix { width:100%; border-collapse:separate; border-spacing:1px; background:var(--ops-line); font-size:12px; }
+  .yoy-matrix th, .yoy-matrix td { background:var(--ops-surface); padding:8px 6px; }
+  .yoy-matrix thead th { font-size:11px; font-weight:700; color:var(--ops-muted); letter-spacing:0.04em; text-transform:uppercase; }
+  .yoy-matrix tbody td { text-align:center; font-variant-numeric:tabular-nums; }
+  .yoy-matrix tbody td.peer-cell { text-align:left; font-weight:700; }
+  .yoy-cell { color:var(--ops-ink); font-weight:600; }
+  /* Action bar */
+  .action-bar { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:6px 0 12px 0; }
+  .action-btn { padding:6px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); display:inline-flex; align-items:center; gap:4px; }
+  .action-btn:hover { background:rgba(45,80,22,0.05); }
+  .action-btn.success { background:#16a34a; color:white; border-color:#16a34a; }
 </style>
 </head>
 <body>
@@ -298,7 +310,11 @@ html = '''<!DOCTYPE html>
   <div class="ops-wrap">
     <div class="rev-panel active" id="panel-cmp">
       <h2 style="font-size:17px; margin:0 0 14px 0;">13-peer 매출 비교 — <span class="yr-label">FY2024</span></h2>
-      <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">선택 연도 그룹 매출 + 골프 부문 매출(공시 peer) + 골프 비중 + YoY · <strong>5년 추이 sparkline</strong>(FY20→24, 호박색 점 = 선택 연도) · <strong>5Y CAGR</strong>(연평균 성장률).</p>
+      <p style="font-size:12px; color:var(--ops-muted); margin:0 0 6px 0;">선택 연도 그룹 매출 + 골프 부문 매출(공시 peer) + 골프 비중 + YoY · <strong>5년 추이 sparkline</strong>(FY20→24, 호박색 점 = 선택 연도) · <strong>5Y CAGR</strong>(연평균 성장률).</p>
+      <div class="action-bar">
+        <button class="action-btn" id="copy-tsv-btn" aria-label="현재 표를 TSV로 클립보드 복사">📋 표 복사 (TSV)</button>
+        <button class="action-btn" id="download-csv-btn" aria-label="CSV 파일 다운로드">⬇ CSV 다운로드</button>
+      </div>
       <div class="tbl-card scroll-x">
         <table class="ops-tbl">
           <thead>
@@ -315,6 +331,24 @@ html = '''<!DOCTYPE html>
             </tr>
           </thead>
           <tbody id="cmp-tbody"></tbody>
+        </table>
+      </div>
+
+      <h3 style="font-size:15px; margin:24px 0 6px 0;">🌡️ YoY 성장 히트맵 (그룹 매출)</h3>
+      <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">peer × 연도 매트릭스. 셀 색상은 YoY %를 나타냄 — <span style="color:#16a34a; font-weight:700;">진녹색=고성장</span> · <span style="color:#b91c1c; font-weight:700;">진빨강=감소</span>. 한눈에 성장 패턴 파악.</p>
+      <div style="overflow-x:auto;">
+        <table class="yoy-matrix" id="yoy-matrix">
+          <thead>
+            <tr>
+              <th style="text-align:left;">Peer</th>
+              <th>FY20→21</th>
+              <th>FY21→22</th>
+              <th>FY22→23</th>
+              <th>FY23→24</th>
+              <th>5Y CAGR</th>
+            </tr>
+          </thead>
+          <tbody id="yoy-matrix-body"></tbody>
         </table>
       </div>
     </div>
@@ -447,6 +481,9 @@ function render(year){
   });
   document.getElementById('cmp-tbody').innerHTML = rows.join('');
 
+  // YoY heatmap matrix
+  renderYoYMatrix();
+
   // Highlight selected year columns in line tables
   document.querySelectorAll('[class*="yr-"]').forEach(el => {
     el.classList.remove('yr-hl');
@@ -454,12 +491,103 @@ function render(year){
   document.querySelectorAll('.yr-' + year).forEach(el => el.classList.add('yr-hl'));
 }
 
+// YoY color: green for growth, red for decline; gray for null
+function yoyColor(pct) {
+  if (pct === null || pct === undefined || isNaN(pct)) return { bg:'transparent', fg:'var(--ops-muted)', txt:'—' };
+  // Cap at ±100% for color intensity, full saturation at ±50%
+  const k = Math.max(-1, Math.min(1, pct / 50));
+  let r, g, b;
+  if (k >= 0) {
+    // 0..1 -> white-ish to deep green
+    r = Math.round(255 - (255 - 22)  * k);
+    g = Math.round(255 - (255 - 163) * k);
+    b = Math.round(255 - (255 - 74)  * k);
+  } else {
+    const ak = Math.abs(k);
+    // 0..1 -> white-ish to deep red
+    r = Math.round(255 - (255 - 185) * ak);
+    g = Math.round(255 - (255 - 28)  * ak);
+    b = Math.round(255 - (255 - 28)  * ak);
+  }
+  const luminance = (0.299*r + 0.587*g + 0.114*b);
+  const fg = (Math.abs(k) > 0.45) ? 'white' : 'var(--ops-ink)';
+  return { bg:`rgb(${r},${g},${b})`, fg, txt:`${pct >= 0 ? '+' : ''}${pct.toFixed(1)}%` };
+}
+
+function renderYoYMatrix() {
+  const body = document.getElementById('yoy-matrix-body');
+  if (!body) return;
+  const yrSpans = [['2020','2021'],['2021','2022'],['2022','2023'],['2023','2024']];
+  const html = PEER_ORDER.map(t => {
+    const d = PEER_DATA[t];
+    const cells = yrSpans.map(([y0, y1]) => {
+      const r0 = d.yearly[y0] ? d.yearly[y0].rev : null;
+      const r1 = d.yearly[y1] ? d.yearly[y1].rev : null;
+      const pct = (r0 && r1) ? ((r1 - r0)/r0 * 100) : null;
+      const c = yoyColor(pct);
+      return `<td class="yoy-cell" style="background:${c.bg}; color:${c.fg};" title="FY${y0} → FY${y1}">${c.txt}</td>`;
+    }).join('');
+    const cagr = calcCAGR(d.yearly);
+    const ccol = cagr.cagr === null ? {bg:'transparent', fg:'var(--ops-muted)', txt:'—'} : yoyColor(cagr.cagr);
+    return `<tr>
+      <td class="peer-cell"><a href="clubs/${t.toLowerCase()}.html" style="color:inherit; text-decoration:none;">${t}</a> <span class="peer-tag peer-tag-${d.tier}" style="font-size:9px; padding:1px 5px;">${d.tier_label.replace(/^[^ ]+ /,'')}</span></td>
+      ${cells}
+      <td class="yoy-cell" style="background:${ccol.bg}; color:${ccol.fg}; font-weight:700;" title="${cagr.span}년 연평균">${ccol.txt}</td>
+    </tr>`;
+  }).join('');
+  body.innerHTML = html;
+}
+
+// CSV/TSV export of 13-peer comparison table (selected year)
+function buildExport(year, sep) {
+  const prevYear = String(parseInt(year)-1);
+  const esc = v => {
+    if (v === null || v === undefined) return '';
+    const s = String(v);
+    if (sep === ',' && (s.includes(',') || s.includes('"') || s.includes('\n'))) {
+      return '"' + s.replace(/"/g,'""') + '"';
+    }
+    return s;
+  };
+  const headers = ['Peer','그룹명','Tier','그룹매출(IDR)','5Y_CAGR(%)','골프매출(IDR)','골프비중(%)','YoY_그룹(%)','YoY_골프(%)','FY20','FY21','FY22','FY23','FY24'];
+  const lines = [headers.map(esc).join(sep)];
+  PEER_ORDER.forEach(t => {
+    const d = PEER_DATA[t];
+    const rev = d.yearly[year] ? d.yearly[year].rev : null;
+    const revPrev = d.yearly[prevYear] ? d.yearly[prevYear].rev : null;
+    const golf = d.golf_seg[year];
+    const golfPrev = d.golf_seg[prevYear];
+    const share = (rev && golf) ? (golf/rev*100) : null;
+    const yoyG = (rev && revPrev) ? ((rev-revPrev)/revPrev*100) : null;
+    const yoyGolf = (golf && golfPrev) ? ((golf-golfPrev)/golfPrev*100) : null;
+    const cagr = calcCAGR(d.yearly);
+    const num = v => v === null || v === undefined ? '' : v;
+    const pct = v => v === null || v === undefined ? '' : v.toFixed(2);
+    lines.push([
+      esc(t), esc(d.name), esc(d.tier_label),
+      num(rev), pct(cagr.cagr), num(golf), pct(share), pct(yoyG), pct(yoyGolf),
+      num(d.yearly['2020']?.rev), num(d.yearly['2021']?.rev), num(d.yearly['2022']?.rev),
+      num(d.yearly['2023']?.rev), num(d.yearly['2024']?.rev),
+    ].join(sep));
+  });
+  return lines.join('\n');
+}
+
+function flashSuccess(btn, label){
+  const orig = btn.textContent;
+  btn.textContent = label;
+  btn.classList.add('success');
+  setTimeout(() => { btn.textContent = orig; btn.classList.remove('success'); }, 1500);
+}
+
+let currentYear = '2024';
 (function(){
   document.querySelectorAll('.year-btn').forEach(b => {
     b.addEventListener('click', () => {
       document.querySelectorAll('.year-btn').forEach(x => x.classList.remove('active'));
       b.classList.add('active');
-      render(b.dataset.year);
+      currentYear = b.dataset.year;
+      render(currentYear);
     });
   });
   document.querySelectorAll('.rev-tab').forEach(t => t.addEventListener('click', () => {
@@ -468,7 +596,25 @@ function render(year){
     t.classList.add('active');
     document.getElementById('panel-' + t.dataset.panel).classList.add('active');
   }));
-  render('2024');
+  const copyBtn = document.getElementById('copy-tsv-btn');
+  if (copyBtn) copyBtn.addEventListener('click', async (e) => {
+    const tsv = buildExport(currentYear, '\t');
+    try { await navigator.clipboard.writeText(tsv); }
+    catch (err) { const ta = document.createElement('textarea'); ta.value = tsv; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); }
+    flashSuccess(e.currentTarget, '✓ 복사됨');
+  });
+  const dlBtn = document.getElementById('download-csv-btn');
+  if (dlBtn) dlBtn.addEventListener('click', (e) => {
+    const csv = '﻿' + buildExport(currentYear, ',');
+    const blob = new Blob([csv], { type:'text/csv;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = `revenue_FY${currentYear}.csv`;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    flashSuccess(e.currentTarget, '✓ 다운로드');
+  });
+  render(currentYear);
 })();
 </script>
 </body>
