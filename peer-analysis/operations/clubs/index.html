@@ -6,7 +6,7 @@
 <title>클럽 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="../ops-style.css?v=20260513c91" />
+<link rel="stylesheet" href="../ops-style.css?v=20260513c97" />
 <style>
   .club-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
   .club-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 16px; margin-top: 20px; }
@@ -74,6 +74,20 @@
   @media (max-width: 720px) {
     .tier-stats { grid-template-columns:1fr; }
   }
+  /* Recently viewed peers — quick-access pill row */
+  .recents-row { display:flex; gap:6px; align-items:center; flex-wrap:wrap; margin:8px 0 4px 0; font-size:11.5px; }
+  .recents-row.hidden { display:none; }
+  .recents-label { font-size:11px; font-weight:700; color:var(--ops-muted); letter-spacing:0.04em; text-transform:uppercase; }
+  .recent-pill { display:inline-flex; align-items:center; gap:4px; padding:3px 9px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:999px; text-decoration:none; color:var(--ops-ink-soft); font-weight:600; transition:all 0.12s; }
+  .recent-pill:hover { background:rgba(45,80,22,0.06); color:var(--ops-ink); border-color:var(--ops-green); }
+  .recent-pill .tier-dot { width:6px; height:6px; border-radius:50%; display:inline-block; }
+  .recent-pill .tier-dot.pp { background:#3b82f6; }
+  .recent-pill .tier-dot.resort { background:#f59e0b; }
+  .recent-pill .tier-dot.twn { background:#16a34a; }
+  .recents-clear { margin-left:6px; padding:2px 8px; border:1px solid transparent; background:transparent; color:var(--ops-muted); font-size:11px; cursor:pointer; border-radius:4px; }
+  .recents-clear:hover { color:#b91c1c; background:rgba(185,28,28,0.06); }
+  body.theme-dark .recent-pill:hover { background:rgba(34,197,94,0.10); }
+  @media print { .recents-row { display:none !important; } }
   /* Tertile dot indicator — colored bullet next to key metric values (peer group rank) */
   .tertile-dot { display:inline-block; margin-left:6px; font-size:13px; line-height:1; vertical-align:middle; cursor:help; }
   .tertile-dot.dot-top { color:#16a34a; }
@@ -286,6 +300,11 @@
       출처: <strong>IDX 공시 (idx.co.id) · 연차보고서</strong>
       <span class="sep">·</span>
       Tertile dot: <span class="tertile-dot dot-top">●</span> 상위 1/3 · <span class="tertile-dot dot-mid">●</span> 중위 · <span class="tertile-dot dot-bot">●</span> 하위 (매출·순이익률·ROA, peer-group 13개 기준)
+    </div>
+    <div class="recents-row hidden" id="recents-row" aria-label="최근 본 peer">
+      <span class="recents-label">⏱ 최근 본:</span>
+      <span id="recents-pills"></span>
+      <button class="recents-clear" id="recents-clear" type="button" title="최근 기록 초기화">✕ 지우기</button>
     </div>
   </div>
 </section>
@@ -1109,6 +1128,32 @@ function syncURL() {
   function saveFavorites() {
     try { localStorage.setItem('clubs-favorites', JSON.stringify([...favorites])); } catch (e) {}
   }
+  // Recently viewed peers — capped at 5, MRU order (localStorage 'clubs-recents')
+  const MAX_RECENTS = 5;
+  function loadRecents() {
+    try { return JSON.parse(localStorage.getItem('clubs-recents') || '[]'); } catch (e) { return []; }
+  }
+  function saveRecents(arr) {
+    try { localStorage.setItem('clubs-recents', JSON.stringify(arr.slice(0, MAX_RECENTS))); } catch (e) {}
+  }
+  function addRecent(ticker) {
+    const cur = loadRecents().filter(t => t !== ticker);
+    cur.unshift(ticker);
+    saveRecents(cur);
+  }
+  function renderRecents() {
+    const row = document.getElementById('recents-row');
+    const cont = document.getElementById('recents-pills');
+    if (!row || !cont) return;
+    const list = loadRecents();
+    if (!list.length) { row.classList.add('hidden'); cont.innerHTML = ''; return; }
+    row.classList.remove('hidden');
+    cont.innerHTML = list.map(t => {
+      const card = grid.querySelector(`.club-card[data-ticker="${t}"]`);
+      const tier = card ? (card.dataset.tier || '') : '';
+      return `<a class="recent-pill" href="${t.toLowerCase()}.html"><span class="tier-dot ${tier}"></span>${t}</a>`;
+    }).join('');
+  }
   function sortElements(elems, mode) {
     let sorted;
     if (mode === 'tier') {
@@ -1655,6 +1700,29 @@ function syncURL() {
     setTimeout(() => { exportAllBtn.textContent = orig; exportAllBtn.classList.remove('copied'); }, 1600);
   });
 
+  // Track card clicks (the <a> is the entire card; capture phase so we record even before navigation)
+  grid.addEventListener('click', (e) => {
+    if (e.target.closest('.compare-check, .fav-star, .cmp-cb')) return;  // controls already stopPropagation
+    const a = e.target.closest('a.club-card');
+    if (!a) return;
+    const ticker = a.dataset.ticker;
+    if (ticker) addRecent(ticker);
+  }, true);  // capture to fire before navigation
+  // Also track table view row clicks
+  tbody.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href$=".html"]');
+    if (!a) return;
+    const tr = a.closest('tr.club-row');
+    if (!tr) return;
+    if (tr.dataset.ticker) addRecent(tr.dataset.ticker);
+  }, true);
+  // Clear-recents button
+  const recentsClear = document.getElementById('recents-clear');
+  if (recentsClear) recentsClear.addEventListener('click', () => {
+    try { localStorage.removeItem('clubs-recents'); } catch (e) {}
+    renderRecents();
+  });
+  renderRecents();
   applyState();
 })();
 </script>
