@@ -235,7 +235,7 @@ html = '''<!DOCTYPE html>
 <title>매출 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260512c75" />
+<link rel="stylesheet" href="ops-style.css?v=20260513c81" />
 <style>
   .year-bar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:14px 0 4px 0; }
   .year-bar label { font-size:13px; font-weight:600; color:var(--ops-ink-soft); }
@@ -322,6 +322,12 @@ html = '''<!DOCTYPE html>
   .yoy-matrix tbody tr.peer-highlight td.peer-cell { background:rgba(245,158,11,0.18); box-shadow:inset 3px 0 0 #f59e0b; }
   body.theme-dark .ops-tbl tbody tr.peer-highlight td:first-child { background:rgba(245,158,11,0.24); }
   body.theme-dark .yoy-matrix tbody tr.peer-highlight td.peer-cell { background:rgba(245,158,11,0.24); }
+  /* Tier filter pills (Tab ①) */
+  .tier-pills { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:6px 0 8px 0; }
+  .tier-pill { padding:5px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:999px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
+  .tier-pill.active { background:var(--ops-green); color:white; border-color:var(--ops-green); }
+  .tier-pill:hover:not(.active) { background:rgba(45,80,22,0.05); }
+  tr.tier-hidden { display:none; }
   /* Action bar */
   .action-bar { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:6px 0 12px 0; }
   .action-btn { padding:6px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); display:inline-flex; align-items:center; gap:4px; }
@@ -372,7 +378,7 @@ html = '''<!DOCTYPE html>
   @media print {
     @page { size: A4 landscape; margin: 10mm; }
     body { background:white !important; color:black !important; }
-    .ops-head, .ops-foot, .year-bar, .rev-tab-bar, .action-bar, .theme-toggle, .anchor-nav, .trend-mode-toggle { display:none !important; }
+    .ops-head, .ops-foot, .year-bar, .rev-tab-bar, .action-bar, .theme-toggle, .anchor-nav, .trend-mode-toggle, .tier-pills { display:none !important; }
     .ops-hero { padding:0 0 6px 0; }
     .ops-hero h1 { font-size:17px; margin:0 0 4px 0; }
     .ops-hero .lede { display:none; }
@@ -444,9 +450,17 @@ html = '''<!DOCTYPE html>
         <a href="#sec-yoy">🌡️ YoY 히트맵</a>
       </nav>
       <p style="font-size:12px; color:var(--ops-muted); margin:0 0 6px 0;">선택 연도 그룹 매출 + 골프 부문 매출(공시 peer) + 골프 비중 + YoY · <strong>5년 추이 sparkline</strong>(FY20→24, 호박색 점 = 선택 연도) · <strong>5Y CAGR</strong>(연평균 성장률).</p>
+      <div class="tier-pills" id="rev-tier-pills" role="group" aria-label="Tier 필터">
+        <span style="font-size:11.5px; color:var(--ops-muted); font-weight:600;">Tier:</span>
+        <button class="tier-pill active" data-tier="all">전체 (13)</button>
+        <button class="tier-pill" data-tier="pp">🟦 Pure-play (2)</button>
+        <button class="tier-pill" data-tier="resort">🟨 Resort (1)</button>
+        <button class="tier-pill" data-tier="twn">🟩 Township (10)</button>
+      </div>
       <div class="action-bar">
         <button class="action-btn" id="copy-tsv-btn" aria-label="현재 표를 TSV로 클립보드 복사">📋 표 복사 (TSV)</button>
         <button class="action-btn" id="download-csv-btn" aria-label="CSV 파일 다운로드">⬇ CSV 다운로드</button>
+        <span class="row-count" id="rev-row-count" style="font-size:12px; color:var(--ops-muted); margin-left:auto;">13 / 13 표시</span>
       </div>
       <div class="tbl-card scroll-x">
         <table class="ops-tbl">
@@ -618,6 +632,25 @@ function sparkline(yearly, currentYear, color){
 }
 
 let cmpSortState = { key: null, dir: 'desc' };
+let revTierFilter = 'all';
+
+function applyRevTierFilter() {
+  let visible = 0, total = 0;
+  document.querySelectorAll('#cmp-tbody tr').forEach(tr => {
+    total++;
+    const tier = tr.dataset.tier;
+    const show = (revTierFilter === 'all') || (tier === revTierFilter);
+    tr.classList.toggle('tier-hidden', !show);
+    if (show) visible++;
+  });
+  document.querySelectorAll('#yoy-matrix-body tr').forEach(tr => {
+    const tier = tr.dataset.tier;
+    const show = (revTierFilter === 'all') || (tier === revTierFilter);
+    tr.classList.toggle('tier-hidden', !show);
+  });
+  const rc = document.getElementById('rev-row-count');
+  if (rc) rc.textContent = `${visible} / ${total} 표시`;
+}
 
 function renderTopPerf(year) {
   const prevYear = String(parseInt(year)-1);
@@ -731,7 +764,7 @@ function render(year){
       const lbl = r.peak >= 99.5 ? '⭐ 정점' : (r.peak.toFixed(0)+'%');
       peakHtml = `<span class="peak-pill ${cls}" title="FY${year} 매출 = 5Y 최고치의 ${r.peak.toFixed(1)}%">${lbl}</span>`;
     }
-    return `<tr>
+    return `<tr data-tier="${d.tier}">
       <td class="peer"><a href="clubs/${t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${t}</a><span class="peer-tag peer-tag-${d.tier}">${d.tier_label}</span></td>
       <td class="col-low-prio">${d.name.slice(0,24)}</td>
       <td class="num">${fmtBn(rev)}</td>
@@ -745,6 +778,7 @@ function render(year){
     </tr>`;
   });
   document.getElementById('cmp-tbody').innerHTML = rows.join('');
+  applyRevTierFilter();
   // Update sort header indicators
   document.querySelectorAll('#panel-cmp .sortable').forEach(th => {
     th.classList.remove('asc','desc');
@@ -801,13 +835,14 @@ function renderYoYMatrix() {
     }).join('');
     const cagr = calcCAGR(d.yearly);
     const ccol = cagr.cagr === null ? {bg:'transparent', fg:'var(--ops-muted)', txt:'—'} : yoyColor(cagr.cagr);
-    return `<tr>
+    return `<tr data-tier="${d.tier}">
       <td class="peer-cell"><a href="clubs/${t.toLowerCase()}.html" style="color:inherit; text-decoration:none;">${t}</a> <span class="peer-tag peer-tag-${d.tier}" style="font-size:9px; padding:1px 5px;">${d.tier_label.replace(/^[^ ]+ /,'')}</span></td>
       ${cells}
       <td class="yoy-cell" style="background:${ccol.bg}; color:${ccol.fg}; font-weight:700;" title="${cagr.span}년 연평균">${ccol.txt}</td>
     </tr>`;
   }).join('');
   body.innerHTML = html;
+  applyRevTierFilter();
 }
 
 // CSV/TSV export of 13-peer comparison table (selected year)
@@ -980,6 +1015,15 @@ let currentYear = '2024';
       renderTierTrend();
     });
   });
+  // Tier filter pills (Tab ①)
+  document.querySelectorAll('#rev-tier-pills .tier-pill').forEach(p => {
+    p.addEventListener('click', () => {
+      document.querySelectorAll('#rev-tier-pills .tier-pill').forEach(x => x.classList.remove('active'));
+      p.classList.add('active');
+      revTierFilter = p.dataset.tier;
+      applyRevTierFilter();
+    });
+  });
   // Dark mode + system pref auto-follow
   const themeBtn = document.getElementById('theme-toggle');
   function applyTheme(theme) {
@@ -1105,6 +1149,7 @@ let currentYear = '2024';
         year: currentYear,
         tab: tab ? tab.dataset.panel : 'cmp',
         trend: trendMode,
+        tier: revTierFilter,
       }));
     } catch (e) {}
   }
@@ -1124,6 +1169,10 @@ let currentYear = '2024';
         trendMode = s.trend;
         document.querySelectorAll('.trend-mode-toggle button').forEach(b => b.classList.toggle('active', b.dataset.mode === s.trend));
       }
+      if (s.tier && ['all','pp','resort','twn'].includes(s.tier)) {
+        revTierFilter = s.tier;
+        document.querySelectorAll('#rev-tier-pills .tier-pill').forEach(p => p.classList.toggle('active', p.dataset.tier === s.tier));
+      }
     } catch (e) {}
   }
   loadRevState();
@@ -1132,7 +1181,7 @@ let currentYear = '2024';
     const h = (location.hash || '').replace(/^#/, '');
     if (!h) return null;
     const p = new URLSearchParams(h);
-    return { year: p.get('year'), tab: p.get('tab') };
+    return { year: p.get('year'), tab: p.get('tab'), tier: p.get('tier') };
   }
   function syncRevHash() {
     const parts = [];
@@ -1140,6 +1189,7 @@ let currentYear = '2024';
     const activeTab = document.querySelector('.rev-tab.active');
     const tabKey = activeTab ? activeTab.dataset.panel : 'cmp';
     if (tabKey && tabKey !== 'cmp') parts.push('tab=' + tabKey);
+    if (revTierFilter && revTierFilter !== 'all') parts.push('tier=' + revTierFilter);
     const h = parts.join('&');
     history.replaceState(null, '', h ? '#' + h : location.pathname + location.search);
   }
@@ -1153,8 +1203,12 @@ let currentYear = '2024';
       document.querySelectorAll('.rev-tab').forEach(x => x.classList.toggle('active', x.dataset.panel === fromHash.tab));
       document.querySelectorAll('.rev-panel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + fromHash.tab));
     }
+    if (fromHash.tier && ['all','pp','resort','twn'].includes(fromHash.tier)) {
+      revTierFilter = fromHash.tier;
+      document.querySelectorAll('#rev-tier-pills .tier-pill').forEach(p => p.classList.toggle('active', p.dataset.tier === revTierFilter));
+    }
   }
-  document.querySelectorAll('.year-btn, .rev-tab, .trend-mode-toggle button').forEach(el => {
+  document.querySelectorAll('.year-btn, .rev-tab, .trend-mode-toggle button, #rev-tier-pills .tier-pill').forEach(el => {
     el.addEventListener('click', () => setTimeout(() => { saveRevState(); syncRevHash(); }, 0));
   });
   // Sortable header click
