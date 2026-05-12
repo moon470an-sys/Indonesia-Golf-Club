@@ -18,6 +18,113 @@ for t in peers_v2:
 
 peers_sorted = sorted(peers_v2, key=lambda t: (torder(t), t))
 
+# ============================================================
+# Category rules for OpEx line aggregation (peer × category matrix)
+# Order matters — first match wins
+# ============================================================
+CATEGORY_RULES = [
+    ('인건비',      ['gaji','upah','tunjangan','imbalan kerja','kesejahteraan','beban diklat']),
+    ('감가상각',    ['penyusutan','amortisasi']),
+    ('시설관리',    ['perbaikan','pemeliharaan','perawatan']),
+    ('세금·법률',   ['pajak','perijinan','perizinan','jasa profesional','jasa tenaga ahli','audit','konsultan','legal']),
+    ('수도광열',    ['listrik','air','utilitas']),
+    ('광고·마케팅',  ['iklan','promosi','pemasaran','komisi penjualan','branding','sponsor','tournament']),
+    ('보험',        ['asuransi']),
+    ('통신·IT',     ['telepon','teleks','fax','komunikasi','internet','perangkat lunak','teknologi informasi','administrasi bank','biaya kartu','pos,']),
+    ('사무·소모품', ['alat-alat tulis','cetakan','perlengkapan kantor','perlengkapan dan administrasi','perlengkapan dan peralatan','perlengkapan pemasaran']),
+    ('청소·보안',   ['kebersihan','keamanan','jasa manajemen']),
+    ('운송·출장',   ['transportasi','perjalanan','akomodasi']),
+]
+def categorize(label):
+    s = label.lower()
+    for cat, kws in CATEGORY_RULES:
+        if any(kw in s for kw in kws):
+            return cat
+    return '기타'
+
+# ============================================================
+# Extract COGS / OpEx totals + by-category for each peer
+# ============================================================
+def extract_totals(t):
+    """Return (cogs_total_by_year_dict, opex_total_by_year_dict)."""
+    d = notes.get(t, {})
+    cogs_total = {}
+    opex_total = {}
+
+    # COGS totals (multiple AR note key conventions)
+    for key in ['cogs_note','cogs_note_28','cogs_note_30']:
+        if key in d and 'total' in d[key]:
+            for ykey, v in d[key]['total'].items():
+                yr = ykey[-4:] if ykey.startswith('FY') else ykey
+                if v: cogs_total[yr] = v
+    # MDLN special: golf_plus_clubhouse_subtotal
+    if 'cogs_note_26' in d:
+        sub = d['cogs_note_26'].get('golf_plus_clubhouse_subtotal',{})
+        for ykey, v in sub.items():
+            yr = ykey[-4:] if ykey.startswith('FY') else ykey
+            if v: cogs_total[yr] = v
+
+    # OpEx totals (combine selling+G&A where split)
+    if 'opex_note' in d and 'total' in d['opex_note']:
+        for ykey, v in d['opex_note']['total'].items():
+            yr = ykey[-4:] if ykey.startswith('FY') else ykey
+            if v: opex_total[yr] = v
+    if 'opex_note_29' in d and 'total' in d['opex_note_29']:
+        for ykey, v in d['opex_note_29']['total'].items():
+            yr = ykey[-4:] if ykey.startswith('FY') else ykey
+            if v: opex_total[yr] = v
+    # GOLF: Selling 31 + G&A 32
+    if 'selling_note_31' in d and 'ga_note_32' in d:
+        s_tot = d['selling_note_31'].get('total',{})
+        g_tot = d['ga_note_32'].get('total',{})
+        for ykey in set(list(s_tot.keys()) + list(g_tot.keys())):
+            yr = ykey[-4:] if ykey.startswith('FY') else ykey
+            sv = s_tot.get(ykey); gv = g_tot.get(ykey)
+            if sv is not None or gv is not None:
+                opex_total[yr] = (sv or 0) + (gv or 0)
+    # KPIG: G&A note 34 only
+    if 'ga_note_34' in d and 'total' in d['ga_note_34']:
+        for ykey, v in d['ga_note_34']['total'].items():
+            yr = ykey[-4:] if ykey.startswith('FY') else ykey
+            if v: opex_total[yr] = v
+    # KIJA golf segment FY24 (Rp million)
+    if t == 'KIJA':
+        seg = d.get('segment_info_note_34',{}).get('golf_segment_FY2024',{})
+        if seg.get('cogs') is not None: cogs_total['2024'] = seg['cogs']*1e6
+        if seg.get('selling') is not None or seg.get('ga_expenses') is not None:
+            opex_total['2024'] = (seg.get('selling',0) + seg.get('ga_expenses',0)) * 1e6
+    # SMDM golf segment FY24 (raw IDR; cogs has negative sign)
+    if t == 'SMDM':
+        seg = d.get('segment_info_note_29',{}).get('FY2024',{}).get('Golf dan Country Club',{})
+        if seg.get('cogs') is not None: cogs_total['2024'] = abs(seg['cogs'])
+        sel = seg.get('selling') or 0; ga = seg.get('ga') or 0
+        if sel or ga: opex_total['2024'] = abs(sel) + abs(ga)
+    # SMRA Rekreasi/Leisure FY24 (thousand → IDR)
+    if t == 'SMRA':
+        sm_cogs = d.get('cogs_note_32',{}).get('Rekreasi_Leisure_COGS',{}).get('FY2024_comparative')
+        if sm_cogs: cogs_total['2024'] = sm_cogs * 1000
+    return cogs_total, opex_total
+
+def extract_opex_by_cat(t):
+    """Return {year: {category: sum, ...}, ...} for OpEx lines."""
+    d = notes.get(t, {})
+    result = {}
+    def add_lines(lines):
+        for ln in lines:
+            cat = categorize(ln['id_label'])
+            for ykey, v in ln.items():
+                if not ykey.startswith('FY') or v is None: continue
+                yr = ykey[-4:]
+                result.setdefault(yr, {}).setdefault(cat, 0)
+                result[yr][cat] += v
+    for key in ['opex_note','opex_note_29','selling_note_31','ga_note_32','ga_note_34']:
+        if key in d and 'lines' in d[key]:
+            add_lines(d[key]['lines'])
+    return result
+
+# Categories order (display)
+CAT_ORDER = ['인건비','감가상각','시설관리','세금·법률','수도광열','광고·마케팅','보험','통신·IT','사무·소모품','청소·보안','운송·출장','기타']
+
 # Build PEER_DATA for cost-structure comparison
 peer_data = {}
 for t in peers_sorted:
@@ -32,14 +139,45 @@ for t in peers_sorted:
             'np': yy.get('net_profit'),
             'ebitda': yy.get('ebitda'),
         }
+    cogs_tot, opex_tot = extract_totals(t)
+    opex_cat = extract_opex_by_cat(t)
+    # Scope revenue — what revenue the COGS/OpEx note actually covers (for honest ratio)
+    SCOPE_REV_OVERLAY = {
+        'KIJA': {'2024': 85019 * 1e6},                     # golf segment rev
+        'SMDM': {'2024': 63282214554},                     # golf segment rev
+        'SMRA': {'2024': 66672127 * 1000},                 # Rekreasi/Leisure segment
+        'MDLN': {'2023': 68985399881, '2024': 74374916470},# golf+clubhouse subtotal
+    }
+    scope_rev = {}
+    overlay = SCOPE_REV_OVERLAY.get(t, {})
+    for yr in ['2020','2021','2022','2023','2024']:
+        scope_rev[yr] = overlay.get(yr) or (yearly[yr]['rev'])
+    # Coverage label — what does COGS/OpEx note actually represent
+    cogs_cov = {
+        'DMIG':'전사 (Pure-play)','PIPG':'전사 (Pure-play)',
+        'GOLF':'사업부 합계','MDLN':'골프+클럽하우스 부문',
+        'KIJA':'골프 segment FY24','SMDM':'골프 segment FY24','SMRA':'Rekreasi segment FY24',
+    }.get(t,'—')
+    opex_cov = {
+        'DMIG':'전사 (Pure-play)','PIPG':'전사 (Pure-play)',
+        'GOLF':'Selling+G&A','KPIG':'그룹 G&A 만',
+        'KIJA':'골프 segment (Selling+G&A) FY24','SMDM':'골프 segment (Selling+G&A) FY24',
+    }.get(t,'—')
     peer_data[t] = {
         'name': c['name'],
         'tier': c['tier'],
         'tier_label': c['tier_label'],
         'yearly': yearly,
+        'cogs_total': cogs_tot,    # {'2022': val, ...}
+        'opex_total': opex_tot,
+        'opex_by_cat': opex_cat,   # {'2023': {'인건비': val, ...}}
+        'scope_rev': scope_rev,
+        'cogs_cov': cogs_cov,
+        'opex_cov': opex_cov,
     }
 
 peer_data_json = json.dumps(peer_data, ensure_ascii=False)
+cat_order_json = json.dumps(CAT_ORDER, ensure_ascii=False)
 
 # ============================================================
 # Line detail tables — multi-year, selected year column gets yr-{year} class
@@ -328,10 +466,56 @@ html = '''<!DOCTYPE html>
     </div>
 
     <div class="cost-panel" id="panel-cogs">
+      <h2 style="font-size:17px; margin:0 0 14px 0;">매출원가 동급 비교 — <span class="yr-label">FY2024</span></h2>
+      <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">선택 연도 매출원가 합계 + 동일 범위 매출 대비 비율. 비율은 공시 범위에 맞는 매출 (Pure-play: 그룹 매출, MDLN: 골프+클럽 매출, Tier-3: 골프 segment 매출)로 계산해 동급 비교 가능.</p>
+      <div class="tbl-card scroll-x" style="margin-bottom:28px;">
+        <table class="ops-tbl">
+          <thead>
+            <tr>
+              <th>Peer</th>
+              <th>그룹명</th>
+              <th class="num">매출원가</th>
+              <th class="num">대응 매출</th>
+              <th class="num">COGS / 매출</th>
+              <th>공시 범위</th>
+            </tr>
+          </thead>
+          <tbody id="cogs-cmp-tbody"></tbody>
+        </table>
+      </div>
+      <h3 style="font-size:15px; margin:24px 0 10px 0;">peer별 매출원가 라인 상세</h3>
 __COGS_SECTION__
     </div>
 
     <div class="cost-panel" id="panel-opex">
+      <h2 style="font-size:17px; margin:0 0 14px 0;">판관비 동급 비교 — <span class="yr-label">FY2024</span></h2>
+      <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">선택 연도 판관비 합계 (Selling + G&A) + 동일 범위 매출 대비 비율. 비율은 공시 범위에 맞는 매출로 계산.</p>
+      <div class="tbl-card scroll-x" style="margin-bottom:24px;">
+        <table class="ops-tbl">
+          <thead>
+            <tr>
+              <th>Peer</th>
+              <th>그룹명</th>
+              <th class="num">판관비</th>
+              <th class="num">대응 매출</th>
+              <th class="num">OpEx / 매출</th>
+              <th>공시 범위</th>
+            </tr>
+          </thead>
+          <tbody id="opex-cmp-tbody"></tbody>
+        </table>
+      </div>
+
+      <h3 style="font-size:15px; margin:24px 0 10px 0;">판관비 카테고리 매트릭스 — <span class="yr-label">FY2024</span></h3>
+      <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">peer × 11 카테고리 (인건비·감가·시설관리·세금·수도광열·광고·보험·통신·사무·청소·운송). AR 라인 라벨을 인도네시아어 키워드로 자동 분류.</p>
+      <div class="tbl-card scroll-x" style="margin-bottom:28px;">
+        <table class="ops-tbl" id="opex-cat-tbl">
+          <thead id="opex-cat-thead"></thead>
+          <tbody id="opex-cat-tbody"></tbody>
+        </table>
+      </div>
+
+      <h3 style="font-size:15px; margin:24px 0 10px 0;">peer별 판관비 라인 상세</h3>
 __OPEX_SECTION__
     </div>
   </div>
@@ -347,6 +531,7 @@ __OPEX_SECTION__
 <script>
 const PEER_DATA = __PEER_DATA__;
 const PEER_ORDER = __PEER_ORDER__;
+const CAT_ORDER = __CAT_ORDER__;
 
 function fmtBn(v, dp){
   if (v === null || v === undefined) return '—';
@@ -365,6 +550,7 @@ function fmtPct(v, dp){
 function render(year){
   document.querySelectorAll('.yr-label').forEach(el => el.textContent = 'FY' + year);
 
+  // === Tab 1: 비용 구조 % (group P&L) ===
   const rows = PEER_ORDER.map(t => {
     const d = PEER_DATA[t];
     const y = d.yearly[year] || {};
@@ -386,6 +572,71 @@ function render(year){
     </tr>`;
   });
   document.getElementById('cmp-tbody').innerHTML = rows.join('');
+
+  // === Tab 2: 매출원가 동급 비교 (top) ===
+  // Ratio uses scope_rev (matches the actual coverage of the COGS note) for honest comparison
+  const cogsRows = PEER_ORDER.map(t => {
+    const d = PEER_DATA[t];
+    const scopeRev = d.scope_rev[year];
+    const cogs = d.cogs_total[year];
+    const ratio = (scopeRev && cogs) ? (cogs/scopeRev*100) : null;
+    return `<tr>
+      <td class="peer"><a href="clubs/${t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${t}</a><span class="peer-tag peer-tag-${d.tier}">${d.tier_label}</span></td>
+      <td>${d.name.slice(0,24)}</td>
+      <td class="num"><strong>${fmtBn(cogs)}</strong></td>
+      <td class="num">${fmtBn(scopeRev)}</td>
+      <td class="num">${fmtPct(ratio)}</td>
+      <td style="font-size:11.5px; color:var(--ops-muted);">${d.cogs_cov}</td>
+    </tr>`;
+  });
+  document.getElementById('cogs-cmp-tbody').innerHTML = cogsRows.join('');
+
+  // === Tab 3: 판관비 동급 비교 (top) ===
+  const opexRows = PEER_ORDER.map(t => {
+    const d = PEER_DATA[t];
+    const scopeRev = d.scope_rev[year];
+    const opex = d.opex_total[year];
+    const ratio = (scopeRev && opex) ? (opex/scopeRev*100) : null;
+    return `<tr>
+      <td class="peer"><a href="clubs/${t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${t}</a><span class="peer-tag peer-tag-${d.tier}">${d.tier_label}</span></td>
+      <td>${d.name.slice(0,24)}</td>
+      <td class="num"><strong>${fmtBn(opex)}</strong></td>
+      <td class="num">${fmtBn(scopeRev)}</td>
+      <td class="num">${fmtPct(ratio)}</td>
+      <td style="font-size:11.5px; color:var(--ops-muted);">${d.opex_cov}</td>
+    </tr>`;
+  });
+  document.getElementById('opex-cmp-tbody').innerHTML = opexRows.join('');
+
+  // === Tab 3: 판관비 카테고리 매트릭스 (peer × category) ===
+  // Only peers with opex_by_cat data for selected year
+  const opexCatPeers = PEER_ORDER.filter(t => {
+    const cat = PEER_DATA[t].opex_by_cat[year];
+    return cat && Object.keys(cat).length > 0;
+  });
+  const theadCells = ['<th>카테고리</th>'].concat(opexCatPeers.map(t => {
+    const d = PEER_DATA[t];
+    return `<th class="num"><a href="clubs/${t.toLowerCase()}.html" style="color:inherit; text-decoration:none;">${t}</a> <span class="peer-tag peer-tag-${d.tier}" style="font-size:9px; padding:1px 5px;">${d.tier_label.replace(/^[^ ]+ /,'')}</span></th>`;
+  })).join('');
+  document.getElementById('opex-cat-thead').innerHTML = '<tr>' + theadCells + '</tr>';
+  // Body rows
+  const bodyRows = CAT_ORDER.map(cat => {
+    const cells = opexCatPeers.map(t => {
+      const v = (PEER_DATA[t].opex_by_cat[year] || {})[cat];
+      const rev = PEER_DATA[t].yearly[year] ? PEER_DATA[t].yearly[year].rev : null;
+      const pct = (v && rev) ? (v/rev*100) : null;
+      const pctTxt = pct !== null ? `<br><span style="color:var(--ops-muted); font-size:10.5px;">${pct.toFixed(2)}%</span>` : '';
+      return `<td class="num">${fmtBn(v)}${pctTxt}</td>`;
+    }).join('');
+    return `<tr><td><strong>${cat}</strong></td>${cells}</tr>`;
+  });
+  // Total row
+  const totalCells = opexCatPeers.map(t => {
+    const tot = PEER_DATA[t].opex_total[year];
+    return `<td class="num"><strong>${fmtBn(tot)}</strong></td>`;
+  }).join('');
+  bodyRows.push(`<tr style="background:rgba(45,80,22,0.06); font-weight:700;"><td>합계</td>${totalCells}</tr>`);
+  document.getElementById('opex-cat-tbody').innerHTML = bodyRows.join('');
 
   // Highlight selected year columns in line tables
   document.querySelectorAll('.yr-hl').forEach(el => el.classList.remove('yr-hl'));
@@ -415,6 +666,7 @@ function render(year){
 
 html = html.replace('__PEER_DATA__', peer_data_json)
 html = html.replace('__PEER_ORDER__', json.dumps(peers_sorted))
+html = html.replace('__CAT_ORDER__', cat_order_json)
 html = html.replace('__COGS_SECTION__', cogs_html)
 html = html.replace('__OPEX_SECTION__', opex_html)
 
