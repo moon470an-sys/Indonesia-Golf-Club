@@ -258,6 +258,13 @@ html = '''<!DOCTYPE html>
   .cagr-pos { color:#16a34a; font-weight:700; }
   .cagr-neg { color:#b91c1c; font-weight:700; }
   .cagr-zero { color:#666; }
+  /* Term hint pill */
+  .tip { cursor:help; font-size:9px; vertical-align:super; opacity:0.7; }
+  /* Peak position pill */
+  .peak-pill { display:inline-block; padding:1px 6px; border-radius:999px; font-size:11px; font-weight:700; font-variant-numeric:tabular-nums; }
+  .peak-pill.at-peak  { background:rgba(22,163,74,0.15); color:#16a34a; }
+  .peak-pill.near     { background:rgba(245,158,11,0.15); color:#b45309; }
+  .peak-pill.down     { background:rgba(185,28,28,0.12); color:#b91c1c; }
   /* YoY heatmap matrix */
   .yoy-matrix { width:100%; border-collapse:separate; border-spacing:1px; background:var(--ops-line); font-size:12px; }
   .yoy-matrix th, .yoy-matrix td { background:var(--ops-surface); padding:8px 6px; }
@@ -380,6 +387,7 @@ html = '''<!DOCTYPE html>
               <th class="num">그룹 매출</th>
               <th class="num">5년 추이</th>
               <th class="num">5Y CAGR</th>
+              <th class="num">5Y 위치 <span class="tip" title="FY24 매출이 FY20-24 최고치 대비 어디에 있는지 — 100% = 5년 최고, 작을수록 정점 후 감소">?</span></th>
               <th class="num">골프 매출</th>
               <th class="num">골프 비중</th>
               <th class="num">YoY (그룹)</th>
@@ -540,12 +548,25 @@ function render(year){
     const yoyGolf = (golf && golfPrev) ? ((golf-golfPrev)/golfPrev*100) : null;
     const tierColor = d.tier === 'pp' ? '#3b82f6' : d.tier === 'resort' ? '#f59e0b' : '#16a34a';
     const cagr = calcCAGR(d.yearly);
+    // Peak status: FY-selected vs FY20-24 max
+    const fy5 = ['2020','2021','2022','2023','2024'].map(y => d.yearly[y] ? d.yearly[y].rev : null).filter(v => v && v > 0);
+    let peakHtml = '—';
+    if (fy5.length >= 2 && rev) {
+      const peakVal = Math.max(...fy5);
+      const ratio = rev / peakVal * 100;
+      let cls = 'down';
+      if (ratio >= 99.5) cls = 'at-peak';
+      else if (ratio >= 90) cls = 'near';
+      const lbl = ratio >= 99.5 ? '⭐ 정점' : (ratio.toFixed(0)+'%');
+      peakHtml = `<span class="peak-pill ${cls}" title="FY${year} 매출 = 5Y 최고치의 ${ratio.toFixed(1)}%">${lbl}</span>`;
+    }
     return `<tr>
       <td class="peer"><a href="clubs/${t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${t}</a><span class="peer-tag peer-tag-${d.tier}">${d.tier_label}</span></td>
       <td>${d.name.slice(0,24)}</td>
       <td class="num">${fmtBn(rev)}</td>
       <td class="num" style="padding:4px 8px;">${sparkline(d.yearly, year, tierColor)}</td>
       <td class="num">${fmtCAGR(cagr)}</td>
+      <td class="num">${peakHtml}</td>
       <td class="num"><strong>${fmtBn(golf)}</strong></td>
       <td class="num">${fmtPct(share)}</td>
       <td class="num">${fmtYoY(yoyG)}</td>
@@ -624,7 +645,7 @@ function buildExport(year, sep) {
     }
     return s;
   };
-  const headers = ['Peer','그룹명','Tier','그룹매출(IDR)','5Y_CAGR(%)','골프매출(IDR)','골프비중(%)','YoY_그룹(%)','YoY_골프(%)','FY20','FY21','FY22','FY23','FY24'];
+  const headers = ['Peer','그룹명','Tier','그룹매출(IDR)','5Y_CAGR(%)','5Y_위치(%)','골프매출(IDR)','골프비중(%)','YoY_그룹(%)','YoY_골프(%)','FY20','FY21','FY22','FY23','FY24'];
   const lines = [headers.map(esc).join(sep)];
   PEER_ORDER.forEach(t => {
     const d = PEER_DATA[t];
@@ -638,9 +659,12 @@ function buildExport(year, sep) {
     const cagr = calcCAGR(d.yearly);
     const num = v => v === null || v === undefined ? '' : v;
     const pct = v => v === null || v === undefined ? '' : v.toFixed(2);
+    // Peak position
+    const fy5vals = ['2020','2021','2022','2023','2024'].map(y => d.yearly[y] ? d.yearly[y].rev : null).filter(v => v && v > 0);
+    const peakRatio = (rev && fy5vals.length) ? (rev / Math.max(...fy5vals) * 100) : null;
     lines.push([
       esc(t), esc(d.name), esc(d.tier_label),
-      num(rev), pct(cagr.cagr), num(golf), pct(share), pct(yoyG), pct(yoyGolf),
+      num(rev), pct(cagr.cagr), pct(peakRatio), num(golf), pct(share), pct(yoyG), pct(yoyGolf),
       num(d.yearly['2020']?.rev), num(d.yearly['2021']?.rev), num(d.yearly['2022']?.rev),
       num(d.yearly['2023']?.rev), num(d.yearly['2024']?.rev),
     ].join(sep));
@@ -813,6 +837,39 @@ let currentYear = '2024';
     updateActiveAnchor();
     window.addEventListener('scroll', updateActiveAnchor, { passive: true });
   }
+  // localStorage state: year + active tab + trend mode
+  function saveRevState() {
+    const tab = document.querySelector('.rev-tab.active');
+    try {
+      localStorage.setItem('rev-state', JSON.stringify({
+        year: currentYear,
+        tab: tab ? tab.dataset.panel : 'cmp',
+        trend: trendMode,
+      }));
+    } catch (e) {}
+  }
+  function loadRevState() {
+    try {
+      const s = JSON.parse(localStorage.getItem('rev-state') || 'null');
+      if (!s) return;
+      if (s.year && ['2020','2021','2022','2023','2024'].includes(s.year)) {
+        currentYear = s.year;
+        document.querySelectorAll('.year-btn').forEach(b => b.classList.toggle('active', b.dataset.year === s.year));
+      }
+      if (s.tab) {
+        document.querySelectorAll('.rev-tab').forEach(x => x.classList.toggle('active', x.dataset.panel === s.tab));
+        document.querySelectorAll('.rev-panel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + s.tab));
+      }
+      if (s.trend && ['median','sum','indexed'].includes(s.trend)) {
+        trendMode = s.trend;
+        document.querySelectorAll('.trend-mode-toggle button').forEach(b => b.classList.toggle('active', b.dataset.mode === s.trend));
+      }
+    } catch (e) {}
+  }
+  loadRevState();
+  document.querySelectorAll('.year-btn, .rev-tab, .trend-mode-toggle button').forEach(el => {
+    el.addEventListener('click', () => setTimeout(saveRevState, 0));
+  });
   render(currentYear);
 })();
 </script>
