@@ -533,15 +533,18 @@ function flashSuccess(btn, label){
       document.querySelectorAll(`#risk-tbody td[data-col="${col}"]`).forEach(c => c.classList.remove('col-highlight'));
     });
   });
-  // Dark mode
+  // Dark mode + system pref auto-follow
   const themeBtn = document.getElementById('theme-toggle');
   function applyTheme(theme) {
     if (theme === 'dark') { document.body.classList.add('theme-dark'); themeBtn.textContent = '☀️'; }
     else                  { document.body.classList.remove('theme-dark'); themeBtn.textContent = '🌙'; }
   }
   const saved = localStorage.getItem('ops-theme');
-  const sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  applyTheme(saved || (sysDark ? 'dark' : 'light'));
+  const mql = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+  applyTheme(saved || (mql && mql.matches ? 'dark' : 'light'));
+  if (mql && mql.addEventListener) {
+    mql.addEventListener('change', (e) => { if (!localStorage.getItem('ops-theme')) applyTheme(e.matches ? 'dark' : 'light'); });
+  }
   themeBtn.addEventListener('click', () => {
     const newT = document.body.classList.contains('theme-dark') ? 'light' : 'dark';
     localStorage.setItem('ops-theme', newT);
@@ -588,10 +591,32 @@ function flashSuccess(btn, label){
     } catch (e) {}
   }
   loadRiskState();
+  // URL hash overrides
+  function readRiskHash() {
+    const h = (location.hash || '').replace(/^#/, '');
+    if (!h) return null;
+    const p = new URLSearchParams(h);
+    return { tier: p.get('tier'), q: p.get('q') };
+  }
+  function syncRiskHash() {
+    const parts = [];
+    if (tierFilter && tierFilter !== 'all') parts.push('tier=' + tierFilter);
+    if (searchInput.value) parts.push('q=' + encodeURIComponent(searchInput.value));
+    const h = parts.join('&');
+    history.replaceState(null, '', h ? '#' + h : location.pathname + location.search);
+  }
+  const fromHash = readRiskHash();
+  if (fromHash) {
+    if (fromHash.tier && ['all','pp','resort','twn'].includes(fromHash.tier)) {
+      tierFilter = fromHash.tier;
+      document.querySelectorAll('#risk-tier-pills .tier-pill').forEach(p => p.classList.toggle('active', p.dataset.tier === tierFilter));
+    }
+    if (fromHash.q) { searchInput.value = fromHash.q; }
+  }
   document.querySelectorAll('#risk-tier-pills .tier-pill, #risk-tbl .sortable').forEach(el => {
-    el.addEventListener('click', () => setTimeout(saveRiskState, 0));
+    el.addEventListener('click', () => setTimeout(() => { saveRiskState(); syncRiskHash(); }, 0));
   });
-  searchInput.addEventListener('input', () => setTimeout(saveRiskState, 0));
+  searchInput.addEventListener('input', () => setTimeout(() => { saveRiskState(); syncRiskHash(); }, 0));
   applyPeerSearch();
 })();
 </script>
