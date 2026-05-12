@@ -531,6 +531,11 @@ html = '''<!DOCTYPE html>
   .data-meta strong { color:var(--ops-ink-soft); }
   .data-meta .sep { margin:0 8px; opacity:0.4; }
   @media print { .top-perf { display:none; } .data-meta { font-size:9px; } }
+  /* Accessibility */
+  *:focus-visible { outline:2px solid var(--ops-green); outline-offset:2px; border-radius:3px; }
+  .year-btn:focus-visible, .cost-tab:focus-visible, .tier-pill:focus-visible { outline-offset:1px; }
+  .skip-link { position:absolute; left:-1000px; top:8px; padding:6px 12px; background:var(--ops-green); color:white; border-radius:6px; font-weight:700; z-index:200; text-decoration:none; }
+  .skip-link:focus { left:8px; }
   /* Category matrix search */
   .cat-search-row { display:flex; gap:8px; align-items:center; margin:4px 0 8px 0; flex-wrap:wrap; }
   .cat-search-row label { font-size:11.5px; color:var(--ops-muted); font-weight:600; }
@@ -540,6 +545,7 @@ html = '''<!DOCTYPE html>
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main-content">메인 콘텐츠로 건너뛰기</a>
 <header class="ops-head">
   <div class="ops-wrap ops-head-row">
     <a href="clubs/index.html" class="ops-brand">
@@ -592,7 +598,7 @@ html = '''<!DOCTYPE html>
   </div>
 </section>
 
-<section class="ops-section">
+<section class="ops-section" id="main-content">
   <div class="ops-wrap">
     <div class="cost-panel active" id="panel-cmp">
       <h2 style="font-size:17px; margin:0 0 14px 0;">13-peer 비용 구조 — <span class="yr-label">FY2024</span></h2>
@@ -1236,6 +1242,38 @@ function wireExport(copyId, csvId, which, csvName) {
   document.addEventListener('keydown', (e) => {
     if (e.target.matches('input,textarea,select')) return;
     if (e.key === 'd') themeBtn.click();
+  });
+  // Keyboard arrow nav
+  function wireArrowNav(selector) {
+    const items = Array.from(document.querySelectorAll(selector));
+    items.forEach((el, i) => {
+      el.setAttribute('tabindex', '0');
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+          e.preventDefault();
+          const next = e.key === 'ArrowRight' ? (i + 1) % items.length : (i - 1 + items.length) % items.length;
+          items[next].focus();
+          items[next].click();
+        }
+      });
+    });
+  }
+  wireArrowNav('.year-btn');
+  wireArrowNav('.cost-tab');
+  // Each tier-pill group separately
+  document.querySelectorAll('.tier-pills').forEach(group => {
+    const pills = Array.from(group.querySelectorAll('.tier-pill'));
+    pills.forEach((el, i) => {
+      el.setAttribute('tabindex', '0');
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+          e.preventDefault();
+          const next = e.key === 'ArrowRight' ? (i + 1) % pills.length : (i - 1 + pills.length) % pills.length;
+          pills[next].focus();
+          pills[next].click();
+        }
+      });
+    });
   });
   // Category search filter (matrix body rows)
   const catSearch = document.getElementById('cat-search');
