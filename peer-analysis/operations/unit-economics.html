@@ -6,7 +6,7 @@
 <title>단위 경제 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260513c86" />
+<link rel="stylesheet" href="ops-style.css?v=20260513c92" />
 <style>
   .year-bar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:14px 0 4px 0; }
   .year-bar label { font-size:13px; font-weight:600; color:var(--ops-ink-soft); }
@@ -40,6 +40,13 @@
   .row-count { font-size:12px; color:var(--ops-muted); margin-left:auto; }
   /* Hidden rows (filtered out) */
   tr.tier-hidden, tr.search-hidden { display:none; }
+  /* Favorite star (cross-page localStorage 'clubs-favorites') */
+  .fav-star { display:inline-block; vertical-align:middle; margin-right:4px; padding:0 2px; border:none; background:transparent; cursor:pointer; font-size:14px; line-height:1; color:var(--ops-muted); opacity:0.45; transition:all 0.15s; border-radius:3px; }
+  .fav-star:hover { opacity:1; color:#f59e0b; background:rgba(245,158,11,0.10); }
+  .fav-star.active { color:#f59e0b; opacity:1; }
+  tr.is-fav td:first-child { box-shadow:inset 4px 0 0 #f59e0b; }
+  body.theme-dark tr.is-fav td:first-child { box-shadow:inset 4px 0 0 #fbbf24; }
+  @media print { .fav-star { display:none !important; } }
   /* Peer search input */
   .peer-search { padding:6px 10px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:6px; font-size:12.5px; color:var(--ops-ink); min-width:180px; }
   .peer-search:focus { outline:none; border-color:var(--ops-green); box-shadow:0 0 0 3px rgba(45,80,22,0.12); }
@@ -353,6 +360,12 @@ function fmtPerUnit(rev_bn, divisor){
 let sortState = { key: 'revPerHole', dir: 'desc' };
 let tierFilter = 'all';
 let searchQ = '';
+// Favorites — shared localStorage key with clubs/index (cross-page persistence)
+let favorites = new Set();
+try { favorites = new Set(JSON.parse(localStorage.getItem('clubs-favorites') || '[]')); } catch (e) {}
+function saveFavorites() {
+  try { localStorage.setItem('clubs-favorites', JSON.stringify([...favorites])); } catch (e) {}
+}
 
 function escapeRegex(s) { return s.replace(/[.*+?^${}()|[\]\]/g, '\$&'); }
 function markHits(scopeRoot, q) {
@@ -509,7 +522,7 @@ function renderMain(year){
     stats[k] = vals.length ? { min: Math.min(...vals), max: Math.max(...vals) } : null;
   });
   // Sort
-  const sorted = rows.slice();
+  let sorted = rows.slice();
   if (sortState.key) {
     sorted.sort((a, b) => {
       const va = a[sortState.key]; const vb = b[sortState.key];
@@ -518,6 +531,12 @@ function renderMain(year){
       if (vb === null || vb === undefined) return -1;
       return sortState.dir === 'desc' ? (vb - va) : (va - vb);
     });
+  }
+  // Favorites stable-sort to top (shared localStorage 'clubs-favorites' with clubs/index)
+  if (favorites.size > 0) {
+    const favs = sorted.filter(r => favorites.has(r.t));
+    const rest = sorted.filter(r => !favorites.has(r.t));
+    sorted = favs.concat(rest);
   }
   // Build cells
   const heat = (key, val, fmt) => {
@@ -532,8 +551,9 @@ function renderMain(year){
   };
   const html = sorted.map(r => {
     const color = TIER_COLOR[r.d.tier] || '#666';
-    return `<tr>
-      <td class="peer"><a href="clubs/${r.t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${r.t}</a><span class="peer-tag peer-tag-${r.d.tier}">${r.d.tier_label}</span></td>
+    const fav = favorites.has(r.t);
+    return `<tr class="${fav ? 'is-fav' : ''}">
+      <td class="peer"><button class="fav-star${fav ? ' active' : ''}" data-ticker="${r.t}" title="${fav ? '즐겨찾기 해제' : '즐겨찾기 (피어 상단 고정)'}" aria-label="즐겨찾기 토글" aria-pressed="${fav}">${fav ? '★' : '☆'}</button><a href="clubs/${r.t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${r.t}</a><span class="peer-tag peer-tag-${r.d.tier}">${r.d.tier_label}</span></td>
       <td class="col-low-prio">${r.d.name.slice(0,22)}</td>
       <td class="num">${fmtNum(r.holes)}</td>
       <td class="num col-low-prio">${fmtNum(r.area, 1)}</td>
@@ -785,6 +805,17 @@ async function flashSuccess(btn, label){
       applyPeerSearchFilter();
     });
   }
+  // Favorite-star click delegation (rebuilt rows preserve handler via parent delegation)
+  document.getElementById('main-tbody').addEventListener('click', (e) => {
+    const btn = e.target.closest('.fav-star');
+    if (!btn) return;
+    e.preventDefault(); e.stopPropagation();
+    const ticker = btn.dataset.ticker;
+    if (favorites.has(ticker)) favorites.delete(ticker);
+    else favorites.add(ticker);
+    saveFavorites();
+    renderMain(currentYear);
+  });
   // Density toggle (핵심/전체)
   let densityMode = 'all';
   function applyDensity(mode) {
