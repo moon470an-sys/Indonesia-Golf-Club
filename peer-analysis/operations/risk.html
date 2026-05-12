@@ -102,6 +102,11 @@
   .data-meta strong { color:var(--ops-ink-soft); }
   .data-meta .sep { margin:0 8px; opacity:0.4; }
   @media print { .top-perf { display:none; } .data-meta { font-size:9px; } }
+  /* Accessibility */
+  *:focus-visible { outline:2px solid var(--ops-green); outline-offset:2px; border-radius:3px; }
+  .tier-pill:focus-visible { outline-offset:1px; }
+  .skip-link { position:absolute; left:-1000px; top:8px; padding:6px 12px; background:var(--ops-green); color:white; border-radius:6px; font-weight:700; z-index:200; text-decoration:none; }
+  .skip-link:focus { left:8px; }
   /* Print */
   @media print {
     @page { size: A4 landscape; margin: 10mm; }
@@ -127,6 +132,7 @@
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main-content">메인 콘텐츠로 건너뛰기</a>
 <header class="ops-head">
   <div class="ops-wrap ops-head-row">
     <a href="clubs/index.html" class="ops-brand">
@@ -156,7 +162,7 @@
   </div>
 </section>
 
-<section class="ops-section">
+<section class="ops-section" id="main-content">
   <div class="ops-wrap">
     <h2 style="font-size:15px; margin:0 0 6px 0;">📈 카테고리별 공시 현황</h2>
     <p style="font-size:11.5px; color:var(--ops-muted); margin:0 0 10px 0;">13 peer 중 각 항목에서 ⚪ 비율. 낮을수록 업계 전체 공시 미흡 → 신규 진입자가 직접 확인 필요.</p>
@@ -498,6 +504,19 @@ function flashSuccess(btn, label){
       pill.classList.add('active');
       tierFilter = pill.dataset.tier;
       applyTierFilter();
+    });
+  });
+  // Keyboard arrow nav for tier pills
+  const pills = Array.from(document.querySelectorAll('#risk-tier-pills .tier-pill'));
+  pills.forEach((el, i) => {
+    el.setAttribute('tabindex', '0');
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        const next = e.key === 'ArrowRight' ? (i + 1) % pills.length : (i - 1 + pills.length) % pills.length;
+        pills[next].focus();
+        pills[next].click();
+      }
     });
   });
   renderTopPerf();
