@@ -35,6 +35,19 @@
   #risk-tbody tr:hover { background:rgba(45,80,22,0.03); }
   /* Sticky thead for long table */
   .sticky-tbl thead th { position:sticky; top:0; background:var(--ops-bg); z-index:2; box-shadow:inset 0 -2px 0 var(--ops-line); }
+  /* Tier benchmark rows */
+  .bench-row td { background:rgba(45,80,22,0.05) !important; font-size:12.5px; border-top:2px solid var(--ops-line); }
+  .bench-row td:first-child { font-weight:700; }
+  .bench-row.tier-pp     td:first-child { color:#3b82f6; }
+  .bench-row.tier-resort td:first-child { color:#f59e0b; }
+  .bench-row.tier-twn    td:first-child { color:#16a34a; }
+  .bench-row.overall     td:first-child { color:var(--ops-green); }
+  .bench-row .num-avg { text-align:center; color:var(--ops-ink); font-weight:600; font-variant-numeric:tabular-nums; }
+  /* Action bar */
+  .action-bar { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:6px 0 12px 0; }
+  .action-btn { padding:6px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); display:inline-flex; align-items:center; gap:4px; }
+  .action-btn:hover { background:rgba(45,80,22,0.05); }
+  .action-btn.success { background:#16a34a; color:white; border-color:#16a34a; }
 </style>
 </head>
 <body>
@@ -64,7 +77,12 @@
     <p style="font-size:11.5px; color:var(--ops-muted); margin:0 0 10px 0;">13 peer 중 각 항목에서 ⚪ 비율. 낮을수록 업계 전체 공시 미흡 → 신규 진입자가 직접 확인 필요.</p>
     <div class="cat-rates" id="cat-rates"></div>
 
-    <h2 style="font-size:15px; margin:18px 0 10px 0;">🏷️ Peer × 항목 매트릭스</h2>
+    <h2 style="font-size:15px; margin:18px 0 6px 0;">🏷️ Peer × 항목 매트릭스</h2>
+    <p style="font-size:11.5px; color:var(--ops-muted); margin:0 0 10px 0;">하단 4개 행: 🟦 Pure-play / 🟨 Resort / 🟩 Township / 📊 전체 — <strong>tier별 평균 스코어</strong>.</p>
+    <div class="action-bar">
+      <button class="action-btn" id="risk-copy-btn">📋 표 복사 (TSV)</button>
+      <button class="action-btn" id="risk-csv-btn">⬇ CSV 다운로드</button>
+    </div>
     <div class="tbl-card scroll-x">
       <table class="ops-tbl sticky-tbl" id="risk-tbl" style="font-size:13px;">
         <thead>
@@ -182,7 +200,7 @@ function renderTable() {
     return sortState.dir === 'desc' ? (vb - va) : (va - vb);
   });
   const tbody = document.getElementById('risk-tbody');
-  tbody.innerHTML = rows.map(r => {
+  const peerRows = rows.map(r => {
     const totalCls = scoreClass(r.total);
     return `<tr>
       <td class="peer"><a href="clubs/${r.t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${r.t}</a><span class="peer-tag peer-tag-${r.p.tier}">${TIER_SHORT[r.p.tier]}</span></td>
@@ -190,11 +208,68 @@ function renderTable() {
       ${CAT_KEYS.map(k => `<td class="heat-cell" title="${CAT_LABELS[k]}: ${r.p[k]}점">${symbolFor(r.p[k])}</td>`).join('')}
       <td class="num"><span class="risk-score ${totalCls}" title="합계 ${r.total} / 12">${r.total} / 12</span></td>
     </tr>`;
-  }).join('');
+  });
+  // Tier average rows
+  const benchRows = [];
+  ['pp','resort','twn'].forEach(tk => {
+    const tdata = rows.filter(r => r.p.tier === tk);
+    if (!tdata.length) return;
+    const avg = arr => arr.reduce((s,x)=>s+x,0)/arr.length;
+    const totalAvg = avg(tdata.map(r => r.total));
+    const totalCls = scoreClass(Math.round(totalAvg));
+    const tierLabelMap = { pp:'🟦 Pure-play 평균', resort:'🟨 Resort 평균', twn:'🟩 Township 평균' };
+    benchRows.push(`<tr class="bench-row tier-${tk}">
+      <td>${tierLabelMap[tk]}</td>
+      <td>N=${tdata.length}</td>
+      ${CAT_KEYS.map(k => {
+        const a = avg(tdata.map(r => r.p[k]));
+        return `<td class="num-avg" title="평균 ${a.toFixed(2)}">${a.toFixed(1)}</td>`;
+      }).join('')}
+      <td class="num"><span class="risk-score ${totalCls}">${totalAvg.toFixed(1)} / 12</span></td>
+    </tr>`);
+  });
+  const allAvg = arr => arr.reduce((s,x)=>s+x,0)/arr.length;
+  const overallTotal = allAvg(rows.map(r => r.total));
+  benchRows.push(`<tr class="bench-row overall">
+    <td>📊 전체 평균</td>
+    <td>N=${rows.length}</td>
+    ${CAT_KEYS.map(k => {
+      const a = allAvg(rows.map(r => r.p[k]));
+      return `<td class="num-avg" title="전체 평균 ${a.toFixed(2)}">${a.toFixed(1)}</td>`;
+    }).join('')}
+    <td class="num"><span class="risk-score ${scoreClass(Math.round(overallTotal))}">${overallTotal.toFixed(1)} / 12</span></td>
+  </tr>`);
+  tbody.innerHTML = peerRows.join('') + benchRows.join('');
   document.querySelectorAll('#risk-tbl .sortable').forEach(th => {
     th.classList.remove('asc','desc');
     if (th.dataset.sort === sortState.key) th.classList.add(sortState.dir);
   });
+}
+
+// TSV/CSV export
+function buildExport(sep) {
+  const esc = v => {
+    if (v === null || v === undefined) return '';
+    const s = String(v);
+    if (sep === ',' && (s.includes(',') || s.includes('"') || s.includes('\n'))) return '"' + s.replace(/"/g,'""') + '"';
+    return s;
+  };
+  const headers = ['Peer','Tier','토지권_만료','영업_자격','우발_부채','세무_분쟁','노동_BPJS','재산세','합계_점수','합계_최대'];
+  const lines = [headers.map(esc).join(sep)];
+  PEER_ORDER.forEach(t => {
+    const p = PEER_RISK[t];
+    lines.push([esc(t), esc(p.tier_label),
+      p.land, p.license, p.contingent, p.tax, p.bpjs, p.propTax,
+      totalScore(p), 12].join(sep));
+  });
+  // Also tier averages as commented-style rows (just data rows for ease)
+  return lines.join('\n');
+}
+function flashSuccess(btn, label){
+  const orig = btn.textContent;
+  btn.textContent = label;
+  btn.classList.add('success');
+  setTimeout(() => { btn.textContent = orig; btn.classList.remove('success'); }, 1500);
 }
 
 (function(){
@@ -205,6 +280,22 @@ function renderTable() {
       else { sortState.key = k; sortState.dir = 'desc'; }
       renderTable();
     });
+  });
+  const copyBtn = document.getElementById('risk-copy-btn');
+  if (copyBtn) copyBtn.addEventListener('click', async (e) => {
+    const tsv = buildExport('\t');
+    try { await navigator.clipboard.writeText(tsv); }
+    catch (err) { const ta = document.createElement('textarea'); ta.value = tsv; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); }
+    flashSuccess(e.currentTarget, '✓ 복사됨');
+  });
+  const dlBtn = document.getElementById('risk-csv-btn');
+  if (dlBtn) dlBtn.addEventListener('click', (e) => {
+    const csv = '﻿' + buildExport(',');
+    const blob = new Blob([csv], { type:'text/csv;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href = url; a.download = 'risk-matrix.csv';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+    flashSuccess(e.currentTarget, '✓ 다운로드');
   });
   renderCatRates();
   renderTable();
