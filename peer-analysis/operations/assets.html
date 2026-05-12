@@ -67,6 +67,8 @@
   body.theme-dark .ops-tbl tbody tr:hover { background:rgba(34,197,94,0.06); }
   body.theme-dark .bench-row td { background:rgba(34,197,94,0.06) !important; }
   body.theme-dark .scatter-card, body.theme-dark .discl-pill { background:#1e293b; }
+  /* Mini sparkline cell for 5Y total_assets trend */
+  .mini-spark { display:inline-block; vertical-align:middle; }
   /* Tier filter pills */
   .tier-pills { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:6px 0; }
   .tier-pill { padding:5px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:999px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
@@ -326,6 +328,7 @@
               <th class="num">홀</th>
               <th class="num">면적 (ha)</th>
               <th class="num sortable" data-sort="ta">총자산</th>
+              <th class="num">5Y 추이</th>
               <th class="num sortable" data-sort="rev">매출</th>
               <th class="num sortable desc" data-sort="turnover">자산회전율</th>
               <th class="num sortable" data-sort="roa">ROA</th>
@@ -364,8 +367,35 @@
 
 <script src="operations.js?v=20260512c2" defer></script>
 <script>
+// 5-year total_assets per peer (IDR)
+const TA_5Y = {"DMIG": {"2020": 532513096515, "2021": 565056256282, "2022": 632512690607, "2023": 653535367732, "2024": 690534136219}, "PIPG": {"2020": 307326569619, "2021": 335100050447, "2022": 372381898342, "2023": 413995783521, "2024": 446060061475}, "GOLF": {"2020": null, "2021": 561402385613, "2022": 625541657891, "2023": 7764540357254, "2024": 8637499132483}, "MDLN": {"2020": 14850000000000, "2021": 14539539000000, "2022": 13528169000000, "2023": 13688938000000, "2024": 13561474000000}, "KIJA": {"2020": 12200200000000, "2021": 12292090000000, "2022": 13110459000000, "2023": 12947435000000, "2024": 14017356000000}, "SMDM": {"2020": 3201900000000, "2021": 3303512000000, "2022": 3423278000000, "2023": 3534589000000, "2024": 3462272000000}, "KPIG": {"2020": 29427611990774, "2021": 30912009095198, "2022": 31955760446155, "2023": 33475139357523, "2024": 35827499061000}, "SMRA": {"2020": 24922500000000, "2021": 26049717000000, "2022": 28433575000000, "2023": 31168375000000, "2024": 33534100000000}, "BSDE": {"2020": 60862926586750, "2021": 61469712165656, "2022": 64999403480787, "2023": 66827648486393, "2024": 76023348887000}, "CTRA": {"2020": 39255187000000, "2021": 40668411000000, "2022": 42032615000000, "2023": 44115215000000, "2024": 47022702000000}, "ELTY": {"2020": 11823436000000, "2021": 11681203000000, "2022": 9913459000000, "2023": 8639053000000, "2024": 8742017000000}, "LPKR": {"2020": 51865500000000, "2021": 52080936000000, "2022": 49870897000000, "2023": 49570824000000, "2024": 53783859000000}, "PWON": {"2020": 26458805377000, "2021": 28866081000000, "2022": 30602180000000, "2023": 32710787000000, "2024": 35371085000000}};
+
+function miniSpark(yearly, color) {
+  const years = ['2020','2021','2022','2023','2024'];
+  const series = years.map(y => yearly[y]);
+  const valid = series.filter(v => v !== null && v !== undefined && v > 0);
+  if (valid.length < 2) return '<span style="color:var(--ops-muted); font-size:11px;">—</span>';
+  const W = 80, H = 24, padX = 3, padY = 3;
+  const mn = Math.min(...valid), mx = Math.max(...valid);
+  const rng = mx - mn || 1;
+  const pts = [];
+  series.forEach((v, i) => {
+    if (v === null || v === undefined || v <= 0) return;
+    const x = padX + (W - 2*padX) * (i / (years.length - 1));
+    const y = H - padY - (H - 2*padY) * (v - mn) / rng;
+    pts.push({ x, y, year:years[i], val:v });
+  });
+  if (pts.length < 2) return '<span style="color:var(--ops-muted); font-size:11px;">—</span>';
+  const pathD = 'M ' + pts.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' L ');
+  const dots = pts.map((p, i) => {
+    const isLast = i === pts.length - 1;
+    return `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${isLast?2.2:1.3}" fill="${color}"><title>FY${p.year}: ${(p.val/1e9).toFixed(0)}B</title></circle>`;
+  }).join('');
+  return `<svg class="mini-spark" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" aria-label="5년 총자산 추이"><path d="${pathD}" stroke="${color}" stroke-width="1.4" fill="none"/>${dots}</svg>`;
+}
+
 // FY2024 financial data from company_financials_5y.json (IDR)
-const FIN_2024 = {"DMIG": {"rev": 253102440194, "np": 82404512711, "ta": 690534136219, "tl": 187722459859}, "PIPG": {"rev": 197570521436, "np": 55903815772, "ta": 446060061475, "tl": 88175251972}, "GOLF": {"rev": 197993814652, "np": 67574993523, "ta": 8637499132483, "tl": 656711721232}, "MDLN": {"rev": 1017570000000, "np": -690272000000, "ta": 13561474000000, "tl": 10108095000000}, "KIJA": {"rev": 4602648000000, "np": 363308000000, "ta": 14017356000000, "tl": 6478399000000}, "SMDM": {"rev": 694045000000, "np": 123778000000, "ta": 3462272000000, "tl": 251618000000}, "KPIG": {"rev": 1770144398000, "np": 658629034000, "ta": 35827499061000, "tl": 7312392000000}, "SMRA": {"rev": 10623400000000, "np": 1373400000000, "ta": 33534100000000, "tl": 19701600000000}, "BSDE": {"rev": 13796572149000, "np": 4359063784000, "ta": 76023348887000, "tl": 28704021000000}, "CTRA": {"rev": 11187565000000, "np": 2126288000000, "ta": 47022702000000, "tl": 22407372000000}, "ELTY": {"rev": 1208198000000, "np": -68528000000, "ta": 8742017000000, "tl": 2717802000000}, "LPKR": {"rev": 11347979000000, "np": 18746045000000, "ta": 53783859000000, "tl": 22836790000000}, "PWON": {"rev": 6670809000000, "np": 2074731000000, "ta": 35371085000000, "tl": 10629088000000}};
+const FIN_2024 ={"DMIG": {"rev": 253102440194, "np": 82404512711, "ta": 690534136219, "tl": 187722459859}, "PIPG": {"rev": 197570521436, "np": 55903815772, "ta": 446060061475, "tl": 88175251972}, "GOLF": {"rev": 197993814652, "np": 67574993523, "ta": 8637499132483, "tl": 656711721232}, "MDLN": {"rev": 1017570000000, "np": -690272000000, "ta": 13561474000000, "tl": 10108095000000}, "KIJA": {"rev": 4602648000000, "np": 363308000000, "ta": 14017356000000, "tl": 6478399000000}, "SMDM": {"rev": 694045000000, "np": 123778000000, "ta": 3462272000000, "tl": 251618000000}, "KPIG": {"rev": 1770144398000, "np": 658629034000, "ta": 35827499061000, "tl": 7312392000000}, "SMRA": {"rev": 10623400000000, "np": 1373400000000, "ta": 33534100000000, "tl": 19701600000000}, "BSDE": {"rev": 13796572149000, "np": 4359063784000, "ta": 76023348887000, "tl": 28704021000000}, "CTRA": {"rev": 11187565000000, "np": 2126288000000, "ta": 47022702000000, "tl": 22407372000000}, "ELTY": {"rev": 1208198000000, "np": -68528000000, "ta": 8742017000000, "tl": 2717802000000}, "LPKR": {"rev": 11347979000000, "np": 18746045000000, "ta": 53783859000000, "tl": 22836790000000}, "PWON": {"rev": 6670809000000, "np": 2074731000000, "ta": 35371085000000, "tl": 10629088000000}};
 
 const PEER_META = {
   DMIG: {name:'Damai Indah Golf', tier:'pp', tier_label:'🟦 Pure-play', holes:36, area:156.0},
@@ -488,19 +518,23 @@ function renderProd() {
     const bar = (s && val !== null && val !== undefined) ? heatBar(val, s.min, s.max, heatMetrics[key].higher) : '';
     return `<td class="num heat">${fmt}${bar}</td>`;
   };
-  const peerRows = sorted.map(r => `<tr data-tier="${r.m.tier}">
+  const peerRows = sorted.map(r => {
+    const tierColor = r.m.tier === 'pp' ? '#3b82f6' : r.m.tier === 'resort' ? '#f59e0b' : '#16a34a';
+    return `<tr data-tier="${r.m.tier}">
     <td class="peer"><a href="clubs/${r.t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${r.t}</a></td>
     <td><span class="peer-tag peer-tag-${r.m.tier}" style="font-size:10px;">${r.m.tier_label}</span></td>
     <td class="num">${fmtNum(r.m.holes)}</td>
     <td class="num">${fmtNum(r.m.area, 1)}</td>
     <td class="num">${fmtBn(r.ta)}</td>
+    <td class="num" style="padding:4px 8px;">${miniSpark(TA_5Y[r.t] || {}, tierColor)}</td>
     <td class="num">${fmtBn(r.rev)}</td>
     ${heat('turnover', r.turnover, `<strong>${fmtRatio(r.turnover)}</strong>`)}
     ${heat('roa', r.roa, fmtPct(r.roa))}
     ${heat('debt', r.debt, fmtPct(r.debt, 1))}
     ${heat('taPerHole', r.taPerHole, fmtBn(r.taPerHole))}
     ${heat('taPerHa', r.taPerHa, fmtBn(r.taPerHa))}
-  </tr>`);
+  </tr>`;
+  });
   // Tier median benchmark rows
   function median(xs) {
     const v = xs.filter(x => x !== null && x !== undefined).sort((a,b) => a-b);
@@ -520,6 +554,7 @@ function renderProd() {
       <td class="num">${fmtNum(medM('holes'))}</td>
       <td class="num">${fmtNum(medM('area'), 1)}</td>
       <td class="num">${fmtBn(med('ta'))}</td>
+      <td class="num">—</td>
       <td class="num">${fmtBn(med('rev'))}</td>
       <td class="num"><strong>${fmtRatio(med('turnover'))}</strong></td>
       <td class="num">${fmtPct(med('roa'))}</td>
@@ -537,6 +572,7 @@ function renderProd() {
     <td class="num">${fmtNum(medAllM('holes'))}</td>
     <td class="num">${fmtNum(medAllM('area'), 1)}</td>
     <td class="num">${fmtBn(medAll('ta'))}</td>
+    <td class="num">—</td>
     <td class="num">${fmtBn(medAll('rev'))}</td>
     <td class="num"><strong>${fmtRatio(medAll('turnover'))}</strong></td>
     <td class="num">${fmtPct(medAll('roa'))}</td>
@@ -711,6 +747,36 @@ function flashSuccess(btn, label){
   document.addEventListener('keydown', (e) => {
     if (e.target.matches('input,textarea,select')) return;
     if (e.key === 'd') themeBtn.click();
+  });
+  // localStorage state: active tab + tier filter + sort
+  function saveAssetState() {
+    const tab = document.querySelector('.ast-tab.active');
+    try {
+      localStorage.setItem('assets-state', JSON.stringify({
+        tab: tab ? tab.dataset.panel : 'phy',
+        tier: prodTierFilter,
+        sort: sortState,
+      }));
+    } catch (e) {}
+  }
+  function loadAssetState() {
+    try {
+      const s = JSON.parse(localStorage.getItem('assets-state') || 'null');
+      if (!s) return;
+      if (s.tab) {
+        document.querySelectorAll('.ast-tab').forEach(x => x.classList.toggle('active', x.dataset.panel === s.tab));
+        document.querySelectorAll('.ast-panel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + s.tab));
+      }
+      if (s.tier && ['all','pp','resort','twn'].includes(s.tier)) {
+        prodTierFilter = s.tier;
+        document.querySelectorAll('#prod-tier-pills .tier-pill').forEach(p => p.classList.toggle('active', p.dataset.tier === s.tier));
+      }
+      if (s.sort && s.sort.key) sortState = s.sort;
+    } catch (e) {}
+  }
+  loadAssetState();
+  document.querySelectorAll('.ast-tab, #prod-tier-pills .tier-pill, #prod-tbl .sortable').forEach(el => {
+    el.addEventListener('click', () => setTimeout(saveAssetState, 0));
   });
   renderProd();
 })();
