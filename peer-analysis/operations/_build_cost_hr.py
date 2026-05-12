@@ -425,7 +425,7 @@ html = '''<!DOCTYPE html>
 <title>비용 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260512c76" />
+<link rel="stylesheet" href="ops-style.css?v=20260513c82" />
 <style>
   .year-bar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:14px 0 4px 0; }
   .year-bar label { font-size:13px; font-weight:600; color:var(--ops-ink-soft); }
@@ -670,6 +670,13 @@ html = '''<!DOCTYPE html>
     <div class="cost-panel" id="panel-cogs">
       <h2 style="font-size:17px; margin:0 0 14px 0;">매출원가 동급 비교 — <span class="yr-label">FY2024</span></h2>
       <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">선택 연도 매출원가 합계 + 동일 범위 매출 대비 비율. 비율은 공시 범위에 맞는 매출 (Pure-play: 그룹 매출, MDLN: 골프+클럽 매출, Tier-3: 골프 segment 매출)로 계산해 동급 비교 가능.</p>
+      <div class="tier-pills" data-target="cogs-cmp-tbody" role="group" aria-label="Tier 필터">
+        <span style="font-size:11.5px; color:var(--ops-muted); font-weight:600;">Tier:</span>
+        <button class="tier-pill active" data-tier="all">전체</button>
+        <button class="tier-pill" data-tier="pp">🟦 Pure-play</button>
+        <button class="tier-pill" data-tier="resort">🟨 Resort</button>
+        <button class="tier-pill" data-tier="twn">🟩 Township</button>
+      </div>
       <div class="tbl-card scroll-x" style="margin-bottom:28px;">
         <table class="ops-tbl">
           <thead>
@@ -692,6 +699,13 @@ __COGS_SECTION__
     <div class="cost-panel" id="panel-opex">
       <h2 style="font-size:17px; margin:0 0 14px 0;">판관비 동급 비교 — <span class="yr-label">FY2024</span></h2>
       <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">선택 연도 판관비 합계 (Selling + G&A) + 동일 범위 매출 대비 비율. 비율은 공시 범위에 맞는 매출로 계산.</p>
+      <div class="tier-pills" data-target="opex-cmp-tbody" role="group" aria-label="Tier 필터">
+        <span style="font-size:11.5px; color:var(--ops-muted); font-weight:600;">Tier:</span>
+        <button class="tier-pill active" data-tier="all">전체</button>
+        <button class="tier-pill" data-tier="pp">🟦 Pure-play</button>
+        <button class="tier-pill" data-tier="resort">🟨 Resort</button>
+        <button class="tier-pill" data-tier="twn">🟩 Township</button>
+      </div>
       <div class="tbl-card scroll-x" style="margin-bottom:24px;">
         <table class="ops-tbl">
           <thead>
@@ -1031,7 +1045,7 @@ function render(year){
     const scopeRev = d.scope_rev[year];
     const cogs = d.cogs_total[year];
     const ratio = (scopeRev && cogs) ? (cogs/scopeRev*100) : null;
-    return `<tr>
+    return `<tr data-tier="${d.tier}">
       <td class="peer"><a href="clubs/${t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${t}</a><span class="peer-tag peer-tag-${d.tier}">${d.tier_label}</span></td>
       <td>${d.name.slice(0,24)}</td>
       <td class="num"><strong>${fmtBn(cogs)}</strong></td>
@@ -1048,7 +1062,7 @@ function render(year){
     const scopeRev = d.scope_rev[year];
     const opex = d.opex_total[year];
     const ratio = (scopeRev && opex) ? (opex/scopeRev*100) : null;
-    return `<tr>
+    return `<tr data-tier="${d.tier}">
       <td class="peer"><a href="clubs/${t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${t}</a><span class="peer-tag peer-tag-${d.tier}">${d.tier_label}</span></td>
       <td>${d.name.slice(0,24)}</td>
       <td class="num"><strong>${fmtBn(opex)}</strong></td>
@@ -1177,6 +1191,8 @@ function render(year){
   // Highlight selected year columns in line tables
   document.querySelectorAll('.yr-hl').forEach(el => el.classList.remove('yr-hl'));
   document.querySelectorAll('.yr-' + year).forEach(el => el.classList.add('yr-hl'));
+  // Re-apply tier filters to all pill groups (year change rebuilt the tbodies)
+  if (typeof applyTierFiltersFromUI === 'function') applyTierFiltersFromUI();
 }
 
 let currentYear = '2024';
@@ -1283,27 +1299,35 @@ function wireExport(copyId, csvId, which, csvName) {
     flashSuccess(e.currentTarget, '✓ 다운로드');
   });
   // Tier filter pills — each pill group has data-target pointing to a tbody
+  function applyTierToTbody(targetId, tier) {
+    const tbody = document.getElementById(targetId);
+    if (!tbody) return;
+    tbody.querySelectorAll('tr').forEach(row => {
+      const rowTier = row.dataset.tier;
+      let show = false;
+      if (tier === 'all') show = true;
+      else if (rowTier === tier) show = true;
+      else if (row.classList.contains('bench-row')) {
+        show = row.classList.contains('tier-' + tier);
+      }
+      row.classList.toggle('tier-hidden', !show);
+    });
+  }
+  // Expose for render() to call after rebuilding tbodies
+  window.applyTierFiltersFromUI = function() {
+    document.querySelectorAll('.tier-pills').forEach(group => {
+      const active = group.querySelector('.tier-pill.active');
+      const tier = active ? active.dataset.tier : 'all';
+      applyTierToTbody(group.dataset.target, tier);
+    });
+  };
   document.querySelectorAll('.tier-pills').forEach(group => {
     const targetId = group.dataset.target;
     group.querySelectorAll('.tier-pill').forEach(pill => {
       pill.addEventListener('click', () => {
         group.querySelectorAll('.tier-pill').forEach(x => x.classList.remove('active'));
         pill.classList.add('active');
-        const tier = pill.dataset.tier;
-        const tbody = document.getElementById(targetId);
-        if (!tbody) return;
-        tbody.querySelectorAll('tr').forEach(row => {
-          const rowTier = row.dataset.tier;
-          // bench-row + tier-X classes (e.g. tier-pp): keep matching tier benchmark visible too
-          let show = false;
-          if (tier === 'all') show = true;
-          else if (rowTier === tier) show = true;
-          else if (row.classList.contains('bench-row')) {
-            show = row.classList.contains('tier-' + tier) || (tier !== 'all' && false);
-            if (tier === 'all') show = true;
-          }
-          row.classList.toggle('tier-hidden', !show);
-        });
+        applyTierToTbody(targetId, pill.dataset.tier);
       });
     });
   });
