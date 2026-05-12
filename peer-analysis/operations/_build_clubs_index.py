@@ -376,6 +376,17 @@ html = '''<!DOCTYPE html>
   /* Focus indicators (accessibility) */
   *:focus-visible { outline:2px solid var(--ops-green); outline-offset:2px; border-radius:3px; }
   .filter-btn:focus-visible, .tier-pill:focus-visible { outline-offset:1px; }
+  /* Help overlay */
+  .help-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.55); backdrop-filter:blur(2px); display:none; align-items:center; justify-content:center; z-index:300; padding:20px; }
+  .help-overlay.open { display:flex; }
+  .help-panel { background:var(--ops-surface); border-radius:12px; padding:24px 28px; max-width:520px; width:100%; max-height:80vh; overflow:auto; box-shadow:0 20px 40px rgba(0,0,0,0.25); }
+  .help-panel h2 { margin:0 0 12px 0; font-size:18px; color:var(--ops-ink); }
+  .help-panel .help-row { display:grid; grid-template-columns:1fr 110px; gap:10px; align-items:center; padding:7px 0; border-bottom:1px solid var(--ops-line); font-size:13px; color:var(--ops-ink-soft); }
+  .help-panel .help-row:last-child { border-bottom:none; }
+  .help-panel .help-row kbd { display:inline-block; padding:2px 8px; background:var(--ops-bg); border:1px solid var(--ops-line); border-radius:4px; font-family:monospace; font-size:11.5px; color:var(--ops-ink); font-weight:700; text-align:center; }
+  .help-panel .close-btn { float:right; padding:4px 10px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:5px; font-size:12px; cursor:pointer; color:var(--ops-ink-soft); margin-top:-8px; }
+  body.theme-dark .help-panel { background:#1e293b; }
+  body.theme-dark .help-panel .help-row kbd { background:#0f172a; }
   .compare-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:8px; }
   .compare-col { background:var(--ops-bg); border:1px solid var(--ops-line); border-radius:6px; padding:8px 10px; position:relative; }
   .compare-col-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; }
@@ -505,6 +516,23 @@ __TABLE_ROWS__
     <div class="empty-state" id="empty-state">🔍 검색 결과가 없습니다. 다른 키워드로 시도해보세요.</div>
   </div>
 </section>
+
+<div class="help-overlay" id="help-overlay" role="dialog" aria-modal="true" aria-labelledby="help-title">
+  <div class="help-panel">
+    <button class="close-btn" id="help-close" aria-label="도움말 닫기">✕</button>
+    <h2 id="help-title">⌨️ 키보드 단축키</h2>
+    <div class="help-row"><span>검색 포커스</span><kbd>/</kbd></div>
+    <div class="help-row"><span>다크/라이트 모드 전환</span><kbd>d</kbd></div>
+    <div class="help-row"><span>카드 뷰</span><kbd>g</kbd></div>
+    <div class="help-row"><span>표 뷰</span><kbd>t</kbd></div>
+    <div class="help-row"><span>검색 포커스 시 초기화</span><kbd>Esc</kbd></div>
+    <div class="help-row"><span>Tier 필터 이동</span><kbd>←</kbd> <kbd>→</kbd></div>
+    <div class="help-row"><span>이 도움말 열기/닫기</span><kbd>?</kbd> <kbd>Esc</kbd></div>
+    <div style="margin-top:12px; padding-top:10px; border-top:1px dashed var(--ops-line); font-size:11.5px; color:var(--ops-muted);">
+      🔗 링크 복사로 현재 필터/정렬 상태를 공유할 수 있습니다 (URL hash).
+    </div>
+  </div>
+</div>
 
 <aside class="compare-bar" id="compare-bar" aria-label="Peer 비교 패널">
   <div class="ops-wrap">
@@ -733,8 +761,19 @@ function syncURL() {
     }
   });
 
-  // Keyboard shortcuts: '/' focus search, 'g' grid, 't' table, 'Esc' clear search
+  // Help overlay (? key)
+  const helpOverlay = document.getElementById('help-overlay');
+  const helpClose = document.getElementById('help-close');
+  function toggleHelp(show) {
+    if (show === undefined) show = !helpOverlay.classList.contains('open');
+    helpOverlay.classList.toggle('open', show);
+  }
+  if (helpClose) helpClose.addEventListener('click', () => toggleHelp(false));
+  if (helpOverlay) helpOverlay.addEventListener('click', (e) => { if (e.target === helpOverlay) toggleHelp(false); });
+
+  // Keyboard shortcuts: '/' focus search, 'g' grid, 't' table, 'Esc' clear search, '?' help
   document.addEventListener('keydown', (e) => {
+    if (helpOverlay.classList.contains('open') && e.key === 'Escape') { e.preventDefault(); toggleHelp(false); return; }
     if (e.target.matches('input,textarea,select')) {
       if (e.key === 'Escape' && e.target === searchInput) {
         searchInput.value = ''; state.q = ''; applyState(); syncURL(); e.target.blur();
@@ -744,6 +783,7 @@ function syncURL() {
     if (e.key === '/') { e.preventDefault(); searchInput.focus(); }
     else if (e.key === 'g') { document.querySelector('.view-toggle button[data-view="cards"]').click(); }
     else if (e.key === 't') { document.querySelector('.view-toggle button[data-view="table"]').click(); }
+    else if (e.key === '?') { e.preventDefault(); toggleHelp(); }
   });
 
   // Sync initial UI state from URL
