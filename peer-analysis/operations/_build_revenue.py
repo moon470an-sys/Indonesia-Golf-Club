@@ -282,6 +282,20 @@ html = '''<!DOCTYPE html>
   .year-btn:focus-visible, .rev-tab:focus-visible, .trend-mode-toggle button:focus-visible { outline-offset:1px; }
   .skip-link { position:absolute; left:-1000px; top:8px; padding:6px 12px; background:var(--ops-green); color:white; border-radius:6px; font-weight:700; z-index:200; text-decoration:none; }
   .skip-link:focus { left:8px; }
+  /* Help overlay */
+  .help-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.55); backdrop-filter:blur(2px); display:none; align-items:center; justify-content:center; z-index:300; padding:20px; }
+  .help-overlay.open { display:flex; }
+  .help-panel { background:var(--ops-surface); border-radius:12px; padding:24px 28px; max-width:520px; width:100%; max-height:80vh; overflow:auto; box-shadow:0 20px 40px rgba(0,0,0,0.25); }
+  .help-panel h2 { margin:0 0 12px 0; font-size:18px; color:var(--ops-ink); }
+  .help-panel .help-row { display:grid; grid-template-columns:1fr 110px; gap:10px; align-items:center; padding:7px 0; border-bottom:1px solid var(--ops-line); font-size:13px; color:var(--ops-ink-soft); }
+  .help-panel .help-row:last-child { border-bottom:none; }
+  .help-panel .help-row kbd { display:inline-block; padding:2px 8px; background:var(--ops-bg); border:1px solid var(--ops-line); border-radius:4px; font-family:monospace; font-size:11.5px; color:var(--ops-ink); font-weight:700; text-align:center; }
+  .help-panel .close-btn { float:right; padding:4px 10px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:5px; font-size:12px; cursor:pointer; color:var(--ops-ink-soft); margin-top:-8px; }
+  body.theme-dark .help-panel { background:#1e293b; }
+  body.theme-dark .help-panel .help-row kbd { background:#0f172a; }
+  .help-fab { position:fixed; bottom:18px; right:18px; width:38px; height:38px; border-radius:50%; background:var(--ops-surface); border:1px solid var(--ops-line); cursor:pointer; font-size:16px; color:var(--ops-ink-soft); z-index:50; box-shadow:0 2px 8px rgba(0,0,0,0.10); }
+  .help-fab:hover { background:rgba(45,80,22,0.06); color:var(--ops-ink); }
+  @media print { .help-fab, .help-overlay { display:none !important; } }
   /* YoY heatmap matrix */
   .yoy-matrix { width:100%; border-collapse:separate; border-spacing:1px; background:var(--ops-line); font-size:12px; }
   .yoy-matrix th, .yoy-matrix td { background:var(--ops-surface); padding:8px 6px; }
@@ -479,6 +493,20 @@ __SEG_SECTION__
     </div>
   </div>
 </section>
+
+<button class="help-fab" id="help-fab" aria-label="키보드 단축키 도움말" title="키보드 단축키 (?)">?</button>
+<div class="help-overlay" id="help-overlay" role="dialog" aria-modal="true" aria-labelledby="help-title">
+  <div class="help-panel">
+    <button class="close-btn" id="help-close" aria-label="도움말 닫기">✕</button>
+    <h2 id="help-title">⌨️ 키보드 단축키</h2>
+    <div class="help-row"><span>다크/라이트 모드 전환</span><kbd>d</kbd></div>
+    <div class="help-row"><span>연도·탭·모드 이동</span><kbd>←</kbd> <kbd>→</kbd></div>
+    <div class="help-row"><span>이 도움말 열기/닫기</span><kbd>?</kbd> <kbd>Esc</kbd></div>
+    <div style="margin-top:12px; padding-top:10px; border-top:1px dashed var(--ops-line); font-size:11.5px; color:var(--ops-muted);">
+      🔗 URL hash (#year=, #tab=)로 현재 상태 공유. ⬇ CSV 내보내기로 데이터 추출.
+    </div>
+  </div>
+</div>
 
 <footer class="ops-foot">
   <div class="ops-wrap">
@@ -906,9 +934,23 @@ let currentYear = '2024';
     localStorage.setItem('ops-theme', newT);
     applyTheme(newT);
   });
+  // Help overlay
+  const helpOverlay = document.getElementById('help-overlay');
+  const helpClose = document.getElementById('help-close');
+  const helpFab = document.getElementById('help-fab');
+  function toggleHelp(show) {
+    if (show === undefined) show = !helpOverlay.classList.contains('open');
+    helpOverlay.classList.toggle('open', show);
+  }
+  if (helpClose) helpClose.addEventListener('click', () => toggleHelp(false));
+  if (helpFab) helpFab.addEventListener('click', () => toggleHelp());
+  if (helpOverlay) helpOverlay.addEventListener('click', (e) => { if (e.target === helpOverlay) toggleHelp(false); });
+
   document.addEventListener('keydown', (e) => {
+    if (helpOverlay.classList.contains('open') && e.key === 'Escape') { e.preventDefault(); toggleHelp(false); return; }
     if (e.target.matches('input,textarea,select')) return;
     if (e.key === 'd') themeBtn.click();
+    else if (e.key === '?') { e.preventDefault(); toggleHelp(); }
   });
   // Scroll-spy for anchor nav
   const anchorLinks = document.querySelectorAll('.anchor-nav a');
