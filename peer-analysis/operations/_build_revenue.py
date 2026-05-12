@@ -235,7 +235,7 @@ html = '''<!DOCTYPE html>
 <title>매출 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260513c87" />
+<link rel="stylesheet" href="ops-style.css?v=20260513c93" />
 <style>
   .year-bar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:14px 0 4px 0; }
   .year-bar label { font-size:13px; font-weight:600; color:var(--ops-ink-soft); }
@@ -322,6 +322,13 @@ html = '''<!DOCTYPE html>
   .yoy-matrix tbody tr.peer-highlight td.peer-cell { background:rgba(245,158,11,0.18); box-shadow:inset 3px 0 0 #f59e0b; }
   body.theme-dark .ops-tbl tbody tr.peer-highlight td:first-child { background:rgba(245,158,11,0.24); }
   body.theme-dark .yoy-matrix tbody tr.peer-highlight td.peer-cell { background:rgba(245,158,11,0.24); }
+  /* Favorite star (cross-page localStorage 'clubs-favorites' shared with clubs/unit-econ) */
+  .fav-star { display:inline-block; vertical-align:middle; margin-right:4px; padding:0 2px; border:none; background:transparent; cursor:pointer; font-size:14px; line-height:1; color:var(--ops-muted); opacity:0.45; transition:all 0.15s; border-radius:3px; }
+  .fav-star:hover { opacity:1; color:#f59e0b; background:rgba(245,158,11,0.10); }
+  .fav-star.active { color:#f59e0b; opacity:1; }
+  tr.is-fav td:first-child { box-shadow:inset 4px 0 0 #f59e0b; }
+  body.theme-dark tr.is-fav td:first-child { box-shadow:inset 4px 0 0 #fbbf24; }
+  @media print { .fav-star { display:none !important; } }
   /* Tertile dot indicator — peer-group rank visualization (●) */
   .tertile-dot { display:inline-block; margin-left:5px; font-size:11px; line-height:1; vertical-align:middle; cursor:help; }
   .tertile-dot.dot-top { color:#16a34a; }
@@ -641,6 +648,11 @@ function sparkline(yearly, currentYear, color){
 
 let cmpSortState = { key: null, dir: 'desc' };
 let revTierFilter = 'all';
+let favorites = new Set();
+try { favorites = new Set(JSON.parse(localStorage.getItem('clubs-favorites') || '[]')); } catch (e) {}
+function saveFavorites() {
+  try { localStorage.setItem('clubs-favorites', JSON.stringify([...favorites])); } catch (e) {}
+}
 
 function applyRevTierFilter() {
   let visible = 0, total = 0;
@@ -776,6 +788,13 @@ function render(year){
       return cmpSortState.dir === 'desc' ? (vb - va) : (va - vb);
     });
   }
+  // Favorites stable-sort to top (after explicit sort)
+  if (favorites.size > 0) {
+    const favs = rowData.filter(r => favorites.has(r.t));
+    const rest = rowData.filter(r => !favorites.has(r.t));
+    rowData.length = 0;
+    rowData.push(...favs, ...rest);
+  }
   const rows = rowData.map(r => {
     const { t, d, rev, golf, share, yoyG, yoyGolf } = r;
     const tierColor = d.tier === 'pp' ? '#3b82f6' : d.tier === 'resort' ? '#f59e0b' : '#16a34a';
@@ -788,8 +807,9 @@ function render(year){
       const lbl = r.peak >= 99.5 ? '⭐ 정점' : (r.peak.toFixed(0)+'%');
       peakHtml = `<span class="peak-pill ${cls}" title="FY${year} 매출 = 5Y 최고치의 ${r.peak.toFixed(1)}%">${lbl}</span>`;
     }
-    return `<tr data-tier="${d.tier}">
-      <td class="peer"><a href="clubs/${t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${t}</a><span class="peer-tag peer-tag-${d.tier}">${d.tier_label}</span></td>
+    const fav = favorites.has(t);
+    return `<tr data-tier="${d.tier}" class="${fav ? 'is-fav' : ''}">
+      <td class="peer"><button class="fav-star${fav ? ' active' : ''}" data-ticker="${t}" title="${fav ? '즐겨찾기 해제' : '즐겨찾기 (피어 상단 고정)'}" aria-label="즐겨찾기 토글" aria-pressed="${fav}">${fav ? '★' : '☆'}</button><a href="clubs/${t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${t}</a><span class="peer-tag peer-tag-${d.tier}">${d.tier_label}</span></td>
       <td class="col-low-prio">${d.name.slice(0,24)}</td>
       <td class="num">${fmtBn(rev)}${tertileDot(rev, tbRev[0], tbRev[1])}</td>
       <td class="num col-low-prio" style="padding:4px 8px;">${sparkline(d.yearly, year, tierColor)}</td>
@@ -1047,6 +1067,17 @@ let currentYear = '2024';
       revTierFilter = p.dataset.tier;
       applyRevTierFilter();
     });
+  });
+  // Favorite-star click delegation on cmp-tbody (renders rebuild, delegation is safe)
+  document.getElementById('cmp-tbody').addEventListener('click', (e) => {
+    const btn = e.target.closest('.fav-star');
+    if (!btn) return;
+    e.preventDefault(); e.stopPropagation();
+    const ticker = btn.dataset.ticker;
+    if (favorites.has(ticker)) favorites.delete(ticker);
+    else favorites.add(ticker);
+    saveFavorites();
+    render(currentYear);
   });
   // Dark mode + system pref auto-follow
   const themeBtn = document.getElementById('theme-toggle');
