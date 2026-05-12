@@ -425,7 +425,7 @@ html = '''<!DOCTYPE html>
 <title>비용 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260512c54" />
+<link rel="stylesheet" href="ops-style.css?v=20260512c76" />
 <style>
   .year-bar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:14px 0 4px 0; }
   .year-bar label { font-size:13px; font-weight:600; color:var(--ops-ink-soft); }
@@ -483,6 +483,11 @@ html = '''<!DOCTYPE html>
   body.theme-dark #opex-cat-tbl tbody tr:hover td { background:rgba(34,197,94,0.06); }
   body.theme-dark #opex-cat-tbl tbody tr:hover td:first-child { background:rgba(34,197,94,0.14); }
   #opex-cat-tbl td.col-highlight { outline:2px solid rgba(245,158,11,0.55); outline-offset:-2px; position:relative; z-index:1; }
+  /* Cross-section peer highlight: 4개 peer-row 표 ↔ 카테고리 매트릭스 컬럼 sync */
+  .ops-tbl tbody tr.peer-highlight td:first-child { background:rgba(245,158,11,0.18); box-shadow:inset 3px 0 0 #f59e0b; }
+  #opex-cat-tbl td.peer-col-highlight { outline:2px dashed rgba(245,158,11,0.7); outline-offset:-2px; position:relative; z-index:1; background:rgba(245,158,11,0.08); }
+  body.theme-dark .ops-tbl tbody tr.peer-highlight td:first-child { background:rgba(245,158,11,0.24); }
+  body.theme-dark #opex-cat-tbl td.peer-col-highlight { background:rgba(245,158,11,0.16); }
   /* Theme toggle */
   .theme-toggle { position:absolute; top:14px; right:14px; padding:5px 10px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:999px; font-size:13px; cursor:pointer; color:var(--ops-ink); z-index:10; }
   .theme-toggle:hover { background:rgba(45,80,22,0.06); }
@@ -1473,6 +1478,73 @@ function wireExport(copyId, csvId, which, csvName) {
       render(currentYear);
     });
   });
+  // Cross-section peer highlight: 4개 peer-row 표 (cmp/cogs/opex/total) + 카테고리 매트릭스 컬럼
+  function getTickerFromTr(tr) {
+    if (!tr) return null;
+    const a = tr.querySelector('a[href^="clubs/"]');
+    if (!a) return null;
+    const m = a.getAttribute('href').match(/clubs\/([a-z]+)\.html/i);
+    return m ? m[1].toUpperCase() : null;
+  }
+  function getMatrixColIdx(ticker) {
+    const ths = document.querySelectorAll('#opex-cat-thead th[data-col]');
+    for (const th of ths) {
+      const a = th.querySelector('a[href^="clubs/"]');
+      if (a) {
+        const m = a.getAttribute('href').match(/clubs\/([a-z]+)\.html/i);
+        if (m && m[1].toUpperCase() === ticker) return th.dataset.col;
+      }
+    }
+    return null;
+  }
+  const PEER_TBODIES = ['cmp-tbody','cogs-cmp-tbody','opex-cmp-tbody','total-cmp-tbody'];
+  function clearPeerHighlight() {
+    document.querySelectorAll('.peer-highlight').forEach(r => r.classList.remove('peer-highlight'));
+    document.querySelectorAll('.peer-col-highlight').forEach(c => c.classList.remove('peer-col-highlight'));
+  }
+  function applyPeerHighlight(ticker) {
+    if (!ticker) return;
+    PEER_TBODIES.forEach(id => {
+      const tb = document.getElementById(id);
+      if (!tb) return;
+      tb.querySelectorAll('tr').forEach(r => {
+        if (getTickerFromTr(r) === ticker) r.classList.add('peer-highlight');
+      });
+    });
+    const colIdx = getMatrixColIdx(ticker);
+    if (colIdx !== null) {
+      document.querySelectorAll(`#opex-cat-tbody td[data-col="${colIdx}"]`).forEach(c => c.classList.add('peer-col-highlight'));
+    }
+  }
+  PEER_TBODIES.forEach(id => {
+    const tb = document.getElementById(id);
+    if (!tb) return;
+    tb.addEventListener('mouseover', (e) => {
+      const tr = e.target.closest('tr');
+      const ticker = getTickerFromTr(tr);
+      if (!ticker) return;
+      const same = e.relatedTarget && e.relatedTarget.closest && e.relatedTarget.closest('tr');
+      if (same && getTickerFromTr(same) === ticker) return;
+      clearPeerHighlight();
+      applyPeerHighlight(ticker);
+    });
+    tb.addEventListener('mouseleave', () => clearPeerHighlight());
+  });
+  // Also let hovering the matrix column header drive the highlight
+  const catThead = document.getElementById('opex-cat-thead');
+  if (catThead) {
+    catThead.addEventListener('mouseover', (e) => {
+      const th = e.target.closest('th[data-col]');
+      if (!th) return;
+      const a = th.querySelector('a[href^="clubs/"]');
+      if (!a) return;
+      const m = a.getAttribute('href').match(/clubs\/([a-z]+)\.html/i);
+      if (!m) return;
+      clearPeerHighlight();
+      applyPeerHighlight(m[1].toUpperCase());
+    });
+    catThead.addEventListener('mouseleave', () => clearPeerHighlight());
+  }
   render(currentYear);
 })();
 </script>
