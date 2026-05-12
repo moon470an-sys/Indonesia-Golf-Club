@@ -92,10 +92,11 @@ for t in peers_sorted:
     cards_html.append(
         f'      <a href="{t.lower()}.html" class="club-card" data-tier="{c["tier"]}" data-ticker="{t}" '
         f'data-search="{search_blob}" '
-        f'data-rev="{sort_rev}" data-margin="{sort_margin}" data-roa="{sort_roa}" data-ta="{sort_ta}" data-ebmargin="{sort_eb}" data-yoy="{sort_yoy}" data-name="{c["name"]}" '
+        f'data-rev="{sort_rev}" data-margin="{sort_margin}" data-roa="{sort_roa}" data-ta="{sort_ta}" data-ebmargin="{sort_eb}" data-yoy="{sort_yoy}" data-name="{c["name"]}" data-tier-label="{c["tier_label"]}" data-loc="{c["loc"]}" '
         f'style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid {tier_color}; '
         f'border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">\n'
-        f'        <div style="display:flex; justify-content:space-between; align-items:flex-start;">\n'
+        f'        <label class="compare-check" title="비교 추가/제거" onclick="event.stopPropagation()"><input type="checkbox" class="cmp-cb" data-ticker="{t}" onclick="event.stopPropagation(); event.preventDefault();" aria-label="비교 선택"></label>\n'
+        f'        <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-right:24px;">\n'
         f'          <div>\n'
         f'            <div style="font-size:11px; font-weight:700; color:var(--ops-muted); letter-spacing:0.06em;">{t} · IDX</div>\n'
         f'            <div style="font-size:17px; font-weight:700; margin-top:4px; color:var(--ops-ink); line-height:1.3;">{c["name"]}</div>\n'
@@ -318,6 +319,37 @@ html = '''<!DOCTYPE html>
     .peer-tag { border: 0.5px solid #888; padding: 0 4px; }
     a { color: black !important; text-decoration: none !important; }
   }
+  /* Peer compare: checkbox on each card */
+  .compare-check { position:absolute; top:8px; right:8px; width:22px; height:22px; cursor:pointer; opacity:0.55; transition:opacity 0.15s; z-index:2; }
+  .compare-check:hover { opacity:1; }
+  .compare-check input { width:100%; height:100%; margin:0; cursor:pointer; }
+  .club-card { position:relative; }
+  .club-row.compared, .club-card.compared { box-shadow:0 0 0 2px var(--ops-green) inset; }
+  /* Sticky compare bar */
+  .compare-bar { position:fixed; bottom:0; left:0; right:0; background:var(--ops-surface); border-top:3px solid var(--ops-green); box-shadow:0 -4px 16px rgba(0,0,0,0.10); padding:10px 16px; z-index:100; max-height:42vh; overflow-y:auto; transform:translateY(105%); transition:transform 0.25s ease; }
+  .compare-bar.open { transform:translateY(0); }
+  .compare-bar-head { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:8px; }
+  .compare-bar-title { font-size:13px; font-weight:700; color:var(--ops-ink); }
+  .compare-bar-title .count { font-size:11.5px; color:var(--ops-muted); font-weight:600; margin-left:6px; }
+  .compare-bar-clear { padding:4px 10px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:5px; font-size:11.5px; cursor:pointer; color:var(--ops-ink-soft); }
+  .compare-bar-clear:hover { background:rgba(185,28,28,0.08); color:#b91c1c; border-color:#b91c1c; }
+  .compare-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:8px; }
+  .compare-col { background:var(--ops-bg); border:1px solid var(--ops-line); border-radius:6px; padding:8px 10px; position:relative; }
+  .compare-col-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; }
+  .compare-col-ticker { font-size:13px; font-weight:700; color:var(--ops-ink); }
+  .compare-col-rm { background:none; border:none; color:var(--ops-muted); cursor:pointer; font-size:14px; padding:0; line-height:1; }
+  .compare-col-rm:hover { color:#b91c1c; }
+  .compare-col dl { margin:0; font-size:11px; }
+  .compare-col dl div { display:flex; justify-content:space-between; padding:2px 0; border-bottom:1px dashed var(--ops-line); }
+  .compare-col dl div:last-child { border-bottom:none; }
+  .compare-col dt { color:var(--ops-muted); }
+  .compare-col dd { margin:0; font-weight:700; color:var(--ops-ink); font-variant-numeric:tabular-nums; }
+  body.theme-dark .compare-bar { background:#1e293b; border-top-color:#22c55e; }
+  body.theme-dark .compare-col { background:#0f172a; }
+  /* compare bar hidden on print */
+  @media print {
+    .compare-bar, .compare-check { display:none !important; }
+  }
 </style>
 </head>
 <body>
@@ -404,6 +436,16 @@ __TABLE_ROWS__
     <div class="empty-state" id="empty-state">🔍 검색 결과가 없습니다. 다른 키워드로 시도해보세요.</div>
   </div>
 </section>
+
+<aside class="compare-bar" id="compare-bar" aria-label="Peer 비교 패널">
+  <div class="ops-wrap">
+    <div class="compare-bar-head">
+      <div class="compare-bar-title">⚖️ Peer 비교 <span class="count" id="compare-count">0/4</span></div>
+      <button class="compare-bar-clear" id="compare-clear" aria-label="비교 모두 해제">모두 해제</button>
+    </div>
+    <div class="compare-grid" id="compare-grid"></div>
+  </div>
+</aside>
 
 <footer class="ops-foot">
   <div class="ops-wrap">
@@ -654,6 +696,100 @@ function syncURL() {
     const d = new Date();
     hero.setAttribute('data-print-date', `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`);
   }
+
+  // Compare mode — max 4 peers, sticky bottom bar
+  const MAX_COMPARE = 4;
+  const cmpBar = document.getElementById('compare-bar');
+  const cmpGrid = document.getElementById('compare-grid');
+  const cmpCount = document.getElementById('compare-count');
+  const cmpClear = document.getElementById('compare-clear');
+  const compared = new Set();
+
+  function cardDataFor(ticker) {
+    const card = grid.querySelector(`.club-card[data-ticker="${ticker}"]`);
+    if (!card) return null;
+    const num = v => (v === '' || v === undefined || v === null) ? null : parseFloat(v);
+    const fmtB = v => { if (v === null || isNaN(v) || v <= -1e14) return '—'; if (Math.abs(v) >= 1000) return (v/1000).toFixed(2)+'T'; return v.toFixed(0)+'B'; };
+    const fmtP = v => { if (v === null || isNaN(v) || v <= -1e14) return '—'; const c = v > 0 ? '#16a34a' : v < 0 ? '#b91c1c' : '#666'; return `<span style="color:${c};">${v >= 0 ? '+' : ''}${v.toFixed(1)}%</span>`; };
+    return {
+      ticker,
+      name: card.dataset.name,
+      tierLabel: card.dataset.tierLabel,
+      tier: card.dataset.tier,
+      loc: card.dataset.loc,
+      rev: fmtB(num(card.dataset.rev)),
+      yoy: fmtP(num(card.dataset.yoy)),
+      margin: fmtP(num(card.dataset.margin)),
+      ebmargin: fmtP(num(card.dataset.ebmargin)),
+      ta: fmtB(num(card.dataset.ta)),
+      roa: fmtP(num(card.dataset.roa)),
+    };
+  }
+  function updateRowStates(ticker, on) {
+    grid.querySelectorAll(`.club-card[data-ticker="${ticker}"]`).forEach(c => c.classList.toggle('compared', on));
+    tbody.querySelectorAll(`.club-row[data-ticker="${ticker}"]`).forEach(r => r.classList.toggle('compared', on));
+  }
+  function renderCompare() {
+    cmpCount.textContent = `${compared.size}/${MAX_COMPARE}`;
+    if (compared.size === 0) {
+      cmpBar.classList.remove('open');
+      cmpGrid.innerHTML = '';
+      return;
+    }
+    cmpBar.classList.add('open');
+    const cols = Array.from(compared).map(t => {
+      const d = cardDataFor(t);
+      if (!d) return '';
+      return `<div class="compare-col">
+        <div class="compare-col-head">
+          <a class="compare-col-ticker" href="${t.toLowerCase()}.html" style="text-decoration:none; color:inherit;">${t}</a>
+          <button class="compare-col-rm" data-ticker="${t}" title="제거">✕</button>
+        </div>
+        <div style="font-size:10.5px; color:var(--ops-muted); margin-bottom:6px;">${d.tierLabel} · ${d.loc}</div>
+        <dl>
+          <div><dt>FY24 매출</dt><dd>${d.rev}</dd></div>
+          <div><dt>매출 YoY</dt><dd>${d.yoy}</dd></div>
+          <div><dt>순이익률</dt><dd>${d.margin}</dd></div>
+          <div><dt>EBITDA 마진</dt><dd>${d.ebmargin}</dd></div>
+          <div><dt>총자산</dt><dd>${d.ta}</dd></div>
+          <div><dt>ROA</dt><dd>${d.roa}</dd></div>
+        </dl>
+      </div>`;
+    }).join('');
+    cmpGrid.innerHTML = cols;
+    cmpGrid.querySelectorAll('.compare-col-rm').forEach(btn => {
+      btn.addEventListener('click', () => toggleCompare(btn.dataset.ticker, false));
+    });
+  }
+  function toggleCompare(ticker, on) {
+    if (on === undefined) on = !compared.has(ticker);
+    if (on) {
+      if (compared.size >= MAX_COMPARE) {
+        // Pop oldest
+        const first = compared.values().next().value;
+        compared.delete(first); updateRowStates(first, false);
+        grid.querySelectorAll(`.cmp-cb[data-ticker="${first}"]`).forEach(cb => cb.checked = false);
+      }
+      compared.add(ticker);
+    } else {
+      compared.delete(ticker);
+    }
+    updateRowStates(ticker, compared.has(ticker));
+    grid.querySelectorAll(`.cmp-cb[data-ticker="${ticker}"]`).forEach(cb => cb.checked = compared.has(ticker));
+    renderCompare();
+  }
+  // Wire card checkboxes (label/input click triggers via JS to bypass the parent <a>)
+  grid.querySelectorAll('.compare-check').forEach(lbl => {
+    const cb = lbl.querySelector('.cmp-cb');
+    lbl.addEventListener('click', (e) => {
+      e.preventDefault(); e.stopPropagation();
+      toggleCompare(cb.dataset.ticker);
+    });
+  });
+  cmpClear.addEventListener('click', () => {
+    Array.from(compared).forEach(t => toggleCompare(t, false));
+  });
+
   applyState();
 })();
 </script>
