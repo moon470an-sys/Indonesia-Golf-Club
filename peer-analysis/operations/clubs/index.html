@@ -137,6 +137,23 @@
   @media print {
     .compare-bar, .compare-check { display:none !important; }
   }
+  /* Top performers row */
+  .top-perf { display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:10px; margin:14px 0 4px 0; }
+  .top-perf-card { background:linear-gradient(135deg, rgba(245,158,11,0.08), rgba(245,158,11,0.02)); border:1px solid var(--ops-line); border-left:3px solid #f59e0b; border-radius:8px; padding:8px 12px; }
+  .top-perf-name { font-size:10.5px; font-weight:700; color:var(--ops-muted); letter-spacing:0.04em; text-transform:uppercase; margin-bottom:3px; }
+  .top-perf-winner { font-size:14px; font-weight:700; color:var(--ops-ink); }
+  .top-perf-winner a { color:inherit; text-decoration:none; }
+  .top-perf-winner a:hover { color:var(--ops-green); }
+  .top-perf-value { font-size:11.5px; color:#b45309; font-weight:700; font-variant-numeric:tabular-nums; }
+  body.theme-dark .top-perf-card { background:linear-gradient(135deg, rgba(245,158,11,0.14), rgba(245,158,11,0.04)); }
+  /* Data meta footer text */
+  .data-meta { font-size:11px; color:var(--ops-muted); margin-top:6px; padding:6px 0 0 0; border-top:1px dashed var(--ops-line); }
+  .data-meta strong { color:var(--ops-ink-soft); }
+  .data-meta .sep { margin:0 8px; opacity:0.4; }
+  @media print {
+    .top-perf { display:none; }
+    .data-meta { font-size:9px; }
+  }
 </style>
 </head>
 <body>
@@ -158,6 +175,7 @@
   <div class="ops-wrap">
     <h1>13 클럽 일람</h1>
     <p class="lede">IDX 상장 13개 골프 운영사. 검색·정렬·뷰 전환으로 빠르게 비교. 카드/행 클릭으로 클럽 상세.</p>
+    <div class="top-perf" id="top-perf"></div>
     <div class="tier-stats" id="tier-stats"></div>
     <div class="filter-bar" id="tier-filter">
       <button class="filter-btn active" data-filter="all">전체 (13)</button>
@@ -187,6 +205,13 @@
       </div>
       <button class="share-btn" id="share-btn" aria-label="현재 필터 링크 복사">🔗 링크 복사</button>
       <div class="results-info" id="results-info">13 / 13 표시</div>
+    </div>
+    <div class="data-meta">
+      📅 데이터 빌드: <strong>2026-05-12</strong>
+      <span class="sep">·</span>
+      재무 데이터: <strong>FY2020-FY2024 연결 P&amp;L · 대차대조표</strong>
+      <span class="sep">·</span>
+      출처: <strong>IDX 공시 (idx.co.id) · 연차보고서</strong>
     </div>
   </div>
 </section>
@@ -852,6 +877,20 @@
 <script src="../operations.js?v=20260512c3" defer></script>
 <script>
 const TIER_STATS = {"pp": {"count": 2, "median_rev": 225.33648081500002, "median_margin": 30.42669845271528, "median_roa": 12.233122641839426, "median_ta": 568.2970988469999, "min_rev": 197.570521436, "max_rev": 253.102440194}, "resort": {"count": 1, "median_rev": 197.993814652, "median_margin": 34.12985079446642, "median_roa": 0.7823444319533539, "median_ta": 8637.499132483, "min_rev": 197.993814652, "max_rev": 197.993814652}, "twn": {"count": 10, "median_rev": 5636.7285, "median_margin": 18.42005305795135, "median_roa": 3.8352919514519552, "median_ta": 34452.5925, "min_rev": 694.045, "max_rev": 13796.572149}};
+const TOP_PERFORMERS = {"rev": {"ticker": "BSDE", "value": 13796572149000, "label": "최대 매출 (FY24)", "display": "Rp 13.8T"}, "margin": {"ticker": "LPKR", "value": 165.1928065781581, "label": "최고 순이익률", "display": "+165.2%"}, "roa": {"ticker": "LPKR", "value": 34.85440678401302, "label": "최고 ROA", "display": "+34.9%"}, "yoy": {"ticker": "SMRA", "value": 59.539663629224734, "label": "최고 매출 YoY", "display": "+59.5%"}};
+
+function renderTopPerf() {
+  const root = document.getElementById('top-perf');
+  if (!root) return;
+  root.innerHTML = Object.values(TOP_PERFORMERS).map(p => {
+    if (!p.ticker) return '';
+    return `<div class="top-perf-card">
+      <div class="top-perf-name">🏆 ${p.label}</div>
+      <div class="top-perf-winner"><a href="${p.ticker.toLowerCase()}.html">${p.ticker}</a></div>
+      <div class="top-perf-value">${p.display}</div>
+    </div>`;
+  }).join('');
+}
 const TIER_LABEL = { pp: '🟦 Pure-play', resort: '🟨 Resort', twn: '🟩 Township' };
 
 function renderTierStats(activeTier) {
@@ -1085,6 +1124,7 @@ function syncURL() {
     if (e.key === 'd') { themeBtn.click(); }
   });
 
+  renderTopPerf();
   renderTierStats(state.tier === 'all' ? null : state.tier);
   // Annotate hero with print-date for the @media print rule
   const hero = document.querySelector('.ops-hero');

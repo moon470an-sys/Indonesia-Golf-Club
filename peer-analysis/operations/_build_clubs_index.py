@@ -211,6 +211,43 @@ for tier_key in ['pp','resort','twn']:
 
 tier_stats_json = json.dumps(tier_stats, ensure_ascii=False)
 
+# ============================================================
+# Top performer extraction (FY2024) — #1 per metric
+# ============================================================
+def top_performer(metric_fn, label, fmt_fn):
+    best = None
+    best_v = None
+    for t in peers_sorted:
+        v = metric_fn(t)
+        if v is None: continue
+        if best_v is None or v > best_v:
+            best_v = v; best = t
+    return { 'ticker': best, 'value': best_v, 'label': label, 'display': fmt_fn(best_v) if best_v is not None else '—' }
+
+def get_y24(t, key):
+    return fin.get(t,{}).get('yearly',{}).get('2024',{}).get(key)
+def get_y23(t, key):
+    return fin.get(t,{}).get('yearly',{}).get('2023',{}).get(key)
+
+def fmt_bn_val(v):
+    if v is None: return '—'
+    if abs(v) >= 1e12: return f'Rp {v/1e12:.1f}T'
+    return f'Rp {v/1e9:.0f}B'
+def fmt_pct_val(v):
+    if v is None: return '—'
+    return f'{v:+.1f}%'
+
+top_performers = {
+    'rev': top_performer(lambda t: get_y24(t, 'revenue'), '최대 매출 (FY24)', fmt_bn_val),
+    'margin': top_performer(lambda t: ((get_y24(t,'net_profit') or 0) / get_y24(t,'revenue') * 100) if get_y24(t,'revenue') and get_y24(t,'net_profit') is not None else None, '최고 순이익률', fmt_pct_val),
+    'roa': top_performer(lambda t: ((get_y24(t,'net_profit') or 0) / get_y24(t,'total_assets') * 100) if get_y24(t,'total_assets') and get_y24(t,'net_profit') is not None else None, '최고 ROA', fmt_pct_val),
+    'yoy': top_performer(lambda t: ((get_y24(t,'revenue') - get_y23(t,'revenue')) / get_y23(t,'revenue') * 100) if get_y24(t,'revenue') and get_y23(t,'revenue') else None, '최고 매출 YoY', fmt_pct_val),
+}
+top_performers_json = json.dumps(top_performers, ensure_ascii=False)
+
+import datetime
+build_date = datetime.date.today().strftime('%Y-%m-%d')
+
 html = '''<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -350,6 +387,23 @@ html = '''<!DOCTYPE html>
   @media print {
     .compare-bar, .compare-check { display:none !important; }
   }
+  /* Top performers row */
+  .top-perf { display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:10px; margin:14px 0 4px 0; }
+  .top-perf-card { background:linear-gradient(135deg, rgba(245,158,11,0.08), rgba(245,158,11,0.02)); border:1px solid var(--ops-line); border-left:3px solid #f59e0b; border-radius:8px; padding:8px 12px; }
+  .top-perf-name { font-size:10.5px; font-weight:700; color:var(--ops-muted); letter-spacing:0.04em; text-transform:uppercase; margin-bottom:3px; }
+  .top-perf-winner { font-size:14px; font-weight:700; color:var(--ops-ink); }
+  .top-perf-winner a { color:inherit; text-decoration:none; }
+  .top-perf-winner a:hover { color:var(--ops-green); }
+  .top-perf-value { font-size:11.5px; color:#b45309; font-weight:700; font-variant-numeric:tabular-nums; }
+  body.theme-dark .top-perf-card { background:linear-gradient(135deg, rgba(245,158,11,0.14), rgba(245,158,11,0.04)); }
+  /* Data meta footer text */
+  .data-meta { font-size:11px; color:var(--ops-muted); margin-top:6px; padding:6px 0 0 0; border-top:1px dashed var(--ops-line); }
+  .data-meta strong { color:var(--ops-ink-soft); }
+  .data-meta .sep { margin:0 8px; opacity:0.4; }
+  @media print {
+    .top-perf { display:none; }
+    .data-meta { font-size:9px; }
+  }
 </style>
 </head>
 <body>
@@ -371,6 +425,7 @@ html = '''<!DOCTYPE html>
   <div class="ops-wrap">
     <h1>13 클럽 일람</h1>
     <p class="lede">IDX 상장 13개 골프 운영사. 검색·정렬·뷰 전환으로 빠르게 비교. 카드/행 클릭으로 클럽 상세.</p>
+    <div class="top-perf" id="top-perf"></div>
     <div class="tier-stats" id="tier-stats"></div>
     <div class="filter-bar" id="tier-filter">
       <button class="filter-btn active" data-filter="all">전체 (13)</button>
@@ -400,6 +455,13 @@ html = '''<!DOCTYPE html>
       </div>
       <button class="share-btn" id="share-btn" aria-label="현재 필터 링크 복사">🔗 링크 복사</button>
       <div class="results-info" id="results-info">13 / 13 표시</div>
+    </div>
+    <div class="data-meta">
+      📅 데이터 빌드: <strong>__BUILD_DATE__</strong>
+      <span class="sep">·</span>
+      재무 데이터: <strong>FY2020-FY2024 연결 P&amp;L · 대차대조표</strong>
+      <span class="sep">·</span>
+      출처: <strong>IDX 공시 (idx.co.id) · 연차보고서</strong>
     </div>
   </div>
 </section>
@@ -456,6 +518,20 @@ __TABLE_ROWS__
 <script src="../operations.js?v=20260512c3" defer></script>
 <script>
 const TIER_STATS = __TIER_STATS__;
+const TOP_PERFORMERS = __TOP_PERFORMERS__;
+
+function renderTopPerf() {
+  const root = document.getElementById('top-perf');
+  if (!root) return;
+  root.innerHTML = Object.values(TOP_PERFORMERS).map(p => {
+    if (!p.ticker) return '';
+    return `<div class="top-perf-card">
+      <div class="top-perf-name">🏆 ${p.label}</div>
+      <div class="top-perf-winner"><a href="${p.ticker.toLowerCase()}.html">${p.ticker}</a></div>
+      <div class="top-perf-value">${p.display}</div>
+    </div>`;
+  }).join('');
+}
 const TIER_LABEL = { pp: '🟦 Pure-play', resort: '🟨 Resort', twn: '🟩 Township' };
 
 function renderTierStats(activeTier) {
@@ -689,6 +765,7 @@ function syncURL() {
     if (e.key === 'd') { themeBtn.click(); }
   });
 
+  renderTopPerf();
   renderTierStats(state.tier === 'all' ? null : state.tier);
   // Annotate hero with print-date for the @media print rule
   const hero = document.querySelector('.ops-hero');
@@ -823,6 +900,8 @@ function syncURL() {
 html = html.replace('__CARDS__', cards_section)
 html = html.replace('__TABLE_ROWS__', table_section)
 html = html.replace('__TIER_STATS__', tier_stats_json)
+html = html.replace('__TOP_PERFORMERS__', top_performers_json)
+html = html.replace('__BUILD_DATE__', build_date)
 with open('clubs/index.html','w',encoding='utf-8') as f:
     f.write(html)
 print(f'clubs/index.html: {os.path.getsize("clubs/index.html")/1024:.1f} KB')
