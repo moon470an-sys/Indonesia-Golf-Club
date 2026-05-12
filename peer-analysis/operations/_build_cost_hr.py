@@ -515,6 +515,10 @@ html = '''<!DOCTYPE html>
     .bench-row td { background:#f5f5f5 !important; }
     .mix-bar-seg, .row-max { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
   }
+  /* Mobile column priority */
+  @media (max-width:720px) {
+    .ops-tbl .col-low-prio { display:none; }
+  }
   /* Category matrix search */
   .cat-search-row { display:flex; gap:8px; align-items:center; margin:4px 0 8px 0; flex-wrap:wrap; }
   .cat-search-row label { font-size:11.5px; color:var(--ops-muted); font-weight:600; }
@@ -589,13 +593,13 @@ html = '''<!DOCTYPE html>
           <thead>
             <tr>
               <th>Peer</th>
-              <th>그룹명</th>
-              <th class="num">매출</th>
-              <th class="num">총 비용</th>
-              <th class="num">총 비용 / 매출</th>
-              <th class="num">영업이익률</th>
-              <th class="num">EBITDA 마진</th>
-              <th class="num">순이익률</th>
+              <th class="col-low-prio">그룹명</th>
+              <th class="num sortable" data-sort="rev">매출</th>
+              <th class="num sortable col-low-prio" data-sort="totalCost">총 비용</th>
+              <th class="num sortable" data-sort="costRatio">총 비용 / 매출</th>
+              <th class="num sortable" data-sort="opMargin">영업이익률</th>
+              <th class="num sortable col-low-prio" data-sort="ebMargin">EBITDA 마진</th>
+              <th class="num sortable col-low-prio" data-sort="npMargin">순이익률</th>
             </tr>
           </thead>
           <tbody id="cmp-tbody"></tbody>
@@ -695,13 +699,13 @@ __OPEX_SECTION__
           <thead>
             <tr>
               <th>Peer</th>
-              <th>그룹명</th>
-              <th class="num">매출원가</th>
-              <th class="num">판관비</th>
-              <th class="num">합계 (COGS+OpEx)</th>
-              <th class="num">대응 매출</th>
-              <th class="num">합계 / 매출</th>
-              <th>공시 범위</th>
+              <th class="col-low-prio">그룹명</th>
+              <th class="num sortable col-low-prio" data-sort="cogs">매출원가</th>
+              <th class="num sortable col-low-prio" data-sort="opex">판관비</th>
+              <th class="num sortable" data-sort="tot">합계 (COGS+OpEx)</th>
+              <th class="num sortable col-low-prio" data-sort="scopeRev">대응 매출</th>
+              <th class="num sortable" data-sort="ratio">합계 / 매출</th>
+              <th class="col-low-prio">공시 범위</th>
             </tr>
           </thead>
           <tbody id="total-cmp-tbody"></tbody>
@@ -800,12 +804,15 @@ function median(xs){
 }
 const TIER_LABEL = { pp:'🟦 Pure-play 중위', resort:'🟨 Resort 중위', twn:'🟩 Township 중위' };
 
+let cmpSortState = { key: null, dir: 'desc' };
+let totalSortState = { key: null, dir: 'desc' };
+
 function render(year){
   document.querySelectorAll('.yr-label').forEach(el => el.textContent = 'FY' + year);
 
   // === Tab 1: 비용 구조 % (group P&L) ===
   const cmpData = [];
-  const rows = PEER_ORDER.map(t => {
+  PEER_ORDER.forEach(t => {
     const d = PEER_DATA[t];
     const y = d.yearly[year] || {};
     const rev = y.rev; const op = y.op; const np = y.np; const ebitda = y.ebitda;
@@ -814,16 +821,29 @@ function render(year){
     const opMargin = (rev && op !== null && op !== undefined) ? (op/rev*100) : null;
     const ebMargin = (rev && ebitda !== null && ebitda !== undefined) ? (ebitda/rev*100) : null;
     const npMargin = (rev && np !== null && np !== undefined) ? (np/rev*100) : null;
-    cmpData.push({ t, tier:d.tier, name:d.name, rev, totalCost, costRatio, opMargin, ebMargin, npMargin });
+    cmpData.push({ t, d, tier:d.tier, name:d.name, rev, totalCost, costRatio, opMargin, ebMargin, npMargin });
+  });
+  // Sort cmpData if requested
+  const cmpSorted = cmpData.slice();
+  if (cmpSortState.key) {
+    cmpSorted.sort((a,b) => {
+      const va = a[cmpSortState.key]; const vb = b[cmpSortState.key];
+      if (va === null || va === undefined) return 1;
+      if (vb === null || vb === undefined) return -1;
+      return cmpSortState.dir === 'desc' ? (vb - va) : (va - vb);
+    });
+  }
+  const rows = cmpSorted.map(r => {
+    const { t, d, rev, totalCost, costRatio, opMargin, ebMargin, npMargin } = r;
     return `<tr data-tier="${d.tier}">
       <td class="peer"><a href="clubs/${t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${t}</a><span class="peer-tag peer-tag-${d.tier}">${d.tier_label}</span></td>
-      <td>${d.name.slice(0,24)}</td>
+      <td class="col-low-prio">${d.name.slice(0,24)}</td>
       <td class="num">${fmtBn(rev)}</td>
-      <td class="num">${fmtBn(totalCost)}</td>
+      <td class="num col-low-prio">${fmtBn(totalCost)}</td>
       <td class="num">${fmtPct(costRatio)}</td>
       <td class="num"><strong>${fmtPct(opMargin)}</strong></td>
-      <td class="num">${fmtPct(ebMargin)}</td>
-      <td class="num">${fmtPct(npMargin)}</td>
+      <td class="num col-low-prio">${fmtPct(ebMargin)}</td>
+      <td class="num col-low-prio">${fmtPct(npMargin)}</td>
     </tr>`;
   });
   // Tier median benchmark rows + overall
@@ -832,12 +852,17 @@ function render(year){
     const tdata = cmpData.filter(r => r.tier === tk);
     if (!tdata.length) return;
     const med = (key) => median(tdata.map(r => r[key]));
-    benchRows.push(`<tr class="bench-row tier-${tk}"><td>${TIER_LABEL[tk]}</td><td>N=${tdata.length}</td><td class="num">${fmtBn(med('rev'))}</td><td class="num">${fmtBn(med('totalCost'))}</td><td class="num">${fmtPct(med('costRatio'))}</td><td class="num"><strong>${fmtPct(med('opMargin'))}</strong></td><td class="num">${fmtPct(med('ebMargin'))}</td><td class="num">${fmtPct(med('npMargin'))}</td></tr>`);
+    benchRows.push(`<tr class="bench-row tier-${tk}"><td>${TIER_LABEL[tk]}</td><td class="col-low-prio">N=${tdata.length}</td><td class="num">${fmtBn(med('rev'))}</td><td class="num col-low-prio">${fmtBn(med('totalCost'))}</td><td class="num">${fmtPct(med('costRatio'))}</td><td class="num"><strong>${fmtPct(med('opMargin'))}</strong></td><td class="num col-low-prio">${fmtPct(med('ebMargin'))}</td><td class="num col-low-prio">${fmtPct(med('npMargin'))}</td></tr>`);
   });
   const medAll = (key) => median(cmpData.map(r => r[key]));
-  benchRows.push(`<tr class="bench-row overall"><td>📊 전체 중위</td><td>N=${cmpData.length}</td><td class="num">${fmtBn(medAll('rev'))}</td><td class="num">${fmtBn(medAll('totalCost'))}</td><td class="num">${fmtPct(medAll('costRatio'))}</td><td class="num"><strong>${fmtPct(medAll('opMargin'))}</strong></td><td class="num">${fmtPct(medAll('ebMargin'))}</td><td class="num">${fmtPct(medAll('npMargin'))}</td></tr>`);
+  benchRows.push(`<tr class="bench-row overall"><td>📊 전체 중위</td><td class="col-low-prio">N=${cmpData.length}</td><td class="num">${fmtBn(medAll('rev'))}</td><td class="num col-low-prio">${fmtBn(medAll('totalCost'))}</td><td class="num">${fmtPct(medAll('costRatio'))}</td><td class="num"><strong>${fmtPct(medAll('opMargin'))}</strong></td><td class="num col-low-prio">${fmtPct(medAll('ebMargin'))}</td><td class="num col-low-prio">${fmtPct(medAll('npMargin'))}</td></tr>`);
   document.getElementById('cmp-tbody').innerHTML = rows.join('') + benchRows.join('');
   window._cmpData = cmpData;
+  // Update Tab ① sort header indicators
+  document.querySelectorAll('#panel-cmp .sortable').forEach(th => {
+    th.classList.remove('asc','desc');
+    if (th.dataset.sort === cmpSortState.key) th.classList.add(cmpSortState.dir);
+  });
 
   // === Tab 2: 매출원가 동급 비교 (top) ===
   // Ratio uses scope_rev (matches the actual coverage of the COGS note) for honest comparison
@@ -935,7 +960,7 @@ function render(year){
 
   // === Tab 4: 총 영업비용 (COGS+OpEx) 동급 비교 ===
   const totalData = [];
-  const totalRows = PEER_ORDER.map(t => {
+  PEER_ORDER.forEach(t => {
     const d = PEER_DATA[t];
     const scopeRev = d.scope_rev[year];
     const cogs = d.cogs_total[year];
@@ -943,16 +968,29 @@ function render(year){
     const tot = d.total_opcost[year];
     const ratio = (scopeRev && tot) ? (tot/scopeRev*100) : null;
     const cov = (d.cogs_cov !== '—' && d.opex_cov !== '—') ? `${d.cogs_cov} / ${d.opex_cov}` : (d.cogs_cov !== '—' ? d.cogs_cov : d.opex_cov);
-    totalData.push({ t, tier:d.tier, name:d.name, cogs, opex, tot, scopeRev, ratio, cov });
+    totalData.push({ t, d, tier:d.tier, name:d.name, cogs, opex, tot, scopeRev, ratio, cov });
+  });
+  // Sort if requested
+  const totalSorted = totalData.slice();
+  if (totalSortState.key) {
+    totalSorted.sort((a,b) => {
+      const va = a[totalSortState.key]; const vb = b[totalSortState.key];
+      if (va === null || va === undefined) return 1;
+      if (vb === null || vb === undefined) return -1;
+      return totalSortState.dir === 'desc' ? (vb - va) : (va - vb);
+    });
+  }
+  const totalRows = totalSorted.map(r => {
+    const { t, d, cogs, opex, tot, scopeRev, ratio, cov } = r;
     return `<tr data-tier="${d.tier}">
       <td class="peer"><a href="clubs/${t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${t}</a><span class="peer-tag peer-tag-${d.tier}">${d.tier_label}</span></td>
-      <td>${d.name.slice(0,24)}</td>
-      <td class="num">${fmtBn(cogs)}</td>
-      <td class="num">${fmtBn(opex)}</td>
+      <td class="col-low-prio">${d.name.slice(0,24)}</td>
+      <td class="num col-low-prio">${fmtBn(cogs)}</td>
+      <td class="num col-low-prio">${fmtBn(opex)}</td>
       <td class="num"><strong>${fmtBn(tot)}</strong></td>
-      <td class="num">${fmtBn(scopeRev)}</td>
+      <td class="num col-low-prio">${fmtBn(scopeRev)}</td>
       <td class="num"><strong>${fmtPct(ratio)}</strong></td>
-      <td style="font-size:11px; color:var(--ops-muted);">${cov}</td>
+      <td class="col-low-prio" style="font-size:11px; color:var(--ops-muted);">${cov}</td>
     </tr>`;
   });
   // Tier median benchmark rows for Tab ④ (only peers with data)
@@ -961,15 +999,20 @@ function render(year){
     const tdata = totalData.filter(r => r.tier === tk && r.tot);
     if (!tdata.length) return;
     const med = key => median(tdata.map(r => r[key]));
-    totalBenchRows.push(`<tr class="bench-row tier-${tk}"><td>${TIER_LABEL[tk]}</td><td>N=${tdata.length}</td><td class="num">${fmtBn(med('cogs'))}</td><td class="num">${fmtBn(med('opex'))}</td><td class="num"><strong>${fmtBn(med('tot'))}</strong></td><td class="num">${fmtBn(med('scopeRev'))}</td><td class="num"><strong>${fmtPct(med('ratio'))}</strong></td><td>—</td></tr>`);
+    totalBenchRows.push(`<tr class="bench-row tier-${tk}"><td>${TIER_LABEL[tk]}</td><td class="col-low-prio">N=${tdata.length}</td><td class="num col-low-prio">${fmtBn(med('cogs'))}</td><td class="num col-low-prio">${fmtBn(med('opex'))}</td><td class="num"><strong>${fmtBn(med('tot'))}</strong></td><td class="num col-low-prio">${fmtBn(med('scopeRev'))}</td><td class="num"><strong>${fmtPct(med('ratio'))}</strong></td><td class="col-low-prio">—</td></tr>`);
   });
   const totalAvail = totalData.filter(r => r.tot);
   if (totalAvail.length) {
     const medAll = key => median(totalAvail.map(r => r[key]));
-    totalBenchRows.push(`<tr class="bench-row overall"><td>📊 전체 중위</td><td>N=${totalAvail.length}</td><td class="num">${fmtBn(medAll('cogs'))}</td><td class="num">${fmtBn(medAll('opex'))}</td><td class="num"><strong>${fmtBn(medAll('tot'))}</strong></td><td class="num">${fmtBn(medAll('scopeRev'))}</td><td class="num"><strong>${fmtPct(medAll('ratio'))}</strong></td><td>—</td></tr>`);
+    totalBenchRows.push(`<tr class="bench-row overall"><td>📊 전체 중위</td><td class="col-low-prio">N=${totalAvail.length}</td><td class="num col-low-prio">${fmtBn(medAll('cogs'))}</td><td class="num col-low-prio">${fmtBn(medAll('opex'))}</td><td class="num"><strong>${fmtBn(medAll('tot'))}</strong></td><td class="num col-low-prio">${fmtBn(medAll('scopeRev'))}</td><td class="num"><strong>${fmtPct(medAll('ratio'))}</strong></td><td class="col-low-prio">—</td></tr>`);
   }
   document.getElementById('total-cmp-tbody').innerHTML = totalRows.join('') + totalBenchRows.join('');
   window._totalData = totalData;
+  // Update Tab ④ sort header indicators
+  document.querySelectorAll('#panel-total .sortable').forEach(th => {
+    th.classList.remove('asc','desc');
+    if (th.dataset.sort === totalSortState.key) th.classList.add(totalSortState.dir);
+  });
 
   // Highlight selected year columns in line tables
   document.querySelectorAll('.yr-hl').forEach(el => el.classList.remove('yr-hl'));
@@ -1161,6 +1204,23 @@ function wireExport(copyId, csvId, which, csvName) {
   loadCostState();
   document.querySelectorAll('.year-btn, .cost-tab').forEach(el => {
     el.addEventListener('click', () => setTimeout(saveCostState, 0));
+  });
+  // Sortable headers — Tab ① and Tab ④
+  document.querySelectorAll('#panel-cmp .sortable').forEach(th => {
+    th.addEventListener('click', () => {
+      const k = th.dataset.sort;
+      if (cmpSortState.key === k) cmpSortState.dir = (cmpSortState.dir === 'desc') ? 'asc' : 'desc';
+      else { cmpSortState.key = k; cmpSortState.dir = 'desc'; }
+      render(currentYear);
+    });
+  });
+  document.querySelectorAll('#panel-total .sortable').forEach(th => {
+    th.addEventListener('click', () => {
+      const k = th.dataset.sort;
+      if (totalSortState.key === k) totalSortState.dir = (totalSortState.dir === 'desc') ? 'asc' : 'desc';
+      else { totalSortState.key = k; totalSortState.dir = 'desc'; }
+      render(currentYear);
+    });
   });
   render(currentYear);
 })();
