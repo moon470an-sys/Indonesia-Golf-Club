@@ -90,6 +90,10 @@
   #risk-tbl tbody td.col-highlight { background:rgba(245,158,11,0.12); }
   body.theme-dark #risk-tbl tbody tr:hover .heat-cell { background:rgba(245,158,11,0.16); }
   body.theme-dark #risk-tbl tbody td.col-highlight { background:rgba(245,158,11,0.22); }
+  /* Cross-highlight: rank bar ↔ matrix */
+  .risk-rank-row.cross-hover { background:rgba(245,158,11,0.08); border-radius:4px; }
+  #risk-tbl tbody tr.cross-hover td:first-child { background:rgba(245,158,11,0.18) !important; }
+  body.theme-dark .risk-rank-row.cross-hover { background:rgba(245,158,11,0.14); }
   /* Top performer cards */
   .top-perf { display:grid; grid-template-columns:repeat(auto-fit, minmax(170px, 1fr)); gap:10px; margin:14px 0 10px 0; }
   .top-perf-card { background:linear-gradient(135deg, rgba(245,158,11,0.08), rgba(245,158,11,0.02)); border:1px solid var(--ops-line); border-left:3px solid #f59e0b; border-radius:8px; padding:8px 12px; }
@@ -589,6 +593,48 @@ function flashSuccess(btn, label){
   renderCatRates();
   renderRiskRank();
   renderTable();
+  // Cross-highlight: rank bar row ↔ matrix table row (by ticker)
+  function getTickerFromRankRow(row) {
+    const a = row.querySelector('a[href^="clubs/"]');
+    return a ? a.textContent.trim() : null;
+  }
+  function getTickerFromMatrixRow(row) {
+    const a = row.querySelector('a[href^="clubs/"]');
+    return a ? a.textContent.trim() : null;
+  }
+  // Use event delegation since both areas re-render
+  const rankCard = document.getElementById('risk-rank-card');
+  if (rankCard) {
+    rankCard.addEventListener('mouseover', (e) => {
+      const row = e.target.closest('.risk-rank-row');
+      if (!row) return;
+      const ticker = getTickerFromRankRow(row);
+      if (!ticker) return;
+      document.querySelectorAll('#risk-tbody tr').forEach(tr => {
+        if (getTickerFromMatrixRow(tr) === ticker) tr.classList.add('cross-hover');
+      });
+    });
+    rankCard.addEventListener('mouseout', (e) => {
+      const row = e.target.closest('.risk-rank-row');
+      if (!row) return;
+      document.querySelectorAll('#risk-tbody tr.cross-hover').forEach(tr => tr.classList.remove('cross-hover'));
+    });
+  }
+  const riskTbody = document.getElementById('risk-tbody');
+  if (riskTbody) {
+    riskTbody.addEventListener('mouseover', (e) => {
+      const tr = e.target.closest('tr');
+      if (!tr || tr.classList.contains('bench-row')) return;
+      const ticker = getTickerFromMatrixRow(tr);
+      if (!ticker) return;
+      document.querySelectorAll('#risk-rank-card .risk-rank-row').forEach(r => {
+        if (getTickerFromRankRow(r) === ticker) r.classList.add('cross-hover');
+      });
+    });
+    riskTbody.addEventListener('mouseout', (e) => {
+      document.querySelectorAll('#risk-rank-card .risk-rank-row.cross-hover').forEach(r => r.classList.remove('cross-hover'));
+    });
+  }
   // Column hover highlight on matrix
   document.querySelectorAll('#risk-tbl thead th[data-col]').forEach(th => {
     const col = th.dataset.col;
