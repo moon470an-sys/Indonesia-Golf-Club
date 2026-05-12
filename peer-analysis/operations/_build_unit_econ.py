@@ -674,16 +674,29 @@ function render(year){
     if (d.area && golfRev) tierAcc[tk].ra.push((golfRev/1e9)/d.area);
   });
   const avg = (arr) => arr.length ? arr.reduce((s,x)=>s+x,0)/arr.length : null;
+  // Compute max rh/ra across tiers for relative bar width
+  const allRH = ['pp','resort','twn'].map(tk => avg(tierAcc[tk].rh)).filter(v => v !== null);
+  const allRA = ['pp','resort','twn'].map(tk => avg(tierAcc[tk].ra)).filter(v => v !== null);
+  const maxRH = allRH.length ? Math.max(...allRH) : 1;
+  const maxRA = allRA.length ? Math.max(...allRA) : 1;
+  function tierBar(val, maxVal, color) {
+    if (val === null || maxVal <= 0) return '';
+    const pct = (val / maxVal * 100).toFixed(0);
+    return `<div style="margin-top:3px; height:5px; background:var(--ops-bg); border-radius:2px; overflow:hidden;"><div style="width:${pct}%; height:100%; background:${color}; opacity:0.7;"></div></div>`;
+  }
+  const tierColors = { pp:'#3b82f6', resort:'#f59e0b', twn:'#16a34a' };
   const tierRows = ['pp','resort','twn'].map(tk => {
     const a = tierAcc[tk];
     const count = PEER_ORDER.filter(t => PEER_DATA[t].tier === tk).length;
+    const rh = avg(a.rh); const ra = avg(a.ra);
+    const color = tierColors[tk];
     return `<tr>
       <td><strong>${TIER_LABEL[tk]}</strong></td>
       <td class="num">${count}</td>
       <td class="num">${fmtNum(avg(a.holes))}</td>
       <td class="num">${fmtNum(avg(a.area), 1)}</td>
-      <td class="num"><strong>${avg(a.rh) !== null ? avg(a.rh).toFixed(2)+'B' : '—'}</strong></td>
-      <td class="num">${avg(a.ra) !== null ? avg(a.ra).toFixed(2)+'B' : '—'}</td>
+      <td class="num"><strong>${rh !== null ? rh.toFixed(2)+'B' : '—'}</strong>${tierBar(rh, maxRH, color)}</td>
+      <td class="num">${ra !== null ? ra.toFixed(2)+'B' : '—'}${tierBar(ra, maxRA, color)}</td>
     </tr>`;
   });
   document.getElementById('tier-tbody').innerHTML = tierRows.join('');
