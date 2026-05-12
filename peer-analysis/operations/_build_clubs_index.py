@@ -711,6 +711,8 @@ function syncURL() {
     const num = v => (v === '' || v === undefined || v === null) ? null : parseFloat(v);
     const fmtB = v => { if (v === null || isNaN(v) || v <= -1e14) return '—'; if (Math.abs(v) >= 1000) return (v/1000).toFixed(2)+'T'; return v.toFixed(0)+'B'; };
     const fmtP = v => { if (v === null || isNaN(v) || v <= -1e14) return '—'; const c = v > 0 ? '#16a34a' : v < 0 ? '#b91c1c' : '#666'; return `<span style="color:${c};">${v >= 0 ? '+' : ''}${v.toFixed(1)}%</span>`; };
+    // Clone the existing 5Y revenue sparkline SVG from the card
+    const sparkSvg = card.querySelector('svg[aria-label="5년 매출 추이"]');
     return {
       ticker,
       name: card.dataset.name,
@@ -723,6 +725,7 @@ function syncURL() {
       ebmargin: fmtP(num(card.dataset.ebmargin)),
       ta: fmtB(num(card.dataset.ta)),
       roa: fmtP(num(card.dataset.roa)),
+      sparkHTML: sparkSvg ? sparkSvg.outerHTML : '',
     };
   }
   function updateRowStates(ticker, on) {
@@ -745,7 +748,8 @@ function syncURL() {
           <a class="compare-col-ticker" href="${t.toLowerCase()}.html" style="text-decoration:none; color:inherit;">${t}</a>
           <button class="compare-col-rm" data-ticker="${t}" title="제거">✕</button>
         </div>
-        <div style="font-size:10.5px; color:var(--ops-muted); margin-bottom:6px;">${d.tierLabel} · ${d.loc}</div>
+        <div style="font-size:10.5px; color:var(--ops-muted); margin-bottom:4px;">${d.tierLabel} · ${d.loc}</div>
+        <div style="text-align:center; margin-bottom:4px;">${d.sparkHTML}</div>
         <dl>
           <div><dt>FY24 매출</dt><dd>${d.rev}</dd></div>
           <div><dt>매출 YoY</dt><dd>${d.yoy}</dd></div>
@@ -760,6 +764,9 @@ function syncURL() {
     cmpGrid.querySelectorAll('.compare-col-rm').forEach(btn => {
       btn.addEventListener('click', () => toggleCompare(btn.dataset.ticker, false));
     });
+  }
+  function saveCompare() {
+    try { localStorage.setItem('clubs-compare', JSON.stringify(Array.from(compared))); } catch (e) {}
   }
   function toggleCompare(ticker, on) {
     if (on === undefined) on = !compared.has(ticker);
@@ -777,7 +784,23 @@ function syncURL() {
     updateRowStates(ticker, compared.has(ticker));
     grid.querySelectorAll(`.cmp-cb[data-ticker="${ticker}"]`).forEach(cb => cb.checked = compared.has(ticker));
     renderCompare();
+    saveCompare();
   }
+  // Restore from localStorage
+  try {
+    const saved = JSON.parse(localStorage.getItem('clubs-compare') || '[]');
+    if (Array.isArray(saved)) {
+      saved.slice(0, MAX_COMPARE).forEach(t => {
+        // Only re-add if peer exists in grid
+        if (grid.querySelector(`.club-card[data-ticker="${t}"]`)) {
+          compared.add(t);
+          updateRowStates(t, true);
+          grid.querySelectorAll(`.cmp-cb[data-ticker="${t}"]`).forEach(cb => cb.checked = true);
+        }
+      });
+      if (compared.size > 0) renderCompare();
+    }
+  } catch (e) {}
   // Wire card checkboxes (label/input click triggers via JS to bypass the parent <a>)
   grid.querySelectorAll('.compare-check').forEach(lbl => {
     const cb = lbl.querySelector('.cmp-cb');
