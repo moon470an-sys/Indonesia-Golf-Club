@@ -48,6 +48,28 @@
   .action-btn { padding:6px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); display:inline-flex; align-items:center; gap:4px; }
   .action-btn:hover { background:rgba(45,80,22,0.05); }
   .action-btn.success { background:#16a34a; color:white; border-color:#16a34a; }
+  /* Theme toggle */
+  .theme-toggle { position:absolute; top:14px; right:14px; padding:5px 10px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:999px; font-size:13px; cursor:pointer; color:var(--ops-ink); z-index:10; }
+  .theme-toggle:hover { background:rgba(45,80,22,0.06); }
+  .ops-hero { position:relative; }
+  body.theme-dark { --ops-bg:#0f172a; --ops-surface:#1e293b; --ops-ink:#e2e8f0; --ops-ink-soft:#cbd5e1; --ops-muted:#94a3b8; --ops-line:#334155; --ops-green:#22c55e; }
+  body.theme-dark .ops-tbl thead th { background:#0f172a; }
+  body.theme-dark .ops-tbl tbody tr:hover { background:rgba(34,197,94,0.06); }
+  body.theme-dark .cat-rate, body.theme-dark .risk-rank-card { background:#1e293b; }
+  body.theme-dark .bench-row td { background:rgba(34,197,94,0.06) !important; }
+  body.theme-dark .risk-rank-row { color:var(--ops-ink); }
+  /* Risk rank horizontal bar visualization */
+  .risk-rank-card { background:var(--ops-surface); border:1px solid var(--ops-line); border-radius:10px; padding:16px 20px; margin:12px 0 24px 0; }
+  .risk-rank-row { display:grid; grid-template-columns:80px 1fr 60px; gap:10px; align-items:center; margin:5px 0; font-size:12.5px; }
+  .risk-rank-label { font-weight:700; color:var(--ops-ink); }
+  .risk-rank-label .tier-mini { display:inline-block; font-size:9px; padding:1px 4px; border-radius:3px; margin-left:3px; vertical-align:middle; }
+  .risk-rank-bar { display:flex; height:18px; background:var(--ops-bg); border-radius:3px; overflow:hidden; position:relative; }
+  .risk-rank-fill { height:100%; transition:width 0.3s ease; display:flex; align-items:center; justify-content:flex-end; padding-right:6px; color:white; font-size:10px; font-weight:600; }
+  .risk-rank-score { text-align:right; font-weight:700; font-variant-numeric:tabular-nums; }
+  .risk-rank-ticks { display:flex; justify-content:space-between; font-size:10px; color:var(--ops-muted); margin-top:4px; padding-left:90px; padding-right:60px; }
+  @media (max-width:720px) {
+    .risk-rank-row { grid-template-columns:60px 1fr 50px; gap:8px; font-size:11px; }
+  }
 </style>
 </head>
 <body>
@@ -65,6 +87,7 @@
 </header>
 
 <section class="ops-hero">
+  <button class="theme-toggle" id="theme-toggle" aria-label="다크모드 전환" title="다크/라이트 모드 (d)">🌙</button>
   <div class="ops-wrap">
     <h1>리스크 히트맵 + 종합 스코어</h1>
     <p class="lede">13 peer × 6 항목. ⚪ 공시·낮음 (0점) / 🟡 부분 공시 (1점) / 🔴 미공시·확인 필요 (2점). 합계 점수 낮을수록 우수. 헤더 클릭 정렬.</p>
@@ -76,6 +99,10 @@
     <h2 style="font-size:15px; margin:0 0 6px 0;">📈 카테고리별 공시 현황</h2>
     <p style="font-size:11.5px; color:var(--ops-muted); margin:0 0 10px 0;">13 peer 중 각 항목에서 ⚪ 비율. 낮을수록 업계 전체 공시 미흡 → 신규 진입자가 직접 확인 필요.</p>
     <div class="cat-rates" id="cat-rates"></div>
+
+    <h2 style="font-size:15px; margin:18px 0 6px 0;">🎯 Peer 리스크 점수 분포 (정렬됨)</h2>
+    <p style="font-size:11.5px; color:var(--ops-muted); margin:0 0 10px 0;">합계 점수 내림차순 가로 막대. 색상: 녹색(낮음 ≤2) / 호박(중 ≤5) / 빨강(높음 &gt;5). 한눈에 peer별 리스크 부담 비교.</p>
+    <div class="risk-rank-card" id="risk-rank-card"></div>
 
     <h2 style="font-size:15px; margin:18px 0 6px 0;">🏷️ Peer × 항목 매트릭스</h2>
     <p style="font-size:11.5px; color:var(--ops-muted); margin:0 0 10px 0;">하단 4개 행: 🟦 Pure-play / 🟨 Resort / 🟩 Township / 📊 전체 — <strong>tier별 평균 스코어</strong>.</p>
@@ -157,6 +184,32 @@ function scoreClass(t) {
   if (t <= 2) return 'risk-low';
   if (t <= 5) return 'risk-med';
   return 'risk-high';
+}
+
+// Render peer risk rank horizontal bar visualization
+function renderRiskRank() {
+  const root = document.getElementById('risk-rank-card');
+  if (!root) return;
+  const rows = PEER_ORDER.map(t => {
+    const p = PEER_RISK[t];
+    return { t, p, total: totalScore(p) };
+  });
+  rows.sort((a,b) => b.total - a.total);  // high to low
+  const max = 12;
+  const html = rows.map(r => {
+    const pct = r.total / max * 100;
+    const cls = scoreClass(r.total);
+    const fillColor = cls === 'risk-low' ? '#16a34a' : cls === 'risk-med' ? '#f59e0b' : '#b91c1c';
+    return `<div class="risk-rank-row">
+      <div class="risk-rank-label"><a href="clubs/${r.t.toLowerCase()}.html" style="color:inherit; text-decoration:none;">${r.t}</a><span class="tier-mini peer-tag peer-tag-${r.p.tier}">${TIER_SHORT[r.p.tier]}</span></div>
+      <div class="risk-rank-bar" title="${r.p.tier_label} · 합계 ${r.total}/12">
+        <div class="risk-rank-fill" style="width:${pct.toFixed(1)}%; background:${fillColor};">${pct >= 12 ? r.total : ''}</div>
+      </div>
+      <div class="risk-rank-score" style="color:${fillColor};">${r.total} / 12</div>
+    </div>`;
+  }).join('');
+  const ticks = `<div class="risk-rank-ticks"><span>0</span><span>3</span><span>6</span><span>9</span><span>12</span></div>`;
+  root.innerHTML = html + ticks;
 }
 
 // Render category disclosure-rate banner
@@ -298,7 +351,26 @@ function flashSuccess(btn, label){
     flashSuccess(e.currentTarget, '✓ 다운로드');
   });
   renderCatRates();
+  renderRiskRank();
   renderTable();
+  // Dark mode
+  const themeBtn = document.getElementById('theme-toggle');
+  function applyTheme(theme) {
+    if (theme === 'dark') { document.body.classList.add('theme-dark'); themeBtn.textContent = '☀️'; }
+    else                  { document.body.classList.remove('theme-dark'); themeBtn.textContent = '🌙'; }
+  }
+  const saved = localStorage.getItem('ops-theme');
+  const sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  applyTheme(saved || (sysDark ? 'dark' : 'light'));
+  themeBtn.addEventListener('click', () => {
+    const newT = document.body.classList.contains('theme-dark') ? 'light' : 'dark';
+    localStorage.setItem('ops-theme', newT);
+    applyTheme(newT);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.target.matches('input,textarea,select')) return;
+    if (e.key === 'd') themeBtn.click();
+  });
 })();
 </script>
 </body>
