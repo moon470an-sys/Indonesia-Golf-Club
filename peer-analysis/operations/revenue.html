@@ -63,6 +63,34 @@
   .trend-mode-toggle button { padding:5px 10px; border:none; background:var(--ops-surface); font-size:11.5px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
   .trend-mode-toggle button.active { background:var(--ops-green); color:white; }
   .trend-mode-toggle button + button { border-left:1px solid var(--ops-line); }
+  /* In-page anchor nav */
+  .anchor-nav { display:flex; flex-wrap:wrap; gap:6px; margin:10px 0 4px 0; font-size:11.5px; }
+  .anchor-nav a { padding:4px 10px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:6px; text-decoration:none; color:var(--ops-ink-soft); transition:all 0.15s; }
+  .anchor-nav a:hover { background:rgba(45,80,22,0.06); color:var(--ops-ink); }
+  .anchor-nav a.active { background:var(--ops-green); color:white; border-color:var(--ops-green); }
+  body.theme-dark .anchor-nav a:hover { background:rgba(34,197,94,0.08); }
+  /* Smooth scroll + anchor offset (account for header) */
+  html { scroll-behavior:smooth; }
+  .anchor-target { scroll-margin-top:80px; }
+  /* Print */
+  @media print {
+    @page { size: A4 landscape; margin: 10mm; }
+    body { background:white !important; color:black !important; }
+    .ops-head, .ops-foot, .year-bar, .rev-tab-bar, .action-bar, .theme-toggle, .anchor-nav, .trend-mode-toggle { display:none !important; }
+    .ops-hero { padding:0 0 6px 0; }
+    .ops-hero h1 { font-size:17px; margin:0 0 4px 0; }
+    .ops-hero .lede { display:none; }
+    .ops-section h2 { font-size:14px; margin:8px 0 4px 0; page-break-after:avoid; }
+    .ops-section h3 { font-size:12px; margin:6px 0 3px 0; page-break-after:avoid; }
+    .rev-panel { display:block !important; }
+    .ops-tbl { font-size:9px; }
+    .ops-tbl thead th { background:white !important; border-bottom:1.5px solid black; padding:4px 5px; position:static !important; }
+    .ops-tbl tbody td { border-bottom:0.5px solid #ccc; padding:3px 5px; }
+    .peer-tag { border:0.5px solid #888; padding:0 3px; font-size:8px; }
+    a { color:black !important; text-decoration:none !important; }
+    .tier-trend-svg, .spark { background:white; }
+    .yoy-cell { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  }
 </style>
 </head>
 <body>
@@ -103,7 +131,12 @@
 <section class="ops-section">
   <div class="ops-wrap">
     <div class="rev-panel active" id="panel-cmp">
-      <h2 style="font-size:17px; margin:0 0 14px 0;">13-peer 매출 비교 — <span class="yr-label">FY2024</span></h2>
+      <h2 class="anchor-target" id="sec-table" style="font-size:17px; margin:0 0 6px 0;">13-peer 매출 비교 — <span class="yr-label">FY2024</span></h2>
+      <nav class="anchor-nav" aria-label="페이지 내 점프">
+        <a href="#sec-table">📋 비교 표</a>
+        <a href="#sec-trend">📈 Tier 추세 차트</a>
+        <a href="#sec-yoy">🌡️ YoY 히트맵</a>
+      </nav>
       <p style="font-size:12px; color:var(--ops-muted); margin:0 0 6px 0;">선택 연도 그룹 매출 + 골프 부문 매출(공시 peer) + 골프 비중 + YoY · <strong>5년 추이 sparkline</strong>(FY20→24, 호박색 점 = 선택 연도) · <strong>5Y CAGR</strong>(연평균 성장률).</p>
       <div class="action-bar">
         <button class="action-btn" id="copy-tsv-btn" aria-label="현재 표를 TSV로 클립보드 복사">📋 표 복사 (TSV)</button>
@@ -128,7 +161,7 @@
         </table>
       </div>
 
-      <h3 style="font-size:15px; margin:24px 0 6px 0;">📈 Tier 추세 차트 (FY2020→2024)
+      <h3 class="anchor-target" id="sec-trend" style="font-size:15px; margin:24px 0 6px 0;">📈 Tier 추세 차트 (FY2020→2024)
         <span class="trend-mode-toggle" role="group" aria-label="추세 모드">
           <button class="active" data-mode="median">중위</button>
           <button data-mode="sum">합계</button>
@@ -145,7 +178,7 @@
         </div>
       </div>
 
-      <h3 style="font-size:15px; margin:24px 0 6px 0;">🌡️ YoY 성장 히트맵 (그룹 매출)</h3>
+      <h3 class="anchor-target" id="sec-yoy" style="font-size:15px; margin:24px 0 6px 0;">🌡️ YoY 성장 히트맵 (그룹 매출)</h3>
       <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">peer × 연도 매트릭스. 셀 색상은 YoY %를 나타냄 — <span style="color:#16a34a; font-weight:700;">진녹색=고성장</span> · <span style="color:#b91c1c; font-weight:700;">진빨강=감소</span>. 한눈에 성장 패턴 파악.</p>
       <div style="overflow-x:auto;">
         <table class="yoy-matrix" id="yoy-matrix">
@@ -881,6 +914,21 @@ let currentYear = '2024';
     if (e.target.matches('input,textarea,select')) return;
     if (e.key === 'd') themeBtn.click();
   });
+  // Scroll-spy for anchor nav
+  const anchorLinks = document.querySelectorAll('.anchor-nav a');
+  const anchorTargets = Array.from(anchorLinks).map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  function updateActiveAnchor() {
+    let activeIdx = 0;
+    const scrollY = window.scrollY + 120;
+    anchorTargets.forEach((el, i) => {
+      if (el && el.offsetTop <= scrollY) activeIdx = i;
+    });
+    anchorLinks.forEach((a, i) => a.classList.toggle('active', i === activeIdx));
+  }
+  if (anchorTargets.length) {
+    updateActiveAnchor();
+    window.addEventListener('scroll', updateActiveAnchor, { passive: true });
+  }
   render(currentYear);
 })();
 </script>
