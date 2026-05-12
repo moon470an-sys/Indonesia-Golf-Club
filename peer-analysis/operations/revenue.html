@@ -6,7 +6,7 @@
 <title>매출 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260512c54" />
+<link rel="stylesheet" href="ops-style.css?v=20260512c75" />
 <style>
   .year-bar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:14px 0 4px 0; }
   .year-bar label { font-size:13px; font-weight:600; color:var(--ops-ink-soft); }
@@ -88,6 +88,11 @@
   .yoy-matrix tbody tr:hover td.peer-cell { background:rgba(45,80,22,0.08); }
   body.theme-dark .yoy-matrix tbody tr:hover td.peer-cell { background:rgba(34,197,94,0.12); }
   .yoy-matrix td.col-highlight { outline:2px solid rgba(245,158,11,0.5); outline-offset:-2px; }
+  /* Cross-section peer highlight (main table ↔ YoY heatmap) */
+  .ops-tbl tbody tr.peer-highlight td:first-child { background:rgba(245,158,11,0.18); box-shadow:inset 3px 0 0 #f59e0b; }
+  .yoy-matrix tbody tr.peer-highlight td.peer-cell { background:rgba(245,158,11,0.18); box-shadow:inset 3px 0 0 #f59e0b; }
+  body.theme-dark .ops-tbl tbody tr.peer-highlight td:first-child { background:rgba(245,158,11,0.24); }
+  body.theme-dark .yoy-matrix tbody tr.peer-highlight td.peer-cell { background:rgba(245,158,11,0.24); }
   /* Action bar */
   .action-bar { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:6px 0 12px 0; }
   .action-btn { padding:6px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); display:inline-flex; align-items:center; gap:4px; }
@@ -1174,6 +1179,40 @@ let currentYear = '2024';
       document.querySelectorAll(`#yoy-matrix-body td[data-col="${col}"]`).forEach(c => c.classList.remove('col-highlight'));
     });
   });
+  // Cross-section peer highlight: main 비교 표 ↔ YoY 히트맵 hover sync
+  function getTickerFromTr(tr) {
+    if (!tr) return null;
+    const a = tr.querySelector('a[href^="clubs/"]');
+    if (!a) return null;
+    const m = a.getAttribute('href').match(/clubs\/([a-z]+)\.html/i);
+    return m ? m[1].toUpperCase() : null;
+  }
+  function attachPeerHoverSync(containerId) {
+    const c = document.getElementById(containerId);
+    if (!c) return;
+    c.addEventListener('mouseover', (e) => {
+      const tr = e.target.closest('tr');
+      if (!tr) return;
+      const ticker = getTickerFromTr(tr);
+      if (!ticker) return;
+      ['cmp-tbody','yoy-matrix-body'].forEach(id => {
+        const tb = document.getElementById(id);
+        if (!tb) return;
+        tb.querySelectorAll('tr').forEach(r => {
+          if (getTickerFromTr(r) === ticker) r.classList.add('peer-highlight');
+        });
+      });
+    });
+    c.addEventListener('mouseout', (e) => {
+      const tr = e.target.closest('tr');
+      if (!tr) return;
+      const rel = e.relatedTarget && e.relatedTarget.closest && e.relatedTarget.closest('tr');
+      if (rel && getTickerFromTr(rel) === getTickerFromTr(tr)) return;
+      document.querySelectorAll('.peer-highlight').forEach(r => r.classList.remove('peer-highlight'));
+    });
+  }
+  attachPeerHoverSync('cmp-tbody');
+  attachPeerHoverSync('yoy-matrix-body');
   // localStorage state: year + active tab + trend mode
   function saveRevState() {
     const tab = document.querySelector('.rev-tab.active');
