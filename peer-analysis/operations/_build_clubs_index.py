@@ -308,10 +308,10 @@ html = '''<!DOCTYPE html>
   @media (max-width: 720px) {
     .tier-stats { grid-template-columns:1fr; }
   }
-  /* Share link button */
-  .share-btn { padding:6px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
-  .share-btn:hover { background:rgba(45,80,22,0.05); }
-  .share-btn.copied { background:#16a34a; color:white; border-color:#16a34a; }
+  /* Share / export buttons */
+  .share-btn, .export-btn { padding:6px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
+  .share-btn:hover, .export-btn:hover { background:rgba(45,80,22,0.05); }
+  .share-btn.copied, .export-btn.copied { background:#16a34a; color:white; border-color:#16a34a; }
   /* Theme toggle button (floats at top-right of hero) */
   .theme-toggle { position:absolute; top:14px; right:14px; padding:5px 10px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:999px; font-size:13px; cursor:pointer; color:var(--ops-ink); z-index:10; }
   .theme-toggle:hover { background:rgba(45,80,22,0.06); }
@@ -460,6 +460,7 @@ html = '''<!DOCTYPE html>
         <button data-view="table" role="tab" aria-selected="false">📋 표</button>
       </div>
       <button class="share-btn" id="share-btn" aria-label="현재 필터 링크 복사">🔗 링크 복사</button>
+      <button class="export-btn" id="export-all-btn" aria-label="전체 데이터 CSV 다운로드">⬇ 전체 CSV</button>
       <div class="results-info" id="results-info">13 / 13 표시</div>
     </div>
     <div class="data-meta">
@@ -754,15 +755,21 @@ function syncURL() {
     b.classList.toggle('active', a); b.setAttribute('aria-selected', a ? 'true' : 'false');
   });
 
-  // Dark mode toggle (persists in localStorage, also follows system pref on first visit)
+  // Dark mode toggle (persists in localStorage, follows system pref + auto-update if user hasn't chosen)
   const themeBtn = document.getElementById('theme-toggle');
   function applyTheme(theme) {
     if (theme === 'dark') { document.body.classList.add('theme-dark'); themeBtn.textContent = '☀️'; themeBtn.setAttribute('title','라이트 모드로 전환 (d)'); }
     else                  { document.body.classList.remove('theme-dark'); themeBtn.textContent = '🌙'; themeBtn.setAttribute('title','다크 모드로 전환 (d)'); }
   }
   const savedTheme = localStorage.getItem('ops-theme');
-  const sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  applyTheme(savedTheme || (sysDark ? 'dark' : 'light'));
+  const mqlDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+  applyTheme(savedTheme || (mqlDark && mqlDark.matches ? 'dark' : 'light'));
+  // Auto-follow system pref changes while user hasn't explicitly chosen
+  if (mqlDark && mqlDark.addEventListener) {
+    mqlDark.addEventListener('change', (e) => {
+      if (!localStorage.getItem('ops-theme')) applyTheme(e.matches ? 'dark' : 'light');
+    });
+  }
   themeBtn.addEventListener('click', () => {
     const newT = document.body.classList.contains('theme-dark') ? 'light' : 'dark';
     localStorage.setItem('ops-theme', newT);
@@ -942,6 +949,33 @@ function syncURL() {
         filterPills[next].click();
       }
     });
+  });
+  // Full 13-peer CSV export
+  const exportAllBtn = document.getElementById('export-all-btn');
+  if (exportAllBtn) exportAllBtn.addEventListener('click', (e) => {
+    const headers = ['Ticker','Name','Tier','Location','Holes','Area','FY24Rev(B)','매출YoY(%)','순이익률(%)','EBITDA마진(%)','총자산(B)','ROA(%)'];
+    const lines = [headers.join(',')];
+    cardOriginalOrder.forEach(card => {
+      const csvEsc = s => { const v = String(s || ''); return v.includes(',') || v.includes('"') ? '"' + v.replace(/"/g,'""') + '"' : v; };
+      const num = v => (v === '' || v === undefined || v === null || parseFloat(v) <= -1e14) ? '' : v;
+      const holes = card.querySelector('div[style*="홀"]')?.parentElement?.textContent?.replace(/홀/,'').trim() || '';
+      lines.push([
+        csvEsc(card.dataset.ticker),
+        csvEsc(card.dataset.name),
+        csvEsc((card.dataset.tierLabel || '').replace(/^[^ ]+ /,'')),
+        csvEsc(card.dataset.loc),
+        '', '',
+        num(card.dataset.rev), num(card.dataset.yoy), num(card.dataset.margin),
+        num(card.dataset.ebmargin), num(card.dataset.ta), num(card.dataset.roa),
+      ].join(','));
+    });
+    const csv = '﻿' + lines.join('\n');
+    const blob = new Blob([csv], { type:'text/csv;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href = url; a.download = 'clubs_fy2024.csv';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+    const orig = exportAllBtn.textContent; exportAllBtn.textContent = '✓ 다운로드'; exportAllBtn.classList.add('copied');
+    setTimeout(() => { exportAllBtn.textContent = orig; exportAllBtn.classList.remove('copied'); }, 1600);
   });
 
   applyState();
