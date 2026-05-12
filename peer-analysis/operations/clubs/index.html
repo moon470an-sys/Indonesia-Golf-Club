@@ -33,6 +33,9 @@
   .club-table td.num.heat { position:relative; }
   .club-table td.num.heat .heat-bar { position:absolute; left:4px; right:4px; bottom:2px; height:2px; border-radius:1px; opacity:0.85; }
   body.theme-dark .club-table td.num.heat .heat-bar { opacity:0.7; }
+  /* Search match highlight */
+  mark.q-match { background:rgba(245,158,11,0.35); color:inherit; padding:0 2px; border-radius:2px; font-weight:700; }
+  body.theme-dark mark.q-match { background:rgba(245,158,11,0.5); color:#0f172a; }
   .table-wrap { display:none; margin-top:20px; overflow-x:auto; background:var(--ops-surface); border:1px solid var(--ops-line); border-radius:10px; }
   .table-wrap.active { display:block; }
   .club-grid.hidden { display:none; }
@@ -1067,6 +1070,48 @@ function syncURL() {
     }
     return `rgb(${r},${g},${b})`;
   }
+  // Search match highlight — wraps matched substring in <mark>; safe across re-applies
+  function escapeRegex(s) { return s.replace(/[.*+?^${}()|[\]\]/g, '\$&'); }
+  function highlightMatches(q) {
+    // Clear existing marks across cards and rows
+    document.querySelectorAll('mark.q-match').forEach(el => {
+      const parent = el.parentNode;
+      if (parent) { parent.replaceChild(document.createTextNode(el.textContent), el); parent.normalize(); }
+    });
+    if (!q || q.length < 1) return;
+    const re = new RegExp('(' + escapeRegex(q) + ')', 'gi');
+    // Card: highlight in name, sub, loc, parent (skip data attrs, sparkline)
+    grid.querySelectorAll('.club-card').forEach(card => {
+      // Skip hidden
+      if (card.style.display === 'none') return;
+      // Walk text nodes in card except svg
+      const walker = document.createTreeWalker(card, NodeFilter.SHOW_TEXT, {
+        acceptNode: (node) => {
+          // Skip SVG inner text and empty
+          let p = node.parentElement;
+          while (p && p !== card) { if (p.tagName === 'svg' || p.tagName === 'SCRIPT' || p.tagName === 'STYLE') return NodeFilter.FILTER_REJECT; p = p.parentElement; }
+          return node.nodeValue && re.test(node.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+        }
+      });
+      const toMark = [];
+      let n;
+      while ((n = walker.nextNode())) toMark.push(n);
+      toMark.forEach(node => {
+        const frag = document.createDocumentFragment();
+        const parts = node.nodeValue.split(re);
+        parts.forEach((part, i) => {
+          if (i % 2 === 1) {
+            const m = document.createElement('mark');
+            m.className = 'q-match'; m.textContent = part;
+            frag.appendChild(m);
+          } else if (part) {
+            frag.appendChild(document.createTextNode(part));
+          }
+        });
+        node.parentNode.replaceChild(frag, node);
+      });
+    });
+  }
   function applyTableHeat() {
     const visibleRows = Array.from(tbody.querySelectorAll('.club-row')).filter(r => r.style.display !== 'none');
     HEAT_COLS.forEach(col => {
@@ -1129,6 +1174,8 @@ function syncURL() {
     }
     // 4) Cell heat-map for visible rows
     applyTableHeat();
+    // 5) Highlight search matches
+    highlightMatches(state.q);
   }
 
   tierButtons.forEach(b => b.addEventListener('click', () => {
