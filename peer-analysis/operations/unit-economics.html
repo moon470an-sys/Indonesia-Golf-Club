@@ -60,6 +60,14 @@
   body.theme-dark .anchor-nav a:hover { background:rgba(34,197,94,0.08); }
   html { scroll-behavior:smooth; }
   .anchor-target { scroll-margin-top:80px; }
+  /* Mobile column priority — hide less critical cols on narrow screens */
+  @media (max-width: 720px) {
+    .ops-tbl .col-low-prio { display:none; }
+  }
+  /* CAGR cell color coding */
+  .cagr-pos { color:#16a34a; font-weight:700; }
+  .cagr-neg { color:#b91c1c; font-weight:700; }
+  .cagr-zero { color:#666; }
   /* Print: minimal, expand table */
   @media print {
     @page { size: A4 landscape; margin: 10mm; }
@@ -145,19 +153,20 @@
         <thead>
           <tr>
             <th>Peer</th>
-            <th>그룹명</th>
+            <th class="col-low-prio">그룹명</th>
             <th class="num sortable" data-sort="holes">홀</th>
-            <th class="num sortable" data-sort="area">면적 (ha)</th>
-            <th class="num sortable" data-sort="emp">정직원</th>
+            <th class="num sortable col-low-prio" data-sort="area">면적 (ha)</th>
+            <th class="num sortable col-low-prio" data-sort="emp">정직원</th>
             <th class="num sortable" data-sort="golfRev">골프 매출</th>
-            <th class="num">매출 추이 (5Y)</th>
+            <th class="num col-low-prio">매출 추이 (5Y)</th>
+            <th class="num sortable" data-sort="revCagr">5Y CAGR</th>
             <th class="num sortable desc" data-sort="revPerHole">홀당 매출</th>
-            <th class="num sortable" data-sort="revPerHa">ha당 매출</th>
-            <th class="num sortable" data-sort="revPerEmp">1인당 매출</th>
+            <th class="num sortable col-low-prio" data-sort="revPerHa">ha당 매출</th>
+            <th class="num sortable col-low-prio" data-sort="revPerEmp">1인당 매출</th>
             <th class="num sortable" data-sort="opMargin">영업이익률</th>
-            <th class="num sortable" data-sort="ebMargin">EBITDA 마진</th>
-            <th class="num sortable" data-sort="ebPerHole">홀당 EBITDA</th>
-            <th class="num sortable" data-sort="opPerEmp">1인당 영업이익</th>
+            <th class="num sortable col-low-prio" data-sort="ebMargin">EBITDA 마진</th>
+            <th class="num sortable col-low-prio" data-sort="ebPerHole">홀당 EBITDA</th>
+            <th class="num sortable col-low-prio" data-sort="opPerEmp">1인당 영업이익</th>
           </tr>
         </thead>
         <tbody id="main-tbody"></tbody>
@@ -298,10 +307,25 @@ function computeMainRows(year){
     const grpRevBn = grpRev ? grpRev/1e9 : null;
     const grpOpBn = (grpOp !== null && grpOp !== undefined) ? grpOp/1e9 : null;
     const grpEbBn = (grpEb !== null && grpEb !== undefined) ? grpEb/1e9 : null;
+    // 5Y CAGR of group revenue (first non-null to last non-null in 2020-2024)
+    const years = ['2020','2021','2022','2023','2024'];
+    const series = years.map(y => d.yearly[y] ? d.yearly[y].rev : null);
+    let firstIdx = -1, lastIdx = -1;
+    for (let i = 0; i < series.length; i++) {
+      if (series[i] !== null && series[i] !== undefined && series[i] > 0) {
+        if (firstIdx === -1) firstIdx = i;
+        lastIdx = i;
+      }
+    }
+    let revCagr = null;
+    if (firstIdx !== -1 && lastIdx > firstIdx) {
+      revCagr = (Math.pow(series[lastIdx] / series[firstIdx], 1/(lastIdx - firstIdx)) - 1) * 100;
+    }
     return {
       t, d,
       holes: d.holes, area: d.area, emp,
       golfRev: golfRevBn,
+      revCagr,
       revPerHole: (golfRevBn && d.holes) ? golfRevBn / d.holes : null,
       revPerHa:   (golfRevBn && d.area)  ? golfRevBn / d.area  : null,
       revPerEmp:  (grpRevBn  && emp)     ? grpRevBn  / emp     : null,
@@ -344,6 +368,7 @@ function renderMain(year){
   if (rc) rc.textContent = `${rows.length} / ${allRows.length} 표시`;
   // Determine min/max per heat-map metric (over filtered rows so heat reflects current peer-group)
   const metrics = {
+    revCagr:    { higher:true },
     revPerHole: { higher:true },
     revPerHa:   { higher:true },
     revPerEmp:  { higher:true },
@@ -374,23 +399,29 @@ function renderMain(year){
     const bar = (s && val !== null && val !== undefined) ? heatBar(val, s.min, s.max, metrics[key].higher) : '';
     return `<td class="num heat">${fmt}${bar}</td>`;
   };
+  const fmtCagr = v => {
+    if (v === null || v === undefined) return '—';
+    const cls = v > 0 ? 'cagr-pos' : v < 0 ? 'cagr-neg' : 'cagr-zero';
+    return `<span class="${cls}">${v >= 0 ? '+' : ''}${v.toFixed(1)}%</span>`;
+  };
   const html = sorted.map(r => {
     const color = TIER_COLOR[r.d.tier] || '#666';
     return `<tr>
       <td class="peer"><a href="clubs/${r.t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${r.t}</a><span class="peer-tag peer-tag-${r.d.tier}">${r.d.tier_label}</span></td>
-      <td>${r.d.name.slice(0,22)}</td>
+      <td class="col-low-prio">${r.d.name.slice(0,22)}</td>
       <td class="num">${fmtNum(r.holes)}</td>
-      <td class="num">${fmtNum(r.area, 1)}</td>
-      <td class="num">${fmtNum(r.emp)}</td>
+      <td class="num col-low-prio">${fmtNum(r.area, 1)}</td>
+      <td class="num col-low-prio">${fmtNum(r.emp)}</td>
       <td class="num">${r.golfRev !== null ? r.golfRev.toFixed(1)+'B' : '—'}</td>
-      <td class="num" style="padding:4px 8px;">${miniSpark(r.d.yearly, color, currentYear)}</td>
+      <td class="num col-low-prio" style="padding:4px 8px;">${miniSpark(r.d.yearly, color, currentYear)}</td>
+      <td class="num">${fmtCagr(r.revCagr)}</td>
       ${heat('revPerHole', r.revPerHole, `<strong>${r.revPerHole !== null ? (r.revPerHole < 1 ? (r.revPerHole*1000).toFixed(0)+'M' : r.revPerHole.toFixed(2)+'B') : '—'}</strong>`)}
-      ${heat('revPerHa',   r.revPerHa,   r.revPerHa !== null ? (r.revPerHa < 1 ? (r.revPerHa*1000).toFixed(0)+'M' : r.revPerHa.toFixed(2)+'B') : '—')}
-      ${heat('revPerEmp',  r.revPerEmp,  r.revPerEmp !== null ? (r.revPerEmp < 1 ? (r.revPerEmp*1000).toFixed(0)+'M' : r.revPerEmp.toFixed(2)+'B') : '—')}
+      ${heat('revPerHa',   r.revPerHa,   r.revPerHa !== null ? (r.revPerHa < 1 ? (r.revPerHa*1000).toFixed(0)+'M' : r.revPerHa.toFixed(2)+'B') : '—').replace('class="num heat"','class="num heat col-low-prio"')}
+      ${heat('revPerEmp',  r.revPerEmp,  r.revPerEmp !== null ? (r.revPerEmp < 1 ? (r.revPerEmp*1000).toFixed(0)+'M' : r.revPerEmp.toFixed(2)+'B') : '—').replace('class="num heat"','class="num heat col-low-prio"')}
       ${heat('opMargin',   r.opMargin,   fmtPct(r.opMargin))}
-      ${heat('ebMargin',   r.ebMargin,   fmtPct(r.ebMargin))}
-      ${heat('ebPerHole',  r.ebPerHole,  r.ebPerHole !== null ? (Math.abs(r.ebPerHole) < 1 ? (r.ebPerHole*1000).toFixed(0)+'M' : r.ebPerHole.toFixed(2)+'B') : '—')}
-      ${heat('opPerEmp',   r.opPerEmp,   r.opPerEmp !== null ? (Math.abs(r.opPerEmp) < 1 ? (r.opPerEmp*1000).toFixed(0)+'M' : r.opPerEmp.toFixed(2)+'B') : '—')}
+      ${heat('ebMargin',   r.ebMargin,   fmtPct(r.ebMargin)).replace('class="num heat"','class="num heat col-low-prio"')}
+      ${heat('ebPerHole',  r.ebPerHole,  r.ebPerHole !== null ? (Math.abs(r.ebPerHole) < 1 ? (r.ebPerHole*1000).toFixed(0)+'M' : r.ebPerHole.toFixed(2)+'B') : '—').replace('class="num heat"','class="num heat col-low-prio"')}
+      ${heat('opPerEmp',   r.opPerEmp,   r.opPerEmp !== null ? (Math.abs(r.opPerEmp) < 1 ? (r.opPerEmp*1000).toFixed(0)+'M' : r.opPerEmp.toFixed(2)+'B') : '—').replace('class="num heat"','class="num heat col-low-prio"')}
     </tr>`;
   });
   document.getElementById('main-tbody').innerHTML = html.join('');
@@ -467,7 +498,7 @@ function buildTableExport(year, sep) {
       return sortState.dir === 'desc' ? (vb - va) : (va - vb);
     });
   }
-  const headers = ['Peer','그룹명','Tier','홀','면적(ha)','정직원','골프매출(B IDR)','홀당매출(B IDR)','ha당매출(B IDR)','1인당매출(B IDR)','영업이익률(%)','EBITDA마진(%)','홀당EBITDA(B IDR)','1인당영업이익(B IDR)'];
+  const headers = ['Peer','그룹명','Tier','홀','면적(ha)','정직원','골프매출(B IDR)','5Y_CAGR(%)','홀당매출(B IDR)','ha당매출(B IDR)','1인당매출(B IDR)','영업이익률(%)','EBITDA마진(%)','홀당EBITDA(B IDR)','1인당영업이익(B IDR)'];
   const esc = (v) => {
     if (v === null || v === undefined) return '';
     const s = String(v);
@@ -488,6 +519,7 @@ function buildTableExport(year, sep) {
       fmt(r.area, 1),
       fmt(r.emp, 0),
       fmt(r.golfRev, 2),
+      fmt(r.revCagr, 2),
       fmt(r.revPerHole, 3),
       fmt(r.revPerHa, 3),
       fmt(r.revPerEmp, 3),
