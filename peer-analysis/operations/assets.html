@@ -74,6 +74,18 @@
     .ops-tbl .col-low-prio { display:none; }
   }
   .tip { cursor:help; font-size:9px; vertical-align:super; opacity:0.7; }
+  /* Top performer cards */
+  .top-perf { display:grid; grid-template-columns:repeat(auto-fit, minmax(170px, 1fr)); gap:10px; margin:14px 0 10px 0; }
+  .top-perf-card { background:linear-gradient(135deg, rgba(245,158,11,0.08), rgba(245,158,11,0.02)); border:1px solid var(--ops-line); border-left:3px solid #f59e0b; border-radius:8px; padding:8px 12px; }
+  .top-perf-name { font-size:10.5px; font-weight:700; color:var(--ops-muted); letter-spacing:0.04em; text-transform:uppercase; margin-bottom:3px; }
+  .top-perf-winner { font-size:14px; font-weight:700; color:var(--ops-ink); }
+  .top-perf-winner a { color:inherit; text-decoration:none; }
+  .top-perf-value { font-size:11.5px; color:#b45309; font-weight:700; font-variant-numeric:tabular-nums; }
+  body.theme-dark .top-perf-card { background:linear-gradient(135deg, rgba(245,158,11,0.14), rgba(245,158,11,0.04)); }
+  .data-meta { font-size:11px; color:var(--ops-muted); margin-top:6px; padding:6px 0 0 0; border-top:1px dashed var(--ops-line); }
+  .data-meta strong { color:var(--ops-ink-soft); }
+  .data-meta .sep { margin:0 8px; opacity:0.4; }
+  @media print { .top-perf { display:none; } .data-meta { font-size:9px; } }
   /* Tier filter pills */
   .tier-pills { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:6px 0; }
   .tier-pill { padding:5px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:999px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
@@ -121,6 +133,14 @@
   <div class="ops-wrap">
     <h1>시설 · 자산</h1>
     <p class="lede">물리적 시설 구성 + 재무·자산 효율성. 13 peer 한 표.</p>
+    <div class="top-perf" id="top-perf"></div>
+    <div class="data-meta">
+      📅 데이터: <strong>FY2024 연결 P&amp;L + 대차대조표</strong>
+      <span class="sep">·</span>
+      시설 데이터: <strong>AR Profile + 자사 공시</strong>
+      <span class="sep">·</span>
+      출처: <strong>IDX (idx.co.id)</strong>
+    </div>
     <div class="ast-tab-bar">
       <div class="ast-tab active" data-panel="phy">① 시설 구성</div>
       <div class="ast-tab" data-panel="prod">② 자산 생산성 (FY2024)</div>
@@ -466,6 +486,41 @@ function heatBar(value, min, max, higherBetter){
 let sortState = { key: 'turnover', dir: 'desc' };
 let prodTierFilter = 'all';
 
+function renderTopPerf() {
+  const rows = computeRows();
+  function bestHigh(key, fmt) {
+    let best = null, bestV = -Infinity;
+    rows.forEach(r => {
+      const v = r[key];
+      if (v !== null && v !== undefined && v > bestV) { bestV = v; best = r; }
+    });
+    return best ? { ticker: best.t, display: fmt(bestV) } : null;
+  }
+  function bestLow(key, fmt) {
+    let best = null, bestV = Infinity;
+    rows.forEach(r => {
+      const v = r[key];
+      if (v !== null && v !== undefined && v < bestV) { bestV = v; best = r; }
+    });
+    return best ? { ticker: best.t, display: fmt(bestV) } : null;
+  }
+  const fmtRatio2 = v => v !== null && v !== undefined ? v.toFixed(3) : '—';
+  const fmtPct1 = v => v !== null && v !== undefined ? `${v >= 0 ? '+' : ''}${v.toFixed(1)}%` : '—';
+  const perfs = [
+    { label: '🏆 최고 자산회전율', data: bestHigh('turnover', fmtRatio2) },
+    { label: '🏆 최고 ROA', data: bestHigh('roa', fmtPct1) },
+    { label: '🏆 최저 부채비율', data: bestLow('debt', fmtPct1) },
+    { label: '🏆 최저 자기자본승수', data: bestLow('leverage', v => v.toFixed(2)+'×') },
+  ];
+  const root = document.getElementById('top-perf');
+  if (!root) return;
+  root.innerHTML = perfs.filter(p => p.data).map(p => `<div class="top-perf-card">
+    <div class="top-perf-name">${p.label}</div>
+    <div class="top-perf-winner"><a href="clubs/${p.data.ticker.toLowerCase()}.html">${p.data.ticker}</a></div>
+    <div class="top-perf-value">${p.data.display}</div>
+  </div>`).join('');
+}
+
 function computeRows() {
   return PEER_ORDER.map(t => {
     const m = PEER_META[t];
@@ -792,6 +847,7 @@ function flashSuccess(btn, label){
   document.querySelectorAll('.ast-tab, #prod-tier-pills .tier-pill, #prod-tbl .sortable').forEach(el => {
     el.addEventListener('click', () => setTimeout(saveAssetState, 0));
   });
+  renderTopPerf();
   renderProd();
 })();
 </script>
