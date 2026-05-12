@@ -104,6 +104,14 @@
   .help-fab { position:fixed; bottom:18px; right:18px; width:38px; height:38px; border-radius:50%; background:var(--ops-surface); border:1px solid var(--ops-line); cursor:pointer; font-size:16px; color:var(--ops-ink-soft); z-index:50; box-shadow:0 2px 8px rgba(0,0,0,0.10); }
   .help-fab:hover { background:rgba(45,80,22,0.06); color:var(--ops-ink); }
   @media print { .help-fab, .help-overlay { display:none !important; } }
+  /* Auto-insight box */
+  .insights { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:14px 0 6px 0; }
+  .insight { background:linear-gradient(135deg, rgba(45,80,22,0.06), rgba(45,80,22,0.02)); border:1px solid var(--ops-line); border-left:3px solid var(--ops-green); border-radius:8px; padding:10px 14px; font-size:12.5px; color:var(--ops-ink-soft); }
+  .insight strong { color:var(--ops-ink); }
+  .insight .label { display:inline-block; font-size:10.5px; font-weight:700; color:var(--ops-green); letter-spacing:0.04em; text-transform:uppercase; margin-bottom:3px; }
+  body.theme-dark .insight { background:linear-gradient(135deg, rgba(34,197,94,0.08), rgba(34,197,94,0.02)); }
+  @media (max-width:720px) { .insights { grid-template-columns:1fr; } }
+  @media print { .insights { display:none; } }
   /* Tier filter pills */
   .tier-pills { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:6px 0; }
   .tier-pill { padding:5px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:999px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
@@ -153,6 +161,7 @@
     <h1>시설 · 자산</h1>
     <p class="lede">물리적 시설 구성 + 재무·자산 효율성. 13 peer 한 표.</p>
     <div class="top-perf" id="top-perf"></div>
+    <div class="insights" id="insights"></div>
     <div class="data-meta">
       📅 데이터: <strong>FY2024 연결 P&amp;L + 대차대조표</strong>
       <span class="sep">·</span>
@@ -518,6 +527,41 @@ function heatBar(value, min, max, higherBetter){
 
 let sortState = { key: 'turnover', dir: 'desc' };
 let prodTierFilter = 'all';
+
+function renderInsights() {
+  const root = document.getElementById('insights');
+  if (!root) return;
+  const rows = computeRows();
+  function median(arr) {
+    const v = arr.filter(x => x !== null && x !== undefined && !isNaN(x)).sort((a,b)=>a-b);
+    return v.length ? (v.length%2 ? v[Math.floor(v.length/2)] : (v[v.length/2-1]+v[v.length/2])/2) : null;
+  }
+  // Tier turnover comparison
+  const ppT = median(rows.filter(r => r.m.tier === 'pp').map(r => r.turnover));
+  const twnT = median(rows.filter(r => r.m.tier === 'twn').map(r => r.turnover));
+  // High leverage warning: count peers with leverage > 2.5
+  const highLev = rows.filter(r => r.leverage && r.leverage > 2.5).length;
+  const insights = [];
+  if (ppT !== null && twnT !== null) {
+    const ratio = ppT / (twnT || 1);
+    insights.push({
+      label: '💡 자산회전율 격차',
+      text: `<strong>Pure-play 중위 ${ppT.toFixed(3)}</strong> vs Township 중위 ${twnT.toFixed(3)} — Pure-play가 Township의 <strong>${ratio.toFixed(1)}×</strong> (자산 효율성).`
+    });
+  }
+  if (highLev > 0) {
+    insights.push({
+      label: '⚠ 고레버리지 peer',
+      text: `<strong>${highLev} / 13 peer</strong>가 자기자본승수 2.5×↑ (총부채 ≈ 자기자본의 1.5×↑). 차입 의존도 주의.`
+    });
+  } else {
+    insights.push({
+      label: '✓ 안정적 자본 구조',
+      text: `자기자본승수 2.5×↑ peer 없음. 업계 전반 부채 의존도 적정 수준.`
+    });
+  }
+  root.innerHTML = insights.map(i => `<div class="insight"><div class="label">${i.label}</div>${i.text}</div>`).join('');
+}
 
 function renderTopPerf() {
   const rows = computeRows();
@@ -939,6 +983,7 @@ function flashSuccess(btn, label){
   }
   wireArrowNav(Array.from(document.querySelectorAll('.ast-tab')));
   wireArrowNav(Array.from(document.querySelectorAll('#prod-tier-pills .tier-pill')));
+  renderInsights();
   renderTopPerf();
   renderProd();
 })();
