@@ -477,6 +477,12 @@ html = '''<!DOCTYPE html>
   .action-btn.success { background:#16a34a; color:white; border-color:#16a34a; }
   /* Highest-value cell in matrix row */
   #opex-cat-tbody td.row-max { background:rgba(245,158,11,0.10); font-weight:700; border-radius:3px; }
+  /* Category matrix hover cross-highlight */
+  #opex-cat-tbl tbody tr:hover td { background:rgba(45,80,22,0.04); }
+  #opex-cat-tbl tbody tr:hover td:first-child { background:rgba(45,80,22,0.10); }
+  body.theme-dark #opex-cat-tbl tbody tr:hover td { background:rgba(34,197,94,0.06); }
+  body.theme-dark #opex-cat-tbl tbody tr:hover td:first-child { background:rgba(34,197,94,0.14); }
+  #opex-cat-tbl td.col-highlight { outline:2px solid rgba(245,158,11,0.55); outline-offset:-2px; position:relative; z-index:1; }
   /* Theme toggle */
   .theme-toggle { position:absolute; top:14px; right:14px; padding:5px 10px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:999px; font-size:13px; cursor:pointer; color:var(--ops-ink); z-index:10; }
   .theme-toggle:hover { background:rgba(45,80,22,0.06); }
@@ -1070,9 +1076,9 @@ function render(year){
     sourceByPeer[t] = (hasC && hasO) ? 'C+O' : (hasC ? 'C' : 'O');
   });
   const srcTag = s => s === 'C+O' ? '<span style="font-size:9px; color:var(--ops-green); font-weight:700;">ⓒ</span>' : '<span style="font-size:9px; color:var(--ops-muted);">ⓞ</span>';
-  const theadCells = ['<th>카테고리</th>'].concat(opexCatPeers.map(t => {
+  const theadCells = ['<th>카테고리</th>'].concat(opexCatPeers.map((t, i) => {
     const d = PEER_DATA[t];
-    return `<th class="num"><a href="clubs/${t.toLowerCase()}.html" style="color:inherit; text-decoration:none;">${t}</a> ${srcTag(sourceByPeer[t])} <span class="peer-tag peer-tag-${d.tier}" style="font-size:9px; padding:1px 5px;">${d.tier_label.replace(/^[^ ]+ /,'')}</span></th>`;
+    return `<th class="num" data-col="${i}"><a href="clubs/${t.toLowerCase()}.html" style="color:inherit; text-decoration:none;">${t}</a> ${srcTag(sourceByPeer[t])} <span class="peer-tag peer-tag-${d.tier}" style="font-size:9px; padding:1px 5px;">${d.tier_label.replace(/^[^ ]+ /,'')}</span></th>`;
   })).join('');
   document.getElementById('opex-cat-thead').innerHTML = '<tr>' + theadCells + '</tr>';
   // Body rows — use scope_rev for ratio (same as ② ③ tabs, honest comparison)
@@ -1081,25 +1087,25 @@ function render(year){
     // Find max value in this row across peers
     let maxVal = 0;
     opexCatPeers.forEach(t => { const v = (mergedByPeer[t] || {})[cat] || 0; if (v > maxVal) maxVal = v; });
-    const cells = opexCatPeers.map(t => {
+    const cells = opexCatPeers.map((t, i) => {
       const v = (mergedByPeer[t] || {})[cat];
       const scopeRev = PEER_DATA[t].scope_rev[year];
       const pct = (v && scopeRev) ? (v/scopeRev*100) : null;
       const pctTxt = pct !== null ? `<br><span style="color:var(--ops-muted); font-size:10.5px;">${pct.toFixed(2)}%</span>` : '';
       const isMax = (v && v === maxVal && maxVal > 0) ? ' row-max' : '';
-      return `<td class="num${isMax}">${fmtBn(v)}${pctTxt}</td>`;
+      return `<td class="num${isMax}" data-col="${i}">${fmtBn(v)}${pctTxt}</td>`;
     }).join('');
     return `<tr><td><strong>${cat}</strong></td>${cells}</tr>`;
   });
   // Stash for CSV export
   window._matrixCtx = { cats: CAT_ORDER, peers: opexCatPeers, merged: mergedByPeer, year };
   // Total row — COGS + OpEx grand total (total_opcost)
-  const totalCells = opexCatPeers.map(t => {
+  const totalCells = opexCatPeers.map((t, i) => {
     const tot = PEER_DATA[t].total_opcost[year];
     const scopeRev = PEER_DATA[t].scope_rev[year];
     const pct = (tot && scopeRev) ? (tot/scopeRev*100) : null;
     const pctTxt = pct !== null ? `<br><span style="color:var(--ops-muted); font-size:10.5px;">${pct.toFixed(2)}%</span>` : '';
-    return `<td class="num"><strong>${fmtBn(tot)}</strong>${pctTxt}</td>`;
+    return `<td class="num" data-col="${i}"><strong>${fmtBn(tot)}</strong>${pctTxt}</td>`;
   }).join('');
   bodyRows.push(`<tr style="background:rgba(45,80,22,0.06); font-weight:700;"><td>합계 (COGS+OpEx)</td>${totalCells}</tr>`);
   document.getElementById('opex-cat-tbody').innerHTML = bodyRows.join('');
@@ -1443,6 +1449,22 @@ function wireExport(copyId, csvId, which, csvName) {
       render(currentYear);
     });
   });
+  // Category matrix column hover (event delegation on thead since matrix is re-rendered)
+  const catTbl = document.getElementById('opex-cat-tbl');
+  if (catTbl) {
+    catTbl.addEventListener('mouseover', (e) => {
+      const th = e.target.closest('thead th[data-col]');
+      if (!th) return;
+      const col = th.dataset.col;
+      catTbl.querySelectorAll(`tbody td[data-col="${col}"]`).forEach(c => c.classList.add('col-highlight'));
+    });
+    catTbl.addEventListener('mouseout', (e) => {
+      const th = e.target.closest('thead th[data-col]');
+      if (!th) return;
+      const col = th.dataset.col;
+      catTbl.querySelectorAll(`tbody td[data-col="${col}"]`).forEach(c => c.classList.remove('col-highlight'));
+    });
+  }
   document.querySelectorAll('#panel-total .sortable').forEach(th => {
     th.addEventListener('click', () => {
       const k = th.dataset.sort;
