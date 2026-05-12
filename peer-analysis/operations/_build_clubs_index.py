@@ -65,13 +65,18 @@ for t in peers_sorted:
     c = clubs[t]
     c5y = fin.get(t,{})
     y24 = c5y.get('yearly',{}).get('2024',{})
+    y23 = c5y.get('yearly',{}).get('2023',{})
     rev = y24.get('revenue')
     np_ = y24.get('net_profit')
     ta = y24.get('total_assets')
+    ebitda = y24.get('ebitda')
+    rev_prev = y23.get('revenue')
     rev_bn = rev/1e9 if rev else None
     ta_bn = ta/1e9 if ta else None
     margin = (np_/rev*100) if (rev and np_) else None
     roa = (np_/ta*100) if (ta and np_) else None
+    eb_margin = (ebitda/rev*100) if (rev and ebitda is not None) else None
+    yoy = ((rev - rev_prev)/rev_prev*100) if (rev and rev_prev) else None
     tier_color = {'pp':'#3b82f6','resort':'#f59e0b','twn':'#16a34a'}[c['tier']]
 
     # Sort keys (use raw numbers; null treated as -Infinity so they fall to bottom on desc sort)
@@ -79,13 +84,15 @@ for t in peers_sorted:
     sort_margin = margin if margin is not None else -1e15
     sort_roa = roa if roa is not None else -1e15
     sort_ta = ta_bn if ta_bn is not None else -1e15
+    sort_eb = eb_margin if eb_margin is not None else -1e15
+    sort_yoy = yoy if yoy is not None else -1e15
     # Search text (lowercase, concatenated)
     search_blob = f'{t} {c["name"]} {c["sub"]} {c["loc"]} {c["parent"]}'.lower()
     spark_svg = build_sparkline(c5y, tier_color)
     cards_html.append(
         f'      <a href="{t.lower()}.html" class="club-card" data-tier="{c["tier"]}" data-ticker="{t}" '
         f'data-search="{search_blob}" '
-        f'data-rev="{sort_rev}" data-margin="{sort_margin}" data-roa="{sort_roa}" data-ta="{sort_ta}" data-name="{c["name"]}" '
+        f'data-rev="{sort_rev}" data-margin="{sort_margin}" data-roa="{sort_roa}" data-ta="{sort_ta}" data-ebmargin="{sort_eb}" data-yoy="{sort_yoy}" data-name="{c["name"]}" '
         f'style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid {tier_color}; '
         f'border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">\n'
         f'        <div style="display:flex; justify-content:space-between; align-items:flex-start;">\n'
@@ -104,7 +111,9 @@ for t in peers_sorted:
         f'        </div>\n'
         f'        <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:6px 14px; padding:10px 0; border-top:1px dashed var(--ops-line); border-bottom:1px dashed var(--ops-line); font-size:11.5px;">\n'
         f'          <div><strong style="color:var(--ops-muted);">FY24 매출</strong><br><span style="font-weight:700; color:var(--ops-ink);">{fmtBn(rev_bn)}</span></div>\n'
+        f'          <div><strong style="color:var(--ops-muted);">매출 YoY</strong><br>{fmtPct(yoy)}</div>\n'
         f'          <div><strong style="color:var(--ops-muted);">순이익률</strong><br>{fmtPct(margin)}</div>\n'
+        f'          <div><strong style="color:var(--ops-muted);">EBITDA 마진</strong><br>{fmtPct(eb_margin)}</div>\n'
         f'          <div><strong style="color:var(--ops-muted);">총자산</strong><br><span style="color:var(--ops-ink);">{fmtBn(ta_bn)}</span></div>\n'
         f'          <div><strong style="color:var(--ops-muted);">ROA</strong><br>{fmtPct(roa)}</div>\n'
         f'        </div>\n'
@@ -128,23 +137,30 @@ for t in peers_sorted:
     c = clubs[t]
     c5y = fin.get(t,{})
     y24 = c5y.get('yearly',{}).get('2024',{})
+    y23 = c5y.get('yearly',{}).get('2023',{})
     rev = y24.get('revenue')
     np_ = y24.get('net_profit')
     ta = y24.get('total_assets')
+    ebitda = y24.get('ebitda')
+    rev_prev = y23.get('revenue')
     rev_bn = rev/1e9 if rev else None
     ta_bn = ta/1e9 if ta else None
     margin = (np_/rev*100) if (rev and np_) else None
     roa = (np_/ta*100) if (ta and np_) else None
+    eb_margin = (ebitda/rev*100) if (rev and ebitda is not None) else None
+    yoy = ((rev - rev_prev)/rev_prev*100) if (rev and rev_prev) else None
     tier_color = {'pp':'#3b82f6','resort':'#f59e0b','twn':'#16a34a'}[c['tier']]
     sort_rev = rev_bn if rev_bn is not None else -1e15
     sort_margin = margin if margin is not None else -1e15
     sort_roa = roa if roa is not None else -1e15
     sort_ta = ta_bn if ta_bn is not None else -1e15
+    sort_eb = eb_margin if eb_margin is not None else -1e15
+    sort_yoy = yoy if yoy is not None else -1e15
     search_blob = f'{t} {c["name"]} {c["sub"]} {c["loc"]} {c["parent"]}'.lower()
     table_rows.append(
         f'      <tr class="club-row" data-tier="{c["tier"]}" data-ticker="{t}" '
         f'data-search="{search_blob}" '
-        f'data-rev="{sort_rev}" data-margin="{sort_margin}" data-roa="{sort_roa}" data-ta="{sort_ta}" data-name="{c["name"]}">\n'
+        f'data-rev="{sort_rev}" data-margin="{sort_margin}" data-roa="{sort_roa}" data-ta="{sort_ta}" data-ebmargin="{sort_eb}" data-yoy="{sort_yoy}" data-name="{c["name"]}">\n'
         f'        <td style="white-space:nowrap;"><span style="display:inline-block; width:3px; height:14px; background:{tier_color}; vertical-align:middle; margin-right:6px; border-radius:2px;"></span><a href="{t.lower()}.html" style="font-weight:700; color:var(--ops-ink); text-decoration:none;">{t}</a></td>\n'
         f'        <td><a href="{t.lower()}.html" style="color:var(--ops-ink); text-decoration:none;">{c["name"]}</a><br><span style="font-size:11px; color:var(--ops-muted);">{c["sub"]}</span></td>\n'
         f'        <td><span class="peer-tag peer-tag-{c["tier"]}" style="font-size:10px;">{c["tier_label"]}</span></td>\n'
@@ -152,7 +168,9 @@ for t in peers_sorted:
         f'        <td style="font-size:12px;">{c["holes"]}</td>\n'
         f'        <td style="font-size:12px;">{c["area"]}</td>\n'
         f'        <td class="num" style="font-weight:700;">{fmtBn(rev_bn)}</td>\n'
+        f'        <td class="num">{fmtPct(yoy)}</td>\n'
         f'        <td class="num">{fmtPct(margin)}</td>\n'
+        f'        <td class="num">{fmtPct(eb_margin)}</td>\n'
         f'        <td class="num">{fmtBn(ta_bn)}</td>\n'
         f'        <td class="num">{fmtPct(roa)}</td>\n'
         f'        <td class="num" style="color:var(--ops-green); font-weight:700;">Rp {c["golf_rev_fy24"]}</td>\n'
@@ -280,6 +298,26 @@ html = '''<!DOCTYPE html>
   body.theme-dark .table-wrap { background:#1e293b; }
   body.theme-dark .empty-state { color:#94a3b8; }
   body.theme-dark .tier-stat-card.active-filter { background:rgba(34,197,94,0.08); }
+  /* Print: minimal, content-only, force table view, expand for paper */
+  @media print {
+    @page { size: A4 landscape; margin: 12mm; }
+    body { background: white !important; color: black !important; }
+    .ops-head, .ops-nav, .control-bar, .filter-bar, .tier-stats, .empty-state,
+    .results-info, .share-btn, .theme-toggle, .ops-foot { display: none !important; }
+    .ops-hero { padding: 0 0 8px 0; }
+    .ops-hero .lede { display: none; }
+    .ops-hero h1 { font-size: 18px; margin: 0 0 4px 0; }
+    .ops-hero::after { content: '인쇄 시점: ' attr(data-print-date); display: block; font-size: 10px; color: #555; margin-top: 2px; }
+    /* Force table-only view on print, hide cards (data already in table) */
+    .club-grid { display: none !important; }
+    .table-wrap { display: block !important; border: none; background: transparent; overflow: visible; }
+    .club-table { font-size: 9.5px; width: 100%; }
+    .club-table thead th { position: static !important; background: white !important; border-bottom: 1.5px solid black; }
+    .club-table tbody td { border-bottom: 0.5px solid #ccc; padding: 4px 6px; }
+    .club-table tbody tr:hover { background: white !important; }
+    .peer-tag { border: 0.5px solid #888; padding: 0 4px; }
+    a { color: black !important; text-decoration: none !important; }
+  }
 </style>
 </head>
 <body>
@@ -315,8 +353,10 @@ html = '''<!DOCTYPE html>
         <option value="tier">기본 (Tier 순)</option>
         <option value="rev-desc">매출 ↓</option>
         <option value="rev-asc">매출 ↑</option>
+        <option value="yoy-desc">매출 YoY ↓</option>
         <option value="margin-desc">순이익률 ↓</option>
         <option value="margin-asc">순이익률 ↑</option>
+        <option value="ebmargin-desc">EBITDA 마진 ↓</option>
         <option value="roa-desc">ROA ↓</option>
         <option value="roa-asc">ROA ↑</option>
         <option value="ta-desc">총자산 ↓</option>
@@ -348,7 +388,9 @@ __CARDS__
             <th>홀</th>
             <th>면적</th>
             <th class="num">FY24 매출</th>
+            <th class="num">매출 YoY</th>
             <th class="num">순이익률</th>
+            <th class="num">EBITDA 마진</th>
             <th class="num">총자산</th>
             <th class="num">ROA</th>
             <th class="num">골프 매출 FY24</th>
@@ -606,6 +648,12 @@ function syncURL() {
   });
 
   renderTierStats(state.tier === 'all' ? null : state.tier);
+  // Annotate hero with print-date for the @media print rule
+  const hero = document.querySelector('.ops-hero');
+  if (hero) {
+    const d = new Date();
+    hero.setAttribute('data-print-date', `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`);
+  }
   applyState();
 })();
 </script>
