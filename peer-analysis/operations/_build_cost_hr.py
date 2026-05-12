@@ -490,6 +490,31 @@ html = '''<!DOCTYPE html>
   body.theme-dark #opex-cat-tbody td.row-max { background:rgba(245,158,11,0.18); }
   body.theme-dark .mix-bar-section, body.theme-dark .mix-bar-track { background:#1e293b; }
   body.theme-dark .mix-bar-track { background:#0f172a; }
+  /* Tier filter pills (Tab ①, ④) */
+  .tier-pills { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:8px 0 4px 0; }
+  .tier-pill { padding:5px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:999px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
+  .tier-pill.active { background:var(--ops-green); color:white; border-color:var(--ops-green); }
+  .tier-pill:hover:not(.active) { background:rgba(45,80,22,0.05); }
+  tr.tier-hidden { display:none; }
+  /* Print */
+  @media print {
+    @page { size: A4 landscape; margin: 10mm; }
+    body { background:white !important; color:black !important; }
+    .ops-head, .ops-foot, .year-bar, .cost-tab-bar, .action-bar, .tier-pills, .theme-toggle, .trend-mode-toggle { display:none !important; }
+    .ops-hero { padding:0 0 6px 0; }
+    .ops-hero h1 { font-size:17px; margin:0 0 4px 0; }
+    .ops-hero .lede, .ops-hero > .ops-wrap > div[style*="background:rgba(245"] { display:none; }
+    .cost-panel { display:block !important; page-break-before:always; }
+    .cost-panel:first-of-type { page-break-before:auto; }
+    .ops-tbl { font-size:9px; }
+    .ops-tbl thead th { background:white !important; border-bottom:1.5px solid black; padding:4px 5px; position:static !important; }
+    .ops-tbl tbody td { border-bottom:0.5px solid #ccc; padding:3px 5px; }
+    .sortable::after { display:none; }
+    .peer-tag { border:0.5px solid #888; padding:0 3px; font-size:8px; }
+    a { color:black !important; text-decoration:none !important; }
+    .bench-row td { background:#f5f5f5 !important; }
+    .mix-bar-seg, .row-max { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  }
 </style>
 </head>
 <body>
@@ -542,6 +567,13 @@ html = '''<!DOCTYPE html>
     <div class="cost-panel active" id="panel-cmp">
       <h2 style="font-size:17px; margin:0 0 14px 0;">13-peer 비용 구조 — <span class="yr-label">FY2024</span></h2>
       <p style="font-size:12px; color:var(--ops-muted); margin:0 0 6px 0;">선택 연도 그룹 P&L 기반. 총 비용 = 매출 − 영업이익. EBITDA·순이익 마진 포함. <strong>Tier별 중위 벤치마크 행</strong> 포함 (3 tier + 전체).</p>
+      <div class="tier-pills" data-target="cmp-tbody" role="group" aria-label="Tier 필터">
+        <span style="font-size:11.5px; color:var(--ops-muted); font-weight:600;">Tier:</span>
+        <button class="tier-pill active" data-tier="all">전체</button>
+        <button class="tier-pill" data-tier="pp">🟦 Pure-play</button>
+        <button class="tier-pill" data-tier="resort">🟨 Resort</button>
+        <button class="tier-pill" data-tier="twn">🟩 Township</button>
+      </div>
       <div class="action-bar">
         <button class="action-btn" id="cmp-copy-btn">📋 표 복사 (TSV)</button>
         <button class="action-btn" id="cmp-csv-btn">⬇ CSV 다운로드</button>
@@ -638,6 +670,13 @@ __OPEX_SECTION__
         Pure-play(DMIG·PIPG)는 전사 기준, GOLF는 사업부 합계, MDLN/KIJA/SMDM은 골프 segment 기준 →
         모두 <em>해당 공시 범위의 매출</em>로 나누어 동일 차원 비교 성립.
         <strong>주의</strong>: KPIG는 COGS 공시 없이 그룹 G&amp;A만이므로 합산 비율 비교에서 제외.
+      </div>
+      <div class="tier-pills" data-target="total-cmp-tbody" role="group" aria-label="Tier 필터">
+        <span style="font-size:11.5px; color:var(--ops-muted); font-weight:600;">Tier:</span>
+        <button class="tier-pill active" data-tier="all">전체</button>
+        <button class="tier-pill" data-tier="pp">🟦 Pure-play</button>
+        <button class="tier-pill" data-tier="resort">🟨 Resort</button>
+        <button class="tier-pill" data-tier="twn">🟩 Township</button>
       </div>
       <div class="action-bar">
         <button class="action-btn" id="total-copy-btn">📋 표 복사 (TSV)</button>
@@ -768,7 +807,7 @@ function render(year){
     const ebMargin = (rev && ebitda !== null && ebitda !== undefined) ? (ebitda/rev*100) : null;
     const npMargin = (rev && np !== null && np !== undefined) ? (np/rev*100) : null;
     cmpData.push({ t, tier:d.tier, name:d.name, rev, totalCost, costRatio, opMargin, ebMargin, npMargin });
-    return `<tr>
+    return `<tr data-tier="${d.tier}">
       <td class="peer"><a href="clubs/${t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${t}</a><span class="peer-tag peer-tag-${d.tier}">${d.tier_label}</span></td>
       <td>${d.name.slice(0,24)}</td>
       <td class="num">${fmtBn(rev)}</td>
@@ -897,7 +936,7 @@ function render(year){
     const ratio = (scopeRev && tot) ? (tot/scopeRev*100) : null;
     const cov = (d.cogs_cov !== '—' && d.opex_cov !== '—') ? `${d.cogs_cov} / ${d.opex_cov}` : (d.cogs_cov !== '—' ? d.cogs_cov : d.opex_cov);
     totalData.push({ t, tier:d.tier, name:d.name, cogs, opex, tot, scopeRev, ratio, cov });
-    return `<tr>
+    return `<tr data-tier="${d.tier}">
       <td class="peer"><a href="clubs/${t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${t}</a><span class="peer-tag peer-tag-${d.tier}">${d.tier_label}</span></td>
       <td>${d.name.slice(0,24)}</td>
       <td class="num">${fmtBn(cogs)}</td>
@@ -1031,6 +1070,31 @@ function wireExport(copyId, csvId, which, csvName) {
     const a = document.createElement('a'); a.href = url; a.download = `cost-category-matrix_FY${currentYear}.csv`;
     document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
     flashSuccess(e.currentTarget, '✓ 다운로드');
+  });
+  // Tier filter pills — each pill group has data-target pointing to a tbody
+  document.querySelectorAll('.tier-pills').forEach(group => {
+    const targetId = group.dataset.target;
+    group.querySelectorAll('.tier-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        group.querySelectorAll('.tier-pill').forEach(x => x.classList.remove('active'));
+        pill.classList.add('active');
+        const tier = pill.dataset.tier;
+        const tbody = document.getElementById(targetId);
+        if (!tbody) return;
+        tbody.querySelectorAll('tr').forEach(row => {
+          const rowTier = row.dataset.tier;
+          // bench-row + tier-X classes (e.g. tier-pp): keep matching tier benchmark visible too
+          let show = false;
+          if (tier === 'all') show = true;
+          else if (rowTier === tier) show = true;
+          else if (row.classList.contains('bench-row')) {
+            show = row.classList.contains('tier-' + tier) || (tier !== 'all' && false);
+            if (tier === 'all') show = true;
+          }
+          row.classList.toggle('tier-hidden', !show);
+        });
+      });
+    });
   });
   // Dark mode
   const themeBtn = document.getElementById('theme-toggle');
