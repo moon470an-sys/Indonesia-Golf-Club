@@ -6,7 +6,7 @@
 <title>클럽 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="../ops-style.css?v=20260512c53" />
+<link rel="stylesheet" href="../ops-style.css?v=20260513c79" />
 <style>
   .club-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
   .club-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 16px; margin-top: 20px; }
@@ -74,6 +74,28 @@
   @media (max-width: 720px) {
     .tier-stats { grid-template-columns:1fr; }
   }
+  /* Ranking medals — top-3 visible peers when sorted by numeric metric */
+  .club-card.rank-1, .club-card.rank-2, .club-card.rank-3 { position:relative; }
+  .club-card.rank-1::before, .club-card.rank-2::before, .club-card.rank-3::before {
+    content:''; position:absolute; top:-8px; right:-8px; width:32px; height:32px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:16px; box-shadow:0 2px 6px rgba(0,0,0,0.18); z-index:5;
+    border:2px solid var(--ops-surface);
+  }
+  .club-card.rank-1::before { content:'🥇'; background:linear-gradient(135deg,#fde68a,#fbbf24); }
+  .club-card.rank-2::before { content:'🥈'; background:linear-gradient(135deg,#e5e7eb,#d1d5db); }
+  .club-card.rank-3::before { content:'🥉'; background:linear-gradient(135deg,#fed7aa,#fb923c); }
+  .club-row.rank-1 td:first-child, .club-row.rank-2 td:first-child, .club-row.rank-3 td:first-child {
+    position:relative; padding-left:30px !important;
+  }
+  .club-row.rank-1 td:first-child::before, .club-row.rank-2 td:first-child::before, .club-row.rank-3 td:first-child::before {
+    position:absolute; left:6px; top:50%; transform:translateY(-50%); font-size:14px;
+  }
+  .club-row.rank-1 td:first-child::before { content:'🥇'; }
+  .club-row.rank-2 td:first-child::before { content:'🥈'; }
+  .club-row.rank-3 td:first-child::before { content:'🥉'; }
+  body.theme-dark .club-card.rank-1::before, body.theme-dark .club-card.rank-2::before, body.theme-dark .club-card.rank-3::before { border-color:#1e293b; }
+  @media print { .club-card.rank-1::before, .club-card.rank-2::before, .club-card.rank-3::before { display:none; } }
   /* Share / export buttons */
   .share-btn, .export-btn { padding:6px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
   .share-btn:hover, .export-btn:hover { background:rgba(45,80,22,0.05); }
@@ -242,7 +264,7 @@
       <div class="results-info" id="results-info">13 / 13 표시</div>
     </div>
     <div class="data-meta">
-      📅 데이터 빌드: <strong>2026-05-12</strong>
+      📅 데이터 빌드: <strong>2026-05-13</strong>
       <span class="sep">·</span>
       재무 데이터: <strong>FY2020-FY2024 연결 P&amp;L · 대차대조표</strong>
       <span class="sep">·</span>
@@ -1181,6 +1203,16 @@ function syncURL() {
     });
     resultsInfo.textContent = `${visible} / ${cardOriginalOrder.length} 표시`;
     emptyState.classList.toggle('active', visible === 0);
+    // Rank medals (🥇🥈🥉) on top-3 visible peers when sorted by numeric metric
+    const numericSort = !['tier', 'name-asc'].includes(state.sort);
+    [...sortedCards, ...sortedRows].forEach(el => el.classList.remove('rank-1','rank-2','rank-3'));
+    if (numericSort && visible >= 2) {
+      const visCards = sortedCards.filter(el => el.style.display !== 'none');
+      const visRows = sortedRows.filter(el => el.style.display !== 'none');
+      [visCards, visRows].forEach(arr => {
+        arr.slice(0, 3).forEach((el, i) => el.classList.add(`rank-${i+1}`));
+      });
+    }
     // Dynamic empty-state hint
     const hint = document.getElementById('empty-hint');
     if (hint) {
