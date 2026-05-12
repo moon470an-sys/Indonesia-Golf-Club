@@ -265,6 +265,18 @@ html = '''<!DOCTYPE html>
   .peak-pill.at-peak  { background:rgba(22,163,74,0.15); color:#16a34a; }
   .peak-pill.near     { background:rgba(245,158,11,0.15); color:#b45309; }
   .peak-pill.down     { background:rgba(185,28,28,0.12); color:#b91c1c; }
+  /* Top performer cards (consistent with clubs/unit-econ) */
+  .top-perf { display:grid; grid-template-columns:repeat(auto-fit, minmax(170px, 1fr)); gap:10px; margin:14px 0 10px 0; }
+  .top-perf-card { background:linear-gradient(135deg, rgba(245,158,11,0.08), rgba(245,158,11,0.02)); border:1px solid var(--ops-line); border-left:3px solid #f59e0b; border-radius:8px; padding:8px 12px; }
+  .top-perf-name { font-size:10.5px; font-weight:700; color:var(--ops-muted); letter-spacing:0.04em; text-transform:uppercase; margin-bottom:3px; }
+  .top-perf-winner { font-size:14px; font-weight:700; color:var(--ops-ink); }
+  .top-perf-winner a { color:inherit; text-decoration:none; }
+  .top-perf-value { font-size:11.5px; color:#b45309; font-weight:700; font-variant-numeric:tabular-nums; }
+  body.theme-dark .top-perf-card { background:linear-gradient(135deg, rgba(245,158,11,0.14), rgba(245,158,11,0.04)); }
+  .data-meta { font-size:11px; color:var(--ops-muted); margin-top:6px; padding:6px 0 0 0; border-top:1px dashed var(--ops-line); }
+  .data-meta strong { color:var(--ops-ink-soft); }
+  .data-meta .sep { margin:0 8px; opacity:0.4; }
+  @media print { .top-perf { display:none; } .data-meta { font-size:9px; } }
   /* YoY heatmap matrix */
   .yoy-matrix { width:100%; border-collapse:separate; border-spacing:1px; background:var(--ops-line); font-size:12px; }
   .yoy-matrix th, .yoy-matrix td { background:var(--ops-surface); padding:8px 6px; }
@@ -358,6 +370,14 @@ html = '''<!DOCTYPE html>
   <div class="ops-wrap">
     <h1>매출 — 동급 비교</h1>
     <p class="lede">기준 연도 선택 → 13 peer 매출 비교. 라인 상세표는 선택 연도 컬럼 하이라이트.</p>
+    <div class="top-perf" id="top-perf"></div>
+    <div class="data-meta">
+      📅 데이터: <strong>FY2020-FY2024 연결 P&amp;L</strong>
+      <span class="sep">·</span>
+      골프 부문: <strong>segment note 공시 또는 Pure-play 그룹 매출</strong>
+      <span class="sep">·</span>
+      출처: <strong>IDX (idx.co.id)</strong>
+    </div>
     <div class="year-bar">
       <label>기준 연도:</label>
       <button class="year-btn" data-year="2020">FY2020</button>
@@ -544,7 +564,38 @@ function sparkline(yearly, currentYear, color){
 
 let cmpSortState = { key: null, dir: 'desc' };
 
+function renderTopPerf(year) {
+  const prevYear = String(parseInt(year)-1);
+  const fmtBn = v => (v === null || v === undefined) ? '—' : (Math.abs(v) >= 1e12 ? 'Rp '+(v/1e12).toFixed(1)+'T' : 'Rp '+(v/1e9).toFixed(0)+'B');
+  const fmtPct = v => (v === null || v === undefined) ? '—' : `${v >= 0 ? '+' : ''}${v.toFixed(1)}%`;
+  function top(metricFn, fmt) {
+    let best = null, bestV = -Infinity;
+    PEER_ORDER.forEach(t => {
+      const v = metricFn(t);
+      if (v !== null && v !== undefined && v > bestV) { bestV = v; best = t; }
+    });
+    return best ? { ticker: best, display: fmt(bestV) } : null;
+  }
+  const perfs = [
+    { label: '🏆 최대 그룹 매출', data: top(t => PEER_DATA[t].yearly[year]?.rev, fmtBn) },
+    { label: '🏆 최고 5Y CAGR', data: top(t => { const c = calcCAGR(PEER_DATA[t].yearly); return c.cagr; }, fmtPct) },
+    { label: '🏆 최고 매출 YoY', data: top(t => {
+      const r = PEER_DATA[t].yearly[year]?.rev; const p = PEER_DATA[t].yearly[prevYear]?.rev;
+      return (r && p) ? (r - p) / p * 100 : null;
+    }, fmtPct) },
+    { label: '🏆 최대 골프 매출', data: top(t => PEER_DATA[t].golf_seg[year], fmtBn) },
+  ];
+  const root = document.getElementById('top-perf');
+  if (!root) return;
+  root.innerHTML = perfs.filter(p => p.data).map(p => `<div class="top-perf-card">
+    <div class="top-perf-name">${p.label}</div>
+    <div class="top-perf-winner"><a href="clubs/${p.data.ticker.toLowerCase()}.html">${p.data.ticker}</a></div>
+    <div class="top-perf-value">${p.data.display}</div>
+  </div>`).join('');
+}
+
 function render(year){
+  renderTopPerf(year);
   document.querySelectorAll('.yr-label').forEach(el => el.textContent = 'FY' + year);
 
   // Cross-peer comparison
