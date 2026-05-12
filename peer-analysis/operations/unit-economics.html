@@ -52,6 +52,10 @@
   body.theme-dark .sticky-first thead th:first-child { background:#0f172a; }
   /* Per-peer mini sparkline (used in main table trend column) */
   .mini-spark { display:inline-block; vertical-align:middle; }
+  /* Cross-section hover highlight */
+  .ops-tbl tbody tr.peer-highlight td:first-child { background:rgba(245,158,11,0.18); }
+  .ops-tbl tbody tr.tier-highlight td:first-child { box-shadow:inset 4px 0 0 #f59e0b; }
+  body.theme-dark .ops-tbl tbody tr.peer-highlight td:first-child { background:rgba(245,158,11,0.28); }
   /* In-page anchor nav */
   .anchor-nav { display:flex; flex-wrap:wrap; gap:6px; margin:8px 0 4px 0; font-size:11.5px; }
   .anchor-nav a { padding:4px 10px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:6px; text-decoration:none; color:var(--ops-ink-soft); transition:all 0.15s; }
@@ -865,6 +869,43 @@ async function flashSuccess(btn, label){
   }
   wireArrowNav('.year-btn');
   wireArrowNav('#tier-pills .tier-pill');
+  // Cross-section hover: main table row ↔ leaderboard + tier avg row
+  function getTickerFromTr(tr) {
+    const a = tr?.querySelector?.('a[href^="clubs/"]');
+    return a ? a.textContent.trim() : null;
+  }
+  function getTierFromPeer(ticker) {
+    return PEER_DATA[ticker]?.tier;
+  }
+  function attachHoverSync(tbodyId) {
+    const tb = document.getElementById(tbodyId);
+    if (!tb) return;
+    tb.addEventListener('mouseover', (e) => {
+      const tr = e.target.closest('tr');
+      if (!tr) return;
+      const ticker = getTickerFromTr(tr);
+      if (!ticker) return;
+      const tier = getTierFromPeer(ticker);
+      // Highlight matching peer rows in main + leaderboard
+      document.querySelectorAll('#main-tbody tr, #lb-tbody tr').forEach(r => {
+        if (getTickerFromTr(r) === ticker) r.classList.add('peer-highlight');
+      });
+      // Highlight matching tier row in tier-tbody by tier label match
+      if (tier) {
+        document.querySelectorAll('#tier-tbody tr').forEach(r => {
+          const lbl = r.querySelector('td:first-child')?.textContent || '';
+          const match = (tier === 'pp' && lbl.includes('Pure-play')) || (tier === 'resort' && lbl.includes('Resort')) || (tier === 'twn' && lbl.includes('Township'));
+          if (match) r.classList.add('tier-highlight');
+        });
+      }
+    });
+    tb.addEventListener('mouseout', () => {
+      document.querySelectorAll('.peer-highlight').forEach(r => r.classList.remove('peer-highlight'));
+      document.querySelectorAll('.tier-highlight').forEach(r => r.classList.remove('tier-highlight'));
+    });
+  }
+  attachHoverSync('main-tbody');
+  attachHoverSync('lb-tbody');
   render(currentYear);
 })();
 </script>
