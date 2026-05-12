@@ -6,7 +6,7 @@
 <title>위험 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260513c90" />
+<link rel="stylesheet" href="ops-style.css?v=20260513c96" />
 <style>
   .heat-cell { text-align:center; font-size:16px; padding:8px 4px; }
   .sortable { cursor:pointer; user-select:none; position:relative; padding-right:18px !important; }
@@ -93,6 +93,16 @@
   .sev-pill.active.sev-all  { background:var(--ops-green); color:white; border-color:var(--ops-green); }
   /* Search match highlight */
   mark.search-hit { background:rgba(245,158,11,0.45); color:inherit; padding:0 1px; border-radius:2px; }
+  /* Favorite star (cross-page localStorage 'clubs-favorites') */
+  .fav-star { display:inline-block; vertical-align:middle; margin-right:4px; padding:0 2px; border:none; background:transparent; cursor:pointer; font-size:13px; line-height:1; color:var(--ops-muted); opacity:0.45; transition:all 0.15s; border-radius:3px; }
+  .fav-star:hover { opacity:1; color:#f59e0b; background:rgba(245,158,11,0.10); }
+  .fav-star.active { color:#f59e0b; opacity:1; }
+  #risk-tbody tr.is-fav td:first-child { box-shadow:inset 4px 0 0 #f59e0b; }
+  body.theme-dark #risk-tbody tr.is-fav td:first-child { box-shadow:inset 4px 0 0 #fbbf24; }
+  .risk-rank-row.is-fav { background:rgba(245,158,11,0.06); border-radius:4px; padding:2px 4px; }
+  .risk-rank-row.is-fav .risk-rank-label::before { content:'★'; color:#f59e0b; margin-right:3px; font-size:11px; }
+  body.theme-dark .risk-rank-row.is-fav { background:rgba(245,158,11,0.12); }
+  @media print { .fav-star { display:none !important; } }
   /* Peer search */
   .peer-search-row { display:flex; gap:8px; align-items:center; margin:6px 0; flex-wrap:wrap; }
   .peer-search-row input { padding:5px 10px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:6px; font-size:12px; color:var(--ops-ink); min-width:200px; }
@@ -356,7 +366,8 @@ function renderRiskRank() {
     const fillColor = cls === 'risk-low' ? '#16a34a' : cls === 'risk-med' ? '#f59e0b' : '#b91c1c';
     const medalCls = rank <= 3 ? ` medal-${rank}` : '';
     const medalEmoji = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : `#${rank}`;
-    return `<div class="risk-rank-row" data-tier="${r.p.tier}" data-sev="${scoreToSev(r.total)}">
+    const favCls = favorites.has(r.t) ? ' is-fav' : '';
+    return `<div class="risk-rank-row${favCls}" data-tier="${r.p.tier}" data-sev="${scoreToSev(r.total)}" data-ticker="${r.t}">
       <div class="risk-rank-num${medalCls}" title="리스크 낮은 순위 ${rank}위 (1위 = 최저 리스크)">${medalEmoji}</div>
       <div class="risk-rank-label"><a href="clubs/${r.t.toLowerCase()}.html" style="color:inherit; text-decoration:none;">${r.t}</a><span class="tier-mini peer-tag peer-tag-${r.p.tier}">${TIER_SHORT[r.p.tier]}</span></div>
       <div class="risk-rank-bar" title="${r.p.tier_label} · 합계 ${r.total}/12 (낮을수록 우수)">
@@ -398,6 +409,15 @@ function renderCatRates() {
 let sortState = { key: 'total', dir: 'desc' };
 let tierFilter = 'all';
 let sevFilter = 'all';   // 'all' | 'low' | 'med' | 'high'
+let favorites = new Set();
+try { favorites = new Set(JSON.parse(localStorage.getItem('clubs-favorites') || '[]')); } catch (e) {}
+function saveFavorites() {
+  try { localStorage.setItem('clubs-favorites', JSON.stringify([...favorites])); } catch (e) {}
+}
+function favStarHTML(ticker) {
+  const fav = favorites.has(ticker);
+  return `<button class="fav-star${fav ? ' active' : ''}" data-ticker="${ticker}" title="${fav ? '즐겨찾기 해제' : '즐겨찾기 (피어 상단 고정)'}" aria-label="즐겨찾기 토글" aria-pressed="${fav}">${fav ? '★' : '☆'}</button>`;
+}
 
 function scoreToSev(t) {
   if (t <= 2) return 'low';
@@ -522,7 +542,7 @@ function applySevFilter() {
 
 function renderTable() {
   // Compute total for each peer
-  const rows = PEER_ORDER.map(t => {
+  let rows = PEER_ORDER.map(t => {
     const p = PEER_RISK[t];
     return { t, p, total: totalScore(p) };
   });
@@ -532,11 +552,19 @@ function renderTable() {
     else { va = a.p[sortState.key]; vb = b.p[sortState.key]; }
     return sortState.dir === 'desc' ? (vb - va) : (va - vb);
   });
+  // Favorites stable-sort to top
+  if (favorites.size > 0) {
+    const favs = rows.filter(r => favorites.has(r.t));
+    const rest = rows.filter(r => !favorites.has(r.t));
+    rows = favs.concat(rest);
+  }
   const tbody = document.getElementById('risk-tbody');
   const peerRows = rows.map(r => {
     const totalCls = scoreClass(r.total);
-    return `<tr data-tier="${r.p.tier}" data-sev="${scoreToSev(r.total)}">
-      <td class="peer"><a href="clubs/${r.t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${r.t}</a><span class="peer-tag peer-tag-${r.p.tier}">${TIER_SHORT[r.p.tier]}</span></td>
+    const fav = favorites.has(r.t);
+    const favCls = fav ? ' is-fav' : '';
+    return `<tr data-tier="${r.p.tier}" data-sev="${scoreToSev(r.total)}" data-ticker="${r.t}" class="${favCls.trim()}">
+      <td class="peer">${favStarHTML(r.t)}<a href="clubs/${r.t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${r.t}</a><span class="peer-tag peer-tag-${r.p.tier}">${TIER_SHORT[r.p.tier]}</span></td>
       <td class="col-low-prio">${r.p.tier_label.replace(/^[^ ]+ /,'')}</td>
       ${CAT_KEYS.map((k, i) => {
         const isLow = (k === 'license' || k === 'contingent' || k === 'tax' || k === 'bpjs');
@@ -654,6 +682,21 @@ function flashSuccess(btn, label){
     const today = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
     document.body.setAttribute('data-print-date', today);
     setTimeout(() => window.print(), 80);
+  });
+  // Favorite-star click delegation on risk-tbody
+  document.getElementById('risk-tbody').addEventListener('click', (e) => {
+    const btn = e.target.closest('.fav-star');
+    if (!btn) return;
+    e.preventDefault(); e.stopPropagation();
+    const ticker = btn.dataset.ticker;
+    if (favorites.has(ticker)) favorites.delete(ticker);
+    else favorites.add(ticker);
+    saveFavorites();
+    renderTable();
+    renderRiskRank();
+    applyTierFilter();
+    applySevFilter();
+    if (typeof applyPeerSearch === 'function') applyPeerSearch();
   });
   // Reset 필터: tier/sev/search/sort 모두 초기화
   const resetBtn = document.getElementById('risk-reset-btn');
