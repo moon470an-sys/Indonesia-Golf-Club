@@ -425,7 +425,7 @@ html = '''<!DOCTYPE html>
 <title>비용 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260513c94" />
+<link rel="stylesheet" href="ops-style.css?v=20260513c100" />
 <style>
   .year-bar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:14px 0 4px 0; }
   .year-bar label { font-size:13px; font-weight:600; color:var(--ops-ink-soft); }
@@ -483,6 +483,13 @@ html = '''<!DOCTYPE html>
   body.theme-dark #opex-cat-tbl tbody tr:hover td { background:rgba(34,197,94,0.06); }
   body.theme-dark #opex-cat-tbl tbody tr:hover td:first-child { background:rgba(34,197,94,0.14); }
   #opex-cat-tbl td.col-highlight { outline:2px solid rgba(245,158,11,0.55); outline-offset:-2px; position:relative; z-index:1; }
+  /* Peer search input + search-hidden + match mark */
+  tr.search-hidden { display:none; }
+  .peer-search-input { padding:6px 10px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:6px; font-size:12.5px; color:var(--ops-ink); min-width:200px; }
+  .peer-search-input:focus { outline:none; border-color:var(--ops-green); box-shadow:0 0 0 3px rgba(45,80,22,0.12); }
+  body.theme-dark .peer-search-input { background:#0f172a; }
+  mark.q-match { background:rgba(245,158,11,0.45); color:inherit; padding:0 1px; border-radius:2px; }
+  @media print { .peer-search-input, .peer-search-wrap { display:none !important; } }
   /* Favorite star (cross-page localStorage 'clubs-favorites') */
   .fav-star { display:inline-block; vertical-align:middle; margin-right:4px; padding:0 2px; border:none; background:transparent; cursor:pointer; font-size:14px; line-height:1; color:var(--ops-muted); opacity:0.45; transition:all 0.15s; border-radius:3px; }
   .fav-star:hover { opacity:1; color:#f59e0b; background:rgba(245,158,11,0.10); }
@@ -649,6 +656,10 @@ html = '''<!DOCTYPE html>
       <button class="year-btn" data-year="2022">FY2022</button>
       <button class="year-btn" data-year="2023">FY2023</button>
       <button class="year-btn active" data-year="2024">FY2024</button>
+    </div>
+    <div class="peer-search-wrap" style="display:flex; gap:8px; align-items:center; margin:10px 0 4px 0; flex-wrap:wrap;">
+      <input type="search" class="peer-search-input" id="ch-search" placeholder="🔍 Peer 검색 (티커·그룹명) — 4개 표 동시 필터" aria-label="Peer 검색" autocomplete="off">
+      <span style="font-size:11.5px; color:var(--ops-muted);" id="ch-search-count"></span>
     </div>
     <div class="cost-tab-bar">
       <div class="cost-tab active" data-panel="cmp">① 13-peer 비용 구조 %</div>
@@ -926,6 +937,39 @@ let favorites = new Set();
 try { favorites = new Set(JSON.parse(localStorage.getItem('clubs-favorites') || '[]')); } catch (e) {}
 function saveFavorites() {
   try { localStorage.setItem('clubs-favorites', JSON.stringify([...favorites])); } catch (e) {}
+}
+// Peer search — filter 4개 peer-row tbodies + mark matches
+let chSearchQ = '';
+try { chSearchQ = localStorage.getItem('ch-search') || ''; } catch (e) {}
+function escapeRegex(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+function applyChSearch() {
+  const q = (chSearchQ || '').trim().toLowerCase();
+  const tbodies = ['cmp-tbody','cogs-cmp-tbody','opex-cmp-tbody','total-cmp-tbody'];
+  let totalVisible = 0;
+  tbodies.forEach(id => {
+    const tb = document.getElementById(id);
+    if (!tb) return;
+    tb.querySelectorAll('tr').forEach(tr => {
+      if (tr.classList.contains('bench-row')) {
+        tr.classList.remove('search-hidden');
+        return;
+      }
+      const text = tr.textContent.toLowerCase();
+      const hit = !q || text.includes(q);
+      tr.classList.toggle('search-hidden', !hit);
+      if (hit && id === 'cmp-tbody') totalVisible++;
+    });
+    // Mark match text in peer anchor
+    tb.querySelectorAll('a[href^="clubs/"]').forEach(a => {
+      const orig = a.dataset.origText || a.textContent;
+      if (!a.dataset.origText) a.dataset.origText = orig;
+      if (!q) { a.textContent = orig; return; }
+      const re = new RegExp(escapeRegex(q), 'ig');
+      a.innerHTML = orig.replace(re, m => `<mark class="q-match">${m}</mark>`);
+    });
+  });
+  const c = document.getElementById('ch-search-count');
+  if (c) c.textContent = q ? `Tab ① ${totalVisible}개 표시` : '';
 }
 
 function renderTopPerf(year) {
@@ -1248,6 +1292,7 @@ function render(year){
   document.querySelectorAll('.yr-' + year).forEach(el => el.classList.add('yr-hl'));
   // Re-apply tier filters to all pill groups (year change rebuilt the tbodies)
   if (typeof applyTierFiltersFromUI === 'function') applyTierFiltersFromUI();
+  if (typeof applyChSearch === 'function') applyChSearch();
 }
 
 let currentYear = '2024';
@@ -1557,6 +1602,27 @@ function wireExport(copyId, csvId, which, csvName) {
       render(currentYear);
     });
   });
+  // Peer search input
+  const chSearch = document.getElementById('ch-search');
+  if (chSearch) {
+    chSearch.value = chSearchQ;
+    chSearch.addEventListener('input', (e) => {
+      chSearchQ = e.target.value;
+      try { localStorage.setItem('ch-search', chSearchQ); } catch (err) {}
+      applyChSearch();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.target.matches('input,textarea,select')) {
+        if (e.key === 'Escape' && e.target === chSearch) {
+          chSearch.value = ''; chSearchQ = '';
+          try { localStorage.setItem('ch-search', ''); } catch (err) {}
+          applyChSearch(); e.target.blur();
+        }
+        return;
+      }
+      if (e.key === '/') { e.preventDefault(); chSearch.focus(); }
+    });
+  }
   // Favorite-star click delegation on Tab ① cmp + Tab ④ total bodies
   ['cmp-tbody', 'total-cmp-tbody'].forEach(id => {
     const tb = document.getElementById(id);
