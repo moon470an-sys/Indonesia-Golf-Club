@@ -296,6 +296,14 @@ html = '''<!DOCTYPE html>
   .help-fab { position:fixed; bottom:18px; right:18px; width:38px; height:38px; border-radius:50%; background:var(--ops-surface); border:1px solid var(--ops-line); cursor:pointer; font-size:16px; color:var(--ops-ink-soft); z-index:50; box-shadow:0 2px 8px rgba(0,0,0,0.10); }
   .help-fab:hover { background:rgba(45,80,22,0.06); color:var(--ops-ink); }
   @media print { .help-fab, .help-overlay { display:none !important; } }
+  /* Auto-insight box */
+  .insights { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:14px 0 6px 0; }
+  .insight { background:linear-gradient(135deg, rgba(45,80,22,0.06), rgba(45,80,22,0.02)); border:1px solid var(--ops-line); border-left:3px solid var(--ops-green); border-radius:8px; padding:10px 14px; font-size:12.5px; color:var(--ops-ink-soft); }
+  .insight strong { color:var(--ops-ink); }
+  .insight .label { display:inline-block; font-size:10.5px; font-weight:700; color:var(--ops-green); letter-spacing:0.04em; text-transform:uppercase; margin-bottom:3px; }
+  body.theme-dark .insight { background:linear-gradient(135deg, rgba(34,197,94,0.08), rgba(34,197,94,0.02)); }
+  @media (max-width:720px) { .insights { grid-template-columns:1fr; } }
+  @media print { .insights { display:none; } }
   /* YoY heatmap matrix */
   .yoy-matrix { width:100%; border-collapse:separate; border-spacing:1px; background:var(--ops-line); font-size:12px; }
   .yoy-matrix th, .yoy-matrix td { background:var(--ops-surface); padding:8px 6px; }
@@ -391,6 +399,7 @@ html = '''<!DOCTYPE html>
     <h1>매출 — 동급 비교</h1>
     <p class="lede">기준 연도 선택 → 13 peer 매출 비교. 라인 상세표는 선택 연도 컬럼 하이라이트.</p>
     <div class="top-perf" id="top-perf"></div>
+    <div class="insights" id="insights"></div>
     <div class="data-meta">
       📅 데이터: <strong>FY2020-FY2024 연결 P&amp;L</strong>
       <span class="sep">·</span>
@@ -499,9 +508,10 @@ __SEG_SECTION__
   <div class="help-panel">
     <button class="close-btn" id="help-close" aria-label="도움말 닫기">✕</button>
     <h2 id="help-title">⌨️ 키보드 단축키</h2>
-    <div class="help-row"><span>다크/라이트 모드 전환</span><kbd>d</kbd></div>
+    <div class="help-row"><span>다크/라이트 모드</span><kbd>d</kbd></div>
+    <div class="help-row"><span>빠른 연도 선택 (FY20-24)</span><kbd>1</kbd>-<kbd>5</kbd></div>
     <div class="help-row"><span>연도·탭·모드 이동</span><kbd>←</kbd> <kbd>→</kbd></div>
-    <div class="help-row"><span>이 도움말 열기/닫기</span><kbd>?</kbd> <kbd>Esc</kbd></div>
+    <div class="help-row"><span>도움말 토글</span><kbd>?</kbd> <kbd>Esc</kbd></div>
     <div style="margin-top:12px; padding-top:10px; border-top:1px dashed var(--ops-line); font-size:11.5px; color:var(--ops-muted);">
       🔗 URL hash (#year=, #tab=)로 현재 상태 공유. ⬇ CSV 내보내기로 데이터 추출.
     </div>
@@ -628,8 +638,50 @@ function renderTopPerf(year) {
   </div>`).join('');
 }
 
+function renderInsights(year) {
+  const root = document.getElementById('insights');
+  if (!root) return;
+  // Median 5Y CAGR per tier
+  function median(arr) {
+    const v = arr.filter(x => x !== null && x !== undefined && !isNaN(x)).sort((a,b)=>a-b);
+    return v.length ? (v.length%2 ? v[Math.floor(v.length/2)] : (v[v.length/2-1]+v[v.length/2])/2) : null;
+  }
+  const tierCAGR = (tk) => {
+    const peers = PEER_ORDER.filter(t => PEER_DATA[t].tier === tk);
+    return median(peers.map(t => calcCAGR(PEER_DATA[t].yearly).cagr));
+  };
+  const ppCagr = tierCAGR('pp');
+  const twnCagr = tierCAGR('twn');
+  // Peak status counts (선택 연도 기준)
+  let atPeak = 0, total = 0;
+  PEER_ORDER.forEach(t => {
+    const rev = PEER_DATA[t].yearly[year]?.rev;
+    const fy5 = ['2020','2021','2022','2023','2024'].map(y => PEER_DATA[t].yearly[y] ? PEER_DATA[t].yearly[y].rev : null).filter(v => v && v > 0);
+    if (fy5.length >= 2 && rev) {
+      total++;
+      if (rev >= Math.max(...fy5) * 0.995) atPeak++;
+    }
+  });
+  const insights = [];
+  if (ppCagr !== null && twnCagr !== null) {
+    const diff = ppCagr - twnCagr;
+    insights.push({
+      label: '💡 5Y CAGR 격차',
+      text: `<strong>Pure-play 중위 ${ppCagr.toFixed(1)}%</strong> vs Township 중위 ${twnCagr.toFixed(1)}% — ${Math.abs(diff).toFixed(1)}%p ${diff >= 0 ? '높음' : '낮음'}.`
+    });
+  }
+  if (total > 0) {
+    insights.push({
+      label: '⭐ FY' + year + ' 정점 달성',
+      text: `<strong>${atPeak} / ${total}</strong> peer가 5Y 최고치 도달 (≥99.5%). 업계 회복세 ${(atPeak/total*100).toFixed(0)}%.`
+    });
+  }
+  root.innerHTML = insights.map(i => `<div class="insight"><div class="label">${i.label}</div>${i.text}</div>`).join('');
+}
+
 function render(year){
   renderTopPerf(year);
+  renderInsights(year);
   document.querySelectorAll('.yr-label').forEach(el => el.textContent = 'FY' + year);
 
   // Cross-peer comparison
@@ -951,6 +1003,11 @@ let currentYear = '2024';
     if (e.target.matches('input,textarea,select')) return;
     if (e.key === 'd') themeBtn.click();
     else if (e.key === '?') { e.preventDefault(); toggleHelp(); }
+    else if (/^[1-5]$/.test(e.key)) {
+      const yr = String(2019 + parseInt(e.key));
+      const btn = document.querySelector(`.year-btn[data-year="${yr}"]`);
+      if (btn) btn.click();
+    }
   });
   // Scroll-spy for anchor nav
   const anchorLinks = document.querySelectorAll('.anchor-nav a');
