@@ -889,15 +889,18 @@ let currentYear = '2024';
       renderTierTrend();
     });
   });
-  // Dark mode
+  // Dark mode + system pref auto-follow
   const themeBtn = document.getElementById('theme-toggle');
   function applyTheme(theme) {
     if (theme === 'dark') { document.body.classList.add('theme-dark'); themeBtn.textContent = '☀️'; }
     else                  { document.body.classList.remove('theme-dark'); themeBtn.textContent = '🌙'; }
   }
   const saved = localStorage.getItem('ops-theme');
-  const sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  applyTheme(saved || (sysDark ? 'dark' : 'light'));
+  const mql = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+  applyTheme(saved || (mql && mql.matches ? 'dark' : 'light'));
+  if (mql && mql.addEventListener) {
+    mql.addEventListener('change', (e) => { if (!localStorage.getItem('ops-theme')) applyTheme(e.matches ? 'dark' : 'light'); });
+  }
   themeBtn.addEventListener('click', () => {
     const newT = document.body.classList.contains('theme-dark') ? 'light' : 'dark';
     localStorage.setItem('ops-theme', newT);
@@ -970,8 +973,35 @@ let currentYear = '2024';
     } catch (e) {}
   }
   loadRevState();
+  // URL hash overrides (shareable links)
+  function readRevHash() {
+    const h = (location.hash || '').replace(/^#/, '');
+    if (!h) return null;
+    const p = new URLSearchParams(h);
+    return { year: p.get('year'), tab: p.get('tab') };
+  }
+  function syncRevHash() {
+    const parts = [];
+    if (currentYear && currentYear !== '2024') parts.push('year=' + currentYear);
+    const activeTab = document.querySelector('.rev-tab.active');
+    const tabKey = activeTab ? activeTab.dataset.panel : 'cmp';
+    if (tabKey && tabKey !== 'cmp') parts.push('tab=' + tabKey);
+    const h = parts.join('&');
+    history.replaceState(null, '', h ? '#' + h : location.pathname + location.search);
+  }
+  const fromHash = readRevHash();
+  if (fromHash) {
+    if (fromHash.year && ['2020','2021','2022','2023','2024'].includes(fromHash.year)) {
+      currentYear = fromHash.year;
+      document.querySelectorAll('.year-btn').forEach(b => b.classList.toggle('active', b.dataset.year === currentYear));
+    }
+    if (fromHash.tab && ['cmp','pp','seg'].includes(fromHash.tab)) {
+      document.querySelectorAll('.rev-tab').forEach(x => x.classList.toggle('active', x.dataset.panel === fromHash.tab));
+      document.querySelectorAll('.rev-panel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + fromHash.tab));
+    }
+  }
   document.querySelectorAll('.year-btn, .rev-tab, .trend-mode-toggle button').forEach(el => {
-    el.addEventListener('click', () => setTimeout(saveRevState, 0));
+    el.addEventListener('click', () => setTimeout(() => { saveRevState(); syncRevHash(); }, 0));
   });
   // Sortable header click
   document.querySelectorAll('#panel-cmp .sortable').forEach(th => {
