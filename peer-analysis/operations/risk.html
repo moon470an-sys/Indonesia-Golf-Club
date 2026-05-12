@@ -80,6 +80,16 @@
   .peer-search-row { display:flex; gap:8px; align-items:center; margin:6px 0; flex-wrap:wrap; }
   .peer-search-row input { padding:5px 10px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:6px; font-size:12px; color:var(--ops-ink); min-width:200px; }
   .peer-search-row input:focus { outline:none; border-color:var(--ops-green); box-shadow:0 0 0 3px rgba(45,80,22,0.12); }
+  /* Mobile column priority */
+  @media (max-width:720px) {
+    #risk-tbl .col-low-prio { display:none; }
+    .cat-rates { grid-template-columns:1fr; }
+  }
+  /* Matrix hover cross-highlight: column index 0-based, set via data-col on heat-cell */
+  #risk-tbl tbody tr:hover .heat-cell { background:rgba(245,158,11,0.08); }
+  #risk-tbl tbody td.col-highlight { background:rgba(245,158,11,0.12); }
+  body.theme-dark #risk-tbl tbody tr:hover .heat-cell { background:rgba(245,158,11,0.16); }
+  body.theme-dark #risk-tbl tbody td.col-highlight { background:rgba(245,158,11,0.22); }
   /* Print */
   @media print {
     @page { size: A4 landscape; margin: 10mm; }
@@ -158,13 +168,13 @@
         <thead>
           <tr>
             <th>Peer</th>
-            <th>분류</th>
-            <th class="num sortable" data-sort="land">토지권 만료</th>
-            <th class="num sortable" data-sort="license">영업 자격</th>
-            <th class="num sortable" data-sort="contingent">우발 부채</th>
-            <th class="num sortable" data-sort="tax">세무 분쟁</th>
-            <th class="num sortable" data-sort="bpjs">노동 BPJS</th>
-            <th class="num sortable" data-sort="propTax">재산세</th>
+            <th class="col-low-prio">분류</th>
+            <th class="num sortable" data-sort="land" data-col="0">토지권 만료</th>
+            <th class="num sortable col-low-prio" data-sort="license" data-col="1">영업 자격</th>
+            <th class="num sortable col-low-prio" data-sort="contingent" data-col="2">우발 부채</th>
+            <th class="num sortable col-low-prio" data-sort="tax" data-col="3">세무 분쟁</th>
+            <th class="num sortable col-low-prio" data-sort="bpjs" data-col="4">노동 BPJS</th>
+            <th class="num sortable" data-sort="propTax" data-col="5">재산세</th>
             <th class="num sortable desc" data-sort="total">합계 ↓</th>
           </tr>
         </thead>
@@ -318,8 +328,11 @@ function renderTable() {
     const totalCls = scoreClass(r.total);
     return `<tr data-tier="${r.p.tier}">
       <td class="peer"><a href="clubs/${r.t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${r.t}</a><span class="peer-tag peer-tag-${r.p.tier}">${TIER_SHORT[r.p.tier]}</span></td>
-      <td>${r.p.tier_label.replace(/^[^ ]+ /,'')}</td>
-      ${CAT_KEYS.map(k => `<td class="heat-cell" title="${CAT_LABELS[k]}: ${r.p[k]}점">${symbolFor(r.p[k])}</td>`).join('')}
+      <td class="col-low-prio">${r.p.tier_label.replace(/^[^ ]+ /,'')}</td>
+      ${CAT_KEYS.map((k, i) => {
+        const isLow = (k === 'license' || k === 'contingent' || k === 'tax' || k === 'bpjs');
+        return `<td class="heat-cell${isLow ? ' col-low-prio' : ''}" data-col="${i}" title="${CAT_LABELS[k]}: ${r.p[k]}점">${symbolFor(r.p[k])}</td>`;
+      }).join('')}
       <td class="num"><span class="risk-score ${totalCls}" title="합계 ${r.total} / 12">${r.total} / 12</span></td>
     </tr>`;
   });
@@ -334,10 +347,11 @@ function renderTable() {
     const tierLabelMap = { pp:'🟦 Pure-play 평균', resort:'🟨 Resort 평균', twn:'🟩 Township 평균' };
     benchRows.push(`<tr class="bench-row tier-${tk}">
       <td>${tierLabelMap[tk]}</td>
-      <td>N=${tdata.length}</td>
-      ${CAT_KEYS.map(k => {
+      <td class="col-low-prio">N=${tdata.length}</td>
+      ${CAT_KEYS.map((k, i) => {
         const a = avg(tdata.map(r => r.p[k]));
-        return `<td class="num-avg" title="평균 ${a.toFixed(2)}">${a.toFixed(1)}</td>`;
+        const isLow = (k === 'license' || k === 'contingent' || k === 'tax' || k === 'bpjs');
+        return `<td class="num-avg${isLow ? ' col-low-prio' : ''}" title="평균 ${a.toFixed(2)}">${a.toFixed(1)}</td>`;
       }).join('')}
       <td class="num"><span class="risk-score ${totalCls}">${totalAvg.toFixed(1)} / 12</span></td>
     </tr>`);
@@ -346,10 +360,11 @@ function renderTable() {
   const overallTotal = allAvg(rows.map(r => r.total));
   benchRows.push(`<tr class="bench-row overall">
     <td>📊 전체 평균</td>
-    <td>N=${rows.length}</td>
-    ${CAT_KEYS.map(k => {
+    <td class="col-low-prio">N=${rows.length}</td>
+    ${CAT_KEYS.map((k, i) => {
       const a = allAvg(rows.map(r => r.p[k]));
-      return `<td class="num-avg" title="전체 평균 ${a.toFixed(2)}">${a.toFixed(1)}</td>`;
+      const isLow = (k === 'license' || k === 'contingent' || k === 'tax' || k === 'bpjs');
+      return `<td class="num-avg${isLow ? ' col-low-prio' : ''}" title="전체 평균 ${a.toFixed(2)}">${a.toFixed(1)}</td>`;
     }).join('')}
     <td class="num"><span class="risk-score ${scoreClass(Math.round(overallTotal))}">${overallTotal.toFixed(1)} / 12</span></td>
   </tr>`);
@@ -433,6 +448,16 @@ function flashSuccess(btn, label){
   renderCatRates();
   renderRiskRank();
   renderTable();
+  // Column hover highlight on matrix
+  document.querySelectorAll('#risk-tbl thead th[data-col]').forEach(th => {
+    const col = th.dataset.col;
+    th.addEventListener('mouseenter', () => {
+      document.querySelectorAll(`#risk-tbody td[data-col="${col}"]`).forEach(c => c.classList.add('col-highlight'));
+    });
+    th.addEventListener('mouseleave', () => {
+      document.querySelectorAll(`#risk-tbody td[data-col="${col}"]`).forEach(c => c.classList.remove('col-highlight'));
+    });
+  });
   // Dark mode
   const themeBtn = document.getElementById('theme-toggle');
   function applyTheme(theme) {
