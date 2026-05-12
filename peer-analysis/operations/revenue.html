@@ -70,6 +70,16 @@
   .trend-mode-toggle button { padding:5px 10px; border:none; background:var(--ops-surface); font-size:11.5px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
   .trend-mode-toggle button.active { background:var(--ops-green); color:white; }
   .trend-mode-toggle button + button { border-left:1px solid var(--ops-line); }
+  /* Sortable headers */
+  .sortable { cursor:pointer; user-select:none; position:relative; padding-right:18px !important; }
+  .sortable:hover { background:rgba(45,80,22,0.06); }
+  .sortable::after { content:'⇅'; position:absolute; right:6px; top:50%; transform:translateY(-50%); opacity:0.25; font-size:10px; }
+  .sortable.asc::after { content:'▲'; opacity:1; color:var(--ops-green); }
+  .sortable.desc::after { content:'▼'; opacity:1; color:var(--ops-green); }
+  /* Mobile column priority */
+  @media (max-width:720px) {
+    .ops-tbl .col-low-prio { display:none; }
+  }
   /* In-page anchor nav */
   .anchor-nav { display:flex; flex-wrap:wrap; gap:6px; margin:10px 0 4px 0; font-size:11.5px; }
   .anchor-nav a { padding:4px 10px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:6px; text-decoration:none; color:var(--ops-ink-soft); transition:all 0.15s; }
@@ -154,15 +164,15 @@
           <thead>
             <tr>
               <th>Peer</th>
-              <th>그룹명</th>
-              <th class="num">그룹 매출</th>
-              <th class="num">5년 추이</th>
-              <th class="num">5Y CAGR</th>
-              <th class="num">5Y 위치 <span class="tip" title="FY24 매출이 FY20-24 최고치 대비 어디에 있는지 — 100% = 5년 최고, 작을수록 정점 후 감소">?</span></th>
-              <th class="num">골프 매출</th>
-              <th class="num">골프 비중</th>
-              <th class="num">YoY (그룹)</th>
-              <th class="num">YoY (골프)</th>
+              <th class="col-low-prio">그룹명</th>
+              <th class="num sortable" data-sort="rev">그룹 매출</th>
+              <th class="num col-low-prio">5년 추이</th>
+              <th class="num sortable" data-sort="cagr">5Y CAGR</th>
+              <th class="num sortable col-low-prio" data-sort="peak">5Y 위치 <span class="tip" title="FY24 매출이 FY20-24 최고치 대비 어디에 있는지 — 100% = 5년 최고, 작을수록 정점 후 감소">?</span></th>
+              <th class="num sortable" data-sort="golf">골프 매출</th>
+              <th class="num sortable col-low-prio" data-sort="share">골프 비중</th>
+              <th class="num sortable" data-sort="yoyG">YoY (그룹)</th>
+              <th class="num sortable col-low-prio" data-sort="yoyGolf">YoY (골프)</th>
             </tr>
           </thead>
           <tbody id="cmp-tbody"></tbody>
@@ -646,12 +656,14 @@ function sparkline(yearly, currentYear, color){
   </svg>`;
 }
 
+let cmpSortState = { key: null, dir: 'desc' };
+
 function render(year){
   document.querySelectorAll('.yr-label').forEach(el => el.textContent = 'FY' + year);
 
   // Cross-peer comparison
   const prevYear = String(parseInt(year)-1);
-  const rows = PEER_ORDER.map(t => {
+  const rowData = PEER_ORDER.map(t => {
     const d = PEER_DATA[t];
     const rev = d.yearly[year] ? d.yearly[year].rev : null;
     const revPrev = d.yearly[prevYear] ? d.yearly[prevYear].rev : null;
@@ -660,34 +672,50 @@ function render(year){
     const share = (rev && golf) ? (golf/rev*100) : null;
     const yoyG = (rev && revPrev) ? ((rev-revPrev)/revPrev*100) : null;
     const yoyGolf = (golf && golfPrev) ? ((golf-golfPrev)/golfPrev*100) : null;
+    const cagr = calcCAGR(d.yearly);
+    const fy5 = ['2020','2021','2022','2023','2024'].map(y => d.yearly[y] ? d.yearly[y].rev : null).filter(v => v && v > 0);
+    const peak = (fy5.length >= 2 && rev) ? (rev / Math.max(...fy5) * 100) : null;
+    return { t, d, rev, golf, share, yoyG, yoyGolf, cagr: cagr.cagr, peak };
+  });
+  if (cmpSortState.key) {
+    rowData.sort((a, b) => {
+      const va = a[cmpSortState.key]; const vb = b[cmpSortState.key];
+      if (va === null || va === undefined) return 1;
+      if (vb === null || vb === undefined) return -1;
+      return cmpSortState.dir === 'desc' ? (vb - va) : (va - vb);
+    });
+  }
+  const rows = rowData.map(r => {
+    const { t, d, rev, golf, share, yoyG, yoyGolf } = r;
     const tierColor = d.tier === 'pp' ? '#3b82f6' : d.tier === 'resort' ? '#f59e0b' : '#16a34a';
     const cagr = calcCAGR(d.yearly);
-    // Peak status: FY-selected vs FY20-24 max
-    const fy5 = ['2020','2021','2022','2023','2024'].map(y => d.yearly[y] ? d.yearly[y].rev : null).filter(v => v && v > 0);
     let peakHtml = '—';
-    if (fy5.length >= 2 && rev) {
-      const peakVal = Math.max(...fy5);
-      const ratio = rev / peakVal * 100;
+    if (r.peak !== null) {
       let cls = 'down';
-      if (ratio >= 99.5) cls = 'at-peak';
-      else if (ratio >= 90) cls = 'near';
-      const lbl = ratio >= 99.5 ? '⭐ 정점' : (ratio.toFixed(0)+'%');
-      peakHtml = `<span class="peak-pill ${cls}" title="FY${year} 매출 = 5Y 최고치의 ${ratio.toFixed(1)}%">${lbl}</span>`;
+      if (r.peak >= 99.5) cls = 'at-peak';
+      else if (r.peak >= 90) cls = 'near';
+      const lbl = r.peak >= 99.5 ? '⭐ 정점' : (r.peak.toFixed(0)+'%');
+      peakHtml = `<span class="peak-pill ${cls}" title="FY${year} 매출 = 5Y 최고치의 ${r.peak.toFixed(1)}%">${lbl}</span>`;
     }
     return `<tr>
       <td class="peer"><a href="clubs/${t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${t}</a><span class="peer-tag peer-tag-${d.tier}">${d.tier_label}</span></td>
-      <td>${d.name.slice(0,24)}</td>
+      <td class="col-low-prio">${d.name.slice(0,24)}</td>
       <td class="num">${fmtBn(rev)}</td>
-      <td class="num" style="padding:4px 8px;">${sparkline(d.yearly, year, tierColor)}</td>
+      <td class="num col-low-prio" style="padding:4px 8px;">${sparkline(d.yearly, year, tierColor)}</td>
       <td class="num">${fmtCAGR(cagr)}</td>
-      <td class="num">${peakHtml}</td>
+      <td class="num col-low-prio">${peakHtml}</td>
       <td class="num"><strong>${fmtBn(golf)}</strong></td>
-      <td class="num">${fmtPct(share)}</td>
+      <td class="num col-low-prio">${fmtPct(share)}</td>
       <td class="num">${fmtYoY(yoyG)}</td>
-      <td class="num">${fmtYoY(yoyGolf)}</td>
+      <td class="num col-low-prio">${fmtYoY(yoyGolf)}</td>
     </tr>`;
   });
   document.getElementById('cmp-tbody').innerHTML = rows.join('');
+  // Update sort header indicators
+  document.querySelectorAll('#panel-cmp .sortable').forEach(th => {
+    th.classList.remove('asc','desc');
+    if (th.dataset.sort === cmpSortState.key) th.classList.add(cmpSortState.dir);
+  });
 
   // Tier trend chart
   renderTierTrend();
@@ -985,6 +1013,15 @@ let currentYear = '2024';
   loadRevState();
   document.querySelectorAll('.year-btn, .rev-tab, .trend-mode-toggle button').forEach(el => {
     el.addEventListener('click', () => setTimeout(saveRevState, 0));
+  });
+  // Sortable header click
+  document.querySelectorAll('#panel-cmp .sortable').forEach(th => {
+    th.addEventListener('click', () => {
+      const k = th.dataset.sort;
+      if (cmpSortState.key === k) cmpSortState.dir = (cmpSortState.dir === 'desc') ? 'asc' : 'desc';
+      else { cmpSortState.key = k; cmpSortState.dir = 'desc'; }
+      render(currentYear);
+    });
   });
   render(currentYear);
 })();
