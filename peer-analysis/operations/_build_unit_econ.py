@@ -117,6 +117,18 @@ html = '''<!DOCTYPE html>
   .row-count { font-size:12px; color:var(--ops-muted); margin-left:auto; }
   /* Hidden rows (filtered out) */
   tr.tier-hidden { display:none; }
+  /* Theme toggle */
+  .theme-toggle { position:absolute; top:14px; right:14px; padding:5px 10px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:999px; font-size:13px; cursor:pointer; color:var(--ops-ink); z-index:10; }
+  .theme-toggle:hover { background:rgba(45,80,22,0.06); }
+  .ops-hero { position:relative; }
+  body.theme-dark { --ops-bg:#0f172a; --ops-surface:#1e293b; --ops-ink:#e2e8f0; --ops-ink-soft:#cbd5e1; --ops-muted:#94a3b8; --ops-line:#334155; --ops-green:#22c55e; }
+  body.theme-dark .ops-tbl thead th, body.theme-dark .ops-tbl { background:#1e293b; color:inherit; }
+  body.theme-dark .ops-tbl thead th { background:#0f172a; }
+  body.theme-dark .ops-tbl tbody tr:hover { background:rgba(34,197,94,0.06); }
+  body.theme-dark .sticky-first th:first-child, body.theme-dark .sticky-first td:first-child { background:#1e293b; }
+  body.theme-dark .sticky-first thead th:first-child { background:#0f172a; }
+  /* Per-peer mini sparkline (used in main table trend column) */
+  .mini-spark { display:inline-block; vertical-align:middle; }
 </style>
 </head>
 <body>
@@ -134,6 +146,7 @@ html = '''<!DOCTYPE html>
 </header>
 
 <section class="ops-hero">
+  <button class="theme-toggle" id="theme-toggle" aria-label="다크모드 전환" title="다크/라이트 모드 전환 (단축키: d)">🌙</button>
   <div class="ops-wrap">
     <h1>단위 경제 (Per-unit Economics)</h1>
     <p class="lede">기준 연도 선택 → 13 peer 동급 비교. 홀·면적·정직원은 고정값, 매출·이익은 연도별.</p>
@@ -179,6 +192,7 @@ html = '''<!DOCTYPE html>
             <th class="num sortable" data-sort="area">면적 (ha)</th>
             <th class="num sortable" data-sort="emp">정직원</th>
             <th class="num sortable" data-sort="golfRev">골프 매출</th>
+            <th class="num">매출 추이 (5Y)</th>
             <th class="num sortable desc" data-sort="revPerHole">홀당 매출</th>
             <th class="num sortable" data-sort="revPerHa">ha당 매출</th>
             <th class="num sortable" data-sort="revPerEmp">1인당 매출</th>
@@ -277,6 +291,38 @@ function fmtPerUnit(rev_bn, divisor){
 let sortState = { key: 'revPerHole', dir: 'desc' };
 let tierFilter = 'all';
 
+const TIER_COLOR = { pp:'#3b82f6', resort:'#f59e0b', twn:'#16a34a' };
+
+// Mini-sparkline for group revenue trend FY20-24
+function miniSpark(yearly, color, currentYear) {
+  const years = ['2020','2021','2022','2023','2024'];
+  const series = years.map(y => yearly[y] ? yearly[y].rev : null);
+  const valid = series.filter(v => v !== null && v !== undefined && v > 0);
+  if (valid.length < 2) return '<span style="color:var(--ops-muted); font-size:11px;">—</span>';
+  const W = 80, H = 24, padX = 3, padY = 3;
+  const mn = Math.min(...valid), mx = Math.max(...valid);
+  const rng = mx - mn || 1;
+  const pts = [];
+  series.forEach((v, i) => {
+    if (v === null || v === undefined || v <= 0) return;
+    const x = padX + (W - 2*padX) * (i / (years.length - 1));
+    const y = H - padY - (H - 2*padY) * (v - mn) / rng;
+    pts.push({ x, y, year:years[i], val:v });
+  });
+  if (pts.length < 2) return '<span style="color:var(--ops-muted); font-size:11px;">—</span>';
+  const pathD = 'M ' + pts.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' L ');
+  const dots = pts.map((p,i) => {
+    const isCur = p.year === currentYear;
+    const isLast = i === pts.length - 1;
+    if (isCur) return `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="2.5" fill="#f59e0b" stroke="white" stroke-width="1"><title>FY${p.year}: ${(p.val/1e9).toFixed(1)}B</title></circle>`;
+    return `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${isLast?1.8:1.2}" fill="${color}"><title>FY${p.year}: ${(p.val/1e9).toFixed(1)}B</title></circle>`;
+  }).join('');
+  return `<svg class="mini-spark" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" aria-label="5년 매출 추이">
+    <path d="${pathD}" stroke="${color}" stroke-width="1.4" fill="none"/>
+    ${dots}
+  </svg>`;
+}
+
 function computeMainRows(year){
   return PEER_ORDER.map(t => {
     const d = PEER_DATA[t];
@@ -362,6 +408,7 @@ function renderMain(year){
     return `<td class="num heat">${fmt}${bar}</td>`;
   };
   const html = sorted.map(r => {
+    const color = TIER_COLOR[r.d.tier] || '#666';
     return `<tr>
       <td class="peer"><a href="clubs/${r.t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${r.t}</a><span class="peer-tag peer-tag-${r.d.tier}">${r.d.tier_label}</span></td>
       <td>${r.d.name.slice(0,22)}</td>
@@ -369,6 +416,7 @@ function renderMain(year){
       <td class="num">${fmtNum(r.area, 1)}</td>
       <td class="num">${fmtNum(r.emp)}</td>
       <td class="num">${r.golfRev !== null ? r.golfRev.toFixed(1)+'B' : '—'}</td>
+      <td class="num" style="padding:4px 8px;">${miniSpark(r.d.yearly, color, currentYear)}</td>
       ${heat('revPerHole', r.revPerHole, `<strong>${r.revPerHole !== null ? (r.revPerHole < 1 ? (r.revPerHole*1000).toFixed(0)+'M' : r.revPerHole.toFixed(2)+'B') : '—'}</strong>`)}
       ${heat('revPerHa',   r.revPerHa,   r.revPerHa !== null ? (r.revPerHa < 1 ? (r.revPerHa*1000).toFixed(0)+'M' : r.revPerHa.toFixed(2)+'B') : '—')}
       ${heat('revPerEmp',  r.revPerEmp,  r.revPerEmp !== null ? (r.revPerEmp < 1 ? (r.revPerEmp*1000).toFixed(0)+'M' : r.revPerEmp.toFixed(2)+'B') : '—')}
@@ -541,6 +589,24 @@ async function flashSuccess(btn, label){
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
     URL.revokeObjectURL(url);
     flashSuccess(e.currentTarget, '✓ 다운로드');
+  });
+  // Dark mode toggle (reads shared 'ops-theme' from localStorage so all pages stay in sync)
+  const themeBtn = document.getElementById('theme-toggle');
+  function applyTheme(theme) {
+    if (theme === 'dark') { document.body.classList.add('theme-dark'); themeBtn.textContent = '☀️'; }
+    else                  { document.body.classList.remove('theme-dark'); themeBtn.textContent = '🌙'; }
+  }
+  const saved = localStorage.getItem('ops-theme');
+  const sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  applyTheme(saved || (sysDark ? 'dark' : 'light'));
+  themeBtn.addEventListener('click', () => {
+    const newT = document.body.classList.contains('theme-dark') ? 'light' : 'dark';
+    localStorage.setItem('ops-theme', newT);
+    applyTheme(newT);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.target.matches('input,textarea,select')) return;
+    if (e.key === 'd') themeBtn.click();
   });
   render(currentYear);
 })();
