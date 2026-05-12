@@ -58,8 +58,41 @@ def build_sparkline(c5y, color):
         f'{dots}</svg>'
     )
 
-cards_html = []
 peers_sorted = sorted(peers_v2, key=lambda t: (torder(t), t))
+
+# ============================================================
+# Pre-compute tertile thresholds across 13 peers for key metrics
+# ============================================================
+def _tertile_thresholds(values):
+    vs = sorted(v for v in values if v is not None)
+    n = len(vs)
+    if n < 3: return (None, None)
+    return (vs[n // 3], vs[2 * n // 3])
+
+def _metric_for(t, key):
+    yy = fin.get(t,{}).get('yearly',{}).get('2024',{})
+    rev = yy.get('revenue'); npp = yy.get('net_profit'); ta = yy.get('total_assets')
+    if key == 'rev':    return rev/1e9 if rev else None
+    if key == 'margin': return (npp/rev*100) if (rev and npp) else None
+    if key == 'roa':    return (npp/ta*100) if (ta and npp) else None
+    return None
+
+TERTILE_KEYS = ['rev', 'margin', 'roa']
+_tertile = {k: _tertile_thresholds([_metric_for(t, k) for t in peers_sorted]) for k in TERTILE_KEYS}
+
+def _tertile_dot(value, key):
+    """Return inline HTML dot indicating tertile position for the given metric.
+    🟢 top tertile (best), 🟡 middle, 🔴 bottom — null returns empty string."""
+    if value is None: return ''
+    low, high = _tertile.get(key, (None, None))
+    if low is None or high is None: return ''
+    if value >= high:
+        return '<span class="tertile-dot dot-top" title="상위 1/3 (peer group)">●</span>'
+    if value >= low:
+        return '<span class="tertile-dot dot-mid" title="중위 1/3">●</span>'
+    return '<span class="tertile-dot dot-bot" title="하위 1/3">●</span>'
+
+cards_html = []
 
 for t in peers_sorted:
     c = clubs[t]
@@ -111,12 +144,12 @@ for t in peers_sorted:
         f'          <div><strong style="color:var(--ops-muted);">모회사</strong><br>{c["parent"][:30]}{"..." if len(c["parent"])>30 else ""}</div>\n'
         f'        </div>\n'
         f'        <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:6px 14px; padding:10px 0; border-top:1px dashed var(--ops-line); border-bottom:1px dashed var(--ops-line); font-size:11.5px;">\n'
-        f'          <div><strong style="color:var(--ops-muted);">FY24 매출</strong><br><span style="font-weight:700; color:var(--ops-ink);">{fmtBn(rev_bn)}</span></div>\n'
+        f'          <div><strong style="color:var(--ops-muted);">FY24 매출</strong><br><span style="font-weight:700; color:var(--ops-ink);">{fmtBn(rev_bn)}</span>{_tertile_dot(rev_bn, "rev")}</div>\n'
         f'          <div><strong style="color:var(--ops-muted);">매출 YoY</strong><br>{fmtPct(yoy)}</div>\n'
-        f'          <div><strong style="color:var(--ops-muted);">순이익률</strong><br>{fmtPct(margin)}</div>\n'
+        f'          <div><strong style="color:var(--ops-muted);">순이익률</strong><br>{fmtPct(margin)}{_tertile_dot(margin, "margin")}</div>\n'
         f'          <div><strong style="color:var(--ops-muted);">EBITDA 마진</strong><br>{fmtPct(eb_margin)}</div>\n'
         f'          <div><strong style="color:var(--ops-muted);">총자산</strong><br><span style="color:var(--ops-ink);">{fmtBn(ta_bn)}</span></div>\n'
-        f'          <div><strong style="color:var(--ops-muted);">ROA</strong><br>{fmtPct(roa)}</div>\n'
+        f'          <div><strong style="color:var(--ops-muted);">ROA</strong><br>{fmtPct(roa)}{_tertile_dot(roa, "roa")}</div>\n'
         f'        </div>\n'
         f'        <div style="display:flex; justify-content:space-between; align-items:flex-end; font-size:11.5px;">\n'
         f'          <div style="flex:1;"><strong style="color:var(--ops-muted);">5년 매출 추이 (FY20→24)</strong><br>{spark_svg}</div>\n'
@@ -168,12 +201,12 @@ for t in peers_sorted:
         f'        <td style="font-size:12px;">{c["loc"]}</td>\n'
         f'        <td style="font-size:12px;">{c["holes"]}</td>\n'
         f'        <td style="font-size:12px;">{c["area"]}</td>\n'
-        f'        <td class="num" style="font-weight:700;">{fmtBn(rev_bn)}</td>\n'
+        f'        <td class="num" style="font-weight:700;">{fmtBn(rev_bn)}{_tertile_dot(rev_bn, "rev")}</td>\n'
         f'        <td class="num">{fmtPct(yoy)}</td>\n'
-        f'        <td class="num">{fmtPct(margin)}</td>\n'
+        f'        <td class="num">{fmtPct(margin)}{_tertile_dot(margin, "margin")}</td>\n'
         f'        <td class="num">{fmtPct(eb_margin)}</td>\n'
         f'        <td class="num">{fmtBn(ta_bn)}</td>\n'
-        f'        <td class="num">{fmtPct(roa)}</td>\n'
+        f'        <td class="num">{fmtPct(roa)}{_tertile_dot(roa, "roa")}</td>\n'
         f'        <td class="num" style="color:var(--ops-green); font-weight:700;">Rp {c["golf_rev_fy24"]}</td>\n'
         f'      </tr>'
     )
@@ -256,7 +289,7 @@ html = '''<!DOCTYPE html>
 <title>클럽 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="../ops-style.css?v=20260513c79" />
+<link rel="stylesheet" href="../ops-style.css?v=20260513c85" />
 <style>
   .club-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
   .club-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 16px; margin-top: 20px; }
@@ -324,6 +357,14 @@ html = '''<!DOCTYPE html>
   @media (max-width: 720px) {
     .tier-stats { grid-template-columns:1fr; }
   }
+  /* Tertile dot indicator — colored bullet next to key metric values (peer group rank) */
+  .tertile-dot { display:inline-block; margin-left:6px; font-size:13px; line-height:1; vertical-align:middle; cursor:help; }
+  .tertile-dot.dot-top { color:#16a34a; }
+  .tertile-dot.dot-mid { color:#f59e0b; }
+  .tertile-dot.dot-bot { color:#b91c1c; }
+  body.theme-dark .tertile-dot.dot-top { color:#22c55e; }
+  body.theme-dark .tertile-dot.dot-mid { color:#fbbf24; }
+  body.theme-dark .tertile-dot.dot-bot { color:#ef4444; }
   /* Ranking medals — top-3 visible peers when sorted by numeric metric */
   .club-card.rank-1, .club-card.rank-2, .club-card.rank-3 { position:relative; }
   .club-card.rank-1::before, .club-card.rank-2::before, .club-card.rank-3::before {
@@ -519,6 +560,8 @@ html = '''<!DOCTYPE html>
       재무 데이터: <strong>FY2020-FY2024 연결 P&amp;L · 대차대조표</strong>
       <span class="sep">·</span>
       출처: <strong>IDX 공시 (idx.co.id) · 연차보고서</strong>
+      <span class="sep">·</span>
+      Tertile dot: <span class="tertile-dot dot-top">●</span> 상위 1/3 · <span class="tertile-dot dot-mid">●</span> 중위 · <span class="tertile-dot dot-bot">●</span> 하위 (매출·순이익률·ROA, peer-group 13개 기준)
     </div>
   </div>
 </section>
