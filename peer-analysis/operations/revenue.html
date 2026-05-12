@@ -6,7 +6,7 @@
 <title>매출 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260513c81" />
+<link rel="stylesheet" href="ops-style.css?v=20260513c87" />
 <style>
   .year-bar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:14px 0 4px 0; }
   .year-bar label { font-size:13px; font-weight:600; color:var(--ops-ink-soft); }
@@ -93,6 +93,14 @@
   .yoy-matrix tbody tr.peer-highlight td.peer-cell { background:rgba(245,158,11,0.18); box-shadow:inset 3px 0 0 #f59e0b; }
   body.theme-dark .ops-tbl tbody tr.peer-highlight td:first-child { background:rgba(245,158,11,0.24); }
   body.theme-dark .yoy-matrix tbody tr.peer-highlight td.peer-cell { background:rgba(245,158,11,0.24); }
+  /* Tertile dot indicator — peer-group rank visualization (●) */
+  .tertile-dot { display:inline-block; margin-left:5px; font-size:11px; line-height:1; vertical-align:middle; cursor:help; }
+  .tertile-dot.dot-top { color:#16a34a; }
+  .tertile-dot.dot-mid { color:#f59e0b; }
+  .tertile-dot.dot-bot { color:#b91c1c; }
+  body.theme-dark .tertile-dot.dot-top { color:#22c55e; }
+  body.theme-dark .tertile-dot.dot-mid { color:#fbbf24; }
+  body.theme-dark .tertile-dot.dot-bot { color:#ef4444; }
   /* Tier filter pills (Tab ①) */
   .tier-pills { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:6px 0 8px 0; }
   .tier-pill { padding:5px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:999px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
@@ -858,6 +866,22 @@ function render(year){
     const peak = (fy5.length >= 2 && rev) ? (rev / Math.max(...fy5) * 100) : null;
     return { t, d, rev, golf, share, yoyG, yoyGolf, cagr: cagr.cagr, peak };
   });
+  // Tertile thresholds across visible peer set (use full 13 for stability; null값 무시)
+  function tertileBounds(arr) {
+    const v = arr.filter(x => x !== null && x !== undefined && !isNaN(x)).sort((a,b) => a-b);
+    if (v.length < 3) return [null, null];
+    return [v[Math.floor(v.length/3)], v[Math.floor(2*v.length/3)]];
+  }
+  function tertileDot(value, lo, hi) {
+    if (value === null || value === undefined || lo === null || hi === null) return '';
+    if (value >= hi) return '<span class="tertile-dot dot-top" title="상위 1/3">●</span>';
+    if (value >= lo) return '<span class="tertile-dot dot-mid" title="중위 1/3">●</span>';
+    return '<span class="tertile-dot dot-bot" title="하위 1/3">●</span>';
+  }
+  const tbRev   = tertileBounds(rowData.map(r => r.rev));
+  const tbGolf  = tertileBounds(rowData.map(r => r.golf));
+  const tbCagr  = tertileBounds(rowData.map(r => r.cagr));
+  const tbYoyG  = tertileBounds(rowData.map(r => r.yoyG));
   if (cmpSortState.key) {
     rowData.sort((a, b) => {
       const va = a[cmpSortState.key]; const vb = b[cmpSortState.key];
@@ -881,13 +905,13 @@ function render(year){
     return `<tr data-tier="${d.tier}">
       <td class="peer"><a href="clubs/${t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${t}</a><span class="peer-tag peer-tag-${d.tier}">${d.tier_label}</span></td>
       <td class="col-low-prio">${d.name.slice(0,24)}</td>
-      <td class="num">${fmtBn(rev)}</td>
+      <td class="num">${fmtBn(rev)}${tertileDot(rev, tbRev[0], tbRev[1])}</td>
       <td class="num col-low-prio" style="padding:4px 8px;">${sparkline(d.yearly, year, tierColor)}</td>
-      <td class="num">${fmtCAGR(cagr)}</td>
+      <td class="num">${fmtCAGR(cagr)}${tertileDot(r.cagr, tbCagr[0], tbCagr[1])}</td>
       <td class="num col-low-prio">${peakHtml}</td>
-      <td class="num"><strong>${fmtBn(golf)}</strong></td>
+      <td class="num"><strong>${fmtBn(golf)}</strong>${tertileDot(golf, tbGolf[0], tbGolf[1])}</td>
       <td class="num col-low-prio">${fmtPct(share)}</td>
-      <td class="num">${fmtYoY(yoyG)}</td>
+      <td class="num">${fmtYoY(yoyG)}${tertileDot(yoyG, tbYoyG[0], tbYoyG[1])}</td>
       <td class="num col-low-prio">${fmtYoY(yoyGolf)}</td>
     </tr>`;
   });
