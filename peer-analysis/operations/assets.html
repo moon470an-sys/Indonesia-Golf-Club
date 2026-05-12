@@ -6,7 +6,7 @@
 <title>시설 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260513c89" />
+<link rel="stylesheet" href="ops-style.css?v=20260513c95" />
 <style>
   .ast-tab-bar { display:flex; gap:6px; flex-wrap:wrap; margin:16px 0 20px 0; border-bottom:2px solid var(--ops-line); }
   .ast-tab { padding:10px 18px; cursor:pointer; font-size:13px; font-weight:600; color:var(--ops-ink-soft); border-bottom:3px solid transparent; margin-bottom:-2px; }
@@ -127,6 +127,13 @@
   body.theme-dark .peer-search-row input { background:#0f172a; }
   mark.q-match { background:rgba(245,158,11,0.45); color:inherit; padding:0 1px; border-radius:2px; }
   @media print { .peer-search-row { display:none !important; } }
+  /* Favorite star (cross-page localStorage 'clubs-favorites') */
+  .fav-star { display:inline-block; vertical-align:middle; margin-right:4px; padding:0 2px; border:none; background:transparent; cursor:pointer; font-size:14px; line-height:1; color:var(--ops-muted); opacity:0.45; transition:all 0.15s; border-radius:3px; }
+  .fav-star:hover { opacity:1; color:#f59e0b; background:rgba(245,158,11,0.10); }
+  .fav-star.active { color:#f59e0b; opacity:1; }
+  .ops-tbl tbody tr.is-fav td:first-child { box-shadow:inset 4px 0 0 #f59e0b; }
+  body.theme-dark .ops-tbl tbody tr.is-fav td:first-child { box-shadow:inset 4px 0 0 #fbbf24; }
+  @media print { .fav-star { display:none !important; } }
   /* Disclosure score pill (Tab 1) — 5 메타 필드 공시 비율 */
   .discl-bar { display:inline-flex; align-items:center; gap:6px; font-variant-numeric:tabular-nums; }
   .discl-bar .discl-track { position:relative; width:60px; height:8px; background:var(--ops-line); border-radius:4px; overflow:hidden; }
@@ -668,7 +675,7 @@ function renderProd() {
     const vals = rows.map(r => r[k]).filter(v => v !== null && v !== undefined);
     stats[k] = vals.length ? { min: Math.min(...vals), max: Math.max(...vals) } : null;
   });
-  const sorted = rows.slice();
+  let sorted = rows.slice();
   if (sortState.key) {
     sorted.sort((a,b) => {
       const va = a[sortState.key]; const vb = b[sortState.key];
@@ -677,6 +684,12 @@ function renderProd() {
       return sortState.dir === 'desc' ? (vb - va) : (va - vb);
     });
   }
+  // Favorites stable-sort to top
+  if (favorites.size > 0) {
+    const favs = sorted.filter(r => favorites.has(r.t));
+    const rest = sorted.filter(r => !favorites.has(r.t));
+    sorted = favs.concat(rest);
+  }
   const heat = (key, val, fmt) => {
     const s = stats[key];
     const bar = (s && val !== null && val !== undefined) ? heatBar(val, s.min, s.max, heatMetrics[key].higher) : '';
@@ -684,8 +697,9 @@ function renderProd() {
   };
   const peerRows = sorted.map(r => {
     const tierColor = r.m.tier === 'pp' ? '#3b82f6' : r.m.tier === 'resort' ? '#f59e0b' : '#16a34a';
-    return `<tr data-tier="${r.m.tier}">
-    <td class="peer"><a href="clubs/${r.t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${r.t}</a></td>
+    const fav = favorites.has(r.t);
+    return `<tr data-tier="${r.m.tier}" data-ticker="${r.t}" class="${fav ? 'is-fav' : ''}">
+    <td class="peer">${favStarHTML(r.t)}<a href="clubs/${r.t.toLowerCase()}.html" style="color:var(--ops-ink); font-weight:700; text-decoration:none;">${r.t}</a></td>
     <td class="col-low-prio"><span class="peer-tag peer-tag-${r.m.tier}" style="font-size:10px;">${r.m.tier_label}</span></td>
     <td class="num col-low-prio">${fmtNum(r.m.holes)}</td>
     <td class="num col-low-prio">${fmtNum(r.m.area, 1)}</td>
@@ -1032,6 +1046,16 @@ function flashSuccess(btn, label){
   }
   wireArrowNav(Array.from(document.querySelectorAll('.ast-tab')));
   wireArrowNav(Array.from(document.querySelectorAll('#prod-tier-pills .tier-pill')));
+  // Favorites — shared localStorage 'clubs-favorites' with clubs·unit-econ·revenue·cost-hr
+  let favorites = new Set();
+  try { favorites = new Set(JSON.parse(localStorage.getItem('clubs-favorites') || '[]')); } catch (e) {}
+  function saveFavorites() {
+    try { localStorage.setItem('clubs-favorites', JSON.stringify([...favorites])); } catch (e) {}
+  }
+  function favStarHTML(ticker) {
+    const fav = favorites.has(ticker);
+    return `<button class="fav-star${fav ? ' active' : ''}" data-ticker="${ticker}" title="${fav ? '즐겨찾기 해제' : '즐겨찾기 (피어 상단 고정)'}" aria-label="즐겨찾기 토글" aria-pressed="${fav}">${fav ? '★' : '☆'}</button>`;
+  }
   // Tab 1 (시설 구성) 공시 점수 컬럼 동적 추가 — 5 메타 필드 (홀·면적·설계자·개장년·정규직)
   function decoratePhyTable() {
     const tbody = document.getElementById('phy-tbody');
@@ -1053,6 +1077,17 @@ function flashSuccess(btn, label){
       td.innerHTML = `<span class="discl-bar"><span class="discl-track"><span class="discl-fill lvl-${lvl}" style="width:${w}%;"></span></span><span class="discl-txt">${disclosed}/5</span></span>`;
       td.setAttribute('data-discl', disclosed);
       tr.appendChild(td);
+      // Prepend favorite-star button into first cell (Peer column)
+      const peerCell = cells[0];
+      const peerLink = peerCell?.querySelector('a[href^="clubs/"]');
+      if (peerLink) {
+        const ticker = peerLink.textContent.trim();
+        tr.setAttribute('data-ticker', ticker);
+        const wrapper = document.createElement('span');
+        wrapper.innerHTML = favStarHTML(ticker);
+        peerCell.insertBefore(wrapper.firstChild, peerCell.firstChild);
+        if (favorites.has(ticker)) tr.classList.add('is-fav');
+      }
       // Stamp data-sort-* attrs on row so sort handlers can read them quickly
       const sortKeys = ['peer','tier','loc','courses','holes','area','designer','opened','emp','discl'];
       sortKeys.forEach((key, i) => {
@@ -1108,6 +1143,59 @@ function flashSuccess(btn, label){
   }
   decoratePhyTable();
   wirePhySort();
+  // Star click delegation for Tab 2 prod-tbody (rebuilt by renderProd; one persistent listener)
+  document.getElementById('prod-tbody').addEventListener('click', (e) => {
+    const btn = e.target.closest('.fav-star');
+    if (!btn) return;
+    e.preventDefault(); e.stopPropagation();
+    const ticker = btn.dataset.ticker;
+    if (favorites.has(ticker)) favorites.delete(ticker);
+    else favorites.add(ticker);
+    saveFavorites();
+    // Tab 1 sync (phy-tbody row state)
+    const phyRow = document.querySelector(`#phy-tbody tr[data-ticker="${ticker}"]`);
+    if (phyRow) {
+      phyRow.classList.toggle('is-fav', favorites.has(ticker));
+      const phyBtn = phyRow.querySelector('.fav-star');
+      if (phyBtn) {
+        phyBtn.classList.toggle('active', favorites.has(ticker));
+        phyBtn.textContent = favorites.has(ticker) ? '★' : '☆';
+        phyBtn.setAttribute('aria-pressed', favorites.has(ticker));
+      }
+    }
+    renderProd();
+    if (typeof applyFavOrderPhy === 'function') applyFavOrderPhy();
+  });
+  function applyFavOrderPhy() {
+    const tbody = document.getElementById('phy-tbody');
+    if (!tbody) return;
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+    const favRows = rows.filter(r => favorites.has(r.dataset.ticker));
+    const restRows = rows.filter(r => !favorites.has(r.dataset.ticker));
+    favRows.concat(restRows).forEach(r => tbody.appendChild(r));
+  }
+  applyFavOrderPhy();
+  // Star click delegation for Tab 1
+  document.getElementById('phy-tbody').addEventListener('click', (e) => {
+    const btn = e.target.closest('.fav-star');
+    if (!btn) return;
+    e.preventDefault(); e.stopPropagation();
+    const ticker = btn.dataset.ticker;
+    if (favorites.has(ticker)) favorites.delete(ticker);
+    else favorites.add(ticker);
+    saveFavorites();
+    const tr = btn.closest('tr');
+    if (tr) {
+      tr.classList.toggle('is-fav', favorites.has(ticker));
+      btn.classList.toggle('active', favorites.has(ticker));
+      btn.textContent = favorites.has(ticker) ? '★' : '☆';
+      btn.setAttribute('aria-pressed', favorites.has(ticker));
+      btn.title = favorites.has(ticker) ? '즐겨찾기 해제' : '즐겨찾기 (피어 상단 고정)';
+    }
+    applyFavOrderPhy();
+    // Tab 2 re-render to reflect
+    if (typeof renderProd === 'function') renderProd();
+  });
   renderInsights();
   renderTopPerf();
   renderProd();
