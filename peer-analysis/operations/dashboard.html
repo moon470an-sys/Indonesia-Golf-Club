@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>비교 대시보드 — 인도네시아 골프 운영 벤치마크</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="ops-style.css?v=20260513scope1" />
+<style>
+  /* Comparison scope pills */
+  .comp-pills { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:14px 0 8px; }
+  .comp-pill { padding:7px 16px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:999px; font-size:13px; font-weight:700; cursor:pointer; color:var(--ops-ink-soft); }
+  .comp-pill.active { background:var(--ops-green); color:white; border-color:var(--ops-green); }
+  .comp-pill:hover:not(.active) { background:rgba(45,80,22,0.05); }
+  .comp-hidden { display:none !important; }
+  /* Peer comparison grid */
+  .peer-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:16px; margin:20px 0; }
+  .peer-col { background:var(--ops-surface); border:1px solid var(--ops-line); border-radius:10px; padding:0 0 12px 0; display:flex; flex-direction:column; min-width:0; transition:all 0.15s; }
+  .peer-col:hover { box-shadow:0 4px 16px rgba(0,0,0,0.06); transform:translateY(-1px); }
+  .peer-head { padding:14px 16px 10px; border-bottom:1px dashed var(--ops-line); margin-bottom:6px; }
+  .peer-tk { font-size:11px; font-weight:700; color:var(--ops-muted); letter-spacing:0.06em; }
+  .peer-nm { font-size:15.5px; font-weight:700; margin-top:3px; color:var(--ops-ink); line-height:1.3; }
+  .peer-tier { margin-top:6px; }
+  .peer-loc { font-size:11.5px; color:var(--ops-ink-soft); margin-top:4px; }
+  .kpi-section { padding:8px 16px; border-bottom:1px dashed var(--ops-line); }
+  .kpi-section:last-of-type { border-bottom:none; }
+  .kpi-label { font-size:11px; font-weight:700; color:var(--ops-muted); letter-spacing:0.04em; margin-bottom:6px; }
+  .kpi-main { font-size:18px; font-weight:700; color:var(--ops-ink); font-variant-numeric:tabular-nums; }
+  .kpi-sub { font-size:11.5px; color:var(--ops-ink-soft); margin-top:1px; }
+  .kpi-spark { margin-top:5px; }
+  .kpi-row { display:flex; justify-content:space-between; align-items:center; padding:3px 0; font-size:12px; color:var(--ops-ink-soft); }
+  .kpi-row .kpi-val { color:var(--ops-ink); font-weight:600; font-variant-numeric:tabular-nums; }
+  .risk-box { font-size:18px; font-weight:700; font-variant-numeric:tabular-nums; padding:6px 10px; border-radius:6px; display:inline-block; }
+  .risk-box.risk-low { background:rgba(22,163,74,0.12); color:#16a34a; }
+  .risk-box.risk-med { background:rgba(245,158,11,0.14); color:#b45309; }
+  .risk-box.risk-high { background:rgba(185,28,28,0.12); color:#b91c1c; }
+  .risk-num { font-size:22px; }
+  .risk-max { font-size:13px; opacity:0.7; font-weight:500; }
+  .detail-link { display:block; margin:10px 16px 0; padding:7px 0; text-align:center; background:rgba(45,80,22,0.06); color:var(--ops-green); border-radius:6px; font-size:12px; font-weight:600; text-decoration:none; transition:all 0.12s; }
+  .detail-link:hover { background:var(--ops-green); color:white; }
+  /* Drill-down nav */
+  .drill-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:10px; margin:20px 0 8px; }
+  .drill-card { background:linear-gradient(135deg, rgba(45,80,22,0.06), rgba(45,80,22,0.01)); border:1px solid var(--ops-line); border-left:3px solid var(--ops-green); border-radius:8px; padding:12px 14px; text-decoration:none; color:var(--ops-ink); transition:all 0.12s; }
+  .drill-card:hover { background:rgba(45,80,22,0.06); transform:translateY(-1px); }
+  .drill-icon { font-size:18px; }
+  .drill-title { font-size:14px; font-weight:700; margin-top:2px; }
+  .drill-desc { font-size:11.5px; color:var(--ops-ink-soft); margin-top:3px; line-height:1.4; }
+  /* Theme + responsive */
+  .theme-toggle { position:absolute; top:14px; right:14px; padding:5px 10px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:999px; font-size:13px; cursor:pointer; color:var(--ops-ink); z-index:10; }
+  .ops-hero { position:relative; }
+  body.theme-dark { --ops-bg:#0f172a; --ops-surface:#1e293b; --ops-ink:#e2e8f0; --ops-ink-soft:#cbd5e1; --ops-muted:#94a3b8; --ops-line:#334155; --ops-green:#22c55e; }
+  body.theme-dark .drill-card { background:linear-gradient(135deg, rgba(34,197,94,0.10), rgba(34,197,94,0.02)); }
+  @media (max-width:720px) {
+    .peer-grid { grid-template-columns:1fr; }
+    .drill-grid { grid-template-columns:1fr; }
+  }
+  @media print {
+    .theme-toggle, .comp-pills, .drill-grid, .detail-link { display:none !important; }
+    @page { size: A4 landscape; margin: 10mm; }
+    body { background:white !important; }
+  }
+</style>
+</head>
+<body>
+<header class="ops-head">
+  <div class="ops-wrap ops-head-row">
+    <a href="clubs/index.html" class="ops-brand">
+      <div class="mark">⛳</div>
+      <div>
+        <div class="name">인도네시아 골프 운영 벤치마크</div>
+        <div class="sub">3·8·13 peer scoped comparison</div>
+      </div>
+    </a>
+    <nav class="ops-nav"><a href="dashboard.html" class="active">🎯 비교</a><a href="clubs/index.html">⛳ 클럽</a><a href="unit-economics.html">단위 경제</a><a href="revenue.html">매출</a><a href="cost-hr.html">비용</a><a href="assets.html">시설</a><a href="risk.html">위험</a><a href="../../index.html" class="back">← 지도</a></nav>
+  </div>
+</header>
+
+<section class="ops-hero">
+  <button class="theme-toggle" id="theme-toggle" aria-label="다크모드 전환" title="다크/라이트 모드 전환 (d)">🌙</button>
+  <div class="ops-wrap">
+    <h1>🎯 비교 대시보드 — FY2025</h1>
+    <p class="lede">3 peer (default) side-by-side. 매출 · 수익성 · 자산 · 시설 · 위험 통합 화면. 더 깊이 보려면 ↓ 상세 탭 이동.</p>
+    <div class="comp-pills" id="comp-scope" role="group" aria-label="비교 범위">
+      <span style="font-size:11.5px; color:var(--ops-muted); font-weight:600;">비교 범위:</span>
+      <button class="comp-pill active" data-scope="direct" title="DMIG·PIPG·GOLF — 골프가 주력 사업">🥇 직접 비교 (3)</button>
+      <button class="comp-pill" data-scope="segment" title="+ MDLN·KIJA·SMDM·KPIG·SMRA — 골프 세그먼트 공시">🥇+🥈 세그먼트 (8)</button>
+      <button class="comp-pill" data-scope="all" title="+ BSDE·CTRA·ELTY·LPKR·PWON — 부동산 대기업 (참고용)">전체 산업 (13)</button>
+    </div>
+  </div>
+</section>
+
+<section class="ops-section">
+  <div class="ops-wrap">
+    <div class="peer-grid" id="peer-grid">
+
+    <div class="peer-col" data-comp="direct" data-ticker="DMIG" data-tier="pp">
+      <div class="peer-head" style="border-top:4px solid #3b82f6;">
+        <div class="peer-tk">DMIG</div>
+        <div class="peer-nm">Damai Indah Golf</div>
+        <div class="peer-tier"><span class="peer-tag peer-tag-pp">🟦 Pure-play</span></div>
+        <div class="peer-loc">Tangerang + North Jakarta</div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">📈 매출 (FY2025)</div>
+        <div class="kpi-main">Rp 251B</div>
+        <div class="kpi-sub">YoY <span style="color:#b91c1c; font-weight:700;">-0.7%</span></div>
+        <div class="kpi-spark"><svg width="80" height="22" viewBox="0 0 80 22" style="display:inline-block; vertical-align:middle;"><path d="M 2.0,19.0 L 17.2,17.0 L 32.4,11.2 L 47.6,4.0 L 62.8,3.0 L 78.0,3.2" stroke="#3b82f6" stroke-width="1.6" fill="none"/><circle cx="2.0" cy="19.0" r="2.2" fill="#3b82f6" stroke="white" stroke-width="0.8"><title>FY2020: 123.3B</title></circle><circle cx="17.2" cy="17.0" r="2.2" fill="#3b82f6" stroke="white" stroke-width="0.8"><title>FY2021: 139.7B</title></circle><circle cx="32.4" cy="11.2" r="2.2" fill="#3b82f6" stroke="white" stroke-width="0.8"><title>FY2022: 186.5B</title></circle><circle cx="47.6" cy="4.0" r="2.2" fill="#3b82f6" stroke="white" stroke-width="0.8"><title>FY2023: 245.0B</title></circle><circle cx="62.8" cy="3.0" r="2.2" fill="#3b82f6" stroke="white" stroke-width="0.8"><title>FY2024: 253.1B</title></circle><circle cx="78.0" cy="3.2" r="2.2" fill="#f59e0b" stroke="white" stroke-width="0.8"><title>FY2025: 251.3B</title></circle></svg></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">💰 수익성</div>
+        <div class="kpi-row"><span>영업이익률</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+27.6%</span></span></div>
+        <div class="kpi-row"><span>순이익률</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+29.9%</span></span></div>
+        <div class="kpi-row"><span>ROA</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+10.4%</span></span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">🏗 자산</div>
+        <div class="kpi-row"><span>총자산</span><span class="kpi-val">Rp 720B</span></div>
+        <div class="kpi-row"><span>부채비율</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+25%</span></span></div>
+        <div class="kpi-row"><span>자산회전율</span><span class="kpi-val" style="color:var(--ops-ink); font-weight:700;">0.35×</span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">⛳ 시설</div>
+        <div class="kpi-row"><span>홀</span><span class="kpi-val">36 (BSD 18 + PIK 18)</span></div>
+        <div class="kpi-row"><span>면적</span><span class="kpi-val">156 ha</span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">⚠ 위험</div>
+        <div class="risk-box risk-low"><span class="risk-num">1</span><span class="risk-max"> / 12</span></div>
+      </div>
+
+      <a class="detail-link" href="clubs/dmig.html">상세 페이지 →</a>
+    </div>
+    
+
+    <div class="peer-col" data-comp="direct" data-ticker="PIPG" data-tier="pp">
+      <div class="peer-head" style="border-top:4px solid #3b82f6;">
+        <div class="peer-tk">PIPG</div>
+        <div class="peer-nm">Pondok Indah Padang Golf</div>
+        <div class="peer-tier"><span class="peer-tag peer-tag-pp">🟦 Pure-play</span></div>
+        <div class="peer-loc">South Jakarta (Pondok Indah)</div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">📈 매출 (FY2025)</div>
+        <div class="kpi-main">Rp 186B</div>
+        <div class="kpi-sub">YoY <span style="color:#b91c1c; font-weight:700;">-6.0%</span></div>
+        <div class="kpi-spark"><svg width="80" height="22" viewBox="0 0 80 22" style="display:inline-block; vertical-align:middle;"><path d="M 2.0,19.0 L 17.2,15.0 L 32.4,10.1 L 47.6,3.0 L 62.8,4.0 L 78.0,6.0" stroke="#3b82f6" stroke-width="1.6" fill="none"/><circle cx="2.0" cy="19.0" r="2.2" fill="#3b82f6" stroke="white" stroke-width="0.8"><title>FY2020: 111.7B</title></circle><circle cx="17.2" cy="15.0" r="2.2" fill="#3b82f6" stroke="white" stroke-width="0.8"><title>FY2021: 134.4B</title></circle><circle cx="32.4" cy="10.1" r="2.2" fill="#3b82f6" stroke="white" stroke-width="0.8"><title>FY2022: 162.6B</title></circle><circle cx="47.6" cy="3.0" r="2.2" fill="#3b82f6" stroke="white" stroke-width="0.8"><title>FY2023: 203.1B</title></circle><circle cx="62.8" cy="4.0" r="2.2" fill="#3b82f6" stroke="white" stroke-width="0.8"><title>FY2024: 197.6B</title></circle><circle cx="78.0" cy="6.0" r="2.2" fill="#f59e0b" stroke="white" stroke-width="0.8"><title>FY2025: 185.8B</title></circle></svg></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">💰 수익성</div>
+        <div class="kpi-row"><span>영업이익률</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+29.8%</span></span></div>
+        <div class="kpi-row"><span>순이익률</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+30.1%</span></span></div>
+        <div class="kpi-row"><span>ROA</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+11.7%</span></span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">🏗 자산</div>
+        <div class="kpi-row"><span>총자산</span><span class="kpi-val">Rp 478B</span></div>
+        <div class="kpi-row"><span>부채비율</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+19%</span></span></div>
+        <div class="kpi-row"><span>자산회전율</span><span class="kpi-val" style="color:var(--ops-ink); font-weight:700;">0.39×</span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">⛳ 시설</div>
+        <div class="kpi-row"><span>홀</span><span class="kpi-val">18</span></div>
+        <div class="kpi-row"><span>면적</span><span class="kpi-val">53.01 ha</span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">⚠ 위험</div>
+        <div class="risk-box risk-med"><span class="risk-num">4</span><span class="risk-max"> / 12</span></div>
+      </div>
+
+      <a class="detail-link" href="clubs/pipg.html">상세 페이지 →</a>
+    </div>
+    
+
+    <div class="peer-col" data-comp="direct" data-ticker="GOLF" data-tier="resort">
+      <div class="peer-head" style="border-top:4px solid #f59e0b;">
+        <div class="peer-tk">GOLF</div>
+        <div class="peer-nm">Intra GolfLink Resorts</div>
+        <div class="peer-tier"><span class="peer-tag peer-tag-resort">🟨 Resort</span></div>
+        <div class="peer-loc">Pecatu (Bali) + Belitung</div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">📈 매출 (FY2025)</div>
+        <div class="kpi-main">Rp 216B</div>
+        <div class="kpi-sub">YoY <span style="color:#16a34a; font-weight:700;">+8.9%</span></div>
+        <div class="kpi-spark"><svg width="80" height="22" viewBox="0 0 80 22" style="display:inline-block; vertical-align:middle;"><path d="M 17.2,19.0 L 32.4,14.6 L 47.6,7.2 L 62.8,5.0 L 78.0,3.0" stroke="#f59e0b" stroke-width="1.6" fill="none"/><circle cx="17.2" cy="19.0" r="2.2" fill="#f59e0b" stroke="white" stroke-width="0.8"><title>FY2021: 72.7B</title></circle><circle cx="32.4" cy="14.6" r="2.2" fill="#f59e0b" stroke="white" stroke-width="0.8"><title>FY2022: 111.6B</title></circle><circle cx="47.6" cy="7.2" r="2.2" fill="#f59e0b" stroke="white" stroke-width="0.8"><title>FY2023: 177.6B</title></circle><circle cx="62.8" cy="5.0" r="2.2" fill="#f59e0b" stroke="white" stroke-width="0.8"><title>FY2024: 198.0B</title></circle><circle cx="78.0" cy="3.0" r="2.2" fill="#f59e0b" stroke="white" stroke-width="0.8"><title>FY2025: 215.5B</title></circle></svg></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">💰 수익성</div>
+        <div class="kpi-row"><span>영업이익률</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+30.1%</span></span></div>
+        <div class="kpi-row"><span>순이익률</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+24.0%</span></span></div>
+        <div class="kpi-row"><span>ROA</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+0.6%</span></span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">🏗 자산</div>
+        <div class="kpi-row"><span>총자산</span><span class="kpi-val">Rp 8.7T</span></div>
+        <div class="kpi-row"><span>부채비율</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+8%</span></span></div>
+        <div class="kpi-row"><span>자산회전율</span><span class="kpi-val" style="color:var(--ops-ink); font-weight:700;">0.02×</span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">⛳ 시설</div>
+        <div class="kpi-row"><span>홀</span><span class="kpi-val">36 연결 + 18 BGR</span></div>
+        <div class="kpi-row"><span>면적</span><span class="kpi-val">171.2 ha (BGR 비연결 +72)</span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">⚠ 위험</div>
+        <div class="risk-box risk-low"><span class="risk-num">2</span><span class="risk-max"> / 12</span></div>
+      </div>
+
+      <a class="detail-link" href="clubs/golf.html">상세 페이지 →</a>
+    </div>
+    
+
+    <div class="peer-col" data-comp="landscape" data-ticker="BSDE" data-tier="twn">
+      <div class="peer-head" style="border-top:4px solid #16a34a;">
+        <div class="peer-tk">BSDE</div>
+        <div class="peer-nm">Palm Springs Karawang + Batam</div>
+        <div class="peer-tier"><span class="peer-tag peer-tag-twn">🟩 Township</span></div>
+        <div class="peer-loc">Karawang + Batam</div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">📈 매출 (FY2025)</div>
+        <div class="kpi-main">Rp 12.8T</div>
+        <div class="kpi-sub">YoY <span style="color:#b91c1c; font-weight:700;">-7.3%</span></div>
+        <div class="kpi-spark"><svg width="80" height="22" viewBox="0 0 80 22" style="display:inline-block; vertical-align:middle;"><path d="M 2.0,19.0 L 17.2,15.9 L 32.4,10.5 L 47.6,7.7 L 62.8,3.0 L 78.0,5.1" stroke="#16a34a" stroke-width="1.6" fill="none"/><circle cx="2.0" cy="19.0" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2020: 6,180.6B</title></circle><circle cx="17.2" cy="15.9" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2021: 7,654.8B</title></circle><circle cx="32.4" cy="10.5" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2022: 10,235.5B</title></circle><circle cx="47.6" cy="7.7" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2023: 11,539.1B</title></circle><circle cx="62.8" cy="3.0" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2024: 13,796.6B</title></circle><circle cx="78.0" cy="5.1" r="2.2" fill="#f59e0b" stroke="white" stroke-width="0.8"><title>FY2025: 12,788.5B</title></circle></svg></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">💰 수익성</div>
+        <div class="kpi-row"><span>영업이익률</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+30.8%</span></span></div>
+        <div class="kpi-row"><span>순이익률</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+19.9%</span></span></div>
+        <div class="kpi-row"><span>ROA</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+3.2%</span></span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">🏗 자산</div>
+        <div class="kpi-row"><span>총자산</span><span class="kpi-val">Rp 79.3T</span></div>
+        <div class="kpi-row"><span>부채비율</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+34%</span></span></div>
+        <div class="kpi-row"><span>자산회전율</span><span class="kpi-val" style="color:var(--ops-ink); font-weight:700;">0.16×</span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">⛳ 시설</div>
+        <div class="kpi-row"><span>홀</span><span class="kpi-val">미공시</span></div>
+        <div class="kpi-row"><span>면적</span><span class="kpi-val">미공시</span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">⚠ 위험</div>
+        <div class="risk-box risk-med"><span class="risk-num">4</span><span class="risk-max"> / 12</span></div>
+      </div>
+
+      <a class="detail-link" href="clubs/bsde.html">상세 페이지 →</a>
+    </div>
+    
+
+    <div class="peer-col" data-comp="landscape" data-ticker="CTRA" data-tier="twn">
+      <div class="peer-head" style="border-top:4px solid #16a34a;">
+        <div class="peer-tk">CTRA</div>
+        <div class="peer-nm">Ciputra Golf Surabaya + Taman Dayu</div>
+        <div class="peer-tier"><span class="peer-tag peer-tag-twn">🟩 Township</span></div>
+        <div class="peer-loc">Surabaya + Pasuruan (Pandaan)</div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">📈 매출 (FY2025)</div>
+        <div class="kpi-main">Rp 12.6T</div>
+        <div class="kpi-sub">YoY <span style="color:#16a34a; font-weight:700;">+12.8%</span></div>
+        <div class="kpi-spark"><svg width="80" height="22" viewBox="0 0 80 22" style="display:inline-block; vertical-align:middle;"><path d="M 2.0,19.0 L 17.2,13.2 L 32.4,15.3 L 47.6,14.9 L 62.8,8.0 L 78.0,3.0" stroke="#16a34a" stroke-width="1.6" fill="none"/><circle cx="2.0" cy="19.0" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2020: 8,070.7B</title></circle><circle cx="17.2" cy="13.2" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2021: 9,729.7B</title></circle><circle cx="32.4" cy="15.3" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2022: 9,126.8B</title></circle><circle cx="47.6" cy="14.9" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2023: 9,245.0B</title></circle><circle cx="62.8" cy="8.0" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2024: 11,187.6B</title></circle><circle cx="78.0" cy="3.0" r="2.2" fill="#f59e0b" stroke="white" stroke-width="0.8"><title>FY2025: 12,616.7B</title></circle></svg></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">💰 수익성</div>
+        <div class="kpi-row"><span>영업이익률</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+30.4%</span></span></div>
+        <div class="kpi-row"><span>순이익률</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+21.1%</span></span></div>
+        <div class="kpi-row"><span>ROA</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+5.5%</span></span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">🏗 자산</div>
+        <div class="kpi-row"><span>총자산</span><span class="kpi-val">Rp 48.0T</span></div>
+        <div class="kpi-row"><span>부채비율</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+44%</span></span></div>
+        <div class="kpi-row"><span>자산회전율</span><span class="kpi-val" style="color:var(--ops-ink); font-weight:700;">0.26×</span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">⛳ 시설</div>
+        <div class="kpi-row"><span>홀</span><span class="kpi-val">18 each (36 합)</span></div>
+        <div class="kpi-row"><span>면적</span><span class="kpi-val">미공시</span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">⚠ 위험</div>
+        <div class="risk-box risk-high"><span class="risk-num">6</span><span class="risk-max"> / 12</span></div>
+      </div>
+
+      <a class="detail-link" href="clubs/ctra.html">상세 페이지 →</a>
+    </div>
+    
+
+    <div class="peer-col" data-comp="landscape" data-ticker="ELTY" data-tier="twn">
+      <div class="peer-head" style="border-top:4px solid #16a34a;">
+        <div class="peer-tk">ELTY</div>
+        <div class="peer-nm">Gunung Geulis + Klub Golf Bogor Raya</div>
+        <div class="peer-tier"><span class="peer-tag peer-tag-twn">🟩 Township</span></div>
+        <div class="peer-loc">Gunung Geulis (Bogor)</div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">📈 매출 (FY2025)</div>
+        <div class="kpi-main">Rp 1.4T</div>
+        <div class="kpi-sub">YoY <span style="color:#16a34a; font-weight:700;">+14.2%</span></div>
+        <div class="kpi-spark"><svg width="80" height="22" viewBox="0 0 80 22" style="display:inline-block; vertical-align:middle;"><path d="M 2.0,19.0 L 17.2,15.5 L 32.4,10.7 L 47.6,6.2 L 62.8,6.6 L 78.0,3.0" stroke="#16a34a" stroke-width="1.6" fill="none"/><circle cx="2.0" cy="19.0" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2020: 616.2B</title></circle><circle cx="17.2" cy="15.5" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2021: 784.4B</title></circle><circle cx="32.4" cy="10.7" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2022: 1,011.0B</title></circle><circle cx="47.6" cy="6.2" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2023: 1,227.4B</title></circle><circle cx="62.8" cy="6.6" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2024: 1,208.2B</title></circle><circle cx="78.0" cy="3.0" r="2.2" fill="#f59e0b" stroke="white" stroke-width="0.8"><title>FY2025: 1,379.4B</title></circle></svg></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">💰 수익성</div>
+        <div class="kpi-row"><span>영업이익률</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+8.0%</span></span></div>
+        <div class="kpi-row"><span>순이익률</span><span class="kpi-val"><span style="color:#b91c1c; font-weight:700;">-1.2%</span></span></div>
+        <div class="kpi-row"><span>ROA</span><span class="kpi-val"><span style="color:#b91c1c; font-weight:700;">-0.2%</span></span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">🏗 자산</div>
+        <div class="kpi-row"><span>총자산</span><span class="kpi-val">Rp 8.6T</span></div>
+        <div class="kpi-row"><span>부채비율</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+31%</span></span></div>
+        <div class="kpi-row"><span>자산회전율</span><span class="kpi-val" style="color:var(--ops-ink); font-weight:700;">0.16×</span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">⛳ 시설</div>
+        <div class="kpi-row"><span>홀</span><span class="kpi-val">18 each</span></div>
+        <div class="kpi-row"><span>면적</span><span class="kpi-val">미공시</span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">⚠ 위험</div>
+        <div class="risk-box risk-high"><span class="risk-num">8</span><span class="risk-max"> / 12</span></div>
+      </div>
+
+      <a class="detail-link" href="clubs/elty.html">상세 페이지 →</a>
+    </div>
+    
+
+    <div class="peer-col" data-comp="segment" data-ticker="KIJA" data-tier="twn">
+      <div class="peer-head" style="border-top:4px solid #16a34a;">
+        <div class="peer-tk">KIJA</div>
+        <div class="peer-nm">Jababeka Golf & Country Club</div>
+        <div class="peer-tier"><span class="peer-tag peer-tag-twn">🟩 Township</span></div>
+        <div class="peer-loc">Cikarang (Bekasi) + Magelang</div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">📈 매출 (FY2025)</div>
+        <div class="kpi-main">Rp 5.1T</div>
+        <div class="kpi-sub">YoY <span style="color:#16a34a; font-weight:700;">+11.9%</span></div>
+        <div class="kpi-spark"><svg width="80" height="22" viewBox="0 0 80 22" style="display:inline-block; vertical-align:middle;"><path d="M 2.0,19.0 L 17.2,18.5 L 32.4,17.0 L 47.6,13.7 L 62.8,6.2 L 78.0,3.0" stroke="#16a34a" stroke-width="1.6" fill="none"/><circle cx="2.0" cy="19.0" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2020: 2,396.1B</title></circle><circle cx="17.2" cy="18.5" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2021: 2,490.3B</title></circle><circle cx="32.4" cy="17.0" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2022: 2,747.2B</title></circle><circle cx="47.6" cy="13.7" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2023: 3,299.6B</title></circle><circle cx="62.8" cy="6.2" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2024: 4,602.6B</title></circle><circle cx="78.0" cy="3.0" r="2.2" fill="#f59e0b" stroke="white" stroke-width="0.8"><title>FY2025: 5,149.4B</title></circle></svg></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">💰 수익성</div>
+        <div class="kpi-row"><span>영업이익률</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+27.6%</span></span></div>
+        <div class="kpi-row"><span>순이익률</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+8.2%</span></span></div>
+        <div class="kpi-row"><span>ROA</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+2.8%</span></span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">🏗 자산</div>
+        <div class="kpi-row"><span>총자산</span><span class="kpi-val">Rp 15.1T</span></div>
+        <div class="kpi-row"><span>부채비율</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+46%</span></span></div>
+        <div class="kpi-row"><span>자산회전율</span><span class="kpi-val" style="color:var(--ops-ink); font-weight:700;">0.34×</span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">⛳ 시설</div>
+        <div class="kpi-row"><span>홀</span><span class="kpi-val">미공시</span></div>
+        <div class="kpi-row"><span>면적</span><span class="kpi-val">미공시</span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">⚠ 위험</div>
+        <div class="risk-box risk-med"><span class="risk-num">3</span><span class="risk-max"> / 12</span></div>
+      </div>
+
+      <a class="detail-link" href="clubs/kija.html">상세 페이지 →</a>
+    </div>
+    
+
+    <div class="peer-col" data-comp="segment" data-ticker="KPIG" data-tier="twn">
+      <div class="peer-head" style="border-top:4px solid #16a34a;">
+        <div class="peer-tk">KPIG</div>
+        <div class="peer-nm">Trump International Golf Club Lido</div>
+        <div class="peer-tier"><span class="peer-tag peer-tag-twn">🟩 Township</span></div>
+        <div class="peer-loc">Lido (Bogor Regency)</div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">📈 매출 (FY2025)</div>
+        <div class="kpi-main">Rp 2.6T</div>
+        <div class="kpi-sub">YoY <span style="color:#16a34a; font-weight:700;">+47.7%</span></div>
+        <div class="kpi-spark"><svg width="80" height="22" viewBox="0 0 80 22" style="display:inline-block; vertical-align:middle;"><path d="M 2.0,19.0 L 17.2,18.8 L 32.4,15.3 L 47.6,12.9 L 62.8,10.0 L 78.0,3.0" stroke="#16a34a" stroke-width="1.6" fill="none"/><circle cx="2.0" cy="19.0" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2020: 678.0B</title></circle><circle cx="17.2" cy="18.8" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2021: 700.0B</title></circle><circle cx="32.4" cy="15.3" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2022: 1,121.9B</title></circle><circle cx="47.6" cy="12.9" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2023: 1,421.0B</title></circle><circle cx="62.8" cy="10.0" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2024: 1,770.1B</title></circle><circle cx="78.0" cy="3.0" r="2.2" fill="#f59e0b" stroke="white" stroke-width="0.8"><title>FY2025: 2,615.3B</title></circle></svg></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">💰 수익성</div>
+        <div class="kpi-row"><span>영업이익률</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+26.2%</span></span></div>
+        <div class="kpi-row"><span>순이익률</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+27.4%</span></span></div>
+        <div class="kpi-row"><span>ROA</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+2.0%</span></span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">🏗 자산</div>
+        <div class="kpi-row"><span>총자산</span><span class="kpi-val">Rp 36.0T</span></div>
+        <div class="kpi-row"><span>부채비율</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+20%</span></span></div>
+        <div class="kpi-row"><span>자산회전율</span><span class="kpi-val" style="color:var(--ops-ink); font-weight:700;">0.07×</span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">⛳ 시설</div>
+        <div class="kpi-row"><span>홀</span><span class="kpi-val">18</span></div>
+        <div class="kpi-row"><span>면적</span><span class="kpi-val">83 ha</span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">⚠ 위험</div>
+        <div class="risk-box risk-high"><span class="risk-num">6</span><span class="risk-max"> / 12</span></div>
+      </div>
+
+      <a class="detail-link" href="clubs/kpig.html">상세 페이지 →</a>
+    </div>
+    
+
+    <div class="peer-col" data-comp="landscape" data-ticker="LPKR" data-tier="twn">
+      <div class="peer-head" style="border-top:4px solid #16a34a;">
+        <div class="peer-tk">LPKR</div>
+        <div class="peer-nm">Imperial Klub Golf</div>
+        <div class="peer-tier"><span class="peer-tag peer-tag-twn">🟩 Township</span></div>
+        <div class="peer-loc">Lippo Karawaci, Tangerang</div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">📈 매출 (FY2025)</div>
+        <div class="kpi-main">Rp 8.8T</div>
+        <div class="kpi-sub">YoY <span style="color:#b91c1c; font-weight:700;">-22.1%</span></div>
+        <div class="kpi-spark"><svg width="80" height="22" viewBox="0 0 80 22" style="display:inline-block; vertical-align:middle;"><path d="M 2.0,12.6 L 17.2,4.1 L 32.4,7.1 L 47.6,3.0 L 62.8,13.9 L 78.0,19.0" stroke="#16a34a" stroke-width="1.6" fill="none"/><circle cx="2.0" cy="12.6" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2020: 11,966.3B</title></circle><circle cx="17.2" cy="4.1" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2021: 16,138.5B</title></circle><circle cx="32.4" cy="7.1" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2022: 14,674.1B</title></circle><circle cx="47.6" cy="3.0" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2023: 16,702.0B</title></circle><circle cx="62.8" cy="13.9" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2024: 11,348.0B</title></circle><circle cx="78.0" cy="19.0" r="2.2" fill="#f59e0b" stroke="white" stroke-width="0.8"><title>FY2025: 8,843.9B</title></circle></svg></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">💰 수익성</div>
+        <div class="kpi-row"><span>영업이익률</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+8.1%</span></span></div>
+        <div class="kpi-row"><span>순이익률</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+5.3%</span></span></div>
+        <div class="kpi-row"><span>ROA</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+1.0%</span></span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">🏗 자산</div>
+        <div class="kpi-row"><span>총자산</span><span class="kpi-val">Rp 49.2T</span></div>
+        <div class="kpi-row"><span>부채비율</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+37%</span></span></div>
+        <div class="kpi-row"><span>자산회전율</span><span class="kpi-val" style="color:var(--ops-ink); font-weight:700;">0.18×</span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">⛳ 시설</div>
+        <div class="kpi-row"><span>홀</span><span class="kpi-val">18</span></div>
+        <div class="kpi-row"><span>면적</span><span class="kpi-val">미공시</span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">⚠ 위험</div>
+        <div class="risk-box risk-med"><span class="risk-num">5</span><span class="risk-max"> / 12</span></div>
+      </div>
+
+      <a class="detail-link" href="clubs/lpkr.html">상세 페이지 →</a>
+    </div>
+    
+
+    <div class="peer-col" data-comp="segment" data-ticker="MDLN" data-tier="twn">
+      <div class="peer-head" style="border-top:4px solid #16a34a;">
+        <div class="peer-tk">MDLN</div>
+        <div class="peer-nm">Modern Golf & Country Club</div>
+        <div class="peer-tier"><span class="peer-tag peer-tag-twn">🟩 Township</span></div>
+        <div class="peer-loc">Kota Modern, Tangerang</div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">📈 매출 (FY2025)</div>
+        <div class="kpi-main">Rp 1.0T</div>
+        <div class="kpi-sub">YoY <span style="color:#b91c1c; font-weight:700;">-0.4%</span></div>
+        <div class="kpi-spark"><svg width="80" height="22" viewBox="0 0 80 22" style="display:inline-block; vertical-align:middle;"><path d="M 2.0,19.0 L 17.2,3.0 L 32.4,14.4 L 47.6,13.7 L 62.8,15.4 L 78.0,15.5" stroke="#16a34a" stroke-width="1.6" fill="none"/><circle cx="2.0" cy="19.0" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2020: 731.5B</title></circle><circle cx="17.2" cy="3.0" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2021: 2,008.6B</title></circle><circle cx="32.4" cy="14.4" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2022: 1,098.9B</title></circle><circle cx="47.6" cy="13.7" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2023: 1,152.3B</title></circle><circle cx="62.8" cy="15.4" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2024: 1,017.6B</title></circle><circle cx="78.0" cy="15.5" r="2.2" fill="#f59e0b" stroke="white" stroke-width="0.8"><title>FY2025: 1,013.2B</title></circle></svg></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">💰 수익성</div>
+        <div class="kpi-row"><span>영업이익률</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+10.4%</span></span></div>
+        <div class="kpi-row"><span>순이익률</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+23.9%</span></span></div>
+        <div class="kpi-row"><span>ROA</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+1.8%</span></span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">🏗 자산</div>
+        <div class="kpi-row"><span>총자산</span><span class="kpi-val">Rp 13.5T</span></div>
+        <div class="kpi-row"><span>부채비율</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+72%</span></span></div>
+        <div class="kpi-row"><span>자산회전율</span><span class="kpi-val" style="color:var(--ops-ink); font-weight:700;">0.08×</span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">⛳ 시설</div>
+        <div class="kpi-row"><span>홀</span><span class="kpi-val">18</span></div>
+        <div class="kpi-row"><span>면적</span><span class="kpi-val">미공시</span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">⚠ 위험</div>
+        <div class="risk-box risk-high"><span class="risk-num">7</span><span class="risk-max"> / 12</span></div>
+      </div>
+
+      <a class="detail-link" href="clubs/mdln.html">상세 페이지 →</a>
+    </div>
+    
+
+    <div class="peer-col" data-comp="landscape" data-ticker="PWON" data-tier="twn">
+      <div class="peer-head" style="border-top:4px solid #16a34a;">
+        <div class="peer-tk">PWON</div>
+        <div class="peer-nm">Pakuwon Golf & Family Club</div>
+        <div class="peer-tier"><span class="peer-tag peer-tag-twn">🟩 Township</span></div>
+        <div class="peer-loc">Surabaya</div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">📈 매출 (FY2025)</div>
+        <div class="kpi-main">Rp 7.1T</div>
+        <div class="kpi-sub">YoY <span style="color:#16a34a; font-weight:700;">+6.6%</span></div>
+        <div class="kpi-spark"><svg width="80" height="22" viewBox="0 0 80 22" style="display:inline-block; vertical-align:middle;"><path d="M 2.0,19.0 L 17.2,10.1 L 32.4,8.7 L 47.6,7.6 L 62.8,5.2 L 78.0,3.0" stroke="#16a34a" stroke-width="1.6" fill="none"/><circle cx="2.0" cy="19.0" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2020: 3,977.2B</title></circle><circle cx="17.2" cy="10.1" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2021: 5,713.3B</title></circle><circle cx="32.4" cy="8.7" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2022: 5,987.4B</title></circle><circle cx="47.6" cy="7.6" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2023: 6,200.4B</title></circle><circle cx="62.8" cy="5.2" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2024: 6,670.8B</title></circle><circle cx="78.0" cy="3.0" r="2.2" fill="#f59e0b" stroke="white" stroke-width="0.8"><title>FY2025: 7,111.1B</title></circle></svg></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">💰 수익성</div>
+        <div class="kpi-row"><span>영업이익률</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+41.4%</span></span></div>
+        <div class="kpi-row"><span>순이익률</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+33.0%</span></span></div>
+        <div class="kpi-row"><span>ROA</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+6.4%</span></span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">🏗 자산</div>
+        <div class="kpi-row"><span>총자산</span><span class="kpi-val">Rp 36.5T</span></div>
+        <div class="kpi-row"><span>부채비율</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+27%</span></span></div>
+        <div class="kpi-row"><span>자산회전율</span><span class="kpi-val" style="color:var(--ops-ink); font-weight:700;">0.20×</span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">⛳ 시설</div>
+        <div class="kpi-row"><span>홀</span><span class="kpi-val">18</span></div>
+        <div class="kpi-row"><span>면적</span><span class="kpi-val">미공시</span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">⚠ 위험</div>
+        <div class="risk-box risk-med"><span class="risk-num">4</span><span class="risk-max"> / 12</span></div>
+      </div>
+
+      <a class="detail-link" href="clubs/pwon.html">상세 페이지 →</a>
+    </div>
+    
+
+    <div class="peer-col" data-comp="segment" data-ticker="SMDM" data-tier="twn">
+      <div class="peer-head" style="border-top:4px solid #16a34a;">
+        <div class="peer-tk">SMDM</div>
+        <div class="peer-nm">Rancamaya Golf Estate</div>
+        <div class="peer-tier"><span class="peer-tag peer-tag-twn">🟩 Township</span></div>
+        <div class="peer-loc">Rancamaya, Bogor</div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">📈 매출 (FY2025)</div>
+        <div class="kpi-main">Rp 386B</div>
+        <div class="kpi-sub">YoY <span style="color:#b91c1c; font-weight:700;">-44.4%</span></div>
+        <div class="kpi-spark"><svg width="80" height="22" viewBox="0 0 80 22" style="display:inline-block; vertical-align:middle;"><path d="M 2.0,19.0 L 17.2,9.6 L 32.4,9.6 L 47.6,13.3 L 62.8,3.0 L 78.0,19.0" stroke="#16a34a" stroke-width="1.6" fill="none"/><circle cx="2.0" cy="19.0" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2020: 386.5B</title></circle><circle cx="17.2" cy="9.6" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2021: 567.1B</title></circle><circle cx="32.4" cy="9.6" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2022: 566.4B</title></circle><circle cx="47.6" cy="13.3" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2023: 496.5B</title></circle><circle cx="62.8" cy="3.0" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2024: 694.0B</title></circle><circle cx="78.0" cy="19.0" r="2.2" fill="#f59e0b" stroke="white" stroke-width="0.8"><title>FY2025: 386.1B</title></circle></svg></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">💰 수익성</div>
+        <div class="kpi-row"><span>영업이익률</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+12.8%</span></span></div>
+        <div class="kpi-row"><span>순이익률</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+5.7%</span></span></div>
+        <div class="kpi-row"><span>ROA</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+0.6%</span></span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">🏗 자산</div>
+        <div class="kpi-row"><span>총자산</span><span class="kpi-val">Rp 3.5T</span></div>
+        <div class="kpi-row"><span>부채비율</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+8%</span></span></div>
+        <div class="kpi-row"><span>자산회전율</span><span class="kpi-val" style="color:var(--ops-ink); font-weight:700;">0.11×</span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">⛳ 시설</div>
+        <div class="kpi-row"><span>홀</span><span class="kpi-val">18</span></div>
+        <div class="kpi-row"><span>면적</span><span class="kpi-val">400 ha (estate 전체)</span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">⚠ 위험</div>
+        <div class="risk-box risk-med"><span class="risk-num">4</span><span class="risk-max"> / 12</span></div>
+      </div>
+
+      <a class="detail-link" href="clubs/smdm.html">상세 페이지 →</a>
+    </div>
+    
+
+    <div class="peer-col" data-comp="segment" data-ticker="SMRA" data-tier="twn">
+      <div class="peer-head" style="border-top:4px solid #16a34a;">
+        <div class="peer-tk">SMRA</div>
+        <div class="peer-nm">Gading Raya Padang Golf</div>
+        <div class="peer-tier"><span class="peer-tag peer-tag-twn">🟩 Township</span></div>
+        <div class="peer-loc">Serpong, Tangerang</div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">📈 매출 (FY2025)</div>
+        <div class="kpi-main">Rp 8.8T</div>
+        <div class="kpi-sub">YoY <span style="color:#b91c1c; font-weight:700;">-17.5%</span></div>
+        <div class="kpi-spark"><svg width="80" height="22" viewBox="0 0 80 22" style="display:inline-block; vertical-align:middle;"><path d="M 2.0,19.0 L 17.2,17.5 L 32.4,17.0 L 47.6,14.3 L 62.8,3.0 L 78.0,8.3" stroke="#16a34a" stroke-width="1.6" fill="none"/><circle cx="2.0" cy="19.0" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2020: 5,030.0B</title></circle><circle cx="17.2" cy="17.5" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2021: 5,567.9B</title></circle><circle cx="32.4" cy="17.0" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2022: 5,719.4B</title></circle><circle cx="47.6" cy="14.3" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2023: 6,658.8B</title></circle><circle cx="62.8" cy="3.0" r="2.2" fill="#16a34a" stroke="white" stroke-width="0.8"><title>FY2024: 10,623.4B</title></circle><circle cx="78.0" cy="8.3" r="2.2" fill="#f59e0b" stroke="white" stroke-width="0.8"><title>FY2025: 8,766.9B</title></circle></svg></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">💰 수익성</div>
+        <div class="kpi-row"><span>영업이익률</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+28.7%</span></span></div>
+        <div class="kpi-row"><span>순이익률</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+8.7%</span></span></div>
+        <div class="kpi-row"><span>ROA</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+2.0%</span></span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">🏗 자산</div>
+        <div class="kpi-row"><span>총자산</span><span class="kpi-val">Rp 38.3T</span></div>
+        <div class="kpi-row"><span>부채비율</span><span class="kpi-val"><span style="color:#16a34a; font-weight:700;">+58%</span></span></div>
+        <div class="kpi-row"><span>자산회전율</span><span class="kpi-val" style="color:var(--ops-ink); font-weight:700;">0.23×</span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">⛳ 시설</div>
+        <div class="kpi-row"><span>홀</span><span class="kpi-val">18</span></div>
+        <div class="kpi-row"><span>면적</span><span class="kpi-val">미공시</span></div>
+      </div>
+
+      <div class="kpi-section">
+        <div class="kpi-label">⚠ 위험</div>
+        <div class="risk-box risk-med"><span class="risk-num">4</span><span class="risk-max"> / 12</span></div>
+      </div>
+
+      <a class="detail-link" href="clubs/smra.html">상세 페이지 →</a>
+    </div>
+    
+    </div>
+  </div>
+</section>
+
+<section class="ops-section">
+  <div class="ops-wrap">
+    <h2 style="font-size:17px; margin:0 0 8px 0;">📊 깊이 분석 — 상세 탭으로 이동</h2>
+    <p class="lede" style="font-size:12px; margin-bottom:4px;">각 영역의 시계열 · 부문 분해 · 정렬 · 검색은 상세 탭에서 제공.</p>
+    <div class="drill-grid">
+      <a class="drill-card" href="unit-economics.html"><span class="drill-icon">📈</span><div class="drill-title">단위 경제</div><div class="drill-desc">홀당·ha당·1인당 매출/이익 · 5Y CAGR · sparkline</div></a>
+      <a class="drill-card" href="revenue.html"><span class="drill-icon">💰</span><div class="drill-title">매출 분석</div><div class="drill-desc">그룹/골프 매출 · YoY 히트맵 · 부문 분해 (PIPG 12 부문 14년)</div></a>
+      <a class="drill-card" href="cost-hr.html"><span class="drill-icon">💸</span><div class="drill-title">비용·인력</div><div class="drill-desc">매출원가·판관비 · 카테고리 매트릭스 · 총영업비용 비율</div></a>
+      <a class="drill-card" href="assets.html"><span class="drill-icon">🏗</span><div class="drill-title">시설·생산성</div><div class="drill-desc">홀·면적·총자산 · 자산회전율 · log-log 산점도</div></a>
+      <a class="drill-card" href="risk.html"><span class="drill-icon">⚠</span><div class="drill-title">위험 매트릭스</div><div class="drill-desc">6 항목 × 13 peer · 토지권·세무·BPJS 공시</div></a>
+      <a class="drill-card" href="clubs/index.html"><span class="drill-icon">⛳</span><div class="drill-title">클럽 카드</div><div class="drill-desc">즐겨찾기 · 검색 · 정렬 · CSV 내보내기 · 13 peer 카드/표 view</div></a>
+    </div>
+  </div>
+</section>
+
+<footer class="ops-foot">
+  <div class="ops-wrap">
+    <p>FY2025 audited consolidated P&L + Balance Sheet · 데이터 갱신 2026-05-13 · localStorage 'peer-comp-scope' cross-page sync</p>
+  </div>
+</footer>
+
+<script>
+const COMP_TIER = {DMIG:'direct',PIPG:'direct',GOLF:'direct',MDLN:'segment',KIJA:'segment',SMDM:'segment',KPIG:'segment',SMRA:'segment',BSDE:'landscape',CTRA:'landscape',ELTY:'landscape',LPKR:'landscape',PWON:'landscape'};
+let compScope = 'direct';
+try { const s = localStorage.getItem('peer-comp-scope'); if (['direct','segment','all'].includes(s)) compScope = s; } catch(e){}
+function compMatches(c) {
+  if (compScope === 'all') return true;
+  if (compScope === 'segment') return c === 'direct' || c === 'segment';
+  return c === 'direct';
+}
+function applyCompScope() {
+  document.querySelectorAll('.peer-col').forEach(el => {
+    el.classList.toggle('comp-hidden', !compMatches(el.dataset.comp));
+  });
+}
+document.querySelectorAll('#comp-scope .comp-pill').forEach(p => {
+  p.classList.toggle('active', p.dataset.scope === compScope);
+  p.addEventListener('click', () => {
+    document.querySelectorAll('#comp-scope .comp-pill').forEach(x => x.classList.remove('active'));
+    p.classList.add('active');
+    compScope = p.dataset.scope;
+    try { localStorage.setItem('peer-comp-scope', compScope); } catch(e){}
+    applyCompScope();
+  });
+});
+// Dark mode (shared 'ops-theme')
+const themeBtn = document.getElementById('theme-toggle');
+function applyTheme(theme) {
+  if (theme === 'dark') { document.body.classList.add('theme-dark'); themeBtn.textContent = '☀️'; }
+  else                  { document.body.classList.remove('theme-dark'); themeBtn.textContent = '🌙'; }
+}
+const saved = localStorage.getItem('ops-theme');
+const mql = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+applyTheme(saved || (mql && mql.matches ? 'dark' : 'light'));
+if (mql && mql.addEventListener) {
+  mql.addEventListener('change', (e) => { if (!localStorage.getItem('ops-theme')) applyTheme(e.matches ? 'dark' : 'light'); });
+}
+themeBtn.addEventListener('click', () => {
+  const newT = document.body.classList.contains('theme-dark') ? 'light' : 'dark';
+  localStorage.setItem('ops-theme', newT);
+  applyTheme(newT);
+});
+document.addEventListener('keydown', (e) => {
+  if (e.target.matches('input,textarea,select')) return;
+  if (e.key === 'd') themeBtn.click();
+});
+applyCompScope();
+</script>
+</body>
+</html>

@@ -275,7 +275,7 @@ html = '''<!DOCTYPE html>
         <div class="sub">13개 IDX 상장사</div>
       </div>
     </a>
-    <nav class="ops-nav"><a href="clubs/index.html">⛳ 클럽</a><a href="unit-economics.html" class="active">단위 경제</a><a href="revenue.html">매출</a><a href="cost-hr.html">비용</a><a href="assets.html">시설</a><a href="risk.html">위험</a><a href="../../index.html" class="back">← 지도</a></nav>
+    <nav class="ops-nav"><a href="dashboard.html">🎯 비교</a><a href="clubs/index.html">⛳ 클럽</a><a href="unit-economics.html" class="active">단위경제</a><a href="revenue.html">매출</a><a href="cost-hr.html">비용</a><a href="assets.html">시설</a><a href="risk.html">위험</a><a href="../../index.html" class="back">← 지도</a></nav>
   </div>
 </header>
 
