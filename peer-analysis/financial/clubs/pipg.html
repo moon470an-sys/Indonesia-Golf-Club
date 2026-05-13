@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PIPG · Pondok Indah Padang Golf — Pure-play Deep Dive</title>
+<link rel="stylesheet" href="../_assets/css/style.css">
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+<script>
+  try { document.documentElement.setAttribute('data-theme', localStorage.getItem('pureplay-theme') || 'light'); } catch (e) {}
+</script>
+<style>
+  .club-hero { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); align-items: stretch; margin-bottom: var(--space-6); }
+  .club-hero .left { padding: var(--space-5); background: var(--color-surface); border-radius: var(--radius); border-top: 4px solid var(--color-pipg); border: 1px solid var(--color-border); }
+  .club-hero h1 { margin: 0 0 6px; font-size: 26px; color: var(--color-pipg); }
+  .club-hero .sub { color: var(--color-text-muted); font-size: 14px; margin-bottom: var(--space-3); }
+  .club-hero dl { margin: 0; display: grid; grid-template-columns: 130px 1fr; gap: 6px 12px; font-size: 13px; }
+  .club-hero dt { color: var(--color-text-muted); }
+  @media (max-width: 760px) { .club-hero { grid-template-columns: 1fr; } }
+  .risk-flag { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; margin-right: 4px; }
+  .risk-flag.high { background: rgba(239,68,68,0.15); color: var(--color-neg); }
+  .risk-flag.med  { background: rgba(245,158,11,0.15); color: var(--color-warn); }
+  .risk-flag.low  { background: rgba(16,185,129,0.15); color: var(--color-pos); }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <span class="brand-mark"><span class="dot-pipg"></span><span class="dot-dmig"></span></span>
+      <span>PIPG · Pondok Indah Padang Golf</span>
+      <span class="brand-sub">Pure-play Tier 1</span>
+    </div>
+    <div class="topbar-controls">
+      <a class="icon-btn" href="../index.html">← 종합 분석</a>
+      <a class="icon-btn" href="./dmig.html">DMIG →</a>
+      <button class="icon-btn" id="btn-theme">🌓</button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="club-hero">
+    <div class="left">
+      <h1 id="hero-name">Pondok Indah Padang Golf</h1>
+      <p class="sub" id="hero-sub">South Jakarta · Tier 1 (Pure-play) · OJK Tbk (NOT IDX-traded)</p>
+      <dl id="hero-specs"></dl>
+    </div>
+    <div class="left" style="border-top-color: var(--color-divider)">
+      <h3 style="margin: 0 0 var(--space-3); font-size: 15px">위험 플래그</h3>
+      <div id="hero-risk-flags"></div>
+      <div id="hero-risk-detail" style="margin-top: var(--space-3); font-size: 13px; color: var(--color-text-muted); line-height: 1.7"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h3>5년 핵심 P&L (FY20-FY25)</h3>
+    <p class="section-sub">매출·영업이익·EBITDA·순이익 시계열</p>
+    <div id="pnl-chart" class="chart"></div>
+    <div id="pnl-table" style="margin-top:var(--space-4)"></div>
+  </section>
+
+  <section class="section">
+    <h3>회원권 및 매출 분해 (FY23-FY24)</h3>
+    <p class="section-sub">PIPG는 매출 11 segment 공시 (AR Note 27). 멤버십·등록비 + 골프코스가 주력.</p>
+    <div id="segment-chart" class="chart"></div>
+  </section>
+
+  <section class="section">
+    <h3>토지권 만료 일정</h3>
+    <p class="section-sub">HGB 4건 + HP 8건 = 12 parcels (FY24 AR Note 10)</p>
+    <div id="land-timeline" class="chart"></div>
+    <div id="land-table" style="margin-top:var(--space-3)"></div>
+  </section>
+
+  <section class="section">
+    <h3>주요 계약 (FY24)</h3>
+    <p class="section-sub">PPTX §12에서 추출한 21개 계약 (수익 공유 / 임대 / 회계 등)</p>
+    <div id="contracts-table"></div>
+  </section>
+
+  <section class="section">
+    <h3>Counterpart 비교 (DMIG 대비)</h3>
+    <p class="section-sub">핵심 metric 6개 mini-bar — 두 Pure-play의 FY24 동시 표시.</p>
+    <div id="counterpart-mini-bars" class="chart-grid-2"></div>
+  </section>
+
+  <details class="long-history" open>
+    <summary>PIPG 14년 long-history (FY2011-FY2024) — single-peer reference</summary>
+    <div style="margin-top:var(--space-3)">
+      <h4 style="margin:0 0 var(--space-2); font-size:13px">매출·영업이익·순이익</h4>
+      <div id="long-pnl" class="chart"></div>
+      <h4 style="margin:var(--space-4) 0 var(--space-2); font-size:13px">방문자 추이 (회원·비회원)</h4>
+      <div id="long-traffic" class="chart"></div>
+    </div>
+  </details>
+
+  <div class="data-footer" id="club-footer"></div>
+
+</main>
+
+<script src="../_assets/js/data-loader.js"></script>
+<script src="../_assets/js/compare.js"></script>
+<script src="../_assets/js/charts.js"></script>
+<script src="../_assets/js/tabs.js"></script>
+<script src="./_club_common.js"></script>
+<script>
+(function () {
+  document.getElementById('btn-theme').addEventListener('click', PurePlayTabs.toggleTheme);
+  PurePlayData.load().then(data => PurePlayClubPage.render('pipg', data));
+})();
+</script>
+
+</body>
+</html>
