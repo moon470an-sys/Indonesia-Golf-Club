@@ -6,7 +6,7 @@
 <title>클럽 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="../ops-style.css?v=20260513fy25y" />
+<link rel="stylesheet" href="../ops-style.css?v=20260513scope1" />
 <style>
   .club-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
   .club-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 16px; margin-top: 20px; }
@@ -74,6 +74,13 @@
   @media (max-width: 720px) {
     .tier-stats { grid-template-columns:1fr; }
   }
+  /* Comparison scope pills (Direct / Segment / All 13) */
+  .comp-pills { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:10px 0 4px; }
+  .comp-pill { padding:5px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:999px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
+  .comp-pill.active { background:var(--ops-green); color:white; border-color:var(--ops-green); }
+  .comp-pill:hover:not(.active) { background:rgba(45,80,22,0.05); }
+  .comp-hidden { display:none !important; }
+  .comp-note { font-size:11px; color:var(--ops-muted); padding:4px 0 0; }
   /* Recently viewed peers — quick-access pill row */
   .recents-row { display:flex; gap:6px; align-items:center; flex-wrap:wrap; margin:8px 0 4px 0; font-size:11.5px; }
   .recents-row.hidden { display:none; }
@@ -261,11 +268,18 @@
     <p class="lede">IDX 상장 13개 골프 운영사. 검색·정렬·뷰 전환으로 빠르게 비교. 카드/행 클릭으로 클럽 상세.</p>
     <div class="top-perf" id="top-perf"></div>
     <div class="tier-stats" id="tier-stats"></div>
+    <div class="comp-pills" id="comp-scope" role="group" aria-label="비교 범위">
+      <span style="font-size:11.5px; color:var(--ops-muted); font-weight:600;">비교 범위:</span>
+      <button class="comp-pill active" data-scope="direct" title="DMIG·PIPG·GOLF — 골프가 주력 사업 (37-100% golf)">🥇 직접 비교 (3)</button>
+      <button class="comp-pill" data-scope="segment" title="+ MDLN·KIJA·SMDM·KPIG·SMRA — 골프 세그먼트 별도 공시">🥇+🥈 세그먼트 공시 (8)</button>
+      <button class="comp-pill" data-scope="all" title="+ BSDE·CTRA·ELTY·LPKR·PWON — 부동산 대기업 (참고용 landscape)">전체 산업 (13)</button>
+    </div>
+    <div class="comp-note">기본: 골프가 주력인 3 peer만 표시. 골프 세그먼트 공시 또는 부동산 산업 전체 보려면 토글.</div>
     <div class="filter-bar" id="tier-filter">
-      <button class="filter-btn active" data-filter="all">전체 (13)</button>
-      <button class="filter-btn" data-filter="pp">🟦 Pure-play (2)</button>
-      <button class="filter-btn" data-filter="resort">🟨 Resort (1)</button>
-      <button class="filter-btn" data-filter="twn">🟩 Township (10)</button>
+      <button class="filter-btn active" data-filter="all">전체</button>
+      <button class="filter-btn" data-filter="pp">🟦 Pure-play</button>
+      <button class="filter-btn" data-filter="resort">🟨 Resort</button>
+      <button class="filter-btn" data-filter="twn">🟩 Township</button>
     </div>
     <div class="control-bar">
       <input type="search" id="club-search" placeholder="🔍 검색: 티커·이름·위치·모회사…" aria-label="클럽 검색" autocomplete="off">
@@ -312,7 +326,7 @@
 <section class="ops-section">
   <div class="ops-wrap">
     <div class="club-grid" id="club-grid">
-      <a href="dmig.html" class="club-card" data-tier="pp" data-ticker="DMIG" data-search="dmig damai indah golf bsd course + pik course tangerang + north jakarta sinarmas land (via bsde)" data-rev="251.254" data-margin="29.859823127193998" data-roa="10.424647655413038" data-ta="719.679" data-ebmargin="-1000000000000000.0" data-yoy="-0.7303130671451419" data-name="Damai Indah Golf" data-tier-label="🟦 Pure-play" data-loc="Tangerang + North Jakarta" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #3b82f6; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
+      <a href="dmig.html" class="club-card" data-tier="pp" data-comp="direct" data-ticker="DMIG" data-search="dmig damai indah golf bsd course + pik course tangerang + north jakarta sinarmas land (via bsde)" data-rev="251.254" data-margin="29.859823127193998" data-roa="10.424647655413038" data-ta="719.679" data-ebmargin="-1000000000000000.0" data-yoy="-0.7303130671451419" data-name="Damai Indah Golf" data-tier-label="🟦 Pure-play" data-loc="Tangerang + North Jakarta" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #3b82f6; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <label class="compare-check" title="비교 추가/제거" onclick="event.stopPropagation()"><input type="checkbox" class="cmp-cb" data-ticker="DMIG" onclick="event.stopPropagation(); event.preventDefault();" aria-label="비교 선택"></label>
         <button class="fav-star" data-ticker="DMIG" title="즐겨찾기 (피어 상단 고정)" aria-label="즐겨찾기 토글" aria-pressed="false" onclick="event.stopPropagation(); event.preventDefault();">☆</button>
         <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-right:24px;">
@@ -345,7 +359,7 @@
           <strong style="color:var(--ops-muted);">골프 매출 FY24</strong>: <span style="font-weight:700; color:var(--ops-green);">Rp 253.1 bn</span>
         </div>
       </a>
-      <a href="pipg.html" class="club-card" data-tier="pp" data-ticker="PIPG" data-search="pipg pondok indah padang golf premium 18-hole jakarta south jakarta (pondok indah) pondok indah group" data-rev="185.775" data-margin="30.14399138743103" data-roa="11.717466767381083" data-ta="477.919" data-ebmargin="-1000000000000000.0" data-yoy="-5.9702841042614665" data-name="Pondok Indah Padang Golf" data-tier-label="🟦 Pure-play" data-loc="South Jakarta (Pondok Indah)" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #3b82f6; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
+      <a href="pipg.html" class="club-card" data-tier="pp" data-comp="direct" data-ticker="PIPG" data-search="pipg pondok indah padang golf premium 18-hole jakarta south jakarta (pondok indah) pondok indah group" data-rev="185.775" data-margin="30.14399138743103" data-roa="11.717466767381083" data-ta="477.919" data-ebmargin="-1000000000000000.0" data-yoy="-5.9702841042614665" data-name="Pondok Indah Padang Golf" data-tier-label="🟦 Pure-play" data-loc="South Jakarta (Pondok Indah)" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #3b82f6; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <label class="compare-check" title="비교 추가/제거" onclick="event.stopPropagation()"><input type="checkbox" class="cmp-cb" data-ticker="PIPG" onclick="event.stopPropagation(); event.preventDefault();" aria-label="비교 선택"></label>
         <button class="fav-star" data-ticker="PIPG" title="즐겨찾기 (피어 상단 고정)" aria-label="즐겨찾기 토글" aria-pressed="false" onclick="event.stopPropagation(); event.preventDefault();">☆</button>
         <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-right:24px;">
@@ -378,7 +392,7 @@
           <strong style="color:var(--ops-muted);">골프 매출 FY24</strong>: <span style="font-weight:700; color:var(--ops-green);">Rp 197.6 bn</span>
         </div>
       </a>
-      <a href="golf.html" class="club-card" data-tier="resort" data-ticker="GOLF" data-search="golf intra golflink resorts new kuta bali + black rocks belitung pecatu (bali) + belitung tommy soeharto family" data-rev="215.52" data-margin="24.039068299925763" data-roa="0.5964950375743863" data-ta="8685.571" data-ebmargin="38.359780994803266" data-yoy="8.851885286823006" data-name="Intra GolfLink Resorts" data-tier-label="🟨 Resort" data-loc="Pecatu (Bali) + Belitung" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #f59e0b; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
+      <a href="golf.html" class="club-card" data-tier="resort" data-comp="direct" data-ticker="GOLF" data-search="golf intra golflink resorts new kuta bali + black rocks belitung pecatu (bali) + belitung tommy soeharto family" data-rev="215.52" data-margin="24.039068299925763" data-roa="0.5964950375743863" data-ta="8685.571" data-ebmargin="38.359780994803266" data-yoy="8.851885286823006" data-name="Intra GolfLink Resorts" data-tier-label="🟨 Resort" data-loc="Pecatu (Bali) + Belitung" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #f59e0b; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <label class="compare-check" title="비교 추가/제거" onclick="event.stopPropagation()"><input type="checkbox" class="cmp-cb" data-ticker="GOLF" onclick="event.stopPropagation(); event.preventDefault();" aria-label="비교 선택"></label>
         <button class="fav-star" data-ticker="GOLF" title="즐겨찾기 (피어 상단 고정)" aria-label="즐겨찾기 토글" aria-pressed="false" onclick="event.stopPropagation(); event.preventDefault();">☆</button>
         <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-right:24px;">
@@ -411,7 +425,7 @@
           <strong style="color:var(--ops-muted);">골프 매출 FY24</strong>: <span style="font-weight:700; color:var(--ops-green);">Rp 93.0 bn</span>
         </div>
       </a>
-      <a href="bsde.html" class="club-card" data-tier="twn" data-ticker="BSDE" data-search="bsde palm springs karawang + batam + dmig (associate) karawang + batam sinarmas land" data-rev="12788.452" data-margin="19.903745973320305" data-roa="3.211091602426904" data-ta="79268.402" data-ebmargin="-1000000000000000.0" data-yoy="-7.307033501601124" data-name="Palm Springs Karawang + Batam" data-tier-label="🟩 Township" data-loc="Karawang + Batam" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
+      <a href="bsde.html" class="club-card" data-tier="twn" data-comp="landscape" data-ticker="BSDE" data-search="bsde palm springs karawang + batam + dmig (associate) karawang + batam sinarmas land" data-rev="12788.452" data-margin="19.903745973320305" data-roa="3.211091602426904" data-ta="79268.402" data-ebmargin="-1000000000000000.0" data-yoy="-7.307033501601124" data-name="Palm Springs Karawang + Batam" data-tier-label="🟩 Township" data-loc="Karawang + Batam" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <label class="compare-check" title="비교 추가/제거" onclick="event.stopPropagation()"><input type="checkbox" class="cmp-cb" data-ticker="BSDE" onclick="event.stopPropagation(); event.preventDefault();" aria-label="비교 선택"></label>
         <button class="fav-star" data-ticker="BSDE" title="즐겨찾기 (피어 상단 고정)" aria-label="즐겨찾기 토글" aria-pressed="false" onclick="event.stopPropagation(); event.preventDefault();">☆</button>
         <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-right:24px;">
@@ -444,7 +458,7 @@
           <strong style="color:var(--ops-muted);">골프 매출 FY24</strong>: <span style="font-weight:700; color:var(--ops-green);">Rp 미공시</span>
         </div>
       </a>
-      <a href="ctra.html" class="club-card" data-tier="twn" data-ticker="CTRA" data-search="ctra ciputra golf surabaya + taman dayu 2 코스 (citraland + pandaan) surabaya + pasuruan (pandaan) ciputra group" data-rev="12616.695" data-margin="21.1077465215732" data-roa="5.549463576860268" data-ta="47988.422" data-ebmargin="33.61545159013514" data-yoy="12.774272149480248" data-name="Ciputra Golf Surabaya + Taman Dayu" data-tier-label="🟩 Township" data-loc="Surabaya + Pasuruan (Pandaan)" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
+      <a href="ctra.html" class="club-card" data-tier="twn" data-comp="landscape" data-ticker="CTRA" data-search="ctra ciputra golf surabaya + taman dayu 2 코스 (citraland + pandaan) surabaya + pasuruan (pandaan) ciputra group" data-rev="12616.695" data-margin="21.1077465215732" data-roa="5.549463576860268" data-ta="47988.422" data-ebmargin="33.61545159013514" data-yoy="12.774272149480248" data-name="Ciputra Golf Surabaya + Taman Dayu" data-tier-label="🟩 Township" data-loc="Surabaya + Pasuruan (Pandaan)" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <label class="compare-check" title="비교 추가/제거" onclick="event.stopPropagation()"><input type="checkbox" class="cmp-cb" data-ticker="CTRA" onclick="event.stopPropagation(); event.preventDefault();" aria-label="비교 선택"></label>
         <button class="fav-star" data-ticker="CTRA" title="즐겨찾기 (피어 상단 고정)" aria-label="즐겨찾기 토글" aria-pressed="false" onclick="event.stopPropagation(); event.preventDefault();">☆</button>
         <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-right:24px;">
@@ -477,7 +491,7 @@
           <strong style="color:var(--ops-muted);">골프 매출 FY24</strong>: <span style="font-weight:700; color:var(--ops-green);">Rp 미공시</span>
         </div>
       </a>
-      <a href="elty.html" class="club-card" data-tier="twn" data-ticker="ELTY" data-search="elty gunung geulis + klub golf bogor raya 2 코스 (bakrieland resort) gunung geulis (bogor) bakrie group" data-rev="1379.377" data-margin="-1.2104740038437642" data-roa="-0.19330545144064484" data-ta="8637.625" data-ebmargin="13.213066478562425" data-yoy="14.168124761007716" data-name="Gunung Geulis + Klub Golf Bogor Raya" data-tier-label="🟩 Township" data-loc="Gunung Geulis (Bogor)" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
+      <a href="elty.html" class="club-card" data-tier="twn" data-comp="landscape" data-ticker="ELTY" data-search="elty gunung geulis + klub golf bogor raya 2 코스 (bakrieland resort) gunung geulis (bogor) bakrie group" data-rev="1379.377" data-margin="-1.2104740038437642" data-roa="-0.19330545144064484" data-ta="8637.625" data-ebmargin="13.213066478562425" data-yoy="14.168124761007716" data-name="Gunung Geulis + Klub Golf Bogor Raya" data-tier-label="🟩 Township" data-loc="Gunung Geulis (Bogor)" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <label class="compare-check" title="비교 추가/제거" onclick="event.stopPropagation()"><input type="checkbox" class="cmp-cb" data-ticker="ELTY" onclick="event.stopPropagation(); event.preventDefault();" aria-label="비교 선택"></label>
         <button class="fav-star" data-ticker="ELTY" title="즐겨찾기 (피어 상단 고정)" aria-label="즐겨찾기 토글" aria-pressed="false" onclick="event.stopPropagation(); event.preventDefault();">☆</button>
         <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-right:24px;">
@@ -510,7 +524,7 @@
           <strong style="color:var(--ops-muted);">골프 매출 FY24</strong>: <span style="font-weight:700; color:var(--ops-green);">Rp 미공시</span>
         </div>
       </a>
-      <a href="kija.html" class="club-card" data-tier="twn" data-ticker="KIJA" data-search="kija jababeka golf & country club + borobudur international golf cikarang (bekasi) + magelang jababeka group" data-rev="5149.425" data-margin="8.218354476470674" data-roa="2.8107851771560193" data-ta="15056.22" data-ebmargin="31.22302004592746" data-yoy="11.879617993815735" data-name="Jababeka Golf & Country Club" data-tier-label="🟩 Township" data-loc="Cikarang (Bekasi) + Magelang" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
+      <a href="kija.html" class="club-card" data-tier="twn" data-comp="segment" data-ticker="KIJA" data-search="kija jababeka golf & country club + borobudur international golf cikarang (bekasi) + magelang jababeka group" data-rev="5149.425" data-margin="8.218354476470674" data-roa="2.8107851771560193" data-ta="15056.22" data-ebmargin="31.22302004592746" data-yoy="11.879617993815735" data-name="Jababeka Golf & Country Club" data-tier-label="🟩 Township" data-loc="Cikarang (Bekasi) + Magelang" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <label class="compare-check" title="비교 추가/제거" onclick="event.stopPropagation()"><input type="checkbox" class="cmp-cb" data-ticker="KIJA" onclick="event.stopPropagation(); event.preventDefault();" aria-label="비교 선택"></label>
         <button class="fav-star" data-ticker="KIJA" title="즐겨찾기 (피어 상단 고정)" aria-label="즐겨찾기 토글" aria-pressed="false" onclick="event.stopPropagation(); event.preventDefault();">☆</button>
         <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-right:24px;">
@@ -543,7 +557,7 @@
           <strong style="color:var(--ops-muted);">골프 매출 FY24</strong>: <span style="font-weight:700; color:var(--ops-green);">Rp 85.0 bn</span>
         </div>
       </a>
-      <a href="kpig.html" class="club-card" data-tier="twn" data-ticker="KPIG" data-search="kpig trump international golf club lido + phil mickelson course (planned) lido (bogor regency) mnc group (hary tanoesoedibjo)" data-rev="2615.281" data-margin="27.424280603116834" data-roa="1.9926085713323654" data-ta="35994.124" data-ebmargin="31.699614687676007" data-yoy="47.74393563343639" data-name="Trump International Golf Club Lido" data-tier-label="🟩 Township" data-loc="Lido (Bogor Regency)" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
+      <a href="kpig.html" class="club-card" data-tier="twn" data-comp="segment" data-ticker="KPIG" data-search="kpig trump international golf club lido + phil mickelson course (planned) lido (bogor regency) mnc group (hary tanoesoedibjo)" data-rev="2615.281" data-margin="27.424280603116834" data-roa="1.9926085713323654" data-ta="35994.124" data-ebmargin="31.699614687676007" data-yoy="47.74393563343639" data-name="Trump International Golf Club Lido" data-tier-label="🟩 Township" data-loc="Lido (Bogor Regency)" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <label class="compare-check" title="비교 추가/제거" onclick="event.stopPropagation()"><input type="checkbox" class="cmp-cb" data-ticker="KPIG" onclick="event.stopPropagation(); event.preventDefault();" aria-label="비교 선택"></label>
         <button class="fav-star" data-ticker="KPIG" title="즐겨찾기 (피어 상단 고정)" aria-label="즐겨찾기 토글" aria-pressed="false" onclick="event.stopPropagation(); event.preventDefault();">☆</button>
         <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-right:24px;">
@@ -576,7 +590,7 @@
           <strong style="color:var(--ops-muted);">골프 매출 FY24</strong>: <span style="font-weight:700; color:var(--ops-green);">Rp 미공시</span>
         </div>
       </a>
-      <a href="lpkr.html" class="club-card" data-tier="twn" data-ticker="LPKR" data-search="lpkr imperial klub golf premium lippo karawaci lippo karawaci, tangerang lippo group" data-rev="8843.888" data-margin="5.309146836775862" data-roa="0.9534243566758823" data-ta="49247.221" data-ebmargin="10.370269275232793" data-yoy="-22.066404951930206" data-name="Imperial Klub Golf" data-tier-label="🟩 Township" data-loc="Lippo Karawaci, Tangerang" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
+      <a href="lpkr.html" class="club-card" data-tier="twn" data-comp="landscape" data-ticker="LPKR" data-search="lpkr imperial klub golf premium lippo karawaci lippo karawaci, tangerang lippo group" data-rev="8843.888" data-margin="5.309146836775862" data-roa="0.9534243566758823" data-ta="49247.221" data-ebmargin="10.370269275232793" data-yoy="-22.066404951930206" data-name="Imperial Klub Golf" data-tier-label="🟩 Township" data-loc="Lippo Karawaci, Tangerang" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <label class="compare-check" title="비교 추가/제거" onclick="event.stopPropagation()"><input type="checkbox" class="cmp-cb" data-ticker="LPKR" onclick="event.stopPropagation(); event.preventDefault();" aria-label="비교 선택"></label>
         <button class="fav-star" data-ticker="LPKR" title="즐겨찾기 (피어 상단 고정)" aria-label="즐겨찾기 토글" aria-pressed="false" onclick="event.stopPropagation(); event.preventDefault();">☆</button>
         <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-right:24px;">
@@ -609,7 +623,7 @@
           <strong style="color:var(--ops-muted);">골프 매출 FY24</strong>: <span style="font-weight:700; color:var(--ops-green);">Rp 미공시</span>
         </div>
       </a>
-      <a href="mdln.html" class="club-card" data-tier="twn" data-ticker="MDLN" data-search="mdln modern golf & country club 18-hole tangerang kota modern, tangerang modernland group" data-rev="1013.159" data-margin="23.857360986775028" data-roa="1.7969779831110997" data-ta="13451.083" data-ebmargin="16.37729122477321" data-yoy="-0.43348369153964844" data-name="Modern Golf & Country Club" data-tier-label="🟩 Township" data-loc="Kota Modern, Tangerang" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
+      <a href="mdln.html" class="club-card" data-tier="twn" data-comp="segment" data-ticker="MDLN" data-search="mdln modern golf & country club 18-hole tangerang kota modern, tangerang modernland group" data-rev="1013.159" data-margin="23.857360986775028" data-roa="1.7969779831110997" data-ta="13451.083" data-ebmargin="16.37729122477321" data-yoy="-0.43348369153964844" data-name="Modern Golf & Country Club" data-tier-label="🟩 Township" data-loc="Kota Modern, Tangerang" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <label class="compare-check" title="비교 추가/제거" onclick="event.stopPropagation()"><input type="checkbox" class="cmp-cb" data-ticker="MDLN" onclick="event.stopPropagation(); event.preventDefault();" aria-label="비교 선택"></label>
         <button class="fav-star" data-ticker="MDLN" title="즐겨찾기 (피어 상단 고정)" aria-label="즐겨찾기 토글" aria-pressed="false" onclick="event.stopPropagation(); event.preventDefault();">☆</button>
         <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-right:24px;">
@@ -642,7 +656,7 @@
           <strong style="color:var(--ops-muted);">골프 매출 FY24</strong>: <span style="font-weight:700; color:var(--ops-green);">Rp 74.4 bn</span>
         </div>
       </a>
-      <a href="pwon.html" class="club-card" data-tier="twn" data-ticker="PWON" data-search="pwon pakuwon golf & family club surabaya pakuwon city surabaya pakuwon group" data-rev="7111.105" data-margin="32.99234085279292" data-roa="6.433712376430914" data-ta="36466.038" data-ebmargin="52.071808811710696" data-yoy="6.6003388794372615" data-name="Pakuwon Golf & Family Club" data-tier-label="🟩 Township" data-loc="Surabaya" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
+      <a href="pwon.html" class="club-card" data-tier="twn" data-comp="landscape" data-ticker="PWON" data-search="pwon pakuwon golf & family club surabaya pakuwon city surabaya pakuwon group" data-rev="7111.105" data-margin="32.99234085279292" data-roa="6.433712376430914" data-ta="36466.038" data-ebmargin="52.071808811710696" data-yoy="6.6003388794372615" data-name="Pakuwon Golf & Family Club" data-tier-label="🟩 Township" data-loc="Surabaya" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <label class="compare-check" title="비교 추가/제거" onclick="event.stopPropagation()"><input type="checkbox" class="cmp-cb" data-ticker="PWON" onclick="event.stopPropagation(); event.preventDefault();" aria-label="비교 선택"></label>
         <button class="fav-star" data-ticker="PWON" title="즐겨찾기 (피어 상단 고정)" aria-label="즐겨찾기 토글" aria-pressed="false" onclick="event.stopPropagation(); event.preventDefault();">☆</button>
         <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-right:24px;">
@@ -675,7 +689,7 @@
           <strong style="color:var(--ops-muted);">골프 매출 FY24</strong>: <span style="font-weight:700; color:var(--ops-green);">Rp 미공시</span>
         </div>
       </a>
-      <a href="smdm.html" class="club-card" data-tier="twn" data-ticker="SMDM" data-search="smdm rancamaya golf estate private members (400m elevation) rancamaya, bogor sinarmas land (via bsde, 2024-10)" data-rev="386.085" data-margin="5.726718209720658" data-roa="0.6260253252868363" data-ta="3531.806" data-ebmargin="16.768328217879482" data-yoy="-44.3717626378693" data-name="Rancamaya Golf Estate" data-tier-label="🟩 Township" data-loc="Rancamaya, Bogor" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
+      <a href="smdm.html" class="club-card" data-tier="twn" data-comp="segment" data-ticker="SMDM" data-search="smdm rancamaya golf estate private members (400m elevation) rancamaya, bogor sinarmas land (via bsde, 2024-10)" data-rev="386.085" data-margin="5.726718209720658" data-roa="0.6260253252868363" data-ta="3531.806" data-ebmargin="16.768328217879482" data-yoy="-44.3717626378693" data-name="Rancamaya Golf Estate" data-tier-label="🟩 Township" data-loc="Rancamaya, Bogor" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <label class="compare-check" title="비교 추가/제거" onclick="event.stopPropagation()"><input type="checkbox" class="cmp-cb" data-ticker="SMDM" onclick="event.stopPropagation(); event.preventDefault();" aria-label="비교 선택"></label>
         <button class="fav-star" data-ticker="SMDM" title="즐겨찾기 (피어 상단 고정)" aria-label="즐겨찾기 토글" aria-pressed="false" onclick="event.stopPropagation(); event.preventDefault();">☆</button>
         <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-right:24px;">
@@ -708,7 +722,7 @@
           <strong style="color:var(--ops-muted);">골프 매출 FY24</strong>: <span style="font-weight:700; color:var(--ops-green);">Rp 63.3 bn</span>
         </div>
       </a>
-      <a href="smra.html" class="club-card" data-tier="twn" data-ticker="SMRA" data-search="smra gading raya padang golf township-attached 18-hole serpong, tangerang summarecon agung" data-rev="8766.927" data-margin="8.743656699776329" data-roa="1.9992169527129573" data-ta="38342.512" data-ebmargin="32.82286940452453" data-yoy="-17.47531863621816" data-name="Gading Raya Padang Golf" data-tier-label="🟩 Township" data-loc="Serpong, Tangerang" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
+      <a href="smra.html" class="club-card" data-tier="twn" data-comp="segment" data-ticker="SMRA" data-search="smra gading raya padang golf township-attached 18-hole serpong, tangerang summarecon agung" data-rev="8766.927" data-margin="8.743656699776329" data-roa="1.9992169527129573" data-ta="38342.512" data-ebmargin="32.82286940452453" data-yoy="-17.47531863621816" data-name="Gading Raya Padang Golf" data-tier-label="🟩 Township" data-loc="Serpong, Tangerang" style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid #16a34a; border-radius:10px; padding:18px 22px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:10px; transition:all 0.2s;">
         <label class="compare-check" title="비교 추가/제거" onclick="event.stopPropagation()"><input type="checkbox" class="cmp-cb" data-ticker="SMRA" onclick="event.stopPropagation(); event.preventDefault();" aria-label="비교 선택"></label>
         <button class="fav-star" data-ticker="SMRA" title="즐겨찾기 (피어 상단 고정)" aria-label="즐겨찾기 토글" aria-pressed="false" onclick="event.stopPropagation(); event.preventDefault();">☆</button>
         <div style="display:flex; justify-content:space-between; align-items:flex-start; padding-right:24px;">
@@ -762,7 +776,7 @@
           </tr>
         </thead>
         <tbody id="club-tbody">
-      <tr class="club-row" data-tier="pp" data-ticker="DMIG" data-search="dmig damai indah golf bsd course + pik course tangerang + north jakarta sinarmas land (via bsde)" data-rev="251.254" data-margin="29.859823127193998" data-roa="10.424647655413038" data-ta="719.679" data-ebmargin="-1000000000000000.0" data-yoy="-0.7303130671451419" data-name="Damai Indah Golf">
+      <tr class="club-row" data-tier="pp" data-comp="direct" data-ticker="DMIG" data-search="dmig damai indah golf bsd course + pik course tangerang + north jakarta sinarmas land (via bsde)" data-rev="251.254" data-margin="29.859823127193998" data-roa="10.424647655413038" data-ta="719.679" data-ebmargin="-1000000000000000.0" data-yoy="-0.7303130671451419" data-name="Damai Indah Golf">
         <td style="white-space:nowrap;"><span style="display:inline-block; width:3px; height:14px; background:#3b82f6; vertical-align:middle; margin-right:6px; border-radius:2px;"></span><a href="dmig.html" style="font-weight:700; color:var(--ops-ink); text-decoration:none;">DMIG</a></td>
         <td><a href="dmig.html" style="color:var(--ops-ink); text-decoration:none;">Damai Indah Golf</a><br><span style="font-size:11px; color:var(--ops-muted);">BSD Course + PIK Course</span></td>
         <td><span class="peer-tag peer-tag-pp" style="font-size:10px;">🟦 Pure-play</span></td>
@@ -777,7 +791,7 @@
         <td class="num"><span style="color:#16a34a; font-weight:700;">+10.4%</span><span class="tertile-dot dot-top" title="상위 1/3 (peer group)">●</span></td>
         <td class="num" style="color:var(--ops-green); font-weight:700;">Rp 253.1 bn</td>
       </tr>
-      <tr class="club-row" data-tier="pp" data-ticker="PIPG" data-search="pipg pondok indah padang golf premium 18-hole jakarta south jakarta (pondok indah) pondok indah group" data-rev="185.775" data-margin="30.14399138743103" data-roa="11.717466767381083" data-ta="477.919" data-ebmargin="-1000000000000000.0" data-yoy="-5.9702841042614665" data-name="Pondok Indah Padang Golf">
+      <tr class="club-row" data-tier="pp" data-comp="direct" data-ticker="PIPG" data-search="pipg pondok indah padang golf premium 18-hole jakarta south jakarta (pondok indah) pondok indah group" data-rev="185.775" data-margin="30.14399138743103" data-roa="11.717466767381083" data-ta="477.919" data-ebmargin="-1000000000000000.0" data-yoy="-5.9702841042614665" data-name="Pondok Indah Padang Golf">
         <td style="white-space:nowrap;"><span style="display:inline-block; width:3px; height:14px; background:#3b82f6; vertical-align:middle; margin-right:6px; border-radius:2px;"></span><a href="pipg.html" style="font-weight:700; color:var(--ops-ink); text-decoration:none;">PIPG</a></td>
         <td><a href="pipg.html" style="color:var(--ops-ink); text-decoration:none;">Pondok Indah Padang Golf</a><br><span style="font-size:11px; color:var(--ops-muted);">Premium 18-hole Jakarta</span></td>
         <td><span class="peer-tag peer-tag-pp" style="font-size:10px;">🟦 Pure-play</span></td>
@@ -792,7 +806,7 @@
         <td class="num"><span style="color:#16a34a; font-weight:700;">+11.7%</span><span class="tertile-dot dot-top" title="상위 1/3 (peer group)">●</span></td>
         <td class="num" style="color:var(--ops-green); font-weight:700;">Rp 197.6 bn</td>
       </tr>
-      <tr class="club-row" data-tier="resort" data-ticker="GOLF" data-search="golf intra golflink resorts new kuta bali + black rocks belitung pecatu (bali) + belitung tommy soeharto family" data-rev="215.52" data-margin="24.039068299925763" data-roa="0.5964950375743863" data-ta="8685.571" data-ebmargin="38.359780994803266" data-yoy="8.851885286823006" data-name="Intra GolfLink Resorts">
+      <tr class="club-row" data-tier="resort" data-comp="direct" data-ticker="GOLF" data-search="golf intra golflink resorts new kuta bali + black rocks belitung pecatu (bali) + belitung tommy soeharto family" data-rev="215.52" data-margin="24.039068299925763" data-roa="0.5964950375743863" data-ta="8685.571" data-ebmargin="38.359780994803266" data-yoy="8.851885286823006" data-name="Intra GolfLink Resorts">
         <td style="white-space:nowrap;"><span style="display:inline-block; width:3px; height:14px; background:#f59e0b; vertical-align:middle; margin-right:6px; border-radius:2px;"></span><a href="golf.html" style="font-weight:700; color:var(--ops-ink); text-decoration:none;">GOLF</a></td>
         <td><a href="golf.html" style="color:var(--ops-ink); text-decoration:none;">Intra GolfLink Resorts</a><br><span style="font-size:11px; color:var(--ops-muted);">New Kuta Bali + Black Rocks Belitung</span></td>
         <td><span class="peer-tag peer-tag-resort" style="font-size:10px;">🟨 Resort</span></td>
@@ -807,7 +821,7 @@
         <td class="num"><span style="color:#16a34a; font-weight:700;">+0.6%</span><span class="tertile-dot dot-bot" title="하위 1/3">●</span></td>
         <td class="num" style="color:var(--ops-green); font-weight:700;">Rp 93.0 bn</td>
       </tr>
-      <tr class="club-row" data-tier="twn" data-ticker="BSDE" data-search="bsde palm springs karawang + batam + dmig (associate) karawang + batam sinarmas land" data-rev="12788.452" data-margin="19.903745973320305" data-roa="3.211091602426904" data-ta="79268.402" data-ebmargin="-1000000000000000.0" data-yoy="-7.307033501601124" data-name="Palm Springs Karawang + Batam">
+      <tr class="club-row" data-tier="twn" data-comp="landscape" data-ticker="BSDE" data-search="bsde palm springs karawang + batam + dmig (associate) karawang + batam sinarmas land" data-rev="12788.452" data-margin="19.903745973320305" data-roa="3.211091602426904" data-ta="79268.402" data-ebmargin="-1000000000000000.0" data-yoy="-7.307033501601124" data-name="Palm Springs Karawang + Batam">
         <td style="white-space:nowrap;"><span style="display:inline-block; width:3px; height:14px; background:#16a34a; vertical-align:middle; margin-right:6px; border-radius:2px;"></span><a href="bsde.html" style="font-weight:700; color:var(--ops-ink); text-decoration:none;">BSDE</a></td>
         <td><a href="bsde.html" style="color:var(--ops-ink); text-decoration:none;">Palm Springs Karawang + Batam</a><br><span style="font-size:11px; color:var(--ops-muted);">+ DMIG (associate)</span></td>
         <td><span class="peer-tag peer-tag-twn" style="font-size:10px;">🟩 Township</span></td>
@@ -822,7 +836,7 @@
         <td class="num"><span style="color:#16a34a; font-weight:700;">+3.2%</span><span class="tertile-dot dot-top" title="상위 1/3 (peer group)">●</span></td>
         <td class="num" style="color:var(--ops-green); font-weight:700;">Rp 미공시</td>
       </tr>
-      <tr class="club-row" data-tier="twn" data-ticker="CTRA" data-search="ctra ciputra golf surabaya + taman dayu 2 코스 (citraland + pandaan) surabaya + pasuruan (pandaan) ciputra group" data-rev="12616.695" data-margin="21.1077465215732" data-roa="5.549463576860268" data-ta="47988.422" data-ebmargin="33.61545159013514" data-yoy="12.774272149480248" data-name="Ciputra Golf Surabaya + Taman Dayu">
+      <tr class="club-row" data-tier="twn" data-comp="landscape" data-ticker="CTRA" data-search="ctra ciputra golf surabaya + taman dayu 2 코스 (citraland + pandaan) surabaya + pasuruan (pandaan) ciputra group" data-rev="12616.695" data-margin="21.1077465215732" data-roa="5.549463576860268" data-ta="47988.422" data-ebmargin="33.61545159013514" data-yoy="12.774272149480248" data-name="Ciputra Golf Surabaya + Taman Dayu">
         <td style="white-space:nowrap;"><span style="display:inline-block; width:3px; height:14px; background:#16a34a; vertical-align:middle; margin-right:6px; border-radius:2px;"></span><a href="ctra.html" style="font-weight:700; color:var(--ops-ink); text-decoration:none;">CTRA</a></td>
         <td><a href="ctra.html" style="color:var(--ops-ink); text-decoration:none;">Ciputra Golf Surabaya + Taman Dayu</a><br><span style="font-size:11px; color:var(--ops-muted);">2 코스 (Citraland + Pandaan)</span></td>
         <td><span class="peer-tag peer-tag-twn" style="font-size:10px;">🟩 Township</span></td>
@@ -837,7 +851,7 @@
         <td class="num"><span style="color:#16a34a; font-weight:700;">+5.5%</span><span class="tertile-dot dot-top" title="상위 1/3 (peer group)">●</span></td>
         <td class="num" style="color:var(--ops-green); font-weight:700;">Rp 미공시</td>
       </tr>
-      <tr class="club-row" data-tier="twn" data-ticker="ELTY" data-search="elty gunung geulis + klub golf bogor raya 2 코스 (bakrieland resort) gunung geulis (bogor) bakrie group" data-rev="1379.377" data-margin="-1.2104740038437642" data-roa="-0.19330545144064484" data-ta="8637.625" data-ebmargin="13.213066478562425" data-yoy="14.168124761007716" data-name="Gunung Geulis + Klub Golf Bogor Raya">
+      <tr class="club-row" data-tier="twn" data-comp="landscape" data-ticker="ELTY" data-search="elty gunung geulis + klub golf bogor raya 2 코스 (bakrieland resort) gunung geulis (bogor) bakrie group" data-rev="1379.377" data-margin="-1.2104740038437642" data-roa="-0.19330545144064484" data-ta="8637.625" data-ebmargin="13.213066478562425" data-yoy="14.168124761007716" data-name="Gunung Geulis + Klub Golf Bogor Raya">
         <td style="white-space:nowrap;"><span style="display:inline-block; width:3px; height:14px; background:#16a34a; vertical-align:middle; margin-right:6px; border-radius:2px;"></span><a href="elty.html" style="font-weight:700; color:var(--ops-ink); text-decoration:none;">ELTY</a></td>
         <td><a href="elty.html" style="color:var(--ops-ink); text-decoration:none;">Gunung Geulis + Klub Golf Bogor Raya</a><br><span style="font-size:11px; color:var(--ops-muted);">2 코스 (Bakrieland resort)</span></td>
         <td><span class="peer-tag peer-tag-twn" style="font-size:10px;">🟩 Township</span></td>
@@ -852,7 +866,7 @@
         <td class="num"><span style="color:#b91c1c; font-weight:700;">-0.2%</span><span class="tertile-dot dot-bot" title="하위 1/3">●</span></td>
         <td class="num" style="color:var(--ops-green); font-weight:700;">Rp 미공시</td>
       </tr>
-      <tr class="club-row" data-tier="twn" data-ticker="KIJA" data-search="kija jababeka golf & country club + borobudur international golf cikarang (bekasi) + magelang jababeka group" data-rev="5149.425" data-margin="8.218354476470674" data-roa="2.8107851771560193" data-ta="15056.22" data-ebmargin="31.22302004592746" data-yoy="11.879617993815735" data-name="Jababeka Golf & Country Club">
+      <tr class="club-row" data-tier="twn" data-comp="segment" data-ticker="KIJA" data-search="kija jababeka golf & country club + borobudur international golf cikarang (bekasi) + magelang jababeka group" data-rev="5149.425" data-margin="8.218354476470674" data-roa="2.8107851771560193" data-ta="15056.22" data-ebmargin="31.22302004592746" data-yoy="11.879617993815735" data-name="Jababeka Golf & Country Club">
         <td style="white-space:nowrap;"><span style="display:inline-block; width:3px; height:14px; background:#16a34a; vertical-align:middle; margin-right:6px; border-radius:2px;"></span><a href="kija.html" style="font-weight:700; color:var(--ops-ink); text-decoration:none;">KIJA</a></td>
         <td><a href="kija.html" style="color:var(--ops-ink); text-decoration:none;">Jababeka Golf & Country Club</a><br><span style="font-size:11px; color:var(--ops-muted);">+ Borobudur International Golf</span></td>
         <td><span class="peer-tag peer-tag-twn" style="font-size:10px;">🟩 Township</span></td>
@@ -867,7 +881,7 @@
         <td class="num"><span style="color:#16a34a; font-weight:700;">+2.8%</span><span class="tertile-dot dot-mid" title="중위 1/3">●</span></td>
         <td class="num" style="color:var(--ops-green); font-weight:700;">Rp 85.0 bn</td>
       </tr>
-      <tr class="club-row" data-tier="twn" data-ticker="KPIG" data-search="kpig trump international golf club lido + phil mickelson course (planned) lido (bogor regency) mnc group (hary tanoesoedibjo)" data-rev="2615.281" data-margin="27.424280603116834" data-roa="1.9926085713323654" data-ta="35994.124" data-ebmargin="31.699614687676007" data-yoy="47.74393563343639" data-name="Trump International Golf Club Lido">
+      <tr class="club-row" data-tier="twn" data-comp="segment" data-ticker="KPIG" data-search="kpig trump international golf club lido + phil mickelson course (planned) lido (bogor regency) mnc group (hary tanoesoedibjo)" data-rev="2615.281" data-margin="27.424280603116834" data-roa="1.9926085713323654" data-ta="35994.124" data-ebmargin="31.699614687676007" data-yoy="47.74393563343639" data-name="Trump International Golf Club Lido">
         <td style="white-space:nowrap;"><span style="display:inline-block; width:3px; height:14px; background:#16a34a; vertical-align:middle; margin-right:6px; border-radius:2px;"></span><a href="kpig.html" style="font-weight:700; color:var(--ops-ink); text-decoration:none;">KPIG</a></td>
         <td><a href="kpig.html" style="color:var(--ops-ink); text-decoration:none;">Trump International Golf Club Lido</a><br><span style="font-size:11px; color:var(--ops-muted);">+ Phil Mickelson course (planned)</span></td>
         <td><span class="peer-tag peer-tag-twn" style="font-size:10px;">🟩 Township</span></td>
@@ -882,7 +896,7 @@
         <td class="num"><span style="color:#16a34a; font-weight:700;">+2.0%</span><span class="tertile-dot dot-mid" title="중위 1/3">●</span></td>
         <td class="num" style="color:var(--ops-green); font-weight:700;">Rp 미공시</td>
       </tr>
-      <tr class="club-row" data-tier="twn" data-ticker="LPKR" data-search="lpkr imperial klub golf premium lippo karawaci lippo karawaci, tangerang lippo group" data-rev="8843.888" data-margin="5.309146836775862" data-roa="0.9534243566758823" data-ta="49247.221" data-ebmargin="10.370269275232793" data-yoy="-22.066404951930206" data-name="Imperial Klub Golf">
+      <tr class="club-row" data-tier="twn" data-comp="landscape" data-ticker="LPKR" data-search="lpkr imperial klub golf premium lippo karawaci lippo karawaci, tangerang lippo group" data-rev="8843.888" data-margin="5.309146836775862" data-roa="0.9534243566758823" data-ta="49247.221" data-ebmargin="10.370269275232793" data-yoy="-22.066404951930206" data-name="Imperial Klub Golf">
         <td style="white-space:nowrap;"><span style="display:inline-block; width:3px; height:14px; background:#16a34a; vertical-align:middle; margin-right:6px; border-radius:2px;"></span><a href="lpkr.html" style="font-weight:700; color:var(--ops-ink); text-decoration:none;">LPKR</a></td>
         <td><a href="lpkr.html" style="color:var(--ops-ink); text-decoration:none;">Imperial Klub Golf</a><br><span style="font-size:11px; color:var(--ops-muted);">Premium Lippo Karawaci</span></td>
         <td><span class="peer-tag peer-tag-twn" style="font-size:10px;">🟩 Township</span></td>
@@ -897,7 +911,7 @@
         <td class="num"><span style="color:#16a34a; font-weight:700;">+1.0%</span><span class="tertile-dot dot-bot" title="하위 1/3">●</span></td>
         <td class="num" style="color:var(--ops-green); font-weight:700;">Rp 미공시</td>
       </tr>
-      <tr class="club-row" data-tier="twn" data-ticker="MDLN" data-search="mdln modern golf & country club 18-hole tangerang kota modern, tangerang modernland group" data-rev="1013.159" data-margin="23.857360986775028" data-roa="1.7969779831110997" data-ta="13451.083" data-ebmargin="16.37729122477321" data-yoy="-0.43348369153964844" data-name="Modern Golf & Country Club">
+      <tr class="club-row" data-tier="twn" data-comp="segment" data-ticker="MDLN" data-search="mdln modern golf & country club 18-hole tangerang kota modern, tangerang modernland group" data-rev="1013.159" data-margin="23.857360986775028" data-roa="1.7969779831110997" data-ta="13451.083" data-ebmargin="16.37729122477321" data-yoy="-0.43348369153964844" data-name="Modern Golf & Country Club">
         <td style="white-space:nowrap;"><span style="display:inline-block; width:3px; height:14px; background:#16a34a; vertical-align:middle; margin-right:6px; border-radius:2px;"></span><a href="mdln.html" style="font-weight:700; color:var(--ops-ink); text-decoration:none;">MDLN</a></td>
         <td><a href="mdln.html" style="color:var(--ops-ink); text-decoration:none;">Modern Golf & Country Club</a><br><span style="font-size:11px; color:var(--ops-muted);">18-hole Tangerang</span></td>
         <td><span class="peer-tag peer-tag-twn" style="font-size:10px;">🟩 Township</span></td>
@@ -912,7 +926,7 @@
         <td class="num"><span style="color:#16a34a; font-weight:700;">+1.8%</span><span class="tertile-dot dot-mid" title="중위 1/3">●</span></td>
         <td class="num" style="color:var(--ops-green); font-weight:700;">Rp 74.4 bn</td>
       </tr>
-      <tr class="club-row" data-tier="twn" data-ticker="PWON" data-search="pwon pakuwon golf & family club surabaya pakuwon city surabaya pakuwon group" data-rev="7111.105" data-margin="32.99234085279292" data-roa="6.433712376430914" data-ta="36466.038" data-ebmargin="52.071808811710696" data-yoy="6.6003388794372615" data-name="Pakuwon Golf & Family Club">
+      <tr class="club-row" data-tier="twn" data-comp="landscape" data-ticker="PWON" data-search="pwon pakuwon golf & family club surabaya pakuwon city surabaya pakuwon group" data-rev="7111.105" data-margin="32.99234085279292" data-roa="6.433712376430914" data-ta="36466.038" data-ebmargin="52.071808811710696" data-yoy="6.6003388794372615" data-name="Pakuwon Golf & Family Club">
         <td style="white-space:nowrap;"><span style="display:inline-block; width:3px; height:14px; background:#16a34a; vertical-align:middle; margin-right:6px; border-radius:2px;"></span><a href="pwon.html" style="font-weight:700; color:var(--ops-ink); text-decoration:none;">PWON</a></td>
         <td><a href="pwon.html" style="color:var(--ops-ink); text-decoration:none;">Pakuwon Golf & Family Club</a><br><span style="font-size:11px; color:var(--ops-muted);">Surabaya Pakuwon City</span></td>
         <td><span class="peer-tag peer-tag-twn" style="font-size:10px;">🟩 Township</span></td>
@@ -927,7 +941,7 @@
         <td class="num"><span style="color:#16a34a; font-weight:700;">+6.4%</span><span class="tertile-dot dot-top" title="상위 1/3 (peer group)">●</span></td>
         <td class="num" style="color:var(--ops-green); font-weight:700;">Rp 미공시</td>
       </tr>
-      <tr class="club-row" data-tier="twn" data-ticker="SMDM" data-search="smdm rancamaya golf estate private members (400m elevation) rancamaya, bogor sinarmas land (via bsde, 2024-10)" data-rev="386.085" data-margin="5.726718209720658" data-roa="0.6260253252868363" data-ta="3531.806" data-ebmargin="16.768328217879482" data-yoy="-44.3717626378693" data-name="Rancamaya Golf Estate">
+      <tr class="club-row" data-tier="twn" data-comp="segment" data-ticker="SMDM" data-search="smdm rancamaya golf estate private members (400m elevation) rancamaya, bogor sinarmas land (via bsde, 2024-10)" data-rev="386.085" data-margin="5.726718209720658" data-roa="0.6260253252868363" data-ta="3531.806" data-ebmargin="16.768328217879482" data-yoy="-44.3717626378693" data-name="Rancamaya Golf Estate">
         <td style="white-space:nowrap;"><span style="display:inline-block; width:3px; height:14px; background:#16a34a; vertical-align:middle; margin-right:6px; border-radius:2px;"></span><a href="smdm.html" style="font-weight:700; color:var(--ops-ink); text-decoration:none;">SMDM</a></td>
         <td><a href="smdm.html" style="color:var(--ops-ink); text-decoration:none;">Rancamaya Golf Estate</a><br><span style="font-size:11px; color:var(--ops-muted);">Private members (400m elevation)</span></td>
         <td><span class="peer-tag peer-tag-twn" style="font-size:10px;">🟩 Township</span></td>
@@ -942,7 +956,7 @@
         <td class="num"><span style="color:#16a34a; font-weight:700;">+0.6%</span><span class="tertile-dot dot-bot" title="하위 1/3">●</span></td>
         <td class="num" style="color:var(--ops-green); font-weight:700;">Rp 63.3 bn</td>
       </tr>
-      <tr class="club-row" data-tier="twn" data-ticker="SMRA" data-search="smra gading raya padang golf township-attached 18-hole serpong, tangerang summarecon agung" data-rev="8766.927" data-margin="8.743656699776329" data-roa="1.9992169527129573" data-ta="38342.512" data-ebmargin="32.82286940452453" data-yoy="-17.47531863621816" data-name="Gading Raya Padang Golf">
+      <tr class="club-row" data-tier="twn" data-comp="segment" data-ticker="SMRA" data-search="smra gading raya padang golf township-attached 18-hole serpong, tangerang summarecon agung" data-rev="8766.927" data-margin="8.743656699776329" data-roa="1.9992169527129573" data-ta="38342.512" data-ebmargin="32.82286940452453" data-yoy="-17.47531863621816" data-name="Gading Raya Padang Golf">
         <td style="white-space:nowrap;"><span style="display:inline-block; width:3px; height:14px; background:#16a34a; vertical-align:middle; margin-right:6px; border-radius:2px;"></span><a href="smra.html" style="font-weight:700; color:var(--ops-ink); text-decoration:none;">SMRA</a></td>
         <td><a href="smra.html" style="color:var(--ops-ink); text-decoration:none;">Gading Raya Padang Golf</a><br><span style="font-size:11px; color:var(--ops-muted);">Township-attached 18-hole</span></td>
         <td><span class="peer-tag peer-tag-twn" style="font-size:10px;">🟩 Township</span></td>
@@ -1084,11 +1098,16 @@ function setTier(tier) {
 function readURL() {
   const hash = (location.hash || '').replace(/^#/, '');
   const params = new URLSearchParams(hash);
+  // comp-scope: hash > localStorage > default 'direct'
+  let scope = params.get('scope') || '';
+  if (!scope) { try { scope = localStorage.getItem('peer-comp-scope') || ''; } catch (e) {} }
+  if (!['direct','segment','all'].includes(scope)) scope = 'direct';
   return {
     tier: params.get('tier') || 'all',
     q: params.get('q') || '',
     sort: params.get('sort') || 'tier',
     view: params.get('view') || 'cards',
+    scope: scope,
   };
 }
 function syncURL() {
@@ -1097,6 +1116,8 @@ function syncURL() {
   if (state.q) parts.push('q=' + encodeURIComponent(state.q));
   if (state.sort !== 'tier') parts.push('sort=' + encodeURIComponent(state.sort));
   if (state.view !== 'cards') parts.push('view=' + encodeURIComponent(state.view));
+  if (state.scope !== 'direct') parts.push('scope=' + encodeURIComponent(state.scope));
+  try { localStorage.setItem('peer-comp-scope', state.scope); } catch (e) {}
   const h = parts.join('&');
   history.replaceState(null, '', h ? '#' + h : location.pathname + location.search);
 }
@@ -1278,13 +1299,15 @@ function syncURL() {
     sortedCards.forEach(el => grid.appendChild(el));
     sortedRows.forEach(el => tbody.appendChild(el));
 
-    // 2) Filter (tier + search) — apply to both views; track visible count
+    // 2) Filter (comp-scope + tier + search) — apply to both views; track visible count
     const q = state.q.trim().toLowerCase();
     let visible = 0;
     const matches = (el) => {
+      const comp = el.dataset.comp || 'landscape';
+      const scopeOk = (state.scope === 'all') || (state.scope === 'segment' && (comp === 'direct' || comp === 'segment')) || (state.scope === 'direct' && comp === 'direct');
       const tierOk = (state.tier === 'all' || el.dataset.tier === state.tier);
       const searchOk = (!q || el.dataset.search.includes(q));
-      return tierOk && searchOk;
+      return scopeOk && tierOk && searchOk;
     };
     sortedCards.forEach(el => {
       const ok = matches(el);
@@ -1344,6 +1367,16 @@ function syncURL() {
     state.tier = b.dataset.filter;
     applyState();
     renderTierStats(state.tier === 'all' ? null : state.tier);
+    syncURL();
+  }));
+
+  // Comparison scope pills (Direct / Segment / All)
+  const compButtons = document.querySelectorAll('#comp-scope .comp-pill');
+  compButtons.forEach(b => b.addEventListener('click', () => {
+    compButtons.forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    state.scope = b.dataset.scope;
+    applyState();
     syncURL();
   }));
 
@@ -1413,6 +1446,7 @@ function syncURL() {
   searchInput.value = state.q;
   sortSelect.value = state.sort;
   tierButtons.forEach(b => b.classList.toggle('active', b.dataset.filter === state.tier));
+  document.querySelectorAll('#comp-scope .comp-pill').forEach(b => b.classList.toggle('active', b.dataset.scope === state.scope));
   viewButtons.forEach(b => {
     const a = b.dataset.view === state.view;
     b.classList.toggle('active', a); b.setAttribute('aria-selected', a ? 'true' : 'false');

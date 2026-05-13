@@ -61,6 +61,37 @@ def build_sparkline(c5y, color):
 peers_sorted = sorted(peers_v2, key=lambda t: (torder(t), t))
 
 # ============================================================
+# Peer comparison scope — 골프 매출 비중 기준 3단 분류
+# ============================================================
+COMP_TIER = {
+    # Direct: 골프가 주력 (37-100%) — 직접 비교 가능
+    'DMIG': 'direct', 'PIPG': 'direct', 'GOLF': 'direct',
+    # Segment-disclosed: 골프 세그먼트 별도 공시 (5-17%)
+    'MDLN': 'segment', 'KIJA': 'segment', 'SMDM': 'segment', 'KPIG': 'segment', 'SMRA': 'segment',
+    # Landscape only: 골프 미공시 부동산 대기업 (참고용)
+    'BSDE': 'landscape', 'CTRA': 'landscape', 'ELTY': 'landscape',
+    'LPKR': 'landscape', 'PWON': 'landscape',
+}
+
+# ============================================================
+# Tier leader detection — top-1 by FY2025 revenue per tier
+# ============================================================
+def _tier_leader_revs():
+    leaders = {}  # tier → ticker
+    for tier_key in ['pp', 'resort', 'twn']:
+        tier_peers = [t for t in peers_sorted if clubs[t]['tier'] == tier_key]
+        best_t, best_rev = None, -1
+        for t in tier_peers:
+            r = (fin.get(t,{}).get('yearly',{}).get('2025',{}) or {}).get('revenue') or 0
+            if r > best_rev:
+                best_rev = r; best_t = t
+        if best_t: leaders[tier_key] = best_t
+    return leaders
+
+tier_leaders = _tier_leader_revs()
+TIER_LEADER_LABEL = {'pp': '🥇 PP', 'resort': '🥇 Resort', 'twn': '🥇 Township'}
+
+# ============================================================
 # Pre-compute tertile thresholds across 13 peers for key metrics
 # ============================================================
 def _tertile_thresholds(values):
@@ -123,7 +154,7 @@ for t in peers_sorted:
     search_blob = f'{t} {c["name"]} {c["sub"]} {c["loc"]} {c["parent"]}'.lower()
     spark_svg = build_sparkline(c5y, tier_color)
     cards_html.append(
-        f'      <a href="{t.lower()}.html" class="club-card" data-tier="{c["tier"]}" data-ticker="{t}" '
+        f'      <a href="{t.lower()}.html" class="club-card" data-tier="{c["tier"]}" data-comp="{COMP_TIER.get(t,"landscape")}" data-ticker="{t}" '
         f'data-search="{search_blob}" '
         f'data-rev="{sort_rev}" data-margin="{sort_margin}" data-roa="{sort_roa}" data-ta="{sort_ta}" data-ebmargin="{sort_eb}" data-yoy="{sort_yoy}" data-name="{c["name"]}" data-tier-label="{c["tier_label"]}" data-loc="{c["loc"]}" '
         f'style="background:var(--ops-surface); border:1px solid var(--ops-line); border-top:4px solid {tier_color}; '
@@ -193,7 +224,7 @@ for t in peers_sorted:
     sort_yoy = yoy if yoy is not None else -1e15
     search_blob = f'{t} {c["name"]} {c["sub"]} {c["loc"]} {c["parent"]}'.lower()
     table_rows.append(
-        f'      <tr class="club-row" data-tier="{c["tier"]}" data-ticker="{t}" '
+        f'      <tr class="club-row" data-tier="{c["tier"]}" data-comp="{COMP_TIER.get(t,"landscape")}" data-ticker="{t}" '
         f'data-search="{search_blob}" '
         f'data-rev="{sort_rev}" data-margin="{sort_margin}" data-roa="{sort_roa}" data-ta="{sort_ta}" data-ebmargin="{sort_eb}" data-yoy="{sort_yoy}" data-name="{c["name"]}">\n'
         f'        <td style="white-space:nowrap;"><span style="display:inline-block; width:3px; height:14px; background:{tier_color}; vertical-align:middle; margin-right:6px; border-radius:2px;"></span><a href="{t.lower()}.html" style="font-weight:700; color:var(--ops-ink); text-decoration:none;">{t}</a></td>\n'
@@ -290,7 +321,7 @@ html = '''<!DOCTYPE html>
 <title>클럽 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="../ops-style.css?v=20260513fy25y" />
+<link rel="stylesheet" href="../ops-style.css?v=20260513scope1" />
 <style>
   .club-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
   .club-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 16px; margin-top: 20px; }
@@ -358,6 +389,13 @@ html = '''<!DOCTYPE html>
   @media (max-width: 720px) {
     .tier-stats { grid-template-columns:1fr; }
   }
+  /* Comparison scope pills (Direct / Segment / All 13) */
+  .comp-pills { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:10px 0 4px; }
+  .comp-pill { padding:5px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:999px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
+  .comp-pill.active { background:var(--ops-green); color:white; border-color:var(--ops-green); }
+  .comp-pill:hover:not(.active) { background:rgba(45,80,22,0.05); }
+  .comp-hidden { display:none !important; }
+  .comp-note { font-size:11px; color:var(--ops-muted); padding:4px 0 0; }
   /* Recently viewed peers — quick-access pill row */
   .recents-row { display:flex; gap:6px; align-items:center; flex-wrap:wrap; margin:8px 0 4px 0; font-size:11.5px; }
   .recents-row.hidden { display:none; }
@@ -545,11 +583,18 @@ html = '''<!DOCTYPE html>
     <p class="lede">IDX 상장 13개 골프 운영사. 검색·정렬·뷰 전환으로 빠르게 비교. 카드/행 클릭으로 클럽 상세.</p>
     <div class="top-perf" id="top-perf"></div>
     <div class="tier-stats" id="tier-stats"></div>
+    <div class="comp-pills" id="comp-scope" role="group" aria-label="비교 범위">
+      <span style="font-size:11.5px; color:var(--ops-muted); font-weight:600;">비교 범위:</span>
+      <button class="comp-pill active" data-scope="direct" title="DMIG·PIPG·GOLF — 골프가 주력 사업 (37-100% golf)">🥇 직접 비교 (3)</button>
+      <button class="comp-pill" data-scope="segment" title="+ MDLN·KIJA·SMDM·KPIG·SMRA — 골프 세그먼트 별도 공시">🥇+🥈 세그먼트 공시 (8)</button>
+      <button class="comp-pill" data-scope="all" title="+ BSDE·CTRA·ELTY·LPKR·PWON — 부동산 대기업 (참고용 landscape)">전체 산업 (13)</button>
+    </div>
+    <div class="comp-note">기본: 골프가 주력인 3 peer만 표시. 골프 세그먼트 공시 또는 부동산 산업 전체 보려면 토글.</div>
     <div class="filter-bar" id="tier-filter">
-      <button class="filter-btn active" data-filter="all">전체 (13)</button>
-      <button class="filter-btn" data-filter="pp">🟦 Pure-play (2)</button>
-      <button class="filter-btn" data-filter="resort">🟨 Resort (1)</button>
-      <button class="filter-btn" data-filter="twn">🟩 Township (10)</button>
+      <button class="filter-btn active" data-filter="all">전체</button>
+      <button class="filter-btn" data-filter="pp">🟦 Pure-play</button>
+      <button class="filter-btn" data-filter="resort">🟨 Resort</button>
+      <button class="filter-btn" data-filter="twn">🟩 Township</button>
     </div>
     <div class="control-bar">
       <input type="search" id="club-search" placeholder="🔍 검색: 티커·이름·위치·모회사…" aria-label="클럽 검색" autocomplete="off">
@@ -746,11 +791,16 @@ function setTier(tier) {
 function readURL() {
   const hash = (location.hash || '').replace(/^#/, '');
   const params = new URLSearchParams(hash);
+  // comp-scope: hash > localStorage > default 'direct'
+  let scope = params.get('scope') || '';
+  if (!scope) { try { scope = localStorage.getItem('peer-comp-scope') || ''; } catch (e) {} }
+  if (!['direct','segment','all'].includes(scope)) scope = 'direct';
   return {
     tier: params.get('tier') || 'all',
     q: params.get('q') || '',
     sort: params.get('sort') || 'tier',
     view: params.get('view') || 'cards',
+    scope: scope,
   };
 }
 function syncURL() {
@@ -759,6 +809,8 @@ function syncURL() {
   if (state.q) parts.push('q=' + encodeURIComponent(state.q));
   if (state.sort !== 'tier') parts.push('sort=' + encodeURIComponent(state.sort));
   if (state.view !== 'cards') parts.push('view=' + encodeURIComponent(state.view));
+  if (state.scope !== 'direct') parts.push('scope=' + encodeURIComponent(state.scope));
+  try { localStorage.setItem('peer-comp-scope', state.scope); } catch (e) {}
   const h = parts.join('&');
   history.replaceState(null, '', h ? '#' + h : location.pathname + location.search);
 }
@@ -940,13 +992,15 @@ function syncURL() {
     sortedCards.forEach(el => grid.appendChild(el));
     sortedRows.forEach(el => tbody.appendChild(el));
 
-    // 2) Filter (tier + search) — apply to both views; track visible count
+    // 2) Filter (comp-scope + tier + search) — apply to both views; track visible count
     const q = state.q.trim().toLowerCase();
     let visible = 0;
     const matches = (el) => {
+      const comp = el.dataset.comp || 'landscape';
+      const scopeOk = (state.scope === 'all') || (state.scope === 'segment' && (comp === 'direct' || comp === 'segment')) || (state.scope === 'direct' && comp === 'direct');
       const tierOk = (state.tier === 'all' || el.dataset.tier === state.tier);
       const searchOk = (!q || el.dataset.search.includes(q));
-      return tierOk && searchOk;
+      return scopeOk && tierOk && searchOk;
     };
     sortedCards.forEach(el => {
       const ok = matches(el);
@@ -1006,6 +1060,16 @@ function syncURL() {
     state.tier = b.dataset.filter;
     applyState();
     renderTierStats(state.tier === 'all' ? null : state.tier);
+    syncURL();
+  }));
+
+  // Comparison scope pills (Direct / Segment / All)
+  const compButtons = document.querySelectorAll('#comp-scope .comp-pill');
+  compButtons.forEach(b => b.addEventListener('click', () => {
+    compButtons.forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    state.scope = b.dataset.scope;
+    applyState();
     syncURL();
   }));
 
@@ -1075,6 +1139,7 @@ function syncURL() {
   searchInput.value = state.q;
   sortSelect.value = state.sort;
   tierButtons.forEach(b => b.classList.toggle('active', b.dataset.filter === state.tier));
+  document.querySelectorAll('#comp-scope .comp-pill').forEach(b => b.classList.toggle('active', b.dataset.scope === state.scope));
   viewButtons.forEach(b => {
     const a = b.dataset.view === state.view;
     b.classList.toggle('active', a); b.setAttribute('aria-selected', a ? 'true' : 'false');

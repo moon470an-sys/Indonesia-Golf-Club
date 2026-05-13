@@ -425,7 +425,7 @@ html = '''<!DOCTYPE html>
 <title>비용 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260513fy25y" />
+<link rel="stylesheet" href="ops-style.css?v=20260513scope1" />
 <style>
   .year-bar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:14px 0 4px 0; }
   .year-bar label { font-size:13px; font-weight:600; color:var(--ops-ink-soft); }
@@ -535,6 +535,12 @@ html = '''<!DOCTYPE html>
   body.theme-dark #opex-cat-tbody td.row-max { background:rgba(245,158,11,0.18); }
   body.theme-dark .mix-bar-section, body.theme-dark .mix-bar-track { background:#1e293b; }
   body.theme-dark .mix-bar-track { background:#0f172a; }
+  /* Comparison scope pills (Direct / Segment / All) */
+  .comp-pills { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:10px 0 4px; }
+  .comp-pill { padding:5px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:999px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
+  .comp-pill.active { background:var(--ops-green); color:white; border-color:var(--ops-green); }
+  .comp-pill:hover:not(.active) { background:rgba(45,80,22,0.05); }
+  .comp-hidden { display:none !important; }
   /* Tier filter pills (Tab ①, ④) */
   .tier-pills { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:8px 0 4px 0; }
   .tier-pill { padding:5px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:999px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
@@ -657,6 +663,12 @@ html = '''<!DOCTYPE html>
       <button class="year-btn" data-year="2023">FY2023</button>
       <button class="year-btn" data-year="2024">FY2024</button>
       <button class="year-btn active" data-year="2025">FY2025</button>
+    </div>
+    <div class="comp-pills" id="comp-scope" role="group" aria-label="비교 범위">
+      <span style="font-size:11.5px; color:var(--ops-muted); font-weight:600;">비교 범위:</span>
+      <button class="comp-pill active" data-scope="direct" title="DMIG·PIPG·GOLF — 골프가 주력 사업">🥇 직접 비교 (3)</button>
+      <button class="comp-pill" data-scope="segment" title="+ MDLN·KIJA·SMDM·KPIG·SMRA — 골프 세그먼트 공시">🥇+🥈 세그먼트 (8)</button>
+      <button class="comp-pill" data-scope="all" title="+ BSDE·CTRA·ELTY·LPKR·PWON — 부동산 대기업 (참고용)">전체 산업 (13)</button>
     </div>
     <div class="peer-search-wrap" style="display:flex; gap:8px; align-items:center; margin:10px 0 4px 0; flex-wrap:wrap;">
       <input type="search" class="peer-search-input" id="ch-search" placeholder="🔍 Peer 검색 (티커·그룹명) — 4개 표 동시 필터" aria-label="Peer 검색" autocomplete="off">
@@ -934,6 +946,37 @@ const TIER_LABEL = { pp:'🟦 Pure-play 중위', resort:'🟨 Resort 중위', tw
 
 let cmpSortState = { key: null, dir: 'desc' };
 let totalSortState = { key: null, dir: 'desc' };
+const COMP_TIER = {DMIG:'direct',PIPG:'direct',GOLF:'direct',MDLN:'segment',KIJA:'segment',SMDM:'segment',KPIG:'segment',SMRA:'segment',BSDE:'landscape',CTRA:'landscape',ELTY:'landscape',LPKR:'landscape',PWON:'landscape'};
+let compScope = 'direct';
+try { const s = localStorage.getItem('peer-comp-scope'); if (['direct','segment','all'].includes(s)) compScope = s; } catch(e){}
+function compMatches(ticker) {
+  const c = COMP_TIER[ticker];
+  if (!c) return true;
+  if (compScope === 'all') return true;
+  if (compScope === 'segment') return c === 'direct' || c === 'segment';
+  return c === 'direct';
+}
+function applyCompScope() {
+  document.querySelectorAll('#cmp-tbody tr, #cogs-cmp-tbody tr, #opex-cmp-tbody tr, #total-cmp-tbody tr').forEach(tr => {
+    const a = tr.querySelector('a[href^="clubs/"]');
+    if (!a) return;
+    const m = a.getAttribute('href').match(/clubs\/([a-z]+)\.html/i);
+    if (!m) return;
+    tr.classList.toggle('comp-hidden', !compMatches(m[1].toUpperCase()));
+  });
+  // Hide non-matching peer columns in opex-cat-tbl (matrix)
+  const theadCells = document.querySelectorAll('#opex-cat-thead th[data-col]');
+  theadCells.forEach(th => {
+    const a = th.querySelector('a[href^="clubs/"]');
+    if (!a) return;
+    const m = a.getAttribute('href').match(/clubs\/([a-z]+)\.html/i);
+    if (!m) return;
+    const colIdx = th.dataset.col;
+    const match = compMatches(m[1].toUpperCase());
+    th.classList.toggle('comp-hidden', !match);
+    document.querySelectorAll(`#opex-cat-tbody td[data-col="${colIdx}"]`).forEach(td => td.classList.toggle('comp-hidden', !match));
+  });
+}
 let favorites = new Set();
 try { favorites = new Set(JSON.parse(localStorage.getItem('clubs-favorites') || '[]')); } catch (e) {}
 function saveFavorites() {
@@ -1294,6 +1337,7 @@ function render(year){
   // Re-apply tier filters to all pill groups (year change rebuilt the tbodies)
   if (typeof applyTierFiltersFromUI === 'function') applyTierFiltersFromUI();
   if (typeof applyChSearch === 'function') applyChSearch();
+  if (typeof applyCompScope === 'function') applyCompScope();
 }
 
 let currentYear = '2025';
@@ -1601,6 +1645,17 @@ function wireExport(copyId, csvId, which, csvName) {
       if (totalSortState.key === k) totalSortState.dir = (totalSortState.dir === 'desc') ? 'asc' : 'desc';
       else { totalSortState.key = k; totalSortState.dir = 'desc'; }
       render(currentYear);
+    });
+  });
+  // Comparison scope pills
+  document.querySelectorAll('#comp-scope .comp-pill').forEach(p => {
+    p.classList.toggle('active', p.dataset.scope === compScope);
+    p.addEventListener('click', () => {
+      document.querySelectorAll('#comp-scope .comp-pill').forEach(x => x.classList.remove('active'));
+      p.classList.add('active');
+      compScope = p.dataset.scope;
+      try { localStorage.setItem('peer-comp-scope', compScope); } catch(e){}
+      applyCompScope();
     });
   });
   // Peer search input

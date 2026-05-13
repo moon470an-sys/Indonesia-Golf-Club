@@ -6,7 +6,7 @@
 <title>위험 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260513fy25b" />
+<link rel="stylesheet" href="ops-style.css?v=20260513scope1" />
 <style>
   .heat-cell { text-align:center; font-size:16px; padding:8px 4px; }
   .sortable { cursor:pointer; user-select:none; position:relative; padding-right:18px !important; }
@@ -93,6 +93,12 @@
   .sev-pill.active.sev-all  { background:var(--ops-green); color:white; border-color:var(--ops-green); }
   /* Search match highlight */
   mark.search-hit { background:rgba(245,158,11,0.45); color:inherit; padding:0 1px; border-radius:2px; }
+  /* Comparison scope pills (Direct / Segment / All) */
+  .comp-pills { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:10px 0 4px; }
+  .comp-pill { padding:5px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:999px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
+  .comp-pill.active { background:var(--ops-green); color:white; border-color:var(--ops-green); }
+  .comp-pill:hover:not(.active) { background:rgba(45,80,22,0.05); }
+  .comp-hidden { display:none !important; }
   /* Mini disclosure bar in category column header — 3-segment stacked */
   .cat-hdr-bar { display:flex; height:4px; margin:4px auto 0; max-width:80%; border-radius:2px; overflow:hidden; opacity:0.85; }
   .cat-hdr-bar > span { display:block; height:100%; }
@@ -242,6 +248,12 @@
 
     <h2 style="font-size:15px; margin:18px 0 6px 0;">🏷️ Peer × 항목 매트릭스</h2>
     <p style="font-size:11.5px; color:var(--ops-muted); margin:0 0 6px 0;">하단 4개 행: 🟦 Pure-play / 🟨 Resort / 🟩 Township / 📊 전체 — <strong>tier별 평균 스코어</strong>.</p>
+    <div class="comp-pills" id="comp-scope" role="group" aria-label="비교 범위">
+      <span style="font-size:11.5px; color:var(--ops-muted); font-weight:600;">비교 범위:</span>
+      <button class="comp-pill active" data-scope="direct" title="DMIG·PIPG·GOLF — 골프가 주력 사업">🥇 직접 비교 (3)</button>
+      <button class="comp-pill" data-scope="segment" title="+ MDLN·KIJA·SMDM·KPIG·SMRA — 골프 세그먼트 공시">🥇+🥈 세그먼트 (8)</button>
+      <button class="comp-pill" data-scope="all" title="+ BSDE·CTRA·ELTY·LPKR·PWON — 부동산 대기업 (참고용)">전체 산업 (13)</button>
+    </div>
     <div class="tier-pills" id="risk-tier-pills" role="group" aria-label="Tier 필터">
       <span style="font-size:11.5px; color:var(--ops-muted); font-weight:600;">Tier:</span>
       <button class="tier-pill active" data-tier="all">전체</button>
@@ -386,6 +398,7 @@ function renderRiskRank() {
   }).join('');
   const ticks = `<div class="risk-rank-ticks"><span>0</span><span>3</span><span>6</span><span>9</span><span>12</span></div>`;
   root.innerHTML = html + ticks;
+  if (typeof applyCompScope === 'function') applyCompScope();
 }
 
 // Render category disclosure-rate banner
@@ -417,6 +430,25 @@ function renderCatRates() {
 let sortState = { key: 'total', dir: 'desc' };
 let tierFilter = 'all';
 let sevFilter = 'all';   // 'all' | 'low' | 'med' | 'high'
+const COMP_TIER = {DMIG:'direct',PIPG:'direct',GOLF:'direct',MDLN:'segment',KIJA:'segment',SMDM:'segment',KPIG:'segment',SMRA:'segment',BSDE:'landscape',CTRA:'landscape',ELTY:'landscape',LPKR:'landscape',PWON:'landscape'};
+let compScope = 'direct';
+try { const s = localStorage.getItem('peer-comp-scope'); if (['direct','segment','all'].includes(s)) compScope = s; } catch(e){}
+function compMatches(ticker) {
+  const c = COMP_TIER[ticker];
+  if (!c) return true;
+  if (compScope === 'all') return true;
+  if (compScope === 'segment') return c === 'direct' || c === 'segment';
+  return c === 'direct';
+}
+function applyCompScope() {
+  document.querySelectorAll('#risk-tbody tr, #risk-rank-card .risk-rank-row').forEach(el => {
+    const a = el.querySelector('a[href^="clubs/"]');
+    if (!a) return;
+    const m = a.getAttribute('href').match(/clubs\/([a-z]+)\.html/i);
+    if (!m) return;
+    el.classList.toggle('comp-hidden', !compMatches(m[1].toUpperCase()));
+  });
+}
 let favorites = new Set();
 try { favorites = new Set(JSON.parse(localStorage.getItem('clubs-favorites') || '[]')); } catch (e) {}
 function saveFavorites() {
@@ -620,6 +652,7 @@ function renderTable() {
   });
   applyTierFilter();
   applySevFilter();
+  applyCompScope();
   // Re-apply peer search after rerender
   const si = document.getElementById('risk-search');
   if (si && si.value) {
@@ -725,6 +758,17 @@ function flashSuccess(btn, label){
     } catch (e) {}
     history.replaceState(null, '', location.pathname + location.search);
     flashSuccess(resetBtn, '✓ 초기화');
+  });
+  // Comparison scope pills
+  document.querySelectorAll('#comp-scope .comp-pill').forEach(p => {
+    p.classList.toggle('active', p.dataset.scope === compScope);
+    p.addEventListener('click', () => {
+      document.querySelectorAll('#comp-scope .comp-pill').forEach(x => x.classList.remove('active'));
+      p.classList.add('active');
+      compScope = p.dataset.scope;
+      try { localStorage.setItem('peer-comp-scope', compScope); } catch(e){}
+      applyCompScope();
+    });
   });
   // Tier pills
   document.querySelectorAll('#risk-tier-pills .tier-pill').forEach(pill => {

@@ -6,7 +6,7 @@
 <title>매출 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260513fy25y" />
+<link rel="stylesheet" href="ops-style.css?v=20260513scope1" />
 <style>
   .year-bar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:14px 0 4px 0; }
   .year-bar label { font-size:13px; font-weight:600; color:var(--ops-ink-soft); }
@@ -128,6 +128,12 @@
   body.theme-dark .tertile-dot.dot-top { color:#22c55e; }
   body.theme-dark .tertile-dot.dot-mid { color:#fbbf24; }
   body.theme-dark .tertile-dot.dot-bot { color:#ef4444; }
+  /* Comparison scope pills (Direct / Segment / All) */
+  .comp-pills { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:10px 0 4px; }
+  .comp-pill { padding:5px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:999px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
+  .comp-pill.active { background:var(--ops-green); color:white; border-color:var(--ops-green); }
+  .comp-pill:hover:not(.active) { background:rgba(45,80,22,0.05); }
+  .comp-hidden { display:none !important; }
   /* Tier filter pills (Tab ①) */
   .tier-pills { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:6px 0 8px 0; }
   .tier-pill { padding:5px 12px; border:1px solid var(--ops-line); background:var(--ops-surface); border-radius:999px; font-size:12px; font-weight:600; cursor:pointer; color:var(--ops-ink-soft); }
@@ -257,6 +263,12 @@
         <a href="#sec-yoy">🌡️ YoY 히트맵</a>
       </nav>
       <p style="font-size:12px; color:var(--ops-muted); margin:0 0 6px 0;">선택 연도 그룹 매출 + 골프 부문 매출(공시 peer) + 골프 비중 + YoY · <strong>6년 추이 sparkline</strong>(FY20→25, 호박색 점 = 선택 연도) · <strong>최대 5Y CAGR</strong>(연평균 성장률).</p>
+      <div class="comp-pills" id="comp-scope" role="group" aria-label="비교 범위">
+        <span style="font-size:11.5px; color:var(--ops-muted); font-weight:600;">비교 범위:</span>
+        <button class="comp-pill active" data-scope="direct" title="DMIG·PIPG·GOLF — 골프가 주력 사업">🥇 직접 비교 (3)</button>
+        <button class="comp-pill" data-scope="segment" title="+ MDLN·KIJA·SMDM·KPIG·SMRA — 골프 세그먼트 공시">🥇+🥈 세그먼트 (8)</button>
+        <button class="comp-pill" data-scope="all" title="+ BSDE·CTRA·ELTY·LPKR·PWON — 부동산 대기업 (참고용)">전체 산업 (13)</button>
+      </div>
       <div class="tier-pills" id="rev-tier-pills" role="group" aria-label="Tier 필터">
         <span style="font-size:11.5px; color:var(--ops-muted); font-weight:600;">Tier:</span>
         <button class="tier-pill active" data-tier="all">전체 (13)</button>
@@ -784,6 +796,25 @@ function sparkline(yearly, currentYear, color){
 
 let cmpSortState = { key: null, dir: 'desc' };
 let revTierFilter = 'all';
+const COMP_TIER = {DMIG:'direct',PIPG:'direct',GOLF:'direct',MDLN:'segment',KIJA:'segment',SMDM:'segment',KPIG:'segment',SMRA:'segment',BSDE:'landscape',CTRA:'landscape',ELTY:'landscape',LPKR:'landscape',PWON:'landscape'};
+let compScope = 'direct';
+try { const s = localStorage.getItem('peer-comp-scope'); if (['direct','segment','all'].includes(s)) compScope = s; } catch(e){}
+function compMatches(ticker) {
+  const c = COMP_TIER[ticker];
+  if (!c) return true;
+  if (compScope === 'all') return true;
+  if (compScope === 'segment') return c === 'direct' || c === 'segment';
+  return c === 'direct';
+}
+function applyCompScope() {
+  document.querySelectorAll('#cmp-tbody tr, #yoy-matrix-body tr').forEach(tr => {
+    const a = tr.querySelector('a[href^="clubs/"]');
+    if (!a) return;
+    const m = a.getAttribute('href').match(/clubs\/([a-z]+)\.html/i);
+    if (!m) return;
+    tr.classList.toggle('comp-hidden', !compMatches(m[1].toUpperCase()));
+  });
+}
 let favorites = new Set();
 try { favorites = new Set(JSON.parse(localStorage.getItem('clubs-favorites') || '[]')); } catch (e) {}
 function saveFavorites() {
@@ -966,6 +997,7 @@ function render(year){
   });
   document.getElementById('cmp-tbody').innerHTML = rows.join('');
   applyRevTierFilter();
+  applyCompScope();
   // Update sort header indicators
   document.querySelectorAll('#panel-cmp .sortable').forEach(th => {
     th.classList.remove('asc','desc');
@@ -1030,6 +1062,7 @@ function renderYoYMatrix() {
   }).join('');
   body.innerHTML = html;
   applyRevTierFilter();
+  applyCompScope();
 }
 
 // CSV/TSV export of 13-peer comparison table (selected year)
@@ -1200,6 +1233,17 @@ let currentYear = '2025';
       b.classList.add('active');
       trendMode = b.dataset.mode;
       renderTierTrend();
+    });
+  });
+  // Comparison scope pills
+  document.querySelectorAll('#comp-scope .comp-pill').forEach(p => {
+    p.classList.toggle('active', p.dataset.scope === compScope);
+    p.addEventListener('click', () => {
+      document.querySelectorAll('#comp-scope .comp-pill').forEach(x => x.classList.remove('active'));
+      p.classList.add('active');
+      compScope = p.dataset.scope;
+      try { localStorage.setItem('peer-comp-scope', compScope); } catch(e){}
+      applyCompScope();
     });
   });
   // Tier filter pills (Tab ①)
