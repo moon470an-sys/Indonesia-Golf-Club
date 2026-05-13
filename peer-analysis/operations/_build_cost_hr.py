@@ -425,7 +425,7 @@ html = '''<!DOCTYPE html>
 <title>비용 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260513fy25v2" />
+<link rel="stylesheet" href="ops-style.css?v=20260513fy25y" />
 <style>
   .year-bar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:14px 0 4px 0; }
   .year-bar label { font-size:13px; font-weight:600; color:var(--ops-ink-soft); }
@@ -655,8 +655,8 @@ html = '''<!DOCTYPE html>
       <button class="year-btn" data-year="2021">FY2021</button>
       <button class="year-btn" data-year="2022">FY2022</button>
       <button class="year-btn" data-year="2023">FY2023</button>
-      <button class="year-btn active" data-year="2024">FY2024</button>
-      <button class="year-btn" data-year="2025">FY2025</button>
+      <button class="year-btn" data-year="2024">FY2024</button>
+      <button class="year-btn active" data-year="2025">FY2025</button>
     </div>
     <div class="peer-search-wrap" style="display:flex; gap:8px; align-items:center; margin:10px 0 4px 0; flex-wrap:wrap;">
       <input type="search" class="peer-search-input" id="ch-search" placeholder="🔍 Peer 검색 (티커·그룹명) — 4개 표 동시 필터" aria-label="Peer 검색" autocomplete="off">
@@ -674,7 +674,7 @@ html = '''<!DOCTYPE html>
 <section class="ops-section" id="main-content">
   <div class="ops-wrap">
     <div class="cost-panel active" id="panel-cmp">
-      <h2 style="font-size:17px; margin:0 0 14px 0;">13-peer 비용 구조 — <span class="yr-label">FY2024</span></h2>
+      <h2 style="font-size:17px; margin:0 0 14px 0;">13-peer 비용 구조 — <span class="yr-label">FY2025</span></h2>
       <p style="font-size:12px; color:var(--ops-muted); margin:0 0 6px 0;">선택 연도 그룹 P&L 기반. 총 비용 = 매출 − 영업이익. EBITDA·순이익 마진 포함. <strong>Tier별 중위 벤치마크 행</strong> 포함 (3 tier + 전체).</p>
       <div class="tier-pills" data-target="cmp-tbody" role="group" aria-label="Tier 필터">
         <span style="font-size:11.5px; color:var(--ops-muted); font-weight:600;">Tier:</span>
@@ -707,7 +707,7 @@ html = '''<!DOCTYPE html>
     </div>
 
     <div class="cost-panel" id="panel-cogs">
-      <h2 style="font-size:17px; margin:0 0 14px 0;">매출원가 동급 비교 — <span class="yr-label">FY2024</span></h2>
+      <h2 style="font-size:17px; margin:0 0 14px 0;">매출원가 동급 비교 — <span class="yr-label">FY2025</span></h2>
       <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">선택 연도 매출원가 합계 + 동일 범위 매출 대비 비율. 비율은 공시 범위에 맞는 매출 (Pure-play: 그룹 매출, MDLN: 골프+클럽 매출, Tier-3: 골프 segment 매출)로 계산해 동급 비교 가능.</p>
       <div class="tier-pills" data-target="cogs-cmp-tbody" role="group" aria-label="Tier 필터">
         <span style="font-size:11.5px; color:var(--ops-muted); font-weight:600;">Tier:</span>
@@ -736,7 +736,7 @@ __COGS_SECTION__
     </div>
 
     <div class="cost-panel" id="panel-opex">
-      <h2 style="font-size:17px; margin:0 0 14px 0;">판관비 동급 비교 — <span class="yr-label">FY2024</span></h2>
+      <h2 style="font-size:17px; margin:0 0 14px 0;">판관비 동급 비교 — <span class="yr-label">FY2025</span></h2>
       <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">선택 연도 판관비 합계 (Selling + G&A) + 동일 범위 매출 대비 비율. 비율은 공시 범위에 맞는 매출로 계산.</p>
       <div class="tier-pills" data-target="opex-cmp-tbody" role="group" aria-label="Tier 필터">
         <span style="font-size:11.5px; color:var(--ops-muted); font-weight:600;">Tier:</span>
@@ -761,14 +761,14 @@ __COGS_SECTION__
         </table>
       </div>
 
-      <h3 style="font-size:15px; margin:24px 0 10px 0;">📊 비용 구성 시각화 (COGS+OpEx) — <span class="yr-label">FY2024</span></h3>
+      <h3 style="font-size:15px; margin:24px 0 10px 0;">📊 비용 구성 시각화 (COGS+OpEx) — <span class="yr-label">FY2025</span></h3>
       <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">각 peer 운영비의 카테고리별 100% 누적 막대. 호버 시 카테고리별 절대값·비중 툴팁. peer별 비용 프로필을 즉시 시각 인식 가능.</p>
       <div class="mix-bar-section" id="mix-bar-section">
         <div class="mix-legend" id="mix-legend"></div>
         <div id="mix-bar-rows"></div>
       </div>
 
-      <h3 style="font-size:15px; margin:24px 0 6px 0;">운영비 카테고리 매트릭스 (COGS+OpEx 통합) — <span class="yr-label">FY2024</span></h3>
+      <h3 style="font-size:15px; margin:24px 0 6px 0;">운영비 카테고리 매트릭스 (COGS+OpEx 통합) — <span class="yr-label">FY2025</span></h3>
       <p style="font-size:12px; color:var(--ops-muted); margin:0 0 6px 0;">peer × 12 카테고리. <strong>분류 체계 차이 상쇄용</strong>: MDLN처럼 인건비·감가를 매출원가에 분류하는 peer는 COGS 라인도 카테고리화해서 합산 → DMIG/PIPG(판관비에 분류)와 같은 차원에서 비교. <strong>각 행의 최대값</strong>은 호박색 배경으로 강조. <span style="color:var(--ops-green); font-weight:600;">ⓒ = COGS+OpEx 합산, ⓞ = OpEx만</span>.</p>
       <div class="cat-search-row">
         <label for="cat-search">🔍 카테고리 필터:</label>
@@ -788,7 +788,7 @@ __OPEX_SECTION__
     </div>
 
     <div class="cost-panel" id="panel-total">
-      <h2 style="font-size:17px; margin:0 0 14px 0;">총 영업비용 (COGS + OpEx) 동급 비교 — <span class="yr-label">FY2024</span></h2>
+      <h2 style="font-size:17px; margin:0 0 14px 0;">총 영업비용 (COGS + OpEx) 동급 비교 — <span class="yr-label">FY2025</span></h2>
       <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">매출원가와 판관비의 <strong>합계</strong>를 동일 범위 매출(scope_rev)로 나눈 비율. peer별 분류 체계 차이(인건비·감가가 COGS에 있는지 OpEx에 있는지)와 무관하게 <strong>총 영업비용 부담</strong>을 동일 차원에서 비교할 수 있습니다.</p>
       <div style="background:rgba(45,80,22,0.05); padding:8px 12px; margin:0 0 14px 0; border-radius:4px; font-size:11.5px; color:var(--ops-ink-soft);">
         <strong>해석 가이드</strong>: 비율이 낮을수록 매출 대비 영업비용 효율성이 높음.
@@ -1296,7 +1296,7 @@ function render(year){
   if (typeof applyChSearch === 'function') applyChSearch();
 }
 
-let currentYear = '2024';
+let currentYear = '2025';
 
 // Build TSV/CSV exporter for cmp/total tables
 function buildExport(which, sep) {
@@ -1549,7 +1549,7 @@ function wireExport(copyId, csvId, which, csvName) {
   }
   function syncCostHash() {
     const parts = [];
-    if (currentYear && currentYear !== '2024') parts.push('year=' + currentYear);
+    if (currentYear && currentYear !== '2025') parts.push('year=' + currentYear);
     const active = document.querySelector('.cost-tab.active');
     const tabKey = active ? active.dataset.panel : 'cmp';
     if (tabKey && tabKey !== 'cmp') parts.push('tab=' + tabKey);

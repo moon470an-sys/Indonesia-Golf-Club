@@ -70,7 +70,7 @@ def _tertile_thresholds(values):
     return (vs[n // 3], vs[2 * n // 3])
 
 def _metric_for(t, key):
-    yy = fin.get(t,{}).get('yearly',{}).get('2024',{})
+    yy = fin.get(t,{}).get('yearly',{}).get('2025',{})
     rev = yy.get('revenue'); npp = yy.get('net_profit'); ta = yy.get('total_assets')
     if key == 'rev':    return rev/1e9 if rev else None
     if key == 'margin': return (npp/rev*100) if (rev and npp) else None
@@ -97,13 +97,13 @@ cards_html = []
 for t in peers_sorted:
     c = clubs[t]
     c5y = fin.get(t,{})
+    y25 = c5y.get('yearly',{}).get('2025',{})
     y24 = c5y.get('yearly',{}).get('2024',{})
-    y23 = c5y.get('yearly',{}).get('2023',{})
-    rev = y24.get('revenue')
-    np_ = y24.get('net_profit')
-    ta = y24.get('total_assets')
-    ebitda = y24.get('ebitda')
-    rev_prev = y23.get('revenue')
+    rev = y25.get('revenue')
+    np_ = y25.get('net_profit')
+    ta = y25.get('total_assets')
+    ebitda = y25.get('ebitda')
+    rev_prev = y24.get('revenue')
     rev_bn = rev/1e9 if rev else None
     ta_bn = ta/1e9 if ta else None
     margin = (np_/rev*100) if (rev and np_) else None
@@ -145,7 +145,7 @@ for t in peers_sorted:
         f'          <div><strong style="color:var(--ops-muted);">모회사</strong><br>{c["parent"][:30]}{"..." if len(c["parent"])>30 else ""}</div>\n'
         f'        </div>\n'
         f'        <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:6px 14px; padding:10px 0; border-top:1px dashed var(--ops-line); border-bottom:1px dashed var(--ops-line); font-size:11.5px;">\n'
-        f'          <div><strong style="color:var(--ops-muted);">FY24 매출</strong><br><span style="font-weight:700; color:var(--ops-ink);">{fmtBn(rev_bn)}</span>{_tertile_dot(rev_bn, "rev")}</div>\n'
+        f'          <div><strong style="color:var(--ops-muted);">FY25 매출</strong><br><span style="font-weight:700; color:var(--ops-ink);">{fmtBn(rev_bn)}</span>{_tertile_dot(rev_bn, "rev")}</div>\n'
         f'          <div><strong style="color:var(--ops-muted);">매출 YoY</strong><br>{fmtPct(yoy)}</div>\n'
         f'          <div><strong style="color:var(--ops-muted);">순이익률</strong><br>{fmtPct(margin)}{_tertile_dot(margin, "margin")}</div>\n'
         f'          <div><strong style="color:var(--ops-muted);">EBITDA 마진</strong><br>{fmtPct(eb_margin)}</div>\n'
@@ -171,13 +171,13 @@ table_rows = []
 for t in peers_sorted:
     c = clubs[t]
     c5y = fin.get(t,{})
+    y25 = c5y.get('yearly',{}).get('2025',{})
     y24 = c5y.get('yearly',{}).get('2024',{})
-    y23 = c5y.get('yearly',{}).get('2023',{})
-    rev = y24.get('revenue')
-    np_ = y24.get('net_profit')
-    ta = y24.get('total_assets')
-    ebitda = y24.get('ebitda')
-    rev_prev = y23.get('revenue')
+    rev = y25.get('revenue')
+    np_ = y25.get('net_profit')
+    ta = y25.get('total_assets')
+    ebitda = y25.get('ebitda')
+    rev_prev = y24.get('revenue')
     rev_bn = rev/1e9 if rev else None
     ta_bn = ta/1e9 if ta else None
     margin = (np_/rev*100) if (rev and np_) else None
@@ -227,8 +227,8 @@ for tier_key in ['pp','resort','twn']:
     tier_peers = [t for t in peers_sorted if clubs[t]['tier'] == tier_key]
     revs = []; margins = []; roas = []; tas = []
     for t in tier_peers:
-        y24 = fin.get(t,{}).get('yearly',{}).get('2024',{})
-        rev = y24.get('revenue'); np_ = y24.get('net_profit'); ta = y24.get('total_assets')
+        y25 = fin.get(t,{}).get('yearly',{}).get('2025',{})
+        rev = y25.get('revenue'); np_ = y25.get('net_profit'); ta = y25.get('total_assets')
         if rev: revs.append(rev/1e9)
         if rev and np_: margins.append(np_/rev*100)
         if ta and np_: roas.append(np_/ta*100)
@@ -259,9 +259,9 @@ def top_performer(metric_fn, label, fmt_fn):
     return { 'ticker': best, 'value': best_v, 'label': label, 'display': fmt_fn(best_v) if best_v is not None else '—' }
 
 def get_y24(t, key):
-    return fin.get(t,{}).get('yearly',{}).get('2024',{}).get(key)
+    return fin.get(t,{}).get('yearly',{}).get('2025',{}).get(key)
 def get_y23(t, key):
-    return fin.get(t,{}).get('yearly',{}).get('2023',{}).get(key)
+    return fin.get(t,{}).get('yearly',{}).get('2024',{}).get(key)
 
 def fmt_bn_val(v):
     if v is None: return '—'
@@ -272,7 +272,7 @@ def fmt_pct_val(v):
     return f'{v:+.1f}%'
 
 top_performers = {
-    'rev': top_performer(lambda t: get_y24(t, 'revenue'), '최대 매출 (FY24)', fmt_bn_val),
+    'rev': top_performer(lambda t: get_y24(t, 'revenue'), '최대 매출 (FY25)', fmt_bn_val),
     'margin': top_performer(lambda t: ((get_y24(t,'net_profit') or 0) / get_y24(t,'revenue') * 100) if get_y24(t,'revenue') and get_y24(t,'net_profit') is not None else None, '최고 순이익률', fmt_pct_val),
     'roa': top_performer(lambda t: ((get_y24(t,'net_profit') or 0) / get_y24(t,'total_assets') * 100) if get_y24(t,'total_assets') and get_y24(t,'net_profit') is not None else None, '최고 ROA', fmt_pct_val),
     'yoy': top_performer(lambda t: ((get_y24(t,'revenue') - get_y23(t,'revenue')) / get_y23(t,'revenue') * 100) if get_y24(t,'revenue') and get_y23(t,'revenue') else None, '최고 매출 YoY', fmt_pct_val),
@@ -290,7 +290,7 @@ html = '''<!DOCTYPE html>
 <title>클럽 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="../ops-style.css?v=20260513fy25v2" />
+<link rel="stylesheet" href="../ops-style.css?v=20260513fy25y" />
 <style>
   .club-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
   .club-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 16px; margin-top: 20px; }
@@ -608,7 +608,7 @@ __CARDS__
             <th>위치</th>
             <th>홀</th>
             <th>면적</th>
-            <th class="num">FY24 매출</th>
+            <th class="num">FY25 매출</th>
             <th class="num">매출 YoY</th>
             <th class="num">순이익률</th>
             <th class="num">EBITDA 마진</th>
@@ -666,7 +666,7 @@ __TABLE_ROWS__
 
 <footer class="ops-foot">
   <div class="ops-wrap">
-    <p>Peer Group v2 · FY2024 audited · IDR.</p>
+    <p>Peer Group v2 · FY2025 audited (FY24 비교) · IDR.</p>
   </div>
 </footer>
 
@@ -1169,7 +1169,7 @@ function syncURL() {
         <div style="font-size:10.5px; color:var(--ops-muted); margin-bottom:4px;">${d.tierLabel} · ${d.loc}</div>
         <div style="text-align:center; margin-bottom:4px;">${d.sparkHTML}</div>
         <dl>
-          <div><dt>FY24 매출</dt><dd>${d.rev}</dd></div>
+          <div><dt>FY25 매출</dt><dd>${d.rev}</dd></div>
           <div><dt>매출 YoY</dt><dd>${d.yoy}</dd></div>
           <div><dt>순이익률</dt><dd>${d.margin}</dd></div>
           <div><dt>EBITDA 마진</dt><dd>${d.ebmargin}</dd></div>

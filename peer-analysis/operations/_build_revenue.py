@@ -235,7 +235,7 @@ html = '''<!DOCTYPE html>
 <title>매출 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260513fy25v2" />
+<link rel="stylesheet" href="ops-style.css?v=20260513fy25y" />
 <style>
   .year-bar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:14px 0 4px 0; }
   .year-bar label { font-size:13px; font-weight:600; color:var(--ops-ink-soft); }
@@ -465,8 +465,8 @@ html = '''<!DOCTYPE html>
       <button class="year-btn" data-year="2021">FY2021</button>
       <button class="year-btn" data-year="2022">FY2022</button>
       <button class="year-btn" data-year="2023">FY2023</button>
-      <button class="year-btn active" data-year="2024">FY2024</button>
-      <button class="year-btn" data-year="2025">FY2025</button>
+      <button class="year-btn" data-year="2024">FY2024</button>
+      <button class="year-btn active" data-year="2025">FY2025</button>
     </div>
     <div class="rev-tab-bar">
       <div class="rev-tab active" data-panel="cmp">① 13-peer 동급 비교</div>
@@ -479,7 +479,7 @@ html = '''<!DOCTYPE html>
 <section class="ops-section" id="main-content">
   <div class="ops-wrap">
     <div class="rev-panel active" id="panel-cmp">
-      <h2 class="anchor-target" id="sec-table" style="font-size:17px; margin:0 0 6px 0;">13-peer 매출 비교 — <span class="yr-label">FY2024</span></h2>
+      <h2 class="anchor-target" id="sec-table" style="font-size:17px; margin:0 0 6px 0;">13-peer 매출 비교 — <span class="yr-label">FY2025</span></h2>
       <nav class="anchor-nav" aria-label="페이지 내 점프">
         <a href="#sec-table">📋 비교 표</a>
         <a href="#sec-trend">📈 Tier 추세 차트</a>
@@ -1045,7 +1045,7 @@ function renderTierTrend() {
   svg.innerHTML = html;
 }
 
-let currentYear = '2024';
+let currentYear = '2025';
 (function(){
   document.querySelectorAll('.year-btn').forEach(b => {
     b.addEventListener('click', () => {
@@ -1269,7 +1269,7 @@ let currentYear = '2024';
   }
   function syncRevHash() {
     const parts = [];
-    if (currentYear && currentYear !== '2024') parts.push('year=' + currentYear);
+    if (currentYear && currentYear !== '2025') parts.push('year=' + currentYear);
     const activeTab = document.querySelector('.rev-tab.active');
     const tabKey = activeTab ? activeTab.dataset.panel : 'cmp';
     if (tabKey && tabKey !== 'cmp') parts.push('tab=' + tabKey);

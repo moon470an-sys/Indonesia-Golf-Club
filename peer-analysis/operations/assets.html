@@ -6,7 +6,7 @@
 <title>시설 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260513fy25v2" />
+<link rel="stylesheet" href="ops-style.css?v=20260513fy25y" />
 <style>
   .ast-tab-bar { display:flex; gap:6px; flex-wrap:wrap; margin:16px 0 20px 0; border-bottom:2px solid var(--ops-line); }
   .ast-tab { padding:10px 18px; cursor:pointer; font-size:13px; font-weight:600; color:var(--ops-ink-soft); border-bottom:3px solid transparent; margin-bottom:-2px; }
@@ -208,7 +208,7 @@
     <div class="top-perf" id="top-perf"></div>
     <div class="insights" id="insights"></div>
     <div class="data-meta">
-      📅 데이터: <strong>FY2024 연결 P&amp;L + 대차대조표</strong>
+      📅 데이터: <strong>FY2025 연결 P&amp;L + 대차대조표</strong>
       <span class="sep">·</span>
       시설 데이터: <strong>AR Profile + 자사 공시</strong>
       <span class="sep">·</span>
@@ -220,7 +220,7 @@
     </div>
     <div class="ast-tab-bar">
       <div class="ast-tab active" data-panel="phy">① 시설 구성</div>
-      <div class="ast-tab" data-panel="prod">② 자산 생산성 (FY2024)</div>
+      <div class="ast-tab" data-panel="prod">② 자산 생산성 (FY2025)</div>
     </div>
   </div>
 </section>
@@ -404,7 +404,7 @@
 
     <!-- TAB 2: 자산 생산성 -->
     <div class="ast-panel" id="panel-prod">
-      <h2 style="font-size:17px; margin:0 0 10px 0;">자산 생산성 FY2024 — 그룹 P&amp;L · 시설 단위 정규화</h2>
+      <h2 style="font-size:17px; margin:0 0 10px 0;">자산 생산성 FY2025 — 그룹 P&amp;L · 시설 단위 정규화</h2>
       <p style="font-size:12px; color:var(--ops-muted); margin:0 0 12px 0;">
         <span class="tip" title="자산회전율 = 매출 / 총자산 — 자산 1단위가 만든 매출(IDR/IDR)">자산회전율</span> ·
         <span class="tip" title="ROA = 순이익 / 총자산 — 자산이 만든 순이익률">ROA</span> ·
@@ -446,7 +446,7 @@
         </table>
       </div>
 
-      <h3 style="font-size:15px; margin:24px 0 6px 0;">📈 매출 vs 총자산 산점도 (log-log, FY2024)</h3>
+      <h3 style="font-size:15px; margin:24px 0 6px 0;">📈 매출 vs 총자산 산점도 (log-log, FY2025)</h3>
       <p style="font-size:12px; color:var(--ops-muted); margin:0 0 8px 0;">
         X축: 총자산 (log) · Y축: 매출 (log) · 색상: Tier. <strong>대각선 점선</strong>은 자산회전율 등고선
         (왼쪽위 = 효율 ↑ / 오른쪽아래 = 효율 ↓). 점 호버 시 peer 상세 툴팁.
@@ -480,7 +480,7 @@
 
 <footer class="ops-foot">
   <div class="ops-wrap">
-    <p>* GOLF associate (BGR) 비연결. ** KPIG Phil Mickelson 코스 계획 단계. — 미공시. FY2024 연결 P&amp;L + 대차대조표.</p>
+    <p>* GOLF associate (BGR) 비연결. ** KPIG Phil Mickelson 코스 계획 단계. — 미공시. FY2025 연결 P&amp;L + 대차대조표.</p>
   </div>
 </footer>
 
@@ -513,8 +513,8 @@ function miniSpark(yearly, color) {
   return `<svg class="mini-spark" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" aria-label="5년 총자산 추이"><path d="${pathD}" stroke="${color}" stroke-width="1.4" fill="none"/>${dots}</svg>`;
 }
 
-// FY2024 financial data from company_financials_5y.json (IDR)
-const FIN_2024 ={"DMIG": {"rev": 253102440194, "np": 82404512711, "ta": 690534136219, "tl": 187722459859, "te": 502811676360}, "PIPG": {"rev": 197570521436, "np": 55903815772, "ta": 446060061475, "tl": 88175251972, "te": 357884809503}, "GOLF": {"rev": 197993814652, "np": 67574993523, "ta": 8637499132483, "tl": 656711721232, "te": 7980787411251}, "MDLN": {"rev": 1017570000000, "np": -690272000000, "ta": 13561474000000, "tl": 10108095000000, "te": 3453379000000}, "KIJA": {"rev": 4602648000000, "np": 363308000000, "ta": 14017356000000, "tl": 6478399000000, "te": 7538957000000}, "SMDM": {"rev": 694045000000, "np": 123778000000, "ta": 3462272000000, "tl": 251618000000, "te": 3210654000000}, "KPIG": {"rev": 1770144398000, "np": 658629034000, "ta": 35827499061000, "tl": 7312392000000, "te": 28515107000000}, "SMRA": {"rev": 10623400000000, "np": 1373400000000, "ta": 33534100000000, "tl": 19701600000000, "te": 13832500000000}, "BSDE": {"rev": 13796572149000, "np": 4359063784000, "ta": 76023348887000, "tl": 28704021000000, "te": 47319328000000}, "CTRA": {"rev": 11187565000000, "np": 2126288000000, "ta": 47022702000000, "tl": 22407372000000, "te": 24615330000000}, "ELTY": {"rev": 1208198000000, "np": -68528000000, "ta": 8742017000000, "tl": 2717802000000, "te": 6024215000000}, "LPKR": {"rev": 11347979000000, "np": 18746045000000, "ta": 53783859000000, "tl": 22836790000000, "te": 30947069000000}, "PWON": {"rev": 6670809000000, "np": 2074731000000, "ta": 35371085000000, "tl": 10629088000000, "te": 24741997000000}};
+// FY2025 financial data from company_financials_5y.json (IDR) — 기본 기준연도
+const FIN_2024 = {"DMIG": {"rev": 251254000000, "np": 75024000000, "ta": 719679000000, "tl": 181428000000, "te": 538251000000}, "PIPG": {"rev": 185775000000, "np": 56000000000, "ta": 477919000000, "tl": 90935000000, "te": 386984000000}, "GOLF": {"rev": 215520000000, "np": 51809000000, "ta": 8685571000000, "tl": 666780000000, "te": 8018791000000}, "MDLN": {"rev": 1013159000000, "np": 241713000000, "ta": 13451083000000, "tl": 9714483000000, "te": 3736601000000}, "KIJA": {"rev": 5149425000000, "np": 423198000000, "ta": 15056220000000, "tl": 6911851000000, "te": 8144369000000}, "SMDM": {"rev": 386085000000, "np": 22110000000, "ta": 3531806000000, "tl": 269513000000, "te": 3262293000000}, "KPIG": {"rev": 2615281000000, "np": 717222000000, "ta": 35994124000000, "tl": 7226096000000, "te": 28768028000000}, "SMRA": {"rev": 8766927000000, "np": 766550000000, "ta": 38342512000000, "tl": 22337631000000, "te": 16004880000000}, "BSDE": {"rev": 12788452000000, "np": 2545381000000, "ta": 79268402000000, "tl": 26599498000000, "te": 52668905000000}, "CTRA": {"rev": 12616695000000, "np": 2663100000000, "ta": 47988422000000, "tl": 21069686000000, "te": 26918736000000}, "ELTY": {"rev": 1379377000000, "np": -16697000000, "ta": 8637625000000, "tl": 2635123000000, "te": 6002502000000}, "LPKR": {"rev": 8843888000000, "np": 469535000000, "ta": 49247221000000, "tl": 18196206000000, "te": 31051015000000}, "PWON": {"rev": 7111105000000, "np": 2346120000000, "ta": 36466038000000, "tl": 9843195000000, "te": 26622844000000}};
 
 const PEER_META = {
   DMIG: {name:'Damai Indah Golf', tier:'pp', tier_label:'🟦 Pure-play', holes:36, area:156.0},
@@ -953,7 +953,7 @@ function flashSuccess(btn, label){
     const csv = '﻿' + buildProdExport(rows, ',');
     const blob = new Blob([csv], { type:'text/csv;charset=utf-8' });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement('a'); a.href = url; a.download = 'assets-productivity_FY2024.csv';
+    const a = document.createElement('a'); a.href = url; a.download = 'assets-productivity_FY2025.csv';
     document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
     flashSuccess(e.currentTarget, '✓ 다운로드');
   });
