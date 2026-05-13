@@ -1,6 +1,6 @@
 {
   "source": "Pondok Indah 골프장 운영 분석.pptx (Slide 1-13, internal slide deck dated 2025-11-13)",
-  "extracted": "2026-05-13",
+  "extracted": "2026-05-13 (v2: +capex_ppe/opex/org/pbb/contracts)",
   "unit": "IDR Million unless noted",
   "fiscal_years": [
     "2011",
@@ -2173,5 +2173,2928 @@
         "share_label": ""
       }
     }
+  },
+  "capex_ppe_14y": {
+    "source_slide": 8,
+    "source_title": "7. CAPEX 분석 - 유형자산",
+    "years": [
+      "2010",
+      "2011",
+      "2012",
+      "2013",
+      "2014",
+      "2015",
+      "2016",
+      "2017",
+      "2018",
+      "2019",
+      "2020",
+      "2021",
+      "2022",
+      "2023",
+      "2024",
+      "avg_11_25"
+    ],
+    "unit": "IDR Million",
+    "columns_per_year": {
+      "2010": [
+        "book_value"
+      ],
+      "other": [
+        "new_investment",
+        "depreciation_etc",
+        "book_value"
+      ]
+    },
+    "categories": {
+      "Driving Range": {
+        "2010": {
+          "book_value": 180
+        },
+        "2011": {
+          "new_investment": 235,
+          "depreciation_etc": -74,
+          "book_value": 342
+        },
+        "2012": {
+          "new_investment": 1942,
+          "depreciation_etc": -899,
+          "book_value": 1386
+        },
+        "2013": {
+          "new_investment": 0,
+          "depreciation_etc": -318,
+          "book_value": 1068
+        },
+        "2014": {
+          "new_investment": 328,
+          "depreciation_etc": -278,
+          "book_value": 1118
+        },
+        "2015": {
+          "new_investment": 350,
+          "depreciation_etc": -239,
+          "book_value": 1229
+        },
+        "2016": {
+          "new_investment": 216,
+          "depreciation_etc": -277,
+          "book_value": 1168
+        },
+        "2017": {
+          "new_investment": 264,
+          "depreciation_etc": -293,
+          "book_value": 1140
+        },
+        "2018": {
+          "new_investment": 13,
+          "depreciation_etc": -310,
+          "book_value": 842
+        },
+        "2019": {
+          "new_investment": 991,
+          "depreciation_etc": -316,
+          "book_value": 1518
+        },
+        "2020": {
+          "new_investment": 349,
+          "depreciation_etc": -444,
+          "book_value": 1423
+        },
+        "2021": {
+          "new_investment": 395,
+          "depreciation_etc": -390,
+          "book_value": 1428
+        },
+        "2022": {
+          "new_investment": 203,
+          "depreciation_etc": -399,
+          "book_value": 1232
+        },
+        "2023": {
+          "new_investment": 3462,
+          "depreciation_etc": -503,
+          "book_value": 4191
+        },
+        "2024": {
+          "new_investment": 643,
+          "depreciation_etc": -691,
+          "book_value": 4143
+        },
+        "avg_11_25": {
+          "new_investment": -4,
+          "depreciation_etc": 641,
+          "book_value": -7
+        }
+      },
+      "Total": {
+        "2010": {
+          "book_value": 112204
+        },
+        "2011": {
+          "new_investment": 20791,
+          "depreciation_etc": -19445,
+          "book_value": 113551
+        },
+        "2012": {
+          "new_investment": 58718,
+          "depreciation_etc": -12012,
+          "book_value": 160257
+        },
+        "2013": {
+          "new_investment": 35872,
+          "depreciation_etc": -7031,
+          "book_value": 189098
+        },
+        "2014": {
+          "new_investment": 34348,
+          "depreciation_etc": -104710,
+          "book_value": 118736
+        },
+        "2015": {
+          "new_investment": 7338,
+          "depreciation_etc": -14136,
+          "book_value": 111938
+        },
+        "2016": {
+          "new_investment": 4327,
+          "depreciation_etc": -8905,
+          "book_value": 107361
+        },
+        "2017": {
+          "new_investment": 3274,
+          "depreciation_etc": -8773,
+          "book_value": 101862
+        },
+        "2018": {
+          "new_investment": 4869,
+          "depreciation_etc": -10736,
+          "book_value": 95994
+        },
+        "2019": {
+          "new_investment": 4695,
+          "depreciation_etc": -9100,
+          "book_value": 91589
+        },
+        "2020": {
+          "new_investment": 4703,
+          "depreciation_etc": -8496,
+          "book_value": 87796
+        },
+        "2021": {
+          "new_investment": 12918,
+          "depreciation_etc": -8112,
+          "book_value": 92602
+        },
+        "2022": {
+          "new_investment": 24319,
+          "depreciation_etc": -17097,
+          "book_value": 99824
+        },
+        "2023": {
+          "new_investment": 30245,
+          "depreciation_etc": -15878,
+          "book_value": 114191
+        },
+        "2024": {
+          "new_investment": 22386,
+          "depreciation_etc": -19617,
+          "book_value": 116960
+        },
+        "avg_11_25": {
+          "new_investment": null,
+          "depreciation_etc": 138393,
+          "book_value": null
+        }
+      },
+      "건물": {
+        "2010": {
+          "book_value": 5154
+        },
+        "2011": {
+          "new_investment": 10110,
+          "depreciation_etc": -366,
+          "book_value": 14897
+        },
+        "2012": {
+          "new_investment": 5204,
+          "depreciation_etc": -3385,
+          "book_value": 16717
+        },
+        "2013": {
+          "new_investment": 0,
+          "depreciation_etc": -658,
+          "book_value": 16059
+        },
+        "2014": {
+          "new_investment": 13,
+          "depreciation_etc": -659,
+          "book_value": 15413
+        },
+        "2015": {
+          "new_investment": 2392,
+          "depreciation_etc": -668,
+          "book_value": 17137
+        },
+        "2016": {
+          "new_investment": 475,
+          "depreciation_etc": -744,
+          "book_value": 16867
+        },
+        "2017": {
+          "new_investment": 852,
+          "depreciation_etc": -727,
+          "book_value": 16992
+        },
+        "2018": {
+          "new_investment": 2411,
+          "depreciation_etc": -765,
+          "book_value": 18639
+        },
+        "2019": {
+          "new_investment": 99,
+          "depreciation_etc": -647,
+          "book_value": 18090
+        },
+        "2020": {
+          "new_investment": 1043,
+          "depreciation_etc": -827,
+          "book_value": 18306
+        },
+        "2021": {
+          "new_investment": 3478,
+          "depreciation_etc": -1150,
+          "book_value": 20634
+        },
+        "2022": {
+          "new_investment": 10866,
+          "depreciation_etc": -1171,
+          "book_value": 30329
+        },
+        "2023": {
+          "new_investment": 7020,
+          "depreciation_etc": -1490,
+          "book_value": 35859
+        },
+        "2024": {
+          "new_investment": 9421,
+          "depreciation_etc": -1823,
+          "book_value": 43457
+        },
+        "avg_11_25": {
+          "new_investment": -37,
+          "depreciation_etc": 3591,
+          "book_value": -40
+        }
+      },
+      "건설중인 자산": {
+        "2010": {
+          "book_value": 11078
+        },
+        "2011": {
+          "new_investment": 3952,
+          "depreciation_etc": -13531,
+          "book_value": 1499
+        },
+        "2012": {
+          "new_investment": 51528,
+          "depreciation_etc": -1634,
+          "book_value": 51393
+        },
+        "2013": {
+          "new_investment": 34739,
+          "depreciation_etc": 0,
+          "book_value": 86132
+        },
+        "2014": {
+          "new_investment": 14164,
+          "depreciation_etc": -97349,
+          "book_value": 2948
+        },
+        "2015": {
+          "new_investment": 2443,
+          "depreciation_etc": -5391,
+          "book_value": 0
+        },
+        "2016": {
+          "new_investment": 292,
+          "depreciation_etc": 0,
+          "book_value": 292
+        },
+        "2017": {
+          "new_investment": 726,
+          "depreciation_etc": 0,
+          "book_value": 1018
+        },
+        "2018": {
+          "new_investment": 683,
+          "depreciation_etc": -1701,
+          "book_value": 0
+        },
+        "2019": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 0
+        },
+        "2020": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 0
+        },
+        "2021": {
+          "new_investment": 4109,
+          "depreciation_etc": 0,
+          "book_value": 4109
+        },
+        "2022": {
+          "new_investment": 7879,
+          "depreciation_etc": -8363,
+          "book_value": 3625
+        },
+        "2023": {
+          "new_investment": 10445,
+          "depreciation_etc": -6367,
+          "book_value": 7703
+        },
+        "2024": {
+          "new_investment": 3486,
+          "depreciation_etc": -8328,
+          "book_value": 2861
+        },
+        "avg_11_25": {
+          "new_investment": -2,
+          "depreciation_etc": null,
+          "book_value": null
+        }
+      },
+      "골프코스": {
+        "2010": {
+          "book_value": 66038
+        },
+        "2011": {
+          "new_investment": 998,
+          "depreciation_etc": -2274,
+          "book_value": 64762
+        },
+        "2012": {
+          "new_investment": 0,
+          "depreciation_etc": -2305,
+          "book_value": 62457
+        },
+        "2013": {
+          "new_investment": 0,
+          "depreciation_etc": -2305,
+          "book_value": 60152
+        },
+        "2014": {
+          "new_investment": 0,
+          "depreciation_etc": -2305,
+          "book_value": 57847
+        },
+        "2015": {
+          "new_investment": 309,
+          "depreciation_etc": -2304,
+          "book_value": 55852
+        },
+        "2016": {
+          "new_investment": 0,
+          "depreciation_etc": -2310,
+          "book_value": 53542
+        },
+        "2017": {
+          "new_investment": 141,
+          "depreciation_etc": -2311,
+          "book_value": 51372
+        },
+        "2018": {
+          "new_investment": 0,
+          "depreciation_etc": -2311,
+          "book_value": 49060
+        },
+        "2019": {
+          "new_investment": 119,
+          "depreciation_etc": -2313,
+          "book_value": 46866
+        },
+        "2020": {
+          "new_investment": 743,
+          "depreciation_etc": -2322,
+          "book_value": 45287
+        },
+        "2021": {
+          "new_investment": 354,
+          "depreciation_etc": -2351,
+          "book_value": 43291
+        },
+        "2022": {
+          "new_investment": 357,
+          "depreciation_etc": -2598,
+          "book_value": 41050
+        },
+        "2023": {
+          "new_investment": 10,
+          "depreciation_etc": -2348,
+          "book_value": 38712
+        },
+        "2024": {
+          "new_investment": 45,
+          "depreciation_etc": -2348,
+          "book_value": 36409
+        },
+        "avg_11_25": {
+          "new_investment": -31,
+          "depreciation_etc": 205,
+          "book_value": -2
+        }
+      },
+      "교량/울타리/도로": {
+        "2010": {
+          "book_value": 12106
+        },
+        "2011": {
+          "new_investment": 646,
+          "depreciation_etc": -1379,
+          "book_value": 11372
+        },
+        "2012": {
+          "new_investment": 0,
+          "depreciation_etc": -1417,
+          "book_value": 9955
+        },
+        "2013": {
+          "new_investment": 0,
+          "depreciation_etc": -1409,
+          "book_value": 8546
+        },
+        "2014": {
+          "new_investment": 0,
+          "depreciation_etc": -1350,
+          "book_value": 7197
+        },
+        "2015": {
+          "new_investment": 17,
+          "depreciation_etc": -1329,
+          "book_value": 5885
+        },
+        "2016": {
+          "new_investment": 495,
+          "depreciation_etc": -1308,
+          "book_value": 5072
+        },
+        "2017": {
+          "new_investment": 0,
+          "depreciation_etc": -1340,
+          "book_value": 3732
+        },
+        "2018": {
+          "new_investment": 52,
+          "depreciation_etc": -1341,
+          "book_value": 2443
+        },
+        "2019": {
+          "new_investment": 190,
+          "depreciation_etc": -1350,
+          "book_value": 1284
+        },
+        "2020": {
+          "new_investment": 58,
+          "depreciation_etc": -756,
+          "book_value": 585
+        },
+        "2021": {
+          "new_investment": 0,
+          "depreciation_etc": -123,
+          "book_value": 462
+        },
+        "2022": {
+          "new_investment": 223,
+          "depreciation_etc": -90,
+          "book_value": 595
+        },
+        "2023": {
+          "new_investment": 818,
+          "depreciation_etc": -154,
+          "book_value": 1259
+        },
+        "2024": {
+          "new_investment": 314,
+          "depreciation_etc": -195,
+          "book_value": 1378
+        },
+        "avg_11_25": {
+          "new_investment": -1,
+          "depreciation_etc": 221,
+          "book_value": -2
+        }
+      },
+      "사무용 비품": {
+        "2010": {
+          "book_value": 491
+        },
+        "2011": {
+          "new_investment": 311,
+          "depreciation_etc": -191,
+          "book_value": 611
+        },
+        "2012": {
+          "new_investment": 4,
+          "depreciation_etc": -178,
+          "book_value": 437
+        },
+        "2013": {
+          "new_investment": 175,
+          "depreciation_etc": -193,
+          "book_value": 419
+        },
+        "2014": {
+          "new_investment": 1768,
+          "depreciation_etc": -311,
+          "book_value": 1876
+        },
+        "2015": {
+          "new_investment": 244,
+          "depreciation_etc": -490,
+          "book_value": 1630
+        },
+        "2016": {
+          "new_investment": 213,
+          "depreciation_etc": -489,
+          "book_value": 1354
+        },
+        "2017": {
+          "new_investment": 318,
+          "depreciation_etc": -498,
+          "book_value": 1175
+        },
+        "2018": {
+          "new_investment": 150,
+          "depreciation_etc": -535,
+          "book_value": 791
+        },
+        "2019": {
+          "new_investment": 459,
+          "depreciation_etc": -456,
+          "book_value": 793
+        },
+        "2020": {
+          "new_investment": 1394,
+          "depreciation_etc": -313,
+          "book_value": 1874
+        },
+        "2021": {
+          "new_investment": 2398,
+          "depreciation_etc": -717,
+          "book_value": 3554
+        },
+        "2022": {
+          "new_investment": 1656,
+          "depreciation_etc": -1109,
+          "book_value": 4102
+        },
+        "2023": {
+          "new_investment": 2481,
+          "depreciation_etc": -1295,
+          "book_value": 5288
+        },
+        "2024": {
+          "new_investment": 770,
+          "depreciation_etc": -1724,
+          "book_value": 4335
+        },
+        "avg_11_25": {
+          "new_investment": -4,
+          "depreciation_etc": 837,
+          "book_value": -9
+        }
+      },
+      "식당 설비": {
+        "2010": {
+          "book_value": 143
+        },
+        "2011": {
+          "new_investment": 1273,
+          "depreciation_etc": -61,
+          "book_value": 1355
+        },
+        "2012": {
+          "new_investment": 0,
+          "depreciation_etc": -292,
+          "book_value": 1063
+        },
+        "2013": {
+          "new_investment": 59,
+          "depreciation_etc": -294,
+          "book_value": 828
+        },
+        "2014": {
+          "new_investment": 13,
+          "depreciation_etc": -299,
+          "book_value": 543
+        },
+        "2015": {
+          "new_investment": 88,
+          "depreciation_etc": -275,
+          "book_value": 356
+        },
+        "2016": {
+          "new_investment": 44,
+          "depreciation_etc": -249,
+          "book_value": 151
+        },
+        "2017": {
+          "new_investment": 11,
+          "depreciation_etc": -42,
+          "book_value": 120
+        },
+        "2018": {
+          "new_investment": 58,
+          "depreciation_etc": -45,
+          "book_value": 133
+        },
+        "2019": {
+          "new_investment": 369,
+          "depreciation_etc": -104,
+          "book_value": 398
+        },
+        "2020": {
+          "new_investment": 111,
+          "depreciation_etc": -103,
+          "book_value": 405
+        },
+        "2021": {
+          "new_investment": 71,
+          "depreciation_etc": -121,
+          "book_value": 356
+        },
+        "2022": {
+          "new_investment": 235,
+          "depreciation_etc": -161,
+          "book_value": 430
+        },
+        "2023": {
+          "new_investment": 1799,
+          "depreciation_etc": -269,
+          "book_value": 1961
+        },
+        "2024": {
+          "new_investment": 1113,
+          "depreciation_etc": -513,
+          "book_value": 2560
+        },
+        "avg_11_25": {
+          "new_investment": -2,
+          "depreciation_etc": 353,
+          "book_value": -4
+        }
+      },
+      "운반용 장비": {
+        "2010": {
+          "book_value": 314
+        },
+        "2011": {
+          "new_investment": 254,
+          "depreciation_etc": -84,
+          "book_value": 484
+        },
+        "2012": {
+          "new_investment": 0,
+          "depreciation_etc": -120,
+          "book_value": 363
+        },
+        "2013": {
+          "new_investment": 145,
+          "depreciation_etc": -139,
+          "book_value": 369
+        },
+        "2014": {
+          "new_investment": 221,
+          "depreciation_etc": -174,
+          "book_value": 417
+        },
+        "2015": {
+          "new_investment": 407,
+          "depreciation_etc": -211,
+          "book_value": 613
+        },
+        "2016": {
+          "new_investment": 0,
+          "depreciation_etc": -190,
+          "book_value": 422
+        },
+        "2017": {
+          "new_investment": 51,
+          "depreciation_etc": -156,
+          "book_value": 317
+        },
+        "2018": {
+          "new_investment": 0,
+          "depreciation_etc": -143,
+          "book_value": 174
+        },
+        "2019": {
+          "new_investment": 30,
+          "depreciation_etc": -120,
+          "book_value": 84
+        },
+        "2020": {
+          "new_investment": 586,
+          "depreciation_etc": -141,
+          "book_value": 529
+        },
+        "2021": {
+          "new_investment": 0,
+          "depreciation_etc": -133,
+          "book_value": 396
+        },
+        "2022": {
+          "new_investment": 41,
+          "depreciation_etc": -138,
+          "book_value": 299
+        },
+        "2023": {
+          "new_investment": 905,
+          "depreciation_etc": -249,
+          "book_value": 955
+        },
+        "2024": {
+          "new_investment": 611,
+          "depreciation_etc": -380,
+          "book_value": 1186
+        },
+        "avg_11_25": {
+          "new_investment": -1,
+          "depreciation_etc": 217,
+          "book_value": -2
+        }
+      },
+      "유지보수 장비": {
+        "2010": {
+          "book_value": 1886
+        },
+        "2011": {
+          "new_investment": 2274,
+          "depreciation_etc": -792,
+          "book_value": 3367
+        },
+        "2012": {
+          "new_investment": 0,
+          "depreciation_etc": -1028,
+          "book_value": 2339
+        },
+        "2013": {
+          "new_investment": 704,
+          "depreciation_etc": -960,
+          "book_value": 2084
+        },
+        "2014": {
+          "new_investment": 226,
+          "depreciation_etc": -731,
+          "book_value": 1579
+        },
+        "2015": {
+          "new_investment": 869,
+          "depreciation_etc": -727,
+          "book_value": 1722
+        },
+        "2016": {
+          "new_investment": 2569,
+          "depreciation_etc": -825,
+          "book_value": 3466
+        },
+        "2017": {
+          "new_investment": 677,
+          "depreciation_etc": -885,
+          "book_value": 3258
+        },
+        "2018": {
+          "new_investment": 641,
+          "depreciation_etc": -1028,
+          "book_value": 2872
+        },
+        "2019": {
+          "new_investment": 1672,
+          "depreciation_etc": -1165,
+          "book_value": 3378
+        },
+        "2020": {
+          "new_investment": 60,
+          "depreciation_etc": -1194,
+          "book_value": 2244
+        },
+        "2021": {
+          "new_investment": 698,
+          "depreciation_etc": -963,
+          "book_value": 1979
+        },
+        "2022": {
+          "new_investment": 1386,
+          "depreciation_etc": -821,
+          "book_value": 2544
+        },
+        "2023": {
+          "new_investment": 1626,
+          "depreciation_etc": -835,
+          "book_value": 3334
+        },
+        "2024": {
+          "new_investment": 5186,
+          "depreciation_etc": -1497,
+          "book_value": 7022
+        },
+        "avg_11_25": {
+          "new_investment": -6,
+          "depreciation_etc": 1410,
+          "book_value": -16
+        }
+      },
+      "전기 및 수도 설비": {
+        "2018": {
+          "new_investment": 749,
+          "depreciation_etc": -2298,
+          "book_value": 10845
+        },
+        "2019": {
+          "new_investment": 316,
+          "depreciation_etc": -2360,
+          "book_value": 8801
+        },
+        "2020": {
+          "new_investment": 359,
+          "depreciation_etc": -2084,
+          "book_value": 7076
+        },
+        "2021": {
+          "new_investment": 1391,
+          "depreciation_etc": -1852,
+          "book_value": 6615
+        },
+        "2022": {
+          "new_investment": 1474,
+          "depreciation_etc": -1935,
+          "book_value": 6153
+        },
+        "2023": {
+          "new_investment": 1676,
+          "depreciation_etc": -2056,
+          "book_value": 5774
+        },
+        "2024": {
+          "new_investment": 606,
+          "depreciation_etc": -1801,
+          "book_value": 4579
+        },
+        "avg_11_25": {
+          "new_investment": -4,
+          "depreciation_etc": 1531,
+          "book_value": -17
+        }
+      },
+      "전기 및 수도설비": {
+        "2010": {
+          "book_value": 6259
+        },
+        "2011": {
+          "new_investment": 739,
+          "depreciation_etc": -691,
+          "book_value": 6306
+        },
+        "2012": {
+          "new_investment": 33,
+          "depreciation_etc": -754,
+          "book_value": 5585
+        },
+        "2013": {
+          "new_investment": 50,
+          "depreciation_etc": -756,
+          "book_value": 4878
+        },
+        "2014": {
+          "new_investment": 15101,
+          "depreciation_etc": -1255,
+          "book_value": 18724
+        },
+        "2015": {
+          "new_investment": 190,
+          "depreciation_etc": -2251,
+          "book_value": 16663
+        },
+        "2016": {
+          "new_investment": 23,
+          "depreciation_etc": -2258,
+          "book_value": 14428
+        },
+        "2017": {
+          "new_investment": 233,
+          "depreciation_etc": -2268,
+          "book_value": 12394
+        }
+      },
+      "토지": {
+        "2010": {
+          "book_value": 8555
+        },
+        "2011": {
+          "new_investment": null,
+          "depreciation_etc": null,
+          "book_value": 8555
+        },
+        "2012": {
+          "new_investment": 1,
+          "depreciation_etc": null,
+          "book_value": 8557
+        },
+        "2013": {
+          "new_investment": null,
+          "depreciation_etc": null,
+          "book_value": 8557
+        },
+        "2014": {
+          "new_investment": null,
+          "depreciation_etc": null,
+          "book_value": 8557
+        },
+        "2015": {
+          "new_investment": 0,
+          "depreciation_etc": null,
+          "book_value": 8557
+        },
+        "2016": {
+          "new_investment": 0,
+          "depreciation_etc": null,
+          "book_value": 8557
+        },
+        "2017": {
+          "new_investment": 0,
+          "depreciation_etc": null,
+          "book_value": 8557
+        },
+        "2018": {
+          "new_investment": 0,
+          "depreciation_etc": null,
+          "book_value": 8557
+        },
+        "2019": {
+          "new_investment": 0,
+          "depreciation_etc": null,
+          "book_value": 8557
+        },
+        "2020": {
+          "new_investment": 0,
+          "depreciation_etc": null,
+          "book_value": 8557
+        },
+        "2021": {
+          "new_investment": 0,
+          "depreciation_etc": null,
+          "book_value": 8557
+        },
+        "2022": {
+          "new_investment": 0,
+          "depreciation_etc": null,
+          "book_value": 8557
+        },
+        "2023": {
+          "new_investment": 0,
+          "depreciation_etc": null,
+          "book_value": 8557
+        },
+        "2024": {
+          "new_investment": 0,
+          "depreciation_etc": null,
+          "book_value": 8557
+        },
+        "avg_11_25": {
+          "new_investment": -7,
+          "depreciation_etc": 0,
+          "book_value": 0
+        }
+      },
+      "피트니스 장비": {
+        "2010": {
+          "book_value": 0
+        },
+        "2011": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 0
+        },
+        "2012": {
+          "new_investment": 5,
+          "depreciation_etc": 0,
+          "book_value": 5
+        },
+        "2013": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 5
+        },
+        "2014": {
+          "new_investment": 2513,
+          "depreciation_etc": 0,
+          "book_value": 2518
+        },
+        "2015": {
+          "new_investment": 29,
+          "depreciation_etc": -252,
+          "book_value": 2295
+        },
+        "2016": {
+          "new_investment": 0,
+          "depreciation_etc": -254,
+          "book_value": 2041
+        },
+        "2017": {
+          "new_investment": 0,
+          "depreciation_etc": -254,
+          "book_value": 1787
+        },
+        "2018": {
+          "new_investment": 110,
+          "depreciation_etc": -260,
+          "book_value": 1638
+        },
+        "2019": {
+          "new_investment": 451,
+          "depreciation_etc": -269,
+          "book_value": 1819
+        },
+        "2020": {
+          "new_investment": 0,
+          "depreciation_etc": -310,
+          "book_value": 1509
+        },
+        "2021": {
+          "new_investment": 24,
+          "depreciation_etc": -311,
+          "book_value": 1221
+        },
+        "2022": {
+          "new_investment": 0,
+          "depreciation_etc": -313,
+          "book_value": 909
+        },
+        "2023": {
+          "new_investment": 4,
+          "depreciation_etc": -313,
+          "book_value": 599
+        },
+        "2024": {
+          "new_investment": 190,
+          "depreciation_etc": -316,
+          "book_value": 473
+        },
+        "avg_11_25": {
+          "new_investment": 0,
+          "depreciation_etc": 222,
+          "book_value": -2
+        }
+      }
+    },
+    "caveat": "avg_11_25 column is the source's \"연평균('11~'25)\" footer; cell alignment is inconsistent across rows so its values may not be reliable. Derive averages client-side from yearly book_value/new_investment instead."
+  },
+  "capex_auxiliary": {
+    "source_slide": 9,
+    "source_title": "8. CAPEX 분석 – 투자 부동산 / 사용권자산 / 이연토지사용권",
+    "unit": "IDR Million",
+    "investment_property": {
+      "Driving Range": {
+        "2010": {
+          "book_value": 310
+        },
+        "2011": {
+          "new_investment": 0,
+          "depreciation_etc": -49,
+          "book_value": 261
+        },
+        "2012": {
+          "new_investment": 129,
+          "depreciation_etc": -322,
+          "book_value": 68
+        },
+        "2013": {
+          "new_investment": 0,
+          "depreciation_etc": -1,
+          "book_value": 67
+        },
+        "2014": {
+          "new_investment": 0,
+          "depreciation_etc": -1,
+          "book_value": 66
+        },
+        "2015": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 66
+        },
+        "2016": {
+          "new_investment": -142,
+          "depreciation_etc": 76,
+          "book_value": 0
+        },
+        "2017": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 0
+        },
+        "2018": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 0
+        },
+        "2019": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 0
+        },
+        "2020": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 0
+        },
+        "2021": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 0
+        },
+        "2022": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 0
+        },
+        "2023": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 0
+        },
+        "2024": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 0
+        }
+      },
+      "Total": {
+        "2010": {
+          "book_value": 3119
+        },
+        "2011": {
+          "new_investment": 545,
+          "depreciation_etc": -133,
+          "book_value": 3531
+        },
+        "2012": {
+          "new_investment": 129,
+          "depreciation_etc": -2926,
+          "book_value": 735
+        },
+        "2013": {
+          "new_investment": 0,
+          "depreciation_etc": -7,
+          "book_value": 728
+        },
+        "2014": {
+          "new_investment": 78065,
+          "depreciation_etc": -742,
+          "book_value": 78051
+        },
+        "2015": {
+          "new_investment": 4211,
+          "depreciation_etc": -2248,
+          "book_value": 80015
+        },
+        "2016": {
+          "new_investment": 0,
+          "depreciation_etc": -2392,
+          "book_value": 77623
+        },
+        "2017": {
+          "new_investment": 95,
+          "depreciation_etc": -2396,
+          "book_value": 75322
+        },
+        "2018": {
+          "new_investment": 183,
+          "depreciation_etc": -2400,
+          "book_value": 73106
+        },
+        "2019": {
+          "new_investment": 6,
+          "depreciation_etc": -2599,
+          "book_value": 70513
+        },
+        "2020": {
+          "new_investment": 0,
+          "depreciation_etc": -2395,
+          "book_value": 68118
+        },
+        "2021": {
+          "new_investment": 0,
+          "depreciation_etc": -2395,
+          "book_value": 65723
+        },
+        "2022": {
+          "new_investment": 0,
+          "depreciation_etc": -2395,
+          "book_value": 63329
+        },
+        "2023": {
+          "new_investment": 0,
+          "depreciation_etc": -2395,
+          "book_value": 60934
+        },
+        "2024": {
+          "new_investment": 0,
+          "depreciation_etc": -2395,
+          "book_value": 58539
+        }
+      },
+      "건물": {
+        "2010": {
+          "book_value": 2731
+        },
+        "2011": {
+          "new_investment": 545,
+          "depreciation_etc": -36,
+          "book_value": 3239
+        },
+        "2012": {
+          "new_investment": 0,
+          "depreciation_etc": -2602,
+          "book_value": 637
+        },
+        "2013": {
+          "new_investment": 0,
+          "depreciation_etc": -6,
+          "book_value": 631
+        },
+        "2014": {
+          "new_investment": 78065,
+          "depreciation_etc": -741,
+          "book_value": 77955
+        },
+        "2015": {
+          "new_investment": 4211,
+          "depreciation_etc": -2248,
+          "book_value": 79919
+        },
+        "2016": {
+          "new_investment": 142,
+          "depreciation_etc": -2467,
+          "book_value": 77593
+        },
+        "2017": {
+          "new_investment": 95,
+          "depreciation_etc": -2396,
+          "book_value": 75292
+        },
+        "2018": {
+          "new_investment": 183,
+          "depreciation_etc": -2400,
+          "book_value": 73076
+        },
+        "2019": {
+          "new_investment": 6,
+          "depreciation_etc": -2599,
+          "book_value": 70483
+        },
+        "2020": {
+          "new_investment": 0,
+          "depreciation_etc": -2395,
+          "book_value": 68088
+        },
+        "2021": {
+          "new_investment": 0,
+          "depreciation_etc": -2395,
+          "book_value": 65694
+        },
+        "2022": {
+          "new_investment": 0,
+          "depreciation_etc": -2395,
+          "book_value": 63299
+        },
+        "2023": {
+          "new_investment": 0,
+          "depreciation_etc": -2395,
+          "book_value": 60904
+        },
+        "2024": {
+          "new_investment": 0,
+          "depreciation_etc": -2395,
+          "book_value": 58510
+        }
+      },
+      "수영장": {
+        "2010": {
+          "book_value": 0.3
+        },
+        "2011": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 0.3
+        },
+        "2012": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 0.3
+        },
+        "2013": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 0.3
+        },
+        "2014": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 0.3
+        },
+        "2015": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 0.3
+        },
+        "2016": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 0.3
+        },
+        "2017": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 0.3
+        },
+        "2018": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 0.3
+        },
+        "2019": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 0.3
+        },
+        "2020": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 0.3
+        },
+        "2021": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 0.3
+        },
+        "2022": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 0.3
+        },
+        "2023": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 0.3
+        },
+        "2024": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 0.3
+        }
+      },
+      "토지": {
+        "2010": {
+          "book_value": 78
+        },
+        "2011": {
+          "new_investment": 0,
+          "depreciation_etc": -47,
+          "book_value": 31
+        },
+        "2012": {
+          "new_investment": 0,
+          "depreciation_etc": -1,
+          "book_value": 30
+        },
+        "2013": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 30
+        },
+        "2014": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 30
+        },
+        "2015": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 30
+        },
+        "2016": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 30
+        },
+        "2017": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 30
+        },
+        "2018": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 30
+        },
+        "2019": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 30
+        },
+        "2020": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 30
+        },
+        "2021": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 30
+        },
+        "2022": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 30
+        },
+        "2023": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 30
+        },
+        "2024": {
+          "new_investment": 0,
+          "depreciation_etc": 0,
+          "book_value": 30
+        }
+      }
+    },
+    "deferred_land_rights_raw": [
+      [
+        "(단위: Rp Mil.)",
+        "2011",
+        "2012",
+        "2013",
+        "2014",
+        "2015",
+        "",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2023",
+        "",
+        "2024",
+        ""
+      ],
+      [
+        "HGB",
+        "2,433",
+        "2,433",
+        "2,433",
+        "2,433",
+        "2,433",
+        "",
+        "2,433",
+        "2,433",
+        "2,433",
+        "2,433",
+        "2,433",
+        "2,519",
+        "",
+        "33,150",
+        "(+33,150)"
+      ],
+      [
+        "HP",
+        "1,733",
+        "1,733",
+        "1,733",
+        "1,733",
+        "7,207",
+        "(+5,474)",
+        "24,850",
+        "24,850",
+        "24,850",
+        "24,850",
+        "24,850",
+        "35,835",
+        "(+10,985)",
+        "40,319",
+        "(+29,334)"
+      ],
+      [
+        "Total",
+        "4,166",
+        "4,166",
+        "4,166",
+        "4,166",
+        "9,640",
+        "",
+        "27,283",
+        "27,283",
+        "27,283",
+        "27,283",
+        "27,283",
+        "38,354",
+        "",
+        "73,469",
+        ""
+      ],
+      [
+        "누적상각액",
+        "(2,357)",
+        "(2,652)",
+        "(2,946)",
+        "(3,241)",
+        "(4,016)",
+        "",
+        "(4,813)",
+        "(6,974)",
+        "(9,407)",
+        "(11,841)",
+        "(14,274)",
+        "(21,726)",
+        "",
+        "(24,418)",
+        ""
+      ],
+      [
+        "Book value",
+        "1,809",
+        "1,515",
+        "1,220",
+        "925",
+        "5,624",
+        "",
+        "22,470",
+        "20,310",
+        "17,876",
+        "15,443",
+        "13,009",
+        "16,629",
+        "",
+        "49,051",
+        ""
+      ]
+    ],
+    "rou_asset_raw": [
+      [
+        "(단위: Rp Mil.)",
+        "2023",
+        "",
+        "2024",
+        ""
+      ],
+      [
+        "Land",
+        "2,954",
+        "(+2,954)",
+        "3,830",
+        "(+876)"
+      ],
+      [
+        "Total",
+        "2,954",
+        "",
+        "3,830",
+        ""
+      ],
+      [
+        "누적상각액",
+        "(246)",
+        "(246)",
+        "(1,085)",
+        "(839)"
+      ],
+      [
+        "Book value",
+        "2,708",
+        "",
+        "2,745",
+        ""
+      ]
+    ]
+  },
+  "opex_14y": {
+    "source_slide": 10,
+    "source_title": "9. OPEX 분석",
+    "years": [
+      "2011",
+      "2012",
+      "2013",
+      "2014",
+      "2015",
+      "2016",
+      "2017",
+      "2018",
+      "2019",
+      "2020",
+      "2021",
+      "2022",
+      "2023",
+      "2024"
+    ],
+    "unit": "IDR Million",
+    "lines": [
+      {
+        "label_ko": "세금 및 법률 관련비용",
+        "yearly": {
+          "2011": 8157,
+          "2012": 3698,
+          "2013": 6062,
+          "2014": 7163,
+          "2015": 9396,
+          "2016": 10477,
+          "2017": 11347,
+          "2018": 19263,
+          "2019": 21090,
+          "2020": 16797,
+          "2021": 16778,
+          "2022": 18131,
+          "2023": 20678,
+          "2024": 24206
+        },
+        "share_fy24_pct": 32.0,
+        "cagr_11_24_pct": 9.0,
+        "avg_11_24": 13803,
+        "avg_share_pct": 30.0
+      },
+      {
+        "label_ko": "급여 및 수당",
+        "yearly": {
+          "2011": 6368,
+          "2012": 7095,
+          "2013": 7710,
+          "2014": 9291,
+          "2015": 10355,
+          "2016": 11538,
+          "2017": 12457,
+          "2018": 12954,
+          "2019": 12414,
+          "2020": 12482,
+          "2021": 13363,
+          "2022": 14256,
+          "2023": 15215,
+          "2024": 17879
+        },
+        "share_fy24_pct": 23.0,
+        "cagr_11_24_pct": 8.0,
+        "avg_11_24": 11670,
+        "avg_share_pct": 25.0
+      },
+      {
+        "label_ko": "수리 및 유지보수비",
+        "yearly": {
+          "2011": 368,
+          "2012": 442,
+          "2013": 2041,
+          "2014": 2483,
+          "2015": 3498,
+          "2016": 4101,
+          "2017": 3403,
+          "2018": 3469,
+          "2019": 4451,
+          "2020": 4708,
+          "2021": 8137,
+          "2022": 8518,
+          "2023": 10631,
+          "2024": 11648
+        },
+        "share_fy24_pct": 15.0,
+        "cagr_11_24_pct": 30.0,
+        "avg_11_24": 4850,
+        "avg_share_pct": 11.0
+      },
+      {
+        "label_ko": "감가상각비",
+        "yearly": {
+          "2011": 5887,
+          "2012": 6889,
+          "2013": 7011,
+          "2014": 7362,
+          "2015": 8722,
+          "2016": 8909,
+          "2017": 8798,
+          "2018": 9060,
+          "2019": 9125,
+          "2020": 8521,
+          "2021": 8533,
+          "2022": 7947,
+          "2023": 9536,
+          "2024": 11314
+        },
+        "share_fy24_pct": 15.0,
+        "cagr_11_24_pct": 5.0,
+        "avg_11_24": 8401,
+        "avg_share_pct": 18.0
+      },
+      {
+        "label_ko": "이연비용 상각",
+        "yearly": {
+          "2011": 295,
+          "2012": 295,
+          "2013": 295,
+          "2014": 295,
+          "2015": 775,
+          "2016": 797,
+          "2017": 2160,
+          "2018": 2433,
+          "2019": 2433,
+          "2020": 2433,
+          "2021": 2433,
+          "2022": 2433,
+          "2023": 2585,
+          "2024": 2693
+        },
+        "share_fy24_pct": 4.0,
+        "cagr_11_24_pct": 19.0,
+        "avg_11_24": 1597,
+        "avg_share_pct": 3.0
+      },
+      {
+        "label_ko": "종업원급여충당금",
+        "yearly": {
+          "2011": 1664,
+          "2012": 1946,
+          "2013": 2313,
+          "2014": 2133,
+          "2015": 2028,
+          "2016": 2251,
+          "2017": 2565,
+          "2018": 3268,
+          "2019": 2314,
+          "2020": 1937,
+          "2021": -1610,
+          "2022": 1354,
+          "2023": 1338,
+          "2024": 2531
+        },
+        "share_fy24_pct": 3.0,
+        "cagr_11_24_pct": 3.0,
+        "avg_11_24": 1859,
+        "avg_share_pct": 4.0
+      },
+      {
+        "label_ko": "전기 및 수도요금",
+        "yearly": {
+          "2011": 2102,
+          "2012": 1301,
+          "2013": 1919,
+          "2014": 2388,
+          "2015": 2274,
+          "2016": 1518,
+          "2017": 1771,
+          "2018": 1522,
+          "2019": 1717,
+          "2020": 1588,
+          "2021": 1276,
+          "2022": 1840,
+          "2023": 2219,
+          "2024": 2197
+        },
+        "share_fy24_pct": 3.0,
+        "cagr_11_24_pct": 0.0,
+        "avg_11_24": 1831,
+        "avg_share_pct": 4.0
+      },
+      {
+        "label_ko": "소모품 및 사무용품비",
+        "yearly": {
+          "2011": 526,
+          "2012": 482,
+          "2013": 665,
+          "2014": 762,
+          "2015": 732,
+          "2016": 481,
+          "2017": 477,
+          "2018": 496,
+          "2019": 592,
+          "2020": 814,
+          "2021": 801,
+          "2022": 1100,
+          "2023": 1184,
+          "2024": 1362
+        },
+        "share_fy24_pct": 2.0,
+        "cagr_11_24_pct": 8.0,
+        "avg_11_24": 748,
+        "avg_share_pct": 2.0
+      },
+      {
+        "label_ko": "보안요원 제복비",
+        "yearly": {
+          "2011": 29,
+          "2012": 33,
+          "2013": 31,
+          "2014": 34,
+          "2015": 34,
+          "2016": 33,
+          "2017": 33,
+          "2018": 0,
+          "2019": 0,
+          "2020": 0,
+          "2021": 0,
+          "2022": 0,
+          "2023": 0,
+          "2024": 0
+        },
+        "share_fy24_pct": 0.0,
+        "cagr_11_24_pct": null,
+        "avg_11_24": 16,
+        "avg_share_pct": 0.0
+      },
+      {
+        "label_ko": "기부금 및 찬조금",
+        "yearly": {
+          "2011": 26,
+          "2012": 32,
+          "2013": 30,
+          "2014": 43,
+          "2015": 48,
+          "2016": 59,
+          "2017": 54,
+          "2018": 52,
+          "2019": 160,
+          "2020": 336,
+          "2021": 361,
+          "2022": 769,
+          "2023": 895,
+          "2024": 1054
+        },
+        "share_fy24_pct": 1.0,
+        "cagr_11_24_pct": 33.0,
+        "avg_11_24": 280,
+        "avg_share_pct": 1.0
+      },
+      {
+        "label_ko": "보험료",
+        "yearly": {
+          "2011": 48,
+          "2012": 44,
+          "2013": 73,
+          "2014": 123,
+          "2015": 157,
+          "2016": 147,
+          "2017": 142,
+          "2018": 114,
+          "2019": 100,
+          "2020": 89,
+          "2021": 96,
+          "2022": 116,
+          "2023": 328,
+          "2024": 356
+        },
+        "share_fy24_pct": 0.0,
+        "cagr_11_24_pct": 17.0,
+        "avg_11_24": 138,
+        "avg_share_pct": 0.0
+      },
+      {
+        "label_ko": "교육훈련비",
+        "yearly": {
+          "2011": 79,
+          "2012": 61,
+          "2013": 78,
+          "2014": 85,
+          "2015": 126,
+          "2016": 129,
+          "2017": 79,
+          "2018": 168,
+          "2019": 99,
+          "2020": 88,
+          "2021": 110,
+          "2022": 111,
+          "2023": 198,
+          "2024": 353
+        },
+        "share_fy24_pct": 0.0,
+        "cagr_11_24_pct": 12.0,
+        "avg_11_24": 126,
+        "avg_share_pct": 0.0
+      },
+      {
+        "label_ko": "감사 및 자문비용",
+        "yearly": {
+          "2011": 103,
+          "2012": 115,
+          "2013": 139,
+          "2014": 142,
+          "2015": 178,
+          "2016": 225,
+          "2017": 320,
+          "2018": 211,
+          "2019": 347,
+          "2020": 172,
+          "2021": 172,
+          "2022": 408,
+          "2023": 291,
+          "2024": 192
+        },
+        "share_fy24_pct": 0.0,
+        "cagr_11_24_pct": 5.0,
+        "avg_11_24": 215,
+        "avg_share_pct": 0.0
+      },
+      {
+        "label_ko": "교통비 및 출장비",
+        "yearly": {
+          "2011": 55,
+          "2012": 171,
+          "2013": 142,
+          "2014": 101,
+          "2015": 74,
+          "2016": 68,
+          "2017": 55,
+          "2018": 33,
+          "2019": 18,
+          "2020": 32,
+          "2021": 20,
+          "2022": 124,
+          "2023": 166,
+          "2024": 163
+        },
+        "share_fy24_pct": 0.0,
+        "cagr_11_24_pct": 9.0,
+        "avg_11_24": 87,
+        "avg_share_pct": 0.0
+      },
+      {
+        "label_ko": "외상매출금 대손충당금",
+        "yearly": {
+          "2011": 0,
+          "2012": 0,
+          "2013": 0,
+          "2014": 33,
+          "2015": 124,
+          "2016": 49,
+          "2017": 90,
+          "2018": 71,
+          "2019": 0,
+          "2020": 364,
+          "2021": 8,
+          "2022": 156,
+          "2023": 0,
+          "2024": 120
+        },
+        "share_fy24_pct": 0.0,
+        "cagr_11_24_pct": null,
+        "avg_11_24": 72,
+        "avg_share_pct": 0.0
+      },
+      {
+        "label_ko": "우편, 전화 및 팩스비",
+        "yearly": {
+          "2011": 80,
+          "2012": 101,
+          "2013": 96,
+          "2014": 102,
+          "2015": 118,
+          "2016": 106,
+          "2017": 98,
+          "2018": 99,
+          "2019": 84,
+          "2020": 85,
+          "2021": 90,
+          "2022": 83,
+          "2023": 62,
+          "2024": 41
+        },
+        "share_fy24_pct": 0.0,
+        "cagr_11_24_pct": null,
+        "avg_11_24": 89,
+        "avg_share_pct": 0.0
+      },
+      {
+        "label_ko": "재고자산 폐기",
+        "yearly": {
+          "2011": 0,
+          "2012": 0,
+          "2013": 0,
+          "2014": 92,
+          "2015": 0,
+          "2016": 0,
+          "2017": 0,
+          "2018": 0,
+          "2019": 0,
+          "2020": 0,
+          "2021": 0,
+          "2022": 0,
+          "2023": 1,
+          "2024": 8
+        },
+        "share_fy24_pct": 0.0,
+        "cagr_11_24_pct": null,
+        "avg_11_24": 7,
+        "avg_share_pct": 0.0
+      },
+      {
+        "label_ko": "재고자산 평가충당금",
+        "yearly": {
+          "2011": 0,
+          "2012": 0,
+          "2013": 0,
+          "2014": 0,
+          "2015": 2,
+          "2016": 0,
+          "2017": 16,
+          "2018": 15,
+          "2019": 9,
+          "2020": 9,
+          "2021": 416,
+          "2022": 0,
+          "2023": 202,
+          "2024": 0
+        },
+        "share_fy24_pct": 0.0,
+        "cagr_11_24_pct": null,
+        "avg_11_24": 48,
+        "avg_share_pct": 0.0
+      }
+    ],
+    "total": {
+      "label_ko": "Total",
+      "yearly": {
+        "2011": 25789,
+        "2012": 22705,
+        "2013": 28604,
+        "2014": 32629,
+        "2015": 38640,
+        "2016": 40888,
+        "2017": 43865,
+        "2018": 53230,
+        "2019": 54953,
+        "2020": 50455,
+        "2021": 50983,
+        "2022": 57347,
+        "2023": 65528,
+        "2024": 76117
+      },
+      "share_fy24_pct": null,
+      "cagr_11_24_pct": 9.0,
+      "avg_11_24": 45838,
+      "avg_share_pct": null
+    },
+    "note": "18 OPEX 항목 + Total. share/avg/CAGR 칼럼 별도 추출. PBB는 별도 슬라이드 12 참조."
+  },
+  "organization_13y": {
+    "source_slide": 11,
+    "source_title": "10. OPEX - 조직 운영",
+    "headcount": {
+      "years": [
+        "2012",
+        "2013",
+        "2014",
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024"
+      ],
+      "departments": {
+        "HRD & Trading": {
+          "2012": 4,
+          "2013": 4,
+          "2014": 4,
+          "2015": 4,
+          "2016": 4,
+          "2017": 5,
+          "2018": 6,
+          "2019": 8,
+          "2020": 8,
+          "2021": 10,
+          "2022": 12,
+          "2023": 11,
+          "2024": 10,
+          "avg": 7
+        },
+        "GA & IT": {
+          "2012": 14,
+          "2013": 11,
+          "2014": 19,
+          "2015": 17,
+          "2016": 20,
+          "2017": 19,
+          "2018": 19,
+          "2019": 16,
+          "2020": 16,
+          "2021": 16,
+          "2022": 16,
+          "2023": 16,
+          "2024": 15,
+          "avg": 16
+        },
+        "Finance & Accounting": {
+          "2012": 24,
+          "2013": 24,
+          "2014": 23,
+          "2015": 23,
+          "2016": 23,
+          "2017": 24,
+          "2018": 24,
+          "2019": 25,
+          "2020": 26,
+          "2021": 27,
+          "2022": 26,
+          "2023": 31,
+          "2024": 30,
+          "avg": 25
+        },
+        "Golf Course Maintenance": {
+          "2012": 28,
+          "2013": 26,
+          "2014": 24,
+          "2015": 24,
+          "2016": 24,
+          "2017": 23,
+          "2018": 23,
+          "2019": 25,
+          "2020": 25,
+          "2021": 24,
+          "2022": 25,
+          "2023": 22,
+          "2024": 22,
+          "avg": 24
+        },
+        "Property Maintenance": {
+          "2012": 24,
+          "2013": 23,
+          "2014": 22,
+          "2015": 20,
+          "2016": 19,
+          "2017": 19,
+          "2018": 20,
+          "2019": 20,
+          "2020": 52,
+          "2021": 47,
+          "2022": 43,
+          "2023": 39,
+          "2024": 36,
+          "avg": 45
+        },
+        "Security": {
+          "2012": 30,
+          "2013": 28,
+          "2014": 26,
+          "2015": 25,
+          "2016": 25,
+          "2017": 23,
+          "2018": 22,
+          "2019": 22,
+          "2020": null,
+          "2021": null,
+          "2022": null,
+          "2023": null,
+          "2024": null,
+          "avg": null
+        },
+        "Golf Operation": {
+          "2012": 40,
+          "2013": 38,
+          "2014": 36,
+          "2015": 35,
+          "2016": 35,
+          "2017": 35,
+          "2018": 36,
+          "2019": 37,
+          "2020": 28,
+          "2021": 29,
+          "2022": 28,
+          "2023": 28,
+          "2024": 29,
+          "avg": 33
+        },
+        "Driving Range": {
+          "2012": 5,
+          "2013": 5,
+          "2014": 5,
+          "2015": 8,
+          "2016": 5,
+          "2017": 5,
+          "2018": 5,
+          "2019": 5,
+          "2020": 5,
+          "2021": 5,
+          "2022": 9,
+          "2023": 4,
+          "2024": 9,
+          "avg": 6
+        },
+        "Membership & Marketing": {
+          "2012": 6,
+          "2013": 7,
+          "2014": 8,
+          "2015": 8,
+          "2016": 8,
+          "2017": 8,
+          "2018": 7,
+          "2019": 8,
+          "2020": 11,
+          "2021": 11,
+          "2022": 13,
+          "2023": 12,
+          "2024": 14,
+          "avg": 9
+        },
+        "Food & Beverage": {
+          "2012": 56,
+          "2013": 55,
+          "2014": 58,
+          "2015": 56,
+          "2016": 55,
+          "2017": 55,
+          "2018": 57,
+          "2019": 72,
+          "2020": 76,
+          "2021": 72,
+          "2022": 86,
+          "2023": 85,
+          "2024": 86,
+          "avg": 67
+        },
+        "The Gym": {
+          "2012": null,
+          "2013": null,
+          "2014": 7,
+          "2015": 8,
+          "2016": 5,
+          "2017": 6,
+          "2018": 6,
+          "2019": 6,
+          "2020": 6,
+          "2021": 6,
+          "2022": 8,
+          "2023": 5,
+          "2024": 6,
+          "avg": 6
+        },
+        "Total": {
+          "2012": 231,
+          "2013": 221,
+          "2014": 232,
+          "2015": 228,
+          "2016": 223,
+          "2017": 222,
+          "2018": 225,
+          "2019": 244,
+          "2020": 253,
+          "2021": 247,
+          "2022": 266,
+          "2023": 253,
+          "2024": 257,
+          "avg": 240
+        },
+        "합계 (F&B 제외)": {
+          "2012": 175,
+          "2013": 166,
+          "2014": 174,
+          "2015": 172,
+          "2016": 168,
+          "2017": 167,
+          "2018": 168,
+          "2019": 172,
+          "2020": 177,
+          "2021": 175,
+          "2022": 180,
+          "2023": 168,
+          "2024": 171,
+          "avg": 173
+        }
+      }
+    },
+    "labor_cost": {
+      "years": [
+        "2012",
+        "2013",
+        "2014",
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024"
+      ],
+      "lines": {
+        "급여 및 수당": {
+          "2012": 7095,
+          "2013": 7710,
+          "2014": 9291,
+          "2015": 10355,
+          "2016": 11538,
+          "2017": 12457,
+          "2018": 12954,
+          "2019": 12414,
+          "2020": 12482,
+          "2021": 13363,
+          "2022": 14256,
+          "2023": 15215,
+          "2024": 17879
+        },
+        "종업원급여충당금": {
+          "2012": 1664,
+          "2013": 1946,
+          "2014": 2313,
+          "2015": 2133,
+          "2016": 2028,
+          "2017": 2251,
+          "2018": 2565,
+          "2019": 3268,
+          "2020": 2314,
+          "2021": 1937,
+          "2022": -1610,
+          "2023": 1354,
+          "2024": 1338
+        },
+        "인건비 합": {
+          "2012": 8759,
+          "2013": 9656,
+          "2014": 11604,
+          "2015": 12488,
+          "2016": 13566,
+          "2017": 14708,
+          "2018": 15519,
+          "2019": 15682,
+          "2020": 14796,
+          "2021": 15300,
+          "2022": 12646,
+          "2023": 16568,
+          "2024": 19217
+        },
+        "- 인건비 상승률 (CAGR 7%)": {
+          "2012": null,
+          "2013": 10,
+          "2014": 20,
+          "2015": 8,
+          "2016": 9,
+          "2017": 8,
+          "2018": 6,
+          "2019": 1,
+          "2020": -6,
+          "2021": 3,
+          "2022": -17,
+          "2023": 31,
+          "2024": 16
+        },
+        "평균 인당 인건비": {
+          "2012": 38,
+          "2013": 44,
+          "2014": 50,
+          "2015": 55,
+          "2016": 61,
+          "2017": 66,
+          "2018": 69,
+          "2019": 64,
+          "2020": 58,
+          "2021": 62,
+          "2022": 48,
+          "2023": 65,
+          "2024": 75
+        }
+      },
+      "unit": "IDR Million / persons"
+    },
+    "note": "Headcount FY2012-FY2024 (13y). Avg ~240-250 total, ~170 ex-F&B."
+  },
+  "pbb_13y": {
+    "source_slide": 12,
+    "source_title": "11. OPEX – 토지/빌딩세",
+    "unit": "IDR (raw rupiah, NOT million) — verified against opex_14y[\"세금 및 법률 관련비용\"] FY24=24,206 IDR Mil ≈ PBB FY24=23.3B IDR.",
+    "note": "PBB(토지·빌딩세) CAGR(2012~2024) ~17%. 전체 OPEX 약 30% 차지.",
+    "yearly_pbb_total_idr": {
+      "2012": 3674179200,
+      "2014": 7205237037,
+      "2015": 9377605768,
+      "2016": 10592945270,
+      "2017": 11448504737,
+      "2018": 19427616792,
+      "2019": 21112408800,
+      "2020": 16889927040,
+      "2021": 16889927040,
+      "2022": 17920556815,
+      "2023": 20090866463,
+      "2024": 23337307924
+    },
+    "raw_tables": {
+      "table_fy12_17": [
+        [
+          "면적 (SQM)",
+          "",
+          "2012",
+          "",
+          "2013",
+          "면적 (SQM)",
+          "",
+          "2014",
+          "",
+          "2015",
+          "",
+          "2016",
+          "",
+          "면적 (SQM)",
+          "",
+          "2017",
+          ""
+        ],
+        [
+          "",
+          "",
+          "공시가격",
+          "PBB",
+          "공시가격",
+          "",
+          "",
+          "공시가격",
+          "PBB",
+          "공시가격",
+          "PBB",
+          "공시가격",
+          "PBB",
+          "",
+          "",
+          "공시가격",
+          "PBB"
+        ],
+        [
+          "172,316",
+          "토지",
+          "3,375,000",
+          "1,181,620,200",
+          "미공시",
+          "166,435",
+          "토지",
+          "7,455,000",
+          "2,250,029,745",
+          "9,645,000",
+          "2,906,116,515",
+          "미공시",
+          "2,969,583,759",
+          "146,619",
+          "토지",
+          "11,305,000",
+          "3,097,426,311"
+        ],
+        [
+          "7,703",
+          "빌딩",
+          "1,200,000",
+          "",
+          "",
+          "7,703",
+          "빌딩",
+          "1,200,000",
+          "",
+          "1,200,000",
+          "",
+          "",
+          "",
+          "15,063",
+          "빌딩",
+          "4,200,000",
+          ""
+        ],
+        [
+          "46,523",
+          "토지",
+          "3,375,000",
+          "314,030,250",
+          "",
+          "46,523",
+          "토지",
+          "7,455,000",
+          "624,292,137",
+          "9,645,000",
+          "807,685,803",
+          "",
+          "669,353,355",
+          "93,521",
+          "토지",
+          "11,305,000",
+          "855,878,940"
+        ],
+        [
+          "105,883",
+          "토지",
+          "3,375,000",
+          "714,710,250",
+          "",
+          "105,883",
+          "토지",
+          "7,455,000",
+          "1,420,843,977",
+          "9,645,000",
+          "1,838,234,763",
+          "",
+          "1,785,979,889",
+          "42,060",
+          "토지",
+          "11,305,000",
+          "1,903,058,829"
+        ],
+        [
+          "7,332",
+          "토지",
+          "3,375,000",
+          "49,491,000",
+          "",
+          "7,332",
+          "토지",
+          "7,455,000",
+          "98,388,108",
+          "9,645,000",
+          "127,290,852",
+          "",
+          "802,847,871",
+          "39,638",
+          "토지",
+          "11,305,000",
+          "860,366,573"
+        ],
+        [
+          "209,530",
+          "토지",
+          "3,375,000",
+          "1,414,327,500",
+          "",
+          "209,530",
+          "토지",
+          "7,455,000",
+          "2,811,683,070",
+          "9,645,000",
+          "3,698,277,835",
+          "",
+          "4,365,180,396",
+          "209,530",
+          "토지",
+          "10,455,000",
+          "4,731,774,084"
+        ],
+        [
+          "541,584",
+          "",
+          "",
+          "3,674,179,200",
+          "",
+          "535,703",
+          "",
+          "",
+          "7,205,237,037",
+          "",
+          "9,377,605,768",
+          "",
+          "10,592,945,270",
+          "531,368",
+          "",
+          "",
+          "11,448,504,737"
+        ]
+      ],
+      "table_fy18_24": [
+        [
+          "면적 (SQM)",
+          "",
+          "2018",
+          "",
+          "2019",
+          "",
+          "2020",
+          "",
+          "2021",
+          "",
+          "2022",
+          "",
+          "2023",
+          "",
+          "2024",
+          ""
+        ],
+        [
+          "",
+          "",
+          "공시\n가격",
+          "PBB",
+          "공시\n가격",
+          "PBB",
+          "공시\n가격",
+          "PBB",
+          "공시\n가격",
+          "PBB",
+          "공시\n가격",
+          "PBB",
+          "공시\n가격",
+          "PBB",
+          "공시\n가격",
+          "PBB"
+        ],
+        [
+          "146,619",
+          "토지",
+          "12,423,000",
+          "5,654,137,311",
+          "13,125,000",
+          "5,962,916,925",
+          "‘19년\n동일",
+          "4,770,333,540",
+          "16,155,000",
+          "4,770,333,540",
+          "‘21년\n동일",
+          "5,271,131,427",
+          "16,155,000",
+          "5,909,503,745",
+          "‘23년\n동일",
+          "6,565,953,272"
+        ],
+        [
+          "15,063",
+          "빌딩",
+          "4,200,000",
+          "",
+          "4,200,000",
+          "",
+          "",
+          "",
+          "4,200,000",
+          "",
+          "",
+          "",
+          "4,200,000",
+          "",
+          "",
+          ""
+        ],
+        [
+          "93,521",
+          "토지",
+          "12,423,000",
+          "1,567,534,140",
+          "13,125,000",
+          "1,656,112,500",
+          "",
+          "1,324,890,000",
+          "16,155,000",
+          "1,324,890,000",
+          "",
+          "3,274,727,830",
+          "16,155,000",
+          "3,671,321,166",
+          "",
+          "4,079,245,739"
+        ],
+        [
+          "42,060",
+          "토지",
+          "12,423,000",
+          "3,485,434,149",
+          "13,125,000",
+          "3,682,389,375",
+          "",
+          "2,945,911,500",
+          "16,155,000",
+          "2,945,911,500",
+          "",
+          "1,472,771,383",
+          "16,155,000",
+          "1,651,134,699",
+          "",
+          "1,834,594,110"
+        ],
+        [
+          "39,638",
+          "토지",
+          "12,423,000",
+          "1,477,268,622",
+          "13,125,000",
+          "1,560,746,250",
+          "",
+          "1,248,597,000",
+          "16,155,000",
+          "1,248,597,000",
+          "",
+          "1,387,962,722",
+          "16,155,000",
+          "1,556,055,093",
+          "",
+          "1,728,950,103"
+        ],
+        [
+          "209,530",
+          "토지",
+          "11,523,000",
+          "7,243,242,570",
+          "13,125,000",
+          "8,250,243,750",
+          "",
+          "6,600,195,000",
+          "16,155,000",
+          "6,600,195,000",
+          "",
+          "6,513,963,453",
+          "14,343,000",
+          "7,302,851,760",
+          "",
+          "9,128,564,700"
+        ],
+        [
+          "531,368",
+          "",
+          "",
+          "19,427,616,792",
+          "",
+          "21,112,408,800",
+          "",
+          "16,889,927,040",
+          "",
+          "16,889,927,040",
+          "",
+          "17,920,556,815",
+          "",
+          "20,090,866,463",
+          "",
+          "23,337,307,924"
+        ]
+      ]
+    },
+    "caveat": "병합 셀이 많은 표 구조로 FY2013은 PBB 컬럼이 표 헤더에 별도 존재하지 않아 누락(필요 시 interpolation 권장). raw_tables는 검증용으로 보존."
+  },
+  "contracts": {
+    "source_slide": 13,
+    "source_title": "12. 기타 - 주요 계약 목록 / 물 사용",
+    "agreements": [
+      {
+        "counterparty": "PT Kokoh Bangun Persada",
+        "contract": "골프카트 임대 및 운영",
+        "revenue_classification": "수익 공유 50%"
+      },
+      {
+        "counterparty": "PT Berca Sportindo",
+        "contract": "드라이빙레인지 프로샵 사무실 임대",
+        "revenue_classification": "임대 수익 + 수익 공유 7%"
+      },
+      {
+        "counterparty": "PT Berca Sportindo",
+        "contract": "프로샵 사무실 임대",
+        "revenue_classification": "임대 수익 + 수익 공유 9%"
+      },
+      {
+        "counterparty": "PT Metropolitan Kentjana Tbk",
+        "contract": "수영장 운영권 임대",
+        "revenue_classification": "임대 수익"
+      },
+      {
+        "counterparty": "PT Securindo Packatama Indonesia",
+        "contract": "주차관리 용역",
+        "revenue_classification": "수익 공유"
+      },
+      {
+        "counterparty": "CV Mutiara Rengganis",
+        "contract": "스파 운영",
+        "revenue_classification": "임대 수익 + 수익 공유 65%"
+      },
+      {
+        "counterparty": "PT Bank Mandiri (Persero) Tbk",
+        "contract": "ATM 공간 임대",
+        "revenue_classification": "임대 수익"
+      },
+      {
+        "counterparty": "PT Bank Central Asia Tbk",
+        "contract": "ATM 공간 임대",
+        "revenue_classification": "임대 수익"
+      },
+      {
+        "counterparty": "PT Bank CIMB Niaga Tbk",
+        "contract": "ATM 공간 임대",
+        "revenue_classification": "임대 수익"
+      },
+      {
+        "counterparty": "PT Bank Rakyat Indonesia (Persero) Tbk",
+        "contract": "ATM 공간 임대",
+        "revenue_classification": "임대 수익"
+      },
+      {
+        "counterparty": "PT Bank Negara Indonesia (Persero) Tbk",
+        "contract": "ATM 공간 임대",
+        "revenue_classification": "임대 수익"
+      },
+      {
+        "counterparty": "PT Epid Menara Assetco",
+        "contract": "통신장비 부지 임대",
+        "revenue_classification": "임대 수익"
+      },
+      {
+        "counterparty": "PT Madrajasa Trimitra Indonesia",
+        "contract": "통신장비 부지 임대",
+        "revenue_classification": "임대 수익"
+      },
+      {
+        "counterparty": "PT Sarana Nusantara Niagatama",
+        "contract": "골프갤러리 빌딩 공간 임대",
+        "revenue_classification": "임대 수익"
+      },
+      {
+        "counterparty": "PT Global Teknologi Niaga",
+        "contract": "골프갤러리 빌딩 공간 임대",
+        "revenue_classification": "임대 수익"
+      },
+      {
+        "counterparty": "PT Nasional Golf Akademi",
+        "contract": "골프갤러리 빌딩 공간 임대",
+        "revenue_classification": "임대 수익"
+      },
+      {
+        "counterparty": "PT Indah Cipta Lestari",
+        "contract": "골프갤러리 빌딩 공간 임대",
+        "revenue_classification": "임대 수익"
+      },
+      {
+        "counterparty": "PT Pelita Boga Sejahtera",
+        "contract": "골프갤러리 빌딩 공간 임대",
+        "revenue_classification": "임대 수익"
+      },
+      {
+        "counterparty": "PT Mitra Sehatama Abadi",
+        "contract": "골프갤러리 빌딩 공간 임대",
+        "revenue_classification": "임대 수익"
+      },
+      {
+        "counterparty": "PT Bank Commonwealth",
+        "contract": "출구정문 광고판",
+        "revenue_classification": "광고 수익"
+      },
+      {
+        "counterparty": "PT Bank Mandiri (Persero) Tbk",
+        "contract": "브랜딩 협업",
+        "revenue_classification": "광고 수익"
+      }
+    ],
+    "agreements_count": 21,
+    "water_usage": {
+      "years": [
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024"
+      ],
+      "lines": {
+        "WTP Water (정수)": {
+          "2019": 28417,
+          "2020": 24378,
+          "2021": 31212,
+          "2022": 50735,
+          "2023": 47542,
+          "2024": 41057
+        },
+        "PDAM Water (상수도)": {
+          "2019": 3875,
+          "2020": 777,
+          "2021": 896,
+          "2022": 1057,
+          "2023": 3386,
+          "2024": 2310
+        },
+        "Groundwater (지하수)": {
+          "2019": null,
+          "2020": 677,
+          "2021": null,
+          "2022": null,
+          "2023": null,
+          "2024": null
+        },
+        "Total (m3)": {
+          "2019": 32292,
+          "2020": 25832,
+          "2021": 32108,
+          "2022": 51792,
+          "2023": 50928,
+          "2024": 43367
+        }
+      },
+      "unit": "m³"
+    }
+  },
+  "extraction_versions": {
+    "v2_added_at": "2026-05-13",
+    "v2_sections": [
+      "capex_ppe_14y",
+      "capex_auxiliary",
+      "opex_14y",
+      "organization_13y",
+      "pbb_13y",
+      "contracts"
+    ]
   }
 }
