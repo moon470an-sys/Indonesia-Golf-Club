@@ -83,7 +83,7 @@ html = '''<!DOCTYPE html>
 <title>단위 경제 — 인도네시아 골프 운영 벤치마크</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="ops-style.css?v=20260513fy25a" />
+<link rel="stylesheet" href="ops-style.css?v=20260513fy25v2" />
 <style>
   .year-bar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:14px 0 4px 0; }
   .year-bar label { font-size:13px; font-weight:600; color:var(--ops-ink-soft); }
@@ -293,7 +293,7 @@ html = '''<!DOCTYPE html>
       <button class="year-btn" data-year="2022">FY2022</button>
       <button class="year-btn" data-year="2023">FY2023</button>
       <button class="year-btn active" data-year="2024">FY2024</button>
-      <button class="year-btn" data-year="2025">FY2025 <span style="font-size:10px; opacity:0.7;">⚠ 일부</span></button>
+      <button class="year-btn" data-year="2025">FY2025</button>
     </div>
   </div>
 </section>

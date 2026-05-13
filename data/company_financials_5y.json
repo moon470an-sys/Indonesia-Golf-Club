@@ -238,13 +238,13 @@
           ]
         },
         "2025": {
-          "revenue": 12788452336734,
-          "operating_profit": 3447178841678,
-          "net_profit": 2857738492944,
+          "revenue": 12788452000000,
+          "operating_profit": 3936274000000,
+          "net_profit": 2545381000000,
           "ebitda": null,
-          "total_assets": null,
-          "total_liabilities": null,
-          "total_equity": null,
+          "total_assets": 79268402000000,
+          "total_liabilities": 26599498000000,
+          "total_equity": 52668905000000,
           "eps": null,
           "dividend_per_share": null,
           "employees": null,
@@ -401,13 +401,13 @@
           ]
         },
         "2025": {
-          "revenue": 251253870267,
-          "operating_profit": 69446548893,
-          "net_profit": 75023832300,
+          "revenue": 251254000000,
+          "operating_profit": 69447000000,
+          "net_profit": 75024000000,
           "ebitda": null,
-          "total_assets": 719678622806,
-          "total_liabilities": 181427732411,
-          "total_equity": 538250890395,
+          "total_assets": 719679000000,
+          "total_liabilities": 181428000000,
+          "total_equity": 538251000000,
           "eps": 35828000,
           "dividend_per_share": null,
           "employees": null,
@@ -562,13 +562,13 @@
           ]
         },
         "2025": {
-          "revenue": null,
-          "operating_profit": null,
-          "net_profit": null,
-          "ebitda": null,
-          "total_assets": null,
-          "total_liabilities": null,
-          "total_equity": null,
+          "revenue": 2615281000000,
+          "operating_profit": 685553000000,
+          "net_profit": 717222000000,
+          "ebitda": 829034000000,
+          "total_assets": 35994124000000,
+          "total_liabilities": 7226096000000,
+          "total_equity": 28768028000000,
           "eps": null,
           "dividend_per_share": null,
           "employees": null,
@@ -882,6 +882,15 @@
               "date_accessed": "2026-05-01"
             }
           ]
+        },
+        "2025": {
+          "revenue": 1379377000000,
+          "operating_profit": 110234000000,
+          "net_profit": -16697000000,
+          "ebitda": 182258000000,
+          "total_assets": 8637625000000,
+          "total_liabilities": 2635123000000,
+          "total_equity": 6002502000000
         }
       },
       "summary_note": "5년 연속 적자. 매출은 Rp 616B→1.21T 두 배. 2024년 영업이익 첫 흑자 전환(75B). 자산 Rp 11.8T→8.7T 축소.",
@@ -1007,13 +1016,13 @@
           ]
         },
         "2025": {
-          "revenue": 1644143359549,
-          "operating_profit": null,
-          "net_profit": null,
-          "ebitda": null,
-          "total_assets": null,
-          "total_liabilities": null,
-          "total_equity": null,
+          "revenue": 1013159000000,
+          "operating_profit": 105167000000,
+          "net_profit": 241713000000,
+          "ebitda": 165928000000,
+          "total_assets": 13451083000000,
+          "total_liabilities": 9714483000000,
+          "total_equity": 3736601000000,
           "eps": null,
           "dividend_per_share": null,
           "employees": null,
@@ -1153,13 +1162,13 @@
           ]
         },
         "2025": {
-          "revenue": null,
-          "operating_profit": null,
-          "net_profit": null,
-          "ebitda": null,
-          "total_assets": null,
-          "total_liabilities": null,
-          "total_equity": null,
+          "revenue": 5149425000000,
+          "operating_profit": 1422399000000,
+          "net_profit": 423198000000,
+          "ebitda": 1607806000000,
+          "total_assets": 15056220000000,
+          "total_liabilities": 6911851000000,
+          "total_equity": 8144369000000,
           "eps": null,
           "dividend_per_share": null,
           "employees": null,
@@ -1422,13 +1431,13 @@
           ]
         },
         "2025": {
-          "revenue": 383119751628,
-          "operating_profit": null,
-          "net_profit": null,
-          "ebitda": null,
-          "total_assets": null,
-          "total_liabilities": null,
-          "total_equity": null,
+          "revenue": 386085000000,
+          "operating_profit": 49544000000,
+          "net_profit": 22110000000,
+          "ebitda": 64740000000,
+          "total_assets": 3531806000000,
+          "total_liabilities": 269513000000,
+          "total_equity": 3262293000000,
           "eps": null,
           "dividend_per_share": null,
           "employees": null,
@@ -1573,6 +1582,15 @@
               "date_accessed": "2026-05-01"
             }
           ]
+        },
+        "2025": {
+          "revenue": 8843888000000,
+          "operating_profit": 720714000000,
+          "net_profit": 469535000000,
+          "ebitda": 917135000000,
+          "total_assets": 49247221000000,
+          "total_liabilities": 18196206000000,
+          "total_equity": 31051015000000
         }
       },
       "summary_note": "Imperial Klub 모회사. 2024 순이익 Rp 18.75T는 SILO(Siloam) 분리매각 일회성 이익. 직원수 15,549→1,708 급감(분리 반영).",
@@ -1698,13 +1716,13 @@
           ]
         },
         "2025": {
-          "revenue": 8766927470000,
-          "operating_profit": null,
-          "net_profit": null,
-          "ebitda": null,
-          "total_assets": null,
-          "total_liabilities": null,
-          "total_equity": null,
+          "revenue": 8766927000000,
+          "operating_profit": 2517415000000,
+          "net_profit": 766550000000,
+          "ebitda": 2877557000000,
+          "total_assets": 38342512000000,
+          "total_liabilities": 22337631000000,
+          "total_equity": 16004880000000,
           "eps": null,
           "dividend_per_share": null,
           "employees": null,
@@ -2356,13 +2374,13 @@
           ]
         },
         "2025": {
-          "revenue": 215519000000,
-          "operating_profit": null,
-          "net_profit": null,
-          "ebitda": null,
-          "total_assets": null,
-          "total_liabilities": null,
-          "total_equity": null,
+          "revenue": 215520000000,
+          "operating_profit": 64868000000,
+          "net_profit": 51809000000,
+          "ebitda": 82673000000,
+          "total_assets": 8685571000000,
+          "total_liabilities": 666780000000,
+          "total_equity": 8018791000000,
           "eps": null,
           "dividend_per_share": null,
           "employees": null,
@@ -2661,13 +2679,13 @@
           ]
         },
         "2025": {
-          "revenue": 185775352369,
-          "operating_profit": 55598750416,
-          "net_profit": 56221968494,
+          "revenue": 185775000000,
+          "operating_profit": 55313000000,
+          "net_profit": 56000000000,
           "ebitda": null,
-          "total_assets": 477919451512,
-          "total_liabilities": 90935321734,
-          "total_equity": 386984129778,
+          "total_assets": 477919000000,
+          "total_liabilities": 90935000000,
+          "total_equity": 386984000000,
           "eps": 43280961,
           "dividend_per_share": null,
           "employees": null,
@@ -3312,6 +3330,15 @@
               "date_accessed": "2026-05-01"
             }
           ]
+        },
+        "2025": {
+          "revenue": 7111105000000,
+          "operating_profit": 2943746000000,
+          "net_profit": 2346120000000,
+          "ebitda": 3702881000000,
+          "total_assets": 36466038000000,
+          "total_liabilities": 9843195000000,
+          "total_equity": 26622844000000
         }
       },
       "summary_note": "Pakuwon Golf & Family Club 수라바야 운영. 매출 Rp 3.98T→6.67T(+68%), 순이익 930B→2.07T(+123%). 배당 0→13 IDR/주 5년 일관 증가. 5년 모두 흑자.",
@@ -3719,6 +3746,15 @@
               "date_accessed": "2026-05-01"
             }
           ]
+        },
+        "2025": {
+          "revenue": 12616695000000,
+          "operating_profit": 3829489000000,
+          "net_profit": 2663100000000,
+          "ebitda": 4241159000000,
+          "total_assets": 47988422000000,
+          "total_liabilities": 21069686000000,
+          "total_equity": 26918736000000
         }
       },
       "summary_note": "Ciputra Surabaya · Taman Dayu Pasuruan 등 다수 township 골프장. 매출 Rp 8.07T→11.19T(+39%), 순이익 Rp 1.32T→2.13T(+61%), 배당 Rp 8→21(+163%) 5년 안정 성장.",
