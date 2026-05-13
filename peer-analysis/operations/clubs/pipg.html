@@ -7,7 +7,7 @@
 <meta name="description" content="Pondok Indah Padang Golf (PIPG) 운영 프로파일: 코스 사양·3년 추이·골프 공시 수준·회원권·리스크 플래그." />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232D5016'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23F5F1E8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="../ops-style.css?v=20260512c52" />
+<link rel="stylesheet" href="../ops-style.css?v=20260513pipg14y" />
 <style>
   .club-hero { background: linear-gradient(135deg, #dbeafe 0%, #f0f9ff 100%); padding: 32px 0 28px; border-bottom: 1px solid var(--ops-line); }
   .club-hero h1 { font-size: 28px; margin: 12px 0 4px; }
@@ -27,6 +27,46 @@
   .risk-item.r-red { border-left-color: #b91c1c; background: #fef2f2; }
   .risk-item.r-yellow { border-left-color: #f59e0b; background: #fffbeb; }
   .risk-item.r-gray { border-left-color: #94a3b8; }
+  /* Source badges */
+  .src-badge { display:inline-block; padding:2px 8px; border-radius:10px; font-size:10.5px; font-weight:700; letter-spacing:0.04em; vertical-align:middle; margin-left:6px; }
+  .src-ppt { background:rgba(22,163,74,0.14); color:#16a34a; }
+  .src-ar { background:rgba(59,130,246,0.14); color:#1d4ed8; }
+  .src-est { background:rgba(245,158,11,0.16); color:#b45309; }
+  .src-legend { display:flex; gap:10px; flex-wrap:wrap; font-size:11.5px; color:var(--ops-muted); margin-top:10px; padding:8px 0 0; border-top:1px dashed var(--ops-line); }
+  /* Collapsible 14년 view */
+  details.expand-14y { margin-top:14px; }
+  details.expand-14y > summary { cursor:pointer; padding:8px 14px; background:var(--ops-surface); border:1px solid var(--ops-line); border-radius:6px; font-size:12.5px; font-weight:600; color:var(--ops-ink-soft); list-style:none; }
+  details.expand-14y > summary::before { content:'▶ '; font-size:10px; color:var(--ops-green); transition:transform 0.15s; display:inline-block; margin-right:4px; }
+  details.expand-14y[open] > summary::before { transform:rotate(90deg); }
+  details.expand-14y > summary:hover { background:rgba(45,80,22,0.05); color:var(--ops-ink); }
+  /* Wide 14-year table */
+  .wide-tbl { width:100%; border-collapse:collapse; font-size:11.5px; font-variant-numeric:tabular-nums; }
+  .wide-tbl th, .wide-tbl td { padding:6px 7px; text-align:right; border-bottom:1px solid var(--ops-line); white-space:nowrap; }
+  .wide-tbl th:first-child, .wide-tbl td:first-child { text-align:left; font-weight:600; position:sticky; left:0; background:var(--ops-bg); z-index:1; max-width:170px; overflow:hidden; text-overflow:ellipsis; }
+  .wide-tbl thead th { background:var(--ops-surface); color:var(--ops-muted); font-size:10.5px; text-transform:uppercase; letter-spacing:0.03em; }
+  .wide-tbl tbody tr:hover td { background:rgba(45,80,22,0.04); }
+  .wide-tbl tbody tr.total td { background:rgba(45,80,22,0.07); font-weight:700; border-top:2px solid var(--ops-line); }
+  .wide-tbl tbody td.pct-col { color:var(--ops-muted); font-size:10.5px; }
+  /* Land rights inventory */
+  .land-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:8px; margin-top:10px; }
+  .land-card { background:var(--ops-surface); border:1px solid var(--ops-line); border-radius:8px; padding:10px 14px; }
+  .land-card.expire-soon { border-left:3px solid #b91c1c; background:rgba(185,28,28,0.04); }
+  .land-card.expire-mid { border-left:3px solid #f59e0b; }
+  .land-card.expire-far { border-left:3px solid #16a34a; }
+  .land-card .parcel { font-weight:700; font-size:13px; color:var(--ops-ink); }
+  .land-card .validity { font-size:11.5px; color:var(--ops-ink-soft); margin-top:2px; }
+  .land-card .area { font-size:14px; font-weight:700; color:var(--ops-ink); margin-top:6px; font-variant-numeric:tabular-nums; }
+  /* Traffic stack metrics */
+  .metric-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:10px; margin:14px 0; }
+  .metric-card { background:linear-gradient(135deg, rgba(45,80,22,0.05), rgba(45,80,22,0.01)); border:1px solid var(--ops-line); border-left:3px solid var(--ops-green); border-radius:8px; padding:10px 14px; }
+  .metric-card .ml { font-size:11px; color:var(--ops-muted); font-weight:700; letter-spacing:0.04em; text-transform:uppercase; }
+  .metric-card .mv { font-size:18px; color:var(--ops-ink); font-weight:700; margin-top:4px; font-variant-numeric:tabular-nums; }
+  .metric-card .ms { font-size:11.5px; color:var(--ops-ink-soft); margin-top:2px; }
+  /* Status pill */
+  .yr-pill { display:inline-block; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:600; margin-right:6px; }
+  .yr-pill.yr-2025 { background:#16a34a; color:white; }
+  .yr-pill.yr-2024 { background:#3b82f6; color:white; }
+  .yr-pill.yr-2011 { background:#94a3b8; color:white; }
 </style>
 </head>
 <body>
@@ -76,18 +116,89 @@
 
 <section class="ops-section">
   <div class="ops-wrap">
-    <h2>2. 3년 추이 (FY2022 → FY2024)</h2>
+    <h2>2. 단기 추이 <span class="src-badge src-ar">🔵 AR FY22-25</span></h2>
     <h3>그룹 차원 P&amp;L · 자산 (curated 5y JSON)</h3>
     <div class="tbl-card scroll-x"><table class="trend-tbl">
         <thead><tr><th>Fiscal Year</th><th>매출 (Rp bn)</th><th>영업이익 (Rp bn)</th><th>순이익 (Rp bn)</th><th>총자산 (Rp bn)</th></tr></thead>
         <tbody><tr><td>FY2022</td><td>162.6</td><td>42.6</td><td>42.3</td><td>372.4</td></tr><tr><td>FY2023</td><td>203.1</td><td>53.8</td><td>52.5</td><td>414.0</td></tr><tr><td>FY2024</td><td>197.6</td><td>53.5</td><td>55.9</td><td>446.1</td></tr><tr><td>FY2025</td><td>185.8</td><td>55.6</td><td>56.2</td><td>477.9</td></tr></tbody></table></div>
-        <p class="src" style="margin-top:8px;">출처: site/data/company_financials_5y.json (curated). FY25는 Cycle 167-168 AR 직접 추출 데이터 (가용 peer만).</p>
+
+    <details class="expand-14y" id="exp-14y-pnl">
+      <summary>📊 14년 P&L 펼쳐 보기 (FY2011 → FY2024, 내부 자료 <span class="src-badge src-ppt" style="font-size:9.5px;">🟢 PPT</span>)</summary>
+      <div class="tbl-card scroll-x" style="margin-top:10px;">
+        <table class="wide-tbl" id="tbl-pnl-14y"></table>
+      </div>
+      <p class="src" style="margin-top:8px;">출처: Pondok Indah 골프장 운영 분석.pptx (Slide 4, 내부 분석 자료 2025-11). Rp Mil.</p>
+    </details>
+
+    <div class="src-legend">
+      <span><span class="src-badge src-ppt">🟢 PPT</span> 내부 자료 (FY11-24)</span>
+      <span><span class="src-badge src-ar">🔵 AR</span> 공시 (FY22-25)</span>
+      <span><span class="src-badge src-est">🟡 추정</span> 보간/추론</span>
+    </div>
+  </div>
+</section>
+
+<!-- NEW: Segment revenue breakdown (12 categories × 14 years) -->
+<section class="ops-section" id="sec-segment-rev">
+  <div class="ops-wrap">
+    <h2>3. 매출 부문 분해 (12 카테고리) <span class="src-badge src-ppt">🟢 PPT</span></h2>
+    <p class="lede">PIPG 매출을 12 영업 부문으로 분해 (FY2011-FY2024). 골프코스·F&amp;B·회원권·Driving Range·임대·카트·아카데미·헬스장·상품·대회 등.</p>
+    <details class="expand-14y" open>
+      <summary id="seg-rev-summary">📈 14년 표 (Rp Mil.) — 클릭하여 펼침/접기</summary>
+      <div class="tbl-card scroll-x" style="margin-top:10px;">
+        <table class="wide-tbl" id="tbl-seg-rev"></table>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- NEW: Segment COGS breakdown -->
+<section class="ops-section" id="sec-segment-cogs">
+  <div class="ops-wrap">
+    <h2>4. 매출원가 부문 분해 (12 카테고리) <span class="src-badge src-ppt">🟢 PPT</span></h2>
+    <p class="lede">매출원가도 동일 12 부문 분해. FY2024 매출총이익률 65% (gross profit / revenue).</p>
+    <details class="expand-14y">
+      <summary>📉 14년 표 (Rp Mil.) — 클릭하여 펼침</summary>
+      <div class="tbl-card scroll-x" style="margin-top:10px;">
+        <table class="wide-tbl" id="tbl-seg-cogs"></table>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- NEW: Traffic & per-capita -->
+<section class="ops-section" id="sec-traffic">
+  <div class="ops-wrap">
+    <h2>5. 내장객·트래픽·인당 지출 <span class="src-badge src-ppt">🟢 PPT</span></h2>
+    <p class="lede">회원/비회원 방문자, Driving Range 트래픽, 인당 평균 지출 (골프 + 식음료). 15년 (FY2010-FY2024).</p>
+    <div class="metric-grid" id="traffic-summary"></div>
+    <details class="expand-14y">
+      <summary>👥 골프장 방문자 추이 (FY2010-FY2024)</summary>
+      <div class="tbl-card scroll-x" style="margin-top:10px;">
+        <table class="wide-tbl" id="tbl-traffic"></table>
+      </div>
+    </details>
+    <details class="expand-14y">
+      <summary>💰 인당 평균 지출 추이 (골프 + 식음료)</summary>
+      <div class="tbl-card scroll-x" style="margin-top:10px;">
+        <table class="wide-tbl" id="tbl-spend"></table>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- NEW: Land rights inventory (HGB/HP) -->
+<section class="ops-section" id="sec-land-rights">
+  <div class="ops-wrap">
+    <h2>6. 토지권 인벤토리 (HGB/HP) <span class="src-badge src-ar">🔵 AR Note 10</span></h2>
+    <p class="lede">12 필지 합계 <strong id="land-total">530,095 m²</strong>. <strong style="color:#b91c1c;">⚠ HP No.119 (207,014 m²) 2027년 4월 만료</strong> — 전체 면적의 39%로 갱신 협상 결과가 PIPG 운영권 핵심 요인.</p>
+    <div class="land-grid" id="land-grid"></div>
   </div>
 </section>
 
 <section class="ops-section">
   <div class="ops-wrap">
-    <h2>3. 골프 부문 공시 수준</h2>
+    <h2>7. 골프 부문 공시 수준</h2>
     <p class="lede">AR Note에서 골프 사업 정보의 공시 깊이를 6 항목으로 측정. ✅ 공시 / ⚠️ 부분 / ❌ 미공시.</p>
     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:8px; margin-top:14px;">
       <div class="disc-row"><span class="lab">매출 세그먼트 분리</span><span class="val">✅</span></div>
@@ -102,14 +213,14 @@
 
 <section class="ops-section">
   <div class="ops-wrap">
-    <h2>4. 회원권 모델</h2>
+    <h2>8. 회원권 모델</h2>
     <p style="font-size:14px; line-height:1.7; color:var(--ops-ink); background:var(--ops-surface); border:1px solid var(--ops-line); border-radius:8px; padding:14px 18px;">Permanent transferable + Refundable. Iuran keanggotaan dan pendaftaran 매출 라인 (Note 27).</p>
   </div>
 </section>
 
 <section class="ops-section">
   <div class="ops-wrap">
-    <h2>5. 리스크 플래그</h2>
+    <h2>9. 리스크 플래그</h2>
     <p class="lede">AR 공시 + Cycle 추출 결과 기반. 🔴 명시 위험 / 🟡 부분 공시 / ⚪ 정상 또는 미공시.</p>
     <div class="risk-item r-red">
           <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px;">
@@ -144,11 +255,11 @@
 
 <section class="ops-section">
   <div class="ops-wrap">
-    <h2>6. 원자료</h2>
+    <h2>10. 원자료 · 출처</h2>
     <ul style="font-size:13.5px; line-height:1.8; color:var(--ops-ink-soft);">
-      <li><strong>AR 출처</strong>: https://www.golfpondokindah.com/index_sub.asp?fuseaction=annual_report</li>
-      <li><strong>operations/data JSON</strong>: <code>pipg_notes.json</code></li>
-      <li><strong>5y curated</strong>: <code>site/data/company_financials_5y.json</code></li>
+      <li><span class="src-badge src-ar">🔵 AR</span> <strong>공시 출처</strong>: <a href="https://www.golfpondokindah.com/index_sub.asp?fuseaction=annual_report" target="_blank">golfpondokindah.com Annual Report</a> · IDX (idx.co.id)</li>
+      <li><span class="src-badge src-ppt">🟢 PPT</span> <strong>내부 분석 자료</strong>: <code>Pondok Indah 골프장 운영 분석.pptx</code> (2025-11-13, 14년 시계열 + 12 부문 + HGB 12건)</li>
+      <li><strong>JSON 데이터</strong>: <code>site/data/pipg_pptx_data.json</code> (PPT 추출) · <code>pipg_notes.json</code> (AR 노트) · <code>company_financials_5y.json</code> (curated 6년)</li>
       <li><strong>골프 코스 inventory</strong>: <code>site/data/golf_courses.json</code></li>
     </ul>
   </div>
@@ -156,9 +267,111 @@
 
 <footer class="ops-foot">
   <div class="ops-wrap">
-    <p>Peer Group v2 · IDR.</p>
+    <p>Peer Group v2 · IDR. · 데이터 갱신 2026-05-13</p>
   </div>
 </footer>
 <script src="../operations.js?v=20260512c1" defer></script>
+<script>
+// Load PIPG PPT extract and populate the new sections
+fetch('../../../data/pipg_pptx_data.json')
+  .then(r => r.json())
+  .then(d => {
+    const fmt = v => (v === null || v === undefined) ? '—' : v.toLocaleString();
+    const pct = v => (v === null || v === undefined) ? '—' : v.toFixed(1) + '%';
+    // ===== Section 2 expand: 14-year P&L =====
+    const pnl = d.pnl;
+    if (pnl) {
+      const years = pnl.years;
+      const wantedLines = ['매출액','매출원가','매출총이익','판매비와 관리비','영업이익','당기순이익','EBITDA','매출총이익률 (%)','영업이익률 (%)','당기순이익률 (%)'];
+      const tbl = document.getElementById('tbl-pnl-14y');
+      let head = '<thead><tr><th>항목</th>' + years.map(y => `<th>${y}</th>`).join('') + '</tr></thead><tbody>';
+      let rows = '';
+      Object.entries(pnl.lines).forEach(([label, vals]) => {
+        rows += `<tr><td title="${label}">${label}</td>` + years.map(y => `<td>${fmt(vals[y])}</td>`).join('') + '</tr>';
+      });
+      tbl.innerHTML = head + rows + '</tbody>';
+    }
+    // ===== Segment revenue (Slide 7 Table 1) =====
+    function renderSegmentTable(tblId, sectionData) {
+      if (!sectionData) return;
+      const years = sectionData.years;
+      const segs = sectionData.segments;
+      const tbl = document.getElementById(tblId);
+      let head = '<thead><tr><th>부문</th>' + years.map(y => `<th>${y}</th>`).join('') + '<th>비중</th></tr></thead><tbody>';
+      let rows = '';
+      Object.entries(segs).forEach(([label, info]) => {
+        const isTotal = label === '합계' || label.includes('Total');
+        rows += `<tr class="${isTotal ? 'total' : ''}"><td title="${label}">${label}</td>` +
+          years.map(y => `<td>${fmt(info.yearly[y])}</td>`).join('') +
+          `<td class="pct-col">${info.share_label || ''}</td></tr>`;
+      });
+      tbl.innerHTML = head + rows + '</tbody>';
+    }
+    renderSegmentTable('tbl-seg-rev', d.segment_revenue);
+    renderSegmentTable('tbl-seg-cogs', d.segment_cogs);
+    // ===== Traffic — visitor table =====
+    const tg = d.traffic_golf || [];
+    if (tg.length) {
+      const tbl = document.getElementById('tbl-traffic');
+      tbl.innerHTML = '<thead><tr><th>연도</th><th>회원</th><th>비회원</th><th>합계</th><th>일평균 (365일)</th><th>일평균 (330일)</th><th>일평균 팀 (4인)</th></tr></thead><tbody>' +
+        tg.map(r => `<tr><td>${r.year}</td><td>${fmt(r.members)}</td><td>${fmt(r.non_members)}</td><td>${fmt(r.total)}</td><td>${fmt(r.avg_daily_365)}</td><td>${fmt(r.avg_daily_330)}</td><td>${fmt(r.avg_teams_365)}</td></tr>`).join('') + '</tbody>';
+    }
+    // ===== Per-capita spend =====
+    const sp = d.per_capita_spend || [];
+    if (sp.length) {
+      const tbl = document.getElementById('tbl-spend');
+      tbl.innerHTML = '<thead><tr><th>연도</th><th>골프코스 (Rp Mil)</th><th>카트</th><th>골프 합계</th><th>인당 골프 (Rp)</th><th>식당</th><th>인당 식당</th><th>합계</th><th>인당 합계</th></tr></thead><tbody>' +
+        sp.map(r => `<tr><td>${r.year}</td><td>${fmt(r.golf_course_idr_mil)}</td><td>${fmt(r.cart_idr_mil)}</td><td>${fmt(r.golf_total_idr_mil)}</td><td>${fmt(r.golf_per_visitor_idr)}</td><td>${fmt(r.restaurant_idr_mil)}</td><td>${fmt(r.restaurant_per_visitor_idr)}</td><td>${fmt(r.total_idr_mil)}</td><td>${fmt(r.total_per_visitor_idr)}</td></tr>`).join('') + '</tbody>';
+    }
+    // ===== Traffic summary cards =====
+    if (tg.length) {
+      const last = tg[tg.length - 1];
+      const first = tg[0];
+      const lastSpend = sp.length ? sp[sp.length - 1] : null;
+      const cards = [
+        { l: '최신 연도', v: last.year, s: '데이터 기준' },
+        { l: '연간 방문자', v: fmt(last.total), s: `${first.year} → ${last.year} 변화` },
+        { l: '일평균 (365)', v: fmt(last.avg_daily_365), s: '명/일' },
+        { l: '일평균 팀 수', v: fmt(last.avg_teams_365), s: '4인 기준' },
+      ];
+      if (lastSpend && lastSpend.total_per_visitor_idr) {
+        cards.push({ l: '인당 평균 지출', v: 'Rp ' + lastSpend.total_per_visitor_idr.toLocaleString(), s: `${lastSpend.year} 골프+식음료` });
+      }
+      document.getElementById('traffic-summary').innerHTML = cards.map(c =>
+        `<div class="metric-card"><div class="ml">${c.l}</div><div class="mv">${c.v}</div><div class="ms">${c.s}</div></div>`
+      ).join('');
+    }
+    // ===== Land rights =====
+    const land = d.land_rights;
+    if (land && land.items) {
+      const today = new Date();
+      const grid = document.getElementById('land-grid');
+      grid.innerHTML = land.items.map(item => {
+        let cls = 'expire-far';
+        // Parse year from validity (e.g., "up to April 16, 2046")
+        const m = item.validity.match(/20\d{2}/);
+        if (m) {
+          const yr = parseInt(m[0]);
+          if (yr <= 2028) cls = 'expire-soon';
+          else if (yr <= 2040) cls = 'expire-mid';
+        }
+        return `<div class="land-card ${cls}">
+          <div class="parcel">${item.parcel}</div>
+          <div class="validity">${item.validity}</div>
+          <div class="area">${item.area_m2 ? item.area_m2.toLocaleString() + ' m²' : '—'}</div>
+        </div>`;
+      }).join('');
+      document.getElementById('land-total').textContent = land.total_m2.toLocaleString() + ' m²';
+    }
+  })
+  .catch(err => {
+    console.error('Failed to load pipg_pptx_data.json:', err);
+    const sections = ['tbl-pnl-14y','tbl-seg-rev','tbl-seg-cogs','tbl-traffic','tbl-spend','land-grid','traffic-summary'];
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.innerHTML = '<div style="padding:14px; color:var(--ops-muted); font-size:12px;">⚠ pipg_pptx_data.json 로드 실패. 콘솔에서 fetch 오류를 확인하세요.</div>';
+    });
+  });
+</script>
 </body>
 </html>
