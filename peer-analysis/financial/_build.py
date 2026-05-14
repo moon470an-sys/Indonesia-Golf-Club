@@ -3528,7 +3528,12 @@ def _ops_kpi_dashboard() -> str:
   <div class="kpi-tile accent-green">
     <div class="kpi-cap">GOLF · FY25 매출 target 달성</div>
     <div class="kpi-val small">{fmt_bn(actual)}</div>
-    <div class="kpi-sub kpi-trend up">vs target {fmt_bn(target)} · <strong>{beat_pct*100:+.1f}%</strong> beat</div>
+    <div style="position:relative;height:12px;margin:7px 0;background:var(--line);border-radius:3px;overflow:hidden;">
+      <div style="height:100%;width:{(target/actual*100) if actual else 0:.1f}%;background:#95c073;"></div>
+      <div style="position:absolute;left:{(target/actual*100) if actual else 0:.1f}%;top:-2px;bottom:-2px;border-left:2px solid var(--ink);"></div>
+      <div style="position:absolute;left:0;top:0;bottom:0;right:0;display:flex;align-items:center;padding-left:5px;font-size:8.5px;font-weight:700;color:#1d3a0e;">target {fmt_bn(target)}</div>
+    </div>
+    <div class="kpi-sub kpi-trend up">vs target · <strong>{beat_pct*100:+.1f}%</strong> beat</div>
     <div class="kpi-sub">자본투자 강도 + 매출 동시 달성</div>
   </div>
 
