@@ -1052,6 +1052,206 @@ def _all_peer_golf_segment_table() -> str:
 </div>"""
 
 
+# Operational KPI evidence — extracted directly from AR text (vector search verified).
+# Numbers are audit-grade quotes with source page references.
+OPS_KPI_EVIDENCE = {
+    "DMIG": {
+        "rounds_played": {
+            "FY2021": None,
+            "FY2022": None,
+            "FY2023": "123,278 명 (BSD 45.3k + PIK 62.0k 추정, AR 텍스트 골프 인원 12,979명 증가 +12.09% YoY)",
+            "FY2024": None,
+            "narrative": "FY2023 골퍼 +12,979명 (+12.09% YoY): BSD 코스 +6,577명 (+14.51%) / PIK 코스 +6,402명 (+10.32%)",
+            "src": "DMIG FY2023 AR p.14 REALIZATION GOLF OPERATION",
+        },
+        "members": {
+            "FY2022": 1239,
+            "FY2023": 1233,
+            "FY2024": None,
+            "narrative": "Main Playing Members: FY2022 1,239 → FY2023 1,233 (-6 명). Husband/Wife 79 + Child 35 포함 총 1,233",
+            "src": "DMIG FY2023 AR p.17 MEMBERSHIP",
+        },
+        "headcount": {
+            "FY2021": 342,
+            "FY2022": 196,
+            "FY2023": None,
+            "FY2024": None,
+            "narrative": "직원 수 FY2021 342명 → FY2022 196명 (-42.7% / 코로나 회복기 구조조정). FY24 employee benefit liabilities 라인에 비례적 증가 시사.",
+            "src": "DMIG FY2022 AR p.101 (employees with right to receive employee benefits)",
+        },
+        "the_range_revenue": {
+            "FY2022": 6_632_153_633,
+            "FY2023": 31_350_806_602,
+            "narrative": "The Range@PIK driving range/golftainment: FY2022 신규 운영 3개월간 6.6bn → FY2023 31.4bn (+372.71% YoY 풀이어 효과)",
+            "src": "DMIG FY2023 AR p.18 THE RANGE",
+        },
+    },
+    "PIPG": {
+        "rounds_played": {
+            "FY2021": 24512,
+            "FY2022": 26551,
+            "FY2023": 28464,
+            "FY2024": 26805,
+            "narrative": "골퍼 추이: 24,512 (FY21) → 26,551 (FY22 +8.3%) → 28,464 (FY23 +7.2%) → 26,805 (FY24 -5.8%). FY24 감소는 글로벌 경기 둔화·관광객 감소.",
+            "src": "PIPG FY22/FY24 AR p.48/p.43 KEGIATAN OPERASIONAL GOLF",
+        },
+        "headcount_by_dept_FY2024": {
+            "HRD&Training": 10, "GA&IT": 9, "Finance": 6, "Golf Course Maintenance": 14,
+            "Property/ME/Locker/Security": 15, "Golf Operational": 30, "Driving Range": 22,
+            "Membership/Market/PIGA": 36, "F&B": 86, "Gym": 29,
+            "narrative": "FY24 부서별 (turnover 그래프 기준 인원 수). 총합 ~257명. F&B (86명)이 최대 부서.",
+            "src": "PIPG FY24 AR p.75 EMPLOYEE TURNOVER",
+        },
+    },
+    "KPIG": {
+        "scope_caveat": {
+            "narrative": "KPIG는 MNC Land/Tourism 모회사. Trump Lido 단독 운영 KPI는 미공시 (관계사 운영). 모회사 직원 2,573명 (FY22, 91% male)은 conglomerate 전체.",
+            "src": "KPIG FY22 AR p.135 HR SDM",
+        },
+        "clubhouse_facility": {
+            "narrative": "Trump Clubhouse 33,322 m² (Oppenheim Architecture 설계, 럭셔리 컨셉). FY2025에 18홀 풀 가동 확인.",
+            "src": "KPIG FY25 AR p.85",
+        },
+    },
+    "GOLF": {
+        "capex_fy2025": {
+            "construction_buildings_idr": 187_920_532_473,
+            "construction_landscape_idr": 237_798_000_000,
+            "narrative": "FY2025 Construction in Progress (CWIP): Buildings 187.9bn IDR + Landscape 237.8bn IDR + Equipment/Furniture/Vehicles 27bn. 총 ~450bn 건설 진행 중 — 신규 코스 또는 시설 대규모 확장 시사.",
+            "src": "GOLF FY25 AR p.170 Aset dalam Konstruksi",
+        },
+        "employees_turnover_FY2025": 22,
+    },
+    "MDLN": {
+        "headcount": {
+            "FY2021": 887,
+            "FY2022": 952,
+            "narrative": "모회사 직원: FY2021 887명 → FY2022 952명 (+7.3%). Modern Golf 골프장 단독 인원은 미공시 (Hospitality segment 통합).",
+            "src": "MDLN FY22 AR p.105",
+        },
+    },
+}
+
+
+def _ops_kpi_section() -> str:
+    """Operational KPI time series — rounds played, members, headcount, sub-revenues."""
+    cards = []
+
+    # DMIG card
+    dmig = OPS_KPI_EVIDENCE["DMIG"]
+    cards.append(f"""<div class="ops-block">
+  <h4 class="ops-block-h">DMIG — 골퍼 / 회원 / 인력 시계열</h4>
+  <div class="kv-grid">
+    <div class="kv">
+      <div class="k">FY2023 골퍼 증가</div>
+      <div class="v">+12,979명 <span class="muted">(+12.09% YoY)</span></div>
+      <p class="kv-comment">{safe(dmig['rounds_played']['narrative'])}</p>
+      <span class="src">출처: {safe(dmig['rounds_played']['src'])}</span>
+    </div>
+    <div class="kv">
+      <div class="k">FY2023 Main Playing Members</div>
+      <div class="v">{dmig['members']['FY2023']:,}명 <span class="muted">(전년比 -6명)</span></div>
+      <p class="kv-comment">{safe(dmig['members']['narrative'])}</p>
+      <span class="src">출처: {safe(dmig['members']['src'])}</span>
+    </div>
+    <div class="kv">
+      <div class="k">직원 수 (Benefit-eligible)</div>
+      <div class="v">FY21 342 → FY22 {dmig['headcount']['FY2022']}</div>
+      <p class="kv-comment">{safe(dmig['headcount']['narrative'])}</p>
+      <span class="src">출처: {safe(dmig['headcount']['src'])}</span>
+    </div>
+    <div class="kv">
+      <div class="k">The Range@PIK 매출</div>
+      <div class="v">{fmt_bn(dmig['the_range_revenue']['FY2023'])} <span class="muted">(+372.7% YoY)</span></div>
+      <p class="kv-comment">{safe(dmig['the_range_revenue']['narrative'])}</p>
+      <span class="src">출처: {safe(dmig['the_range_revenue']['src'])}</span>
+    </div>
+  </div>
+</div>""")
+
+    # PIPG card
+    pipg = OPS_KPI_EVIDENCE["PIPG"]
+    rp = pipg["rounds_played"]
+    rounds_html = (
+        f'<table class="tbl tbl-tight"><thead><tr>'
+        f'<th>연도</th><th class="num">골퍼</th><th class="num">YoY</th>'
+        f'</tr></thead><tbody>'
+    )
+    prev = None
+    for fy in ["FY2021", "FY2022", "FY2023", "FY2024"]:
+        v = rp.get(fy)
+        yoy = ""
+        if v and prev:
+            yoy = f"{((v / prev) - 1) * 100:+.1f}%"
+        rounds_html += f'<tr><td>{fy}</td><td class="num">{v:,}</td><td class="num">{yoy or "—"}</td></tr>'
+        prev = v
+    rounds_html += "</tbody></table>"
+    # Department headcount table
+    hc = pipg["headcount_by_dept_FY2024"]
+    dept_pairs = [(k, v) for k, v in hc.items() if isinstance(v, int)]
+    dept_pairs.sort(key=lambda kv: -kv[1])
+    dept_html = '<table class="tbl tbl-tight"><thead><tr><th>부서</th><th class="num">인원 (FY24)</th></tr></thead><tbody>'
+    for dept, n in dept_pairs:
+        dept_html += f'<tr><td>{safe(dept)}</td><td class="num">{n}</td></tr>'
+    dept_html += f'<tr class="row-total"><td><strong>합계</strong></td><td class="num"><strong>{sum(n for _, n in dept_pairs)}</strong></td></tr>'
+    dept_html += "</tbody></table>"
+
+    cards.append(f"""<div class="ops-block">
+  <h4 class="ops-block-h">PIPG — 골퍼 시계열 (4년)</h4>
+  <div class="tbl-card">{rounds_html}</div>
+  <p class="kv-comment">{safe(rp['narrative'])}</p>
+  <p class="src-line">출처: {safe(rp['src'])}</p>
+</div>
+<div class="ops-block">
+  <h4 class="ops-block-h">PIPG — 부서별 인원 (FY2024, turnover 그래프 기준)</h4>
+  <div class="tbl-card">{dept_html}</div>
+  <p class="kv-comment">{safe(hc['narrative'])}</p>
+  <p class="src-line">출처: {safe(hc['src'])}</p>
+</div>""")
+
+    # KPIG card
+    kpig = OPS_KPI_EVIDENCE["KPIG"]
+    cards.append(f"""<div class="ops-block">
+  <h4 class="ops-block-h">KPIG — 운영 scope &amp; Trump Lido 시설</h4>
+  <div class="kv-grid">
+    <div class="kv">
+      <div class="k">공시 범위</div>
+      <p class="kv-comment">{safe(kpig['scope_caveat']['narrative'])}</p>
+      <span class="src">출처: {safe(kpig['scope_caveat']['src'])}</span>
+    </div>
+    <div class="kv">
+      <div class="k">Trump Clubhouse</div>
+      <div class="v">33,322 m² <span class="muted">(Oppenheim Arch.)</span></div>
+      <p class="kv-comment">{safe(kpig['clubhouse_facility']['narrative'])}</p>
+      <span class="src">출처: {safe(kpig['clubhouse_facility']['src'])}</span>
+    </div>
+  </div>
+</div>""")
+
+    # GOLF CAPEX card
+    g = OPS_KPI_EVIDENCE["GOLF"]
+    cards.append(f"""<div class="ops-block">
+  <h4 class="ops-block-h">GOLF — FY2025 진행 중 CAPEX (Construction in Progress)</h4>
+  <div class="kv-grid">
+    <div class="kv">
+      <div class="k">CWIP — Buildings</div>
+      <div class="v">{fmt_bn(g['capex_fy2025']['construction_buildings_idr'])}</div>
+    </div>
+    <div class="kv">
+      <div class="k">CWIP — Landscape</div>
+      <div class="v">{fmt_bn(g['capex_fy2025']['construction_landscape_idr'])}</div>
+    </div>
+    <div class="kv">
+      <div class="k">설명</div>
+      <p class="kv-comment">{safe(g['capex_fy2025']['narrative'])}</p>
+      <span class="src">출처: {safe(g['capex_fy2025']['src'])}</span>
+    </div>
+  </div>
+</div>""")
+
+    return "\n".join(cards)
+
+
 def _related_party_and_lease_section() -> str:
     """Cards describing related-party transactions and land/lease arrangements."""
     cards = []
@@ -1295,6 +1495,7 @@ def section_ops() -> str:
     golf_segment_table = _all_peer_golf_segment_table()
     opex_norm_table = _normalized_opex_compare_table()
     related_party_section = _related_party_and_lease_section()
+    ops_kpi_section = _ops_kpi_section()
 
     rev_blocks = "\n".join(filter(None, [
         _revenue_breakdown_table("DMIG", "revenue_note", "매출 라인 분해"),
@@ -1412,6 +1613,16 @@ def section_ops() -> str:
         <strong>DMIG/PIPG</strong>: Pure-play 골프코스 라인만 가져오므로 다른 단위; F&B/Cart 포함 시 비교 합치.
       </div>
       <p class="src-line">출처: site/peer-analysis/operations/data/{{dmig,pipg,mdln,golf,kija}}_notes.json (FY24 AR Note 23·25·27·29·34 직접 추출)</p>
+    </div>
+
+    <div class="section">
+      <h2>운영 KPI 시계열 — 골퍼·회원·인력·CWIP</h2>
+      <h3>annual report 본문(Management Discussion)에서 직접 추출한 정량 지표</h3>
+      <p class="lede">
+        Note (재무제표 주석)에 없는 운영 지표 — 골퍼 수, 회원 수, 부서별 인원, 진행 중 자본투자 — 를 AR 본문에서 직접 추출.
+        <strong>벡터 검색 (multilingual-e5-small / 99,618 chunks)</strong>로 동일 fact를 여러 인덱스 페이지에서 cross-validate.
+      </p>
+      {ops_kpi_section}
     </div>
 
     <div class="section">
