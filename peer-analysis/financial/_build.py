@@ -3422,6 +3422,98 @@ def _related_party_and_lease_section() -> str:
     return "\n".join(cards)
 
 
+def _fy25_dashboard() -> str:
+    """Side-by-side FY25 prelim P&L dashboard for DMIG/PIPG/KPIG."""
+
+    def pct_sign(v):
+        if v is None:
+            return None
+        try:
+            return float(v) * 100
+        except (TypeError, ValueError):
+            return None
+
+    def trend_color(pct):
+        if pct is None:
+            return "var(--muted)"
+        return "var(--green)" if pct > 0 else "var(--danger)"
+
+    # Per-peer data
+    rows_data = []
+    for t in ["DMIG", "PIPG", "KPIG"]:
+        fu = (NOTES.get(t, {}) or {}).get("fy2025_follow_up") or {}
+        if not fu:
+            continue
+        if t == "KPIG":
+            seg = fu.get("FY2025_revenue_note_31") or {}
+            rows_data.append({
+                "ticker": t,
+                "rev": seg.get("Hotel_resor_dan_golf"),
+                "rev_yoy": pct_sign(seg.get("yoy_vs_fy2024")),
+                "op_inc": None, "op_yoy": None,
+                "net_inc": None, "net_yoy": None,
+                "comment": "Hotel+Resort+Golf 통합 (Golf-only 분리 미공시)",
+                "tone": "neutral",
+            })
+            continue
+        pnl = fu.get("pnl_FY2025") or {}
+        yoy = fu.get("yoy_changes") or {}
+        # Determine tone by op_income trend
+        op_yoy = pct_sign(yoy.get("operating_income"))
+        tone = "positive" if (op_yoy and op_yoy > 0) else ("warn" if (op_yoy and op_yoy < -5) else "neutral")
+        rows_data.append({
+            "ticker": t,
+            "rev": pnl.get("revenue"),
+            "rev_yoy": pct_sign(yoy.get("revenue")),
+            "op_inc": pnl.get("operating_income"),
+            "op_yoy": op_yoy,
+            "net_inc": pnl.get("net_income"),
+            "net_yoy": pct_sign(yoy.get("net_income")),
+            "comment": yoy.get("comment", ""),
+            "tone": tone,
+        })
+
+    tone_border = {"positive": "var(--green)", "warn": "var(--warn)", "neutral": "#8a8a8a"}
+
+    cards = []
+    for r in rows_data:
+        t = r["ticker"]
+        color = PEER_COLORS.get(t, "#8a8a8a")
+
+        # Metric rows
+        metric_block = ""
+        for metric_key, label in [("rev", "매출"), ("op_inc", "영업이익"), ("net_inc", "순이익")]:
+            v = r.get(metric_key)
+            yoy_key = {"rev": "rev_yoy", "op_inc": "op_yoy", "net_inc": "net_yoy"}[metric_key]
+            yoy = r.get(yoy_key)
+            v_str = fmt_bn(v) if v else '<span class="muted">미공시</span>'
+            yoy_str = f"{yoy:+.1f}%" if yoy is not None else "—"
+            yoy_c = trend_color(yoy)
+            arrow = "▲" if (yoy and yoy > 0) else ("▼" if (yoy and yoy < 0) else "—")
+            metric_block += f"""<div style="display:flex;justify-content:space-between;align-items:baseline;padding:7px 0;border-bottom:1px solid var(--line);">
+  <div>
+    <div style="font-size:11px;color:var(--muted);font-weight:600;letter-spacing:0.03em;text-transform:uppercase;">{safe(label)}</div>
+    <div style="font-size:17px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;">{v_str}</div>
+  </div>
+  <div style="font-size:13px;font-weight:700;color:{yoy_c};text-align:right;">
+    <span style="font-size:9px;vertical-align:middle;">{arrow}</span> {yoy_str}
+  </div>
+</div>"""
+
+        cards.append(f"""<div class="kpi-tile" style="border-top:3px solid {color};padding:18px 18px 14px;">
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+    <span class="ticker-mini">{t}</span>
+    <span style="font-size:12px;font-weight:700;color:var(--ink);">FY2025 미감사 prelim</span>
+  </div>
+  {metric_block}
+  <p style="font-size:11.5px;color:var(--ink-soft);line-height:1.5;margin:10px 0 0;">{safe(r["comment"])}</p>
+</div>""")
+
+    return f"""<div class="kpi-strip" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+  {''.join(cards)}
+</div>"""
+
+
 def _fy25_delta_cards() -> str:
     """FY2025 (Cycle 167) preliminary delta callouts for DMIG, PIPG, KPIG."""
     cards = []
@@ -3552,6 +3644,7 @@ def section_ops() -> str:
     capex_heatmap = _capex_heatmap_section()
     capex_narratives = _capex_narrative_grid()
     fy25_cards = _fy25_delta_cards()
+    fy25_dashboard = _fy25_dashboard()
     golf_segment_table = _all_peer_golf_segment_table()
     segment_scatter = _segment_scatter_svg()
     opex_norm_table = _normalized_opex_compare_table()
@@ -3977,9 +4070,14 @@ def section_ops() -> str:
       <h2>FY2025 미감사 prelim — 마진 압박 신호</h2>
       <h3>각 peer가 발표한 FY2025 unaudited P&L (2026-05-12 Cycle 167)</h3>
       <p class="lede">
-        DMIG/PIPG/KPIG 모두 FY2025 unaudited financial statement를 공시. 라인 단위 추이로 마진 변화 감지 가능.
+        DMIG/PIPG/KPIG 3-peer side-by-side dashboard — 매출/영업이익/순이익 YoY를 한눈에 비교.
+        ▲ 녹색 = 증가, ▼ 빨강 = 감소.
       </p>
-      {fy25_cards}
+      {fy25_dashboard}
+      <details style="margin: 14px 0 4px;">
+        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 FY25 카드 (출처 페이지 포함)</summary>
+        {fy25_cards}
+      </details>
     </div>
 
     <div class="section">
