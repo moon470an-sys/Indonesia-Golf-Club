@@ -67,7 +67,7 @@
     });
   }
 
-  // === Scroll progress bar (active on ops panel) ===
+  // === Scroll progress bar (active on any ops-* panel) ===
   function initScrollProgress() {
     let bar = document.querySelector('.scroll-progress');
     if (!bar) {
@@ -75,10 +75,11 @@
       bar.className = 'scroll-progress hidden';
       document.body.insertBefore(bar, document.body.firstChild);
     }
-    const opsPanel = document.querySelector('.panel[data-panel="ops"]');
+    const opsTabs = ['ops-kpi', 'capex', 'opex'];
+    const opsPanels = opsTabs.map(k => document.querySelector(`.panel[data-panel="${k}"]`)).filter(Boolean);
     function update() {
-      const opsActive = opsPanel && opsPanel.classList.contains('active');
-      if (!opsActive) {
+      const anyActive = opsPanels.some(p => p.classList.contains('active'));
+      if (!anyActive) {
         bar.classList.add('hidden');
         bar.style.width = '0%';
         return;
@@ -95,10 +96,13 @@
     update();
   }
 
-  // === Sub-nav active section highlighting (IntersectionObserver) ===
+  // === Sub-nav active section highlighting (IntersectionObserver) per subnav ===
   function initSubnavActive() {
-    const subnav = document.querySelector('.ops-subnav');
-    if (!subnav || !('IntersectionObserver' in window)) return;
+    if (!('IntersectionObserver' in window)) return;
+    document.querySelectorAll('.ops-subnav').forEach(subnav => initOneSubnav(subnav));
+  }
+
+  function initOneSubnav(subnav) {
     const chips = Array.from(subnav.querySelectorAll('a.chip[href^="#"]'));
     if (!chips.length) return;
     const idToChip = {};
@@ -143,15 +147,19 @@
     sections.forEach(s => io.observe(s));
   }
 
-  // === Back-to-TOC floating button (ops tab only) ===
+  // === Back-to-TOC floating button (visible on any ops-* tab when scrolled) ===
   function initBackToToc() {
-    const btn = document.querySelector('.back-to-toc');
-    if (!btn) return;
-    const opsPanel = document.querySelector('.panel[data-panel="ops"]');
+    const opsPanels = Array.from(document.querySelectorAll('.panel[data-panel="ops-kpi"], .panel[data-panel="capex"], .panel[data-panel="opex"]'));
+    if (!opsPanels.length) return;
     function update() {
-      const opsActive = opsPanel && opsPanel.classList.contains('active');
+      const anyActive = opsPanels.some(p => p.classList.contains('active'));
       const scrolled = window.scrollY > 700;
-      btn.classList.toggle('visible', !!(opsActive && scrolled));
+      // Each panel has its own back-to-toc button — show only the active panel's button
+      document.querySelectorAll('.back-to-toc').forEach(btn => {
+        const containingPanel = btn.closest('.panel');
+        const isInActive = containingPanel && containingPanel.classList.contains('active');
+        btn.classList.toggle('visible', !!(isInActive && scrolled));
+      });
     }
     window.addEventListener('scroll', update, { passive: true });
     document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => setTimeout(update, 60)));
