@@ -5072,6 +5072,11 @@ def section_opex() -> str:
       <h4 class="ops-block-h" style="margin-top: 22px;">카테고리별 매출 대비 % — bar matrix</h4>
       {opex_norm_bars}
 
+      <div class="insight-callout">
+        <span class="ic-icon">→</span>
+        <span class="ic-body">OpEx 합계 DMIG 38.4% · PIPG 38.5% · GOLF 21.1% — DMIG/PIPG는 거의 동일하지만 <strong>구성이 정반대</strong>: DMIG는 감가(자본투자), PIPG는 세금·유지(위치·노후). GOLF의 17pp 격차는 lean 운영 모델.</span>
+      </div>
+
       <details class="orig-toggle"><summary>원본 정규화 표</summary>
         {opex_norm_table}
       </details>
@@ -5091,6 +5096,10 @@ def section_opex() -> str:
       <h2 data-num="07">OpEx/매출 % — 4Y trend (FY22-25)</h2>
       <h3>비용 효율 추이 — DMIG/PIPG/GOLF</h3>
       {opex_4y_trend}
+      <div class="insight-callout">
+        <span class="ic-icon">→</span>
+        <span class="ic-body">DMIG는 4년 내내 38-40%로 정체, <strong>PIPG는 FY25 33.6%로 큰 폭 하락</strong> (비용 통제 성공), GOLF는 21-22%로 일관되게 낮음. 비용 효율 개선은 PIPG가 유일하게 입증.</span>
+      </div>
     </div>
 
     <div class="section" id="op-narratives">
@@ -5106,6 +5115,10 @@ def section_opex() -> str:
         PIPG는 Note 30 Segment Information에서 4 segment의 COGS를 explicit 공시. Membership 부문 GP margin 압도적 높음 (87.8%).
       </p>
       {pipg_seg_visual}
+      <div class="insight-callout">
+        <span class="ic-icon">→</span>
+        <span class="ic-body">Membership <strong>87.8%</strong> GP는 사실상 순현금 — 신규 회원 모집이 가장 수익성 높은 매출. Restaurant <strong>31.2%</strong>는 본질적으로 저마진. 신규 코스 수익 모델은 <strong>회원권 비중을 키우는 게 핵심</strong>.</span>
+      </div>
       <details class="orig-toggle"><summary>원본 segment 표</summary>
         {pipg_seg_table}
       </details>
