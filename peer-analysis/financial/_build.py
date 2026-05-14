@@ -1730,29 +1730,30 @@ def _capex_data() -> list:
     out = []
     for t in ["DMIG", "PIPG", "GOLF", "KPIG"]:
         d = NOTES.get(t, {})
-        dep_line = None
-        maint_line = None
+        # Sum ALL depreciation + amortization lines (matches OpEx normalized "감가상각" category)
+        dep24 = dep23 = 0.0
+        mnt24 = mnt23 = 0.0
         for okey in ("opex_note", "opex_note_29", "ga_note_32", "ga_note_34"):
             b = d.get(okey) or {}
             for ln in b.get("lines") or []:
                 lab = (ln.get("id_label") or "").lower()
                 en = (ln.get("en_label") or "").lower()
-                if dep_line is None and ("penyusutan" in lab or "depreciation" in en):
-                    dep_line = ln
-                if maint_line is None and ("perbaikan" in lab or "pemeliharaan" in lab or "perawatan" in lab or "repair" in en or "maintenance" in en):
-                    maint_line = ln
-            if dep_line and maint_line:
-                break
+                if "penyusutan" in lab or "depreciation" in en or "amortisasi" in lab or "amortization" in en:
+                    dep24 += ln.get("FY2024") or 0
+                    dep23 += ln.get("FY2023") or 0
+                if "perbaikan" in lab or "pemeliharaan" in lab or "perawatan" in lab or "repair" in en or "maintenance" in en:
+                    mnt24 += ln.get("FY2024") or 0
+                    mnt23 += ln.get("FY2023") or 0
+        dep24 = dep24 or None
+        dep23 = dep23 or None
+        mnt24 = mnt24 or None
+        mnt23 = mnt23 or None
+
         rev24 = revenue_total_for(t, "FY2024")
         rev23 = revenue_total_for(t, "FY2023")
         if t == "GOLF":
             rev24 = ((d.get("revenue_note_29") or {}).get("by_operations") or {}).get("total", {}).get("FY2024") or rev24
             rev23 = ((d.get("revenue_note_29") or {}).get("by_operations") or {}).get("total", {}).get("FY2023") or rev23
-
-        dep24 = (dep_line or {}).get("FY2024")
-        dep23 = (dep_line or {}).get("FY2023")
-        mnt24 = (maint_line or {}).get("FY2024")
-        mnt23 = (maint_line or {}).get("FY2023")
 
         fin = next((f for f in by_ticker(FINANCIALS, t) if f.get("total_assets_idr")), {})
         ta = fin.get("total_assets_idr")
@@ -4654,7 +4655,7 @@ def section_capex() -> str:
           <div class="insight-tag"><span class="ticker-mini">DMIG</span> 자본투자 강도 peer 최고</div>
           <div class="insight-metric down">12.2<span class="u">%</span></div>
           <div class="insight-title">감가상각 / 매출 (FY24)</div>
-          <p>PIK Range +372% 성장 · BSD+PIK 2 코스 운영. FY24→25 ▲+0.7pp 추가 — 마진 압박의 핵심 원인.</p>
+          <p>PIK Range +372% 성장 · BSD+PIK 2 코스 운영 — peer 최고 자본투자 강도. 마진 압박의 핵심 원인.</p>
         </div>
         <div class="insight-card insight-neutral">
           <div class="insight-tag"><span class="ticker-mini">PIPG</span> Mature & maintenance-heavy</div>
