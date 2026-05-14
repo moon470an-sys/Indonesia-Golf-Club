@@ -677,23 +677,28 @@ def _peer_compare_radar() -> str:
 
     # Depreciation / revenue
     def dep_pct(d, opex_key, rev_total):
+        # Sum ALL depreciation + amortization lines (consistent with _capex_data)
         lines = (d.get(opex_key) or {}).get("lines") or []
+        tot = 0
         for ln in lines:
-            if "penyusutan" in (ln.get("id_label") or "").lower() or "depreciation" in (ln.get("en_label") or "").lower():
-                return (ln.get("FY2024") or 0) / rev_total * 100 if rev_total else 0
-        return 0
+            lab = (ln.get("id_label") or "").lower()
+            en = (ln.get("en_label") or "").lower()
+            if "penyusutan" in lab or "depreciation" in en or "amortisasi" in lab or "amortization" in en:
+                tot += ln.get("FY2024") or 0
+        return (tot / rev_total * 100) if rev_total else 0
     dmig_dep = dep_pct(dmig_d, "opex_note", dmig_rev)
     pipg_dep = dep_pct(pipg_d, "opex_note_29", pipg_rev)
 
     # Maintenance / revenue
     def mnt_pct(d, opex_key, rev_total):
         lines = (d.get(opex_key) or {}).get("lines") or []
+        tot = 0
         for ln in lines:
             lab = (ln.get("id_label") or "").lower()
             en = (ln.get("en_label") or "").lower()
             if "perbaikan" in lab or "pemeliharaan" in lab or "perawatan" in lab or "repair" in en or "maintenance" in en:
-                return (ln.get("FY2024") or 0) / rev_total * 100 if rev_total else 0
-        return 0
+                tot += ln.get("FY2024") or 0
+        return (tot / rev_total * 100) if rev_total else 0
     dmig_mnt = mnt_pct(dmig_d, "opex_note", dmig_rev)
     pipg_mnt = mnt_pct(pipg_d, "opex_note_29", pipg_rev)
 
