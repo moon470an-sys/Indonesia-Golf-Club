@@ -643,6 +643,88 @@ def _pnl_row(ticker: str) -> str:
     return f'<tr class="tier-a">{"".join(cells)}</tr>'
 
 
+def _exec_headline_data() -> dict:
+    """Compute headline numbers from NOTES so the strip stays accurate.
+
+    Returns:
+        {
+          'best_margin': (ticker, pct),
+          'best_fy25_op': (ticker, pct),
+          'best_per_hole': (ticker, value_bn),
+          'cwip_total': (ticker, total_bn),
+          'worst_fy25_op': (ticker, pct),
+        }
+    """
+    out = {}
+
+    # Best GP margin (from 6-peer golf segment data)
+    rows = _all_peer_golf_segment_data()
+    margin_rows = [(r["ticker"], r["gm"]) for r in rows if r["gm"]]
+    margin_rows.sort(key=lambda x: -x[1])
+    if margin_rows:
+        out["best_margin"] = margin_rows[0]
+
+    # Best/worst FY25 op income change
+    fy25_changes = []
+    for t in ["DMIG", "PIPG", "GOLF"]:
+        fu = (NOTES.get(t, {}) or {}).get("fy2025_follow_up") or {}
+        yoy = (fu.get("yoy_changes") or {}).get("operating_income")
+        if yoy is not None:
+            fy25_changes.append((t, yoy * 100))
+    if fy25_changes:
+        fy25_changes.sort(key=lambda x: -x[1])
+        out["best_fy25_op"] = fy25_changes[0]
+        out["worst_fy25_op"] = fy25_changes[-1]
+
+    # Best per-hole revenue (golf segment-only)
+    per_hole_rows = _per_hole_data()
+    seg_rows = [(r["ticker"], r["rev_h"] / 1e9 if r["rev_h"] else 0) for r in per_hole_rows if r["basis_type"] == "segment"]
+    seg_rows.sort(key=lambda x: -x[1])
+    if seg_rows:
+        out["best_per_hole"] = seg_rows[0]
+
+    # GOLF CWIP
+    golf_capex = (NOTES.get("GOLF", {}).get("operational_kpis", {}) or {})
+    # Fallback to hardcoded since GOLF CWIP is in OPS_KPI_EVIDENCE
+    g_kpi = OPS_KPI_EVIDENCE.get("GOLF", {}).get("capex_fy2025") or {}
+    bld = g_kpi.get("construction_buildings_idr") or 0
+    ls = g_kpi.get("construction_landscape_idr") or 0
+    cwip_total_bn = (bld + ls) / 1e9
+    out["cwip_total"] = ("GOLF", cwip_total_bn)
+
+    return out
+
+
+def _exec_headline_html() -> str:
+    """Render the executive headline strip using computed data."""
+    d = _exec_headline_data()
+
+    def tile(cap, val, unit, ticker, sub):
+        return f"""<div class="exec-tile">
+  <div class="et-cap">{safe(cap)}</div>
+  <div class="et-val">{val}<span class="u">{safe(unit)}</span></div>
+  <div class="et-sub"><span class="et-ticker">{safe(ticker)}</span>{safe(sub)}</div>
+</div>"""
+
+    best_t, best_pct = d.get("best_margin", ("—", 0))
+    op_best_t, op_best = d.get("best_fy25_op", ("—", 0))
+    op_worst_t, op_worst = d.get("worst_fy25_op", ("—", 0))
+    per_t, per_v = d.get("best_per_hole", ("—", 0))
+    cwip_t, cwip_v = d.get("cwip_total", ("—", 0))
+
+    return f"""<div class="exec-headline">
+  <div class="exec-eyebrow">7-peer · FY2022→FY2025 · 99,618 chunks audit trail</div>
+  <div class="exec-title">운영 KPI · CAPEX/OPEX — 즉시 알 핵심 5 (data-driven)</div>
+  <div class="exec-grid">
+    {tile('최고 마진 (FY24)', f'{best_pct:.1f}', '%', best_t, 'Golf segment GP — 자본효율 1위')}
+    {tile('FY25 best operator', f'{op_best:+.1f}', '%', op_best_t, '영업이익 YoY (비용통제 / target beat)')}
+    {tile('홀당 매출 1위', f'{per_v:.1f}', 'bn/홀', per_t, 'Golf segment-only 기준')}
+    {tile('진행 CAPEX', f'{cwip_v:.0f}', 'bn', cwip_t, 'CWIP (Buildings + Landscape)')}
+    {tile('FY25 마진 압박', f'{op_worst:+.1f}', '%', op_worst_t, '영업이익 YoY — 신규 시설 감가 부담')}
+  </div>
+</div>"""
+
+
 def _pnl_funnel_chart(ticker: str, fy: str = "FY2024") -> str:
     """Funnel chart: Revenue → Gross profit → Op income → Net income.
     Shows leakage at each stage as percentage of revenue.
@@ -4228,6 +4310,7 @@ def section_ops() -> str:
     dividend_table = _dividend_compare_table()
     dividend_visual = _dividend_visual()
     margin_change = _margin_change_visual()
+    exec_headline = _exec_headline_html()
 
     rev_blocks = "\n".join(filter(None, [
         _revenue_breakdown_table("DMIG", "revenue_note", "매출 라인 분해"),
@@ -4251,37 +4334,7 @@ def section_ops() -> str:
 
     <a class="back-to-toc" href="#ops-anchor-top">TOC</a>
 
-    <div class="exec-headline">
-      <div class="exec-eyebrow">7-peer · FY2022→FY2025 · 99,618 chunks audit trail</div>
-      <div class="exec-title">운영 KPI · CAPEX/OPEX — 즉시 알 핵심 5</div>
-      <div class="exec-grid">
-        <div class="exec-tile">
-          <div class="et-cap">최고 마진 (FY24)</div>
-          <div class="et-val">65.7<span class="u">%</span></div>
-          <div class="et-sub"><span class="et-ticker">GOLF</span>Golf segment GP — 자본효율 1위</div>
-        </div>
-        <div class="exec-tile">
-          <div class="et-cap">FY25 best operator</div>
-          <div class="et-val">+4.0<span class="u">%</span></div>
-          <div class="et-sub"><span class="et-ticker">PIPG</span>매출 -6% 환경에서 OpEx -17.9% 절감</div>
-        </div>
-        <div class="exec-tile">
-          <div class="et-cap">홀당 매출 1위</div>
-          <div class="et-val">4.7<span class="u">bn/홀</span></div>
-          <div class="et-sub"><span class="et-ticker">KIJA</span>industrial estate 골프 — Nick Faldo</div>
-        </div>
-        <div class="exec-tile">
-          <div class="et-cap">진행 CAPEX</div>
-          <div class="et-val">426<span class="u">bn</span></div>
-          <div class="et-sub"><span class="et-ticker">GOLF</span>CWIP (Buildings 188 + Landscape 238)</div>
-        </div>
-        <div class="exec-tile">
-          <div class="et-cap">FY25 마진 압박</div>
-          <div class="et-val">-12.0<span class="u">%</span></div>
-          <div class="et-sub"><span class="et-ticker">DMIG</span>영업이익 78.9→69.4bn (감가 부담)</div>
-        </div>
-      </div>
-    </div>
+    {exec_headline}
 
     <nav class="ops-subnav" id="ops-anchor-top" aria-label="ops sub-navigation">
       <a class="chip" href="#pnl">P&amp;L 4Y</a>
