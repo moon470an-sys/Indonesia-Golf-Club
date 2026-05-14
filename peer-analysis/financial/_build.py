@@ -2561,6 +2561,7 @@ OPS_KPI_EVIDENCE = {
             "FY2022": 1239,
             "FY2023": 1233,
             "FY2024": None,
+            "tier_FY2023": {"husband_wife": 79, "child": 35},  # adult = total - 79 - 35
             "narrative": "Main Playing Members: FY2022 1,239 → FY2023 1,233 (-6 명). Husband/Wife 79 + Child 35 포함 총 1,233",
             "src": "DMIG FY2023 AR p.17 MEMBERSHIP",
         },
@@ -4527,15 +4528,18 @@ def _pipg_agreements_timeline() -> str:
 
 
 def _dmig_member_tier_chart() -> str:
-    """DMIG Main Playing Member tier breakdown (FY23)."""
-    # From OPS_KPI_EVIDENCE narrative: "1,239 → 1,233 (Husband/Wife 79 + Child 35 포함)"
-    # So main player = 1,233 - 79 - 35 = 1,119
+    """DMIG Main Playing Member tier breakdown (FY23) — derived from OPS_KPI_EVIDENCE."""
+    members = OPS_KPI_EVIDENCE["DMIG"]["members"]
+    total = members["FY2023"]
+    tier = members["tier_FY2023"]
+    hw, child = tier["husband_wife"], tier["child"]
+    adult = total - hw - child
     tiers = [
-        ("Main Playing (Adult)", 1119, "#2d5016"),
-        ("Husband / Wife", 79, "#4a7c30"),
-        ("Child", 35, "#95c073"),
+        ("Main Playing (Adult)", adult, "#2d5016"),
+        ("Husband / Wife", hw, "#4a7c30"),
+        ("Child", child, "#95c073"),
     ]
-    total = sum(v for _, v, _ in tiers)
+    prev = members["FY2022"]
     bars = []
     for label, n, color in tiers:
         pct = (n / total) * 100
@@ -4549,15 +4553,15 @@ def _dmig_member_tier_chart() -> str:
 </div>""")
     return f"""<div class="ops-block" style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;">
   <h4 class="ops-block-h" style="margin-bottom:10px;">
-    <span class="ticker-mini">DMIG</span> Main Playing Member tier (FY2023, 1,233명)
+    <span class="ticker-mini">DMIG</span> Main Playing Member tier (FY2023, {total:,}명)
   </h4>
   {''.join(bars)}
   <div style="display:grid;grid-template-columns:180px 1fr 60px 48px;gap:8px;padding:8px 0 2px;margin-top:6px;border-top:2px solid var(--line-strong);font-weight:700;font-size:12px;">
     <span>합계</span><span></span>
-    <span style="text-align:right;">{total} 명</span>
+    <span style="text-align:right;">{total:,} 명</span>
     <span style="text-align:right;color:var(--muted);">100.0%</span>
   </div>
-  <p class="src-line" style="margin-top:8px;">FY22 1,239명 → FY23 1,233명 (-6 명)</p>
+  <p class="src-line" style="margin-top:8px;">FY22 {prev:,}명 → FY23 {total:,}명 ({total - prev:+d} 명)</p>
 </div>"""
 
 
