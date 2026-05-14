@@ -4293,7 +4293,7 @@ def _depreciation_lines_chart() -> str:
         for ln in lines:
             lab = (ln.get("id_label") or "").lower()
             en = (ln.get("en_label") or "").lower()
-            if "penyusutan" in lab or "depreciation" in en:
+            if "penyusutan" in lab or "depreciation" in en or "amortisasi" in lab or "amortization" in en:
                 v23 = ln.get("FY2023") or 0
                 v24 = ln.get("FY2024") or 0
                 rev24 = revenue_total_for(ticker, "FY2024")
@@ -4330,7 +4330,7 @@ def _depreciation_lines_chart() -> str:
 </div>""")
 
     return f"""<div class="ops-block" style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;">
-  <h4 class="ops-block-h" style="margin-bottom:10px;">감가상각 (Penyusutan) 라인 — 3-peer 직접 비교 (FY2024)</h4>
+  <h4 class="ops-block-h" style="margin-bottom:10px;">감가상각·상각 (Penyusutan + Amortisasi) 라인 — 3-peer 직접 비교 (FY2024)</h4>
   <div style="display:grid;grid-template-columns:80px 1fr 80px 60px 54px;gap:8px;padding:2px 0 4px;font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;font-weight:700;border-bottom:1px solid var(--line);">
     <span>Peer</span><span>magnitude</span><span style="text-align:right;">FY24 IDR</span><span style="text-align:right;">%매출</span><span style="text-align:right;">YoY</span>
   </div>
