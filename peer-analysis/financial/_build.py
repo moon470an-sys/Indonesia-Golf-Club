@@ -855,6 +855,102 @@ def _capex_proxy_table() -> str:
 </div>"""
 
 
+def _all_peer_golf_segment_table() -> str:
+    """Cross-peer golf segment revenue + GP margin matrix (FY2024).
+
+    Includes peers with explicit golf segment disclosure: DMIG, PIPG, MDLN, GOLF, KIJA.
+    KPIG bundled separately.
+    """
+    rows = []
+
+    # DMIG — golf course only (revenue_note line)
+    d = NOTES.get("DMIG", {})
+    rev_lines = (d.get("revenue_note") or {}).get("lines") or []
+    cogs_lines = (d.get("cogs_note") or {}).get("lines") or []
+    golf_rev = next((ln.get("FY2024") for ln in rev_lines if (ln.get("en_label") or "").lower() == "golf course"), None)
+    golf_cogs = next((ln.get("FY2024") for ln in cogs_lines if (ln.get("en_label") or "").lower() == "golf course"), None)
+    entity_rev = (d.get("revenue_note") or {}).get("total", {}).get("FY2024")
+    gm = ((golf_rev - golf_cogs) / golf_rev * 100) if (golf_rev and golf_cogs) else None
+    golf_share = (golf_rev / entity_rev * 100) if (golf_rev and entity_rev) else None
+    rows.append(("DMIG", "Pure-play (Note 23)", golf_rev, golf_cogs, gm, entity_rev, golf_share))
+
+    # PIPG — golf course + cart (closer to pure-play golf)
+    d = NOTES.get("PIPG", {})
+    rev_lines = (d.get("revenue_note_27") or {}).get("lines") or []
+    cogs_lines = (d.get("cogs_note_28") or {}).get("lines") or []
+    rl = {(ln.get("en_label") or ""): ln.get("FY2024") for ln in rev_lines}
+    cl = {(ln.get("en_label") or ""): ln.get("FY2024") for ln in cogs_lines}
+    golf_rev_pipg = (rl.get("Golf course", 0) or 0) + (rl.get("Golf cart", 0) or 0)
+    golf_cogs_pipg = (cl.get("Golf course", 0) or 0) + (cl.get("Golf cart", 0) or 0)
+    entity_rev_pipg = (d.get("revenue_note_27") or {}).get("total", {}).get("FY2024")
+    gm_pipg = ((golf_rev_pipg - golf_cogs_pipg) / golf_rev_pipg * 100) if golf_rev_pipg else None
+    share_pipg = (golf_rev_pipg / entity_rev_pipg * 100) if (golf_rev_pipg and entity_rev_pipg) else None
+    rows.append(("PIPG", "Pure-play (Golf+Cart, Note 27/28)", golf_rev_pipg, golf_cogs_pipg, gm_pipg, entity_rev_pipg, share_pipg))
+
+    # MDLN — uses computed_ratios
+    d = NOTES.get("MDLN", {})
+    cr = (d.get("computed_ratios") or {}).get("FY2024", {})
+    golf_rev_m = cr.get("golf_revenue_pure")
+    golf_cogs_m = cr.get("golf_cogs_pure")
+    gm_m = cr.get("golf_pure_gp_margin")
+    entity_rev_m = (d.get("revenue_note_25") or {}).get("total", {}).get("FY2024")
+    share_m = (golf_rev_m / entity_rev_m * 100) if (golf_rev_m and entity_rev_m) else None
+    rows.append(("MDLN", "Golf segment (Green fee+Member+Other; Note 25)", golf_rev_m, golf_cogs_m,
+                 gm_m * 100 if gm_m else None, entity_rev_m, share_m))
+
+    # GOLF — segment by operations
+    d = NOTES.get("GOLF", {})
+    rev_lines = ((d.get("revenue_note_29") or {}).get("by_operations") or {}).get("lines") or []
+    cogs_lines = (d.get("cogs_note_30") or {}).get("lines") or []
+    golf_rev_g = next((ln.get("FY2024") for ln in rev_lines if ln.get("en_label") == "Golf"), None)
+    golf_cogs_g = next((ln.get("FY2024") for ln in cogs_lines if ln.get("id_label") == "Golf"), None)
+    entity_rev_g = ((d.get("revenue_note_29") or {}).get("by_operations") or {}).get("total", {}).get("FY2024")
+    gm_g = ((golf_rev_g - golf_cogs_g) / golf_rev_g * 100) if (golf_rev_g and golf_cogs_g) else None
+    share_g = (golf_rev_g / entity_rev_g * 100) if (golf_rev_g and entity_rev_g) else None
+    rows.append(("GOLF", "Golf-only segment (Note 29 by-operations)", golf_rev_g, golf_cogs_g, gm_g, entity_rev_g, share_g))
+
+    # KIJA — golf segment (units Rp million → multiply by 1e6 for normalization)
+    d = NOTES.get("KIJA", {})
+    seg = (d.get("segment_info_note_34") or {}).get("golf_segment_FY2024") or {}
+    rev_k = (seg.get("revenue") or 0) * 1e6
+    cogs_k = (seg.get("cogs") or 0) * 1e6
+    gm_k = ((rev_k - cogs_k) / rev_k * 100) if rev_k else None
+    entity_rev_k = ((d.get("segment_info_note_34") or {}).get("consolidated_total_FY2024") or {}).get("revenue", 0) * 1e6
+    share_k = (rev_k / entity_rev_k * 100) if (rev_k and entity_rev_k) else None
+    rows.append(("KIJA", "Golf segment (Note 34, units Rp million)", rev_k, cogs_k, gm_k, entity_rev_k, share_k))
+
+    body = []
+    for ticker, basis, rev, cogs, gm_pct, entity_rev, share in rows:
+        gm_str = f"{gm_pct:.1f}%" if gm_pct is not None else "—"
+        share_str = f"{share:.1f}%" if share is not None else "—"
+        body.append(
+            f'<tr class="tier-a">'
+            f'<td><span class="ticker-mini">{safe(ticker)}</span></td>'
+            f'<td class="notes">{safe(basis)}</td>'
+            f'<td class="num">{fmt_bn(rev)}</td>'
+            f'<td class="num">{fmt_bn(cogs)}</td>'
+            f'<td class="num">{gm_str}</td>'
+            f'<td class="num">{fmt_bn(entity_rev)}</td>'
+            f'<td class="num">{share_str}</td>'
+            f'</tr>'
+        )
+
+    return f"""<div class="tbl-card scroll-x">
+  <table class="tbl">
+    <thead><tr>
+      <th>Peer</th>
+      <th>공시 기준 (Note)</th>
+      <th class="num">골프 매출 (FY24)</th>
+      <th class="num">골프 COGS (FY24)</th>
+      <th class="num">Golf GP%</th>
+      <th class="num">Entity 매출</th>
+      <th class="num">골프 비중</th>
+    </tr></thead>
+    <tbody>{''.join(body)}</tbody>
+  </table>
+</div>"""
+
+
 def _fy25_delta_cards() -> str:
     """FY2025 (Cycle 167) preliminary delta callouts for DMIG, PIPG, KPIG."""
     cards = []
@@ -982,6 +1078,7 @@ def section_ops() -> str:
     pnl_table = _pnl_table()
     capex_proxy_table = _capex_proxy_table()
     fy25_cards = _fy25_delta_cards()
+    golf_segment_table = _all_peer_golf_segment_table()
 
     rev_blocks = "\n".join(filter(None, [
         _revenue_breakdown_table("DMIG", "revenue_note", "매출 라인 분해"),
@@ -1060,6 +1157,26 @@ def section_ops() -> str:
         <strong>해석:</strong> DMIG는 감가상각/매출 ≈ 11%, PIPG ≈ 5.7%. DMIG가 신규 시설 (Range@PIK 골프테인먼트 등)에 더 공격적으로 투자한 것으로 보임.
         PIPG는 유지보수/매출 ≈ 5.9%로 DMIG (0.9%)보다 5~6배 높아 노후 코스 (1976년 개장) 유지비용 부담을 시사.
       </div>
+    </div>
+
+    <div class="section">
+      <h2>골프 segment 매출 — 5-peer 통합 비교 (FY2024)</h2>
+      <h3>explicit golf disclosure가 있는 모든 IDX peer</h3>
+      <p class="lede">
+        Pure-play 외에도 <strong>MDLN · GOLF · KIJA</strong>는 annual report Note에서 골프 segment를 명시적 분리 공시.
+        Golf revenue / COGS / Gross profit margin / Entity 매출 비중을 동일 잣대로 비교.
+        <strong>GOLF</strong>가 GP margin 65.7%로 가장 높음 (links style·real estate cross-subsidy 가능),
+        <strong>MDLN</strong>는 GP margin 44.5%, <strong>KIJA</strong>는 41.6%.
+      </p>
+      {golf_segment_table}
+      <div class="banner info">
+        <strong>관전 포인트:</strong>
+        <strong>GOLF (Intra GolfLink Resorts)</strong>: 골프가 entity 매출의 47%, GP margin 65.7%로 가장 자본효율 높음 (Bali 신코스 효과) ·
+        <strong>MDLN (Modern Realty)</strong>: 골프 비중 5.6%, GP margin 44.5%, FY25에 +28% YoY 성장 ·
+        <strong>KIJA</strong>: 골프 비중 1.8% (industrial estate 본업), GP margin 41.6%로 마진은 낮은 편 ·
+        <strong>DMIG/PIPG</strong>: Pure-play이지만 golf course-line만 가져오면 다른 비교 단위가 되므로 별도 cell 검토.
+      </div>
+      <p class="src-line">출처: site/peer-analysis/operations/data/{{dmig,pipg,mdln,golf,kija}}_notes.json (FY24 AR Note 23·25·27·29·34 직접 추출)</p>
     </div>
 
     <div class="section">
