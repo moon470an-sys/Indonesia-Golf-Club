@@ -111,10 +111,6 @@
     <div class="section" id="kpi-dashboard">
       <h2 data-num="01">운영 KPI 시계열 — 대시보드</h2>
       <h3>골퍼·회원·인력·CWIP 6-tile sparkline 대시보드</h3>
-      <p class="lede">
-        annual report 본문 (Management Discussion)에서 직접 추출한 정량 지표.
-        벡터 검색 (multilingual-e5-small / 99,618 chunks)로 동일 fact를 여러 인덱스 페이지에서 cross-validate.
-      </p>
       <div class="kpi-strip" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
 
   <div class="kpi-tile accent-warn">
@@ -174,7 +170,7 @@
     </div>
 
     <div class="section" id="kpi-timeseries">
-      <h2 data-num="02">시계열 detail — 출처 페이지 + narrative</h2>
+      <h2 data-num="02">시계열 detail</h2>
       <h3>각 peer별 상세 데이터 (페이지 추적 가능)</h3>
       <div class="ops-block">
   <h4 class="ops-block-h">DMIG — 골퍼 / 회원 / 인력 시계열</h4>
@@ -182,61 +178,45 @@
     <div class="kv">
       <div class="k">FY2023 골퍼 증가</div>
       <div class="v">+12,979명 <span class="muted">(+12.09% YoY)</span></div>
-      <p class="kv-comment">FY2023 골퍼 +12,979명 (+12.09% YoY): BSD 코스 +6,577명 (+14.51%) / PIK 코스 +6,402명 (+10.32%)</p>
-      <span class="src">출처: DMIG FY2023 AR p.14 REALIZATION GOLF OPERATION</span>
-    </div>
+      <p class="kv-comment">FY2023 골퍼 +12,979명 (+12.09% YoY): BSD 코스 +6,577명 (+14.51%) / PIK 코스 +6,402명 (+10.32%)</p>    </div>
     <div class="kv">
       <div class="k">FY2023 Main Playing Members</div>
       <div class="v">1,233명 <span class="muted">(전년比 -6명)</span></div>
-      <p class="kv-comment">Main Playing Members: FY2022 1,239 → FY2023 1,233 (-6 명). Husband/Wife 79 + Child 35 포함 총 1,233</p>
-      <span class="src">출처: DMIG FY2023 AR p.17 MEMBERSHIP</span>
-    </div>
+      <p class="kv-comment">Main Playing Members: FY2022 1,239 → FY2023 1,233 (-6 명). Husband/Wife 79 + Child 35 포함 총 1,233</p>    </div>
     <div class="kv">
       <div class="k">직원 수 (Benefit-eligible)</div>
       <div class="v">FY21 342 → FY22 196 → FY23 206</div>
-      <p class="kv-comment">직원 수 FY2021 342명 → FY2022 196명 (-42.7% / 코로나 회복기 구조조정) → FY2023 206명 (+5.1% 점진 회복). 인건비 비중도 FY24 12.6%로 가장 높음.</p>
-      <span class="src">출처: DMIG FY2022 p.101 / FY2023 p.87 (employees with right to receive employee benefits)</span>
-    </div>
+      <p class="kv-comment">직원 수 FY2021 342명 → FY2022 196명 (-42.7% / 코로나 회복기 구조조정) → FY2023 206명 (+5.1% 점진 회복). 인건비 비중도 FY24 12.6%로 가장 높음.</p>    </div>
     <div class="kv">
       <div class="k">The Range@PIK 매출</div>
       <div class="v">31.4bn <span class="muted">(+372.7% YoY)</span></div>
-      <p class="kv-comment">The Range@PIK driving range/golftainment: FY2022 신규 운영 3개월간 6.6bn → FY2023 31.4bn (+372.71% YoY 풀이어 효과)</p>
-      <span class="src">출처: DMIG FY2023 AR p.18 THE RANGE</span>
-    </div>
+      <p class="kv-comment">The Range@PIK driving range/golftainment: FY2022 신규 운영 3개월간 6.6bn → FY2023 31.4bn (+372.71% YoY 풀이어 효과)</p>    </div>
     <div class="kv">
       <div class="k">FY2023 F&amp;B 코스별 분해</div>
       <div class="v">BSD 17.2bn + PIK 20.5bn</div>
-      <p class="kv-comment">FY2023 레스토랑 매출 코스별: BSD 17.24bn (+39.67% YoY) + PIK 20.45bn (+27.99% YoY 추정) = 37.7bn 직접 합산. Note 23 총 Restaurant 48.5bn과의 차액(~10.8bn)은 The Range@PIK F&amp;B 일부.</p>
-      <span class="src">출처: DMIG FY2023 AR p.15 FOOD &amp; BEVERAGE</span>
-    </div>
+      <p class="kv-comment">FY2023 레스토랑 매출 코스별: BSD 17.24bn (+39.67% YoY) + PIK 20.45bn (+27.99% YoY 추정) = 37.7bn 직접 합산. Note 23 총 Restaurant 48.5bn과의 차액(~10.8bn)은 The Range@PIK F&amp;B 일부.</p>    </div>
   </div>
 </div>
 <div class="ops-block">
   <h4 class="ops-block-h">PIPG — 골퍼 시계열 (4년)</h4>
   <div class="tbl-card"><table class="tbl tbl-tight"><thead><tr><th>연도</th><th class="num">골퍼</th><th class="num">YoY</th></tr></thead><tbody><tr><td>FY2021</td><td class="num">24,512</td><td class="num">—</td></tr><tr><td>FY2022</td><td class="num">26,551</td><td class="num">+8.3%</td></tr><tr><td>FY2023</td><td class="num">28,464</td><td class="num">+7.2%</td></tr><tr><td>FY2024</td><td class="num">26,805</td><td class="num">-5.8%</td></tr></tbody></table></div>
   <p class="kv-comment">골퍼 추이: 24,512 (FY21) → 26,551 (FY22 +8.3%) → 28,464 (FY23 +7.2%) → 26,805 (FY24 -5.8%). FY24 감소는 글로벌 경기 둔화·관광객 감소.</p>
-  <p class="src-line">출처: PIPG FY22/FY24 AR p.48/p.43 KEGIATAN OPERASIONAL GOLF</p>
 </div>
 <div class="ops-block">
   <h4 class="ops-block-h">PIPG — 부서별 인원 (FY2024, turnover 그래프 기준)</h4>
   <div class="tbl-card"><table class="tbl tbl-tight"><thead><tr><th>부서</th><th class="num">인원 (FY24)</th></tr></thead><tbody><tr><td>F&amp;B</td><td class="num">86</td></tr><tr><td>Membership/Market/PIGA</td><td class="num">36</td></tr><tr><td>Golf Operational</td><td class="num">30</td></tr><tr><td>Gym</td><td class="num">29</td></tr><tr><td>Driving Range</td><td class="num">22</td></tr><tr><td>Property/ME/Locker/Security</td><td class="num">15</td></tr><tr><td>Golf Course Maintenance</td><td class="num">14</td></tr><tr><td>HRD&amp;Training</td><td class="num">10</td></tr><tr><td>GA&amp;IT</td><td class="num">9</td></tr><tr><td>Finance</td><td class="num">6</td></tr><tr class="row-total"><td><strong>합계</strong></td><td class="num"><strong>257</strong></td></tr></tbody></table></div>
   <p class="kv-comment">FY24 부서별 (turnover 그래프 기준 인원 수). 총합 ~257명. F&amp;B (86명)이 최대 부서.</p>
-  <p class="src-line">출처: PIPG FY24 AR p.75 EMPLOYEE TURNOVER</p>
 </div>
 <div class="ops-block">
   <h4 class="ops-block-h">KPIG — 운영 scope &amp; Trump Lido 시설</h4>
   <div class="kv-grid">
     <div class="kv">
       <div class="k">공시 범위</div>
-      <p class="kv-comment">KPIG는 MNC Land/Tourism 모회사. Trump Lido 단독 운영 KPI는 미공시 (관계사 운영). 모회사 직원 2,573명 (FY22, 91% male)은 conglomerate 전체.</p>
-      <span class="src">출처: KPIG FY22 AR p.135 HR SDM</span>
-    </div>
+      <p class="kv-comment">KPIG는 MNC Land/Tourism 모회사. Trump Lido 단독 운영 KPI는 미공시 (관계사 운영). 모회사 직원 2,573명 (FY22, 91% male)은 conglomerate 전체.</p>    </div>
     <div class="kv">
       <div class="k">Trump Clubhouse</div>
       <div class="v">33,322 m² <span class="muted">(Oppenheim Arch.)</span></div>
-      <p class="kv-comment">Trump Clubhouse 33,322 m² (Oppenheim Architecture 설계, 럭셔리 컨셉). FY2025에 18홀 풀 가동 확인.</p>
-      <span class="src">출처: KPIG FY25 AR p.85</span>
-    </div>
+      <p class="kv-comment">Trump Clubhouse 33,322 m² (Oppenheim Architecture 설계, 럭셔리 컨셉). FY2025에 18홀 풀 가동 확인.</p>    </div>
   </div>
 </div>
 <div class="ops-block">
@@ -253,14 +233,10 @@
     <div class="kv">
       <div class="k">FY2025 Golf 매출 vs target</div>
       <div class="v">101.9bn <span class="muted">(target 81.8bn · 달성 +24.7%)</span></div>
-      <p class="kv-comment">FY2025 Golf segment IDR 101.93bn = 124.66% of established target IDR 81.76bn. FY24 93.0bn 대비 +9.6% 성장. (참고: 앞서 추출된 79.4bn은 Real Estate segment였음 — 라벨링 오류 정정)</p>
-      <span class="src">출처: GOLF FY25 AR p.174</span>
-    </div>
+      <p class="kv-comment">FY2025 Golf segment IDR 101.93bn = 124.66% of established target IDR 81.76bn. FY24 93.0bn 대비 +9.6% 성장. (참고: 앞서 추출된 79.4bn은 Real Estate segment였음 — 라벨링 오류 정정)</p>    </div>
     <div class="kv">
       <div class="k">CWIP 설명</div>
-      <p class="kv-comment">FY2025 Construction in Progress (CWIP): Buildings 187.9bn IDR + Landscape 237.8bn IDR + Equipment/Furniture/Vehicles 27bn. 총 ~450bn 건설 진행 중 — 신규 코스 또는 시설 대규모 확장 시사.</p>
-      <span class="src">출처: GOLF FY25 AR p.170 Aset dalam Konstruksi</span>
-    </div>
+      <p class="kv-comment">FY2025 Construction in Progress (CWIP): Buildings 187.9bn IDR + Landscape 237.8bn IDR + Equipment/Furniture/Vehicles 27bn. 총 ~450bn 건설 진행 중 — 신규 코스 또는 시설 대규모 확장 시사.</p>    </div>
   </div>
 </div>
     </div>
@@ -303,17 +279,13 @@
     <span style="text-align:right;">1233 명</span>
     <span style="text-align:right;color:var(--muted);">100.0%</span>
   </div>
-  <p class="src-line" style="margin-top:8px;">FY22 1,239명 → FY23 1,233명 (-6 명) · 출처: DMIG FY23 AR p.17 MEMBERSHIP</p>
+  <p class="src-line" style="margin-top:8px;">FY22 1,239명 → FY23 1,233명 (-6 명)</p>
 </div>
     </div>
 
     <div class="section" id="kpi-dept">
       <h2 data-num="04">PIPG 부서별 인원 (FY2024)</h2>
       <h3>turnover graph 기준 Top 부서 horizontal bar</h3>
-      <p class="lede">
-        PIPG annual report Note 32에 부서별 turnover/headcount graph 공시. Front office, Maintenance, F&amp;B 같은
-        operations-heavy 부서가 상위. <strong>Pondok Indah 단일 코스</strong>에서 운영되는 인력 구조.
-      </p>
       <div class="ops-block" style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;">
   <h4 class="ops-block-h" style="margin-bottom:10px;">
     <span class="ticker-mini">PIPG</span> 부서별 인원 (FY2024) — Note 32 turnover 그래프 기준
@@ -397,7 +369,6 @@
     <span style="text-align:right;">257 명</span>
     <span style="text-align:right;color:var(--muted);">100.0%</span>
   </div>
-  <p class="src-line" style="margin-top:8px;">출처: PIPG FY24 AR p.75 EMPLOYEE TURNOVER</p>
 </div>
     </div>
 
@@ -452,16 +423,12 @@
   </div>
 </div>
 </div>
-<p class="src-line">출처: FY24 AR p.143 Note 32 PERIKATAN, KOMITMEN DAN KONTIJENSI</p>
+
     </div>
 
     <div class="section" id="kpi-land">
       <h2 data-num="06">PIPG 토지·HGB·임차 구조</h2>
       <h3>53ha 토지 + 12 인증서 + HGB 면적 + MKPI 임차</h3>
-      <p class="lede">
-        Pondok Indah의 토지 구조 — 자체 보유 53ha (12 인증서) + HGB 일부 + MKPI에서 추가 임차.
-        HGB 만료 시점이 향후 30+ 년 유효지만, related-party lease 갱신 / 토지 가치 평가가 valuation 핵심 변수.
-      </p>
       <div style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;">
   <h4 class="ops-block-h" style="margin-bottom:14px;">
     <span class="ticker-mini">PIPG</span> 토지·HGB·임차 timeline
@@ -483,17 +450,12 @@
       <div style="font-size:11.5px;color:var(--ink-soft);margin-top:3px;">Junior Driving Range · 2023-08-01 ~ 2028-07-31</div>
     </div>
   </div>
-  <p class="src-line" style="margin-top:10px;">출처: FY24 AR p.7 (luas lahan + hole) / FY24 AR p.131 Note 10 (HGB area + expiry) / FY24 AR p.132 Note 11 (MKPI lease)</p>
 </div>
     </div>
 
     <div class="section" id="kpi-segment6">
       <h2 data-num="07">6-peer 골프 segment — 매출 × GP × 비중</h2>
       <h3>bubble scatter (FY2024) — 4-사분면 분류</h3>
-      <p class="lede">
-        Pure-play 외 <strong>MDLN · GOLF · KIJA · SMDM</strong>도 annual report Note에서 골프 segment를 명시적 분리 공시.
-        Golf 매출 비중 × GP margin × 매출 절댓값을 한 차트로.
-      </p>
       <div style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 12px 8px;">
   <svg viewBox="0 0 720 380" width="100%" style="max-width:780px;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
     <rect x="56" y="28" width="455.1" height="131.6" fill="#fef3c7" fill-opacity="0.35"/><rect x="511.1" y="28" width="186.9" height="131.6" fill="#e6f1d8" fill-opacity="0.55"/><rect x="56" y="159.6" width="455.1" height="176.4" fill="#fee2e2" fill-opacity="0.30"/><rect x="511.1" y="159.6" width="186.9" height="176.4" fill="#fde68a" fill-opacity="0.18"/>
@@ -505,8 +467,7 @@
   </svg>
 </div>
 <p class="src-line" style="margin:8px 2px;">버블 면적 = golf 매출 절댓값 · dashed = 6-peer median · 색 배경 = 4-사분면 분류 · hover로 정확 수치 (FY2024)</p>
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 6-peer 골프 segment 표</summary>
+      <details class="orig-toggle"><summary>원본 6-peer 표</summary>
         <div class="tbl-card scroll-x">
   <table class="tbl">
     <thead><tr>
@@ -527,9 +488,6 @@
     <div class="section" id="kpi-dividend">
       <h2 data-num="08">배당 시계열 — 3-peer capital allocation</h2>
       <h3>FY22-24 + payout ratio + RUPST 날짜</h3>
-      <p class="lede">
-        cash distribution을 통한 capital allocation 비교 — PIPG 안정+증가, DMIG FY23 1회 배당, SMDM FY24 미실시 (BSDE 인수 직전).
-      </p>
       <div class="kpi-strip">
   <div class="kpi-tile accent-green">
     <div class="kpi-cap">PIPG · FY23 Payout</div>
@@ -631,8 +589,7 @@
   <div style="font-size:10px;color:var(--muted);">—</div>
 </div></div>
 </div></div>
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 배당 표 (narrative + 출처)</summary>
+      <details class="orig-toggle"><summary>원본 배당 표</summary>
         <div class="tbl-card scroll-x">
   <table class="tbl tbl-tight">
     <thead><tr>
@@ -641,7 +598,7 @@
       <th class="num">FY23 배당</th>
       <th class="num">FY24 배당</th>
       <th>해설</th>
-      <th>출처</th>
+      
     </tr></thead>
     <tbody><tr class="tier-a"><td><span class="ticker-mini">DMIG</span></td><td class="num"><span class="na">N/A</span></td><td class="num">26.5bn</td><td class="num">—</td><td class="notes">FY2023 배당 IDR 26.5bn (Statement of Changes in Equity 직접). FY2023 순이익 71.3bn 대비 payout ratio 37.2%.</td><td class="src">DMIG FY2023 AR p.55 STATEMENTS OF CHANGES IN EQUITY</td></tr><tr class="tier-a"><td><span class="ticker-mini">PIPG</span></td><td class="num">20.8bn</td><td class="num">26.2bn</td><td class="num">—</td><td class="notes">FY2022 배당 20.8bn (RUPST 2023-06-15, Rp 15.98M/주) + FY2023 배당 26.2bn (RUPST 2024-06-06, Rp 20.20M/주). FY23 순이익 55.9bn 대비 payout 46.9%.</td><td class="src">PIPG FY24 AR p.141 Note 26 PEMBAGIAN DIVIDEN</td></tr><tr class="tier-a"><td><span class="ticker-mini">SMDM</span></td><td class="num"><span class="na">N/A</span></td><td class="num"><span class="na">N/A</span></td><td class="num">0</td><td class="notes">FY2024 배당 미실시 (working capital 보존). BSDE 91.99% 인수 직전 결정.</td><td class="src">SMDM FY24 AR p.70</td></tr></tbody>
   </table>
@@ -652,10 +609,6 @@
     <div class="section" id="kpi-related">
       <h2 data-num="09">관계사·고객·공급사 집중도</h2>
       <h3>annual report Note에서 추출한 audit-grade 정량 정보</h3>
-      <p class="lede">
-        <strong>DMIG</strong> 핵심경영진 보수 · <strong>PIPG</strong> 53ha 토지·HGB·MKPI 임차 · <strong>GOLF</strong> 고객 집중도 ·
-        <strong>MDLN</strong> 공급사 집중도 — cross-default / cross-risk 분석에 핵심.
-      </p>
       <div class="kpi-strip" style="margin-bottom: 18px;"><div class="kpi-tile accent-blue">
   <div class="kpi-cap"><span class="ticker-mini">DMIG</span> 핵심경영진 보수</div>
   <div style="display:flex;align-items:center;gap:10px;margin:6px 0;">
@@ -687,13 +640,12 @@
   <div class="kpi-sub">4 유형의 약정 (lease/sponsor/관계사)</div>
   <div class="kpi-sub">Note 32 · 상세는 아래 표 참조</div>
 </div></div>
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 관계사·lease 상세 표</summary>
-        <div class="ops-block"><h4 class="ops-block-h">DMIG — 핵심경영진 보수 (Related party · Note 26)</h4><div class="tbl-card"><table class="tbl tbl-tight"><thead><tr><th>Item</th><th class="num">FY22</th><th class="num">FY23</th><th class="num">FY24</th></tr></thead><tbody><tr><td>Salaries and benefit expenses (key mgmt)</td><td class="num">3.3bn</td><td class="num">5.5bn</td><td class="num">5.3bn</td></tr><tr><td>% to operating expenses</td><td class="num">5.85%</td><td class="num">5.85%</td><td class="num">5.50%</td></tr></tbody></table></div><p class="src-line">출처: FY24 AR p.87</p></div>
-<div class="ops-block"><h4 class="ops-block-h">PIPG — 약정·관계사 lease (Note 32)</h4><div class="tbl-card scroll-x"><table class="tbl tbl-tight"><thead><tr><th>유형</th><th>상대방</th><th>기간</th><th>임대료/금액</th></tr></thead><tbody><tr><td>Pool management rights</td><td class="notes">PT Metropolitan Kentjana Tbk (related party)</td><td class="notes">2024-03-01 to 2029-02-28 (5 years)</td><td class="notes">Rp 786,597,278 + VAT</td></tr><tr><td>Telecom tower land lease (incoming)</td><td class="notes">PT Indosat Multi Media Mobile (3 years 2021-09-15 to 2024-09-14)</td><td class="notes">—</td><td class="notes">Rp 600,000,000 incl VAT</td></tr><tr><td>Telecom tower land lease (renewed)</td><td class="notes">PT Epid Menara Assetco (formerly Indosat Multi Media Mobile)</td><td class="notes">2024-09-15 to 2029-09-14 (5 years)</td><td class="notes">Rp 1,010,000,000 incl VAT</td></tr><tr><td>Land lease (outgoing for Junior Driving Range)</td><td class="notes">PT Metropolitan Kentjana Tbk (related party)</td><td class="notes">2023-08-01 to 2028-07-31 (5 years)</td><td class="notes">not disclosed</td></tr></tbody></table></div><p class="src-line">출처: FY24 AR p.143 Note 32 PERIKATAN, KOMITMEN DAN KONTIJENSI</p></div>
-<div class="ops-block"><h4 class="ops-block-h">PIPG — 토지·HGB profile</h4><div class="kv-grid"><div class="kv"><div class="k">총 토지 면적</div><div class="v">53.01 ha <span class="muted">(530,095 m²)</span></div></div><div class="kv"><div class="k">토지 인증서</div><div class="v">12 건</div></div><div class="kv"><div class="k">HGB 면적</div><div class="v">209,533 m² <span class="muted">(만료: 2025 dan 2055)</span></div></div><div class="kv"><div class="k">MKPI에서 임차</div><div class="v">20,611 m² <span class="muted">(Junior Driving Range)</span></div><div class="src">기간: 2023-08-01 ~ 2028-07-31</div></div></div><p class="src-line">출처: FY24 AR p.7 (luas lahan + hole) / FY24 AR p.131 Note 10 (HGB area + expiry) / FY24 AR p.132 Note 11 (MKPI lease)</p></div>
-<div class="ops-block"><h4 class="ops-block-h">GOLF — 고객 집중도 위험 (Note 29)</h4><div class="kv-grid"><div class="kv"><div class="k">고객명</div><div class="v">PT Triniti Garam Properti</div></div><div class="kv"><div class="k">FY2024 매출 기여</div><div class="v">67.9bn <span class="muted">(34.0% of revenue)</span></div></div><div class="kv"><div class="k">FY2023 매출 기여</div><div class="v">44.6bn <span class="muted">(25.0%)</span></div></div></div><p class="src-line">출처: FY24 AR p.211 Note 29 (continued)</p></div>
-<div class="ops-block"><h4 class="ops-block-h">MDLN — 공급사 집중 (Note 26)</h4><div class="kv-grid"><div class="kv"><div class="k">공급사명</div><div class="v">PT Jumbo Power International</div></div><div class="kv"><div class="k">FY2024 거래액</div><div class="v">62.0bn</div></div><div class="kv"><div class="k">전체 COGS 대비</div><div class="v">exceeds 10%</div></div></div><p class="src-line">출처: FY24 AR p.319 Note 26 (continued)</p></div>
+      <details class="orig-toggle"><summary>원본 상세 표</summary>
+        <div class="ops-block"><h4 class="ops-block-h">DMIG — 핵심경영진 보수 (Related party · Note 26)</h4><div class="tbl-card"><table class="tbl tbl-tight"><thead><tr><th>Item</th><th class="num">FY22</th><th class="num">FY23</th><th class="num">FY24</th></tr></thead><tbody><tr><td>Salaries and benefit expenses (key mgmt)</td><td class="num">3.3bn</td><td class="num">5.5bn</td><td class="num">5.3bn</td></tr><tr><td>% to operating expenses</td><td class="num">5.85%</td><td class="num">5.85%</td><td class="num">5.50%</td></tr></tbody></table></div></div>
+<div class="ops-block"><h4 class="ops-block-h">PIPG — 약정·관계사 lease (Note 32)</h4><div class="tbl-card scroll-x"><table class="tbl tbl-tight"><thead><tr><th>유형</th><th>상대방</th><th>기간</th><th>임대료/금액</th></tr></thead><tbody><tr><td>Pool management rights</td><td class="notes">PT Metropolitan Kentjana Tbk (related party)</td><td class="notes">2024-03-01 to 2029-02-28 (5 years)</td><td class="notes">Rp 786,597,278 + VAT</td></tr><tr><td>Telecom tower land lease (incoming)</td><td class="notes">PT Indosat Multi Media Mobile (3 years 2021-09-15 to 2024-09-14)</td><td class="notes">—</td><td class="notes">Rp 600,000,000 incl VAT</td></tr><tr><td>Telecom tower land lease (renewed)</td><td class="notes">PT Epid Menara Assetco (formerly Indosat Multi Media Mobile)</td><td class="notes">2024-09-15 to 2029-09-14 (5 years)</td><td class="notes">Rp 1,010,000,000 incl VAT</td></tr><tr><td>Land lease (outgoing for Junior Driving Range)</td><td class="notes">PT Metropolitan Kentjana Tbk (related party)</td><td class="notes">2023-08-01 to 2028-07-31 (5 years)</td><td class="notes">not disclosed</td></tr></tbody></table></div></div>
+<div class="ops-block"><h4 class="ops-block-h">PIPG — 토지·HGB profile</h4><div class="kv-grid"><div class="kv"><div class="k">총 토지 면적</div><div class="v">53.01 ha <span class="muted">(530,095 m²)</span></div></div><div class="kv"><div class="k">토지 인증서</div><div class="v">12 건</div></div><div class="kv"><div class="k">HGB 면적</div><div class="v">209,533 m² <span class="muted">(만료: 2025 dan 2055)</span></div></div><div class="kv"><div class="k">MKPI에서 임차</div><div class="v">20,611 m² <span class="muted">(Junior Driving Range)</span></div><div class="src">기간: 2023-08-01 ~ 2028-07-31</div></div></div></div>
+<div class="ops-block"><h4 class="ops-block-h">GOLF — 고객 집중도 위험 (Note 29)</h4><div class="kv-grid"><div class="kv"><div class="k">고객명</div><div class="v">PT Triniti Garam Properti</div></div><div class="kv"><div class="k">FY2024 매출 기여</div><div class="v">67.9bn <span class="muted">(34.0% of revenue)</span></div></div><div class="kv"><div class="k">FY2023 매출 기여</div><div class="v">44.6bn <span class="muted">(25.0%)</span></div></div></div></div>
+<div class="ops-block"><h4 class="ops-block-h">MDLN — 공급사 집중 (Note 26)</h4><div class="kv-grid"><div class="kv"><div class="k">공급사명</div><div class="v">PT Jumbo Power International</div></div><div class="kv"><div class="k">FY2024 거래액</div><div class="v">62.0bn</div></div><div class="kv"><div class="k">전체 COGS 대비</div><div class="v">exceeds 10%</div></div></div></div>
       </details>
     </div>
 
@@ -850,8 +802,7 @@
   <div class="stack-total">감가 1.1% + 유지 2.7%</div>
 </div>
 </div>
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 CAPEX proxy 표</summary>
+      <details class="orig-toggle"><summary>원본 CAPEX proxy 표</summary>
         <div class="tbl-card">
   <table class="tbl">
     <thead><tr>
@@ -872,10 +823,6 @@
     <div class="section" id="cap-turnover">
       <h2 data-num="02">자산 회전율 — 4-peer efficiency</h2>
       <h3>매출 / 총자산 · 자산집약도 · 매출/홀</h3>
-      <p class="lede">
-        자본 효율의 또 다른 잣대 — 자산 회전율 (matarev/asset). PIPG는 단일 코스 + 도시 자산으로 회전율 가장 높을 가능성,
-        KPIG는 conglomerate 자산 base로 가장 낮음. 함께 보이는 자산집약도(역수)도 의미 동일.
-      </p>
       <div class="kpi-strip"><div class="kpi-tile accent-blue">
   <div class="kpi-cap"><span class="ticker-mini">DMIG</span> 자산 회전율</div>
   <div class="kpi-val">0.39<span class="u">×/년</span></div>
@@ -902,10 +849,6 @@
     <div class="section" id="cap-cwip">
       <h2 data-num="03">GOLF CWIP detail — 6 카테고리 분해</h2>
       <h3>FY2025 진행 중 자산 426bn의 구성 (Buildings/Landscape/Equipment/Vehicles/Furniture)</h3>
-      <p class="lede">
-        Aset dalam Konstruksi 6 카테고리로 분해 — Buildings (188bn, 43%) + Landscape (238bn, 54%)이 핵심 ·
-        나머지는 Equipment·Vehicles·Furniture·Office Equipment 등 운영 보조 시설. 신규 코스 또는 시설 대규모 확장 시사.
-      </p>
       <div class="ops-block" style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;">
   <h4 class="ops-block-h" style="margin-bottom:10px;">
     <span class="ticker-mini">GOLF</span> CWIP detail (FY2025) — 6 카테고리
@@ -961,17 +904,12 @@
     <span style="text-align:right;">452.5bn</span>
     <span style="text-align:right;color:var(--muted);">100.0%</span>
   </div>
-  <p class="src-line" style="margin-top:8px;">출처: GOLF FY25 AR p.170 — Aset dalam Konstruksi (Construction in Progress)</p>
 </div>
     </div>
 
     <div class="section" id="cap-depr">
       <h2 data-num="04">감가상각 라인 — 3-peer 직접 비교</h2>
       <h3>Penyusutan / Depreciation 라인 IDR + 매출 대비 % + YoY (FY24)</h3>
-      <p class="lede">
-        OpEx/G&amp;A Note 내 depreciation 라인을 3-peer 한 표로 — 절댓값 + 매출 대비 + YoY 변화율.
-        DMIG가 절댓값·비중·YoY 모두 가장 높음 (PIK Range 신규 + 누적 CAPEX 유동화).
-      </p>
       <div class="ops-block" style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;">
   <h4 class="ops-block-h" style="margin-bottom:10px;">감가상각 (Penyusutan) 라인 — 3-peer 직접 비교 (FY2024)</h4>
   <div style="display:grid;grid-template-columns:80px 1fr 80px 60px 54px;gap:8px;padding:2px 0 4px;font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;font-weight:700;border-bottom:1px solid var(--line);">
@@ -1022,7 +960,7 @@
   <div style="font-size:13px; color:var(--ink); line-height:1.55;">
     <strong style="color:var(--green);">→</strong> 건물 187.9bn + 조경 237.8bn (총 진행 중 426bn) — 신규 클럽하우스 + 코스 리노베이션 동시 진행. FY2025 CWIP는 GOLF entity 매출 102bn의 ~4.2배 규모로, 향후 3-5년 감가상각 부담 예고.
   </div>
-  <div class="qmeta"><strong>출처</strong> · GOLF FY2025 AR p.170 — Fixed assets breakdown (multilingual-e5-small 벡터 검색)</div>
+  <div class="qmeta"><strong>↳</strong> · GOLF FY2025 AR p.170 — Fixed assets breakdown</div>
 </div><div class="quote-card" style="border-left-color: #8a8a8a;">
   <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
     <span class="ticker-mini">GOLF</span>
@@ -1035,7 +973,7 @@
   <div style="font-size:13px; color:var(--ink); line-height:1.55;">
     <strong style="color:var(--green);">→</strong> 일상 유지보수는 P&amp;L 비용 / 미래 수익증대로 이어지는 시설 업그레이드만 자산 capitalize. CWIP 추가 빠르게 늘어나는 GOLF의 회계 기준 → P&amp;L 마진을 보호하면서 자산 base 키우는 구조.
   </div>
-  <div class="qmeta"><strong>출처</strong> · GOLF FY2024 AR p.175 — Fixed asset policy (multilingual-e5-small 벡터 검색)</div>
+  <div class="qmeta"><strong>↳</strong> · GOLF FY2024 AR p.175 — Fixed asset policy</div>
 </div><div class="quote-card" style="border-left-color: var(--warn);">
   <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
     <span class="ticker-mini">PIPG</span>
@@ -1048,7 +986,7 @@
   <div style="font-size:13px; color:var(--ink); line-height:1.55;">
     <strong style="color:var(--green);">→</strong> GCM 부서가 &#x27;항상 prime condition&#x27; 유지 약속 + 국내·국제 토너먼트 hosting capacity 보장. 노후 코스(1976 개장)에서 유지보수 5.9%/매출 (DMIG 0.9% 대비 ~6배)이 단순 비효율이 아니라 프리미엄 포지셔닝 비용임을 시사. Indonesia Open 같은 sponsor 매출과 직결.
   </div>
-  <div class="qmeta"><strong>출처</strong> · PIPG FY2023 AR p.35 — Golf Course Maintenance department (multilingual-e5-small 벡터 검색)</div>
+  <div class="qmeta"><strong>↳</strong> · PIPG FY2023 AR p.35 — Golf Course Maintenance department</div>
 </div><div class="quote-card" style="border-left-color: var(--green);">
   <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
     <span class="ticker-mini">PIPG</span>
@@ -1061,7 +999,7 @@
   <div style="font-size:13px; color:var(--ink); line-height:1.55;">
     <strong style="color:var(--green);">→</strong> FY25 매출 -6% 환경에도 OpEx -17.9% 대규모 절감 → 영업이익 +4.0% 가능했던 원동력. Brand 자산 (Pondok Indah)을 유지하면서 비용통제 — 노후 코스의 &#x27;mature operator&#x27; 전략 사례.
   </div>
-  <div class="qmeta"><strong>출처</strong> · PIPG FY2024 AR p.32 — Annual report narrative (multilingual-e5-small 벡터 검색)</div>
+  <div class="qmeta"><strong>↳</strong> · PIPG FY2024 AR p.32 — Annual report narrative</div>
 </div><div class="quote-card" style="border-left-color: #8a8a8a;">
   <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
     <span class="ticker-mini">DMIG</span>
@@ -1074,7 +1012,7 @@
   <div style="font-size:13px; color:var(--ink); line-height:1.55;">
     <strong style="color:var(--green);">→</strong> FY21 342명 → FY22 196명 (-42.7%, 코로나 회복기 구조조정) → FY23 206명 (+5.1% 점진 회복). 인건비 비중이 peer 중 가장 높은 12.6%인 이유는 2 코스 (BSD+PIK) 운영 + Range@PIK 확장으로 장기근속자(employee benefits liability Rp135bn) 비중 큼.
   </div>
-  <div class="qmeta"><strong>출처</strong> · DMIG FY2023 AR p.87 — Employee benefits note (multilingual-e5-small 벡터 검색)</div>
+  <div class="qmeta"><strong>↳</strong> · DMIG FY2023 AR p.87 — Employee benefits note</div>
 </div><div class="quote-card" style="border-left-color: var(--warn);">
   <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
     <span class="ticker-mini">DMIG</span>
@@ -1087,7 +1025,7 @@
   <div style="font-size:13px; color:var(--ink); line-height:1.55;">
     <strong style="color:var(--green);">→</strong> PIK Range (FY24 신규 시설) 같은 CWIP가 완공되어 감가 시작되면 → 향후 2-3년 감가 비중 추가 상승 예고. 이미 12.2%/매출로 peer 최고치인데, 추가 부담 가능성. 매출 sticky한데 감가↑ 시 마진 압박.
   </div>
-  <div class="qmeta"><strong>출처</strong> · DMIG FY2022 AR p.77 — CWIP accounting policy (multilingual-e5-small 벡터 검색)</div>
+  <div class="qmeta"><strong>↳</strong> · DMIG FY2022 AR p.77 — CWIP accounting policy</div>
 </div><div class="quote-card" style="border-left-color: var(--green);">
   <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
     <span class="ticker-mini">GOLF</span>
@@ -1100,7 +1038,7 @@
   <div style="font-size:13px; color:var(--ink); line-height:1.55;">
     <strong style="color:var(--green);">→</strong> GOLF의 OpEx 21.1%/매출 (DMIG/PIPG 38% 대비 압도) 배경 — 솔라 + 리튬 카트 도입으로 유틸리티 비용 구조적 절감. IPO 1년차 효과뿐 아니라 운영 모델 자체가 capital-light. 단, CWIP 450bn 진행 중 → 향후 감가상승은 불가피.
   </div>
-  <div class="qmeta"><strong>출처</strong> · GOLF FY2024 AR p.120 — Eco-friendly materials &amp; technologies (multilingual-e5-small 벡터 검색)</div>
+  <div class="qmeta"><strong>↳</strong> · GOLF FY2024 AR p.120 — Eco-friendly materials &amp; technologies</div>
 </div><div class="quote-card" style="border-left-color: var(--warn);">
   <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
     <span class="ticker-mini">GOLF</span>
@@ -1113,7 +1051,7 @@
   <div style="font-size:13px; color:var(--ink); line-height:1.55;">
     <strong style="color:var(--green);">→</strong> GOLF AR이 명시한 본질적 운영 리스크 — 코스 잔디 관리는 비용·전문성 집약. FY25 selling expenses +137% 급등 이유 중 하나로 추정 가능. PIPG 5.9%/매출 maintenance ratio가 outlier가 아니라 mature 코스의 본질 비용 시그널.
   </div>
-  <div class="qmeta"><strong>출처</strong> · GOLF FY2024 AR p.97 — Operational risk disclosure (multilingual-e5-small 벡터 검색)</div>
+  <div class="qmeta"><strong>↳</strong> · GOLF FY2024 AR p.97 — Operational risk disclosure</div>
 </div>
 </div>
     </div>
@@ -1325,8 +1263,7 @@
   <span style="display:inline-block;padding:1px 4px;border-radius:3px;background:#2d5016;color:white;font-size:9px;font-weight:700;letter-spacing:0.05em;">SEG</span>
   = Golf segment-only (순수 골프 매출) — basis 차이로 ENT가 의도적으로 부풀려져 있음. SEG끼리 비교가 진짜 cross-peer per-hole.
 </p>
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 per-hole 표</summary>
+      <details class="orig-toggle"><summary>원본 per-hole 표</summary>
         <div class="tbl-card scroll-x">
   <table class="tbl">
     <thead><tr>
@@ -1347,9 +1284,6 @@
     <div class="section" id="cap-pnl">
       <h2 data-num="07">P&L 4Y 마진 추이 — Pure-play 3-peer</h2>
       <h3>FY22-25 GP·Op·Net margin trend (CAPEX 영향 관점)</h3>
-      <p class="lede">
-        감가상각 증가가 op margin에 미치는 영향을 4년 시계열로. DMIG는 FY25 마진 하락 가속, PIPG는 비용 통제로 mid 안정.
-      </p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:12px;">
   <div style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 12px 10px;">
   <div style="font-size:13px;font-weight:700;color:var(--ink);text-align:center;margin-bottom:4px;">DMIG — 4Y 마진 추이 (FY22→25)</div>
@@ -1423,8 +1357,7 @@
 </div></div>
 </div>
 </div>
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 4년 P&amp;L 표</summary>
+      <details class="orig-toggle"><summary>원본 4Y P&amp;L 표</summary>
         <div class="tbl-card scroll-x">
   <table class="tbl tbl-tight">
     <thead>
@@ -1608,10 +1541,6 @@
     <div class="section" id="op-rev">
       <h2 data-num="01">매출 라인 분해 — Pure-play (FY23→FY24)</h2>
       <h3>골프 / F&amp;B / 회원권 / 부대시설 별 매출 + AR narrative</h3>
-      <p class="lede">
-        annual report Note에서 라인별 매출 직접 추출. Top-5 라인 + 기타 합산.
-        <strong>DMIG</strong> 7 라인 (Note 23), <strong>PIPG</strong> 11 라인 (Note 27).
-      </p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(440px,1fr));gap:14px;">
   <div class="ops-block" style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 16px 12px;">
   <h4 class="ops-block-h" style="margin-bottom:10px;">
@@ -1764,7 +1693,7 @@
   <div style="font-size:13px; color:var(--ink); line-height:1.55;">
     <strong style="color:var(--green);">→</strong> 코로나 회복기 매출 모멘텀이 강력 — golf rounds 증가가 본업 driver, F&amp;B는 양 코스 모두 +28~40% 강한 회복. 단, FY24→FY25에는 매출 sticky(-0.7%) → 회복 모멘텀 둔화 신호.
   </div>
-  <div class="qmeta"><strong>출처</strong> · DMIG FY2023 AR p.21 (Income Statement) + p.15 (F&amp;B breakdown) (벡터 DB 검색)</div>
+  <div class="qmeta"><strong>↳</strong> · DMIG FY2023 AR p.21 (Income Statement) + p.15 (F&amp;B breakdown)</div>
 </div><div class="quote-card" style="border-left-color: var(--green);">
   <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
     <span class="ticker-mini">PIPG</span>
@@ -1777,7 +1706,7 @@
   <div style="font-size:13px; color:var(--ink); line-height:1.55;">
     <strong style="color:var(--green);">→</strong> PIPG는 member + non-member 두 트랙으로 매출 구성. 회원 충성도(+8%)와 외부 유입(40k+) 동시 확보. 단일 코스(Pondok Indah) 1976년 개장 노후 시설이지만 CBD 5분 거리 + 브랜드로 mature operator 포지셔닝.
   </div>
-  <div class="qmeta"><strong>출처</strong> · PIPG FY2022 AR p.48 — Pengunjung Golf (벡터 DB 검색)</div>
+  <div class="qmeta"><strong>↳</strong> · PIPG FY2022 AR p.48 — Pengunjung Golf</div>
 </div><div class="quote-card" style="border-left-color: var(--green);">
   <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
     <span class="ticker-mini">GOLF</span>
@@ -1790,7 +1719,7 @@
   <div style="font-size:13px; color:var(--ink); line-height:1.55;">
     <strong style="color:var(--green);">→</strong> Golf은 target +24.66% 초과 달성하면서 Real Estate는 -11.12% 미달. GOLF entity 매출 mix가 Golf-dominant로 이동 — 즉 CWIP 426bn 투자가 매출 단으로 결실 시작.
   </div>
-  <div class="qmeta"><strong>출처</strong> · GOLF FY2025 AR p.174 — Management Analysis (벡터 DB 검색)</div>
+  <div class="qmeta"><strong>↳</strong> · GOLF FY2025 AR p.174 — Management Analysis</div>
 </div><div class="quote-card" style="border-left-color: #8a8a8a;">
   <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
     <span class="ticker-mini">MDLN</span>
@@ -1803,12 +1732,11 @@
   <div style="font-size:13px; color:var(--ink); line-height:1.55;">
     <strong style="color:var(--green);">→</strong> MDLN의 Golf+F&amp;B는 그룹 매출 1.15조 대비 6% 비중이지만 절댓값으로는 7번째 큰 단일 라인. FY25 +28.2% YoY 가속 → property segment growth driver로 부상.
   </div>
-  <div class="qmeta"><strong>출처</strong> · MDLN FY2023 AR p.315 — Note 25 라인 (벡터 DB 검색)</div>
+  <div class="qmeta"><strong>↳</strong> · MDLN FY2023 AR p.315 — Note 25 라인</div>
 </div>
 </div>
 
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 매출 전체 라인 표</summary>
+      <details class="orig-toggle"><summary>원본 매출 라인 표</summary>
         <div class="ops-block">
   <h4 class="ops-block-h">DMIG — 매출 라인 분해</h4>
   <div class="tbl-card">
@@ -1822,7 +1750,6 @@
       <tbody><tr><td>Golf course</td><td class="num">127.1bn</td><td class="num">51.9%</td><td class="num">127.9bn</td><td class="num">50.5%</td><td class="num">+0.6%</td></tr><tr><td>Restaurant</td><td class="num">48.5bn</td><td class="num">19.8%</td><td class="num">50.3bn</td><td class="num">19.9%</td><td class="num">+3.6%</td></tr><tr><td>Membership dues</td><td class="num">45.8bn</td><td class="num">18.7%</td><td class="num">46.3bn</td><td class="num">18.3%</td><td class="num">+1.2%</td></tr><tr><td>Sponsorship</td><td class="num">7.9bn</td><td class="num">3.2%</td><td class="num">12.4bn</td><td class="num">4.9%</td><td class="num">+57.3%</td></tr><tr><td>Room rental</td><td class="num">9.2bn</td><td class="num">3.7%</td><td class="num">8.2bn</td><td class="num">3.2%</td><td class="num">-10.3%</td></tr><tr><td>Recreation</td><td class="num">3.2bn</td><td class="num">1.3%</td><td class="num">3.0bn</td><td class="num">1.2%</td><td class="num">-4.2%</td></tr><tr><td>Others</td><td class="num">3.3bn</td><td class="num">1.3%</td><td class="num">4.9bn</td><td class="num">2.0%</td><td class="num">+49.8%</td></tr><tr class="row-total"><td><strong>합계</strong></td><td class="num"><strong>245.0bn</strong></td><td class="num">—</td><td class="num"><strong>253.1bn</strong></td><td class="num">—</td><td class="num"><strong>+3.3%</strong></td></tr></tbody>
     </table>
   </div>
-  <p class="src-line">출처: {&#x27;FY2022&#x27;: &#x27;FY23 AR p.89&#x27;, &#x27;FY2023&#x27;: &#x27;FY23 AR p.89 / FY24 AR p.86&#x27;, &#x27;FY2024&#x27;: &#x27;FY24 AR p.86&#x27;}</p>
 </div>
 <div class="ops-block">
   <h4 class="ops-block-h">PIPG — 매출 라인 분해 (Note 27)</h4>
@@ -1837,7 +1764,6 @@
       <tbody><tr><td>Golf course</td><td class="num">51.2bn</td><td class="num">25.2%</td><td class="num">53.9bn</td><td class="num">27.3%</td><td class="num">+5.3%</td></tr><tr><td>Restaurant</td><td class="num">33.2bn</td><td class="num">16.3%</td><td class="num">38.9bn</td><td class="num">19.7%</td><td class="num">+17.3%</td></tr><tr><td>Membership and registration fees</td><td class="num">27.4bn</td><td class="num">13.5%</td><td class="num">32.7bn</td><td class="num">16.6%</td><td class="num">+19.4%</td></tr><tr><td>Driving range</td><td class="num">19.3bn</td><td class="num">9.5%</td><td class="num">18.9bn</td><td class="num">9.6%</td><td class="num">-2.3%</td></tr><tr><td>Rent (Note 10)</td><td class="num">16.3bn</td><td class="num">8.0%</td><td class="num">15.5bn</td><td class="num">7.9%</td><td class="num">-4.9%</td></tr><tr><td>Golf cart</td><td class="num">16.0bn</td><td class="num">7.9%</td><td class="num">16.2bn</td><td class="num">8.2%</td><td class="num">+1.2%</td></tr><tr><td>Branding</td><td class="num">13.6bn</td><td class="num">6.7%</td><td class="num">14.4bn</td><td class="num">7.3%</td><td class="num">+6.0%</td></tr><tr><td>Sharing revenue</td><td class="num">2.5bn</td><td class="num">1.2%</td><td class="num">3.0bn</td><td class="num">1.5%</td><td class="num">+20.1%</td></tr><tr><td>Academy golf</td><td class="num">1.8bn</td><td class="num">0.9%</td><td class="num">2.3bn</td><td class="num">1.2%</td><td class="num">+25.8%</td></tr><tr><td>Gym</td><td class="num">1.4bn</td><td class="num">0.7%</td><td class="num">1.7bn</td><td class="num">0.9%</td><td class="num">+18.4%</td></tr><tr><td>Indonesia&#x27;s open sponsor</td><td class="num">20.3bn</td><td class="num">10.0%</td><td class="num">0</td><td class="num"><span class="na">—</span></td><td class="num">—</td></tr><tr class="row-total"><td><strong>합계</strong></td><td class="num"><strong>203.1bn</strong></td><td class="num">—</td><td class="num"><strong>197.6bn</strong></td><td class="num">—</td><td class="num"><strong>-2.7%</strong></td></tr></tbody>
     </table>
   </div>
-  <p class="src-line">출처: FY24 AR p.141 Note 27 PENDAPATAN USAHA</p>
 </div>
       </details>
     </div>
@@ -1845,10 +1771,6 @@
     <div class="section" id="op-cogs">
       <h2 data-num="02">COGS 라인 분해 — segment별 매출원가</h2>
       <h3>골프 코스 / 레스토랑 / 카트 / 드라이빙 레인지</h3>
-      <p class="lede">
-        매출원가는 segment별로 cost of revenue가 분리 공시.
-        Top-N COGS 라인 + 기타 시각화 — YoY 상승 빨강, 하락 녹색 (절감이 마진 개선).
-      </p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(440px,1fr));gap:14px;">
   <div class="ops-block" style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 16px 12px;">
   <h4 class="ops-block-h" style="margin-bottom:10px;">
@@ -1960,8 +1882,7 @@
 </div>
 </div>
 
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 COGS 전체 라인 표</summary>
+      <details class="orig-toggle"><summary>원본 COGS 라인 표</summary>
         <div class="ops-block">
   <h4 class="ops-block-h">DMIG — COGS 라인 분해</h4>
   <div class="tbl-card">
@@ -1975,7 +1896,6 @@
       <tbody><tr><td>Golf course</td><td class="num">51.2bn</td><td class="num">20.9%</td><td class="num">52.9bn</td><td class="num">20.9%</td><td class="num">+3.3%</td></tr><tr><td>Restaurant</td><td class="num">21.8bn</td><td class="num">8.9%</td><td class="num">22.8bn</td><td class="num">9.0%</td><td class="num">+4.4%</td></tr><tr><td>Recreation</td><td class="num">1.2bn</td><td class="num">0.5%</td><td class="num">1.4bn</td><td class="num">0.5%</td><td class="num">+8.8%</td></tr><tr class="row-total"><td><strong>합계</strong></td><td class="num"><strong>74.3bn</strong></td><td class="num">—</td><td class="num"><strong>77.0bn</strong></td><td class="num">—</td><td class="num"><strong>+3.7%</strong></td></tr></tbody>
     </table>
   </div>
-  <p class="src-line">출처: {&#x27;FY2022&#x27;: &#x27;FY23 AR p.90&#x27;, &#x27;FY2023&#x27;: &#x27;FY23 AR p.90 / FY24 AR p.86&#x27;, &#x27;FY2024&#x27;: &#x27;FY24 AR p.86&#x27;}</p>
 </div>
 <div class="ops-block">
   <h4 class="ops-block-h">PIPG — COGS 라인 분해 (Note 28)</h4>
@@ -1990,7 +1910,6 @@
       <tbody><tr><td>Restaurant</td><td class="num">22.8bn</td><td class="num">11.2%</td><td class="num">26.8bn</td><td class="num">13.6%</td><td class="num">+17.5%</td></tr><tr><td>Golf course</td><td class="num">19.9bn</td><td class="num">9.8%</td><td class="num">19.7bn</td><td class="num">10.0%</td><td class="num">-0.9%</td></tr><tr><td>Golf cart</td><td class="num">7.8bn</td><td class="num">3.8%</td><td class="num">7.9bn</td><td class="num">4.0%</td><td class="num">+1.9%</td></tr><tr><td>Driving range</td><td class="num">3.4bn</td><td class="num">1.7%</td><td class="num">4.0bn</td><td class="num">2.0%</td><td class="num">+18.6%</td></tr><tr><td>Membership</td><td class="num">3.3bn</td><td class="num">1.6%</td><td class="num">3.8bn</td><td class="num">1.9%</td><td class="num">+12.4%</td></tr><tr><td>Rent - depreciation (Note 10)</td><td class="num">2.4bn</td><td class="num">1.2%</td><td class="num">2.4bn</td><td class="num">1.2%</td><td class="num">+0.0%</td></tr><tr><td>Academy golf</td><td class="num">2.1bn</td><td class="num">1.0%</td><td class="num">2.2bn</td><td class="num">1.1%</td><td class="num">+8.1%</td></tr><tr><td>Branding</td><td class="num">3.6bn</td><td class="num">1.8%</td><td class="num">1.2bn</td><td class="num">0.6%</td><td class="num">-66.3%</td></tr><tr><td>Gym</td><td class="num">1.1bn</td><td class="num">0.6%</td><td class="num">1.2bn</td><td class="num">0.6%</td><td class="num">+3.8%</td></tr><tr><td>Rent - land and building tax</td><td class="num">307.0M</td><td class="num">0.2%</td><td class="num">307.0M</td><td class="num">0.2%</td><td class="num">+0.0%</td></tr><tr><td>Tournament Indonesia open</td><td class="num">18.3bn</td><td class="num">9.0%</td><td class="num">0</td><td class="num"><span class="na">—</span></td><td class="num">—</td></tr><tr class="row-total"><td><strong>합계</strong></td><td class="num"><strong>85.1bn</strong></td><td class="num">—</td><td class="num"><strong>69.6bn</strong></td><td class="num">—</td><td class="num"><strong>-18.2%</strong></td></tr></tbody>
     </table>
   </div>
-  <p class="src-line">출처: FY24 AR p.142 Note 28 BEBAN POKOK PENDAPATAN</p>
 </div>
       </details>
     </div>
@@ -1998,9 +1917,6 @@
     <div class="section" id="op-opex">
       <h2 data-num="03">OpEx 라인 분해 — 3-peer top-N</h2>
       <h3>인건비 · 감가 · 유지 · 세금 · 유틸리티 — DMIG/PIPG/KPIG</h3>
-      <p class="lede">
-        AR Note 25 (DMIG) / Note 29 (PIPG) / Note 34 (KPIG)에서 OpEx 라인 단위 분해. Top-5 + 기타 + YoY color.
-      </p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(440px,1fr));gap:14px;">
   <div class="ops-block" style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 16px 12px;">
   <h4 class="ops-block-h" style="margin-bottom:10px;">
@@ -2206,8 +2122,7 @@
 </div>
 </div>
 
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 OpEx 전체 라인 표</summary>
+      <details class="orig-toggle"><summary>원본 OpEx 라인 표</summary>
         <div class="ops-block">
   <h4 class="ops-block-h">DMIG — OpEx 라인 분해 (Note 25)</h4>
   <div class="tbl-card">
@@ -2222,7 +2137,6 @@
       <tbody><tr><td>Salaries and wages</td><td class="num">28.3bn</td><td class="num">28.6bn</td><td class="num">11.3%</td><td class="num">+1.2%</td></tr><tr><td>Depreciation</td><td class="num">25.9bn</td><td class="num">28.2bn</td><td class="num">11.1%</td><td class="num">+8.9%</td></tr><tr><td>Land and building tax</td><td class="num">10.2bn</td><td class="num">10.4bn</td><td class="num">4.1%</td><td class="num">+2.3%</td></tr><tr><td>Cleaning service</td><td class="num">8.3bn</td><td class="num">8.7bn</td><td class="num">3.4%</td><td class="num">+4.5%</td></tr><tr><td>Electricity and water</td><td class="num">4.3bn</td><td class="num">4.5bn</td><td class="num">1.8%</td><td class="num">+4.0%</td></tr><tr><td>Amortization</td><td class="num">2.6bn</td><td class="num">2.6bn</td><td class="num">1.0%</td><td class="num">+0.0%</td></tr><tr><td>Employee benefits</td><td class="num">2.1bn</td><td class="num">2.4bn</td><td class="num">0.9%</td><td class="num">+11.8%</td></tr><tr><td>Repair and maintenance</td><td class="num">2.2bn</td><td class="num">2.3bn</td><td class="num">0.9%</td><td class="num">+0.8%</td></tr><tr><td>Bank administration</td><td class="num">1.9bn</td><td class="num">2.0bn</td><td class="num">0.8%</td><td class="num">+10.1%</td></tr><tr><td>Tax and licensing</td><td class="num">3.2bn</td><td class="num">1.6bn</td><td class="num">0.6%</td><td class="num">-51.4%</td></tr><tr><td>Others (each below Rp100m)</td><td class="num">1.2bn</td><td class="num">1.3bn</td><td class="num">0.5%</td><td class="num">+10.2%</td></tr><tr><td>Professional fee</td><td class="num">503.0M</td><td class="num">1.1bn</td><td class="num">0.4%</td><td class="num">+123.8%</td></tr><tr><td>Employee welfare</td><td class="num">993.4M</td><td class="num">998.8M</td><td class="num">0.4%</td><td class="num">+0.5%</td></tr><tr><td>Transportation</td><td class="num">952.6M</td><td class="num">932.9M</td><td class="num">0.4%</td><td class="num">-2.1%</td></tr><tr><td>Insurance</td><td class="num">592.6M</td><td class="num">571.0M</td><td class="num">0.2%</td><td class="num">-3.7%</td></tr><tr><td>Stationery and printing</td><td class="num">516.5M</td><td class="num">561.4M</td><td class="num">0.2%</td><td class="num">+8.7%</td></tr><tr><td>Telephone and telex</td><td class="num">269.2M</td><td class="num">267.9M</td><td class="num">0.1%</td><td class="num">-0.5%</td></tr><tr class="row-total"><td><strong>합계</strong></td><td class="num"><strong>94.2bn</strong></td><td class="num"><strong>97.1bn</strong></td><td class="num"><strong>38.4%</strong></td><td class="num">—</td></tr></tbody>
     </table>
   </div>
-  <p class="src-line">출처: {&#x27;FY2022&#x27;: &#x27;FY23 AR p.90&#x27;, &#x27;FY2023&#x27;: &#x27;FY23 AR p.90 / FY24 AR p.87&#x27;, &#x27;FY2024&#x27;: &#x27;FY24 AR p.87&#x27;}</p>
 </div>
 <div class="ops-block">
   <h4 class="ops-block-h">PIPG — OpEx 라인 분해 (Note 29)</h4>
@@ -2238,7 +2152,6 @@
       <tbody><tr><td>Tax and legal</td><td class="num">20.7bn</td><td class="num">24.2bn</td><td class="num">12.3%</td><td class="num">+17.1%</td></tr><tr><td>Salary and allowances</td><td class="num">15.2bn</td><td class="num">17.9bn</td><td class="num">9.0%</td><td class="num">+17.5%</td></tr><tr><td>Repair and maintenance</td><td class="num">10.6bn</td><td class="num">11.6bn</td><td class="num">5.9%</td><td class="num">+9.6%</td></tr><tr><td>Depreciation (Notes 9, 13)</td><td class="num">9.5bn</td><td class="num">11.3bn</td><td class="num">5.7%</td><td class="num">+18.6%</td></tr><tr><td>Amortization of deferred charge (Note 12)</td><td class="num">2.6bn</td><td class="num">2.7bn</td><td class="num">1.4%</td><td class="num">+4.2%</td></tr><tr><td>Provision for employee benefit (Note 22)</td><td class="num">1.3bn</td><td class="num">2.5bn</td><td class="num">1.3%</td><td class="num">+89.2%</td></tr><tr><td>Electricity and water</td><td class="num">2.2bn</td><td class="num">2.2bn</td><td class="num">1.1%</td><td class="num">-1.0%</td></tr><tr><td>Supplies and office equipment</td><td class="num">1.2bn</td><td class="num">1.4bn</td><td class="num">0.7%</td><td class="num">+15.1%</td></tr><tr><td>Donation and contribution</td><td class="num">895.3M</td><td class="num">1.1bn</td><td class="num">0.5%</td><td class="num">+17.7%</td></tr><tr><td>Insurance</td><td class="num">327.9M</td><td class="num">355.7M</td><td class="num">0.2%</td><td class="num">+8.5%</td></tr><tr><td>Training expenses</td><td class="num">197.6M</td><td class="num">353.4M</td><td class="num">0.2%</td><td class="num">+78.8%</td></tr><tr><td>Audit and consultant</td><td class="num">290.9M</td><td class="num">192.3M</td><td class="num">0.1%</td><td class="num">-33.9%</td></tr><tr><td>Transportation and travels</td><td class="num">166.3M</td><td class="num">163.0M</td><td class="num">0.1%</td><td class="num">-2.0%</td></tr><tr><td>Allowance for impairment of receivable (Note 6)</td><td class="num">0</td><td class="num">120.2M</td><td class="num">0.1%</td><td class="num">—</td></tr><tr><td>Post, telephone and fax</td><td class="num">61.7M</td><td class="num">41.1M</td><td class="num">0.0%</td><td class="num">-33.4%</td></tr><tr><td>Write-off inventory</td><td class="num">803,666</td><td class="num">7.5M</td><td class="num">0.0%</td><td class="num">+834.4%</td></tr><tr><td>Allowance of inventories</td><td class="num">202.1M</td><td class="num">0</td><td class="num"><span class="na">—</span></td><td class="num">—</td></tr><tr class="row-total"><td><strong>합계</strong></td><td class="num"><strong>65.5bn</strong></td><td class="num"><strong>76.1bn</strong></td><td class="num"><strong>38.5%</strong></td><td class="num">—</td></tr></tbody>
     </table>
   </div>
-  <p class="src-line">출처: FY24 AR p.142 Note 29 BEBAN USAHA</p>
 </div>
 <div class="ops-block">
   <h4 class="ops-block-h">KPIG — G&amp;A 비용 라인 (Note 34) — Hotel+Resort+Golf 통합</h4>
@@ -2254,7 +2167,6 @@
       <tbody><tr><td>Gaji dan tunjangan</td><td class="num">133.1bn</td><td class="num">120.5bn</td><td class="num">6.8%</td><td class="num">-9.5%</td></tr><tr><td>Lain-lain</td><td class="num">41.6bn</td><td class="num">53.8bn</td><td class="num">3.0%</td><td class="num">+29.2%</td></tr><tr><td>Perbaikan dan perawatan</td><td class="num">34.6bn</td><td class="num">48.6bn</td><td class="num">2.7%</td><td class="num">+40.5%</td></tr><tr><td>Jasa manajemen</td><td class="num">29.9bn</td><td class="num">30.7bn</td><td class="num">1.7%</td><td class="num">+2.7%</td></tr><tr><td>Pajak dan perijinan</td><td class="num">12.0bn</td><td class="num">24.6bn</td><td class="num">1.4%</td><td class="num">+105.3%</td></tr><tr><td>Penyusutan (Note 12)</td><td class="num">19.3bn</td><td class="num">18.9bn</td><td class="num">1.1%</td><td class="num">-2.0%</td></tr><tr><td>Perangkat lunak dan teknologi informasi</td><td class="num">28.1bn</td><td class="num">14.1bn</td><td class="num">0.8%</td><td class="num">-49.8%</td></tr><tr><td>Asuransi</td><td class="num">12.4bn</td><td class="num">12.4bn</td><td class="num">0.7%</td><td class="num">-0.1%</td></tr><tr><td>Imbalan kerja</td><td class="num">3.3bn</td><td class="num">9.9bn</td><td class="num">0.6%</td><td class="num">+203.0%</td></tr><tr><td>Utilitas</td><td class="num">6.6bn</td><td class="num">9.5bn</td><td class="num">0.5%</td><td class="num">+43.6%</td></tr><tr><td>Transportasi dan akomodasi</td><td class="num">5.5bn</td><td class="num">5.3bn</td><td class="num">0.3%</td><td class="num">-2.7%</td></tr><tr><td>Jasa profesional</td><td class="num">3.5bn</td><td class="num">3.7bn</td><td class="num">0.2%</td><td class="num">+3.7%</td></tr><tr><td>Perlengkapan dan administrasi kantor</td><td class="num">5.5bn</td><td class="num">3.0bn</td><td class="num">0.2%</td><td class="num">-44.8%</td></tr><tr class="row-total"><td><strong>합계</strong></td><td class="num"><strong>335.5bn</strong></td><td class="num"><strong>355.1bn</strong></td><td class="num"><strong>20.1%</strong></td><td class="num">—</td></tr></tbody>
     </table>
   </div>
-  <p class="src-line">출처: FY24 AR p.316 Note 34 BEBAN UMUM DAN ADMINISTRASI</p>
 </div>
       </details>
     </div>
@@ -2321,8 +2233,7 @@
   </table>
 </div>
 
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 정규화 표 (IDR + % 컬럼)</summary>
+      <details class="orig-toggle"><summary>원본 정규화 표</summary>
         <div class="tbl-card scroll-x">
   <table class="tbl tbl-tight">
     <thead><tr><th>OpEx 카테고리</th><th class="num">DMIG %매출</th><th class="num">DMIG IDR</th><th class="num">PIPG %매출</th><th class="num">PIPG IDR</th><th class="num">GOLF %매출</th><th class="num">GOLF IDR</th></tr></thead>
@@ -2586,9 +2497,6 @@
     <div class="section" id="op-4y-trend">
       <h2 data-num="06">OpEx/매출 % — 4Y trend (FY22-25)</h2>
       <h3>비용 효율 추이 — DMIG/PIPG/GOLF</h3>
-      <p class="lede">
-        OpEx ratio가 4년간 어떻게 변했는지 multi-line. PIPG는 FY25 큰 폭 하락 (-17.9%), DMIG는 점진 상승, GOLF는 stable 낮음.
-      </p>
       <div style="display:flex;justify-content:center;"><div style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 12px 10px;">
   <div style="font-size:13px;font-weight:700;color:var(--ink);text-align:center;margin-bottom:4px;">OpEx/매출 % — 4Y 추이 (DMIG · PIPG · GOLF)</div>
   <svg viewBox="0 0 520 260" width="100%" style="display:block;" xmlns="http://www.w3.org/2000/svg">
@@ -2615,7 +2523,7 @@
   <div style="font-size:13px; color:var(--ink); line-height:1.55;">
     <strong style="color:var(--green);">→</strong> DMIG의 총 fixed asset 대비 보험 cover 수준은 운영 중단·재해 리스크 hedge. 감가상각 12.2%/매출의 capital intensity를 보완하는 risk management.
   </div>
-  <div class="qmeta"><strong>출처</strong> · DMIG FY2024 AR p.79 — Fixed assets insurance (벡터 DB 검색)</div>
+  <div class="qmeta"><strong>↳</strong> · DMIG FY2024 AR p.79 — Fixed assets insurance</div>
 </div><div class="quote-card" style="border-left-color: var(--warn);">
   <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
     <span class="ticker-mini">PIPG</span>
@@ -2628,7 +2536,7 @@
   <div style="font-size:13px; color:var(--ink); line-height:1.55;">
     <strong style="color:var(--green);">→</strong> PIPG의 인건비/매출 10.5%는 mid 수준이지만, salary growth 1pp 변동 = liability Rp 10.7bn 충격. FY25 OpEx -17.9% 절감의 큰 부분이 인건비 통제에서 왔을 가능성 시사.
   </div>
-  <div class="qmeta"><strong>출처</strong> · PIPG FY2023 AR p.139 — Defined benefits sensitivity (벡터 DB 검색)</div>
+  <div class="qmeta"><strong>↳</strong> · PIPG FY2023 AR p.139 — Defined benefits sensitivity</div>
 </div><div class="quote-card" style="border-left-color: var(--green);">
   <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
     <span class="ticker-mini">KPIG</span>
@@ -2641,7 +2549,7 @@
   <div style="font-size:13px; color:var(--ink); line-height:1.55;">
     <strong style="color:var(--green);">→</strong> KPIG는 그룹 conglomerate임에도 ESG metric 명시적 공시 — emission intensity 안정 유지 + 물 사용량 -0.7% YoY 감소. Trump Lido 같은 high-end 운영에 친환경 신호 → 장기 prem 포지셔닝.
   </div>
-  <div class="qmeta"><strong>출처</strong> · KPIG FY2023 AR p.47 — ESG metrics (벡터 DB 검색)</div>
+  <div class="qmeta"><strong>↳</strong> · KPIG FY2023 AR p.47 — ESG metrics</div>
 </div><div class="quote-card" style="border-left-color: #8a8a8a;">
   <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
     <span class="ticker-mini">GOLF</span>
@@ -2654,7 +2562,7 @@
   <div style="font-size:13px; color:var(--ink); line-height:1.55;">
     <strong style="color:var(--green);">→</strong> GOLF의 retained earnings 6.9조는 entity 매출 102bn 대비 67배 — IPO 시 누적 결과. CWIP 426bn (4.2× 매출) 진행은 paid-in capital + 누적 잉여로 self-funded — 외부 차입 의존도 낮음 시그널.
   </div>
-  <div class="qmeta"><strong>출처</strong> · GOLF FY2025 AR p.444 — Statement of changes in equity (벡터 DB 검색)</div>
+  <div class="qmeta"><strong>↳</strong> · GOLF FY2025 AR p.444 — Statement of changes in equity</div>
 </div>
 </div>
     </div>
@@ -2725,8 +2633,7 @@
   <div class="stack-total" style="flex:0 0 130px;">GP Rp 24.1bn</div>
 </div>
 </div>
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 segment 표</summary>
+      <details class="orig-toggle"><summary>원본 segment 표</summary>
         <div class="tbl-card">
   <table class="tbl tbl-tight">
     <thead><tr>
@@ -2745,9 +2652,6 @@
     <div class="section" id="op-fy25">
       <h2 data-num="09">FY2025 미감사 prelim — 마진 압박 신호</h2>
       <h3>DMIG/PIPG/KPIG 3-peer side-by-side dashboard</h3>
-      <p class="lede">
-        DMIG/PIPG/KPIG 모두 FY2025 unaudited financial statement 공시. ▲ 녹색 = 증가, ▼ 빨강 = 감소.
-      </p>
       <div class="kpi-strip" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
   <div class="kpi-tile" style="border-top:3px solid #2d5016;padding:18px 18px 14px;">
   <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
@@ -2844,18 +2748,14 @@
   <p style="font-size:11.5px;color:var(--ink-soft);line-height:1.5;margin:10px 0 0;">Hotel+Resort+Golf 통합 (Golf-only 분리 미공시)</p>
 </div>
 </div>
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 FY25 카드 (출처 페이지 포함)</summary>
-        <div class="kv-grid"><div class="kv"><div class="k">DMIG — FY2025 미감사 P&L</div><dl class="kv-mini"><dt>매출</dt><dd>251.3bn <span class="muted">(-0.7% YoY)</span></dd><dt>영업이익</dt><dd>69.4bn <span class="muted">(-12.0% YoY)</span></dd><dt>순이익</dt><dd>75.0bn <span class="muted">(-9.0% YoY)</span></dd></dl><p class="kv-comment">매출 -0.7%로 sticky / COGS +5.8% + OpEx +3.3% 압박 / Op income -12.0% / Net -9.0%. Margin pressure.</p><span class="src">출처: DMIG FY2025 AR (damaiindahgolf.com newly downloaded 2026-05-12) + Financial Statement att2 p.13-14 P&amp;L+BS (Cycle 167</span></div><div class="kv"><div class="k">PIPG — FY2025 미감사 P&L</div><dl class="kv-mini"><dt>매출</dt><dd>185.8bn <span class="muted">(-6.0% YoY)</span></dd><dt>영업이익</dt><dd>55.6bn <span class="muted">(+4.0% YoY)</span></dd><dt>순이익</dt><dd>56.2bn <span class="muted">(+0.6% YoY)</span></dd></dl><p class="kv-comment">매출 -6.0% / 그러나 OpEx -17.9% 대규모 절감 (76→62 bn) → Op Income +4.0% / Net Income +0.6%. 비용 통제로 수익성 유지.</p><span class="src">출처: PIPG FY2025 AR (golfpondokindah.com newly downloaded 2026-05-12) + Financial Statement att2 p.11 P&amp;L (Cycle 167)</span></div><div class="kv"><div class="k">KPIG — FY2025 segment 매출</div><dl class="kv-mini"><dt>Hotel+Resort+Golf</dt><dd>1.06조 <span class="muted">(+10.4% YoY)</span></dd><dt>Golf-only</dt><dd><span class="na">미공시 (segment 통합)</span></dd></dl><p class="kv-comment">Hotel + Resort + Golf 통합 라인 유지 (FY24과 동일 패턴). Golf 단독 분리 여전히 없음. 본 사이트 6-peer 비교 대상 외 유지.</p><span class="src">출처: KPIG FY25 AR att1 p.325 Note 31 (Cycle 71)</span></div></div>
+      <details class="orig-toggle"><summary>원본 카드</summary>
+        <div class="kv-grid"><div class="kv"><div class="k">DMIG — FY2025 미감사 P&L</div><dl class="kv-mini"><dt>매출</dt><dd>251.3bn <span class="muted">(-0.7% YoY)</span></dd><dt>영업이익</dt><dd>69.4bn <span class="muted">(-12.0% YoY)</span></dd><dt>순이익</dt><dd>75.0bn <span class="muted">(-9.0% YoY)</span></dd></dl><p class="kv-comment">매출 -0.7%로 sticky / COGS +5.8% + OpEx +3.3% 압박 / Op income -12.0% / Net -9.0%. Margin pressure.</p></div><div class="kv"><div class="k">PIPG — FY2025 미감사 P&L</div><dl class="kv-mini"><dt>매출</dt><dd>185.8bn <span class="muted">(-6.0% YoY)</span></dd><dt>영업이익</dt><dd>55.6bn <span class="muted">(+4.0% YoY)</span></dd><dt>순이익</dt><dd>56.2bn <span class="muted">(+0.6% YoY)</span></dd></dl><p class="kv-comment">매출 -6.0% / 그러나 OpEx -17.9% 대규모 절감 (76→62 bn) → Op Income +4.0% / Net Income +0.6%. 비용 통제로 수익성 유지.</p></div><div class="kv"><div class="k">KPIG — FY2025 segment 매출</div><dl class="kv-mini"><dt>Hotel+Resort+Golf</dt><dd>1.06조 <span class="muted">(+10.4% YoY)</span></dd><dt>Golf-only</dt><dd><span class="na">미공시 (segment 통합)</span></dd></dl><p class="kv-comment">Hotel + Resort + Golf 통합 라인 유지 (FY24과 동일 패턴). Golf 단독 분리 여전히 없음. 본 사이트 6-peer 비교 대상 외 유지.</p></div></div>
       </details>
     </div>
 
     <div class="section" id="op-margin">
       <h2 data-num="10">FY24→FY25 마진 변화 — 벡터 추출 commentary</h2>
       <h3>6-peer timeline 카드 + FY24↔FY25 mini delta bar</h3>
-      <p class="lede">
-        벡터 DB로 각 peer의 FY24/FY25 AR 본문에서 마진 변화 commentary 추출. 카드별 mini bar로 FY24↔FY25 직접 비교 + delta% 표시.
-      </p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:12px;">
   <div class="quote-card" style="border-left-color:var(--warn);">
   <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
@@ -2921,7 +2821,7 @@
   <span style="text-align:right;font-weight:700;font-size:11px;color:var(--danger);">-9.0%</span>
 </div></div>
   <div style="font-size:12.5px;color:var(--ink-soft);line-height:1.55;">FY23 순이익 71.27bn (+34.40% vs FY22). FY24 매출 253.1bn / 영업이익 78.9bn / 순이익 82.4bn. FY25 매출 -0.7%, OpEx +3.3% → 영업이익 -12.0%. PIK Range 신규 투자로 감가↑.</div>
-  <div class="qmeta"><strong>출처</strong> · DMIG FY23 AR p.22 · FY25 follow-up</div>
+  <div class="qmeta"><strong>↳</strong> · DMIG FY23 AR p.22 · FY25 follow-up</div>
 </div><div class="quote-card" style="border-left-color:var(--green);">
   <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
     <span class="ticker-mini">PIPG</span>
@@ -3005,7 +2905,7 @@
   <span style="text-align:right;font-weight:700;font-size:11px;color:var(--green);">+0.7%</span>
 </div></div>
   <div style="font-size:12.5px;color:var(--ink-soft);line-height:1.55;">FY25 매출 -6.0%이지만 OpEx -17.9% 대규모 절감 → 영업이익 +4.0%, 순이익 +0.6%. 노후 코스 운영 효율 개선 시그널. Mature operator의 cost discipline.</div>
-  <div class="qmeta"><strong>출처</strong> · PIPG FY25 follow-up + FY24 AR Note 27/29</div>
+  <div class="qmeta"><strong>↳</strong> · PIPG FY25 follow-up + FY24 AR Note 27/29</div>
 </div><div class="quote-card" style="border-left-color:var(--warn);">
   <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
     <span class="ticker-mini">GOLF</span>
@@ -3070,7 +2970,7 @@
   <span style="text-align:right;font-weight:700;font-size:11px;color:var(--green);">+138.3%</span>
 </div></div>
   <div style="font-size:12.5px;color:var(--ink-soft);line-height:1.55;">FY24 COGS +20.2% YoY (real estate 비용 주도). FY25 영업이익 -10.49% (72.5→64.9). 원인: selling expenses +137.2%. CWIP 450bn 진행 중 — 향후 감가 추가 부담 예고.</div>
-  <div class="qmeta"><strong>출처</strong> · GOLF FY24 AR p.69 + FY25 AR p.156·p.170</div>
+  <div class="qmeta"><strong>↳</strong> · GOLF FY24 AR p.69 + FY25 AR p.156·p.170</div>
 </div><div class="quote-card" style="border-left-color:var(--green);">
   <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
     <span class="ticker-mini">MDLN</span>
@@ -3116,7 +3016,7 @@
   <span style="text-align:right;font-weight:700;font-size:11px;color:var(--green);">+28.1%</span>
 </div></div>
   <div style="font-size:12.5px;color:var(--ink-soft);line-height:1.55;">Group GP margin +2.53pp 개선 (44.66% → 47.19%). Golf 단독 segment +28.2% YoY (74.4→95.3bn). 그룹에서 가장 빠른 성장 부문. Modern Golf 단독 매출 56.6bn → 74.4bn (F&amp;B 포함).</div>
-  <div class="qmeta"><strong>출처</strong> · MDLN FY25 AR p.116 + Note 25/26</div>
+  <div class="qmeta"><strong>↳</strong> · MDLN FY25 AR p.116 + Note 25/26</div>
 </div><div class="quote-card" style="border-left-color:var(--warn);">
   <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
     <span class="ticker-mini">SMDM</span>
@@ -3162,7 +3062,7 @@
   <span style="text-align:right;font-weight:700;font-size:11px;color:var(--danger);">-113.3%</span>
 </div></div>
   <div style="font-size:12.5px;color:var(--ink-soft);line-height:1.55;">Golf &amp; CC GP margin FY23 55.8% → FY24 38.9% (-16.9pp 급락). 영업이익 -212M IDR 적자전환. FY24 배당 미실시. BSDE 2024-10에 91.99% 인수. FY25 GP 88.6% jump은 회계 재분류 가능성.</div>
-  <div class="qmeta"><strong>출처</strong> · SMDM FY24 AR p.70</div>
+  <div class="qmeta"><strong>↳</strong> · SMDM FY24 AR p.70</div>
 </div><div class="quote-card" style="border-left-color:#8a8a8a;">
   <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
     <span class="ticker-mini">KPIG</span>
@@ -3208,7 +3108,7 @@
   <span style="text-align:right;font-weight:700;font-size:11px;color:var(--danger);">+0.0pp</span>
 </div></div>
   <div style="font-size:12.5px;color:var(--ink-soft);line-height:1.55;">Hotel+Resort+Golf 통합 매출 FY23 812bn → FY24 960bn (+18%) → FY25 1,060bn (+10%). Group 고정자산 21조 + 투자부동산 6.9조 = 73.8% of total. Golf-only 분리 미공시.</div>
-  <div class="qmeta"><strong>출처</strong> · KPIG FY24 AR p.212 + FY25 Note 31</div>
+  <div class="qmeta"><strong>↳</strong> · KPIG FY24 AR p.212 + FY25 Note 31</div>
 </div>
 </div>
     </div>
@@ -3340,13 +3240,6 @@
         이 3개는 후속 deep-dive 후보.
       </div>
 
-      <div class="src-block">
-        <strong>출처:</strong>
-        peer_inventory.csv,
-        peer_course_facts.csv,
-        peer_operating_signals.csv,
-        peer_financials_curated.csv.
-      </div>
     </div>
   </div>
 </section>
@@ -3355,7 +3248,7 @@
 <footer class="foot">
   <div class="wrap">
     <p>
-      <strong>골프장 운영 Peer 비교 사이트</strong> — Build 2026-05-14 (commit <code>1ee013a</code>) ·
+      <strong>골프장 운영 Peer 비교 사이트</strong> — Build 2026-05-14 (commit <code>da08312</code>) ·
       Ops 탭 <strong>31</strong>개 분석 섹션 ·
       <strong>10</strong> SVG 차트 · <strong>32</strong> KPI 타일 · <strong>26</strong> 벡터 narrative 카드 ·
       데이터: raw_peer_data/*.csv (last verified 2026-04-29 ~ 2026-05-07) + AR Note 직접 추출 + 벡터 검색 (99,618 chunks) ·

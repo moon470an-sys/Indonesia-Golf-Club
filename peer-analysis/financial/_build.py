@@ -241,166 +241,6 @@ def overview_card(ticker: str) -> str:
 </div>"""
 
 
-def section_overview() -> str:
-    cards = "\n".join(overview_card(t) for t in PUREPLAY)
-    kpig_caveat = """<div class="banner">
-    <strong>주의 — KPIG (Trump Lido):</strong>
-    회원제 전용 · 2023년말 개장 1년차 · FY2024 골프 매출 IDR 7.36bn은 first-year membership 매출로 관계사 거래 비중이 큼.
-    Green fee 미공시 (members-only). 운영 시계열·단가 비교는 DMIG/PIPG 중심으로 해석할 것.
-  </div>"""
-
-    dmig_caveat = """<div class="banner info">
-    <strong>참고 — DMIG:</strong> FY2024 전체 결산 미공시. H1 audited 수치만 공개됨 (IDR 122.3bn). 비교 시 PIPG의 연간 수치와 직접 비교 불가.
-  </div>"""
-
-    return f"""<section class="panel" data-panel="overview">
-  <div class="hero">
-    <div class="wrap">
-      <div class="eyebrow">Pure-play 1:1·1·1 비교</div>
-      <h1>골프장 운영 관리 — Pure-play Peer Group 종합</h1>
-      <p class="lede">
-        인도네시아 IDX 상장 13개 peer 중 골프장 직접 운영 비중이 의미 있는
-        <strong>3개</strong>(DMIG · PIPG · KPIG)를 동일 기준으로 비교합니다.
-        나머지 10개(MKPI 포함)는 <em>참고 탭</em>에서 요약합니다.
-      </p>
-    </div>
-  </div>
-
-  <div class="wrap">
-    <div class="section">
-      <h2>FY2024 핵심 KPI</h2>
-      <h3>3-peer Head-to-Head</h3>
-      <p class="lede">매출·순이익·총자산을 entity 기준으로 표시. 단위는 IDR. 미공시는 N/A로 표기 (추정 없음).</p>
-      <div class="peer-grid">
-        {cards}
-      </div>
-      {kpig_caveat}
-      {dmig_caveat}
-    </div>
-
-    <div class="section">
-      <h2>골프장 운영 자산 비교</h2>
-      <h3>코스 수 · 총 홀 수 · 운영 형태</h3>
-      <div class="tbl-card">
-        <table class="tbl">
-          <thead>
-            <tr>
-              <th>Peer</th>
-              <th>운영사 (Entity)</th>
-              <th>지역</th>
-              <th class="num">코스 수</th>
-              <th class="num">총 홀</th>
-              <th>운영 형태</th>
-            </tr>
-          </thead>
-          <tbody>
-            {''.join(_overview_row(t) for t in PUREPLAY)}
-          </tbody>
-        </table>
-      </div>
-
-      <div class="src-block">
-        <strong>출처:</strong>
-        peer_financials_curated.csv (FY2024 audited),
-        peer_course_facts.csv,
-        peer_inventory.csv,
-        peer_operating_signals.csv (보충 텍스트).
-      </div>
-    </div>
-  </div>
-</section>"""
-
-
-def _overview_row(ticker: str) -> str:
-    inv = first_inventory(ticker) or {}
-    fin_rows = by_ticker(FINANCIALS, ticker)
-    fin = next((f for f in fin_rows if f.get("parent_entity")), fin_rows[0] if fin_rows else {})
-    courses = courses_for(ticker)
-    region = inv.get("region", "")
-    if ticker == "KPIG":
-        op_form = "Members-only private (USD 70k Platinum)"
-    elif ticker == "PIPG":
-        op_form = "Public/Member (5분 CBD 접근)"
-    elif ticker == "DMIG":
-        op_form = "Public/Member (PTM + Share)"
-    else:
-        op_form = "—"
-    return f"""<tr class="tier-a">
-  <td><span class="ticker-mini">{safe(ticker)}</span></td>
-  <td>{safe(fin.get('parent_entity', '—'))}</td>
-  <td>{safe(region or '—')}</td>
-  <td class="num">{len(courses)}</td>
-  <td class="num">{total_holes(ticker)}</td>
-  <td>{safe(op_form)}</td>
-</tr>"""
-
-
-# ─────────────────────────────────────────────────────────────────────────────
-# Section: Course / Infra
-# ─────────────────────────────────────────────────────────────────────────────
-
-def section_course() -> str:
-    rows = []
-    for t in PUREPLAY:
-        for c in courses_for(t):
-            link = c.get("website") or ""
-            link_html = f'<a href="{safe(link)}" target="_blank" rel="noopener">{safe(c.get("course_name", ""))}</a>' if link and link != "N/A" else safe(c.get("course_name", ""))
-            facilities = c.get("facilities_summary", "")
-            rows.append(f"""<tr class="tier-a">
-  <td><span class="ticker-mini">{safe(t)}</span></td>
-  <td class="peer-cell">{link_html}<span class="sub">{safe(c.get('region', ''))}</span></td>
-  <td>{safe(c.get('designer', '—'))}</td>
-  <td class="num">{safe(c.get('year_opened', '—'))}</td>
-  <td class="num">{safe(c.get('holes', '—'))} / {safe(c.get('par', '—'))}</td>
-  <td class="num">{safe(c.get('facilities_count', '—'))}</td>
-  <td class="notes">{safe(facilities)}</td>
-</tr>""")
-
-    return f"""<section class="panel" data-panel="course">
-  <div class="wrap">
-    <div class="section">
-      <h2>코스·인프라</h2>
-      <h3>4개 코스의 사양·설계자·시설 비교</h3>
-      <p class="lede">
-        Pure-play 3개 peer가 운영하는 <strong>4개 코스</strong>(DMIG 2 + KPIG 1 + PIPG 1).
-        설계자·개장연도·시설 수로 코스의 정체성과 노후도를 가늠합니다.
-      </p>
-      <div class="tbl-card">
-        <table class="tbl">
-          <thead>
-            <tr>
-              <th>Peer</th>
-              <th>코스명 · 지역</th>
-              <th>설계자</th>
-              <th class="num">개장</th>
-              <th class="num">홀 / Par</th>
-              <th class="num">시설 수</th>
-              <th>주요 부대시설</th>
-            </tr>
-          </thead>
-          <tbody>{''.join(rows)}</tbody>
-        </table>
-      </div>
-
-      <div class="banner info">
-        <strong>관전 포인트:</strong>
-        PIPG (1976년 개장) — 4개 중 가장 오래된 championship 코스, RTJ Jr. 설계 ·
-        DMIG BSD (1992) — 인도네시아 최초 Jack Nicklaus 코스 ·
-        KPIG Trump Lido (2023) — 4개 중 유일한 신규 / Ernie Els 설계, 600m 고원 입지.
-      </div>
-
-      <div class="src-block">
-        <strong>출처:</strong> peer_course_facts.csv (라스트 검증 2026-04-29 ~ 2026-05-07).
-      </div>
-    </div>
-  </div>
-</section>"""
-
-
-# ─────────────────────────────────────────────────────────────────────────────
-# Section: Pricing / Membership
-# ─────────────────────────────────────────────────────────────────────────────
-
 SLOTS = [("wdAm", "평일 오전"), ("wdPm", "평일 오후"), ("satAm", "토 오전"),
          ("satPm", "토 오후"), ("sunAm", "일 오전"), ("sunPm", "일 오후")]
 
@@ -412,118 +252,6 @@ def pricing_for(course_id: str, slot: str) -> dict | None:
     return None
 
 
-def section_pricing() -> str:
-    # Pricing table — 4 courses x 6 slots
-    pricing_rows = []
-    for t in PUREPLAY:
-        for c in courses_for(t):
-            cid = c["course_id"]
-            cells = []
-            for slot_key, _ in SLOTS:
-                p = pricing_for(cid, slot_key)
-                v = p.get("green_fee_value") if p else None
-                cells.append(f'<td class="num">{fmt_idr_compact(v)}</td>')
-            pricing_rows.append(f"""<tr class="tier-a">
-  <td><span class="ticker-mini">{safe(t)}</span></td>
-  <td class="peer-cell">{safe(c.get('course_name', ''))}<span class="sub">{safe(c.get('region', ''))}</span></td>
-  {''.join(cells)}
-</tr>""")
-
-    pricing_header = "".join(f'<th class="num">{label}</th>' for _, label in SLOTS)
-
-    # Membership table
-    mem_rows = []
-    for t in PUREPLAY:
-        for m in by_ticker(MEMBERSHIP, t):
-            price_idr = m.get("membership_price_idr", "N/A")
-            price_usd = m.get("membership_price_usd", "")
-            price_disp = "N/A"
-            if price_idr and price_idr != "N/A":
-                price_disp = fmt_idr_compact(price_idr)
-            elif price_usd and price_usd != "N/A":
-                price_disp = f"USD {int(float(price_usd)):,}"
-            tiers = m.get("membership_tiers_disclosed", "")
-            tiers_disp = safe(tiers) if tiers and tiers != "N/A" else '<span class="na">미공시</span>'
-            src = m.get("source_strength", "")
-            src_pill = '<span class="pill pill-yes">Tier-1</span>' if "tier-1" in (src or "") else (
-                '<span class="pill pill-partial">Partial</span>' if src else '<span class="pill pill-na">—</span>')
-            mem_rows.append(f"""<tr class="tier-a">
-  <td><span class="ticker-mini">{safe(t)}</span></td>
-  <td class="peer-cell">{safe(m.get('course_name', ''))}</td>
-  <td class="num">{price_disp}</td>
-  <td>{tiers_disp}</td>
-  <td>{src_pill}</td>
-  <td class="notes">{safe((m.get('notes') or '')[:280])}{'…' if len(m.get('notes') or '') > 280 else ''}</td>
-</tr>""")
-
-    return f"""<section class="panel" data-panel="pricing">
-  <div class="wrap">
-    <div class="section">
-      <h2>가격 — Green Fee</h2>
-      <h3>슬롯별 18홀 그린피 (IDR)</h3>
-      <p class="lede">
-        DMIG는 cart 별도, PIPG는 green fee + cart + caddy + tax 포함 단일가.
-        KPIG는 members-only로 green fee 미공시 (요금 모두 회원권에 포함).
-      </p>
-      <div class="tbl-card">
-        <table class="tbl">
-          <thead>
-            <tr>
-              <th>Peer</th>
-              <th>코스</th>
-              {pricing_header}
-            </tr>
-          </thead>
-          <tbody>{''.join(pricing_rows)}</tbody>
-        </table>
-      </div>
-
-      <div class="banner info">
-        <strong>관전 포인트:</strong>
-        가장 비싼 슬롯은 PIPG 주말 IDR 3,968k (모두 포함) ·
-        DMIG BSD 토요일 IDR 3,500k (cart 별도) ·
-        DMIG PIK 평일은 IDR 1,034k로 PIPG의 64% 수준.
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>회원권 (Membership)</h2>
-      <h3>가격·티어 공시 매트릭스</h3>
-      <p class="lede">
-        Pure-play 3개 모두 일반인 대상 입회금/연회비 numeric 공시 부재 (contact-only).
-        KPIG만 USD 70,000 Platinum tier가 보도자료로 공개됨.
-      </p>
-      <div class="tbl-card">
-        <table class="tbl">
-          <thead>
-            <tr>
-              <th>Peer</th>
-              <th>코스</th>
-              <th class="num">공시 가격</th>
-              <th>티어 구조</th>
-              <th>출처 강도</th>
-              <th>비고</th>
-            </tr>
-          </thead>
-          <tbody>{''.join(mem_rows)}</tbody>
-        </table>
-      </div>
-
-      <div class="src-block">
-        <strong>출처:</strong>
-        peer_pricing.csv (각 클럽 공식 사이트 last verified 2026-04-29 ~ 2026-05-07),
-        peer_membership.csv.
-      </div>
-    </div>
-  </div>
-</section>"""
-
-
-# ─────────────────────────────────────────────────────────────────────────────
-# Section: Operations + CAPEX/OPEX
-# ─────────────────────────────────────────────────────────────────────────────
-
-# Years displayed in the multi-year P&L / cost line tables
 PNL_YEARS = ["FY2022", "FY2023", "FY2024", "FY2025"]
 COST_YEARS = ["FY2022", "FY2023", "FY2024"]
 
@@ -1336,7 +1064,6 @@ def _revenue_breakdown_table(ticker: str, note_key: str, title: str) -> str:
       <tbody>{''.join(rows)}</tbody>
     </table>
   </div>
-  <p class="src-line">출처: {safe(src) or '—'}</p>
 </div>"""
 
 
@@ -1483,7 +1210,6 @@ def _opex_breakdown_table(ticker: str, note_key: str, title: str) -> str:
       <tbody>{''.join(rows)}</tbody>
     </table>
   </div>
-  <p class="src-line">출처: {safe(src) or '—'}</p>
 </div>"""
 
 
@@ -2410,7 +2136,7 @@ def _opex_narrative_grid() -> str:
   <div style="font-size:13px; color:var(--ink); line-height:1.55;">
     <strong style="color:var(--green);">→</strong> {safe(n["ko"])}
   </div>
-  <div class="qmeta"><strong>출처</strong> · {safe(n["src"])} (벡터 DB 검색)</div>
+  <div class="qmeta"><strong>↳</strong> · {safe(n["src"])}</div>
 </div>""")
     return f"""<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap:14px; margin: 14px 0;">
   {"".join(cards)}
@@ -2442,7 +2168,7 @@ def _revenue_narrative_grid() -> str:
   <div style="font-size:13px; color:var(--ink); line-height:1.55;">
     <strong style="color:var(--green);">→</strong> {safe(n["ko"])}
   </div>
-  <div class="qmeta"><strong>출처</strong> · {safe(n["src"])} (벡터 DB 검색)</div>
+  <div class="qmeta"><strong>↳</strong> · {safe(n["src"])}</div>
 </div>""")
     return f"""<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap:14px; margin: 14px 0;">
   {"".join(cards)}
@@ -2474,7 +2200,7 @@ def _capex_narrative_grid() -> str:
   <div style="font-size:13px; color:var(--ink); line-height:1.55;">
     <strong style="color:var(--green);">→</strong> {safe(n["ko"])}
   </div>
-  <div class="qmeta"><strong>출처</strong> · {safe(n["src"])} (multilingual-e5-small 벡터 검색)</div>
+  <div class="qmeta"><strong>↳</strong> · {safe(n["src"])}</div>
 </div>""")
     return f"""<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap:14px; margin: 14px 0;">
   {"".join(cards)}
@@ -3060,7 +2786,7 @@ def _margin_change_visual() -> str:
   </div>
   <div style="margin: 8px 0 12px;">{"".join(metric_rows)}</div>
   <div style="font-size:12.5px;color:var(--ink-soft);line-height:1.55;">{safe(p["narrative"])}</div>
-  <div class="qmeta"><strong>출처</strong> · {safe(p["src"])}</div>
+  <div class="qmeta"><strong>↳</strong> · {safe(p["src"])}</div>
 </div>""")
 
     return f"""<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:12px;">
@@ -3172,7 +2898,7 @@ def _dividend_compare_table() -> str:
       <th class="num">FY23 배당</th>
       <th class="num">FY24 배당</th>
       <th>해설</th>
-      <th>출처</th>
+      
     </tr></thead>
     <tbody>{''.join(rows)}</tbody>
   </table>
@@ -3752,33 +3478,23 @@ def _ops_kpi_section() -> str:
     <div class="kv">
       <div class="k">FY2023 골퍼 증가</div>
       <div class="v">+12,979명 <span class="muted">(+12.09% YoY)</span></div>
-      <p class="kv-comment">{safe(dmig['rounds_played']['narrative'])}</p>
-      <span class="src">출처: {safe(dmig['rounds_played']['src'])}</span>
-    </div>
+      <p class="kv-comment">{safe(dmig['rounds_played']['narrative'])}</p>    </div>
     <div class="kv">
       <div class="k">FY2023 Main Playing Members</div>
       <div class="v">{dmig['members']['FY2023']:,}명 <span class="muted">(전년比 -6명)</span></div>
-      <p class="kv-comment">{safe(dmig['members']['narrative'])}</p>
-      <span class="src">출처: {safe(dmig['members']['src'])}</span>
-    </div>
+      <p class="kv-comment">{safe(dmig['members']['narrative'])}</p>    </div>
     <div class="kv">
       <div class="k">직원 수 (Benefit-eligible)</div>
       <div class="v">FY21 342 → FY22 {dmig['headcount']['FY2022']} → FY23 {dmig['headcount']['FY2023']}</div>
-      <p class="kv-comment">{safe(dmig['headcount']['narrative'])}</p>
-      <span class="src">출처: {safe(dmig['headcount']['src'])}</span>
-    </div>
+      <p class="kv-comment">{safe(dmig['headcount']['narrative'])}</p>    </div>
     <div class="kv">
       <div class="k">The Range@PIK 매출</div>
       <div class="v">{fmt_bn(dmig['the_range_revenue']['FY2023'])} <span class="muted">(+372.7% YoY)</span></div>
-      <p class="kv-comment">{safe(dmig['the_range_revenue']['narrative'])}</p>
-      <span class="src">출처: {safe(dmig['the_range_revenue']['src'])}</span>
-    </div>
+      <p class="kv-comment">{safe(dmig['the_range_revenue']['narrative'])}</p>    </div>
     <div class="kv">
       <div class="k">FY2023 F&amp;B 코스별 분해</div>
       <div class="v">BSD {fmt_bn(dmig['fnb_split_FY2023']['bsd_restaurant_idr'])} + PIK {fmt_bn(dmig['fnb_split_FY2023']['pik_restaurant_idr'])}</div>
-      <p class="kv-comment">{safe(dmig['fnb_split_FY2023']['narrative'])}</p>
-      <span class="src">출처: {safe(dmig['fnb_split_FY2023']['src'])}</span>
-    </div>
+      <p class="kv-comment">{safe(dmig['fnb_split_FY2023']['narrative'])}</p>    </div>
   </div>
 </div>""")
 
@@ -3813,13 +3529,11 @@ def _ops_kpi_section() -> str:
   <h4 class="ops-block-h">PIPG — 골퍼 시계열 (4년)</h4>
   <div class="tbl-card">{rounds_html}</div>
   <p class="kv-comment">{safe(rp['narrative'])}</p>
-  <p class="src-line">출처: {safe(rp['src'])}</p>
 </div>
 <div class="ops-block">
   <h4 class="ops-block-h">PIPG — 부서별 인원 (FY2024, turnover 그래프 기준)</h4>
   <div class="tbl-card">{dept_html}</div>
   <p class="kv-comment">{safe(hc['narrative'])}</p>
-  <p class="src-line">출처: {safe(hc['src'])}</p>
 </div>""")
 
     # KPIG card
@@ -3829,15 +3543,11 @@ def _ops_kpi_section() -> str:
   <div class="kv-grid">
     <div class="kv">
       <div class="k">공시 범위</div>
-      <p class="kv-comment">{safe(kpig['scope_caveat']['narrative'])}</p>
-      <span class="src">출처: {safe(kpig['scope_caveat']['src'])}</span>
-    </div>
+      <p class="kv-comment">{safe(kpig['scope_caveat']['narrative'])}</p>    </div>
     <div class="kv">
       <div class="k">Trump Clubhouse</div>
       <div class="v">33,322 m² <span class="muted">(Oppenheim Arch.)</span></div>
-      <p class="kv-comment">{safe(kpig['clubhouse_facility']['narrative'])}</p>
-      <span class="src">출처: {safe(kpig['clubhouse_facility']['src'])}</span>
-    </div>
+      <p class="kv-comment">{safe(kpig['clubhouse_facility']['narrative'])}</p>    </div>
   </div>
 </div>""")
 
@@ -3858,14 +3568,10 @@ def _ops_kpi_section() -> str:
     <div class="kv">
       <div class="k">FY2025 Golf 매출 vs target</div>
       <div class="v">{fmt_bn(tb['fy2025_golf_revenue_idr'])} <span class="muted">(target {fmt_bn(tb['target_idr'])} · 달성 {tb['beat_pct'] * 100:+.1f}%)</span></div>
-      <p class="kv-comment">{safe(tb['narrative'])}</p>
-      <span class="src">출처: {safe(tb['src'])}</span>
-    </div>
+      <p class="kv-comment">{safe(tb['narrative'])}</p>    </div>
     <div class="kv">
       <div class="k">CWIP 설명</div>
-      <p class="kv-comment">{safe(g['capex_fy2025']['narrative'])}</p>
-      <span class="src">출처: {safe(g['capex_fy2025']['src'])}</span>
-    </div>
+      <p class="kv-comment">{safe(g['capex_fy2025']['narrative'])}</p>    </div>
   </div>
 </div>""")
 
@@ -3988,7 +3694,6 @@ def _related_party_and_lease_section() -> str:
             f'<div class="tbl-card"><table class="tbl tbl-tight">'
             f'<thead><tr><th>Item</th><th class="num">FY22</th><th class="num">FY23</th><th class="num">FY24</th></tr></thead>'
             f'<tbody>{"".join(lines_html)}</tbody></table></div>'
-            f'<p class="src-line">출처: {safe(src)}</p>'
             f'</div>'
         )
 
@@ -4012,7 +3717,6 @@ def _related_party_and_lease_section() -> str:
             f'<div class="tbl-card scroll-x"><table class="tbl tbl-tight">'
             f'<thead><tr><th>유형</th><th>상대방</th><th>기간</th><th>임대료/금액</th></tr></thead>'
             f'<tbody>{"".join(rows)}</tbody></table></div>'
-            f'<p class="src-line">출처: {safe(ag.get("source_page", ""))}</p>'
             f'</div>'
         )
 
@@ -4028,7 +3732,6 @@ def _related_party_and_lease_section() -> str:
             f'<div class="kv"><div class="k">HGB 면적</div><div class="v">{profile.get("hgb_area_m2", "—"):,} m² <span class="muted">(만료: {safe(str(profile.get("hgb_expiry_years", "—")))})</span></div></div>'
             f'<div class="kv"><div class="k">MKPI에서 임차</div><div class="v">{profile.get("leased_from_mkpi_m2", "—"):,} m² <span class="muted">({safe(profile.get("leased_purpose", "—"))})</span></div><div class="src">기간: {safe(profile.get("leased_term_start", ""))} ~ {safe(profile.get("leased_term_end", ""))}</div></div>'
             f'</div>'
-            f'<p class="src-line">출처: {safe(profile.get("source_pages", "—"))}</p>'
             f'</div>'
         )
 
@@ -4044,7 +3747,6 @@ def _related_party_and_lease_section() -> str:
             f'<div class="kv"><div class="k">FY2024 매출 기여</div><div class="v">{fmt_bn(cc.get("amount_FY2024"))} <span class="muted">({(cc.get("pct_of_revenue_FY2024") or 0) * 100:.1f}% of revenue)</span></div></div>'
             f'<div class="kv"><div class="k">FY2023 매출 기여</div><div class="v">{fmt_bn(cc.get("amount_FY2023"))} <span class="muted">({(cc.get("pct_of_revenue_FY2023") or 0) * 100:.1f}%)</span></div></div>'
             f'</div>'
-            f'<p class="src-line">출처: {safe(cc.get("source", ""))}</p>'
             f'</div>'
         )
 
@@ -4059,7 +3761,6 @@ def _related_party_and_lease_section() -> str:
             f'<div class="kv"><div class="k">FY2024 거래액</div><div class="v">{fmt_bn(sup.get("amount_FY2024"))}</div></div>'
             f'<div class="kv"><div class="k">전체 COGS 대비</div><div class="v">{safe(sup.get("pct_of_total_cogs", "—"))}</div></div>'
             f'</div>'
-            f'<p class="src-line">출처: {safe(sup.get("source", ""))}</p>'
             f'</div>'
         )
 
@@ -4188,7 +3889,7 @@ def _fy25_delta_cards() -> str:
                 f'<dt>Golf-only</dt><dd><span class="na">미공시 (segment 통합)</span></dd>'
                 f'</dl>'
                 f'<p class="kv-comment">{safe(disclosure_note)}</p>'
-                f'<span class="src">출처: {safe(fu.get("source", ""))[:120]}</span>'
+                f''
                 f'</div>'
             )
             continue
@@ -4210,7 +3911,7 @@ def _fy25_delta_cards() -> str:
             f'<dt>순이익</dt><dd>{fmt_bn(net_inc)} <span class="muted">({_sign_pct(net_d)} YoY)</span></dd>'
             f'</dl>'
             f'<p class="kv-comment">{safe(comment)}</p>'
-            f'<span class="src">출처: {safe(fu.get("source", ""))[:120]}</span>'
+            f''
             f'</div>'
         )
     return f'<div class="kv-grid">{"".join(cards)}</div>'
@@ -4390,7 +4091,6 @@ def _golf_cwip_detail_chart() -> str:
     <span style="text-align:right;">{fmt_bn(total).replace(' bn','bn')}</span>
     <span style="text-align:right;color:var(--muted);">100.0%</span>
   </div>
-  <p class="src-line" style="margin-top:8px;">출처: GOLF FY25 AR p.170 — Aset dalam Konstruksi (Construction in Progress)</p>
 </div>"""
 
 
@@ -4516,7 +4216,6 @@ def _pipg_dept_headcount_chart() -> str:
     <span style="text-align:right;">{total} 명</span>
     <span style="text-align:right;color:var(--muted);">100.0%</span>
   </div>
-  <p class="src-line" style="margin-top:8px;">출처: {safe(pipg.get("headcount_by_dept_FY2024", {}).get("src", ""))}</p>
 </div>"""
 
 
@@ -4554,7 +4253,7 @@ def _pipg_agreements_timeline() -> str:
     return f"""<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;margin:14px 0;">
   {''.join(cards)}
 </div>
-<p class="src-line">출처: {safe(ag.get("source_page", ""))}</p>"""
+"""
 
 
 def _dmig_member_tier_chart() -> str:
@@ -4588,7 +4287,7 @@ def _dmig_member_tier_chart() -> str:
     <span style="text-align:right;">{total} 명</span>
     <span style="text-align:right;color:var(--muted);">100.0%</span>
   </div>
-  <p class="src-line" style="margin-top:8px;">FY22 1,239명 → FY23 1,233명 (-6 명) · 출처: DMIG FY23 AR p.17 MEMBERSHIP</p>
+  <p class="src-line" style="margin-top:8px;">FY22 1,239명 → FY23 1,233명 (-6 명)</p>
 </div>"""
 
 
@@ -4624,7 +4323,6 @@ def _land_hgb_timeline_visual() -> str:
       <div style="font-size:11.5px;color:var(--ink-soft);margin-top:3px;">{safe(leased_purpose)} · {safe(leased_start)} ~ {safe(leased_end)}</div>
     </div>
   </div>
-  <p class="src-line" style="margin-top:10px;">출처: {safe(profile.get("source_pages", "—"))}</p>
 </div>"""
 
 
@@ -4730,15 +4428,11 @@ def section_ops_kpi() -> str:
     <div class="section" id="kpi-dashboard">
       <h2 data-num="01">운영 KPI 시계열 — 대시보드</h2>
       <h3>골퍼·회원·인력·CWIP 6-tile sparkline 대시보드</h3>
-      <p class="lede">
-        annual report 본문 (Management Discussion)에서 직접 추출한 정량 지표.
-        벡터 검색 (multilingual-e5-small / 99,618 chunks)로 동일 fact를 여러 인덱스 페이지에서 cross-validate.
-      </p>
       {ops_kpi_dashboard}
     </div>
 
     <div class="section" id="kpi-timeseries">
-      <h2 data-num="02">시계열 detail — 출처 페이지 + narrative</h2>
+      <h2 data-num="02">시계열 detail</h2>
       <h3>각 peer별 상세 데이터 (페이지 추적 가능)</h3>
       {ops_kpi_section_html}
     </div>
@@ -4756,10 +4450,6 @@ def section_ops_kpi() -> str:
     <div class="section" id="kpi-dept">
       <h2 data-num="04">PIPG 부서별 인원 (FY2024)</h2>
       <h3>turnover graph 기준 Top 부서 horizontal bar</h3>
-      <p class="lede">
-        PIPG annual report Note 32에 부서별 turnover/headcount graph 공시. Front office, Maintenance, F&amp;B 같은
-        operations-heavy 부서가 상위. <strong>Pondok Indah 단일 코스</strong>에서 운영되는 인력 구조.
-      </p>
       {pipg_dept_chart}
     </div>
 
@@ -4777,23 +4467,14 @@ def section_ops_kpi() -> str:
     <div class="section" id="kpi-land">
       <h2 data-num="06">PIPG 토지·HGB·임차 구조</h2>
       <h3>53ha 토지 + 12 인증서 + HGB 면적 + MKPI 임차</h3>
-      <p class="lede">
-        Pondok Indah의 토지 구조 — 자체 보유 53ha (12 인증서) + HGB 일부 + MKPI에서 추가 임차.
-        HGB 만료 시점이 향후 30+ 년 유효지만, related-party lease 갱신 / 토지 가치 평가가 valuation 핵심 변수.
-      </p>
       {land_hgb_visual}
     </div>
 
     <div class="section" id="kpi-segment6">
       <h2 data-num="07">6-peer 골프 segment — 매출 × GP × 비중</h2>
       <h3>bubble scatter (FY2024) — 4-사분면 분류</h3>
-      <p class="lede">
-        Pure-play 외 <strong>MDLN · GOLF · KIJA · SMDM</strong>도 annual report Note에서 골프 segment를 명시적 분리 공시.
-        Golf 매출 비중 × GP margin × 매출 절댓값을 한 차트로.
-      </p>
       {segment_scatter}
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 6-peer 골프 segment 표</summary>
+      <details class="orig-toggle"><summary>원본 6-peer 표</summary>
         {golf_segment_table}
       </details>
     </div>
@@ -4801,12 +4482,8 @@ def section_ops_kpi() -> str:
     <div class="section" id="kpi-dividend">
       <h2 data-num="08">배당 시계열 — 3-peer capital allocation</h2>
       <h3>FY22-24 + payout ratio + RUPST 날짜</h3>
-      <p class="lede">
-        cash distribution을 통한 capital allocation 비교 — PIPG 안정+증가, DMIG FY23 1회 배당, SMDM FY24 미실시 (BSDE 인수 직전).
-      </p>
       {dividend_visual}
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 배당 표 (narrative + 출처)</summary>
+      <details class="orig-toggle"><summary>원본 배당 표</summary>
         {dividend_table}
       </details>
     </div>
@@ -4814,13 +4491,8 @@ def section_ops_kpi() -> str:
     <div class="section" id="kpi-related">
       <h2 data-num="09">관계사·고객·공급사 집중도</h2>
       <h3>annual report Note에서 추출한 audit-grade 정량 정보</h3>
-      <p class="lede">
-        <strong>DMIG</strong> 핵심경영진 보수 · <strong>PIPG</strong> 53ha 토지·HGB·MKPI 임차 · <strong>GOLF</strong> 고객 집중도 ·
-        <strong>MDLN</strong> 공급사 집중도 — cross-default / cross-risk 분석에 핵심.
-      </p>
       {related_party_visual}
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 관계사·lease 상세 표</summary>
+      <details class="orig-toggle"><summary>원본 상세 표</summary>
         {related_party_section}
       </details>
     </div>
@@ -4925,8 +4597,7 @@ def section_capex() -> str:
         Heatmap 색 진할수록 강도 ↑ · FY23→24 trend 화살표 (▲/▼ pp delta).
       </p>
       {capex_heatmap}
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 CAPEX proxy 표</summary>
+      <details class="orig-toggle"><summary>원본 CAPEX proxy 표</summary>
         {capex_proxy_table}
       </details>
     </div>
@@ -4934,30 +4605,18 @@ def section_capex() -> str:
     <div class="section" id="cap-turnover">
       <h2 data-num="02">자산 회전율 — 4-peer efficiency</h2>
       <h3>매출 / 총자산 · 자산집약도 · 매출/홀</h3>
-      <p class="lede">
-        자본 효율의 또 다른 잣대 — 자산 회전율 (matarev/asset). PIPG는 단일 코스 + 도시 자산으로 회전율 가장 높을 가능성,
-        KPIG는 conglomerate 자산 base로 가장 낮음. 함께 보이는 자산집약도(역수)도 의미 동일.
-      </p>
       {asset_turnover}
     </div>
 
     <div class="section" id="cap-cwip">
       <h2 data-num="03">GOLF CWIP detail — 6 카테고리 분해</h2>
       <h3>FY2025 진행 중 자산 426bn의 구성 (Buildings/Landscape/Equipment/Vehicles/Furniture)</h3>
-      <p class="lede">
-        Aset dalam Konstruksi 6 카테고리로 분해 — Buildings (188bn, 43%) + Landscape (238bn, 54%)이 핵심 ·
-        나머지는 Equipment·Vehicles·Furniture·Office Equipment 등 운영 보조 시설. 신규 코스 또는 시설 대규모 확장 시사.
-      </p>
       {golf_cwip_detail}
     </div>
 
     <div class="section" id="cap-depr">
       <h2 data-num="04">감가상각 라인 — 3-peer 직접 비교</h2>
       <h3>Penyusutan / Depreciation 라인 IDR + 매출 대비 % + YoY (FY24)</h3>
-      <p class="lede">
-        OpEx/G&amp;A Note 내 depreciation 라인을 3-peer 한 표로 — 절댓값 + 매출 대비 + YoY 변화율.
-        DMIG가 절댓값·비중·YoY 모두 가장 높음 (PIK Range 신규 + 누적 CAPEX 유동화).
-      </p>
       {depreciation_lines}
     </div>
 
@@ -4975,8 +4634,7 @@ def section_capex() -> str:
         <strong>ENT</strong> (entity all-in) vs <strong>SEG</strong> (golf segment-only) 차이 주의.
       </p>
       {per_hole_visual}
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 per-hole 표</summary>
+      <details class="orig-toggle"><summary>원본 per-hole 표</summary>
         {per_hole_table}
       </details>
     </div>
@@ -4984,12 +4642,8 @@ def section_capex() -> str:
     <div class="section" id="cap-pnl">
       <h2 data-num="07">P&L 4Y 마진 추이 — Pure-play 3-peer</h2>
       <h3>FY22-25 GP·Op·Net margin trend (CAPEX 영향 관점)</h3>
-      <p class="lede">
-        감가상각 증가가 op margin에 미치는 영향을 4년 시계열로. DMIG는 FY25 마진 하락 가속, PIPG는 비용 통제로 mid 안정.
-      </p>
       {pnl_trend}
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 4년 P&amp;L 표</summary>
+      <details class="orig-toggle"><summary>원본 4Y P&amp;L 표</summary>
         {pnl_table}
       </details>
     </div>
@@ -5120,17 +4774,12 @@ def section_opex() -> str:
     <div class="section" id="op-rev">
       <h2 data-num="01">매출 라인 분해 — Pure-play (FY23→FY24)</h2>
       <h3>골프 / F&amp;B / 회원권 / 부대시설 별 매출 + AR narrative</h3>
-      <p class="lede">
-        annual report Note에서 라인별 매출 직접 추출. Top-5 라인 + 기타 합산.
-        <strong>DMIG</strong> 7 라인 (Note 23), <strong>PIPG</strong> 11 라인 (Note 27).
-      </p>
       {revenue_topn}
 
       <h4 class="ops-block-h" style="margin-top: 22px;">왜? — 매출 성장 driver (벡터 DB 검증)</h4>
       {revenue_narratives}
 
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 매출 전체 라인 표</summary>
+      <details class="orig-toggle"><summary>원본 매출 라인 표</summary>
         {rev_blocks}
       </details>
     </div>
@@ -5138,14 +4787,9 @@ def section_opex() -> str:
     <div class="section" id="op-cogs">
       <h2 data-num="02">COGS 라인 분해 — segment별 매출원가</h2>
       <h3>골프 코스 / 레스토랑 / 카트 / 드라이빙 레인지</h3>
-      <p class="lede">
-        매출원가는 segment별로 cost of revenue가 분리 공시.
-        Top-N COGS 라인 + 기타 시각화 — YoY 상승 빨강, 하락 녹색 (절감이 마진 개선).
-      </p>
       {cogs_topn}
 
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 COGS 전체 라인 표</summary>
+      <details class="orig-toggle"><summary>원본 COGS 라인 표</summary>
         {cogs_blocks}
       </details>
     </div>
@@ -5153,13 +4797,9 @@ def section_opex() -> str:
     <div class="section" id="op-opex">
       <h2 data-num="03">OpEx 라인 분해 — 3-peer top-N</h2>
       <h3>인건비 · 감가 · 유지 · 세금 · 유틸리티 — DMIG/PIPG/KPIG</h3>
-      <p class="lede">
-        AR Note 25 (DMIG) / Note 29 (PIPG) / Note 34 (KPIG)에서 OpEx 라인 단위 분해. Top-5 + 기타 + YoY color.
-      </p>
       {opex_topn}
 
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 OpEx 전체 라인 표</summary>
+      <details class="orig-toggle"><summary>원본 OpEx 라인 표</summary>
         {opex_blocks}
       </details>
     </div>
@@ -5180,8 +4820,7 @@ def section_opex() -> str:
       <h4 class="ops-block-h" style="margin-top: 22px;">카테고리별 매출 대비 % — bar matrix</h4>
       {opex_norm_bars}
 
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 정규화 표 (IDR + % 컬럼)</summary>
+      <details class="orig-toggle"><summary>원본 정규화 표</summary>
         {opex_norm_table}
       </details>
     </div>
@@ -5200,9 +4839,6 @@ def section_opex() -> str:
     <div class="section" id="op-4y-trend">
       <h2 data-num="06">OpEx/매출 % — 4Y trend (FY22-25)</h2>
       <h3>비용 효율 추이 — DMIG/PIPG/GOLF</h3>
-      <p class="lede">
-        OpEx ratio가 4년간 어떻게 변했는지 multi-line. PIPG는 FY25 큰 폭 하락 (-17.9%), DMIG는 점진 상승, GOLF는 stable 낮음.
-      </p>
       {opex_4y_trend}
     </div>
 
@@ -5219,8 +4855,7 @@ def section_opex() -> str:
         PIPG는 Note 30 Segment Information에서 4 segment의 COGS를 explicit 공시. Membership 부문 GP margin 압도적 높음 (87.8%).
       </p>
       {pipg_seg_visual}
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 segment 표</summary>
+      <details class="orig-toggle"><summary>원본 segment 표</summary>
         {pipg_seg_table}
       </details>
     </div>
@@ -5228,12 +4863,8 @@ def section_opex() -> str:
     <div class="section" id="op-fy25">
       <h2 data-num="09">FY2025 미감사 prelim — 마진 압박 신호</h2>
       <h3>DMIG/PIPG/KPIG 3-peer side-by-side dashboard</h3>
-      <p class="lede">
-        DMIG/PIPG/KPIG 모두 FY2025 unaudited financial statement 공시. ▲ 녹색 = 증가, ▼ 빨강 = 감소.
-      </p>
       {fy25_dashboard}
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 FY25 카드 (출처 페이지 포함)</summary>
+      <details class="orig-toggle"><summary>원본 카드</summary>
         {fy25_cards}
       </details>
     </div>
@@ -5241,9 +4872,6 @@ def section_opex() -> str:
     <div class="section" id="op-margin">
       <h2 data-num="10">FY24→FY25 마진 변화 — 벡터 추출 commentary</h2>
       <h3>6-peer timeline 카드 + FY24↔FY25 mini delta bar</h3>
-      <p class="lede">
-        벡터 DB로 각 peer의 FY24/FY25 AR 본문에서 마진 변화 commentary 추출. 카드별 mini bar로 FY24↔FY25 직접 비교 + delta% 표시.
-      </p>
       {margin_change}
     </div>
 
@@ -5261,718 +4889,6 @@ def section_opex() -> str:
   </div>
 </section>"""
 
-
-def section_ops() -> str:
-    # Disclosure matrix
-    rows = []
-    for t in PUREPLAY:
-        op = first_by_ticker(OPERATING, t) or {}
-        fin = first_by_ticker(FINANCIALS, t) or {}
-        seg = op.get("segment_revenue_disclosure", "")
-        seg_short = "Full" if "full" in seg.lower() or "explicitly" in seg.lower() else (
-            "Partial" if seg and seg != "N/A" else "N/A")
-        seg_pill = (
-            '<span class="pill pill-yes">Full disclosure</span>' if seg_short == "Full"
-            else '<span class="pill pill-partial">Partial</span>' if seg_short == "Partial"
-            else '<span class="pill pill-na">N/A</span>'
-        )
-        seg_year = op.get("segment_year", "")
-        rows.append(f"""<tr class="tier-a">
-  <td><span class="ticker-mini">{safe(t)}</span></td>
-  <td>{seg_pill}</td>
-  <td class="num">{safe(seg_year or '—')}</td>
-  <td class="notes">{safe(seg[:200])}{'…' if len(seg) > 200 else ''}</td>
-</tr>""")
-
-    # Asset intensity & margin
-    perf_rows = []
-    for t in PUREPLAY:
-        fin_rows = by_ticker(FINANCIALS, t)
-        fin = next((f for f in fin_rows if f.get("revenue_idr") not in ("", None)),
-                   fin_rows[0] if fin_rows else {})
-        rev = float(fin.get("revenue_idr") or 0)
-        prof = float(fin.get("net_profit_idr") or 0)
-        assets = float(fin.get("total_assets_idr") or 0)
-
-        # DMIG: use H1 supplement
-        if t == "DMIG":
-            rev = SUPPLEMENT["DMIG"]["revenue_h1_2024_idr"]
-            rev_label = f"{fmt_idr_compact(rev)} (H1)"
-        else:
-            rev_label = fmt_idr_compact(rev) if rev else "N/A"
-
-        margin = f"{(prof / rev * 100):.1f}%" if rev and prof else "N/A"
-        intensity = f"{(assets / rev):.2f}×" if rev and assets else "N/A"
-        perf_rows.append(f"""<tr class="tier-a">
-  <td><span class="ticker-mini">{safe(t)}</span></td>
-  <td class="num">{rev_label}</td>
-  <td class="num">{fmt_idr_compact(prof) if prof else 'N/A'}</td>
-  <td class="num">{fmt_idr_compact(assets) if assets else 'N/A'}</td>
-  <td class="num">{margin}</td>
-  <td class="num">{intensity}</td>
-</tr>""")
-
-    # Capex narrative — extracted from operating_signals.notes
-    capex_notes = []
-    for t in PUREPLAY:
-        op = first_by_ticker(OPERATING, t)
-        if not op:
-            continue
-        notes = (op.get("operational_notes") or "").strip()
-        if not notes or notes == "N/A":
-            continue
-        capex_notes.append(f"""<div class="kv">
-  <div class="k">{safe(t)} — 운영/CAPEX 메모</div>
-  <div class="v small">{safe(notes)}</div>
-  <span class="src">출처: peer_operating_signals.csv</span>
-</div>""")
-
-    # ── New sub-sections built from operations/data/*_notes.json
-    pnl_table = _pnl_table()
-    pnl_trend = _pnl_margin_trend_section()
-    peer_radar = _peer_compare_radar()
-    pnl_funnel = _pnl_funnel_section()
-    capex_proxy_table = _capex_proxy_table()
-    capex_heatmap = _capex_heatmap_section()
-    capex_narratives = _capex_narrative_grid()
-    revenue_narratives = _revenue_narrative_grid()
-    opex_narratives = _opex_narrative_grid()
-    fy25_cards = _fy25_delta_cards()
-    fy25_dashboard = _fy25_dashboard()
-    golf_segment_table = _all_peer_golf_segment_table()
-    segment_scatter = _segment_scatter_svg()
-    opex_norm_table = _normalized_opex_compare_table()
-    opex_kpi_strip = _opex_kpi_strip()
-    opex_stack = _opex_stacked_bars()
-    opex_norm_bars = _opex_norm_bar_table()
-    related_party_section = _related_party_and_lease_section()
-    related_party_visual = _related_party_visual()
-    ops_kpi_section = _ops_kpi_section()
-    ops_kpi_dashboard = _ops_kpi_dashboard()
-    per_hole_table = _per_hole_metrics_table()
-    per_hole_visual = _per_hole_visual_section()
-    pipg_seg_table = _pipg_segment_table()
-    pipg_seg_visual = _pipg_segment_visual()
-    dividend_table = _dividend_compare_table()
-    dividend_visual = _dividend_visual()
-    margin_change = _margin_change_visual()
-    exec_headline = _exec_headline_html()
-
-    rev_blocks = "\n".join(filter(None, [
-        _revenue_breakdown_table("DMIG", "revenue_note", "매출 라인 분해"),
-        _revenue_breakdown_table("PIPG", "revenue_note_27", "매출 라인 분해 (Note 27)"),
-    ]))
-    cogs_blocks = "\n".join(filter(None, [
-        _revenue_breakdown_table("DMIG", "cogs_note", "COGS 라인 분해"),
-        _revenue_breakdown_table("PIPG", "cogs_note_28", "COGS 라인 분해 (Note 28)"),
-    ]))
-    opex_blocks = "\n".join(filter(None, [
-        _opex_breakdown_table("DMIG", "opex_note", "OpEx 라인 분해 (Note 25)"),
-        _opex_breakdown_table("PIPG", "opex_note_29", "OpEx 라인 분해 (Note 29)"),
-        _opex_breakdown_table("KPIG", "ga_note_34", "G&A 비용 라인 (Note 34) — Hotel+Resort+Golf 통합"),
-    ]))
-    opex_topn = _opex_topn_section()
-    revenue_topn = _revenue_topn_section()
-    cogs_topn = _cogs_topn_section()
-
-    return f"""<section class="panel" data-panel="ops">
-  <div class="wrap">
-
-    <a class="back-to-toc" href="#ops-anchor-top">TOC</a>
-
-    {exec_headline}
-
-    <nav class="ops-subnav" id="ops-anchor-top" aria-label="ops sub-navigation">
-      <a class="chip" href="#pnl">P&amp;L 4Y</a>
-      <a class="chip" href="#rev">매출 라인</a>
-      <a class="chip" href="#cogs">COGS 라인</a>
-      <a class="chip" href="#opex">OpEx 라인</a>
-      <a class="chip" href="#opex-norm">OpEx 정규화</a>
-      <a class="chip" href="#capex-proxy">CAPEX proxy</a>
-      <a class="chip" href="#pipg-seg">PIPG 4-seg</a>
-      <a class="chip" href="#segment-6">6-peer 골프</a>
-      <a class="chip" href="#unit-econ">홀당 단위</a>
-      <a class="chip" href="#ops-kpi">운영 KPI</a>
-      <a class="chip" href="#dividend">배당</a>
-      <a class="chip" href="#related">관계사</a>
-      <a class="chip" href="#fy25">FY25 prelim</a>
-      <a class="chip" href="#margin-commentary">마진 변화</a>
-    </nav>
-
-    <div class="section ops-summary">
-      <h2>핵심 인사이트 — TL;DR</h2>
-      <h3>14개 분석 섹션에서 도출한 7-peer 핵심 발견 (metric-first)</h3>
-      <div class="insight-grid">
-
-        <div class="insight-card insight-positive">
-          <div class="insight-tag"><span class="ticker-mini">GOLF</span> 자본 효율 최강자</div>
-          <div class="insight-metric up">65.7<span class="u">%</span></div>
-          <div class="insight-title">Golf segment GP margin</div>
-          <p>OpEx 21.1%/매출 (DMIG/PIPG 38% 대비) · CWIP 450bn 진행 중 · FY25 매출 target +24.66% beat</p>
-        </div>
-
-        <div class="insight-card insight-positive">
-          <div class="insight-tag"><span class="ticker-mini">PIPG</span> 비용 통제력</div>
-          <div class="insight-metric up">-17.9<span class="u">%</span></div>
-          <div class="insight-title">FY25 OpEx 절감 → 영업이익 +4.0%</div>
-          <p>매출 -6.0% 환경에도 OpEx 76→62bn 절감. Membership GP margin 87.8%. 노후 코스(1976)는 risk.</p>
-        </div>
-
-        <div class="insight-card insight-warn">
-          <div class="insight-tag"><span class="ticker-mini">DMIG</span> 마진 압박 시작</div>
-          <div class="insight-metric down">-12.0<span class="u">%</span></div>
-          <div class="insight-title">FY25 영업이익 YoY (78.9 → 69.4bn)</div>
-          <p>매출 sticky(-0.7%)인데 COGS +5.8% + OpEx +3.3% 동시 압박. 감가상각 12.2%/매출 peer 최고. Range@PIK +372%.</p>
-        </div>
-
-        <div class="insight-card insight-warn">
-          <div class="insight-tag"><span class="ticker-mini">SMDM</span> Rancamaya 적자전환</div>
-          <div class="insight-metric down">-16.9<span class="u">pp</span></div>
-          <div class="insight-title">FY24 Golf GP margin 급락 (55.8 → 38.9%)</div>
-          <p>영업이익 -212M IDR. BSDE 2024-10에 91.99% 인수. FY25 GP 88.6% jump은 회계 재분류 가능성.</p>
-        </div>
-
-        <div class="insight-card insight-positive">
-          <div class="insight-tag"><span class="ticker-mini">MDLN</span> Hidden growth</div>
-          <div class="insight-metric up">+28.2<span class="u">%</span></div>
-          <div class="insight-title">Golf+F&amp;B FY25 YoY (74→95bn)</div>
-          <p>그룹 GP margin 44.66% → 47.19% (+2.5pp). 골프 segment 5.6%이지만 그룹 내 가장 빠른 성장 부문.</p>
-        </div>
-
-        <div class="insight-card insight-neutral">
-          <div class="insight-tag"><span class="ticker-mini">KPIG</span> 자산집약 conglomerate</div>
-          <div class="insight-metric">73.8<span class="u">%</span></div>
-          <div class="insight-title">고정자산+투자부동산 / total assets</div>
-          <p>고정자산 21조 + 투자부동산 7조. Hotel+Resort+Golf 통합 매출 1,060bn (FY25). Golf-only 분리 미공시.</p>
-        </div>
-
-        <div class="insight-card insight-neutral">
-          <div class="insight-tag"><span class="ticker-mini">KIJA</span> Industrial-estate 골프</div>
-          <div class="insight-metric">4.7<span class="u">bn/홀</span></div>
-          <div class="insight-title">홀당 매출 — 6 peer 중 최고</div>
-          <p>매출 비중 1.8%로 본업은 산업단지. 그래도 Nick Faldo 설계 + Jababeka captive demand → unit 매출 1위.</p>
-        </div>
-
-        <div class="insight-card insight-positive">
-          <div class="insight-tag">📊 데이터 audit-grade</div>
-          <div class="insight-metric">99,618<span class="u">chunks</span></div>
-          <div class="insight-title">벡터 인덱스 + 13 peer AR Note 직접 추출</div>
-          <p>PyMuPDF positional 추출 + multilingual-e5-small 벡터 검색 cross-validate. 모든 수치는 AR 페이지 추적 가능.</p>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="section ops-toc">
-      <h2>운영 KPI · CAPEX/OPEX — 섹션 목차</h2>
-      <h3>14개 분석 섹션 · 색상으로 분류 보기</h3>
-      <div class="toc-grid">
-        <a class="toc-card cat-pnl" href="#pnl"><span class="toc-num">01</span>
-          <span class="toc-tag">P&amp;L</span>
-          <span class="toc-title">4년 통합 P&amp;L</span>
-          <span class="toc-sub">FY22-25 매출/COGS/OpEx + 마진 추이 차트</span></a>
-        <a class="toc-card cat-pnl" href="#rev"><span class="toc-num">02</span>
-          <span class="toc-tag">REVENUE</span>
-          <span class="toc-title">매출 라인 분해</span>
-          <span class="toc-sub">DMIG 7 라인 + PIPG 11 라인</span></a>
-        <a class="toc-card cat-pnl" href="#cogs"><span class="toc-num">03</span>
-          <span class="toc-tag">COGS</span>
-          <span class="toc-title">COGS 라인 분해</span>
-          <span class="toc-sub">골프 코스 / 레스토랑 / 카트 / 레인지</span></a>
-        <a class="toc-card cat-capex" href="#opex"><span class="toc-num">04</span>
-          <span class="toc-tag">OPEX</span>
-          <span class="toc-title">OpEx 라인 분해</span>
-          <span class="toc-sub">인건비 · 감가 · 유지보수 · 세금</span></a>
-        <a class="toc-card cat-capex" href="#opex-norm"><span class="toc-num">05</span>
-          <span class="toc-tag">OPEX · 시각화</span>
-          <span class="toc-title">OpEx 카테고리별 normalized</span>
-          <span class="toc-sub">KPI strip + 100% stacked + bar matrix</span></a>
-        <a class="toc-card cat-capex" href="#capex-proxy"><span class="toc-num">06</span>
-          <span class="toc-tag">CAPEX · heatmap</span>
-          <span class="toc-title">CAPEX proxy 강도</span>
-          <span class="toc-sub">감가/유지/자산집약도 heatmap + 벡터 narrative</span></a>
-        <a class="toc-card cat-pnl" href="#pipg-seg"><span class="toc-num">07</span>
-          <span class="toc-tag">SEGMENT</span>
-          <span class="toc-title">PIPG 4-segment GP</span>
-          <span class="toc-sub">100% mix + GP margin bar (Note 30)</span></a>
-        <a class="toc-card cat-cross" href="#segment-6"><span class="toc-num">08</span>
-          <span class="toc-tag">CROSS-PEER · scatter</span>
-          <span class="toc-title">6-peer 골프 segment</span>
-          <span class="toc-sub">bubble scatter: 비중 × GP × 매출</span></a>
-        <a class="toc-card cat-cross" href="#unit-econ"><span class="toc-num">09</span>
-          <span class="toc-tag">UNIT ECONOMICS</span>
-          <span class="toc-title">홀당 단위 경제</span>
-          <span class="toc-sub">4-metric × 7-peer horizontal bar</span></a>
-        <a class="toc-card cat-ops" href="#ops-kpi"><span class="toc-num">10</span>
-          <span class="toc-tag">OPERATIONS</span>
-          <span class="toc-title">운영 KPI 시계열</span>
-          <span class="toc-sub">sparkline 대시보드 (골퍼/회원/인력/CWIP)</span></a>
-        <a class="toc-card cat-ops" href="#dividend"><span class="toc-num">11</span>
-          <span class="toc-tag">CAPITAL ALLOC</span>
-          <span class="toc-title">배당 시계열</span>
-          <span class="toc-sub">FY22-24 grouped bar + payout ratio</span></a>
-        <a class="toc-card cat-ops" href="#related"><span class="toc-num">12</span>
-          <span class="toc-tag">RELATED · LEASE</span>
-          <span class="toc-title">관계사 · 토지 lease · 집중도</span>
-          <span class="toc-sub">DMIG 핵심경영진 / PIPG HGB / 고객·공급사</span></a>
-        <a class="toc-card cat-fy25" href="#fy25"><span class="toc-num">13</span>
-          <span class="toc-tag">FY25 · PRELIM</span>
-          <span class="toc-title">FY2025 미감사 prelim</span>
-          <span class="toc-sub">DMIG/PIPG/KPIG 마진 압박 신호</span></a>
-        <a class="toc-card cat-fy25" href="#margin-commentary"><span class="toc-num">14</span>
-          <span class="toc-tag">COMMENTARY</span>
-          <span class="toc-title">FY24→FY25 마진 변화</span>
-          <span class="toc-sub">벡터 추출 AR commentary (4-peer)</span></a>
-      </div>
-    </div>
-
-    <div class="section" id="pnl">
-      <h2 data-num="01">4년 통합 P&L — Pure-play 3-peer</h2>
-      <h3>FY2022 → FY2025 (FY25는 미감사 prelim)</h3>
-      <p class="lede">
-        DMIG/PIPG는 FY22~FY25 4개년 P&L 라인 전체 추출 가능 (annual report Note 23/24/25 또는 Note 27/28/29).
-        KPIG는 Hotel+Resort+Golf 통합 라인이므로 golf-only 비교 불가하나, 그룹 효율 추이는 참고 가능.
-      </p>
-      <h4 class="ops-block-h">P&amp;L Funnel — 매출→Gross→Op→Net leakage</h4>
-      {pnl_funnel}
-
-      <h4 class="ops-block-h" style="margin-top: 26px;">DMIG vs PIPG — 6축 radar 1:1 비교 (FY2024)</h4>
-      {peer_radar}
-
-      <h4 class="ops-block-h" style="margin-top: 26px;">마진 추이 (3-peer 4Y) + 매출 절댓값 비교</h4>
-      {pnl_trend}
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 4년 P&amp;L 표 (FY22-25 라인 단위)</summary>
-        {pnl_table}
-      </details>
-      <div class="banner info">
-        <strong>주의:</strong> KPIG 매출은 Hotel+Resort+Golf 통합 (Note 31 'Hotel, resor dan golf' = FY24 IDR 960bn).
-        KPIG의 COGS/OpEx는 그룹 전체 (Property management 포함) — golf-only 비교에는 부적합.
-        DMIG/PIPG가 1:1 비교 valid pair.
-      </div>
-    </div>
-
-    <div class="section" id="rev">
-      <h2 data-num="02">매출 라인 분해 — Pure-play</h2>
-      <h3>골프 / F&amp;B / 회원권 / 부대시설 별 매출 (FY23→FY24)</h3>
-      <p class="lede">
-        annual report Note에서 라인별 매출을 직접 추출. Top-5 라인 + 기타 합산 시각화.
-        <strong>DMIG</strong>는 7개 라인 (Note 23), <strong>PIPG</strong>는 11개 라인 (Note 27).
-      </p>
-      {revenue_topn}
-
-      <h4 class="ops-block-h" style="margin-top: 26px;">왜? — AR 본문 직접 인용 (벡터 DB 검증)</h4>
-      <p class="src-line" style="margin: 4px 2px 12px;">매출 성장 driver와 운영 metric을 AR 본문에서 직접 인용 — 같은 +30%도 의미가 다름.</p>
-      {revenue_narratives}
-
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 매출 전체 라인 표 (FY23/FY24/%매출/YoY)</summary>
-        {rev_blocks}
-      </details>
-    </div>
-
-    <div class="section" id="cogs">
-      <h2 data-num="03">COGS (매출원가) 라인 분해</h2>
-      <h3>골프 코스 / 레스토랑 / 카트 / 드라이빙 레인지 등</h3>
-      <p class="lede">
-        Top-5 COGS 라인 + 기타 시각화 — YoY 상승은 빨강, 하락은 녹색 (COGS 절감이 마진 개선).
-        DMIG는 3개 라인 (Golf course / Restaurant / Recreation), PIPG는 11개 라인.
-      </p>
-      {cogs_topn}
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 COGS 전체 라인 표</summary>
-        {cogs_blocks}
-      </details>
-    </div>
-
-    <div class="section" id="opex">
-      <h2 data-num="04">OpEx 라인 분해 — CAPEX/OPEX 핵심</h2>
-      <h3>인건비 · 감가상각 · 유지보수 · 세금 · 유틸리티 등</h3>
-      <p class="lede">
-        AR Note 25 (DMIG) / Note 29 (PIPG) / Note 34 (KPIG)에서 OpEx 라인 단위 분해.
-        <strong>Top-5 라인 + 기타 합산</strong>으로 시각화하고 YoY 변화를 색상으로 표시.
-        가장 큰 비용 항목은 <strong>인건비</strong>와 <strong>감가상각</strong>.
-      </p>
-      {opex_topn}
-
-      <h4 class="ops-block-h" style="margin-top: 26px;">왜? — 운영 리스크 & 비용 sensitivity (벡터 DB 검증)</h4>
-      <p class="src-line" style="margin: 4px 2px 12px;">OpEx 절댓값 뒤의 운영 리스크와 비용 leverage를 AR 본문에서 직접 추출.</p>
-      {opex_narratives}
-
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 OpEx 전체 라인 표 (FY23/FY24/%매출/YoY)</summary>
-        {opex_blocks}
-      </details>
-    </div>
-
-    <div class="section" id="opex-norm">
-      <h2 data-num="05">OpEx 카테고리별 normalized 비교 — DMIG vs PIPG vs GOLF</h2>
-      <h3>FY2024 매출 대비 % (cross-peer 같은 잣대)</h3>
-      <p class="lede">
-        AR Note 라벨이 peer마다 달라 직접 비교가 어려운 문제를 해결하기 위해, 모든 OpEx 라인을
-        <strong>11개 카테고리</strong>로 keyword 기반 자동 분류 (Salaries / Depreciation / Maintenance / Tax+Legal / Utilities 등).
-        시각화 우선 (KPI strip → 100% stacked bar → 카테고리별 bar matrix) → 원본 표는 하단.
-      </p>
-
-      {opex_kpi_strip}
-
-      <h4 class="ops-block-h">100% stacked — OpEx 구성 비중</h4>
-      {opex_stack}
-
-      <h4 class="ops-block-h" style="margin-top: 22px;">카테고리별 매출 대비 % — bar matrix</h4>
-      {opex_norm_bars}
-
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 정규화 표 (참고용 · IDR + % 컬럼)</summary>
-        {opex_norm_table}
-      </details>
-      <div class="banner info">
-        <strong>비교 인사이트 (FY2024, OpEx 카테고리 / 매출):</strong>
-        <strong>인건비</strong> DMIG 12.6% · PIPG 10.5% · GOLF 9.0% — peer 간 비슷한 수준 ·
-        <strong>감가상각</strong> DMIG 12.2% · PIPG 7.1% · GOLF 1.3% — DMIG의 자본투자 강도 압도적 (BSD+PIK 2 코스 + Range@PIK 등) ·
-        <strong>유지보수</strong> DMIG 0.9% · PIPG 5.9% · GOLF 1.3% — PIPG 노후 코스 (1976년 개장) 유지비 부담 큼 ·
-        <strong>세금·법률</strong> DMIG 5.2% · PIPG 12.3% · GOLF 3.1% — PIPG의 Pajak dan perijinan 24.4bn이 outlier (CBD 5분 distance + HGB 면적 + property tax 비중) ·
-        <strong>OpEx 총합</strong> DMIG 38.4% · PIPG 38.5% · GOLF 21.1% — GOLF가 압도적으로 효율적이나 real estate cross-subsidy / IPO 1년차 효과 가능성.
-      </div>
-    </div>
-
-    <div class="section" id="capex-proxy">
-      <h2 data-num="06">CAPEX proxy — 감가상각·유지보수·자산집약도</h2>
-      <h3>Audited CAPEX 미공시 → P&L proxy + B/S proxy로 추정</h3>
-      <p class="lede">
-        CAPEX 직접 공시는 없으나 다음 3개 indicator로 자본투자 강도를 추정:
-        <strong>(1) 감가상각비/매출</strong> — 누적 CAPEX의 유동화 비율,
-        <strong>(2) 유지보수/매출</strong> — 진행 중 maintenance CAPEX,
-        <strong>(3) 총자산/매출</strong> — historic CAPEX 누적 (B/S 기준).
-        Heatmap 색이 진할수록 강도 큼.
-      </p>
-      {capex_heatmap}
-
-      <h4 class="ops-block-h" style="margin-top: 28px;">왜? — AR 본문 직접 인용 (벡터 DB 검증)</h4>
-      <p class="src-line" style="margin: 4px 2px 12px;">
-        숫자가 같은 의미는 아님. 같은 12% 감가도 한 곳은 신규 투자, 다른 곳은 노후 자산 — 본문에서 의도를 확인.
-      </p>
-      {capex_narratives}
-
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 CAPEX proxy 표 (3-peer, IDR 절댓값 포함)</summary>
-        {capex_proxy_table}
-      </details>
-      <div class="banner info">
-        <strong>해석:</strong> DMIG는 감가상각/매출 ≈ 11%, PIPG ≈ 5.7%. DMIG가 신규 시설 (Range@PIK 골프테인먼트 등)에 더 공격적으로 투자한 것으로 보임.
-        PIPG는 유지보수/매출 ≈ 5.9%로 DMIG (0.9%)보다 5~6배 높아 노후 코스 (1976년 개장) 유지비용 부담을 시사.
-      </div>
-    </div>
-
-    <div class="section" id="pipg-seg">
-      <h2 data-num="07">PIPG 4-segment GP margin — Note 30 직접 추출</h2>
-      <h3>Golf Course&amp;Cart / Membership / Restaurant / Others 매출×COGS×GP×Margin</h3>
-      <p class="lede">
-        PIPG는 Note 30 Segment Information에서 Golf Course&amp;Cart / Membership&amp;Enrollment / Restaurant / Others 4 segment의 COGS를 explicit 공시.
-        Note 27 (revenue 11라인) · Note 28 (COGS 11라인)과는 다른 segment 차원의 cut.
-        Membership 부문의 GP margin이 압도적 높음.
-      </p>
-      {pipg_seg_visual}
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 segment 표 (IDR 절댓값)</summary>
-        {pipg_seg_table}
-      </details>
-      <div class="banner info">
-        <strong>FY2023 PIPG segment GP margin 인사이트:</strong>
-        <strong>Membership & Enrollment</strong> 87.8% — 신규 회원/연회비 수익은 거의 순이익에 가까움 (소액 COGS) ·
-        <strong>Golf Course & Cart</strong> 58.7% — 핵심 골프 운영 마진 ·
-        <strong>Others (Driving Range·Branding·Sponsor 통합)</strong> 58.6% — Note 27 기준 driving range/branding/Indonesia Open sponsor 매출 ·
-        <strong>Restaurant</strong> 31.2% — F&B는 마진이 가장 낮음 (예상 가능).
-        전체 GP margin 58.1%.
-      </div>
-      <p class="src-line">출처: PIPG FY23 AR p.156 Note 30 Segment Information (벡터 검색으로 직접 추출, 4-segment breakdown)</p>
-    </div>
-
-    <div class="section" id="segment-6">
-      <h2 data-num="08">골프 segment 매출 — 6-peer 통합 비교 (FY2024)</h2>
-      <h3>explicit golf disclosure가 있는 모든 IDX peer</h3>
-      <p class="lede">
-        Pure-play 외에도 <strong>MDLN · GOLF · KIJA · SMDM</strong>는 annual report Note에서 골프 segment를 명시적 분리 공시.
-        Golf revenue / COGS / Gross profit margin / Entity 매출 비중을 동일 잣대로 비교.
-        <strong>GOLF</strong>가 GP margin 65.7%로 가장 높고, <strong>SMDM</strong>은 38.9%로 가장 낮음 (FY23 대비 -16.9pp 급락).
-      </p>
-      {segment_scatter}
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 6-peer 골프 segment 표</summary>
-        {golf_segment_table}
-      </details>
-      <div class="banner info">
-        <strong>관전 포인트:</strong>
-        <strong>GOLF (Intra GolfLink Resorts)</strong>: 골프 매출 비중 47%, GP margin 65.7% — 가장 자본효율 높음 (Bali New Kuta · Bogor Sentul) ·
-        <strong>MDLN</strong>: 골프 비중 5.6%, GP margin 44.5% (FY25에 +28% YoY 성장) ·
-        <strong>KIJA</strong>: 골프 비중 1.8% (industrial estate 본업), GP margin 41.6% ·
-        <strong>SMDM (Rancamaya)</strong>: 골프 비중 9.1%, GP margin 38.9% — FY23 55.8% → FY24 38.9% 급락 (-16.9pp). FY24 영업이익 -212M IDR 적자전환. BSDE가 2024-10에 91.99% 인수 ·
-        <strong>DMIG/PIPG</strong>: Pure-play 골프코스 라인만 가져오므로 다른 단위; F&B/Cart 포함 시 비교 합치.
-      </div>
-      <p class="src-line">출처: site/peer-analysis/operations/data/{{dmig,pipg,mdln,golf,kija}}_notes.json (FY24 AR Note 23·25·27·29·34 직접 추출)</p>
-    </div>
-
-    <div class="section" id="unit-econ">
-      <h2 data-num="09">홀당 단위 경제 — 7-peer Unit Economics (FY2024)</h2>
-      <h3>매출 / GP / OpEx / 감가상각을 홀 수로 normalize</h3>
-      <p class="lede">
-        peer 마다 코스 수와 운영 형태가 다르므로 entity 매출 절대값 비교는 misleading. 홀 수로 나눈 unit economics가 더 의미 있는 비교.
-        <strong>PIPG</strong>는 1 코스 entity 매출 197.6bn → 매출/홀 ≈ 11.0bn (최고),
-        <strong>DMIG</strong>는 2 코스 → 매출/홀 ≈ 7.0bn,
-        <strong>GOLF</strong> golf-only 93bn / 36홀 = 2.6bn/홀로 가장 낮음.
-      </p>
-      {per_hole_visual}
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 per-hole 표 (basis 라벨 + 홀 수 + 4개 metric)</summary>
-        {per_hole_table}
-      </details>
-      <div class="banner info">
-        <strong>해석 주의:</strong>
-        DMIG/PIPG는 entity 매출 (Golf+F&B+Membership+Cart 일체 포함) 기준 → 홀당 단위가 의도적으로 부풀려져 있음 ·
-        GOLF/MDLN/KIJA/SMDM은 golf segment-only 기준 → 진정한 golf revenue/hole ·
-        cross-row 비교 시 비교 기준(basis 컬럼)을 반드시 확인.
-        진짜 cross-peer per-hole golf revenue는 GOLF (2.6bn) · MDLN (3.1bn) · KIJA (4.7bn) · SMDM (3.5bn) — KIJA가 industrial estate 골프장임에도 unit revenue 가장 높음.
-      </div>
-    </div>
-
-    <div class="section" id="ops-kpi">
-      <h2 data-num="10">운영 KPI 시계열 — 골퍼·회원·인력·CWIP</h2>
-      <h3>annual report 본문(Management Discussion)에서 직접 추출한 정량 지표</h3>
-      <p class="lede">
-        Note (재무제표 주석)에 없는 운영 지표 — 골퍼 수, 회원 수, 부서별 인원, 진행 중 자본투자 — 를 AR 본문에서 직접 추출.
-        <strong>벡터 검색 (multilingual-e5-small / 99,618 chunks)</strong>로 동일 fact를 여러 인덱스 페이지에서 cross-validate.
-      </p>
-
-      <h4 class="ops-block-h">한눈에 — KPI 대시보드 (sparkline + 시각 요약)</h4>
-      {ops_kpi_dashboard}
-
-      <details style="margin: 18px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 상세 데이터 — 출처 페이지 + narrative</summary>
-        {ops_kpi_section}
-      </details>
-    </div>
-
-    <div class="section" id="dividend">
-      <h2 data-num="11">배당 시계열 — 3-peer 비교</h2>
-      <h3>FY22-FY24 배당 + payout ratio</h3>
-      <p class="lede">
-        cash distribution을 통한 capital allocation 비교. PIPG는 안정적 배당 + 증가 추세, DMIG는 FY23 배당 확인,
-        SMDM은 FY24 BSDE 인수 직전 배당 미실시.
-      </p>
-      {dividend_visual}
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 배당 표 (narrative + 출처)</summary>
-        {dividend_table}
-      </details>
-    </div>
-
-    <div class="section" id="related">
-      <h2 data-num="12">관계사 거래 · 토지 lease · 고객·공급사 집중도</h2>
-      <h3>annual report Note에서 추출한 audit-grade 정량 정보</h3>
-      <p class="lede">
-        <strong>DMIG</strong>의 핵심경영진 보수 추이, <strong>PIPG</strong>의 53ha 토지·HGB 약정·MKPI 임차 구조,
-        <strong>GOLF</strong>의 고객 집중도 (34%), <strong>MDLN</strong>의 공급사 집중도를 한 자리에 정리.
-        cross-default / cross-risk 분석에 핵심.
-      </p>
-      {related_party_visual}
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 관계사·lease 상세 표 (라인 단위)</summary>
-        {related_party_section}
-      </details>
-    </div>
-
-    <div class="section" id="fy25">
-      <h2 data-num="13">FY2025 미감사 prelim — 마진 압박 신호</h2>
-      <h3>각 peer가 발표한 FY2025 unaudited P&L (2026-05-12 Cycle 167)</h3>
-      <p class="lede">
-        DMIG/PIPG/KPIG 3-peer side-by-side dashboard — 매출/영업이익/순이익 YoY를 한눈에 비교.
-        ▲ 녹색 = 증가, ▼ 빨강 = 감소.
-      </p>
-      {fy25_dashboard}
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 FY25 카드 (출처 페이지 포함)</summary>
-        {fy25_cards}
-      </details>
-    </div>
-
-    <div class="section" id="appendix">
-      <h2 data-num="A">부록 — Disclosure 강도 & curated CSV KPI</h2>
-      <h3>Pure-play 3-peer 공시 형태 + curated CSV 기반 단일 entry KPI</h3>
-      <p class="lede">
-        본문 시각화와 별도로, peer_operating_signals + peer_financials_curated CSV에서 추출한 단순 정량 정보.
-        <strong>Note 기반 (FY24 full year, 시각화 사용)</strong>과는 다른 단일 entry임을 주의.
-      </p>
-
-      <details open style="margin: 8px 0;">
-        <summary style="cursor: pointer; font-size: 13.5px; font-weight: 700; color: var(--ink); padding: 8px 0;">▾ 골프 segment 매출 disclosure 강도</summary>
-        <p style="font-size:13px;color:var(--ink-soft);margin: 4px 2px 8px;">
-          <em>Full</em> = 골프장 매출/비용 segment 분리 공시 · <em>Partial</em> = 일부만 · <em>N/A</em> = 모회사 합산만.
-        </p>
-        <div class="tbl-card">
-          <table class="tbl">
-            <thead>
-              <tr>
-                <th>Peer</th>
-                <th>공시 강도</th>
-                <th class="num">기준 FY</th>
-                <th>공시 형태</th>
-              </tr>
-            </thead>
-            <tbody>{''.join(rows)}</tbody>
-          </table>
-        </div>
-      </details>
-
-      <details style="margin: 12px 0;">
-        <summary style="cursor: pointer; font-size: 13.5px; font-weight: 700; color: var(--ink); padding: 8px 0;">▸ 운영 효율 KPI (curated CSV 단일 entry)</summary>
-        <div class="tbl-card">
-          <table class="tbl">
-            <thead>
-              <tr>
-                <th>Peer</th>
-                <th class="num">매출 (FY24)</th>
-                <th class="num">순이익</th>
-                <th class="num">총자산</th>
-                <th class="num">순이익률</th>
-                <th class="num">자산/매출</th>
-              </tr>
-            </thead>
-            <tbody>{''.join(perf_rows)}</tbody>
-          </table>
-        </div>
-        <div class="banner">
-          <strong>해석 주의:</strong> KPIG는 <strong>모회사 연결 기준</strong> (non-golf 포함). DMIG는 H1만 audited.
-          본문 P&L 표 (Note 추출본, FY24 full year)와 다른 entry임.
-        </div>
-      </details>
-    </div>
-
-    <div class="section" id="margin-commentary">
-      <h2 data-num="14">FY2024→FY2025 마진 변화 — 벡터 추출 commentary</h2>
-      <h3>각 peer의 annual report 본문에서 직접 인용한 마진 시그널</h3>
-      <p class="lede">
-        벡터 DB (multilingual-e5-small, 99,618 chunks)로 각 peer의 FY24/FY25 AR 본문에서 마진 변화 commentary 추출.
-        각 카드에 mini bar로 FY24↔FY25 직접 비교 + delta% 우측에 표시.
-      </p>
-      {margin_change}
-      <details style="margin: 14px 0 4px;">
-        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 텍스트 commentary (페이지 인용 포함)</summary>
-      <div class="kv-grid">
-        <div class="kv">
-          <div class="k">DMIG FY2023 → FY2024</div>
-          <p class="kv-comment">
-            <strong>FY2023 순이익 Rp 71.27bn (+34.40% / +Rp 18.24bn vs FY22 Rp 53.03bn)</strong>.
-            FY24 매출 253.1bn / 영업이익 78.9bn / 순이익 82.4bn.
-            FY25 매출 -0.7%, OpEx +3.3% → 영업이익 -12.0%, 순이익 -9.0%. 마진 압박 시작.
-          </p>
-          <span class="src">DMIG FY23 AR p.22 NET INCOME · FY25 follow-up</span>
-        </div>
-        <div class="kv">
-          <div class="k">PIPG FY2024 → FY2025</div>
-          <p class="kv-comment">
-            FY24 매출 197.6bn / 영업이익 53.5bn / 순이익 55.9bn.
-            <strong>FY25 매출 -6.0% (185.8bn)이나 OpEx -17.9% 대규모 절감 (76→62bn) → 영업이익 +4.0%, 순이익 +0.6%</strong>.
-            비용 통제로 수익성 유지. 노후 코스 운영 효율 개선 시그널.
-          </p>
-          <span class="src">PIPG FY25 follow-up + FY24 AR Note 27/29</span>
-        </div>
-        <div class="kv">
-          <div class="k">GOLF FY2024 → FY2025</div>
-          <p class="kv-comment">
-            FY24 COGS 78.3bn (+20.2% YoY, real estate 비용 증가 주도).
-            <strong>FY25 영업이익 64.87bn (-10.49% vs FY24 72.47bn)</strong>. 원인: selling expenses +137.20%.
-            CWIP Buildings 188bn + Landscape 238bn (총 ~450bn 신규 시설 진행 중).
-          </p>
-          <span class="src">GOLF FY24 AR p.69 + FY25 AR p.156·p.170</span>
-        </div>
-        <div class="kv">
-          <div class="k">MDLN FY2024 → FY2025</div>
-          <p class="kv-comment">
-            <strong>GP margin 44.66% → 47.19% (+2.5pp 개선)</strong>. 영업이익률도 sharper improvement.
-            Golf 단독 segment FY25 +28.2% YoY (95.3bn) — 골프 부문은 그룹에서 가장 빠른 성장.
-            ROA/ROE 비율도 동시 개선.
-          </p>
-          <span class="src">MDLN FY25 AR p.116 + Note 25/26 (Cycle 66·69)</span>
-        </div>
-        <div class="kv">
-          <div class="k">SMDM FY2024 (BSDE 인수 직전)</div>
-          <p class="kv-comment">
-            Golf & CC GP margin <strong>FY23 55.8% → FY24 38.9% (-16.9pp 급락)</strong>. 영업이익 -212M IDR (적자전환).
-            FY24 배당 미실시 결정 (working capital 보존). BSDE가 2024-10에 91.99% 인수.
-            FY25에 GP margin 88.6%로 점프 (회계 재분류 가능).
-          </p>
-          <span class="src">SMDM FY24 AR p.70 + Cycle 53/67</span>
-        </div>
-        <div class="kv">
-          <div class="k">KPIG (Trump Lido)</div>
-          <p class="kv-comment">
-            Hotel+Resort+Golf 통합 매출 FY23 812bn → FY24 960bn (+18%) → FY25 1,060bn (+10%).
-            Group 고정자산 21조 IDR (54.5% of total assets) + 투자부동산 6.9조 (19.3%) = 자산집약형 conglomerate.
-            Golf-only 단위 분리 미공시.
-          </p>
-          <span class="src">KPIG FY24 AR p.212 (assets) + FY25 Note 31</span>
-        </div>
-      </div>
-      </details>
-    </div>
-
-    <div class="closing-stripe">
-      <div class="cs-eyebrow">14 섹션 · 26 시각화 · 99,618 audit-trail chunks</div>
-      <div class="cs-title">종합 요약 — 6개 takeaway</div>
-      <div class="closing-grid">
-        <div class="closing-takeaway">
-          <div class="num">1</div>
-          <div class="txt"><strong>자본효율</strong> · GOLF (Golf segment GP 65.7%, OpEx 21.1%/매출)이 7-peer 중 압도적. 단 CWIP 426bn 진행 → 향후 감가 추가 부담 예고</div>
-        </div>
-        <div class="closing-takeaway">
-          <div class="num">2</div>
-          <div class="txt"><strong>Mature operator 비용통제</strong> · PIPG FY25 매출 -6% 환경에서 OpEx -17.9% 절감 → 영업이익 +4%. Membership GP 87.8%가 marginal cash 회수력</div>
-        </div>
-        <div class="closing-takeaway">
-          <div class="num">3</div>
-          <div class="txt"><strong>마진 압박 시그널</strong> · DMIG FY25 영업이익 -12% (감가 12.2%/매출 peer 최고). PIK Range +372% 성장이 신규 감가 trigger</div>
-        </div>
-        <div class="closing-takeaway">
-          <div class="num">4</div>
-          <div class="txt"><strong>Unit economics 역설</strong> · KIJA (industrial estate)이 홀당 매출 4.7bn으로 6-peer 중 1위. Nick Faldo 설계 + Jababeka captive demand</div>
-        </div>
-        <div class="closing-takeaway">
-          <div class="num">5</div>
-          <div class="txt"><strong>구조적 위험</strong> · GOLF 단일 고객 34% (revenue 집중) · SMDM Rancamaya FY24 적자전환 직후 BSDE 91.99% 인수 → 통합 효과 모니터링 필요</div>
-        </div>
-        <div class="closing-takeaway">
-          <div class="num">6</div>
-          <div class="txt"><strong>Audit-grade 추적성</strong> · 7-peer × FY22-25 모든 라인을 PyMuPDF positional + multilingual-e5-small 벡터 cross-validate. 모든 수치가 AR 페이지로 추적</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="section" id="methodology">
-      <h2 data-num="M">Methodology · 출처 & 데이터 흐름</h2>
-      <h3>모든 수치는 AR 페이지/Note까지 추적 가능 (audit-grade)</h3>
-
-      <details style="margin: 8px 0;">
-        <summary style="cursor: pointer; font-size: 13.5px; font-weight: 700; color: var(--ink); padding: 8px 0;">▸ Peer 운영 메모 1줄 요약 (curated CSV)</summary>
-        <div class="kv-grid">
-          {''.join(capex_notes)}
-        </div>
-      </details>
-
-      <div class="src-block">
-        <strong>전체 출처 체계:</strong>
-        <strong>1차 데이터</strong> · DMIG/PIPG/KPIG/MDLN/GOLF/KIJA/SMDM annual reports (FY22-FY25), 라인 단위 PyMuPDF 추출 = <code>operations/data/{{ticker}}_notes.json</code> ·
-        <strong>구조화 CSV</strong> · peer_financials_curated.csv · peer_operating_signals.csv ·
-        <strong>벡터 검증</strong> · multilingual-e5-small embedding · 99,618 chunks Chroma index — narrative quotes cross-validate ·
-        <strong>출력</strong> · 모든 차트는 inline SVG + CSS bar (no fetch, no external chart lib) — 정적 HTML 단일 파일로 GitHub Pages 배포.
-      </div>
-    </div>
-  </div>
-</section>"""
-
-
-# ─────────────────────────────────────────────────────────────────────────────
-# Section: Reference (10 other peers)
-# ─────────────────────────────────────────────────────────────────────────────
 
 def section_reference() -> str:
     rows = []
@@ -6042,13 +4958,6 @@ def section_reference() -> str:
         이 3개는 후속 deep-dive 후보.
       </div>
 
-      <div class="src-block">
-        <strong>출처:</strong>
-        peer_inventory.csv,
-        peer_course_facts.csv,
-        peer_operating_signals.csv,
-        peer_financials_curated.csv.
-      </div>
     </div>
   </div>
 </section>"""
