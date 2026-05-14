@@ -848,6 +848,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .sw-rent   { background: #8a8a8a; }
 .sw-other  { background: #d4d0c0; }
 
+/* ============== SVG chart text ============== */
+svg text {
+  font-family: 'Pretendard', 'Inter', system-ui, -apple-system, sans-serif;
+}
+svg {
+  -webkit-font-smoothing: antialiased;
+}
+
 /* ============== Peer color legend ============== */
 .peer-legend {
   display: flex;
