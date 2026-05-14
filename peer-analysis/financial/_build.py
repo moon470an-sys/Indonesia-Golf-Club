@@ -3614,14 +3614,12 @@ def _ops_kpi_section() -> str:
     dept_html += "</tbody></table>"
 
     cards.append(f"""<div class="ops-block">
-  <h4 class="ops-block-h">PIPG — 골퍼 시계열 (4년)</h4>
+  <h4 class="ops-block-h">PIPG — 골퍼 시계열 (4년) {_info_tip(rp['narrative'])}</h4>
   <div class="tbl-card">{rounds_html}</div>
-  <p class="kv-comment">{safe(rp['narrative'])}</p>
 </div>
 <div class="ops-block">
-  <h4 class="ops-block-h">PIPG — 부서별 인원 (FY2024, turnover 그래프 기준)</h4>
+  <h4 class="ops-block-h">PIPG — 부서별 인원 (FY2024, turnover 그래프 기준) {_info_tip(hc['narrative'])}</h4>
   <div class="tbl-card">{dept_html}</div>
-  <p class="kv-comment">{safe(hc['narrative'])}</p>
 </div>""")
 
     # KPIG card
@@ -3631,11 +3629,12 @@ def _ops_kpi_section() -> str:
   <div class="kv-grid">
     <div class="kv">
       <div class="k">공시 범위</div>
-      <p class="kv-comment">{safe(kpig['scope_caveat']['narrative'])}</p>    </div>
+      <div class="v">단독 KPI 미공시 {_info_tip(kpig['scope_caveat']['narrative'])}</div>
+    </div>
     <div class="kv">
       <div class="k">Trump Clubhouse</div>
-      <div class="v">33,322 m² <span class="muted">(Oppenheim Arch.)</span></div>
-      <p class="kv-comment">{safe(kpig['clubhouse_facility']['narrative'])}</p>    </div>
+      <div class="v">33,322 m² <span class="muted">(Oppenheim Arch.)</span> {_info_tip(kpig['clubhouse_facility']['narrative'])}</div>
+    </div>
   </div>
 </div>""")
 
@@ -3643,7 +3642,7 @@ def _ops_kpi_section() -> str:
     g = OPS_KPI_EVIDENCE["GOLF"]
     tb = g["fy2025_golf_target_beat"]
     cards.append(f"""<div class="ops-block">
-  <h4 class="ops-block-h">GOLF — FY2025 진행 중 CAPEX + 매출 target 달성</h4>
+  <h4 class="ops-block-h">GOLF — FY2025 진행 중 CAPEX + 매출 target 달성 {_info_tip(g['capex_fy2025']['narrative'])}</h4>
   <div class="kv-grid">
     <div class="kv">
       <div class="k">CWIP — Buildings</div>
@@ -3655,11 +3654,8 @@ def _ops_kpi_section() -> str:
     </div>
     <div class="kv">
       <div class="k">FY2025 Golf 매출 vs target</div>
-      <div class="v">{fmt_bn(tb['fy2025_golf_revenue_idr'])} <span class="muted">(target {fmt_bn(tb['target_idr'])} · 달성 {tb['beat_pct'] * 100:+.1f}%)</span></div>
-      <p class="kv-comment">{safe(tb['narrative'])}</p>    </div>
-    <div class="kv">
-      <div class="k">CWIP 설명</div>
-      <p class="kv-comment">{safe(g['capex_fy2025']['narrative'])}</p>    </div>
+      <div class="v">{fmt_bn(tb['fy2025_golf_revenue_idr'])} <span class="muted">(target {fmt_bn(tb['target_idr'])} · 달성 {tb['beat_pct'] * 100:+.1f}%)</span> {_info_tip(tb['narrative'])}</div>
+    </div>
   </div>
 </div>""")
 
