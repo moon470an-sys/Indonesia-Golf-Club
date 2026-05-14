@@ -526,15 +526,19 @@ def _pnl_funnel_chart(ticker: str, fy: str = "FY2024") -> str:
             f'font-weight="700" fill="white" text-anchor="middle">'
             f'{safe(label)} · Rp {fmt_bn(val).replace(" bn","bn")} ({pct:.1f}%)</text>'
         )
-        # Leakage arrow between stages
+        # Stage-to-stage delta annotation (leakage = down, gain = up)
         if i > 0:
             prev_val = stages[i-1][1]
-            leak = prev_val - val
-            leak_pct = (leak / prev_val * 100) if prev_val else 0
-            # Left-side annotation
+            delta = val - prev_val
+            delta_pct = (delta / prev_val * 100) if prev_val else 0
+            # Negative = leakage (red), positive = non-operating gain (green)
+            if delta < 0:
+                annot_color, annot_text = "#b91c1c", f"{delta_pct:.1f}%"
+            else:
+                annot_color, annot_text = "#2d5016", f"+{delta_pct:.1f}%"
             elems.append(
                 f'<text x="6" y="{y + 4:.1f}" font-size="9.5" fill="var(--ink-soft)" font-weight="600">'
-                f'<tspan fill="#b91c1c">-{leak_pct:.1f}%</tspan></text>'
+                f'<tspan fill="{annot_color}">{annot_text}</tspan></text>'
             )
 
     return f"""<div style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px;">
@@ -544,7 +548,7 @@ def _pnl_funnel_chart(ticker: str, fy: str = "FY2024") -> str:
   <svg viewBox="0 0 {width} {height}" width="100%" style="display:block;max-width:380px;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
     {''.join(elems)}
   </svg>
-  <p class="src-line" style="text-align:center;margin: 4px 0 0;">바 너비 = 매출 대비 % · 좌측 빨강 % = 직전 단계 대비 leakage</p>
+  <p class="src-line" style="text-align:center;margin: 4px 0 0;">바 너비 = 매출 대비 % · 좌측 % = 직전 단계 대비 변화 (빨강 leakage · 녹색 영업외 이익)</p>
 </div>"""
 
 
