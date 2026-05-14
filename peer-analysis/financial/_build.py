@@ -3751,6 +3751,38 @@ def section_ops() -> str:
 
     <a class="back-to-toc" href="#ops-anchor-top">TOC</a>
 
+    <div class="exec-headline">
+      <div class="exec-eyebrow">7-peer · FY2022→FY2025 · 99,618 chunks audit trail</div>
+      <div class="exec-title">운영 KPI · CAPEX/OPEX — 즉시 알 핵심 5</div>
+      <div class="exec-grid">
+        <div class="exec-tile">
+          <div class="et-cap">최고 마진 (FY24)</div>
+          <div class="et-val">65.7<span class="u">%</span></div>
+          <div class="et-sub"><span class="et-ticker">GOLF</span>Golf segment GP — 자본효율 1위</div>
+        </div>
+        <div class="exec-tile">
+          <div class="et-cap">FY25 best operator</div>
+          <div class="et-val">+4.0<span class="u">%</span></div>
+          <div class="et-sub"><span class="et-ticker">PIPG</span>매출 -6% 환경에서 OpEx -17.9% 절감</div>
+        </div>
+        <div class="exec-tile">
+          <div class="et-cap">홀당 매출 1위</div>
+          <div class="et-val">4.7<span class="u">bn/홀</span></div>
+          <div class="et-sub"><span class="et-ticker">KIJA</span>industrial estate 골프 — Nick Faldo</div>
+        </div>
+        <div class="exec-tile">
+          <div class="et-cap">진행 CAPEX</div>
+          <div class="et-val">426<span class="u">bn</span></div>
+          <div class="et-sub"><span class="et-ticker">GOLF</span>CWIP (Buildings 188 + Landscape 238)</div>
+        </div>
+        <div class="exec-tile">
+          <div class="et-cap">FY25 마진 압박</div>
+          <div class="et-val">-12.0<span class="u">%</span></div>
+          <div class="et-sub"><span class="et-ticker">DMIG</span>영업이익 78.9→69.4bn (감가 부담)</div>
+        </div>
+      </div>
+    </div>
+
     <nav class="ops-subnav" id="ops-anchor-top" aria-label="ops sub-navigation">
       <a class="chip" href="#pnl">P&amp;L 4Y</a>
       <a class="chip" href="#rev">매출 라인</a>

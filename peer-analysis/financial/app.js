@@ -67,6 +67,54 @@
     });
   }
 
+  // === Sub-nav active section highlighting (IntersectionObserver) ===
+  function initSubnavActive() {
+    const subnav = document.querySelector('.ops-subnav');
+    if (!subnav || !('IntersectionObserver' in window)) return;
+    const chips = Array.from(subnav.querySelectorAll('a.chip[href^="#"]'));
+    if (!chips.length) return;
+    const idToChip = {};
+    chips.forEach(c => {
+      const id = c.getAttribute('href').slice(1);
+      idToChip[id] = c;
+    });
+    const sections = chips
+      .map(c => document.getElementById(c.getAttribute('href').slice(1)))
+      .filter(Boolean);
+    if (!sections.length) return;
+
+    const visibilityMap = new Map();
+    sections.forEach(s => visibilityMap.set(s.id, 0));
+
+    function setActive(id) {
+      chips.forEach(c => c.classList.toggle('active', c === idToChip[id]));
+      // Scroll the active chip into view inside subnav
+      const chip = idToChip[id];
+      if (chip) {
+        const rect = chip.getBoundingClientRect();
+        const navRect = subnav.getBoundingClientRect();
+        if (rect.left < navRect.left || rect.right > navRect.right) {
+          chip.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+      }
+    }
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => visibilityMap.set(e.target.id, e.intersectionRatio));
+      // Pick most-visible section
+      let bestId = null;
+      let bestRatio = 0;
+      visibilityMap.forEach((r, id) => {
+        if (r > bestRatio) { bestRatio = r; bestId = id; }
+      });
+      if (bestId && bestRatio > 0.05) setActive(bestId);
+    }, {
+      rootMargin: '-120px 0px -50% 0px',
+      threshold: [0.05, 0.25, 0.5, 0.75, 1],
+    });
+    sections.forEach(s => io.observe(s));
+  }
+
   // === Back-to-TOC floating button (ops tab only) ===
   function initBackToToc() {
     const btn = document.querySelector('.back-to-toc');
@@ -86,5 +134,6 @@
     initTabs();
     initSort();
     initBackToToc();
+    initSubnavActive();
   });
 })();

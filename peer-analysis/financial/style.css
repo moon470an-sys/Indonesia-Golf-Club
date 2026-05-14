@@ -398,6 +398,96 @@ tr.row-total td.num { color: var(--ink); }
 .kv-comment { font-size: 12.5px; color: var(--ink-soft); margin: 6px 0 4px; line-height: 1.5; }
 .muted { color: var(--muted); font-weight: 400; font-size: 12px; }
 
+/* ============== Executive headline strip (top of ops tab) ============== */
+.exec-headline {
+  background: linear-gradient(135deg, #1d3b0e 0%, #2d5016 55%, #3e6b1d 100%);
+  border-radius: 12px;
+  padding: 22px 24px 20px;
+  margin: 18px 0 6px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+.exec-headline::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 92% 30%, rgba(192,138,46,0.15) 0%, transparent 40%);
+  pointer-events: none;
+}
+.exec-headline .exec-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 4px;
+}
+.exec-headline .exec-title {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 14px;
+  color: white;
+}
+.exec-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px 22px;
+  position: relative;
+  z-index: 1;
+}
+.exec-tile { display: flex; flex-direction: column; gap: 2px; }
+.exec-tile .et-cap {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+}
+.exec-tile .et-val {
+  font-size: 24px;
+  font-weight: 800;
+  color: white;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.exec-tile .et-val .u {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.75);
+  margin-left: 3px;
+}
+.exec-tile .et-sub {
+  font-size: 11.5px;
+  color: rgba(255,255,255,0.78);
+  line-height: 1.4;
+}
+.exec-tile .et-ticker {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: rgba(192,138,46,0.32);
+  color: #ffd97a;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-right: 4px;
+}
+
+/* Active sub-nav chip */
+.ops-subnav .chip.active {
+  background: var(--green);
+  color: white;
+  border-color: var(--green);
+}
+.ops-subnav .chip.active:hover {
+  background: #1d3b0e;
+  color: white;
+  text-decoration: none;
+}
+
 /* ============== Section number badges + back-to-top ============== */
 .section[id] h2 {
   display: flex;
