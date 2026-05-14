@@ -4850,8 +4850,8 @@ def section_capex() -> str:
     </div>
 
     <div class="section" id="cap-pnl">
-      <h2 data-num="07">P&L 4Y 마진 추이 — Pure-play 3-peer</h2>
-      <h3>FY22-25 GP·Op·Net margin trend (CAPEX 영향 관점)</h3>
+      <h2 data-num="07">P&L 4Y 마진 추이 — DMIG · PIPG · GOLF</h2>
+      <h3>FY22-25 GP·Op·Net margin trend (감가상각이 영업이익률에 미치는 영향)</h3>
       {pnl_trend}
       <details class="orig-toggle"><summary>원본 4Y P&amp;L 표</summary>
         {pnl_table}
