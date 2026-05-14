@@ -1758,6 +1758,57 @@ def section_ops() -> str:
     return f"""<section class="panel" data-panel="ops">
   <div class="wrap">
 
+    <div class="section ops-summary">
+      <h2>핵심 인사이트 — TL;DR</h2>
+      <h3>13개 분석 섹션에서 도출한 7-peer 핵심 발견</h3>
+      <div class="insight-grid">
+        <div class="insight-card insight-positive">
+          <div class="insight-tag">💰 자본 효율 최강자</div>
+          <div class="insight-title">GOLF — Golf segment GP margin 65.7%</div>
+          <p>OpEx 21.1% (DMIG/PIPG 38%보다 압도적 효율). FY25 매출 target 81.76bn 대비 +24.66% 초과 달성 (101.93bn).
+          CWIP 450bn 진행 중 — 적극 확장 모드.</p>
+        </div>
+        <div class="insight-card insight-positive">
+          <div class="insight-tag">📈 PIPG — 비용 통제력</div>
+          <div class="insight-title">FY25 매출 -6.0% but OpEx -17.9% → 영업이익 +4.0%</div>
+          <p>매출 감소 환경에서도 OpEx 통제로 영업이익 증가. Membership segment GP margin 87.8%로 marginal cash 회수력 우수.
+          노후 코스 (1976) 유지비 부담은 risk.</p>
+        </div>
+        <div class="insight-card insight-warn">
+          <div class="insight-tag">⚠️ DMIG — 마진 압박 시작</div>
+          <div class="insight-title">FY25 영업이익 -12.0% YoY (78.9 → 69.4bn)</div>
+          <p>매출 sticky (-0.7%)이나 COGS +5.8% + OpEx +3.3% 동시 압박. 감가상각 12.2%/매출은 peer 최고 (PIK Range 신규 투자 효과).
+          The Range@PIK는 +372% 성장.</p>
+        </div>
+        <div class="insight-card insight-warn">
+          <div class="insight-tag">⚠️ SMDM Rancamaya — 적자전환</div>
+          <div class="insight-title">FY24 GP margin -16.9pp 급락 (55.8% → 38.9%)</div>
+          <p>영업이익 -212M IDR. BSDE 2024-10 91.99% 인수. FY25 GP 88.6% jump은 회계 재분류 가능. BSDE 사후 통합 효과 모니터링 필요.</p>
+        </div>
+        <div class="insight-card insight-positive">
+          <div class="insight-tag">🎯 MDLN — Hidden growth</div>
+          <div class="insight-title">Golf+F&amp;B FY25 +28.2% YoY (95.3bn)</div>
+          <p>그룹 GP margin 44.66% → 47.19% (+2.5pp 개선). 골프 segment 5.6%이지만 그룹 내 가장 빠른 성장 부문. Modern Golf 단독 매출 56.6bn → 74.4bn (F&amp;B 포함).</p>
+        </div>
+        <div class="insight-card insight-neutral">
+          <div class="insight-tag">🏢 KPIG — 자산집약 conglomerate</div>
+          <div class="insight-title">고정자산 21조 + 투자부동산 7조 = 73.8% of total</div>
+          <p>Trump Lido는 전체 그룹의 일부. Hotel+Resort+Golf 통합 매출 FY24 960bn → FY25 1,060bn (+10%). Golf-only 분리 미공시 → 단독 비교 부적합.</p>
+        </div>
+        <div class="insight-card insight-neutral">
+          <div class="insight-tag">🏭 KIJA — Industrial estate가 golf 보유</div>
+          <div class="insight-title">Golf segment 85bn / GP margin 41.6%</div>
+          <p>매출 비중 1.8%로 본업 아님. 단, 홀당 매출 4.7bn으로 6개 peer 중 unit revenue 가장 높음 (Nick Faldo 설계 + Jababeka industrial 단지 captive demand).</p>
+        </div>
+        <div class="insight-card insight-positive">
+          <div class="insight-tag">📊 데이터 quality</div>
+          <div class="insight-title">99,618 chunks 벡터 인덱스 + 13개 peer AR Note 직접 추출</div>
+          <p>모든 수치는 annual report 페이지 번호 추적 가능. PyMuPDF positional 추출 + multilingual-e5-small 벡터 검색으로 cross-validate.
+          감사 (audit) 추적성 보장.</p>
+        </div>
+      </div>
+    </div>
+
     <div class="section ops-toc">
       <h2>운영 KPI · CAPEX/OPEX — 섹션 목차</h2>
       <h3>12개 분석 섹션으로 구성</h3>

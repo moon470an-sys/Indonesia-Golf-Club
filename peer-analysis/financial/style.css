@@ -269,6 +269,48 @@ table.tbl td.notes { font-size: 13px; color: var(--ink-soft); line-height: 1.5; 
 }
 .foot a { color: rgba(255,255,255,0.85); }
 
+/* ============== Ops tab — TL;DR summary cards ============== */
+.ops-summary { padding-top: 32px; }
+.insight-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 14px;
+  margin: 18px 0;
+}
+.insight-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--muted);
+  border-radius: 8px;
+  padding: 18px 20px;
+  transition: box-shadow 0.15s;
+}
+.insight-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+.insight-positive { border-left-color: var(--green); background: linear-gradient(0deg, var(--surface), #f3faec 50%); }
+.insight-warn { border-left-color: var(--warn); background: linear-gradient(0deg, var(--surface), #fef9e7 50%); }
+.insight-neutral { border-left-color: #94a3b8; }
+.insight-tag {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.insight-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+.insight-card p {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
 /* ============== Ops tab TOC ============== */
 .ops-toc { background: var(--surface-2); padding: 28px 28px 32px; border-radius: 10px; margin-top: 18px; }
 .ops-toc h2, .ops-toc h3 { padding-left: 0; }
