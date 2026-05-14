@@ -1946,88 +1946,130 @@ def _all_peer_golf_segment_data() -> list:
 
 
 def _segment_scatter_svg() -> str:
-    """Bubble scatter — X: golf share, Y: GP margin, size: golf revenue."""
+    """Bubble scatter — X: golf share, Y: GP margin, size: golf revenue.
+    With quadrant background highlighting + median dashed lines."""
     data = [r for r in _all_peer_golf_segment_data() if r["share"] and r["gm"]]
     if not data:
         return ""
 
-    width, height = 720, 360
-    pad_l, pad_b, pad_r, pad_t = 56, 44, 22, 20
+    width, height = 720, 380
+    pad_l, pad_b, pad_r, pad_t = 56, 44, 22, 28
     inner_w = width - pad_l - pad_r
     inner_h = height - pad_t - pad_b
 
-    # Axis ranges
-    x_max = 50  # golf share % of entity (cap)
-    y_max = 80  # GP margin %
+    x_max = 50
+    y_max = 80
     y_min = 30
     revs = [r["rev"] for r in data if r["rev"]]
     max_rev = max(revs) if revs else 1
 
+    # Median lines (median of all peers' share & GP)
+    sorted_share = sorted([r["share"] for r in data])
+    sorted_gm = sorted([r["gm"] for r in data])
+    median_share = sorted_share[len(sorted_share)//2]
+    median_gm = sorted_gm[len(sorted_gm)//2]
+
+    def to_x(pct): return pad_l + (inner_w * (min(pct, x_max) / x_max))
+
+    def to_y(pct): return pad_t + inner_h - (inner_h * ((min(max(pct, y_min), y_max) - y_min) / (y_max - y_min)))
+
+    median_x = to_x(median_share)
+    median_y = to_y(median_gm)
+
+    # Quadrant background rectangles (4 zones)
+    quad_bg = (
+        # Top-left: high GP, low share — diversified gem (gold tint)
+        f'<rect x="{pad_l}" y="{pad_t}" width="{median_x - pad_l:.1f}" height="{median_y - pad_t:.1f}" '
+        f'fill="#fef3c7" fill-opacity="0.35"/>'
+        # Top-right: high GP, high share — pure-play winner (green tint)
+        f'<rect x="{median_x:.1f}" y="{pad_t}" width="{pad_l + inner_w - median_x:.1f}" height="{median_y - pad_t:.1f}" '
+        f'fill="#e6f1d8" fill-opacity="0.55"/>'
+        # Bottom-left: low GP, low share — peripheral / weak (red tint)
+        f'<rect x="{pad_l}" y="{median_y:.1f}" width="{median_x - pad_l:.1f}" height="{pad_t + inner_h - median_y:.1f}" '
+        f'fill="#fee2e2" fill-opacity="0.30"/>'
+        # Bottom-right: low GP, high share — pure-play struggling (light orange)
+        f'<rect x="{median_x:.1f}" y="{median_y:.1f}" width="{pad_l + inner_w - median_x:.1f}" height="{pad_t + inner_h - median_y:.1f}" '
+        f'fill="#fde68a" fill-opacity="0.18"/>'
+    )
+
+    # Median lines (dashed)
+    median_lines = (
+        f'<line x1="{median_x:.1f}" y1="{pad_t}" x2="{median_x:.1f}" y2="{pad_t + inner_h}" '
+        f'stroke="#8a8a8a" stroke-width="1" stroke-dasharray="4 4"/>'
+        f'<line x1="{pad_l}" y1="{median_y:.1f}" x2="{pad_l + inner_w}" y2="{median_y:.1f}" '
+        f'stroke="#8a8a8a" stroke-width="1" stroke-dasharray="4 4"/>'
+        f'<text x="{median_x + 3:.1f}" y="{pad_t + inner_h + 28}" font-size="9" fill="#8a8a8a" font-style="italic">median {median_share:.1f}%</text>'
+        f'<text x="{pad_l - 4:.1f}" y="{median_y - 4:.1f}" font-size="9" fill="#8a8a8a" font-style="italic" text-anchor="end">median {median_gm:.1f}%</text>'
+    )
+
     # Gridlines
     grid = []
     for ypct in [40, 50, 60, 70, 80]:
-        y = pad_t + inner_h - (inner_h * ((ypct - y_min) / (y_max - y_min)))
+        y = to_y(ypct)
         grid.append(
-            f'<line x1="{pad_l}" y1="{y:.1f}" x2="{pad_l + inner_w}" y2="{y:.1f}" stroke="#ebe9e0" stroke-width="1"/>'
+            f'<line x1="{pad_l}" y1="{y:.1f}" x2="{pad_l + inner_w}" y2="{y:.1f}" stroke="#ebe9e0" stroke-width="0.7"/>'
             f'<text x="{pad_l - 8}" y="{y + 4:.1f}" font-size="11" fill="#8a8a8a" text-anchor="end">{ypct}%</text>'
         )
     for xpct in [10, 20, 30, 40, 50]:
-        x = pad_l + (inner_w * (xpct / x_max))
+        x = to_x(xpct)
         grid.append(
-            f'<line x1="{x:.1f}" y1="{pad_t}" x2="{x:.1f}" y2="{pad_t + inner_h}" stroke="#ebe9e0" stroke-width="1"/>'
+            f'<line x1="{x:.1f}" y1="{pad_t}" x2="{x:.1f}" y2="{pad_t + inner_h}" stroke="#ebe9e0" stroke-width="0.7"/>'
             f'<text x="{x:.1f}" y="{pad_t + inner_h + 16}" font-size="11" fill="#8a8a8a" text-anchor="middle">{xpct}%</text>'
         )
 
     # Bubbles
     bubbles = []
     for r in data:
-        x = pad_l + (inner_w * (min(r["share"], x_max) / x_max))
-        y = pad_t + inner_h - (inner_h * ((min(max(r["gm"], y_min), y_max) - y_min) / (y_max - y_min)))
-        # Bubble radius: 8 ~ 32 px based on rev
+        x = to_x(r["share"])
+        y = to_y(r["gm"])
         r_norm = (r["rev"] or 0) / max_rev
-        radius = 8 + (r_norm ** 0.5) * 28  # sqrt for area-prop
+        radius = 8 + (r_norm ** 0.5) * 28
         color = PEER_COLORS.get(r["ticker"], "#8a8a8a")
         rev_str = fmt_bn(r["rev"]).replace(" bn", "bn")
         bubbles.append(
             f'<g>'
-            f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{radius:.1f}" fill="{color}" fill-opacity="0.28" stroke="{color}" stroke-width="1.5">'
-            f'<title>{safe(r["ticker"])} · 매출 비중 {r["share"]:.1f}% · GP {r["gm"]:.1f}% · Rev Rp {rev_str}</title>'
+            f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{radius:.1f}" fill="{color}" fill-opacity="0.32" stroke="{color}" stroke-width="2">'
+            f'<title>{safe(r["ticker"])} · {safe(r["basis"])} · 매출 비중 {r["share"]:.1f}% · GP {r["gm"]:.1f}% · Rev Rp {rev_str}</title>'
             f'</circle>'
-            f'<text x="{x:.1f}" y="{y - radius - 4:.1f}" font-size="12" font-weight="700" '
+            f'<text x="{x:.1f}" y="{y - radius - 5:.1f}" font-size="12" font-weight="700" '
             f'fill="{color}" text-anchor="middle">{safe(r["ticker"])}</text>'
             f'<text x="{x:.1f}" y="{y + 4:.1f}" font-size="10" fill="{color}" font-weight="600" text-anchor="middle">'
-            f'{r["gm"]:.0f}% · {rev_str}</text>'
+            f'{r["gm"]:.0f}%</text>'
             f'</g>'
         )
 
     # Axis labels
     axis_labels = (
         f'<text x="{pad_l + inner_w/2:.1f}" y="{height - 6}" font-size="12" fill="#4b4b4b" text-anchor="middle" font-weight="700">'
-        f'골프 매출 비중 (% of entity 매출)'
+        f'골프 매출 비중 (% of entity 매출) →'
         f'</text>'
         f'<text x="14" y="{pad_t + inner_h/2:.1f}" font-size="12" fill="#4b4b4b" text-anchor="middle" font-weight="700" '
-        f'transform="rotate(-90 14 {pad_t + inner_h/2:.1f})">GP Margin (%)</text>'
+        f'transform="rotate(-90 14 {pad_t + inner_h/2:.1f})">↑ GP Margin (%)</text>'
     )
 
-    # Quadrant annotations
+    # Quadrant labels (corners)
     annot = (
-        f'<text x="{pad_l + inner_w - 6}" y="{pad_t + 16}" font-size="10" fill="#2d5016" text-anchor="end" '
-        f'font-weight="700" opacity="0.55">↗ Pure-play + High margin</text>'
-        f'<text x="{pad_l + 6}" y="{pad_t + 16}" font-size="10" fill="#92400e" text-anchor="start" '
-        f'font-weight="700" opacity="0.55">↑ High margin, low share (diversified)</text>'
-        f'<text x="{pad_l + 6}" y="{pad_t + inner_h - 6}" font-size="10" fill="#b91c1c" text-anchor="start" '
-        f'font-weight="700" opacity="0.55">↓ Low margin, peripheral</text>'
+        f'<text x="{pad_l + 8}" y="{pad_t + 14}" font-size="10" fill="#92400e" text-anchor="start" '
+        f'font-weight="700">▲ Hidden gem (high GP, low share)</text>'
+        f'<text x="{pad_l + inner_w - 6}" y="{pad_t + 14}" font-size="10" fill="#2d5016" text-anchor="end" '
+        f'font-weight="700">★ Pure-play winner (high GP + high share)</text>'
+        f'<text x="{pad_l + 8}" y="{pad_t + inner_h - 6}" font-size="10" fill="#b91c1c" text-anchor="start" '
+        f'font-weight="700">▼ Peripheral & weak</text>'
+        f'<text x="{pad_l + inner_w - 6}" y="{pad_t + inner_h - 6}" font-size="10" fill="#c08a2e" text-anchor="end" '
+        f'font-weight="700">⚠ Pure-play struggling</text>'
     )
 
     return f"""<div style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 12px 8px;">
-  <svg viewBox="0 0 {width} {height}" width="100%" style="max-width:760px;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+  <svg viewBox="0 0 {width} {height}" width="100%" style="max-width:780px;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+    {quad_bg}
+    {median_lines}
     {''.join(grid)}
     {axis_labels}
     {annot}
     {''.join(bubbles)}
   </svg>
 </div>
-<p class="src-line" style="margin:8px 2px;">버블 면적 = golf 매출 절댓값 · X = 매출 비중 · Y = GP margin · hover로 정확 수치 (FY2024)</p>"""
+<p class="src-line" style="margin:8px 2px;">버블 면적 = golf 매출 절댓값 · dashed = 6-peer median · 색 배경 = 4-사분면 분류 · hover로 정확 수치 (FY2024)</p>"""
 
 
 def _all_peer_golf_segment_table() -> str:
