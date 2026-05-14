@@ -1337,6 +1337,141 @@ def _capex_heatmap_section() -> str:
 {gauge}"""
 
 
+# Curated CAPEX/OPEX narratives — extracted from vector DB (multilingual-e5-small)
+# Each quote includes ticker, source page, FY, Korean summary, theme.
+CAPEX_NARRATIVES = [
+    {
+        "ticker": "GOLF",
+        "theme": "CWIP — 진행 중 CAPEX",
+        "tone": "warn",
+        "summary": "Buildings 187.9bn + Landscape 237.8bn IDR 건설 중 자산. 총 7,355.97bn 고정자산.",
+        "quote": "Aset dalam Konstruksi: Gedung Rp187.9bn · Landscape Rp237.8bn · Peralatan Golf — · "
+                 "Total fixed assets Rp7,355.97bn. The types and values of capital expenditure...",
+        "ko": "건물 187.9bn + 조경 237.8bn (총 진행 중 426bn) — 신규 클럽하우스 + 코스 리노베이션 동시 진행. "
+              "FY2025 CWIP는 GOLF entity 매출 102bn의 ~4.2배 규모로, 향후 3-5년 감가상각 부담 예고.",
+        "src": "GOLF FY2025 AR p.170 — Fixed assets breakdown",
+    },
+    {
+        "ticker": "GOLF",
+        "theme": "CAPEX policy — 정책 공시",
+        "tone": "neutral",
+        "summary": "Repairs and maintenance costs → P&L. Upgrade가 future economic benefit 증가시키면 capitalize.",
+        "quote": "Expenditures incurred after the fixed assets used in the operations, such as repairs and maintenance "
+                 "costs are charged to profit or loss as incurred. If these expenditures result in increased future "
+                 "economic benefits, they are capitalized as additional cost of fixed assets.",
+        "ko": "일상 유지보수는 P&L 비용 / 미래 수익증대로 이어지는 시설 업그레이드만 자산 capitalize. "
+              "CWIP 추가 빠르게 늘어나는 GOLF의 회계 기준 → P&L 마진을 보호하면서 자산 base 키우는 구조.",
+        "src": "GOLF FY2024 AR p.175 — Fixed asset policy",
+    },
+    {
+        "ticker": "PIPG",
+        "theme": "Maintenance commitment — 노후 코스 운영",
+        "tone": "warn",
+        "summary": "PIPG Golf Course Maintenance (GCM) 부서 — '국내·국제 토너먼트 개최 준비' 명시.",
+        "quote": "Departemen Pemeliharaan Lapangan Golf (Golf Course Maintenance/GCM) berkomitmen pada peningkatan "
+                 "berkelanjutan. Kami bertekad menjaga Lapangan Golf Pondok Indah selalu dalam kondisi prima, siap "
+                 "untuk penyelenggaraan turnamen berskala nasional maupun internasional.",
+        "ko": "GCM 부서가 '항상 prime condition' 유지 약속 + 국내·국제 토너먼트 hosting capacity 보장. "
+              "노후 코스(1976 개장)에서 유지보수 5.9%/매출 (DMIG 0.9% 대비 ~6배)이 단순 비효율이 아니라 "
+              "프리미엄 포지셔닝 비용임을 시사. Indonesia Open 같은 sponsor 매출과 직결.",
+        "src": "PIPG FY2023 AR p.35 — Golf Course Maintenance department",
+    },
+    {
+        "ticker": "PIPG",
+        "theme": "Brand & operations 강화",
+        "tone": "positive",
+        "summary": "FY2024 — 고객 신뢰, 코스 품질, 메뉴 개선, 재무 견실, 팀워크 강조.",
+        "quote": "kepercayaan pelanggan, perbaikan mutu lapangan dan sajian kuliner, pengelolaan keuangan yang solid, "
+                 "hingga kekompakan tim yang terus terjaga.",
+        "ko": "FY25 매출 -6% 환경에도 OpEx -17.9% 대규모 절감 → 영업이익 +4.0% 가능했던 원동력. "
+              "Brand 자산 (Pondok Indah)을 유지하면서 비용통제 — 노후 코스의 'mature operator' 전략 사례.",
+        "src": "PIPG FY2024 AR p.32 — Annual report narrative",
+    },
+    {
+        "ticker": "DMIG",
+        "theme": "Headcount 추이 — 인건비 base",
+        "tone": "neutral",
+        "summary": "FY2023 직원 수 206명 (FY22 196 → +5.1%). 인건비 비중 12.6%/매출 (peer 최고).",
+        "quote": "As of December 31, 2023 and 2022, there are 206 employees who have the right to receive employee "
+                 "benefits, respectively. ... liabilitas imbalan kerja karyawan Rp135.366.168 ribu.",
+        "ko": "FY21 342명 → FY22 196명 (-42.7%, 코로나 회복기 구조조정) → FY23 206명 (+5.1% 점진 회복). "
+              "인건비 비중이 peer 중 가장 높은 12.6%인 이유는 2 코스 (BSD+PIK) 운영 + Range@PIK 확장으로 "
+              "장기근속자(employee benefits liability Rp135bn) 비중 큼.",
+        "src": "DMIG FY2023 AR p.87 — Employee benefits note",
+    },
+    {
+        "ticker": "DMIG",
+        "theme": "CWIP — 미감가 자산",
+        "tone": "warn",
+        "summary": "Construction in progress는 미감가 — 완공 후 fixed asset으로 재분류되며 감가 시작.",
+        "quote": "Construction in progress are not depreciated and they will only be reclassified to the appropriate "
+                 "fixed assets account when the construction is completed and the constructed asset is ready for its "
+                 "intended use.",
+        "ko": "PIK Range (FY24 신규 시설) 같은 CWIP가 완공되어 감가 시작되면 → 향후 2-3년 감가 비중 추가 상승 예고. "
+              "이미 12.2%/매출로 peer 최고치인데, 추가 부담 가능성. 매출 sticky한데 감가↑ 시 마진 압박.",
+        "src": "DMIG FY2022 AR p.77 — CWIP accounting policy",
+    },
+    {
+        "ticker": "GOLF",
+        "theme": "ESG · 운영비 효율",
+        "tone": "positive",
+        "summary": "Solar energy 주 전원 + 리튬 배터리 카트 — 장기 운영비 효율화.",
+        "quote": "Using solar energy as the primary resource, this system not only helps reduce dependency on "
+                 "fossil-based electricity but also contributes to long-term operational cost efficiency. ... "
+                 "Use of lithium batteries...",
+        "ko": "GOLF의 OpEx 21.1%/매출 (DMIG/PIPG 38% 대비 압도) 배경 — 솔라 + 리튬 카트 도입으로 "
+              "유틸리티 비용 구조적 절감. IPO 1년차 효과뿐 아니라 운영 모델 자체가 capital-light. "
+              "단, CWIP 450bn 진행 중 → 향후 감가상승은 불가피.",
+        "src": "GOLF FY2024 AR p.120 — Eco-friendly materials & technologies",
+    },
+    {
+        "ticker": "GOLF",
+        "theme": "Environmental risk — 운영 본질",
+        "tone": "warn",
+        "summary": "Green keeping 어렵고 비용집약 — 환경/기후 리스크 인지.",
+        "quote": "Environmental Damage Risk: Operating a golf course in accordance with standards and regulations "
+                 "requires maintaining green grass across the entire field. Keeping the grass green is not an easy "
+                 "task; it requires special maintenance...",
+        "ko": "GOLF AR이 명시한 본질적 운영 리스크 — 코스 잔디 관리는 비용·전문성 집약. "
+              "FY25 selling expenses +137% 급등 이유 중 하나로 추정 가능. "
+              "PIPG 5.9%/매출 maintenance ratio가 outlier가 아니라 mature 코스의 본질 비용 시그널.",
+        "src": "GOLF FY2024 AR p.97 — Operational risk disclosure",
+    },
+]
+
+
+def _capex_narrative_grid() -> str:
+    """Render curated CAPEX/OPEX vector-DB narratives as quote callout cards."""
+    tone_to_border = {
+        "positive": "var(--green)",
+        "warn":     "var(--warn)",
+        "neutral":  "#8a8a8a",
+    }
+    cards = []
+    for n in CAPEX_NARRATIVES:
+        border_color = tone_to_border.get(n["tone"], "#8a8a8a")
+        quote_text = n["quote"].strip()
+        if len(quote_text) > 320:
+            quote_text = quote_text[:320].rsplit(" ", 1)[0] + "…"
+        cards.append(f"""<div class="quote-card" style="border-left-color: {border_color};">
+  <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+    <span class="ticker-mini">{safe(n["ticker"])}</span>
+    <span class="insight-tag" style="margin:0;">{safe(n["theme"])}</span>
+  </div>
+  <div style="font-weight:700; font-size:14px; color:var(--ink); margin-bottom:6px;">{safe(n["summary"])}</div>
+  <div style="font-size:12.5px; color:var(--ink-soft); line-height:1.55; font-style:italic; padding:6px 10px; border-left:2px solid var(--line-strong); margin:8px 0;">
+    "{safe(quote_text)}"
+  </div>
+  <div style="font-size:13px; color:var(--ink); line-height:1.55;">
+    <strong style="color:var(--green);">→</strong> {safe(n["ko"])}
+  </div>
+  <div class="qmeta"><strong>출처</strong> · {safe(n["src"])} (multilingual-e5-small 벡터 검색)</div>
+</div>""")
+    return f"""<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap:14px; margin: 14px 0;">
+  {"".join(cards)}
+</div>"""
+
+
 def _all_peer_golf_segment_table() -> str:
     """Cross-peer golf segment revenue + GP margin matrix (FY2024).
 
@@ -2124,6 +2259,7 @@ def section_ops() -> str:
     pnl_table = _pnl_table()
     capex_proxy_table = _capex_proxy_table()
     capex_heatmap = _capex_heatmap_section()
+    capex_narratives = _capex_narrative_grid()
     fy25_cards = _fy25_delta_cards()
     golf_segment_table = _all_peer_golf_segment_table()
     opex_norm_table = _normalized_opex_compare_table()
@@ -2332,6 +2468,13 @@ def section_ops() -> str:
         Heatmap 색이 진할수록 강도 큼.
       </p>
       {capex_heatmap}
+
+      <h4 class="ops-block-h" style="margin-top: 28px;">왜? — AR 본문 직접 인용 (벡터 DB 검증)</h4>
+      <p class="src-line" style="margin: 4px 2px 12px;">
+        숫자가 같은 의미는 아님. 같은 12% 감가도 한 곳은 신규 투자, 다른 곳은 노후 자산 — 본문에서 의도를 확인.
+      </p>
+      {capex_narratives}
+
       <details style="margin: 14px 0 4px;">
         <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 CAPEX proxy 표 (3-peer, IDR 절댓값 포함)</summary>
         {capex_proxy_table}
