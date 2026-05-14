@@ -4639,7 +4639,7 @@ def section_capex() -> str:
         tab_focus_tiles=[
             ("진행 중 CAPEX", "426", "bn", "GOLF", "CWIP Buildings 188 + Landscape 238 (FY25)", "gold"),
             ("감가/매출 최고", "12.2", "%", "DMIG", "PIK Range 신규 + BSD/PIK 2 코스", "warn"),
-            ("자산집약도 최고", "23.8", "×", "KPIG", "73.8% 자산 비중 (FA + 투자부동산)", "blue"),
+            ("자산 비중", "73.8", "%", "KPIG", "고정자산 + 투자부동산 / total assets", "blue"),
             ("홀당 매출 1위", "11.0", "bn/홀", "PIPG", "Entity all-in 기준 (1 코스 197.6bn)", "green"),
             ("Asset-light leader", "21.1", "%", "GOLF", "OpEx/매출 (DMIG 38% 대비)", "green"),
         ],
