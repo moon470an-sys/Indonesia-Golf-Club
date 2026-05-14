@@ -737,6 +737,97 @@ def _revenue_breakdown_table(ticker: str, note_key: str, title: str) -> str:
 </div>"""
 
 
+# OpEx category buckets — keyword based (Indonesian + English variants)
+OPEX_CATEGORY_RULES = [
+    ("인건비 (Salaries+benefits)", ["gaji", "upah", "tunjangan", "imbalan kerja", "kesejahteraan", "salary", "wage", "employee benefit", "diklat"]),
+    ("감가상각 (Depreciation/Amort.)", ["penyusutan", "amortisasi", "depreciation", "amortization"]),
+    ("유지보수 (Repair+Maintenance)", ["perbaikan", "pemeliharaan", "perawatan", "repair", "maintenance"]),
+    ("세금·법률 (Tax+Legal)", ["pajak", "perijinan", "perizinan", "legal", "jasa profesional", "tenaga ahli", "audit", "konsultan"]),
+    ("유틸리티 (Utilities)", ["listrik", "air", "utilitas", "electricity", "water", "utility"]),
+    ("청소·보안 (Cleaning+Security)", ["kebersihan", "keamanan", "jasa manajemen", "cleaning", "security"]),
+    ("통신·IT (Comm+IT)", ["telepon", "teleks", "fax", "internet", "perangkat lunak", "teknologi informasi", "administrasi bank", "kartu kredit", "pos,"]),
+    ("운송·출장 (Transport+Travel)", ["transportasi", "perjalanan", "akomodasi", "transport"]),
+    ("보험 (Insurance)", ["asuransi", "insurance"]),
+    ("광고·마케팅 (Ads+Marketing)", ["iklan", "promosi", "pemasaran", "komisi", "branding", "sponsor"]),
+    ("사무·소모품 (Office supplies)", ["alat-alat tulis", "cetakan", "perlengkapan", "stationery"]),
+]
+
+
+def _opex_category_of(label: str) -> str:
+    s = (label or "").lower()
+    for cat, kws in OPEX_CATEGORY_RULES:
+        if any(kw in s for kw in kws):
+            return cat
+    return "기타 (Other)"
+
+
+def _normalized_opex_compare_table() -> str:
+    """Per-peer OpEx by category, normalized as % of revenue (FY24).
+
+    Buckets line items via keyword rules so DMIG/PIPG/GOLF can be compared
+    one-to-one even when AR Note labels differ.
+    """
+    peers_with_opex = [
+        ("DMIG", "opex_note", "revenue_note"),
+        ("PIPG", "opex_note_29", "revenue_note_27"),
+        ("GOLF", "ga_note_32", "revenue_note_29"),
+    ]
+    # Build per-peer category totals FY24
+    per_peer: dict = {}
+    for ticker, opex_key, rev_key in peers_with_opex:
+        d = NOTES.get(ticker, {})
+        rev_total = (d.get(rev_key) or {}).get("total", {}).get("FY2024")
+        if ticker == "GOLF":
+            rev_total = ((d.get("revenue_note_29") or {}).get("by_operations") or {}).get("total", {}).get("FY2024")
+        cat_totals: dict = {}
+        for ln in (d.get(opex_key) or {}).get("lines") or []:
+            cat = _opex_category_of((ln.get("id_label") or "") + " " + (ln.get("en_label") or ""))
+            cat_totals[cat] = cat_totals.get(cat, 0) + (ln.get("FY2024") or 0)
+        per_peer[ticker] = {"rev": rev_total, "by_cat": cat_totals, "total": (d.get(opex_key) or {}).get("total", {}).get("FY2024")}
+
+    # All categories observed
+    all_cats: list = []
+    for cat, _ in OPEX_CATEGORY_RULES:
+        all_cats.append(cat)
+    all_cats.append("기타 (Other)")
+
+    head = '<tr><th>OpEx 카테고리</th>'
+    for ticker, _, _ in peers_with_opex:
+        head += f'<th class="num">{safe(ticker)} %매출</th><th class="num">{safe(ticker)} IDR</th>'
+    head += '</tr>'
+
+    body = []
+    for cat in all_cats:
+        cells = [f"<td>{safe(cat)}</td>"]
+        any_data = False
+        for ticker, _, _ in peers_with_opex:
+            pp = per_peer[ticker]
+            v = pp["by_cat"].get(cat, 0)
+            if v:
+                any_data = True
+            pct = (v / pp["rev"] * 100) if (v and pp["rev"]) else None
+            cells.append(f'<td class="num">{(f"{pct:.1f}%" if pct else "—")}</td>')
+            cells.append(f'<td class="num">{fmt_bn(v) if v else "—"}</td>')
+        if any_data:
+            body.append(f'<tr>{"".join(cells)}</tr>')
+    # Total row
+    tot_cells = ["<td><strong>OpEx 합계</strong></td>"]
+    for ticker, _, _ in peers_with_opex:
+        pp = per_peer[ticker]
+        opex_tot = pp["total"]
+        pct = (opex_tot / pp["rev"] * 100) if (opex_tot and pp["rev"]) else None
+        tot_cells.append(f'<td class="num"><strong>{(f"{pct:.1f}%" if pct else "—")}</strong></td>')
+        tot_cells.append(f'<td class="num"><strong>{fmt_bn(opex_tot)}</strong></td>')
+    body.append(f'<tr class="row-total">{"".join(tot_cells)}</tr>')
+
+    return f"""<div class="tbl-card scroll-x">
+  <table class="tbl tbl-tight">
+    <thead>{head}</thead>
+    <tbody>{''.join(body)}</tbody>
+  </table>
+</div>"""
+
+
 def _opex_breakdown_table(ticker: str, note_key: str, title: str) -> str:
     """OpEx line breakdown FY23 vs FY24 (sorted by FY24 desc)."""
     d = NOTES.get(ticker, {})
@@ -1079,6 +1170,7 @@ def section_ops() -> str:
     capex_proxy_table = _capex_proxy_table()
     fy25_cards = _fy25_delta_cards()
     golf_segment_table = _all_peer_golf_segment_table()
+    opex_norm_table = _normalized_opex_compare_table()
 
     rev_blocks = "\n".join(filter(None, [
         _revenue_breakdown_table("DMIG", "revenue_note", "매출 라인 분해"),
@@ -1141,6 +1233,25 @@ def section_ops() -> str:
         PIPG는 추가로 Pajak dan perijinan (Tax+legal) 비중이 매우 높음 (FY24 IDR 24.2bn).
       </p>
       {opex_blocks}
+    </div>
+
+    <div class="section">
+      <h2>OpEx 카테고리별 normalized 비교 — DMIG vs PIPG vs GOLF</h2>
+      <h3>FY2024 매출 대비 % (cross-peer 같은 잣대)</h3>
+      <p class="lede">
+        AR Note 라벨이 peer마다 달라 직접 비교가 어려운 문제를 해결하기 위해, 모든 OpEx 라인을
+        <strong>11개 카테고리</strong>로 keyword 기반 자동 분류 (Salaries / Depreciation / Maintenance / Tax+Legal / Utilities 등).
+        각 peer의 FY2024 매출 대비 % 비중을 동일 잣대로 비교합니다.
+      </p>
+      {opex_norm_table}
+      <div class="banner info">
+        <strong>비교 인사이트 (FY2024, OpEx 카테고리 / 매출):</strong>
+        <strong>인건비</strong> DMIG 12.6% · PIPG 10.5% · GOLF 9.0% — peer 간 비슷한 수준 ·
+        <strong>감가상각</strong> DMIG 12.2% · PIPG 7.1% · GOLF 1.3% — DMIG의 자본투자 강도 압도적 (BSD+PIK 2 코스 + Range@PIK 등) ·
+        <strong>유지보수</strong> DMIG 0.9% · PIPG 5.9% · GOLF 1.3% — PIPG 노후 코스 (1976년 개장) 유지비 부담 큼 ·
+        <strong>세금·법률</strong> DMIG 5.2% · PIPG 12.3% · GOLF 3.1% — PIPG의 Pajak dan perijinan 24.4bn이 outlier (CBD 5분 distance + HGB 면적 + property tax 비중) ·
+        <strong>OpEx 총합</strong> DMIG 38.4% · PIPG 38.5% · GOLF 21.1% — GOLF가 압도적으로 효율적이나 real estate cross-subsidy / IPO 1년차 효과 가능성.
+      </div>
     </div>
 
     <div class="section">
