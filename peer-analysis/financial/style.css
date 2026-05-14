@@ -398,6 +398,61 @@ tr.row-total td.num { color: var(--ink); }
 .kv-comment { font-size: 12.5px; color: var(--ink-soft); margin: 6px 0 4px; line-height: 1.5; }
 .muted { color: var(--muted); font-weight: 400; font-size: 12px; }
 
+/* ============== Reduced motion + transitions ============== */
+.stack-seg, .viz-bar, .quote-card, details summary {
+  transition: opacity 0.18s ease, background 0.18s ease, transform 0.18s ease;
+}
+details summary {
+  outline: none;
+  transition: color 0.15s ease;
+}
+details summary:hover { color: var(--green); }
+details[open] summary { color: var(--green); font-weight: 700; }
+
+/* Focus states for keyboard navigation */
+a:focus-visible, button:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Stack-seg hover with peer color emphasis */
+.stack-seg:hover {
+  filter: brightness(1.08);
+}
+
+/* Quote card hover lift */
+.quote-card { transition: box-shadow 0.18s ease, transform 0.18s ease; }
+.quote-card:hover {
+  box-shadow: 0 4px 16px rgba(45,80,22,0.08);
+  transform: translateY(-1px);
+}
+
+/* Insight card hover already exists; enhance with subtle scale */
+.insight-card { transition: box-shadow 0.18s ease, transform 0.18s ease, border-color 0.18s ease; }
+
+/* Exec tile fade-in on load */
+@keyframes exec-fade {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.exec-tile { animation: exec-fade 0.4s ease-out backwards; }
+.exec-tile:nth-child(1) { animation-delay: 0.05s; }
+.exec-tile:nth-child(2) { animation-delay: 0.10s; }
+.exec-tile:nth-child(3) { animation-delay: 0.15s; }
+.exec-tile:nth-child(4) { animation-delay: 0.20s; }
+.exec-tile:nth-child(5) { animation-delay: 0.25s; }
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* ============== Scroll progress bar (top of viewport) ============== */
 .scroll-progress {
   position: fixed;
@@ -704,6 +759,12 @@ tr.row-total td.num { color: var(--ink); }
   padding: 12px 14px;
   display: flex; flex-direction: column; gap: 4px;
   position: relative;
+  transition: box-shadow 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+}
+.kpi-tile:hover {
+  box-shadow: 0 4px 14px rgba(45,80,22,0.07);
+  transform: translateY(-1px);
+  border-color: var(--line-strong);
 }
 .kpi-tile.accent-green { border-top: 3px solid var(--green); }
 .kpi-tile.accent-warn  { border-top: 3px solid var(--warn); }
