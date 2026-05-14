@@ -3407,10 +3407,12 @@ def _ops_kpi_dashboard() -> str:
 
     # DMIG The Range@PIK — FY22→FY23
     range_y = dmig["the_range_revenue"]
-    range_spark_vals = [("FY22", range_y.get("FY2022")), ("FY23", range_y.get("FY2023"))]
     range_y22 = range_y.get("FY2022") or 0
     range_y23 = range_y.get("FY2023") or 0
     range_growth = ((range_y23 / range_y22) - 1) * 100 if range_y22 else None
+    range_max = max(range_y22, range_y23) or 1
+    range_w22 = range_y22 / range_max * 100
+    range_w23 = range_y23 / range_max * 100
 
     # PIPG rounds played 4-year
     rp = pipg["rounds_played"]
@@ -3474,6 +3476,20 @@ def _ops_kpi_dashboard() -> str:
   <div class="kpi-tile accent-green">
     <div class="kpi-cap">DMIG · Range@PIK 매출</div>
     <div class="kpi-val small">{fmt_bn(range_y23)}</div>
+    <div style="display:flex;flex-direction:column;gap:3px;margin:6px 0;">
+      <div style="display:flex;align-items:center;gap:6px;font-size:10px;color:var(--muted);">
+        <span style="flex:0 0 30px;">FY22</span>
+        <span style="flex:1;height:8px;background:var(--line);border-radius:4px;overflow:hidden;">
+          <span style="display:block;height:100%;width:{range_w22:.1f}%;background:#95c073;"></span></span>
+        <span style="flex:0 0 48px;text-align:right;font-weight:600;color:var(--ink-soft);">{fmt_bn(range_y22)}</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:10px;color:var(--muted);">
+        <span style="flex:0 0 30px;">FY23</span>
+        <span style="flex:1;height:8px;background:var(--line);border-radius:4px;overflow:hidden;">
+          <span style="display:block;height:100%;width:{range_w23:.1f}%;background:#2d5016;"></span></span>
+        <span style="flex:0 0 48px;text-align:right;font-weight:700;color:var(--ink);">{fmt_bn(range_y23)}</span>
+      </div>
+    </div>
     <div class="kpi-sub kpi-trend up">FY22→23 {range_growth:+.1f}%</div>
     <div class="kpi-sub">골프테인먼트 (driving range + entertainment) 신규 시설</div>
   </div>
