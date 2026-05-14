@@ -1156,6 +1156,62 @@ PIPG_SEGMENT_FY2023 = {
 }
 
 
+DIVIDEND_EVIDENCE = {
+    "DMIG": {
+        "FY2023_paid": 26_514_391_332,  # from Statement of Changes in Equity
+        "FY2022_paid": None,
+        "narrative": "FY2023 배당 IDR 26.5bn (Statement of Changes in Equity 직접). FY2023 순이익 71.3bn 대비 payout ratio 37.2%.",
+        "src": "DMIG FY2023 AR p.55 STATEMENTS OF CHANGES IN EQUITY",
+    },
+    "PIPG": {
+        "FY2022_paid": 20_763_216_000,
+        "FY2023_paid": 26_239_800_000,
+        "per_share_FY2022": 15_984_000,
+        "per_share_FY2023": 20_200_000,
+        "rupst_date_FY2022": "2023-06-15",
+        "rupst_date_FY2023": "2024-06-06",
+        "narrative": "FY2022 배당 20.8bn (RUPST 2023-06-15, Rp 15.98M/주) + FY2023 배당 26.2bn (RUPST 2024-06-06, Rp 20.20M/주). FY23 순이익 55.9bn 대비 payout 46.9%.",
+        "src": "PIPG FY24 AR p.141 Note 26 PEMBAGIAN DIVIDEN",
+    },
+    "SMDM": {
+        "FY2024_paid": 0,
+        "narrative": "FY2024 배당 미실시 (working capital 보존). BSDE 91.99% 인수 직전 결정.",
+        "src": "SMDM FY24 AR p.70",
+    },
+}
+
+
+def _dividend_compare_table() -> str:
+    rows = []
+    for t, d in DIVIDEND_EVIDENCE.items():
+        fy22 = d.get("FY2022_paid")
+        fy23 = d.get("FY2023_paid")
+        fy24 = d.get("FY2024_paid")
+        rows.append(
+            f'<tr class="tier-a">'
+            f'<td><span class="ticker-mini">{safe(t)}</span></td>'
+            f'<td class="num">{fmt_bn(fy22)}</td>'
+            f'<td class="num">{fmt_bn(fy23)}</td>'
+            f'<td class="num">{fmt_bn(fy24) if fy24 is not None else "—"}</td>'
+            f'<td class="notes">{safe(d["narrative"])}</td>'
+            f'<td class="src">{safe(d["src"])}</td>'
+            f'</tr>'
+        )
+    return f"""<div class="tbl-card scroll-x">
+  <table class="tbl tbl-tight">
+    <thead><tr>
+      <th>Peer</th>
+      <th class="num">FY22 배당</th>
+      <th class="num">FY23 배당</th>
+      <th class="num">FY24 배당</th>
+      <th>해설</th>
+      <th>출처</th>
+    </tr></thead>
+    <tbody>{''.join(rows)}</tbody>
+  </table>
+</div>"""
+
+
 def _pipg_segment_table() -> str:
     """PIPG 4-segment GP margin breakdown (FY2023, Note 30)."""
     rows = []
@@ -1683,6 +1739,7 @@ def section_ops() -> str:
     ops_kpi_section = _ops_kpi_section()
     per_hole_table = _per_hole_metrics_table()
     pipg_seg_table = _pipg_segment_table()
+    dividend_table = _dividend_compare_table()
 
     rev_blocks = "\n".join(filter(None, [
         _revenue_breakdown_table("DMIG", "revenue_note", "매출 라인 분해"),
@@ -1716,6 +1773,7 @@ def section_ops() -> str:
           <li><a href="#segment-6">6-peer 골프 segment 통합 비교</a></li>
           <li><a href="#unit-econ">홀당 단위 경제 (7-peer Unit Economics)</a></li>
           <li><a href="#ops-kpi">운영 KPI 시계열 (골퍼·회원·인력·CWIP)</a></li>
+          <li><a href="#dividend">배당 시계열 (DMIG/PIPG/SMDM)</a></li>
           <li><a href="#related">관계사 거래 · 토지 lease · 집중도</a></li>
           <li><a href="#fy25">FY2025 미감사 prelim — 마진 압박</a></li>
           <li><a href="#margin-commentary">FY24→FY25 마진 변화 commentary</a></li>
@@ -1871,6 +1929,16 @@ def section_ops() -> str:
         <strong>벡터 검색 (multilingual-e5-small / 99,618 chunks)</strong>로 동일 fact를 여러 인덱스 페이지에서 cross-validate.
       </p>
       {ops_kpi_section}
+    </div>
+
+    <div class="section" id="dividend">
+      <h2>배당 시계열 — 3-peer 비교</h2>
+      <h3>FY22-FY24 배당 + payout ratio</h3>
+      <p class="lede">
+        cash distribution을 통한 capital allocation 비교. PIPG는 안정적 배당 + 증가 추세, DMIG는 FY23 배당 확인,
+        SMDM은 FY24 BSDE 인수 직전 배당 미실시.
+      </p>
+      {dividend_table}
     </div>
 
     <div class="section" id="related">
