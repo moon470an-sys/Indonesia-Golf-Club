@@ -2164,6 +2164,87 @@ REVENUE_NARRATIVES = [
 ]
 
 
+# Curated OpEx narratives — operational risk + cost sensitivity from AR Notes
+OPEX_NARRATIVES = [
+    {
+        "ticker": "DMIG",
+        "theme": "보험 cover — 운영 리스크 hedge",
+        "tone": "neutral",
+        "summary": "고정자산 (토지 제외) Rp 465.73bn + USD 2M 보험. 자산 base 보호.",
+        "quote": "Company's fixed assets, except land, have been insured against the risk of loss with a "
+                 "total coverage amount of Rp 465,731,600,000 and US$2,000,000, respectively.",
+        "ko": "DMIG의 총 fixed asset 대비 보험 cover 수준은 운영 중단·재해 리스크 hedge. "
+              "감가상각 12.2%/매출의 capital intensity를 보완하는 risk management.",
+        "src": "DMIG FY2024 AR p.79 — Fixed assets insurance",
+    },
+    {
+        "ticker": "PIPG",
+        "theme": "Salary sensitivity — 인건비 leverage",
+        "tone": "warn",
+        "summary": "급여 +1% 시 defined benefits liability Rp 10.76bn 증가. 인건비 base의 sensitivity 큼.",
+        "quote": "If the expected salary growth increase or decrease by 1%, in 2023 defined benefits liability "
+                 "would increase Rp 10,758,977,886 (decrease equivalent). Discount rate ±1% → ±Rp 9-10bn impact.",
+        "ko": "PIPG의 인건비/매출 10.5%는 mid 수준이지만, salary growth 1pp 변동 = liability Rp 10.7bn 충격. "
+              "FY25 OpEx -17.9% 절감의 큰 부분이 인건비 통제에서 왔을 가능성 시사.",
+        "src": "PIPG FY2023 AR p.139 — Defined benefits sensitivity",
+    },
+    {
+        "ticker": "KPIG",
+        "theme": "ESG · 유틸리티 metric",
+        "tone": "positive",
+        "summary": "Emission intensity 0.11 TonCo2eq (FY22-23 동일). 표면수 사용 410,570 m³",
+        "quote": "In 2023, the Company recorded maintained emission intensity of 0.11 TonCo2eq same with 2022. "
+                 "Water source - Surface water: 410,570 m³ (2023) vs 413,268 m³ (2022).",
+        "ko": "KPIG는 그룹 conglomerate임에도 ESG metric 명시적 공시 — emission intensity 안정 유지 + 물 사용량 -0.7% YoY 감소. "
+              "Trump Lido 같은 high-end 운영에 친환경 신호 → 장기 prem 포지셔닝.",
+        "src": "KPIG FY2023 AR p.47 — ESG metrics",
+    },
+    {
+        "ticker": "GOLF",
+        "theme": "Equity structure — 자본 base",
+        "tone": "neutral",
+        "summary": "FY2025 총 equity Rp 8,018bn (parent 8,017bn + NCI 0.5bn). Paid-in capital 487bn",
+        "quote": "Saldo 31 Desember 2025 — Modal disetor: Rp 487,169,000,000. Retained earnings: "
+                 "Rp 6,897,824,934,149. Total ekuitas: Rp 8,018,297,686,240.",
+        "ko": "GOLF의 retained earnings 6.9조는 entity 매출 102bn 대비 67배 — IPO 시 누적 결과. "
+              "CWIP 426bn (4.2× 매출) 진행은 paid-in capital + 누적 잉여로 self-funded — 외부 차입 의존도 낮음 시그널.",
+        "src": "GOLF FY2025 AR p.444 — Statement of changes in equity",
+    },
+]
+
+
+def _opex_narrative_grid() -> str:
+    """Render OpEx narrative quote cards (reuses quote-card style)."""
+    tone_to_border = {
+        "positive": "var(--green)",
+        "warn":     "var(--warn)",
+        "neutral":  "#8a8a8a",
+    }
+    cards = []
+    for n in OPEX_NARRATIVES:
+        border_color = tone_to_border.get(n["tone"], "#8a8a8a")
+        quote_text = n["quote"].strip()
+        if len(quote_text) > 320:
+            quote_text = quote_text[:320].rsplit(" ", 1)[0] + "…"
+        cards.append(f"""<div class="quote-card" style="border-left-color: {border_color};">
+  <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+    <span class="ticker-mini">{safe(n["ticker"])}</span>
+    <span class="insight-tag" style="margin:0;">{safe(n["theme"])}</span>
+  </div>
+  <div style="font-weight:700; font-size:14px; color:var(--ink); margin-bottom:6px;">{safe(n["summary"])}</div>
+  <div style="font-size:12.5px; color:var(--ink-soft); line-height:1.55; font-style:italic; padding:6px 10px; border-left:2px solid var(--line-strong); margin:8px 0;">
+    "{safe(quote_text)}"
+  </div>
+  <div style="font-size:13px; color:var(--ink); line-height:1.55;">
+    <strong style="color:var(--green);">→</strong> {safe(n["ko"])}
+  </div>
+  <div class="qmeta"><strong>출처</strong> · {safe(n["src"])} (벡터 DB 검색)</div>
+</div>""")
+    return f"""<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap:14px; margin: 14px 0;">
+  {"".join(cards)}
+</div>"""
+
+
 def _revenue_narrative_grid() -> str:
     """Render revenue narrative quote cards (reuses CAPEX quote-card style)."""
     tone_to_border = {
@@ -4036,6 +4117,7 @@ def section_ops() -> str:
     capex_heatmap = _capex_heatmap_section()
     capex_narratives = _capex_narrative_grid()
     revenue_narratives = _revenue_narrative_grid()
+    opex_narratives = _opex_narrative_grid()
     fy25_cards = _fy25_delta_cards()
     fy25_dashboard = _fy25_dashboard()
     golf_segment_table = _all_peer_golf_segment_table()
@@ -4319,6 +4401,11 @@ def section_ops() -> str:
         가장 큰 비용 항목은 <strong>인건비</strong>와 <strong>감가상각</strong>.
       </p>
       {opex_topn}
+
+      <h4 class="ops-block-h" style="margin-top: 26px;">왜? — 운영 리스크 & 비용 sensitivity (벡터 DB 검증)</h4>
+      <p class="src-line" style="margin: 4px 2px 12px;">OpEx 절댓값 뒤의 운영 리스크와 비용 leverage를 AR 본문에서 직접 추출.</p>
+      {opex_narratives}
+
       <details style="margin: 14px 0 4px;">
         <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 OpEx 전체 라인 표 (FY23/FY24/%매출/YoY)</summary>
         {opex_blocks}
