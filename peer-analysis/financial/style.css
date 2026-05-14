@@ -269,6 +269,31 @@ table.tbl td.notes { font-size: 13px; color: var(--ink-soft); line-height: 1.5; 
 }
 .foot a { color: rgba(255,255,255,0.85); }
 
+/* ============== Ops tab TOC ============== */
+.ops-toc { background: var(--surface-2); padding: 28px 28px 32px; border-radius: 10px; margin-top: 18px; }
+.ops-toc h2, .ops-toc h3 { padding-left: 0; }
+.toc { margin: 14px 0 0; padding: 0; }
+.toc ol {
+  list-style: decimal inside;
+  margin: 0; padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 6px 16px;
+}
+.toc li {
+  font-size: 13.5px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+.toc li:hover { background: var(--green-tint); }
+.toc a { color: var(--ink); font-weight: 500; }
+.toc a:hover { color: var(--green); text-decoration: none; }
+
+/* Smooth scroll for anchor links */
+html { scroll-behavior: smooth; }
+.section[id] { scroll-margin-top: 80px; }
+
 /* ============== Ops tab — extended tables ============== */
 .ops-block { margin: 18px 0 28px; }
 .ops-block-h {

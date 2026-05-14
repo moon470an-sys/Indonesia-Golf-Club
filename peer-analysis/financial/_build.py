@@ -1622,7 +1622,28 @@ def section_ops() -> str:
     return f"""<section class="panel" data-panel="ops">
   <div class="wrap">
 
-    <div class="section">
+    <div class="section ops-toc">
+      <h2>운영 KPI · CAPEX/OPEX — 섹션 목차</h2>
+      <h3>12개 분석 섹션으로 구성</h3>
+      <nav class="toc">
+        <ol>
+          <li><a href="#pnl">4년 통합 P&amp;L (FY22-FY25)</a></li>
+          <li><a href="#rev">매출 라인 분해 (DMIG 7 / PIPG 11 라인)</a></li>
+          <li><a href="#cogs">COGS 라인 분해</a></li>
+          <li><a href="#opex">OpEx 라인 분해 — 인건비·감가·유지보수</a></li>
+          <li><a href="#opex-norm">OpEx 카테고리별 normalized 비교</a></li>
+          <li><a href="#capex-proxy">CAPEX proxy (감가·유지·자산집약도)</a></li>
+          <li><a href="#segment-6">6-peer 골프 segment 통합 비교</a></li>
+          <li><a href="#unit-econ">홀당 단위 경제 (7-peer Unit Economics)</a></li>
+          <li><a href="#ops-kpi">운영 KPI 시계열 (골퍼·회원·인력·CWIP)</a></li>
+          <li><a href="#related">관계사 거래 · 토지 lease · 집중도</a></li>
+          <li><a href="#fy25">FY2025 미감사 prelim — 마진 압박</a></li>
+          <li><a href="#margin-commentary">FY24→FY25 마진 변화 commentary</a></li>
+        </ol>
+      </nav>
+    </div>
+
+    <div class="section" id="pnl">
       <h2>4년 통합 P&L — Pure-play 3-peer</h2>
       <h3>FY2022 → FY2025 (FY25는 미감사 prelim)</h3>
       <p class="lede">
@@ -1637,7 +1658,7 @@ def section_ops() -> str:
       </div>
     </div>
 
-    <div class="section">
+    <div class="section" id="rev">
       <h2>매출 라인 분해 — Pure-play</h2>
       <h3>골프 / F&amp;B / 회원권 / 부대시설 별 매출 (FY23→FY24)</h3>
       <p class="lede">
@@ -1647,7 +1668,7 @@ def section_ops() -> str:
       {rev_blocks}
     </div>
 
-    <div class="section">
+    <div class="section" id="cogs">
       <h2>COGS (매출원가) 라인 분해</h2>
       <h3>골프 코스 / 레스토랑 / 카트 / 드라이빙 레인지 등</h3>
       <p class="lede">
@@ -1657,7 +1678,7 @@ def section_ops() -> str:
       {cogs_blocks}
     </div>
 
-    <div class="section">
+    <div class="section" id="opex">
       <h2>OpEx 라인 분해 — CAPEX/OPEX 핵심</h2>
       <h3>인건비 · 감가상각 · 유지보수 · 세금 · 유틸리티 등</h3>
       <p class="lede">
@@ -1668,7 +1689,7 @@ def section_ops() -> str:
       {opex_blocks}
     </div>
 
-    <div class="section">
+    <div class="section" id="opex-norm">
       <h2>OpEx 카테고리별 normalized 비교 — DMIG vs PIPG vs GOLF</h2>
       <h3>FY2024 매출 대비 % (cross-peer 같은 잣대)</h3>
       <p class="lede">
@@ -1687,7 +1708,7 @@ def section_ops() -> str:
       </div>
     </div>
 
-    <div class="section">
+    <div class="section" id="capex-proxy">
       <h2>CAPEX proxy — 감가상각·유지보수·자산집약도</h2>
       <h3>Audited CAPEX 미공시 → P&L proxy + B/S proxy로 추정</h3>
       <p class="lede">
@@ -1703,7 +1724,7 @@ def section_ops() -> str:
       </div>
     </div>
 
-    <div class="section">
+    <div class="section" id="segment-6">
       <h2>골프 segment 매출 — 6-peer 통합 비교 (FY2024)</h2>
       <h3>explicit golf disclosure가 있는 모든 IDX peer</h3>
       <p class="lede">
@@ -1723,7 +1744,7 @@ def section_ops() -> str:
       <p class="src-line">출처: site/peer-analysis/operations/data/{{dmig,pipg,mdln,golf,kija}}_notes.json (FY24 AR Note 23·25·27·29·34 직접 추출)</p>
     </div>
 
-    <div class="section">
+    <div class="section" id="unit-econ">
       <h2>홀당 단위 경제 — 7-peer Unit Economics (FY2024)</h2>
       <h3>매출 / GP / OpEx / 감가상각을 홀 수로 normalize</h3>
       <p class="lede">
@@ -1742,7 +1763,7 @@ def section_ops() -> str:
       </div>
     </div>
 
-    <div class="section">
+    <div class="section" id="ops-kpi">
       <h2>운영 KPI 시계열 — 골퍼·회원·인력·CWIP</h2>
       <h3>annual report 본문(Management Discussion)에서 직접 추출한 정량 지표</h3>
       <p class="lede">
@@ -1752,7 +1773,7 @@ def section_ops() -> str:
       {ops_kpi_section}
     </div>
 
-    <div class="section">
+    <div class="section" id="related">
       <h2>관계사 거래 · 토지 lease · 고객·공급사 집중도</h2>
       <h3>annual report Note에서 추출한 audit-grade 정량 정보</h3>
       <p class="lede">
@@ -1763,7 +1784,7 @@ def section_ops() -> str:
       {related_party_section}
     </div>
 
-    <div class="section">
+    <div class="section" id="fy25">
       <h2>FY2025 미감사 prelim — 마진 압박 신호</h2>
       <h3>각 peer가 발표한 FY2025 unaudited P&L (2026-05-12 Cycle 167)</h3>
       <p class="lede">
@@ -1820,7 +1841,7 @@ def section_ops() -> str:
       </div>
     </div>
 
-    <div class="section">
+    <div class="section" id="margin-commentary">
       <h2>FY2024→FY2025 마진 변화 — 벡터 추출 commentary</h2>
       <h3>각 peer의 annual report 본문에서 직접 인용한 마진 시그널</h3>
       <p class="lede">
