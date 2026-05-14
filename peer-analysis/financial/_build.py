@@ -4515,7 +4515,10 @@ def _pipg_agreements_timeline() -> str:
     <div style="font-size:10.5px;color:var(--ink-soft);line-height:1.35;">{safe(p["counterparty"])}</div>
     <div style="font-size:10px;color:var(--muted);margin-top:1px;">{safe(p["rent"])}</div>
   </div>
-  <div style="position:relative;height:34px;">{bar}</div>
+  <div style="position:relative;height:34px;">
+    <span style="position:absolute;left:{today_x:.2f}%;top:-9px;bottom:-9px;border-left:1.5px dashed var(--accent);opacity:0.55;"></span>
+    {bar}
+  </div>
 </div>""")
 
     return f"""<div class="viz-card" style="padding:16px 16px 12px;margin:14px 0;">
