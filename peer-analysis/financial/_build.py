@@ -4964,7 +4964,7 @@ def section_opex() -> str:
       {full_cost_stack}
       <div class="insight-callout">
         <span class="ic-icon">→</span>
-        <span class="ic-body">동일 매출 100%를 어떻게 쓰는가 — <strong>GOLF는 영업이익률 최고</strong> (COGS+OpEx 합이 가장 작음), <strong>DMIG/PIPG는 COGS+OpEx 합이 70%+</strong>. 아래 섹션에서 각 블록을 라인 단위로 분해.</span>
+        <span class="ic-body">동일 매출 100%를 어떻게 쓰는가 — <strong>GOLF 영업이익률 39%로 최고</strong> (COGS+OpEx 61%), <strong>DMIG 69% · PIPG 74%</strong>로 비용 비중 큼. 아래 섹션에서 각 블록을 라인 단위로 분해.</span>
       </div>
     </div>
 
