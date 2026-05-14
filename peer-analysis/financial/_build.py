@@ -2170,7 +2170,7 @@ def _opex_narrative_grid() -> str:
   <div style="font-size:13px; color:var(--ink); line-height:1.55;">
     <strong style="color:var(--green);">→</strong> {safe(n["ko"])}
   </div>
-  <div class="qmeta"><strong>↳</strong> · {safe(n["src"])}</div>
+  <div class="qmeta"><strong>↳</strong> {safe(n["src"])}</div>
 </div>""")
     return f"""<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap:14px; margin: 14px 0;">
   {"".join(cards)}
@@ -2202,7 +2202,7 @@ def _revenue_narrative_grid() -> str:
   <div style="font-size:13px; color:var(--ink); line-height:1.55;">
     <strong style="color:var(--green);">→</strong> {safe(n["ko"])}
   </div>
-  <div class="qmeta"><strong>↳</strong> · {safe(n["src"])}</div>
+  <div class="qmeta"><strong>↳</strong> {safe(n["src"])}</div>
 </div>""")
     return f"""<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap:14px; margin: 14px 0;">
   {"".join(cards)}
@@ -2234,7 +2234,7 @@ def _capex_narrative_grid() -> str:
   <div style="font-size:13px; color:var(--ink); line-height:1.55;">
     <strong style="color:var(--green);">→</strong> {safe(n["ko"])}
   </div>
-  <div class="qmeta"><strong>↳</strong> · {safe(n["src"])}</div>
+  <div class="qmeta"><strong>↳</strong> {safe(n["src"])}</div>
 </div>""")
     return f"""<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap:14px; margin: 14px 0;">
   {"".join(cards)}
@@ -2820,7 +2820,7 @@ def _margin_change_visual() -> str:
   </div>
   <div style="margin: 8px 0 12px;">{"".join(metric_rows)}</div>
   <div style="font-size:12.5px;color:var(--ink-soft);line-height:1.55;">{safe(p["narrative"])}</div>
-  <div class="qmeta"><strong>↳</strong> · {safe(p["src"])}</div>
+  <div class="qmeta"><strong>↳</strong> {safe(p["src"])}</div>
 </div>""")
 
     return f"""<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:12px;">
