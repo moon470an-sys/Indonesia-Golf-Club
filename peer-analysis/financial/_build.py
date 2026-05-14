@@ -871,20 +871,21 @@ def _multi_line_chart(series_list, fys, width=380, height=200, title=""):
     inner_w = width - pad_l - pad_r
     inner_h = height - pad_t - pad_b
 
-    # Compute y range
+    # Compute y range — auto-scale to data (do NOT force 0 in, wastes vertical space)
     all_vals = [v for _, vals, _ in series_list for v in vals if v is not None]
     if not all_vals:
         return ""
-    y_min = min(all_vals + [0])
+    y_min = min(all_vals)
     y_max = max(all_vals)
     if y_max == y_min:
         y_max = y_min + 10
-    # Pad
-    y_pad = (y_max - y_min) * 0.1
+    # Pad 12% each side for breathing room
+    y_pad = (y_max - y_min) * 0.12
     y_min -= y_pad
     y_max += y_pad
-    if y_min < 0:
-        y_min = min(y_min, -5)
+    # If data is all-positive, don't let padding push axis negative
+    if min(all_vals) >= 0 and y_min < 0:
+        y_min = 0
     n = len(fys)
 
     def to_x(i): return pad_l + (inner_w * (i / (n - 1)))
