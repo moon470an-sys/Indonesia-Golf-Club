@@ -1133,6 +1133,113 @@ OPS_KPI_EVIDENCE = {
 }
 
 
+# Holes per peer for unit-economic normalization
+HOLES = {
+    "DMIG": 36,   # PIK 18 + BSD 18
+    "PIPG": 18,
+    "KPIG": 18,   # Trump Lido
+    "GOLF": 36,   # New Kuta + Palm Hill (consolidated). Black Rocks 18 = associate (not consolidated)
+    "MDLN": 18,   # Modern Golf
+    "KIJA": 18,   # Jababeka
+    "SMDM": 18,   # Rancamaya
+}
+
+
+def _per_hole_metrics_table() -> str:
+    """Unit-economic comparison: revenue / OpEx / CAPEX-proxy per hole.
+
+    For each peer with audited golf-segment revenue, normalize by golf-course-only holes.
+    """
+    rows = []
+
+    def add(ticker: str, basis: str, golf_rev, golf_cogs, golf_opex, depr_total):
+        h = HOLES.get(ticker, 18)
+        rev_per_hole = golf_rev / h if golf_rev else None
+        gp_per_hole = ((golf_rev - golf_cogs) / h) if (golf_rev and golf_cogs) else None
+        opex_per_hole = (golf_opex / h) if golf_opex else None
+        depr_per_hole = (depr_total / h) if depr_total else None
+        rows.append((ticker, basis, h, rev_per_hole, gp_per_hole, opex_per_hole, depr_per_hole))
+
+    # DMIG — entity revenue (golf+restaurant+membership+...) / 36 holes
+    d = NOTES.get("DMIG", {})
+    rev_total = (d.get("revenue_note") or {}).get("total", {}).get("FY2024")
+    cogs_total = (d.get("cogs_note") or {}).get("total", {}).get("FY2024")
+    opex_total = (d.get("opex_note") or {}).get("total", {}).get("FY2024")
+    dep_line = next((ln.get("FY2024") for ln in (d.get("opex_note") or {}).get("lines", []) if (ln.get("id_label") or "").lower() == "penyusutan"), None)
+    add("DMIG", "Entity (2 코스: BSD+PIK, all-in)", rev_total, cogs_total, opex_total, dep_line)
+
+    # PIPG — entity revenue
+    d = NOTES.get("PIPG", {})
+    rev_total = (d.get("revenue_note_27") or {}).get("total", {}).get("FY2024")
+    cogs_total = (d.get("cogs_note_28") or {}).get("total", {}).get("FY2024")
+    opex_total = (d.get("opex_note_29") or {}).get("total", {}).get("FY2024")
+    dep_line = next((ln.get("FY2024") for ln in (d.get("opex_note_29") or {}).get("lines", []) if (ln.get("id_label") or "").lower() == "penyusutan"), None)
+    add("PIPG", "Entity (1 코스: Pondok Indah, all-in)", rev_total, cogs_total, opex_total, dep_line)
+
+    # GOLF — golf-only segment
+    d = NOTES.get("GOLF", {})
+    rev_lines = ((d.get("revenue_note_29") or {}).get("by_operations") or {}).get("lines") or []
+    cogs_lines = (d.get("cogs_note_30") or {}).get("lines") or []
+    rev_g = next((ln.get("FY2024") for ln in rev_lines if ln.get("en_label") == "Golf"), None)
+    cogs_g = next((ln.get("FY2024") for ln in cogs_lines if ln.get("id_label") == "Golf"), None)
+    opex_g = (d.get("ga_note_32") or {}).get("total", {}).get("FY2024")
+    dep_g = next((ln.get("FY2024") for ln in (d.get("ga_note_32") or {}).get("lines", []) if "penyusutan" in (ln.get("id_label") or "").lower()), None)
+    add("GOLF", "Golf segment only (2 consolidated 코스)", rev_g, cogs_g, opex_g, dep_g)
+
+    # MDLN — golf segment (pure)
+    d = NOTES.get("MDLN", {})
+    cr = (d.get("computed_ratios") or {}).get("FY2024", {})
+    rev_m = cr.get("golf_revenue_pure")
+    cogs_m = cr.get("golf_cogs_pure")
+    # Depreciation from golf_course_direct_cost_lines
+    dep_m = next((ln.get("FY2024") for ln in (d.get("cogs_note_26") or {}).get("golf_course_direct_cost_lines", []) if "penyusutan" in (ln.get("id_label") or "").lower()), None)
+    add("MDLN", "Golf segment (Note 25)", rev_m, cogs_m, None, dep_m)
+
+    # KIJA — golf segment (Rp million → multiply 1e6)
+    d = NOTES.get("KIJA", {})
+    seg = (d.get("segment_info_note_34") or {}).get("golf_segment_FY2024") or {}
+    rev_k = (seg.get("revenue") or 0) * 1e6
+    cogs_k = (seg.get("cogs") or 0) * 1e6
+    opex_k = ((seg.get("selling") or 0) + (seg.get("ga_expenses") or 0)) * 1e6
+    add("KIJA", "Golf segment (Note 34)", rev_k or None, cogs_k or None, opex_k or None, None)
+
+    # SMDM — golf segment
+    d = NOTES.get("SMDM", {})
+    seg_s = ((d.get("segment_info_note_29") or {}).get("FY2024") or {}).get("Golf dan Country Club") or {}
+    rev_s = seg_s.get("revenue")
+    cogs_s = abs(seg_s.get("cogs") or 0) or None
+    opex_s = (abs(seg_s.get("selling") or 0) + abs(seg_s.get("ga") or 0)) or None
+    add("SMDM", "Golf & Country Club segment (Note 29)", rev_s, cogs_s, opex_s, None)
+
+    body = []
+    for ticker, basis, h, rph, gph, oph, dph in rows:
+        body.append(
+            f'<tr class="tier-a">'
+            f'<td><span class="ticker-mini">{safe(ticker)}</span></td>'
+            f'<td class="notes">{safe(basis)}</td>'
+            f'<td class="num">{h}</td>'
+            f'<td class="num">{fmt_bn(rph)}</td>'
+            f'<td class="num">{fmt_bn(gph)}</td>'
+            f'<td class="num">{fmt_bn(oph)}</td>'
+            f'<td class="num">{fmt_bn(dph)}</td>'
+            f'</tr>'
+        )
+    return f"""<div class="tbl-card scroll-x">
+  <table class="tbl">
+    <thead><tr>
+      <th>Peer</th>
+      <th>비교 단위</th>
+      <th class="num">홀 수</th>
+      <th class="num">매출 / 홀</th>
+      <th class="num">GP / 홀</th>
+      <th class="num">OpEx / 홀</th>
+      <th class="num">감가상각 / 홀</th>
+    </tr></thead>
+    <tbody>{''.join(body)}</tbody>
+  </table>
+</div>"""
+
+
 def _ops_kpi_section() -> str:
     """Operational KPI time series — rounds played, members, headcount, sub-revenues."""
     cards = []
@@ -1496,6 +1603,7 @@ def section_ops() -> str:
     opex_norm_table = _normalized_opex_compare_table()
     related_party_section = _related_party_and_lease_section()
     ops_kpi_section = _ops_kpi_section()
+    per_hole_table = _per_hole_metrics_table()
 
     rev_blocks = "\n".join(filter(None, [
         _revenue_breakdown_table("DMIG", "revenue_note", "매출 라인 분해"),
@@ -1613,6 +1721,25 @@ def section_ops() -> str:
         <strong>DMIG/PIPG</strong>: Pure-play 골프코스 라인만 가져오므로 다른 단위; F&B/Cart 포함 시 비교 합치.
       </div>
       <p class="src-line">출처: site/peer-analysis/operations/data/{{dmig,pipg,mdln,golf,kija}}_notes.json (FY24 AR Note 23·25·27·29·34 직접 추출)</p>
+    </div>
+
+    <div class="section">
+      <h2>홀당 단위 경제 — 7-peer Unit Economics (FY2024)</h2>
+      <h3>매출 / GP / OpEx / 감가상각을 홀 수로 normalize</h3>
+      <p class="lede">
+        peer 마다 코스 수와 운영 형태가 다르므로 entity 매출 절대값 비교는 misleading. 홀 수로 나눈 unit economics가 더 의미 있는 비교.
+        <strong>PIPG</strong>는 1 코스 entity 매출 197.6bn → 매출/홀 ≈ 11.0bn (최고),
+        <strong>DMIG</strong>는 2 코스 → 매출/홀 ≈ 7.0bn,
+        <strong>GOLF</strong> golf-only 93bn / 36홀 = 2.6bn/홀로 가장 낮음.
+      </p>
+      {per_hole_table}
+      <div class="banner info">
+        <strong>해석 주의:</strong>
+        DMIG/PIPG는 entity 매출 (Golf+F&B+Membership+Cart 일체 포함) 기준 → 홀당 단위가 의도적으로 부풀려져 있음 ·
+        GOLF/MDLN/KIJA/SMDM은 golf segment-only 기준 → 진정한 golf revenue/hole ·
+        cross-row 비교 시 비교 기준(basis 컬럼)을 반드시 확인.
+        진짜 cross-peer per-hole golf revenue는 GOLF (2.6bn) · MDLN (3.1bn) · KIJA (4.7bn) · SMDM (3.5bn) — KIJA가 industrial estate 골프장임에도 unit revenue 가장 높음.
+      </div>
     </div>
 
     <div class="section">
