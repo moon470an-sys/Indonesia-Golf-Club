@@ -4845,6 +4845,10 @@ def section_capex() -> str:
         <strong>ENT</strong> (entity all-in) vs <strong>SEG</strong> (golf segment-only) 차이 주의.
       </p>
       {per_hole_visual}
+      <div class="insight-callout">
+        <span class="ic-icon">→</span>
+        <span class="ic-body">진짜 cross-peer 비교는 <strong>SEG (golf segment-only)</strong>: KIJA 4.7 &gt; SMDM 3.5 &gt; MDLN 3.2 &gt; GOLF 2.6bn/홀. ENT 기준 DMIG·PIPG는 F&amp;B·회원권 포함이라 부풀려진 값 — 신규 코스 benchmark는 SEG 라인을 봐야 함.</span>
+      </div>
       <details class="orig-toggle"><summary>원본 per-hole 표</summary>
         {per_hole_table}
       </details>
@@ -4854,6 +4858,10 @@ def section_capex() -> str:
       <h2 data-num="07">P&L 4Y 마진 추이 — DMIG · PIPG · GOLF</h2>
       <h3>FY22-25 GP·Op·Net margin trend (감가상각이 영업이익률에 미치는 영향)</h3>
       {pnl_trend}
+      <div class="insight-callout warn">
+        <span class="ic-icon">⚠</span>
+        <span class="ic-body">DMIG는 GP margin은 68-70%로 안정인데 <strong>Op margin이 FY24 31% → FY25 28%로 하락</strong> — 차이는 OpEx(특히 감가). PIPG는 반대로 Op margin이 26→30%로 개선 (비용 통제).</span>
+      </div>
       <details class="orig-toggle"><summary>원본 4Y P&amp;L 표</summary>
         {pnl_table}
       </details>
@@ -4863,6 +4871,10 @@ def section_capex() -> str:
       <h2 data-num="08">DMIG vs PIPG — 6축 radar 1:1 비교</h2>
       <h3>매출·마진·CAPEX(감가/유지)·배당·unit econ을 한 차트로</h3>
       {peer_radar}
+      <div class="insight-callout">
+        <span class="ic-icon">→</span>
+        <span class="ic-body">DMIG는 <strong>매출·감가·Op margin</strong> 축에서 크고, PIPG는 <strong>유지보수·매출/홀</strong> 축에서 큼 — 두 pure-play의 전략 차이가 polygon 모양으로 드러남. 배당 payout은 비슷한 수준.</span>
+      </div>
     </div>
 
     <div class="section" id="cap-funnel">
