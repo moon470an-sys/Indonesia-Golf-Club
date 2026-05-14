@@ -4882,9 +4882,14 @@ def build_html() -> str:
         section_ops(),
         section_reference(),
     ])
-    # Count ops H2 sections automatically
+    # Count ops H2 sections automatically (both plain <h2> and <h2 data-num="...">)
     ops_html = section_ops()
-    ops_sections_count = ops_html.count('<h2>')
+    ops_sections_count = ops_html.count('<h2>') + ops_html.count('<h2 data-num=')
+    # Count visual elements
+    viz_svg_count = ops_html.count('<svg ')
+    viz_kpi_count = ops_html.count('class="kpi-tile')
+    viz_quote_count = ops_html.count('class="quote-card')
+    viz_chart_count = ops_html.count('class="stack-row"') + viz_svg_count
 
     return f"""<!DOCTYPE html>
 <html lang="ko">
@@ -4930,7 +4935,8 @@ def build_html() -> str:
   <div class="wrap">
     <p>
       <strong>골프장 운영 Peer 비교 사이트</strong> — Build {today} (commit <code>{commit_sha}</code>) ·
-      Ops 탭 {ops_sections_count}개 분석 섹션 ·
+      Ops 탭 <strong>{ops_sections_count}</strong>개 분석 섹션 ·
+      <strong>{viz_svg_count}</strong> SVG 차트 · <strong>{viz_kpi_count}</strong> KPI 타일 · <strong>{viz_quote_count}</strong> 벡터 narrative 카드 ·
       데이터: raw_peer_data/*.csv (last verified 2026-04-29 ~ 2026-05-07) + AR Note 직접 추출 + 벡터 검색 (99,618 chunks) ·
       추정/보간 없음. 미공시는 N/A로 표기.
     </p>
