@@ -884,6 +884,235 @@ def _opex_breakdown_table(ticker: str, note_key: str, title: str) -> str:
 </div>"""
 
 
+# ==============================================================
+# Iteration 16 — Visual data-viz for CAPEX/OpEx section
+# ==============================================================
+
+# Color palette for OpEx categories (matches CSS .sw-* swatches)
+OPEX_CAT_COLORS = {
+    "인건비 (Salaries+benefits)":        "#2d5016",  # green
+    "감가상각 (Depreciation/Amort.)":     "#4a7c30",  # green-soft
+    "유지보수 (Repair+Maintenance)":      "#95c073",  # light-green
+    "세금·법률 (Tax+Legal)":             "#92400e",  # warn
+    "유틸리티 (Utilities)":              "#c08a2e",  # gold
+    "청소·보안 (Cleaning+Security)":      "#8a8a8a",  # muted
+    "통신·IT (Comm+IT)":                "#1e40af",  # blue
+    "운송·출장 (Transport+Travel)":       "#6b21a8",  # purple
+    "보험 (Insurance)":                  "#b91c1c",  # red
+    "광고·마케팅 (Ads+Marketing)":        "#1e40af",  # blue
+    "사무·소모품 (Office supplies)":      "#d4d0c0",  # neutral
+    "기타 (Other)":                      "#d4d0c0",  # neutral
+}
+
+def _opex_norm_data() -> dict:
+    """Shared per-peer OpEx category data for viz + table."""
+    peers_with_opex = [
+        ("DMIG", "opex_note", "revenue_note"),
+        ("PIPG", "opex_note_29", "revenue_note_27"),
+        ("GOLF", "ga_note_32", "revenue_note_29"),
+    ]
+    per_peer = {}
+    for ticker, opex_key, rev_key in peers_with_opex:
+        d = NOTES.get(ticker, {})
+        rev_total = (d.get(rev_key) or {}).get("total", {}).get("FY2024")
+        if ticker == "GOLF":
+            rev_total = ((d.get("revenue_note_29") or {}).get("by_operations") or {}).get("total", {}).get("FY2024")
+        cat_totals = {}
+        for ln in (d.get(opex_key) or {}).get("lines") or []:
+            cat = _opex_category_of((ln.get("id_label") or "") + " " + (ln.get("en_label") or ""))
+            cat_totals[cat] = cat_totals.get(cat, 0) + (ln.get("FY2024") or 0)
+        per_peer[ticker] = {
+            "rev": rev_total,
+            "by_cat": cat_totals,
+            "total": (d.get(opex_key) or {}).get("total", {}).get("FY2024"),
+        }
+    return per_peer
+
+
+def _opex_kpi_strip() -> str:
+    """4-tile KPI strip — peer total OpEx ratios + headline insight."""
+    pp = _opex_norm_data()
+
+    def tile_for(ticker: str, accent: str, headline_hint: str) -> str:
+        d = pp.get(ticker, {})
+        total = d.get("total")
+        rev = d.get("rev")
+        pct = (total / rev * 100) if (total and rev) else None
+        by_cat = d.get("by_cat") or {}
+        sorted_cats = sorted(by_cat.items(), key=lambda x: -(x[1] or 0))
+        top_cat, top_val = (sorted_cats[0] if sorted_cats else ("—", 0))
+        top_pct = (top_val / rev * 100) if (top_val and rev) else None
+        # Pull category prefix (Korean label before paren)
+        top_cat_short = top_cat.split(" (")[0] if " (" in top_cat else top_cat
+        return f"""<div class="kpi-tile {accent}">
+  <div class="kpi-cap">{safe(ticker)} · OpEx / 매출</div>
+  <div class="kpi-val">{(f"{pct:.1f}%" if pct else "—")}</div>
+  <div class="kpi-sub"><strong>{safe(top_cat_short)}</strong> {(f"{top_pct:.1f}%" if top_pct else "")} · 최대 비용</div>
+  <div class="kpi-sub">{safe(headline_hint)}</div>
+</div>"""
+
+    inset = """<div class="kpi-tile accent-blue">
+  <div class="kpi-cap">Cross-peer gap</div>
+  <div class="kpi-val">17.4<span style="font-size:14px">pp</span></div>
+  <div class="kpi-sub">GOLF 21.1% vs PIPG 38.5% (FY24)</div>
+  <div class="kpi-sub">capital-light vs mature-course</div>
+</div>"""
+
+    return f"""<div class="kpi-strip">
+  {tile_for('DMIG', 'accent-warn', '감가 12.2% — PIK Range 신규투자 부담')}
+  {tile_for('PIPG', 'accent-warn', '세금·법률 12.3% — Pajak dan perijinan outlier')}
+  {tile_for('GOLF', 'accent-green', '실효 OpEx 가장 효율 / 단 IPO 1년차')}
+  {inset}
+</div>"""
+
+
+def _opex_stacked_bars() -> str:
+    """100% stacked composition bar per peer — visual OpEx mix at a glance."""
+    pp = _opex_norm_data()
+    legend_cats = [
+        ("인건비 (Salaries+benefits)", "인건비"),
+        ("감가상각 (Depreciation/Amort.)", "감가상각"),
+        ("유지보수 (Repair+Maintenance)", "유지보수"),
+        ("세금·법률 (Tax+Legal)", "세금·법률"),
+        ("유틸리티 (Utilities)", "유틸리티"),
+        ("광고·마케팅 (Ads+Marketing)", "광고·마케팅"),
+        ("통신·IT (Comm+IT)", "통신·IT"),
+        ("운송·출장 (Transport+Travel)", "운송·출장"),
+        ("기타 (Other)", "기타"),
+    ]
+
+    rows = []
+    for ticker in ["DMIG", "PIPG", "GOLF"]:
+        d = pp.get(ticker, {})
+        total = d.get("total") or 0
+        by_cat = d.get("by_cat") or {}
+        rev = d.get("rev")
+        rev_pct = (total / rev * 100) if (total and rev) else None
+        # Sort by category order in legend for visual consistency
+        ordered = []
+        for cat_full, _ in legend_cats:
+            v = by_cat.get(cat_full, 0)
+            if v:
+                ordered.append((cat_full, v))
+        # Append any other categories not in legend list
+        leftover = [(c, v) for c, v in by_cat.items() if c not in dict(legend_cats) and v]
+        ordered.extend(leftover)
+
+        segs = []
+        for cat, val in ordered:
+            if not total:
+                continue
+            pct = (val or 0) / total * 100
+            if pct < 0.3:
+                continue
+            color = OPEX_CAT_COLORS.get(cat, "#d4d0c0")
+            cat_short = cat.split(" (")[0] if " (" in cat else cat
+            label = f"{pct:.0f}%" if pct >= 6 else ""
+            segs.append(
+                f'<div class="stack-seg" style="width:{pct:.2f}%;background:{color};" '
+                f'title="{safe(cat_short)}: {pct:.1f}% (Rp {fmt_bn(val).replace(" bn","bn")})">{label}</div>'
+            )
+        rev_pct_str = f"{rev_pct:.1f}%" if rev_pct else "—"
+        rows.append(f"""<div class="stack-row">
+  <div class="stack-label"><span class="ticker-mini">{safe(ticker)}</span> <span class="muted">{rev_pct_str}</span></div>
+  <div class="stack-bar">{"".join(segs)}</div>
+  <div class="stack-total">{fmt_bn(total)}</div>
+</div>""")
+
+    legend_items = []
+    for cat_full, short in legend_cats:
+        color = OPEX_CAT_COLORS.get(cat_full, "#d4d0c0")
+        legend_items.append(
+            f'<span class="lg"><span class="sw" style="background:{color};"></span>{safe(short)}</span>'
+        )
+    legend = f'<div class="stack-legend">{"".join(legend_items)}</div>'
+
+    return f"""<div class="stack-block">
+  <p class="src-line" style="margin: 4px 2px 8px;">막대 너비 = OpEx 합계 대비 카테고리 비중 · ticker 옆 % = OpEx/매출 · 막대 위 hover로 정확 수치</p>
+  {"".join(rows)}
+  {legend}
+</div>"""
+
+
+def _opex_norm_bar_table() -> str:
+    """OpEx normalized table with inline mini bar viz in each % cell.
+
+    Bar width = peer's category % of revenue scaled to the max observed % cell-wide,
+    so visual length is comparable across peers.
+    """
+    pp = _opex_norm_data()
+    peers = ["DMIG", "PIPG", "GOLF"]
+
+    # Build percent matrix
+    pct_matrix = {}
+    raw_matrix = {}
+    for t in peers:
+        d = pp[t]
+        rev = d.get("rev") or 0
+        for cat, val in (d.get("by_cat") or {}).items():
+            if val and rev:
+                pct_matrix.setdefault(cat, {})[t] = val / rev * 100
+                raw_matrix.setdefault(cat, {})[t] = val
+
+    # Max % across all cells for scaling bar widths consistently
+    all_pcts = [v for sub in pct_matrix.values() for v in sub.values()]
+    max_pct = max(all_pcts) if all_pcts else 1.0
+    # Cap visual scale at 15% so smaller categories still look proportional
+    visual_max = max(max_pct, 15.0)
+
+    # Total row data
+    totals = {}
+    for t in peers:
+        d = pp[t]
+        tot = d.get("total")
+        rev = d.get("rev")
+        totals[t] = ((tot / rev * 100) if (tot and rev) else None, tot)
+
+    # Sort categories by max FY24 IDR value across peers (largest first)
+    cat_order = sorted(pct_matrix.keys(), key=lambda c: -max((raw_matrix.get(c) or {}).values(), default=0))
+
+    head = '<tr><th style="width:200px;">OpEx 카테고리</th>'
+    for t in peers:
+        head += f'<th class="num" style="min-width:160px;">{safe(t)} · %매출</th>'
+    head += '</tr>'
+
+    body_rows = []
+    for cat in cat_order:
+        cells = [f'<td>{safe(cat)}</td>']
+        for t in peers:
+            pct = (pct_matrix.get(cat) or {}).get(t)
+            if pct is None:
+                cells.append('<td class="num"><span class="muted">—</span></td>')
+                continue
+            bar_w = max(2.0, (pct / visual_max) * 92.0)  # 92% max width
+            viz_class = f"viz-cell viz-{t.lower()}"
+            cells.append(
+                f'<td class="num">'
+                f'<div class="{viz_class}" style="display:flex;align-items:center;gap:8px;justify-content:flex-end;">'
+                f'<span class="viz-num">{pct:.1f}%</span>'
+                f'<span class="viz-bar" style="width:{bar_w:.1f}%;"></span>'
+                f'</div></td>'
+            )
+        body_rows.append(f'<tr>{"".join(cells)}</tr>')
+
+    tot_cells = ['<td><strong>OpEx 합계 / 매출</strong></td>']
+    for t in peers:
+        pct, raw = totals[t]
+        pct_str = f"{pct:.1f}%" if pct is not None else "—"
+        tot_cells.append(
+            f'<td class="num"><strong>{pct_str}</strong> '
+            f'<span class="muted" style="font-weight:400;">· Rp {fmt_bn(raw).replace(" bn","bn") if raw else "—"}</span></td>'
+        )
+    body_rows.append(f'<tr class="row-total">{"".join(tot_cells)}</tr>')
+
+    return f"""<div class="tbl-card">
+  <table class="tbl tbl-tight">
+    <thead>{head}</thead>
+    <tbody>{"".join(body_rows)}</tbody>
+  </table>
+</div>"""
+
+
 def _capex_proxy_table() -> str:
     """Per-peer CAPEX proxy: depreciation, maintenance, asset intensity."""
     rows = []
@@ -1735,6 +1964,9 @@ def section_ops() -> str:
     fy25_cards = _fy25_delta_cards()
     golf_segment_table = _all_peer_golf_segment_table()
     opex_norm_table = _normalized_opex_compare_table()
+    opex_kpi_strip = _opex_kpi_strip()
+    opex_stack = _opex_stacked_bars()
+    opex_norm_bars = _opex_norm_bar_table()
     related_party_section = _related_party_and_lease_section()
     ops_kpi_section = _ops_kpi_section()
     per_hole_table = _per_hole_metrics_table()
@@ -1757,6 +1989,23 @@ def section_ops() -> str:
 
     return f"""<section class="panel" data-panel="ops">
   <div class="wrap">
+
+    <nav class="ops-subnav" aria-label="ops sub-navigation">
+      <a class="chip" href="#pnl">P&amp;L 4Y</a>
+      <a class="chip" href="#rev">매출 라인</a>
+      <a class="chip" href="#cogs">COGS 라인</a>
+      <a class="chip" href="#opex">OpEx 라인</a>
+      <a class="chip" href="#opex-norm">OpEx 정규화</a>
+      <a class="chip" href="#capex-proxy">CAPEX proxy</a>
+      <a class="chip" href="#pipg-seg">PIPG 4-seg</a>
+      <a class="chip" href="#segment-6">6-peer 골프</a>
+      <a class="chip" href="#unit-econ">홀당 단위</a>
+      <a class="chip" href="#ops-kpi">운영 KPI</a>
+      <a class="chip" href="#dividend">배당</a>
+      <a class="chip" href="#related">관계사</a>
+      <a class="chip" href="#fy25">FY25 prelim</a>
+      <a class="chip" href="#margin-commentary">마진 변화</a>
+    </nav>
 
     <div class="section ops-summary">
       <h2>핵심 인사이트 — TL;DR</h2>
@@ -1884,9 +2133,21 @@ def section_ops() -> str:
       <p class="lede">
         AR Note 라벨이 peer마다 달라 직접 비교가 어려운 문제를 해결하기 위해, 모든 OpEx 라인을
         <strong>11개 카테고리</strong>로 keyword 기반 자동 분류 (Salaries / Depreciation / Maintenance / Tax+Legal / Utilities 등).
-        각 peer의 FY2024 매출 대비 % 비중을 동일 잣대로 비교합니다.
+        시각화 우선 (KPI strip → 100% stacked bar → 카테고리별 bar matrix) → 원본 표는 하단.
       </p>
-      {opex_norm_table}
+
+      {opex_kpi_strip}
+
+      <h4 class="ops-block-h">100% stacked — OpEx 구성 비중</h4>
+      {opex_stack}
+
+      <h4 class="ops-block-h" style="margin-top: 22px;">카테고리별 매출 대비 % — bar matrix</h4>
+      {opex_norm_bars}
+
+      <details style="margin: 14px 0 4px;">
+        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 정규화 표 (참고용 · IDR + % 컬럼)</summary>
+        {opex_norm_table}
+      </details>
       <div class="banner info">
         <strong>비교 인사이트 (FY2024, OpEx 카테고리 / 매출):</strong>
         <strong>인건비</strong> DMIG 12.6% · PIPG 10.5% · GOLF 9.0% — peer 간 비슷한 수준 ·

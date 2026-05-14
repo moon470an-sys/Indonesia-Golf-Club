@@ -335,6 +335,23 @@
 <section class="panel" data-panel="ops">
   <div class="wrap">
 
+    <nav class="ops-subnav" aria-label="ops sub-navigation">
+      <a class="chip" href="#pnl">P&amp;L 4Y</a>
+      <a class="chip" href="#rev">매출 라인</a>
+      <a class="chip" href="#cogs">COGS 라인</a>
+      <a class="chip" href="#opex">OpEx 라인</a>
+      <a class="chip" href="#opex-norm">OpEx 정규화</a>
+      <a class="chip" href="#capex-proxy">CAPEX proxy</a>
+      <a class="chip" href="#pipg-seg">PIPG 4-seg</a>
+      <a class="chip" href="#segment-6">6-peer 골프</a>
+      <a class="chip" href="#unit-econ">홀당 단위</a>
+      <a class="chip" href="#ops-kpi">운영 KPI</a>
+      <a class="chip" href="#dividend">배당</a>
+      <a class="chip" href="#related">관계사</a>
+      <a class="chip" href="#fy25">FY25 prelim</a>
+      <a class="chip" href="#margin-commentary">마진 변화</a>
+    </nav>
+
     <div class="section ops-summary">
       <h2>핵심 인사이트 — TL;DR</h2>
       <h3>13개 분석 섹션에서 도출한 7-peer 핵심 발견</h3>
@@ -574,14 +591,72 @@
       <p class="lede">
         AR Note 라벨이 peer마다 달라 직접 비교가 어려운 문제를 해결하기 위해, 모든 OpEx 라인을
         <strong>11개 카테고리</strong>로 keyword 기반 자동 분류 (Salaries / Depreciation / Maintenance / Tax+Legal / Utilities 등).
-        각 peer의 FY2024 매출 대비 % 비중을 동일 잣대로 비교합니다.
+        시각화 우선 (KPI strip → 100% stacked bar → 카테고리별 bar matrix) → 원본 표는 하단.
       </p>
-      <div class="tbl-card scroll-x">
+
+      <div class="kpi-strip">
+  <div class="kpi-tile accent-warn">
+  <div class="kpi-cap">DMIG · OpEx / 매출</div>
+  <div class="kpi-val">38.4%</div>
+  <div class="kpi-sub"><strong>인건비</strong> 12.6% · 최대 비용</div>
+  <div class="kpi-sub">감가 12.2% — PIK Range 신규투자 부담</div>
+</div>
+  <div class="kpi-tile accent-warn">
+  <div class="kpi-cap">PIPG · OpEx / 매출</div>
+  <div class="kpi-val">38.5%</div>
+  <div class="kpi-sub"><strong>세금·법률</strong> 12.3% · 최대 비용</div>
+  <div class="kpi-sub">세금·법률 12.3% — Pajak dan perijinan outlier</div>
+</div>
+  <div class="kpi-tile accent-green">
+  <div class="kpi-cap">GOLF · OpEx / 매출</div>
+  <div class="kpi-val">21.1%</div>
+  <div class="kpi-sub"><strong>인건비</strong> 9.0% · 최대 비용</div>
+  <div class="kpi-sub">실효 OpEx 가장 효율 / 단 IPO 1년차</div>
+</div>
+  <div class="kpi-tile accent-blue">
+  <div class="kpi-cap">Cross-peer gap</div>
+  <div class="kpi-val">17.4<span style="font-size:14px">pp</span></div>
+  <div class="kpi-sub">GOLF 21.1% vs PIPG 38.5% (FY24)</div>
+  <div class="kpi-sub">capital-light vs mature-course</div>
+</div>
+</div>
+
+      <h4 class="ops-block-h">100% stacked — OpEx 구성 비중</h4>
+      <div class="stack-block">
+  <p class="src-line" style="margin: 4px 2px 8px;">막대 너비 = OpEx 합계 대비 카테고리 비중 · ticker 옆 % = OpEx/매출 · 막대 위 hover로 정확 수치</p>
+  <div class="stack-row">
+  <div class="stack-label"><span class="ticker-mini">DMIG</span> <span class="muted">38.4%</span></div>
+  <div class="stack-bar"><div class="stack-seg" style="width:32.95%;background:#2d5016;" title="인건비: 32.9% (Rp 32.0bn)">33%</div><div class="stack-seg" style="width:31.74%;background:#4a7c30;" title="감가상각: 31.7% (Rp 30.8bn)">32%</div><div class="stack-seg" style="width:2.34%;background:#95c073;" title="유지보수: 2.3% (Rp 2.3bn)"></div><div class="stack-seg" style="width:13.54%;background:#92400e;" title="세금·법률: 13.5% (Rp 13.2bn)">14%</div><div class="stack-seg" style="width:4.61%;background:#c08a2e;" title="유틸리티: 4.6% (Rp 4.5bn)"></div><div class="stack-seg" style="width:2.38%;background:#1e40af;" title="통신·IT: 2.4% (Rp 2.3bn)"></div><div class="stack-seg" style="width:0.96%;background:#6b21a8;" title="운송·출장: 1.0% (Rp 932.9M)"></div><div class="stack-seg" style="width:1.38%;background:#d4d0c0;" title="기타: 1.4% (Rp 1.3bn)"></div><div class="stack-seg" style="width:8.95%;background:#8a8a8a;" title="청소·보안: 8.9% (Rp 8.7bn)">9%</div><div class="stack-seg" style="width:0.59%;background:#b91c1c;" title="보험: 0.6% (Rp 571.0M)"></div><div class="stack-seg" style="width:0.58%;background:#d4d0c0;" title="사무·소모품: 0.6% (Rp 561.4M)"></div></div>
+  <div class="stack-total">97.1bn</div>
+</div><div class="stack-row">
+  <div class="stack-label"><span class="ticker-mini">PIPG</span> <span class="muted">38.5%</span></div>
+  <div class="stack-bar"><div class="stack-seg" style="width:27.28%;background:#2d5016;" title="인건비: 27.3% (Rp 20.8bn)">27%</div><div class="stack-seg" style="width:18.40%;background:#4a7c30;" title="감가상각: 18.4% (Rp 14.0bn)">18%</div><div class="stack-seg" style="width:15.30%;background:#95c073;" title="유지보수: 15.3% (Rp 11.6bn)">15%</div><div class="stack-seg" style="width:32.05%;background:#92400e;" title="세금·법률: 32.1% (Rp 24.4bn)">32%</div><div class="stack-seg" style="width:3.04%;background:#c08a2e;" title="유틸리티: 3.0% (Rp 2.3bn)"></div><div class="stack-seg" style="width:1.39%;background:#d4d0c0;" title="기타: 1.4% (Rp 1.1bn)"></div><div class="stack-seg" style="width:1.79%;background:#d4d0c0;" title="사무·소모품: 1.8% (Rp 1.4bn)"></div><div class="stack-seg" style="width:0.47%;background:#b91c1c;" title="보험: 0.5% (Rp 355.7M)"></div></div>
+  <div class="stack-total">76.1bn</div>
+</div><div class="stack-row">
+  <div class="stack-label"><span class="ticker-mini">GOLF</span> <span class="muted">21.1%</span></div>
+  <div class="stack-bar"><div class="stack-seg" style="width:42.38%;background:#2d5016;" title="인건비: 42.4% (Rp 17.7bn)">42%</div><div class="stack-seg" style="width:5.93%;background:#4a7c30;" title="감가상각: 5.9% (Rp 2.5bn)"></div><div class="stack-seg" style="width:5.93%;background:#95c073;" title="유지보수: 5.9% (Rp 2.5bn)"></div><div class="stack-seg" style="width:14.66%;background:#92400e;" title="세금·법률: 14.7% (Rp 6.1bn)">15%</div><div class="stack-seg" style="width:9.54%;background:#c08a2e;" title="유틸리티: 9.5% (Rp 4.0bn)">10%</div><div class="stack-seg" style="width:2.76%;background:#1e40af;" title="통신·IT: 2.8% (Rp 1.2bn)"></div><div class="stack-seg" style="width:5.28%;background:#6b21a8;" title="운송·출장: 5.3% (Rp 2.2bn)"></div><div class="stack-seg" style="width:5.25%;background:#d4d0c0;" title="기타: 5.3% (Rp 2.2bn)"></div><div class="stack-seg" style="width:4.56%;background:#8a8a8a;" title="청소·보안: 4.6% (Rp 1.9bn)"></div><div class="stack-seg" style="width:1.93%;background:#b91c1c;" title="보험: 1.9% (Rp 807.2M)"></div><div class="stack-seg" style="width:1.79%;background:#d4d0c0;" title="사무·소모품: 1.8% (Rp 748.5M)"></div></div>
+  <div class="stack-total">41.9bn</div>
+</div>
+  <div class="stack-legend"><span class="lg"><span class="sw" style="background:#2d5016;"></span>인건비</span><span class="lg"><span class="sw" style="background:#4a7c30;"></span>감가상각</span><span class="lg"><span class="sw" style="background:#95c073;"></span>유지보수</span><span class="lg"><span class="sw" style="background:#92400e;"></span>세금·법률</span><span class="lg"><span class="sw" style="background:#c08a2e;"></span>유틸리티</span><span class="lg"><span class="sw" style="background:#1e40af;"></span>광고·마케팅</span><span class="lg"><span class="sw" style="background:#1e40af;"></span>통신·IT</span><span class="lg"><span class="sw" style="background:#6b21a8;"></span>운송·출장</span><span class="lg"><span class="sw" style="background:#d4d0c0;"></span>기타</span></div>
+</div>
+
+      <h4 class="ops-block-h" style="margin-top: 22px;">카테고리별 매출 대비 % — bar matrix</h4>
+      <div class="tbl-card">
+  <table class="tbl tbl-tight">
+    <thead><tr><th style="width:200px;">OpEx 카테고리</th><th class="num" style="min-width:160px;">DMIG · %매출</th><th class="num" style="min-width:160px;">PIPG · %매출</th><th class="num" style="min-width:160px;">GOLF · %매출</th></tr></thead>
+    <tbody><tr><td>인건비 (Salaries+benefits)</td><td class="num"><div class="viz-cell viz-dmig" style="display:flex;align-items:center;gap:8px;justify-content:flex-end;"><span class="viz-num">12.6%</span><span class="viz-bar" style="width:77.5%;"></span></div></td><td class="num"><div class="viz-cell viz-pipg" style="display:flex;align-items:center;gap:8px;justify-content:flex-end;"><span class="viz-num">10.5%</span><span class="viz-bar" style="width:64.5%;"></span></div></td><td class="num"><div class="viz-cell viz-golf" style="display:flex;align-items:center;gap:8px;justify-content:flex-end;"><span class="viz-num">9.0%</span><span class="viz-bar" style="width:54.9%;"></span></div></td></tr><tr><td>감가상각 (Depreciation/Amort.)</td><td class="num"><div class="viz-cell viz-dmig" style="display:flex;align-items:center;gap:8px;justify-content:flex-end;"><span class="viz-num">12.2%</span><span class="viz-bar" style="width:74.7%;"></span></div></td><td class="num"><div class="viz-cell viz-pipg" style="display:flex;align-items:center;gap:8px;justify-content:flex-end;"><span class="viz-num">7.1%</span><span class="viz-bar" style="width:43.5%;"></span></div></td><td class="num"><div class="viz-cell viz-golf" style="display:flex;align-items:center;gap:8px;justify-content:flex-end;"><span class="viz-num">1.3%</span><span class="viz-bar" style="width:7.7%;"></span></div></td></tr><tr><td>세금·법률 (Tax+Legal)</td><td class="num"><div class="viz-cell viz-dmig" style="display:flex;align-items:center;gap:8px;justify-content:flex-end;"><span class="viz-num">5.2%</span><span class="viz-bar" style="width:31.9%;"></span></div></td><td class="num"><div class="viz-cell viz-pipg" style="display:flex;align-items:center;gap:8px;justify-content:flex-end;"><span class="viz-num">12.3%</span><span class="viz-bar" style="width:75.7%;"></span></div></td><td class="num"><div class="viz-cell viz-golf" style="display:flex;align-items:center;gap:8px;justify-content:flex-end;"><span class="viz-num">3.1%</span><span class="viz-bar" style="width:19.0%;"></span></div></td></tr><tr><td>유지보수 (Repair+Maintenance)</td><td class="num"><div class="viz-cell viz-dmig" style="display:flex;align-items:center;gap:8px;justify-content:flex-end;"><span class="viz-num">0.9%</span><span class="viz-bar" style="width:5.5%;"></span></div></td><td class="num"><div class="viz-cell viz-pipg" style="display:flex;align-items:center;gap:8px;justify-content:flex-end;"><span class="viz-num">5.9%</span><span class="viz-bar" style="width:36.2%;"></span></div></td><td class="num"><div class="viz-cell viz-golf" style="display:flex;align-items:center;gap:8px;justify-content:flex-end;"><span class="viz-num">1.3%</span><span class="viz-bar" style="width:7.7%;"></span></div></td></tr><tr><td>청소·보안 (Cleaning+Security)</td><td class="num"><div class="viz-cell viz-dmig" style="display:flex;align-items:center;gap:8px;justify-content:flex-end;"><span class="viz-num">3.4%</span><span class="viz-bar" style="width:21.1%;"></span></div></td><td class="num"><span class="muted">—</span></td><td class="num"><div class="viz-cell viz-golf" style="display:flex;align-items:center;gap:8px;justify-content:flex-end;"><span class="viz-num">1.0%</span><span class="viz-bar" style="width:5.9%;"></span></div></td></tr><tr><td>유틸리티 (Utilities)</td><td class="num"><div class="viz-cell viz-dmig" style="display:flex;align-items:center;gap:8px;justify-content:flex-end;"><span class="viz-num">1.8%</span><span class="viz-bar" style="width:10.8%;"></span></div></td><td class="num"><div class="viz-cell viz-pipg" style="display:flex;align-items:center;gap:8px;justify-content:flex-end;"><span class="viz-num">1.2%</span><span class="viz-bar" style="width:7.2%;"></span></div></td><td class="num"><div class="viz-cell viz-golf" style="display:flex;align-items:center;gap:8px;justify-content:flex-end;"><span class="viz-num">2.0%</span><span class="viz-bar" style="width:12.4%;"></span></div></td></tr><tr><td>통신·IT (Comm+IT)</td><td class="num"><div class="viz-cell viz-dmig" style="display:flex;align-items:center;gap:8px;justify-content:flex-end;"><span class="viz-num">0.9%</span><span class="viz-bar" style="width:5.6%;"></span></div></td><td class="num"><div class="viz-cell viz-pipg" style="display:flex;align-items:center;gap:8px;justify-content:flex-end;"><span class="viz-num">0.0%</span><span class="viz-bar" style="width:2.0%;"></span></div></td><td class="num"><div class="viz-cell viz-golf" style="display:flex;align-items:center;gap:8px;justify-content:flex-end;"><span class="viz-num">0.6%</span><span class="viz-bar" style="width:3.6%;"></span></div></td></tr><tr><td>운송·출장 (Transport+Travel)</td><td class="num"><div class="viz-cell viz-dmig" style="display:flex;align-items:center;gap:8px;justify-content:flex-end;"><span class="viz-num">0.4%</span><span class="viz-bar" style="width:2.3%;"></span></div></td><td class="num"><div class="viz-cell viz-pipg" style="display:flex;align-items:center;gap:8px;justify-content:flex-end;"><span class="viz-num">0.1%</span><span class="viz-bar" style="width:2.0%;"></span></div></td><td class="num"><div class="viz-cell viz-golf" style="display:flex;align-items:center;gap:8px;justify-content:flex-end;"><span class="viz-num">1.1%</span><span class="viz-bar" style="width:6.8%;"></span></div></td></tr><tr><td>기타 (Other)</td><td class="num"><div class="viz-cell viz-dmig" style="display:flex;align-items:center;gap:8px;justify-content:flex-end;"><span class="viz-num">0.5%</span><span class="viz-bar" style="width:3.2%;"></span></div></td><td class="num"><div class="viz-cell viz-pipg" style="display:flex;align-items:center;gap:8px;justify-content:flex-end;"><span class="viz-num">0.5%</span><span class="viz-bar" style="width:3.3%;"></span></div></td><td class="num"><div class="viz-cell viz-golf" style="display:flex;align-items:center;gap:8px;justify-content:flex-end;"><span class="viz-num">1.1%</span><span class="viz-bar" style="width:6.8%;"></span></div></td></tr><tr><td>사무·소모품 (Office supplies)</td><td class="num"><div class="viz-cell viz-dmig" style="display:flex;align-items:center;gap:8px;justify-content:flex-end;"><span class="viz-num">0.2%</span><span class="viz-bar" style="width:2.0%;"></span></div></td><td class="num"><div class="viz-cell viz-pipg" style="display:flex;align-items:center;gap:8px;justify-content:flex-end;"><span class="viz-num">0.7%</span><span class="viz-bar" style="width:4.2%;"></span></div></td><td class="num"><div class="viz-cell viz-golf" style="display:flex;align-items:center;gap:8px;justify-content:flex-end;"><span class="viz-num">0.4%</span><span class="viz-bar" style="width:2.3%;"></span></div></td></tr><tr><td>보험 (Insurance)</td><td class="num"><div class="viz-cell viz-dmig" style="display:flex;align-items:center;gap:8px;justify-content:flex-end;"><span class="viz-num">0.2%</span><span class="viz-bar" style="width:2.0%;"></span></div></td><td class="num"><div class="viz-cell viz-pipg" style="display:flex;align-items:center;gap:8px;justify-content:flex-end;"><span class="viz-num">0.2%</span><span class="viz-bar" style="width:2.0%;"></span></div></td><td class="num"><div class="viz-cell viz-golf" style="display:flex;align-items:center;gap:8px;justify-content:flex-end;"><span class="viz-num">0.4%</span><span class="viz-bar" style="width:2.5%;"></span></div></td></tr><tr class="row-total"><td><strong>OpEx 합계 / 매출</strong></td><td class="num"><strong>38.4%</strong> <span class="muted" style="font-weight:400;">· Rp 97.1bn</span></td><td class="num"><strong>38.5%</strong> <span class="muted" style="font-weight:400;">· Rp 76.1bn</span></td><td class="num"><strong>21.1%</strong> <span class="muted" style="font-weight:400;">· Rp 41.9bn</span></td></tr></tbody>
+  </table>
+</div>
+
+      <details style="margin: 14px 0 4px;">
+        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 정규화 표 (참고용 · IDR + % 컬럼)</summary>
+        <div class="tbl-card scroll-x">
   <table class="tbl tbl-tight">
     <thead><tr><th>OpEx 카테고리</th><th class="num">DMIG %매출</th><th class="num">DMIG IDR</th><th class="num">PIPG %매출</th><th class="num">PIPG IDR</th><th class="num">GOLF %매출</th><th class="num">GOLF IDR</th></tr></thead>
     <tbody><tr><td>인건비 (Salaries+benefits)</td><td class="num">12.6%</td><td class="num">32.0bn</td><td class="num">10.5%</td><td class="num">20.8bn</td><td class="num">9.0%</td><td class="num">17.7bn</td></tr><tr><td>감가상각 (Depreciation/Amort.)</td><td class="num">12.2%</td><td class="num">30.8bn</td><td class="num">7.1%</td><td class="num">14.0bn</td><td class="num">1.3%</td><td class="num">2.5bn</td></tr><tr><td>유지보수 (Repair+Maintenance)</td><td class="num">0.9%</td><td class="num">2.3bn</td><td class="num">5.9%</td><td class="num">11.6bn</td><td class="num">1.3%</td><td class="num">2.5bn</td></tr><tr><td>세금·법률 (Tax+Legal)</td><td class="num">5.2%</td><td class="num">13.2bn</td><td class="num">12.3%</td><td class="num">24.4bn</td><td class="num">3.1%</td><td class="num">6.1bn</td></tr><tr><td>유틸리티 (Utilities)</td><td class="num">1.8%</td><td class="num">4.5bn</td><td class="num">1.2%</td><td class="num">2.3bn</td><td class="num">2.0%</td><td class="num">4.0bn</td></tr><tr><td>청소·보안 (Cleaning+Security)</td><td class="num">3.4%</td><td class="num">8.7bn</td><td class="num">—</td><td class="num">—</td><td class="num">1.0%</td><td class="num">1.9bn</td></tr><tr><td>통신·IT (Comm+IT)</td><td class="num">0.9%</td><td class="num">2.3bn</td><td class="num">0.0%</td><td class="num">41.1M</td><td class="num">0.6%</td><td class="num">1.2bn</td></tr><tr><td>운송·출장 (Transport+Travel)</td><td class="num">0.4%</td><td class="num">932.9M</td><td class="num">0.1%</td><td class="num">163.0M</td><td class="num">1.1%</td><td class="num">2.2bn</td></tr><tr><td>보험 (Insurance)</td><td class="num">0.2%</td><td class="num">571.0M</td><td class="num">0.2%</td><td class="num">355.7M</td><td class="num">0.4%</td><td class="num">807.2M</td></tr><tr><td>사무·소모품 (Office supplies)</td><td class="num">0.2%</td><td class="num">561.4M</td><td class="num">0.7%</td><td class="num">1.4bn</td><td class="num">0.4%</td><td class="num">748.5M</td></tr><tr><td>기타 (Other)</td><td class="num">0.5%</td><td class="num">1.3bn</td><td class="num">0.5%</td><td class="num">1.1bn</td><td class="num">1.1%</td><td class="num">2.2bn</td></tr><tr class="row-total"><td><strong>OpEx 합계</strong></td><td class="num"><strong>38.4%</strong></td><td class="num"><strong>97.1bn</strong></td><td class="num"><strong>38.5%</strong></td><td class="num"><strong>76.1bn</strong></td><td class="num"><strong>21.1%</strong></td><td class="num"><strong>41.9bn</strong></td></tr></tbody>
   </table>
 </div>
+      </details>
       <div class="banner info">
         <strong>비교 인사이트 (FY2024, OpEx 카테고리 / 매출):</strong>
         <strong>인건비</strong> DMIG 12.6% · PIPG 10.5% · GOLF 9.0% — peer 간 비슷한 수준 ·
@@ -1165,7 +1240,7 @@
 <footer class="foot">
   <div class="wrap">
     <p>
-      <strong>골프장 운영 Peer 비교 사이트</strong> — Build 2026-05-14 (commit <code>b2e374f</code>) ·
+      <strong>골프장 운영 Peer 비교 사이트</strong> — Build 2026-05-14 (commit <code>5ef6666</code>) ·
       Ops 탭 19개 분석 섹션 ·
       데이터: raw_peer_data/*.csv (last verified 2026-04-29 ~ 2026-05-07) + AR Note 직접 추출 + 벡터 검색 (99,618 chunks) ·
       추정/보간 없음. 미공시는 N/A로 표기.
