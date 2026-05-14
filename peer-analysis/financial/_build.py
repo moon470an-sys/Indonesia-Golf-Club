@@ -1738,6 +1738,117 @@ def _dividend_compare_table() -> str:
 </div>"""
 
 
+PIPG_SEG_COLORS = {
+    "Golf Course & Cart": "#2d5016",
+    "Membership & Enrollment Fee": "#4a7c30",
+    "Restaurant": "#c08a2e",
+    "Others": "#8a8a8a",
+}
+
+
+def _pipg_segment_visual() -> str:
+    """Visual: revenue mix + GP margin per segment, all in one block."""
+    segs = []
+    tot_rev = sum(d["revenue"] for d in PIPG_SEGMENT_FY2023.values())
+    tot_cogs = sum(d["cogs"] for d in PIPG_SEGMENT_FY2023.values())
+
+    rows_data = []
+    for name, d in PIPG_SEGMENT_FY2023.items():
+        rev = d["revenue"]
+        cogs = d["cogs"]
+        gp = rev - cogs
+        gm = (gp / rev * 100) if rev else 0
+        share = (rev / tot_rev * 100) if tot_rev else 0
+        rows_data.append({
+            "name": name, "rev": rev, "cogs": cogs, "gp": gp, "gm": gm, "share": share,
+            "color": PIPG_SEG_COLORS.get(name, "#8a8a8a"),
+        })
+
+    rows_data.sort(key=lambda r: -r["rev"])
+    max_gm = 100  # GP margin scale 0-100%
+    max_rev_share = max(r["share"] for r in rows_data)
+
+    # --- Composition stacked bar (revenue share)
+    composition = []
+    for r in rows_data:
+        composition.append(
+            f'<div class="stack-seg" style="width:{r["share"]:.2f}%;background:{r["color"]};" '
+            f'title="{safe(r["name"])}: Rp {fmt_bn(r["rev"]).replace(" bn","bn")} ({r["share"]:.1f}%)">'
+            f'{f"{r['share']:.0f}%" if r["share"] >= 7 else ""}</div>'
+        )
+    comp_legend = []
+    for r in rows_data:
+        comp_legend.append(
+            f'<span class="lg"><span class="sw" style="background:{r["color"]};"></span>{safe(r["name"])}</span>'
+        )
+
+    # --- GP margin bars per segment
+    gm_bars = []
+    for r in rows_data:
+        bar_w = (r["gm"] / 100) * 100  # scale to 100% width
+        # Color intensity by margin level
+        if r["gm"] >= 75:
+            tone = "#2d5016"
+        elif r["gm"] >= 55:
+            tone = "#4a7c30"
+        elif r["gm"] >= 40:
+            tone = "#c08a2e"
+        else:
+            tone = "#b91c1c"
+        gm_bars.append(f"""<div class="stack-row" style="padding:8px 0;">
+  <div class="stack-label" style="flex:0 0 180px;font-size:12.5px;">{safe(r["name"])}</div>
+  <div class="stack-bar" style="height:22px;background:#f5f3ec;flex:1;">
+    <div class="stack-seg" style="width:{bar_w:.1f}%;background:{tone};font-size:11px;justify-content:flex-end;padding-right:8px;">{r["gm"]:.1f}%</div>
+  </div>
+  <div class="stack-total" style="flex:0 0 130px;">GP Rp {fmt_bn(r["gp"]).replace(" bn","bn")}</div>
+</div>""")
+
+    # --- Overall headline KPI tile
+    tot_gp = tot_rev - tot_cogs
+    tot_gm = (tot_gp / tot_rev * 100)
+    # Highest + lowest margin
+    sorted_by_gm = sorted(rows_data, key=lambda r: -r["gm"])
+    best = sorted_by_gm[0]
+    worst = sorted_by_gm[-1]
+
+    return f"""
+<div class="kpi-strip" style="margin-bottom: 18px;">
+  <div class="kpi-tile accent-green">
+    <div class="kpi-cap">PIPG 4-Seg 합계 (FY23)</div>
+    <div class="kpi-val">{tot_gm:.1f}%<span style="font-size:13px;color:var(--muted);">GP</span></div>
+    <div class="kpi-sub">매출 Rp {fmt_bn(tot_rev).replace(" bn","bn")} · GP Rp {fmt_bn(tot_gp).replace(" bn","bn")}</div>
+  </div>
+  <div class="kpi-tile accent-green">
+    <div class="kpi-cap">최고 마진 segment</div>
+    <div class="kpi-val small">{safe(best["name"])}</div>
+    <div class="kpi-sub kpi-trend up">GP margin <strong>{best["gm"]:.1f}%</strong> · 매출 비중 {best["share"]:.1f}%</div>
+    <div class="kpi-sub">신규 회원/연회비 → 거의 순이익에 가까움 (소액 COGS)</div>
+  </div>
+  <div class="kpi-tile accent-warn">
+    <div class="kpi-cap">최저 마진 segment</div>
+    <div class="kpi-val small">{safe(worst["name"])}</div>
+    <div class="kpi-sub kpi-trend down">GP margin <strong>{worst["gm"]:.1f}%</strong> · 매출 비중 {worst["share"]:.1f}%</div>
+    <div class="kpi-sub">F&amp;B 본질적 cost structure — 식자재 + 직원 + 유틸리티</div>
+  </div>
+</div>
+
+<h4 class="ops-block-h">Segment별 매출 mix (100% stacked, FY23)</h4>
+<div class="stack-block">
+  <div class="stack-row">
+    <div class="stack-label" style="flex:0 0 80px;"><span class="ticker-mini">PIPG</span></div>
+    <div class="stack-bar" style="height:34px;">{''.join(composition)}</div>
+    <div class="stack-total">Rp {fmt_bn(tot_rev).replace(" bn","bn")}</div>
+  </div>
+  <div class="stack-legend">{''.join(comp_legend)}</div>
+</div>
+
+<h4 class="ops-block-h" style="margin-top: 20px;">Segment별 GP Margin (FY23)</h4>
+<div class="stack-block">
+  <p class="src-line" style="margin: 4px 2px 8px;">바 너비 = GP margin (0~100%) · 색: 진한 녹색 ≥75%, 녹색 ≥55%, 갈색 ≥40%, 빨강 &lt;40%</p>
+  {''.join(gm_bars)}
+</div>"""
+
+
 def _pipg_segment_table() -> str:
     """PIPG 4-segment GP margin breakdown (FY2023, Note 30)."""
     rows = []
@@ -2573,6 +2684,7 @@ def section_ops() -> str:
     per_hole_table = _per_hole_metrics_table()
     per_hole_visual = _per_hole_visual_section()
     pipg_seg_table = _pipg_segment_table()
+    pipg_seg_visual = _pipg_segment_visual()
     dividend_table = _dividend_compare_table()
 
     rev_blocks = "\n".join(filter(None, [
@@ -2796,7 +2908,11 @@ def section_ops() -> str:
         Note 27 (revenue 11라인) · Note 28 (COGS 11라인)과는 다른 segment 차원의 cut.
         Membership 부문의 GP margin이 압도적 높음.
       </p>
-      {pipg_seg_table}
+      {pipg_seg_visual}
+      <details style="margin: 14px 0 4px;">
+        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 segment 표 (IDR 절댓값)</summary>
+        {pipg_seg_table}
+      </details>
       <div class="banner info">
         <strong>FY2023 PIPG segment GP margin 인사이트:</strong>
         <strong>Membership & Enrollment</strong> 87.8% — 신규 회원/연회비 수익은 거의 순이익에 가까움 (소액 COGS) ·
