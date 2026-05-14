@@ -3314,7 +3314,7 @@ def _per_hole_bar_chart(metric_key: str, title: str, unit: str = "/홀") -> str:
 </div>""")
 
     return f"""<div class="ops-block">
-  <h4 class="ops-block-h">{safe(title)} <span class="muted" style="font-weight:400;font-size:12px;">— {unit}, FY2024</span></h4>
+  <h4 class="ops-block-h">{safe(title)} <span class="muted" style="font-weight:400;font-size:12px;">FY2024</span></h4>
   <div class="stack-block">
     {''.join(bars)}
   </div>
