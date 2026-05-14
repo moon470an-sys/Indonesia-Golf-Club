@@ -4765,26 +4765,22 @@ def section_ops_kpi() -> str:
         <div class="insight-card insight-positive">
           <div class="insight-tag"><span class="ticker-mini">DMIG</span> 회복 모멘텀</div>
           <div class="insight-metric up">+372<span class="u">%</span></div>
-          <div class="insight-title">Range@PIK 매출 FY22→23</div>
-          <p>골프테인먼트(driving range + entertainment) 신규 시설이 회복기 핵심 driver. 본업 골프 +29.12% 동시.</p>
+          <div class="insight-title">Range@PIK 매출 FY22→23 {_info_tip('골프테인먼트(driving range + entertainment) 신규 시설이 회복기 핵심 driver. 본업 골프 +29.12% 동시.', 'tip-l')}</div>
         </div>
         <div class="insight-card insight-positive">
           <div class="insight-tag"><span class="ticker-mini">PIPG</span> 골퍼 8% 성장</div>
           <div class="insight-metric up">26,551<span class="u">명</span></div>
-          <div class="insight-title">FY22 member golfer +8% YoY</div>
-          <p>회원 충성도(+8%) + non-member 40,987명 동시 확보. CBD 5분 + 브랜드(1976)로 mature operator 입증.</p>
+          <div class="insight-title">FY22 member golfer +8% YoY {_info_tip('회원 충성도(+8%) + non-member 40,987명 동시 확보. CBD 5분 + 브랜드(1976)로 mature operator 입증.', 'tip-l')}</div>
         </div>
         <div class="insight-card insight-warn">
           <div class="insight-tag"><span class="ticker-mini">GOLF</span> 고객 집중도 risk</div>
           <div class="insight-metric down">34<span class="u">%</span></div>
-          <div class="insight-title">단일 고객 매출 비중</div>
-          <p>FY24 IDR 34.7bn 단일 고객 의존. CWIP 426bn 진행 중 — 신규 시설 완공 후 매출 분산 필요.</p>
+          <div class="insight-title">단일 고객 매출 비중 {_info_tip('FY24 IDR 34.7bn 단일 고객 의존. CWIP 426bn 진행 중 — 신규 시설 완공 후 매출 분산 필요.', 'tip-l')}</div>
         </div>
         <div class="insight-card insight-positive">
           <div class="insight-tag"><span class="ticker-mini">PIPG</span> 배당 안정성</div>
           <div class="insight-metric up">46.9<span class="u">%</span></div>
-          <div class="insight-title">FY23 payout ratio</div>
-          <p>주당 Rp 20.20M · RUPST 2024-06-06. DMIG 37.2% · SMDM 0% (BSDE 인수 직전) — 3-peer 차별화.</p>
+          <div class="insight-title">FY23 payout ratio {_info_tip('주당 Rp 20.20M · RUPST 2024-06-06. DMIG 37.2% · SMDM 0% (BSDE 인수 직전) — 3-peer 차별화.', 'tip-l')}</div>
         </div>
       </div>
     </div>
