@@ -160,6 +160,18 @@ def safe(s) -> str:
     return html.escape(str(s)) if s is not None else ""
 
 
+def _insight(body: str, kind: str = "", label: str = "핵심 해설") -> str:
+    """Collapsible insight callout — narrative hidden behind a click trigger."""
+    icon = "⚠" if "warn" in kind else "→"
+    cls = f"insight-callout {kind}".strip()
+    return (
+        f'<details class="{cls}">'
+        f'<summary><span class="ic-icon">{icon}</span>{safe(label)}</summary>'
+        f'<div class="ic-body">{body}</div>'
+        f'</details>'
+    )
+
+
 def _info_tip(text: str, edge: str = "") -> str:
     """Inline hover/focus tooltip — keeps supplementary narrative off the main surface.
 
@@ -4781,10 +4793,7 @@ def section_ops_kpi() -> str:
       <h2 data-num="01">운영 KPI 시계열 — 대시보드</h2>
       <h3>골퍼·회원·인력·CWIP 6-tile sparkline 대시보드</h3>
       {ops_kpi_dashboard}
-      <div class="insight-callout">
-        <span class="ic-icon">→</span>
-        <span class="ic-body">DMIG는 <strong>회복기 신규 시설 (Range@PIK +372%)</strong>로 매출 driver, PIPG는 <strong>4년 골퍼 트래픽 안정 성장</strong>으로 mature operator 입증. GOLF는 <strong>FY25 매출 target +24.66% beat + CWIP 426bn</strong> 동시 — 자본 효율과 확장 양립.</span>
-      </div>
+      {_insight('DMIG는 <strong>회복기 신규 시설 (Range@PIK +372%)</strong>로 매출 driver, PIPG는 <strong>4년 골퍼 트래픽 안정 성장</strong>으로 mature operator 입증. GOLF는 <strong>FY25 매출 target +24.66% beat + CWIP 426bn</strong> 동시 — 자본 효율과 확장 양립.')}
     </div>
 
     <div class="section" id="kpi-timeseries">
@@ -4821,10 +4830,7 @@ def section_ops_kpi() -> str:
       <h2 data-num="07">6-peer 골프 segment — 매출 × GP × 비중</h2>
       <h3>bubble scatter (FY2024) — 4-사분면 분류</h3>
       {segment_scatter}
-      <div class="insight-callout">
-        <span class="ic-icon">→</span>
-        <span class="ic-body">★ <strong>Pure-play winner</strong> = GOLF (47% 비중, 65.7% GP) · ▲ <strong>Hidden gem</strong> = MDLN/KIJA (낮은 비중, 중간 GP) · ▼ <strong>Peripheral &amp; weak</strong> = SMDM (낮은 GP). DMIG/PIPG는 분류 기준이 entity-wide라 비교 주의.</span>
-      </div>
+      {_insight('★ <strong>Pure-play winner</strong> = GOLF (47% 비중, 65.7% GP) · ▲ <strong>Hidden gem</strong> = MDLN/KIJA (낮은 비중, 중간 GP) · ▼ <strong>Peripheral &amp; weak</strong> = SMDM (낮은 GP). DMIG/PIPG는 분류 기준이 entity-wide라 비교 주의.', label='4-사분면 분류 해설')}
       <details class="orig-toggle"><summary>원본 6-peer 표</summary>
         {golf_segment_table}
       </details>
@@ -4834,10 +4840,7 @@ def section_ops_kpi() -> str:
       <h2 data-num="08">배당 시계열 — 3-peer capital allocation</h2>
       <h3>FY22-24 + payout ratio + RUPST 날짜</h3>
       {dividend_visual}
-      <div class="insight-callout">
-        <span class="ic-icon">→</span>
-        <span class="ic-body">동일한 ~26bn 배당이라도 <strong>PIPG는 순이익의 47%</strong> (적극 환원), <strong>DMIG는 37%</strong> (재투자 여력 보존). <strong>SMDM은 0%</strong> — BSDE 인수 직전 working capital 확보. capital allocation 철학이 갈림.</span>
-      </div>
+      {_insight('동일한 ~26bn 배당이라도 <strong>PIPG는 순이익의 47%</strong> (적극 환원), <strong>DMIG는 37%</strong> (재투자 여력 보존). <strong>SMDM은 0%</strong> — BSDE 인수 직전 working capital 확보. capital allocation 철학이 갈림.')}
       <details class="orig-toggle"><summary>원본 배당 표</summary>
         {dividend_table}
       </details>
@@ -4847,10 +4850,7 @@ def section_ops_kpi() -> str:
       <h2 data-num="09">관계사·고객·공급사 집중도</h2>
       <h3>annual report Note에서 추출한 audit-grade 정량 정보</h3>
       {related_party_visual}
-      <div class="insight-callout warn">
-        <span class="ic-icon">⚠</span>
-        <span class="ic-body">집중도 risk가 가장 높은 곳은 <strong>GOLF (단일 고객 34%)</strong>. PIPG는 <strong>MKPI(related party)에 토지·풀 임차 의존</strong> — cross-default 시 운영 차질 가능. 신규 코스는 고객/공급사 분산 + 토지 자체 보유가 안전.</span>
-      </div>
+      {_insight('집중도 risk가 가장 높은 곳은 <strong>GOLF (단일 고객 34%)</strong>. PIPG는 <strong>MKPI(related party)에 토지·풀 임차 의존</strong> — cross-default 시 운영 차질 가능. 신규 코스는 고객/공급사 분산 + 토지 자체 보유가 안전.', kind='warn', label='집중도 risk 해설')}
       <details class="orig-toggle"><summary>원본 상세 표</summary>
         {related_party_section}
       </details>
