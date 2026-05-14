@@ -1887,6 +1887,180 @@ def _per_hole_metrics_table() -> str:
 </div>"""
 
 
+def _sparkline_svg(values, color="#2d5016", width=140, height=36, fill=True) -> str:
+    """Generate inline SVG sparkline from a list of (label, value) pairs.
+
+    None values are skipped. Returns "" if fewer than 2 valid points.
+    """
+    pts = [(lab, v) for lab, v in values if v is not None]
+    if len(pts) < 2:
+        return ""
+    vals = [v for _, v in pts]
+    vmin, vmax = min(vals), max(vals)
+    rng = vmax - vmin if vmax > vmin else max(vmax * 0.1, 1)
+    pad = 4
+    inner_w = width - 2 * pad
+    inner_h = height - 2 * pad
+    n = len(pts)
+    coords = []
+    for i, (_, v) in enumerate(pts):
+        x = pad + (inner_w * (i / (n - 1)))
+        y = pad + inner_h - (inner_h * ((v - vmin) / rng))
+        coords.append((x, y))
+    pts_str = " ".join(f"{x:.1f},{y:.1f}" for x, y in coords)
+    fill_path = ""
+    if fill:
+        first_x, _ = coords[0]
+        last_x, _ = coords[-1]
+        fill_path = (
+            f'<polygon points="{first_x:.1f},{height - pad} {pts_str} {last_x:.1f},{height - pad}" '
+            f'fill="{color}" opacity="0.13"/>'
+        )
+    # Points
+    dots = "".join(
+        f'<circle cx="{x:.1f}" cy="{y:.1f}" r="2" fill="{color}"/>'
+        for x, y in coords
+    )
+    # Labels (first + last + min/max)
+    last_x, last_y = coords[-1]
+    last_val = pts[-1][1]
+    label_text = f"{last_val:,.0f}" if last_val >= 100 else f"{last_val:.1f}"
+    return (
+        f'<svg viewBox="0 0 {width} {height}" width="{width}" height="{height}" '
+        f'xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;">'
+        f'{fill_path}'
+        f'<polyline fill="none" stroke="{color}" stroke-width="1.8" '
+        f'points="{pts_str}"/>'
+        f'{dots}'
+        f'</svg>'
+    )
+
+
+def _ops_kpi_dashboard() -> str:
+    """Visual KPI dashboard tile strip — sparklines + headline numbers for each peer."""
+
+    dmig = OPS_KPI_EVIDENCE["DMIG"]
+    pipg = OPS_KPI_EVIDENCE["PIPG"]
+    golf = OPS_KPI_EVIDENCE["GOLF"]
+
+    # DMIG headcount 시계열 — FY21-23
+    hc_dmig = [
+        ("FY21", dmig["headcount"]["FY2021"]),
+        ("FY22", dmig["headcount"]["FY2022"]),
+        ("FY23", dmig["headcount"]["FY2023"]),
+    ]
+    hc_spark = _sparkline_svg(hc_dmig, color="#c08a2e", width=180, height=44)
+
+    # DMIG The Range@PIK — FY22→FY23
+    range_y = dmig["the_range_revenue"]
+    range_spark_vals = [("FY22", range_y.get("FY2022")), ("FY23", range_y.get("FY2023"))]
+    range_y22 = range_y.get("FY2022") or 0
+    range_y23 = range_y.get("FY2023") or 0
+    range_growth = ((range_y23 / range_y22) - 1) * 100 if range_y22 else None
+
+    # PIPG rounds played 4-year
+    rp = pipg["rounds_played"]
+    pipg_rounds = [
+        ("FY21", rp.get("FY2021")),
+        ("FY22", rp.get("FY2022")),
+        ("FY23", rp.get("FY2023")),
+        ("FY24", rp.get("FY2024")),
+    ]
+    pipg_spark = _sparkline_svg(pipg_rounds, color="#2d5016", width=200, height=48)
+    pipg_latest = rp.get("FY2024") or 0
+    pipg_first = rp.get("FY2021") or 0
+    pipg_total_growth = ((pipg_latest / pipg_first) - 1) * 100 if pipg_first else None
+
+    # PIPG headcount by dept — top 5 bars
+    hc_pipg = pipg["headcount_by_dept_FY2024"]
+    dept_pairs = sorted(
+        [(k, v) for k, v in hc_pipg.items() if isinstance(v, int)],
+        key=lambda kv: -kv[1],
+    )[:5]
+    pipg_total = sum(v for _, v in dept_pairs)
+    pipg_dept_bars = []
+    for dept, n in dept_pairs:
+        pct = n / pipg_total * 100 if pipg_total else 0
+        pipg_dept_bars.append(
+            f'<div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--ink-soft);">'
+            f'<span style="flex:0 0 70px;">{safe(dept)[:8]}</span>'
+            f'<span style="flex:1;height:6px;background:var(--line);border-radius:3px;overflow:hidden;">'
+            f'<span style="display:block;width:{pct:.0f}%;height:100%;background:#2d5016;"></span></span>'
+            f'<span style="flex:0 0 22px;text-align:right;font-weight:600;">{n}</span></div>'
+        )
+
+    # GOLF CWIP composition
+    cwip = golf["capex_fy2025"]
+    bld = cwip.get("construction_buildings_idr") or 0
+    ls = cwip.get("construction_landscape_idr") or 0
+    cwip_total = bld + ls
+    bld_pct = (bld / cwip_total * 100) if cwip_total else 0
+    ls_pct = (ls / cwip_total * 100) if cwip_total else 0
+
+    # GOLF target beat
+    tb = golf["fy2025_golf_target_beat"]
+    target = tb.get("target_idr") or 0
+    actual = tb.get("fy2025_golf_revenue_idr") or 0
+    beat_pct = tb.get("beat_pct") or 0
+
+    return f"""<div class="kpi-strip" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+
+  <div class="kpi-tile accent-warn">
+    <div class="kpi-cap">DMIG · 직원 수 (FY21-23)</div>
+    <div style="display:flex; align-items:center; gap:12px; margin: 4px 0;">
+      {hc_spark}
+      <div>
+        <div class="kpi-val small">{dmig['headcount']['FY2023']}<span style="font-size:11px;color:var(--muted);">명</span></div>
+        <div class="kpi-sub kpi-trend down">FY21→23 -39.8%</div>
+      </div>
+    </div>
+    <div class="kpi-sub">코로나 회복기 -42.7% (342→196) 후 +5.1% 회복</div>
+  </div>
+
+  <div class="kpi-tile accent-green">
+    <div class="kpi-cap">DMIG · Range@PIK 매출</div>
+    <div class="kpi-val small">{fmt_bn(range_y23)}</div>
+    <div class="kpi-sub kpi-trend up">FY22→23 {range_growth:+.1f}%</div>
+    <div class="kpi-sub">골프테인먼트 (driving range + entertainment) 신규 시설</div>
+  </div>
+
+  <div class="kpi-tile accent-green">
+    <div class="kpi-cap">PIPG · 골퍼 시계열 4Y</div>
+    <div style="display:flex; align-items:center; gap:12px; margin: 4px 0;">
+      {pipg_spark}
+    </div>
+    <div class="kpi-val small">{pipg_latest:,}<span style="font-size:11px;color:var(--muted);">명</span></div>
+    <div class="kpi-sub kpi-trend up">FY21→24 {pipg_total_growth:+.1f}%</div>
+  </div>
+
+  <div class="kpi-tile accent-blue">
+    <div class="kpi-cap">PIPG · 부서별 인원 mix (FY24)</div>
+    <div style="display:flex; flex-direction:column; gap:4px; margin: 6px 0;">
+      {''.join(pipg_dept_bars)}
+    </div>
+    <div class="kpi-sub">총 {pipg_total}명 (top-5 부서)</div>
+  </div>
+
+  <div class="kpi-tile accent-warn">
+    <div class="kpi-cap">GOLF · CWIP 구성 (FY25 진행 중)</div>
+    <div class="kpi-val small">{fmt_bn(cwip_total)}</div>
+    <div class="stack-bar" style="height:14px;margin:6px 0;background:var(--line);">
+      <div class="stack-seg" style="width:{bld_pct:.1f}%;background:#92400e;font-size:9px;">건물 {bld_pct:.0f}%</div>
+      <div class="stack-seg" style="width:{ls_pct:.1f}%;background:#4a7c30;font-size:9px;">조경 {ls_pct:.0f}%</div>
+    </div>
+    <div class="kpi-sub">Buildings {fmt_bn(bld)} + Landscape {fmt_bn(ls)}</div>
+  </div>
+
+  <div class="kpi-tile accent-green">
+    <div class="kpi-cap">GOLF · FY25 매출 target 달성</div>
+    <div class="kpi-val small">{fmt_bn(actual)}</div>
+    <div class="kpi-sub kpi-trend up">vs target {fmt_bn(target)} · <strong>{beat_pct*100:+.1f}%</strong> beat</div>
+    <div class="kpi-sub">자본투자 강도 + 매출 동시 달성</div>
+  </div>
+
+</div>"""
+
+
 def _ops_kpi_section() -> str:
     """Operational KPI time series — rounds played, members, headcount, sub-revenues."""
     cards = []
@@ -2268,6 +2442,7 @@ def section_ops() -> str:
     opex_norm_bars = _opex_norm_bar_table()
     related_party_section = _related_party_and_lease_section()
     ops_kpi_section = _ops_kpi_section()
+    ops_kpi_dashboard = _ops_kpi_dashboard()
     per_hole_table = _per_hole_metrics_table()
     pipg_seg_table = _pipg_segment_table()
     dividend_table = _dividend_compare_table()
@@ -2551,7 +2726,14 @@ def section_ops() -> str:
         Note (재무제표 주석)에 없는 운영 지표 — 골퍼 수, 회원 수, 부서별 인원, 진행 중 자본투자 — 를 AR 본문에서 직접 추출.
         <strong>벡터 검색 (multilingual-e5-small / 99,618 chunks)</strong>로 동일 fact를 여러 인덱스 페이지에서 cross-validate.
       </p>
-      {ops_kpi_section}
+
+      <h4 class="ops-block-h">한눈에 — KPI 대시보드 (sparkline + 시각 요약)</h4>
+      {ops_kpi_dashboard}
+
+      <details style="margin: 18px 0 4px;">
+        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 상세 데이터 — 출처 페이지 + narrative</summary>
+        {ops_kpi_section}
+      </details>
     </div>
 
     <div class="section" id="dividend">

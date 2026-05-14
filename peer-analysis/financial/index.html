@@ -975,7 +975,68 @@
         Note (재무제표 주석)에 없는 운영 지표 — 골퍼 수, 회원 수, 부서별 인원, 진행 중 자본투자 — 를 AR 본문에서 직접 추출.
         <strong>벡터 검색 (multilingual-e5-small / 99,618 chunks)</strong>로 동일 fact를 여러 인덱스 페이지에서 cross-validate.
       </p>
-      <div class="ops-block">
+
+      <h4 class="ops-block-h">한눈에 — KPI 대시보드 (sparkline + 시각 요약)</h4>
+      <div class="kpi-strip" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+
+  <div class="kpi-tile accent-warn">
+    <div class="kpi-cap">DMIG · 직원 수 (FY21-23)</div>
+    <div style="display:flex; align-items:center; gap:12px; margin: 4px 0;">
+      <svg viewBox="0 0 180 44" width="180" height="44" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;"><polygon points="4.0,40 4.0,4.0 90.0,40.0 176.0,37.5 176.0,40" fill="#c08a2e" opacity="0.13"/><polyline fill="none" stroke="#c08a2e" stroke-width="1.8" points="4.0,4.0 90.0,40.0 176.0,37.5"/><circle cx="4.0" cy="4.0" r="2" fill="#c08a2e"/><circle cx="90.0" cy="40.0" r="2" fill="#c08a2e"/><circle cx="176.0" cy="37.5" r="2" fill="#c08a2e"/></svg>
+      <div>
+        <div class="kpi-val small">206<span style="font-size:11px;color:var(--muted);">명</span></div>
+        <div class="kpi-sub kpi-trend down">FY21→23 -39.8%</div>
+      </div>
+    </div>
+    <div class="kpi-sub">코로나 회복기 -42.7% (342→196) 후 +5.1% 회복</div>
+  </div>
+
+  <div class="kpi-tile accent-green">
+    <div class="kpi-cap">DMIG · Range@PIK 매출</div>
+    <div class="kpi-val small">31.4bn</div>
+    <div class="kpi-sub kpi-trend up">FY22→23 +372.7%</div>
+    <div class="kpi-sub">골프테인먼트 (driving range + entertainment) 신규 시설</div>
+  </div>
+
+  <div class="kpi-tile accent-green">
+    <div class="kpi-cap">PIPG · 골퍼 시계열 4Y</div>
+    <div style="display:flex; align-items:center; gap:12px; margin: 4px 0;">
+      <svg viewBox="0 0 200 48" width="200" height="48" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;"><polygon points="4.0,44 4.0,44.0 68.0,23.4 132.0,4.0 196.0,20.8 196.0,44" fill="#2d5016" opacity="0.13"/><polyline fill="none" stroke="#2d5016" stroke-width="1.8" points="4.0,44.0 68.0,23.4 132.0,4.0 196.0,20.8"/><circle cx="4.0" cy="44.0" r="2" fill="#2d5016"/><circle cx="68.0" cy="23.4" r="2" fill="#2d5016"/><circle cx="132.0" cy="4.0" r="2" fill="#2d5016"/><circle cx="196.0" cy="20.8" r="2" fill="#2d5016"/></svg>
+    </div>
+    <div class="kpi-val small">26,805<span style="font-size:11px;color:var(--muted);">명</span></div>
+    <div class="kpi-sub kpi-trend up">FY21→24 +9.4%</div>
+  </div>
+
+  <div class="kpi-tile accent-blue">
+    <div class="kpi-cap">PIPG · 부서별 인원 mix (FY24)</div>
+    <div style="display:flex; flex-direction:column; gap:4px; margin: 6px 0;">
+      <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--ink-soft);"><span style="flex:0 0 70px;">F&amp;B</span><span style="flex:1;height:6px;background:var(--line);border-radius:3px;overflow:hidden;"><span style="display:block;width:42%;height:100%;background:#2d5016;"></span></span><span style="flex:0 0 22px;text-align:right;font-weight:600;">86</span></div><div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--ink-soft);"><span style="flex:0 0 70px;">Membersh</span><span style="flex:1;height:6px;background:var(--line);border-radius:3px;overflow:hidden;"><span style="display:block;width:18%;height:100%;background:#2d5016;"></span></span><span style="flex:0 0 22px;text-align:right;font-weight:600;">36</span></div><div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--ink-soft);"><span style="flex:0 0 70px;">Golf Ope</span><span style="flex:1;height:6px;background:var(--line);border-radius:3px;overflow:hidden;"><span style="display:block;width:15%;height:100%;background:#2d5016;"></span></span><span style="flex:0 0 22px;text-align:right;font-weight:600;">30</span></div><div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--ink-soft);"><span style="flex:0 0 70px;">Gym</span><span style="flex:1;height:6px;background:var(--line);border-radius:3px;overflow:hidden;"><span style="display:block;width:14%;height:100%;background:#2d5016;"></span></span><span style="flex:0 0 22px;text-align:right;font-weight:600;">29</span></div><div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--ink-soft);"><span style="flex:0 0 70px;">Driving </span><span style="flex:1;height:6px;background:var(--line);border-radius:3px;overflow:hidden;"><span style="display:block;width:11%;height:100%;background:#2d5016;"></span></span><span style="flex:0 0 22px;text-align:right;font-weight:600;">22</span></div>
+    </div>
+    <div class="kpi-sub">총 203명 (top-5 부서)</div>
+  </div>
+
+  <div class="kpi-tile accent-warn">
+    <div class="kpi-cap">GOLF · CWIP 구성 (FY25 진행 중)</div>
+    <div class="kpi-val small">425.7bn</div>
+    <div class="stack-bar" style="height:14px;margin:6px 0;background:var(--line);">
+      <div class="stack-seg" style="width:44.1%;background:#92400e;font-size:9px;">건물 44%</div>
+      <div class="stack-seg" style="width:55.9%;background:#4a7c30;font-size:9px;">조경 56%</div>
+    </div>
+    <div class="kpi-sub">Buildings 187.9bn + Landscape 237.8bn</div>
+  </div>
+
+  <div class="kpi-tile accent-green">
+    <div class="kpi-cap">GOLF · FY25 매출 target 달성</div>
+    <div class="kpi-val small">101.9bn</div>
+    <div class="kpi-sub kpi-trend up">vs target 81.8bn · <strong>+24.7%</strong> beat</div>
+    <div class="kpi-sub">자본투자 강도 + 매출 동시 달성</div>
+  </div>
+
+</div>
+
+      <details style="margin: 18px 0 4px;">
+        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 상세 데이터 — 출처 페이지 + narrative</summary>
+        <div class="ops-block">
   <h4 class="ops-block-h">DMIG — 골퍼 / 회원 / 인력 시계열</h4>
   <div class="kv-grid">
     <div class="kv">
@@ -1062,6 +1123,7 @@
     </div>
   </div>
 </div>
+      </details>
     </div>
 
     <div class="section" id="dividend">
@@ -1416,7 +1478,7 @@
 <footer class="foot">
   <div class="wrap">
     <p>
-      <strong>골프장 운영 Peer 비교 사이트</strong> — Build 2026-05-14 (commit <code>e7c86de</code>) ·
+      <strong>골프장 운영 Peer 비교 사이트</strong> — Build 2026-05-14 (commit <code>53f88a1</code>) ·
       Ops 탭 19개 분석 섹션 ·
       데이터: raw_peer_data/*.csv (last verified 2026-04-29 ~ 2026-05-07) + AR Note 직접 추출 + 벡터 검색 (99,618 chunks) ·
       추정/보간 없음. 미공시는 N/A로 표기.
