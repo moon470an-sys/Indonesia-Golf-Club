@@ -4429,6 +4429,10 @@ def section_ops_kpi() -> str:
       <h2 data-num="01">운영 KPI 시계열 — 대시보드</h2>
       <h3>골퍼·회원·인력·CWIP 6-tile sparkline 대시보드</h3>
       {ops_kpi_dashboard}
+      <div class="insight-callout">
+        <span class="ic-icon">→</span>
+        <span class="ic-body">DMIG는 <strong>회복기 신규 시설 (Range@PIK +372%)</strong>로 매출 driver, PIPG는 <strong>4년 골퍼 트래픽 안정 성장</strong>으로 mature operator 입증. GOLF는 <strong>FY25 매출 target +24.66% beat + CWIP 426bn</strong> 동시 — 자본 효율과 확장 양립.</span>
+      </div>
     </div>
 
     <div class="section" id="kpi-timeseries">
@@ -4474,6 +4478,10 @@ def section_ops_kpi() -> str:
       <h2 data-num="07">6-peer 골프 segment — 매출 × GP × 비중</h2>
       <h3>bubble scatter (FY2024) — 4-사분면 분류</h3>
       {segment_scatter}
+      <div class="insight-callout">
+        <span class="ic-icon">→</span>
+        <span class="ic-body">★ <strong>Pure-play winner</strong> = GOLF (47% 비중, 65.7% GP) · ▲ <strong>Hidden gem</strong> = MDLN/KIJA (낮은 비중, 중간 GP) · ▼ <strong>Peripheral &amp; weak</strong> = SMDM (낮은 GP). DMIG/PIPG는 분류 기준이 entity-wide라 비교 주의.</span>
+      </div>
       <details class="orig-toggle"><summary>원본 6-peer 표</summary>
         {golf_segment_table}
       </details>
@@ -4593,10 +4601,13 @@ def section_capex() -> str:
       <h2 data-num="01">자본투자 강도 heatmap — 감가·유지·자산집약도</h2>
       <h3>Audited CAPEX 미공시 → P&L proxy + B/S proxy로 추정 (FY24)</h3>
       <p class="lede">
-        CAPEX 직접 공시는 없으나 (1) 감가상각비/매출 (2) 유지보수/매출 (3) 총자산/매출 — 3개 indicator로 자본투자 강도 추정.
-        Heatmap 색 진할수록 강도 ↑ · FY23→24 trend 화살표 (▲/▼ pp delta).
+        CAPEX 직접 공시는 없으나 (1) 감가상각/매출 (2) 유지/매출 (3) 총자산/매출 — 3개 indicator로 자본투자 강도 추정. 색 진할수록 강도 ↑.
       </p>
       {capex_heatmap}
+      <div class="insight-callout warn">
+        <span class="ic-icon">⚠</span>
+        <span class="ic-body">DMIG는 감가 <strong>12.2% (peer 최고) + FY23→24 ▲</strong>로 신규 시설 부담 가속 · PIPG는 유지보수 <strong>5.9% (DMIG의 6.5배)</strong>로 노후 코스 maintenance 비용 ·  GOLF는 모든 면에서 lean하나 향후 CWIP 426bn 완공 시 급증 예고.</span>
+      </div>
       <details class="orig-toggle"><summary>원본 CAPEX proxy 표</summary>
         {capex_proxy_table}
       </details>
@@ -4610,8 +4621,12 @@ def section_capex() -> str:
 
     <div class="section" id="cap-cwip">
       <h2 data-num="03">GOLF CWIP detail — 6 카테고리 분해</h2>
-      <h3>FY2025 진행 중 자산 426bn의 구성 (Buildings/Landscape/Equipment/Vehicles/Furniture)</h3>
+      <h3>FY2025 진행 중 자산 426bn의 구성</h3>
       {golf_cwip_detail}
+      <div class="insight-callout">
+        <span class="ic-icon">→</span>
+        <span class="ic-body">Landscape <strong>54%</strong> + Buildings <strong>43%</strong> = 신규 코스 시설 확장 시그널. 운영 보조 (Vehicles/Furniture/Equipment) 합계 3% — <strong>매출 확대 목적의 CAPEX</strong>이지 단순 교체가 아님.</span>
+      </div>
     </div>
 
     <div class="section" id="cap-depr">
@@ -4828,12 +4843,11 @@ def section_opex() -> str:
     <div class="section" id="op-category">
       <h2 data-num="05">OpEx 카테고리 deep-dive — 4 핵심 비교</h2>
       <h3>인건비 · 세금·법률 · 유지보수 · 유틸리티 — peer 차이의 본질</h3>
-      <p class="lede">
-        OpEx 합계만 보면 38% vs 21%로 단순하지만, <strong>카테고리별로 들어가면 진짜 차이</strong>가 드러남.
-        DMIG는 인건비 1위, PIPG는 세금·유지 1위, GOLF는 모든 면에서 lean.
-        각 카테고리에서 contributing line items도 inline 표시.
-      </p>
       {opex_category_compare}
+      <div class="insight-callout warn">
+        <span class="ic-icon">⚠</span>
+        <span class="ic-body">PIPG의 <strong>세금·법률 12.3% (24.2bn)</strong>는 단순 outlier가 아닌 <strong>CBD 5분 + HGB 면적의 위치 비용</strong>. 유지보수 <strong>5.9%</strong>는 1976년 노후 코스 + Indonesia Open 토너먼트 hosting 비용. 비싼 위치 + 프리미엄 포지셔닝의 구조적 cost.</span>
+      </div>
     </div>
 
     <div class="section" id="op-4y-trend">
@@ -4864,6 +4878,10 @@ def section_opex() -> str:
       <h2 data-num="09">FY2025 미감사 prelim — 마진 압박 신호</h2>
       <h3>DMIG/PIPG/KPIG 3-peer side-by-side dashboard</h3>
       {fy25_dashboard}
+      <div class="insight-callout">
+        <span class="ic-icon">→</span>
+        <span class="ic-body">FY25 차별 — <strong>PIPG +4% 영업이익 (비용 통제 승리)</strong> vs <strong>DMIG -12% (감가 부담 가속)</strong>. 매출은 둘 다 거의 flat이나 cost discipline이 결정. KPIG는 그룹 매출 +10%지만 golf-only 미공시로 비교 불가.</span>
+      </div>
       <details class="orig-toggle"><summary>원본 카드</summary>
         {fy25_cards}
       </details>

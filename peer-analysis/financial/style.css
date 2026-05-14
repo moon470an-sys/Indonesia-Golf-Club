@@ -979,6 +979,46 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .toc-card.cat-fy25  { border-left-color: #b91c1c; }
 .toc-card.cat-fy25  .toc-tag { color: #b91c1c; }
 
+/* ============== Inline insight callout (after charts) ============== */
+.insight-callout {
+  background: linear-gradient(90deg, #f3faec 0%, var(--surface) 100%);
+  border-left: 3px solid var(--green);
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin: 16px 0 8px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink);
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.insight-callout::before {
+  content: "▎";
+  display: none;
+}
+.insight-callout .ic-icon {
+  flex: 0 0 22px;
+  font-size: 14px;
+  color: var(--green);
+  font-weight: 800;
+  line-height: 1.5;
+}
+.insight-callout .ic-body { flex: 1; }
+.insight-callout strong { color: var(--green); font-weight: 700; }
+.insight-callout.warn {
+  background: linear-gradient(90deg, #fef9e7 0%, var(--surface) 100%);
+  border-left-color: var(--warn);
+}
+.insight-callout.warn .ic-icon { color: var(--warn); }
+.insight-callout.warn strong { color: var(--warn); }
+.insight-callout.neutral {
+  background: linear-gradient(90deg, #f1f5f9 0%, var(--surface) 100%);
+  border-left-color: #8a8a8a;
+}
+.insight-callout.neutral .ic-icon { color: #4b4b4b; }
+.insight-callout.neutral strong { color: #4b4b4b; }
+
 /* ============== Quote callout (vector-DB narrative) ============== */
 .quote-card {
   background: var(--surface);
