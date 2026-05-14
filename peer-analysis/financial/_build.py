@@ -3228,6 +3228,87 @@ def _ops_kpi_section() -> str:
     return "\n".join(cards)
 
 
+def _related_party_visual() -> str:
+    """Visual key-number cards summarizing related-party + lease risks."""
+    cards = []
+
+    # DMIG — key management comp trend
+    rp = (NOTES.get("DMIG", {}) or {}).get("related_party_note") or {}
+    lines = rp.get("lines") or []
+    if lines:
+        # Find total compensation line and % of opex line
+        comp_line = next((ln for ln in lines if "compensation" in (ln.get("en_label") or "").lower() or "imbalan" in (ln.get("id_label") or "").lower()), lines[0])
+        v22 = comp_line.get("FY2022") or 0
+        v23 = comp_line.get("FY2023") or 0
+        v24 = comp_line.get("FY2024") or 0
+        # Sparkline of compensation
+        spark = _sparkline_svg([("FY22", v22), ("FY23", v23), ("FY24", v24)], color="#6b21a8", width=140, height=36)
+        yoy = ((v24 / v23) - 1) * 100 if (v22 and v23 and v24) else None
+        yoy_str = f"{yoy:+.1f}%" if yoy is not None else "—"
+        cards.append(f"""<div class="kpi-tile accent-blue">
+  <div class="kpi-cap"><span class="ticker-mini">DMIG</span> 핵심경영진 보수</div>
+  <div style="display:flex;align-items:center;gap:10px;margin:6px 0;">
+    {spark}
+    <div>
+      <div class="kpi-val small">{fmt_bn(v24)}</div>
+      <div class="kpi-sub kpi-trend {'up' if (yoy and yoy>0) else 'down'}">FY23→24 {yoy_str}</div>
+    </div>
+  </div>
+  <div class="kpi-sub">3년 추이 · Note 26 Related party</div>
+</div>""")
+
+    # PIPG — land profile big numbers
+    profile = (NOTES.get("PIPG", {}) or {}).get("profile") or {}
+    if profile:
+        land_ha = profile.get("land_area_ha_total", 0) or 0
+        certs = profile.get("land_certificates", 0)
+        leased = profile.get("leased_from_mkpi_m2", 0) or 0
+        cards.append(f"""<div class="kpi-tile accent-gold">
+  <div class="kpi-cap"><span class="ticker-mini">PIPG</span> 토지·HGB profile</div>
+  <div class="kpi-val">{land_ha}<span class="u" style="font-size:13px;color:var(--muted);">ha</span></div>
+  <div class="kpi-sub">{certs} 인증서 · HGB {profile.get("hgb_area_m2", 0):,} m²</div>
+  <div class="kpi-sub">MKPI 임차 <strong>{leased:,} m²</strong> ({safe(profile.get("leased_purpose", ""))})</div>
+</div>""")
+
+    # GOLF — customer concentration ALERT
+    rev29 = (NOTES.get("GOLF", {}) or {}).get("revenue_note_29") or {}
+    cc = rev29.get("customer_concentration") or {}
+    if cc:
+        pct24 = (cc.get("pct_of_revenue_FY2024") or 0) * 100
+        pct23 = (cc.get("pct_of_revenue_FY2023") or 0) * 100
+        spark = _sparkline_svg([("FY23", pct23), ("FY24", pct24)], color="#b91c1c", width=100, height=36)
+        cards.append(f"""<div class="kpi-tile accent-warn">
+  <div class="kpi-cap"><span class="ticker-mini">GOLF</span> 고객 집중도 위험</div>
+  <div class="kpi-val down">{pct24:.1f}<span class="u" style="font-size:13px;">%</span></div>
+  <div class="kpi-sub"><strong>{safe(cc.get("name", "—"))}</strong> 단일 고객</div>
+  <div class="kpi-sub">FY24 매출의 {pct24:.1f}% (FY23 {pct23:.1f}%) · {fmt_bn(cc.get("amount_FY2024"))}</div>
+</div>""")
+
+    # MDLN — supplier concentration
+    sup = ((NOTES.get("MDLN", {}) or {}).get("cogs_note_26") or {}).get("supplier_concentration") or {}
+    if sup:
+        cards.append(f"""<div class="kpi-tile">
+  <div class="kpi-cap"><span class="ticker-mini">MDLN</span> 공급사 집중 위험</div>
+  <div class="kpi-val small">{safe(sup.get("name", "—"))}</div>
+  <div class="kpi-sub">FY24 거래액 {fmt_bn(sup.get("amount_FY2024"))}</div>
+  <div class="kpi-sub">전체 COGS 대비 {safe(sup.get("pct_of_total_cogs", "—"))}</div>
+</div>""")
+
+    # PIPG — number of lease/agreement counterparties (count)
+    ag = (NOTES.get("PIPG", {}) or {}).get("agreements_commitments") or {}
+    items = ag.get("items") or []
+    if items:
+        types_count = len(set((it.get("type") or "") for it in items))
+        cards.append(f"""<div class="kpi-tile">
+  <div class="kpi-cap"><span class="ticker-mini">PIPG</span> Lease·약정 건수</div>
+  <div class="kpi-val">{len(items)}</div>
+  <div class="kpi-sub">{types_count} 유형의 약정 (lease/sponsor/관계사)</div>
+  <div class="kpi-sub">Note 32 · 상세는 아래 표 참조</div>
+</div>""")
+
+    return f'<div class="kpi-strip" style="margin-bottom: 18px;">{"".join(cards)}</div>'
+
+
 def _related_party_and_lease_section() -> str:
     """Cards describing related-party transactions and land/lease arrangements."""
     cards = []
@@ -3478,6 +3559,7 @@ def section_ops() -> str:
     opex_stack = _opex_stacked_bars()
     opex_norm_bars = _opex_norm_bar_table()
     related_party_section = _related_party_and_lease_section()
+    related_party_visual = _related_party_visual()
     ops_kpi_section = _ops_kpi_section()
     ops_kpi_dashboard = _ops_kpi_dashboard()
     per_hole_table = _per_hole_metrics_table()
@@ -3884,7 +3966,11 @@ def section_ops() -> str:
         <strong>GOLF</strong>의 고객 집중도 (34%), <strong>MDLN</strong>의 공급사 집중도를 한 자리에 정리.
         cross-default / cross-risk 분석에 핵심.
       </p>
-      {related_party_section}
+      {related_party_visual}
+      <details style="margin: 14px 0 4px;">
+        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 관계사·lease 상세 표 (라인 단위)</summary>
+        {related_party_section}
+      </details>
     </div>
 
     <div class="section" id="fy25">
