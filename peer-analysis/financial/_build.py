@@ -2385,7 +2385,7 @@ def _segment_scatter_svg() -> str:
         x = to_x(r["share"])
         y = to_y(r["gm"])
         r_norm = (r["rev"] or 0) / max_rev
-        radius = 8 + (r_norm ** 0.5) * 28
+        radius = 7 + (r_norm ** 0.5) * 19  # smaller max radius → less overlap in low-share cluster
         color = PEER_COLORS.get(r["ticker"], "#8a8a8a")
         rev_str = fmt_bn(r["rev"]).replace(" bn", "bn")
         bubbles.append(
