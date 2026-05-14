@@ -116,20 +116,21 @@ a:hover { text-decoration: underline; }
 }
 
 /* ============== Section ============== */
-.section { padding: 48px 0; }
+.section { padding: 40px 0 0; }
 .section + .section { padding-top: 0; }
 .section h2 {
-  font-size: 13px; font-weight: 700; letter-spacing: 0.14em;
-  color: var(--muted); text-transform: uppercase;
-  margin: 0 0 8px;
+  font-size: 18px; font-weight: 700; letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: 0 0 6px;
+  line-height: 1.3;
 }
 .section h3 {
-  font-size: 24px; font-weight: 700; line-height: 1.3;
-  color: var(--ink); letter-spacing: -0.018em;
-  margin: 0 0 20px;
+  font-size: 13.5px; font-weight: 500; line-height: 1.5;
+  color: var(--ink-soft); letter-spacing: 0;
+  margin: 0 0 18px;
 }
-.section p { color: var(--ink-soft); font-size: 14.5px; line-height: 1.65; }
-.section p.lede { font-size: 15.5px; max-width: 760px; margin: 0 0 20px; }
+.section p { color: var(--ink-soft); font-size: 14px; line-height: 1.65; }
+.section p.lede { font-size: 14.5px; max-width: 820px; margin: 0 0 18px; }
 
 /* ============== Caveat banners ============== */
 .banner {
@@ -377,12 +378,17 @@ html { scroll-behavior: smooth; }
 /* ============== Ops tab — extended tables ============== */
 .ops-block { margin: 18px 0 28px; }
 .ops-block-h {
-  font-size: 14px; font-weight: 700; color: var(--ink);
-  margin: 0 0 10px; padding: 0;
+  font-size: 14.5px; font-weight: 700; color: var(--ink);
+  margin: 0 0 12px; padding: 0;
   letter-spacing: -0.01em;
+  display: flex; align-items: center; gap: 6px;
 }
 .ops-block-h::before {
-  content: "▸"; color: var(--green); margin-right: 6px; font-size: 11px;
+  content: "";
+  display: inline-block;
+  width: 3px; height: 14px;
+  background: var(--green);
+  border-radius: 2px;
 }
 .tbl-tight th, .tbl-tight td { padding: 9px 12px !important; font-size: 13px; }
 .tbl-tight tbody td { padding: 8px 12px !important; }
@@ -608,11 +614,12 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   margin-bottom: 4px;
 }
 .exec-headline .exec-title {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
-  letter-spacing: -0.01em;
-  margin-bottom: 14px;
+  letter-spacing: -0.015em;
+  margin-bottom: 16px;
   color: white;
+  line-height: 1.25;
 }
 .exec-grid {
   display: grid;
@@ -630,12 +637,13 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   color: rgba(255,255,255,0.65);
 }
 .exec-tile .et-val {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 800;
   color: white;
   font-variant-numeric: tabular-nums;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
+  letter-spacing: -0.025em;
+  line-height: 1;
+  margin: 2px 0 3px;
 }
 .exec-tile .et-val .u {
   font-size: 12px;
@@ -684,16 +692,16 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 22px; height: 22px;
+  width: 26px; height: 26px;
   border-radius: 50%;
-  background: var(--green-tint);
-  color: var(--green);
+  background: linear-gradient(135deg, #4a7c30 0%, #2d5016 100%);
+  color: white;
   font-size: 11px;
   font-weight: 800;
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.02em;
   flex-shrink: 0;
-  border: 1px solid #c8dfb5;
+  box-shadow: 0 2px 4px rgba(45,80,22,0.18);
 }
 .section[id] h2:not([data-num])::before {
   display: none;
@@ -737,12 +745,17 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .viz-cell .viz-bar {
   position: relative;
   display: inline-block;
-  height: 6px;
-  border-radius: 3px;
+  height: 8px;
+  border-radius: 4px;
   background: var(--green);
   vertical-align: middle;
   margin-right: 6px;
-  opacity: 0.85;
+  opacity: 0.92;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+.viz-cell:hover .viz-bar {
+  transform: scaleY(1.25);
+  opacity: 1;
 }
 .viz-cell .viz-num {
   font-variant-numeric: tabular-nums;
@@ -787,9 +800,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   flex: 1;
   height: 28px;
   display: flex;
-  border-radius: 6px;
+  border-radius: 7px;
   overflow: hidden;
-  background: var(--line);
+  background: var(--surface-2);
   position: relative;
   box-shadow: inset 0 0 0 1px var(--line);
 }
@@ -881,18 +894,19 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   transform: translateY(-1px);
   border-color: var(--line-strong);
 }
-.kpi-tile.accent-green { border-top: 3px solid var(--green); }
-.kpi-tile.accent-warn  { border-top: 3px solid var(--warn); }
-.kpi-tile.accent-gold  { border-top: 3px solid var(--accent); }
-.kpi-tile.accent-blue  { border-top: 3px solid #1e40af; }
+.kpi-tile.accent-green { border-top: 3px solid var(--green); background: linear-gradient(180deg, #f3faec 0%, var(--surface) 35%); }
+.kpi-tile.accent-warn  { border-top: 3px solid var(--warn);  background: linear-gradient(180deg, #fef9e7 0%, var(--surface) 35%); }
+.kpi-tile.accent-gold  { border-top: 3px solid var(--accent); background: linear-gradient(180deg, #fff8e6 0%, var(--surface) 35%); }
+.kpi-tile.accent-blue  { border-top: 3px solid #1e40af; background: linear-gradient(180deg, #eef2ff 0%, var(--surface) 35%); }
 .kpi-tile .kpi-cap {
   font-size: 10.5px; font-weight: 700; color: var(--muted);
   text-transform: uppercase; letter-spacing: 0.06em;
 }
 .kpi-tile .kpi-val {
-  font-size: 22px; font-weight: 700; color: var(--ink);
-  font-variant-numeric: tabular-nums; letter-spacing: -0.01em;
-  line-height: 1.1;
+  font-size: 24px; font-weight: 800; color: var(--ink);
+  font-variant-numeric: tabular-nums; letter-spacing: -0.02em;
+  line-height: 1.05;
+  margin: 2px 0;
 }
 .kpi-tile .kpi-val.small { font-size: 17px; }
 .kpi-tile .kpi-sub {
@@ -967,11 +981,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 
 /* ============== Quote callout (vector-DB narrative) ============== */
 .quote-card {
-  background: linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%);
+  background: var(--surface);
   border: 1px solid var(--line);
-  border-left: 3px solid var(--green);
-  border-radius: 8px;
-  padding: 14px 18px 12px 16px;
+  border-left: 4px solid var(--green);
+  border-radius: 10px;
+  padding: 16px 20px 14px 18px;
   margin: 14px 0;
   font-size: 13.5px;
   line-height: 1.6;
