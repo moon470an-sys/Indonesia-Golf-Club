@@ -4950,10 +4950,7 @@ def section_capex() -> str:
       <h2 data-num="01">자본투자 강도 heatmap — 감가·유지·자산집약도</h2>
       <h3>Audited CAPEX 미공시 → P&L proxy + B/S proxy로 추정 (FY24)</h3>
       {capex_heatmap}
-      <div class="insight-callout warn">
-        <span class="ic-icon">⚠</span>
-        <span class="ic-body">DMIG는 감가 <strong>12.2% (peer 최고) + FY23→24 ▲</strong>로 신규 시설 부담 가속 · PIPG는 유지보수 <strong>5.9% (DMIG의 6.5배)</strong>로 노후 코스 maintenance 비용 ·  GOLF는 모든 면에서 lean하나 향후 CWIP 426bn 완공 시 급증 예고.</span>
-      </div>
+      {_insight('DMIG는 감가 <strong>12.2% (peer 최고) + FY23→24 ▲</strong>로 신규 시설 부담 가속 · PIPG는 유지보수 <strong>5.9% (DMIG의 6.5배)</strong>로 노후 코스 maintenance 비용 · GOLF는 모든 면에서 lean하나 향후 CWIP 426bn 완공 시 급증 예고.', kind='warn')}
       <details class="orig-toggle"><summary>원본 CAPEX proxy 표</summary>
         {capex_proxy_table}
       </details>
@@ -4969,10 +4966,7 @@ def section_capex() -> str:
       <h2 data-num="03">GOLF CWIP detail — 6 카테고리 분해</h2>
       <h3>FY2025 진행 중 자산 426bn의 구성</h3>
       {golf_cwip_detail}
-      <div class="insight-callout">
-        <span class="ic-icon">→</span>
-        <span class="ic-body">Landscape <strong>54%</strong> + Buildings <strong>43%</strong> = 신규 코스 시설 확장 시그널. 운영 보조 (Vehicles/Furniture/Equipment) 합계 3% — <strong>매출 확대 목적의 CAPEX</strong>이지 단순 교체가 아님.</span>
-      </div>
+      {_insight('Landscape <strong>54%</strong> + Buildings <strong>43%</strong> = 신규 코스 시설 확장 시그널. 운영 보조 (Vehicles/Furniture/Equipment) 합계 3% — <strong>매출 확대 목적의 CAPEX</strong>이지 단순 교체가 아님.')}
     </div>
 
     <div class="section" id="cap-depr">
@@ -4994,10 +4988,7 @@ def section_capex() -> str:
         entity 절대값 비교는 misleading — 홀 수로 normalize. <strong>ENT</strong> (all-in) vs <strong>SEG</strong> (golf-only) 기준 차이 주의.
       </p>
       {per_hole_visual}
-      <div class="insight-callout">
-        <span class="ic-icon">→</span>
-        <span class="ic-body">진짜 cross-peer 비교는 <strong>SEG (golf segment-only)</strong>: KIJA 4.7 &gt; SMDM 3.5 &gt; MDLN 3.2 &gt; GOLF 2.6bn/홀. ENT 기준 DMIG·PIPG는 F&amp;B·회원권 포함이라 부풀려진 값 — 신규 코스 benchmark는 SEG 라인을 봐야 함.</span>
-      </div>
+      {_insight('진짜 cross-peer 비교는 <strong>SEG (golf segment-only)</strong>: KIJA 4.7 &gt; SMDM 3.5 &gt; MDLN 3.2 &gt; GOLF 2.6bn/홀. ENT 기준 DMIG·PIPG는 F&amp;B·회원권 포함이라 부풀려진 값 — 신규 코스 benchmark는 SEG 라인을 봐야 함.')}
       <details class="orig-toggle"><summary>원본 per-hole 표</summary>
         {per_hole_table}
       </details>
@@ -5007,10 +4998,7 @@ def section_capex() -> str:
       <h2 data-num="07">P&L 4Y 마진 추이 — DMIG · PIPG · GOLF</h2>
       <h3>FY22-25 GP·Op·Net margin trend (감가상각이 영업이익률에 미치는 영향)</h3>
       {pnl_trend}
-      <div class="insight-callout warn">
-        <span class="ic-icon">⚠</span>
-        <span class="ic-body">DMIG는 GP margin은 68-70%로 안정인데 <strong>Op margin이 FY24 31% → FY25 28%로 하락</strong> — 차이는 OpEx(특히 감가). PIPG는 반대로 Op margin이 26→30%로 개선 (비용 통제).</span>
-      </div>
+      {_insight('DMIG는 GP margin은 68-70%로 안정인데 <strong>Op margin이 FY24 31% → FY25 28%로 하락</strong> — 차이는 OpEx(특히 감가). PIPG는 반대로 Op margin이 26→30%로 개선 (비용 통제).', kind='warn')}
       <details class="orig-toggle"><summary>원본 4Y P&amp;L 표</summary>
         {pnl_table}
       </details>
@@ -5020,20 +5008,14 @@ def section_capex() -> str:
       <h2 data-num="08">DMIG vs PIPG — 6축 radar 1:1 비교</h2>
       <h3>매출·마진·CAPEX(감가/유지)·배당·unit econ을 한 차트로</h3>
       {peer_radar}
-      <div class="insight-callout">
-        <span class="ic-icon">→</span>
-        <span class="ic-body">DMIG는 <strong>매출·감가·Op margin</strong> 축에서 크고, PIPG는 <strong>유지보수·매출/홀</strong> 축에서 큼 — 두 pure-play의 전략 차이가 polygon 모양으로 드러남. 배당 payout은 비슷한 수준.</span>
-      </div>
+      {_insight('DMIG는 <strong>매출·감가·Op margin</strong> 축에서 크고, PIPG는 <strong>유지보수·매출/홀</strong> 축에서 큼 — 두 pure-play의 전략 차이가 polygon 모양으로 드러남. 배당 payout은 비슷한 수준.')}
     </div>
 
     <div class="section" id="cap-funnel">
       <h2 data-num="09">P&L Funnel — 매출→Gross→Op→Net leakage</h2>
       <h3>각 단계 % of revenue + leakage % 시각화 (FY24)</h3>
       {pnl_funnel}
-      <div class="insight-callout">
-        <span class="ic-icon">→</span>
-        <span class="ic-body">매출 100%에서 가장 큰 leakage는 <strong>COGS → GP 단계</strong> (30-40%p 빠짐). GP→영업이익 단계의 leakage(OpEx)가 peer 차이의 핵심 — GOLF는 이 단계 leakage가 가장 작아 순이익률 최상위.</span>
-      </div>
+      {_insight('매출 100%에서 가장 큰 leakage는 <strong>COGS → GP 단계</strong> (30-40%p 빠짐). GP→영업이익 단계의 leakage(OpEx)가 peer 차이의 핵심 — GOLF는 이 단계 leakage가 가장 작아 순이익률 최상위.')}
     </div>
 
     <div class="closing-stripe">
@@ -5155,10 +5137,7 @@ def section_opex() -> str:
       <h2 data-num="01">전체 비용 구조 — 한눈에</h2>
       <h3>매출 100% = COGS + OpEx + 영업이익 (FY2024, 3-peer)</h3>
       {full_cost_stack}
-      <div class="insight-callout">
-        <span class="ic-icon">→</span>
-        <span class="ic-body">동일 매출 100%를 어떻게 쓰는가 — <strong>GOLF 영업이익률 39%로 최고</strong> (COGS+OpEx 61%), <strong>DMIG 69% · PIPG 74%</strong>로 비용 비중 큼. 아래 섹션에서 각 블록을 라인 단위로 분해.</span>
-      </div>
+      {_insight('동일 매출 100%를 어떻게 쓰는가 — <strong>GOLF 영업이익률 39%로 최고</strong> (COGS+OpEx 61%), <strong>DMIG 69% · PIPG 74%</strong>로 비용 비중 큼. 아래 섹션에서 각 블록을 라인 단위로 분해.')}
     </div>
 
     <div class="section" id="op-rev">
@@ -5181,10 +5160,7 @@ def section_opex() -> str:
 
       <h4 class="ops-block-h" style="margin-top: 22px;">매출 라인별 GP margin — 어느 라인이 가장 수익성 높은가</h4>
       {revenue_cogs_gp}
-      <div class="insight-callout">
-        <span class="ic-icon">→</span>
-        <span class="ic-body">매출-COGS를 라인별로 매칭하면 <strong>Membership / Branding 계열이 GP margin 최상위</strong> (소액 COGS), <strong>Restaurant는 최하위</strong> (식자재·인건비 부담). 같은 매출이라도 수익 기여도가 크게 다름.</span>
-      </div>
+      {_insight('매출-COGS를 라인별로 매칭하면 <strong>Membership / Branding 계열이 GP margin 최상위</strong> (소액 COGS), <strong>Restaurant는 최하위</strong> (식자재·인건비 부담). 같은 매출이라도 수익 기여도가 크게 다름.')}
 
       <details class="orig-toggle"><summary>원본 COGS 라인 표</summary>
         {cogs_blocks}
@@ -5195,10 +5171,7 @@ def section_opex() -> str:
       <h2 data-num="04">OpEx 라인 분해 — 3-peer top-N</h2>
       <h3>인건비 · 감가 · 유지 · 세금 · 유틸리티 — DMIG/PIPG/KPIG</h3>
       {opex_topn}
-      <div class="insight-callout">
-        <span class="ic-icon">→</span>
-        <span class="ic-body">3-peer 공통 최대 OpEx 항목은 <strong>인건비</strong>와 <strong>감가상각</strong>. DMIG는 이 둘이 각각 12%+로 가장 무겁고, KPIG의 G&amp;A는 Hotel+Resort+Golf 통합이라 golf-only 비교는 부적합.</span>
-      </div>
+      {_insight('3-peer 공통 최대 OpEx 항목은 <strong>인건비</strong>와 <strong>감가상각</strong>. DMIG는 이 둘이 각각 12%+로 가장 무겁고, KPIG의 G&amp;A는 Hotel+Resort+Golf 통합이라 golf-only 비교는 부적합.')}
       <details class="orig-toggle"><summary>원본 OpEx 라인 표</summary>
         {opex_blocks}
       </details>
@@ -5216,10 +5189,7 @@ def section_opex() -> str:
       <h4 class="ops-block-h" style="margin-top: 22px;">카테고리별 매출 대비 % — bar matrix</h4>
       {opex_norm_bars}
 
-      <div class="insight-callout">
-        <span class="ic-icon">→</span>
-        <span class="ic-body">OpEx 합계 DMIG 38.4% · PIPG 38.5% · GOLF 21.1% — DMIG/PIPG는 거의 동일하지만 <strong>구성이 정반대</strong>: DMIG는 감가(자본투자), PIPG는 세금·유지(위치·노후). GOLF의 17pp 격차는 lean 운영 모델.</span>
-      </div>
+      {_insight('OpEx 합계 DMIG 38.4% · PIPG 38.5% · GOLF 21.1% — DMIG/PIPG는 거의 동일하지만 <strong>구성이 정반대</strong>: DMIG는 감가(자본투자), PIPG는 세금·유지(위치·노후). GOLF의 17pp 격차는 lean 운영 모델.')}
 
       <details class="orig-toggle"><summary>원본 정규화 표</summary>
         {opex_norm_table}
@@ -5230,20 +5200,14 @@ def section_opex() -> str:
       <h2 data-num="06">OpEx 카테고리 deep-dive — 4 핵심 비교</h2>
       <h3>인건비 · 세금·법률 · 유지보수 · 유틸리티 — peer 차이의 본질</h3>
       {opex_category_compare}
-      <div class="insight-callout warn">
-        <span class="ic-icon">⚠</span>
-        <span class="ic-body">PIPG의 <strong>세금·법률 12.3% (24.2bn)</strong>는 단순 outlier가 아닌 <strong>CBD 5분 + HGB 면적의 위치 비용</strong>. 유지보수 <strong>5.9%</strong>는 1976년 노후 코스 + Indonesia Open 토너먼트 hosting 비용. 비싼 위치 + 프리미엄 포지셔닝의 구조적 cost.</span>
-      </div>
+      {_insight('PIPG의 <strong>세금·법률 12.3% (24.2bn)</strong>는 단순 outlier가 아닌 <strong>CBD 5분 + HGB 면적의 위치 비용</strong>. 유지보수 <strong>5.9%</strong>는 1976년 노후 코스 + Indonesia Open 토너먼트 hosting 비용. 비싼 위치 + 프리미엄 포지셔닝의 구조적 cost.', kind='warn')}
     </div>
 
     <div class="section" id="op-4y-trend">
       <h2 data-num="07">OpEx/매출 % — 4Y trend (FY22-25)</h2>
       <h3>비용 효율 추이 — DMIG/PIPG/GOLF</h3>
       {opex_4y_trend}
-      <div class="insight-callout">
-        <span class="ic-icon">→</span>
-        <span class="ic-body">DMIG는 4년 내내 38-40%로 정체, <strong>PIPG는 FY25 33.6%로 큰 폭 하락</strong> (비용 통제 성공), GOLF는 21-22%로 일관되게 낮음. 비용 효율 개선은 PIPG가 유일하게 입증.</span>
-      </div>
+      {_insight('DMIG는 4년 내내 38-40%로 정체, <strong>PIPG는 FY25 33.6%로 큰 폭 하락</strong> (비용 통제 성공), GOLF는 21-22%로 일관되게 낮음. 비용 효율 개선은 PIPG가 유일하게 입증.')}
     </div>
 
     <div class="section" id="op-narratives">
@@ -5256,10 +5220,7 @@ def section_opex() -> str:
       <h2 data-num="09">PIPG 4-segment GP margin — Note 30</h2>
       <h3>Golf Course&amp;Cart / Membership / Restaurant / Others (FY23)</h3>
       {pipg_seg_visual}
-      <div class="insight-callout">
-        <span class="ic-icon">→</span>
-        <span class="ic-body">Membership <strong>87.8%</strong> GP는 사실상 순현금 — 신규 회원 모집이 가장 수익성 높은 매출. Restaurant <strong>31.2%</strong>는 본질적으로 저마진. 신규 코스 수익 모델은 <strong>회원권 비중을 키우는 게 핵심</strong>.</span>
-      </div>
+      {_insight('Membership <strong>87.8%</strong> GP는 사실상 순현금 — 신규 회원 모집이 가장 수익성 높은 매출. Restaurant <strong>31.2%</strong>는 본질적으로 저마진. 신규 코스 수익 모델은 <strong>회원권 비중을 키우는 게 핵심</strong>.')}
       <details class="orig-toggle"><summary>원본 segment 표</summary>
         {pipg_seg_table}
       </details>
@@ -5269,10 +5230,7 @@ def section_opex() -> str:
       <h2 data-num="10">FY2025 미감사 prelim — 마진 압박 신호</h2>
       <h3>DMIG/PIPG/KPIG 3-peer side-by-side dashboard</h3>
       {fy25_dashboard}
-      <div class="insight-callout">
-        <span class="ic-icon">→</span>
-        <span class="ic-body">FY25 차별 — <strong>PIPG +4% 영업이익 (비용 통제 승리)</strong> vs <strong>DMIG -12% (감가 부담 가속)</strong>. 매출은 둘 다 거의 flat이나 cost discipline이 결정. KPIG는 그룹 매출 +10%지만 golf-only 미공시로 비교 불가.</span>
-      </div>
+      {_insight('FY25 차별 — <strong>PIPG +4% 영업이익 (비용 통제 승리)</strong> vs <strong>DMIG -12% (감가 부담 가속)</strong>. 매출은 둘 다 거의 flat이나 cost discipline이 결정. KPIG는 그룹 매출 +10%지만 golf-only 미공시로 비교 불가.')}
       <details class="orig-toggle"><summary>원본 카드</summary>
         {fy25_cards}
       </details>
