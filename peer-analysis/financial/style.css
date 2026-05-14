@@ -523,6 +523,70 @@ tr.row-total td.num { color: var(--ink); }
 .kpi-tile .kpi-trend.up   { color: var(--green); font-weight: 700; }
 .kpi-tile .kpi-trend.down { color: var(--danger); font-weight: 700; }
 
+/* ============== TOC grid cards ============== */
+.toc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+  margin: 16px 0 6px;
+}
+.toc-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px 14px;
+  text-decoration: none !important;
+  color: var(--ink);
+  display: flex; flex-direction: column; gap: 4px;
+  transition: transform 0.12s, box-shadow 0.12s, border-color 0.12s;
+  position: relative;
+  border-left: 3px solid var(--muted);
+}
+.toc-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  text-decoration: none;
+}
+.toc-card .toc-num {
+  position: absolute;
+  top: 8px; right: 12px;
+  font-size: 22px; font-weight: 700;
+  color: var(--line-strong);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+.toc-card .toc-tag {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.toc-card .toc-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.35;
+  margin-top: 2px;
+}
+.toc-card .toc-sub {
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  line-height: 1.4;
+  margin-top: 2px;
+}
+.toc-card.cat-pnl   { border-left-color: #4a7c30; }
+.toc-card.cat-pnl   .toc-tag { color: #2d5016; }
+.toc-card.cat-capex { border-left-color: #c08a2e; }
+.toc-card.cat-capex .toc-tag { color: #92400e; }
+.toc-card.cat-cross { border-left-color: #1e40af; }
+.toc-card.cat-cross .toc-tag { color: #1e40af; }
+.toc-card.cat-ops   { border-left-color: #6b21a8; }
+.toc-card.cat-ops   .toc-tag { color: #6b21a8; }
+.toc-card.cat-fy25  { border-left-color: #b91c1c; }
+.toc-card.cat-fy25  .toc-tag { color: #b91c1c; }
+
 /* ============== Quote callout (vector-DB narrative) ============== */
 .quote-card {
   background: linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%);

@@ -405,25 +405,65 @@
 
     <div class="section ops-toc">
       <h2>운영 KPI · CAPEX/OPEX — 섹션 목차</h2>
-      <h3>12개 분석 섹션으로 구성</h3>
-      <nav class="toc">
-        <ol>
-          <li><a href="#pnl">4년 통합 P&amp;L (FY22-FY25)</a></li>
-          <li><a href="#rev">매출 라인 분해 (DMIG 7 / PIPG 11 라인)</a></li>
-          <li><a href="#cogs">COGS 라인 분해</a></li>
-          <li><a href="#opex">OpEx 라인 분해 — 인건비·감가·유지보수</a></li>
-          <li><a href="#opex-norm">OpEx 카테고리별 normalized 비교</a></li>
-          <li><a href="#capex-proxy">CAPEX proxy (감가·유지·자산집약도)</a></li>
-          <li><a href="#pipg-seg">PIPG 4-segment GP margin (Note 30)</a></li>
-          <li><a href="#segment-6">6-peer 골프 segment 통합 비교</a></li>
-          <li><a href="#unit-econ">홀당 단위 경제 (7-peer Unit Economics)</a></li>
-          <li><a href="#ops-kpi">운영 KPI 시계열 (골퍼·회원·인력·CWIP)</a></li>
-          <li><a href="#dividend">배당 시계열 (DMIG/PIPG/SMDM)</a></li>
-          <li><a href="#related">관계사 거래 · 토지 lease · 집중도</a></li>
-          <li><a href="#fy25">FY2025 미감사 prelim — 마진 압박</a></li>
-          <li><a href="#margin-commentary">FY24→FY25 마진 변화 commentary</a></li>
-        </ol>
-      </nav>
+      <h3>14개 분석 섹션 · 색상으로 분류 보기</h3>
+      <div class="toc-grid">
+        <a class="toc-card cat-pnl" href="#pnl"><span class="toc-num">01</span>
+          <span class="toc-tag">P&amp;L</span>
+          <span class="toc-title">4년 통합 P&amp;L</span>
+          <span class="toc-sub">FY22-25 매출/COGS/OpEx + 마진 추이 차트</span></a>
+        <a class="toc-card cat-pnl" href="#rev"><span class="toc-num">02</span>
+          <span class="toc-tag">REVENUE</span>
+          <span class="toc-title">매출 라인 분해</span>
+          <span class="toc-sub">DMIG 7 라인 + PIPG 11 라인</span></a>
+        <a class="toc-card cat-pnl" href="#cogs"><span class="toc-num">03</span>
+          <span class="toc-tag">COGS</span>
+          <span class="toc-title">COGS 라인 분해</span>
+          <span class="toc-sub">골프 코스 / 레스토랑 / 카트 / 레인지</span></a>
+        <a class="toc-card cat-capex" href="#opex"><span class="toc-num">04</span>
+          <span class="toc-tag">OPEX</span>
+          <span class="toc-title">OpEx 라인 분해</span>
+          <span class="toc-sub">인건비 · 감가 · 유지보수 · 세금</span></a>
+        <a class="toc-card cat-capex" href="#opex-norm"><span class="toc-num">05</span>
+          <span class="toc-tag">OPEX · 시각화</span>
+          <span class="toc-title">OpEx 카테고리별 normalized</span>
+          <span class="toc-sub">KPI strip + 100% stacked + bar matrix</span></a>
+        <a class="toc-card cat-capex" href="#capex-proxy"><span class="toc-num">06</span>
+          <span class="toc-tag">CAPEX · heatmap</span>
+          <span class="toc-title">CAPEX proxy 강도</span>
+          <span class="toc-sub">감가/유지/자산집약도 heatmap + 벡터 narrative</span></a>
+        <a class="toc-card cat-pnl" href="#pipg-seg"><span class="toc-num">07</span>
+          <span class="toc-tag">SEGMENT</span>
+          <span class="toc-title">PIPG 4-segment GP</span>
+          <span class="toc-sub">100% mix + GP margin bar (Note 30)</span></a>
+        <a class="toc-card cat-cross" href="#segment-6"><span class="toc-num">08</span>
+          <span class="toc-tag">CROSS-PEER · scatter</span>
+          <span class="toc-title">6-peer 골프 segment</span>
+          <span class="toc-sub">bubble scatter: 비중 × GP × 매출</span></a>
+        <a class="toc-card cat-cross" href="#unit-econ"><span class="toc-num">09</span>
+          <span class="toc-tag">UNIT ECONOMICS</span>
+          <span class="toc-title">홀당 단위 경제</span>
+          <span class="toc-sub">4-metric × 7-peer horizontal bar</span></a>
+        <a class="toc-card cat-ops" href="#ops-kpi"><span class="toc-num">10</span>
+          <span class="toc-tag">OPERATIONS</span>
+          <span class="toc-title">운영 KPI 시계열</span>
+          <span class="toc-sub">sparkline 대시보드 (골퍼/회원/인력/CWIP)</span></a>
+        <a class="toc-card cat-ops" href="#dividend"><span class="toc-num">11</span>
+          <span class="toc-tag">CAPITAL ALLOC</span>
+          <span class="toc-title">배당 시계열</span>
+          <span class="toc-sub">FY22-24 grouped bar + payout ratio</span></a>
+        <a class="toc-card cat-ops" href="#related"><span class="toc-num">12</span>
+          <span class="toc-tag">RELATED · LEASE</span>
+          <span class="toc-title">관계사 · 토지 lease · 집중도</span>
+          <span class="toc-sub">DMIG 핵심경영진 / PIPG HGB / 고객·공급사</span></a>
+        <a class="toc-card cat-fy25" href="#fy25"><span class="toc-num">13</span>
+          <span class="toc-tag">FY25 · PRELIM</span>
+          <span class="toc-title">FY2025 미감사 prelim</span>
+          <span class="toc-sub">DMIG/PIPG/KPIG 마진 압박 신호</span></a>
+        <a class="toc-card cat-fy25" href="#margin-commentary"><span class="toc-num">14</span>
+          <span class="toc-tag">COMMENTARY</span>
+          <span class="toc-title">FY24→FY25 마진 변화</span>
+          <span class="toc-sub">벡터 추출 AR commentary (4-peer)</span></a>
+      </div>
     </div>
 
     <div class="section" id="pnl">
@@ -1937,7 +1977,7 @@
 <footer class="foot">
   <div class="wrap">
     <p>
-      <strong>골프장 운영 Peer 비교 사이트</strong> — Build 2026-05-14 (commit <code>602d334</code>) ·
+      <strong>골프장 운영 Peer 비교 사이트</strong> — Build 2026-05-14 (commit <code>fcfe965</code>) ·
       Ops 탭 19개 분석 섹션 ·
       데이터: raw_peer_data/*.csv (last verified 2026-04-29 ~ 2026-05-07) + AR Note 직접 추출 + 벡터 검색 (99,618 chunks) ·
       추정/보간 없음. 미공시는 N/A로 표기.
