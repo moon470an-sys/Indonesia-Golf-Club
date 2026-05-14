@@ -1042,6 +1042,119 @@ def _all_peer_golf_segment_table() -> str:
 </div>"""
 
 
+def _related_party_and_lease_section() -> str:
+    """Cards describing related-party transactions and land/lease arrangements."""
+    cards = []
+
+    # DMIG — related_party_note (key management compensation)
+    rp = (NOTES.get("DMIG", {}) or {}).get("related_party_note") or {}
+    if rp.get("lines"):
+        lines_html = []
+        for ln in rp["lines"]:
+            label = ln.get("en_label") or ln.get("id_label") or "—"
+            v22 = ln.get("FY2022")
+            v23 = ln.get("FY2023")
+            v24 = ln.get("FY2024")
+            # If percentage stored as fraction
+            if isinstance(v24, float) and abs(v24) < 1:
+                fmt22 = f"{v22 * 100:.2f}%" if v22 else "—"
+                fmt23 = f"{v23 * 100:.2f}%" if v23 else "—"
+                fmt24 = f"{v24 * 100:.2f}%"
+            else:
+                fmt22 = fmt_bn(v22)
+                fmt23 = fmt_bn(v23)
+                fmt24 = fmt_bn(v24)
+            lines_html.append(
+                f'<tr><td>{safe(label)}</td>'
+                f'<td class="num">{fmt22}</td>'
+                f'<td class="num">{fmt23}</td>'
+                f'<td class="num">{fmt24}</td></tr>'
+            )
+        src = rp.get("source_page", {}).get("FY2024") if isinstance(rp.get("source_page"), dict) else rp.get("source_page", "")
+        cards.append(
+            f'<div class="ops-block">'
+            f'<h4 class="ops-block-h">DMIG — 핵심경영진 보수 (Related party · Note 26)</h4>'
+            f'<div class="tbl-card"><table class="tbl tbl-tight">'
+            f'<thead><tr><th>Item</th><th class="num">FY22</th><th class="num">FY23</th><th class="num">FY24</th></tr></thead>'
+            f'<tbody>{"".join(lines_html)}</tbody></table></div>'
+            f'<p class="src-line">출처: {safe(src)}</p>'
+            f'</div>'
+        )
+
+    # PIPG — agreements_commitments
+    ag = (NOTES.get("PIPG", {}) or {}).get("agreements_commitments") or {}
+    items = ag.get("items") or []
+    if items:
+        rows = []
+        for it in items:
+            rows.append(
+                f'<tr>'
+                f'<td>{safe(it.get("type", "—"))}</td>'
+                f'<td class="notes">{safe(it.get("counterparty", "—"))}</td>'
+                f'<td class="notes">{safe(it.get("term", "—"))}</td>'
+                f'<td class="notes">{safe(it.get("rent_y1y2") or it.get("rent") or it.get("rental_fee") or "—")}</td>'
+                f'</tr>'
+            )
+        cards.append(
+            f'<div class="ops-block">'
+            f'<h4 class="ops-block-h">PIPG — 약정·관계사 lease (Note 32)</h4>'
+            f'<div class="tbl-card scroll-x"><table class="tbl tbl-tight">'
+            f'<thead><tr><th>유형</th><th>상대방</th><th>기간</th><th>임대료/금액</th></tr></thead>'
+            f'<tbody>{"".join(rows)}</tbody></table></div>'
+            f'<p class="src-line">출처: {safe(ag.get("source_page", ""))}</p>'
+            f'</div>'
+        )
+
+    # PIPG — land profile (53 ha / 12 certificates)
+    profile = (NOTES.get("PIPG", {}) or {}).get("profile") or {}
+    if profile:
+        cards.append(
+            f'<div class="ops-block">'
+            f'<h4 class="ops-block-h">PIPG — 토지·HGB profile</h4>'
+            f'<div class="kv-grid">'
+            f'<div class="kv"><div class="k">총 토지 면적</div><div class="v">{profile.get("land_area_ha_total", "—")} ha <span class="muted">({profile.get("land_area_m2_total", "—"):,} m²)</span></div></div>'
+            f'<div class="kv"><div class="k">토지 인증서</div><div class="v">{profile.get("land_certificates", "—")} 건</div></div>'
+            f'<div class="kv"><div class="k">HGB 면적</div><div class="v">{profile.get("hgb_area_m2", "—"):,} m² <span class="muted">(만료: {safe(str(profile.get("hgb_expiry_years", "—")))})</span></div></div>'
+            f'<div class="kv"><div class="k">MKPI에서 임차</div><div class="v">{profile.get("leased_from_mkpi_m2", "—"):,} m² <span class="muted">({safe(profile.get("leased_purpose", "—"))})</span></div><div class="src">기간: {safe(profile.get("leased_term_start", ""))} ~ {safe(profile.get("leased_term_end", ""))}</div></div>'
+            f'</div>'
+            f'<p class="src-line">출처: {safe(profile.get("source_pages", "—"))}</p>'
+            f'</div>'
+        )
+
+    # GOLF — customer concentration
+    rev29 = (NOTES.get("GOLF", {}) or {}).get("revenue_note_29") or {}
+    cc = rev29.get("customer_concentration") or {}
+    if cc:
+        cards.append(
+            f'<div class="ops-block">'
+            f'<h4 class="ops-block-h">GOLF — 고객 집중도 위험 (Note 29)</h4>'
+            f'<div class="kv-grid">'
+            f'<div class="kv"><div class="k">고객명</div><div class="v">{safe(cc.get("name", "—"))}</div></div>'
+            f'<div class="kv"><div class="k">FY2024 매출 기여</div><div class="v">{fmt_bn(cc.get("amount_FY2024"))} <span class="muted">({(cc.get("pct_of_revenue_FY2024") or 0) * 100:.1f}% of revenue)</span></div></div>'
+            f'<div class="kv"><div class="k">FY2023 매출 기여</div><div class="v">{fmt_bn(cc.get("amount_FY2023"))} <span class="muted">({(cc.get("pct_of_revenue_FY2023") or 0) * 100:.1f}%)</span></div></div>'
+            f'</div>'
+            f'<p class="src-line">출처: {safe(cc.get("source", ""))}</p>'
+            f'</div>'
+        )
+
+    # MDLN — supplier concentration
+    sup = ((NOTES.get("MDLN", {}) or {}).get("cogs_note_26") or {}).get("supplier_concentration") or {}
+    if sup:
+        cards.append(
+            f'<div class="ops-block">'
+            f'<h4 class="ops-block-h">MDLN — 공급사 집중 (Note 26)</h4>'
+            f'<div class="kv-grid">'
+            f'<div class="kv"><div class="k">공급사명</div><div class="v">{safe(sup.get("name", "—"))}</div></div>'
+            f'<div class="kv"><div class="k">FY2024 거래액</div><div class="v">{fmt_bn(sup.get("amount_FY2024"))}</div></div>'
+            f'<div class="kv"><div class="k">전체 COGS 대비</div><div class="v">{safe(sup.get("pct_of_total_cogs", "—"))}</div></div>'
+            f'</div>'
+            f'<p class="src-line">출처: {safe(sup.get("source", ""))}</p>'
+            f'</div>'
+        )
+
+    return "\n".join(cards)
+
+
 def _fy25_delta_cards() -> str:
     """FY2025 (Cycle 167) preliminary delta callouts for DMIG, PIPG, KPIG."""
     cards = []
@@ -1171,6 +1284,7 @@ def section_ops() -> str:
     fy25_cards = _fy25_delta_cards()
     golf_segment_table = _all_peer_golf_segment_table()
     opex_norm_table = _normalized_opex_compare_table()
+    related_party_section = _related_party_and_lease_section()
 
     rev_blocks = "\n".join(filter(None, [
         _revenue_breakdown_table("DMIG", "revenue_note", "매출 라인 분해"),
@@ -1288,6 +1402,17 @@ def section_ops() -> str:
         <strong>DMIG/PIPG</strong>: Pure-play이지만 golf course-line만 가져오면 다른 비교 단위가 되므로 별도 cell 검토.
       </div>
       <p class="src-line">출처: site/peer-analysis/operations/data/{{dmig,pipg,mdln,golf,kija}}_notes.json (FY24 AR Note 23·25·27·29·34 직접 추출)</p>
+    </div>
+
+    <div class="section">
+      <h2>관계사 거래 · 토지 lease · 고객·공급사 집중도</h2>
+      <h3>annual report Note에서 추출한 audit-grade 정량 정보</h3>
+      <p class="lede">
+        <strong>DMIG</strong>의 핵심경영진 보수 추이, <strong>PIPG</strong>의 53ha 토지·HGB 약정·MKPI 임차 구조,
+        <strong>GOLF</strong>의 고객 집중도 (34%), <strong>MDLN</strong>의 공급사 집중도를 한 자리에 정리.
+        cross-default / cross-risk 분석에 핵심.
+      </p>
+      {related_party_section}
     </div>
 
     <div class="section">
