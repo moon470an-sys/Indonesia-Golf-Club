@@ -2885,22 +2885,24 @@ def _dividend_visual() -> str:
 
     bar_chart = f"""<div style="display:flex;gap:10px;flex-wrap:wrap;">{''.join(bar_rows)}</div>"""
 
-    # --- Payout ratio + per-share KPI tiles
-    pipg_payout = 26_239_800_000 / 55_900_000_000 * 100
-    dmig_payout = 26_514_391_332 / 71_268_571_841 * 100
+    # --- Payout ratio + per-share KPI tiles (derived: 배당 / 순이익)
+    pipg_div23 = DIVIDEND_EVIDENCE["PIPG"]["FY2023_paid"]
+    dmig_div23 = DIVIDEND_EVIDENCE["DMIG"]["FY2023_paid"]
+    pipg_payout = pipg_div23 / netinc_known[("PIPG", "FY2023")] * 100
+    dmig_payout = dmig_div23 / netinc_known[("DMIG", "FY2023")] * 100
     pipg_per_share = DIVIDEND_EVIDENCE["PIPG"]["per_share_FY2023"]
 
     tiles = f"""<div class="kpi-strip">
   <div class="kpi-tile accent-green">
     <div class="kpi-cap">PIPG · FY23 Payout</div>
     <div class="kpi-val">{pipg_payout:.1f}%</div>
-    <div class="kpi-sub">배당 Rp 26.2bn / 순이익 Rp 55.9bn</div>
+    <div class="kpi-sub">배당 {fmt_bn(pipg_div23)} / 순이익 {fmt_bn(netinc_known[("PIPG", "FY2023")])}</div>
     <div class="kpi-sub">주당 Rp {pipg_per_share/1_000_000:.2f}M · RUPST 2024-06-06</div>
   </div>
   <div class="kpi-tile accent-green">
     <div class="kpi-cap">DMIG · FY23 Payout</div>
     <div class="kpi-val">{dmig_payout:.1f}%</div>
-    <div class="kpi-sub">배당 Rp 26.5bn / 순이익 Rp 71.3bn</div>
+    <div class="kpi-sub">배당 {fmt_bn(dmig_div23)} / 순이익 {fmt_bn(netinc_known[("DMIG", "FY2023")])}</div>
     <div class="kpi-sub">Statement of Changes in Equity 직접 추출</div>
   </div>
   <div class="kpi-tile accent-warn">
