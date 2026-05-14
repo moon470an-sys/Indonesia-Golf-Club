@@ -643,6 +643,195 @@ def _pnl_row(ticker: str) -> str:
     return f'<tr class="tier-a">{"".join(cells)}</tr>'
 
 
+def _pnl_data_for(ticker: str) -> list:
+    """Extract per-year P&L numbers for one ticker (FY22-25). Returns list of dicts."""
+    d = NOTES.get(ticker, {})
+    out = []
+    for fy in PNL_YEARS:
+        rev = revenue_total_for(ticker, fy)
+        cogs = None
+        for key in ("cogs_note", "cogs_note_26", "cogs_note_28", "cogs_note_30"):
+            b = d.get(key) or {}
+            v = (b.get("total") or {}).get(fy)
+            if v:
+                cogs = v
+                break
+        opx = None
+        for key in ("opex_note", "opex_note_29", "ga_note_32", "ga_note_34"):
+            b = d.get(key) or {}
+            v = (b.get("total") or {}).get(fy)
+            if v:
+                opx = v
+                break
+        op_inc = None
+        net_inc = None
+        if fy == "FY2025":
+            fu = (d.get("fy2025_follow_up") or {}).get("pnl_FY2025") or {}
+            rev = fu.get("revenue") or rev
+            cogs = fu.get("cogs") or cogs
+            opx = fu.get("opex") or opx
+            op_inc = fu.get("operating_income")
+            net_inc = fu.get("net_income")
+        if fy in ("FY2022", "FY2023", "FY2024") and ticker == "PIPG":
+            fh = (d.get("financial_highlights") or {}).get("rows_in_idr_thousand", [])
+            for r in fh:
+                if r.get("label") == "Laba Usaha":
+                    op_inc = r.get(fy) and r[fy] * 1000
+                if r.get("label") == "Laba Bersih":
+                    net_inc = r.get(fy) and r[fy] * 1000
+        if ticker == "DMIG" and fy == "FY2024":
+            fu = (d.get("fy2025_follow_up") or {}).get("pnl_FY2024_comparative") or {}
+            op_inc = op_inc or fu.get("operating_income")
+            net_inc = net_inc or fu.get("net_income")
+        gp = (rev - cogs) if (rev and cogs) else None
+        gm = (gp / rev * 100) if (rev and gp) else None
+        om = (op_inc / rev * 100) if (rev and op_inc) else None
+        nm = (net_inc / rev * 100) if (rev and net_inc) else None
+        out.append({"fy": fy, "rev": rev, "gp": gp, "op_inc": op_inc, "net_inc": net_inc, "gm": gm, "om": om, "nm": nm})
+    return out
+
+
+def _multi_line_chart(series_list, fys, width=380, height=200, title=""):
+    """Multi-line SVG chart. series_list = [(label, [values], color), ...]."""
+    pad_l, pad_b, pad_r, pad_t = 40, 30, 16, 20
+    inner_w = width - pad_l - pad_r
+    inner_h = height - pad_t - pad_b
+
+    # Compute y range
+    all_vals = [v for _, vals, _ in series_list for v in vals if v is not None]
+    if not all_vals:
+        return ""
+    y_min = min(all_vals + [0])
+    y_max = max(all_vals)
+    if y_max == y_min:
+        y_max = y_min + 10
+    # Pad
+    y_pad = (y_max - y_min) * 0.1
+    y_min -= y_pad
+    y_max += y_pad
+    if y_min < 0:
+        y_min = min(y_min, -5)
+    n = len(fys)
+
+    def to_x(i): return pad_l + (inner_w * (i / (n - 1)))
+
+    def to_y(v): return pad_t + inner_h - (inner_h * ((v - y_min) / (y_max - y_min)))
+
+    # Gridlines (5 horizontal)
+    grid = []
+    grid_steps = 4
+    for i in range(grid_steps + 1):
+        y = pad_t + inner_h - (inner_h * (i / grid_steps))
+        val = y_min + (y_max - y_min) * (i / grid_steps)
+        grid.append(
+            f'<line x1="{pad_l}" y1="{y:.1f}" x2="{pad_l + inner_w}" y2="{y:.1f}" stroke="#ebe9e0" stroke-width="0.5"/>'
+            f'<text x="{pad_l - 6}" y="{y + 3:.1f}" font-size="9" fill="#8a8a8a" text-anchor="end">{val:.0f}%</text>'
+        )
+    # X labels
+    for i, fy in enumerate(fys):
+        x = to_x(i)
+        grid.append(
+            f'<text x="{x:.1f}" y="{pad_t + inner_h + 14}" font-size="10" fill="#4b4b4b" '
+            f'text-anchor="middle" font-weight="600">{safe(fy[2:])}</text>'
+        )
+
+    # Series lines
+    lines = []
+    legend_items = []
+    for label, vals, color in series_list:
+        valid_points = [(to_x(i), to_y(v), v) for i, v in enumerate(vals) if v is not None]
+        if len(valid_points) < 2:
+            continue
+        pts_str = " ".join(f"{x:.1f},{y:.1f}" for x, y, _ in valid_points)
+        lines.append(f'<polyline fill="none" stroke="{color}" stroke-width="2" points="{pts_str}"/>')
+        for x, y, v in valid_points:
+            lines.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3" fill="white" stroke="{color}" stroke-width="2"><title>{label}: {v:.1f}%</title></circle>')
+        # Last value label
+        last_x, last_y, last_v = valid_points[-1]
+        lines.append(
+            f'<text x="{last_x + 6:.1f}" y="{last_y + 4:.1f}" font-size="11" '
+            f'fill="{color}" font-weight="700">{last_v:.1f}%</text>'
+        )
+        legend_items.append(
+            f'<span class="lg"><span class="sw" style="background:{color};"></span>{safe(label)}</span>'
+        )
+
+    legend = f'<div class="stack-legend" style="margin-top:6px;justify-content:center;">{"".join(legend_items)}</div>'
+    title_html = f'<div style="font-size:13px;font-weight:700;color:var(--ink);text-align:center;margin-bottom:4px;">{safe(title)}</div>' if title else ""
+
+    return f"""<div style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 12px 10px;">
+  {title_html}
+  <svg viewBox="0 0 {width} {height}" width="100%" style="display:block;" xmlns="http://www.w3.org/2000/svg">
+    {''.join(grid)}
+    {''.join(lines)}
+  </svg>
+  {legend}
+</div>"""
+
+
+def _pnl_margin_trend_section() -> str:
+    """Multi-line GM/OM/NM trend chart for DMIG + PIPG + KPIG (where data exists)."""
+    fys = PNL_YEARS
+    charts = []
+    for ticker in ["DMIG", "PIPG", "KPIG"]:
+        data = _pnl_data_for(ticker)
+        gm_vals = [d["gm"] for d in data]
+        om_vals = [d["om"] for d in data]
+        nm_vals = [d["nm"] for d in data]
+        chart = _multi_line_chart(
+            [
+                ("GP Margin", gm_vals, "#4a7c30"),
+                ("Op Margin", om_vals, "#c08a2e"),
+                ("Net Margin", nm_vals, "#1e40af"),
+            ],
+            fys,
+            width=420, height=220,
+            title=f"{ticker} — 4Y 마진 추이 (FY22→25)",
+        )
+        if chart:
+            charts.append(chart)
+
+    # Revenue absolute bar comparison (FY22-25)
+    rev_rows = []
+    all_rev = []
+    for ticker in ["DMIG", "PIPG"]:  # KPIG is mixed, exclude for cleaner view
+        data = _pnl_data_for(ticker)
+        for d in data:
+            if d["rev"]:
+                all_rev.append(d["rev"])
+    max_rev = max(all_rev) if all_rev else 1
+
+    for ticker in ["DMIG", "PIPG"]:
+        data = _pnl_data_for(ticker)
+        bars_html = []
+        for d in data:
+            v = d["rev"]
+            pct = (v / max_rev * 100) if v else 0
+            color = PEER_COLORS.get(ticker, "#4a7c30")
+            label = fmt_bn(v).replace(" bn", "bn") if v else "—"
+            bars_html.append(f"""<div style="display:flex;align-items:center;gap:8px;font-size:11.5px;">
+  <span style="flex:0 0 38px;color:var(--ink-soft);font-weight:600;">{d["fy"][2:]}</span>
+  <span style="flex:1;height:14px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:{pct:.1f}%;background:{color};"></span>
+  </span>
+  <span style="flex:0 0 64px;text-align:right;font-weight:600;font-variant-numeric:tabular-nums;">{label}</span>
+</div>""")
+        rev_rows.append(f"""<div style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;">
+  <div style="font-size:13px;font-weight:700;color:var(--ink);margin-bottom:8px;"><span class="ticker-mini">{ticker}</span> 매출 4년 추이</div>
+  <div style="display:flex;flex-direction:column;gap:6px;">{''.join(bars_html)}</div>
+</div>""")
+
+    revenue_block = f"""<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-top:14px;">
+  {''.join(rev_rows)}
+</div>"""
+
+    chart_grid = f"""<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:12px;">
+  {''.join(charts)}
+</div>"""
+
+    return chart_grid + revenue_block
+
+
 def _pnl_table() -> str:
     """Multi-year P&L table covering FY2022-FY2025 for DMIG, PIPG, KPIG."""
     rows = "".join(_pnl_row(t) for t in ["DMIG", "PIPG", "KPIG"])
@@ -2820,6 +3009,7 @@ def section_ops() -> str:
 
     # ── New sub-sections built from operations/data/*_notes.json
     pnl_table = _pnl_table()
+    pnl_trend = _pnl_margin_trend_section()
     capex_proxy_table = _capex_proxy_table()
     capex_heatmap = _capex_heatmap_section()
     capex_narratives = _capex_narrative_grid()
@@ -2954,7 +3144,12 @@ def section_ops() -> str:
         DMIG/PIPG는 FY22~FY25 4개년 P&L 라인 전체 추출 가능 (annual report Note 23/24/25 또는 Note 27/28/29).
         KPIG는 Hotel+Resort+Golf 통합 라인이므로 golf-only 비교 불가하나, 그룹 효율 추이는 참고 가능.
       </p>
-      {pnl_table}
+      <h4 class="ops-block-h">마진 추이 (3-peer 4Y) + 매출 절댓값 비교</h4>
+      {pnl_trend}
+      <details style="margin: 14px 0 4px;">
+        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 4년 P&amp;L 표 (FY22-25 라인 단위)</summary>
+        {pnl_table}
+      </details>
       <div class="banner info">
         <strong>주의:</strong> KPIG 매출은 Hotel+Resort+Golf 통합 (Note 31 'Hotel, resor dan golf' = FY24 IDR 960bn).
         KPIG의 COGS/OpEx는 그룹 전체 (Property management 포함) — golf-only 비교에는 부적합.
