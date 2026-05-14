@@ -379,7 +379,8 @@ table.tbl td.notes { font-size: 13px; color: var(--ink-soft); line-height: 1.5; 
 
 /* Smooth scroll for anchor links */
 html { scroll-behavior: smooth; }
-.section[id] { scroll-margin-top: 80px; }
+/* scroll-margin accounts for sticky header (~76px) + sticky sub-nav (~44px) */
+.section[id] { scroll-margin-top: 128px; }
 
 /* ============== Ops tab — extended tables ============== */
 .ops-block { margin: 18px 0 28px; }
@@ -1093,6 +1094,9 @@ svg {
   .tabs { padding: 0; gap: 0; }
   .tab { padding: 10px 12px; font-size: 13px; }
   .wrap { padding: 0 18px; }
+
+  /* Mobile sticky stack is shorter */
+  .section[id] { scroll-margin-top: 108px; }
 
   /* Compact viz on mobile */
   .kpi-strip { gap: 8px; }
