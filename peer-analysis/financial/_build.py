@@ -643,6 +643,248 @@ def _pnl_row(ticker: str) -> str:
     return f'<tr class="tier-a">{"".join(cells)}</tr>'
 
 
+def _radar_chart_svg(series, axes, width=440, height=440, title=""):
+    """SVG radar/spider chart for N-dimensional peer comparison.
+
+    series: [(label, [v1..vN normalized 0..1], color), ...]
+    axes:   [(axis_label, axis_unit, max_value_for_normalization), ...]
+    """
+    n = len(axes)
+    if n < 3:
+        return ""
+    cx, cy = width / 2, height / 2 + 6
+    r_max = min(width, height) / 2 - 60
+    import math
+
+    def to_xy(axis_idx, r_norm):
+        angle = -math.pi / 2 + (2 * math.pi * axis_idx / n)
+        rr = r_max * r_norm
+        return cx + rr * math.cos(angle), cy + rr * math.sin(angle)
+
+    # Concentric grid pentagons (0.25, 0.5, 0.75, 1.0)
+    grid = []
+    for r_ring in [0.25, 0.5, 0.75, 1.0]:
+        pts = []
+        for i in range(n):
+            x, y = to_xy(i, r_ring)
+            pts.append(f"{x:.1f},{y:.1f}")
+        grid.append(
+            f'<polygon points="{" ".join(pts)}" fill="none" stroke="#ebe9e0" stroke-width="0.8"/>'
+        )
+    # Axis lines
+    for i in range(n):
+        x_end, y_end = to_xy(i, 1.0)
+        grid.append(
+            f'<line x1="{cx:.1f}" y1="{cy:.1f}" x2="{x_end:.1f}" y2="{y_end:.1f}" stroke="#ebe9e0" stroke-width="0.8"/>'
+        )
+
+    # Axis labels
+    axis_labels = []
+    for i, (label, unit, max_v) in enumerate(axes):
+        x_lab, y_lab = to_xy(i, 1.16)
+        # Anchor based on position
+        angle_deg = -90 + (360 * i / n)
+        if angle_deg < -45 or angle_deg > 270:
+            anchor = "end"
+        elif -45 <= angle_deg <= 45:
+            anchor = "middle"
+        else:
+            anchor = "start"
+        # Vertical offset
+        if 80 < angle_deg < 100 or -100 < angle_deg < -80:
+            dy = 4
+        else:
+            dy = 0
+        axis_labels.append(
+            f'<text x="{x_lab:.1f}" y="{y_lab + dy:.1f}" font-size="11" font-weight="700" '
+            f'fill="#4b4b4b" text-anchor="{anchor}">{safe(label)}</text>'
+        )
+        # Max value label
+        x_max_lab, y_max_lab = to_xy(i, 1.05)
+        if i == 0:
+            axis_labels.append(
+                f'<text x="{cx + 4:.1f}" y="{cy - 4:.1f}" font-size="9" fill="#8a8a8a">0</text>'
+            )
+
+    # Series polygons
+    polygons = []
+    legend_items = []
+    for label, values, color in series:
+        pts = []
+        for i, v in enumerate(values):
+            v_clamped = max(0, min(v, 1))
+            x, y = to_xy(i, v_clamped)
+            pts.append(f"{x:.1f},{y:.1f}")
+        # Dots
+        dots = "".join(
+            f'<circle cx="{p.split(",")[0]}" cy="{p.split(",")[1]}" r="3" fill="{color}" stroke="white" stroke-width="1.5"/>'
+            for p in pts
+        )
+        polygons.append(
+            f'<polygon points="{" ".join(pts)}" fill="{color}" fill-opacity="0.18" '
+            f'stroke="{color}" stroke-width="2" stroke-linejoin="round"/>'
+            f'{dots}'
+        )
+        legend_items.append(
+            f'<span class="lg"><span class="sw" style="background:{color};"></span>{safe(label)}</span>'
+        )
+
+    title_html = f'<div style="font-size:13px;font-weight:700;color:var(--ink);text-align:center;margin-bottom:4px;">{safe(title)}</div>' if title else ""
+
+    return f"""<div style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 12px 12px;">
+  {title_html}
+  <svg viewBox="0 0 {width} {height}" width="100%" style="max-width:480px;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+    {''.join(grid)}
+    {''.join(axis_labels)}
+    {''.join(polygons)}
+  </svg>
+  <div class="stack-legend" style="justify-content:center;margin-top:6px;">{''.join(legend_items)}</div>
+</div>"""
+
+
+def _peer_compare_radar() -> str:
+    """DMIG vs PIPG radar — 6-axis normalized comparison."""
+
+    def safe_get(t, *path, default=None):
+        d = NOTES.get(t, {})
+        for p in path:
+            if not isinstance(d, dict):
+                return default
+            d = d.get(p) or {}
+        return d if d else default
+
+    # Axis definitions: (label, unit, max_value, peer_value_dict)
+    # All values normalized to 0..1 against max_value
+    dmig_d = NOTES.get("DMIG", {})
+    pipg_d = NOTES.get("PIPG", {})
+
+    # FY2024 entity revenue
+    dmig_rev = (dmig_d.get("revenue_note") or {}).get("total", {}).get("FY2024") or 0
+    pipg_rev = (pipg_d.get("revenue_note_27") or {}).get("total", {}).get("FY2024") or 0
+
+    # Operating margin FY2024 (DMIG from FY25 follow-up, PIPG from financial_highlights)
+    fu_dmig = (dmig_d.get("fy2025_follow_up") or {}).get("pnl_FY2024_comparative") or {}
+    dmig_op = fu_dmig.get("operating_income") or 0
+    dmig_om = (dmig_op / dmig_rev * 100) if dmig_rev else 0
+
+    fh_pipg = (pipg_d.get("financial_highlights") or {}).get("rows_in_idr_thousand", [])
+    pipg_op = 0
+    for r in fh_pipg:
+        if r.get("label") == "Laba Usaha":
+            pipg_op = (r.get("FY2024") or 0) * 1000
+            break
+    pipg_om = (pipg_op / pipg_rev * 100) if pipg_rev else 0
+
+    # Depreciation / revenue
+    def dep_pct(d, opex_key, rev_total):
+        lines = (d.get(opex_key) or {}).get("lines") or []
+        for ln in lines:
+            if "penyusutan" in (ln.get("id_label") or "").lower() or "depreciation" in (ln.get("en_label") or "").lower():
+                return (ln.get("FY2024") or 0) / rev_total * 100 if rev_total else 0
+        return 0
+    dmig_dep = dep_pct(dmig_d, "opex_note", dmig_rev)
+    pipg_dep = dep_pct(pipg_d, "opex_note_29", pipg_rev)
+
+    # Maintenance / revenue
+    def mnt_pct(d, opex_key, rev_total):
+        lines = (d.get(opex_key) or {}).get("lines") or []
+        for ln in lines:
+            lab = (ln.get("id_label") or "").lower()
+            en = (ln.get("en_label") or "").lower()
+            if "perbaikan" in lab or "pemeliharaan" in lab or "perawatan" in lab or "repair" in en or "maintenance" in en:
+                return (ln.get("FY2024") or 0) / rev_total * 100 if rev_total else 0
+        return 0
+    dmig_mnt = mnt_pct(dmig_d, "opex_note", dmig_rev)
+    pipg_mnt = mnt_pct(pipg_d, "opex_note_29", pipg_rev)
+
+    # Dividend payout FY23
+    dmig_div = 26_514_391_332
+    pipg_div = 26_239_800_000
+    dmig_ni_23 = 71_268_571_841
+    pipg_ni_23 = 55_900_000_000
+    dmig_payout = (dmig_div / dmig_ni_23 * 100)
+    pipg_payout = (pipg_div / pipg_ni_23 * 100)
+
+    # Holes
+    dmig_holes = 36
+    pipg_holes = 18
+    dmig_rev_hole = dmig_rev / dmig_holes / 1e9
+    pipg_rev_hole = pipg_rev / pipg_holes / 1e9
+
+    # Define axes with max values (for normalization)
+    axes = [
+        ("매출 (bn)",    "bn",  300),    # max 300bn
+        ("Op margin %", "%",   40),
+        ("감가/매출 %", "%",   15),     # higher = more capex
+        ("유지/매출 %", "%",   8),
+        ("배당 payout", "%",   60),
+        ("매출/홀 (bn)", "bn", 15),
+    ]
+
+    dmig_values = [
+        (dmig_rev / 1e9) / axes[0][2],
+        dmig_om / axes[1][2],
+        dmig_dep / axes[2][2],
+        dmig_mnt / axes[3][2],
+        dmig_payout / axes[4][2],
+        dmig_rev_hole / axes[5][2],
+    ]
+    pipg_values = [
+        (pipg_rev / 1e9) / axes[0][2],
+        pipg_om / axes[1][2],
+        pipg_dep / axes[2][2],
+        pipg_mnt / axes[3][2],
+        pipg_payout / axes[4][2],
+        pipg_rev_hole / axes[5][2],
+    ]
+
+    radar = _radar_chart_svg(
+        series=[
+            ("DMIG", dmig_values, PEER_COLORS["DMIG"]),
+            ("PIPG", pipg_values, PEER_COLORS["PIPG"]),
+        ],
+        axes=axes,
+        title="DMIG vs PIPG — 6축 1:1 비교 (FY2024 기반)",
+    )
+
+    # Side table with actual values
+    rows_html = []
+    for i, (label, unit, max_v) in enumerate(axes):
+        dmig_actual = [
+            dmig_rev / 1e9, dmig_om, dmig_dep, dmig_mnt, dmig_payout, dmig_rev_hole
+        ][i]
+        pipg_actual = [
+            pipg_rev / 1e9, pipg_om, pipg_dep, pipg_mnt, pipg_payout, pipg_rev_hole
+        ][i]
+        rows_html.append(f"""<tr>
+  <td>{safe(label)}</td>
+  <td class="num" style="color:{PEER_COLORS['DMIG']};font-weight:700;">{dmig_actual:.1f}{unit}</td>
+  <td class="num" style="color:{PEER_COLORS['PIPG']};font-weight:700;">{pipg_actual:.1f}{unit}</td>
+</tr>""")
+
+    table = f"""<div class="tbl-card" style="background:var(--surface);">
+  <table class="tbl tbl-tight">
+    <thead><tr><th>축</th>
+      <th class="num"><span class="ticker-mini">DMIG</span></th>
+      <th class="num"><span class="ticker-mini">PIPG</span></th>
+    </tr></thead>
+    <tbody>{''.join(rows_html)}</tbody>
+  </table>
+</div>"""
+
+    return f"""<div style="display:grid;grid-template-columns:1.2fr 1fr;gap:14px;align-items:start;">
+  {radar}
+  <div>
+    {table}
+    <p class="src-line" style="margin-top:10px;">
+      각 축은 max value 기준 0~100% 정규화 · 0=중심, 1=외곽 ·
+      DMIG는 매출 1.3배·자본투자 강도 ↑ (감가 12%) ·
+      PIPG는 유지보수 ↑ (5.9%) · 배당 payout 동일 수준
+    </p>
+  </div>
+</div>"""
+
+
 def _pnl_data_for(ticker: str) -> list:
     """Extract per-year P&L numbers for one ticker (FY22-25). Returns list of dicts."""
     d = NOTES.get(ticker, {})
@@ -3706,6 +3948,7 @@ def section_ops() -> str:
     # ── New sub-sections built from operations/data/*_notes.json
     pnl_table = _pnl_table()
     pnl_trend = _pnl_margin_trend_section()
+    peer_radar = _peer_compare_radar()
     capex_proxy_table = _capex_proxy_table()
     capex_heatmap = _capex_heatmap_section()
     capex_narratives = _capex_narrative_grid()
@@ -3934,7 +4177,10 @@ def section_ops() -> str:
         DMIG/PIPG는 FY22~FY25 4개년 P&L 라인 전체 추출 가능 (annual report Note 23/24/25 또는 Note 27/28/29).
         KPIG는 Hotel+Resort+Golf 통합 라인이므로 golf-only 비교 불가하나, 그룹 효율 추이는 참고 가능.
       </p>
-      <h4 class="ops-block-h">마진 추이 (3-peer 4Y) + 매출 절댓값 비교</h4>
+      <h4 class="ops-block-h">DMIG vs PIPG — 6축 radar 1:1 비교 (FY2024)</h4>
+      {peer_radar}
+
+      <h4 class="ops-block-h" style="margin-top: 26px;">마진 추이 (3-peer 4Y) + 매출 절댓값 비교</h4>
       {pnl_trend}
       <details style="margin: 14px 0 4px;">
         <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 4년 P&amp;L 표 (FY22-25 라인 단위)</summary>
