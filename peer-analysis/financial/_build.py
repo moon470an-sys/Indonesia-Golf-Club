@@ -1627,7 +1627,7 @@ def _generic_topn_chart(ticker: str, note_key: str, title: str, kind: str = "OpE
   <span style="text-align:right;color:var(--muted);">{yoy_t_str}</span>
 </div>""")
 
-    return f"""<div class="ops-block" style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 16px 12px;">
+    return f"""<div class="ops-block viz-card" style="padding:16px 16px 12px;">
   <h4 class="ops-block-h" style="margin-bottom:10px;">
     <span class="ticker-mini">{safe(ticker)}</span> {safe(title)}
   </h4>
@@ -1715,7 +1715,7 @@ def _opex_topn_chart(ticker: str, note_key: str, title: str, top_n: int = 5) -> 
   <span style="text-align:right;color:var(--muted);">{yoy_t_str}</span>
 </div>""")
 
-    return f"""<div class="ops-block" style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 16px 12px;">
+    return f"""<div class="ops-block viz-card" style="padding:16px 16px 12px;">
   <h4 class="ops-block-h" style="margin-bottom:10px;">
     <span class="ticker-mini">{safe(ticker)}</span> {safe(title)}
   </h4>
@@ -4518,7 +4518,7 @@ def _pipg_agreements_timeline() -> str:
   <div style="position:relative;height:34px;">{bar}</div>
 </div>""")
 
-    return f"""<div style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 16px 12px;margin:14px 0;">
+    return f"""<div class="viz-card" style="padding:16px 16px 12px;margin:14px 0;">
   <div style="display:grid;grid-template-columns:200px 1fr;gap:14px;">
     <div></div>
     <div style="position:relative;height:14px;margin-bottom:2px;">{''.join(ticks)}</div>
