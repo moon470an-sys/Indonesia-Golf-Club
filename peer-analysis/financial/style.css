@@ -398,6 +398,20 @@ tr.row-total td.num { color: var(--ink); }
 .kv-comment { font-size: 12.5px; color: var(--ink-soft); margin: 6px 0 4px; line-height: 1.5; }
 .muted { color: var(--muted); font-weight: 400; font-size: 12px; }
 
+/* ============== Scroll progress bar (top of viewport) ============== */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, #2d5016 0%, #4a7c30 50%, #c08a2e 100%);
+  z-index: 100;
+  transition: width 0.08s ease-out;
+  pointer-events: none;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.scroll-progress.hidden { opacity: 0; }
+
 /* ============== Executive headline strip (top of ops tab) ============== */
 .exec-headline {
   background: linear-gradient(135deg, #1d3b0e 0%, #2d5016 55%, #3e6b1d 100%);

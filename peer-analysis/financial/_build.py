@@ -4180,52 +4180,56 @@ def section_ops() -> str:
       </details>
     </div>
 
-    <div class="section">
-      <h2>골프 segment 매출 disclosure 강도</h2>
-      <h3>annual report에서 골프장만 떼어내 공시하는가?</h3>
+    <div class="section" id="appendix">
+      <h2 data-num="A">부록 — Disclosure 강도 & curated CSV KPI</h2>
+      <h3>Pure-play 3-peer 공시 형태 + curated CSV 기반 단일 entry KPI</h3>
       <p class="lede">
-        Pure-play 3개의 segment 공시 강도. <em>Full</em>은 골프장 매출/비용을 segment로 분리 공시,
-        <em>Partial</em>은 일부만, <em>N/A</em>는 모회사 합산만 공시.
+        본문 시각화와 별도로, peer_operating_signals + peer_financials_curated CSV에서 추출한 단순 정량 정보.
+        <strong>Note 기반 (FY24 full year, 시각화 사용)</strong>과는 다른 단일 entry임을 주의.
       </p>
-      <div class="tbl-card">
-        <table class="tbl">
-          <thead>
-            <tr>
-              <th>Peer</th>
-              <th>공시 강도</th>
-              <th class="num">기준 FY</th>
-              <th>공시 형태</th>
-            </tr>
-          </thead>
-          <tbody>{''.join(rows)}</tbody>
-        </table>
-      </div>
-    </div>
 
-    <div class="section">
-      <h2>운영 효율 KPI — 마진·자산효율</h2>
-      <h3>FY2024 순이익률 · 자산집약도</h3>
-      <div class="tbl-card">
-        <table class="tbl">
-          <thead>
-            <tr>
-              <th>Peer</th>
-              <th class="num">매출 (FY24)</th>
-              <th class="num">순이익</th>
-              <th class="num">총자산</th>
-              <th class="num">순이익률</th>
-              <th class="num">자산/매출</th>
-            </tr>
-          </thead>
-          <tbody>{''.join(perf_rows)}</tbody>
-        </table>
-      </div>
+      <details open style="margin: 8px 0;">
+        <summary style="cursor: pointer; font-size: 13.5px; font-weight: 700; color: var(--ink); padding: 8px 0;">▾ 골프 segment 매출 disclosure 강도</summary>
+        <p style="font-size:13px;color:var(--ink-soft);margin: 4px 2px 8px;">
+          <em>Full</em> = 골프장 매출/비용 segment 분리 공시 · <em>Partial</em> = 일부만 · <em>N/A</em> = 모회사 합산만.
+        </p>
+        <div class="tbl-card">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>Peer</th>
+                <th>공시 강도</th>
+                <th class="num">기준 FY</th>
+                <th>공시 형태</th>
+              </tr>
+            </thead>
+            <tbody>{''.join(rows)}</tbody>
+          </table>
+        </div>
+      </details>
 
-      <div class="banner">
-        <strong>해석 주의:</strong> KPIG 매출·순이익·자산은 <strong>모회사 연결 기준</strong>(non-golf 사업 포함).
-        DMIG 매출은 H1만 audited (curated CSV). 본 페이지의 FY24 4년 P&L 표는 Note 추출본 (FY24 full year)을 사용 — 이 KPI 표는 curated CSV의 단일 entry만 표시.
-        PIPG만 entity 기준 FY 전체 일관.
-      </div>
+      <details style="margin: 12px 0;">
+        <summary style="cursor: pointer; font-size: 13.5px; font-weight: 700; color: var(--ink); padding: 8px 0;">▸ 운영 효율 KPI (curated CSV 단일 entry)</summary>
+        <div class="tbl-card">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>Peer</th>
+                <th class="num">매출 (FY24)</th>
+                <th class="num">순이익</th>
+                <th class="num">총자산</th>
+                <th class="num">순이익률</th>
+                <th class="num">자산/매출</th>
+              </tr>
+            </thead>
+            <tbody>{''.join(perf_rows)}</tbody>
+          </table>
+        </div>
+        <div class="banner">
+          <strong>해석 주의:</strong> KPIG는 <strong>모회사 연결 기준</strong> (non-golf 포함). DMIG는 H1만 audited.
+          본문 P&L 표 (Note 추출본, FY24 full year)와 다른 entry임.
+        </div>
+      </details>
     </div>
 
     <div class="section" id="margin-commentary">
@@ -4297,18 +4301,23 @@ def section_ops() -> str:
       </details>
     </div>
 
-    <div class="section">
-      <h2>peer_operating_signals.csv — 기존 1줄 메모</h2>
-      <div class="kv-grid">
-        {''.join(capex_notes)}
-      </div>
+    <div class="section" id="methodology">
+      <h2 data-num="M">Methodology · 출처 & 데이터 흐름</h2>
+      <h3>모든 수치는 AR 페이지/Note까지 추적 가능 (audit-grade)</h3>
+
+      <details style="margin: 8px 0;">
+        <summary style="cursor: pointer; font-size: 13.5px; font-weight: 700; color: var(--ink); padding: 8px 0;">▸ Peer 운영 메모 1줄 요약 (curated CSV)</summary>
+        <div class="kv-grid">
+          {''.join(capex_notes)}
+        </div>
+      </details>
 
       <div class="src-block">
-        <strong>전체 출처:</strong>
-        DMIG/PIPG/KPIG/MDLN/GOLF/KIJA/SMDM annual reports (FY22–FY25), 라인별 추출 = <code>site/peer-analysis/operations/data/{{ticker}}_notes.json</code> ·
-        peer_financials_curated.csv ·
-        peer_operating_signals.csv (segment_revenue_disclosure, operational_notes 필드) ·
-        벡터 인덱스 (multilingual-e5-small, 99,618 chunks) — narrative 검증용.
+        <strong>전체 출처 체계:</strong>
+        <strong>1차 데이터</strong> · DMIG/PIPG/KPIG/MDLN/GOLF/KIJA/SMDM annual reports (FY22-FY25), 라인 단위 PyMuPDF 추출 = <code>operations/data/{{ticker}}_notes.json</code> ·
+        <strong>구조화 CSV</strong> · peer_financials_curated.csv · peer_operating_signals.csv ·
+        <strong>벡터 검증</strong> · multilingual-e5-small embedding · 99,618 chunks Chroma index — narrative quotes cross-validate ·
+        <strong>출력</strong> · 모든 차트는 inline SVG + CSS bar (no fetch, no external chart lib) — 정적 HTML 단일 파일로 GitHub Pages 배포.
       </div>
     </div>
   </div>

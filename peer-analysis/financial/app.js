@@ -67,6 +67,34 @@
     });
   }
 
+  // === Scroll progress bar (active on ops panel) ===
+  function initScrollProgress() {
+    let bar = document.querySelector('.scroll-progress');
+    if (!bar) {
+      bar = document.createElement('div');
+      bar.className = 'scroll-progress hidden';
+      document.body.insertBefore(bar, document.body.firstChild);
+    }
+    const opsPanel = document.querySelector('.panel[data-panel="ops"]');
+    function update() {
+      const opsActive = opsPanel && opsPanel.classList.contains('active');
+      if (!opsActive) {
+        bar.classList.add('hidden');
+        bar.style.width = '0%';
+        return;
+      }
+      bar.classList.remove('hidden');
+      const doc = document.documentElement;
+      const max = (doc.scrollHeight - window.innerHeight) || 1;
+      const pct = Math.min(100, Math.max(0, (window.scrollY / max) * 100));
+      bar.style.width = pct.toFixed(2) + '%';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
+    document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => setTimeout(update, 60)));
+    update();
+  }
+
   // === Sub-nav active section highlighting (IntersectionObserver) ===
   function initSubnavActive() {
     const subnav = document.querySelector('.ops-subnav');
@@ -135,5 +163,6 @@
     initSort();
     initBackToToc();
     initSubnavActive();
+    initScrollProgress();
   });
 })();
