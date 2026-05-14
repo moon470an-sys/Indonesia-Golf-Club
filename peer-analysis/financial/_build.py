@@ -842,6 +842,17 @@ def _pnl_data_for(ticker: str) -> list:
                     op_inc = r.get(fy) and r[fy] * 1000
                 if r.get("label") == "Laba Bersih":
                     net_inc = r.get(fy) and r[fy] * 1000
+        if fy in ("FY2022", "FY2023", "FY2024") and ticker == "GOLF":
+            fh = (d.get("financial_highlights") or {}).get("rows_in_idr", [])
+            for r in fh:
+                if r.get("label") == "Penjualan Bersih":
+                    rev = r.get(fy) or rev
+                if r.get("label") == "Beban Pokok Penjualan":
+                    cogs = abs(r.get(fy) or 0) or cogs
+                if r.get("label") == "Laba Usaha":
+                    op_inc = r.get(fy)
+                if r.get("label") == "Laba Tahun Berjalan":
+                    net_inc = r.get(fy)
         if ticker == "DMIG" and fy == "FY2024":
             fu = (d.get("fy2025_follow_up") or {}).get("pnl_FY2024_comparative") or {}
             op_inc = op_inc or fu.get("operating_income")
@@ -933,10 +944,10 @@ def _multi_line_chart(series_list, fys, width=380, height=200, title=""):
 
 
 def _pnl_margin_trend_section() -> str:
-    """Multi-line GM/OM/NM trend chart for DMIG + PIPG + KPIG (where data exists)."""
+    """Multi-line GM/OM/NM trend chart for DMIG + PIPG + GOLF (where data exists)."""
     fys = PNL_YEARS
     charts = []
-    for ticker in ["DMIG", "PIPG", "KPIG"]:
+    for ticker in ["DMIG", "PIPG", "GOLF"]:
         data = _pnl_data_for(ticker)
         gm_vals = [d["gm"] for d in data]
         om_vals = [d["om"] for d in data]
