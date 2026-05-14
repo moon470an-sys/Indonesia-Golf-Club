@@ -1566,6 +1566,8 @@
       <a class="chip" href="#op-cogs">COGS 라인</a>
       <a class="chip" href="#op-opex">OpEx 라인</a>
       <a class="chip" href="#op-norm">OpEx 정규화</a>
+      <a class="chip" href="#op-category">카테고리 deep-dive</a>
+      <a class="chip" href="#op-4y-trend">4Y trend</a>
       <a class="chip" href="#op-narratives">AR narrative</a>
       <a class="chip" href="#op-pipg">PIPG 4-seg GP</a>
       <a class="chip" href="#op-fy25">FY25 prelim</a>
@@ -2330,8 +2332,275 @@
       </details>
     </div>
 
+    <div class="section" id="op-category">
+      <h2 data-num="05">OpEx 카테고리 deep-dive — 4 핵심 비교</h2>
+      <h3>인건비 · 세금·법률 · 유지보수 · 유틸리티 — peer 차이의 본질</h3>
+      <p class="lede">
+        OpEx 합계만 보면 38% vs 21%로 단순하지만, <strong>카테고리별로 들어가면 진짜 차이</strong>가 드러남.
+        DMIG는 인건비 1위, PIPG는 세금·유지 1위, GOLF는 모든 면에서 lean.
+        각 카테고리에서 contributing line items도 inline 표시.
+      </p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(440px,1fr));gap:14px;">
+  <div class="ops-block" style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;">
+  <h4 class="ops-block-h" style="margin-bottom:10px;">👥 인건비 (Salaries+benefits) — DMIG/PIPG/GOLF</h4>
+  <div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;padding:2px 0 4px;font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;font-weight:700;border-bottom:1px solid var(--line);">
+    <span>Peer</span><span>FY24 magnitude</span><span style="text-align:right;">IDR</span><span style="text-align:right;">% 매출</span><span style="text-align:right;">YoY</span>
+  </div>
+  <div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;align-items:center;padding:5px 0;font-size:12px;">
+  <span><span class="ticker-mini">DMIG</span></span>
+  <span style="height:20px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:100.0%;background:#2d5016;"></span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;">32.0bn</span>
+  <span style="text-align:right;color:var(--ink-soft);font-size:11px;">12.6% 매출</span>
+  <span style="text-align:right;font-weight:700;font-size:11px;color:var(--muted);">+1.9%</span>
+</div><div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;padding:2px 0 2px 16px;font-size:11px;color:var(--muted);">
+  <span></span>
+  <span style="font-style:italic;">↳ Salaries and wages</span>
+  <span style="text-align:right;font-variant-numeric:tabular-nums;">28.6bn</span>
+  <span></span><span></span>
+</div><div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;padding:2px 0 2px 16px;font-size:11px;color:var(--muted);">
+  <span></span>
+  <span style="font-style:italic;">↳ Employee benefits</span>
+  <span style="text-align:right;font-variant-numeric:tabular-nums;">2.4bn</span>
+  <span></span><span></span>
+</div><div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;padding:2px 0 2px 16px;font-size:11px;color:var(--muted);">
+  <span></span>
+  <span style="font-style:italic;">↳ Employee welfare</span>
+  <span style="text-align:right;font-variant-numeric:tabular-nums;">998.8M</span>
+  <span></span><span></span>
+</div><div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;align-items:center;padding:5px 0;font-size:12px;">
+  <span><span class="ticker-mini">PIPG</span></span>
+  <span style="height:20px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:83.1%;background:#c08a2e;"></span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;">20.8bn</span>
+  <span style="text-align:right;color:var(--ink-soft);font-size:11px;">10.5% 매출</span>
+  <span style="text-align:right;font-weight:700;font-size:11px;color:var(--danger);">+24.0%</span>
+</div><div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;padding:2px 0 2px 16px;font-size:11px;color:var(--muted);">
+  <span></span>
+  <span style="font-style:italic;">↳ Salary and allowances</span>
+  <span style="text-align:right;font-variant-numeric:tabular-nums;">17.9bn</span>
+  <span></span><span></span>
+</div><div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;padding:2px 0 2px 16px;font-size:11px;color:var(--muted);">
+  <span></span>
+  <span style="font-style:italic;">↳ Provision for employee benefit (Note 22)</span>
+  <span style="text-align:right;font-variant-numeric:tabular-nums;">2.5bn</span>
+  <span></span><span></span>
+</div><div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;padding:2px 0 2px 16px;font-size:11px;color:var(--muted);">
+  <span></span>
+  <span style="font-style:italic;">↳ Training expenses</span>
+  <span style="text-align:right;font-variant-numeric:tabular-nums;">353.4M</span>
+  <span></span><span></span>
+</div><div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;align-items:center;padding:5px 0;font-size:12px;">
+  <span><span class="ticker-mini">GOLF</span></span>
+  <span style="height:20px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:70.9%;background:#4a7c30;"></span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;">17.7bn</span>
+  <span style="text-align:right;color:var(--ink-soft);font-size:11px;">9.0% 매출</span>
+  <span style="text-align:right;font-weight:700;font-size:11px;color:var(--danger);">+7.0%</span>
+</div><div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;padding:2px 0 2px 16px;font-size:11px;color:var(--muted);">
+  <span></span>
+  <span style="font-style:italic;">↳ Salaries and allowances</span>
+  <span style="text-align:right;font-variant-numeric:tabular-nums;">15.7bn</span>
+  <span></span><span></span>
+</div><div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;padding:2px 0 2px 16px;font-size:11px;color:var(--muted);">
+  <span></span>
+  <span style="font-style:italic;">↳ Employee benefits (Note 23)</span>
+  <span style="text-align:right;font-variant-numeric:tabular-nums;">2.0bn</span>
+  <span></span><span></span>
+</div>
+</div>
+  <div class="ops-block" style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;">
+  <h4 class="ops-block-h" style="margin-bottom:10px;">📜 세금·법률 (Tax+Legal) — PIPG outlier 확인</h4>
+  <div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;padding:2px 0 4px;font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;font-weight:700;border-bottom:1px solid var(--line);">
+    <span>Peer</span><span>FY24 magnitude</span><span style="text-align:right;">IDR</span><span style="text-align:right;">% 매출</span><span style="text-align:right;">YoY</span>
+  </div>
+  <div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;align-items:center;padding:5px 0;font-size:12px;">
+  <span><span class="ticker-mini">PIPG</span></span>
+  <span style="height:20px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:100.0%;background:#c08a2e;"></span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;">24.4bn</span>
+  <span style="text-align:right;color:var(--ink-soft);font-size:11px;">12.3% 매출</span>
+  <span style="text-align:right;font-weight:700;font-size:11px;color:var(--danger);">+16.4%</span>
+</div><div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;padding:2px 0 2px 16px;font-size:11px;color:var(--muted);">
+  <span></span>
+  <span style="font-style:italic;">↳ Tax and legal</span>
+  <span style="text-align:right;font-variant-numeric:tabular-nums;">24.2bn</span>
+  <span></span><span></span>
+</div><div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;padding:2px 0 2px 16px;font-size:11px;color:var(--muted);">
+  <span></span>
+  <span style="font-style:italic;">↳ Audit and consultant</span>
+  <span style="text-align:right;font-variant-numeric:tabular-nums;">192.3M</span>
+  <span></span><span></span>
+</div><div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;align-items:center;padding:5px 0;font-size:12px;">
+  <span><span class="ticker-mini">DMIG</span></span>
+  <span style="height:20px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:42.1%;background:#2d5016;"></span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;">13.2bn</span>
+  <span style="text-align:right;color:var(--ink-soft);font-size:11px;">5.2% 매출</span>
+  <span style="text-align:right;font-weight:700;font-size:11px;color:var(--green);">-5.8%</span>
+</div><div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;padding:2px 0 2px 16px;font-size:11px;color:var(--muted);">
+  <span></span>
+  <span style="font-style:italic;">↳ Land and building tax</span>
+  <span style="text-align:right;font-variant-numeric:tabular-nums;">10.4bn</span>
+  <span></span><span></span>
+</div><div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;padding:2px 0 2px 16px;font-size:11px;color:var(--muted);">
+  <span></span>
+  <span style="font-style:italic;">↳ Tax and licensing</span>
+  <span style="text-align:right;font-variant-numeric:tabular-nums;">1.6bn</span>
+  <span></span><span></span>
+</div><div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;padding:2px 0 2px 16px;font-size:11px;color:var(--muted);">
+  <span></span>
+  <span style="font-style:italic;">↳ Professional fee</span>
+  <span style="text-align:right;font-variant-numeric:tabular-nums;">1.1bn</span>
+  <span></span><span></span>
+</div><div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;align-items:center;padding:5px 0;font-size:12px;">
+  <span><span class="ticker-mini">GOLF</span></span>
+  <span style="height:20px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:25.1%;background:#4a7c30;"></span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;">6.1bn</span>
+  <span style="text-align:right;color:var(--ink-soft);font-size:11px;">3.1% 매출</span>
+  <span style="text-align:right;font-weight:700;font-size:11px;color:var(--green);">-23.8%</span>
+</div><div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;padding:2px 0 2px 16px;font-size:11px;color:var(--muted);">
+  <span></span>
+  <span style="font-style:italic;">↳ Professional fees</span>
+  <span style="text-align:right;font-variant-numeric:tabular-nums;">2.4bn</span>
+  <span></span><span></span>
+</div><div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;padding:2px 0 2px 16px;font-size:11px;color:var(--muted);">
+  <span></span>
+  <span style="font-style:italic;">↳ Land and building tax</span>
+  <span style="text-align:right;font-variant-numeric:tabular-nums;">2.4bn</span>
+  <span></span><span></span>
+</div><div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;padding:2px 0 2px 16px;font-size:11px;color:var(--muted);">
+  <span></span>
+  <span style="font-style:italic;">↳ Legal dan perizinan</span>
+  <span style="text-align:right;font-variant-numeric:tabular-nums;">1.3bn</span>
+  <span></span><span></span>
+</div>
+</div>
+  <div class="ops-block" style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;">
+  <h4 class="ops-block-h" style="margin-bottom:10px;">🔧 유지보수 (Repair+Maintenance) — PIPG 5.9% vs DMIG 0.9%</h4>
+  <div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;padding:2px 0 4px;font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;font-weight:700;border-bottom:1px solid var(--line);">
+    <span>Peer</span><span>FY24 magnitude</span><span style="text-align:right;">IDR</span><span style="text-align:right;">% 매출</span><span style="text-align:right;">YoY</span>
+  </div>
+  <div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;align-items:center;padding:5px 0;font-size:12px;">
+  <span><span class="ticker-mini">PIPG</span></span>
+  <span style="height:20px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:100.0%;background:#c08a2e;"></span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;">11.6bn</span>
+  <span style="text-align:right;color:var(--ink-soft);font-size:11px;">5.9% 매출</span>
+  <span style="text-align:right;font-weight:700;font-size:11px;color:var(--danger);">+9.6%</span>
+</div><div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;padding:2px 0 2px 16px;font-size:11px;color:var(--muted);">
+  <span></span>
+  <span style="font-style:italic;">↳ Repair and maintenance</span>
+  <span style="text-align:right;font-variant-numeric:tabular-nums;">11.6bn</span>
+  <span></span><span></span>
+</div><div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;align-items:center;padding:5px 0;font-size:12px;">
+  <span><span class="ticker-mini">GOLF</span></span>
+  <span style="height:20px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:21.3%;background:#4a7c30;"></span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;">2.5bn</span>
+  <span style="text-align:right;color:var(--ink-soft);font-size:11px;">1.3% 매출</span>
+  <span style="text-align:right;font-weight:700;font-size:11px;color:var(--danger);">+24.7%</span>
+</div><div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;padding:2px 0 2px 16px;font-size:11px;color:var(--muted);">
+  <span></span>
+  <span style="font-style:italic;">↳ Repairs and maintenance</span>
+  <span style="text-align:right;font-variant-numeric:tabular-nums;">2.5bn</span>
+  <span></span><span></span>
+</div><div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;align-items:center;padding:5px 0;font-size:12px;">
+  <span><span class="ticker-mini">DMIG</span></span>
+  <span style="height:20px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:15.2%;background:#2d5016;"></span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;">2.3bn</span>
+  <span style="text-align:right;color:var(--ink-soft);font-size:11px;">0.9% 매출</span>
+  <span style="text-align:right;font-weight:700;font-size:11px;color:var(--muted);">+0.8%</span>
+</div><div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;padding:2px 0 2px 16px;font-size:11px;color:var(--muted);">
+  <span></span>
+  <span style="font-style:italic;">↳ Repair and maintenance</span>
+  <span style="text-align:right;font-variant-numeric:tabular-nums;">2.3bn</span>
+  <span></span><span></span>
+</div>
+</div>
+  <div class="ops-block" style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;">
+  <h4 class="ops-block-h" style="margin-bottom:10px;">⚡ 유틸리티 (Utilities) — 전기·수도</h4>
+  <div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;padding:2px 0 4px;font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;font-weight:700;border-bottom:1px solid var(--line);">
+    <span>Peer</span><span>FY24 magnitude</span><span style="text-align:right;">IDR</span><span style="text-align:right;">% 매출</span><span style="text-align:right;">YoY</span>
+  </div>
+  <div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;align-items:center;padding:5px 0;font-size:12px;">
+  <span><span class="ticker-mini">GOLF</span></span>
+  <span style="height:20px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:100.0%;background:#4a7c30;"></span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;">4.0bn</span>
+  <span style="text-align:right;color:var(--ink-soft);font-size:11px;">2.0% 매출</span>
+  <span style="text-align:right;font-weight:700;font-size:11px;color:var(--muted);">+0.4%</span>
+</div><div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;padding:2px 0 2px 16px;font-size:11px;color:var(--muted);">
+  <span></span>
+  <span style="font-style:italic;">↳ Utility</span>
+  <span style="text-align:right;font-variant-numeric:tabular-nums;">4.0bn</span>
+  <span></span><span></span>
+</div><div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;align-items:center;padding:5px 0;font-size:12px;">
+  <span><span class="ticker-mini">DMIG</span></span>
+  <span style="height:20px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:87.7%;background:#2d5016;"></span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;">4.5bn</span>
+  <span style="text-align:right;color:var(--ink-soft);font-size:11px;">1.8% 매출</span>
+  <span style="text-align:right;font-weight:700;font-size:11px;color:var(--muted);">+4.0%</span>
+</div><div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;padding:2px 0 2px 16px;font-size:11px;color:var(--muted);">
+  <span></span>
+  <span style="font-style:italic;">↳ Electricity and water</span>
+  <span style="text-align:right;font-variant-numeric:tabular-nums;">4.5bn</span>
+  <span></span><span></span>
+</div><div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;align-items:center;padding:5px 0;font-size:12px;">
+  <span><span class="ticker-mini">PIPG</span></span>
+  <span style="height:20px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:58.2%;background:#c08a2e;"></span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;">2.3bn</span>
+  <span style="text-align:right;color:var(--ink-soft);font-size:11px;">1.2% 매출</span>
+  <span style="text-align:right;font-weight:700;font-size:11px;color:var(--muted);">+4.4%</span>
+</div><div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;padding:2px 0 2px 16px;font-size:11px;color:var(--muted);">
+  <span></span>
+  <span style="font-style:italic;">↳ Electricity and water</span>
+  <span style="text-align:right;font-variant-numeric:tabular-nums;">2.2bn</span>
+  <span></span><span></span>
+</div><div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;padding:2px 0 2px 16px;font-size:11px;color:var(--muted);">
+  <span></span>
+  <span style="font-style:italic;">↳ Allowance for impairment of receivable (Note 6)</span>
+  <span style="text-align:right;font-variant-numeric:tabular-nums;">120.2M</span>
+  <span></span><span></span>
+</div>
+</div>
+</div>
+    </div>
+
+    <div class="section" id="op-4y-trend">
+      <h2 data-num="06">OpEx/매출 % — 4Y trend (FY22-25)</h2>
+      <h3>비용 효율 추이 — DMIG/PIPG/GOLF</h3>
+      <p class="lede">
+        OpEx ratio가 4년간 어떻게 변했는지 multi-line. PIPG는 FY25 큰 폭 하락 (-17.9%), DMIG는 점진 상승, GOLF는 stable 낮음.
+      </p>
+      <div style="display:flex;justify-content:center;"><div style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 12px 10px;">
+  <div style="font-size:13px;font-weight:700;color:var(--ink);text-align:center;margin-bottom:4px;">OpEx/매출 % — 4Y 추이 (DMIG · PIPG · GOLF)</div>
+  <svg viewBox="0 0 520 260" width="100%" style="display:block;" xmlns="http://www.w3.org/2000/svg">
+    <line x1="40" y1="230.0" x2="504" y2="230.0" stroke="#ebe9e0" stroke-width="0.5"/><text x="34" y="233.0" font-size="9" fill="#8a8a8a" text-anchor="end">-5%</text><line x1="40" y1="177.5" x2="504" y2="177.5" stroke="#ebe9e0" stroke-width="0.5"/><text x="34" y="180.5" font-size="9" fill="#8a8a8a" text-anchor="end">7%</text><line x1="40" y1="125.0" x2="504" y2="125.0" stroke="#ebe9e0" stroke-width="0.5"/><text x="34" y="128.0" font-size="9" fill="#8a8a8a" text-anchor="end">19%</text><line x1="40" y1="72.5" x2="504" y2="72.5" stroke="#ebe9e0" stroke-width="0.5"/><text x="34" y="75.5" font-size="9" fill="#8a8a8a" text-anchor="end">32%</text><line x1="40" y1="20.0" x2="504" y2="20.0" stroke="#ebe9e0" stroke-width="0.5"/><text x="34" y="23.0" font-size="9" fill="#8a8a8a" text-anchor="end">44%</text><text x="40.0" y="244" font-size="10" fill="#4b4b4b" text-anchor="middle" font-weight="600">2022</text><text x="194.7" y="244" font-size="10" fill="#4b4b4b" text-anchor="middle" font-weight="600">2023</text><text x="349.3" y="244" font-size="10" fill="#4b4b4b" text-anchor="middle" font-weight="600">2024</text><text x="504.0" y="244" font-size="10" fill="#4b4b4b" text-anchor="middle" font-weight="600">2025</text>
+    <polyline fill="none" stroke="#2d5016" stroke-width="2" points="40.0,38.7 194.7,43.6 349.3,43.8 504.0,37.1"/><circle cx="40.0" cy="38.7" r="3" fill="white" stroke="#2d5016" stroke-width="2"><title>DMIG: 39.6%</title></circle><circle cx="194.7" cy="43.6" r="3" fill="white" stroke="#2d5016" stroke-width="2"><title>DMIG: 38.4%</title></circle><circle cx="349.3" cy="43.8" r="3" fill="white" stroke="#2d5016" stroke-width="2"><title>DMIG: 38.4%</title></circle><circle cx="504.0" cy="37.1" r="3" fill="white" stroke="#2d5016" stroke-width="2"><title>DMIG: 39.9%</title></circle><text x="510.0" y="41.1" font-size="11" fill="#2d5016" font-weight="700">39.9%</text><polyline fill="none" stroke="#c08a2e" stroke-width="2" points="194.7,70.0 349.3,43.2 504.0,64.2"/><circle cx="194.7" cy="70.0" r="3" fill="white" stroke="#c08a2e" stroke-width="2"><title>PIPG: 32.3%</title></circle><circle cx="349.3" cy="43.2" r="3" fill="white" stroke="#c08a2e" stroke-width="2"><title>PIPG: 38.5%</title></circle><circle cx="504.0" cy="64.2" r="3" fill="white" stroke="#c08a2e" stroke-width="2"><title>PIPG: 33.6%</title></circle><text x="510.0" y="68.2" font-size="11" fill="#c08a2e" font-weight="700">33.6%</text><polyline fill="none" stroke="#4a7c30" stroke-width="2" points="194.7,112.5 349.3,117.8"/><circle cx="194.7" cy="112.5" r="3" fill="white" stroke="#4a7c30" stroke-width="2"><title>GOLF: 22.4%</title></circle><circle cx="349.3" cy="117.8" r="3" fill="white" stroke="#4a7c30" stroke-width="2"><title>GOLF: 21.1%</title></circle><text x="355.3" y="121.8" font-size="11" fill="#4a7c30" font-weight="700">21.1%</text>
+  </svg>
+  <div class="stack-legend" style="margin-top:6px;justify-content:center;"><span class="lg"><span class="sw" style="background:#2d5016;"></span>DMIG</span><span class="lg"><span class="sw" style="background:#c08a2e;"></span>PIPG</span><span class="lg"><span class="sw" style="background:#4a7c30;"></span>GOLF</span></div>
+</div></div>
+    </div>
+
     <div class="section" id="op-narratives">
-      <h2 data-num="05">왜? — 운영 리스크 & 비용 sensitivity (벡터 DB)</h2>
+      <h2 data-num="07">왜? — 운영 리스크 & 비용 sensitivity (벡터 DB)</h2>
       <h3>OpEx 절댓값 뒤의 의미 — 보험·인건비 leverage·ESG·자본</h3>
       <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap:14px; margin: 14px 0;">
   <div class="quote-card" style="border-left-color: #8a8a8a;">
@@ -2391,7 +2660,7 @@
     </div>
 
     <div class="section" id="op-pipg">
-      <h2 data-num="06">PIPG 4-segment GP margin — Note 30</h2>
+      <h2 data-num="08">PIPG 4-segment GP margin — Note 30</h2>
       <h3>Golf Course&amp;Cart / Membership / Restaurant / Others (FY23)</h3>
       <p class="lede">
         PIPG는 Note 30 Segment Information에서 4 segment의 COGS를 explicit 공시. Membership 부문 GP margin 압도적 높음 (87.8%).
@@ -2474,7 +2743,7 @@
     </div>
 
     <div class="section" id="op-fy25">
-      <h2 data-num="07">FY2025 미감사 prelim — 마진 압박 신호</h2>
+      <h2 data-num="09">FY2025 미감사 prelim — 마진 압박 신호</h2>
       <h3>DMIG/PIPG/KPIG 3-peer side-by-side dashboard</h3>
       <p class="lede">
         DMIG/PIPG/KPIG 모두 FY2025 unaudited financial statement 공시. ▲ 녹색 = 증가, ▼ 빨강 = 감소.
@@ -2582,7 +2851,7 @@
     </div>
 
     <div class="section" id="op-margin">
-      <h2 data-num="08">FY24→FY25 마진 변화 — 벡터 추출 commentary</h2>
+      <h2 data-num="10">FY24→FY25 마진 변화 — 벡터 추출 commentary</h2>
       <h3>6-peer timeline 카드 + FY24↔FY25 mini delta bar</h3>
       <p class="lede">
         벡터 DB로 각 peer의 FY24/FY25 AR 본문에서 마진 변화 commentary 추출. 카드별 mini bar로 FY24↔FY25 직접 비교 + delta% 표시.
@@ -3086,9 +3355,9 @@
 <footer class="foot">
   <div class="wrap">
     <p>
-      <strong>골프장 운영 Peer 비교 사이트</strong> — Build 2026-05-14 (commit <code>47faae5</code>) ·
-      Ops 탭 <strong>29</strong>개 분석 섹션 ·
-      <strong>9</strong> SVG 차트 · <strong>32</strong> KPI 타일 · <strong>26</strong> 벡터 narrative 카드 ·
+      <strong>골프장 운영 Peer 비교 사이트</strong> — Build 2026-05-14 (commit <code>1ee013a</code>) ·
+      Ops 탭 <strong>31</strong>개 분석 섹션 ·
+      <strong>10</strong> SVG 차트 · <strong>32</strong> KPI 타일 · <strong>26</strong> 벡터 narrative 카드 ·
       데이터: raw_peer_data/*.csv (last verified 2026-04-29 ~ 2026-05-07) + AR Note 직접 추출 + 벡터 검색 (99,618 chunks) ·
       추정/보간 없음. 미공시는 N/A로 표기.
     </p>

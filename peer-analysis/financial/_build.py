@@ -4216,6 +4216,138 @@ def _fy25_delta_cards() -> str:
     return f'<div class="kv-grid">{"".join(cards)}</div>'
 
 
+def _opex_category_cross_peer(cat_keys: list, title: str, peer_specific_color: dict = None) -> str:
+    """Cross-peer comparison of a single OpEx category (e.g., salaries, tax, utilities).
+
+    cat_keys: list of OPEX_CATEGORY_RULES keys to match (e.g., ["인건비 (Salaries+benefits)"])
+    """
+    rows = []
+    for ticker, opex_key, rev_key in [
+        ("DMIG", "opex_note", "revenue_note"),
+        ("PIPG", "opex_note_29", "revenue_note_27"),
+        ("GOLF", "ga_note_32", "revenue_note_29"),
+    ]:
+        d = NOTES.get(ticker, {})
+        rev = (d.get(rev_key) or {}).get("total", {}).get("FY2024")
+        if ticker == "GOLF":
+            rev = ((d.get("revenue_note_29") or {}).get("by_operations") or {}).get("total", {}).get("FY2024") or rev
+        rev_prev = (d.get(rev_key) or {}).get("total", {}).get("FY2023")
+        if ticker == "GOLF":
+            rev_prev = ((d.get("revenue_note_29") or {}).get("by_operations") or {}).get("total", {}).get("FY2023") or rev_prev
+
+        total24 = 0
+        total23 = 0
+        lines_collected = []
+        for ln in (d.get(opex_key) or {}).get("lines") or []:
+            label = (ln.get("id_label") or "") + " " + (ln.get("en_label") or "")
+            cat = _opex_category_of(label)
+            if cat in cat_keys:
+                total24 += ln.get("FY2024") or 0
+                total23 += ln.get("FY2023") or 0
+                lines_collected.append((ln.get("en_label") or ln.get("id_label") or "—", ln.get("FY2024") or 0))
+        pct24 = (total24 / rev * 100) if (total24 and rev) else None
+        pct23 = (total23 / rev_prev * 100) if (total23 and rev_prev) else None
+        yoy = ((total24 / total23) - 1) * 100 if (total23 and total24) else None
+        rows.append({
+            "ticker": ticker, "total24": total24, "pct24": pct24, "pct23": pct23,
+            "yoy": yoy, "rev": rev, "lines": lines_collected,
+        })
+
+    rows.sort(key=lambda r: -(r["pct24"] or 0))
+    max_pct = max((r["pct24"] or 0) for r in rows) or 1
+
+    bars = []
+    for r in rows:
+        t = r["ticker"]
+        pct = r["pct24"] or 0
+        bar_w = (pct / max_pct) * 100
+        color = PEER_COLORS.get(t, "#8a8a8a")
+        v_str = fmt_bn(r["total24"]).replace(" bn", "bn") if r["total24"] else "—"
+        pct_str = f"{pct:.1f}%" if pct else "—"
+        yoy_str = f"{r['yoy']:+.1f}%" if r["yoy"] is not None else "—"
+        yoy_color = "var(--danger)" if (r["yoy"] and r["yoy"] > 5) else ("var(--green)" if (r["yoy"] and r["yoy"] < -2) else "var(--muted)")
+        line_count = len(r["lines"])
+        bars.append(f"""<div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;align-items:center;padding:5px 0;font-size:12px;">
+  <span><span class="ticker-mini">{safe(t)}</span></span>
+  <span style="height:20px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:{bar_w:.1f}%;background:{color};"></span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;">{v_str}</span>
+  <span style="text-align:right;color:var(--ink-soft);font-size:11px;">{pct_str} 매출</span>
+  <span style="text-align:right;font-weight:700;font-size:11px;color:{yoy_color};">{yoy_str}</span>
+</div>""")
+        # Show contributing lines
+        if line_count > 0 and line_count <= 4:
+            for ln_label, ln_v in r["lines"]:
+                ln_str = fmt_bn(ln_v).replace(" bn", "bn") if ln_v else "—"
+                bars.append(f"""<div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;padding:2px 0 2px 16px;font-size:11px;color:var(--muted);">
+  <span></span>
+  <span style="font-style:italic;">↳ {safe(ln_label[:50])}</span>
+  <span style="text-align:right;font-variant-numeric:tabular-nums;">{ln_str}</span>
+  <span></span><span></span>
+</div>""")
+
+    return f"""<div class="ops-block" style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;">
+  <h4 class="ops-block-h" style="margin-bottom:10px;">{safe(title)}</h4>
+  <div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;padding:2px 0 4px;font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;font-weight:700;border-bottom:1px solid var(--line);">
+    <span>Peer</span><span>FY24 magnitude</span><span style="text-align:right;">IDR</span><span style="text-align:right;">% 매출</span><span style="text-align:right;">YoY</span>
+  </div>
+  {''.join(bars)}
+</div>"""
+
+
+def _opex_category_cross_peer_section() -> str:
+    """Grid of 4 cross-peer OpEx category comparisons."""
+    salaries = _opex_category_cross_peer(["인건비 (Salaries+benefits)"], "👥 인건비 (Salaries+benefits) — DMIG/PIPG/GOLF")
+    tax = _opex_category_cross_peer(["세금·법률 (Tax+Legal)"], "📜 세금·법률 (Tax+Legal) — PIPG outlier 확인")
+    maint = _opex_category_cross_peer(["유지보수 (Repair+Maintenance)"], "🔧 유지보수 (Repair+Maintenance) — PIPG 5.9% vs DMIG 0.9%")
+    util = _opex_category_cross_peer(["유틸리티 (Utilities)"], "⚡ 유틸리티 (Utilities) — 전기·수도")
+    return f"""<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(440px,1fr));gap:14px;">
+  {salaries}
+  {tax}
+  {maint}
+  {util}
+</div>"""
+
+
+def _opex_4y_trend_chart() -> str:
+    """4-year OpEx trend per peer (FY22-25) as multi-line chart."""
+    fys = ["FY2022", "FY2023", "FY2024", "FY2025"]
+    series_data = []
+    for ticker, opex_key in [
+        ("DMIG", "opex_note"),
+        ("PIPG", "opex_note_29"),
+        ("GOLF", "ga_note_32"),
+    ]:
+        d = NOTES.get(ticker, {})
+        blk = d.get(opex_key) or {}
+        tot = blk.get("total") or {}
+        values = []
+        for fy in fys:
+            v = tot.get(fy)
+            if fy == "FY2025":
+                fu = (d.get("fy2025_follow_up") or {}).get("pnl_FY2025") or {}
+                v = fu.get("opex") or v
+            # Convert to % of revenue
+            rev = revenue_total_for(ticker, fy)
+            if ticker == "GOLF":
+                rev = ((d.get("revenue_note_29") or {}).get("by_operations") or {}).get("total", {}).get(fy) or rev
+            if fy == "FY2025" and ticker in ("DMIG", "PIPG"):
+                rev = ((d.get("fy2025_follow_up") or {}).get("pnl_FY2025") or {}).get("revenue") or rev
+            pct = (v / rev * 100) if (v and rev) else None
+            values.append(pct)
+        color = PEER_COLORS.get(ticker, "#8a8a8a")
+        series_data.append((ticker, values, color))
+
+    chart = _multi_line_chart(
+        series_data,
+        fys,
+        width=520, height=260,
+        title="OpEx/매출 % — 4Y 추이 (DMIG · PIPG · GOLF)",
+    )
+    return f"""<div style="display:flex;justify-content:center;">{chart}</div>"""
+
+
 def _golf_cwip_detail_chart() -> str:
     """GOLF CWIP detailed breakdown — Buildings/Landscape/Equipment from FY25 p.170."""
     # From OPS_KPI_EVIDENCE narrative + vector hit on FY25 p.170
@@ -4905,6 +5037,8 @@ def section_opex() -> str:
     revenue_topn = _revenue_topn_section()
     revenue_narratives = _revenue_narrative_grid()
     cogs_topn = _cogs_topn_section()
+    opex_category_compare = _opex_category_cross_peer_section()
+    opex_4y_trend = _opex_4y_trend_chart()
 
     opex_blocks = "\n".join(filter(None, [
         _opex_breakdown_table("DMIG", "opex_note", "OpEx 라인 분해 (Note 25)"),
@@ -4944,6 +5078,8 @@ def section_opex() -> str:
       <a class="chip" href="#op-cogs">COGS 라인</a>
       <a class="chip" href="#op-opex">OpEx 라인</a>
       <a class="chip" href="#op-norm">OpEx 정규화</a>
+      <a class="chip" href="#op-category">카테고리 deep-dive</a>
+      <a class="chip" href="#op-4y-trend">4Y trend</a>
       <a class="chip" href="#op-narratives">AR narrative</a>
       <a class="chip" href="#op-pipg">PIPG 4-seg GP</a>
       <a class="chip" href="#op-fy25">FY25 prelim</a>
@@ -5050,14 +5186,34 @@ def section_opex() -> str:
       </details>
     </div>
 
+    <div class="section" id="op-category">
+      <h2 data-num="05">OpEx 카테고리 deep-dive — 4 핵심 비교</h2>
+      <h3>인건비 · 세금·법률 · 유지보수 · 유틸리티 — peer 차이의 본질</h3>
+      <p class="lede">
+        OpEx 합계만 보면 38% vs 21%로 단순하지만, <strong>카테고리별로 들어가면 진짜 차이</strong>가 드러남.
+        DMIG는 인건비 1위, PIPG는 세금·유지 1위, GOLF는 모든 면에서 lean.
+        각 카테고리에서 contributing line items도 inline 표시.
+      </p>
+      {opex_category_compare}
+    </div>
+
+    <div class="section" id="op-4y-trend">
+      <h2 data-num="06">OpEx/매출 % — 4Y trend (FY22-25)</h2>
+      <h3>비용 효율 추이 — DMIG/PIPG/GOLF</h3>
+      <p class="lede">
+        OpEx ratio가 4년간 어떻게 변했는지 multi-line. PIPG는 FY25 큰 폭 하락 (-17.9%), DMIG는 점진 상승, GOLF는 stable 낮음.
+      </p>
+      {opex_4y_trend}
+    </div>
+
     <div class="section" id="op-narratives">
-      <h2 data-num="05">왜? — 운영 리스크 & 비용 sensitivity (벡터 DB)</h2>
+      <h2 data-num="07">왜? — 운영 리스크 & 비용 sensitivity (벡터 DB)</h2>
       <h3>OpEx 절댓값 뒤의 의미 — 보험·인건비 leverage·ESG·자본</h3>
       {opex_narratives}
     </div>
 
     <div class="section" id="op-pipg">
-      <h2 data-num="06">PIPG 4-segment GP margin — Note 30</h2>
+      <h2 data-num="08">PIPG 4-segment GP margin — Note 30</h2>
       <h3>Golf Course&amp;Cart / Membership / Restaurant / Others (FY23)</h3>
       <p class="lede">
         PIPG는 Note 30 Segment Information에서 4 segment의 COGS를 explicit 공시. Membership 부문 GP margin 압도적 높음 (87.8%).
@@ -5070,7 +5226,7 @@ def section_opex() -> str:
     </div>
 
     <div class="section" id="op-fy25">
-      <h2 data-num="07">FY2025 미감사 prelim — 마진 압박 신호</h2>
+      <h2 data-num="09">FY2025 미감사 prelim — 마진 압박 신호</h2>
       <h3>DMIG/PIPG/KPIG 3-peer side-by-side dashboard</h3>
       <p class="lede">
         DMIG/PIPG/KPIG 모두 FY2025 unaudited financial statement 공시. ▲ 녹색 = 증가, ▼ 빨강 = 감소.
@@ -5083,7 +5239,7 @@ def section_opex() -> str:
     </div>
 
     <div class="section" id="op-margin">
-      <h2 data-num="08">FY24→FY25 마진 변화 — 벡터 추출 commentary</h2>
+      <h2 data-num="10">FY24→FY25 마진 변화 — 벡터 추출 commentary</h2>
       <h3>6-peer timeline 카드 + FY24↔FY25 mini delta bar</h3>
       <p class="lede">
         벡터 DB로 각 peer의 FY24/FY25 AR 본문에서 마진 변화 commentary 추출. 카드별 mini bar로 FY24↔FY25 직접 비교 + delta% 표시.
