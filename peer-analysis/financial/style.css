@@ -269,6 +269,30 @@ table.tbl td.notes { font-size: 13px; color: var(--ink-soft); line-height: 1.5; 
 }
 .foot a { color: rgba(255,255,255,0.85); }
 
+/* ============== Ops tab — extended tables ============== */
+.ops-block { margin: 18px 0 28px; }
+.ops-block-h {
+  font-size: 14px; font-weight: 700; color: var(--ink);
+  margin: 0 0 10px; padding: 0;
+  letter-spacing: -0.01em;
+}
+.ops-block-h::before {
+  content: "▸"; color: var(--green); margin-right: 6px; font-size: 11px;
+}
+.tbl-tight th, .tbl-tight td { padding: 9px 12px !important; font-size: 13px; }
+.tbl-tight tbody td { padding: 8px 12px !important; }
+tr.row-total td { background: var(--surface-2); border-top: 2px solid var(--line-strong); }
+tr.row-total td.num { color: var(--ink); }
+.src-line { color: var(--muted); font-size: 11.5px; margin: 6px 2px 0; }
+.scroll-x { overflow-x: auto; }
+
+/* ============== KV mini list ============== */
+.kv-mini { margin: 8px 0 6px; padding: 0; display: grid; grid-template-columns: max-content 1fr; gap: 4px 12px; }
+.kv-mini dt { font-size: 11.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; font-weight: 600; align-self: center; }
+.kv-mini dd { font-size: 14px; font-weight: 600; color: var(--ink); margin: 0; font-variant-numeric: tabular-nums; }
+.kv-comment { font-size: 12.5px; color: var(--ink-soft); margin: 6px 0 4px; line-height: 1.5; }
+.muted { color: var(--muted); font-weight: 400; font-size: 12px; }
+
 /* ============== Mobile ============== */
 @media (max-width: 760px) {
   .hero h1 { font-size: 28px; }

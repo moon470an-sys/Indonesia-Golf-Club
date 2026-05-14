@@ -16,10 +16,13 @@ from __future__ import annotations
 import csv
 import datetime as dt
 import html
+import json
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 DATA_DIR = HERE.parent.parent.parent / "raw_peer_data"
+OPS_NOTES_DIR = HERE.parent / "operations" / "data"
+OPS_EVIDENCE_DIR = HERE.parent.parent.parent / "raw_peer_data" / "operations" / "evidence"
 
 # Tier-A "Pure-play" peers we deep-compare in main tabs
 PUREPLAY = ["DMIG", "PIPG", "KPIG"]
@@ -76,6 +79,20 @@ PRICING = load_csv("peer_pricing.csv")
 OPERATING = load_csv("peer_operating_signals.csv")
 FINANCIALS = load_csv("peer_financials_curated.csv")
 INVENTORY = load_csv("peer_inventory.csv")
+
+
+def load_notes(ticker: str) -> dict:
+    """Load `operations/data/{ticker}_notes.json` if present (lower-case file name)."""
+    p = OPS_NOTES_DIR / f"{ticker.lower()}_notes.json"
+    if not p.exists():
+        return {}
+    try:
+        return json.loads(p.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+
+
+NOTES = {t: load_notes(t) for t in ["DMIG", "PIPG", "KPIG", "MDLN", "GOLF", "KIJA", "SMDM", "BSDE", "SMRA"]}
 
 
 def by_ticker(rows: list[dict], ticker: str) -> list[dict]:
@@ -506,6 +523,396 @@ def section_pricing() -> str:
 # Section: Operations + CAPEX/OPEX
 # ─────────────────────────────────────────────────────────────────────────────
 
+# Years displayed in the multi-year P&L / cost line tables
+PNL_YEARS = ["FY2022", "FY2023", "FY2024", "FY2025"]
+COST_YEARS = ["FY2022", "FY2023", "FY2024"]
+
+
+def _line_year(line: dict, fy: str):
+    """Resolve a year value from a line dict, handling FY23 'restated' fallback."""
+    v = line.get(fy)
+    if v is None and fy == "FY2023":
+        v = line.get("FY2023_restated")
+    return v
+
+
+def fmt_bn(v) -> str:
+    """Format an absolute IDR value as 'XX.X bn' (or 'N/A')."""
+    if v in (None, "", "N/A"):
+        return '<span class="na">N/A</span>'
+    try:
+        n = float(v)
+    except (TypeError, ValueError):
+        return '<span class="na">N/A</span>'
+    if abs(n) >= 1e12:
+        return f"{n / 1e12:,.2f}조"
+    if abs(n) >= 1e9:
+        return f"{n / 1e9:,.1f}bn"
+    if abs(n) >= 1e6:
+        return f"{n / 1e6:,.1f}M"
+    return f"{n:,.0f}"
+
+
+def _pct_of_revenue(line_val, rev_val) -> str:
+    if not line_val or not rev_val:
+        return '<span class="na">—</span>'
+    try:
+        return f"{(float(line_val) / float(rev_val)) * 100:.1f}%"
+    except (TypeError, ValueError, ZeroDivisionError):
+        return '<span class="na">—</span>'
+
+
+def revenue_total_for(ticker: str, fy: str):
+    """Best-effort revenue total for a peer-year from notes JSON."""
+    d = NOTES.get(ticker, {})
+    # FY2025 pulled from fy2025_follow_up.pnl_FY2025
+    if fy == "FY2025":
+        fu = d.get("fy2025_follow_up", {}) or {}
+        pnl = fu.get("pnl_FY2025") or {}
+        return pnl.get("revenue")
+    # Prefer revenue_note.total
+    for key in ("revenue_note", "revenue_note_25", "revenue_note_27", "revenue_note_29",
+                "revenue_note_30", "revenue_note_31"):
+        b = d.get(key) or {}
+        tot = (b.get("total") or {}).get(fy)
+        if tot:
+            return tot
+    # PIPG financial_highlights uses thousand IDR — convert
+    fh = d.get("financial_highlights", {}) or {}
+    if "rows_in_idr_thousand" in fh:
+        for r in fh["rows_in_idr_thousand"]:
+            if r.get("label") in ("Pendapatan Usaha", "Revenue"):
+                v = r.get(fy)
+                return (v * 1000) if v else None
+    return None
+
+
+def _pnl_row(ticker: str) -> str:
+    """Multi-year top-line P&L row (Revenue/COGS/Gross/OpEx/Op income/Net income)."""
+    d = NOTES.get(ticker, {})
+    cells = [f'<td><span class="ticker-mini">{safe(ticker)}</span></td>']
+    for fy in PNL_YEARS:
+        rev = revenue_total_for(ticker, fy)
+        # COGS
+        cogs = None
+        for key in ("cogs_note", "cogs_note_26", "cogs_note_28", "cogs_note_30"):
+            b = d.get(key) or {}
+            v = (b.get("total") or {}).get(fy)
+            if v:
+                cogs = v
+                break
+        # OpEx
+        opx = None
+        for key in ("opex_note", "opex_note_29", "ga_note_32", "ga_note_34"):
+            b = d.get(key) or {}
+            v = (b.get("total") or {}).get(fy)
+            if v:
+                opx = v
+                break
+        # GP / Op inc / Net inc — from FY25 follow-up for FY25
+        op_inc = None
+        net_inc = None
+        if fy == "FY2025":
+            fu = (d.get("fy2025_follow_up") or {}).get("pnl_FY2025") or {}
+            rev = fu.get("revenue") or rev
+            cogs = fu.get("cogs") or cogs
+            opx = fu.get("opex") or opx
+            op_inc = fu.get("operating_income")
+            net_inc = fu.get("net_income")
+        gp = (rev - cogs) if (rev and cogs) else None
+        gm = (gp / rev * 100) if (rev and gp) else None
+        # PIPG financial_highlights — pull Laba Usaha, Laba Bersih
+        if fy in ("FY2022", "FY2023", "FY2024") and ticker == "PIPG":
+            fh = (d.get("financial_highlights") or {}).get("rows_in_idr_thousand", [])
+            for r in fh:
+                if r.get("label") == "Laba Usaha":
+                    op_inc = r.get(fy) and r[fy] * 1000
+                if r.get("label") == "Laba Bersih":
+                    net_inc = r.get(fy) and r[fy] * 1000
+        # DMIG FY2024 has op_income in fy25 fu
+        if ticker == "DMIG" and fy == "FY2024":
+            fu = (d.get("fy2025_follow_up") or {}).get("pnl_FY2024_comparative") or {}
+            op_inc = op_inc or fu.get("operating_income")
+            net_inc = net_inc or fu.get("net_income")
+        cells.append(f'<td class="num">{fmt_bn(rev)}</td>')
+        cells.append(f'<td class="num">{fmt_bn(cogs)}</td>')
+        cells.append(f'<td class="num">{f"{gm:.1f}%" if gm is not None else "—"}</td>')
+        cells.append(f'<td class="num">{fmt_bn(opx)}</td>')
+        cells.append(f'<td class="num">{fmt_bn(op_inc)}</td>')
+        cells.append(f'<td class="num">{fmt_bn(net_inc)}</td>')
+    return f'<tr class="tier-a">{"".join(cells)}</tr>'
+
+
+def _pnl_table() -> str:
+    """Multi-year P&L table covering FY2022-FY2025 for DMIG, PIPG, KPIG."""
+    rows = "".join(_pnl_row(t) for t in ["DMIG", "PIPG", "KPIG"])
+    head_years = "".join(
+        f'<th colspan="6" class="num">{fy[2:]}</th>' for fy in PNL_YEARS
+    )
+    sub_cols = "".join(
+        '<th class="num">Rev</th><th class="num">COGS</th><th class="num">GM%</th>'
+        '<th class="num">OpEx</th><th class="num">Op Inc</th><th class="num">Net Inc</th>'
+        for _ in PNL_YEARS
+    )
+    return f"""<div class="tbl-card scroll-x">
+  <table class="tbl tbl-tight">
+    <thead>
+      <tr><th rowspan="2">Peer</th>{head_years}</tr>
+      <tr>{sub_cols}</tr>
+    </thead>
+    <tbody>{rows}</tbody>
+  </table>
+</div>"""
+
+
+def _revenue_breakdown_row(ticker: str, line: dict, fy: str) -> str:
+    """Single row: revenue line × FY value + share."""
+    label = line.get("en_label") or line.get("id_label") or "—"
+    v = _line_year(line, fy)
+    rev = revenue_total_for(ticker, fy)
+    return f'<tr><td>{safe(label)}</td><td class="num">{fmt_bn(v)}</td><td class="num">{_pct_of_revenue(v, rev)}</td></tr>'
+
+
+def _revenue_breakdown_table(ticker: str, note_key: str, title: str) -> str:
+    """Render a per-peer revenue breakdown table FY23 vs FY24."""
+    d = NOTES.get(ticker, {})
+    blk = d.get(note_key) or {}
+    lines = blk.get("lines") or []
+    if not lines:
+        return ""
+    # Use FY2024 as primary year; show FY2023 column too for trend
+    rows = []
+    for ln in lines:
+        v23 = _line_year(ln, "FY2023")
+        v24 = _line_year(ln, "FY2024")
+        rev23 = revenue_total_for(ticker, "FY2023")
+        rev24 = revenue_total_for(ticker, "FY2024")
+        yoy = "—"
+        if v23 and v24:
+            try:
+                yoy = f"{((float(v24) / float(v23)) - 1) * 100:+.1f}%"
+            except (ValueError, ZeroDivisionError):
+                pass
+        label = ln.get("en_label") or ln.get("id_label") or "—"
+        rows.append(
+            f'<tr><td>{safe(label)}</td>'
+            f'<td class="num">{fmt_bn(v23)}</td>'
+            f'<td class="num">{_pct_of_revenue(v23, rev23)}</td>'
+            f'<td class="num">{fmt_bn(v24)}</td>'
+            f'<td class="num">{_pct_of_revenue(v24, rev24)}</td>'
+            f'<td class="num">{yoy}</td></tr>'
+        )
+    tot = blk.get("total") or {}
+    rev23 = tot.get("FY2023")
+    rev24 = tot.get("FY2024")
+    yoy_tot = "—"
+    if rev23 and rev24:
+        try:
+            yoy_tot = f"{((float(rev24) / float(rev23)) - 1) * 100:+.1f}%"
+        except (ValueError, ZeroDivisionError):
+            pass
+    rows.append(
+        f'<tr class="row-total"><td><strong>합계</strong></td>'
+        f'<td class="num"><strong>{fmt_bn(rev23)}</strong></td>'
+        f'<td class="num">—</td>'
+        f'<td class="num"><strong>{fmt_bn(rev24)}</strong></td>'
+        f'<td class="num">—</td>'
+        f'<td class="num"><strong>{yoy_tot}</strong></td></tr>'
+    )
+    src = blk.get("source_page", "")
+    return f"""<div class="ops-block">
+  <h4 class="ops-block-h">{safe(ticker)} — {safe(title)}</h4>
+  <div class="tbl-card">
+    <table class="tbl tbl-tight">
+      <thead><tr>
+        <th>Line</th>
+        <th class="num">FY23 (IDR)</th><th class="num">FY23 %매출</th>
+        <th class="num">FY24 (IDR)</th><th class="num">FY24 %매출</th>
+        <th class="num">YoY</th>
+      </tr></thead>
+      <tbody>{''.join(rows)}</tbody>
+    </table>
+  </div>
+  <p class="src-line">출처: {safe(src) or '—'}</p>
+</div>"""
+
+
+def _opex_breakdown_table(ticker: str, note_key: str, title: str) -> str:
+    """OpEx line breakdown FY23 vs FY24 (sorted by FY24 desc)."""
+    d = NOTES.get(ticker, {})
+    blk = d.get(note_key) or {}
+    lines = blk.get("lines") or []
+    if not lines:
+        return ""
+    # Sort by FY24 value desc
+    lines = sorted(lines, key=lambda ln: -(float(ln.get("FY2024") or 0)))
+    rows = []
+    rev24 = revenue_total_for(ticker, "FY2024")
+    rev23 = revenue_total_for(ticker, "FY2023")
+    for ln in lines:
+        v23 = _line_year(ln, "FY2023")
+        v24 = _line_year(ln, "FY2024")
+        yoy = "—"
+        if v23 and v24:
+            try:
+                yoy = f"{((float(v24) / float(v23)) - 1) * 100:+.1f}%"
+            except (ValueError, ZeroDivisionError):
+                pass
+        label = ln.get("en_label") or ln.get("id_label") or "—"
+        rows.append(
+            f'<tr><td>{safe(label)}</td>'
+            f'<td class="num">{fmt_bn(v23)}</td>'
+            f'<td class="num">{fmt_bn(v24)}</td>'
+            f'<td class="num">{_pct_of_revenue(v24, rev24)}</td>'
+            f'<td class="num">{yoy}</td></tr>'
+        )
+    tot = blk.get("total") or {}
+    rows.append(
+        f'<tr class="row-total"><td><strong>합계</strong></td>'
+        f'<td class="num"><strong>{fmt_bn(tot.get("FY2023"))}</strong></td>'
+        f'<td class="num"><strong>{fmt_bn(tot.get("FY2024"))}</strong></td>'
+        f'<td class="num"><strong>{_pct_of_revenue(tot.get("FY2024"), rev24)}</strong></td>'
+        f'<td class="num">—</td></tr>'
+    )
+    src = blk.get("source_page", "")
+    return f"""<div class="ops-block">
+  <h4 class="ops-block-h">{safe(ticker)} — {safe(title)}</h4>
+  <div class="tbl-card">
+    <table class="tbl tbl-tight">
+      <thead><tr>
+        <th>Line (영문 label)</th>
+        <th class="num">FY23 (IDR)</th>
+        <th class="num">FY24 (IDR)</th>
+        <th class="num">FY24 %매출</th>
+        <th class="num">YoY</th>
+      </tr></thead>
+      <tbody>{''.join(rows)}</tbody>
+    </table>
+  </div>
+  <p class="src-line">출처: {safe(src) or '—'}</p>
+</div>"""
+
+
+def _capex_proxy_table() -> str:
+    """Per-peer CAPEX proxy: depreciation, maintenance, asset intensity."""
+    rows = []
+    for t in ["DMIG", "PIPG", "KPIG"]:
+        d = NOTES.get(t, {})
+        # Collect depreciation FY24 from opex
+        dep_line = None
+        maint_line = None
+        for okey in ("opex_note", "opex_note_29", "ga_note_34"):
+            b = d.get(okey) or {}
+            for ln in b.get("lines") or []:
+                lab = (ln.get("id_label") or "").lower()
+                en = (ln.get("en_label") or "").lower()
+                if "penyusutan" in lab or "depreciation" in en:
+                    dep_line = ln
+                if "perbaikan" in lab or "pemeliharaan" in lab or "perawatan" in lab or "repair" in en or "maintenance" in en:
+                    maint_line = ln
+                if dep_line and maint_line:
+                    break
+            if dep_line and maint_line:
+                break
+        rev24 = revenue_total_for(t, "FY2024")
+        dep24 = (dep_line or {}).get("FY2024")
+        mnt24 = (maint_line or {}).get("FY2024")
+        # Try peer_financials_curated for total assets
+        fin = next((f for f in by_ticker(FINANCIALS, t) if f.get("total_assets_idr")), {})
+        ta = fin.get("total_assets_idr")
+        dep_pct = _pct_of_revenue(dep24, rev24)
+        mnt_pct = _pct_of_revenue(mnt24, rev24)
+        intensity = "—"
+        if rev24 and ta:
+            try:
+                intensity = f"{float(ta) / float(rev24):.2f}×"
+            except (ValueError, ZeroDivisionError):
+                pass
+        rows.append(
+            f'<tr class="tier-a">'
+            f'<td><span class="ticker-mini">{safe(t)}</span></td>'
+            f'<td class="num">{fmt_bn(dep24)}</td>'
+            f'<td class="num">{dep_pct}</td>'
+            f'<td class="num">{fmt_bn(mnt24)}</td>'
+            f'<td class="num">{mnt_pct}</td>'
+            f'<td class="num">{fmt_bn(ta)}</td>'
+            f'<td class="num">{intensity}</td>'
+            f'</tr>'
+        )
+    return f"""<div class="tbl-card">
+  <table class="tbl">
+    <thead><tr>
+      <th>Peer</th>
+      <th class="num">감가상각 (FY24)</th>
+      <th class="num">감가/매출</th>
+      <th class="num">유지보수 (FY24)</th>
+      <th class="num">유지/매출</th>
+      <th class="num">총자산 (entity)</th>
+      <th class="num">자산/매출</th>
+    </tr></thead>
+    <tbody>{''.join(rows)}</tbody>
+  </table>
+</div>"""
+
+
+def _fy25_delta_cards() -> str:
+    """FY2025 (Cycle 167) preliminary delta callouts for DMIG, PIPG, KPIG."""
+    cards = []
+
+    def _sign_pct(v):
+        if v is None:
+            return '<span class="na">N/A</span>'
+        try:
+            return f"{float(v) * 100:+.1f}%"
+        except (TypeError, ValueError):
+            return '<span class="na">N/A</span>'
+
+    for t in ["DMIG", "PIPG", "KPIG"]:
+        fu = (NOTES.get(t, {}) or {}).get("fy2025_follow_up") or {}
+        if not fu:
+            continue
+        # KPIG: only segment revenue available (no full P&L)
+        if t == "KPIG":
+            seg = fu.get("FY2025_revenue_note_31") or {}
+            seg_rev = seg.get("Hotel_resor_dan_golf")
+            seg_yoy = seg.get("yoy_vs_fy2024")
+            disclosure_note = fu.get("golf_segment_disclosure", "")
+            cards.append(
+                f'<div class="kv">'
+                f'<div class="k">{safe(t)} — FY2025 segment 매출</div>'
+                f'<dl class="kv-mini">'
+                f'<dt>Hotel+Resort+Golf</dt><dd>{fmt_bn(seg_rev)} <span class="muted">({_sign_pct(seg_yoy)} YoY)</span></dd>'
+                f'<dt>Golf-only</dt><dd><span class="na">미공시 (segment 통합)</span></dd>'
+                f'</dl>'
+                f'<p class="kv-comment">{safe(disclosure_note)}</p>'
+                f'<span class="src">출처: {safe(fu.get("source", ""))[:120]}</span>'
+                f'</div>'
+            )
+            continue
+        pnl = fu.get("pnl_FY2025") or {}
+        yoy = fu.get("yoy_changes") or {}
+        comment = yoy.get("comment", "")
+        rev = pnl.get("revenue")
+        op_inc = pnl.get("operating_income")
+        net_inc = pnl.get("net_income")
+        rev_d = yoy.get("revenue")
+        op_d = yoy.get("operating_income")
+        net_d = yoy.get("net_income")
+        cards.append(
+            f'<div class="kv">'
+            f'<div class="k">{safe(t)} — FY2025 미감사 P&L</div>'
+            f'<dl class="kv-mini">'
+            f'<dt>매출</dt><dd>{fmt_bn(rev)} <span class="muted">({_sign_pct(rev_d)} YoY)</span></dd>'
+            f'<dt>영업이익</dt><dd>{fmt_bn(op_inc)} <span class="muted">({_sign_pct(op_d)} YoY)</span></dd>'
+            f'<dt>순이익</dt><dd>{fmt_bn(net_inc)} <span class="muted">({_sign_pct(net_d)} YoY)</span></dd>'
+            f'</dl>'
+            f'<p class="kv-comment">{safe(comment)}</p>'
+            f'<span class="src">출처: {safe(fu.get("source", ""))[:120]}</span>'
+            f'</div>'
+        )
+    return f'<div class="kv-grid">{"".join(cards)}</div>'
+
+
 def section_ops() -> str:
     # Disclosure matrix
     rows = []
@@ -571,10 +978,101 @@ def section_ops() -> str:
   <span class="src">출처: peer_operating_signals.csv</span>
 </div>""")
 
+    # ── New sub-sections built from operations/data/*_notes.json
+    pnl_table = _pnl_table()
+    capex_proxy_table = _capex_proxy_table()
+    fy25_cards = _fy25_delta_cards()
+
+    rev_blocks = "\n".join(filter(None, [
+        _revenue_breakdown_table("DMIG", "revenue_note", "매출 라인 분해"),
+        _revenue_breakdown_table("PIPG", "revenue_note_27", "매출 라인 분해 (Note 27)"),
+    ]))
+    cogs_blocks = "\n".join(filter(None, [
+        _revenue_breakdown_table("DMIG", "cogs_note", "COGS 라인 분해"),
+        _revenue_breakdown_table("PIPG", "cogs_note_28", "COGS 라인 분해 (Note 28)"),
+    ]))
+    opex_blocks = "\n".join(filter(None, [
+        _opex_breakdown_table("DMIG", "opex_note", "OpEx 라인 분해 (Note 25)"),
+        _opex_breakdown_table("PIPG", "opex_note_29", "OpEx 라인 분해 (Note 29)"),
+        _opex_breakdown_table("KPIG", "ga_note_34", "G&A 비용 라인 (Note 34) — Hotel+Resort+Golf 통합"),
+    ]))
+
     return f"""<section class="panel" data-panel="ops">
   <div class="wrap">
+
     <div class="section">
-      <h2>골프 segment 매출 disclosure</h2>
+      <h2>4년 통합 P&L — Pure-play 3-peer</h2>
+      <h3>FY2022 → FY2025 (FY25는 미감사 prelim)</h3>
+      <p class="lede">
+        DMIG/PIPG는 FY22~FY25 4개년 P&L 라인 전체 추출 가능 (annual report Note 23/24/25 또는 Note 27/28/29).
+        KPIG는 Hotel+Resort+Golf 통합 라인이므로 golf-only 비교 불가하나, 그룹 효율 추이는 참고 가능.
+      </p>
+      {pnl_table}
+      <div class="banner info">
+        <strong>주의:</strong> KPIG 매출은 Hotel+Resort+Golf 통합 (Note 31 'Hotel, resor dan golf' = FY24 IDR 960bn).
+        KPIG의 COGS/OpEx는 그룹 전체 (Property management 포함) — golf-only 비교에는 부적합.
+        DMIG/PIPG가 1:1 비교 valid pair.
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>매출 라인 분해 — Pure-play</h2>
+      <h3>골프 / F&amp;B / 회원권 / 부대시설 별 매출 (FY23→FY24)</h3>
+      <p class="lede">
+        annual report Note에서 라인별 매출을 직접 추출. 각 라인의 매출 비중과 YoY 증감을 표시합니다.
+        <strong>DMIG</strong>는 7개 라인 (Note 23), <strong>PIPG</strong>는 11개 라인 (Note 27).
+      </p>
+      {rev_blocks}
+    </div>
+
+    <div class="section">
+      <h2>COGS (매출원가) 라인 분해</h2>
+      <h3>골프 코스 / 레스토랑 / 카트 / 드라이빙 레인지 등</h3>
+      <p class="lede">
+        매출원가는 segment별로 cost of revenue가 분리 공시됩니다.
+        DMIG는 3개 라인 (Golf course / Restaurant / Recreation), PIPG는 11개 라인 (Restaurant, Golf course, Cart, Driving range, Membership, Academy 등).
+      </p>
+      {cogs_blocks}
+    </div>
+
+    <div class="section">
+      <h2>OpEx 라인 분해 — CAPEX/OPEX 핵심</h2>
+      <h3>인건비 · 감가상각 · 유지보수 · 세금 · 유틸리티 등</h3>
+      <p class="lede">
+        AR Note 25 (DMIG) / Note 29 (PIPG) / Note 34 (KPIG)에서 OpEx 라인 단위 분해. 매출 대비 %와 YoY 증감 표시.
+        가장 큰 비용 항목: <strong>인건비 (Salaries+benefits)</strong> 및 <strong>감가상각 (Depreciation)</strong>.
+        PIPG는 추가로 Pajak dan perijinan (Tax+legal) 비중이 매우 높음 (FY24 IDR 24.2bn).
+      </p>
+      {opex_blocks}
+    </div>
+
+    <div class="section">
+      <h2>CAPEX proxy — 감가상각·유지보수·자산집약도</h2>
+      <h3>Audited CAPEX 미공시 → P&L proxy + B/S proxy로 추정</h3>
+      <p class="lede">
+        CAPEX 직접 공시는 없으나 다음 3개 indicator로 자본투자 강도를 추정:
+        <strong>(1) 감가상각비/매출</strong> — 누적 CAPEX의 유동화 비율,
+        <strong>(2) 유지보수/매출</strong> — 진행 중 maintenance CAPEX,
+        <strong>(3) 총자산/매출</strong> — historic CAPEX 누적 (B/S 기준).
+      </p>
+      {capex_proxy_table}
+      <div class="banner info">
+        <strong>해석:</strong> DMIG는 감가상각/매출 ≈ 11%, PIPG ≈ 5.7%. DMIG가 신규 시설 (Range@PIK 골프테인먼트 등)에 더 공격적으로 투자한 것으로 보임.
+        PIPG는 유지보수/매출 ≈ 5.9%로 DMIG (0.9%)보다 5~6배 높아 노후 코스 (1976년 개장) 유지비용 부담을 시사.
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>FY2025 미감사 prelim — 마진 압박 신호</h2>
+      <h3>각 peer가 발표한 FY2025 unaudited P&L (2026-05-12 Cycle 167)</h3>
+      <p class="lede">
+        DMIG/PIPG/KPIG 모두 FY2025 unaudited financial statement를 공시. 라인 단위 추이로 마진 변화 감지 가능.
+      </p>
+      {fy25_cards}
+    </div>
+
+    <div class="section">
+      <h2>골프 segment 매출 disclosure 강도</h2>
       <h3>annual report에서 골프장만 떼어내 공시하는가?</h3>
       <p class="lede">
         Pure-play 3개의 segment 공시 강도. <em>Full</em>은 골프장 매출/비용을 segment로 분리 공시,
@@ -596,13 +1094,8 @@ def section_ops() -> str:
     </div>
 
     <div class="section">
-      <h2>운영 효율 — OPEX proxy</h2>
-      <h3>순이익률 · 자산집약도</h3>
-      <p class="lede">
-        직접적인 OPEX/CAPEX 라인은 audited segment에서 미공시.
-        대신 <strong>순이익률 = 순이익/매출</strong>을 OPEX 효율 proxy로,
-        <strong>자산집약도 = 총자산/매출</strong>을 CAPEX 누적 proxy로 사용.
-      </p>
+      <h2>운영 효율 KPI — 마진·자산효율</h2>
+      <h3>FY2024 순이익률 · 자산집약도</h3>
       <div class="tbl-card">
         <table class="tbl">
           <thead>
@@ -621,22 +1114,22 @@ def section_ops() -> str:
 
       <div class="banner">
         <strong>해석 주의:</strong> KPIG 매출·순이익·자산은 <strong>모회사 연결 기준</strong>(non-golf 사업 포함).
-        DMIG 매출은 H1만 audited. PIPG만 entity 기준 FY 전체. 직접 비교 시 KPIG 수치는 conglomerate 효과,
-        DMIG는 반기 효과를 감안해야 함.
+        DMIG 매출은 H1만 audited (curated CSV). 본 페이지의 FY24 4년 P&L 표는 Note 추출본 (FY24 full year)을 사용 — 이 KPI 표는 curated CSV의 단일 entry만 표시.
+        PIPG만 entity 기준 FY 전체 일관.
       </div>
     </div>
 
     <div class="section">
-      <h2>CAPEX·운영 메모</h2>
-      <h3>annual report 텍스트 발췌</h3>
-      <p class="lede">numeric CAPEX/OPEX 라인 미공시 환경에서, 각 peer의 운영 narrative와 시설 변경 단서.</p>
+      <h2>운영 narrative — Annual Report 메모</h2>
+      <h3>peer_operating_signals.csv 텍스트 발췌</h3>
       <div class="kv-grid">
         {''.join(capex_notes)}
       </div>
 
       <div class="src-block">
         <strong>출처:</strong>
-        peer_financials_curated.csv (FY2024),
+        DMIG/PIPG/KPIG annual reports (FY22–FY25), 라인별 추출 = <code>site/peer-analysis/operations/data/{{ticker}}_notes.json</code> ·
+        peer_financials_curated.csv ·
         peer_operating_signals.csv (segment_revenue_disclosure, operational_notes 필드).
       </div>
     </div>
