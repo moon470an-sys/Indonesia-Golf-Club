@@ -1821,17 +1821,82 @@ def section_ops() -> str:
     </div>
 
     <div class="section">
-      <h2>운영 narrative — Annual Report 메모</h2>
-      <h3>peer_operating_signals.csv 텍스트 발췌</h3>
+      <h2>FY2024→FY2025 마진 변화 — 벡터 추출 commentary</h2>
+      <h3>각 peer의 annual report 본문에서 직접 인용한 마진 시그널</h3>
+      <p class="lede">
+        벡터 DB (multilingual-e5-small, 99,618 chunks)로 각 peer의 FY24/FY25 AR 본문에서 마진 변화 commentary 추출.
+        모든 수치는 AR 페이지 번호로 검증 가능.
+      </p>
+      <div class="kv-grid">
+        <div class="kv">
+          <div class="k">DMIG FY2023 → FY2024</div>
+          <p class="kv-comment">
+            <strong>FY2023 순이익 Rp 71.27bn (+34.40% / +Rp 18.24bn vs FY22 Rp 53.03bn)</strong>.
+            FY24 매출 253.1bn / 영업이익 78.9bn / 순이익 82.4bn.
+            FY25 매출 -0.7%, OpEx +3.3% → 영업이익 -12.0%, 순이익 -9.0%. 마진 압박 시작.
+          </p>
+          <span class="src">DMIG FY23 AR p.22 NET INCOME · FY25 follow-up</span>
+        </div>
+        <div class="kv">
+          <div class="k">PIPG FY2024 → FY2025</div>
+          <p class="kv-comment">
+            FY24 매출 197.6bn / 영업이익 53.5bn / 순이익 55.9bn.
+            <strong>FY25 매출 -6.0% (185.8bn)이나 OpEx -17.9% 대규모 절감 (76→62bn) → 영업이익 +4.0%, 순이익 +0.6%</strong>.
+            비용 통제로 수익성 유지. 노후 코스 운영 효율 개선 시그널.
+          </p>
+          <span class="src">PIPG FY25 follow-up + FY24 AR Note 27/29</span>
+        </div>
+        <div class="kv">
+          <div class="k">GOLF FY2024 → FY2025</div>
+          <p class="kv-comment">
+            FY24 COGS 78.3bn (+20.2% YoY, real estate 비용 증가 주도).
+            <strong>FY25 영업이익 64.87bn (-10.49% vs FY24 72.47bn)</strong>. 원인: selling expenses +137.20%.
+            CWIP Buildings 188bn + Landscape 238bn (총 ~450bn 신규 시설 진행 중).
+          </p>
+          <span class="src">GOLF FY24 AR p.69 + FY25 AR p.156·p.170</span>
+        </div>
+        <div class="kv">
+          <div class="k">MDLN FY2024 → FY2025</div>
+          <p class="kv-comment">
+            <strong>GP margin 44.66% → 47.19% (+2.5pp 개선)</strong>. 영업이익률도 sharper improvement.
+            Golf 단독 segment FY25 +28.2% YoY (95.3bn) — 골프 부문은 그룹에서 가장 빠른 성장.
+            ROA/ROE 비율도 동시 개선.
+          </p>
+          <span class="src">MDLN FY25 AR p.116 + Note 25/26 (Cycle 66·69)</span>
+        </div>
+        <div class="kv">
+          <div class="k">SMDM FY2024 (BSDE 인수 직전)</div>
+          <p class="kv-comment">
+            Golf & CC GP margin <strong>FY23 55.8% → FY24 38.9% (-16.9pp 급락)</strong>. 영업이익 -212M IDR (적자전환).
+            FY24 배당 미실시 결정 (working capital 보존). BSDE가 2024-10에 91.99% 인수.
+            FY25에 GP margin 88.6%로 점프 (회계 재분류 가능).
+          </p>
+          <span class="src">SMDM FY24 AR p.70 + Cycle 53/67</span>
+        </div>
+        <div class="kv">
+          <div class="k">KPIG (Trump Lido)</div>
+          <p class="kv-comment">
+            Hotel+Resort+Golf 통합 매출 FY23 812bn → FY24 960bn (+18%) → FY25 1,060bn (+10%).
+            Group 고정자산 21조 IDR (54.5% of total assets) + 투자부동산 6.9조 (19.3%) = 자산집약형 conglomerate.
+            Golf-only 단위 분리 미공시.
+          </p>
+          <span class="src">KPIG FY24 AR p.212 (assets) + FY25 Note 31</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>peer_operating_signals.csv — 기존 1줄 메모</h2>
       <div class="kv-grid">
         {''.join(capex_notes)}
       </div>
 
       <div class="src-block">
-        <strong>출처:</strong>
-        DMIG/PIPG/KPIG annual reports (FY22–FY25), 라인별 추출 = <code>site/peer-analysis/operations/data/{{ticker}}_notes.json</code> ·
+        <strong>전체 출처:</strong>
+        DMIG/PIPG/KPIG/MDLN/GOLF/KIJA/SMDM annual reports (FY22–FY25), 라인별 추출 = <code>site/peer-analysis/operations/data/{{ticker}}_notes.json</code> ·
         peer_financials_curated.csv ·
-        peer_operating_signals.csv (segment_revenue_disclosure, operational_notes 필드).
+        peer_operating_signals.csv (segment_revenue_disclosure, operational_notes 필드) ·
+        벡터 인덱스 (multilingual-e5-small, 99,618 chunks) — narrative 검증용.
       </div>
     </div>
   </div>
