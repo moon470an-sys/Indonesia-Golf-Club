@@ -4723,6 +4723,37 @@ def section_ops() -> str:
       </details>
     </div>
 
+    <div class="closing-stripe">
+      <div class="cs-eyebrow">14 섹션 · 26 시각화 · 99,618 audit-trail chunks</div>
+      <div class="cs-title">종합 요약 — 6개 takeaway</div>
+      <div class="closing-grid">
+        <div class="closing-takeaway">
+          <div class="num">1</div>
+          <div class="txt"><strong>자본효율</strong> · GOLF (Golf segment GP 65.7%, OpEx 21.1%/매출)이 7-peer 중 압도적. 단 CWIP 426bn 진행 → 향후 감가 추가 부담 예고</div>
+        </div>
+        <div class="closing-takeaway">
+          <div class="num">2</div>
+          <div class="txt"><strong>Mature operator 비용통제</strong> · PIPG FY25 매출 -6% 환경에서 OpEx -17.9% 절감 → 영업이익 +4%. Membership GP 87.8%가 marginal cash 회수력</div>
+        </div>
+        <div class="closing-takeaway">
+          <div class="num">3</div>
+          <div class="txt"><strong>마진 압박 시그널</strong> · DMIG FY25 영업이익 -12% (감가 12.2%/매출 peer 최고). PIK Range +372% 성장이 신규 감가 trigger</div>
+        </div>
+        <div class="closing-takeaway">
+          <div class="num">4</div>
+          <div class="txt"><strong>Unit economics 역설</strong> · KIJA (industrial estate)이 홀당 매출 4.7bn으로 6-peer 중 1위. Nick Faldo 설계 + Jababeka captive demand</div>
+        </div>
+        <div class="closing-takeaway">
+          <div class="num">5</div>
+          <div class="txt"><strong>구조적 위험</strong> · GOLF 단일 고객 34% (revenue 집중) · SMDM Rancamaya FY24 적자전환 직후 BSDE 91.99% 인수 → 통합 효과 모니터링 필요</div>
+        </div>
+        <div class="closing-takeaway">
+          <div class="num">6</div>
+          <div class="txt"><strong>Audit-grade 추적성</strong> · 7-peer × FY22-25 모든 라인을 PyMuPDF positional + multilingual-e5-small 벡터 cross-validate. 모든 수치가 AR 페이지로 추적</div>
+        </div>
+      </div>
+    </div>
+
     <div class="section" id="methodology">
       <h2 data-num="M">Methodology · 출처 & 데이터 흐름</h2>
       <h3>모든 수치는 AR 페이지/Note까지 추적 가능 (audit-grade)</h3>
