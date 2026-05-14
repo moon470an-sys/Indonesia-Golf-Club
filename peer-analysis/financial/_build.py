@@ -5203,12 +5203,7 @@ def section_reference() -> str:
   <div class="wrap">
     <div class="section">
       <h2>참고 — 비-Pure-play Peer</h2>
-      <h3>10개 (MKPI · 9 diversified) 요약 매트릭스</h3>
-      <p class="lede">
-        골프장 운영이 본업이 아닌 모회사 또는 segment 미공시 peer.
-        Pure-play 3개와 직접 비교 부적합하지만, 시장 컨텍스트 파악용 1줄 요약.
-        <strong>MKPI</strong>는 township 개발사로 PIPG 0.38% 지분만 보유 (직접 골프 운영 없음).
-      </p>
+      <h3>골프장이 본업이 아닌 10개 peer 요약 매트릭스</h3>
       <div class="tbl-card">
         <table class="tbl">
           <thead>
