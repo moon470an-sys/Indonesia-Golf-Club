@@ -4848,7 +4848,7 @@ def section_capex() -> str:
       <div class="cs-title">4 takeaways</div>
       <div class="closing-grid">
         <div class="closing-takeaway"><div class="num">1</div><div class="txt"><strong>GOLF self-funded 확장</strong> · CWIP 426bn (매출의 4.2배) · 외부 차입 없이 paid-in + retained로 조달</div></div>
-        <div class="closing-takeaway"><div class="num">2</div><div class="txt"><strong>DMIG 감가 부담 가속</strong> · 12.2%/매출 (peer 최고) · FY24→25 ▲+0.7pp · 마진 -12% 트리거</div></div>
+        <div class="closing-takeaway"><div class="num">2</div><div class="txt"><strong>DMIG 감가 부담 가속</strong> · 12.2%/매출 (peer 최고) · FY23→24 ▲+0.5pp · 마진 -12% 트리거</div></div>
         <div class="closing-takeaway"><div class="num">3</div><div class="txt"><strong>PIPG mature operator</strong> · 유지보수 5.9% (DMIG 0.9%×6) — 노후 자산의 본질적 비용 + 프리미엄 포지셔닝</div></div>
         <div class="closing-takeaway"><div class="num">4</div><div class="txt"><strong>Unit economics 역설</strong> · KIJA 4.7bn/홀 (industrial estate) > GOLF 2.6 (pure-play) — captive demand의 힘</div></div>
       </div>
