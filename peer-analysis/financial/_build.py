@@ -4216,6 +4216,137 @@ def _fy25_delta_cards() -> str:
     return f'<div class="kv-grid">{"".join(cards)}</div>'
 
 
+def _golf_cwip_detail_chart() -> str:
+    """GOLF CWIP detailed breakdown — Buildings/Landscape/Equipment from FY25 p.170."""
+    # From OPS_KPI_EVIDENCE narrative + vector hit on FY25 p.170
+    # Additional items from p.170: Furniture, Office Equipment, Vehicles, Equipment
+    items = [
+        ("Buildings (Gedung)", 187_920_532_473, "#92400e", "신규 클럽하우스 + 시설 건물"),
+        ("Landscape", 237_798_337_318, "#4a7c30", "코스 조경·잔디·관개"),
+        ("Vehicles (Kendaraan)", 13_017_077_949, "#1e40af", "카트·운영 차량"),
+        ("Office Equipment", 5_238_440_289, "#c08a2e", "사무·관리 장비"),
+        ("Furniture (Perabotan)", 5_952_331_370, "#6b21a8", "클럽하우스 가구"),
+        ("Equipment (Peralatan)", 2_611_569_863, "#8a8a8a", "골프 운영 장비"),
+    ]
+    total = sum(v for _, v, _, _ in items)
+    max_v = max(v for _, v, _, _ in items)
+
+    bars = []
+    for label, v, color, desc in items:
+        pct_w = (v / max_v) * 100
+        pct_total = (v / total) * 100
+        v_str = fmt_bn(v).replace(" bn", "bn")
+        bars.append(f"""<div style="display:grid;grid-template-columns:180px 1fr 70px 50px;gap:8px;align-items:center;padding:5px 0;font-size:12px;">
+  <span style="color:var(--ink-soft);font-weight:600;">{safe(label)}<br><span style="font-size:9.5px;color:var(--muted);font-weight:400;">{safe(desc)}</span></span>
+  <span style="height:18px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:{pct_w:.1f}%;background:{color};"></span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;">{v_str}</span>
+  <span style="text-align:right;color:var(--muted);font-size:11px;">{pct_total:.1f}%</span>
+</div>""")
+
+    return f"""<div class="ops-block" style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;">
+  <h4 class="ops-block-h" style="margin-bottom:10px;">
+    <span class="ticker-mini">GOLF</span> CWIP detail (FY2025) — 6 카테고리
+  </h4>
+  <div style="display:grid;grid-template-columns:180px 1fr 70px 50px;gap:8px;padding:2px 0 4px;font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;font-weight:700;border-bottom:1px solid var(--line);">
+    <span>카테고리</span><span>magnitude</span><span style="text-align:right;">FY25 IDR</span><span style="text-align:right;">% CWIP</span>
+  </div>
+  {''.join(bars)}
+  <div style="display:grid;grid-template-columns:180px 1fr 70px 50px;gap:8px;padding:8px 0 2px;margin-top:6px;border-top:2px solid var(--line-strong);font-weight:700;font-size:12px;">
+    <span>합계</span><span></span>
+    <span style="text-align:right;">{fmt_bn(total).replace(' bn','bn')}</span>
+    <span style="text-align:right;color:var(--muted);">100.0%</span>
+  </div>
+  <p class="src-line" style="margin-top:8px;">출처: GOLF FY25 AR p.170 — Aset dalam Konstruksi (Construction in Progress)</p>
+</div>"""
+
+
+def _depreciation_lines_chart() -> str:
+    """All depreciation line items across DMIG / PIPG / GOLF — grouped horizontal bar."""
+    rows_data = []
+    for ticker, opex_key, label_prefix in [
+        ("DMIG", "opex_note", "OpEx"),
+        ("PIPG", "opex_note_29", "OpEx"),
+        ("GOLF", "ga_note_32", "G&A"),
+    ]:
+        d = NOTES.get(ticker, {})
+        lines = (d.get(opex_key) or {}).get("lines") or []
+        for ln in lines:
+            lab = (ln.get("id_label") or "").lower()
+            en = (ln.get("en_label") or "").lower()
+            if "penyusutan" in lab or "depreciation" in en:
+                v23 = ln.get("FY2023") or 0
+                v24 = ln.get("FY2024") or 0
+                rev24 = revenue_total_for(ticker, "FY2024")
+                if ticker == "GOLF":
+                    rev24 = ((d.get("revenue_note_29") or {}).get("by_operations") or {}).get("total", {}).get("FY2024") or rev24
+                pct = (v24 / rev24 * 100) if (v24 and rev24) else None
+                yoy = ((v24 / v23) - 1) * 100 if (v23 and v24) else None
+                rows_data.append({
+                    "ticker": ticker, "label": ln.get("en_label") or ln.get("id_label"),
+                    "v23": v23, "v24": v24, "pct": pct, "yoy": yoy, "context": label_prefix,
+                })
+
+    if not rows_data:
+        return ""
+    rows_data.sort(key=lambda r: -(r["v24"] or 0))
+    max_v = rows_data[0]["v24"] or 1
+
+    bars = []
+    for r in rows_data:
+        pct_w = (r["v24"] / max_v) * 100 if max_v else 0
+        color = PEER_COLORS.get(r["ticker"], "#8a8a8a")
+        yoy_str = f"{r['yoy']:+.1f}%" if r['yoy'] is not None else "—"
+        yoy_color = "var(--danger)" if (r['yoy'] and r['yoy'] > 5) else ("var(--green)" if (r['yoy'] and r['yoy'] < -2) else "var(--muted)")
+        v24_str = fmt_bn(r["v24"]).replace(" bn", "bn")
+        pct_str = f"{r['pct']:.1f}%" if r['pct'] is not None else "—"
+        bars.append(f"""<div style="display:grid;grid-template-columns:80px 1fr 80px 60px 54px;gap:8px;align-items:center;padding:5px 0;font-size:12px;">
+  <span><span class="ticker-mini">{safe(r["ticker"])}</span> <span style="font-size:9px;color:var(--muted);">{safe(r["context"])}</span></span>
+  <span style="height:18px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:{pct_w:.1f}%;background:{color};"></span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;">{v24_str}</span>
+  <span style="text-align:right;color:var(--ink-soft);font-size:11px;">{pct_str} 매출</span>
+  <span style="text-align:right;font-weight:700;font-size:11px;color:{yoy_color};">{yoy_str}</span>
+</div>""")
+
+    return f"""<div class="ops-block" style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;">
+  <h4 class="ops-block-h" style="margin-bottom:10px;">감가상각 (Penyusutan) 라인 — 3-peer 직접 비교 (FY2024)</h4>
+  <div style="display:grid;grid-template-columns:80px 1fr 80px 60px 54px;gap:8px;padding:2px 0 4px;font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;font-weight:700;border-bottom:1px solid var(--line);">
+    <span>Peer</span><span>magnitude</span><span style="text-align:right;">FY24 IDR</span><span style="text-align:right;">%매출</span><span style="text-align:right;">YoY</span>
+  </div>
+  {''.join(bars)}
+  <p class="src-line" style="margin-top:8px;">감가상각 절댓값 + 매출 대비 비중 + FY23→24 YoY를 한 표로 비교</p>
+</div>"""
+
+
+def _asset_turnover_strip() -> str:
+    """Asset turnover (revenue / total assets) for each peer — efficiency strip."""
+    tiles = []
+    for t in ["DMIG", "PIPG", "GOLF", "KPIG"]:
+        rev24 = revenue_total_for(t, "FY2024")
+        if t == "GOLF":
+            d = NOTES.get(t, {})
+            rev24 = ((d.get("revenue_note_29") or {}).get("by_operations") or {}).get("total", {}).get("FY2024") or rev24
+        fin = next((f for f in by_ticker(FINANCIALS, t) if f.get("total_assets_idr")), {})
+        ta = fin.get("total_assets_idr") or 0
+        turnover = (float(rev24) / float(ta)) if (rev24 and ta) else None
+        intensity = (float(ta) / float(rev24)) if (rev24 and ta) else None
+        # Hole count
+        holes = HOLES.get(t, 18)
+        rev_per_hole = (rev24 / holes / 1e9) if rev24 else 0
+
+        accent = "accent-green" if (turnover and turnover > 0.4) else ("accent-warn" if (turnover and turnover < 0.1) else "accent-blue")
+        tiles.append(f"""<div class="kpi-tile {accent}">
+  <div class="kpi-cap"><span class="ticker-mini">{safe(t)}</span> 자산 회전율</div>
+  <div class="kpi-val">{(f'{turnover:.2f}' if turnover else '—')}<span class="u">×/년</span></div>
+  <div class="kpi-sub">자산 {fmt_bn(ta)} · 매출 {fmt_bn(rev24)}</div>
+  <div class="kpi-sub">자산집약도 {f'{intensity:.1f}' if intensity else '—'}× · {holes}홀 · {rev_per_hole:.1f}bn/홀</div>
+</div>""")
+    return f'<div class="kpi-strip">{"".join(tiles)}</div>'
+
+
 def _pipg_dept_headcount_chart() -> str:
     """PIPG headcount by department — detailed horizontal bar chart."""
     pipg = OPS_KPI_EVIDENCE.get("PIPG", {})
@@ -4588,6 +4719,9 @@ def section_capex() -> str:
     peer_radar = _peer_compare_radar()
     pnl_funnel = _pnl_funnel_section()
     pnl_table = _pnl_table()
+    golf_cwip_detail = _golf_cwip_detail_chart()
+    depreciation_lines = _depreciation_lines_chart()
+    asset_turnover = _asset_turnover_strip()
 
     exec_h = _tab_exec_headline(
         tab_key="CAPEX · ASSETS",
@@ -4609,12 +4743,15 @@ def section_capex() -> str:
     {exec_h}
 
     <nav class="ops-subnav" id="capex-anchor-top" aria-label="capex sub-navigation">
-      <a class="chip" href="#cap-heatmap">자본투자 강도 heatmap</a>
+      <a class="chip" href="#cap-heatmap">강도 heatmap</a>
+      <a class="chip" href="#cap-turnover">자산 회전율</a>
+      <a class="chip" href="#cap-cwip">GOLF CWIP detail</a>
+      <a class="chip" href="#cap-depr">감가 라인</a>
       <a class="chip" href="#cap-narratives">AR narrative</a>
-      <a class="chip" href="#cap-perhole">홀당 단위 경제</a>
-      <a class="chip" href="#cap-pnl">P&amp;L 4Y · 마진 추이</a>
-      <a class="chip" href="#cap-radar">DMIG vs PIPG radar</a>
-      <a class="chip" href="#cap-funnel">P&amp;L Funnel</a>
+      <a class="chip" href="#cap-perhole">홀당 단위</a>
+      <a class="chip" href="#cap-pnl">P&amp;L 4Y</a>
+      <a class="chip" href="#cap-radar">radar</a>
+      <a class="chip" href="#cap-funnel">funnel</a>
     </nav>
 
     <div class="section ops-summary">
@@ -4662,14 +4799,44 @@ def section_capex() -> str:
       </details>
     </div>
 
+    <div class="section" id="cap-turnover">
+      <h2 data-num="02">자산 회전율 — 4-peer efficiency</h2>
+      <h3>매출 / 총자산 · 자산집약도 · 매출/홀</h3>
+      <p class="lede">
+        자본 효율의 또 다른 잣대 — 자산 회전율 (matarev/asset). PIPG는 단일 코스 + 도시 자산으로 회전율 가장 높을 가능성,
+        KPIG는 conglomerate 자산 base로 가장 낮음. 함께 보이는 자산집약도(역수)도 의미 동일.
+      </p>
+      {asset_turnover}
+    </div>
+
+    <div class="section" id="cap-cwip">
+      <h2 data-num="03">GOLF CWIP detail — 6 카테고리 분해</h2>
+      <h3>FY2025 진행 중 자산 426bn의 구성 (Buildings/Landscape/Equipment/Vehicles/Furniture)</h3>
+      <p class="lede">
+        Aset dalam Konstruksi 6 카테고리로 분해 — Buildings (188bn, 43%) + Landscape (238bn, 54%)이 핵심 ·
+        나머지는 Equipment·Vehicles·Furniture·Office Equipment 등 운영 보조 시설. 신규 코스 또는 시설 대규모 확장 시사.
+      </p>
+      {golf_cwip_detail}
+    </div>
+
+    <div class="section" id="cap-depr">
+      <h2 data-num="04">감가상각 라인 — 3-peer 직접 비교</h2>
+      <h3>Penyusutan / Depreciation 라인 IDR + 매출 대비 % + YoY (FY24)</h3>
+      <p class="lede">
+        OpEx/G&amp;A Note 내 depreciation 라인을 3-peer 한 표로 — 절댓값 + 매출 대비 + YoY 변화율.
+        DMIG가 절댓값·비중·YoY 모두 가장 높음 (PIK Range 신규 + 누적 CAPEX 유동화).
+      </p>
+      {depreciation_lines}
+    </div>
+
     <div class="section" id="cap-narratives">
-      <h2 data-num="02">왜? — AR 본문 인용 (벡터 DB 검증)</h2>
+      <h2 data-num="05">왜? — AR 본문 인용 (벡터 DB 검증)</h2>
       <h3>같은 12% 감가도 신규 투자 / 노후 자산 / 회계 정책 — 본문에서 의도 확인</h3>
       {capex_narratives}
     </div>
 
     <div class="section" id="cap-perhole">
-      <h2 data-num="03">홀당 단위 경제 — 7-peer Unit Economics</h2>
+      <h2 data-num="06">홀당 단위 경제 — 7-peer Unit Economics</h2>
       <h3>매출 / GP / OpEx / 감가상각을 홀 수로 normalize (FY24)</h3>
       <p class="lede">
         peer마다 코스 수·운영 형태가 다르므로 entity 매출 절대값 비교는 misleading. 홀 수로 나눈 unit economics가 더 의미 있는 비교.
@@ -4683,7 +4850,7 @@ def section_capex() -> str:
     </div>
 
     <div class="section" id="cap-pnl">
-      <h2 data-num="04">P&L 4Y 마진 추이 — Pure-play 3-peer</h2>
+      <h2 data-num="07">P&L 4Y 마진 추이 — Pure-play 3-peer</h2>
       <h3>FY22-25 GP·Op·Net margin trend (CAPEX 영향 관점)</h3>
       <p class="lede">
         감가상각 증가가 op margin에 미치는 영향을 4년 시계열로. DMIG는 FY25 마진 하락 가속, PIPG는 비용 통제로 mid 안정.
@@ -4696,13 +4863,13 @@ def section_capex() -> str:
     </div>
 
     <div class="section" id="cap-radar">
-      <h2 data-num="05">DMIG vs PIPG — 6축 radar 1:1 비교</h2>
+      <h2 data-num="08">DMIG vs PIPG — 6축 radar 1:1 비교</h2>
       <h3>매출·마진·CAPEX(감가/유지)·배당·unit econ을 한 차트로</h3>
       {peer_radar}
     </div>
 
     <div class="section" id="cap-funnel">
-      <h2 data-num="06">P&L Funnel — 매출→Gross→Op→Net leakage</h2>
+      <h2 data-num="09">P&L Funnel — 매출→Gross→Op→Net leakage</h2>
       <h3>각 단계 % of revenue + leakage % 시각화 (FY24)</h3>
       {pnl_funnel}
     </div>

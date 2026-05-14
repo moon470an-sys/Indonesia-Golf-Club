@@ -742,12 +742,15 @@
 </div>
 
     <nav class="ops-subnav" id="capex-anchor-top" aria-label="capex sub-navigation">
-      <a class="chip" href="#cap-heatmap">자본투자 강도 heatmap</a>
+      <a class="chip" href="#cap-heatmap">강도 heatmap</a>
+      <a class="chip" href="#cap-turnover">자산 회전율</a>
+      <a class="chip" href="#cap-cwip">GOLF CWIP detail</a>
+      <a class="chip" href="#cap-depr">감가 라인</a>
       <a class="chip" href="#cap-narratives">AR narrative</a>
-      <a class="chip" href="#cap-perhole">홀당 단위 경제</a>
-      <a class="chip" href="#cap-pnl">P&amp;L 4Y · 마진 추이</a>
-      <a class="chip" href="#cap-radar">DMIG vs PIPG radar</a>
-      <a class="chip" href="#cap-funnel">P&amp;L Funnel</a>
+      <a class="chip" href="#cap-perhole">홀당 단위</a>
+      <a class="chip" href="#cap-pnl">P&amp;L 4Y</a>
+      <a class="chip" href="#cap-radar">radar</a>
+      <a class="chip" href="#cap-funnel">funnel</a>
     </nav>
 
     <div class="section ops-summary">
@@ -866,8 +869,145 @@
       </details>
     </div>
 
+    <div class="section" id="cap-turnover">
+      <h2 data-num="02">자산 회전율 — 4-peer efficiency</h2>
+      <h3>매출 / 총자산 · 자산집약도 · 매출/홀</h3>
+      <p class="lede">
+        자본 효율의 또 다른 잣대 — 자산 회전율 (matarev/asset). PIPG는 단일 코스 + 도시 자산으로 회전율 가장 높을 가능성,
+        KPIG는 conglomerate 자산 base로 가장 낮음. 함께 보이는 자산집약도(역수)도 의미 동일.
+      </p>
+      <div class="kpi-strip"><div class="kpi-tile accent-blue">
+  <div class="kpi-cap"><span class="ticker-mini">DMIG</span> 자산 회전율</div>
+  <div class="kpi-val">0.39<span class="u">×/년</span></div>
+  <div class="kpi-sub">자산 648.9bn · 매출 253.1bn</div>
+  <div class="kpi-sub">자산집약도 2.6× · 36홀 · 7.0bn/홀</div>
+</div><div class="kpi-tile accent-green">
+  <div class="kpi-cap"><span class="ticker-mini">PIPG</span> 자산 회전율</div>
+  <div class="kpi-val">0.44<span class="u">×/년</span></div>
+  <div class="kpi-sub">자산 446.1bn · 매출 197.6bn</div>
+  <div class="kpi-sub">자산집약도 2.3× · 18홀 · 11.0bn/홀</div>
+</div><div class="kpi-tile accent-warn">
+  <div class="kpi-cap"><span class="ticker-mini">GOLF</span> 자산 회전율</div>
+  <div class="kpi-val">0.02<span class="u">×/년</span></div>
+  <div class="kpi-sub">자산 8.64조 · 매출 198.0bn</div>
+  <div class="kpi-sub">자산집약도 43.6× · 36홀 · 5.5bn/홀</div>
+</div><div class="kpi-tile accent-warn">
+  <div class="kpi-cap"><span class="ticker-mini">KPIG</span> 자산 회전율</div>
+  <div class="kpi-val">0.05<span class="u">×/년</span></div>
+  <div class="kpi-sub">자산 35.83조 · 매출 1.77조</div>
+  <div class="kpi-sub">자산집약도 20.2× · 18홀 · 98.3bn/홀</div>
+</div></div>
+    </div>
+
+    <div class="section" id="cap-cwip">
+      <h2 data-num="03">GOLF CWIP detail — 6 카테고리 분해</h2>
+      <h3>FY2025 진행 중 자산 426bn의 구성 (Buildings/Landscape/Equipment/Vehicles/Furniture)</h3>
+      <p class="lede">
+        Aset dalam Konstruksi 6 카테고리로 분해 — Buildings (188bn, 43%) + Landscape (238bn, 54%)이 핵심 ·
+        나머지는 Equipment·Vehicles·Furniture·Office Equipment 등 운영 보조 시설. 신규 코스 또는 시설 대규모 확장 시사.
+      </p>
+      <div class="ops-block" style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;">
+  <h4 class="ops-block-h" style="margin-bottom:10px;">
+    <span class="ticker-mini">GOLF</span> CWIP detail (FY2025) — 6 카테고리
+  </h4>
+  <div style="display:grid;grid-template-columns:180px 1fr 70px 50px;gap:8px;padding:2px 0 4px;font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;font-weight:700;border-bottom:1px solid var(--line);">
+    <span>카테고리</span><span>magnitude</span><span style="text-align:right;">FY25 IDR</span><span style="text-align:right;">% CWIP</span>
+  </div>
+  <div style="display:grid;grid-template-columns:180px 1fr 70px 50px;gap:8px;align-items:center;padding:5px 0;font-size:12px;">
+  <span style="color:var(--ink-soft);font-weight:600;">Buildings (Gedung)<br><span style="font-size:9.5px;color:var(--muted);font-weight:400;">신규 클럽하우스 + 시설 건물</span></span>
+  <span style="height:18px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:79.0%;background:#92400e;"></span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;">187.9bn</span>
+  <span style="text-align:right;color:var(--muted);font-size:11px;">41.5%</span>
+</div><div style="display:grid;grid-template-columns:180px 1fr 70px 50px;gap:8px;align-items:center;padding:5px 0;font-size:12px;">
+  <span style="color:var(--ink-soft);font-weight:600;">Landscape<br><span style="font-size:9.5px;color:var(--muted);font-weight:400;">코스 조경·잔디·관개</span></span>
+  <span style="height:18px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:100.0%;background:#4a7c30;"></span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;">237.8bn</span>
+  <span style="text-align:right;color:var(--muted);font-size:11px;">52.5%</span>
+</div><div style="display:grid;grid-template-columns:180px 1fr 70px 50px;gap:8px;align-items:center;padding:5px 0;font-size:12px;">
+  <span style="color:var(--ink-soft);font-weight:600;">Vehicles (Kendaraan)<br><span style="font-size:9.5px;color:var(--muted);font-weight:400;">카트·운영 차량</span></span>
+  <span style="height:18px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:5.5%;background:#1e40af;"></span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;">13.0bn</span>
+  <span style="text-align:right;color:var(--muted);font-size:11px;">2.9%</span>
+</div><div style="display:grid;grid-template-columns:180px 1fr 70px 50px;gap:8px;align-items:center;padding:5px 0;font-size:12px;">
+  <span style="color:var(--ink-soft);font-weight:600;">Office Equipment<br><span style="font-size:9.5px;color:var(--muted);font-weight:400;">사무·관리 장비</span></span>
+  <span style="height:18px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:2.2%;background:#c08a2e;"></span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;">5.2bn</span>
+  <span style="text-align:right;color:var(--muted);font-size:11px;">1.2%</span>
+</div><div style="display:grid;grid-template-columns:180px 1fr 70px 50px;gap:8px;align-items:center;padding:5px 0;font-size:12px;">
+  <span style="color:var(--ink-soft);font-weight:600;">Furniture (Perabotan)<br><span style="font-size:9.5px;color:var(--muted);font-weight:400;">클럽하우스 가구</span></span>
+  <span style="height:18px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:2.5%;background:#6b21a8;"></span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;">6.0bn</span>
+  <span style="text-align:right;color:var(--muted);font-size:11px;">1.3%</span>
+</div><div style="display:grid;grid-template-columns:180px 1fr 70px 50px;gap:8px;align-items:center;padding:5px 0;font-size:12px;">
+  <span style="color:var(--ink-soft);font-weight:600;">Equipment (Peralatan)<br><span style="font-size:9.5px;color:var(--muted);font-weight:400;">골프 운영 장비</span></span>
+  <span style="height:18px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:1.1%;background:#8a8a8a;"></span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;">2.6bn</span>
+  <span style="text-align:right;color:var(--muted);font-size:11px;">0.6%</span>
+</div>
+  <div style="display:grid;grid-template-columns:180px 1fr 70px 50px;gap:8px;padding:8px 0 2px;margin-top:6px;border-top:2px solid var(--line-strong);font-weight:700;font-size:12px;">
+    <span>합계</span><span></span>
+    <span style="text-align:right;">452.5bn</span>
+    <span style="text-align:right;color:var(--muted);">100.0%</span>
+  </div>
+  <p class="src-line" style="margin-top:8px;">출처: GOLF FY25 AR p.170 — Aset dalam Konstruksi (Construction in Progress)</p>
+</div>
+    </div>
+
+    <div class="section" id="cap-depr">
+      <h2 data-num="04">감가상각 라인 — 3-peer 직접 비교</h2>
+      <h3>Penyusutan / Depreciation 라인 IDR + 매출 대비 % + YoY (FY24)</h3>
+      <p class="lede">
+        OpEx/G&amp;A Note 내 depreciation 라인을 3-peer 한 표로 — 절댓값 + 매출 대비 + YoY 변화율.
+        DMIG가 절댓값·비중·YoY 모두 가장 높음 (PIK Range 신규 + 누적 CAPEX 유동화).
+      </p>
+      <div class="ops-block" style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;">
+  <h4 class="ops-block-h" style="margin-bottom:10px;">감가상각 (Penyusutan) 라인 — 3-peer 직접 비교 (FY2024)</h4>
+  <div style="display:grid;grid-template-columns:80px 1fr 80px 60px 54px;gap:8px;padding:2px 0 4px;font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;font-weight:700;border-bottom:1px solid var(--line);">
+    <span>Peer</span><span>magnitude</span><span style="text-align:right;">FY24 IDR</span><span style="text-align:right;">%매출</span><span style="text-align:right;">YoY</span>
+  </div>
+  <div style="display:grid;grid-template-columns:80px 1fr 80px 60px 54px;gap:8px;align-items:center;padding:5px 0;font-size:12px;">
+  <span><span class="ticker-mini">DMIG</span> <span style="font-size:9px;color:var(--muted);">OpEx</span></span>
+  <span style="height:18px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:100.0%;background:#2d5016;"></span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;">28.2bn</span>
+  <span style="text-align:right;color:var(--ink-soft);font-size:11px;">11.1% 매출</span>
+  <span style="text-align:right;font-weight:700;font-size:11px;color:var(--danger);">+8.9%</span>
+</div><div style="display:grid;grid-template-columns:80px 1fr 80px 60px 54px;gap:8px;align-items:center;padding:5px 0;font-size:12px;">
+  <span><span class="ticker-mini">PIPG</span> <span style="font-size:9px;color:var(--muted);">OpEx</span></span>
+  <span style="height:18px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:40.1%;background:#c08a2e;"></span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;">11.3bn</span>
+  <span style="text-align:right;color:var(--ink-soft);font-size:11px;">5.7% 매출</span>
+  <span style="text-align:right;font-weight:700;font-size:11px;color:var(--danger);">+18.6%</span>
+</div><div style="display:grid;grid-template-columns:80px 1fr 80px 60px 54px;gap:8px;align-items:center;padding:5px 0;font-size:12px;">
+  <span><span class="ticker-mini">GOLF</span> <span style="font-size:9px;color:var(--muted);">G&amp;A</span></span>
+  <span style="height:18px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:8.8%;background:#4a7c30;"></span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;">2.5bn</span>
+  <span style="text-align:right;color:var(--ink-soft);font-size:11px;">1.3% 매출</span>
+  <span style="text-align:right;font-weight:700;font-size:11px;color:var(--green);">-15.0%</span>
+</div>
+  <p class="src-line" style="margin-top:8px;">감가상각 절댓값 + 매출 대비 비중 + FY23→24 YoY를 한 표로 비교</p>
+</div>
+    </div>
+
     <div class="section" id="cap-narratives">
-      <h2 data-num="02">왜? — AR 본문 인용 (벡터 DB 검증)</h2>
+      <h2 data-num="05">왜? — AR 본문 인용 (벡터 DB 검증)</h2>
       <h3>같은 12% 감가도 신규 투자 / 노후 자산 / 회계 정책 — 본문에서 의도 확인</h3>
       <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap:14px; margin: 14px 0;">
   <div class="quote-card" style="border-left-color: var(--warn);">
@@ -979,7 +1119,7 @@
     </div>
 
     <div class="section" id="cap-perhole">
-      <h2 data-num="03">홀당 단위 경제 — 7-peer Unit Economics</h2>
+      <h2 data-num="06">홀당 단위 경제 — 7-peer Unit Economics</h2>
       <h3>매출 / GP / OpEx / 감가상각을 홀 수로 normalize (FY24)</h3>
       <p class="lede">
         peer마다 코스 수·운영 형태가 다르므로 entity 매출 절대값 비교는 misleading. 홀 수로 나눈 unit economics가 더 의미 있는 비교.
@@ -1205,7 +1345,7 @@
     </div>
 
     <div class="section" id="cap-pnl">
-      <h2 data-num="04">P&L 4Y 마진 추이 — Pure-play 3-peer</h2>
+      <h2 data-num="07">P&L 4Y 마진 추이 — Pure-play 3-peer</h2>
       <h3>FY22-25 GP·Op·Net margin trend (CAPEX 영향 관점)</h3>
       <p class="lede">
         감가상각 증가가 op margin에 미치는 영향을 4년 시계열로. DMIG는 FY25 마진 하락 가속, PIPG는 비용 통제로 mid 안정.
@@ -1298,7 +1438,7 @@
     </div>
 
     <div class="section" id="cap-radar">
-      <h2 data-num="05">DMIG vs PIPG — 6축 radar 1:1 비교</h2>
+      <h2 data-num="08">DMIG vs PIPG — 6축 radar 1:1 비교</h2>
       <h3>매출·마진·CAPEX(감가/유지)·배당·unit econ을 한 차트로</h3>
       <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:14px;align-items:start;">
   <div style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 12px 12px;">
@@ -1354,7 +1494,7 @@
     </div>
 
     <div class="section" id="cap-funnel">
-      <h2 data-num="06">P&L Funnel — 매출→Gross→Op→Net leakage</h2>
+      <h2 data-num="09">P&L Funnel — 매출→Gross→Op→Net leakage</h2>
       <h3>각 단계 % of revenue + leakage % 시각화 (FY24)</h3>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:14px;">
   <div style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px;">
@@ -2946,9 +3086,9 @@
 <footer class="foot">
   <div class="wrap">
     <p>
-      <strong>골프장 운영 Peer 비교 사이트</strong> — Build 2026-05-14 (commit <code>51344f3</code>) ·
-      Ops 탭 <strong>26</strong>개 분석 섹션 ·
-      <strong>9</strong> SVG 차트 · <strong>28</strong> KPI 타일 · <strong>26</strong> 벡터 narrative 카드 ·
+      <strong>골프장 운영 Peer 비교 사이트</strong> — Build 2026-05-14 (commit <code>47faae5</code>) ·
+      Ops 탭 <strong>29</strong>개 분석 섹션 ·
+      <strong>9</strong> SVG 차트 · <strong>32</strong> KPI 타일 · <strong>26</strong> 벡터 narrative 카드 ·
       데이터: raw_peer_data/*.csv (last verified 2026-04-29 ~ 2026-05-07) + AR Note 직접 추출 + 벡터 검색 (99,618 chunks) ·
       추정/보간 없음. 미공시는 N/A로 표기.
     </p>
