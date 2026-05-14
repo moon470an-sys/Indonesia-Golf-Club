@@ -3942,16 +3942,21 @@ def _revenue_cogs_gp_chart(ticker: str, rev_key: str, cogs_key: str) -> str:
         if cogs_v:
             gp = rev_v - cogs_v
             gm = (gp / rev_v * 100) if rev_v else 0
-            rows.append((rev_label, rev_v, cogs_v, gp, gm))
+            rows.append((rev_label, rev_v, cogs_v, gp, gm, False))
+        else:
+            # No matching direct COGS line → near-pure margin (cost in shared OpEx)
+            rows.append((rev_label, rev_v, 0, rev_v, 100.0, True))
 
     if not rows:
         return ""
     rows.sort(key=lambda r: -r[4])  # sort by GP margin desc
 
     bars = []
-    for label, rev_v, cogs_v, gp, gm in rows:
+    for label, rev_v, cogs_v, gp, gm, no_cogs in rows:
         # Color by margin tier
-        if gm >= 70:
+        if no_cogs:
+            color = "#1d3b0e"
+        elif gm >= 70:
             color = "#2d5016"
         elif gm >= 55:
             color = "#4a7c30"
@@ -3962,23 +3967,24 @@ def _revenue_cogs_gp_chart(ticker: str, rev_key: str, cogs_key: str) -> str:
         else:
             color = "#b91c1c"
         bar_w = max(2, gm)  # gm% directly as width (0-100)
-        rev_str = fmt_bn(rev_v).replace(" bn", "bn")
         gp_str = fmt_bn(gp).replace(" bn", "bn")
+        gm_label = "~100%*" if no_cogs else f"{gm:.1f}%"
         bars.append(f"""<div style="display:grid;grid-template-columns:150px 1fr 64px 70px;gap:8px;align-items:center;padding:5px 0;font-size:12px;">
   <span style="color:var(--ink-soft);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="{safe(label)}">{safe(label)}</span>
   <span style="height:18px;background:var(--surface-2);border-radius:3px;overflow:hidden;box-shadow:inset 0 0 0 1px var(--line);">
     <span style="display:block;height:100%;width:{bar_w:.1f}%;background:{color};"></span>
   </span>
-  <span style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;color:{color};">{gm:.1f}%</span>
-  <span style="text-align:right;color:var(--muted);font-size:10.5px;">GP {gp_str}</span>
+  <span style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;color:{color};">{gm_label}</span>
+  <span style="text-align:right;color:var(--muted);font-size:10.5px;">매출 {fmt_bn(rev_v).replace(" bn","bn")}</span>
 </div>""")
 
     return f"""<div class="ops-block" style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;">
   <h4 class="ops-block-h"><span class="ticker-mini">{safe(ticker)}</span> 매출 라인별 GP margin (FY2024)</h4>
   <div style="display:grid;grid-template-columns:150px 1fr 64px 70px;gap:8px;padding:2px 0 4px;font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;font-weight:700;border-bottom:1px solid var(--line);">
-    <span>매출 라인</span><span>GP margin (0-100%)</span><span style="text-align:right;">GP%</span><span style="text-align:right;">GP 절댓값</span>
+    <span>매출 라인</span><span>GP margin (0-100%)</span><span style="text-align:right;">GP%</span><span style="text-align:right;">매출</span>
   </div>
   {''.join(bars)}
+  <p style="font-size:10.5px;color:var(--muted);margin:8px 2px 0;">* 직접 COGS 라인 미공시 = 비용이 공통 OpEx에 포함 (Membership·Sponsorship 등) → 사실상 near-pure margin</p>
 </div>"""
 
 
