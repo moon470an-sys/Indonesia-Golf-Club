@@ -2047,6 +2047,165 @@ DIVIDEND_EVIDENCE = {
 }
 
 
+def _margin_change_visual() -> str:
+    """FY24→FY25 margin commentary as visual timeline cards with mini delta bars."""
+
+    # Pre-computed FY24/FY25 numbers per peer (from existing commentary text + follow-ups)
+    peers = [
+        {
+            "ticker": "DMIG",
+            "tone": "warn",
+            "tag": "마진 압박 시작",
+            "metrics": [
+                ("매출", 253.1, 251.4, "bn"),     # FY24, FY25 in bn IDR
+                ("영업이익", 78.9, 69.4, "bn"),
+                ("순이익", 82.4, 75.0, "bn"),
+            ],
+            "narrative": (
+                "FY23 순이익 71.27bn (+34.40% vs FY22). FY24 매출 253.1bn / 영업이익 78.9bn / 순이익 82.4bn. "
+                "FY25 매출 -0.7%, OpEx +3.3% → 영업이익 -12.0%. PIK Range 신규 투자로 감가↑."
+            ),
+            "src": "DMIG FY23 AR p.22 · FY25 follow-up",
+        },
+        {
+            "ticker": "PIPG",
+            "tone": "positive",
+            "tag": "비용 통제력 입증",
+            "metrics": [
+                ("매출", 197.6, 185.8, "bn"),
+                ("OpEx", 76.0, 62.0, "bn"),
+                ("영업이익", 53.5, 55.6, "bn"),
+                ("순이익", 55.9, 56.3, "bn"),
+            ],
+            "narrative": (
+                "FY25 매출 -6.0%이지만 OpEx -17.9% 대규모 절감 → 영업이익 +4.0%, 순이익 +0.6%. "
+                "노후 코스 운영 효율 개선 시그널. Mature operator의 cost discipline."
+            ),
+            "src": "PIPG FY25 follow-up + FY24 AR Note 27/29",
+        },
+        {
+            "ticker": "GOLF",
+            "tone": "warn",
+            "tag": "CAPEX-driven 마진 squeeze",
+            "metrics": [
+                ("COGS", 65.1, 78.3, "bn"),
+                ("영업이익", 72.5, 64.9, "bn"),
+                ("Selling Exp", 4.7, 11.2, "bn"),
+            ],
+            "narrative": (
+                "FY24 COGS +20.2% YoY (real estate 비용 주도). FY25 영업이익 -10.49% (72.5→64.9). "
+                "원인: selling expenses +137.2%. CWIP 450bn 진행 중 — 향후 감가 추가 부담 예고."
+            ),
+            "src": "GOLF FY24 AR p.69 + FY25 AR p.156·p.170",
+        },
+        {
+            "ticker": "MDLN",
+            "tone": "positive",
+            "tag": "Hidden growth (Golf segment)",
+            "metrics": [
+                ("Group GP%", 44.66, 47.19, "pct"),
+                ("Golf rev", 74.4, 95.3, "bn"),
+            ],
+            "narrative": (
+                "Group GP margin +2.53pp 개선 (44.66% → 47.19%). Golf 단독 segment +28.2% YoY (74.4→95.3bn). "
+                "그룹에서 가장 빠른 성장 부문. Modern Golf 단독 매출 56.6bn → 74.4bn (F&B 포함)."
+            ),
+            "src": "MDLN FY25 AR p.116 + Note 25/26",
+        },
+        {
+            "ticker": "SMDM",
+            "tone": "warn",
+            "tag": "BSDE 인수 전 적자전환",
+            "metrics": [
+                ("Golf GP%", 55.8, 38.9, "pct"),
+                ("영업이익", 1.5, -0.2, "bn"),
+            ],
+            "narrative": (
+                "Golf & CC GP margin FY23 55.8% → FY24 38.9% (-16.9pp 급락). 영업이익 -212M IDR 적자전환. "
+                "FY24 배당 미실시. BSDE 2024-10에 91.99% 인수. FY25 GP 88.6% jump은 회계 재분류 가능성."
+            ),
+            "src": "SMDM FY24 AR p.70",
+        },
+        {
+            "ticker": "KPIG",
+            "tone": "neutral",
+            "tag": "Asset-intensive conglomerate",
+            "metrics": [
+                ("Hotel+R+G rev", 960, 1060, "bn"),
+                ("총자산비중 (FA+IP)", 73.8, 73.8, "pct"),
+            ],
+            "narrative": (
+                "Hotel+Resort+Golf 통합 매출 FY23 812bn → FY24 960bn (+18%) → FY25 1,060bn (+10%). "
+                "Group 고정자산 21조 + 투자부동산 6.9조 = 73.8% of total. Golf-only 분리 미공시."
+            ),
+            "src": "KPIG FY24 AR p.212 + FY25 Note 31",
+        },
+    ]
+
+    tone_border = {"positive": "var(--green)", "warn": "var(--warn)", "neutral": "#8a8a8a"}
+
+    cards = []
+    for p in peers:
+        # Render mini metric bars (FY24 vs FY25 side-by-side)
+        metric_rows = []
+        for label, v24, v25, unit in p["metrics"]:
+            # Calculate delta
+            delta = None
+            if v24 and v25 is not None:
+                if unit == "pct":
+                    delta_str = f"{(v25 - v24):+.1f}pp"
+                    delta_color = "var(--green)" if v25 > v24 else "var(--danger)"
+                else:
+                    delta_pct = ((v25 / v24) - 1) * 100 if v24 else 0
+                    delta_str = f"{delta_pct:+.1f}%"
+                    # For OpEx/COGS, down is good
+                    if label.lower() in ("opex", "cogs"):
+                        delta_color = "var(--green)" if delta_pct < 0 else "var(--danger)"
+                    else:
+                        delta_color = "var(--green)" if delta_pct > 0 else "var(--danger)"
+
+            max_v = max(abs(v24), abs(v25)) if v24 and v25 else 1
+            w24 = (abs(v24) / max_v * 100) if v24 else 0
+            w25 = (abs(v25) / max_v * 100) if v25 else 0
+            val_unit = "%" if unit == "pct" else "bn"
+            v24_str = f"{v24}{val_unit}"
+            v25_str = f"{v25}{val_unit}"
+            metric_rows.append(f"""<div style="display:grid;grid-template-columns:80px 1fr 60px;gap:8px;align-items:center;padding:3px 0;font-size:11px;">
+  <span style="color:var(--ink-soft);font-weight:600;">{safe(label)}</span>
+  <div style="position:relative;">
+    <div style="display:flex;align-items:center;gap:4px;margin-bottom:2px;">
+      <span style="font-size:9px;color:var(--muted);min-width:28px;">FY24</span>
+      <span style="flex:1;height:8px;background:var(--line);border-radius:2px;overflow:hidden;">
+        <span style="display:block;height:100%;width:{w24:.1f}%;background:#8a8a8a;"></span>
+      </span>
+      <span style="font-size:10px;font-weight:600;min-width:38px;text-align:right;">{v24_str}</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:4px;">
+      <span style="font-size:9px;color:var(--muted);min-width:28px;">FY25</span>
+      <span style="flex:1;height:8px;background:var(--line);border-radius:2px;overflow:hidden;">
+        <span style="display:block;height:100%;width:{w25:.1f}%;background:var(--green);"></span>
+      </span>
+      <span style="font-size:10px;font-weight:600;min-width:38px;text-align:right;">{v25_str}</span>
+    </div>
+  </div>
+  <span style="text-align:right;font-weight:700;font-size:11px;color:{delta_color};">{delta_str}</span>
+</div>""")
+
+        cards.append(f"""<div class="quote-card" style="border-left-color:{tone_border[p['tone']]};">
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+    <span class="ticker-mini">{safe(p["ticker"])}</span>
+    <span class="insight-tag" style="margin:0;color:var(--ink);">{safe(p["tag"])}</span>
+  </div>
+  <div style="margin: 8px 0 12px;">{"".join(metric_rows)}</div>
+  <div style="font-size:12.5px;color:var(--ink-soft);line-height:1.55;">{safe(p["narrative"])}</div>
+  <div class="qmeta"><strong>출처</strong> · {safe(p["src"])}</div>
+</div>""")
+
+    return f"""<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:12px;">
+  {''.join(cards)}
+</div>"""
+
+
 def _dividend_visual() -> str:
     """Dividend grouped-bar chart + payout ratio cards."""
     # Per-peer net income lookup (for payout)
@@ -3109,6 +3268,7 @@ def section_ops() -> str:
     pipg_seg_visual = _pipg_segment_visual()
     dividend_table = _dividend_compare_table()
     dividend_visual = _dividend_visual()
+    margin_change = _margin_change_visual()
 
     rev_blocks = "\n".join(filter(None, [
         _revenue_breakdown_table("DMIG", "revenue_note", "매출 라인 분해"),
@@ -3543,8 +3703,11 @@ def section_ops() -> str:
       <h3>각 peer의 annual report 본문에서 직접 인용한 마진 시그널</h3>
       <p class="lede">
         벡터 DB (multilingual-e5-small, 99,618 chunks)로 각 peer의 FY24/FY25 AR 본문에서 마진 변화 commentary 추출.
-        모든 수치는 AR 페이지 번호로 검증 가능.
+        각 카드에 mini bar로 FY24↔FY25 직접 비교 + delta% 우측에 표시.
       </p>
+      {margin_change}
+      <details style="margin: 14px 0 4px;">
+        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 텍스트 commentary (페이지 인용 포함)</summary>
       <div class="kv-grid">
         <div class="kv">
           <div class="k">DMIG FY2023 → FY2024</div>
@@ -3601,6 +3764,7 @@ def section_ops() -> str:
           <span class="src">KPIG FY24 AR p.212 (assets) + FY25 Note 31</span>
         </div>
       </div>
+      </details>
     </div>
 
     <div class="section">
