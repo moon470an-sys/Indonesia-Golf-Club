@@ -3440,7 +3440,7 @@ def _ops_kpi_dashboard() -> str:
         pct = n / pipg_total * 100 if pipg_total else 0
         pipg_dept_bars.append(
             f'<div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--ink-soft);">'
-            f'<span style="flex:0 0 70px;">{safe(dept)[:8]}</span>'
+            f'<span title="{safe(dept)}" style="flex:0 0 84px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{safe(dept)}</span>'
             f'<span style="flex:1;height:6px;background:var(--line);border-radius:3px;overflow:hidden;">'
             f'<span style="display:block;width:{pct:.0f}%;height:100%;background:#2d5016;"></span></span>'
             f'<span style="flex:0 0 22px;text-align:right;font-weight:600;">{n}</span></div>'
