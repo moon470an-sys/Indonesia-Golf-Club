@@ -2047,6 +2047,86 @@ DIVIDEND_EVIDENCE = {
 }
 
 
+def _dividend_visual() -> str:
+    """Dividend grouped-bar chart + payout ratio cards."""
+    # Per-peer net income lookup (for payout)
+    # DMIG FY2023 net 71.27bn, PIPG FY2023 net ~55.9bn (audit)
+    netinc_known = {
+        ("DMIG", "FY2023"): 71_270_000_000,
+        ("PIPG", "FY2022"): None,  # Optional
+        ("PIPG", "FY2023"): 55_900_000_000,
+    }
+
+    fys = ["FY2022", "FY2023", "FY2024"]
+    peers = ["DMIG", "PIPG", "SMDM"]
+
+    # Build dataset
+    div = {}
+    for t in peers:
+        d = DIVIDEND_EVIDENCE.get(t) or {}
+        div[t] = {
+            "FY2022": d.get("FY2022_paid"),
+            "FY2023": d.get("FY2023_paid"),
+            "FY2024": d.get("FY2024_paid"),
+        }
+    all_vals = [v for v_d in div.values() for v in v_d.values() if v]
+    max_v = max(all_vals) if all_vals else 1
+
+    # --- Grouped bar visualization
+    bar_rows = []
+    for fy in fys:
+        peer_bars = []
+        for t in peers:
+            v = div[t][fy]
+            pct = (v / max_v * 100) if v else 0
+            color = PEER_COLORS.get(t, "#8a8a8a")
+            val_str = fmt_bn(v).replace(" bn", "bn") if v else "—"
+            faded = "opacity:0.25;" if not v else ""
+            peer_bars.append(f"""<div style="flex:1;display:flex;flex-direction:column;align-items:center;{faded}">
+  <div style="display:flex;align-items:flex-end;height:100px;width:100%;">
+    <div style="width:100%;height:{pct:.1f}%;background:{color};border-radius:4px 4px 0 0;display:flex;align-items:flex-end;justify-content:center;color:white;font-size:10px;font-weight:700;padding-bottom:3px;">
+      {val_str if v and pct > 25 else ""}
+    </div>
+  </div>
+  <div style="font-size:10px;font-weight:600;color:var(--ink-soft);margin-top:4px;">{safe(t)}</div>
+  <div style="font-size:10px;color:var(--muted);">{val_str}</div>
+</div>""")
+        bar_rows.append(f"""<div style="flex:1;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 12px;">
+  <div style="font-size:12px;font-weight:700;color:var(--ink);text-align:center;margin-bottom:8px;">{safe(fy[2:])}</div>
+  <div style="display:flex;gap:6px;align-items:flex-end;">{''.join(peer_bars)}</div>
+</div>""")
+
+    bar_chart = f"""<div style="display:flex;gap:10px;flex-wrap:wrap;">{''.join(bar_rows)}</div>"""
+
+    # --- Payout ratio + per-share KPI tiles
+    pipg_payout = 26_239_800_000 / 55_900_000_000 * 100
+    dmig_payout = 26_514_391_332 / 71_268_571_841 * 100
+    pipg_per_share = DIVIDEND_EVIDENCE["PIPG"]["per_share_FY2023"]
+
+    tiles = f"""<div class="kpi-strip">
+  <div class="kpi-tile accent-green">
+    <div class="kpi-cap">PIPG · FY23 Payout</div>
+    <div class="kpi-val">{pipg_payout:.1f}%</div>
+    <div class="kpi-sub">배당 Rp 26.2bn / 순이익 Rp 55.9bn</div>
+    <div class="kpi-sub">주당 Rp {pipg_per_share/1_000_000:.2f}M · RUPST 2024-06-06</div>
+  </div>
+  <div class="kpi-tile accent-green">
+    <div class="kpi-cap">DMIG · FY23 Payout</div>
+    <div class="kpi-val">{dmig_payout:.1f}%</div>
+    <div class="kpi-sub">배당 Rp 26.5bn / 순이익 Rp 71.3bn</div>
+    <div class="kpi-sub">Statement of Changes in Equity 직접 추출</div>
+  </div>
+  <div class="kpi-tile accent-warn">
+    <div class="kpi-cap">SMDM · FY24 Payout</div>
+    <div class="kpi-val">0%</div>
+    <div class="kpi-sub">배당 미실시 (working capital 보존)</div>
+    <div class="kpi-sub">BSDE 91.99% 인수 직전 결정</div>
+  </div>
+</div>"""
+
+    return tiles + bar_chart
+
+
 def _dividend_compare_table() -> str:
     rows = []
     for t, d in DIVIDEND_EVIDENCE.items():
@@ -3028,6 +3108,7 @@ def section_ops() -> str:
     pipg_seg_table = _pipg_segment_table()
     pipg_seg_visual = _pipg_segment_visual()
     dividend_table = _dividend_compare_table()
+    dividend_visual = _dividend_visual()
 
     rev_blocks = "\n".join(filter(None, [
         _revenue_breakdown_table("DMIG", "revenue_note", "매출 라인 분해"),
@@ -3342,7 +3423,11 @@ def section_ops() -> str:
         cash distribution을 통한 capital allocation 비교. PIPG는 안정적 배당 + 증가 추세, DMIG는 FY23 배당 확인,
         SMDM은 FY24 BSDE 인수 직전 배당 미실시.
       </p>
-      {dividend_table}
+      {dividend_visual}
+      <details style="margin: 14px 0 4px;">
+        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 배당 표 (narrative + 출처)</summary>
+        {dividend_table}
+      </details>
     </div>
 
     <div class="section" id="related">
