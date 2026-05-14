@@ -398,6 +398,66 @@ tr.row-total td.num { color: var(--ink); }
 .kv-comment { font-size: 12.5px; color: var(--ink-soft); margin: 6px 0 4px; line-height: 1.5; }
 .muted { color: var(--muted); font-weight: 400; font-size: 12px; }
 
+/* ============== Section number badges + back-to-top ============== */
+.section[id] h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section[id] h2::before {
+  content: attr(data-num);
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--green-tint);
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+  border: 1px solid #c8dfb5;
+}
+.section[id] h2:not([data-num])::before {
+  display: none;
+}
+
+/* Floating back-to-toc */
+.back-to-toc {
+  position: fixed;
+  bottom: 24px; right: 24px;
+  z-index: 50;
+  background: var(--green);
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 10px 16px;
+  border-radius: 999px;
+  box-shadow: 0 4px 14px rgba(45,80,22,0.32);
+  letter-spacing: 0.02em;
+  text-decoration: none !important;
+  transition: transform 0.15s, background 0.15s;
+  display: none;
+}
+.back-to-toc.visible { display: inline-flex; align-items: center; gap: 6px; }
+.back-to-toc:hover {
+  background: #1d3b0e;
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+.back-to-toc::before {
+  content: "↑";
+  font-size: 14px;
+  font-weight: 900;
+}
+
+@media (max-width: 760px) {
+  .back-to-toc { bottom: 16px; right: 12px; padding: 8px 12px; font-size: 11px; }
+}
+
 /* ============== Inline data-viz bars (CSS-only, in tables) ============== */
 .viz-cell { position: relative; }
 .viz-cell .viz-bar {

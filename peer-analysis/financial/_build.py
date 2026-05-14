@@ -3683,7 +3683,9 @@ def section_ops() -> str:
     return f"""<section class="panel" data-panel="ops">
   <div class="wrap">
 
-    <nav class="ops-subnav" aria-label="ops sub-navigation">
+    <a class="back-to-toc" href="#ops-anchor-top">TOC</a>
+
+    <nav class="ops-subnav" id="ops-anchor-top" aria-label="ops sub-navigation">
       <a class="chip" href="#pnl">P&amp;L 4Y</a>
       <a class="chip" href="#rev">매출 라인</a>
       <a class="chip" href="#cogs">COGS 라인</a>
@@ -3828,7 +3830,7 @@ def section_ops() -> str:
     </div>
 
     <div class="section" id="pnl">
-      <h2>4년 통합 P&L — Pure-play 3-peer</h2>
+      <h2 data-num="01">4년 통합 P&L — Pure-play 3-peer</h2>
       <h3>FY2022 → FY2025 (FY25는 미감사 prelim)</h3>
       <p class="lede">
         DMIG/PIPG는 FY22~FY25 4개년 P&L 라인 전체 추출 가능 (annual report Note 23/24/25 또는 Note 27/28/29).
@@ -3848,7 +3850,7 @@ def section_ops() -> str:
     </div>
 
     <div class="section" id="rev">
-      <h2>매출 라인 분해 — Pure-play</h2>
+      <h2 data-num="02">매출 라인 분해 — Pure-play</h2>
       <h3>골프 / F&amp;B / 회원권 / 부대시설 별 매출 (FY23→FY24)</h3>
       <p class="lede">
         annual report Note에서 라인별 매출을 직접 추출. Top-5 라인 + 기타 합산 시각화.
@@ -3862,7 +3864,7 @@ def section_ops() -> str:
     </div>
 
     <div class="section" id="cogs">
-      <h2>COGS (매출원가) 라인 분해</h2>
+      <h2 data-num="03">COGS (매출원가) 라인 분해</h2>
       <h3>골프 코스 / 레스토랑 / 카트 / 드라이빙 레인지 등</h3>
       <p class="lede">
         Top-5 COGS 라인 + 기타 시각화 — YoY 상승은 빨강, 하락은 녹색 (COGS 절감이 마진 개선).
@@ -3876,7 +3878,7 @@ def section_ops() -> str:
     </div>
 
     <div class="section" id="opex">
-      <h2>OpEx 라인 분해 — CAPEX/OPEX 핵심</h2>
+      <h2 data-num="04">OpEx 라인 분해 — CAPEX/OPEX 핵심</h2>
       <h3>인건비 · 감가상각 · 유지보수 · 세금 · 유틸리티 등</h3>
       <p class="lede">
         AR Note 25 (DMIG) / Note 29 (PIPG) / Note 34 (KPIG)에서 OpEx 라인 단위 분해.
@@ -3891,7 +3893,7 @@ def section_ops() -> str:
     </div>
 
     <div class="section" id="opex-norm">
-      <h2>OpEx 카테고리별 normalized 비교 — DMIG vs PIPG vs GOLF</h2>
+      <h2 data-num="05">OpEx 카테고리별 normalized 비교 — DMIG vs PIPG vs GOLF</h2>
       <h3>FY2024 매출 대비 % (cross-peer 같은 잣대)</h3>
       <p class="lede">
         AR Note 라벨이 peer마다 달라 직접 비교가 어려운 문제를 해결하기 위해, 모든 OpEx 라인을
@@ -3922,7 +3924,7 @@ def section_ops() -> str:
     </div>
 
     <div class="section" id="capex-proxy">
-      <h2>CAPEX proxy — 감가상각·유지보수·자산집약도</h2>
+      <h2 data-num="06">CAPEX proxy — 감가상각·유지보수·자산집약도</h2>
       <h3>Audited CAPEX 미공시 → P&L proxy + B/S proxy로 추정</h3>
       <p class="lede">
         CAPEX 직접 공시는 없으나 다음 3개 indicator로 자본투자 강도를 추정:
@@ -3950,7 +3952,7 @@ def section_ops() -> str:
     </div>
 
     <div class="section" id="pipg-seg">
-      <h2>PIPG 4-segment GP margin — Note 30 직접 추출</h2>
+      <h2 data-num="07">PIPG 4-segment GP margin — Note 30 직접 추출</h2>
       <h3>Golf Course&amp;Cart / Membership / Restaurant / Others 매출×COGS×GP×Margin</h3>
       <p class="lede">
         PIPG는 Note 30 Segment Information에서 Golf Course&amp;Cart / Membership&amp;Enrollment / Restaurant / Others 4 segment의 COGS를 explicit 공시.
@@ -3974,7 +3976,7 @@ def section_ops() -> str:
     </div>
 
     <div class="section" id="segment-6">
-      <h2>골프 segment 매출 — 6-peer 통합 비교 (FY2024)</h2>
+      <h2 data-num="08">골프 segment 매출 — 6-peer 통합 비교 (FY2024)</h2>
       <h3>explicit golf disclosure가 있는 모든 IDX peer</h3>
       <p class="lede">
         Pure-play 외에도 <strong>MDLN · GOLF · KIJA · SMDM</strong>는 annual report Note에서 골프 segment를 명시적 분리 공시.
@@ -3998,7 +4000,7 @@ def section_ops() -> str:
     </div>
 
     <div class="section" id="unit-econ">
-      <h2>홀당 단위 경제 — 7-peer Unit Economics (FY2024)</h2>
+      <h2 data-num="09">홀당 단위 경제 — 7-peer Unit Economics (FY2024)</h2>
       <h3>매출 / GP / OpEx / 감가상각을 홀 수로 normalize</h3>
       <p class="lede">
         peer 마다 코스 수와 운영 형태가 다르므로 entity 매출 절대값 비교는 misleading. 홀 수로 나눈 unit economics가 더 의미 있는 비교.
@@ -4021,7 +4023,7 @@ def section_ops() -> str:
     </div>
 
     <div class="section" id="ops-kpi">
-      <h2>운영 KPI 시계열 — 골퍼·회원·인력·CWIP</h2>
+      <h2 data-num="10">운영 KPI 시계열 — 골퍼·회원·인력·CWIP</h2>
       <h3>annual report 본문(Management Discussion)에서 직접 추출한 정량 지표</h3>
       <p class="lede">
         Note (재무제표 주석)에 없는 운영 지표 — 골퍼 수, 회원 수, 부서별 인원, 진행 중 자본투자 — 를 AR 본문에서 직접 추출.
@@ -4038,7 +4040,7 @@ def section_ops() -> str:
     </div>
 
     <div class="section" id="dividend">
-      <h2>배당 시계열 — 3-peer 비교</h2>
+      <h2 data-num="11">배당 시계열 — 3-peer 비교</h2>
       <h3>FY22-FY24 배당 + payout ratio</h3>
       <p class="lede">
         cash distribution을 통한 capital allocation 비교. PIPG는 안정적 배당 + 증가 추세, DMIG는 FY23 배당 확인,
@@ -4052,7 +4054,7 @@ def section_ops() -> str:
     </div>
 
     <div class="section" id="related">
-      <h2>관계사 거래 · 토지 lease · 고객·공급사 집중도</h2>
+      <h2 data-num="12">관계사 거래 · 토지 lease · 고객·공급사 집중도</h2>
       <h3>annual report Note에서 추출한 audit-grade 정량 정보</h3>
       <p class="lede">
         <strong>DMIG</strong>의 핵심경영진 보수 추이, <strong>PIPG</strong>의 53ha 토지·HGB 약정·MKPI 임차 구조,
@@ -4067,7 +4069,7 @@ def section_ops() -> str:
     </div>
 
     <div class="section" id="fy25">
-      <h2>FY2025 미감사 prelim — 마진 압박 신호</h2>
+      <h2 data-num="13">FY2025 미감사 prelim — 마진 압박 신호</h2>
       <h3>각 peer가 발표한 FY2025 unaudited P&L (2026-05-12 Cycle 167)</h3>
       <p class="lede">
         DMIG/PIPG/KPIG 3-peer side-by-side dashboard — 매출/영업이익/순이익 YoY를 한눈에 비교.
@@ -4129,7 +4131,7 @@ def section_ops() -> str:
     </div>
 
     <div class="section" id="margin-commentary">
-      <h2>FY2024→FY2025 마진 변화 — 벡터 추출 commentary</h2>
+      <h2 data-num="14">FY2024→FY2025 마진 변화 — 벡터 추출 commentary</h2>
       <h3>각 peer의 annual report 본문에서 직접 인용한 마진 시그널</h3>
       <p class="lede">
         벡터 DB (multilingual-e5-small, 99,618 chunks)로 각 peer의 FY24/FY25 AR 본문에서 마진 변화 commentary 추출.

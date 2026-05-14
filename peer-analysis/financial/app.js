@@ -67,8 +67,24 @@
     });
   }
 
+  // === Back-to-TOC floating button (ops tab only) ===
+  function initBackToToc() {
+    const btn = document.querySelector('.back-to-toc');
+    if (!btn) return;
+    const opsPanel = document.querySelector('.panel[data-panel="ops"]');
+    function update() {
+      const opsActive = opsPanel && opsPanel.classList.contains('active');
+      const scrolled = window.scrollY > 700;
+      btn.classList.toggle('visible', !!(opsActive && scrolled));
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => setTimeout(update, 60)));
+    update();
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     initTabs();
     initSort();
+    initBackToToc();
   });
 })();
