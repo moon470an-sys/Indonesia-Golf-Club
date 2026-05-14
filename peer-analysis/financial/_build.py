@@ -4216,6 +4216,155 @@ def _fy25_delta_cards() -> str:
     return f'<div class="kv-grid">{"".join(cards)}</div>'
 
 
+def _pipg_dept_headcount_chart() -> str:
+    """PIPG headcount by department — detailed horizontal bar chart."""
+    pipg = OPS_KPI_EVIDENCE.get("PIPG", {})
+    hc = pipg.get("headcount_by_dept_FY2024") or {}
+    dept_pairs = sorted([(k, v) for k, v in hc.items() if isinstance(v, int)], key=lambda kv: -kv[1])
+    if not dept_pairs:
+        return ""
+    total = sum(v for _, v in dept_pairs)
+    max_v = dept_pairs[0][1]
+
+    bars = []
+    for dept, n in dept_pairs:
+        pct_w = (n / max_v) * 100
+        pct_of_total = (n / total) * 100
+        color = "#2d5016" if n >= max_v * 0.5 else ("#4a7c30" if n >= max_v * 0.25 else "#95c073")
+        bars.append(f"""<div style="display:grid;grid-template-columns:150px 1fr 64px 48px;gap:8px;align-items:center;padding:4px 0;font-size:12px;">
+  <span style="color:var(--ink-soft);font-weight:600;">{safe(dept)}</span>
+  <span style="height:18px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:{pct_w:.1f}%;background:{color};"></span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;">{n}<span style="font-size:10px;color:var(--muted);font-weight:500;"> 명</span></span>
+  <span style="text-align:right;color:var(--muted);font-size:10.5px;">{pct_of_total:.1f}%</span>
+</div>""")
+
+    return f"""<div class="ops-block" style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;">
+  <h4 class="ops-block-h" style="margin-bottom:10px;">
+    <span class="ticker-mini">PIPG</span> 부서별 인원 (FY2024) — Note 32 turnover 그래프 기준
+  </h4>
+  <div style="display:grid;grid-template-columns:150px 1fr 64px 48px;gap:8px;padding:2px 0 4px;font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;font-weight:700;border-bottom:1px solid var(--line);">
+    <span>부서</span><span>인원 magnitude</span><span style="text-align:right;">명수</span><span style="text-align:right;">% 합계</span>
+  </div>
+  {''.join(bars)}
+  <div style="display:grid;grid-template-columns:150px 1fr 64px 48px;gap:8px;padding:8px 0 2px;margin-top:6px;border-top:2px solid var(--line-strong);font-weight:700;font-size:12px;">
+    <span>합계</span><span></span>
+    <span style="text-align:right;">{total} 명</span>
+    <span style="text-align:right;color:var(--muted);">100.0%</span>
+  </div>
+  <p class="src-line" style="margin-top:8px;">출처: {safe(pipg.get("headcount_by_dept_FY2024", {}).get("src", ""))}</p>
+</div>"""
+
+
+def _pipg_agreements_timeline() -> str:
+    """PIPG agreements & commitments visual timeline."""
+    d = NOTES.get("PIPG", {})
+    ag = d.get("agreements_commitments") or {}
+    items = ag.get("items") or []
+    if not items:
+        return ""
+
+    cards = []
+    for it in items:
+        agreement_type = it.get("type", "—")
+        counterparty = it.get("counterparty", "—")
+        term = it.get("term", "—")
+        rent = it.get("rent_y1y2") or it.get("rent") or it.get("rental_fee") or it.get("rental") or "—"
+        is_related = "related party" in counterparty.lower()
+        accent = "var(--warn)" if is_related else "var(--green)"
+        tag_text = "Related Party" if is_related else "Third Party"
+        tag_color = "#92400e" if is_related else "#2d5016"
+        tag_bg = "#fef3c7" if is_related else "#e6f1d8"
+        cards.append(f"""<div class="quote-card" style="border-left-color:{accent};padding:14px 16px;">
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+    <span style="display:inline-block;padding:2px 8px;border-radius:999px;background:{tag_bg};color:{tag_color};font-size:10.5px;font-weight:700;letter-spacing:0.03em;">{tag_text}</span>
+    <span style="font-size:12px;color:var(--ink-soft);font-weight:600;">{safe(agreement_type)}</span>
+  </div>
+  <div style="font-size:14px;font-weight:700;color:var(--ink);line-height:1.4;margin-bottom:6px;">{safe(counterparty)}</div>
+  <div style="font-size:12px;color:var(--ink-soft);line-height:1.55;">
+    <strong>기간:</strong> {safe(str(term))}<br>
+    <strong>금액:</strong> {safe(str(rent))}
+  </div>
+</div>""")
+
+    return f"""<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;margin:14px 0;">
+  {''.join(cards)}
+</div>
+<p class="src-line">출처: {safe(ag.get("source_page", ""))}</p>"""
+
+
+def _dmig_member_tier_chart() -> str:
+    """DMIG Main Playing Member tier breakdown (FY23)."""
+    # From OPS_KPI_EVIDENCE narrative: "1,239 → 1,233 (Husband/Wife 79 + Child 35 포함)"
+    # So main player = 1,233 - 79 - 35 = 1,119
+    tiers = [
+        ("Main Playing (Adult)", 1119, "#2d5016"),
+        ("Husband / Wife", 79, "#4a7c30"),
+        ("Child", 35, "#95c073"),
+    ]
+    total = sum(v for _, v, _ in tiers)
+    bars = []
+    for label, n, color in tiers:
+        pct = (n / total) * 100
+        bars.append(f"""<div style="display:grid;grid-template-columns:180px 1fr 60px 48px;gap:8px;align-items:center;padding:5px 0;font-size:12px;">
+  <span style="color:var(--ink-soft);font-weight:600;">{safe(label)}</span>
+  <span style="height:18px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:{pct:.1f}%;background:{color};"></span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;">{n}<span style="font-size:10px;color:var(--muted);font-weight:500;"> 명</span></span>
+  <span style="text-align:right;color:var(--muted);font-size:11px;">{pct:.1f}%</span>
+</div>""")
+    return f"""<div class="ops-block" style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;">
+  <h4 class="ops-block-h" style="margin-bottom:10px;">
+    <span class="ticker-mini">DMIG</span> Main Playing Member tier (FY2023, 1,233명)
+  </h4>
+  {''.join(bars)}
+  <div style="display:grid;grid-template-columns:180px 1fr 60px 48px;gap:8px;padding:8px 0 2px;margin-top:6px;border-top:2px solid var(--line-strong);font-weight:700;font-size:12px;">
+    <span>합계</span><span></span>
+    <span style="text-align:right;">{total} 명</span>
+    <span style="text-align:right;color:var(--muted);">100.0%</span>
+  </div>
+  <p class="src-line" style="margin-top:8px;">FY22 1,239명 → FY23 1,233명 (-6 명) · 출처: DMIG FY23 AR p.17 MEMBERSHIP</p>
+</div>"""
+
+
+def _land_hgb_timeline_visual() -> str:
+    """PIPG 토지·HGB 만료 시각화 — timeline 형식."""
+    d = NOTES.get("PIPG", {})
+    profile = d.get("profile") or {}
+    if not profile:
+        return ""
+    hgb_expiry = profile.get("hgb_expiry_years") or "—"
+    leased_start = profile.get("leased_term_start") or "—"
+    leased_end = profile.get("leased_term_end") or "—"
+    leased_purpose = profile.get("leased_purpose") or "—"
+
+    return f"""<div style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;">
+  <h4 class="ops-block-h" style="margin-bottom:14px;">
+    <span class="ticker-mini">PIPG</span> 토지·HGB·임차 timeline
+  </h4>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;">
+    <div style="border-left:3px solid var(--green);padding:8px 12px;">
+      <div style="font-size:10.5px;font-weight:700;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:3px;">총 토지 면적</div>
+      <div style="font-size:22px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;">{profile.get("land_area_ha_total", "—")} ha</div>
+      <div style="font-size:11.5px;color:var(--ink-soft);margin-top:3px;">{profile.get("land_area_m2_total", 0):,} m² · {profile.get("land_certificates", "—")} 인증서</div>
+    </div>
+    <div style="border-left:3px solid var(--accent);padding:8px 12px;">
+      <div style="font-size:10.5px;font-weight:700;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:3px;">HGB 면적</div>
+      <div style="font-size:22px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;">{profile.get("hgb_area_m2", 0):,} m²</div>
+      <div style="font-size:11.5px;color:var(--ink-soft);margin-top:3px;">만료: {safe(str(hgb_expiry))}</div>
+    </div>
+    <div style="border-left:3px solid var(--warn);padding:8px 12px;">
+      <div style="font-size:10.5px;font-weight:700;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:3px;">MKPI 임차 (related party)</div>
+      <div style="font-size:22px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;">{profile.get("leased_from_mkpi_m2", 0):,} m²</div>
+      <div style="font-size:11.5px;color:var(--ink-soft);margin-top:3px;">{safe(leased_purpose)} · {safe(leased_start)} ~ {safe(leased_end)}</div>
+    </div>
+  </div>
+  <p class="src-line" style="margin-top:10px;">출처: {safe(profile.get("source_pages", "—"))}</p>
+</div>"""
+
+
 def _tab_exec_headline(tab_key: str, tab_title: str, tab_focus_tiles: list) -> str:
     """Tab-specific executive headline strip."""
     tiles_html = ""
@@ -4236,7 +4385,9 @@ def _tab_exec_headline(tab_key: str, tab_title: str, tab_focus_tiles: list) -> s
 def section_ops_kpi() -> str:
     """Tab 1: 운영 KPI — operational metrics, dividends, related party.
 
-    Sections: 운영 KPI 시계열 (1) + 6-peer 골프 segment (2) + 배당 (3) + 관계사·lease (4)
+    Sections: KPI dashboard (1) + 시계열 detail (2) + DMIG member tier (3) +
+              PIPG dept (4) + PIPG agreements timeline (5) + land/HGB (6) +
+              6-peer scatter (7) + 배당 (8) + 관계사·lease (9)
     """
     ops_kpi_dashboard = _ops_kpi_dashboard()
     ops_kpi_section_html = _ops_kpi_section()
@@ -4246,6 +4397,10 @@ def section_ops_kpi() -> str:
     related_party_section = _related_party_and_lease_section()
     dividend_visual = _dividend_visual()
     dividend_table = _dividend_compare_table()
+    pipg_dept_chart = _pipg_dept_headcount_chart()
+    pipg_agreements_timeline = _pipg_agreements_timeline()
+    dmig_member_chart = _dmig_member_tier_chart()
+    land_hgb_visual = _land_hgb_timeline_visual()
 
     exec_h = _tab_exec_headline(
         tab_key="OPERATIONS",
@@ -4269,9 +4424,13 @@ def section_ops_kpi() -> str:
     <nav class="ops-subnav" id="ops-kpi-anchor-top" aria-label="ops-kpi sub-navigation">
       <a class="chip" href="#kpi-dashboard">KPI 대시보드</a>
       <a class="chip" href="#kpi-timeseries">시계열 detail</a>
-      <a class="chip" href="#kpi-segment6">6-peer 골프 비중</a>
-      <a class="chip" href="#kpi-dividend">배당 capital allocation</a>
-      <a class="chip" href="#kpi-related">관계사·토지·lease</a>
+      <a class="chip" href="#kpi-member">DMIG 회원 tier</a>
+      <a class="chip" href="#kpi-dept">PIPG 부서별 인원</a>
+      <a class="chip" href="#kpi-agreements">PIPG 약정 timeline</a>
+      <a class="chip" href="#kpi-land">PIPG 토지·HGB</a>
+      <a class="chip" href="#kpi-segment6">6-peer 골프</a>
+      <a class="chip" href="#kpi-dividend">배당</a>
+      <a class="chip" href="#kpi-related">관계사·집중도</a>
     </nav>
 
     <div class="section ops-summary">
@@ -4321,8 +4480,49 @@ def section_ops_kpi() -> str:
       {ops_kpi_section_html}
     </div>
 
+    <div class="section" id="kpi-member">
+      <h2 data-num="03">DMIG 회원 tier breakdown — FY2023</h2>
+      <h3>Main Playing 1,233명 구성 (Adult / Husband-Wife / Child)</h3>
+      <p class="lede">
+        DMIG의 Main Playing Member 구성을 tier별로 분해. Husband/Wife (79명) + Child (35명) = 114명 family tier로,
+        adult 단독 회원 1,119명이 핵심 충성 고객. FY22→FY23 -6명으로 stable.
+      </p>
+      {dmig_member_chart}
+    </div>
+
+    <div class="section" id="kpi-dept">
+      <h2 data-num="04">PIPG 부서별 인원 (FY2024)</h2>
+      <h3>turnover graph 기준 Top 부서 horizontal bar</h3>
+      <p class="lede">
+        PIPG annual report Note 32에 부서별 turnover/headcount graph 공시. Front office, Maintenance, F&amp;B 같은
+        operations-heavy 부서가 상위. <strong>Pondok Indah 단일 코스</strong>에서 운영되는 인력 구조.
+      </p>
+      {pipg_dept_chart}
+    </div>
+
+    <div class="section" id="kpi-agreements">
+      <h2 data-num="05">PIPG 약정·lease timeline</h2>
+      <h3>4개 lease/약정 — related party 2건 + third party 2건</h3>
+      <p class="lede">
+        <strong>MKPI (Metropolitan Kentjana, related party)</strong>: Pool management rights + Land lease (Junior Driving Range).
+        <strong>3rd party</strong>: 통신탑 land lease (Indosat → Epid Menara renewal).
+        Cross-default risk 모니터링 핵심.
+      </p>
+      {pipg_agreements_timeline}
+    </div>
+
+    <div class="section" id="kpi-land">
+      <h2 data-num="06">PIPG 토지·HGB·임차 구조</h2>
+      <h3>53ha 토지 + 12 인증서 + HGB 면적 + MKPI 임차</h3>
+      <p class="lede">
+        Pondok Indah의 토지 구조 — 자체 보유 53ha (12 인증서) + HGB 일부 + MKPI에서 추가 임차.
+        HGB 만료 시점이 향후 30+ 년 유효지만, related-party lease 갱신 / 토지 가치 평가가 valuation 핵심 변수.
+      </p>
+      {land_hgb_visual}
+    </div>
+
     <div class="section" id="kpi-segment6">
-      <h2 data-num="03">6-peer 골프 segment — 매출 × GP × 비중</h2>
+      <h2 data-num="07">6-peer 골프 segment — 매출 × GP × 비중</h2>
       <h3>bubble scatter (FY2024) — 4-사분면 분류</h3>
       <p class="lede">
         Pure-play 외 <strong>MDLN · GOLF · KIJA · SMDM</strong>도 annual report Note에서 골프 segment를 명시적 분리 공시.
@@ -4336,7 +4536,7 @@ def section_ops_kpi() -> str:
     </div>
 
     <div class="section" id="kpi-dividend">
-      <h2 data-num="04">배당 시계열 — 3-peer capital allocation</h2>
+      <h2 data-num="08">배당 시계열 — 3-peer capital allocation</h2>
       <h3>FY22-24 + payout ratio + RUPST 날짜</h3>
       <p class="lede">
         cash distribution을 통한 capital allocation 비교 — PIPG 안정+증가, DMIG FY23 1회 배당, SMDM FY24 미실시 (BSDE 인수 직전).
@@ -4349,7 +4549,7 @@ def section_ops_kpi() -> str:
     </div>
 
     <div class="section" id="kpi-related">
-      <h2 data-num="05">관계사·토지·lease·집중도</h2>
+      <h2 data-num="09">관계사·고객·공급사 집중도</h2>
       <h3>annual report Note에서 추출한 audit-grade 정량 정보</h3>
       <p class="lede">
         <strong>DMIG</strong> 핵심경영진 보수 · <strong>PIPG</strong> 53ha 토지·HGB·MKPI 임차 · <strong>GOLF</strong> 고객 집중도 ·
