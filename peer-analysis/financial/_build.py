@@ -1583,9 +1583,9 @@ def _cogs_topn_section() -> str:
 
 
 def _capex_data() -> list:
-    """Extract per-peer CAPEX proxy ratios with explicit numbers.
+    """Extract per-peer CAPEX proxy ratios with explicit numbers + FY23 baseline.
 
-    Returns list of dicts: {ticker, dep, dep_pct, mnt, mnt_pct, ta, intensity}.
+    Returns list of dicts: {ticker, dep, dep_pct, dep_pct_prev, mnt, mnt_pct, mnt_pct_prev, ta, intensity}.
     """
     out = []
     for t in ["DMIG", "PIPG", "GOLF", "KPIG"]:
@@ -1603,21 +1603,29 @@ def _capex_data() -> list:
                     maint_line = ln
             if dep_line and maint_line:
                 break
-        # Revenue (entity); for GOLF prefer by_operations total
         rev24 = revenue_total_for(t, "FY2024")
+        rev23 = revenue_total_for(t, "FY2023")
         if t == "GOLF":
             rev24 = ((d.get("revenue_note_29") or {}).get("by_operations") or {}).get("total", {}).get("FY2024") or rev24
+            rev23 = ((d.get("revenue_note_29") or {}).get("by_operations") or {}).get("total", {}).get("FY2023") or rev23
+
         dep24 = (dep_line or {}).get("FY2024")
+        dep23 = (dep_line or {}).get("FY2023")
         mnt24 = (maint_line or {}).get("FY2024")
+        mnt23 = (maint_line or {}).get("FY2023")
+
         fin = next((f for f in by_ticker(FINANCIALS, t) if f.get("total_assets_idr")), {})
         ta = fin.get("total_assets_idr")
+
         dep_pct = (dep24 / rev24 * 100) if (dep24 and rev24) else None
+        dep_pct_prev = (dep23 / rev23 * 100) if (dep23 and rev23) else None
         mnt_pct = (mnt24 / rev24 * 100) if (mnt24 and rev24) else None
+        mnt_pct_prev = (mnt23 / rev23 * 100) if (mnt23 and rev23) else None
         intensity = (float(ta) / float(rev24)) if (rev24 and ta) else None
         out.append({
             "ticker": t,
-            "dep": dep24, "dep_pct": dep_pct,
-            "mnt": mnt24, "mnt_pct": mnt_pct,
+            "dep": dep24, "dep_pct": dep_pct, "dep_pct_prev": dep_pct_prev,
+            "mnt": mnt24, "mnt_pct": mnt_pct, "mnt_pct_prev": mnt_pct_prev,
             "ta": ta, "intensity": intensity,
         })
     return out
@@ -1664,6 +1672,18 @@ def _capex_heatmap_section() -> str:
     mnt_thr = [1, 2, 4, 6]       # 유지/매출 %
     int_thr = [5, 10, 15, 25]    # 자산/매출 ×
 
+    def trend_indicator(curr, prev, unit_suffix=""):
+        """Return small inline arrow + delta string for a cell."""
+        if curr is None or prev is None:
+            return ""
+        delta = curr - prev
+        if abs(delta) < 0.1:
+            return f'<span style="font-size:9px;opacity:0.7;display:block;margin-top:2px;">→ vs FY23 {prev:.1f}{unit_suffix}</span>'
+        arrow = "▲" if delta > 0 else "▼"
+        # In heatmap context: higher intensity = darker color = more invested
+        # ▲ means more intense (deeper red/green depending on tone)
+        return f'<span style="font-size:10px;font-weight:700;display:block;margin-top:1px;opacity:0.9;">{arrow} {delta:+.1f}{unit_suffix} <span style="opacity:0.7;font-weight:400;">vs FY23</span></span>'
+
     rows = []
     for r in data:
         t = r["ticker"]
@@ -1673,22 +1693,26 @@ def _capex_heatmap_section() -> str:
         dep_str = f"{r['dep_pct']:.1f}%" if r["dep_pct"] is not None else "—"
         mnt_str = f"{r['mnt_pct']:.1f}%" if r["mnt_pct"] is not None else "—"
         int_str = f"{r['intensity']:.1f}×" if r["intensity"] is not None else "—"
-        # Sub-amount under each
         dep_sub = f"Rp {fmt_bn(r['dep']).replace(' bn','bn')}" if r["dep"] else ""
         mnt_sub = f"Rp {fmt_bn(r['mnt']).replace(' bn','bn')}" if r["mnt"] else ""
         ta_sub = f"Rp {fmt_bn(r['ta']).replace(' bn','bn')}" if r["ta"] else ""
+        # FY23 trend indicators
+        dep_trend = trend_indicator(r.get("dep_pct"), r.get("dep_pct_prev"), "pp")
+        mnt_trend = trend_indicator(r.get("mnt_pct"), r.get("mnt_pct_prev"), "pp")
         rows.append(
             f'<tr>'
             f'<td><span class="ticker-mini">{safe(t)}</span></td>'
-            f'<td class="num {dep_cls}" style="text-align:center;font-weight:700;">'
-            f'  <div style="font-size:18px;">{dep_str}</div>'
-            f'  <div style="font-size:11px;opacity:0.85;font-weight:400;">{dep_sub}</div></td>'
-            f'<td class="num {mnt_cls}" style="text-align:center;font-weight:700;">'
-            f'  <div style="font-size:18px;">{mnt_str}</div>'
-            f'  <div style="font-size:11px;opacity:0.85;font-weight:400;">{mnt_sub}</div></td>'
-            f'<td class="num {int_cls}" style="text-align:center;font-weight:700;">'
-            f'  <div style="font-size:18px;">{int_str}</div>'
-            f'  <div style="font-size:11px;opacity:0.85;font-weight:400;">{ta_sub}</div></td>'
+            f'<td class="num {dep_cls}" style="text-align:center;font-weight:700;padding:10px 8px;">'
+            f'  <div style="font-size:18px;line-height:1.1;">{dep_str}</div>'
+            f'  <div style="font-size:10px;opacity:0.85;font-weight:400;margin-top:2px;">{dep_sub}</div>'
+            f'  {dep_trend}</td>'
+            f'<td class="num {mnt_cls}" style="text-align:center;font-weight:700;padding:10px 8px;">'
+            f'  <div style="font-size:18px;line-height:1.1;">{mnt_str}</div>'
+            f'  <div style="font-size:10px;opacity:0.85;font-weight:400;margin-top:2px;">{mnt_sub}</div>'
+            f'  {mnt_trend}</td>'
+            f'<td class="num {int_cls}" style="text-align:center;font-weight:700;padding:10px 8px;">'
+            f'  <div style="font-size:18px;line-height:1.1;">{int_str}</div>'
+            f'  <div style="font-size:10px;opacity:0.85;font-weight:400;margin-top:2px;">{ta_sub}</div></td>'
             f'</tr>'
         )
 
