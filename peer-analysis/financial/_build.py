@@ -1364,6 +1364,106 @@ def _capex_proxy_table() -> str:
 </div>"""
 
 
+def _opex_topn_chart(ticker: str, note_key: str, title: str, top_n: int = 5) -> str:
+    """Horizontal bar chart: top-N OpEx lines + Others rollup, with YoY indicator."""
+    d = NOTES.get(ticker, {})
+    blk = d.get(note_key) or {}
+    lines = blk.get("lines") or []
+    if not lines:
+        return ""
+    # Sort by FY24 desc
+    sorted_lines = sorted(lines, key=lambda ln: -(float(ln.get("FY2024") or 0)))
+    top = sorted_lines[:top_n]
+    rest = sorted_lines[top_n:]
+    rev24 = revenue_total_for(ticker, "FY2024")
+    if not rev24 and ticker == "KPIG":
+        # KPIG handled differently — use Hotel+Resort+Golf revenue
+        rev24 = ((d.get("revenue_note_31") or {}).get("total") or {}).get("FY2024") or 1
+    max_v = sorted_lines[0].get("FY2024") or 1
+
+    color = PEER_COLORS.get(ticker, "#2d5016")
+
+    bars = []
+    for ln in top:
+        v23 = ln.get("FY2023") or 0
+        v24 = ln.get("FY2024") or 0
+        label = ln.get("en_label") or ln.get("id_label") or "—"
+        pct_w = (v24 / max_v * 100) if max_v else 0
+        pct_rev = (v24 / rev24 * 100) if rev24 else None
+        yoy = None
+        if v23 and v24:
+            yoy = ((v24 / v23) - 1) * 100
+        yoy_str = f"{yoy:+.1f}%" if yoy is not None else "—"
+        yoy_color = "var(--danger)" if (yoy and yoy > 5) else ("var(--green)" if (yoy and yoy < -2) else "var(--muted)")
+        val_str = fmt_bn(v24).replace(" bn", "bn")
+        bars.append(f"""<div style="display:grid;grid-template-columns:170px 1fr 76px 54px;gap:8px;align-items:center;padding:4px 0;font-size:11.5px;">
+  <span style="color:var(--ink-soft);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="{safe(label)}">{safe(label[:22])}</span>
+  <span style="height:18px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:{pct_w:.1f}%;background:{color};"></span>
+  </span>
+  <span style="text-align:right;font-weight:600;font-variant-numeric:tabular-nums;">
+    {val_str}<br><span style="font-size:9.5px;color:var(--muted);font-weight:500;">{f"{pct_rev:.1f}% 매출" if pct_rev else ""}</span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-size:11px;color:{yoy_color};">{yoy_str}</span>
+</div>""")
+
+    # Others rollup
+    if rest:
+        v23 = sum((ln.get("FY2023") or 0) for ln in rest)
+        v24 = sum((ln.get("FY2024") or 0) for ln in rest)
+        pct_w = (v24 / max_v * 100) if max_v else 0
+        pct_rev = (v24 / rev24 * 100) if rev24 else None
+        yoy = ((v24 / v23) - 1) * 100 if (v23 and v24) else None
+        yoy_str = f"{yoy:+.1f}%" if yoy is not None else "—"
+        yoy_color = "var(--muted)"
+        val_str = fmt_bn(v24).replace(" bn", "bn")
+        bars.append(f"""<div style="display:grid;grid-template-columns:170px 1fr 76px 54px;gap:8px;align-items:center;padding:4px 0;font-size:11.5px;border-top:1px dashed var(--line);margin-top:4px;">
+  <span style="color:var(--muted);font-weight:500;font-style:italic;">기타 {len(rest)}개 라인 합산</span>
+  <span style="height:14px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:{pct_w:.1f}%;background:#d4d0c0;"></span>
+  </span>
+  <span style="text-align:right;font-weight:500;font-variant-numeric:tabular-nums;color:var(--ink-soft);">
+    {val_str}<br><span style="font-size:9.5px;color:var(--muted);font-weight:500;">{f"{pct_rev:.1f}% 매출" if pct_rev else ""}</span>
+  </span>
+  <span style="text-align:right;font-weight:600;font-size:11px;color:{yoy_color};">{yoy_str}</span>
+</div>""")
+
+    # Total row
+    tot = blk.get("total") or {}
+    t24 = tot.get("FY2024")
+    t23 = tot.get("FY2023")
+    yoy_t = ((t24 / t23) - 1) * 100 if (t23 and t24) else None
+    yoy_t_str = f"{yoy_t:+.1f}%" if yoy_t is not None else "—"
+    bars.append(f"""<div style="display:grid;grid-template-columns:170px 1fr 76px 54px;gap:8px;align-items:center;padding:8px 0 2px;font-size:12px;border-top:2px solid var(--line-strong);margin-top:6px;font-weight:700;">
+  <span style="color:var(--ink);">OpEx 합계</span>
+  <span></span>
+  <span style="text-align:right;font-variant-numeric:tabular-nums;">{fmt_bn(t24).replace(" bn","bn")}<br><span style="font-size:9.5px;color:var(--muted);font-weight:500;">{f"{(t24/rev24*100):.1f}% 매출" if (t24 and rev24) else ""}</span></span>
+  <span style="text-align:right;color:var(--muted);">{yoy_t_str}</span>
+</div>""")
+
+    return f"""<div class="ops-block" style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 16px 12px;">
+  <h4 class="ops-block-h" style="margin-bottom:10px;">
+    <span class="ticker-mini">{safe(ticker)}</span> {safe(title)}
+  </h4>
+  <div style="display:grid;grid-template-columns:170px 1fr 76px 54px;gap:8px;padding:2px 0 4px;font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;font-weight:700;border-bottom:1px solid var(--line);">
+    <span>Line</span><span>FY24 magnitude</span><span style="text-align:right;">FY24 IDR</span><span style="text-align:right;">YoY</span>
+  </div>
+  {''.join(bars)}
+</div>"""
+
+
+def _opex_topn_section() -> str:
+    """Grid of top-N OpEx breakdown charts for DMIG/PIPG/KPIG."""
+    parts = [
+        _opex_topn_chart("DMIG", "opex_note", "Top OpEx 라인 (Note 25)"),
+        _opex_topn_chart("PIPG", "opex_note_29", "Top OpEx 라인 (Note 29)"),
+        _opex_topn_chart("KPIG", "ga_note_34", "Top G&A 라인 (Note 34, Hotel+R+G 통합)"),
+    ]
+    return f"""<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(440px,1fr));gap:14px;">
+  {''.join(parts)}
+</div>"""
+
+
 def _capex_data() -> list:
     """Extract per-peer CAPEX proxy ratios with explicit numbers.
 
@@ -3283,6 +3383,7 @@ def section_ops() -> str:
         _opex_breakdown_table("PIPG", "opex_note_29", "OpEx 라인 분해 (Note 29)"),
         _opex_breakdown_table("KPIG", "ga_note_34", "G&A 비용 라인 (Note 34) — Hotel+Resort+Golf 통합"),
     ]))
+    opex_topn = _opex_topn_section()
 
     return f"""<section class="panel" data-panel="ops">
   <div class="wrap">
@@ -3462,11 +3563,15 @@ def section_ops() -> str:
       <h2>OpEx 라인 분해 — CAPEX/OPEX 핵심</h2>
       <h3>인건비 · 감가상각 · 유지보수 · 세금 · 유틸리티 등</h3>
       <p class="lede">
-        AR Note 25 (DMIG) / Note 29 (PIPG) / Note 34 (KPIG)에서 OpEx 라인 단위 분해. 매출 대비 %와 YoY 증감 표시.
-        가장 큰 비용 항목: <strong>인건비 (Salaries+benefits)</strong> 및 <strong>감가상각 (Depreciation)</strong>.
-        PIPG는 추가로 Pajak dan perijinan (Tax+legal) 비중이 매우 높음 (FY24 IDR 24.2bn).
+        AR Note 25 (DMIG) / Note 29 (PIPG) / Note 34 (KPIG)에서 OpEx 라인 단위 분해.
+        <strong>Top-5 라인 + 기타 합산</strong>으로 시각화하고 YoY 변화를 색상으로 표시.
+        가장 큰 비용 항목은 <strong>인건비</strong>와 <strong>감가상각</strong>.
       </p>
-      {opex_blocks}
+      {opex_topn}
+      <details style="margin: 14px 0 4px;">
+        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 OpEx 전체 라인 표 (FY23/FY24/%매출/YoY)</summary>
+        {opex_blocks}
+      </details>
     </div>
 
     <div class="section" id="opex-norm">

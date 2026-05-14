@@ -648,11 +648,217 @@
       <h2>OpEx 라인 분해 — CAPEX/OPEX 핵심</h2>
       <h3>인건비 · 감가상각 · 유지보수 · 세금 · 유틸리티 등</h3>
       <p class="lede">
-        AR Note 25 (DMIG) / Note 29 (PIPG) / Note 34 (KPIG)에서 OpEx 라인 단위 분해. 매출 대비 %와 YoY 증감 표시.
-        가장 큰 비용 항목: <strong>인건비 (Salaries+benefits)</strong> 및 <strong>감가상각 (Depreciation)</strong>.
-        PIPG는 추가로 Pajak dan perijinan (Tax+legal) 비중이 매우 높음 (FY24 IDR 24.2bn).
+        AR Note 25 (DMIG) / Note 29 (PIPG) / Note 34 (KPIG)에서 OpEx 라인 단위 분해.
+        <strong>Top-5 라인 + 기타 합산</strong>으로 시각화하고 YoY 변화를 색상으로 표시.
+        가장 큰 비용 항목은 <strong>인건비</strong>와 <strong>감가상각</strong>.
       </p>
-      <div class="ops-block">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(440px,1fr));gap:14px;">
+  <div class="ops-block" style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 16px 12px;">
+  <h4 class="ops-block-h" style="margin-bottom:10px;">
+    <span class="ticker-mini">DMIG</span> Top OpEx 라인 (Note 25)
+  </h4>
+  <div style="display:grid;grid-template-columns:170px 1fr 76px 54px;gap:8px;padding:2px 0 4px;font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;font-weight:700;border-bottom:1px solid var(--line);">
+    <span>Line</span><span>FY24 magnitude</span><span style="text-align:right;">FY24 IDR</span><span style="text-align:right;">YoY</span>
+  </div>
+  <div style="display:grid;grid-template-columns:170px 1fr 76px 54px;gap:8px;align-items:center;padding:4px 0;font-size:11.5px;">
+  <span style="color:var(--ink-soft);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Salaries and wages">Salaries and wages</span>
+  <span style="height:18px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:100.0%;background:#2d5016;"></span>
+  </span>
+  <span style="text-align:right;font-weight:600;font-variant-numeric:tabular-nums;">
+    28.6bn<br><span style="font-size:9.5px;color:var(--muted);font-weight:500;">11.3% 매출</span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-size:11px;color:var(--muted);">+1.2%</span>
+</div><div style="display:grid;grid-template-columns:170px 1fr 76px 54px;gap:8px;align-items:center;padding:4px 0;font-size:11.5px;">
+  <span style="color:var(--ink-soft);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Depreciation">Depreciation</span>
+  <span style="height:18px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:98.5%;background:#2d5016;"></span>
+  </span>
+  <span style="text-align:right;font-weight:600;font-variant-numeric:tabular-nums;">
+    28.2bn<br><span style="font-size:9.5px;color:var(--muted);font-weight:500;">11.1% 매출</span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-size:11px;color:var(--danger);">+8.9%</span>
+</div><div style="display:grid;grid-template-columns:170px 1fr 76px 54px;gap:8px;align-items:center;padding:4px 0;font-size:11.5px;">
+  <span style="color:var(--ink-soft);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Land and building tax">Land and building tax</span>
+  <span style="height:18px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:36.5%;background:#2d5016;"></span>
+  </span>
+  <span style="text-align:right;font-weight:600;font-variant-numeric:tabular-nums;">
+    10.4bn<br><span style="font-size:9.5px;color:var(--muted);font-weight:500;">4.1% 매출</span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-size:11px;color:var(--muted);">+2.3%</span>
+</div><div style="display:grid;grid-template-columns:170px 1fr 76px 54px;gap:8px;align-items:center;padding:4px 0;font-size:11.5px;">
+  <span style="color:var(--ink-soft);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Cleaning service">Cleaning service</span>
+  <span style="height:18px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:30.4%;background:#2d5016;"></span>
+  </span>
+  <span style="text-align:right;font-weight:600;font-variant-numeric:tabular-nums;">
+    8.7bn<br><span style="font-size:9.5px;color:var(--muted);font-weight:500;">3.4% 매출</span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-size:11px;color:var(--muted);">+4.5%</span>
+</div><div style="display:grid;grid-template-columns:170px 1fr 76px 54px;gap:8px;align-items:center;padding:4px 0;font-size:11.5px;">
+  <span style="color:var(--ink-soft);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Electricity and water">Electricity and water</span>
+  <span style="height:18px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:15.6%;background:#2d5016;"></span>
+  </span>
+  <span style="text-align:right;font-weight:600;font-variant-numeric:tabular-nums;">
+    4.5bn<br><span style="font-size:9.5px;color:var(--muted);font-weight:500;">1.8% 매출</span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-size:11px;color:var(--muted);">+4.0%</span>
+</div><div style="display:grid;grid-template-columns:170px 1fr 76px 54px;gap:8px;align-items:center;padding:4px 0;font-size:11.5px;border-top:1px dashed var(--line);margin-top:4px;">
+  <span style="color:var(--muted);font-weight:500;font-style:italic;">기타 12개 라인 합산</span>
+  <span style="height:14px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:58.2%;background:#d4d0c0;"></span>
+  </span>
+  <span style="text-align:right;font-weight:500;font-variant-numeric:tabular-nums;color:var(--ink-soft);">
+    16.7bn<br><span style="font-size:9.5px;color:var(--muted);font-weight:500;">6.6% 매출</span>
+  </span>
+  <span style="text-align:right;font-weight:600;font-size:11px;color:var(--muted);">-2.7%</span>
+</div><div style="display:grid;grid-template-columns:170px 1fr 76px 54px;gap:8px;align-items:center;padding:8px 0 2px;font-size:12px;border-top:2px solid var(--line-strong);margin-top:6px;font-weight:700;">
+  <span style="color:var(--ink);">OpEx 합계</span>
+  <span></span>
+  <span style="text-align:right;font-variant-numeric:tabular-nums;">97.1bn<br><span style="font-size:9.5px;color:var(--muted);font-weight:500;">38.4% 매출</span></span>
+  <span style="text-align:right;color:var(--muted);">+3.2%</span>
+</div>
+</div><div class="ops-block" style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 16px 12px;">
+  <h4 class="ops-block-h" style="margin-bottom:10px;">
+    <span class="ticker-mini">PIPG</span> Top OpEx 라인 (Note 29)
+  </h4>
+  <div style="display:grid;grid-template-columns:170px 1fr 76px 54px;gap:8px;padding:2px 0 4px;font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;font-weight:700;border-bottom:1px solid var(--line);">
+    <span>Line</span><span>FY24 magnitude</span><span style="text-align:right;">FY24 IDR</span><span style="text-align:right;">YoY</span>
+  </div>
+  <div style="display:grid;grid-template-columns:170px 1fr 76px 54px;gap:8px;align-items:center;padding:4px 0;font-size:11.5px;">
+  <span style="color:var(--ink-soft);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Tax and legal">Tax and legal</span>
+  <span style="height:18px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:100.0%;background:#c08a2e;"></span>
+  </span>
+  <span style="text-align:right;font-weight:600;font-variant-numeric:tabular-nums;">
+    24.2bn<br><span style="font-size:9.5px;color:var(--muted);font-weight:500;">12.3% 매출</span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-size:11px;color:var(--danger);">+17.1%</span>
+</div><div style="display:grid;grid-template-columns:170px 1fr 76px 54px;gap:8px;align-items:center;padding:4px 0;font-size:11.5px;">
+  <span style="color:var(--ink-soft);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Salary and allowances">Salary and allowances</span>
+  <span style="height:18px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:73.9%;background:#c08a2e;"></span>
+  </span>
+  <span style="text-align:right;font-weight:600;font-variant-numeric:tabular-nums;">
+    17.9bn<br><span style="font-size:9.5px;color:var(--muted);font-weight:500;">9.0% 매출</span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-size:11px;color:var(--danger);">+17.5%</span>
+</div><div style="display:grid;grid-template-columns:170px 1fr 76px 54px;gap:8px;align-items:center;padding:4px 0;font-size:11.5px;">
+  <span style="color:var(--ink-soft);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Repair and maintenance">Repair and maintenance</span>
+  <span style="height:18px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:48.1%;background:#c08a2e;"></span>
+  </span>
+  <span style="text-align:right;font-weight:600;font-variant-numeric:tabular-nums;">
+    11.6bn<br><span style="font-size:9.5px;color:var(--muted);font-weight:500;">5.9% 매출</span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-size:11px;color:var(--danger);">+9.6%</span>
+</div><div style="display:grid;grid-template-columns:170px 1fr 76px 54px;gap:8px;align-items:center;padding:4px 0;font-size:11.5px;">
+  <span style="color:var(--ink-soft);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Depreciation (Notes 9, 13)">Depreciation (Notes 9,</span>
+  <span style="height:18px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:46.7%;background:#c08a2e;"></span>
+  </span>
+  <span style="text-align:right;font-weight:600;font-variant-numeric:tabular-nums;">
+    11.3bn<br><span style="font-size:9.5px;color:var(--muted);font-weight:500;">5.7% 매출</span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-size:11px;color:var(--danger);">+18.6%</span>
+</div><div style="display:grid;grid-template-columns:170px 1fr 76px 54px;gap:8px;align-items:center;padding:4px 0;font-size:11.5px;">
+  <span style="color:var(--ink-soft);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Amortization of deferred charge (Note 12)">Amortization of deferr</span>
+  <span style="height:18px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:11.1%;background:#c08a2e;"></span>
+  </span>
+  <span style="text-align:right;font-weight:600;font-variant-numeric:tabular-nums;">
+    2.7bn<br><span style="font-size:9.5px;color:var(--muted);font-weight:500;">1.4% 매출</span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-size:11px;color:var(--muted);">+4.2%</span>
+</div><div style="display:grid;grid-template-columns:170px 1fr 76px 54px;gap:8px;align-items:center;padding:4px 0;font-size:11.5px;border-top:1px dashed var(--line);margin-top:4px;">
+  <span style="color:var(--muted);font-weight:500;font-style:italic;">기타 12개 라인 합산</span>
+  <span style="height:14px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:34.6%;background:#d4d0c0;"></span>
+  </span>
+  <span style="text-align:right;font-weight:500;font-variant-numeric:tabular-nums;color:var(--ink-soft);">
+    8.4bn<br><span style="font-size:9.5px;color:var(--muted);font-weight:500;">4.2% 매출</span>
+  </span>
+  <span style="text-align:right;font-weight:600;font-size:11px;color:var(--muted);">+21.7%</span>
+</div><div style="display:grid;grid-template-columns:170px 1fr 76px 54px;gap:8px;align-items:center;padding:8px 0 2px;font-size:12px;border-top:2px solid var(--line-strong);margin-top:6px;font-weight:700;">
+  <span style="color:var(--ink);">OpEx 합계</span>
+  <span></span>
+  <span style="text-align:right;font-variant-numeric:tabular-nums;">76.1bn<br><span style="font-size:9.5px;color:var(--muted);font-weight:500;">38.5% 매출</span></span>
+  <span style="text-align:right;color:var(--muted);">+16.2%</span>
+</div>
+</div><div class="ops-block" style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 16px 12px;">
+  <h4 class="ops-block-h" style="margin-bottom:10px;">
+    <span class="ticker-mini">KPIG</span> Top G&amp;A 라인 (Note 34, Hotel+R+G 통합)
+  </h4>
+  <div style="display:grid;grid-template-columns:170px 1fr 76px 54px;gap:8px;padding:2px 0 4px;font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;font-weight:700;border-bottom:1px solid var(--line);">
+    <span>Line</span><span>FY24 magnitude</span><span style="text-align:right;">FY24 IDR</span><span style="text-align:right;">YoY</span>
+  </div>
+  <div style="display:grid;grid-template-columns:170px 1fr 76px 54px;gap:8px;align-items:center;padding:4px 0;font-size:11.5px;">
+  <span style="color:var(--ink-soft);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Gaji dan tunjangan">Gaji dan tunjangan</span>
+  <span style="height:18px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:100.0%;background:#92400e;"></span>
+  </span>
+  <span style="text-align:right;font-weight:600;font-variant-numeric:tabular-nums;">
+    120.5bn<br><span style="font-size:9.5px;color:var(--muted);font-weight:500;">6.8% 매출</span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-size:11px;color:var(--green);">-9.5%</span>
+</div><div style="display:grid;grid-template-columns:170px 1fr 76px 54px;gap:8px;align-items:center;padding:4px 0;font-size:11.5px;">
+  <span style="color:var(--ink-soft);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Lain-lain">Lain-lain</span>
+  <span style="height:18px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:44.6%;background:#92400e;"></span>
+  </span>
+  <span style="text-align:right;font-weight:600;font-variant-numeric:tabular-nums;">
+    53.8bn<br><span style="font-size:9.5px;color:var(--muted);font-weight:500;">3.0% 매출</span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-size:11px;color:var(--danger);">+29.2%</span>
+</div><div style="display:grid;grid-template-columns:170px 1fr 76px 54px;gap:8px;align-items:center;padding:4px 0;font-size:11.5px;">
+  <span style="color:var(--ink-soft);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Perbaikan dan perawatan">Perbaikan dan perawata</span>
+  <span style="height:18px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:40.4%;background:#92400e;"></span>
+  </span>
+  <span style="text-align:right;font-weight:600;font-variant-numeric:tabular-nums;">
+    48.6bn<br><span style="font-size:9.5px;color:var(--muted);font-weight:500;">2.7% 매출</span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-size:11px;color:var(--danger);">+40.5%</span>
+</div><div style="display:grid;grid-template-columns:170px 1fr 76px 54px;gap:8px;align-items:center;padding:4px 0;font-size:11.5px;">
+  <span style="color:var(--ink-soft);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Jasa manajemen">Jasa manajemen</span>
+  <span style="height:18px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:25.5%;background:#92400e;"></span>
+  </span>
+  <span style="text-align:right;font-weight:600;font-variant-numeric:tabular-nums;">
+    30.7bn<br><span style="font-size:9.5px;color:var(--muted);font-weight:500;">1.7% 매출</span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-size:11px;color:var(--muted);">+2.7%</span>
+</div><div style="display:grid;grid-template-columns:170px 1fr 76px 54px;gap:8px;align-items:center;padding:4px 0;font-size:11.5px;">
+  <span style="color:var(--ink-soft);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Pajak dan perijinan">Pajak dan perijinan</span>
+  <span style="height:18px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:20.4%;background:#92400e;"></span>
+  </span>
+  <span style="text-align:right;font-weight:600;font-variant-numeric:tabular-nums;">
+    24.6bn<br><span style="font-size:9.5px;color:var(--muted);font-weight:500;">1.4% 매출</span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-size:11px;color:var(--danger);">+105.3%</span>
+</div><div style="display:grid;grid-template-columns:170px 1fr 76px 54px;gap:8px;align-items:center;padding:4px 0;font-size:11.5px;border-top:1px dashed var(--line);margin-top:4px;">
+  <span style="color:var(--muted);font-weight:500;font-style:italic;">기타 8개 라인 합산</span>
+  <span style="height:14px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:63.8%;background:#d4d0c0;"></span>
+  </span>
+  <span style="text-align:right;font-weight:500;font-variant-numeric:tabular-nums;color:var(--ink-soft);">
+    76.9bn<br><span style="font-size:9.5px;color:var(--muted);font-weight:500;">4.3% 매출</span>
+  </span>
+  <span style="text-align:right;font-weight:600;font-size:11px;color:var(--muted);">-8.8%</span>
+</div><div style="display:grid;grid-template-columns:170px 1fr 76px 54px;gap:8px;align-items:center;padding:8px 0 2px;font-size:12px;border-top:2px solid var(--line-strong);margin-top:6px;font-weight:700;">
+  <span style="color:var(--ink);">OpEx 합계</span>
+  <span></span>
+  <span style="text-align:right;font-variant-numeric:tabular-nums;">355.1bn<br><span style="font-size:9.5px;color:var(--muted);font-weight:500;">20.1% 매출</span></span>
+  <span style="text-align:right;color:var(--muted);">+5.8%</span>
+</div>
+</div>
+</div>
+      <details style="margin: 14px 0 4px;">
+        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 OpEx 전체 라인 표 (FY23/FY24/%매출/YoY)</summary>
+        <div class="ops-block">
   <h4 class="ops-block-h">DMIG — OpEx 라인 분해 (Note 25)</h4>
   <div class="tbl-card">
     <table class="tbl tbl-tight">
@@ -700,6 +906,7 @@
   </div>
   <p class="src-line">출처: FY24 AR p.316 Note 34 BEBAN UMUM DAN ADMINISTRASI</p>
 </div>
+      </details>
     </div>
 
     <div class="section" id="opex-norm">
@@ -2335,7 +2542,7 @@
 <footer class="foot">
   <div class="wrap">
     <p>
-      <strong>골프장 운영 Peer 비교 사이트</strong> — Build 2026-05-14 (commit <code>8aea5cc</code>) ·
+      <strong>골프장 운영 Peer 비교 사이트</strong> — Build 2026-05-14 (commit <code>2050d64</code>) ·
       Ops 탭 19개 분석 섹션 ·
       데이터: raw_peer_data/*.csv (last verified 2026-04-29 ~ 2026-05-07) + AR Note 직접 추출 + 벡터 검색 (99,618 chunks) ·
       추정/보간 없음. 미공시는 N/A로 표기.
