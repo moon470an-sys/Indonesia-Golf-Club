@@ -2113,6 +2113,89 @@ CAPEX_NARRATIVES = [
 ]
 
 
+# Curated revenue/COGS narratives from vector DB
+REVENUE_NARRATIVES = [
+    {
+        "ticker": "DMIG",
+        "theme": "Revenue 성장 driver — Golf+F&B",
+        "tone": "positive",
+        "summary": "FY2023 영업이익 +31.39% Rp 58.5bn. Golf course 매출 +29.12%, BSD 식당 +39.67%, PIK 식당 +27.98%",
+        "quote": "The Company's operating income in 2023 increased by 31.39% to Rp. 58.531.837.938. "
+                 "Golf course business revenue increased by 29.12%, due to an increase in golf rounds. "
+                 "Restaurant revenue at BSD Course +39.67%, PIK Course +27.98%.",
+        "ko": "코로나 회복기 매출 모멘텀이 강력 — golf rounds 증가가 본업 driver, F&B는 양 코스 모두 +28~40% 강한 회복. "
+              "단, FY24→FY25에는 매출 sticky(-0.7%) → 회복 모멘텀 둔화 신호.",
+        "src": "DMIG FY2023 AR p.21 (Income Statement) + p.15 (F&B breakdown)",
+    },
+    {
+        "ticker": "PIPG",
+        "theme": "Operational metric — 골퍼 8% 성장",
+        "tone": "positive",
+        "summary": "FY2022 member 26,551명 (+8% YoY vs 2021 24,512명). non-member 40,987명 동시 증가",
+        "quote": "Jumlah pengunjung golf (member) pada tahun 2022 sebanyak 26,551 pemain, naik 8% dibandingkan "
+                 "tahun 2021 sebanyak 24,512 pemain. Jumlah pengunjung golf (non member) 40,987 pemain.",
+        "ko": "PIPG는 member + non-member 두 트랙으로 매출 구성. 회원 충성도(+8%)와 외부 유입(40k+) 동시 확보. "
+              "단일 코스(Pondok Indah) 1976년 개장 노후 시설이지만 CBD 5분 거리 + 브랜드로 mature operator 포지셔닝.",
+        "src": "PIPG FY2022 AR p.48 — Pengunjung Golf",
+    },
+    {
+        "ticker": "GOLF",
+        "theme": "Target beat — Golf segment 24.66% 초과",
+        "tone": "positive",
+        "summary": "FY2025 Golf segment 매출 IDR 101.93bn = target 81.76bn의 124.66%. Real Estate 88.88%",
+        "quote": "In 2025, the Company's revenue from the Golf segment reached IDR 101.93 billion, "
+                 "or 124.66% of the established target of IDR 81.76 billion. For the Real Estate segment, "
+                 "the Company recorded revenue of IDR 79.39 billion, or 88.88% of the established target.",
+        "ko": "Golf은 target +24.66% 초과 달성하면서 Real Estate는 -11.12% 미달. "
+              "GOLF entity 매출 mix가 Golf-dominant로 이동 — 즉 CWIP 426bn 투자가 매출 단으로 결실 시작.",
+        "src": "GOLF FY2025 AR p.174 — Management Analysis",
+    },
+    {
+        "ticker": "MDLN",
+        "theme": "Golf+F&B 직접 공시 — 68.99bn",
+        "tone": "neutral",
+        "summary": "Golf course + Club house restaurant FY2023 매출 Rp 68.99bn (FY22 62.37bn) — Note 25 라인",
+        "quote": "Lapangan golf dan restoran club house Rp 68.985.399.881 (FY2023) vs Rp 62.374.631.796 (FY2022). "
+                 "Total revenue Rp 1.152.307bn (FY2023) — Golf segment 비중 6.0%.",
+        "ko": "MDLN의 Golf+F&B는 그룹 매출 1.15조 대비 6% 비중이지만 절댓값으로는 7번째 큰 단일 라인. "
+              "FY25 +28.2% YoY 가속 → property segment growth driver로 부상.",
+        "src": "MDLN FY2023 AR p.315 — Note 25 라인",
+    },
+]
+
+
+def _revenue_narrative_grid() -> str:
+    """Render revenue narrative quote cards (reuses CAPEX quote-card style)."""
+    tone_to_border = {
+        "positive": "var(--green)",
+        "warn":     "var(--warn)",
+        "neutral":  "#8a8a8a",
+    }
+    cards = []
+    for n in REVENUE_NARRATIVES:
+        border_color = tone_to_border.get(n["tone"], "#8a8a8a")
+        quote_text = n["quote"].strip()
+        if len(quote_text) > 320:
+            quote_text = quote_text[:320].rsplit(" ", 1)[0] + "…"
+        cards.append(f"""<div class="quote-card" style="border-left-color: {border_color};">
+  <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+    <span class="ticker-mini">{safe(n["ticker"])}</span>
+    <span class="insight-tag" style="margin:0;">{safe(n["theme"])}</span>
+  </div>
+  <div style="font-weight:700; font-size:14px; color:var(--ink); margin-bottom:6px;">{safe(n["summary"])}</div>
+  <div style="font-size:12.5px; color:var(--ink-soft); line-height:1.55; font-style:italic; padding:6px 10px; border-left:2px solid var(--line-strong); margin:8px 0;">
+    "{safe(quote_text)}"
+  </div>
+  <div style="font-size:13px; color:var(--ink); line-height:1.55;">
+    <strong style="color:var(--green);">→</strong> {safe(n["ko"])}
+  </div>
+  <div class="qmeta"><strong>출처</strong> · {safe(n["src"])} (벡터 DB 검색)</div>
+</div>""")
+    return f"""<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap:14px; margin: 14px 0;">
+  {"".join(cards)}
+</div>"""
+
+
 def _capex_narrative_grid() -> str:
     """Render curated CAPEX/OPEX vector-DB narratives as quote callout cards."""
     tone_to_border = {
@@ -3952,6 +4035,7 @@ def section_ops() -> str:
     capex_proxy_table = _capex_proxy_table()
     capex_heatmap = _capex_heatmap_section()
     capex_narratives = _capex_narrative_grid()
+    revenue_narratives = _revenue_narrative_grid()
     fy25_cards = _fy25_delta_cards()
     fy25_dashboard = _fy25_dashboard()
     golf_segment_table = _all_peer_golf_segment_table()
@@ -4201,6 +4285,11 @@ def section_ops() -> str:
         <strong>DMIG</strong>는 7개 라인 (Note 23), <strong>PIPG</strong>는 11개 라인 (Note 27).
       </p>
       {revenue_topn}
+
+      <h4 class="ops-block-h" style="margin-top: 26px;">왜? — AR 본문 직접 인용 (벡터 DB 검증)</h4>
+      <p class="src-line" style="margin: 4px 2px 12px;">매출 성장 driver와 운영 metric을 AR 본문에서 직접 인용 — 같은 +30%도 의미가 다름.</p>
+      {revenue_narratives}
+
       <details style="margin: 14px 0 4px;">
         <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 매출 전체 라인 표 (FY23/FY24/%매출/YoY)</summary>
         {rev_blocks}
