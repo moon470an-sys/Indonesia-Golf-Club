@@ -237,6 +237,11 @@ table.tbl td.notes { font-size: 13px; color: var(--ink-soft); line-height: 1.5; 
   border: 1px solid var(--line);
   border-radius: 12px;
   padding: 18px 22px;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+.kv:hover {
+  box-shadow: 0 3px 12px rgba(45,80,22,0.05);
+  border-color: var(--line-strong);
 }
 .kv .k { font-size: 11.5px; color: var(--muted); letter-spacing: 0.05em; text-transform: uppercase; font-weight: 700; }
 .kv .v { font-size: 17px; color: var(--ink); font-weight: 600; margin-top: 6px; line-height: 1.45; }
