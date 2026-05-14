@@ -17,6 +17,7 @@ import csv
 import datetime as dt
 import html
 import json
+import re
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -4422,38 +4423,98 @@ def _pipg_dept_headcount_chart() -> str:
 
 
 def _pipg_agreements_timeline() -> str:
-    """PIPG agreements & commitments visual timeline."""
+    """PIPG agreements & commitments — real time-axis timeline with duration bars."""
     d = NOTES.get("PIPG", {})
     ag = d.get("agreements_commitments") or {}
     items = ag.get("items") or []
     if not items:
         return ""
 
-    cards = []
+    # Parse start/end dates from `term` (or fall back to dates in counterparty text).
+    parsed = []
     for it in items:
-        agreement_type = it.get("type", "—")
-        counterparty = it.get("counterparty", "—")
-        term = it.get("term", "—")
+        term = str(it.get("term") or "")
+        counterparty = str(it.get("counterparty") or "—")
+        dates = re.findall(r"\d{4}-\d{2}-\d{2}", term) or re.findall(r"\d{4}-\d{2}-\d{2}", counterparty)
+        start = end = None
+        if len(dates) >= 2:
+            try:
+                start = dt.date.fromisoformat(dates[0])
+                end = dt.date.fromisoformat(dates[1])
+            except ValueError:
+                start = end = None
         rent = it.get("rent_y1y2") or it.get("rent") or it.get("rental_fee") or it.get("rental") or "—"
         is_related = "related party" in counterparty.lower()
-        accent = "var(--warn)" if is_related else "var(--green)"
-        tag_text = "Related Party" if is_related else "Third Party"
-        tag_color = "#92400e" if is_related else "#2d5016"
-        tag_bg = "#fef3c7" if is_related else "#e6f1d8"
-        cards.append(f"""<div class="quote-card" style="border-left-color:{accent};padding:14px 16px;">
-  <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-    <span style="display:inline-block;padding:2px 8px;border-radius:999px;background:{tag_bg};color:{tag_color};font-size:10.5px;font-weight:700;letter-spacing:0.03em;">{tag_text}</span>
-    <span style="font-size:12px;color:var(--ink-soft);font-weight:600;">{safe(agreement_type)}</span>
+        # Strip the inline date range from counterparty for cleaner display.
+        cp_clean = re.sub(r"\s*\([^)]*\d{4}-\d{2}-\d{2}[^)]*\)", "", counterparty).strip()
+        parsed.append({
+            "type": str(it.get("type") or "—"), "counterparty": cp_clean,
+            "start": start, "end": end, "rent": str(rent),
+            "is_related": is_related,
+            "term_label": term or (re.search(r"\d{4}-\d{2}-\d{2}.*\d{4}-\d{2}-\d{2}", counterparty) or [""])[0],
+        })
+
+    dated = [p for p in parsed if p["start"] and p["end"]]
+    axis_min = dt.date(min(p["start"].year for p in dated), 1, 1)
+    axis_max = dt.date(max(p["end"].year for p in dated) + 1, 1, 1)
+    span_days = (axis_max - axis_min).days
+
+    def pos(date):
+        return (date - axis_min).days / span_days * 100
+
+    # Year-axis ticks
+    ticks = []
+    for yr in range(axis_min.year, axis_max.year + 1):
+        x = pos(dt.date(yr, 1, 1))
+        ticks.append(
+            f'<span style="position:absolute;left:{x:.2f}%;top:0;bottom:0;border-left:1px solid var(--line);"></span>'
+            f'<span style="position:absolute;left:{x:.2f}%;top:-15px;transform:translateX(-50%);font-size:9.5px;color:var(--muted);font-weight:600;">{yr}</span>'
+        )
+    today_x = pos(dt.date(2026, 5, 14))
+    ticks.append(
+        f'<span style="position:absolute;left:{today_x:.2f}%;top:0;bottom:0;border-left:1.5px dashed var(--accent);"></span>'
+    )
+
+    rows = []
+    for p in parsed:
+        tag_text = "Related Party" if p["is_related"] else "Third Party"
+        tag_color = "#92400e" if p["is_related"] else "#2d5016"
+        tag_bg = "#fef3c7" if p["is_related"] else "#e6f1d8"
+        bar_color = "#c08a2e" if p["is_related"] else "#2d5016"
+        if p["start"] and p["end"]:
+            left = pos(p["start"])
+            width = max(pos(p["end"]) - left, 1.5)
+            active = p["start"] <= dt.date(2026, 5, 14) <= p["end"]
+            bar = (
+                f'<span style="position:absolute;left:{left:.2f}%;width:{width:.2f}%;top:50%;transform:translateY(-50%);'
+                f'height:16px;background:{bar_color};border-radius:4px;opacity:{"1" if active else "0.45"};"></span>'
+                f'<span style="position:absolute;left:{left:.2f}%;top:-2px;font-size:8.5px;color:var(--muted);">{p["start"].isoformat()}</span>'
+                f'<span style="position:absolute;left:{(left+width):.2f}%;bottom:-2px;transform:translateX(-100%);font-size:8.5px;color:var(--muted);">{p["end"].isoformat()}</span>'
+            )
+        else:
+            bar = '<span style="position:absolute;left:0;font-size:10px;color:var(--muted);top:50%;transform:translateY(-50%);">기간 미상</span>'
+        rows.append(f"""<div style="display:grid;grid-template-columns:200px 1fr;gap:14px;align-items:center;padding:9px 0;border-top:1px solid var(--line);">
+  <div>
+    <span style="display:inline-block;padding:1px 7px;border-radius:999px;background:{tag_bg};color:{tag_color};font-size:9.5px;font-weight:700;">{tag_text}</span>
+    <div style="font-size:12px;font-weight:700;color:var(--ink);margin-top:3px;line-height:1.35;">{safe(p["type"])}</div>
+    <div style="font-size:10.5px;color:var(--ink-soft);line-height:1.35;">{safe(p["counterparty"])}</div>
+    <div style="font-size:10px;color:var(--muted);margin-top:1px;">{safe(p["rent"])}</div>
   </div>
-  <div style="font-size:14px;font-weight:700;color:var(--ink);line-height:1.4;margin-bottom:6px;">{safe(counterparty)}</div>
-  <div style="font-size:12px;color:var(--ink-soft);line-height:1.55;">
-    <strong>기간:</strong> {safe(str(term))}<br>
-    <strong>금액:</strong> {safe(str(rent))}
-  </div>
+  <div style="position:relative;height:34px;">{bar}</div>
 </div>""")
 
-    return f"""<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;margin:14px 0;">
-  {''.join(cards)}
+    return f"""<div style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 16px 12px;margin:14px 0;">
+  <div style="display:grid;grid-template-columns:200px 1fr;gap:14px;">
+    <div></div>
+    <div style="position:relative;height:14px;margin-bottom:2px;">{''.join(ticks)}</div>
+  </div>
+  {''.join(rows)}
+  <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;padding-top:8px;border-top:1px solid var(--line);font-size:10px;color:var(--muted);">
+    <span><span style="display:inline-block;width:14px;height:8px;background:#c08a2e;border-radius:2px;vertical-align:middle;"></span> Related party (MKPI)</span>
+    <span><span style="display:inline-block;width:14px;height:8px;background:#2d5016;border-radius:2px;vertical-align:middle;"></span> Third party</span>
+    <span><span style="display:inline-block;width:14px;border-top:1.5px dashed #c08a2e;vertical-align:middle;"></span> 현재 (2026-05)</span>
+    <span style="opacity:0.6;">반투명 막대 = 만료/미발효 기간</span>
+  </div>
 </div>
 """
 
