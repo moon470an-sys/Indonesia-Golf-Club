@@ -2319,7 +2319,7 @@ def _segment_scatter_svg() -> str:
     inner_w = width - pad_l - pad_r
     inner_h = height - pad_t - pad_b
 
-    x_max = 50
+    x_max = 55
     y_max = 80
     y_min = 30
     revs = [r["rev"] for r in data if r["rev"]]
@@ -2372,7 +2372,7 @@ def _segment_scatter_svg() -> str:
             f'<line x1="{pad_l}" y1="{y:.1f}" x2="{pad_l + inner_w}" y2="{y:.1f}" stroke="#ebe9e0" stroke-width="0.7"/>'
             f'<text x="{pad_l - 8}" y="{y + 4:.1f}" font-size="11" fill="#8a8a8a" text-anchor="end">{ypct}%</text>'
         )
-    for xpct in [10, 20, 30, 40, 50]:
+    for xpct in [10, 20, 30, 40, 50]:  # gridline labels (x_max=55)
         x = to_x(xpct)
         grid.append(
             f'<line x1="{x:.1f}" y1="{pad_t}" x2="{x:.1f}" y2="{pad_t + inner_h}" stroke="#ebe9e0" stroke-width="0.7"/>'
