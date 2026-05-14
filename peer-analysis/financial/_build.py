@@ -1887,6 +1887,133 @@ def _per_hole_metrics_table() -> str:
 </div>"""
 
 
+def _per_hole_data() -> list:
+    """Extract per-peer per-hole metrics. Returns list of dicts."""
+    rows = []
+
+    def collect(ticker: str, basis: str, basis_type: str, golf_rev, golf_cogs, golf_opex, depr_total):
+        h = HOLES.get(ticker, 18)
+        rows.append({
+            "ticker": ticker, "basis": basis, "basis_type": basis_type, "holes": h,
+            "rev_h": (golf_rev / h) if golf_rev else None,
+            "gp_h": ((golf_rev - golf_cogs) / h) if (golf_rev and golf_cogs) else None,
+            "opex_h": (golf_opex / h) if golf_opex else None,
+            "dep_h": (depr_total / h) if depr_total else None,
+        })
+
+    d = NOTES.get("DMIG", {})
+    rt = (d.get("revenue_note") or {}).get("total", {}).get("FY2024")
+    ct = (d.get("cogs_note") or {}).get("total", {}).get("FY2024")
+    ot = (d.get("opex_note") or {}).get("total", {}).get("FY2024")
+    dep = next((ln.get("FY2024") for ln in (d.get("opex_note") or {}).get("lines", []) if (ln.get("id_label") or "").lower() == "penyusutan"), None)
+    collect("DMIG", "Entity all-in (2 코스)", "entity", rt, ct, ot, dep)
+
+    d = NOTES.get("PIPG", {})
+    rt = (d.get("revenue_note_27") or {}).get("total", {}).get("FY2024")
+    ct = (d.get("cogs_note_28") or {}).get("total", {}).get("FY2024")
+    ot = (d.get("opex_note_29") or {}).get("total", {}).get("FY2024")
+    dep = next((ln.get("FY2024") for ln in (d.get("opex_note_29") or {}).get("lines", []) if (ln.get("id_label") or "").lower() == "penyusutan"), None)
+    collect("PIPG", "Entity all-in (1 코스)", "entity", rt, ct, ot, dep)
+
+    d = NOTES.get("GOLF", {})
+    rev_lines = ((d.get("revenue_note_29") or {}).get("by_operations") or {}).get("lines") or []
+    cogs_lines = (d.get("cogs_note_30") or {}).get("lines") or []
+    rg = next((ln.get("FY2024") for ln in rev_lines if ln.get("en_label") == "Golf"), None)
+    cg = next((ln.get("FY2024") for ln in cogs_lines if ln.get("id_label") == "Golf"), None)
+    og = (d.get("ga_note_32") or {}).get("total", {}).get("FY2024")
+    depg = next((ln.get("FY2024") for ln in (d.get("ga_note_32") or {}).get("lines", []) if "penyusutan" in (ln.get("id_label") or "").lower()), None)
+    collect("GOLF", "Golf segment-only", "segment", rg, cg, og, depg)
+
+    d = NOTES.get("MDLN", {})
+    cr = (d.get("computed_ratios") or {}).get("FY2024", {})
+    rm = cr.get("golf_revenue_pure")
+    cm = cr.get("golf_cogs_pure")
+    depm = next((ln.get("FY2024") for ln in (d.get("cogs_note_26") or {}).get("golf_course_direct_cost_lines", []) if "penyusutan" in (ln.get("id_label") or "").lower()), None)
+    collect("MDLN", "Golf segment", "segment", rm, cm, None, depm)
+
+    d = NOTES.get("KIJA", {})
+    seg = (d.get("segment_info_note_34") or {}).get("golf_segment_FY2024") or {}
+    rk = (seg.get("revenue") or 0) * 1e6
+    ck = (seg.get("cogs") or 0) * 1e6
+    ok = ((seg.get("selling") or 0) + (seg.get("ga_expenses") or 0)) * 1e6
+    collect("KIJA", "Golf segment", "segment", rk or None, ck or None, ok or None, None)
+
+    d = NOTES.get("SMDM", {})
+    seg_s = ((d.get("segment_info_note_29") or {}).get("FY2024") or {}).get("Golf dan Country Club") or {}
+    rs = seg_s.get("revenue")
+    cs = abs(seg_s.get("cogs") or 0) or None
+    os_ = (abs(seg_s.get("selling") or 0) + abs(seg_s.get("ga") or 0)) or None
+    collect("SMDM", "Golf segment", "segment", rs, cs, os_, None)
+
+    return rows
+
+
+PEER_COLORS = {
+    "DMIG": "#2d5016",
+    "PIPG": "#c08a2e",
+    "GOLF": "#4a7c30",
+    "MDLN": "#6b21a8",
+    "KIJA": "#b91c1c",
+    "SMDM": "#1e40af",
+    "KPIG": "#92400e",
+}
+
+
+def _per_hole_bar_chart(metric_key: str, title: str, unit: str = "/홀") -> str:
+    """Render a horizontal bar chart for one per-hole metric across all peers."""
+    data = _per_hole_data()
+    rows = [(d["ticker"], d["basis_type"], d.get(metric_key)) for d in data]
+    rows = [r for r in rows if r[2] is not None]
+    if not rows:
+        return ""
+    rows.sort(key=lambda r: -(r[2] or 0))
+    max_v = max(r[2] for r in rows)
+
+    bars = []
+    for ticker, basis_type, v in rows:
+        pct = (v / max_v * 100) if max_v else 0
+        color = PEER_COLORS.get(ticker, "#8a8a8a")
+        basis_tag = "ENT" if basis_type == "entity" else "SEG"
+        basis_color = "#92400e" if basis_type == "entity" else "#2d5016"
+        val_str = fmt_bn(v).replace(" bn", "bn")
+        bars.append(f"""<div class="stack-row" style="padding:6px 0;">
+  <div class="stack-label" style="flex:0 0 120px;">
+    <span class="ticker-mini">{safe(ticker)}</span>
+    <span style="font-size:9px;font-weight:700;padding:1px 4px;border-radius:3px;background:{basis_color};color:white;letter-spacing:0.05em;">{basis_tag}</span>
+  </div>
+  <div class="stack-bar" style="height:18px;background:#f5f3ec;">
+    <div class="stack-seg" style="width:{pct:.1f}%;background:{color};font-size:10px;justify-content:flex-end;padding-right:6px;">{val_str}</div>
+  </div>
+</div>""")
+
+    return f"""<div class="ops-block">
+  <h4 class="ops-block-h">{safe(title)} <span class="muted" style="font-weight:400;font-size:12px;">— {unit}, FY2024</span></h4>
+  <div class="stack-block">
+    {''.join(bars)}
+  </div>
+</div>"""
+
+
+def _per_hole_visual_section() -> str:
+    """4-metric horizontal bar grid for per-hole unit economics."""
+    rev = _per_hole_bar_chart("rev_h", "매출 / 홀")
+    gp = _per_hole_bar_chart("gp_h", "GP / 홀")
+    opex = _per_hole_bar_chart("opex_h", "OpEx / 홀")
+    dep = _per_hole_bar_chart("dep_h", "감가상각 / 홀")
+    return f"""<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap:12px;">
+  {rev}
+  {gp}
+  {opex}
+  {dep}
+</div>
+<p class="src-line" style="margin: 10px 2px 4px;">
+  <span style="display:inline-block;padding:1px 4px;border-radius:3px;background:#92400e;color:white;font-size:9px;font-weight:700;letter-spacing:0.05em;">ENT</span>
+  = Entity all-in (golf+F&amp;B+회원권+카트 등 일체 포함) ·
+  <span style="display:inline-block;padding:1px 4px;border-radius:3px;background:#2d5016;color:white;font-size:9px;font-weight:700;letter-spacing:0.05em;">SEG</span>
+  = Golf segment-only (순수 골프 매출) — basis 차이로 ENT가 의도적으로 부풀려져 있음. SEG끼리 비교가 진짜 cross-peer per-hole.
+</p>"""
+
+
 def _sparkline_svg(values, color="#2d5016", width=140, height=36, fill=True) -> str:
     """Generate inline SVG sparkline from a list of (label, value) pairs.
 
@@ -2444,6 +2571,7 @@ def section_ops() -> str:
     ops_kpi_section = _ops_kpi_section()
     ops_kpi_dashboard = _ops_kpi_dashboard()
     per_hole_table = _per_hole_metrics_table()
+    per_hole_visual = _per_hole_visual_section()
     pipg_seg_table = _pipg_segment_table()
     dividend_table = _dividend_compare_table()
 
@@ -2709,7 +2837,11 @@ def section_ops() -> str:
         <strong>DMIG</strong>는 2 코스 → 매출/홀 ≈ 7.0bn,
         <strong>GOLF</strong> golf-only 93bn / 36홀 = 2.6bn/홀로 가장 낮음.
       </p>
-      {per_hole_table}
+      {per_hole_visual}
+      <details style="margin: 14px 0 4px;">
+        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 per-hole 표 (basis 라벨 + 홀 수 + 4개 metric)</summary>
+        {per_hole_table}
+      </details>
       <div class="banner info">
         <strong>해석 주의:</strong>
         DMIG/PIPG는 entity 매출 (Golf+F&B+Membership+Cart 일체 포함) 기준 → 홀당 단위가 의도적으로 부풀려져 있음 ·
