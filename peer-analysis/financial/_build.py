@@ -4555,19 +4555,53 @@ def _dmig_member_tier_chart() -> str:
 
 
 def _land_hgb_timeline_visual() -> str:
-    """PIPG 토지·HGB 만료 시각화 — timeline 형식."""
+    """PIPG 토지·HGB·임차 — stat 카드 + HGB 만료 chip + MKPI 임차 경과 진행바."""
     d = NOTES.get("PIPG", {})
     profile = d.get("profile") or {}
     if not profile:
         return ""
-    hgb_expiry = profile.get("hgb_expiry_years") or "—"
-    leased_start = profile.get("leased_term_start") or "—"
-    leased_end = profile.get("leased_term_end") or "—"
-    leased_purpose = profile.get("leased_purpose") or "—"
+    hgb_expiry = str(profile.get("hgb_expiry_years") or "—")
+    leased_start = str(profile.get("leased_term_start") or "—")
+    leased_end = str(profile.get("leased_term_end") or "—")
+    leased_purpose = str(profile.get("leased_purpose") or "—")
+    today = dt.date(2026, 5, 14)
+
+    # HGB expiry chips — flag any year already in the past.
+    exp_years = [int(y) for y in re.findall(r"\d{4}", hgb_expiry)]
+    exp_chips = []
+    for y in exp_years:
+        past = y < today.year
+        chip_bg = "#fde8e8" if past else "#e6f1d8"
+        chip_fg = "#b91c1c" if past else "#2d5016"
+        note = " · 경과" if past else ""
+        exp_chips.append(
+            f'<span style="display:inline-block;padding:2px 9px;border-radius:999px;background:{chip_bg};'
+            f'color:{chip_fg};font-size:11px;font-weight:700;margin-right:5px;">{y}{note}</span>'
+        )
+    exp_chips_html = "".join(exp_chips) if exp_chips else safe(hgb_expiry)
+
+    # MKPI lease elapsed progress bar.
+    lease_bar = ""
+    try:
+        ls, le = dt.date.fromisoformat(leased_start), dt.date.fromisoformat(leased_end)
+        total = (le - ls).days
+        elapsed = max(0, min((today - ls).days, total))
+        pct = elapsed / total * 100 if total else 0
+        years_left = (le - today).days / 365.25
+        lease_bar = f"""<div style="margin-top:6px;">
+    <div style="height:8px;background:var(--line);border-radius:4px;overflow:hidden;">
+      <div style="height:100%;width:{pct:.1f}%;background:var(--warn);"></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;font-size:9.5px;color:var(--muted);margin-top:2px;">
+      <span>{leased_start}</span><span style="font-weight:700;color:var(--warn);">{pct:.0f}% 경과 · 잔여 {years_left:.1f}년</span><span>{leased_end}</span>
+    </div>
+  </div>"""
+    except ValueError:
+        lease_bar = f'<div style="font-size:11.5px;color:var(--ink-soft);margin-top:3px;">{safe(leased_start)} ~ {safe(leased_end)}</div>'
 
     return f"""<div style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;">
   <h4 class="ops-block-h" style="margin-bottom:14px;">
-    <span class="ticker-mini">PIPG</span> 토지·HGB·임차 timeline
+    <span class="ticker-mini">PIPG</span> 토지·HGB·임차 구조
   </h4>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;">
     <div style="border-left:3px solid var(--green);padding:8px 12px;">
@@ -4576,14 +4610,15 @@ def _land_hgb_timeline_visual() -> str:
       <div style="font-size:11.5px;color:var(--ink-soft);margin-top:3px;">{profile.get("land_area_m2_total", 0):,} m² · {profile.get("land_certificates", "—")} 인증서</div>
     </div>
     <div style="border-left:3px solid var(--accent);padding:8px 12px;">
-      <div style="font-size:10.5px;font-weight:700;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:3px;">HGB 면적</div>
+      <div style="font-size:10.5px;font-weight:700;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:3px;">HGB 면적 · 만료</div>
       <div style="font-size:22px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;">{profile.get("hgb_area_m2", 0):,} m²</div>
-      <div style="font-size:11.5px;color:var(--ink-soft);margin-top:3px;">만료: {safe(str(hgb_expiry))}</div>
+      <div style="margin-top:5px;">{exp_chips_html}</div>
     </div>
     <div style="border-left:3px solid var(--warn);padding:8px 12px;">
       <div style="font-size:10.5px;font-weight:700;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:3px;">MKPI 임차 (related party)</div>
       <div style="font-size:22px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;">{profile.get("leased_from_mkpi_m2", 0):,} m²</div>
-      <div style="font-size:11.5px;color:var(--ink-soft);margin-top:3px;">{safe(leased_purpose)} · {safe(leased_start)} ~ {safe(leased_end)}</div>
+      <div style="font-size:11px;color:var(--ink-soft);margin-top:2px;">{safe(leased_purpose)}</div>
+      {lease_bar}
     </div>
   </div>
 </div>"""
