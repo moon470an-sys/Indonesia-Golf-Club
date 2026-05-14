@@ -4685,6 +4685,10 @@ def section_ops_kpi() -> str:
       <h2 data-num="08">배당 시계열 — 3-peer capital allocation</h2>
       <h3>FY22-24 + payout ratio + RUPST 날짜</h3>
       {dividend_visual}
+      <div class="insight-callout">
+        <span class="ic-icon">→</span>
+        <span class="ic-body">동일한 ~26bn 배당이라도 <strong>PIPG는 순이익의 47%</strong> (적극 환원), <strong>DMIG는 37%</strong> (재투자 여력 보존). <strong>SMDM은 0%</strong> — BSDE 인수 직전 working capital 확보. capital allocation 철학이 갈림.</span>
+      </div>
       <details class="orig-toggle"><summary>원본 배당 표</summary>
         {dividend_table}
       </details>
@@ -4694,6 +4698,10 @@ def section_ops_kpi() -> str:
       <h2 data-num="09">관계사·고객·공급사 집중도</h2>
       <h3>annual report Note에서 추출한 audit-grade 정량 정보</h3>
       {related_party_visual}
+      <div class="insight-callout warn">
+        <span class="ic-icon">⚠</span>
+        <span class="ic-body">집중도 risk가 가장 높은 곳은 <strong>GOLF (단일 고객 34%)</strong>. PIPG는 <strong>MKPI(related party)에 토지·풀 임차 의존</strong> — cross-default 시 운영 차질 가능. 신규 코스는 고객/공급사 분산 + 토지 자체 보유가 안전.</span>
+      </div>
       <details class="orig-toggle"><summary>원본 상세 표</summary>
         {related_party_section}
       </details>
