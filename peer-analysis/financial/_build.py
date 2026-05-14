@@ -3917,6 +3917,80 @@ def _fy25_delta_cards() -> str:
     return f'<div class="kv-grid">{"".join(cards)}</div>'
 
 
+def _revenue_cogs_gp_chart(ticker: str, rev_key: str, cogs_key: str) -> str:
+    """Per-line GP margin chart — pairs revenue lines with COGS lines by label.
+
+    Shows which revenue line is most profitable (GP margin) as a sorted bar chart.
+    """
+    d = NOTES.get(ticker, {})
+    rev_lines = {(ln.get("en_label") or ln.get("id_label") or ""): (ln.get("FY2024") or 0)
+                 for ln in (d.get(rev_key) or {}).get("lines") or []}
+    cogs_lines = {(ln.get("en_label") or ln.get("id_label") or ""): (ln.get("FY2024") or 0)
+                  for ln in (d.get(cogs_key) or {}).get("lines") or []}
+
+    # Match by label (normalize)
+    def norm(s):
+        return s.lower().replace(" ", "").replace("-", "")[:12]
+    cogs_norm = {norm(k): v for k, v in cogs_lines.items()}
+
+    rows = []
+    for rev_label, rev_v in rev_lines.items():
+        if not rev_v:
+            continue
+        cogs_v = cogs_norm.get(norm(rev_label), 0)
+        if cogs_v:
+            gp = rev_v - cogs_v
+            gm = (gp / rev_v * 100) if rev_v else 0
+            rows.append((rev_label, rev_v, cogs_v, gp, gm))
+
+    if not rows:
+        return ""
+    rows.sort(key=lambda r: -r[4])  # sort by GP margin desc
+
+    bars = []
+    for label, rev_v, cogs_v, gp, gm in rows:
+        # Color by margin tier
+        if gm >= 70:
+            color = "#2d5016"
+        elif gm >= 55:
+            color = "#4a7c30"
+        elif gm >= 40:
+            color = "#95c073"
+        elif gm >= 25:
+            color = "#c08a2e"
+        else:
+            color = "#b91c1c"
+        bar_w = max(2, gm)  # gm% directly as width (0-100)
+        rev_str = fmt_bn(rev_v).replace(" bn", "bn")
+        gp_str = fmt_bn(gp).replace(" bn", "bn")
+        bars.append(f"""<div style="display:grid;grid-template-columns:150px 1fr 64px 70px;gap:8px;align-items:center;padding:5px 0;font-size:12px;">
+  <span style="color:var(--ink-soft);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="{safe(label)}">{safe(label)}</span>
+  <span style="height:18px;background:var(--surface-2);border-radius:3px;overflow:hidden;box-shadow:inset 0 0 0 1px var(--line);">
+    <span style="display:block;height:100%;width:{bar_w:.1f}%;background:{color};"></span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;color:{color};">{gm:.1f}%</span>
+  <span style="text-align:right;color:var(--muted);font-size:10.5px;">GP {gp_str}</span>
+</div>""")
+
+    return f"""<div class="ops-block" style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;">
+  <h4 class="ops-block-h"><span class="ticker-mini">{safe(ticker)}</span> 매출 라인별 GP margin (FY2024)</h4>
+  <div style="display:grid;grid-template-columns:150px 1fr 64px 70px;gap:8px;padding:2px 0 4px;font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;font-weight:700;border-bottom:1px solid var(--line);">
+    <span>매출 라인</span><span>GP margin (0-100%)</span><span style="text-align:right;">GP%</span><span style="text-align:right;">GP 절댓값</span>
+  </div>
+  {''.join(bars)}
+</div>"""
+
+
+def _revenue_cogs_gp_section() -> str:
+    """Side-by-side per-line GP margin charts for DMIG + PIPG."""
+    dmig = _revenue_cogs_gp_chart("DMIG", "revenue_note", "cogs_note")
+    pipg = _revenue_cogs_gp_chart("PIPG", "revenue_note_27", "cogs_note_28")
+    return f"""<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:14px;">
+  {dmig}
+  {pipg}
+</div>"""
+
+
 def _opex_category_cross_peer(cat_keys: list, title: str, peer_specific_color: dict = None) -> str:
     """Cross-peer comparison of a single OpEx category (e.g., salaries, tax, utilities).
 
@@ -4708,6 +4782,7 @@ def section_opex() -> str:
     cogs_topn = _cogs_topn_section()
     opex_category_compare = _opex_category_cross_peer_section()
     opex_4y_trend = _opex_4y_trend_chart()
+    revenue_cogs_gp = _revenue_cogs_gp_section()
 
     opex_blocks = "\n".join(filter(None, [
         _opex_breakdown_table("DMIG", "opex_note", "OpEx 라인 분해 (Note 25)"),
@@ -4803,6 +4878,13 @@ def section_opex() -> str:
       <h2 data-num="02">COGS 라인 분해 — segment별 매출원가</h2>
       <h3>골프 코스 / 레스토랑 / 카트 / 드라이빙 레인지</h3>
       {cogs_topn}
+
+      <h4 class="ops-block-h" style="margin-top: 22px;">매출 라인별 GP margin — 어느 라인이 가장 수익성 높은가</h4>
+      {revenue_cogs_gp}
+      <div class="insight-callout">
+        <span class="ic-icon">→</span>
+        <span class="ic-body">매출-COGS를 라인별로 매칭하면 <strong>Membership / Branding 계열이 GP margin 최상위</strong> (소액 COGS), <strong>Restaurant는 최하위</strong> (식자재·인건비 부담). 같은 매출이라도 수익 기여도가 크게 다름.</span>
+      </div>
 
       <details class="orig-toggle"><summary>원본 COGS 라인 표</summary>
         {cogs_blocks}
