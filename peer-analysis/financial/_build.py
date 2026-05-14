@@ -3693,9 +3693,16 @@ def _related_party_visual() -> str:
         pct24 = (cc.get("pct_of_revenue_FY2024") or 0) * 100
         pct23 = (cc.get("pct_of_revenue_FY2023") or 0) * 100
         spark = _sparkline_svg([("FY23", pct23), ("FY24", pct24)], color="#b91c1c", width=100, height=36)
+        conc_yoy = pct24 - pct23
         cards.append(f"""<div class="kpi-tile accent-warn">
   <div class="kpi-cap"><span class="ticker-mini">GOLF</span> 고객 집중도 위험</div>
-  <div class="kpi-val down">{pct24:.1f}<span class="u" style="font-size:13px;">%</span></div>
+  <div style="display:flex;align-items:center;gap:10px;margin:6px 0;">
+    {spark}
+    <div>
+      <div class="kpi-val down" style="margin:0;">{pct24:.1f}<span class="u" style="font-size:13px;">%</span></div>
+      <div class="kpi-sub kpi-trend down">FY23→24 {conc_yoy:+.1f}%p</div>
+    </div>
+  </div>
   <div class="kpi-sub"><strong>{safe(cc.get("name", "—"))}</strong> 단일 고객</div>
   <div class="kpi-sub">FY24 매출의 {pct24:.1f}% (FY23 {pct23:.1f}%) · {fmt_bn(cc.get("amount_FY2024"))}</div>
 </div>""")
