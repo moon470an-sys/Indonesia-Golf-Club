@@ -4115,7 +4115,7 @@ def _revenue_cogs_gp_chart(ticker: str, rev_key: str, cogs_key: str) -> str:
   <span style="text-align:right;color:var(--muted);font-size:10.5px;">매출 {fmt_bn(rev_v).replace(" bn","bn")}</span>
 </div>""")
 
-    return f"""<div class="ops-block" style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;">
+    return f"""<div class="ops-block viz-card">
   <h4 class="ops-block-h"><span class="ticker-mini">{safe(ticker)}</span> 매출 라인별 GP margin (FY2024)</h4>
   <div style="display:grid;grid-template-columns:150px 1fr 64px 70px;gap:8px;padding:2px 0 4px;font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;font-weight:700;border-bottom:1px solid var(--line);">
     <span>매출 라인</span><span>GP margin (0-100%)</span><span style="text-align:right;">GP%</span><span style="text-align:right;">매출</span>
@@ -4206,7 +4206,7 @@ def _opex_category_cross_peer(cat_keys: list, title: str, peer_specific_color: d
   <span></span><span></span>
 </div>""")
 
-    return f"""<div class="ops-block" style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;">
+    return f"""<div class="ops-block viz-card">
   <h4 class="ops-block-h" style="margin-bottom:10px;">{safe(title)}</h4>
   <div style="display:grid;grid-template-columns:60px 1fr 80px 60px 60px;gap:8px;padding:2px 0 4px;font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;font-weight:700;border-bottom:1px solid var(--line);">
     <span>Peer</span><span>FY24 magnitude</span><span style="text-align:right;">IDR</span><span style="text-align:right;">% 매출</span><span style="text-align:right;">YoY</span>
@@ -4296,7 +4296,7 @@ def _golf_cwip_detail_chart() -> str:
   <span style="text-align:right;color:var(--muted);font-size:11px;">{pct_total:.1f}%</span>
 </div>""")
 
-    return f"""<div class="ops-block" style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;">
+    return f"""<div class="ops-block viz-card">
   <h4 class="ops-block-h" style="margin-bottom:10px;">
     <span class="ticker-mini">GOLF</span> CWIP detail (FY2025) — 6 카테고리
   </h4>
@@ -4361,7 +4361,7 @@ def _depreciation_lines_chart() -> str:
   <span style="text-align:right;font-weight:700;font-size:11px;color:{yoy_color};">{yoy_str}</span>
 </div>""")
 
-    return f"""<div class="ops-block" style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;">
+    return f"""<div class="ops-block viz-card">
   <h4 class="ops-block-h" style="margin-bottom:10px;">감가상각·상각 (Penyusutan + Amortisasi) 라인 — 3-peer 직접 비교 (FY2024)</h4>
   <div style="display:grid;grid-template-columns:80px 1fr 80px 60px 54px;gap:8px;padding:2px 0 4px;font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;font-weight:700;border-bottom:1px solid var(--line);">
     <span>Peer</span><span>magnitude</span><span style="text-align:right;">FY24 IDR</span><span style="text-align:right;">%매출</span><span style="text-align:right;">YoY</span>
@@ -4421,7 +4421,7 @@ def _pipg_dept_headcount_chart() -> str:
   <span style="text-align:right;color:var(--muted);font-size:10.5px;">{pct_of_total:.1f}%</span>
 </div>""")
 
-    return f"""<div class="ops-block" style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;">
+    return f"""<div class="ops-block viz-card">
   <h4 class="ops-block-h" style="margin-bottom:10px;">
     <span class="ticker-mini">PIPG</span> 부서별 인원 (FY2024) — Note 32 turnover 그래프 기준
   </h4>
@@ -4558,7 +4558,7 @@ def _dmig_member_tier_chart() -> str:
   <span style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;">{n}<span style="font-size:10px;color:var(--muted);font-weight:500;"> 명</span></span>
   <span style="text-align:right;color:var(--muted);font-size:11px;">{pct:.1f}%</span>
 </div>""")
-    return f"""<div class="ops-block" style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;">
+    return f"""<div class="ops-block viz-card">
   <h4 class="ops-block-h" style="margin-bottom:10px;">
     <span class="ticker-mini">DMIG</span> Main Playing Member tier (FY2023, {total:,}명)
   </h4>
@@ -4617,7 +4617,7 @@ def _land_hgb_timeline_visual() -> str:
     except ValueError:
         lease_bar = f'<div style="font-size:11.5px;color:var(--ink-soft);margin-top:3px;">{safe(leased_start)} ~ {safe(leased_end)}</div>'
 
-    return f"""<div style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;">
+    return f"""<div class="viz-card">
   <h4 class="ops-block-h" style="margin-bottom:14px;">
     <span class="ticker-mini">PIPG</span> 토지·HGB·임차 구조
   </h4>
