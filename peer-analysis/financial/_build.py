@@ -4840,7 +4840,7 @@ def section_capex() -> str:
     </div>
 
     <div class="section" id="cap-narratives">
-      <h2 data-num="05">왜? — AR 본문 인용 (벡터 DB 검증)</h2>
+      <h2 data-num="05">왜? — AR 본문 직접 인용</h2>
       <h3>같은 12% 감가도 신규 투자 / 노후 자산 / 회계 정책 — 본문에서 의도 확인</h3>
       {capex_narratives}
     </div>
@@ -5025,7 +5025,7 @@ def section_opex() -> str:
       <h3>골프 / F&amp;B / 회원권 / 부대시설 별 매출 + AR narrative</h3>
       {revenue_topn}
 
-      <h4 class="ops-block-h" style="margin-top: 22px;">왜? — 매출 성장 driver (벡터 DB 검증)</h4>
+      <h4 class="ops-block-h" style="margin-top: 22px;">왜? — 매출 성장 driver</h4>
       {revenue_narratives}
 
       <details class="orig-toggle"><summary>원본 매출 라인 표</summary>
@@ -5110,7 +5110,7 @@ def section_opex() -> str:
     </div>
 
     <div class="section" id="op-narratives">
-      <h2 data-num="08">왜? — 운영 리스크 & 비용 sensitivity (벡터 DB)</h2>
+      <h2 data-num="08">왜? — 운영 리스크 & 비용 sensitivity</h2>
       <h3>OpEx 절댓값 뒤의 의미 — 보험·인건비 leverage·ESG·자본</h3>
       {opex_narratives}
     </div>
