@@ -5017,8 +5017,8 @@ def build_html() -> str:
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>골프장 운영 Peer 비교 — Pure-play 중심 (DMIG · PIPG · KPIG)</title>
-<meta name="description" content="인도네시아 IDX 상장 골프장 운영 peer 비교. Pure-play 3개 (DMIG, PIPG, KPIG) 심층 + 10개 reference.">
+<title>골프장 운영 KPI · CAPEX · OPEX — 7-peer 심층 분석</title>
+<meta name="description" content="인도네시아 IDX 상장 골프장 7-peer 운영 KPI · CAPEX · OPEX 심층 비교. AR Note 직접 추출 + 99,618 chunks 벡터 검증.">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -5029,12 +5029,12 @@ def build_html() -> str:
       <div class="brand">
         <span class="mark">⛳</span>
         <div>
-          <div class="name">골프장 운영 Peer 비교</div>
-          <div class="sub">Pure-play 중심 · DMIG · PIPG · KPIG · 인도네시아 IDX</div>
+          <div class="name">골프장 운영 KPI · CAPEX · OPEX</div>
+          <div class="sub">7-peer 심층 분석 · DMIG · PIPG · GOLF · KPIG · MDLN · KIJA · SMDM</div>
         </div>
       </div>
       <div class="head-actions">
-        <a class="btn-link" href="../operations/dashboard.html">기존 13-peer 운영 대시보드 ↗</a>
+        <a class="btn-link" href="../operations/dashboard.html">13-peer 운영 대시보드 ↗</a>
         <a class="btn-link" href="../../index.html">← 지도</a>
       </div>
     </div>
@@ -5054,11 +5054,9 @@ def build_html() -> str:
 <footer class="foot">
   <div class="wrap">
     <p>
-      <strong>골프장 운영 Peer 비교 사이트</strong> — Build {today} (commit <code>{commit_sha}</code>) ·
-      Ops 탭 <strong>{ops_sections_count}</strong>개 분석 섹션 ·
-      <strong>{viz_svg_count}</strong> SVG 차트 · <strong>{viz_kpi_count}</strong> KPI 타일 · <strong>{viz_quote_count}</strong> 벡터 narrative 카드 ·
-      데이터: raw_peer_data/*.csv (last verified 2026-04-29 ~ 2026-05-07) + AR Note 직접 추출 + 벡터 검색 (99,618 chunks) ·
-      추정/보간 없음. 미공시는 N/A로 표기.
+      <strong>골프장 운영 KPI · CAPEX · OPEX</strong> — Build {today} · <code>{commit_sha}</code> ·
+      <strong>{ops_sections_count}</strong> 분석 섹션 · <strong>{viz_svg_count}</strong> SVG · <strong>{viz_kpi_count}</strong> KPI 타일 · <strong>{viz_quote_count}</strong> narrative 카드 ·
+      AR Note PyMuPDF 추출 + 99,618 chunks 벡터 검증 · 추정/보간 없음 · 미공시 N/A.
     </p>
     <p>
       <a href="https://github.com/moon470an-sys/Indonesia-Golf-Club">소스 GitHub</a> ·
