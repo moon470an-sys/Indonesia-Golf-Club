@@ -469,7 +469,6 @@ def _pnl_funnel_chart(ticker: str, fy: str = "FY2024") -> str:
             break
     gp = rev - cogs if rev and cogs else None
 
-    # Operating income (FY24)
     op_inc = None
     net_inc = None
     if ticker == "DMIG" and fy == "FY2024":
@@ -483,6 +482,21 @@ def _pnl_funnel_chart(ticker: str, fy: str = "FY2024") -> str:
                 op_inc = (r.get(fy) or 0) * 1000
             if r.get("label") == "Laba Bersih":
                 net_inc = (r.get(fy) or 0) * 1000
+    elif ticker == "GOLF":
+        fh = (d.get("financial_highlights") or {}).get("rows_in_idr", [])
+        for r in fh:
+            if r.get("label") == "Penjualan Bersih":
+                rev = r.get(fy) or rev
+            if r.get("label") == "Beban Pokok Penjualan":
+                cogs = abs(r.get(fy) or 0) or cogs
+            if r.get("label") == "Laba Bruto":
+                gp = r.get(fy) or gp
+            if r.get("label") == "Laba Usaha":
+                op_inc = r.get(fy)
+            if r.get("label") == "Laba Tahun Berjalan":
+                net_inc = r.get(fy)
+        if rev and cogs and not gp:
+            gp = rev - cogs
 
     if not (rev and gp and op_inc and net_inc):
         return ""
@@ -535,10 +549,12 @@ def _pnl_funnel_chart(ticker: str, fy: str = "FY2024") -> str:
 
 
 def _pnl_funnel_section() -> str:
-    """Grid of 2-peer funnel charts (DMIG + PIPG, FY24)."""
-    parts = [_pnl_funnel_chart("DMIG", "FY2024"), _pnl_funnel_chart("PIPG", "FY2024")]
+    """Grid of 3-peer funnel charts (DMIG + PIPG + GOLF, FY24)."""
+    parts = [_pnl_funnel_chart("DMIG", "FY2024"),
+             _pnl_funnel_chart("PIPG", "FY2024"),
+             _pnl_funnel_chart("GOLF", "FY2024")]
     parts = [p for p in parts if p]
-    return f"""<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:14px;">
+    return f"""<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:14px;">
   {''.join(parts)}
 </div>"""
 
