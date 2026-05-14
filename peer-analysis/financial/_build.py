@@ -1133,6 +1133,57 @@ OPS_KPI_EVIDENCE = {
 }
 
 
+# PIPG explicit 4-segment FY2023 data from Note 30 (extracted via vector search)
+PIPG_SEGMENT_FY2023 = {
+    "Golf Course & Cart": {"revenue": 67_114_799_178, "cogs": 27_673_842_714},
+    "Membership & Enrollment Fee": {"revenue": 27_424_538_398, "cogs": 3_336_863_353},
+    "Restaurant": {"revenue": 33_192_504_715, "cogs": 22_843_371_185},
+    "Others": {"revenue": 75_360_479_776, "cogs": 31_201_587_676},
+}
+
+
+def _pipg_segment_table() -> str:
+    """PIPG 4-segment GP margin breakdown (FY2023, Note 30)."""
+    rows = []
+    tot_rev = 0
+    tot_cogs = 0
+    for name, d in PIPG_SEGMENT_FY2023.items():
+        rev = d["revenue"]
+        cogs = d["cogs"]
+        gp = rev - cogs
+        gm = (gp / rev * 100) if rev else None
+        tot_rev += rev
+        tot_cogs += cogs
+        rows.append(
+            f'<tr><td>{safe(name)}</td>'
+            f'<td class="num">{fmt_bn(rev)}</td>'
+            f'<td class="num">{fmt_bn(cogs)}</td>'
+            f'<td class="num">{fmt_bn(gp)}</td>'
+            f'<td class="num">{f"{gm:.1f}%"}</td></tr>'
+        )
+    tot_gp = tot_rev - tot_cogs
+    tot_gm = (tot_gp / tot_rev * 100)
+    rows.append(
+        f'<tr class="row-total"><td><strong>합계</strong></td>'
+        f'<td class="num"><strong>{fmt_bn(tot_rev)}</strong></td>'
+        f'<td class="num"><strong>{fmt_bn(tot_cogs)}</strong></td>'
+        f'<td class="num"><strong>{fmt_bn(tot_gp)}</strong></td>'
+        f'<td class="num"><strong>{tot_gm:.1f}%</strong></td></tr>'
+    )
+    return f"""<div class="tbl-card">
+  <table class="tbl tbl-tight">
+    <thead><tr>
+      <th>Segment</th>
+      <th class="num">매출 (FY23)</th>
+      <th class="num">COGS</th>
+      <th class="num">Gross Profit</th>
+      <th class="num">GP Margin</th>
+    </tr></thead>
+    <tbody>{''.join(rows)}</tbody>
+  </table>
+</div>"""
+
+
 # Holes per peer for unit-economic normalization
 HOLES = {
     "DMIG": 36,   # PIK 18 + BSD 18
@@ -1604,6 +1655,7 @@ def section_ops() -> str:
     related_party_section = _related_party_and_lease_section()
     ops_kpi_section = _ops_kpi_section()
     per_hole_table = _per_hole_metrics_table()
+    pipg_seg_table = _pipg_segment_table()
 
     rev_blocks = "\n".join(filter(None, [
         _revenue_breakdown_table("DMIG", "revenue_note", "매출 라인 분해"),
@@ -1633,6 +1685,7 @@ def section_ops() -> str:
           <li><a href="#opex">OpEx 라인 분해 — 인건비·감가·유지보수</a></li>
           <li><a href="#opex-norm">OpEx 카테고리별 normalized 비교</a></li>
           <li><a href="#capex-proxy">CAPEX proxy (감가·유지·자산집약도)</a></li>
+          <li><a href="#pipg-seg">PIPG 4-segment GP margin (Note 30)</a></li>
           <li><a href="#segment-6">6-peer 골프 segment 통합 비교</a></li>
           <li><a href="#unit-econ">홀당 단위 경제 (7-peer Unit Economics)</a></li>
           <li><a href="#ops-kpi">운영 KPI 시계열 (골퍼·회원·인력·CWIP)</a></li>
@@ -1722,6 +1775,26 @@ def section_ops() -> str:
         <strong>해석:</strong> DMIG는 감가상각/매출 ≈ 11%, PIPG ≈ 5.7%. DMIG가 신규 시설 (Range@PIK 골프테인먼트 등)에 더 공격적으로 투자한 것으로 보임.
         PIPG는 유지보수/매출 ≈ 5.9%로 DMIG (0.9%)보다 5~6배 높아 노후 코스 (1976년 개장) 유지비용 부담을 시사.
       </div>
+    </div>
+
+    <div class="section" id="pipg-seg">
+      <h2>PIPG 4-segment GP margin — Note 30 직접 추출</h2>
+      <h3>Golf Course&amp;Cart / Membership / Restaurant / Others 매출×COGS×GP×Margin</h3>
+      <p class="lede">
+        PIPG는 Note 30 Segment Information에서 Golf Course&amp;Cart / Membership&amp;Enrollment / Restaurant / Others 4 segment의 COGS를 explicit 공시.
+        Note 27 (revenue 11라인) · Note 28 (COGS 11라인)과는 다른 segment 차원의 cut.
+        Membership 부문의 GP margin이 압도적 높음.
+      </p>
+      {pipg_seg_table}
+      <div class="banner info">
+        <strong>FY2023 PIPG segment GP margin 인사이트:</strong>
+        <strong>Membership & Enrollment</strong> 87.8% — 신규 회원/연회비 수익은 거의 순이익에 가까움 (소액 COGS) ·
+        <strong>Golf Course & Cart</strong> 58.7% — 핵심 골프 운영 마진 ·
+        <strong>Others (Driving Range·Branding·Sponsor 통합)</strong> 58.6% — Note 27 기준 driving range/branding/Indonesia Open sponsor 매출 ·
+        <strong>Restaurant</strong> 31.2% — F&B는 마진이 가장 낮음 (예상 가능).
+        전체 GP margin 58.1%.
+      </div>
+      <p class="src-line">출처: PIPG FY23 AR p.156 Note 30 Segment Information (벡터 검색으로 직접 추출, 4-segment breakdown)</p>
     </div>
 
     <div class="section" id="segment-6">
