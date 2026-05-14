@@ -675,8 +675,70 @@
         <strong>(1) 감가상각비/매출</strong> — 누적 CAPEX의 유동화 비율,
         <strong>(2) 유지보수/매출</strong> — 진행 중 maintenance CAPEX,
         <strong>(3) 총자산/매출</strong> — historic CAPEX 누적 (B/S 기준).
+        Heatmap 색이 진할수록 강도 큼.
       </p>
-      <div class="tbl-card">
+      <div class="kpi-strip"><div class="kpi-tile accent-warn">
+  <div class="kpi-cap">DMIG · 자본투자 phase</div>
+  <div class="kpi-val small">Capex-intensive · 신규 시설 투자</div>
+  <div class="kpi-sub">감가/매출 <strong>11.1%</strong> · 자산집약도 <strong>2.6×</strong></div>
+</div><div class="kpi-tile accent-gold">
+  <div class="kpi-cap">PIPG · 자본투자 phase</div>
+  <div class="kpi-val small">Mature · 유지보수 비중 큼</div>
+  <div class="kpi-sub">감가/매출 <strong>5.7%</strong> · 자산집약도 <strong>2.3×</strong></div>
+</div><div class="kpi-tile accent-green">
+  <div class="kpi-cap">GOLF · 자본투자 phase</div>
+  <div class="kpi-val small">Asset-light · IPO 1년차 효과</div>
+  <div class="kpi-sub">감가/매출 <strong>1.3%</strong> · 자산집약도 <strong>43.6×</strong></div>
+</div><div class="kpi-tile accent-blue">
+  <div class="kpi-cap">KPIG · 자본투자 phase</div>
+  <div class="kpi-val small">Conglomerate · golf 분리 불가</div>
+  <div class="kpi-sub">감가/매출 <strong>1.1%</strong> · 자산집약도 <strong>20.2×</strong></div>
+</div></div>
+<h4 class="ops-block-h">자본투자 강도 heatmap — 3 지표 × 4 peer</h4>
+<div class="tbl-card">
+  <table class="tbl">
+    <thead><tr>
+      <th>Peer</th>
+      <th class="num" style="text-align:center;">감가상각 / 매출 <span class="muted" style="font-weight:400;font-size:11px;">(P&amp;L)</span></th>
+      <th class="num" style="text-align:center;">유지보수 / 매출 <span class="muted" style="font-weight:400;font-size:11px;">(P&amp;L)</span></th>
+      <th class="num" style="text-align:center;">자산 / 매출 <span class="muted" style="font-weight:400;font-size:11px;">(B/S 누적)</span></th>
+    </tr></thead>
+    <tbody><tr><td><span class="ticker-mini">DMIG</span></td><td class="num heat-4" style="text-align:center;font-weight:700;">  <div style="font-size:18px;">11.1%</div>  <div style="font-size:11px;opacity:0.85;font-weight:400;">Rp 28.2bn</div></td><td class="num heat-1" style="text-align:center;font-weight:700;">  <div style="font-size:18px;">0.9%</div>  <div style="font-size:11px;opacity:0.85;font-weight:400;">Rp 2.3bn</div></td><td class="num heat-1" style="text-align:center;font-weight:700;">  <div style="font-size:18px;">2.6×</div>  <div style="font-size:11px;opacity:0.85;font-weight:400;">Rp 648.9bn</div></td></tr><tr><td><span class="ticker-mini">PIPG</span></td><td class="num heat-2" style="text-align:center;font-weight:700;">  <div style="font-size:18px;">5.7%</div>  <div style="font-size:11px;opacity:0.85;font-weight:400;">Rp 11.3bn</div></td><td class="num heat-4" style="text-align:center;font-weight:700;">  <div style="font-size:18px;">5.9%</div>  <div style="font-size:11px;opacity:0.85;font-weight:400;">Rp 11.6bn</div></td><td class="num heat-1" style="text-align:center;font-weight:700;">  <div style="font-size:18px;">2.3×</div>  <div style="font-size:11px;opacity:0.85;font-weight:400;">Rp 446.1bn</div></td></tr><tr><td><span class="ticker-mini">GOLF</span></td><td class="num heat-1" style="text-align:center;font-weight:700;">  <div style="font-size:18px;">1.3%</div>  <div style="font-size:11px;opacity:0.85;font-weight:400;">Rp 2.5bn</div></td><td class="num heat-2" style="text-align:center;font-weight:700;">  <div style="font-size:18px;">1.3%</div>  <div style="font-size:11px;opacity:0.85;font-weight:400;">Rp 2.5bn</div></td><td class="num heat-5" style="text-align:center;font-weight:700;">  <div style="font-size:18px;">43.6×</div>  <div style="font-size:11px;opacity:0.85;font-weight:400;">Rp 8.64조</div></td></tr><tr><td><span class="ticker-mini">KPIG</span></td><td class="num heat-1" style="text-align:center;font-weight:700;">  <div style="font-size:18px;">1.1%</div>  <div style="font-size:11px;opacity:0.85;font-weight:400;">Rp 18.9bn</div></td><td class="num heat-3" style="text-align:center;font-weight:700;">  <div style="font-size:18px;">2.7%</div>  <div style="font-size:11px;opacity:0.85;font-weight:400;">Rp 48.6bn</div></td><td class="num heat-4" style="text-align:center;font-weight:700;">  <div style="font-size:18px;">20.2×</div>  <div style="font-size:11px;opacity:0.85;font-weight:400;">Rp 35.83조</div></td></tr></tbody>
+  </table>
+</div>
+<p class="src-line" style="margin-top:8px;">색이 진할수록 자본투자/자산 강도 강함 · 감가 = 누적 CAPEX 유동화 · 유지 = 진행 maintenance CAPEX · 자산집약도 = historic CAPEX 누적</p>
+<h4 class="ops-block-h" style="margin-top: 22px;">P&amp;L CAPEX intensity gauge — 감가 + 유지 합산</h4>
+<div class="stack-block">
+  <p class="src-line" style="margin: 4px 2px 8px;">진한 갈색 = capital-intensive · 연두 = capital-light · 25% 풀스케일</p>
+  <div class="stack-row">
+  <div class="stack-label"><span class="ticker-mini">DMIG</span></div>
+  <div class="stack-bar" style="background:#f5f3ec;">
+    <div class="stack-seg" style="width:48.2%;background:#c08a2e;">12.0%</div>
+  </div>
+  <div class="stack-total">감가 11.1% + 유지 0.9%</div>
+</div><div class="stack-row">
+  <div class="stack-label"><span class="ticker-mini">PIPG</span></div>
+  <div class="stack-bar" style="background:#f5f3ec;">
+    <div class="stack-seg" style="width:46.5%;background:#c08a2e;">11.6%</div>
+  </div>
+  <div class="stack-total">감가 5.7% + 유지 5.9%</div>
+</div><div class="stack-row">
+  <div class="stack-label"><span class="ticker-mini">GOLF</span></div>
+  <div class="stack-bar" style="background:#f5f3ec;">
+    <div class="stack-seg" style="width:10.0%;background:#95c073;">2.5%</div>
+  </div>
+  <div class="stack-total">감가 1.3% + 유지 1.3%</div>
+</div><div class="stack-row">
+  <div class="stack-label"><span class="ticker-mini">KPIG</span></div>
+  <div class="stack-bar" style="background:#f5f3ec;">
+    <div class="stack-seg" style="width:15.3%;background:#95c073;">3.8%</div>
+  </div>
+  <div class="stack-total">감가 1.1% + 유지 2.7%</div>
+</div>
+</div>
+      <details style="margin: 14px 0 4px;">
+        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 CAPEX proxy 표 (3-peer, IDR 절댓값 포함)</summary>
+        <div class="tbl-card">
   <table class="tbl">
     <thead><tr>
       <th>Peer</th>
@@ -690,6 +752,7 @@
     <tbody><tr class="tier-a"><td><span class="ticker-mini">DMIG</span></td><td class="num">28.2bn</td><td class="num">11.1%</td><td class="num">2.3bn</td><td class="num">0.9%</td><td class="num">648.9bn</td><td class="num">2.56×</td></tr><tr class="tier-a"><td><span class="ticker-mini">PIPG</span></td><td class="num">11.3bn</td><td class="num">5.7%</td><td class="num">11.6bn</td><td class="num">5.9%</td><td class="num">446.1bn</td><td class="num">2.26×</td></tr><tr class="tier-a"><td><span class="ticker-mini">KPIG</span></td><td class="num">18.9bn</td><td class="num">1.1%</td><td class="num">48.6bn</td><td class="num">2.7%</td><td class="num">35.83조</td><td class="num">20.24×</td></tr></tbody>
   </table>
 </div>
+      </details>
       <div class="banner info">
         <strong>해석:</strong> DMIG는 감가상각/매출 ≈ 11%, PIPG ≈ 5.7%. DMIG가 신규 시설 (Range@PIK 골프테인먼트 등)에 더 공격적으로 투자한 것으로 보임.
         PIPG는 유지보수/매출 ≈ 5.9%로 DMIG (0.9%)보다 5~6배 높아 노후 코스 (1976년 개장) 유지비용 부담을 시사.
@@ -1240,7 +1303,7 @@
 <footer class="foot">
   <div class="wrap">
     <p>
-      <strong>골프장 운영 Peer 비교 사이트</strong> — Build 2026-05-14 (commit <code>5ef6666</code>) ·
+      <strong>골프장 운영 Peer 비교 사이트</strong> — Build 2026-05-14 (commit <code>6cd90a6</code>) ·
       Ops 탭 19개 분석 섹션 ·
       데이터: raw_peer_data/*.csv (last verified 2026-04-29 ~ 2026-05-07) + AR Note 직접 추출 + 벡터 검색 (99,618 chunks) ·
       추정/보간 없음. 미공시는 N/A로 표기.

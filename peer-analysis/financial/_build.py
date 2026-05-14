@@ -1175,6 +1175,168 @@ def _capex_proxy_table() -> str:
 </div>"""
 
 
+def _capex_data() -> list:
+    """Extract per-peer CAPEX proxy ratios with explicit numbers.
+
+    Returns list of dicts: {ticker, dep, dep_pct, mnt, mnt_pct, ta, intensity}.
+    """
+    out = []
+    for t in ["DMIG", "PIPG", "GOLF", "KPIG"]:
+        d = NOTES.get(t, {})
+        dep_line = None
+        maint_line = None
+        for okey in ("opex_note", "opex_note_29", "ga_note_32", "ga_note_34"):
+            b = d.get(okey) or {}
+            for ln in b.get("lines") or []:
+                lab = (ln.get("id_label") or "").lower()
+                en = (ln.get("en_label") or "").lower()
+                if dep_line is None and ("penyusutan" in lab or "depreciation" in en):
+                    dep_line = ln
+                if maint_line is None and ("perbaikan" in lab or "pemeliharaan" in lab or "perawatan" in lab or "repair" in en or "maintenance" in en):
+                    maint_line = ln
+            if dep_line and maint_line:
+                break
+        # Revenue (entity); for GOLF prefer by_operations total
+        rev24 = revenue_total_for(t, "FY2024")
+        if t == "GOLF":
+            rev24 = ((d.get("revenue_note_29") or {}).get("by_operations") or {}).get("total", {}).get("FY2024") or rev24
+        dep24 = (dep_line or {}).get("FY2024")
+        mnt24 = (maint_line or {}).get("FY2024")
+        fin = next((f for f in by_ticker(FINANCIALS, t) if f.get("total_assets_idr")), {})
+        ta = fin.get("total_assets_idr")
+        dep_pct = (dep24 / rev24 * 100) if (dep24 and rev24) else None
+        mnt_pct = (mnt24 / rev24 * 100) if (mnt24 and rev24) else None
+        intensity = (float(ta) / float(rev24)) if (rev24 and ta) else None
+        out.append({
+            "ticker": t,
+            "dep": dep24, "dep_pct": dep_pct,
+            "mnt": mnt24, "mnt_pct": mnt_pct,
+            "ta": ta, "intensity": intensity,
+        })
+    return out
+
+
+def _heat_class(value, thresholds):
+    """Map value to heat-N CSS class based on threshold breakpoints."""
+    if value is None:
+        return "heat-0"
+    for i, thr in enumerate(thresholds):
+        if value < thr:
+            return f"heat-{i+1}"
+    return f"heat-{len(thresholds)+1}"
+
+
+def _capex_heatmap_section() -> str:
+    """CAPEX visualization: KPI tiles + 3x3 heatmap + intensity gauge."""
+    data = _capex_data()
+
+    # --- (1) KPI tile per peer with CAPEX phase tag
+    phase_label = {
+        "DMIG": ("Capex-intensive · 신규 시설 투자", "accent-warn"),
+        "PIPG": ("Mature · 유지보수 비중 큼", "accent-gold"),
+        "GOLF": ("Asset-light · IPO 1년차 효과", "accent-green"),
+        "KPIG": ("Conglomerate · golf 분리 불가", "accent-blue"),
+    }
+    tiles = []
+    for r in data:
+        t = r["ticker"]
+        phase, accent = phase_label.get(t, ("—", ""))
+        dep_str = f"{r['dep_pct']:.1f}%" if r["dep_pct"] is not None else "—"
+        intensity_str = f"{r['intensity']:.1f}×" if r["intensity"] is not None else "—"
+        tiles.append(f"""<div class="kpi-tile {accent}">
+  <div class="kpi-cap">{safe(t)} · 자본투자 phase</div>
+  <div class="kpi-val small">{safe(phase)}</div>
+  <div class="kpi-sub">감가/매출 <strong>{dep_str}</strong> · 자산집약도 <strong>{intensity_str}</strong></div>
+</div>""")
+
+    kpi_strip = f'<div class="kpi-strip">{"".join(tiles)}</div>'
+
+    # --- (2) 3x3 heatmap: peer × {감가, 유지, 자산집약도}
+    # Heat thresholds (green-scale heat-1..5)
+    dep_thr = [3, 6, 9, 12]      # 감가/매출 %
+    mnt_thr = [1, 2, 4, 6]       # 유지/매출 %
+    int_thr = [5, 10, 15, 25]    # 자산/매출 ×
+
+    rows = []
+    for r in data:
+        t = r["ticker"]
+        dep_cls = _heat_class(r["dep_pct"], dep_thr)
+        mnt_cls = _heat_class(r["mnt_pct"], mnt_thr)
+        int_cls = _heat_class(r["intensity"], int_thr)
+        dep_str = f"{r['dep_pct']:.1f}%" if r["dep_pct"] is not None else "—"
+        mnt_str = f"{r['mnt_pct']:.1f}%" if r["mnt_pct"] is not None else "—"
+        int_str = f"{r['intensity']:.1f}×" if r["intensity"] is not None else "—"
+        # Sub-amount under each
+        dep_sub = f"Rp {fmt_bn(r['dep']).replace(' bn','bn')}" if r["dep"] else ""
+        mnt_sub = f"Rp {fmt_bn(r['mnt']).replace(' bn','bn')}" if r["mnt"] else ""
+        ta_sub = f"Rp {fmt_bn(r['ta']).replace(' bn','bn')}" if r["ta"] else ""
+        rows.append(
+            f'<tr>'
+            f'<td><span class="ticker-mini">{safe(t)}</span></td>'
+            f'<td class="num {dep_cls}" style="text-align:center;font-weight:700;">'
+            f'  <div style="font-size:18px;">{dep_str}</div>'
+            f'  <div style="font-size:11px;opacity:0.85;font-weight:400;">{dep_sub}</div></td>'
+            f'<td class="num {mnt_cls}" style="text-align:center;font-weight:700;">'
+            f'  <div style="font-size:18px;">{mnt_str}</div>'
+            f'  <div style="font-size:11px;opacity:0.85;font-weight:400;">{mnt_sub}</div></td>'
+            f'<td class="num {int_cls}" style="text-align:center;font-weight:700;">'
+            f'  <div style="font-size:18px;">{int_str}</div>'
+            f'  <div style="font-size:11px;opacity:0.85;font-weight:400;">{ta_sub}</div></td>'
+            f'</tr>'
+        )
+
+    heatmap = f"""<div class="tbl-card">
+  <table class="tbl">
+    <thead><tr>
+      <th>Peer</th>
+      <th class="num" style="text-align:center;">감가상각 / 매출 <span class="muted" style="font-weight:400;font-size:11px;">(P&amp;L)</span></th>
+      <th class="num" style="text-align:center;">유지보수 / 매출 <span class="muted" style="font-weight:400;font-size:11px;">(P&amp;L)</span></th>
+      <th class="num" style="text-align:center;">자산 / 매출 <span class="muted" style="font-weight:400;font-size:11px;">(B/S 누적)</span></th>
+    </tr></thead>
+    <tbody>{"".join(rows)}</tbody>
+  </table>
+</div>
+<p class="src-line" style="margin-top:8px;">색이 진할수록 자본투자/자산 강도 강함 · 감가 = 누적 CAPEX 유동화 · 유지 = 진행 maintenance CAPEX · 자산집약도 = historic CAPEX 누적</p>"""
+
+    # --- (3) Intensity gauge: combined visual ranking
+    # Score = dep_pct + mnt_pct (cap to 25) + intensity/2 (cap to 25) — normalized 0~75
+    gauge_rows = []
+    max_score_visual = 25.0  # we'll cap dep+mnt at 25% for the bar width
+    for r in data:
+        t = r["ticker"]
+        dep = r["dep_pct"] or 0
+        mnt = r["mnt_pct"] or 0
+        combined = dep + mnt
+        bar_w = min(combined / max_score_visual, 1.0) * 100
+        # Color by intensity
+        if combined >= 15:
+            color = "#92400e"
+        elif combined >= 10:
+            color = "#c08a2e"
+        elif combined >= 5:
+            color = "#4a7c30"
+        else:
+            color = "#95c073"
+        gauge_rows.append(f"""<div class="stack-row">
+  <div class="stack-label"><span class="ticker-mini">{safe(t)}</span></div>
+  <div class="stack-bar" style="background:#f5f3ec;">
+    <div class="stack-seg" style="width:{bar_w:.1f}%;background:{color};">{combined:.1f}%</div>
+  </div>
+  <div class="stack-total">감가 {dep:.1f}% + 유지 {mnt:.1f}%</div>
+</div>""")
+
+    gauge = f"""<h4 class="ops-block-h" style="margin-top: 22px;">P&amp;L CAPEX intensity gauge — 감가 + 유지 합산</h4>
+<div class="stack-block">
+  <p class="src-line" style="margin: 4px 2px 8px;">진한 갈색 = capital-intensive · 연두 = capital-light · 25% 풀스케일</p>
+  {"".join(gauge_rows)}
+</div>"""
+
+    return f"""{kpi_strip}
+<h4 class="ops-block-h">자본투자 강도 heatmap — 3 지표 × 4 peer</h4>
+{heatmap}
+{gauge}"""
+
+
 def _all_peer_golf_segment_table() -> str:
     """Cross-peer golf segment revenue + GP margin matrix (FY2024).
 
@@ -1961,6 +2123,7 @@ def section_ops() -> str:
     # ── New sub-sections built from operations/data/*_notes.json
     pnl_table = _pnl_table()
     capex_proxy_table = _capex_proxy_table()
+    capex_heatmap = _capex_heatmap_section()
     fy25_cards = _fy25_delta_cards()
     golf_segment_table = _all_peer_golf_segment_table()
     opex_norm_table = _normalized_opex_compare_table()
@@ -2166,8 +2329,13 @@ def section_ops() -> str:
         <strong>(1) 감가상각비/매출</strong> — 누적 CAPEX의 유동화 비율,
         <strong>(2) 유지보수/매출</strong> — 진행 중 maintenance CAPEX,
         <strong>(3) 총자산/매출</strong> — historic CAPEX 누적 (B/S 기준).
+        Heatmap 색이 진할수록 강도 큼.
       </p>
-      {capex_proxy_table}
+      {capex_heatmap}
+      <details style="margin: 14px 0 4px;">
+        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 CAPEX proxy 표 (3-peer, IDR 절댓값 포함)</summary>
+        {capex_proxy_table}
+      </details>
       <div class="banner info">
         <strong>해석:</strong> DMIG는 감가상각/매출 ≈ 11%, PIPG ≈ 5.7%. DMIG가 신규 시설 (Range@PIK 골프테인먼트 등)에 더 공격적으로 투자한 것으로 보임.
         PIPG는 유지보수/매출 ≈ 5.9%로 DMIG (0.9%)보다 5~6배 높아 노후 코스 (1976년 개장) 유지비용 부담을 시사.
