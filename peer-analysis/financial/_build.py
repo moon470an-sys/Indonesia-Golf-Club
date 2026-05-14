@@ -160,6 +160,20 @@ def safe(s) -> str:
     return html.escape(str(s)) if s is not None else ""
 
 
+def _info_tip(text: str, edge: str = "") -> str:
+    """Inline hover/focus tooltip — keeps supplementary narrative off the main surface.
+
+    edge: "" centered, "tip-l" left-aligned, "tip-r" right-aligned (avoid overflow).
+    """
+    if not text:
+        return ""
+    cls = f"tip {edge}".strip()
+    return (
+        f'<span class="{cls}" tabindex="0" role="note" aria-label="설명">i'
+        f'<span class="tip-body">{safe(text)}</span></span>'
+    )
+
+
 # ─────────────────────────────────────────────────────────────────────────────
 # Section: Overview
 # ─────────────────────────────────────────────────────────────────────────────
@@ -3551,24 +3565,24 @@ def _ops_kpi_section() -> str:
   <div class="kv-grid">
     <div class="kv">
       <div class="k">FY2023 골퍼 증가</div>
-      <div class="v">+12,979명 <span class="muted">(+12.09% YoY)</span></div>
-      <p class="kv-comment">{safe(dmig['rounds_played']['narrative'])}</p>    </div>
+      <div class="v">+12,979명 <span class="muted">(+12.09% YoY)</span> {_info_tip(dmig['rounds_played']['narrative'])}</div>
+    </div>
     <div class="kv">
       <div class="k">FY2023 Main Playing Members</div>
-      <div class="v">{dmig['members']['FY2023']:,}명 <span class="muted">(전년比 -6명)</span></div>
-      <p class="kv-comment">{safe(dmig['members']['narrative'])}</p>    </div>
+      <div class="v">{dmig['members']['FY2023']:,}명 <span class="muted">(전년比 -6명)</span> {_info_tip(dmig['members']['narrative'])}</div>
+    </div>
     <div class="kv">
       <div class="k">직원 수 (Benefit-eligible)</div>
-      <div class="v">FY21 342 → FY22 {dmig['headcount']['FY2022']} → FY23 {dmig['headcount']['FY2023']}</div>
-      <p class="kv-comment">{safe(dmig['headcount']['narrative'])}</p>    </div>
+      <div class="v">FY21 342 → FY22 {dmig['headcount']['FY2022']} → FY23 {dmig['headcount']['FY2023']} {_info_tip(dmig['headcount']['narrative'])}</div>
+    </div>
     <div class="kv">
       <div class="k">The Range@PIK 매출</div>
-      <div class="v">{fmt_bn(dmig['the_range_revenue']['FY2023'])} <span class="muted">(+372.7% YoY)</span></div>
-      <p class="kv-comment">{safe(dmig['the_range_revenue']['narrative'])}</p>    </div>
+      <div class="v">{fmt_bn(dmig['the_range_revenue']['FY2023'])} <span class="muted">(+372.7% YoY)</span> {_info_tip(dmig['the_range_revenue']['narrative'])}</div>
+    </div>
     <div class="kv">
       <div class="k">FY2023 F&amp;B 코스별 분해</div>
-      <div class="v">BSD {fmt_bn(dmig['fnb_split_FY2023']['bsd_restaurant_idr'])} + PIK {fmt_bn(dmig['fnb_split_FY2023']['pik_restaurant_idr'])}</div>
-      <p class="kv-comment">{safe(dmig['fnb_split_FY2023']['narrative'])}</p>    </div>
+      <div class="v">BSD {fmt_bn(dmig['fnb_split_FY2023']['bsd_restaurant_idr'])} + PIK {fmt_bn(dmig['fnb_split_FY2023']['pik_restaurant_idr'])} {_info_tip(dmig['fnb_split_FY2023']['narrative'])}</div>
+    </div>
   </div>
 </div>""")
 
