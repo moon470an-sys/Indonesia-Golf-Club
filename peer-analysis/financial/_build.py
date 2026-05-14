@@ -4889,6 +4889,10 @@ def section_capex() -> str:
       <h2 data-num="09">P&L Funnel — 매출→Gross→Op→Net leakage</h2>
       <h3>각 단계 % of revenue + leakage % 시각화 (FY24)</h3>
       {pnl_funnel}
+      <div class="insight-callout">
+        <span class="ic-icon">→</span>
+        <span class="ic-body">매출 100%에서 가장 큰 leakage는 <strong>COGS → GP 단계</strong> (30-40%p 빠짐). GP→영업이익 단계의 leakage(OpEx)가 peer 차이의 핵심 — GOLF는 이 단계 leakage가 가장 작아 순이익률 최상위.</span>
+      </div>
     </div>
 
     <div class="closing-stripe">
@@ -5050,7 +5054,10 @@ def section_opex() -> str:
       <h2 data-num="04">OpEx 라인 분해 — 3-peer top-N</h2>
       <h3>인건비 · 감가 · 유지 · 세금 · 유틸리티 — DMIG/PIPG/KPIG</h3>
       {opex_topn}
-
+      <div class="insight-callout">
+        <span class="ic-icon">→</span>
+        <span class="ic-body">3-peer 공통 최대 OpEx 항목은 <strong>인건비</strong>와 <strong>감가상각</strong>. DMIG는 이 둘이 각각 12%+로 가장 무겁고, KPIG의 G&amp;A는 Hotel+Resort+Golf 통합이라 golf-only 비교는 부적합.</span>
+      </div>
       <details class="orig-toggle"><summary>원본 OpEx 라인 표</summary>
         {opex_blocks}
       </details>
