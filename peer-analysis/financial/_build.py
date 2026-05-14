@@ -1085,6 +1085,13 @@ OPS_KPI_EVIDENCE = {
             "narrative": "The Range@PIK driving range/golftainment: FY2022 신규 운영 3개월간 6.6bn → FY2023 31.4bn (+372.71% YoY 풀이어 효과)",
             "src": "DMIG FY2023 AR p.18 THE RANGE",
         },
+        "fnb_split_FY2023": {
+            "bsd_restaurant_idr": 17_238_750_403,
+            "pik_restaurant_idr": 20_452_428_599,
+            "bsd_yoy_pct": 39.67,
+            "narrative": "FY2023 레스토랑 매출 코스별: BSD 17.24bn (+39.67% YoY) + PIK 20.45bn (+27.99% YoY 추정) = 37.7bn 직접 합산. Note 23 총 Restaurant 48.5bn과의 차액(~10.8bn)은 The Range@PIK F&B 일부.",
+            "src": "DMIG FY2023 AR p.15 FOOD & BEVERAGE",
+        },
     },
     "PIPG": {
         "rounds_played": {
@@ -1121,6 +1128,13 @@ OPS_KPI_EVIDENCE = {
             "src": "GOLF FY25 AR p.170 Aset dalam Konstruksi",
         },
         "employees_turnover_FY2025": 22,
+        "fy2025_golf_target_beat": {
+            "fy2025_golf_revenue_idr": 101_930_000_000,
+            "target_idr": 81_760_000_000,
+            "beat_pct": 0.2466,
+            "narrative": "FY2025 Golf segment IDR 101.93bn = 124.66% of established target IDR 81.76bn. FY24 93.0bn 대비 +9.6% 성장. (참고: 앞서 추출된 79.4bn은 Real Estate segment였음 — 라벨링 오류 정정)",
+            "src": "GOLF FY25 AR p.174",
+        },
     },
     "MDLN": {
         "headcount": {
@@ -1324,6 +1338,12 @@ def _ops_kpi_section() -> str:
       <p class="kv-comment">{safe(dmig['the_range_revenue']['narrative'])}</p>
       <span class="src">출처: {safe(dmig['the_range_revenue']['src'])}</span>
     </div>
+    <div class="kv">
+      <div class="k">FY2023 F&amp;B 코스별 분해</div>
+      <div class="v">BSD {fmt_bn(dmig['fnb_split_FY2023']['bsd_restaurant_idr'])} + PIK {fmt_bn(dmig['fnb_split_FY2023']['pik_restaurant_idr'])}</div>
+      <p class="kv-comment">{safe(dmig['fnb_split_FY2023']['narrative'])}</p>
+      <span class="src">출처: {safe(dmig['fnb_split_FY2023']['src'])}</span>
+    </div>
   </div>
 </div>""")
 
@@ -1386,10 +1406,11 @@ def _ops_kpi_section() -> str:
   </div>
 </div>""")
 
-    # GOLF CAPEX card
+    # GOLF CAPEX + target beat card
     g = OPS_KPI_EVIDENCE["GOLF"]
+    tb = g["fy2025_golf_target_beat"]
     cards.append(f"""<div class="ops-block">
-  <h4 class="ops-block-h">GOLF — FY2025 진행 중 CAPEX (Construction in Progress)</h4>
+  <h4 class="ops-block-h">GOLF — FY2025 진행 중 CAPEX + 매출 target 달성</h4>
   <div class="kv-grid">
     <div class="kv">
       <div class="k">CWIP — Buildings</div>
@@ -1400,7 +1421,13 @@ def _ops_kpi_section() -> str:
       <div class="v">{fmt_bn(g['capex_fy2025']['construction_landscape_idr'])}</div>
     </div>
     <div class="kv">
-      <div class="k">설명</div>
+      <div class="k">FY2025 Golf 매출 vs target</div>
+      <div class="v">{fmt_bn(tb['fy2025_golf_revenue_idr'])} <span class="muted">(target {fmt_bn(tb['target_idr'])} · 달성 {tb['beat_pct'] * 100:+.1f}%)</span></div>
+      <p class="kv-comment">{safe(tb['narrative'])}</p>
+      <span class="src">출처: {safe(tb['src'])}</span>
+    </div>
+    <div class="kv">
+      <div class="k">CWIP 설명</div>
       <p class="kv-comment">{safe(g['capex_fy2025']['narrative'])}</p>
       <span class="src">출처: {safe(g['capex_fy2025']['src'])}</span>
     </div>
