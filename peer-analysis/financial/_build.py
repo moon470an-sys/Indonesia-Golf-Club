@@ -1472,6 +1472,157 @@ def _capex_narrative_grid() -> str:
 </div>"""
 
 
+def _all_peer_golf_segment_data() -> list:
+    """Extract 6-peer golf segment data (used by both table + scatter chart)."""
+    rows = []
+
+    d = NOTES.get("DMIG", {})
+    rev_lines = (d.get("revenue_note") or {}).get("lines") or []
+    cogs_lines = (d.get("cogs_note") or {}).get("lines") or []
+    golf_rev = next((ln.get("FY2024") for ln in rev_lines if (ln.get("en_label") or "").lower() == "golf course"), None)
+    golf_cogs = next((ln.get("FY2024") for ln in cogs_lines if (ln.get("en_label") or "").lower() == "golf course"), None)
+    entity_rev = (d.get("revenue_note") or {}).get("total", {}).get("FY2024")
+    gm = ((golf_rev - golf_cogs) / golf_rev * 100) if (golf_rev and golf_cogs) else None
+    golf_share = (golf_rev / entity_rev * 100) if (golf_rev and entity_rev) else None
+    rows.append({"ticker": "DMIG", "basis": "Pure-play (Note 23)", "rev": golf_rev, "cogs": golf_cogs, "gm": gm, "entity_rev": entity_rev, "share": golf_share})
+
+    d = NOTES.get("PIPG", {})
+    rev_lines = (d.get("revenue_note_27") or {}).get("lines") or []
+    cogs_lines = (d.get("cogs_note_28") or {}).get("lines") or []
+    rl = {(ln.get("en_label") or ""): ln.get("FY2024") for ln in rev_lines}
+    cl = {(ln.get("en_label") or ""): ln.get("FY2024") for ln in cogs_lines}
+    golf_rev_pipg = (rl.get("Golf course", 0) or 0) + (rl.get("Golf cart", 0) or 0)
+    golf_cogs_pipg = (cl.get("Golf course", 0) or 0) + (cl.get("Golf cart", 0) or 0)
+    entity_rev_pipg = (d.get("revenue_note_27") or {}).get("total", {}).get("FY2024")
+    gm_pipg = ((golf_rev_pipg - golf_cogs_pipg) / golf_rev_pipg * 100) if golf_rev_pipg else None
+    share_pipg = (golf_rev_pipg / entity_rev_pipg * 100) if (golf_rev_pipg and entity_rev_pipg) else None
+    rows.append({"ticker": "PIPG", "basis": "Pure-play (Golf+Cart, Note 27/28)", "rev": golf_rev_pipg, "cogs": golf_cogs_pipg, "gm": gm_pipg, "entity_rev": entity_rev_pipg, "share": share_pipg})
+
+    d = NOTES.get("MDLN", {})
+    cr = (d.get("computed_ratios") or {}).get("FY2024", {})
+    golf_rev_m = cr.get("golf_revenue_pure")
+    golf_cogs_m = cr.get("golf_cogs_pure")
+    gm_m = cr.get("golf_pure_gp_margin")
+    entity_rev_m = (d.get("revenue_note_25") or {}).get("total", {}).get("FY2024")
+    share_m = (golf_rev_m / entity_rev_m * 100) if (golf_rev_m and entity_rev_m) else None
+    rows.append({"ticker": "MDLN", "basis": "Golf segment (Note 25)", "rev": golf_rev_m, "cogs": golf_cogs_m, "gm": (gm_m * 100 if gm_m else None), "entity_rev": entity_rev_m, "share": share_m})
+
+    d = NOTES.get("GOLF", {})
+    rev_lines = ((d.get("revenue_note_29") or {}).get("by_operations") or {}).get("lines") or []
+    cogs_lines = (d.get("cogs_note_30") or {}).get("lines") or []
+    golf_rev_g = next((ln.get("FY2024") for ln in rev_lines if ln.get("en_label") == "Golf"), None)
+    golf_cogs_g = next((ln.get("FY2024") for ln in cogs_lines if ln.get("id_label") == "Golf"), None)
+    entity_rev_g = ((d.get("revenue_note_29") or {}).get("by_operations") or {}).get("total", {}).get("FY2024")
+    gm_g = ((golf_rev_g - golf_cogs_g) / golf_rev_g * 100) if (golf_rev_g and golf_cogs_g) else None
+    share_g = (golf_rev_g / entity_rev_g * 100) if (golf_rev_g and entity_rev_g) else None
+    rows.append({"ticker": "GOLF", "basis": "Golf-only (Note 29 by-ops)", "rev": golf_rev_g, "cogs": golf_cogs_g, "gm": gm_g, "entity_rev": entity_rev_g, "share": share_g})
+
+    d = NOTES.get("KIJA", {})
+    seg = (d.get("segment_info_note_34") or {}).get("golf_segment_FY2024") or {}
+    rev_k = (seg.get("revenue") or 0) * 1e6
+    cogs_k = (seg.get("cogs") or 0) * 1e6
+    gm_k = ((rev_k - cogs_k) / rev_k * 100) if rev_k else None
+    entity_rev_k = ((d.get("segment_info_note_34") or {}).get("consolidated_total_FY2024") or {}).get("revenue", 0) * 1e6
+    share_k = (rev_k / entity_rev_k * 100) if (rev_k and entity_rev_k) else None
+    rows.append({"ticker": "KIJA", "basis": "Golf segment (Note 34)", "rev": rev_k, "cogs": cogs_k, "gm": gm_k, "entity_rev": entity_rev_k, "share": share_k})
+
+    d = NOTES.get("SMDM", {})
+    seg_smdm = ((d.get("segment_info_note_29") or {}).get("FY2024") or {}).get("Golf dan Country Club") or {}
+    rev_s = seg_smdm.get("revenue")
+    cogs_s = abs(seg_smdm.get("cogs", 0)) or None
+    gm_s = ((rev_s - cogs_s) / rev_s * 100) if (rev_s and cogs_s) else None
+    entity_rev_s = ((d.get("segment_info_note_29") or {}).get("FY2024") or {}).get("Konsolidasian", {}).get("revenue")
+    share_s = (rev_s / entity_rev_s * 100) if (rev_s and entity_rev_s) else None
+    rows.append({"ticker": "SMDM", "basis": "Golf & Country Club", "rev": rev_s, "cogs": cogs_s, "gm": gm_s, "entity_rev": entity_rev_s, "share": share_s})
+
+    return rows
+
+
+def _segment_scatter_svg() -> str:
+    """Bubble scatter — X: golf share, Y: GP margin, size: golf revenue."""
+    data = [r for r in _all_peer_golf_segment_data() if r["share"] and r["gm"]]
+    if not data:
+        return ""
+
+    width, height = 720, 360
+    pad_l, pad_b, pad_r, pad_t = 56, 44, 22, 20
+    inner_w = width - pad_l - pad_r
+    inner_h = height - pad_t - pad_b
+
+    # Axis ranges
+    x_max = 50  # golf share % of entity (cap)
+    y_max = 80  # GP margin %
+    y_min = 30
+    revs = [r["rev"] for r in data if r["rev"]]
+    max_rev = max(revs) if revs else 1
+
+    # Gridlines
+    grid = []
+    for ypct in [40, 50, 60, 70, 80]:
+        y = pad_t + inner_h - (inner_h * ((ypct - y_min) / (y_max - y_min)))
+        grid.append(
+            f'<line x1="{pad_l}" y1="{y:.1f}" x2="{pad_l + inner_w}" y2="{y:.1f}" stroke="#ebe9e0" stroke-width="1"/>'
+            f'<text x="{pad_l - 8}" y="{y + 4:.1f}" font-size="11" fill="#8a8a8a" text-anchor="end">{ypct}%</text>'
+        )
+    for xpct in [10, 20, 30, 40, 50]:
+        x = pad_l + (inner_w * (xpct / x_max))
+        grid.append(
+            f'<line x1="{x:.1f}" y1="{pad_t}" x2="{x:.1f}" y2="{pad_t + inner_h}" stroke="#ebe9e0" stroke-width="1"/>'
+            f'<text x="{x:.1f}" y="{pad_t + inner_h + 16}" font-size="11" fill="#8a8a8a" text-anchor="middle">{xpct}%</text>'
+        )
+
+    # Bubbles
+    bubbles = []
+    for r in data:
+        x = pad_l + (inner_w * (min(r["share"], x_max) / x_max))
+        y = pad_t + inner_h - (inner_h * ((min(max(r["gm"], y_min), y_max) - y_min) / (y_max - y_min)))
+        # Bubble radius: 8 ~ 32 px based on rev
+        r_norm = (r["rev"] or 0) / max_rev
+        radius = 8 + (r_norm ** 0.5) * 28  # sqrt for area-prop
+        color = PEER_COLORS.get(r["ticker"], "#8a8a8a")
+        rev_str = fmt_bn(r["rev"]).replace(" bn", "bn")
+        bubbles.append(
+            f'<g>'
+            f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{radius:.1f}" fill="{color}" fill-opacity="0.28" stroke="{color}" stroke-width="1.5">'
+            f'<title>{safe(r["ticker"])} · 매출 비중 {r["share"]:.1f}% · GP {r["gm"]:.1f}% · Rev Rp {rev_str}</title>'
+            f'</circle>'
+            f'<text x="{x:.1f}" y="{y - radius - 4:.1f}" font-size="12" font-weight="700" '
+            f'fill="{color}" text-anchor="middle">{safe(r["ticker"])}</text>'
+            f'<text x="{x:.1f}" y="{y + 4:.1f}" font-size="10" fill="{color}" font-weight="600" text-anchor="middle">'
+            f'{r["gm"]:.0f}% · {rev_str}</text>'
+            f'</g>'
+        )
+
+    # Axis labels
+    axis_labels = (
+        f'<text x="{pad_l + inner_w/2:.1f}" y="{height - 6}" font-size="12" fill="#4b4b4b" text-anchor="middle" font-weight="700">'
+        f'골프 매출 비중 (% of entity 매출)'
+        f'</text>'
+        f'<text x="14" y="{pad_t + inner_h/2:.1f}" font-size="12" fill="#4b4b4b" text-anchor="middle" font-weight="700" '
+        f'transform="rotate(-90 14 {pad_t + inner_h/2:.1f})">GP Margin (%)</text>'
+    )
+
+    # Quadrant annotations
+    annot = (
+        f'<text x="{pad_l + inner_w - 6}" y="{pad_t + 16}" font-size="10" fill="#2d5016" text-anchor="end" '
+        f'font-weight="700" opacity="0.55">↗ Pure-play + High margin</text>'
+        f'<text x="{pad_l + 6}" y="{pad_t + 16}" font-size="10" fill="#92400e" text-anchor="start" '
+        f'font-weight="700" opacity="0.55">↑ High margin, low share (diversified)</text>'
+        f'<text x="{pad_l + 6}" y="{pad_t + inner_h - 6}" font-size="10" fill="#b91c1c" text-anchor="start" '
+        f'font-weight="700" opacity="0.55">↓ Low margin, peripheral</text>'
+    )
+
+    return f"""<div style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 12px 8px;">
+  <svg viewBox="0 0 {width} {height}" width="100%" style="max-width:760px;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+    {''.join(grid)}
+    {axis_labels}
+    {annot}
+    {''.join(bubbles)}
+  </svg>
+</div>
+<p class="src-line" style="margin:8px 2px;">버블 면적 = golf 매출 절댓값 · X = 매출 비중 · Y = GP margin · hover로 정확 수치 (FY2024)</p>"""
+
+
 def _all_peer_golf_segment_table() -> str:
     """Cross-peer golf segment revenue + GP margin matrix (FY2024).
 
@@ -2674,6 +2825,7 @@ def section_ops() -> str:
     capex_narratives = _capex_narrative_grid()
     fy25_cards = _fy25_delta_cards()
     golf_segment_table = _all_peer_golf_segment_table()
+    segment_scatter = _segment_scatter_svg()
     opex_norm_table = _normalized_opex_compare_table()
     opex_kpi_strip = _opex_kpi_strip()
     opex_stack = _opex_stacked_bars()
@@ -2932,7 +3084,11 @@ def section_ops() -> str:
         Golf revenue / COGS / Gross profit margin / Entity 매출 비중을 동일 잣대로 비교.
         <strong>GOLF</strong>가 GP margin 65.7%로 가장 높고, <strong>SMDM</strong>은 38.9%로 가장 낮음 (FY23 대비 -16.9pp 급락).
       </p>
-      {golf_segment_table}
+      {segment_scatter}
+      <details style="margin: 14px 0 4px;">
+        <summary style="cursor: pointer; font-size: 13px; color: var(--ink-soft); padding: 6px 0;">▸ 원본 6-peer 골프 segment 표</summary>
+        {golf_segment_table}
+      </details>
       <div class="banner info">
         <strong>관전 포인트:</strong>
         <strong>GOLF (Intra GolfLink Resorts)</strong>: 골프 매출 비중 47%, GP margin 65.7% — 가장 자본효율 높음 (Bali New Kuta · Bogor Sentul) ·
