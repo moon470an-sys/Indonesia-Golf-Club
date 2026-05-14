@@ -1074,10 +1074,10 @@ OPS_KPI_EVIDENCE = {
         "headcount": {
             "FY2021": 342,
             "FY2022": 196,
-            "FY2023": None,
+            "FY2023": 206,
             "FY2024": None,
-            "narrative": "직원 수 FY2021 342명 → FY2022 196명 (-42.7% / 코로나 회복기 구조조정). FY24 employee benefit liabilities 라인에 비례적 증가 시사.",
-            "src": "DMIG FY2022 AR p.101 (employees with right to receive employee benefits)",
+            "narrative": "직원 수 FY2021 342명 → FY2022 196명 (-42.7% / 코로나 회복기 구조조정) → FY2023 206명 (+5.1% 점진 회복). 인건비 비중도 FY24 12.6%로 가장 높음.",
+            "src": "DMIG FY2022 p.101 / FY2023 p.87 (employees with right to receive employee benefits)",
         },
         "the_range_revenue": {
             "FY2022": 6_632_153_633,
@@ -1263,7 +1263,7 @@ def _ops_kpi_section() -> str:
     </div>
     <div class="kv">
       <div class="k">직원 수 (Benefit-eligible)</div>
-      <div class="v">FY21 342 → FY22 {dmig['headcount']['FY2022']}</div>
+      <div class="v">FY21 342 → FY22 {dmig['headcount']['FY2022']} → FY23 {dmig['headcount']['FY2023']}</div>
       <p class="kv-comment">{safe(dmig['headcount']['narrative'])}</p>
       <span class="src">출처: {safe(dmig['headcount']['src'])}</span>
     </div>
