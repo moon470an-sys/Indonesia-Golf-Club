@@ -1010,6 +1010,16 @@ def _all_peer_golf_segment_table() -> str:
     share_k = (rev_k / entity_rev_k * 100) if (rev_k and entity_rev_k) else None
     rows.append(("KIJA", "Golf segment (Note 34, units Rp million)", rev_k, cogs_k, gm_k, entity_rev_k, share_k))
 
+    # SMDM — Golf dan Country Club segment (Note 29)
+    d = NOTES.get("SMDM", {})
+    seg_smdm = ((d.get("segment_info_note_29") or {}).get("FY2024") or {}).get("Golf dan Country Club") or {}
+    rev_s = seg_smdm.get("revenue")
+    cogs_s = abs(seg_smdm.get("cogs", 0)) or None
+    gm_s = ((rev_s - cogs_s) / rev_s * 100) if (rev_s and cogs_s) else None
+    entity_rev_s = ((d.get("segment_info_note_29") or {}).get("FY2024") or {}).get("Konsolidasian", {}).get("revenue")
+    share_s = (rev_s / entity_rev_s * 100) if (rev_s and entity_rev_s) else None
+    rows.append(("SMDM", "Golf & Country Club (Rancamaya, Note 29)", rev_s, cogs_s, gm_s, entity_rev_s, share_s))
+
     body = []
     for ticker, basis, rev, cogs, gm_pct, entity_rev, share in rows:
         gm_str = f"{gm_pct:.1f}%" if gm_pct is not None else "—"
@@ -1385,21 +1395,21 @@ def section_ops() -> str:
     </div>
 
     <div class="section">
-      <h2>골프 segment 매출 — 5-peer 통합 비교 (FY2024)</h2>
+      <h2>골프 segment 매출 — 6-peer 통합 비교 (FY2024)</h2>
       <h3>explicit golf disclosure가 있는 모든 IDX peer</h3>
       <p class="lede">
-        Pure-play 외에도 <strong>MDLN · GOLF · KIJA</strong>는 annual report Note에서 골프 segment를 명시적 분리 공시.
+        Pure-play 외에도 <strong>MDLN · GOLF · KIJA · SMDM</strong>는 annual report Note에서 골프 segment를 명시적 분리 공시.
         Golf revenue / COGS / Gross profit margin / Entity 매출 비중을 동일 잣대로 비교.
-        <strong>GOLF</strong>가 GP margin 65.7%로 가장 높음 (links style·real estate cross-subsidy 가능),
-        <strong>MDLN</strong>는 GP margin 44.5%, <strong>KIJA</strong>는 41.6%.
+        <strong>GOLF</strong>가 GP margin 65.7%로 가장 높고, <strong>SMDM</strong>은 38.9%로 가장 낮음 (FY23 대비 -16.9pp 급락).
       </p>
       {golf_segment_table}
       <div class="banner info">
         <strong>관전 포인트:</strong>
-        <strong>GOLF (Intra GolfLink Resorts)</strong>: 골프가 entity 매출의 47%, GP margin 65.7%로 가장 자본효율 높음 (Bali 신코스 효과) ·
-        <strong>MDLN (Modern Realty)</strong>: 골프 비중 5.6%, GP margin 44.5%, FY25에 +28% YoY 성장 ·
-        <strong>KIJA</strong>: 골프 비중 1.8% (industrial estate 본업), GP margin 41.6%로 마진은 낮은 편 ·
-        <strong>DMIG/PIPG</strong>: Pure-play이지만 golf course-line만 가져오면 다른 비교 단위가 되므로 별도 cell 검토.
+        <strong>GOLF (Intra GolfLink Resorts)</strong>: 골프 매출 비중 47%, GP margin 65.7% — 가장 자본효율 높음 (Bali New Kuta · Bogor Sentul) ·
+        <strong>MDLN</strong>: 골프 비중 5.6%, GP margin 44.5% (FY25에 +28% YoY 성장) ·
+        <strong>KIJA</strong>: 골프 비중 1.8% (industrial estate 본업), GP margin 41.6% ·
+        <strong>SMDM (Rancamaya)</strong>: 골프 비중 9.1%, GP margin 38.9% — FY23 55.8% → FY24 38.9% 급락 (-16.9pp). FY24 영업이익 -212M IDR 적자전환. BSDE가 2024-10에 91.99% 인수 ·
+        <strong>DMIG/PIPG</strong>: Pure-play 골프코스 라인만 가져오므로 다른 단위; F&B/Cart 포함 시 비교 합치.
       </div>
       <p class="src-line">출처: site/peer-analysis/operations/data/{{dmig,pipg,mdln,golf,kija}}_notes.json (FY24 AR Note 23·25·27·29·34 직접 추출)</p>
     </div>
