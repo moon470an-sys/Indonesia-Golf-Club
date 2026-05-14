@@ -4970,7 +4970,9 @@ def section_capex() -> str:
     <div class="section" id="cap-narratives">
       <h2 data-num="05">왜? — AR 본문 직접 인용</h2>
       <h3>같은 감가율도 신규 투자 / 노후 자산 / 회계 정책 — 본문에서 의도 확인</h3>
-      {capex_narratives}
+      <details class="orig-toggle"><summary>AR 본문 직접 인용 펼치기</summary>
+        {capex_narratives}
+      </details>
     </div>
 
     <div class="section" id="cap-perhole">
@@ -5134,7 +5136,9 @@ def section_opex() -> str:
       {revenue_topn}
 
       <h4 class="ops-block-h" style="margin-top: 22px;">왜? — 매출 성장 driver</h4>
-      {revenue_narratives}
+      <details class="orig-toggle"><summary>매출 driver 본문 인용 펼치기</summary>
+        {revenue_narratives}
+      </details>
 
       <details class="orig-toggle"><summary>원본 매출 라인 표</summary>
         {rev_blocks}
@@ -5201,7 +5205,9 @@ def section_opex() -> str:
     <div class="section" id="op-narratives">
       <h2 data-num="08">왜? — 운영 리스크 & 비용 sensitivity</h2>
       <h3>OpEx 절댓값 뒤의 의미 — 보험·인건비 leverage·ESG·자본</h3>
-      {opex_narratives}
+      <details class="orig-toggle"><summary>운영 리스크·비용 본문 인용 펼치기</summary>
+        {opex_narratives}
+      </details>
     </div>
 
     <div class="section" id="op-pipg">
