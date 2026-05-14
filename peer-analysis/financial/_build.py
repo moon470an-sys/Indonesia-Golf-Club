@@ -3923,6 +3923,63 @@ def _fy25_delta_cards() -> str:
     return f'<div class="kv-grid">{"".join(cards)}</div>'
 
 
+def _full_cost_stack() -> str:
+    """Full P&L cost stack — for each peer, 100% bar = COGS + OpEx + Operating income."""
+    peers = [
+        ("DMIG", "revenue_note", "cogs_note", "opex_note"),
+        ("PIPG", "revenue_note_27", "cogs_note_28", "opex_note_29"),
+        ("GOLF", "revenue_note_29", "cogs_note_30", "ga_note_32"),
+    ]
+    rows = []
+    for ticker, rev_key, cogs_key, opex_key in peers:
+        d = NOTES.get(ticker, {})
+        if ticker == "GOLF":
+            rev = ((d.get("revenue_note_29") or {}).get("by_operations") or {}).get("total", {}).get("FY2024")
+        else:
+            rev = (d.get(rev_key) or {}).get("total", {}).get("FY2024")
+        cogs = (d.get(cogs_key) or {}).get("total", {}).get("FY2024")
+        opex = (d.get(opex_key) or {}).get("total", {}).get("FY2024")
+        if not (rev and cogs and opex):
+            continue
+        op_inc = rev - cogs - opex
+        rows.append((ticker, rev, cogs, opex, op_inc))
+
+    if not rows:
+        return ""
+
+    bars = []
+    for ticker, rev, cogs, opex, op_inc in rows:
+        cogs_pct = cogs / rev * 100
+        opex_pct = opex / rev * 100
+        op_pct = op_inc / rev * 100
+        segs = (
+            f'<div class="stack-seg" style="width:{cogs_pct:.1f}%;background:#b91c1c;" '
+            f'title="COGS: {cogs_pct:.1f}% (Rp {fmt_bn(cogs)})">{f"COGS {cogs_pct:.0f}%" if cogs_pct >= 12 else ""}</div>'
+            f'<div class="stack-seg" style="width:{opex_pct:.1f}%;background:#c08a2e;" '
+            f'title="OpEx: {opex_pct:.1f}% (Rp {fmt_bn(opex)})">{f"OpEx {opex_pct:.0f}%" if opex_pct >= 12 else ""}</div>'
+            f'<div class="stack-seg" style="width:{max(op_pct,0):.1f}%;background:#2d5016;" '
+            f'title="영업이익: {op_pct:.1f}% (Rp {fmt_bn(op_inc)})">{f"영업이익 {op_pct:.0f}%" if op_pct >= 12 else ""}</div>'
+        )
+        bars.append(f"""<div class="stack-row">
+  <div class="stack-label" style="flex:0 0 110px;"><span class="ticker-mini">{safe(ticker)}</span> <span class="muted">{fmt_bn(rev)}</span></div>
+  <div class="stack-bar" style="height:32px;">{segs}</div>
+  <div class="stack-total">영업이익률 {op_pct:.1f}%</div>
+</div>""")
+
+    legend = (
+        '<div class="stack-legend">'
+        '<span class="lg"><span class="sw" style="background:#b91c1c;"></span>COGS (매출원가)</span>'
+        '<span class="lg"><span class="sw" style="background:#c08a2e;"></span>OpEx (판관비)</span>'
+        '<span class="lg"><span class="sw" style="background:#2d5016;"></span>영업이익</span>'
+        '</div>'
+    )
+
+    return f"""<div class="stack-block">
+  {''.join(bars)}
+  {legend}
+</div>"""
+
+
 def _revenue_cogs_gp_chart(ticker: str, rev_key: str, cogs_key: str) -> str:
     """Per-line GP margin chart — pairs revenue lines with COGS lines by label.
 
@@ -4820,6 +4877,7 @@ def section_opex() -> str:
     opex_category_compare = _opex_category_cross_peer_section()
     opex_4y_trend = _opex_4y_trend_chart()
     revenue_cogs_gp = _revenue_cogs_gp_section()
+    full_cost_stack = _full_cost_stack()
 
     opex_blocks = "\n".join(filter(None, [
         _opex_breakdown_table("DMIG", "opex_note", "OpEx 라인 분해 (Note 25)"),
@@ -4900,8 +4958,18 @@ def section_opex() -> str:
       </div>
     </div>
 
+    <div class="section" id="op-stack">
+      <h2 data-num="01">전체 비용 구조 — 한눈에</h2>
+      <h3>매출 100% = COGS + OpEx + 영업이익 (FY2024, 3-peer)</h3>
+      {full_cost_stack}
+      <div class="insight-callout">
+        <span class="ic-icon">→</span>
+        <span class="ic-body">동일 매출 100%를 어떻게 쓰는가 — <strong>GOLF는 영업이익률 최고</strong> (COGS+OpEx 합이 가장 작음), <strong>DMIG/PIPG는 COGS+OpEx 합이 70%+</strong>. 아래 섹션에서 각 블록을 라인 단위로 분해.</span>
+      </div>
+    </div>
+
     <div class="section" id="op-rev">
-      <h2 data-num="01">매출 라인 분해 — Pure-play (FY23→FY24)</h2>
+      <h2 data-num="02">매출 라인 분해 — Pure-play (FY23→FY24)</h2>
       <h3>골프 / F&amp;B / 회원권 / 부대시설 별 매출 + AR narrative</h3>
       {revenue_topn}
 
@@ -4914,7 +4982,7 @@ def section_opex() -> str:
     </div>
 
     <div class="section" id="op-cogs">
-      <h2 data-num="02">COGS 라인 분해 — segment별 매출원가</h2>
+      <h2 data-num="03">COGS 라인 분해 — segment별 매출원가</h2>
       <h3>골프 코스 / 레스토랑 / 카트 / 드라이빙 레인지</h3>
       {cogs_topn}
 
@@ -4931,7 +4999,7 @@ def section_opex() -> str:
     </div>
 
     <div class="section" id="op-opex">
-      <h2 data-num="03">OpEx 라인 분해 — 3-peer top-N</h2>
+      <h2 data-num="04">OpEx 라인 분해 — 3-peer top-N</h2>
       <h3>인건비 · 감가 · 유지 · 세금 · 유틸리티 — DMIG/PIPG/KPIG</h3>
       {opex_topn}
 
@@ -4941,7 +5009,7 @@ def section_opex() -> str:
     </div>
 
     <div class="section" id="op-norm">
-      <h2 data-num="04">OpEx 카테고리별 정규화 — DMIG vs PIPG vs GOLF</h2>
+      <h2 data-num="05">OpEx 카테고리별 정규화 — DMIG vs PIPG vs GOLF</h2>
       <h3>FY24 매출 대비 % · cross-peer 같은 잣대 (11 카테고리 keyword 분류)</h3>
       <p class="lede">
         AR Note 라벨이 peer마다 달라 직접 비교가 어려운 문제를 해결 — 모든 OpEx 라인을 11 카테고리로 keyword 기반 자동 분류.
@@ -4962,7 +5030,7 @@ def section_opex() -> str:
     </div>
 
     <div class="section" id="op-category">
-      <h2 data-num="05">OpEx 카테고리 deep-dive — 4 핵심 비교</h2>
+      <h2 data-num="06">OpEx 카테고리 deep-dive — 4 핵심 비교</h2>
       <h3>인건비 · 세금·법률 · 유지보수 · 유틸리티 — peer 차이의 본질</h3>
       {opex_category_compare}
       <div class="insight-callout warn">
@@ -4972,19 +5040,19 @@ def section_opex() -> str:
     </div>
 
     <div class="section" id="op-4y-trend">
-      <h2 data-num="06">OpEx/매출 % — 4Y trend (FY22-25)</h2>
+      <h2 data-num="07">OpEx/매출 % — 4Y trend (FY22-25)</h2>
       <h3>비용 효율 추이 — DMIG/PIPG/GOLF</h3>
       {opex_4y_trend}
     </div>
 
     <div class="section" id="op-narratives">
-      <h2 data-num="07">왜? — 운영 리스크 & 비용 sensitivity (벡터 DB)</h2>
+      <h2 data-num="08">왜? — 운영 리스크 & 비용 sensitivity (벡터 DB)</h2>
       <h3>OpEx 절댓값 뒤의 의미 — 보험·인건비 leverage·ESG·자본</h3>
       {opex_narratives}
     </div>
 
     <div class="section" id="op-pipg">
-      <h2 data-num="08">PIPG 4-segment GP margin — Note 30</h2>
+      <h2 data-num="09">PIPG 4-segment GP margin — Note 30</h2>
       <h3>Golf Course&amp;Cart / Membership / Restaurant / Others (FY23)</h3>
       <p class="lede">
         PIPG는 Note 30 Segment Information에서 4 segment의 COGS를 explicit 공시. Membership 부문 GP margin 압도적 높음 (87.8%).
@@ -4996,7 +5064,7 @@ def section_opex() -> str:
     </div>
 
     <div class="section" id="op-fy25">
-      <h2 data-num="09">FY2025 미감사 prelim — 마진 압박 신호</h2>
+      <h2 data-num="10">FY2025 미감사 prelim — 마진 압박 신호</h2>
       <h3>DMIG/PIPG/KPIG 3-peer side-by-side dashboard</h3>
       {fy25_dashboard}
       <div class="insight-callout">
@@ -5009,7 +5077,7 @@ def section_opex() -> str:
     </div>
 
     <div class="section" id="op-margin">
-      <h2 data-num="10">FY24→FY25 마진 변화 — 벡터 추출 commentary</h2>
+      <h2 data-num="11">FY24→FY25 마진 변화 — 벡터 추출 commentary</h2>
       <h3>6-peer timeline 카드 + FY24↔FY25 mini delta bar</h3>
       {margin_change}
     </div>
