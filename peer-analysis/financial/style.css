@@ -848,6 +848,29 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .sw-rent   { background: #8a8a8a; }
 .sw-other  { background: #d4d0c0; }
 
+/* ============== Peer color legend ============== */
+.peer-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  padding: 10px 0 2px;
+  margin: 0;
+  font-size: 11.5px;
+}
+.peer-legend .pl-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--ink-soft);
+}
+.peer-legend .pl-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.peer-legend .pl-name { font-weight: 700; color: var(--ink); }
+.peer-legend .pl-desc { color: var(--muted); }
+
 /* ============== Ops sub-nav (sticky chip bar) ============== */
 .ops-subnav {
   position: sticky; top: 76px; z-index: 8;

@@ -4401,6 +4401,27 @@ def _land_hgb_timeline_visual() -> str:
 </div>"""
 
 
+def _peer_color_legend() -> str:
+    """Persistent peer color key — explains the consistent palette across all charts."""
+    peers = [
+        ("DMIG", "Damai Indah (BSD+PIK)"),
+        ("PIPG", "Pondok Indah"),
+        ("GOLF", "Intra GolfLink"),
+        ("KPIG", "MNC Land (Trump Lido)"),
+        ("MDLN", "Modern Golf"),
+        ("KIJA", "Jababeka"),
+        ("SMDM", "Suryamas (Rancamaya)"),
+    ]
+    items = []
+    for ticker, name in peers:
+        color = PEER_COLORS.get(ticker, "#8a8a8a")
+        items.append(
+            f'<span class="pl-item"><span class="pl-dot" style="background:{color};"></span>'
+            f'<span class="pl-name">{safe(ticker)}</span> <span class="pl-desc">{safe(name)}</span></span>'
+        )
+    return f'<div class="peer-legend">{"".join(items)}</div>'
+
+
 def _tab_exec_headline(tab_key: str, tab_title: str, tab_focus_tiles: list) -> str:
     """Tab-specific executive headline strip."""
     tiles_html = ""
@@ -4468,6 +4489,8 @@ def section_ops_kpi() -> str:
       <a class="chip" href="#kpi-dividend">배당</a>
       <a class="chip" href="#kpi-related">관계사·집중도</a>
     </nav>
+
+    {_peer_color_legend()}
 
     <div class="section ops-summary">
       <h2>운영 KPI — TL;DR (4 발견)</h2>
@@ -4640,6 +4663,8 @@ def section_capex() -> str:
       <a class="chip" href="#cap-radar">radar</a>
       <a class="chip" href="#cap-funnel">funnel</a>
     </nav>
+
+    {_peer_color_legend()}
 
     <div class="section ops-summary">
       <h2>CAPEX — TL;DR (4 발견)</h2>
@@ -4830,6 +4855,8 @@ def section_opex() -> str:
       <a class="chip" href="#op-fy25">FY25 prelim</a>
       <a class="chip" href="#op-margin">마진 변화</a>
     </nav>
+
+    {_peer_color_legend()}
 
     <div class="section ops-summary">
       <h2>OPEX — TL;DR (4 발견)</h2>
