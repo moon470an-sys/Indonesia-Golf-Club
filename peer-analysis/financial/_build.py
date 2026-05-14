@@ -4464,7 +4464,7 @@ def section_ops_kpi() -> str:
         tab_title="운영 KPI · 골퍼·회원·인력·자본배분",
         tab_focus_tiles=[
             ("DMIG 골퍼 +12.09% YoY", "123,278", "명", "DMIG", "FY2023 BSD+PIK (+12,979)", "green"),
-            ("PIPG 골퍼 4Y 추이", "67,538", "명", "PIPG", "FY2022 member 26,551 + non 40,987", "green"),
+            ("PIPG 골퍼 (FY22 member+비회원)", "67,538", "명", "PIPG", "member 26,551 + non-member 40,987", "green"),
             ("DMIG 직원 수 변화", "342→206", "명", "DMIG", "FY21→23 -39.8% 회복기 구조조정 + 점진 회복", "warn"),
             ("GOLF 진행 중 CAPEX", "426", "bn", "GOLF", "CWIP Buildings 188 + Landscape 238", "gold"),
             ("GOLF 고객 집중도", "34", "%", "GOLF", "단일 고객 매출 비중 — 구조적 risk", "warn"),
@@ -4872,7 +4872,7 @@ def section_opex() -> str:
           <div class="insight-tag"><span class="ticker-mini">PIPG</span> Membership cash machine</div>
           <div class="insight-metric up">87.8<span class="u">%</span></div>
           <div class="insight-title">FY23 Membership segment GP margin</div>
-          <p>신규 회원/연회비 거의 순이익에 가까움 (소액 COGS). Golf course 58.7% · Restaurant 31.2% 와 차별화.</p>
+          <p>신규 회원/연회비 거의 순이익에 가까움 (소액 COGS). Golf course 58.8% · Restaurant 31.2% 와 차별화.</p>
         </div>
         <div class="insight-card insight-warn">
           <div class="insight-tag"><span class="ticker-mini">DMIG</span> 인건비·세금 부담</div>
