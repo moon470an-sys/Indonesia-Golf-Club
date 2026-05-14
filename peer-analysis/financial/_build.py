@@ -4638,10 +4638,6 @@ def section_ops_kpi() -> str:
     <div class="section" id="kpi-member">
       <h2 data-num="03">DMIG 회원 tier breakdown — FY2023</h2>
       <h3>Main Playing 1,233명 구성 (Adult / Husband-Wife / Child)</h3>
-      <p class="lede">
-        DMIG의 Main Playing Member 구성을 tier별로 분해. Husband/Wife (79명) + Child (35명) = 114명 family tier로,
-        adult 단독 회원 1,119명이 핵심 충성 고객. FY22→FY23 -6명으로 stable.
-      </p>
       {dmig_member_chart}
     </div>
 
@@ -4654,11 +4650,6 @@ def section_ops_kpi() -> str:
     <div class="section" id="kpi-agreements">
       <h2 data-num="05">PIPG 약정·lease timeline</h2>
       <h3>4개 lease/약정 — related party 2건 + third party 2건</h3>
-      <p class="lede">
-        <strong>MKPI (Metropolitan Kentjana, related party)</strong>: Pool management rights + Land lease (Junior Driving Range).
-        <strong>3rd party</strong>: 통신탑 land lease (Indosat → Epid Menara renewal).
-        Cross-default risk 모니터링 핵심.
-      </p>
       {pipg_agreements_timeline}
     </div>
 
@@ -4804,9 +4795,6 @@ def section_capex() -> str:
     <div class="section" id="cap-heatmap">
       <h2 data-num="01">자본투자 강도 heatmap — 감가·유지·자산집약도</h2>
       <h3>Audited CAPEX 미공시 → P&L proxy + B/S proxy로 추정 (FY24)</h3>
-      <p class="lede">
-        CAPEX 직접 공시는 없으나 (1) 감가상각/매출 (2) 유지/매출 (3) 총자산/매출 — 3개 indicator로 자본투자 강도 추정. 색 진할수록 강도 ↑.
-      </p>
       {capex_heatmap}
       <div class="insight-callout warn">
         <span class="ic-icon">⚠</span>
@@ -4849,8 +4837,7 @@ def section_capex() -> str:
       <h2 data-num="06">홀당 단위 경제 — 7-peer Unit Economics</h2>
       <h3>매출 / GP / OpEx / 감가상각을 홀 수로 normalize (FY24)</h3>
       <p class="lede">
-        peer마다 코스 수·운영 형태가 다르므로 entity 매출 절대값 비교는 misleading. 홀 수로 나눈 unit economics가 더 의미 있는 비교.
-        <strong>ENT</strong> (entity all-in) vs <strong>SEG</strong> (golf segment-only) 차이 주의.
+        entity 절대값 비교는 misleading — 홀 수로 normalize. <strong>ENT</strong> (all-in) vs <strong>SEG</strong> (golf-only) 기준 차이 주의.
       </p>
       {per_hole_visual}
       <div class="insight-callout">
@@ -5066,10 +5053,6 @@ def section_opex() -> str:
     <div class="section" id="op-norm">
       <h2 data-num="05">OpEx 카테고리별 정규화 — DMIG vs PIPG vs GOLF</h2>
       <h3>FY24 매출 대비 % · cross-peer 같은 잣대 (11 카테고리 keyword 분류)</h3>
-      <p class="lede">
-        AR Note 라벨이 peer마다 달라 직접 비교가 어려운 문제를 해결 — 모든 OpEx 라인을 11 카테고리로 keyword 기반 자동 분류.
-        시각화 우선 (KPI strip → 100% stacked → bar matrix).
-      </p>
 
       {opex_kpi_strip}
 
@@ -5118,9 +5101,6 @@ def section_opex() -> str:
     <div class="section" id="op-pipg">
       <h2 data-num="09">PIPG 4-segment GP margin — Note 30</h2>
       <h3>Golf Course&amp;Cart / Membership / Restaurant / Others (FY23)</h3>
-      <p class="lede">
-        PIPG는 Note 30 Segment Information에서 4 segment의 COGS를 explicit 공시. Membership 부문 GP margin 압도적 높음 (87.8%).
-      </p>
       {pipg_seg_visual}
       <div class="insight-callout">
         <span class="ic-icon">→</span>
