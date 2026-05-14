@@ -4574,7 +4574,7 @@ def section_ops_kpi() -> str:
     return f"""<section class="panel" data-panel="ops-kpi">
   <div class="wrap">
 
-    <a class="back-to-toc" href="#ops-kpi-anchor-top">TOC</a>
+    <a class="back-to-toc" href="#ops-kpi-anchor-top">목차</a>
 
     {exec_h}
 
@@ -4747,7 +4747,7 @@ def section_capex() -> str:
     return f"""<section class="panel" data-panel="capex">
   <div class="wrap">
 
-    <a class="back-to-toc" href="#capex-anchor-top">TOC</a>
+    <a class="back-to-toc" href="#capex-anchor-top">목차</a>
 
     {exec_h}
 
@@ -4951,7 +4951,7 @@ def section_opex() -> str:
     return f"""<section class="panel" data-panel="opex">
   <div class="wrap">
 
-    <a class="back-to-toc" href="#opex-anchor-top">TOC</a>
+    <a class="back-to-toc" href="#opex-anchor-top">목차</a>
 
     {exec_h}
 
