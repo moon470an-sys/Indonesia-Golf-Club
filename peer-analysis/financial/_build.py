@@ -5125,8 +5125,8 @@ def section_opex() -> str:
     </div>
 
     <div class="section" id="op-margin">
-      <h2 data-num="11">FY24→FY25 마진 변화 — 벡터 추출 commentary</h2>
-      <h3>6-peer timeline 카드 + FY24↔FY25 mini delta bar</h3>
+      <h2 data-num="11">FY24→FY25 마진 변화 commentary</h2>
+      <h3>6-peer timeline 카드 — FY24↔FY25 mini delta bar</h3>
       {margin_change}
     </div>
 
