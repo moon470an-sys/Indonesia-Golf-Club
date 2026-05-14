@@ -3203,6 +3203,17 @@ def _per_hole_metrics_table() -> str:
 </div>"""
 
 
+def _sum_dep_amort(lines) -> float:
+    """Sum all depreciation + amortization line values for FY2024 (consistent with _capex_data)."""
+    tot = 0.0
+    for ln in lines or []:
+        lab = (ln.get("id_label") or "").lower()
+        en = (ln.get("en_label") or "").lower()
+        if "penyusutan" in lab or "depreciation" in en or "amortisasi" in lab or "amortization" in en:
+            tot += ln.get("FY2024") or 0
+    return tot or None
+
+
 def _per_hole_data() -> list:
     """Extract per-peer per-hole metrics. Returns list of dicts."""
     rows = []
@@ -3221,14 +3232,14 @@ def _per_hole_data() -> list:
     rt = (d.get("revenue_note") or {}).get("total", {}).get("FY2024")
     ct = (d.get("cogs_note") or {}).get("total", {}).get("FY2024")
     ot = (d.get("opex_note") or {}).get("total", {}).get("FY2024")
-    dep = next((ln.get("FY2024") for ln in (d.get("opex_note") or {}).get("lines", []) if (ln.get("id_label") or "").lower() == "penyusutan"), None)
+    dep = _sum_dep_amort((d.get("opex_note") or {}).get("lines", []))
     collect("DMIG", "Entity all-in (2 코스)", "entity", rt, ct, ot, dep)
 
     d = NOTES.get("PIPG", {})
     rt = (d.get("revenue_note_27") or {}).get("total", {}).get("FY2024")
     ct = (d.get("cogs_note_28") or {}).get("total", {}).get("FY2024")
     ot = (d.get("opex_note_29") or {}).get("total", {}).get("FY2024")
-    dep = next((ln.get("FY2024") for ln in (d.get("opex_note_29") or {}).get("lines", []) if (ln.get("id_label") or "").lower() == "penyusutan"), None)
+    dep = _sum_dep_amort((d.get("opex_note_29") or {}).get("lines", []))
     collect("PIPG", "Entity all-in (1 코스)", "entity", rt, ct, ot, dep)
 
     d = NOTES.get("GOLF", {})
@@ -3237,7 +3248,7 @@ def _per_hole_data() -> list:
     rg = next((ln.get("FY2024") for ln in rev_lines if ln.get("en_label") == "Golf"), None)
     cg = next((ln.get("FY2024") for ln in cogs_lines if ln.get("id_label") == "Golf"), None)
     og = (d.get("ga_note_32") or {}).get("total", {}).get("FY2024")
-    depg = next((ln.get("FY2024") for ln in (d.get("ga_note_32") or {}).get("lines", []) if "penyusutan" in (ln.get("id_label") or "").lower()), None)
+    depg = _sum_dep_amort((d.get("ga_note_32") or {}).get("lines", []))
     collect("GOLF", "Golf segment-only", "segment", rg, cg, og, depg)
 
     d = NOTES.get("MDLN", {})
