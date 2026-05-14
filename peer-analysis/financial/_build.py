@@ -643,6 +643,96 @@ def _pnl_row(ticker: str) -> str:
     return f'<tr class="tier-a">{"".join(cells)}</tr>'
 
 
+def _pnl_funnel_chart(ticker: str, fy: str = "FY2024") -> str:
+    """Funnel chart: Revenue → Gross profit → Op income → Net income.
+    Shows leakage at each stage as percentage of revenue.
+    """
+    d = NOTES.get(ticker, {})
+    # Get values for the given fiscal year
+    rev = revenue_total_for(ticker, fy) or 0
+    cogs = 0
+    for key in ("cogs_note", "cogs_note_26", "cogs_note_28", "cogs_note_30"):
+        b = d.get(key) or {}
+        v = (b.get("total") or {}).get(fy)
+        if v:
+            cogs = v
+            break
+    gp = rev - cogs if rev and cogs else None
+
+    # Operating income (FY24)
+    op_inc = None
+    net_inc = None
+    if ticker == "DMIG" and fy == "FY2024":
+        fu = (d.get("fy2025_follow_up") or {}).get("pnl_FY2024_comparative") or {}
+        op_inc = fu.get("operating_income")
+        net_inc = fu.get("net_income")
+    elif ticker == "PIPG" and fy == "FY2024":
+        fh = (d.get("financial_highlights") or {}).get("rows_in_idr_thousand", [])
+        for r in fh:
+            if r.get("label") == "Laba Usaha":
+                op_inc = (r.get(fy) or 0) * 1000
+            if r.get("label") == "Laba Bersih":
+                net_inc = (r.get(fy) or 0) * 1000
+
+    if not (rev and gp and op_inc and net_inc):
+        return ""
+
+    stages = [
+        ("매출", rev, "#2d5016"),
+        ("Gross Profit", gp, "#4a7c30"),
+        ("영업이익", op_inc, "#c08a2e"),
+        ("순이익", net_inc, "#92400e"),
+    ]
+
+    width, height = 360, 230
+    stage_h = 38
+    max_w = width - 60
+    total_h = len(stages) * (stage_h + 8)
+
+    elems = []
+    for i, (label, val, color) in enumerate(stages):
+        pct = (val / rev * 100) if rev else 0
+        bar_w = (val / rev) * max_w if rev else 0
+        x = (width - bar_w) / 2
+        y = i * (stage_h + 10) + 10
+        elems.append(
+            f'<rect x="{x:.1f}" y="{y:.1f}" width="{bar_w:.1f}" height="{stage_h}" '
+            f'rx="4" fill="{color}" fill-opacity="0.92"/>'
+            f'<text x="{width/2:.1f}" y="{y + stage_h/2 + 4:.1f}" font-size="11.5" '
+            f'font-weight="700" fill="white" text-anchor="middle">'
+            f'{safe(label)} · Rp {fmt_bn(val).replace(" bn","bn")} ({pct:.1f}%)</text>'
+        )
+        # Leakage arrow between stages
+        if i > 0:
+            prev_val = stages[i-1][1]
+            leak = prev_val - val
+            leak_pct = (leak / prev_val * 100) if prev_val else 0
+            # Left-side annotation
+            elems.append(
+                f'<text x="6" y="{y + 4:.1f}" font-size="9.5" fill="var(--ink-soft)" font-weight="600">'
+                f'<tspan fill="#b91c1c">-{leak_pct:.1f}%</tspan></text>'
+            )
+
+    return f"""<div style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px;">
+  <div style="font-size:13px;font-weight:700;color:var(--ink);text-align:center;margin-bottom:6px;">
+    <span class="ticker-mini">{safe(ticker)}</span> P&amp;L Funnel ({safe(fy[2:])})
+  </div>
+  <svg viewBox="0 0 {width} {height}" width="100%" style="display:block;max-width:380px;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+    {''.join(elems)}
+  </svg>
+  <p class="src-line" style="text-align:center;margin: 4px 0 0;">바 너비 = 매출 대비 % · 좌측 빨강 % = 직전 단계 대비 leakage</p>
+</div>"""
+
+
+def _pnl_funnel_section() -> str:
+    """Grid of 2-peer funnel charts (DMIG + PIPG, FY24)."""
+    parts = [_pnl_funnel_chart("DMIG", "FY2024"), _pnl_funnel_chart("PIPG", "FY2024")]
+    parts = [p for p in parts if p]
+    return f"""<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:14px;">
+  {''.join(parts)}
+</div>"""
+
+
 def _radar_chart_svg(series, axes, width=440, height=440, title=""):
     """SVG radar/spider chart for N-dimensional peer comparison.
 
@@ -4113,6 +4203,7 @@ def section_ops() -> str:
     pnl_table = _pnl_table()
     pnl_trend = _pnl_margin_trend_section()
     peer_radar = _peer_compare_radar()
+    pnl_funnel = _pnl_funnel_section()
     capex_proxy_table = _capex_proxy_table()
     capex_heatmap = _capex_heatmap_section()
     capex_narratives = _capex_narrative_grid()
@@ -4343,7 +4434,10 @@ def section_ops() -> str:
         DMIG/PIPG는 FY22~FY25 4개년 P&L 라인 전체 추출 가능 (annual report Note 23/24/25 또는 Note 27/28/29).
         KPIG는 Hotel+Resort+Golf 통합 라인이므로 golf-only 비교 불가하나, 그룹 효율 추이는 참고 가능.
       </p>
-      <h4 class="ops-block-h">DMIG vs PIPG — 6축 radar 1:1 비교 (FY2024)</h4>
+      <h4 class="ops-block-h">P&amp;L Funnel — 매출→Gross→Op→Net leakage</h4>
+      {pnl_funnel}
+
+      <h4 class="ops-block-h" style="margin-top: 26px;">DMIG vs PIPG — 6축 radar 1:1 비교 (FY2024)</h4>
       {peer_radar}
 
       <h4 class="ops-block-h" style="margin-top: 26px;">마진 추이 (3-peer 4Y) + 매출 절댓값 비교</h4>
