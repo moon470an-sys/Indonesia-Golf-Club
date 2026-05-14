@@ -3986,13 +3986,11 @@ def _fy25_delta_cards() -> str:
             disclosure_note = fu.get("golf_segment_disclosure", "")
             cards.append(
                 f'<div class="kv">'
-                f'<div class="k">{safe(t)} — FY2025 segment 매출</div>'
+                f'<div class="k">{safe(t)} — FY2025 segment 매출 {_info_tip(disclosure_note)}</div>'
                 f'<dl class="kv-mini">'
                 f'<dt>Hotel+Resort+Golf</dt><dd>{fmt_bn(seg_rev)} <span class="muted">({_sign_pct(seg_yoy)} YoY)</span></dd>'
                 f'<dt>Golf-only</dt><dd><span class="na">미공시 (segment 통합)</span></dd>'
                 f'</dl>'
-                f'<p class="kv-comment">{safe(disclosure_note)}</p>'
-                f''
                 f'</div>'
             )
             continue
@@ -4007,14 +4005,12 @@ def _fy25_delta_cards() -> str:
         net_d = yoy.get("net_income")
         cards.append(
             f'<div class="kv">'
-            f'<div class="k">{safe(t)} — FY2025 미감사 P&L</div>'
+            f'<div class="k">{safe(t)} — FY2025 미감사 P&L {_info_tip(comment)}</div>'
             f'<dl class="kv-mini">'
             f'<dt>매출</dt><dd>{fmt_bn(rev)} <span class="muted">({_sign_pct(rev_d)} YoY)</span></dd>'
             f'<dt>영업이익</dt><dd>{fmt_bn(op_inc)} <span class="muted">({_sign_pct(op_d)} YoY)</span></dd>'
             f'<dt>순이익</dt><dd>{fmt_bn(net_inc)} <span class="muted">({_sign_pct(net_d)} YoY)</span></dd>'
             f'</dl>'
-            f'<p class="kv-comment">{safe(comment)}</p>'
-            f''
             f'</div>'
         )
     return f'<div class="kv-grid">{"".join(cards)}</div>'
