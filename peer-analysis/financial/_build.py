@@ -4918,26 +4918,22 @@ def section_capex() -> str:
         <div class="insight-card insight-warn">
           <div class="insight-tag"><span class="ticker-mini">GOLF</span> Capex-intensive</div>
           <div class="insight-metric up">426<span class="u">bn</span></div>
-          <div class="insight-title">CWIP (Buildings 188 + Landscape 238)</div>
-          <p>FY25 entity 매출 102bn의 ~4.2배 규모. paid-in 487bn + retained 6.9조 self-funded. 향후 3-5년 감가 부담 예고.</p>
+          <div class="insight-title">CWIP (Buildings 188 + Landscape 238) {_info_tip('FY25 entity 매출 102bn의 ~4.2배 규모. paid-in 487bn + retained 6.9조 self-funded. 향후 3-5년 감가 부담 예고.', 'tip-l')}</div>
         </div>
         <div class="insight-card insight-warn">
           <div class="insight-tag"><span class="ticker-mini">DMIG</span> 자본투자 강도 peer 최고</div>
           <div class="insight-metric down">12.2<span class="u">%</span></div>
-          <div class="insight-title">감가상각 / 매출 (FY24)</div>
-          <p>PIK Range +372% 성장 · BSD+PIK 2 코스 운영 — peer 최고 자본투자 강도. 마진 압박의 핵심 원인.</p>
+          <div class="insight-title">감가상각 / 매출 (FY24) {_info_tip('PIK Range +372% 성장 · BSD+PIK 2 코스 운영 — peer 최고 자본투자 강도. 마진 압박의 핵심 원인.', 'tip-l')}</div>
         </div>
         <div class="insight-card insight-neutral">
           <div class="insight-tag"><span class="ticker-mini">PIPG</span> Mature & maintenance-heavy</div>
           <div class="insight-metric">5.9<span class="u">%</span></div>
-          <div class="insight-title">유지보수 / 매출</div>
-          <p>1976년 개장 노후 코스. DMIG 0.9% 대비 ~6배 — 프리미엄 포지셔닝 비용 (Indonesia Open 등 토너먼트 hosting).</p>
+          <div class="insight-title">유지보수 / 매출 {_info_tip('1976년 개장 노후 코스. DMIG 0.9% 대비 ~6배 — 프리미엄 포지셔닝 비용 (Indonesia Open 등 토너먼트 hosting).', 'tip-l')}</div>
         </div>
         <div class="insight-card insight-positive">
           <div class="insight-tag"><span class="ticker-mini">KIJA</span> 단위 매출 unexpected 1위</div>
           <div class="insight-metric up">4.7<span class="u">bn/홀</span></div>
-          <div class="insight-title">홀당 매출 (golf segment only)</div>
-          <p>industrial estate 본업이지만 Nick Faldo 설계 + Jababeka captive demand → 6-peer 중 unit revenue 최고.</p>
+          <div class="insight-title">홀당 매출 (golf segment only) {_info_tip('industrial estate 본업이지만 Nick Faldo 설계 + Jababeka captive demand → 6-peer 중 unit revenue 최고.', 'tip-l')}</div>
         </div>
       </div>
     </div>
@@ -5105,26 +5101,22 @@ def section_opex() -> str:
         <div class="insight-card insight-positive">
           <div class="insight-tag"><span class="ticker-mini">GOLF</span> Asset-light leader</div>
           <div class="insight-metric up">21.1<span class="u">%</span></div>
-          <div class="insight-title">OpEx / 매출 (FY24)</div>
-          <p>DMIG/PIPG 38% 대비 압도적 효율. 솔라+리튬 카트로 유틸리티 구조적 절감. IPO 1년차 효과도 일부.</p>
+          <div class="insight-title">OpEx / 매출 (FY24) {_info_tip('DMIG/PIPG 38% 대비 압도적 효율. 솔라+리튬 카트로 유틸리티 구조적 절감. IPO 1년차 효과도 일부.', 'tip-l')}</div>
         </div>
         <div class="insight-card insight-positive">
           <div class="insight-tag"><span class="ticker-mini">PIPG</span> Membership cash machine</div>
           <div class="insight-metric up">87.8<span class="u">%</span></div>
-          <div class="insight-title">FY23 Membership segment GP margin</div>
-          <p>신규 회원/연회비 거의 순이익에 가까움 (소액 COGS). Golf course 58.8% · Restaurant 31.2% 와 차별화.</p>
+          <div class="insight-title">FY23 Membership segment GP margin {_info_tip('신규 회원/연회비 거의 순이익에 가까움 (소액 COGS). Golf course 58.8% · Restaurant 31.2% 와 차별화.', 'tip-l')}</div>
         </div>
         <div class="insight-card insight-warn">
           <div class="insight-tag"><span class="ticker-mini">DMIG</span> 인건비·세금 부담</div>
           <div class="insight-metric down">12.6<span class="u">%</span></div>
-          <div class="insight-title">인건비 / 매출 (peer 최고)</div>
-          <p>206명 직원 + employee benefits liability Rp 135bn. 세금·법률도 5.2%/매출. 노후 자산 + 장기근속자 결합 구조.</p>
+          <div class="insight-title">인건비 / 매출 (peer 최고) {_info_tip('206명 직원 + employee benefits liability Rp 135bn. 세금·법률도 5.2%/매출. 노후 자산 + 장기근속자 결합 구조.', 'tip-l')}</div>
         </div>
         <div class="insight-card insight-warn">
           <div class="insight-tag"><span class="ticker-mini">PIPG</span> 세금 outlier</div>
           <div class="insight-metric down">12.3<span class="u">%</span></div>
-          <div class="insight-title">세금·법률 / 매출 (FY24 Pajak dan perijinan 24.2bn)</div>
-          <p>CBD 5분 + HGB 면적 + property tax 비중 큰 위치적 비용 — DMIG 5.2% / GOLF 3.1% 대비 outlier.</p>
+          <div class="insight-title">세금·법률 / 매출 (FY24 Pajak dan perijinan 24.2bn) {_info_tip('CBD 5분 + HGB 면적 + property tax 비중 큰 위치적 비용 — DMIG 5.2% / GOLF 3.1% 대비 outlier.', 'tip-l')}</div>
         </div>
       </div>
     </div>
