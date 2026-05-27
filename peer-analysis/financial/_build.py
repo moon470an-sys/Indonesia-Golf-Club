@@ -3666,6 +3666,157 @@ def _xbrl_comparison_table() -> str:
 </div>"""
 
 
+def _dmig_pipg_detail_section() -> str:
+    """대표 2 peer (DMIG + PIPG) 상세 분석 섹션.
+
+    XBRL 13-peer 동급 비교에서는 가려지는 두 pure-play 골프 운영사의
+    상세 구조를 자세히 노출. Matoa 프로젝트와 가장 직접 comparable.
+    """
+    import json as _json
+    import os as _os
+    site_root = _os.path.dirname(_os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+    fin_path = _os.path.join(site_root, "data", "company_financials_5y.json")
+    with open(fin_path, "r", encoding="utf-8") as f:
+        cf = _json.load(f)
+    by_t = {c["ticker"]: c for c in cf.get("companies", [])}
+
+    # --- 1. Side-by-side FY25 핵심 수치 + 4Y mini 차트 ---
+    def _peer_card(ticker: str) -> str:
+        c = by_t.get(ticker, {})
+        yrs = c.get("yearly", {})
+        years_sorted = sorted(yrs.keys())
+        # 가장 최신 primary year
+        latest = None
+        for y in reversed(years_sorted):
+            srcs = (yrs[y].get("sources") or [])
+            if srcs and isinstance(srcs[0], dict) and srcs[0].get("source_type") in {"IDX_XBRL", "AUDITED_AR"}:
+                latest = y
+                break
+        if not latest:
+            return ""
+        cur = yrs[latest]
+        cur_year_short = f"FY{latest[-2:]}"
+
+        def fmtb(v):
+            if v is None:
+                return "—"
+            if abs(v) >= 1e12:
+                return f"{v/1e12:.2f}T"
+            if abs(v) >= 1e9:
+                return f"{v/1e9:.1f}B"
+            return f"{v:,.0f}"
+
+        def fmtp(num, den, signed=False):
+            if num is None or den in (None, 0):
+                return "—"
+            v = num / den * 100
+            return f"{v:+.1f}%" if signed else f"{v:.1f}%"
+
+        rev = cur.get("revenue")
+        gp = cur.get("gross_profit")
+        op = cur.get("operating_profit")
+        np_ = cur.get("net_profit")
+        ta = cur.get("total_assets")
+        tl = cur.get("total_liabilities")
+        te = cur.get("total_equity")
+        cash = cur.get("cash_and_equivalents")
+        cfo = cur.get("cfo")
+        cfi = cur.get("cfi")
+
+        color = PEER_COLORS.get(ticker, "#2d5016")
+        co_name = c.get("company_name", ticker)
+
+        # 4-year revenue + net_profit + op_profit mini trend
+        trend_rows = []
+        for y in [str(int(latest) - i) for i in range(4, -1, -1)]:
+            yb = yrs.get(y, {})
+            if not yb:
+                continue
+            trend_rows.append({
+                "fy": f"FY{y[-2:]}",
+                "rev": yb.get("revenue"),
+                "op": yb.get("operating_profit"),
+                "np": yb.get("net_profit"),
+            })
+        if not trend_rows:
+            trend_rows = []
+        all_rev = [r["rev"] for r in trend_rows if r["rev"]]
+        max_rev = max(all_rev) if all_rev else 1
+        trend_bars = []
+        for tr in trend_rows:
+            pct = (tr["rev"] / max_rev * 100) if tr["rev"] else 0
+            trend_bars.append(f"""<div style="display:grid;grid-template-columns:36px 1fr 56px 56px;gap:6px;align-items:center;font-size:10.5px;padding:2px 0;">
+  <span style="color:var(--ink-soft);font-weight:600;">{tr['fy']}</span>
+  <span style="height:11px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:{pct:.1f}%;background:{color};"></span>
+  </span>
+  <span style="text-align:right;font-variant-numeric:tabular-nums;font-weight:600;">{fmtb(tr['rev'])}</span>
+  <span style="text-align:right;font-variant-numeric:tabular-nums;color:var(--muted);">np {fmtb(tr['np'])}</span>
+</div>""")
+
+        # 마진 row (GP/Op/Net)
+        rows_margin = []
+        for label, num in [("GP margin", gp), ("Op margin", op), ("Net margin", np_)]:
+            rows_margin.append(f'<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px dashed var(--line);"><span style="color:var(--muted);">{label}</span><span style="font-weight:700;font-variant-numeric:tabular-nums;">{fmtp(num, rev)}</span></div>')
+        # B/S row
+        rows_bs = []
+        for label, num in [("총자산", ta), ("총부채", tl), ("자본총계", te), ("현금성", cash)]:
+            rows_bs.append(f'<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px dashed var(--line);"><span style="color:var(--muted);">{label}</span><span style="font-weight:700;font-variant-numeric:tabular-nums;">{fmtb(num)}</span></div>')
+        # CF row
+        rows_cf = []
+        for label, num in [("영업CF", cfo), ("투자CF", cfi)]:
+            num_color = "var(--ink)" if num is None else ("var(--danger)" if num < 0 else "var(--green)")
+            rows_cf.append(f'<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px dashed var(--line);"><span style="color:var(--muted);">{label}</span><span style="font-weight:700;font-variant-numeric:tabular-nums;color:{num_color};">{fmtb(num)}</span></div>')
+
+        return f"""<div class="viz-card" style="padding:16px 18px;border-top:4px solid {color};">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px;">
+    <div>
+      <span class="ticker-mini" style="background:{color};color:#fff;padding:3px 8px;border-radius:4px;font-weight:700;font-size:12px;letter-spacing:0.04em;">{safe(ticker)}</span>
+      <span style="font-size:11px;color:var(--muted);margin-left:6px;">{cur_year_short}</span>
+    </div>
+    <div style="font-size:10.5px;color:var(--muted);text-align:right;max-width:60%;line-height:1.3;">{safe(co_name)}</div>
+  </div>
+
+  <div style="display:flex;align-items:baseline;gap:8px;margin:8px 0 4px;">
+    <span style="font-size:28px;font-weight:800;color:{color};font-variant-numeric:tabular-nums;">{fmtb(rev)}</span>
+    <span style="font-size:11px;color:var(--muted);">매출 ({cur_year_short})</span>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:10px;font-size:11px;">
+    <div>
+      <div style="font-weight:700;font-size:10.5px;color:var(--muted);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:4px;">마진</div>
+      {''.join(rows_margin)}
+    </div>
+    <div>
+      <div style="font-weight:700;font-size:10.5px;color:var(--muted);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:4px;">B/S</div>
+      {''.join(rows_bs)}
+    </div>
+    <div>
+      <div style="font-weight:700;font-size:10.5px;color:var(--muted);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:4px;">현금흐름</div>
+      {''.join(rows_cf)}
+    </div>
+  </div>
+
+  <div style="margin-top:14px;padding-top:10px;border-top:1px solid var(--line);">
+    <div style="font-weight:700;font-size:10.5px;color:var(--muted);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:6px;">매출·순이익 5Y 추이</div>
+    {''.join(trend_bars)}
+  </div>
+</div>"""
+
+    cards = [_peer_card("DMIG"), _peer_card("PIPG")]
+
+    return f"""<div class="section" id="dmig-pipg-detail">
+  <h2 data-num="02">대표 2 peer 상세 — DMIG · PIPG</h2>
+  <h3>Tier 1 pure-play 골프 2개사: 자카르타 도심 프리미엄 운영의 5년 재무 정밀 분석</h3>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:14px;margin-top:10px;">
+    {''.join(cards)}
+  </div>
+
+  {_insight('두 회사 모두 <strong>회원기반 + 도심 입지</strong>로 mature operator. DMIG는 BSD+PIK 2 시설 운영으로 매출 규모(~251B) 우위, PIPG는 single course(~186B)이지만 자카르타 CBD 5분 입지로 NPM·ROE 모두 동등 수준. 부채비율 극히 낮음 (회원 deposit 기반).', label='2-peer 비교 핵심')}
+</div>"""
+
+
 def _xbrl_capex_data() -> list:
     """13-peer FY2025 자산구조·CAPEX proxy 지표. 직전 연도 데이터로 자산 YoY 산출."""
     import json as _json
@@ -5302,16 +5453,19 @@ def section_ops_kpi() -> str:
 
 
 def section_capex() -> str:
-    """Tab 2: CAPEX — XBRL/AR 동일 기준 13-peer 자산·CAPEX 비교 only.
+    """Tab 2: CAPEX — XBRL/AR 동일 기준 13-peer 비교 + DMIG/PIPG 대표 2 peer 상세.
 
-    동급 비교 불가능한 peer-specific 섹션(GOLF CWIP detail, 감가 라인,
-    AR narrative, 6/7-peer per-hole, 4Y P&L, radar, funnel)은 모두 제거.
+    동일 기준 비교는 13-peer 전부, 상세 분석은 Tier 1 pure-play 골프
+    대표 2개사(DMIG·PIPG)에 집중. AR narrative와 radar로 정성적 차이까지 노출.
     """
     xbrl_capex_html = _xbrl_capex_comparison_section()
+    dmig_pipg_detail = _dmig_pipg_detail_section()
+    peer_radar = _peer_compare_radar()
+    capex_narratives = _capex_narrative_grid()
 
     exec_h = _tab_exec_headline(
         tab_key="CAPEX · ASSETS · XBRL FY2025",
-        tab_title="동일 기준 13-peer 비교 — 자산구조·자본투자 강도",
+        tab_title="동일 기준 13-peer 비교 + DMIG·PIPG 대표 2 peer 상세",
         tab_focus_tiles=[
             ("자산집약도 최고", "40.3", "x", "GOLF", "총자산/매출 — 자본 회수 가장 느림", "warn"),
             ("비유동자산比 최고", "90.2", "%", "KPIG", "Hotel·Resort·Golf 부동산 의존", "warn"),
@@ -5324,20 +5478,46 @@ def section_capex() -> str:
     return f"""<section class="panel" data-panel="capex">
   <div class="wrap">
 
+    <a class="back-to-toc" href="#capex-anchor-top">목차</a>
+
     {exec_h}
+
+    <nav class="ops-subnav" id="capex-anchor-top" aria-label="capex sub-navigation">
+      <a class="chip" href="#capex-xbrl-compare">13-peer 비교</a>
+      <a class="chip" href="#dmig-pipg-detail">DMIG·PIPG 상세</a>
+      <a class="chip" href="#dmig-pipg-radar">DMIG vs PIPG radar</a>
+      <a class="chip" href="#dmig-pipg-narrative">DMIG·PIPG AR 본문</a>
+    </nav>
 
     {_peer_color_legend()}
 
     {xbrl_capex_html}
 
+    {dmig_pipg_detail}
+
+    <div class="section" id="dmig-pipg-radar">
+      <h2 data-num="03">DMIG vs PIPG — 6축 radar 1:1 비교</h2>
+      <h3>매출·마진·CAPEX(감가/유지)·배당·unit econ을 한 차트로</h3>
+      {peer_radar}
+      {_insight('DMIG는 <strong>매출·감가·Op margin</strong> 축에서 크고, PIPG는 <strong>유지보수·매출/홀</strong> 축에서 큼 — 두 pure-play의 전략 차이가 polygon 모양으로 드러남. 배당 payout은 비슷한 수준.', label='radar 해석')}
+    </div>
+
+    <div class="section" id="dmig-pipg-narrative">
+      <h2 data-num="04">DMIG·PIPG AR 본문 인용 — CAPEX 의도</h2>
+      <h3>같은 감가율도 신규 투자 / 노후 자산 / 회계 정책 — 본문에서 의도 확인</h3>
+      <details class="orig-toggle" open><summary>AR 본문 직접 인용 펼치기</summary>
+        {capex_narratives}
+      </details>
+    </div>
+
     <div class="closing-stripe">
-      <div class="cs-eyebrow">동일 기준 13-peer 자산·CAPEX 종합</div>
+      <div class="cs-eyebrow">CAPEX 종합 — 13-peer 비교 + 2 peer 상세</div>
       <div class="cs-title">4 takeaways</div>
       <div class="closing-grid">
         <div class="closing-takeaway"><div class="num">1</div><div class="txt"><strong>Tier 1 골프 capital-heavy</strong> · GOLF 자산집약 40.3x — 자산회전 0.02x 최하위. CWIP 진행으로 정상화 전.</div></div>
         <div class="closing-takeaway"><div class="num">2</div><div class="txt"><strong>부동산 그룹 일제히 capex 진행</strong> · SMRA/PWON/BSDE/CTRA CFI 음수 — FY25 부동산 cycle 진입. 차후 감가 부담 증가 예고.</div></div>
-        <div class="closing-takeaway"><div class="num">3</div><div class="txt"><strong>자본구조 양극화</strong> · GOLF 92%·PIPG 81%·KPIG 79% 자기자본 (self-funded) vs MDLN 28%·SMRA 30% (leveraged). 추가 capex 여력 차이.</div></div>
-        <div class="closing-takeaway"><div class="num">4</div><div class="txt"><strong>Lean operator</strong> · PIPG/DMIG/KIJA 자산집약 7-10x — 13-peer 최저. 골프 운영의 자본 효율 우위 검증.</div></div>
+        <div class="closing-takeaway"><div class="num">3</div><div class="txt"><strong>대표 2 peer 상이한 strategy</strong> · DMIG 2 시설 매출 251B · 신규 시설 capex 진행 · PIPG single course 186B · 유지보수 중심 mature operator. radar 형태가 명확히 갈림.</div></div>
+        <div class="closing-takeaway"><div class="num">4</div><div class="txt"><strong>Lean operator 검증</strong> · PIPG/DMIG 자산집약 2.6~2.9x — 13-peer 최저. 회원 deposit 기반 운영의 자본 효율 우위.</div></div>
       </div>
     </div>
 
