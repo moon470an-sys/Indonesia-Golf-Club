@@ -1990,60 +1990,49 @@ def _capex_heatmap_section() -> str:
 # Curated CAPEX/OPEX narratives — extracted from vector DB (multilingual-e5-small)
 # Each quote includes ticker, source page, FY, Korean summary, theme.
 CAPEX_NARRATIVES = [
-    # ============ DMIG FY2025 — 자산·자본투자 핵심 ============
+    # ============ DMIG FY2025 — 자산·자본투자 ============
     {
         "ticker": "DMIG",
-        "theme": "총자산 +4.22% YoY · 시설 capex 지속",
+        "theme": "총자산 추이",
         "tone": "positive",
-        "summary": "FY25 총자산 Rp 719.68B (FY24 690.53B → +29.15B). PP&E 281.27B (Range@PIK 운영 자산 포함).",
+        "summary": "총자산 719.7B (FY24 대비 +4.22%)",
         "quote": "Total aset Perseroan pada tahun 2025 mencapai Rp719,68 miliar, naik sebesar Rp29,14 miliar "
                  "atau 4,22% dibandingkan dengan tahun 2024 yang sebesar Rp690,53 miliar.",
-        "ko": "2 시설 (BSD + PIK) 운영 자산 base. 매출 -0.73% 환경에도 자산은 +4.22% 증가 — 재투자 활성. "
-              "현금성 자산 17.3B (FY25 cash) + Aset Lancar 비중 58%로 자금 여력 충분, "
-              "Aset Tidak Lancar 42%는 시설 중심.",
-        "src": "DMIG FY2025 AR p.20 — Ikhtisar Data Keuangan Penting",
+        "ko": "매출이 −0.73%로 감소한 환경에서도 자산은 +4.22% 증가. BSD·PIK 2 시설 운영 + Range@PIK 시설 capex가 지속됨을 의미.",
+        "src": "DMIG FY2025 AR p.20",
     },
     {
         "ticker": "DMIG",
-        "theme": "The Range 매출 -17.84% · 신규 시설 utilization 과제",
+        "theme": "The Range 후속 수익화",
         "tone": "warn",
-        "summary": "FY25 The Range 매출 Rp 21.36B (FY24 25.99B → -4.64B / -17.84%). Driving Range -17.58% · Tenant -36.23% · Room Rental -32.22%.",
+        "summary": "The Range 매출 −17.84% (Rp 21.4B)",
         "quote": "Pada tahun 2025, pendapatan The Range mencapai Rp21.355.613.726 mengalami penurunan sebesar "
-                 "Rp4.637.540.791 atau 17,84% dibandingkan tahun 2024. Penurunan pendapatan ini disebabkan oleh "
-                 "penurunan traffic pengunjung dan aktivitas komersial, termasuk berkurangnya frekuensi event "
-                 "dan sponsorship serta belum optimalnya pemanfaatan area komersial.",
-        "ko": "FY22→23 +372% 폭증 후 정상화 단계 — capex가 큰 신규 시설의 후속 수익화가 핵심 과제. "
-              "Mini Golf -30%·Tenant -36%·Room Rental -32% 동반 감소 — 트래픽 회복 + commercial 활성화 시급. "
-              "감가상각 부담은 31.1B (FY25)로 가속 중.",
-        "src": "DMIG FY2025 AR p.16 — The Range Performance",
+                 "Rp4.637.540.791 atau 17,84% dibandingkan tahun 2024. Penurunan disebabkan oleh penurunan traffic "
+                 "pengunjung dan aktivitas komersial.",
+        "ko": "FY22→23 +372% 폭증 후 정상화 단계. Tenant −36% · Room Rental −32% 동반 감소 — 신규 시설 capex 후 트래픽 회복이 핵심 과제. 감가상각은 31.1B로 가속 중.",
+        "src": "DMIG FY2025 AR p.16",
     },
-    # ============ PIPG FY2025 — 자산·자본투자 핵심 ============
+    # ============ PIPG FY2025 — 자산·자본투자 ============
     {
         "ticker": "PIPG",
-        "theme": "PP&E +16.6% · 시설 업그레이드 가속 (CWIP)",
+        "theme": "유형자산 확장",
         "tone": "positive",
-        "summary": "FY25 PP&E net Rp 136.4B (FY24 117.0B → +19.4B). Additions 30.61B = FY24 14.06B의 2.2배. Golf Gallery VIP Room + smoking area 신축 + 주차장 아스팔트 진행.",
+        "summary": "PP&E 136.4B (+16.6% YoY) · 신규 투자 30.6B (+118%)",
         "quote": "Aset dalam penyelesaian terdiri dari renovasi VIP Room Golf Gallery dan pembangunan smoking "
-                 "area Golf Gallery dengan tingkat penyelesaian masing-masing sebesar 30%, yang diperkirakan akan "
-                 "selesai pada Mei 2026 dan Juni 2026. Selain itu, terdapat pekerjaan pengaspalan area parkir "
-                 "dengan tingkat penyelesaian sebesar 95% yang telah selesai pada Januari 2026.",
-        "ko": "1976년 개장 노후 코스의 modernization — Golf Gallery 중심 capex가 +118% YoY 증가. "
-              "PP&E 2년 CAGR +9.3% (DMIG +6.7% 대비 더 적극적). 감가상각 11.14B vs 신규 투자 30.61B로 "
-              "capex/dep 2.7x — 자본투자가 reinvestment 한도를 초과하는 성장기.",
-        "src": "PIPG FY2025 AR att2 Note 9 (Property and Equipment) p.51",
+                 "area Golf Gallery (~30% 완공) yang diperkirakan akan selesai pada Mei-Juni 2026. "
+                 "Pekerjaan pengaspalan area parkir 95% 완공.",
+        "ko": "Golf Gallery VIP Room 리노베이션 + smoking area 신축 + 주차장 아스팔트 진행. 1976년 개장 노후 코스의 modernization 가속 — capex/감가상각 2.7x로 reinvestment 한도 초과.",
+        "src": "PIPG FY2025 AR att2 Note 9 (p.51)",
     },
     {
         "ticker": "PIPG",
-        "theme": "총자산 +7.14% · 자기자본 +8.13% · self-funded",
+        "theme": "Self-funded 확장",
         "tone": "positive",
-        "summary": "FY25 총자산 477.92B (+31.86B) · 자본 386.98B (+29.1B / +8.13%). 부채는 +3.14%만 증가 — leverage 미사용.",
+        "summary": "자본 +8.13% · 부채 +3.14% — 차입 없는 성장",
         "quote": "Total aset Perseroan pada tahun 2025 mencapai Rp477,92 miliar, naik sebesar Rp31,86 miliar "
-                 "atau 7,14% dibandingkan dengan tahun 2024. Total ekuitas pada tahun 2025 tercatat sebesar "
-                 "Rp386,98 miliar, meningkat sebesar Rp29,1 miliar atau 8,13%.",
-        "ko": "자본 증가율(+8.13%)이 부채 증가율(+3.14%)을 압도 — debt-free expansion. 회원 deposit + "
-              "retained earnings 기반으로 추가 차입 없이 capex 확보. D/E 0.23x로 13-peer 최저급 — "
-              "단일 코스에서 자본 효율 + 시설 투자 양립 모델.",
-        "src": "PIPG FY2025 AR p.34 — Laporan Direksi (Kinerja Keuangan)",
+                 "atau 7,14%. Total ekuitas Rp386,98 miliar, meningkat 8,13%.",
+        "ko": "자본 증가율(+8.13%)이 부채 증가율(+3.14%)을 압도. 회원 deposit + 이익잉여금 기반으로 차입 없이 시설 capex 확보. D/E 0.23x로 13-peer 최저급.",
+        "src": "PIPG FY2025 AR p.34",
     },
     # ============ Legacy (현재 비활성) — 다른 ticker reference 보존 ============
     {
@@ -2199,58 +2188,48 @@ REVENUE_NARRATIVES = [
 
 # Curated OpEx narratives — operational risk + cost sensitivity from AR Notes
 OPEX_NARRATIVES = [
-    # ============ DMIG FY2025 — 비용·마진 핵심 ============
+    # ============ DMIG FY2025 — 비용·마진 ============
     {
         "ticker": "DMIG",
-        "theme": "Beban Usaha +3.29% · 인건비·감가 동시 가속",
+        "theme": "Beban Usaha 증가",
         "tone": "warn",
-        "summary": "FY25 Beban Usaha Rp 100.33B (FY24 97.13B → +3.20B / +3.29%). 인건비 Rp 31.9B (+11.5%) · 감가상각 Rp 31.1B (+10.4%) top 2.",
-        "quote": "Beban usaha Perseroan di tahun 2025 tercatat sebesar Rp100.325.847.015 mengalami kenaikan 3,29% "
-                 "atau Rp3.197.800.293 dibandingkan tahun 2024. Beban tertinggi: Gaji dan upah Rp31,92 miliar dan "
-                 "Penyusutan Rp31,14 miliar.",
-        "ko": "Top 2 cost 인건비(31.9B)·감가상각(31.1B)이 합쳐 OpEx의 63% 차지. 두 항목 동시 두 자릿수 증가 — "
-              "신규 시설(Range@PIK) 감가 + 장기근속자 인건비 leverage. 매출은 -0.73%로 sticky한데 "
-              "비용 +3.29%로 마진 압박 가속.",
-        "src": "DMIG FY2025 AR p.19 — Analisis Kinerja Keuangan (Beban Usaha)",
+        "summary": "Beban Usaha 100.3B (+3.29%) · 인건비·감가 동시 두 자릿수 증가",
+        "quote": "Beban usaha Perseroan di tahun 2025 tercatat sebesar Rp100.325.847.015 mengalami kenaikan 3,29%. "
+                 "Gaji dan upah Rp31,92 miliar (+11,5%), Penyusutan Rp31,14 miliar (+10,4%).",
+        "ko": "Top 2 비용 — 인건비 31.9B (+11.5%) · 감가상각 31.1B (+10.4%) — 합쳐 OpEx의 63%. PIK Range 신규 시설 감가 부담 + 장기근속자 인건비 leverage 동시 작용.",
+        "src": "DMIG FY2025 AR p.19",
     },
     {
         "ticker": "DMIG",
-        "theme": "Laba Bersih -8.96% · 마진 압박 본격화",
+        "theme": "마진 압박",
         "tone": "warn",
-        "summary": "FY25 Laba Bersih Rp 75.02B (FY24 82.40B → -7.38B / -8.96%). Op profit -12.0%, OPM 31.2% → 27.6%.",
+        "summary": "Laba Bersih 75.0B (−8.96% YoY) · OPM 31.2% → 27.6%",
         "quote": "Laba bersih Perseroan di tahun 2025 tercatat sebesar Rp75.023.832.300 mengalami penurunan 8,96% "
                  "atau Rp7.380.680.411 dibandingkan tahun 2024 yang tercatat sebesar Rp82.404.512.711.",
-        "ko": "매출 -0.73%·COGS +5.75%·OpEx +3.29% 3중 압박 — Laba Kotor -3.57% → Op Profit -12.0% → "
-              "Net Profit -8.96%. ROE 16.39% → 13.94%로 1.5pp 하락. 신규 시설 capex가 매출 leverage로 "
-              "전환되기 전까지 마진 정상화 어려움.",
-        "src": "DMIG FY2025 AR p.20 — Laba Bersih",
+        "ko": "매출 −0.73% · COGS +5.75% · OpEx +3.29% 3중 압박 → 영업이익 −12.0% · 순이익 −8.96%. ROE 16.4% → 13.9%로 1.5pp 하락 — 신규 capex가 매출 leverage로 전환되기 전까지 마진 정상화 어려움.",
+        "src": "DMIG FY2025 AR p.20",
     },
-    # ============ PIPG FY2025 — 비용·마진 핵심 ============
+    # ============ PIPG FY2025 — 비용·마진 ============
     {
         "ticker": "PIPG",
-        "theme": "Beban Usaha -17.95% · 적극적 cost discipline",
+        "theme": "비용 통제 성공",
         "tone": "positive",
-        "summary": "FY25 Beban Usaha Rp 62.46B (FY24 76.12B → -13.65B / -17.95%). PBB·repair·imbalan kerja·sumbangan 4개 라인 동반 절감.",
+        "summary": "Beban Usaha 62.5B (−17.95%) · 4개 라인 동반 절감",
         "quote": "Beban usaha turun sebesar Rp13,65 miliar atau 17,95%, dari Rp76,11 miliar pada tahun 2024 "
                  "menjadi Rp62,46 miliar pada tahun 2025. Beban usaha turun terutama pada biaya PBB, biaya "
-                 "perbaikan dan pemeliharaan, biaya penyisihan imbalan pasca kerja, dan biaya sumbangan dan kontribusi.",
-        "ko": "Tax PBB -42.6% (24.2B → 13.9B 부동산세 절감 ·핵심) · Repair&Maintenance -16.4% · "
-              "Provision for employee benefit -32.8% — 4 라인 일제히 감소. OpEx/매출 비율 38.5% → "
-              "33.6%로 mature operator의 비용 통제 입증.",
-        "src": "PIPG FY2025 AR p.34 — Laporan Direksi (Beban Usaha)",
+                 "perbaikan dan pemeliharaan, biaya penyisihan imbalan pasca kerja, dan biaya sumbangan.",
+        "ko": "부동산세 PBB −42.6% (24.2B → 13.9B 핵심) · 유지보수 −16.4% · 퇴직급여 충당금 −32.8%. OpEx/매출 38.5% → 33.6%로 비용효율 5pp 개선 — mature operator의 cost discipline 입증.",
+        "src": "PIPG FY2025 AR p.34",
     },
     {
         "ticker": "PIPG",
-        "theme": "Laba Bersih +0.57% · 매출 -6%에도 이익 유지",
+        "theme": "수익성 방어",
         "tone": "positive",
-        "summary": "FY25 Laba Bersih Rp 56.22B (FY24 55.90B → +0.32B / +0.57%). 매출 -5.97% 환경에서 OpEx -17.95%로 만회.",
+        "summary": "Laba Bersih 56.2B (+0.57%) · 매출 −6% 환경에서 이익 유지",
         "quote": "Perseroan berhasil mencatatkan laba bersih sebesar Rp56,22 miliar pada tahun 2025, naik "
-                 "sebesar Rp318 juta atau 0,57% dibandingkan dengan laba bersih tahun 2024 yang sebesar Rp55,90 miliar. "
-                 "Pendapatan -5,97% tetapi Op Income +4,02%.",
-        "ko": "DMIG (-8.96%)와 정반대 — 같은 pure-play 골프지만 비용 통제 능력 차이가 bottom line 결정. "
-              "OPM 27.05% → 29.93%로 2.9pp 개선. 단일 코스 mature operator의 자체 효율화 사례로 "
-              "Matoa(신규 코스) 운영 시 reference value 가장 높음.",
-        "src": "PIPG FY2025 AR p.35 — Laba Bersih",
+                 "sebesar Rp318 juta atau 0,57% dibandingkan dengan laba bersih tahun 2024 yang sebesar Rp55,90 miliar.",
+        "ko": "DMIG(−8.96%)와 정반대 결과 — 같은 pure-play 골프지만 비용 통제 능력 차이가 bottom line 결정. OPM 27.05% → 29.93% (+2.9pp). 단일 코스 mature operator의 효율화 사례로 Matoa(신규 코스) 운영 reference value 최상.",
+        "src": "PIPG FY2025 AR p.35",
     },
     # ============ Legacy (현재 비활성) ============
     {
@@ -2279,10 +2258,13 @@ OPEX_NARRATIVES = [
 
 
 def _opex_narrative_grid(peers: list = None) -> str:
-    """Render OpEx narrative quote cards (reuses quote-card style).
+    """OPEX AR 본문 인용 — clean narrative card 사용."""
+    items = OPEX_NARRATIVES if peers is None else [n for n in OPEX_NARRATIVES if n.get("ticker") in peers]
+    return _render_clean_narratives(items)
 
-    peers: 필터링할 ticker 리스트 (None=전체).
-    """
+
+def _opex_narrative_grid_legacy(peers: list = None) -> str:
+    """[legacy unused] 기존 quote-card 스타일."""
     tone_to_border = {
         "positive": "var(--green)",
         "warn":     "var(--warn)",
@@ -2346,40 +2328,54 @@ def _revenue_narrative_grid() -> str:
 </div>"""
 
 
-def _capex_narrative_grid(peers: list = None) -> str:
-    """Render curated CAPEX/OPEX vector-DB narratives as quote callout cards.
+def _render_clean_narratives(items: list) -> str:
+    """깔끔한 narrative 카드 — 한글 분석 중심, 인도네시아어 원문은 작은 footnote.
 
-    peers: 필터링할 ticker 리스트 (None=전체). 예: ['DMIG','PIPG']로 GOLF 제외.
+    카드 구조:
+      [ticker chip · 색상 tone]
+      ┌────────────────────────────────┐
+      │ Theme (작은 라벨)               │
+      │ Headline 큰 글씨 한글           │
+      │ ─────────────                  │
+      │ 한글 분석 본문                  │
+      │ ─────────────                  │
+      │ 원문 (작은 회색, dropshadow)    │
+      │ 출처 (회색 line)                │
+      └────────────────────────────────┘
     """
-    tone_to_border = {
+    PEER_COLOR_MAP = PEER_COLORS  # alias
+    tone_accent = {
         "positive": "var(--green)",
         "warn":     "var(--warn)",
-        "neutral":  "#8a8a8a",
+        "neutral":  "var(--muted)",
     }
-    items = CAPEX_NARRATIVES if peers is None else [n for n in CAPEX_NARRATIVES if n.get("ticker") in peers]
     cards = []
     for n in items:
-        border_color = tone_to_border.get(n["tone"], "#8a8a8a")
-        quote_text = n["quote"].strip()
-        if len(quote_text) > 320:
-            quote_text = quote_text[:320].rsplit(" ", 1)[0] + "…"
-        cards.append(f"""<div class="quote-card" style="border-left-color: {border_color};">
-  <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
-    <span class="ticker-mini">{safe(n["ticker"])}</span>
-    <span class="insight-tag" style="margin:0;">{safe(n["theme"])}</span>
-  </div>
-  <div style="font-weight:700; font-size:14px; color:var(--ink); margin-bottom:6px;">{safe(n["summary"])}</div>
-  <div style="font-size:12.5px; color:var(--ink-soft); line-height:1.55; font-style:italic; padding:6px 10px; border-left:2px solid var(--line-strong); margin:8px 0;">
-    "{safe(quote_text)}"
-  </div>
-  <div style="font-size:13px; color:var(--ink); line-height:1.55;">
-    <strong style="color:var(--green);">→</strong> {safe(n["ko"])}
-  </div>
-  <div class="qmeta"><strong>↳</strong> {safe(n["src"])}</div>
-</div>""")
-    return f"""<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap:14px; margin: 14px 0;">
-  {"".join(cards)}
-</div>"""
+        accent = tone_accent.get(n["tone"], "var(--muted)")
+        ticker = n["ticker"]
+        ticker_color = PEER_COLOR_MAP.get(ticker, "#2d5016")
+        quote_text = (n["quote"] or "").strip()
+        if len(quote_text) > 280:
+            quote_text = quote_text[:280].rsplit(" ", 1)[0] + "…"
+        cards.append(f"""<article class="narrative-card" style="border-top:3px solid {accent};">
+  <header class="nc-head">
+    <span class="ticker-mini" style="background:{ticker_color};color:#fff;padding:3px 10px;border-radius:5px;font-weight:700;letter-spacing:0.06em;font-size:11px;">{safe(ticker)}</span>
+    <span class="nc-theme">{safe(n["theme"])}</span>
+  </header>
+  <div class="nc-headline">{safe(n["summary"])}</div>
+  <div class="nc-analysis">{safe(n["ko"])}</div>
+  <details class="nc-source-detail">
+    <summary class="nc-source-summary">원문 보기 · {safe(n["src"])}</summary>
+    <blockquote class="nc-quote">{safe(quote_text)}</blockquote>
+  </details>
+</article>""")
+    return f"""<div class="narrative-grid">{"".join(cards)}</div>"""
+
+
+def _capex_narrative_grid(peers: list = None) -> str:
+    """CAPEX AR 본문 인용 — peers 필터 (None=전체)."""
+    items = CAPEX_NARRATIVES if peers is None else [n for n in CAPEX_NARRATIVES if n.get("ticker") in peers]
+    return _render_clean_narratives(items)
 
 
 def _all_peer_golf_segment_data() -> list:
