@@ -5032,32 +5032,8 @@ def _xbrl_comparison_section() -> str:
     table = _xbrl_comparison_table()
 
     return f"""<div class="section" id="kpi-xbrl-compare">
-  <h2 data-num="01">13-peer 비교</h2>
+  <h2 data-num="01">종합 표</h2>
 
-  <div class="insight-grid" style="margin-bottom:18px;">
-    <div class="insight-card insight-positive">
-      <div class="insight-tag"><span class="ticker-mini">PWON</span> 최고 마진</div>
-      <div class="insight-metric up">41.4<span class="u">%</span></div>
-      <div class="insight-title">OPM 1위</div>
-    </div>
-    <div class="insight-card insight-positive">
-      <div class="insight-tag"><span class="ticker-mini">DMIG·PIPG</span> 자본효율</div>
-      <div class="insight-metric up">14<span class="u">% ROE</span></div>
-      <div class="insight-title">Tier 1 골프 ROE</div>
-    </div>
-    <div class="insight-card insight-warn">
-      <div class="insight-tag"><span class="ticker-mini">KPIG</span> 매출 폭증</div>
-      <div class="insight-metric up">+47.7<span class="u">%</span></div>
-      <div class="insight-title">Rev YoY</div>
-    </div>
-    <div class="insight-card insight-warn">
-      <div class="insight-tag"><span class="ticker-mini">MDLN</span> 부채 risk</div>
-      <div class="insight-metric down">2.60<span class="u">x D/E</span></div>
-      <div class="insight-title">총부채 / 자본</div>
-    </div>
-  </div>
-
-  <h3 style="margin-top:24px;">종합 표</h3>
   {table}
 
   <h3 style="margin-top:28px;">랭킹</h3>
@@ -6353,29 +6329,15 @@ def _tab_exec_headline(tab_key: str, tab_title: str, tab_focus_tiles: list) -> s
 
 
 def section_ops_kpi() -> str:
-    """Tab 1: 운영 KPI — 13-peer 동일 기준 비교 + DMIG·PIPG 통합 상세."""
+    """Tab 1: 운영 KPI — 13-peer 종합 표 + DMIG·PIPG 통합 상세."""
     xbrl_compare_html = _xbrl_comparison_section()
     dmig_pipg_combined = _dmig_pipg_combined_detail_section()
-
-    exec_h = _tab_exec_headline(
-        tab_key="OPERATIONS",
-        tab_title="13-peer 수익성·성장성·건전성",
-        tab_focus_tiles=[
-            ("OPM 1위", "41.4", "%", "PWON", "FY25 — Pakuwon Mall 임대 중심 매출 구조", "green"),
-            ("NPM 1위", "33.0", "%", "PWON", "FY25 — 13-peer 최고 bottom-line", "green"),
-            ("ROE Tier 1 우위", "14.5", "%", "PIPG", "FY25 — Tier 4 부동산 최상위 (CTRA 11.1%) 능가", "green"),
-            ("Rev YoY 1위", "+47.7", "%", "KPIG", "FY25 — Hotel+Resort+Golf 통합 segment 폭증", "gold"),
-            ("D/E 최악", "2.60", "x", "MDLN", "FY25 — 영업적자 −9.6% 동반 13-peer 최고 부채", "warn"),
-        ],
-    )
 
     return f"""<section class="panel" data-panel="ops-kpi">
   <div class="wrap">
 
-    {exec_h}
-
     <nav class="ops-subnav" id="ops-kpi-anchor-top" aria-label="ops-kpi sub-navigation">
-      <a class="chip" href="#kpi-xbrl-compare">13-peer 비교</a>
+      <a class="chip" href="#kpi-xbrl-compare">종합 표</a>
       <a class="chip" href="#dmig-pipg-detail">DMIG·PIPG 상세</a>
     </nav>
 
@@ -6384,17 +6346,6 @@ def section_ops_kpi() -> str:
     {xbrl_compare_html}
 
     {dmig_pipg_combined}
-
-    <div class="closing-stripe">
-      <div class="cs-eyebrow">13-peer 종합</div>
-      <div class="cs-title">4 takeaways</div>
-      <div class="closing-grid">
-        <div class="closing-takeaway"><div class="num">1</div><div class="txt"><strong>Tier 1 골프 pure-play의 자본효율 우위</strong> · DMIG/PIPG ROE ~14% — Tier 4 부동산 최상위 (CTRA 11.1%) 능가. Asset turnover 0.35~0.39x로 13-peer 최상위.</div></div>
-        <div class="closing-takeaway"><div class="num">2</div><div class="txt"><strong>PWON, Tier 4 최고 마진</strong> · OPM 41.4% · NPM 33.0% · ROA 6.4% — 임대 중심 구조로 자산집약을 마진으로 보완. 골프장 추가 투자 검증 우선 대상.</div></div>
-        <div class="closing-takeaway"><div class="num">3</div><div class="txt"><strong>인접 사업 성장 검증</strong> · KPIG +47.7% · CTRA +12.8% · KIJA +11.9% · GOLF +8.9% — 골프 인접 사업 동력 확인. KPIG·CTRA·KIJA가 골프 투자 동반 후보.</div></div>
-        <div class="closing-takeaway"><div class="num">4</div><div class="txt"><strong>다중 지표 하위 = 보류</strong> · MDLN (D/E 2.60x + 영업적자) · SMDM (Rev −44.4%) · LPKR (Rev −21.5% + NP −97.5%) — 골프 추가 투자보다 본업 회복이 우선 과제.</div></div>
-      </div>
-    </div>
 
   </div>
 </section>"""
