@@ -4323,32 +4323,8 @@ def _xbrl_opex_comparison_section() -> str:
     table = _xbrl_opex_table()
 
     return f"""<div class="section" id="opex-xbrl-compare">
-  <h2 data-num="01">13-peer OPEX 비교</h2>
+  <h2 data-num="01">종합 표</h2>
 
-  <div class="insight-grid" style="margin-bottom:18px;">
-    <div class="insight-card insight-positive">
-      <div class="insight-tag"><span class="ticker-mini">PWON</span> 최저 총비용율</div>
-      <div class="insight-metric up">58.6<span class="u">%</span></div>
-      <div class="insight-title">OpEx / 매출</div>
-    </div>
-    <div class="insight-card insight-positive">
-      <div class="insight-tag"><span class="ticker-mini">KIJA</span> 최저 SG&amp;A</div>
-      <div class="insight-metric up">12.6<span class="u">%</span></div>
-      <div class="insight-title">SG&amp;A / 매출</div>
-    </div>
-    <div class="insight-card insight-warn">
-      <div class="insight-tag"><span class="ticker-mini">MDLN</span> 영업적자</div>
-      <div class="insight-metric down">109.6<span class="u">%</span></div>
-      <div class="insight-title">OpEx / 매출</div>
-    </div>
-    <div class="insight-card insight-positive">
-      <div class="insight-tag"><span class="ticker-mini">KPIG</span> OP 폭증</div>
-      <div class="insight-metric up">+487<span class="u">%</span></div>
-      <div class="insight-title">영업이익 YoY</div>
-    </div>
-  </div>
-
-  <h3 style="margin-top:24px;">종합 표</h3>
   {table}
 
   <h3 style="margin-top:28px;">랭킹</h3>
@@ -6365,32 +6341,16 @@ def section_capex() -> str:
 
 
 def section_opex() -> str:
-    """Tab 3: OPEX — 13-peer 비용구조 + DMIG·PIPG OPEX 카테고리 + AR 본문."""
+    """Tab 3: OPEX — 13-peer 종합 표 + DMIG·PIPG OPEX 카테고리 + AR 본문."""
     xbrl_opex_html = _xbrl_opex_comparison_section()
     dmig_pipg_opex_lines = _dmig_pipg_opex_lines_section()
     opex_narratives = _opex_narrative_grid(peers=["DMIG", "PIPG"])
 
-    exec_h = _tab_exec_headline(
-        tab_key="OPEX · COST STRUCTURE",
-        tab_title="13-peer 비용구조 + DMIG·PIPG OPEX 카테고리",
-        tab_focus_tiles=[
-            ("OPM 1위", "41.4", "%", "PWON", "FY25 — 13-peer 최고 비용 효율", "green"),
-            ("OpEx/매출 최저", "58.6", "%", "PWON", "FY25 — SG&A 14% + COGS 44%", "green"),
-            ("SG&A/매출 최저", "12.6", "%", "KIJA", "FY25 — Jababeka captive 수요", "green"),
-            ("OP YoY 폭증", "+487", "%", "KPIG", "FY25 — 매출 leverage 효과", "gold"),
-            ("OpEx 100% 초과", "109.6", "%", "MDLN", "FY25 — 영업적자 -9.6%", "warn"),
-        ],
-    )
-
     return f"""<section class="panel" data-panel="opex">
   <div class="wrap">
 
-    <a class="back-to-toc" href="#opex-anchor-top">목차</a>
-
-    {exec_h}
-
     <nav class="ops-subnav" id="opex-anchor-top" aria-label="opex sub-navigation">
-      <a class="chip" href="#opex-xbrl-compare">13-peer 비교</a>
+      <a class="chip" href="#opex-xbrl-compare">종합 표</a>
       <a class="chip" href="#dmig-pipg-opex-lines">OPEX 카테고리</a>
       <a class="chip" href="#dmig-pipg-narrative-opex">DMIG·PIPG AR 본문</a>
     </nav>
@@ -6404,17 +6364,6 @@ def section_opex() -> str:
     <div class="section" id="dmig-pipg-narrative-opex">
       <h2 data-num="03">DMIG·PIPG AR 본문 인용</h2>
       {opex_narratives}
-    </div>
-
-    <div class="closing-stripe">
-      <div class="cs-eyebrow">OPEX 종합</div>
-      <div class="cs-title">4 takeaways</div>
-      <div class="closing-grid">
-        <div class="closing-takeaway"><div class="num">1</div><div class="txt"><strong>PWON 최고 비용 효율</strong> · OpEx 58.6% + SG&A 14.1% — 13-peer 최저. 임대 중심 매출이 인건비·관리비 leverage.</div></div>
-        <div class="closing-takeaway"><div class="num">2</div><div class="txt"><strong>MDLN 영업적자</strong> · OpEx 109.6% (SG&A 56.8% 부담) → −9.6% OPM. ELTY 89%·LPKR 90%도 비효율 그룹.</div></div>
-        <div class="closing-takeaway"><div class="num">3</div><div class="txt"><strong>KPIG OP +487%</strong> · Hotel+Resort+Golf 매출 +47.7% leverage. ELTY +66.7%·CTRA +14.4%·KIJA +5.4% 동반 — 매출 성장이 비용 분산.</div></div>
-        <div class="closing-takeaway"><div class="num">4</div><div class="txt"><strong>DMIG·PIPG 마진 차별</strong> · DMIG FY25 OPM 27.6% (OP −12% 압박) vs PIPG 29.8% (OP +3.5% 회복) — 같은 pure-play도 비용 통제 결과 갈림.</div></div>
-      </div>
     </div>
 
   </div>
