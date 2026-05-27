@@ -310,9 +310,213 @@
           }
         ],
         "new_companies_added": []
+      },
+      {
+        "fetched_at": "2026-05-27T11:48:19",
+        "year": 2025,
+        "period": "audit",
+        "tickers_attempted": [
+          "AKRA",
+          "AMMN",
+          "ASRI",
+          "BKDP",
+          "BKSL",
+          "BSDE",
+          "CTRA",
+          "DILD",
+          "DMIG",
+          "ELTY",
+          "GOLF",
+          "INCO",
+          "JSPT",
+          "KIJA",
+          "KOTA",
+          "KPIG",
+          "LPKR",
+          "MDLN",
+          "PIPG",
+          "PJAA",
+          "PTBA",
+          "PWON",
+          "SMDM",
+          "SMRA"
+        ],
+        "tickers_ok": [
+          "AKRA",
+          "AMMN",
+          "ASRI",
+          "BKDP",
+          "BKSL",
+          "BSDE",
+          "CTRA",
+          "DILD",
+          "ELTY",
+          "GOLF",
+          "INCO",
+          "JSPT",
+          "KIJA",
+          "KOTA",
+          "KPIG",
+          "LPKR",
+          "MDLN",
+          "PJAA",
+          "PTBA",
+          "PWON",
+          "SMDM",
+          "SMRA"
+        ],
+        "tickers_failed": [
+          {
+            "ticker": "DMIG",
+            "status": "not_found",
+            "error": null
+          },
+          {
+            "ticker": "PIPG",
+            "status": "not_found",
+            "error": null
+          }
+        ],
+        "new_companies_added": []
+      },
+      {
+        "fetched_at": "2026-05-27T11:48:34",
+        "year": 2024,
+        "period": "audit",
+        "tickers_attempted": [
+          "AKRA",
+          "AMMN",
+          "ASRI",
+          "BKDP",
+          "BKSL",
+          "BSDE",
+          "CTRA",
+          "DILD",
+          "DMIG",
+          "ELTY",
+          "GOLF",
+          "INCO",
+          "JSPT",
+          "KIJA",
+          "KOTA",
+          "KPIG",
+          "LPKR",
+          "MDLN",
+          "PIPG",
+          "PJAA",
+          "PTBA",
+          "PWON",
+          "SMDM",
+          "SMRA"
+        ],
+        "tickers_ok": [
+          "AKRA",
+          "AMMN",
+          "ASRI",
+          "BKDP",
+          "BKSL",
+          "BSDE",
+          "CTRA",
+          "DILD",
+          "ELTY",
+          "GOLF",
+          "INCO",
+          "JSPT",
+          "KIJA",
+          "KOTA",
+          "KPIG",
+          "LPKR",
+          "MDLN",
+          "PJAA",
+          "PTBA",
+          "PWON",
+          "SMDM",
+          "SMRA"
+        ],
+        "tickers_failed": [
+          {
+            "ticker": "DMIG",
+            "status": "not_found",
+            "error": null
+          },
+          {
+            "ticker": "PIPG",
+            "status": "not_found",
+            "error": null
+          }
+        ],
+        "new_companies_added": []
+      },
+      {
+        "fetched_at": "2026-05-27T11:48:58",
+        "year": 2025,
+        "period": "audit",
+        "tickers_attempted": [
+          "AKRA",
+          "AMMN",
+          "ASRI",
+          "BKDP",
+          "BKSL",
+          "BSDE",
+          "CTRA",
+          "DILD",
+          "DMIG",
+          "ELTY",
+          "GOLF",
+          "INCO",
+          "JSPT",
+          "KIJA",
+          "KOTA",
+          "KPIG",
+          "LPKR",
+          "MDLN",
+          "PIPG",
+          "PJAA",
+          "PTBA",
+          "PWON",
+          "SMDM",
+          "SMRA"
+        ],
+        "tickers_ok": [
+          "AKRA",
+          "AMMN",
+          "ASRI",
+          "BKDP",
+          "BKSL",
+          "BSDE",
+          "CTRA",
+          "DILD",
+          "ELTY",
+          "GOLF",
+          "INCO",
+          "JSPT",
+          "KIJA",
+          "KOTA",
+          "KPIG",
+          "LPKR",
+          "MDLN",
+          "PJAA",
+          "PTBA",
+          "PWON",
+          "SMDM",
+          "SMRA"
+        ],
+        "tickers_failed": [
+          {
+            "ticker": "DMIG",
+            "status": "not_found",
+            "error": null
+          },
+          {
+            "ticker": "PIPG",
+            "status": "not_found",
+            "error": null
+          }
+        ],
+        "new_companies_added": []
       }
     ],
-    "last_xbrl_update": "2026-05-27T10:32:20"
+    "last_xbrl_update": "2026-05-27T11:48:58"
   },
   "companies": [
     {
@@ -416,7 +620,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=BSDE",
               "title": "BSDE 2023 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:08:43",
+              "date_published": "2026-05-27T11:48:34",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "BSDE_2024_audit.zip"
@@ -441,7 +645,13 @@
           "cfi": -315001477009,
           "cff": -312903780210,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2023-12-31"
+          "period_end": "2023-12-31",
+          "current_assets": 29374818540867,
+          "noncurrent_assets": 37452829945526,
+          "current_liabilities": 11897714398814,
+          "noncurrent_liabilities": 13728347883901,
+          "profit_before_tax": 2269737255284,
+          "finance_income": 497138120094
         },
         "2024": {
           "revenue": 13796572148837,
@@ -459,7 +669,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=BSDE",
               "title": "BSDE 2024 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "BSDE_2025_audit.zip"
@@ -491,7 +701,13 @@
           "cfi": -2715094311001,
           "cff": 1232882557399,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2024-12-31"
+          "period_end": "2024-12-31",
+          "current_assets": 30653815237807,
+          "noncurrent_assets": 45369533649039,
+          "current_liabilities": 14333486036630,
+          "noncurrent_liabilities": 14370534696212,
+          "profit_before_tax": 4945402426567,
+          "finance_income": 428124503115
         },
         "2025": {
           "revenue": 12788452336734,
@@ -509,7 +725,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=BSDE",
               "title": "BSDE 2025 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "BSDE_2025_audit.zip"
@@ -536,7 +752,13 @@
           "cfi": -1566475441241,
           "cff": 3798628160753,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2025-12-31"
+          "period_end": "2025-12-31",
+          "current_assets": 32764535658564,
+          "noncurrent_assets": 46503866542454,
+          "current_liabilities": 9686823512477,
+          "noncurrent_liabilities": 16912674004194,
+          "profit_before_tax": 2874827008467,
+          "finance_income": 379889784262
         }
       },
       "summary_note": "Strong revenue rebound from COVID lows (Rp 6.2T in 2020 to Rp 13.8T in 2024); net profit up ~9x. SMDM (Rancamaya) acquired Oct 2024 for Rp 2.33T.",
@@ -818,7 +1040,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=KPIG",
               "title": "KPIG 2023 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:08:43",
+              "date_published": "2026-05-27T11:48:34",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "KPIG_2024_audit.zip"
@@ -843,7 +1065,13 @@
           "cfi": -1197256280447,
           "cff": 1080726403805,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2023-12-31"
+          "period_end": "2023-12-31",
+          "current_assets": 3746566535736,
+          "noncurrent_assets": 29728572821787,
+          "current_liabilities": 3648972507337,
+          "noncurrent_liabilities": 3072256156764,
+          "profit_before_tax": 352255744742,
+          "finance_income": 1426887467
         },
         "2024": {
           "revenue": 1770144397893,
@@ -861,7 +1089,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=KPIG",
               "title": "KPIG 2024 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "KPIG_2025_audit.zip"
@@ -893,7 +1121,13 @@
           "cfi": -1734338506834,
           "cff": 1164147818124,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2024-12-31"
+          "period_end": "2024-12-31",
+          "current_assets": 3993283167060,
+          "noncurrent_assets": 31834215893583,
+          "current_liabilities": 4205429831120,
+          "noncurrent_liabilities": 3106961846658,
+          "profit_before_tax": 690730237285,
+          "finance_income": 1956948924
         },
         "2025": {
           "revenue": 2615281439206,
@@ -911,7 +1145,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=KPIG",
               "title": "KPIG 2025 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "KPIG_2025_audit.zip"
@@ -941,7 +1175,13 @@
           "cfi": 205809431301,
           "cff": -942045389093,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2025-12-31"
+          "period_end": "2025-12-31",
+          "current_assets": 3524454250955,
+          "noncurrent_assets": 32469669457553,
+          "current_liabilities": 3468897713302,
+          "noncurrent_liabilities": 3757198428117,
+          "profit_before_tax": 740746580250,
+          "finance_income": 35820949741
         }
       },
       "summary_note": "Strong growth driven by Lido City/Trump golf development; revenue Rp 678B→1.77T (~2.6x). Net profit jumped to Rp 659B in 2024 (+96% YoY).",
@@ -1050,7 +1290,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=BKSL",
               "title": "BKSL 2023 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:08:43",
+              "date_published": "2026-05-27T11:48:34",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "BKSL_2024_audit.zip"
@@ -1076,7 +1316,13 @@
           "cfi": -4078318705189,
           "cff": 4336048713117,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2023-12-31"
+          "period_end": "2023-12-31",
+          "current_assets": 3574283102477,
+          "noncurrent_assets": 16312594780943,
+          "current_liabilities": 3060809249354,
+          "noncurrent_liabilities": 1684985373572,
+          "profit_before_tax": 318899014939,
+          "finance_income": 3372917211
         },
         "2024": {
           "revenue": 744068396829,
@@ -1094,7 +1340,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=BKSL",
               "title": "BKSL 2024 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "BKSL_2025_audit.zip"
@@ -1127,7 +1373,13 @@
           "cfi": -46415474681,
           "cff": -264730494120,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2024-12-31"
+          "period_end": "2024-12-31",
+          "current_assets": 3763083379410,
+          "noncurrent_assets": 17425207125996,
+          "current_liabilities": 3984626865675,
+          "noncurrent_liabilities": 2049643953816,
+          "profit_before_tax": 18223125493,
+          "finance_income": 7430212127
         },
         "2025": {
           "revenue": 2757463756020,
@@ -1145,7 +1397,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=BKSL",
               "title": "BKSL 2025 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "BKSL_2025_audit.zip"
@@ -1173,7 +1425,13 @@
           "cfi": -76662866415,
           "cff": -319984345396,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2025-12-31"
+          "period_end": "2025-12-31",
+          "current_assets": 4774715158266,
+          "noncurrent_assets": 16486323445290,
+          "current_liabilities": 3518212978516,
+          "noncurrent_liabilities": 1750082059633,
+          "profit_before_tax": 852082648948,
+          "finance_income": 11548423080
         }
       },
       "summary_note": "Volatile: COVID losses (2020), recovery (2021), losses (2022), spike (2023), thin profit (2024). Revenue Rp 1.72T (2023) dropped to Rp 744B (2024). Total assets Rp 21.2T.",
@@ -1282,7 +1540,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=ELTY",
               "title": "ELTY 2023 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:08:43",
+              "date_published": "2026-05-27T11:48:34",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "ELTY_2024_audit.zip"
@@ -1307,7 +1565,12 @@
           "cfi": -4832000000,
           "cff": -45801000000,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2023-12-31"
+          "period_end": "2023-12-31",
+          "current_assets": 2431035000000,
+          "noncurrent_assets": 6208018000000,
+          "current_liabilities": 2002507000000,
+          "noncurrent_liabilities": 505301000000,
+          "profit_before_tax": -1117240000000
         },
         "2024": {
           "revenue": 1226740000000,
@@ -1325,7 +1588,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=ELTY",
               "title": "ELTY 2024 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "ELTY_2025_audit.zip"
@@ -1350,7 +1613,12 @@
           "cfi": -130081000000,
           "cff": 77073000000,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2024-12-31"
+          "period_end": "2024-12-31",
+          "current_assets": 1621212000000,
+          "noncurrent_assets": 7120805000000,
+          "current_liabilities": 1818658000000,
+          "noncurrent_liabilities": 899144000000,
+          "profit_before_tax": -95935000000
         },
         "2025": {
           "revenue": 1425943000000,
@@ -1377,14 +1645,19 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=ELTY",
               "title": "ELTY 2025 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "ELTY_2025_audit.zip"
             }
           ],
           "data_quality_year": "xbrl_audited",
-          "period_end": "2025-12-31"
+          "period_end": "2025-12-31",
+          "current_assets": 1571836000000,
+          "noncurrent_assets": 7065789000000,
+          "current_liabilities": 1928898000000,
+          "noncurrent_liabilities": 706225000000,
+          "profit_before_tax": -31779000000
         }
       },
       "summary_note": "5년 연속 적자. 매출은 Rp 616B→1.21T 두 배. 2024년 영업이익 첫 흑자 전환(75B). 자산 Rp 11.8T→8.7T 축소.",
@@ -1476,7 +1749,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=MDLN",
               "title": "MDLN 2023 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:08:43",
+              "date_published": "2026-05-27T11:48:34",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "MDLN_2024_audit.zip"
@@ -1502,7 +1775,13 @@
           "cfi": -146354497544,
           "cff": 116687472640,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2023-12-31"
+          "period_end": "2023-12-31",
+          "current_assets": 2902172279779,
+          "noncurrent_assets": 10786765614560,
+          "current_liabilities": 3296584233486,
+          "noncurrent_liabilities": 6275527031063,
+          "profit_before_tax": -76356303337,
+          "finance_income": 12609151058
         },
         "2024": {
           "revenue": 1017570122981,
@@ -1520,7 +1799,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=MDLN",
               "title": "MDLN 2024 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "MDLN_2025_audit.zip"
@@ -1553,7 +1832,13 @@
           "cfi": -40289398243,
           "cff": 51515434742,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2024-12-31"
+          "period_end": "2024-12-31",
+          "current_assets": 2752390471989,
+          "noncurrent_assets": 10809083850907,
+          "current_liabilities": 5650365420868,
+          "noncurrent_liabilities": 4457729666663,
+          "profit_before_tax": -660740273402,
+          "finance_income": 18056806475
         },
         "2025": {
           "revenue": 1013159445954,
@@ -1571,7 +1856,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=MDLN",
               "title": "MDLN 2025 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "MDLN_2025_audit.zip"
@@ -1599,7 +1884,13 @@
           "cfi": 6180350503,
           "cff": 308976606213,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2025-12-31"
+          "period_end": "2025-12-31",
+          "current_assets": 2919241885852,
+          "noncurrent_assets": 10531841546384,
+          "current_liabilities": 3457230201329,
+          "noncurrent_liabilities": 6257252354831,
+          "profit_before_tax": 275973850702,
+          "finance_income": 9463778513
         }
       },
       "summary_note": "Modern Golf 모회사. 변동성 심함. 2024 골프장+클럽하우스 레스토랑 세그먼트 매출 Rp 74.3B 별도 공시 (희귀 사례).",
@@ -1691,7 +1982,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=KIJA",
               "title": "KIJA 2023 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:08:43",
+              "date_published": "2026-05-27T11:48:34",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "KIJA_2024_audit.zip"
@@ -1716,7 +2007,13 @@
           "cfi": -394394000000,
           "cff": -398565000000,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2023-12-31"
+          "period_end": "2023-12-31",
+          "current_assets": 8951198000000,
+          "noncurrent_assets": 3996237000000,
+          "current_liabilities": 1538459000000,
+          "noncurrent_liabilities": 4477599000000,
+          "profit_before_tax": 567306000000,
+          "finance_income": 163974000000
         },
         "2024": {
           "revenue": 4602648000000,
@@ -1734,7 +2031,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=KIJA",
               "title": "KIJA 2024 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "KIJA_2025_audit.zip"
@@ -1766,7 +2063,13 @@
           "cfi": -515955000000,
           "cff": -410928000000,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2024-12-31"
+          "period_end": "2024-12-31",
+          "current_assets": 10653856000000,
+          "noncurrent_assets": 3363500000000,
+          "current_liabilities": 2017325000000,
+          "noncurrent_liabilities": 4461074000000,
+          "profit_before_tax": 821108000000,
+          "finance_income": 92386000000
         },
         "2025": {
           "revenue": 5149425000000,
@@ -1784,7 +2087,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=KIJA",
               "title": "KIJA 2025 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "KIJA_2025_audit.zip"
@@ -1811,7 +2114,13 @@
           "cfi": -697738000000,
           "cff": -135534000000,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2025-12-31"
+          "period_end": "2025-12-31",
+          "current_assets": 11677542000000,
+          "noncurrent_assets": 3378678000000,
+          "current_liabilities": 1980588000000,
+          "noncurrent_liabilities": 4931263000000,
+          "profit_before_tax": 961530000000,
+          "finance_income": 124751000000
         }
       },
       "summary_note": "만성 적자에서 흑자 전환 — 2023부터 흑자, 2024 매출 Rp 4.6T 사상 최대. 2024 첫 배당 Rp 1.792.",
@@ -2026,7 +2335,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=SMDM",
               "title": "SMDM 2023 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:08:43",
+              "date_published": "2026-05-27T11:48:34",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "SMDM_2024_audit.zip"
@@ -2051,7 +2360,12 @@
           "cfi": -4553819656,
           "cff": 31658050949,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2023-12-31"
+          "period_end": "2023-12-31",
+          "current_assets": 1240736456135,
+          "noncurrent_assets": 2293852367860,
+          "current_liabilities": 245285930046,
+          "noncurrent_liabilities": 230968640043,
+          "profit_before_tax": 98746542568
         },
         "2024": {
           "revenue": 694045208919,
@@ -2069,7 +2383,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=SMDM",
               "title": "SMDM 2024 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "SMDM_2025_audit.zip"
@@ -2101,7 +2415,12 @@
           "cfi": 16423074078,
           "cff": 26335319349,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2024-12-31"
+          "period_end": "2024-12-31",
+          "current_assets": 1128298938848,
+          "noncurrent_assets": 2333973110067,
+          "current_liabilities": 195616308187,
+          "noncurrent_liabilities": 56001937828,
+          "profit_before_tax": 163906737873
         },
         "2025": {
           "revenue": 386084674964,
@@ -2119,7 +2438,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=SMDM",
               "title": "SMDM 2025 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "SMDM_2025_audit.zip"
@@ -2146,7 +2465,13 @@
           "cfi": 16565662327,
           "cff": -6305351934,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2025-12-31"
+          "period_end": "2025-12-31",
+          "current_assets": 1121154021464,
+          "noncurrent_assets": 2410651922210,
+          "current_liabilities": 223967487766,
+          "noncurrent_liabilities": 45545307829,
+          "profit_before_tax": 28851533606,
+          "finance_income": 9946855062
         }
       },
       "summary_note": "Rancamaya 모회사. 2024년 10월 BSDE에 91.99% 인수(Rp 2.33T). 매출 Rp 387B→694B, 순이익 -0.8B→123.8B 회복.",
@@ -2245,7 +2570,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=LPKR",
               "title": "LPKR 2023 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:08:43",
+              "date_published": "2026-05-27T11:48:34",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "LPKR_2024_audit.zip"
@@ -2270,7 +2595,13 @@
           "cfi": -978844000000,
           "cff": -1077427000000,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2023-12-31"
+          "period_end": "2023-12-31",
+          "current_assets": 29816689000000,
+          "noncurrent_assets": 19754135000000,
+          "current_liabilities": 9923981000000,
+          "noncurrent_liabilities": 20040412000000,
+          "profit_before_tax": 1408007000000,
+          "finance_income": 255757000000
         },
         "2024": {
           "revenue": 11505172000000,
@@ -2288,7 +2619,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=LPKR",
               "title": "LPKR 2024 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "LPKR_2025_audit.zip"
@@ -2320,7 +2651,13 @@
           "cfi": 9376693000000,
           "cff": -8442396000000,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2024-12-31"
+          "period_end": "2024-12-31",
+          "current_assets": 34520772000000,
+          "noncurrent_assets": 19263087000000,
+          "current_liabilities": 11107982000000,
+          "noncurrent_liabilities": 11728808000000,
+          "profit_before_tax": 19247937000000,
+          "finance_income": 288362000000
         },
         "2025": {
           "revenue": 9033322000000,
@@ -2347,14 +2684,20 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=LPKR",
               "title": "LPKR 2025 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "LPKR_2025_audit.zip"
             }
           ],
           "data_quality_year": "xbrl_audited",
-          "period_end": "2025-12-31"
+          "period_end": "2025-12-31",
+          "current_assets": 29476186000000,
+          "noncurrent_assets": 19771035000000,
+          "current_liabilities": 7236845000000,
+          "noncurrent_liabilities": 10959361000000,
+          "profit_before_tax": 859688000000,
+          "finance_income": 238792000000
         }
       },
       "summary_note": "Imperial Klub 모회사. 2024 순이익 Rp 18.75T는 SILO(Siloam) 분리매각 일회성 이익. 직원수 15,549→1,708 급감(분리 반영).",
@@ -2446,7 +2789,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=SMRA",
               "title": "SMRA 2023 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:08:43",
+              "date_published": "2026-05-27T11:48:34",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "SMRA_2024_audit.zip"
@@ -2471,7 +2814,13 @@
           "cfi": -2044736394000,
           "cff": 789671272000,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2023-12-31"
+          "period_end": "2023-12-31",
+          "current_assets": 15562228744000,
+          "noncurrent_assets": 15606146342000,
+          "current_liabilities": 11837660718000,
+          "noncurrent_liabilities": 7027652496000,
+          "profit_before_tax": 1345404400000,
+          "finance_income": 180737086000
         },
         "2024": {
           "revenue": 10623354592000,
@@ -2489,7 +2838,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=SMRA",
               "title": "SMRA 2024 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "SMRA_2025_audit.zip"
@@ -2521,7 +2870,13 @@
           "cfi": -3582542140000,
           "cff": 3011037632000,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2024-12-31"
+          "period_end": "2024-12-31",
+          "current_assets": 15415501321000,
+          "noncurrent_assets": 18118599141000,
+          "current_liabilities": 12884884740000,
+          "noncurrent_liabilities": 6816688392000,
+          "profit_before_tax": 2463402992000,
+          "finance_income": 181265040000
         },
         "2025": {
           "revenue": 8766927470000,
@@ -2539,7 +2894,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=SMRA",
               "title": "SMRA 2025 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "SMRA_2025_audit.zip"
@@ -2566,7 +2921,13 @@
           "cfi": -4576800731000,
           "cff": 3689597369000,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2025-12-31"
+          "period_end": "2025-12-31",
+          "current_assets": 16140140534000,
+          "noncurrent_assets": 22202371372000,
+          "current_liabilities": 14995065350000,
+          "noncurrent_liabilities": 7342566121000,
+          "profit_before_tax": 1621433848000,
+          "finance_income": 181169494000
         }
       },
       "summary_note": "Gading Raya 모회사. COVID 직격 후 강한 회복 — 매출 Rp 5T→10.6T(+111%), 순이익 180B→1.37T(+664%). 2024 산업단지 매각 효과.",
@@ -2797,7 +3158,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=PTBA",
               "title": "PTBA 2023 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:08:43",
+              "date_published": "2026-05-27T11:48:34",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "PTBA_2024_audit.zip"
@@ -2823,7 +3184,13 @@
           "cfi": 7257889000000,
           "cff": -13244158000000,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2023-12-31"
+          "period_end": "2023-12-31",
+          "current_assets": 15148356000000,
+          "noncurrent_assets": 23616833000000,
+          "current_liabilities": 9968101000000,
+          "noncurrent_liabilities": 7233892000000,
+          "profit_before_tax": 8154313000000,
+          "finance_income": 584339000000
         },
         "2024": {
           "revenue": 42764968000000,
@@ -2841,7 +3208,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=PTBA",
               "title": "PTBA 2024 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "PTBA_2025_audit.zip"
@@ -2874,7 +3241,13 @@
           "cfi": -944274000000,
           "cff": -4139428000000,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2024-12-31"
+          "period_end": "2024-12-31",
+          "current_assets": 15233514000000,
+          "noncurrent_assets": 26552062000000,
+          "current_liabilities": 11974820000000,
+          "noncurrent_liabilities": 7166944000000,
+          "profit_before_tax": 6259246000000,
+          "finance_income": 250183000000
         },
         "2025": {
           "revenue": 42651724000000,
@@ -2901,14 +3274,20 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=PTBA",
               "title": "PTBA 2025 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "PTBA_2025_audit.zip"
             }
           ],
           "data_quality_year": "xbrl_audited",
-          "period_end": "2025-12-31"
+          "period_end": "2025-12-31",
+          "current_assets": 14241193000000,
+          "noncurrent_assets": 29675870000000,
+          "current_liabilities": 12727127000000,
+          "noncurrent_liabilities": 8573135000000,
+          "profit_before_tax": 3773209000000,
+          "finance_income": 219502000000
         }
       },
       "summary_note": "국영 석탄. 2020 COVID 저점 → 2021-22 에너지 위기로 폭발(순이익 12.6T 사상최대) → 2023-24 정상화. Bukit Asam 골프장은 2024 그랜드 런칭.",
@@ -3000,7 +3379,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=AKRA",
               "title": "AKRA 2023 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:08:43",
+              "date_published": "2026-05-27T11:48:34",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "AKRA_2024_audit.zip"
@@ -3025,7 +3404,13 @@
           "cfi": -583534794000,
           "cff": -648456763000,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2023-12-31"
+          "period_end": "2023-12-31",
+          "current_assets": 18163000346000,
+          "noncurrent_assets": 12133571460000,
+          "current_liabilities": 12575326497000,
+          "noncurrent_liabilities": 3678287796000,
+          "profit_before_tax": 3687471936000,
+          "finance_income": 160892140000
         },
         "2024": {
           "revenue": 38729493298000,
@@ -3043,7 +3428,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=AKRA",
               "title": "AKRA 2024 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "AKRA_2025_audit.zip"
@@ -3075,7 +3460,13 @@
           "cfi": -1172912772000,
           "cff": -1470031624000,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2024-12-31"
+          "period_end": "2024-12-31",
+          "current_assets": 20998111740000,
+          "noncurrent_assets": 12110572628000,
+          "current_liabilities": 13454247427000,
+          "noncurrent_liabilities": 5030444467000,
+          "profit_before_tax": 2838907151000,
+          "finance_income": 298884097000
         },
         "2025": {
           "revenue": 46018468072000,
@@ -3101,14 +3492,20 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=AKRA",
               "title": "AKRA 2025 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "AKRA_2025_audit.zip"
             }
           ],
           "data_quality_year": "xbrl_audited",
-          "period_end": "2025-12-31"
+          "period_end": "2025-12-31",
+          "current_assets": 23323716152000,
+          "noncurrent_assets": 13238565105000,
+          "current_liabilities": 15837200190000,
+          "noncurrent_liabilities": 5115131598000,
+          "profit_before_tax": 3307520236000,
+          "finance_income": 245286859000
         }
       },
       "summary_note": "Grand Kawanua Manado 모회사. 석유/화학 유통 + JIIPE 산업단지. 2022-23 산업단지 매각으로 매출 Rp 47.5T 정점 → 2024 정상화.",
@@ -3200,7 +3597,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=INCO",
               "title": "INCO 2023 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:08:43",
+              "date_published": "2026-05-27T11:48:34",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "INCO_2024_audit.zip"
@@ -3224,7 +3621,13 @@
           "cfi": -285817000,
           "cff": -65441000,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2023-12-31"
+          "period_end": "2023-12-31",
+          "current_assets": 1033119000,
+          "noncurrent_assets": 1892880000,
+          "current_liabilities": 216727000,
+          "noncurrent_liabilities": 144735000,
+          "profit_before_tax": 352523000,
+          "finance_income": 35753000
         },
         "2024": {
           "revenue": 950388000,
@@ -3242,7 +3645,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=INCO",
               "title": "INCO 2024 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "INCO_2025_audit.zip"
@@ -3273,7 +3676,13 @@
           "cfi": -331772000,
           "cff": 102282000,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2024-12-31"
+          "period_end": "2024-12-31",
+          "current_assets": 1004774000,
+          "noncurrent_assets": 2171754000,
+          "current_liabilities": 263471000,
+          "noncurrent_liabilities": 180281000,
+          "profit_before_tax": 74060000,
+          "finance_income": 36198000
         },
         "2025": {
           "revenue": 990195000,
@@ -3298,14 +3707,20 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=INCO",
               "title": "INCO 2025 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "INCO_2025_audit.zip"
             }
           ],
           "data_quality_year": "xbrl_audited",
-          "period_end": "2025-12-31"
+          "period_end": "2025-12-31",
+          "current_assets": 749497000,
+          "noncurrent_assets": 2596350000,
+          "current_liabilities": 362390000,
+          "noncurrent_liabilities": 208381000,
+          "profit_before_tax": 94532000,
+          "finance_income": 37258000
         }
       },
       "summary_note": "Sorowako 골프장 모회사. USD 보고를 BI 환율로 IDR 환산. 2024 니켈가격 폭락으로 순이익 -79% YoY. 직원 ~3,040명 (Sorowako 광산촌).",
@@ -3399,7 +3814,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=GOLF",
               "title": "GOLF 2023 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:08:43",
+              "date_published": "2026-05-27T11:48:34",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "GOLF_2024_audit.zip"
@@ -3426,7 +3841,13 @@
           "cfi": -51193079533,
           "cff": -701876399,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2023-12-31"
+          "period_end": "2023-12-31",
+          "current_assets": 256261097724,
+          "noncurrent_assets": 7508279259530,
+          "current_liabilities": 153281865948,
+          "noncurrent_liabilities": 29515674771,
+          "profit_before_tax": 69861328833,
+          "finance_income": 1664105553
         },
         "2024": {
           "revenue": 197993814652,
@@ -3444,7 +3865,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=GOLF",
               "title": "GOLF 2024 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "GOLF_2025_audit.zip"
@@ -3478,7 +3899,13 @@
           "cfi": -361852729455,
           "cff": 814967069922,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2024-12-31"
+          "period_end": "2024-12-31",
+          "current_assets": 1426316275920,
+          "noncurrent_assets": 7211182856563,
+          "current_liabilities": 161451166496,
+          "noncurrent_liabilities": 495260554736,
+          "profit_before_tax": 78025929060,
+          "finance_income": 1868989021
         },
         "2025": {
           "revenue": 215519553620,
@@ -3496,7 +3923,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=GOLF",
               "title": "GOLF 2025 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "GOLF_2025_audit.zip"
@@ -3528,7 +3955,13 @@
           "cfi": -181756466981,
           "cff": -55617217567,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2025-12-31"
+          "period_end": "2025-12-31",
+          "current_assets": 954136007535,
+          "noncurrent_assets": 7731434888198,
+          "current_liabilities": 177134524105,
+          "noncurrent_liabilities": 489645749288,
+          "profit_before_tax": 61874538119,
+          "finance_income": 4323957960
         }
       },
       "summary_note": "Black Rocks Belitung 운영(48.07% 관계회사, 비연결). 자회사: New Kuta Bali(매출 91B), Palm Hill Sentul(105B). 2024 매출 Rp 198B (golf 47% + 부동산 34% + F&B 14%). EBITDA margin 44.7%. FY2020은 OJK 규정상 미공개(IPO 프로스펙터스 3년 한정).",
@@ -3655,7 +4088,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=AMMN",
               "title": "AMMN 2023 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:08:43",
+              "date_published": "2026-05-27T11:48:34",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "AMMN_2024_audit.zip"
@@ -3679,7 +4112,12 @@
           "cfi": -1519707000,
           "cff": 2061815000,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2023-12-31"
+          "period_end": "2023-12-31",
+          "current_assets": 2544318000,
+          "noncurrent_assets": 6552735000,
+          "current_liabilities": 774120000,
+          "noncurrent_liabilities": 3687388000,
+          "profit_before_tax": 599071000
         },
         "2024": {
           "revenue": 2663630000,
@@ -3703,7 +4141,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=AMMN",
               "title": "AMMN 2024 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "AMMN_2025_audit.zip"
@@ -3727,7 +4165,12 @@
           "cfi": -1791800000,
           "cff": 1164417000,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2024-12-31"
+          "period_end": "2024-12-31",
+          "current_assets": 2332417000,
+          "noncurrent_assets": 8789071000,
+          "current_liabilities": 1156468000,
+          "noncurrent_liabilities": 4716620000,
+          "profit_before_tax": 924667000
         },
         "2025": {
           "revenue": 1846521000,
@@ -3752,14 +4195,19 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=AMMN",
               "title": "AMMN 2025 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "AMMN_2025_audit.zip"
             }
           ],
           "data_quality_year": "xbrl_audited",
-          "period_end": "2025-12-31"
+          "period_end": "2025-12-31",
+          "current_assets": 3152403000,
+          "noncurrent_assets": 10718245000,
+          "current_liabilities": 1409937000,
+          "noncurrent_liabilities": 7029599000,
+          "profit_before_tax": 347320000
         }
       },
       "summary_note": "Kaleang Sumbawa(구 Newmont 코스) 모회사. USD 보고. 2023.07 IPO. FY2020은 IPO 프로스펙터스에서 audited 풀세트 추출 (Simply Wall St 추정 → 정확값 정정). 매출 USD 1.0B→2.66B, 자산 USD 4.76B→11.12B.",
@@ -4378,7 +4826,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=DILD",
               "title": "DILD 2023 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:08:43",
+              "date_published": "2026-05-27T11:48:34",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "DILD_2024_audit.zip"
@@ -4403,7 +4851,13 @@
           "cfi": 411311746875,
           "cff": -525224908935,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2023-12-31"
+          "period_end": "2023-12-31",
+          "current_assets": 4734769827971,
+          "noncurrent_assets": 9869138315221,
+          "current_liabilities": 4152716613776,
+          "noncurrent_liabilities": 3912010101392,
+          "profit_before_tax": 853895497806,
+          "finance_income": 24284156323
         },
         "2024": {
           "revenue": 2553285289717,
@@ -4421,7 +4875,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=DILD",
               "title": "DILD 2024 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "DILD_2025_audit.zip"
@@ -4453,7 +4907,13 @@
           "cfi": -85291235813,
           "cff": -281179170787,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2024-12-31"
+          "period_end": "2024-12-31",
+          "current_assets": 3870567366297,
+          "noncurrent_assets": 9832985714600,
+          "current_liabilities": 3583108192834,
+          "noncurrent_liabilities": 3373532417681,
+          "profit_before_tax": 407086002941,
+          "finance_income": 19563442726
         },
         "2025": {
           "revenue": 2462390177632,
@@ -4471,7 +4931,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=DILD",
               "title": "DILD 2025 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "DILD_2025_audit.zip"
@@ -4498,7 +4958,13 @@
           "cfi": -37909587153,
           "cff": -592253822089,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2025-12-31"
+          "period_end": "2025-12-31",
+          "current_assets": 3237073187473,
+          "noncurrent_assets": 9879936232773,
+          "current_liabilities": 3398832915576,
+          "noncurrent_liabilities": 2931297696552,
+          "profit_before_tax": 159147319631,
+          "finance_income": 20818760521
         }
       },
       "summary_note": "Graha Famili 수라바야 운영(자회사 PT Grande Famili View). 매출 Rp 2.89T(2020) → 2.55T(2024). 2023 정점(3.91T) 후 하락. 5년 무배당.",
@@ -4600,7 +5066,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=PWON",
               "title": "PWON 2023 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:08:43",
+              "date_published": "2026-05-27T11:48:34",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "PWON_2024_audit.zip"
@@ -4625,7 +5091,12 @@
           "cfi": -2295757605000,
           "cff": -260969579000,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2023-12-31"
+          "period_end": "2023-12-31",
+          "current_assets": 13055426298000,
+          "noncurrent_assets": 19655360685000,
+          "current_liabilities": 2532140718000,
+          "noncurrent_liabilities": 7383311899000,
+          "profit_before_tax": 2401827599000
         },
         "2024": {
           "revenue": 6670808930000,
@@ -4643,7 +5114,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=PWON",
               "title": "PWON 2024 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "PWON_2025_audit.zip"
@@ -4675,7 +5146,12 @@
           "cfi": -1408974757000,
           "cff": -389274525000,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2024-12-31"
+          "period_end": "2024-12-31",
+          "current_assets": 14819401204000,
+          "noncurrent_assets": 20551683945000,
+          "current_liabilities": 3107522292000,
+          "noncurrent_liabilities": 7521565519000,
+          "profit_before_tax": 2452738616000
         },
         "2025": {
           "revenue": 7111105136000,
@@ -4702,14 +5178,19 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=PWON",
               "title": "PWON 2025 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "PWON_2025_audit.zip"
             }
           ],
           "data_quality_year": "xbrl_audited",
-          "period_end": "2025-12-31"
+          "period_end": "2025-12-31",
+          "current_assets": 11142052288000,
+          "noncurrent_assets": 25323985991000,
+          "current_liabilities": 3162438112000,
+          "noncurrent_liabilities": 6680756560000,
+          "profit_before_tax": 2812194007000
         }
       },
       "summary_note": "Pakuwon Golf & Family Club 수라바야 운영. 매출 Rp 3.98T→6.67T(+68%), 순이익 930B→2.07T(+123%). 배당 0→13 IDR/주 5년 일관 증가. 5년 모두 흑자.",
@@ -4956,7 +5437,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=BKDP",
               "title": "BKDP 2023 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:08:43",
+              "date_published": "2026-05-27T11:48:34",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "BKDP_2024_audit.zip"
@@ -4981,7 +5462,12 @@
           "cfi": -25408357197,
           "cff": 36060449627,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2023-12-31"
+          "period_end": "2023-12-31",
+          "current_assets": 59018547316,
+          "noncurrent_assets": 699220052510,
+          "current_liabilities": 158947123114,
+          "noncurrent_liabilities": 217384039463,
+          "profit_before_tax": -34188318030
         },
         "2024": {
           "revenue": 30520490000,
@@ -4999,7 +5485,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=BKDP",
               "title": "BKDP 2024 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "BKDP_2025_audit.zip"
@@ -5024,7 +5510,12 @@
           "cfi": -19877726471,
           "cff": 34056280899,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2024-12-31"
+          "period_end": "2024-12-31",
+          "current_assets": 56104668087,
+          "noncurrent_assets": 696140494329,
+          "current_liabilities": 183388019245,
+          "noncurrent_liabilities": 223094088789,
+          "profit_before_tax": -36004513882
         },
         "2025": {
           "revenue": 36632337898,
@@ -5042,7 +5533,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=BKDP",
               "title": "BKDP 2025 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "BKDP_2025_audit.zip"
@@ -5069,7 +5560,12 @@
           "cfi": -10389990133,
           "cff": 35915194667,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2025-12-31"
+          "period_end": "2025-12-31",
+          "current_assets": 53277276002,
+          "noncurrent_assets": 680634342314,
+          "current_liabilities": 64938400174,
+          "noncurrent_liabilities": 360008621886,
+          "profit_before_tax": -35660294118
         }
       },
       "summary_note": "Bukit Darmo Surabaya 골프코스(Jack Nicklaus II, 1995) 직접 운영사. 매출 Rp 20-30B 수준 초소형 emiten. 5년 연속 영업/순손실, 자본잠식 진행 중(자본 Rp 481B→346B). 무배당.",
@@ -5161,7 +5657,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=CTRA",
               "title": "CTRA 2023 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:08:43",
+              "date_published": "2026-05-27T11:48:34",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "CTRA_2024_audit.zip"
@@ -5193,7 +5689,13 @@
           "cfi": -1176280000000,
           "cff": -1140181000000,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2023-12-31"
+          "period_end": "2023-12-31",
+          "current_assets": 25747833000000,
+          "noncurrent_assets": 18367382000000,
+          "current_liabilities": 10625396000000,
+          "noncurrent_liabilities": 10865103000000,
+          "profit_before_tax": 2215769000000,
+          "finance_income": 395908000000
         },
         "2024": {
           "revenue": 11187565000000,
@@ -5211,7 +5713,7 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=CTRA",
               "title": "CTRA 2024 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "CTRA_2025_audit.zip"
@@ -5236,7 +5738,13 @@
           "cfi": -2751166000000,
           "cff": -634532000000,
           "data_quality_year": "xbrl_audited",
-          "period_end": "2024-12-31"
+          "period_end": "2024-12-31",
+          "current_assets": 26429775000000,
+          "noncurrent_assets": 20592927000000,
+          "current_liabilities": 13308121000000,
+          "noncurrent_liabilities": 9099251000000,
+          "profit_before_tax": 2705721000000,
+          "finance_income": 534365000000
         },
         "2025": {
           "revenue": 12616695000000,
@@ -5263,14 +5771,20 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=CTRA",
               "title": "CTRA 2025 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "CTRA_2025_audit.zip"
             }
           ],
           "data_quality_year": "xbrl_audited",
-          "period_end": "2025-12-31"
+          "period_end": "2025-12-31",
+          "current_assets": 27413113000000,
+          "noncurrent_assets": 20575309000000,
+          "current_liabilities": 14242835000000,
+          "noncurrent_liabilities": 6826851000000,
+          "profit_before_tax": 3201755000000,
+          "finance_income": 480461000000
         }
       },
       "summary_note": "Ciputra Surabaya · Taman Dayu Pasuruan 등 다수 township 골프장. 매출 Rp 8.07T→11.19T(+39%), 순이익 Rp 1.32T→2.13T(+61%), 배당 Rp 8→21(+163%) 5년 안정 성장.",
@@ -5307,14 +5821,20 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=ASRI",
               "title": "ASRI 2024 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "ASRI_2025_audit.zip"
             }
           ],
           "data_quality_year": "xbrl_audited",
-          "period_end": "2024-12-31"
+          "period_end": "2024-12-31",
+          "current_assets": 2832227835000,
+          "noncurrent_assets": 19186803598000,
+          "current_liabilities": 3704391625000,
+          "noncurrent_liabilities": 6978900368000,
+          "profit_before_tax": 79797390000,
+          "finance_income": 25231573000
         },
         "2023": {
           "revenue": 3956015546000,
@@ -5340,14 +5860,20 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=ASRI",
               "title": "ASRI 2023 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:08:43",
+              "date_published": "2026-05-27T11:48:34",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "ASRI_2024_audit.zip"
             }
           ],
           "data_quality_year": "xbrl_audited",
-          "period_end": "2023-12-31"
+          "period_end": "2023-12-31",
+          "current_assets": 2905301328000,
+          "noncurrent_assets": 19330935536000,
+          "current_liabilities": 3688162066000,
+          "noncurrent_liabilities": 7276889036000,
+          "profit_before_tax": 667944857000,
+          "finance_income": 31214653000
         },
         "2025": {
           "revenue": 2933946681000,
@@ -5373,14 +5899,20 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=ASRI",
               "title": "ASRI 2025 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "ASRI_2025_audit.zip"
             }
           ],
           "data_quality_year": "xbrl_audited",
-          "period_end": "2025-12-31"
+          "period_end": "2025-12-31",
+          "current_assets": 4019944010000,
+          "noncurrent_assets": 19137826132000,
+          "current_liabilities": 4261836756000,
+          "noncurrent_liabilities": 7241086146000,
+          "profit_before_tax": 336430032000,
+          "finance_income": 24920688000
         }
       },
       "data_quality": "xbrl_audited",
@@ -5416,14 +5948,20 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=JSPT",
               "title": "JSPT 2024 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "JSPT_2025_audit.zip"
             }
           ],
           "data_quality_year": "xbrl_audited",
-          "period_end": "2024-12-31"
+          "period_end": "2024-12-31",
+          "current_assets": 2139793103000,
+          "noncurrent_assets": 4318051668000,
+          "current_liabilities": 1045454225000,
+          "noncurrent_liabilities": 2485655766000,
+          "profit_before_tax": 337924127000,
+          "finance_income": 33811028000
         },
         "2023": {
           "revenue": 1774897256000,
@@ -5449,14 +5987,20 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=JSPT",
               "title": "JSPT 2023 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:08:43",
+              "date_published": "2026-05-27T11:48:34",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "JSPT_2024_audit.zip"
             }
           ],
           "data_quality_year": "xbrl_audited",
-          "period_end": "2023-12-31"
+          "period_end": "2023-12-31",
+          "current_assets": 1827124640000,
+          "noncurrent_assets": 4446694075000,
+          "current_liabilities": 910583938000,
+          "noncurrent_liabilities": 2725435762000,
+          "profit_before_tax": 255572671000,
+          "finance_income": 26007587000
         },
         "2025": {
           "revenue": 2417178701000,
@@ -5482,14 +6026,20 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=JSPT",
               "title": "JSPT 2025 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "JSPT_2025_audit.zip"
             }
           ],
           "data_quality_year": "xbrl_audited",
-          "period_end": "2025-12-31"
+          "period_end": "2025-12-31",
+          "current_assets": 2111933405000,
+          "noncurrent_assets": 4370023780000,
+          "current_liabilities": 1191352267000,
+          "noncurrent_liabilities": 2146143444000,
+          "profit_before_tax": 408568631000,
+          "finance_income": 47344536000
         }
       },
       "data_quality": "xbrl_audited",
@@ -5525,14 +6075,19 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=KOTA",
               "title": "KOTA 2024 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "KOTA_2025_audit.zip"
             }
           ],
           "data_quality_year": "xbrl_audited",
-          "period_end": "2024-12-31"
+          "period_end": "2024-12-31",
+          "current_assets": 141783557391,
+          "noncurrent_assets": 1363003743619,
+          "current_liabilities": 115156179305,
+          "noncurrent_liabilities": 193937229940,
+          "profit_before_tax": -19510287833
         },
         "2023": {
           "revenue": 27879084803,
@@ -5558,14 +6113,19 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=KOTA",
               "title": "KOTA 2023 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:08:43",
+              "date_published": "2026-05-27T11:48:34",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "KOTA_2024_audit.zip"
             }
           ],
           "data_quality_year": "xbrl_audited",
-          "period_end": "2023-12-31"
+          "period_end": "2023-12-31",
+          "current_assets": 150254846826,
+          "noncurrent_assets": 1373111334570,
+          "current_liabilities": 105688194294,
+          "noncurrent_liabilities": 204053417451,
+          "profit_before_tax": -25074815857
         },
         "2025": {
           "revenue": 122584696135,
@@ -5591,14 +6151,19 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=KOTA",
               "title": "KOTA 2025 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "KOTA_2025_audit.zip"
             }
           ],
           "data_quality_year": "xbrl_audited",
-          "period_end": "2025-12-31"
+          "period_end": "2025-12-31",
+          "current_assets": 262999268333,
+          "noncurrent_assets": 1711418725732,
+          "current_liabilities": 95377074270,
+          "noncurrent_liabilities": 641551760939,
+          "profit_before_tax": 43575240549
         }
       },
       "data_quality": "xbrl_audited",
@@ -5634,14 +6199,20 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=PJAA",
               "title": "PJAA 2024 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "PJAA_2025_audit.zip"
             }
           ],
           "data_quality_year": "xbrl_audited",
-          "period_end": "2024-12-31"
+          "period_end": "2024-12-31",
+          "current_assets": 672233000000,
+          "noncurrent_assets": 2919496000000,
+          "current_liabilities": 569550000000,
+          "noncurrent_liabilities": 1288302000000,
+          "profit_before_tax": 277534000000,
+          "finance_income": 17747000000
         },
         "2023": {
           "revenue": 1273834000000,
@@ -5667,14 +6238,20 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=PJAA",
               "title": "PJAA 2023 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:08:43",
+              "date_published": "2026-05-27T11:48:34",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "PJAA_2024_audit.zip"
             }
           ],
           "data_quality_year": "xbrl_audited",
-          "period_end": "2023-12-31"
+          "period_end": "2023-12-31",
+          "current_assets": 519281000000,
+          "noncurrent_assets": 3224139000000,
+          "current_liabilities": 697965000000,
+          "noncurrent_liabilities": 1377215000000,
+          "profit_before_tax": 374096000000,
+          "finance_income": 23775000000
         },
         "2025": {
           "revenue": 1121209000000,
@@ -5700,14 +6277,20 @@
               "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=PJAA",
               "title": "PJAA 2025 AUDIT XBRL Instance",
               "publisher": "IDX (Indonesia Stock Exchange)",
-              "date_published": "2026-05-27T10:32:20",
+              "date_published": "2026-05-27T11:48:58",
               "date_accessed": "2026-05-27",
               "source_type": "IDX_XBRL",
               "source_file": "PJAA_2025_audit.zip"
             }
           ],
           "data_quality_year": "xbrl_audited",
-          "period_end": "2025-12-31"
+          "period_end": "2025-12-31",
+          "current_assets": 858858000000,
+          "noncurrent_assets": 2774796000000,
+          "current_liabilities": 386442000000,
+          "noncurrent_liabilities": 1387148000000,
+          "profit_before_tax": 252952000000,
+          "finance_income": 9364000000
         }
       },
       "data_quality": "xbrl_audited",

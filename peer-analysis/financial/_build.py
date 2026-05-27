@@ -3666,6 +3666,257 @@ def _xbrl_comparison_table() -> str:
 </div>"""
 
 
+def _xbrl_capex_data() -> list:
+    """13-peer FY2025 자산구조·CAPEX proxy 지표. 직전 연도 데이터로 자산 YoY 산출."""
+    import json as _json
+    import os as _os
+    site_root = _os.path.dirname(_os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+    fin_path = _os.path.join(site_root, "data", "company_financials_5y.json")
+    with open(fin_path, "r", encoding="utf-8") as f:
+        cf = _json.load(f)
+    by_ticker = {c["ticker"]: c for c in cf.get("companies", [])}
+    PRIMARY = {"IDX_XBRL", "AUDITED_AR"}
+
+    rows = []
+    for t, tier in PEER_TIERS.items():
+        c = by_ticker.get(t, {})
+        y_keys = sorted(c.get("yearly", {}).keys(), reverse=True)
+        latest = None
+        for y in y_keys:
+            srcs = (c["yearly"][y].get("sources") or [])
+            if srcs and isinstance(srcs[0], dict) and srcs[0].get("source_type") in PRIMARY:
+                latest = y
+                break
+        if not latest:
+            continue
+        prior = str(int(latest) - 1) if latest else None
+        cur = c["yearly"][latest]
+        prv = c["yearly"].get(prior, {}) if prior else {}
+
+        def n(v):
+            return v if isinstance(v, (int, float)) else None
+        def r(num, den, pct=True, default=None):
+            if num is None or den in (None, 0):
+                return default
+            return (num / den) * (100 if pct else 1)
+
+        rev = n(cur.get("revenue"))
+        ta = n(cur.get("total_assets"))
+        ta_p = n(prv.get("total_assets"))
+        ca = n(cur.get("current_assets"))
+        nca = n(cur.get("noncurrent_assets"))
+        tl = n(cur.get("total_liabilities"))
+        cl = n(cur.get("current_liabilities"))
+        ncl = n(cur.get("noncurrent_liabilities"))
+        te = n(cur.get("total_equity"))
+        tep = n(cur.get("total_equity_parent")) or te
+        cash = n(cur.get("cash_and_equivalents"))
+        cfo = n(cur.get("cfo"))
+        cfi = n(cur.get("cfi"))
+
+        rows.append({
+            "tier": tier, "ticker": t, "fy": latest,
+            "rev": rev,
+            "ta": ta,
+            "asset_intensity": r(ta, rev, pct=False),   # x times
+            "asset_turn": r(rev, ta, pct=False),
+            "nca_ratio": r(nca, ta),                    # %
+            "ca_ratio": r(ca, ta),
+            "cash_ta": r(cash, ta),
+            "cfi_rev": r(cfi, rev),                     # 음수=투자
+            "cfi_abs_rev": r(abs(cfi) if cfi is not None else None, rev),
+            "cfi_cfo": r(abs(cfi) if cfi is not None else None, abs(cfo) if cfo not in (None,0) else None),
+            "asset_yoy": r(ta - ta_p, ta_p) if (ta is not None and ta_p) else None,
+            "d_e": r(tl, te, pct=False),
+            "equity_ratio": r(tep, ta),                 # 자기자본비율
+            "lt_debt_ratio": r(ncl, tl),                # 장기부채/총부채 = 자금조달 만기 mix
+            "source_type": (cur.get("sources") or [{}])[0].get("source_type"),
+        })
+    return rows
+
+
+def _xbrl_capex_rank_chart(metric: str, title: str, fmt_kind: str, sort_desc: bool, good_above: float = 0,
+                            subtitle: str = "", invert_color: bool = False) -> str:
+    """CAPEX 13-peer 단일 metric ranking bar chart. invert_color=True면 음수가 녹색(투자 적극)."""
+    rows = _xbrl_capex_data()
+    data = [(r["ticker"], r["tier"], r.get(metric), r["fy"]) for r in rows]
+    data = [d for d in data if d[2] is not None]
+    if not data:
+        return ""
+    data.sort(key=lambda d: -d[2] if sort_desc else d[2])
+    max_abs = max(abs(d[2]) for d in data) or 1
+
+    def fmt_val(v):
+        if fmt_kind == "pct":
+            return f"{v:+.1f}%" if v < 0 else f"{v:.1f}%"
+        if fmt_kind == "ratio":
+            return f"{v:.2f}x"
+        return f"{v:.1f}"
+
+    bars = []
+    for ticker, tier, v, fy in data:
+        pct_w = abs(v) / max_abs * 100
+        is_neg = v < 0
+        if invert_color:
+            # CFI: 음수가 투자 활발(=좋음), 양수가 자산 매각
+            if is_neg and abs(v) >= abs(good_above):
+                color = PEER_COLORS.get(ticker, "#2d5016")
+            elif is_neg:
+                color = "#9ca3af"
+            else:
+                color = "#b45309"  # asset divestiture (warning)
+        else:
+            if is_neg:
+                color = "#b91c1c"
+            elif v >= good_above:
+                color = PEER_COLORS.get(ticker, "#2d5016")
+            else:
+                color = "#9ca3af"
+        val_color = "var(--danger)" if (is_neg and not invert_color) else "var(--ink)"
+        bars.append(f"""<div style="display:grid;grid-template-columns:62px 1fr 62px;gap:8px;align-items:center;padding:3px 0;font-size:11.5px;">
+  <span style="color:var(--ink-soft);font-weight:600;">
+    <span class="ticker-mini" style="font-size:10px;background:{color};color:#fff;padding:1px 5px;border-radius:3px;letter-spacing:0.04em;">{safe(ticker)}</span>
+    <span style="color:var(--muted);font-size:9.5px;margin-left:3px;">T{safe(tier)}</span>
+  </span>
+  <span style="height:14px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:{pct_w:.1f}%;background:{color};"></span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;color:{val_color};">{fmt_val(v)}</span>
+</div>""")
+
+    return f"""<div class="viz-card" style="padding:14px 16px;">
+  <div style="font-weight:700;font-size:13px;color:var(--ink);margin-bottom:2px;">{safe(title)}</div>
+  <div style="font-size:10.5px;color:var(--muted);margin-bottom:8px;">{safe(subtitle)}</div>
+  {''.join(bars)}
+</div>"""
+
+
+def _xbrl_capex_table() -> str:
+    """13-peer CAPEX·자산구조 종합 표 — 9 metric × 13 peer (Tier 그룹)."""
+    rows = _xbrl_capex_data()
+    if not rows:
+        return ""
+    rows.sort(key=lambda r: (r["tier"], r["ticker"]))
+
+    def fmt_pct(v, signed=False):
+        if v is None:
+            return '<span style="color:var(--muted);">—</span>'
+        s = f"{v:+.1f}%" if signed and v != 0 else f"{v:.1f}%"
+        if signed and v > 0:
+            return f'<span style="color:var(--green);">{s}</span>'
+        if v < 0:
+            return f'<span style="color:var(--danger);">{s}</span>'
+        return s
+
+    def fmt_ratio(v):
+        if v is None:
+            return '<span style="color:var(--muted);">—</span>'
+        return f"{v:.2f}x"
+
+    body = []
+    last_tier = None
+    for r in rows:
+        if r["tier"] != last_tier:
+            body.append(f'<tr class="tier-divider"><td colspan="11" style="background:var(--surface-soft);font-weight:700;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;padding:8px 12px;">{TIER_LABELS[r["tier"]]}</td></tr>')
+            last_tier = r["tier"]
+        color = PEER_COLORS.get(r["ticker"], "#666")
+        src_chip = '<span style="font-size:9px;color:var(--muted);margin-left:4px;">AR</span>' if r.get("source_type") == "AUDITED_AR" else ""
+        body.append(f"""<tr>
+  <td><span class="ticker-mini" style="background:{color};color:#fff;padding:2px 6px;border-radius:3px;font-weight:700;letter-spacing:0.04em;">{safe(r['ticker'])}</span>{src_chip} <span style="font-size:10px;color:var(--muted);">FY{r['fy'][-2:]}</span></td>
+  <td class="num">{fmt_ratio(r['asset_intensity'])}</td>
+  <td class="num">{fmt_ratio(r['asset_turn'])}</td>
+  <td class="num">{fmt_pct(r['nca_ratio'])}</td>
+  <td class="num">{fmt_pct(r['ca_ratio'])}</td>
+  <td class="num">{fmt_pct(r['cash_ta'])}</td>
+  <td class="num">{fmt_pct(r['cfi_rev'], signed=True)}</td>
+  <td class="num">{fmt_pct(r['cfi_cfo'])}</td>
+  <td class="num">{fmt_pct(r['asset_yoy'], signed=True)}</td>
+  <td class="num">{fmt_pct(r['equity_ratio'])}</td>
+  <td class="num">{fmt_pct(r['lt_debt_ratio'])}</td>
+</tr>""")
+
+    return f"""<div class="viz-card" style="padding:0;overflow-x:auto;">
+  <table class="comp-table" style="width:100%;border-collapse:collapse;font-size:11.5px;min-width:980px;">
+    <thead>
+      <tr style="background:var(--surface-soft);">
+        <th style="text-align:left;padding:8px 10px;font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;">Peer</th>
+        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="총자산/매출">자산집약도</th>
+        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="매출/총자산">자산회전</th>
+        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="비유동자산/총자산">비유동比</th>
+        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="유동자산/총자산">유동比</th>
+        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="현금성/총자산">현금/TA</th>
+        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="CFI/매출 · 음수=투자">CFI/매출</th>
+        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="|CFI|/|CFO| · 재투자 강도">재투자율</th>
+        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="자산 YoY">자산 YoY</th>
+        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="지배자본/총자산">자기자본比</th>
+        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="장기부채/총부채">장기부채比</th>
+      </tr>
+    </thead>
+    <tbody>
+      {''.join(body)}
+    </tbody>
+  </table>
+</div>"""
+
+
+def _xbrl_capex_comparison_section() -> str:
+    """CAPEX 탭에 삽입되는 XBRL 동일 기준 13-peer 자산·CAPEX 비교 섹션."""
+    rank_ai = _xbrl_capex_rank_chart("asset_intensity", "자산집약도 (총자산/매출)", "ratio", sort_desc=True, good_above=0,
+                                       subtitle="높을수록 capital-intensive — 자산 1단위 당 매출 회수에 더 오래 걸림.")
+    rank_nca = _xbrl_capex_rank_chart("nca_ratio", "비유동자산 비중", "pct", sort_desc=True, good_above=0,
+                                        subtitle="비유동자산 / 총자산 — 고정자산(PP&E·투자부동산) 의존도.")
+    rank_cfi = _xbrl_capex_rank_chart("cfi_rev", "CFI 강도 (CFI/매출)", "pct", sort_desc=False, good_above=-5,
+                                        subtitle="음수 = 투자 활발 (capex 큼) · 양수 = 자산 매각. ↓일수록 자본투자 강함.",
+                                        invert_color=True)
+    rank_yoy = _xbrl_capex_rank_chart("asset_yoy", "자산 성장률 (TA YoY)", "pct", sort_desc=True, good_above=5,
+                                        subtitle="(FY25 총자산 − 전년) / 전년 — 자본투자 전개 속도.")
+
+    table = _xbrl_capex_table()
+
+    return f"""<div class="section" id="capex-xbrl-compare">
+  <h2 data-num="01">동일 기준 13-peer CAPEX·자산구조 비교 — XBRL/AR FY2025</h2>
+  <h3>IDX XBRL B/S·CF 1차 출처에서 동일 정의로 추출한 11개 자산·자본 metric</h3>
+
+  <div class="insight-grid" style="margin-bottom:18px;">
+    <div class="insight-card insight-warn">
+      <div class="insight-tag"><span class="ticker-mini">GOLF</span> 최고 자산집약</div>
+      <div class="insight-metric down">40.3<span class="u">x</span></div>
+      <div class="insight-title">총자산 / 매출 (FY25) {_info_tip('자산 8.69T vs 매출 216B — CWIP 진행 중인 확장 단계. 자산회전 0.02x로 13-peer 최하위. 정상화 전 fixed-cost 부담 큼.', 'tip-l')}</div>
+    </div>
+    <div class="insight-card insight-warn">
+      <div class="insight-tag"><span class="ticker-mini">KPIG</span> 비유동자산 의존 최고</div>
+      <div class="insight-metric down">90.2<span class="u">%</span></div>
+      <div class="insight-title">비유동/총자산 {_info_tip('Hotel·Resort·Golf 부동산 32.5T vs 유동 3.5T. ELTY 81.8%·BSDE 58.7% 능가. 매각 시 유동화 시간 길 가능성.', 'tip-l')}</div>
+    </div>
+    <div class="insight-card insight-positive">
+      <div class="insight-tag"><span class="ticker-mini">PWON</span> 가장 적극적 capex</div>
+      <div class="insight-metric down">-70.0<span class="u">%</span></div>
+      <div class="insight-title">CFI/매출 (FY25) {_info_tip('CFI −4.98T (자산 매입) vs 매출 7.11T. SMRA −52%·KIJA −14%·BSDE −12%·LPKR −9%·CTRA −9% 동반 — Tier 4 부동산 그룹 일제히 capex 진행 중.', 'tip-l')}</div>
+    </div>
+    <div class="insight-card insight-positive">
+      <div class="insight-tag"><span class="ticker-mini">GOLF</span> 자기자본比 최고</div>
+      <div class="insight-metric up">92.3<span class="u">%</span></div>
+      <div class="insight-title">지배자본 / 총자산 (FY25) {_info_tip('PIPG 81.0%·KPIG 78.6%도 매우 높음 — 부채 의존도 낮은 self-funded 구조. 반면 MDLN 27.8%·SMRA 30.4%는 leveraged.', 'tip-l')}</div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:24px;">종합 비교 표 — 11 metric × 13 peer</h3>
+  {table}
+
+  {_insight('비고: DMIG·PIPG는 AR 출처라 current/non-current 분해 없음 (— 표시). 그 외 22 IDX peer는 XBRL B/S에서 정확 분해. CFI는 음수가 자본투자 활성 의미 — 부동산 그룹 일제히 capex 진행 중.', label='표 해석')}
+
+  <h3 style="margin-top:28px;">랭킹(ranking) — 4 핵심 자산·CAPEX metric</h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px;margin-top:10px;">
+    {rank_ai}
+    {rank_nca}
+    {rank_cfi}
+    {rank_yoy}
+  </div>
+
+  {_insight('자산집약도가 가장 높은 <strong>GOLF 40.3x · KPIG·MDLN 13~14x</strong>는 동시에 자산회전 최하위 — Tier 1/3은 capital-heavy. <strong>PIPG 2.6x · KIJA 2.9x · DMIG 2.9x</strong>는 가장 lean. CFI 절대크기는 <strong>PWON −70% · SMRA −52% · KIJA −14%</strong>가 capex 사이클 주도. 자산 YoY는 <strong>SMRA +14% · KIJA +7% · PIPG +7%</strong>가 가장 빠른 capital expansion.', label='4 ranking 종합')}
+</div>"""
+
+
 def _xbrl_comparison_section() -> str:
     """ops-kpi 탭에 삽입되는 XBRL 동일 기준 13-peer 비교 섹션 전체."""
     rank_opm = _xbrl_rank_chart("opm", "영업이익률 (OPM)", "pct", sort_desc=True, good_above=15,
@@ -5051,162 +5302,42 @@ def section_ops_kpi() -> str:
 
 
 def section_capex() -> str:
-    """Tab 2: CAPEX — capital investment, asset intensity, unit economics, P&L margin (CAPEX lens)."""
-    capex_heatmap = _capex_heatmap_section()
-    capex_proxy_table = _capex_proxy_table()
-    capex_narratives = _capex_narrative_grid()
-    per_hole_visual = _per_hole_visual_section()
-    per_hole_table = _per_hole_metrics_table()
-    pnl_trend = _pnl_margin_trend_section()
-    peer_radar = _peer_compare_radar()
-    pnl_funnel = _pnl_funnel_section()
-    pnl_table = _pnl_table()
-    golf_cwip_detail = _golf_cwip_detail_chart()
-    depreciation_lines = _depreciation_lines_chart()
-    asset_turnover = _asset_turnover_strip()
+    """Tab 2: CAPEX — XBRL/AR 동일 기준 13-peer 자산·CAPEX 비교 only.
+
+    동급 비교 불가능한 peer-specific 섹션(GOLF CWIP detail, 감가 라인,
+    AR narrative, 6/7-peer per-hole, 4Y P&L, radar, funnel)은 모두 제거.
+    """
+    xbrl_capex_html = _xbrl_capex_comparison_section()
 
     exec_h = _tab_exec_headline(
-        tab_key="CAPEX · ASSETS",
-        tab_title="CAPEX 강도 · 자산 효율 · 단위 경제",
+        tab_key="CAPEX · ASSETS · XBRL FY2025",
+        tab_title="동일 기준 13-peer 비교 — 자산구조·자본투자 강도",
         tab_focus_tiles=[
-            ("진행 중 CAPEX", "426", "bn", "GOLF", "CWIP Buildings 188 + Landscape 238 (FY25)", "gold"),
-            ("감가/매출 최고", "12.2", "%", "DMIG", "PIK Range 신규 + BSD/PIK 2 코스", "warn"),
-            ("자산 비중", "73.8", "%", "KPIG", "고정자산 + 투자부동산 / total assets", "blue"),
-            ("홀당 매출 1위", "11.0", "bn/홀", "PIPG", "Entity all-in 기준 (1 코스 197.6bn)", "green"),
-            ("Asset-light leader", "21.1", "%", "GOLF", "OpEx/매출 (DMIG 38% 대비)", "green"),
+            ("자산집약도 최고", "40.3", "x", "GOLF", "총자산/매출 — 자본 회수 가장 느림", "warn"),
+            ("비유동자산比 최고", "90.2", "%", "KPIG", "Hotel·Resort·Golf 부동산 의존", "warn"),
+            ("CFI/매출 절대값 최고", "-70.0", "%", "PWON", "FY25 가장 적극적 capex", "gold"),
+            ("자기자본比 최고", "92.3", "%", "GOLF", "self-funded 구조 (부채 의존 최저)", "green"),
+            ("자산 YoY 최고", "+14.3", "%", "SMRA", "Capital expansion 가속 (FY25)", "green"),
         ],
     )
 
     return f"""<section class="panel" data-panel="capex">
   <div class="wrap">
 
-    <a class="back-to-toc" href="#capex-anchor-top">목차</a>
-
     {exec_h}
-
-    <nav class="ops-subnav" id="capex-anchor-top" aria-label="capex sub-navigation">
-      <a class="chip" href="#cap-heatmap">강도 heatmap</a>
-      <a class="chip" href="#cap-turnover">자산 회전율</a>
-      <a class="chip" href="#cap-cwip">GOLF CWIP detail</a>
-      <a class="chip" href="#cap-depr">감가 라인</a>
-      <a class="chip" href="#cap-narratives">AR narrative</a>
-      <a class="chip" href="#cap-perhole">홀당 단위</a>
-      <a class="chip" href="#cap-pnl">P&amp;L 4Y</a>
-      <a class="chip" href="#cap-radar">radar</a>
-      <a class="chip" href="#cap-funnel">funnel</a>
-    </nav>
 
     {_peer_color_legend()}
 
-    <div class="section ops-summary">
-      <h2>CAPEX — TL;DR (4 발견)</h2>
-      <h3>자본투자 강도·자산 효율·단위 경제 핵심</h3>
-      <div class="insight-grid">
-        <div class="insight-card insight-warn">
-          <div class="insight-tag"><span class="ticker-mini">GOLF</span> Capex-intensive</div>
-          <div class="insight-metric up">426<span class="u">bn</span></div>
-          <div class="insight-title">CWIP (Buildings 188 + Landscape 238) {_info_tip('FY25 entity 매출 102bn의 ~4.2배 규모. paid-in 487bn + retained 6.9조 self-funded. 향후 3-5년 감가 부담 예고.', 'tip-l')}</div>
-        </div>
-        <div class="insight-card insight-warn">
-          <div class="insight-tag"><span class="ticker-mini">DMIG</span> 자본투자 강도 peer 최고</div>
-          <div class="insight-metric down">12.2<span class="u">%</span></div>
-          <div class="insight-title">감가상각 / 매출 (FY24) {_info_tip('PIK Range +372% 성장 · BSD+PIK 2 코스 운영 — peer 최고 자본투자 강도. 마진 압박의 핵심 원인.', 'tip-l')}</div>
-        </div>
-        <div class="insight-card insight-neutral">
-          <div class="insight-tag"><span class="ticker-mini">PIPG</span> Mature & maintenance-heavy</div>
-          <div class="insight-metric">5.9<span class="u">%</span></div>
-          <div class="insight-title">유지보수 / 매출 {_info_tip('1976년 개장 노후 코스. DMIG 0.9% 대비 ~6배 — 프리미엄 포지셔닝 비용 (Indonesia Open 등 토너먼트 hosting).', 'tip-l')}</div>
-        </div>
-        <div class="insight-card insight-positive">
-          <div class="insight-tag"><span class="ticker-mini">KIJA</span> 단위 매출 unexpected 1위</div>
-          <div class="insight-metric up">4.7<span class="u">bn/홀</span></div>
-          <div class="insight-title">홀당 매출 (golf segment only) {_info_tip('industrial estate 본업이지만 Nick Faldo 설계 + Jababeka captive demand → 6-peer 중 unit revenue 최고.', 'tip-l')}</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="section" id="cap-heatmap">
-      <h2 data-num="01">자본투자 강도 heatmap — 감가·유지·자산집약도</h2>
-      <h3>Audited CAPEX 미공시 → P&L proxy + B/S proxy로 추정 (FY24)</h3>
-      {capex_heatmap}
-      {_insight('DMIG는 감가 <strong>12.2% (peer 최고) + FY23→24 ▲</strong>로 신규 시설 부담 가속 · PIPG는 유지보수 <strong>5.9% (DMIG의 6.5배)</strong>로 노후 코스 maintenance 비용 · GOLF는 모든 면에서 lean하나 향후 CWIP 426bn 완공 시 급증 예고.', kind='warn')}
-      <details class="orig-toggle"><summary>원본 CAPEX proxy 표</summary>
-        {capex_proxy_table}
-      </details>
-    </div>
-
-    <div class="section" id="cap-turnover">
-      <h2 data-num="02">자산 회전율 — 4-peer efficiency</h2>
-      <h3>매출 / 총자산 · 자산집약도 · 매출/홀</h3>
-      {asset_turnover}
-    </div>
-
-    <div class="section" id="cap-cwip">
-      <h2 data-num="03">GOLF CWIP detail — 6 카테고리 분해</h2>
-      <h3>FY2025 진행 중 자산 426bn의 구성</h3>
-      {golf_cwip_detail}
-      {_insight('Landscape <strong>54%</strong> + Buildings <strong>43%</strong> = 신규 코스 시설 확장 시그널. 운영 보조 (Vehicles/Furniture/Equipment) 합계 3% — <strong>매출 확대 목적의 CAPEX</strong>이지 단순 교체가 아님.')}
-    </div>
-
-    <div class="section" id="cap-depr">
-      <h2 data-num="04">감가상각 라인 — 3-peer 직접 비교</h2>
-      <h3>Penyusutan / Depreciation 라인 IDR + 매출 대비 % + YoY (FY24)</h3>
-      {depreciation_lines}
-    </div>
-
-    <div class="section" id="cap-narratives">
-      <h2 data-num="05">왜? — AR 본문 직접 인용</h2>
-      <h3>같은 감가율도 신규 투자 / 노후 자산 / 회계 정책 — 본문에서 의도 확인</h3>
-      <details class="orig-toggle"><summary>AR 본문 직접 인용 펼치기</summary>
-        {capex_narratives}
-      </details>
-    </div>
-
-    <div class="section" id="cap-perhole">
-      <h2 data-num="06">홀당 단위 경제 — 7-peer Unit Economics</h2>
-      <h3>매출 / GP / OpEx / 감가상각을 홀 수로 normalize (FY24)</h3>
-      <p class="lede">
-        entity 절대값 비교는 misleading — 홀 수로 normalize. <strong>ENT</strong> (all-in) vs <strong>SEG</strong> (golf-only) 기준 차이 주의.
-      </p>
-      {per_hole_visual}
-      {_insight('진짜 cross-peer 비교는 <strong>SEG (golf segment-only)</strong>: KIJA 4.7 &gt; SMDM 3.5 &gt; MDLN 3.2 &gt; GOLF 2.6bn/홀. ENT 기준 DMIG·PIPG는 F&amp;B·회원권 포함이라 부풀려진 값 — 신규 코스 benchmark는 SEG 라인을 봐야 함.')}
-      <details class="orig-toggle"><summary>원본 per-hole 표</summary>
-        {per_hole_table}
-      </details>
-    </div>
-
-    <div class="section" id="cap-pnl">
-      <h2 data-num="07">P&L 4Y 마진 추이 — DMIG · PIPG · GOLF</h2>
-      <h3>FY22-25 GP·Op·Net margin trend (감가상각이 영업이익률에 미치는 영향)</h3>
-      {pnl_trend}
-      {_insight('DMIG는 GP margin은 68-70%로 안정인데 <strong>Op margin이 FY24 31% → FY25 28%로 하락</strong> — 차이는 OpEx(특히 감가). PIPG는 반대로 Op margin이 26→30%로 개선 (비용 통제).', kind='warn')}
-      <details class="orig-toggle"><summary>원본 4Y P&amp;L 표</summary>
-        {pnl_table}
-      </details>
-    </div>
-
-    <div class="section" id="cap-radar">
-      <h2 data-num="08">DMIG vs PIPG — 6축 radar 1:1 비교</h2>
-      <h3>매출·마진·CAPEX(감가/유지)·배당·unit econ을 한 차트로</h3>
-      {peer_radar}
-      {_insight('DMIG는 <strong>매출·감가·Op margin</strong> 축에서 크고, PIPG는 <strong>유지보수·매출/홀</strong> 축에서 큼 — 두 pure-play의 전략 차이가 polygon 모양으로 드러남. 배당 payout은 비슷한 수준.')}
-    </div>
-
-    <div class="section" id="cap-funnel">
-      <h2 data-num="09">P&L Funnel — 매출→Gross→Op→Net leakage</h2>
-      <h3>각 단계 % of revenue + leakage % 시각화 (FY24)</h3>
-      {pnl_funnel}
-      {_insight('매출 100%에서 가장 큰 leakage는 <strong>COGS → GP 단계</strong> (30-40%p 빠짐). GP→영업이익 단계의 leakage(OpEx)가 peer 차이의 핵심 — GOLF는 이 단계 leakage가 가장 작아 순이익률 최상위.')}
-    </div>
+    {xbrl_capex_html}
 
     <div class="closing-stripe">
-      <div class="cs-eyebrow">CAPEX 종합</div>
+      <div class="cs-eyebrow">동일 기준 13-peer 자산·CAPEX 종합</div>
       <div class="cs-title">4 takeaways</div>
       <div class="closing-grid">
-        <div class="closing-takeaway"><div class="num">1</div><div class="txt"><strong>GOLF self-funded 확장</strong> · CWIP 426bn (매출의 4.2배) · 외부 차입 없이 paid-in + retained로 조달</div></div>
-        <div class="closing-takeaway"><div class="num">2</div><div class="txt"><strong>DMIG 감가 부담 가속</strong> · 12.2%/매출 (peer 최고) · FY23→24 ▲+0.5pp · 마진 -12% 트리거</div></div>
-        <div class="closing-takeaway"><div class="num">3</div><div class="txt"><strong>PIPG mature operator</strong> · 유지보수 5.9% (DMIG 0.9%×6) — 노후 자산의 본질적 비용 + 프리미엄 포지셔닝</div></div>
-        <div class="closing-takeaway"><div class="num">4</div><div class="txt"><strong>Unit economics 역설</strong> · KIJA 4.7bn/홀 (industrial estate) > GOLF 2.6 (pure-play) — captive demand의 힘</div></div>
+        <div class="closing-takeaway"><div class="num">1</div><div class="txt"><strong>Tier 1 골프 capital-heavy</strong> · GOLF 자산집약 40.3x — 자산회전 0.02x 최하위. CWIP 진행으로 정상화 전.</div></div>
+        <div class="closing-takeaway"><div class="num">2</div><div class="txt"><strong>부동산 그룹 일제히 capex 진행</strong> · SMRA/PWON/BSDE/CTRA CFI 음수 — FY25 부동산 cycle 진입. 차후 감가 부담 증가 예고.</div></div>
+        <div class="closing-takeaway"><div class="num">3</div><div class="txt"><strong>자본구조 양극화</strong> · GOLF 92%·PIPG 81%·KPIG 79% 자기자본 (self-funded) vs MDLN 28%·SMRA 30% (leveraged). 추가 capex 여력 차이.</div></div>
+        <div class="closing-takeaway"><div class="num">4</div><div class="txt"><strong>Lean operator</strong> · PIPG/DMIG/KIJA 자산집약 7-10x — 13-peer 최저. 골프 운영의 자본 효율 우위 검증.</div></div>
       </div>
     </div>
 
