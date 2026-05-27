@@ -3778,7 +3778,7 @@ def _dmig_pipg_detail_section() -> str:
     <span class="ticker-mini" style="background:{dmig_color};color:#fff;padding:4px 10px;border-radius:4px;font-weight:800;font-size:14px;letter-spacing:0.06em;">DMIG</span>
     <div style="font-size:10.5px;color:var(--muted);margin-top:3px;line-height:1.3;">PT Damai Indah Golf Tbk<br>(BSD + PIK 2 시설)</div>
   </div>
-  <div style="text-align:center;font-size:10.5px;color:var(--muted);font-weight:700;letter-spacing:0.08em;">대표 2 peer 상세 비교</div>
+  <div></div>
   <div style="text-align:left;">
     <span class="ticker-mini" style="background:{pipg_color};color:#fff;padding:4px 10px;border-radius:4px;font-weight:800;font-size:14px;letter-spacing:0.06em;">PIPG</span>
     <div style="font-size:10.5px;color:var(--muted);margin-top:3px;line-height:1.3;">PT Pondok Indah Padang Golf Tbk<br>(자카르타 CBD single course)</div>
@@ -3876,15 +3876,12 @@ def _dmig_pipg_detail_section() -> str:
 </div>""")
 
     return f"""<div class="section" id="dmig-pipg-detail">
-  <h2 data-num="02">대표 2 peer 상세 — DMIG · PIPG (양쪽 비교)</h2>
-  <h3>Tier 1 pure-play 골프 2개사를 한 행에 양쪽으로 배치 — 동일 metric을 즉시 대조</h3>
+  <h2 data-num="02">DMIG · PIPG 상세</h2>
 
   <div class="viz-card" style="padding:14px 20px;max-width:1100px;margin:0 auto;">
     {header}
     {''.join(body)}
   </div>
-
-  {_insight('회원 deposit 기반 회계로 두 회사 모두 <strong>D/E 0.2~0.3x</strong> (Tier 4 부동산 평균 0.5~1.4x보다 훨씬 안전). DMIG는 BSD+PIK 2 시설로 매출 규모 우위, PIPG는 single course지만 자카르타 CBD 5분 입지 + 1976년 mature brand로 자산집약도 더 낮음 (2.6x vs 2.9x). CFI 두 회사 모두 데이터 부재(AR 출처 한계) — XBRL B/S 추이에서 자산 증가율로 capex 강도 가늠.', label='2-peer 비교 핵심')}
 </div>"""
 
 
@@ -4096,8 +4093,7 @@ def _xbrl_capex_comparison_section() -> str:
     table = _xbrl_capex_table()
 
     return f"""<div class="section" id="capex-xbrl-compare">
-  <h2 data-num="01">동일 기준 13-peer CAPEX·자산구조 비교 — XBRL/AR FY2025</h2>
-  <h3>IDX XBRL B/S·CF 1차 출처에서 동일 정의로 추출한 11개 자산·자본 metric</h3>
+  <h2 data-num="01">13-peer 자산·CAPEX 비교</h2>
 
   <div class="insight-grid" style="margin-bottom:18px;">
     <div class="insight-card insight-warn">
@@ -4122,12 +4118,10 @@ def _xbrl_capex_comparison_section() -> str:
     </div>
   </div>
 
-  <h3 style="margin-top:24px;">종합 비교 표 — 11 metric × 13 peer</h3>
+  <h3 style="margin-top:24px;">종합 표</h3>
   {table}
 
-  {_insight('비고: DMIG·PIPG는 AR 출처라 current/non-current 분해 없음 (— 표시). 그 외 22 IDX peer는 XBRL B/S에서 정확 분해. CFI는 음수가 자본투자 활성 의미 — 부동산 그룹 일제히 capex 진행 중.', label='표 해석')}
-
-  <h3 style="margin-top:28px;">랭킹(ranking) — 4 핵심 자산·CAPEX metric</h3>
+  <h3 style="margin-top:28px;">랭킹</h3>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px;margin-top:10px;">
     {rank_ai}
     {rank_nca}
@@ -4153,8 +4147,7 @@ def _xbrl_comparison_section() -> str:
     table = _xbrl_comparison_table()
 
     return f"""<div class="section" id="kpi-xbrl-compare">
-  <h2 data-num="10">동일 기준 13-peer 비교 — XBRL/AR FY2025</h2>
-  <h3>IDX XBRL (22 peer) + audited AR (DMIG/PIPG) 1차 출처에서 동일 정의로 추출한 11개 metric</h3>
+  <h2 data-num="01">13-peer 비교</h2>
 
   <div class="insight-grid" style="margin-bottom:18px;">
     <div class="insight-card insight-positive">
@@ -4179,12 +4172,10 @@ def _xbrl_comparison_section() -> str:
     </div>
   </div>
 
-  <h3 style="margin-top:24px;">종합 비교 표 — 11 metric × 13 peer</h3>
+  <h3 style="margin-top:24px;">종합 표</h3>
   {table}
 
-  {_insight('테이블 행: <strong>Tier별 그룹화</strong> (1=골프 pure-play / 2=segment 분리 / 3=adjacent / 4=property+golf). FY 라벨이 다른 행(DMIG/PIPG는 AR 기반 FY25, SGX/NYSE는 FY24)도 동일 정의 metric으로 cross-tier 비교 valid.', label='표 해석')}
-
-  <h3 style="margin-top:28px;">랭킹(ranking) — 4 핵심 metric</h3>
+  <h3 style="margin-top:28px;">랭킹</h3>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px;margin-top:10px;">
     {rank_opm}
     {rank_npm}
@@ -5488,8 +5479,8 @@ def section_ops_kpi() -> str:
     xbrl_compare_html = _xbrl_comparison_section()
 
     exec_h = _tab_exec_headline(
-        tab_key="OPERATIONS · XBRL FY2025",
-        tab_title="동일 기준 13-peer 비교 — 수익성·성장성·건전성",
+        tab_key="OPERATIONS",
+        tab_title="13-peer 수익성·성장성·건전성",
         tab_focus_tiles=[
             ("OPM 1위", "41.4", "%", "PWON", "FY25 — Pakuwon Mall 임대 중심 매출 구조", "green"),
             ("NPM 1위", "33.0", "%", "PWON", "FY25 — 13-peer 최고 bottom-line", "green"),
@@ -5509,7 +5500,7 @@ def section_ops_kpi() -> str:
     {xbrl_compare_html}
 
     <div class="closing-stripe">
-      <div class="cs-eyebrow">동일 기준 13-peer 비교 종합</div>
+      <div class="cs-eyebrow">13-peer 종합</div>
       <div class="cs-title">4 takeaways</div>
       <div class="closing-grid">
         <div class="closing-takeaway"><div class="num">1</div><div class="txt"><strong>Tier 1 골프 pure-play의 자본효율 우위</strong> · DMIG/PIPG ROE ~14% — Tier 4 부동산 최상위 (CTRA 11.1%) 능가. Asset turnover 0.35~0.39x로 13-peer 최상위.</div></div>
@@ -5535,8 +5526,8 @@ def section_capex() -> str:
     capex_narratives = _capex_narrative_grid(peers=["DMIG", "PIPG"])
 
     exec_h = _tab_exec_headline(
-        tab_key="CAPEX · ASSETS · XBRL FY2025",
-        tab_title="동일 기준 13-peer 비교 + DMIG·PIPG 대표 2 peer 상세",
+        tab_key="CAPEX · ASSETS",
+        tab_title="13-peer 자산구조 + DMIG·PIPG 상세",
         tab_focus_tiles=[
             ("자산집약도 최고", "40.3", "x", "GOLF", "총자산/매출 — 자본 회수 가장 느림", "warn"),
             ("비유동자산比 최고", "90.2", "%", "KPIG", "Hotel·Resort·Golf 부동산 의존", "warn"),
@@ -5567,22 +5558,17 @@ def section_capex() -> str:
     {dmig_pipg_detail}
 
     <div class="section" id="dmig-pipg-radar">
-      <h2 data-num="03">DMIG vs PIPG — 6축 radar 1:1 비교</h2>
-      <h3>매출·마진·CAPEX(감가/유지)·배당·unit econ을 한 차트로</h3>
+      <h2 data-num="03">DMIG vs PIPG radar</h2>
       {peer_radar}
-      {_insight('DMIG는 <strong>매출·감가·Op margin</strong> 축에서 크고, PIPG는 <strong>유지보수·매출/홀</strong> 축에서 큼 — 두 pure-play의 전략 차이가 polygon 모양으로 드러남. 배당 payout은 비슷한 수준.', label='radar 해석')}
     </div>
 
     <div class="section" id="dmig-pipg-narrative">
-      <h2 data-num="04">DMIG·PIPG AR 본문 인용 — CAPEX 의도</h2>
-      <h3>같은 감가율도 신규 투자 / 노후 자산 / 회계 정책 — 본문에서 의도 확인</h3>
-      <details class="orig-toggle" open><summary>AR 본문 직접 인용 펼치기</summary>
-        {capex_narratives}
-      </details>
+      <h2 data-num="04">DMIG·PIPG AR 본문 인용</h2>
+      {capex_narratives}
     </div>
 
     <div class="closing-stripe">
-      <div class="cs-eyebrow">CAPEX 종합 — 13-peer 비교 + 2 peer 상세</div>
+      <div class="cs-eyebrow">CAPEX 종합</div>
       <div class="cs-title">4 takeaways</div>
       <div class="closing-grid">
         <div class="closing-takeaway"><div class="num">1</div><div class="txt"><strong>Tier 1 골프 capital-heavy</strong> · GOLF 자산집약 40.3x — 자산회전 0.02x 최하위. CWIP 진행으로 정상화 전.</div></div>
