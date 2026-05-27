@@ -4386,30 +4386,51 @@ def _xbrl_opex_comparison_section() -> str:
 
 
 def _dmig_pipg_ppe_section() -> str:
-    """DMIG·PIPG 유형자산 (PP&E) 연도별 추이 — 양쪽 horizontal bar 비교.
+    """DMIG·PIPG 유형자산 (PP&E) 연도별 추이 + 감가상각 + 신규 투자.
 
-    AR 발표 Balance Sheet의 'Aset tetap (net)' 값. PP&E 증감이 CAPEX 사이클의
-    가장 직접적 지표 — Note depreciation/amortization 누적치 + 신규 취득의 순효과.
+    AR Note 11 (DMIG) / Note 9 (PIPG) Movement Table에서 추출:
+    - PP&E net book value (balance sheet)
+    - 감가상각 expense (P&L OPEX)
+    - 신규 투자 (additions, gross cost basis) — PIPG는 Note 9에서 직접,
+      DMIG는 derived (ΔNBV + depreciation)
     """
-    # FY 연도별 PP&E net value (Property, Plant & Equipment, IDR)
-    # 출처: 각 회사 FY2025 AR att2 Financial Statement (current + prior comparative)
-    # + 이전 연도 AR att2 (FY 발표 시점의 current 값).
-    PPE = {
+    # FY 연도별 데이터 (audited AR att2 Financial Statement에서 PyMuPDF 직접 추출)
+    DATA = {
         "DMIG": {
-            "FY2020": 240_196_972_227,
-            "FY2021": 247_025_383_147,
-            "FY2022": 281_572_894_823,
-            "FY2023": 280_174_356_290,
-            "FY2024": 278_667_881_555,
-            "FY2025": 281_266_028_662,
+            "ppe": {
+                "FY2023": 247_025_383_147,    # FY25 AR p40 (FY24 beginning balance)
+                "FY2024": 278_667_881_555,    # FY25 AR p12 prior column
+                "FY2025": 281_266_028_662,    # FY25 AR p12 current column
+            },
+            "depreciation": {
+                "FY2022": 16_567_296_704,     # OPEX note FY22 (Penyusutan only)
+                "FY2023": 25_898_201_573,     # OPEX note FY23
+                "FY2024": 28_209_973_116,     # OPEX note FY24
+                "FY2025": 31_143_219_586,     # OPEX note FY25
+            },
+            # 신규 투자 = (FY 종료 NBV − 전년 종료 NBV) + 해당 FY 감가상각
+            # (재평가 / 재분류 효과 합산된 implied capex 근사값)
+            "additions": {
+                "FY2024": (278_667_881_555 - 247_025_383_147) + 28_209_973_116,  # ≈ 59.85B
+                "FY2025": (281_266_028_662 - 278_667_881_555) + 31_143_219_586,  # ≈ 33.74B
+            },
         },
         "PIPG": {
-            "FY2020": 91_843_512_667,
-            "FY2021": 102_185_307_344,
-            "FY2022": 113_276_891_005,
-            "FY2023": 121_544_882_173,
-            "FY2024": 116_960_083_249,
-            "FY2025": 136_398_944_315,
+            "ppe": {
+                "FY2023": 114_191_349_643,    # FY25 AR p50 FY24 beginning
+                "FY2024": 116_960_083_249,    # FY25 AR p9 prior column
+                "FY2025": 136_398_944_315,    # FY25 AR p9 current column
+            },
+            "depreciation": {
+                "FY2023": 9_535_969_877,      # OPEX Note 29 (Penyusutan)
+                "FY2024": 11_289_046_391,     # Note 9 직접 (Beban penyusutan)
+                "FY2025": 11_141_242_305,     # Note 9 직접
+            },
+            # PIPG는 Note 9 Movement Table에서 직접 추출
+            "additions": {
+                "FY2024": 14_057_779_997,     # Note 9 FY24 Sub-jumlah Penambahan (cost)
+                "FY2025": 30_610_078_836,     # Note 9 FY25 Sub-jumlah Penambahan
+            },
         },
     }
 
@@ -4425,68 +4446,84 @@ def _dmig_pipg_ppe_section() -> str:
             return f"{v/1e9:.1f}B"
         return f"{v:,.0f}"
 
-    fy_list = ["FY2020", "FY2021", "FY2022", "FY2023", "FY2024", "FY2025"]
-    all_v = [PPE["DMIG"].get(y) for y in fy_list] + [PPE["PIPG"].get(y) for y in fy_list]
-    max_v = max(filter(None, all_v)) or 1
+    fy_list = ["FY2022", "FY2023", "FY2024", "FY2025"]
 
-    rows = []
-    for y in fy_list:
-        d_v = PPE["DMIG"].get(y)
-        p_v = PPE["PIPG"].get(y)
-        d_bar = (d_v / max_v * 100) if d_v else 0
-        p_bar = (p_v / max_v * 100) if p_v else 0
-        # YoY delta vs prior year
-        prior_y = f"FY{int(y[-4:]) - 1}"
-        d_prv = PPE["DMIG"].get(prior_y)
-        p_prv = PPE["PIPG"].get(prior_y)
-        d_yoy = ((d_v - d_prv) / d_prv * 100) if (d_v and d_prv) else None
-        p_yoy = ((p_v - p_prv) / p_prv * 100) if (p_v and p_prv) else None
-        d_yoy_s = f'<span style="color:{"var(--green)" if d_yoy and d_yoy > 0 else "var(--danger)" if d_yoy else "var(--muted)"};font-size:10px;font-weight:600;margin-left:6px;">{d_yoy:+.1f}%</span>' if d_yoy is not None else ""
-        p_yoy_s = f'<span style="color:{"var(--green)" if p_yoy and p_yoy > 0 else "var(--danger)" if p_yoy else "var(--muted)"};font-size:10px;font-weight:600;margin-right:6px;">{p_yoy:+.1f}%</span>' if p_yoy is not None else ""
+    def row(metric_label: str, metric_key: str, max_v_override=None):
+        """Build one row across 4 FYs for a metric (ppe/depreciation/additions).
 
-        rows.append(f"""<div style="display:grid;grid-template-columns:1fr 80px 1fr;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);">
-  <div style="display:flex;justify-content:flex-end;align-items:center;gap:10px;">
-    {d_yoy_s}
-    <span style="font-weight:700;font-size:13px;font-variant-numeric:tabular-nums;color:{dmig_color};">{fmtb(d_v)}</span>
-    <span style="height:14px;width:{d_bar:.1f}%;max-width:160px;background:linear-gradient(90deg, transparent 0%, {dmig_color} 100%);border-radius:3px;"></span>
+        DMIG는 왼쪽, PIPG는 오른쪽. 각 cell은 mini bar + 값.
+        """
+        # Compute max for bar scaling
+        all_v = []
+        for t in ("DMIG", "PIPG"):
+            for y in fy_list:
+                v = DATA[t][metric_key].get(y)
+                if v is not None:
+                    all_v.append(abs(v))
+        m = max_v_override or (max(all_v) if all_v else 1)
+
+        cells = []
+        # FY columns
+        for y in fy_list:
+            d_v = DATA["DMIG"][metric_key].get(y)
+            p_v = DATA["PIPG"][metric_key].get(y)
+            d_bar = (abs(d_v) / m * 100) if d_v else 0
+            p_bar = (abs(p_v) / m * 100) if p_v else 0
+            cells.append(f"""<div style="display:grid;grid-template-columns:1fr 60px 1fr;align-items:center;padding:6px 0;border-bottom:1px dotted var(--line);">
+  <div style="display:flex;justify-content:flex-end;align-items:center;gap:8px;">
+    <span style="font-weight:600;font-size:11.5px;font-variant-numeric:tabular-nums;color:{dmig_color};min-width:50px;text-align:right;">{fmtb(d_v)}</span>
+    <span style="height:10px;width:{d_bar:.1f}%;max-width:120px;background:{dmig_color};border-radius:2px;opacity:0.7;"></span>
   </div>
-  <div style="text-align:center;font-size:11px;font-weight:700;color:var(--ink);letter-spacing:0.04em;">{y[2:]}</div>
-  <div style="display:flex;justify-content:flex-start;align-items:center;gap:10px;">
-    <span style="height:14px;width:{p_bar:.1f}%;max-width:160px;background:linear-gradient(90deg, {pipg_color} 0%, transparent 100%);border-radius:3px;"></span>
-    <span style="font-weight:700;font-size:13px;font-variant-numeric:tabular-nums;color:{pipg_color};">{fmtb(p_v)}</span>
-    {p_yoy_s}
+  <div style="text-align:center;font-size:10px;font-weight:700;color:var(--muted);">{y[2:]}</div>
+  <div style="display:flex;justify-content:flex-start;align-items:center;gap:8px;">
+    <span style="height:10px;width:{p_bar:.1f}%;max-width:120px;background:{pipg_color};border-radius:2px;opacity:0.7;"></span>
+    <span style="font-weight:600;font-size:11.5px;font-variant-numeric:tabular-nums;color:{pipg_color};min-width:50px;text-align:left;">{fmtb(p_v)}</span>
   </div>
 </div>""")
+        return f"""<div style="margin-top:14px;">
+  <div style="text-align:center;background:var(--surface-2);padding:8px 0;font-size:11px;font-weight:700;color:var(--ink);letter-spacing:0.06em;text-transform:uppercase;border-radius:6px;margin-bottom:6px;">{metric_label}</div>
+  {''.join(cells)}
+</div>"""
 
-    # CAGR (FY2020 → FY2025)
-    def cagr(d):
-        v_start = d.get("FY2020")
-        v_end = d.get("FY2025")
-        if v_start and v_end and v_start > 0:
-            return ((v_end / v_start) ** (1/5) - 1) * 100
+    # CAGR for PP&E (FY23 → FY25, 2 year period)
+    def cagr2(d):
+        s = d.get("FY2023")
+        e = d.get("FY2025")
+        if s and e and s > 0:
+            return ((e / s) ** (1/2) - 1) * 100
         return None
+    d_cagr = cagr2(DATA["DMIG"]["ppe"])
+    p_cagr = cagr2(DATA["PIPG"]["ppe"])
 
-    d_cagr = cagr(PPE["DMIG"])
-    p_cagr = cagr(PPE["PIPG"])
+    # Cumulative additions (FY24+FY25) vs cumulative depreciation
+    d_add_sum = sum(DATA["DMIG"]["additions"].values())
+    p_add_sum = sum(DATA["PIPG"]["additions"].values())
+    d_dep_sum = DATA["DMIG"]["depreciation"]["FY2024"] + DATA["DMIG"]["depreciation"]["FY2025"]
+    p_dep_sum = DATA["PIPG"]["depreciation"]["FY2024"] + DATA["PIPG"]["depreciation"]["FY2025"]
 
-    header = f"""<div style="display:grid;grid-template-columns:1fr 80px 1fr;align-items:end;padding:4px 0 14px;border-bottom:2px solid var(--line-strong);margin-bottom:6px;">
+    header = f"""<div style="display:grid;grid-template-columns:1fr 60px 1fr;align-items:end;padding:4px 0 14px;border-bottom:2px solid var(--line-strong);margin-bottom:4px;">
   <div style="text-align:right;">
     <span class="ticker-mini" style="background:{dmig_color};color:#fff;padding:5px 12px;border-radius:6px;font-weight:700;font-size:14px;letter-spacing:0.06em;">DMIG</span>
-    <div style="font-size:11px;color:var(--muted);margin-top:5px;">PP&E net · 5Y CAGR <strong style="color:{dmig_color};">{d_cagr:+.1f}%</strong></div>
+    <div style="font-size:11px;color:var(--muted);margin-top:5px;line-height:1.4;">PP&E 2Y CAGR <strong style="color:{dmig_color};">{d_cagr:+.1f}%</strong><br>FY24-25 capex {fmtb(d_add_sum)} · dep {fmtb(d_dep_sum)}</div>
   </div>
   <div style="text-align:center;font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-weight:700;">FY</div>
   <div style="text-align:left;">
     <span class="ticker-mini" style="background:{pipg_color};color:#fff;padding:5px 12px;border-radius:6px;font-weight:700;font-size:14px;letter-spacing:0.06em;">PIPG</span>
-    <div style="font-size:11px;color:var(--muted);margin-top:5px;">PP&E net · 5Y CAGR <strong style="color:{pipg_color};">{p_cagr:+.1f}%</strong></div>
+    <div style="font-size:11px;color:var(--muted);margin-top:5px;line-height:1.4;">PP&E 2Y CAGR <strong style="color:{pipg_color};">{p_cagr:+.1f}%</strong><br>FY24-25 capex {fmtb(p_add_sum)} · dep {fmtb(p_dep_sum)}</div>
   </div>
 </div>"""
 
-    return f"""<div class="section" id="dmig-pipg-ppe">
-  <h2 data-num="02">DMIG · PIPG 유형자산 (PP&amp;E) 연도별 추이</h2>
+    body = []
+    body.append(row("PP&E net 잔액 (Balance Sheet)", "ppe"))
+    body.append(row("감가상각 expense (P&L)", "depreciation"))
+    body.append(row("신규 투자 — DMIG implied · PIPG actual", "additions"))
 
-  <div class="viz-card" style="padding:20px 28px;max-width:1100px;margin:0 auto;">
+    return f"""<div class="section" id="dmig-pipg-ppe">
+  <h2 data-num="02">DMIG · PIPG 유형자산 추이</h2>
+
+  <div class="viz-card" style="padding:22px 28px;max-width:1100px;margin:0 auto;">
     {header}
-    {''.join(rows)}
+    {''.join(body)}
   </div>
 </div>"""
 
