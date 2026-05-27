@@ -32,7 +32,7 @@
       <button class="tab" data-tab="map" role="tab" aria-selected="false" data-i18n="tab.map">지도</button>
       <button class="tab" data-tab="table" role="tab" aria-selected="false" data-i18n="tab.table">가격 데이터</button>
       <button class="tab" data-tab="finance" role="tab" aria-selected="false" data-i18n="tab.finance">재무 분석</button>
-      <a class="tab" href="peer-analysis/operations/index.html" role="tab" style="text-decoration:none;display:inline-flex;align-items:center;" data-i18n="tab.operations" title="13개 상장사 운영 지표 벤치마크 — Annual Report 기반">운영 벤치마크 ↗</a>
+      <button class="tab" data-tab="operations" role="tab" aria-selected="false" data-i18n="tab.operations" title="13 peer 운영 KPI · CAPEX · OPEX 심층 비교">운영 벤치마크</button>
     </nav>
     <div class="topbar-meta">
       <span class="counter" id="counterPill" hidden><strong id="visibleCount">0</strong> / <span id="totalCount">0</span></span>
@@ -254,6 +254,10 @@
         <tbody id="financeTableBody"></tbody>
       </table>
     </div>
+  </section>
+
+  <section class="operations-view" id="operationsView" hidden>
+    <iframe id="operationsFrame" src="peer-analysis/financial/index.html?embed=1" title="운영 벤치마크 — 13 peer XBRL 비교" loading="lazy"></iframe>
   </section>
 
   <section class="analytics-view" id="analyticsView">

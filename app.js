@@ -1202,19 +1202,23 @@ document.querySelectorAll('.tab').forEach(btn => {
     const tableView = document.getElementById('tableView');
     const financeView = document.getElementById('financeView');
     const analyticsView = document.getElementById('analyticsView');
+    const operationsView = document.getElementById('operationsView');
     const showMap = target === 'map';
     const showTable = target === 'table';
     const showFinance = target === 'finance';
     const showAnalytics = target === 'analytics';
+    const showOperations = target === 'operations';
 
     mapView.hidden = !showMap;
     tableView.hidden = !showTable;
     if (financeView) financeView.hidden = !showFinance;
     if (analyticsView) analyticsView.hidden = !showAnalytics;
+    if (operationsView) operationsView.hidden = !showOperations;
     mapView.style.display = showMap ? '' : 'none';
     tableView.style.display = showTable ? '' : 'none';
     if (financeView) financeView.style.display = showFinance ? '' : 'none';
     if (analyticsView) analyticsView.style.display = showAnalytics ? '' : 'none';
+    if (operationsView) operationsView.style.display = showOperations ? '' : 'none';
 
     if (showTable) {
       renderTable();

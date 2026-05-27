@@ -2270,6 +2270,20 @@ body.detail-open .leaflet-bottom.leaflet-right {
   background: var(--bg-base);
 }
 .finance-view[hidden] { display: none; }
+
+/* Operations benchmark — embedded iframe of peer-analysis/financial */
+.operations-view {
+  height: calc(100vh - var(--topbar-h) - var(--footer-h));
+  background: var(--bg-base);
+  overflow: hidden;
+}
+.operations-view[hidden] { display: none; }
+.operations-view iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
 .finance-view .table-scroll {
   flex: 1;
   overflow: auto;
