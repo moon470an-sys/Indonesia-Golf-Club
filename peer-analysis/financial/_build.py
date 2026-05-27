@@ -2176,15 +2176,19 @@ OPEX_NARRATIVES = [
 ]
 
 
-def _opex_narrative_grid() -> str:
-    """Render OpEx narrative quote cards (reuses quote-card style)."""
+def _opex_narrative_grid(peers: list = None) -> str:
+    """Render OpEx narrative quote cards (reuses quote-card style).
+
+    peers: 필터링할 ticker 리스트 (None=전체).
+    """
     tone_to_border = {
         "positive": "var(--green)",
         "warn":     "var(--warn)",
         "neutral":  "#8a8a8a",
     }
+    items = OPEX_NARRATIVES if peers is None else [n for n in OPEX_NARRATIVES if n.get("ticker") in peers]
     cards = []
-    for n in OPEX_NARRATIVES:
+    for n in items:
         border_color = tone_to_border.get(n["tone"], "#8a8a8a")
         quote_text = n["quote"].strip()
         if len(quote_text) > 320:
@@ -4133,6 +4137,437 @@ def _xbrl_capex_comparison_section() -> str:
 </div>"""
 
 
+def _xbrl_opex_data() -> list:
+    """13-peer FY2025 OPEX·비용구조 지표 — XBRL/AR 1차 출처."""
+    import json as _json
+    import os as _os
+    site_root = _os.path.dirname(_os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+    fin_path = _os.path.join(site_root, "data", "company_financials_5y.json")
+    with open(fin_path, "r", encoding="utf-8") as f:
+        cf = _json.load(f)
+    by_ticker = {c["ticker"]: c for c in cf.get("companies", [])}
+    PRIMARY = {"IDX_XBRL", "AUDITED_AR"}
+
+    rows = []
+    for t, tier in PEER_TIERS.items():
+        c = by_ticker.get(t, {})
+        y_keys = sorted(c.get("yearly", {}).keys(), reverse=True)
+        latest = None
+        for y in y_keys:
+            srcs = (c["yearly"][y].get("sources") or [])
+            if srcs and isinstance(srcs[0], dict) and srcs[0].get("source_type") in PRIMARY:
+                latest = y
+                break
+        if not latest:
+            continue
+        prior = str(int(latest) - 1) if latest else None
+        cur = c["yearly"][latest]
+        prv = c["yearly"].get(prior, {}) if prior else {}
+
+        def n(v):
+            return v if isinstance(v, (int, float)) else None
+        def r(num, den, pct=True, default=None):
+            if num is None or den in (None, 0):
+                return default
+            return (num / den) * (100 if pct else 1)
+
+        rev = n(cur.get("revenue"))
+        cogs = n(cur.get("cost_of_revenue"))
+        gp = n(cur.get("gross_profit"))
+        sell = n(cur.get("selling_expenses"))
+        ga = n(cur.get("ga_expenses"))
+        op = n(cur.get("operating_profit"))
+        op_p = n(prv.get("operating_profit"))
+        sga = None
+        if sell is not None or ga is not None:
+            sga = (sell or 0) + (ga or 0)
+        opex_total = None
+        if cogs is not None and sga is not None:
+            opex_total = cogs + sga
+
+        rows.append({
+            "tier": tier, "ticker": t, "fy": latest,
+            "rev": rev,
+            "cogs_rev": r(cogs, rev),
+            "gpm": r(gp, rev),
+            "sell_rev": r(sell, rev),
+            "ga_rev": r(ga, rev),
+            "sga_rev": r(sga, rev),
+            "opex_rev": r(opex_total, rev),
+            "opm": r(op, rev),
+            "op_yoy": r((op or 0) - (op_p or 0), op_p, pct=True) if (op is not None and op_p not in (None, 0)) else None,
+            "source_type": (cur.get("sources") or [{}])[0].get("source_type"),
+        })
+    return rows
+
+
+def _xbrl_opex_rank_chart(metric: str, title: str, fmt_kind: str, sort_desc: bool, good_above: float = 0,
+                           subtitle: str = "", invert_color: bool = False) -> str:
+    """OPEX 13-peer 단일 metric ranking bar. invert_color=True면 음수가 녹색(비용 낮을수록)."""
+    rows = _xbrl_opex_data()
+    data = [(r["ticker"], r["tier"], r.get(metric), r["fy"]) for r in rows]
+    data = [d for d in data if d[2] is not None]
+    if not data:
+        return ""
+    data.sort(key=lambda d: -d[2] if sort_desc else d[2])
+    max_abs = max(abs(d[2]) for d in data) or 1
+
+    def fmt_val(v):
+        if fmt_kind == "pct":
+            return f"{v:+.1f}%" if v < 0 else f"{v:.1f}%"
+        if fmt_kind == "pct_signed":
+            return f"{v:+.1f}%"
+        return f"{v:.1f}"
+
+    bars = []
+    for ticker, tier, v, fy in data:
+        pct_w = abs(v) / max_abs * 100
+        is_neg = v < 0
+        if invert_color:
+            # OpEx/Rev 같이 낮을수록 좋은 metric: 색상 다르게
+            if v >= good_above:
+                color = "#b91c1c"  # 비용 높음 = 위험
+            elif v >= good_above * 0.85:
+                color = "#9ca3af"
+            else:
+                color = PEER_COLORS.get(ticker, "#2d5016")
+        else:
+            if is_neg:
+                color = "#b91c1c"
+            elif v >= good_above:
+                color = PEER_COLORS.get(ticker, "#2d5016")
+            else:
+                color = "#9ca3af"
+        val_color = "var(--danger)" if is_neg else "var(--ink)"
+        bars.append(f"""<div style="display:grid;grid-template-columns:62px 1fr 62px;gap:8px;align-items:center;padding:3px 0;font-size:11.5px;">
+  <span style="color:var(--ink-soft);font-weight:600;">
+    <span class="ticker-mini" style="font-size:10px;background:{color};color:#fff;padding:1px 5px;border-radius:3px;letter-spacing:0.04em;">{safe(ticker)}</span>
+    <span style="color:var(--muted);font-size:9.5px;margin-left:3px;">T{safe(tier)}</span>
+  </span>
+  <span style="height:14px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:{pct_w:.1f}%;background:{color};"></span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;color:{val_color};">{fmt_val(v)}</span>
+</div>""")
+
+    return f"""<div class="viz-card" style="padding:14px 16px;">
+  <div style="font-weight:700;font-size:13px;color:var(--ink);margin-bottom:2px;">{safe(title)}</div>
+  <div style="font-size:10.5px;color:var(--muted);margin-bottom:8px;">{safe(subtitle)}</div>
+  {''.join(bars)}
+</div>"""
+
+
+def _xbrl_opex_table() -> str:
+    """13-peer OPEX·비용구조 종합 표 — 9 metric × 13 peer (Tier 그룹)."""
+    rows = _xbrl_opex_data()
+    if not rows:
+        return ""
+    rows.sort(key=lambda r: (r["tier"], r["ticker"]))
+
+    def fmt_pct(v, signed=False):
+        if v is None:
+            return '<span style="color:var(--muted);">—</span>'
+        s = f"{v:+.1f}%" if signed and v != 0 else f"{v:.1f}%"
+        if signed and v > 0:
+            return f'<span style="color:var(--green);">{s}</span>'
+        if v < 0:
+            return f'<span style="color:var(--danger);">{s}</span>'
+        return s
+
+    def fmt_bn_short(v):
+        if v is None:
+            return '<span style="color:var(--muted);">—</span>'
+        if abs(v) >= 1e12:
+            return f"{v/1e12:.2f}T"
+        if abs(v) >= 1e9:
+            return f"{v/1e9:.1f}B"
+        return f"{v:.0f}"
+
+    body = []
+    last_tier = None
+    for r in rows:
+        if r["tier"] != last_tier:
+            body.append(f'<tr class="tier-divider"><td colspan="10" style="background:var(--surface-soft);font-weight:700;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;padding:8px 12px;">{TIER_LABELS[r["tier"]]}</td></tr>')
+            last_tier = r["tier"]
+        color = PEER_COLORS.get(r["ticker"], "#666")
+        src_chip = '<span style="font-size:9px;color:var(--muted);margin-left:4px;">AR</span>' if r.get("source_type") == "AUDITED_AR" else ""
+        body.append(f"""<tr>
+  <td><span class="ticker-mini" style="background:{color};color:#fff;padding:2px 6px;border-radius:3px;font-weight:700;letter-spacing:0.04em;">{safe(r['ticker'])}</span>{src_chip} <span style="font-size:10px;color:var(--muted);">FY{r['fy'][-2:]}</span></td>
+  <td class="num">{fmt_bn_short(r['rev'])}</td>
+  <td class="num">{fmt_pct(r['cogs_rev'])}</td>
+  <td class="num">{fmt_pct(r['gpm'])}</td>
+  <td class="num">{fmt_pct(r['sell_rev'])}</td>
+  <td class="num">{fmt_pct(r['ga_rev'])}</td>
+  <td class="num">{fmt_pct(r['sga_rev'])}</td>
+  <td class="num">{fmt_pct(r['opex_rev'])}</td>
+  <td class="num">{fmt_pct(r['opm'])}</td>
+  <td class="num">{fmt_pct(r['op_yoy'], signed=True)}</td>
+</tr>""")
+
+    return f"""<div class="viz-card" style="padding:0;overflow-x:auto;">
+  <table class="comp-table" style="width:100%;border-collapse:collapse;font-size:11.5px;min-width:920px;">
+    <thead>
+      <tr style="background:var(--surface-soft);">
+        <th style="text-align:left;padding:8px 10px;font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;">Peer</th>
+        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);">매출 IDR</th>
+        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="매출원가 / 매출">COGS/매출</th>
+        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="매출총이익률">GPM</th>
+        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="판매비 / 매출">Sell/매출</th>
+        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="일반관리비 / 매출">G&amp;A/매출</th>
+        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="(Sell+G&amp;A) / 매출">SG&amp;A/매출</th>
+        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="(COGS+SG&amp;A) / 매출">OpEx/매출</th>
+        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="영업이익률">OPM</th>
+        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="영업이익 YoY">OP YoY</th>
+      </tr>
+    </thead>
+    <tbody>
+      {''.join(body)}
+    </tbody>
+  </table>
+</div>"""
+
+
+def _xbrl_opex_comparison_section() -> str:
+    """OPEX 탭 #opex-xbrl-compare 섹션."""
+    rank_opex = _xbrl_opex_rank_chart("opex_rev", "OpEx / 매출 (총비용율)", "pct", sort_desc=False, good_above=75,
+                                        subtitle="(COGS + SG&A) / 매출 — 낮을수록 비용 효율 우수. 100% 초과 = 영업적자.",
+                                        invert_color=True)
+    rank_sga = _xbrl_opex_rank_chart("sga_rev", "SG&A / 매출 (판관비율)", "pct", sort_desc=False, good_above=25,
+                                       subtitle="(판매비 + 일반관리비) / 매출 — 영업·관리 비용 비중.",
+                                       invert_color=True)
+    rank_opm = _xbrl_opex_rank_chart("opm", "영업이익률 (OPM)", "pct", sort_desc=True, good_above=20,
+                                       subtitle="영업이익 / 매출 — 비용 효율의 결과 metric.")
+    rank_oy = _xbrl_opex_rank_chart("op_yoy", "영업이익 YoY", "pct_signed", sort_desc=True, good_above=0,
+                                      subtitle="(FY 영업이익 − 전년) / 전년 — 비용 통제 또는 매출 leverage 효과.")
+
+    table = _xbrl_opex_table()
+
+    return f"""<div class="section" id="opex-xbrl-compare">
+  <h2 data-num="01">13-peer OPEX 비교</h2>
+
+  <div class="insight-grid" style="margin-bottom:18px;">
+    <div class="insight-card insight-positive">
+      <div class="insight-tag"><span class="ticker-mini">PWON</span> 최저 총비용율</div>
+      <div class="insight-metric up">58.6<span class="u">%</span></div>
+      <div class="insight-title">OpEx / 매출 (FY25) {_info_tip('SG&A 14.1% + COGS 44.5% — 13-peer 최저. 임대 중심 매출 구조로 인건비·관리비 leverage. OPM 41.4% 1위와 직결.', 'tip-l')}</div>
+    </div>
+    <div class="insight-card insight-positive">
+      <div class="insight-tag"><span class="ticker-mini">KIJA</span> 최저 SG&amp;A</div>
+      <div class="insight-metric up">12.6<span class="u">%</span></div>
+      <div class="insight-title">SG&amp;A / 매출 {_info_tip('Jababeka 산업단지 captive 수요로 영업비 ↓. Selling 1.3% (peer 최저급) + G&A 11.3%. KPIG 16.7% · PWON 14.1%와 함께 cost-light 상위.', 'tip-l')}</div>
+    </div>
+    <div class="insight-card insight-warn">
+      <div class="insight-tag"><span class="ticker-mini">MDLN</span> 영업적자</div>
+      <div class="insight-metric down">109.6<span class="u">%</span></div>
+      <div class="insight-title">OpEx/매출 (FY25 100% 초과) {_info_tip('COGS 52.8% + SG&A 56.8% = 영업적자 −9.6%. SG&A가 PWON 14%의 4배. 부동산 그룹 중 비용 구조 최악.', 'tip-l')}</div>
+    </div>
+    <div class="insight-card insight-positive">
+      <div class="insight-tag"><span class="ticker-mini">KPIG</span> OP 폭증</div>
+      <div class="insight-metric up">+487<span class="u">%</span></div>
+      <div class="insight-title">영업이익 YoY FY25 {_info_tip('Hotel+Resort+Golf 통합 매출 +47.7%가 고정비 leverage → OP 115B→675B. ELTY +66.7%·CTRA +14.4% 동반 성장. 반대로 SMDM −66.7%·LPKR −49% reset.', 'tip-l')}</div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:24px;">종합 표</h3>
+  {table}
+
+  <h3 style="margin-top:28px;">랭킹</h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px;margin-top:10px;">
+    {rank_opex}
+    {rank_sga}
+    {rank_opm}
+    {rank_oy}
+  </div>
+
+  {_insight('OpEx/매출 ↔ OPM 거의 거울 — <strong>PWON 58.6% ↔ 41.4%</strong> 최고 효율, <strong>MDLN 109.6% ↔ −9.6%</strong> 영업적자. SG&A 별도 보면 <strong>KIJA·KPIG·PWON·CTRA 10~17%</strong>는 cost-light 그룹, <strong>MDLN·SMDM·BSDE 32~57%</strong>는 SG&A 부담. OP YoY는 KPIG·ELTY·CTRA·PWON·KIJA가 양수 — 비용 통제 또는 매출 leverage 성공.', label='4 ranking 종합')}
+</div>"""
+
+
+def _dmig_pipg_opex_detail_section() -> str:
+    """DMIG·PIPG OPEX 상세 — 양쪽 row-aligned 비교 카드 (영업이익/마진 중심)."""
+    import json as _json
+    import os as _os
+    site_root = _os.path.dirname(_os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+    fin_path = _os.path.join(site_root, "data", "company_financials_5y.json")
+    with open(fin_path, "r", encoding="utf-8") as f:
+        cf = _json.load(f)
+    by_t = {c["ticker"]: c for c in cf.get("companies", [])}
+
+    def _latest_year_block(ticker: str):
+        c = by_t.get(ticker, {})
+        yrs = c.get("yearly", {})
+        for y in sorted(yrs.keys(), reverse=True):
+            srcs = (yrs[y].get("sources") or [])
+            if srcs and isinstance(srcs[0], dict) and srcs[0].get("source_type") in {"IDX_XBRL", "AUDITED_AR"}:
+                return c, yrs, y, yrs[y]
+        return c, yrs, None, None
+
+    def fmtb(v):
+        if v is None:
+            return "—"
+        if abs(v) >= 1e12:
+            return f"{v/1e12:.2f}T"
+        if abs(v) >= 1e9:
+            return f"{v/1e9:.1f}B"
+        if abs(v) >= 1e6:
+            return f"{v/1e6:.1f}M"
+        return f"{v:,.0f}"
+
+    def fmtp(num, den, signed=False):
+        if num is None or den in (None, 0):
+            return "—"
+        v = num / den * 100
+        return f"{v:+.1f}%" if signed else f"{v:.1f}%"
+
+    def cf_color(v):
+        if v is None:
+            return "var(--muted)"
+        return "var(--danger)" if v < 0 else "var(--green)"
+
+    dmig_co, dmig_yrs, dmig_y, dmig_cur = _latest_year_block("DMIG")
+    pipg_co, pipg_yrs, pipg_y, pipg_cur = _latest_year_block("PIPG")
+    if not (dmig_cur and pipg_cur):
+        return ""
+
+    dmig_color = PEER_COLORS.get("DMIG", "#2d5016")
+    pipg_color = PEER_COLORS.get("PIPG", "#c08a2e")
+    dmig_fy = f"FY{dmig_y[-2:]}"
+    pipg_fy = f"FY{pipg_y[-2:]}"
+
+    def _prior(yrs, y):
+        return yrs.get(str(int(y) - 1), {}) if y else {}
+
+    dmig_prv = _prior(dmig_yrs, dmig_y)
+    pipg_prv = _prior(pipg_yrs, pipg_y)
+
+    def row(label, dmig_text, pipg_text, important=False):
+        weight = "800" if important else "700"
+        size = "16px" if important else "12.5px"
+        return f"""<div style="display:grid;grid-template-columns:1fr 160px 1fr;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);">
+  <div style="text-align:right;font-weight:{weight};font-size:{size};font-variant-numeric:tabular-nums;color:{dmig_color};">{dmig_text}</div>
+  <div style="text-align:center;font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;font-weight:600;">{label}</div>
+  <div style="text-align:left;font-weight:{weight};font-size:{size};font-variant-numeric:tabular-nums;color:{pipg_color};">{pipg_text}</div>
+</div>"""
+
+    def section_header(label):
+        return f"""<div style="grid-column:1/-1;background:var(--surface-soft);text-align:center;padding:8px 0;font-size:11px;font-weight:700;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;border-radius:4px;margin-top:14px;margin-bottom:4px;">{label}</div>"""
+
+    # 영업이익 시각 비교 bar (highlight)
+    d_op = dmig_cur.get("operating_profit")
+    p_op = pipg_cur.get("operating_profit")
+    max_op = max(filter(None, [d_op, p_op])) or 1
+    d_bar = (d_op / max_op * 100) if d_op else 0
+    p_bar = (p_op / max_op * 100) if p_op else 0
+    op_bar = f"""<div style="display:grid;grid-template-columns:1fr 160px 1fr;align-items:center;padding:14px 0 8px;border-bottom:2px solid var(--line-strong);">
+  <div style="display:flex;justify-content:flex-end;align-items:center;gap:10px;">
+    <span style="font-size:24px;font-weight:800;color:{dmig_color};font-variant-numeric:tabular-nums;">{fmtb(d_op)}</span>
+    <span style="height:18px;width:{d_bar:.1f}%;max-width:140px;background:{dmig_color};border-radius:3px;"></span>
+  </div>
+  <div style="text-align:center;font-size:12px;font-weight:700;color:var(--ink);">영업이익 ({dmig_fy}/{pipg_fy})</div>
+  <div style="display:flex;justify-content:flex-start;align-items:center;gap:10px;">
+    <span style="height:18px;width:{p_bar:.1f}%;max-width:140px;background:{pipg_color};border-radius:3px;"></span>
+    <span style="font-size:24px;font-weight:800;color:{pipg_color};font-variant-numeric:tabular-nums;">{fmtb(p_op)}</span>
+  </div>
+</div>"""
+
+    header = f"""<div style="display:grid;grid-template-columns:1fr 160px 1fr;align-items:end;padding:0 0 8px;border-bottom:2px solid var(--line-strong);">
+  <div style="text-align:right;">
+    <span class="ticker-mini" style="background:{dmig_color};color:#fff;padding:4px 10px;border-radius:4px;font-weight:800;font-size:14px;letter-spacing:0.06em;">DMIG</span>
+    <div style="font-size:10.5px;color:var(--muted);margin-top:3px;line-height:1.3;">PT Damai Indah Golf Tbk<br>(BSD + PIK 2 시설)</div>
+  </div>
+  <div></div>
+  <div style="text-align:left;">
+    <span class="ticker-mini" style="background:{pipg_color};color:#fff;padding:4px 10px;border-radius:4px;font-weight:800;font-size:14px;letter-spacing:0.06em;">PIPG</span>
+    <div style="font-size:10.5px;color:var(--muted);margin-top:3px;line-height:1.3;">PT Pondok Indah Padang Golf Tbk<br>(자카르타 CBD single course)</div>
+  </div>
+</div>"""
+
+    body = []
+    body.append(op_bar)
+
+    body.append(section_header("매출·비용 (FY 최신)"))
+    body.append(row("매출", fmtb(dmig_cur.get("revenue")), fmtb(pipg_cur.get("revenue"))))
+    d_rev = dmig_cur.get("revenue")
+    p_rev = pipg_cur.get("revenue")
+    body.append(row("Rev YoY",
+        fmtp((d_rev or 0) - (dmig_prv.get("revenue") or 0), dmig_prv.get("revenue"), signed=True) if dmig_prv.get("revenue") else "—",
+        fmtp((p_rev or 0) - (pipg_prv.get("revenue") or 0), pipg_prv.get("revenue"), signed=True) if pipg_prv.get("revenue") else "—",
+    ))
+    body.append(row("영업이익 (Op profit)", fmtb(d_op), fmtb(p_op)))
+    body.append(row("OPM (영업이익률)",
+        fmtp(d_op, d_rev),
+        fmtp(p_op, p_rev),
+    ))
+    body.append(row("OP YoY",
+        fmtp((d_op or 0) - (dmig_prv.get("operating_profit") or 0), dmig_prv.get("operating_profit"), signed=True) if dmig_prv.get("operating_profit") else "—",
+        fmtp((p_op or 0) - (pipg_prv.get("operating_profit") or 0), pipg_prv.get("operating_profit"), signed=True) if pipg_prv.get("operating_profit") else "—",
+    ))
+    body.append(row("총비용 (매출 − OP)",
+        fmtb((d_rev - d_op) if (d_rev and d_op is not None) else None),
+        fmtb((p_rev - p_op) if (p_rev and p_op is not None) else None),
+    ))
+    body.append(row("OpEx/매출",
+        fmtp((d_rev - d_op) if (d_rev and d_op is not None) else None, d_rev),
+        fmtp((p_rev - p_op) if (p_rev and p_op is not None) else None, p_rev),
+    ))
+
+    body.append(section_header("이익·EBITDA"))
+    body.append(row("EBITDA", fmtb(dmig_cur.get("ebitda")), fmtb(pipg_cur.get("ebitda"))))
+    body.append(row("EBITDA margin",
+        fmtp(dmig_cur.get("ebitda"), d_rev),
+        fmtp(pipg_cur.get("ebitda"), p_rev),
+    ))
+    body.append(row("순이익", fmtb(dmig_cur.get("net_profit")), fmtb(pipg_cur.get("net_profit"))))
+    body.append(row("NPM",
+        fmtp(dmig_cur.get("net_profit"), d_rev),
+        fmtp(pipg_cur.get("net_profit"), p_rev),
+    ))
+
+    # 5Y op profit trend
+    body.append(section_header("영업이익 5년 추이"))
+
+    def _trend_bars(yrs: dict, latest: str, color: str, align: str):
+        rows_html = []
+        years_to_show = [str(int(latest) - i) for i in range(4, -1, -1)]
+        all_op = [yrs.get(y, {}).get("operating_profit") for y in years_to_show]
+        all_op = [v for v in all_op if v is not None]
+        m = max([abs(v) for v in all_op]) if all_op else 1
+        for y in years_to_show:
+            yb = yrs.get(y, {})
+            op = yb.get("operating_profit")
+            pct = (abs(op) / m * 100) if op else 0
+            is_neg = (op or 0) < 0
+            bar_color = "#b91c1c" if is_neg else color
+            if align == "right":
+                rows_html.append(f"""<div style="display:grid;grid-template-columns:1fr 70px 40px;gap:6px;align-items:center;font-size:10.5px;padding:2px 0;">
+  <div style="display:flex;justify-content:flex-end;"><span style="height:11px;width:{pct:.1f}%;max-width:100%;background:{bar_color};border-radius:3px;"></span></div>
+  <span style="text-align:right;font-variant-numeric:tabular-nums;font-weight:600;color:{'var(--danger)' if is_neg else 'var(--ink)'};">{fmtb(op)}</span>
+  <span style="text-align:right;color:var(--ink-soft);font-weight:600;">FY{y[-2:]}</span>
+</div>""")
+            else:
+                rows_html.append(f"""<div style="display:grid;grid-template-columns:40px 70px 1fr;gap:6px;align-items:center;font-size:10.5px;padding:2px 0;">
+  <span style="color:var(--ink-soft);font-weight:600;">FY{y[-2:]}</span>
+  <span style="text-align:left;font-variant-numeric:tabular-nums;font-weight:600;color:{'var(--danger)' if is_neg else 'var(--ink)'};">{fmtb(op)}</span>
+  <span style="display:flex;justify-content:flex-start;"><span style="height:11px;width:{pct:.1f}%;max-width:100%;background:{bar_color};border-radius:3px;"></span></span>
+</div>""")
+        return "".join(rows_html)
+
+    body.append(f"""<div style="display:grid;grid-template-columns:1fr 160px 1fr;gap:0;align-items:start;padding:8px 0;">
+  <div>{_trend_bars(dmig_yrs, dmig_y, dmig_color, "right")}</div>
+  <div style="text-align:center;font-size:10.5px;color:var(--muted);padding-top:4px;">영업이익 FY</div>
+  <div>{_trend_bars(pipg_yrs, pipg_y, pipg_color, "left")}</div>
+</div>""")
+
+    return f"""<div class="section" id="dmig-pipg-detail-opex">
+  <h2 data-num="02">DMIG · PIPG 상세</h2>
+
+  <div class="viz-card" style="padding:14px 20px;max-width:1100px;margin:0 auto;">
+    {header}
+    {''.join(body)}
+  </div>
+</div>"""
+
+
 def _xbrl_comparison_section() -> str:
     """ops-kpi 탭에 삽입되는 XBRL 동일 기준 13-peer 비교 섹션 전체."""
     rank_opm = _xbrl_rank_chart("opm", "영업이익률 (OPM)", "pct", sort_desc=True, good_above=15,
@@ -5583,49 +6018,20 @@ def section_capex() -> str:
 
 
 def section_opex() -> str:
-    """Tab 3: OPEX — operating cost structure, margin, segment GP, FY25 prelim."""
-    opex_topn = _opex_topn_section()
-    opex_norm_table = _normalized_opex_compare_table()
-    opex_kpi_strip = _opex_kpi_strip()
-    opex_stack = _opex_stacked_bars()
-    opex_norm_bars = _opex_norm_bar_table()
-    opex_narratives = _opex_narrative_grid()
-    pipg_seg_visual = _pipg_segment_visual()
-    pipg_seg_table = _pipg_segment_table()
-    fy25_dashboard = _fy25_dashboard()
-    fy25_cards = _fy25_delta_cards()
-    margin_change = _margin_change_visual()
-    revenue_topn = _revenue_topn_section()
-    revenue_narratives = _revenue_narrative_grid()
-    cogs_topn = _cogs_topn_section()
-    opex_category_compare = _opex_category_cross_peer_section()
-    opex_4y_trend = _opex_4y_trend_chart()
-    revenue_cogs_gp = _revenue_cogs_gp_section()
-    full_cost_stack = _full_cost_stack()
-
-    opex_blocks = "\n".join(filter(None, [
-        _opex_breakdown_table("DMIG", "opex_note", "OpEx 라인 분해 (Note 25)"),
-        _opex_breakdown_table("PIPG", "opex_note_29", "OpEx 라인 분해 (Note 29)"),
-        _opex_breakdown_table("KPIG", "ga_note_34", "G&A 비용 라인 (Note 34) — Hotel+Resort+Golf 통합"),
-    ]))
-    rev_blocks = "\n".join(filter(None, [
-        _revenue_breakdown_table("DMIG", "revenue_note", "매출 라인 분해"),
-        _revenue_breakdown_table("PIPG", "revenue_note_27", "매출 라인 분해 (Note 27)"),
-    ]))
-    cogs_blocks = "\n".join(filter(None, [
-        _revenue_breakdown_table("DMIG", "cogs_note", "COGS 라인 분해"),
-        _revenue_breakdown_table("PIPG", "cogs_note_28", "COGS 라인 분해 (Note 28)"),
-    ]))
+    """Tab 3: OPEX — XBRL/AR 13-peer 비용구조 비교 + DMIG·PIPG 상세 (CAPEX 패턴 동일)."""
+    xbrl_opex_html = _xbrl_opex_comparison_section()
+    dmig_pipg_opex_detail = _dmig_pipg_opex_detail_section()
+    opex_narratives = _opex_narrative_grid(peers=["DMIG", "PIPG"])
 
     exec_h = _tab_exec_headline(
         tab_key="OPEX · COST STRUCTURE",
-        tab_title="비용 구조 · 라인 분해 · 마진 압박",
+        tab_title="13-peer 비용구조 + DMIG·PIPG 상세",
         tab_focus_tiles=[
-            ("OpEx ratio peer 최저", "21.1", "%", "GOLF", "DMIG/PIPG 38% 대비 압도적 efficient", "green"),
-            ("FY25 best operator", "+4.0", "%", "PIPG", "OpEx -17.9% 절감 → 영업이익 +4.0%", "green"),
-            ("최대 cost 라인", "12.6", "%", "DMIG", "인건비/매출 peer 최고", "warn"),
-            ("Membership GP", "87.8", "%", "PIPG", "FY23 Note 30 4-segment 최고 마진", "green"),
-            ("FY25 마진 압박", "-12.0", "%", "DMIG", "영업이익 YoY (78.9→69.4bn)", "warn"),
+            ("OPM 1위", "41.4", "%", "PWON", "FY25 — 13-peer 최고 비용 효율", "green"),
+            ("OpEx/매출 최저", "58.6", "%", "PWON", "FY25 — SG&A 14% + COGS 44%", "green"),
+            ("SG&A/매출 최저", "12.6", "%", "KIJA", "FY25 — Jababeka captive 수요", "green"),
+            ("OP YoY 폭증", "+487", "%", "KPIG", "FY25 — 매출 leverage 효과", "gold"),
+            ("OpEx 100% 초과", "109.6", "%", "MDLN", "FY25 — 영업적자 -9.6%", "warn"),
         ],
     )
 
@@ -5637,168 +6043,30 @@ def section_opex() -> str:
     {exec_h}
 
     <nav class="ops-subnav" id="opex-anchor-top" aria-label="opex sub-navigation">
-      <a class="chip" href="#op-rev">매출 라인</a>
-      <a class="chip" href="#op-cogs">COGS 라인</a>
-      <a class="chip" href="#op-opex">OpEx 라인</a>
-      <a class="chip" href="#op-norm">OpEx 정규화</a>
-      <a class="chip" href="#op-category">카테고리 deep-dive</a>
-      <a class="chip" href="#op-4y-trend">4Y trend</a>
-      <a class="chip" href="#op-narratives">AR narrative</a>
-      <a class="chip" href="#op-pipg">PIPG 4-seg GP</a>
-      <a class="chip" href="#op-fy25">FY25 prelim</a>
-      <a class="chip" href="#op-margin">마진 변화</a>
+      <a class="chip" href="#opex-xbrl-compare">13-peer 비교</a>
+      <a class="chip" href="#dmig-pipg-detail-opex">DMIG·PIPG 상세</a>
+      <a class="chip" href="#dmig-pipg-narrative-opex">DMIG·PIPG AR 본문</a>
     </nav>
 
     {_peer_color_legend()}
 
-    <div class="section ops-summary">
-      <h2>OPEX — TL;DR (4 발견)</h2>
-      <h3>비용 구조·라인 분해·마진 압박 핵심</h3>
-      <div class="insight-grid">
-        <div class="insight-card insight-positive">
-          <div class="insight-tag"><span class="ticker-mini">GOLF</span> Asset-light leader</div>
-          <div class="insight-metric up">21.1<span class="u">%</span></div>
-          <div class="insight-title">OpEx / 매출 (FY24) {_info_tip('DMIG/PIPG 38% 대비 압도적 효율. 솔라+리튬 카트로 유틸리티 구조적 절감. IPO 1년차 효과도 일부.', 'tip-l')}</div>
-        </div>
-        <div class="insight-card insight-positive">
-          <div class="insight-tag"><span class="ticker-mini">PIPG</span> Membership cash machine</div>
-          <div class="insight-metric up">87.8<span class="u">%</span></div>
-          <div class="insight-title">FY23 Membership segment GP margin {_info_tip('신규 회원/연회비 거의 순이익에 가까움 (소액 COGS). Golf course 58.8% · Restaurant 31.2% 와 차별화.', 'tip-l')}</div>
-        </div>
-        <div class="insight-card insight-warn">
-          <div class="insight-tag"><span class="ticker-mini">DMIG</span> 인건비·세금 부담</div>
-          <div class="insight-metric down">12.6<span class="u">%</span></div>
-          <div class="insight-title">인건비 / 매출 (peer 최고) {_info_tip('206명 직원 + employee benefits liability Rp 135bn. 세금·법률도 5.2%/매출. 노후 자산 + 장기근속자 결합 구조.', 'tip-l')}</div>
-        </div>
-        <div class="insight-card insight-warn">
-          <div class="insight-tag"><span class="ticker-mini">PIPG</span> 세금 outlier</div>
-          <div class="insight-metric down">12.3<span class="u">%</span></div>
-          <div class="insight-title">세금·법률 / 매출 (FY24 Pajak dan perijinan 24.2bn) {_info_tip('CBD 5분 + HGB 면적 + property tax 비중 큰 위치적 비용 — DMIG 5.2% / GOLF 3.1% 대비 outlier.', 'tip-l')}</div>
-        </div>
-      </div>
-    </div>
+    {xbrl_opex_html}
 
-    <div class="section" id="op-stack">
-      <h2 data-num="01">전체 비용 구조 — 한눈에</h2>
-      <h3>매출 100% = COGS + OpEx + 영업이익 (FY2024, 3-peer)</h3>
-      {full_cost_stack}
-      {_insight('동일 매출 100%를 어떻게 쓰는가 — <strong>GOLF 영업이익률 39%로 최고</strong> (COGS+OpEx 61%), <strong>DMIG 69% · PIPG 74%</strong>로 비용 비중 큼. 아래 섹션에서 각 블록을 라인 단위로 분해.')}
-    </div>
+    {dmig_pipg_opex_detail}
 
-    <div class="section" id="op-rev">
-      <h2 data-num="02">매출 라인 분해 — Pure-play (FY23→FY24)</h2>
-      <h3>골프 · F&amp;B · 회원권 · 부대시설 별 매출 (FY23→FY24)</h3>
-      {revenue_topn}
-
-      <h4 class="ops-block-h" style="margin-top: 22px;">왜? — 매출 성장 driver</h4>
-      <details class="orig-toggle"><summary>매출 driver 본문 인용 펼치기</summary>
-        {revenue_narratives}
-      </details>
-
-      <details class="orig-toggle"><summary>원본 매출 라인 표</summary>
-        {rev_blocks}
-      </details>
-    </div>
-
-    <div class="section" id="op-cogs">
-      <h2 data-num="03">COGS 라인 분해 — segment별 매출원가</h2>
-      <h3>골프 코스 / 레스토랑 / 카트 / 드라이빙 레인지</h3>
-      {cogs_topn}
-
-      <h4 class="ops-block-h" style="margin-top: 22px;">매출 라인별 GP margin — 어느 라인이 가장 수익성 높은가</h4>
-      {revenue_cogs_gp}
-      {_insight('매출-COGS를 라인별로 매칭하면 <strong>Membership / Branding 계열이 GP margin 최상위</strong> (소액 COGS), <strong>Restaurant는 최하위</strong> (식자재·인건비 부담). 같은 매출이라도 수익 기여도가 크게 다름.')}
-
-      <details class="orig-toggle"><summary>원본 COGS 라인 표</summary>
-        {cogs_blocks}
-      </details>
-    </div>
-
-    <div class="section" id="op-opex">
-      <h2 data-num="04">OpEx 라인 분해 — 3-peer top-N</h2>
-      <h3>인건비 · 감가 · 유지 · 세금 · 유틸리티 — DMIG/PIPG/KPIG</h3>
-      {opex_topn}
-      {_insight('3-peer 공통 최대 OpEx 항목은 <strong>인건비</strong>와 <strong>감가상각</strong>. DMIG는 이 둘이 각각 12%+로 가장 무겁고, KPIG의 G&amp;A는 Hotel+Resort+Golf 통합이라 golf-only 비교는 부적합.')}
-      <details class="orig-toggle"><summary>원본 OpEx 라인 표</summary>
-        {opex_blocks}
-      </details>
-    </div>
-
-    <div class="section" id="op-norm">
-      <h2 data-num="05">OpEx 카테고리별 정규화 — DMIG vs PIPG vs GOLF</h2>
-      <h3>FY24 매출 대비 % · cross-peer 같은 잣대 (11 카테고리 keyword 분류)</h3>
-
-      {opex_kpi_strip}
-
-      <h4 class="ops-block-h">100% stacked — OpEx 구성 비중</h4>
-      {opex_stack}
-
-      <h4 class="ops-block-h" style="margin-top: 22px;">카테고리별 매출 대비 % — bar matrix</h4>
-      {opex_norm_bars}
-
-      {_insight('OpEx 합계 DMIG 38.4% · PIPG 38.5% · GOLF 21.1% — DMIG/PIPG는 거의 동일하지만 <strong>구성이 정반대</strong>: DMIG는 감가(자본투자), PIPG는 세금·유지(위치·노후). GOLF의 17pp 격차는 lean 운영 모델.')}
-
-      <details class="orig-toggle"><summary>원본 정규화 표</summary>
-        {opex_norm_table}
-      </details>
-    </div>
-
-    <div class="section" id="op-category">
-      <h2 data-num="06">OpEx 카테고리 deep-dive — 4 핵심 비교</h2>
-      <h3>인건비 · 세금·법률 · 유지보수 · 유틸리티 — peer 차이의 본질</h3>
-      {opex_category_compare}
-      {_insight('PIPG의 <strong>세금·법률 12.3% (24.2bn)</strong>는 단순 outlier가 아닌 <strong>CBD 5분 + HGB 면적의 위치 비용</strong>. 유지보수 <strong>5.9%</strong>는 1976년 노후 코스 + Indonesia Open 토너먼트 hosting 비용. 비싼 위치 + 프리미엄 포지셔닝의 구조적 cost.', kind='warn')}
-    </div>
-
-    <div class="section" id="op-4y-trend">
-      <h2 data-num="07">OpEx/매출 % — 4Y trend (FY22-25)</h2>
-      <h3>비용 효율 추이 — DMIG/PIPG/GOLF</h3>
-      {opex_4y_trend}
-      {_insight('DMIG는 4년 내내 38-40%로 정체, <strong>PIPG는 FY25 33.6%로 큰 폭 하락</strong> (비용 통제 성공), GOLF는 21-22%로 일관되게 낮음. 비용 효율 개선은 PIPG가 유일하게 입증.')}
-    </div>
-
-    <div class="section" id="op-narratives">
-      <h2 data-num="08">왜? — 운영 리스크 & 비용 sensitivity</h2>
-      <h3>OpEx 절댓값 뒤의 의미 — 보험·인건비 leverage·ESG·자본</h3>
-      <details class="orig-toggle"><summary>운영 리스크·비용 본문 인용 펼치기</summary>
-        {opex_narratives}
-      </details>
-    </div>
-
-    <div class="section" id="op-pipg">
-      <h2 data-num="09">PIPG 4-segment GP margin — Note 30</h2>
-      <h3>Golf Course&amp;Cart / Membership / Restaurant / Others (FY23)</h3>
-      {pipg_seg_visual}
-      {_insight('Membership <strong>87.8%</strong> GP는 사실상 순현금 — 신규 회원 모집이 가장 수익성 높은 매출. Restaurant <strong>31.2%</strong>는 본질적으로 저마진. 신규 코스 수익 모델은 <strong>회원권 비중을 키우는 게 핵심</strong>.')}
-      <details class="orig-toggle"><summary>원본 segment 표</summary>
-        {pipg_seg_table}
-      </details>
-    </div>
-
-    <div class="section" id="op-fy25">
-      <h2 data-num="10">FY2025 미감사 prelim — 마진 압박 신호</h2>
-      <h3>DMIG/PIPG/KPIG 3-peer side-by-side dashboard</h3>
-      {fy25_dashboard}
-      {_insight('FY25 차별 — <strong>PIPG +4% 영업이익 (비용 통제 승리)</strong> vs <strong>DMIG -12% (감가 부담 가속)</strong>. 매출은 둘 다 거의 flat이나 cost discipline이 결정. KPIG는 그룹 매출 +10%지만 golf-only 미공시로 비교 불가.')}
-      <details class="orig-toggle"><summary>원본 카드</summary>
-        {fy25_cards}
-      </details>
-    </div>
-
-    <div class="section" id="op-margin">
-      <h2 data-num="11">FY24→FY25 마진 변화 commentary</h2>
-      <h3>6-peer timeline 카드 — FY24↔FY25 mini delta bar</h3>
-      {margin_change}
+    <div class="section" id="dmig-pipg-narrative-opex">
+      <h2 data-num="03">DMIG·PIPG AR 본문 인용</h2>
+      {opex_narratives}
     </div>
 
     <div class="closing-stripe">
       <div class="cs-eyebrow">OPEX 종합</div>
       <div class="cs-title">4 takeaways</div>
       <div class="closing-grid">
-        <div class="closing-takeaway"><div class="num">1</div><div class="txt"><strong>GOLF asset-light</strong> · OpEx 21.1%/매출 (DMIG/PIPG 38% 대비) — 솔라+리튬 + IPO 1년차 효과</div></div>
-        <div class="closing-takeaway"><div class="num">2</div><div class="txt"><strong>PIPG cost discipline</strong> · FY25 OpEx -17.9% → 매출 -6%에도 영업이익 +4% · Membership 87.8% GP가 cash 회수력</div></div>
-        <div class="closing-takeaway"><div class="num">3</div><div class="txt"><strong>DMIG 압박 가속</strong> · 인건비 12.6% + 감가 12.2% peer 최고 · FY25 -12% 영업이익</div></div>
-        <div class="closing-takeaway"><div class="num">4</div><div class="txt"><strong>SMDM 적자전환</strong> · Golf GP -16.9pp FY23→24 · BSDE 인수 후 회계 재분류 신호</div></div>
+        <div class="closing-takeaway"><div class="num">1</div><div class="txt"><strong>PWON 최고 비용 효율</strong> · OpEx 58.6% + SG&A 14.1% — 13-peer 최저. 임대 중심 매출이 인건비·관리비 leverage.</div></div>
+        <div class="closing-takeaway"><div class="num">2</div><div class="txt"><strong>MDLN 영업적자</strong> · OpEx 109.6% (SG&A 56.8% 부담) → −9.6% OPM. ELTY 89%·LPKR 90%도 비효율 그룹.</div></div>
+        <div class="closing-takeaway"><div class="num">3</div><div class="txt"><strong>KPIG OP +487%</strong> · Hotel+Resort+Golf 매출 +47.7% leverage. ELTY +66.7%·CTRA +14.4%·KIJA +5.4% 동반 — 매출 성장이 비용 분산.</div></div>
+        <div class="closing-takeaway"><div class="num">4</div><div class="txt"><strong>DMIG·PIPG 마진 차별</strong> · DMIG FY25 OPM 27.6% (OP −12% 압박) vs PIPG 29.8% (OP +3.5% 회복) — 같은 pure-play도 비용 통제 결과 갈림.</div></div>
       </div>
     </div>
 
