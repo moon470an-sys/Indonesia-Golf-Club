@@ -3209,24 +3209,25 @@ a.ticker-link:focus-visible {
   .src-cell { max-width: none; }
 }
 
-/* === IDX XBRL provenance badge === */
-.xbrl-badge {
+/* === Primary-source provenance badges === */
+.xbrl-badge, .ar-badge {
   display: inline-block;
   padding: 1px 6px;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.04em;
   color: #fff;
-  background: linear-gradient(135deg, #1e7a3f 0%, #14532d 100%);
   border-radius: 4px;
   vertical-align: middle;
   cursor: help;
   user-select: none;
+  text-decoration: none;
 }
-[data-theme="dark"] .xbrl-badge {
-  background: linear-gradient(135deg, #34d399 0%, #059669 100%);
-  color: #052e16;
-}
+.xbrl-badge { background: linear-gradient(135deg, #1e7a3f 0%, #14532d 100%); }
+.ar-badge   { background: linear-gradient(135deg, #b45309 0%, #92400e 100%); }
+a.xbrl-badge:hover, a.ar-badge:hover { filter: brightness(1.1); text-decoration: none; }
+[data-theme="dark"] .xbrl-badge { background: linear-gradient(135deg, #34d399 0%, #059669 100%); color: #052e16; }
+[data-theme="dark"] .ar-badge   { background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%); color: #422006; }
 
 /* === Print === */
 @media print {

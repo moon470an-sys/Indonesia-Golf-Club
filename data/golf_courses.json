@@ -492,7 +492,8 @@
           }
         ],
         "parent_company_full_name": "PT Pondok Indah Padang Golf Tbk",
-        "revenue_idr_fy2024_previous": 197570521436
+        "revenue_idr_fy2024_previous": 197570521436,
+        "figure_origin": "AUDITED_AR"
       },
       "coord_source": "overpass_v1",
       "coord_osm_ref": "way/28420725"
@@ -2480,7 +2481,7 @@
         "parent_company_full_name": "PT Damai Indah Golf Tbk",
         "revenue_idr_h1": 122320000000,
         "net_profit_idr_h1": 36110000000,
-        "figure_origin": "audited_H1-2024",
+        "figure_origin": "AUDITED_AR",
         "parent_financial_sources": [
           {
             "url": "https://www.idx.co.id/StaticData/NewsAndAnnouncement/ANNOUNCEMENTSTOCK/From_EREP/202409/20240930092051-47798-0/Laporan%20Audit%20PT%20Damai%20Indah%20Golf%20TBK%2030%20Juni%2024.pdf",

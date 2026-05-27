@@ -567,9 +567,11 @@
               "publisher": "Company IR",
               "date_published": "2021",
               "date_accessed": "2026-05-01",
-              "page": "p.7-9 audited FS; Note 11 depreciation"
+              "page": "p.7-9 audited FS; Note 11 depreciation",
+              "source_type": "AUDITED_AR"
             }
-          ]
+          ],
+          "data_quality_year": "audited_ar"
         },
         "2021": {
           "revenue": 139668124665,
@@ -589,7 +591,8 @@
               "publisher": "Company IR",
               "date_published": "2022",
               "date_accessed": "2026-05-01",
-              "page": "p.13, 17-20"
+              "page": "p.13, 17-20",
+              "source_type": "AUDITED_AR"
             },
             {
               "url": "https://www.damaiindahgolf.com/documents/2022_Laporan_Keuangan.pdf",
@@ -598,7 +601,8 @@
               "date_published": "2022",
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "data_quality_year": "audited_ar"
         },
         "2022": {
           "revenue": 186454207000,
@@ -617,7 +621,8 @@
               "title": "DMIG Laporan Tahunan 2022",
               "publisher": "Company IR",
               "date_published": "2023",
-              "date_accessed": "2026-05-01"
+              "date_accessed": "2026-05-01",
+              "source_type": "AUDITED_AR"
             },
             {
               "url": "https://www.damaiindahgolf.com/documents/2022_Laporan_Keuangan.pdf",
@@ -626,7 +631,8 @@
               "date_published": "2023",
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "data_quality_year": "audited_ar"
         },
         "2023": {
           "revenue": 244986267834,
@@ -645,7 +651,8 @@
               "title": "DMIG Laporan Tahunan 2023",
               "publisher": "Company IR",
               "date_published": "2024",
-              "date_accessed": "2026-05-01"
+              "date_accessed": "2026-05-01",
+              "source_type": "AUDITED_AR"
             },
             {
               "url": "https://www.damaiindahgolf.com/documents/2023_Financial_Statement.pdf",
@@ -654,7 +661,8 @@
               "date_published": "2024",
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "data_quality_year": "audited_ar"
         },
         "2024": {
           "revenue": 253102440194,
@@ -674,9 +682,11 @@
               "publisher": "Company IR",
               "date_published": "2025",
               "date_accessed": "2026-05-01",
-              "page": "p.14, 19, 20, 51-52, 79"
+              "page": "p.14, 19, 20, 51-52, 79",
+              "source_type": "AUDITED_AR"
             }
-          ]
+          ],
+          "data_quality_year": "audited_ar"
         },
         "2025": {
           "revenue": 251254000000,
@@ -696,7 +706,8 @@
               "publisher": "Company IR",
               "date_published": "2026",
               "date_accessed": "2026-05-12",
-              "page": "AR p.5+, Financial Statement att2 p.13-14"
+              "page": "AR p.5+, Financial Statement att2 p.13-14",
+              "source_type": "AUDITED_AR"
             },
             {
               "url": "https://www.damaiindahgolf.com/documents/2025_Financial_Statement.pdf",
@@ -707,11 +718,12 @@
               "page": "p.13-14 P&L + BS"
             }
           ],
-          "fy2025_note": "매출 -0.7% / Op Income -12.0% / Net Income -9.0% / Cost 증가로 수익성 악화. AR 직접 추출 (Cycle 167)."
+          "fy2025_note": "매출 -0.7% / Op Income -12.0% / Net Income -9.0% / Cost 증가로 수익성 악화. AR 직접 추출 (Cycle 167).",
+          "data_quality_year": "audited_ar"
         }
       },
       "summary_note": "인도네시아 유일 순수 골프장 상장사. PyMuPDF로 10개 PDF 파싱. 매출 Rp 123B→253B(+105%), 순이익 21B→82B(+296%). 사업라인 분리(골프51%/회비18%/F&B20%). 2024 Mandiri Indonesia Open 개최(PIK).",
-      "data_quality": "high",
+      "data_quality": "audited_ar",
       "last_verified": "2026-05-01"
     },
     {
@@ -3778,9 +3790,11 @@
               "publisher": "Company IR",
               "date_published": "2021",
               "date_accessed": "2026-05-01",
-              "page": "p.9, 43, 72"
+              "page": "p.9, 43, 72",
+              "source_type": "AUDITED_AR"
             }
-          ]
+          ],
+          "data_quality_year": "audited_ar"
         },
         "2021": {
           "revenue": 134430612405,
@@ -3800,9 +3814,11 @@
               "publisher": "Company IR",
               "date_published": "2022",
               "date_accessed": "2026-05-01",
-              "page": "p.10-11, 43-44, 80"
+              "page": "p.10-11, 43-44, 80",
+              "source_type": "AUDITED_AR"
             }
-          ]
+          ],
+          "data_quality_year": "audited_ar"
         },
         "2022": {
           "revenue": 162573493394,
@@ -3822,9 +3838,11 @@
               "publisher": "Company IR",
               "date_published": "2023",
               "date_accessed": "2026-05-01",
-              "page": "p.10-11, 43-44"
+              "page": "p.10-11, 43-44",
+              "source_type": "AUDITED_AR"
             }
-          ]
+          ],
+          "data_quality_year": "audited_ar"
         },
         "2023": {
           "revenue": 203092322067,
@@ -3844,9 +3862,11 @@
               "publisher": "Company IR",
               "date_published": "2024",
               "date_accessed": "2026-05-01",
-              "page": "p.10-13, 43-46, 77"
+              "page": "p.10-13, 43-46, 77",
+              "source_type": "AUDITED_AR"
             }
-          ]
+          ],
+          "data_quality_year": "audited_ar"
         },
         "2024": {
           "revenue": 197570521436,
@@ -3866,9 +3886,11 @@
               "publisher": "Company IR",
               "date_published": "2025",
               "date_accessed": "2026-05-01",
-              "page": "p.10-11, 41-44, 59, 77"
+              "page": "p.10-11, 41-44, 59, 77",
+              "source_type": "AUDITED_AR"
             }
-          ]
+          ],
+          "data_quality_year": "audited_ar"
         },
         "2025": {
           "revenue": 185775000000,
@@ -3888,7 +3910,8 @@
               "publisher": "Company IR",
               "date_published": "2026",
               "date_accessed": "2026-05-12",
-              "page": "AR + FS att2 p.11"
+              "page": "AR + FS att2 p.11",
+              "source_type": "AUDITED_AR"
             },
             {
               "url": "https://www.golfpondokindah.com/document/2025_Final_Report_as_per_31_Dec_2025.pdf",
@@ -3899,11 +3922,12 @@
               "page": "p.9-11 BS + P&L"
             }
           ],
-          "fy2025_note": "매출 -6.0% / 그러나 OpEx -17.9% 절감으로 Op Income +4.0% / Net Income +0.6%. AR 직접 추출 (Cycle 167)."
+          "fy2025_note": "매출 -6.0% / 그러나 OpEx -17.9% 절감으로 Op Income +4.0% / Net Income +0.6%. AR 직접 추출 (Cycle 167).",
+          "data_quality_year": "audited_ar"
         }
       },
       "summary_note": "Pondok Indah Golf 운영사. PDF 직접 파싱(pdftotext)으로 완성. 매출 Rp 111.7B→197.6B(+77%), 순이익 23.1B→55.9B(+142%). 단 1,299주 발행으로 EPS Rp 4천만대. 5년 연속 배당. OJK Tbk이지만 IDX 미상장(POJK 3/2021).",
-      "data_quality": "high",
+      "data_quality": "audited_ar",
       "last_verified": "2026-05-01"
     },
     {

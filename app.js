@@ -3039,8 +3039,9 @@ function renderFinanceTable() {
     loadFinancialsIfNeeded().then(() => renderFinanceTable());
   }
 
-  // Find the latest XBRL fiscal year across all companies — used as the
-  // unified column header (e.g. "매출 FY2024"). Falls back to '2024'.
+  // 1차 출처(primary audited sources): IDX_XBRL (listed) 또는 AUDITED_AR (private/Tbk).
+  const PRIMARY_SOURCE_TYPES = new Set(['IDX_XBRL', 'AUDITED_AR']);
+  // 가장 최신 회계연도 자동 선택 — 모든 회사 중 primary source가 있는 max year.
   let xbrlYearKey = null;
   if (financialsByTicker) {
     for (const co of Object.values(financialsByTicker)) {
@@ -3048,7 +3049,7 @@ function renderFinanceTable() {
       for (const y of yrs) {
         const yb = co.yearly[y];
         const src = (yb?.sources || [])[0];
-        if (src && src.source_type === 'IDX_XBRL') {
+        if (src && PRIMARY_SOURCE_TYPES.has(src.source_type)) {
           if (!xbrlYearKey || y > xbrlYearKey) xbrlYearKey = y;
         }
       }
@@ -3075,7 +3076,7 @@ function renderFinanceTable() {
     const fin = c.financials || {};
     const ticker = fin.idx_ticker || fin.foreign_ticker;
     const yhUrl = ticker ? _tickerYahooHref(ticker, !!fin.idx_ticker) : null;
-    const tickerHtml = ticker
+    const tickerLinkHtml = ticker
       ? `<a class="ticker-pill ${fin.idx_ticker ? 'idx' : 'foreign'} ticker-link"`
           + ` href="${escapeHtml(yhUrl || 'https://finance.yahoo.com/')}"`
           + ` target="_blank" rel="noopener"`
@@ -3083,14 +3084,15 @@ function renderFinanceTable() {
           + `${escapeHtml(ticker)} <span class="ticker-ext">↗</span></a>`
       : '<span class="muted">—</span>';
 
-    // === Unified XBRL data source ===
-    // All financial cells read from financialsByTicker[ticker].yearly[xbrlYearKey].
-    // If no XBRL block exists (DMIG/PIPG/foreign tickers without IDX filing), cells show —.
+    // === Unified primary-source data ===
+    // 1차 출처(IDX_XBRL or AUDITED_AR)에서만 읽음. DMIG/PIPG는 audited AR PDF 직접 추출.
     const bare = _bareTicker(ticker);
     const company = (bare && financialsByTicker) ? financialsByTicker[bare.toUpperCase()] : null;
     const yblock = company?.yearly?.[xbrlYearKey];
-    const isXbrl = !!(yblock && (yblock.sources || [])[0]?.source_type === 'IDX_XBRL');
-    const xb = isXbrl ? yblock : null;
+    const primarySrc = (yblock?.sources || [])[0];
+    const sourceType = primarySrc?.source_type;
+    const isPrimary = PRIMARY_SOURCE_TYPES.has(sourceType);
+    const xb = isPrimary ? yblock : null;
 
     const revHtml = fmtNumOrDash(xb?.revenue);
     const gpHtml = fmtNumOrDash(xb?.gross_profit);
@@ -3103,6 +3105,17 @@ function renderFinanceTable() {
 
     const memHtml = fin.membership_price_idr != null ? escapeHtml(fmtBigIDR(fin.membership_price_idr) || '')
       : (fin.membership_price_usd != null ? `$${fin.membership_price_usd.toLocaleString('en-US')}` : '<span class="muted">—</span>');
+
+    // 출처 배지: XBRL (IDX 감사필 XBRL) 또는 AR (audit-grade 1차 직접 추출 PDF)
+    let srcBadge = '';
+    if (sourceType === 'IDX_XBRL') {
+      const srcUrl = primarySrc?.url || '';
+      srcBadge = `<a class="xbrl-badge" href="${escapeHtml(srcUrl)}" target="_blank" rel="noopener" title="IDX XBRL 감사필 인스턴스 — ${escapeHtml(xbrlYearKey)}">XBRL</a>`;
+    } else if (sourceType === 'AUDITED_AR') {
+      const srcUrl = primarySrc?.url || '';
+      srcBadge = `<a class="ar-badge" href="${escapeHtml(srcUrl)}" target="_blank" rel="noopener" title="Audited Annual Report 1차 직접 추출 — ${escapeHtml(xbrlYearKey)}">AR</a>`;
+    }
+    const tickerHtml = `${tickerLinkHtml} ${srcBadge}`;
 
     // Trend column: opens 5y modal if we have data for the parent ticker.
     const has5y = bare && financialsByTicker && financialsByTicker[bare.toUpperCase()];
@@ -3508,7 +3521,7 @@ const I18N = {
     'tab.analytics': '대시보드',
     'tab.operations': '운영 벤치마크 ↗',
 
-    'finance.hint': '💡 모든 수치는 <span class="xbrl-badge" title="IDX XBRL 공시에서 자동 추출">XBRL</span> — IDX 감사필 XBRL 1차 출처에서 직접 추출 (매주 일요일 자동 갱신). <strong>티커</strong> 클릭 시 Yahoo Finance, <strong>재무 추이</strong> 셀 클릭 시 5년 그래프 모달이 열립니다.',
+    'finance.hint': '💡 모든 수치는 1차 감사필 출처에서 직접 추출 — <span class="xbrl-badge" title="IDX 감사필 XBRL 인스턴스">XBRL</span> = IDX 상장사 (매주 일요일 자동 갱신), <span class="ar-badge" title="Audited Annual Report PDF 직접 추출">AR</span> = 비상장이지만 audited AR 공시(DMIG/PIPG). 배지 클릭 시 원문 PDF/XBRL 열림. <strong>티커</strong> 클릭 → Yahoo Finance · <strong>재무 추이</strong> 클릭 → 5Y 그래프.',
 
     'filter.active': '활성 필터',
     'filter.reset': '초기화',
@@ -3941,7 +3954,7 @@ const I18N = {
     'tab.analytics': 'Dashboard',
     'tab.operations': 'Operations Benchmark ↗',
 
-    'finance.hint': '💡 All figures are <span class="xbrl-badge" title="Auto-extracted from IDX XBRL filings">XBRL</span> — sourced directly from IDX audited XBRL filings (refreshed weekly). Click <strong>Ticker</strong> for Yahoo Finance; click the <strong>Trend</strong> cell for 5-year charts.',
+    'finance.hint': '💡 All figures from primary audited sources — <span class="xbrl-badge" title="IDX audited XBRL instance">XBRL</span> = IDX-listed (refreshed weekly), <span class="ar-badge" title="Audited Annual Report PDF">AR</span> = privately audited (DMIG/PIPG). Click badge to open source. <strong>Ticker</strong> → Yahoo Finance; <strong>Trend</strong> → 5-year charts.',
 
     'filter.active': 'Active filters',
     'filter.reset': 'Reset',
