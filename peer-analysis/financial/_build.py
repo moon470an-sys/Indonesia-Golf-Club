@@ -3306,13 +3306,23 @@ def _per_hole_data() -> list:
 
 
 PEER_COLORS = {
+    # Tier 1 (pure-play golf)
     "DMIG": "#2d5016",
     "PIPG": "#c08a2e",
     "GOLF": "#4a7c30",
+    # Tier 2 (segment disclosed)
     "MDLN": "#6b21a8",
     "KIJA": "#b91c1c",
     "SMDM": "#1e40af",
+    # Tier 3 (adjacent bundled)
     "KPIG": "#92400e",
+    "SMRA": "#0e7490",
+    # Tier 4 (property w/ golf ops)
+    "BSDE": "#7c2d12",
+    "CTRA": "#365314",
+    "ELTY": "#7e22ce",
+    "LPKR": "#0f766e",
+    "PWON": "#9f1239",
 }
 
 
@@ -3418,6 +3428,300 @@ def _sparkline_svg(values, color="#2d5016", width=140, height=36, fill=True) -> 
         f'{dots}'
         f'</svg>'
     )
+
+
+# ====================================================================
+# XBRL/AR 13-peer standardized comparison (FY2025)
+# ====================================================================
+
+# 13 peer tier mapping per Cycle 168 metadata.peer_group_v2
+PEER_TIERS = {
+    "DMIG": "1", "PIPG": "1", "GOLF": "1",
+    "MDLN": "2", "KIJA": "2", "SMDM": "2",
+    "KPIG": "3", "SMRA": "3",
+    "BSDE": "4", "CTRA": "4", "ELTY": "4", "LPKR": "4", "PWON": "4",
+}
+TIER_LABELS = {
+    "1": "Tier 1 · 골프 pure-play",
+    "2": "Tier 2 · golf segment 분리공시",
+    "3": "Tier 3 · adjacent (hotel/resort 통합)",
+    "4": "Tier 4 · property + golf ops",
+}
+
+
+def _xbrl_peer_data() -> list:
+    """company_financials_5y.json에서 13 peer FY2025 standardized 지표를 추출.
+
+    XBRL (22 IDX peer) 또는 AUDITED_AR (DMIG/PIPG) 출처만 사용. 모든 metric은
+    동일한 분자·분모 정의로 계산되어 cross-peer 비교 valid.
+    """
+    import json as _json
+    import os as _os
+    site_root = _os.path.dirname(_os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+    fin_path = _os.path.join(site_root, "data", "company_financials_5y.json")
+    with open(fin_path, "r", encoding="utf-8") as f:
+        cf = _json.load(f)
+    by_ticker = {c["ticker"]: c for c in cf.get("companies", [])}
+
+    PRIMARY = {"IDX_XBRL", "AUDITED_AR"}
+    rows = []
+    for t, tier in PEER_TIERS.items():
+        c = by_ticker.get(t, {})
+        # 최신 primary year 자동 선택
+        y_keys = sorted(c.get("yearly", {}).keys(), reverse=True)
+        latest = None
+        for y in y_keys:
+            srcs = (c["yearly"][y].get("sources") or [])
+            if srcs and isinstance(srcs[0], dict) and srcs[0].get("source_type") in PRIMARY:
+                latest = y
+                break
+        if not latest:
+            continue
+        # FY-1 (직전 연도)
+        try:
+            prior = str(int(latest) - 1)
+        except Exception:
+            prior = None
+        cur = c["yearly"][latest]
+        prv = c["yearly"].get(prior, {}) if prior else {}
+
+        def n(v):
+            return v if isinstance(v, (int, float)) else None
+        def r(num, den, pct=True, default=None):
+            if num is None or den in (None, 0):
+                return default
+            return (num / den) * (100 if pct else 1)
+
+        rev = n(cur.get("revenue"))
+        rev_p = n(prv.get("revenue"))
+        gp = n(cur.get("gross_profit"))
+        op = n(cur.get("operating_profit"))
+        np_ = n(cur.get("net_profit"))
+        np_p = n(prv.get("net_profit"))
+        ta = n(cur.get("total_assets"))
+        tl = n(cur.get("total_liabilities"))
+        te = n(cur.get("total_equity"))
+        tep = n(cur.get("total_equity_parent")) or te
+        cfo = n(cur.get("cfo"))
+
+        rows.append({
+            "tier": tier,
+            "ticker": t,
+            "fy": latest,
+            "rev": rev,
+            "rev_yoy": r(rev - rev_p, rev_p) if (rev is not None and rev_p) else None,
+            "gpm": r(gp, rev),
+            "opm": r(op, rev),
+            "npm": r(np_, rev),
+            "np_yoy": r(np_ - np_p, np_p) if (np_ is not None and np_p) else None,
+            "roa": r(np_, ta),
+            "roe": r(np_, tep),
+            "d_e": r(tl, te, pct=False),
+            "d_a": r(tl, ta),
+            "asset_turn": r(rev, ta, pct=False),
+            "cfo_rev": r(cfo, rev),
+            "source_type": (cur.get("sources") or [{}])[0].get("source_type"),
+        })
+    return rows
+
+
+def _xbrl_rank_chart(metric: str, title: str, fmt_kind: str, sort_desc: bool, good_above: float = 0,
+                     subtitle: str = "") -> str:
+    """13-peer 단일 metric 가로 막대 ranking 차트.
+
+    fmt_kind: 'pct' (10.5%) | 'ratio' (0.85x) | 'bn' (12.79T)
+    sort_desc: True면 큰 값이 위 (수익성 등). False면 작은 값이 위 (부채 등).
+    good_above: 이 값 이상이면 녹색, 이하면 회색. negative면 음수가 빨강.
+    """
+    rows = _xbrl_peer_data()
+    data = [(r["ticker"], r["tier"], r.get(metric), r["fy"]) for r in rows]
+    data = [d for d in data if d[2] is not None]
+    if not data:
+        return ""
+    data.sort(key=lambda d: -d[2] if sort_desc else d[2])
+    max_abs = max(abs(d[2]) for d in data) or 1
+
+    def fmt_val(v):
+        if fmt_kind == "pct":
+            return f"{v:+.1f}%" if v < 0 else f"{v:.1f}%"
+        if fmt_kind == "ratio":
+            return f"{v:.2f}x"
+        if fmt_kind == "bn":
+            if abs(v) >= 1e12:
+                return f"{v/1e12:.2f}T"
+            if abs(v) >= 1e9:
+                return f"{v/1e9:.1f}B"
+            return f"{v:.0f}"
+        return f"{v:.1f}"
+
+    bars = []
+    for ticker, tier, v, fy in data:
+        pct_w = abs(v) / max_abs * 100
+        is_neg = v < 0
+        if is_neg:
+            color = "#b91c1c"  # danger
+            tone = "neg"
+        elif v >= good_above:
+            color = PEER_COLORS.get(ticker, "#2d5016")
+            tone = "pos"
+        else:
+            color = "#9ca3af"  # muted
+            tone = "mid"
+        bars.append(f"""<div style="display:grid;grid-template-columns:62px 1fr 62px;gap:8px;align-items:center;padding:3px 0;font-size:11.5px;">
+  <span style="color:var(--ink-soft);font-weight:600;">
+    <span class="ticker-mini" style="font-size:10px;background:{color};color:#fff;padding:1px 5px;border-radius:3px;letter-spacing:0.04em;">{safe(ticker)}</span>
+    <span style="color:var(--muted);font-size:9.5px;margin-left:3px;">T{safe(tier)}</span>
+  </span>
+  <span style="height:14px;background:var(--line);border-radius:3px;overflow:hidden;">
+    <span style="display:block;height:100%;width:{pct_w:.1f}%;background:{color};"></span>
+  </span>
+  <span style="text-align:right;font-weight:700;font-variant-numeric:tabular-nums;color:{'var(--danger)' if is_neg else 'var(--ink)'};">{fmt_val(v)}</span>
+</div>""")
+
+    return f"""<div class="viz-card" style="padding:14px 16px;">
+  <div style="font-weight:700;font-size:13px;color:var(--ink);margin-bottom:2px;">{safe(title)}</div>
+  <div style="font-size:10.5px;color:var(--muted);margin-bottom:8px;">{safe(subtitle)}</div>
+  {''.join(bars)}
+</div>"""
+
+
+def _xbrl_comparison_table() -> str:
+    """13-peer 종합 비교 표 — 11개 metric × 13 행, FY 자동 라벨."""
+    rows = _xbrl_peer_data()
+    if not rows:
+        return ""
+    rows.sort(key=lambda r: (r["tier"], r["ticker"]))
+
+    def fmt_pct(v, signed=False):
+        if v is None:
+            return '<span style="color:var(--muted);">—</span>'
+        s = f"{v:+.1f}%" if signed and v != 0 else f"{v:.1f}%"
+        if signed and v > 0:
+            return f'<span style="color:var(--green);">{s}</span>'
+        if v < 0:
+            return f'<span style="color:var(--danger);">{s}</span>'
+        return s
+
+    def fmt_ratio(v):
+        if v is None:
+            return '<span style="color:var(--muted);">—</span>'
+        return f"{v:.2f}x"
+
+    def fmt_bn_short(v):
+        if v is None:
+            return '<span style="color:var(--muted);">—</span>'
+        if abs(v) >= 1e12:
+            return f"{v/1e12:.2f}T"
+        if abs(v) >= 1e9:
+            return f"{v/1e9:.1f}B"
+        return f"{v:.0f}"
+
+    body = []
+    last_tier = None
+    for r in rows:
+        if r["tier"] != last_tier:
+            body.append(f'<tr class="tier-divider"><td colspan="12" style="background:var(--surface-soft);font-weight:700;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;padding:8px 12px;">{TIER_LABELS[r["tier"]]}</td></tr>')
+            last_tier = r["tier"]
+        color = PEER_COLORS.get(r["ticker"], "#666")
+        src_chip = ""
+        if r.get("source_type") == "AUDITED_AR":
+            src_chip = '<span style="font-size:9px;color:var(--muted);margin-left:4px;">AR</span>'
+        body.append(f"""<tr>
+  <td><span class="ticker-mini" style="background:{color};color:#fff;padding:2px 6px;border-radius:3px;font-weight:700;letter-spacing:0.04em;">{safe(r['ticker'])}</span>{src_chip} <span style="font-size:10px;color:var(--muted);">FY{r['fy'][-2:]}</span></td>
+  <td class="num">{fmt_bn_short(r['rev'])}</td>
+  <td class="num">{fmt_pct(r['rev_yoy'], signed=True)}</td>
+  <td class="num">{fmt_pct(r['gpm'])}</td>
+  <td class="num">{fmt_pct(r['opm'])}</td>
+  <td class="num">{fmt_pct(r['npm'])}</td>
+  <td class="num">{fmt_pct(r['np_yoy'], signed=True)}</td>
+  <td class="num">{fmt_pct(r['roa'])}</td>
+  <td class="num">{fmt_pct(r['roe'])}</td>
+  <td class="num">{fmt_ratio(r['d_e'])}</td>
+  <td class="num">{fmt_pct(r['d_a'])}</td>
+  <td class="num">{fmt_ratio(r['asset_turn'])}</td>
+</tr>""")
+
+    return f"""<div class="viz-card" style="padding:0;overflow-x:auto;">
+  <table class="comp-table" style="width:100%;border-collapse:collapse;font-size:11.5px;min-width:980px;">
+    <thead>
+      <tr style="background:var(--surface-soft);">
+        <th style="text-align:left;padding:8px 10px;font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;">Peer</th>
+        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);">매출 IDR</th>
+        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);">Rev YoY</th>
+        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);">GPM</th>
+        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);">OPM</th>
+        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);">NPM</th>
+        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);">NP YoY</th>
+        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);">ROA</th>
+        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);">ROE</th>
+        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);">D/E</th>
+        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);">D/A</th>
+        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);">Asset Turn</th>
+      </tr>
+    </thead>
+    <tbody>
+      {''.join(body)}
+    </tbody>
+  </table>
+</div>"""
+
+
+def _xbrl_comparison_section() -> str:
+    """ops-kpi 탭에 삽입되는 XBRL 동일 기준 13-peer 비교 섹션 전체."""
+    rank_opm = _xbrl_rank_chart("opm", "영업이익률 (OPM)", "pct", sort_desc=True, good_above=15,
+                                 subtitle="영업이익 / 매출 — 핵심 운영 마진. 음수 = 영업적자.")
+    rank_npm = _xbrl_rank_chart("npm", "순이익률 (NPM)", "pct", sort_desc=True, good_above=10,
+                                 subtitle="지배 순이익 / 매출 — bottom-line 효율. 음수 = 적자.")
+    rank_roe = _xbrl_rank_chart("roe", "자기자본이익률 (ROE)", "pct", sort_desc=True, good_above=8,
+                                 subtitle="순이익 / 지배자본 — 주주 자본 수익률.")
+    rank_yoy = _xbrl_rank_chart("rev_yoy", "매출 성장률 (Rev YoY)", "pct", sort_desc=True, good_above=5,
+                                 subtitle="(FY 매출 − 전년) / 전년 — 성장 동력. 음수 = 역성장.")
+
+    table = _xbrl_comparison_table()
+
+    return f"""<div class="section" id="kpi-xbrl-compare">
+  <h2 data-num="10">동일 기준 13-peer 비교 — XBRL/AR FY2025</h2>
+  <h3>IDX XBRL (22 peer) + audited AR (DMIG/PIPG) 1차 출처에서 동일 정의로 추출한 11개 metric</h3>
+
+  <div class="insight-grid" style="margin-bottom:18px;">
+    <div class="insight-card insight-positive">
+      <div class="insight-tag"><span class="ticker-mini">PWON</span> 최고 마진</div>
+      <div class="insight-metric up">41.4<span class="u">%</span></div>
+      <div class="insight-title">OPM 13-peer 1위 {_info_tip('임대 중심 Pakuwon Mall 매출 구조. NPM 33.0%·ROA 6.4% 동반 최고. Tier 4 부동산 그룹 중 골프장 추가 투자 검증 우선 대상.', 'tip-l')}</div>
+    </div>
+    <div class="insight-card insight-positive">
+      <div class="insight-tag"><span class="ticker-mini">DMIG·PIPG</span> 자본효율</div>
+      <div class="insight-metric up">14<span class="u">% ROE</span></div>
+      <div class="insight-title">Tier 1 골프 ROE = Tier 4 부동산 최상위급 {_info_tip('DMIG 13.9%·PIPG 14.5% — CTRA 11.1%·PWON 10.4% 능가. Asset turnover 0.35~0.39x로 13-peer 최상위 → 회원기반 골프 운영의 자본 회수율 우위.', 'tip-l')}</div>
+    </div>
+    <div class="insight-card insight-warn">
+      <div class="insight-tag"><span class="ticker-mini">KPIG</span> 매출 폭증</div>
+      <div class="insight-metric up">+47.7<span class="u">%</span></div>
+      <div class="insight-title">Hotel+Resort+Golf 통합 segment Rev YoY {_info_tip('1.77T → 2.62T. CTRA +12.8%·KIJA +11.9%·GOLF +8.9% 동반 성장 — 골프 인접 사업 동력 검증. SMDM −44.4%·LPKR −21.5% reset과 대조.', 'tip-l')}</div>
+    </div>
+    <div class="insight-card insight-warn">
+      <div class="insight-tag"><span class="ticker-mini">MDLN</span> 부채 risk</div>
+      <div class="insight-metric down">2.60<span class="u">x D/E</span></div>
+      <div class="insight-title">영업적자 −9.6% 동반 13-peer 최고 부채 {_info_tip('순이익 −135% YoY. SMRA 1.40x도 위험 구간. 반대로 GOLF·SMDM 0.08x·PIPG 0.23x는 가장 안전 — 회원 deposit 기반.', 'tip-l')}</div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:24px;">종합 비교 표 — 11 metric × 13 peer</h3>
+  {table}
+
+  {_insight('테이블 행: <strong>Tier별 그룹화</strong> (1=골프 pure-play / 2=segment 분리 / 3=adjacent / 4=property+golf). FY 라벨이 다른 행(DMIG/PIPG는 AR 기반 FY25, SGX/NYSE는 FY24)도 동일 정의 metric으로 cross-tier 비교 valid.', label='표 해석')}
+
+  <h3 style="margin-top:28px;">랭킹(ranking) — 4 핵심 metric</h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px;margin-top:10px;">
+    {rank_opm}
+    {rank_npm}
+    {rank_roe}
+    {rank_yoy}
+  </div>
+
+  {_insight('OPM·NPM·ROE 3 chart에서 일관되게 <strong>PWON·DMIG·PIPG</strong>가 상위 — 마진과 자본효율 동시 우수. Rev YoY는 <strong>KPIG·ELTY·CTRA·KIJA</strong>가 성장 가속. <strong>MDLN·SMDM·LPKR</strong>는 다중 지표에서 하위 → 골프장 추가 투자보다 본업 회복이 우선 과제.', label='4 ranking 종합')}
+</div>"""
+
 
 
 def _ops_kpi_dashboard() -> str:
@@ -4720,6 +5024,7 @@ def section_ops_kpi() -> str:
     pipg_agreements_timeline = _pipg_agreements_timeline()
     dmig_member_chart = _dmig_member_tier_chart()
     land_hgb_visual = _land_hgb_timeline_visual()
+    xbrl_compare_html = _xbrl_comparison_section()
 
     exec_h = _tab_exec_headline(
         tab_key="OPERATIONS",
@@ -4741,6 +5046,7 @@ def section_ops_kpi() -> str:
     {exec_h}
 
     <nav class="ops-subnav" id="ops-kpi-anchor-top" aria-label="ops-kpi sub-navigation">
+      <a class="chip" href="#kpi-xbrl-compare">XBRL 13-peer 비교</a>
       <a class="chip" href="#kpi-dashboard">KPI 대시보드</a>
       <a class="chip" href="#kpi-timeseries">시계열 detail</a>
       <a class="chip" href="#kpi-member">DMIG 회원 tier</a>
@@ -4780,6 +5086,8 @@ def section_ops_kpi() -> str:
         </div>
       </div>
     </div>
+
+    {xbrl_compare_html}
 
     <div class="section" id="kpi-dashboard">
       <h2 data-num="01">운영 KPI 시계열 — 대시보드</h2>
