@@ -3742,11 +3742,8 @@ def _xbrl_comparison_table() -> str:
     def fmt_bn_short(v):
         if v is None:
             return '<span style="color:var(--muted);">—</span>'
-        if abs(v) >= 1e12:
-            return f"{v/1e12:.2f}T"
-        if abs(v) >= 1e9:
-            return f"{v/1e9:.1f}B"
-        return f"{v:.0f}"
+        # 모든 값을 B(billion IDR) 단위로 통일 — 쉼표 thousands sep
+        return f"{v/1e9:,.1f}B"
 
     body = []
     last_tier = None
@@ -4220,14 +4217,6 @@ def _xbrl_capex_comparison_section() -> str:
   <h2 data-num="01">종합 표</h2>
 
   {table}
-
-  <h3 style="margin-top:28px;">랭킹</h3>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px;margin-top:10px;">
-    {rank_ai}
-    {rank_nca}
-    {rank_cfi}
-    {rank_yoy}
-  </div>
 </div>"""
 
 
@@ -4371,11 +4360,8 @@ def _xbrl_opex_table() -> str:
     def fmt_bn_short(v):
         if v is None:
             return '<span style="color:var(--muted);">—</span>'
-        if abs(v) >= 1e12:
-            return f"{v/1e12:.2f}T"
-        if abs(v) >= 1e9:
-            return f"{v/1e9:.1f}B"
-        return f"{v:.0f}"
+        # 모든 값을 B(billion IDR) 단위로 통일 — 쉼표 thousands sep
+        return f"{v/1e9:,.1f}B"
 
     body = []
     last_tier = None
@@ -4436,14 +4422,6 @@ def _xbrl_opex_comparison_section() -> str:
   <h2 data-num="01">종합 표</h2>
 
   {table}
-
-  <h3 style="margin-top:28px;">랭킹</h3>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px;margin-top:10px;">
-    {rank_opex}
-    {rank_sga}
-    {rank_opm}
-    {rank_oy}
-  </div>
 </div>"""
 
 
@@ -5097,14 +5075,6 @@ def _xbrl_comparison_section() -> str:
   <h2 data-num="01">종합 표</h2>
 
   {table}
-
-  <h3 style="margin-top:28px;">랭킹</h3>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px;margin-top:10px;">
-    {rank_opm}
-    {rank_npm}
-    {rank_roe}
-    {rank_yoy}
-  </div>
 </div>"""
 
 
