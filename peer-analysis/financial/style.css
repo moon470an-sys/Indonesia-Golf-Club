@@ -443,7 +443,17 @@ html { scroll-behavior: smooth; }
 }
 .comp-table tbody tr:hover td { background: var(--surface-3); }
 .comp-table tbody tr.tier-divider td:hover { background: var(--surface-2); }
-.comp-table .num { font-variant-numeric: tabular-nums; }
+/* Header와 cell 모두 가운데 정렬 — 동일 세로선상에 위치하도록 */
+.comp-table thead th,
+.comp-table tbody td.num {
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+/* 첫 컬럼 (Peer ticker)만 왼쪽 정렬 */
+.comp-table thead th:first-child,
+.comp-table tbody td:first-child {
+  text-align: left;
+}
 .ops-block-h {
   font-size: 14.5px; font-weight: 700; color: var(--ink);
   margin: 0 0 12px; padding: 0;

@@ -3668,17 +3668,17 @@ def _xbrl_comparison_table() -> str:
     <thead>
       <tr style="background:var(--surface-soft);">
         <th style="text-align:left;padding:8px 10px;font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;">Peer</th>
-        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);">매출 IDR</th>
-        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);">Rev YoY</th>
-        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);">GPM</th>
-        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);">OPM</th>
-        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);">NPM</th>
-        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);">NP YoY</th>
-        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);">ROA</th>
-        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);">ROE</th>
-        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);">D/E</th>
-        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);">D/A</th>
-        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);">Asset Turn</th>
+        <th style="text-align:center;padding:8px 10px;font-size:10.5px;color:var(--muted);">매출 IDR</th>
+        <th style="text-align:center;padding:8px 10px;font-size:10.5px;color:var(--muted);">Rev YoY</th>
+        <th style="text-align:center;padding:8px 10px;font-size:10.5px;color:var(--muted);">GPM</th>
+        <th style="text-align:center;padding:8px 10px;font-size:10.5px;color:var(--muted);">OPM</th>
+        <th style="text-align:center;padding:8px 10px;font-size:10.5px;color:var(--muted);">NPM</th>
+        <th style="text-align:center;padding:8px 10px;font-size:10.5px;color:var(--muted);">NP YoY</th>
+        <th style="text-align:center;padding:8px 10px;font-size:10.5px;color:var(--muted);">ROA</th>
+        <th style="text-align:center;padding:8px 10px;font-size:10.5px;color:var(--muted);">ROE</th>
+        <th style="text-align:center;padding:8px 10px;font-size:10.5px;color:var(--muted);">D/E</th>
+        <th style="text-align:center;padding:8px 10px;font-size:10.5px;color:var(--muted);">D/A</th>
+        <th style="text-align:center;padding:8px 10px;font-size:10.5px;color:var(--muted);">Asset Turn</th>
       </tr>
     </thead>
     <tbody>
@@ -4077,16 +4077,16 @@ def _xbrl_capex_table() -> str:
     <thead>
       <tr style="background:var(--surface-soft);">
         <th style="text-align:left;padding:8px 10px;font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;">Peer</th>
-        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="총자산/매출">자산집약도</th>
-        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="매출/총자산">자산회전</th>
-        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="비유동자산/총자산">비유동比</th>
-        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="유동자산/총자산">유동比</th>
-        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="현금성/총자산">현금/TA</th>
-        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="CFI/매출 · 음수=투자">CFI/매출</th>
-        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="|CFI|/|CFO| · 재투자 강도">재투자율</th>
-        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="자산 YoY">자산 YoY</th>
-        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="지배자본/총자산">자기자본比</th>
-        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="장기부채/총부채">장기부채比</th>
+        <th style="text-align:center;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="총자산/매출">자산집약도</th>
+        <th style="text-align:center;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="매출/총자산">자산회전</th>
+        <th style="text-align:center;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="비유동자산/총자산">비유동比</th>
+        <th style="text-align:center;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="유동자산/총자산">유동比</th>
+        <th style="text-align:center;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="현금성/총자산">현금/TA</th>
+        <th style="text-align:center;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="CFI/매출 · 음수=투자">CFI/매출</th>
+        <th style="text-align:center;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="|CFI|/|CFO| · 재투자 강도">재투자율</th>
+        <th style="text-align:center;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="자산 YoY">자산 YoY</th>
+        <th style="text-align:center;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="지배자본/총자산">자기자본比</th>
+        <th style="text-align:center;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="장기부채/총부채">장기부채比</th>
       </tr>
     </thead>
     <tbody>
@@ -4293,15 +4293,15 @@ def _xbrl_opex_table() -> str:
     <thead>
       <tr style="background:var(--surface-soft);">
         <th style="text-align:left;padding:8px 10px;font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;">Peer</th>
-        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);">매출 IDR</th>
-        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="매출원가 / 매출">COGS/매출</th>
-        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="매출총이익률">GPM</th>
-        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="판매비 / 매출">Sell/매출</th>
-        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="일반관리비 / 매출">G&amp;A/매출</th>
-        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="(Sell+G&amp;A) / 매출">SG&amp;A/매출</th>
-        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="(COGS+SG&amp;A) / 매출">OpEx/매출</th>
-        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="영업이익률">OPM</th>
-        <th style="text-align:right;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="영업이익 YoY">OP YoY</th>
+        <th style="text-align:center;padding:8px 10px;font-size:10.5px;color:var(--muted);">매출 IDR</th>
+        <th style="text-align:center;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="매출원가 / 매출">COGS/매출</th>
+        <th style="text-align:center;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="매출총이익률">GPM</th>
+        <th style="text-align:center;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="판매비 / 매출">Sell/매출</th>
+        <th style="text-align:center;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="일반관리비 / 매출">G&amp;A/매출</th>
+        <th style="text-align:center;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="(Sell+G&amp;A) / 매출">SG&amp;A/매출</th>
+        <th style="text-align:center;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="(COGS+SG&amp;A) / 매출">OpEx/매출</th>
+        <th style="text-align:center;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="영업이익률">OPM</th>
+        <th style="text-align:center;padding:8px 10px;font-size:10.5px;color:var(--muted);" title="영업이익 YoY">OP YoY</th>
       </tr>
     </thead>
     <tbody>
