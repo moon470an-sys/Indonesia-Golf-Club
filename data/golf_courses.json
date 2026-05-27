@@ -11105,7 +11105,8 @@
             "note": "Keppel Ltd FY2024 net profit S$1.06 billion from continuing operations ~ Rp 12.5 trillion.",
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_3_result.json"
           }
-        ]
+        ],
+        "figure_origin": "AUDITED_AR"
       },
       "coord_source": "overpass_v1",
       "coord_osm_ref": "way/988221205"
@@ -11216,7 +11217,8 @@
             "note": "Keppel Ltd FY2024 NP ~ Rp 12.5 trillion.",
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_3_result.json"
           }
-        ]
+        ],
+        "figure_origin": "AUDITED_AR"
       },
       "coord_source": "overpass_v1",
       "coord_osm_ref": "way/988221205"
@@ -11685,7 +11687,8 @@
             "note": "Banyan Group FY2024 PATMI S$42.1M ~ Rp 496.8 billion at ~11,800 IDR/SGD.",
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_3_result.json"
           }
-        ]
+        ],
+        "figure_origin": "AUDITED_AR"
       },
       "coord_source": "overpass_v1",
       "coord_osm_ref": "way/694504916"
@@ -15765,7 +15768,8 @@
           "https://ebk.ptfi.co.id/highlight-news/freeport-deposits-rp7-73-trillion-central-and-regional-government-shares-of-2024-net-profits",
           "https://www.fcx.com/operations/indonesia"
         ],
-        "last_verified": "2026-05-01"
+        "last_verified": "2026-05-01",
+        "figure_origin": "AUDITED_AR"
       }
     },
     {

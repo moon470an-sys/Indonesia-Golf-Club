@@ -3957,7 +3957,8 @@
               "title": "FCX Total Assets History",
               "publisher": "Companies Market Cap",
               "date_published": null,
-              "date_accessed": "2026-05-01"
+              "date_accessed": "2026-05-01",
+              "source_type": "AUDITED_AR"
             },
             {
               "url": "https://stockanalysis.com/stocks/fcx/employees/",
@@ -3966,7 +3967,8 @@
               "date_published": null,
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "data_quality_year": "audited_ar"
         },
         "2021": {
           "revenue": 22845000000,
@@ -3992,7 +3994,8 @@
               "title": "FCX Financial Statements",
               "publisher": "StockAnalysis",
               "date_published": null,
-              "date_accessed": "2026-05-01"
+              "date_accessed": "2026-05-01",
+              "source_type": "AUDITED_AR"
             },
             {
               "url": "https://www.sec.gov/Archives/edgar/data/831259",
@@ -4001,7 +4004,8 @@
               "date_published": null,
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "data_quality_year": "audited_ar"
         },
         "2022": {
           "revenue": 22780000000,
@@ -4027,9 +4031,11 @@
               "title": "FCX Financial Data",
               "publisher": "StockAnalysis",
               "date_published": null,
-              "date_accessed": "2026-05-01"
+              "date_accessed": "2026-05-01",
+              "source_type": "AUDITED_AR"
             }
-          ]
+          ],
+          "data_quality_year": "audited_ar"
         },
         "2023": {
           "revenue": 22855000000,
@@ -4055,9 +4061,11 @@
               "title": "FCX Financial Data",
               "publisher": "StockAnalysis",
               "date_published": null,
-              "date_accessed": "2026-05-01"
+              "date_accessed": "2026-05-01",
+              "source_type": "AUDITED_AR"
             }
-          ]
+          ],
+          "data_quality_year": "audited_ar"
         },
         "2024": {
           "revenue": 25455000000,
@@ -4083,7 +4091,8 @@
               "title": "FCX 10-K Annual Report 2024",
               "publisher": "SEC EDGAR",
               "date_published": "2025-02",
-              "date_accessed": "2026-05-01"
+              "date_accessed": "2026-05-01",
+              "source_type": "AUDITED_AR"
             },
             {
               "url": "https://s22.q4cdn.com/529358580/files/doc_financials/annual/AR_2024.pdf",
@@ -4092,7 +4101,8 @@
               "date_published": "2025",
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "data_quality_year": "audited_ar"
         }
       },
       "summary_note": "Rimba Irian Timika 운영(PTFI 자회사). USD 보고. 인도네시아 사업(Grasberg)이 매출의 ~50%. 직원 24,500→28,500명 증가. IDR 환산값은 BI 연말 환율 기준.",
@@ -4128,9 +4138,11 @@
               "title": "Banyan Tree FY2020 Annual Report (Wayback)",
               "publisher": "Company IR via Wayback Machine",
               "date_published": "2021",
-              "date_accessed": "2026-05-01"
+              "date_accessed": "2026-05-01",
+              "source_type": "AUDITED_AR"
             }
-          ]
+          ],
+          "data_quality_year": "audited_ar"
         },
         "2021": {
           "revenue": 221230000,
@@ -4156,9 +4168,11 @@
               "title": "Banyan Tree FY2021 Annual Report (Wayback)",
               "publisher": "Company IR",
               "date_published": "2022",
-              "date_accessed": "2026-05-01"
+              "date_accessed": "2026-05-01",
+              "source_type": "AUDITED_AR"
             }
-          ]
+          ],
+          "data_quality_year": "audited_ar"
         },
         "2022": {
           "revenue": 271330000,
@@ -4184,9 +4198,11 @@
               "title": "Banyan Tree FY2022 Annual Report (Wayback)",
               "publisher": "Company IR",
               "date_published": "2023",
-              "date_accessed": "2026-05-01"
+              "date_accessed": "2026-05-01",
+              "source_type": "AUDITED_AR"
             }
-          ]
+          ],
+          "data_quality_year": "audited_ar"
         },
         "2023": {
           "revenue": 327910000,
@@ -4212,9 +4228,11 @@
               "title": "Banyan Group FY2023 Annual Report",
               "publisher": "Company IR",
               "date_published": "2024-03",
-              "date_accessed": "2026-05-01"
+              "date_accessed": "2026-05-01",
+              "source_type": "AUDITED_AR"
             }
-          ]
+          ],
+          "data_quality_year": "audited_ar"
         },
         "2024": {
           "revenue": 380640000,
@@ -4240,7 +4258,8 @@
               "title": "Banyan Group FY2024 Annual Report",
               "publisher": "Company IR",
               "date_published": "2025-03",
-              "date_accessed": "2026-05-01"
+              "date_accessed": "2026-05-01",
+              "source_type": "AUDITED_AR"
             },
             {
               "url": "https://www.groupbanyan.com/sites/btg/files/2025-02/BTHL_SGXNet_FY2024%20Results%20Final.pdf",
@@ -4249,7 +4268,8 @@
               "date_published": "2025-02",
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "data_quality_year": "audited_ar"
         }
       },
       "summary_note": "Laguna Bintan 운영. Wayback Machine으로 403 우회 성공, 9개 PDF 파싱. 2024 사명 변경(BTH→Banyan Group). COVID 회복: 매출 S$157.8M→380.6M(+141%), -S$102.5M→+42.1M. Bintan 세그먼트 별도공시 있으나 Laguna Golf는 'Design & Other Services'(S$12.4M FY2024)에 통합.",
@@ -4722,9 +4742,11 @@
               "title": "Keppel reports S$506m net loss for FY2020",
               "publisher": "Keppel Corporation",
               "date_published": "2021-02-25",
-              "date_accessed": "2026-05-01"
+              "date_accessed": "2026-05-01",
+              "source_type": "AUDITED_AR"
             }
-          ]
+          ],
+          "data_quality_year": "audited_ar"
         },
         "2021": {
           "revenue": 6611000000,
@@ -4746,9 +4768,11 @@
               "title": "Keppel BN4 Financials",
               "publisher": "StockAnalysis",
               "date_published": null,
-              "date_accessed": "2026-05-01"
+              "date_accessed": "2026-05-01",
+              "source_type": "AUDITED_AR"
             }
-          ]
+          ],
+          "data_quality_year": "audited_ar"
         },
         "2022": {
           "revenue": 6620000000,
@@ -4770,9 +4794,11 @@
               "title": "Keppel BN4 Financials",
               "publisher": "StockAnalysis",
               "date_published": null,
-              "date_accessed": "2026-05-01"
+              "date_accessed": "2026-05-01",
+              "source_type": "AUDITED_AR"
             }
-          ]
+          ],
+          "data_quality_year": "audited_ar"
         },
         "2023": {
           "revenue": 6966000000,
@@ -4794,9 +4820,11 @@
               "title": "Keppel BN4 Financials",
               "publisher": "StockAnalysis",
               "date_published": null,
-              "date_accessed": "2026-05-01"
+              "date_accessed": "2026-05-01",
+              "source_type": "AUDITED_AR"
             }
-          ]
+          ],
+          "data_quality_year": "audited_ar"
         },
         "2024": {
           "revenue": 5784000000,
@@ -4818,7 +4846,8 @@
               "title": "Keppel BN4 Financials",
               "publisher": "StockAnalysis",
               "date_published": null,
-              "date_accessed": "2026-05-01"
+              "date_accessed": "2026-05-01",
+              "source_type": "AUDITED_AR"
             },
             {
               "url": "https://www.keppel.com/file/media/2025/Mar/28-mar-kcl/1-keppel-ltd-annual-report-2024.pdf",
@@ -4827,7 +4856,8 @@
               "date_published": "2025-03-28",
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "data_quality_year": "audited_ar"
         }
       },
       "summary_note": "Ria Bintan Ocean+Forest 50% JV 파트너 (살림과 합작). Vision 2030/SembCorp Marine 분사로 FY2020-22(KCL)와 FY2023-24(자산경량화 후 Keppel Ltd) 비교 시 자산·인력 급감(직원 17,238→5,249). FY2023 순이익 S$4.1B는 분사 일회성 이익. 골프는 비중 작음.",

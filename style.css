@@ -3226,6 +3226,34 @@ a.ticker-link:focus-visible {
 .xbrl-badge { background: linear-gradient(135deg, #1e7a3f 0%, #14532d 100%); }
 .ar-badge   { background: linear-gradient(135deg, #b45309 0%, #92400e 100%); }
 a.xbrl-badge:hover, a.ar-badge:hover { filter: brightness(1.1); text-decoration: none; }
+
+/* Per-row FY suffix (when a company's latest year differs from the global max) */
+.fy-suffix {
+  display: inline-block;
+  padding: 0 4px;
+  margin-left: 3px;
+  font-size: 9.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--bg-subtle);
+  border-radius: 3px;
+  vertical-align: middle;
+  cursor: help;
+}
+/* Reporting-currency tag (e.g. SGD/USD for non-IDX parents) */
+.ccy-tag {
+  display: inline-block;
+  padding: 0 4px;
+  margin-left: 3px;
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #0f172a;
+  background: #e0e7ff;
+  border-radius: 3px;
+  vertical-align: middle;
+  cursor: help;
+}
+[data-theme="dark"] .ccy-tag { color: #e0e7ff; background: #312e81; }
 [data-theme="dark"] .xbrl-badge { background: linear-gradient(135deg, #34d399 0%, #059669 100%); color: #052e16; }
 [data-theme="dark"] .ar-badge   { background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%); color: #422006; }
 

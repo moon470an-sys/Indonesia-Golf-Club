@@ -3085,16 +3085,35 @@ function renderFinanceTable() {
       : '<span class="muted">—</span>';
 
     // === Unified primary-source data ===
-    // 1차 출처(IDX_XBRL or AUDITED_AR)에서만 읽음. DMIG/PIPG는 audited AR PDF 직접 추출.
+    // 1차 출처(IDX_XBRL or AUDITED_AR)에서만 읽음. 회사별 latest primary year를 선택
+    // (FY25가 없으면 FY24로 fallback — SGX/NYSE 회사들은 보통 FY25 미수집).
     const bare = _bareTicker(ticker);
     const company = (bare && financialsByTicker) ? financialsByTicker[bare.toUpperCase()] : null;
-    const yblock = company?.yearly?.[xbrlYearKey];
+    let companyYear = null;
+    if (company?.yearly) {
+      const candidateYears = Object.keys(company.yearly).sort().reverse();
+      for (const y of candidateYears) {
+        const src = (company.yearly[y]?.sources || [])[0];
+        if (src && PRIMARY_SOURCE_TYPES.has(src.source_type)) {
+          companyYear = y;
+          break;
+        }
+      }
+    }
+    const yblock = companyYear ? company.yearly[companyYear] : null;
     const primarySrc = (yblock?.sources || [])[0];
     const sourceType = primarySrc?.source_type;
     const isPrimary = PRIMARY_SOURCE_TYPES.has(sourceType);
     const xb = isPrimary ? yblock : null;
+    // 회사 연도가 global 최신과 다르면 표 셀에 FY 접미사 표시
+    const yearSuffix = (companyYear && companyYear !== xbrlYearKey)
+      ? ` <span class="fy-suffix" title="이 회사 최신 감사필 연도">FY${companyYear.slice(-2)}</span>`
+      : '';
 
-    const revHtml = fmtNumOrDash(xb?.revenue);
+    // 회사 통화 (SGX 회사는 SGD로 표기)
+    const ccy = company?.currency || 'IDR';
+    const ccyTag = (ccy !== 'IDR') ? ` <span class="ccy-tag" title="${escapeHtml(ccy)} (회사 보고 통화)">${escapeHtml(ccy)}</span>` : '';
+    const revHtml = fmtNumOrDash(xb?.revenue) + yearSuffix + ccyTag;
     const gpHtml = fmtNumOrDash(xb?.gross_profit);
     const opHtml = fmtNumOrDash(xb?.operating_profit);
     const npHtml = fmtNumOrDash(xb?.net_profit);
