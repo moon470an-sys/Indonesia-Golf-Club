@@ -5006,164 +5006,43 @@ def _tab_exec_headline(tab_key: str, tab_title: str, tab_focus_tiles: list) -> s
 
 
 def section_ops_kpi() -> str:
-    """Tab 1: 운영 KPI — operational metrics, dividends, related party.
+    """Tab 1: 운영 KPI — XBRL/AR 동일 기준 13-peer 비교 only.
 
-    Sections: KPI dashboard (1) + 시계열 detail (2) + DMIG member tier (3) +
-              PIPG dept (4) + PIPG agreements timeline (5) + land/HGB (6) +
-              6-peer scatter (7) + 배당 (8) + 관계사·lease (9)
+    동급 비교 불가능한 peer-specific 섹션(DMIG member tier, PIPG dept,
+    agreements, land/HGB, 6-peer scatter, dividend, related party 등)은
+    모두 제거. 단일 출처는 XBRL (22 peer) + AUDITED_AR (DMIG/PIPG) 1차 출처.
     """
-    ops_kpi_dashboard = _ops_kpi_dashboard()
-    ops_kpi_section_html = _ops_kpi_section()
-    golf_segment_table = _all_peer_golf_segment_table()
-    segment_scatter = _segment_scatter_svg()
-    related_party_visual = _related_party_visual()
-    related_party_section = _related_party_and_lease_section()
-    dividend_visual = _dividend_visual()
-    dividend_table = _dividend_compare_table()
-    pipg_dept_chart = _pipg_dept_headcount_chart()
-    pipg_agreements_timeline = _pipg_agreements_timeline()
-    dmig_member_chart = _dmig_member_tier_chart()
-    land_hgb_visual = _land_hgb_timeline_visual()
     xbrl_compare_html = _xbrl_comparison_section()
 
     exec_h = _tab_exec_headline(
-        tab_key="OPERATIONS",
-        tab_title="운영 KPI · 골퍼·회원·인력·자본배분",
+        tab_key="OPERATIONS · XBRL FY2025",
+        tab_title="동일 기준 13-peer 비교 — 수익성·성장성·건전성",
         tab_focus_tiles=[
-            ("DMIG 골퍼 +12.09% YoY", "123,278", "명", "DMIG", "FY2023 BSD+PIK (+12,979)", "green"),
-            ("PIPG 골퍼 (FY22 member+비회원)", "67,538", "명", "PIPG", "member 26,551 + non-member 40,987", "green"),
-            ("DMIG 직원 수 변화", "342→206", "명", "DMIG", "FY21→23 -39.8% 회복기 구조조정 + 점진 회복", "warn"),
-            ("GOLF 진행 중 CAPEX", "426", "bn", "GOLF", "CWIP Buildings 188 + Landscape 238", "gold"),
-            ("GOLF 고객 집중도", "34", "%", "GOLF", "단일 고객 매출 비중 — 구조적 risk", "warn"),
+            ("OPM 1위", "41.4", "%", "PWON", "FY25 — Pakuwon Mall 임대 중심 매출 구조", "green"),
+            ("NPM 1위", "33.0", "%", "PWON", "FY25 — 13-peer 최고 bottom-line", "green"),
+            ("ROE Tier 1 우위", "14.5", "%", "PIPG", "FY25 — Tier 4 부동산 최상위 (CTRA 11.1%) 능가", "green"),
+            ("Rev YoY 1위", "+47.7", "%", "KPIG", "FY25 — Hotel+Resort+Golf 통합 segment 폭증", "gold"),
+            ("D/E 최악", "2.60", "x", "MDLN", "FY25 — 영업적자 −9.6% 동반 13-peer 최고 부채", "warn"),
         ],
     )
 
     return f"""<section class="panel" data-panel="ops-kpi">
   <div class="wrap">
 
-    <a class="back-to-toc" href="#ops-kpi-anchor-top">목차</a>
-
     {exec_h}
-
-    <nav class="ops-subnav" id="ops-kpi-anchor-top" aria-label="ops-kpi sub-navigation">
-      <a class="chip" href="#kpi-xbrl-compare">XBRL 13-peer 비교</a>
-      <a class="chip" href="#kpi-dashboard">KPI 대시보드</a>
-      <a class="chip" href="#kpi-timeseries">시계열 detail</a>
-      <a class="chip" href="#kpi-member">DMIG 회원 tier</a>
-      <a class="chip" href="#kpi-dept">PIPG 부서별 인원</a>
-      <a class="chip" href="#kpi-agreements">PIPG 약정 timeline</a>
-      <a class="chip" href="#kpi-land">PIPG 토지·HGB</a>
-      <a class="chip" href="#kpi-segment6">6-peer 골프</a>
-      <a class="chip" href="#kpi-dividend">배당</a>
-      <a class="chip" href="#kpi-related">관계사·집중도</a>
-    </nav>
 
     {_peer_color_legend()}
 
-    <div class="section ops-summary">
-      <h2>운영 KPI — TL;DR (4 발견)</h2>
-      <h3>운영 활동·고객·인력·자본배분 핵심</h3>
-      <div class="insight-grid">
-        <div class="insight-card insight-positive">
-          <div class="insight-tag"><span class="ticker-mini">DMIG</span> 회복 모멘텀</div>
-          <div class="insight-metric up">+372<span class="u">%</span></div>
-          <div class="insight-title">Range@PIK 매출 FY22→23 {_info_tip('골프테인먼트(driving range + entertainment) 신규 시설이 회복기 핵심 driver. 본업 골프 +29.12% 동시.', 'tip-l')}</div>
-        </div>
-        <div class="insight-card insight-positive">
-          <div class="insight-tag"><span class="ticker-mini">PIPG</span> 골퍼 8% 성장</div>
-          <div class="insight-metric up">26,551<span class="u">명</span></div>
-          <div class="insight-title">FY22 member golfer +8% YoY {_info_tip('회원 충성도(+8%) + non-member 40,987명 동시 확보. CBD 5분 + 브랜드(1976)로 mature operator 입증.', 'tip-l')}</div>
-        </div>
-        <div class="insight-card insight-warn">
-          <div class="insight-tag"><span class="ticker-mini">GOLF</span> 고객 집중도 risk</div>
-          <div class="insight-metric down">34<span class="u">%</span></div>
-          <div class="insight-title">단일 고객 매출 비중 {_info_tip('FY24 IDR 34.7bn 단일 고객 의존. CWIP 426bn 진행 중 — 신규 시설 완공 후 매출 분산 필요.', 'tip-l')}</div>
-        </div>
-        <div class="insight-card insight-positive">
-          <div class="insight-tag"><span class="ticker-mini">PIPG</span> 배당 안정성</div>
-          <div class="insight-metric up">46.9<span class="u">%</span></div>
-          <div class="insight-title">FY23 payout ratio {_info_tip('주당 Rp 20.20M · RUPST 2024-06-06. DMIG 37.2% · SMDM 0% (BSDE 인수 직전) — 3-peer 차별화.', 'tip-l')}</div>
-        </div>
-      </div>
-    </div>
-
     {xbrl_compare_html}
 
-    <div class="section" id="kpi-dashboard">
-      <h2 data-num="01">운영 KPI 시계열 — 대시보드</h2>
-      <h3>골퍼·회원·인력·CWIP 6-tile sparkline 대시보드</h3>
-      {ops_kpi_dashboard}
-      {_insight('DMIG는 <strong>회복기 신규 시설 (Range@PIK +372%)</strong>로 매출 driver, PIPG는 <strong>4년 골퍼 트래픽 안정 성장</strong>으로 mature operator 입증. GOLF는 <strong>FY25 매출 target +24.66% beat + CWIP 426bn</strong> 동시 — 자본 효율과 확장 양립.')}
-    </div>
-
-    <div class="section" id="kpi-timeseries">
-      <h2 data-num="02">시계열 detail</h2>
-      <h3>각 peer별 상세 데이터 (페이지 추적 가능)</h3>
-      {ops_kpi_section_html}
-    </div>
-
-    <div class="section" id="kpi-member">
-      <h2 data-num="03">DMIG 회원 tier breakdown — FY2023</h2>
-      <h3>Main Playing 1,233명 구성 (Adult / Husband-Wife / Child)</h3>
-      {dmig_member_chart}
-    </div>
-
-    <div class="section" id="kpi-dept">
-      <h2 data-num="04">PIPG 부서별 인원 (FY2024)</h2>
-      <h3>turnover graph 기준 Top 부서 horizontal bar</h3>
-      {pipg_dept_chart}
-    </div>
-
-    <div class="section" id="kpi-agreements">
-      <h2 data-num="05">PIPG 약정·lease timeline</h2>
-      <h3>4개 lease/약정 — related party 2건 + third party 2건</h3>
-      {pipg_agreements_timeline}
-    </div>
-
-    <div class="section" id="kpi-land">
-      <h2 data-num="06">PIPG 토지·HGB·임차 구조</h2>
-      <h3>53ha 토지 + 12 인증서 + HGB 면적 + MKPI 임차</h3>
-      {land_hgb_visual}
-    </div>
-
-    <div class="section" id="kpi-segment6">
-      <h2 data-num="07">6-peer 골프 segment — 매출 × GP × 비중</h2>
-      <h3>bubble scatter (FY2024) — 4-사분면 분류</h3>
-      {segment_scatter}
-      {_insight('★ <strong>Pure-play winner</strong> = GOLF (47% 비중, 65.7% GP) · ▲ <strong>Hidden gem</strong> = MDLN/KIJA (낮은 비중, 중간 GP) · ▼ <strong>Peripheral &amp; weak</strong> = SMDM (낮은 GP). DMIG/PIPG는 분류 기준이 entity-wide라 비교 주의.', label='4-사분면 분류 해설')}
-      <details class="orig-toggle"><summary>원본 6-peer 표</summary>
-        {golf_segment_table}
-      </details>
-    </div>
-
-    <div class="section" id="kpi-dividend">
-      <h2 data-num="08">배당 시계열 — 3-peer capital allocation</h2>
-      <h3>FY22-24 + payout ratio + RUPST 날짜</h3>
-      {dividend_visual}
-      {_insight('동일한 ~26bn 배당이라도 <strong>PIPG는 순이익의 47%</strong> (적극 환원), <strong>DMIG는 37%</strong> (재투자 여력 보존). <strong>SMDM은 0%</strong> — BSDE 인수 직전 working capital 확보. capital allocation 철학이 갈림.')}
-      <details class="orig-toggle"><summary>원본 배당 표</summary>
-        {dividend_table}
-      </details>
-    </div>
-
-    <div class="section" id="kpi-related">
-      <h2 data-num="09">관계사·고객·공급사 집중도</h2>
-      <h3>annual report Note에서 추출한 audit-grade 정량 정보</h3>
-      {related_party_visual}
-      {_insight('집중도 risk가 가장 높은 곳은 <strong>GOLF (단일 고객 34%)</strong>. PIPG는 <strong>MKPI(related party)에 토지·풀 임차 의존</strong> — cross-default 시 운영 차질 가능. 신규 코스는 고객/공급사 분산 + 토지 자체 보유가 안전.', kind='warn', label='집중도 risk 해설')}
-      <details class="orig-toggle"><summary>원본 상세 표</summary>
-        {related_party_section}
-      </details>
-    </div>
-
     <div class="closing-stripe">
-      <div class="cs-eyebrow">운영 KPI 종합</div>
+      <div class="cs-eyebrow">동일 기준 13-peer 비교 종합</div>
       <div class="cs-title">4 takeaways</div>
       <div class="closing-grid">
-        <div class="closing-takeaway"><div class="num">1</div><div class="txt"><strong>Operational momentum</strong> · DMIG Range@PIK +372% & 골퍼 +12% → 다양화 + 회복</div></div>
-        <div class="closing-takeaway"><div class="num">2</div><div class="txt"><strong>Mature operator</strong> · PIPG 67,538 골퍼 + 53ha 토지 · MKPI 임차 = 단일 코스에서 도시 핵심 자원</div></div>
-        <div class="closing-takeaway"><div class="num">3</div><div class="txt"><strong>Capital allocation 차별</strong> · PIPG 47% payout · DMIG 37% · SMDM 0% (BSDE 인수 직전)</div></div>
-        <div class="closing-takeaway"><div class="num">4</div><div class="txt"><strong>Concentration risk</strong> · GOLF 34% 단일 고객 · MDLN 공급사 집중 → KIJA(captive)·KPIG(diversified) 대비 vulnerable</div></div>
+        <div class="closing-takeaway"><div class="num">1</div><div class="txt"><strong>Tier 1 골프 pure-play의 자본효율 우위</strong> · DMIG/PIPG ROE ~14% — Tier 4 부동산 최상위 (CTRA 11.1%) 능가. Asset turnover 0.35~0.39x로 13-peer 최상위.</div></div>
+        <div class="closing-takeaway"><div class="num">2</div><div class="txt"><strong>PWON, Tier 4 최고 마진</strong> · OPM 41.4% · NPM 33.0% · ROA 6.4% — 임대 중심 구조로 자산집약을 마진으로 보완. 골프장 추가 투자 검증 우선 대상.</div></div>
+        <div class="closing-takeaway"><div class="num">3</div><div class="txt"><strong>인접 사업 성장 검증</strong> · KPIG +47.7% · CTRA +12.8% · KIJA +11.9% · GOLF +8.9% — 골프 인접 사업 동력 확인. KPIG·CTRA·KIJA가 골프 투자 동반 후보.</div></div>
+        <div class="closing-takeaway"><div class="num">4</div><div class="txt"><strong>다중 지표 하위 = 보류</strong> · MDLN (D/E 2.60x + 영업적자) · SMDM (Rev −44.4%) · LPKR (Rev −21.5% + NP −97.5%) — 골프 추가 투자보다 본업 회복이 우선 과제.</div></div>
       </div>
     </div>
 
