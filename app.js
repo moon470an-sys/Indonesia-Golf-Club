@@ -2084,18 +2084,6 @@ function renderAllTabRow(c, cat = 'all') {
     ? `<span class="rev-cell">${fmtBigIDR(revIdr)}${revYearLabel}${xbrlBadge}</span>`
     : '<span class="muted">—</span>';
 
-  // Source column: filtered by selected category (or combined for 'all')
-  const sources = collectCategorizedSources(c);
-  const ORDER = ['official', 'platform', 'aggregator', 'sns', 'news'];
-  const tabsToShow = (cat === 'all') ? ORDER : [cat];
-  const pills = [];
-  for (const t of tabsToShow) {
-    for (const s of (sources[t] || [])) {
-      pills.push(`<a class="src-pill src-${s.kind}" href="${escapeHtml(s.url)}" target="_blank" rel="noopener" title="${escapeHtml(s.url)}"><span class="src-pill-label">${escapeHtml(s.label)}</span><span class="src-pill-host">${escapeHtml(s.host)}</span></a>`);
-    }
-  }
-  const allSrcHtml = pills.length ? pills.join('') : '<span class="muted">—</span>';
-
   return `
     <tr class="primary-rate-row">
       <td class="name">${escapeHtml(c.name_en)}${matoaTag}${noteTag}</td>
@@ -2116,7 +2104,6 @@ function renderAllTabRow(c, cat = 'all') {
       <td class="ticker finance-col">${tickerCell}</td>
       <td class="num parent-revenue finance-col">${revCell}</td>
       <td class="address">${escapeHtml(c.address || '')}<br>${mapLink}</td>
-      <td class="src-cell">${allSrcHtml}</td>
     </tr>
   `;
 }
@@ -2149,7 +2136,7 @@ function renderTable() {
   const tbody = document.querySelector('[data-src-tbody="all"]');
   if (tbody) {
     if (rows.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="19"><div class="empty-state">
+      tbody.innerHTML = `<tr><td colspan="18"><div class="empty-state">
         <div class="empty-emoji">📭</div>
         <div class="empty-title">${t('empty.title')}</div>
         <div class="empty-hint">${t('empty.hint2')}</div>
@@ -2166,12 +2153,10 @@ function renderTable() {
     if (el) el.textContent = counts[t];
   }
 
-  // Toolbar visible count + panel description + last column header
+  // Toolbar visible count + panel description
   document.getElementById('tableVisibleCount').textContent = rows.length;
   const descEl = document.getElementById('srcPanelDesc');
   if (descEl) descEl.innerHTML = SRC_TAB_DESC[currentSourceCat] || SRC_TAB_DESC.all;
-  const colHdr = document.getElementById('srcColHeader');
-  if (colHdr) colHdr.textContent = SRC_COL_HEADER[currentSourceCat] || SRC_COL_HEADER.all;
 }
 
 // Removed-legacy guard — no longer used.
@@ -4459,8 +4444,6 @@ function applyI18n(lang) {
       // Refresh source-tab description / column header
       const descEl = document.getElementById('srcPanelDesc');
       if (descEl) descEl.innerHTML = t('srcDesc.' + (currentSourceCat || 'all'));
-      const colHdr = document.getElementById('srcColHeader');
-      if (colHdr) colHdr.textContent = t('srcCol.' + (currentSourceCat || 'all'));
       // Re-render markers (popups embed Korean strings)
       if (typeof markerCluster !== 'undefined' && markerCluster) renderMarkers?.();
       // Re-render legend / zoom presets
