@@ -35,7 +35,8 @@
       "trump-lido": "documented members-only"
     },
     "financials_last_updated": "2026-05-12",
-    "financials_fy_mix": "FY2024 for most, FY2025 for 7 peer (BKDP·BSDE·BKSL·SMRA·GOLF·DMIG·PIPG)"
+    "financials_fy_mix": "FY2024 for most, FY2025 for 7 peer (BKDP·BSDE·BKSL·SMRA·GOLF·DMIG·PIPG)",
+    "last_xbrl_update": "2026-05-27T10:08:43"
   },
   "courses": [
     {
@@ -1636,10 +1637,10 @@
         "parent_group": "Modernland Group (Honoris family)",
         "idx_ticker": "MDLN",
         "listed_status": "subsidiary-of-listed",
-        "revenue_idr": 1017000000000,
-        "revenue_year": "2024",
-        "net_profit_idr": -690300000000,
-        "total_assets_idr": 13561474000000,
+        "revenue_idr": 1017570122981,
+        "revenue_year": 2024,
+        "net_profit_idr": -690272176510,
+        "total_assets_idr": 13561474322896,
         "course_segment_disclosed": true,
         "membership_price_idr": null,
         "membership_price_notes": "Membership marketed alongside Modernland's Kota Modern residential project in Tangerang.",
@@ -1651,12 +1652,19 @@
           "https://www.idx.co.id/",
           "https://modernland.co.id/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-27",
         "parent_company_full_name": "PT Modernland Realty Tbk",
         "revenue_idr_h1": null,
         "net_profit_idr_h1": null,
-        "figure_origin": "audited_FY2024",
+        "figure_origin": "IDX_XBRL",
         "parent_financial_sources": [
+          {
+            "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=MDLN",
+            "title": "MDLN FY2024 IDX XBRL Instance",
+            "publisher": "IDX (Indonesia Stock Exchange)",
+            "date_published": "2026-05-27T10:08:43",
+            "source_type": "IDX_XBRL"
+          },
           {
             "url": "https://propertytimes.id/modernland-realty-bukukan-pendapatan-lebih-dari-rp-1-triliun-di-tahun-2024/",
             "title": "Modernland Realty Bukukan Pendapatan >Rp 1T 2024",
@@ -1685,7 +1693,8 @@
             "note": "MDLN FY2024 total assets Rp 13.56T.",
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
           }
-        ]
+        ],
+        "operating_profit_idr": -109472678252
       },
       "coord_source": "overpass_v1",
       "coord_osm_ref": "way/430612509"
@@ -1947,10 +1956,10 @@
         "parent_group": "Summarecon Agung-related / Gading Serpong Group (originally jointly developed by Summarecon and Paramount/Gading Serpong consortium)",
         "idx_ticker": "SMRA",
         "listed_status": "subsidiary-of-listed",
-        "revenue_idr": 8766927470000,
-        "revenue_year": 2025,
-        "net_profit_idr": 1370000000000,
-        "total_assets_idr": 33530000000000,
+        "revenue_idr": 10623354592000,
+        "revenue_year": 2024,
+        "net_profit_idr": 1373378406000,
+        "total_assets_idr": 33534100462000,
         "course_segment_disclosed": false,
         "membership_price_idr": 40000000,
         "membership_price_notes": "TIER-1 OFFICIAL — full schedule disclosed (rare). One-Year Joining: Individual Rp 40M / Family Delegation Rp 65M / Millennial age 25-40 Rp 25M (+11% VAT). Lifetime annual fees: Individual Rp 28.8M, Family/Corp Rp 41.1M, Ladies Exec Rp 14.7M, Children<21 Rp 6.54M. Early Bird Dec'25-Jan'26: Lifetime Individual Rp 26.4M/yr.",
@@ -1962,12 +1971,19 @@
           "https://www.summarecon.com/",
           "https://www.idx.co.id/"
         ],
-        "last_verified": "2026-05-01",
+        "last_verified": "2026-05-27",
         "parent_company_full_name": "PT Summarecon Agung Tbk",
         "revenue_idr_h1": null,
         "net_profit_idr_h1": null,
-        "figure_origin": "audited_FY2024",
+        "figure_origin": "IDX_XBRL",
         "parent_financial_sources": [
+          {
+            "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=SMRA",
+            "title": "SMRA FY2024 IDX XBRL Instance",
+            "publisher": "IDX (Indonesia Stock Exchange)",
+            "date_published": "2026-05-27T10:08:43",
+            "source_type": "IDX_XBRL"
+          },
           {
             "url": "https://www.idx.co.id/StaticData/NewsAndAnnouncement/ANNOUNCEMENTSTOCK/From_EREP/202403/20250314143409-50122-0/SMRA%20LapKeu%20FY2024.pdf",
             "title": "SMRA Laporan Keuangan FY2024",
@@ -2003,7 +2019,8 @@
             "date_accessed": "2026-05-01"
           }
         ],
-        "revenue_idr_fy2024_previous": 10620000000000
+        "revenue_idr_fy2024_previous": 10620000000000,
+        "operating_profit_idr": 3775543708000
       },
       "coord_source": "overpass_v1",
       "coord_osm_ref": "way/362673650"
@@ -3099,9 +3116,9 @@
         "parent_group": "Lippo Group (Lippo Karawaci)",
         "idx_ticker": "LPKR",
         "listed_status": "subsidiary-of-listed",
-        "revenue_idr": 11340000000000,
-        "revenue_year": "2024",
-        "net_profit_idr": 18750000000000,
+        "revenue_idr": 11505172000000,
+        "revenue_year": 2024,
+        "net_profit_idr": 18746045000000,
         "total_assets_idr": 53783859000000,
         "course_segment_disclosed": false,
         "membership_price_idr": null,
@@ -3114,12 +3131,19 @@
           "https://www.lippokarawaci.co.id/",
           "https://www.idx.co.id/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-27",
         "parent_company_full_name": "PT Lippo Karawaci Tbk",
         "revenue_idr_h1": null,
         "net_profit_idr_h1": null,
-        "figure_origin": "audited_FY2024",
+        "figure_origin": "IDX_XBRL",
         "parent_financial_sources": [
+          {
+            "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=LPKR",
+            "title": "LPKR FY2024 IDX XBRL Instance",
+            "publisher": "IDX (Indonesia Stock Exchange)",
+            "date_published": "2026-05-27T10:08:43",
+            "source_type": "IDX_XBRL"
+          },
           {
             "url": "https://www.idxchannel.com/market-news/lippo-karawaci-lpkr-raup-laba-rp187-triliun-pada-2024-ini-kata-john-riady",
             "title": "LPKR Laba Rp 18,7T 2024",
@@ -3162,7 +3186,8 @@
             "note": "LPKR FY2024 total assets Rp 53.78T.",
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
           }
-        ]
+        ],
+        "operating_profit_idr": 1768461000000
       },
       "coord_source": "overpass_v1",
       "coord_osm_ref": "way/363198589"
@@ -3796,10 +3821,10 @@
         "parent_group": "Bakrie Group / Bakrieland Development (historical) — current ownership private/affiliated",
         "idx_ticker": "ELTY",
         "listed_status": "subsidiary-of-listed",
-        "revenue_idr": 1210000000000,
-        "revenue_year": "2024",
-        "net_profit_idr": -68500000000,
-        "total_assets_idr": 8740000000000,
+        "revenue_idr": 1226740000000,
+        "revenue_year": 2024,
+        "net_profit_idr": -68528000000,
+        "total_assets_idr": 8742017000000,
         "course_segment_disclosed": false,
         "membership_price_idr": 30000000,
         "membership_price_notes": "Private Membership annual fee widely reported at Rp 30M (mixed source strength — official page renders rates as image only). Four categories: Private, Corporate (1 person), Family (spouse), Term 2026 (1-year, foreign/expatriate). Member benefits: 10% F&B/proshop, 25% cottage weekday/20% weekend.",
@@ -3811,12 +3836,19 @@
           "https://www.bakrieland.com/",
           "https://www.idx.co.id/"
         ],
-        "last_verified": "2026-05-01",
+        "last_verified": "2026-05-27",
         "parent_company_full_name": "PT Bakrieland Development Tbk",
         "revenue_idr_h1": null,
         "net_profit_idr_h1": null,
-        "figure_origin": "audited_FY2024",
+        "figure_origin": "IDX_XBRL",
         "parent_financial_sources": [
+          {
+            "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=ELTY",
+            "title": "ELTY FY2024 IDX XBRL Instance",
+            "publisher": "IDX (Indonesia Stock Exchange)",
+            "date_published": "2026-05-27T10:08:43",
+            "source_type": "IDX_XBRL"
+          },
           {
             "url": "https://www.indopremier.com/ipotnews/newsDetail.php?jdl=Financial+Statements+Full+Year+2024+of+ELTY&news_id=461225",
             "title": "Financial Statements Full Year 2024 of ELTY",
@@ -3851,7 +3883,8 @@
             "date_published": null,
             "date_accessed": "2026-05-01"
           }
-        ]
+        ],
+        "operating_profit_idr": 93785000000
       },
       "coord_source": "overpass_v1",
       "coord_osm_ref": "way/142579269"
@@ -3997,10 +4030,10 @@
         "parent_group": "Sentul City Group",
         "idx_ticker": "BKSL",
         "listed_status": "subsidiary-of-listed",
-        "revenue_idr": 2757463756020,
-        "revenue_year": 2025,
-        "net_profit_idr": 17400000000,
-        "total_assets_idr": 21188291000000,
+        "revenue_idr": 744068396829,
+        "revenue_year": 2024,
+        "net_profit_idr": 17355009761,
+        "total_assets_idr": 21188290505406,
         "course_segment_disclosed": false,
         "membership_price_idr": null,
         "membership_price_notes": "Membership pricing not publicly disclosed; marketed alongside Sentul City highland residential.",
@@ -4012,11 +4045,18 @@
           "https://sentulcity.co.id/",
           "https://www.idx.co.id/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-27",
         "parent_company_full_name": "PT Sentul City Tbk",
         "net_profit_idr_h1": null,
-        "figure_origin": "audited_FY2024_partial",
+        "figure_origin": "IDX_XBRL",
         "parent_financial_sources": [
+          {
+            "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=BKSL",
+            "title": "BKSL FY2024 IDX XBRL Instance",
+            "publisher": "IDX (Indonesia Stock Exchange)",
+            "date_published": "2026-05-27T10:08:43",
+            "source_type": "IDX_XBRL"
+          },
           {
             "url": "https://www.indopremier.com/ipotnews/newsDetail.php?jdl=Financial+Statements+Full+Year+2024+of+BKSL&news_id=461955",
             "title": "Financial Statements Full Year 2024 of BKSL",
@@ -4052,7 +4092,8 @@
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
           }
         ],
-        "revenue_idr_fy2024_previous": 744068000000
+        "revenue_idr_fy2024_previous": 744068000000,
+        "operating_profit_idr": 81310561560
       },
       "coord_source": "overpass_v1",
       "coord_osm_ref": "relation/12485745"
@@ -4307,10 +4348,10 @@
         "parent_group": "Sentul City Group",
         "idx_ticker": "BKSL",
         "listed_status": "subsidiary-of-listed",
-        "revenue_idr": 2757463756020,
-        "revenue_year": 2025,
-        "net_profit_idr": 17400000000,
-        "total_assets_idr": 21188291000000,
+        "revenue_idr": 744068396829,
+        "revenue_year": 2024,
+        "net_profit_idr": 17355009761,
+        "total_assets_idr": 21188290505406,
         "course_segment_disclosed": false,
         "membership_price_idr": null,
         "membership_price_notes": null,
@@ -4322,11 +4363,18 @@
           "https://sentulcity.co.id/",
           "https://www.idx.co.id/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-27",
         "parent_company_full_name": "PT Sentul City Tbk",
         "net_profit_idr_h1": null,
-        "figure_origin": "audited_FY2024_partial",
+        "figure_origin": "IDX_XBRL",
         "parent_financial_sources": [
+          {
+            "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=BKSL",
+            "title": "BKSL FY2024 IDX XBRL Instance",
+            "publisher": "IDX (Indonesia Stock Exchange)",
+            "date_published": "2026-05-27T10:08:43",
+            "source_type": "IDX_XBRL"
+          },
           {
             "url": "https://www.indopremier.com/ipotnews/newsDetail.php?jdl=Financial+Statements+Full+Year+2024+of+BKSL&news_id=461955",
             "title": "Financial Statements Full Year 2024 of BKSL",
@@ -4362,7 +4410,8 @@
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
           }
         ],
-        "revenue_idr_fy2024_previous": 744068000000
+        "revenue_idr_fy2024_previous": 744068000000,
+        "operating_profit_idr": 81310561560
       }
     },
     {
@@ -4656,10 +4705,10 @@
         "parent_group": "Bakrieland Development (historical) / current Bogor Raya Resort owners",
         "idx_ticker": "ELTY",
         "listed_status": "subsidiary-of-listed",
-        "revenue_idr": 1210000000000,
-        "revenue_year": "2024",
-        "net_profit_idr": -68500000000,
-        "total_assets_idr": 8740000000000,
+        "revenue_idr": 1226740000000,
+        "revenue_year": 2024,
+        "net_profit_idr": -68528000000,
+        "total_assets_idr": 8742017000000,
         "course_segment_disclosed": false,
         "membership_price_idr": null,
         "membership_price_notes": null,
@@ -4671,12 +4720,19 @@
           "https://www.bakrieland.com/",
           "https://www.idx.co.id/"
         ],
-        "last_verified": "2026-05-01",
+        "last_verified": "2026-05-27",
         "parent_company_full_name": "PT Bakrieland Development Tbk",
         "revenue_idr_h1": null,
         "net_profit_idr_h1": null,
-        "figure_origin": "audited_FY2024",
+        "figure_origin": "IDX_XBRL",
         "parent_financial_sources": [
+          {
+            "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=ELTY",
+            "title": "ELTY FY2024 IDX XBRL Instance",
+            "publisher": "IDX (Indonesia Stock Exchange)",
+            "date_published": "2026-05-27T10:08:43",
+            "source_type": "IDX_XBRL"
+          },
           {
             "url": "https://www.indopremier.com/ipotnews/newsDetail.php?jdl=Financial+Statements+Full+Year+2024+of+ELTY&news_id=461225",
             "title": "Financial Statements Full Year 2024 of ELTY",
@@ -4691,7 +4747,8 @@
             "date_published": null,
             "date_accessed": "2026-05-01"
           }
-        ]
+        ],
+        "operating_profit_idr": 93785000000
       },
       "coord_source": "overpass_v1",
       "coord_osm_ref": "way/142575989"
@@ -4814,10 +4871,10 @@
         "parent_group": "Sentul City Group",
         "idx_ticker": "BKSL",
         "listed_status": "subsidiary-of-listed",
-        "revenue_idr": 2757463756020,
-        "revenue_year": 2025,
-        "net_profit_idr": 17400000000,
-        "total_assets_idr": 21188291000000,
+        "revenue_idr": 744068396829,
+        "revenue_year": 2024,
+        "net_profit_idr": 17355009761,
+        "total_assets_idr": 21188290505406,
         "course_segment_disclosed": false,
         "membership_price_idr": null,
         "membership_price_notes": null,
@@ -4829,11 +4886,18 @@
           "https://sentulcity.co.id/",
           "https://www.idx.co.id/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-27",
         "parent_company_full_name": "PT Sentul City Tbk",
         "net_profit_idr_h1": null,
-        "figure_origin": "audited_FY2024_partial",
+        "figure_origin": "IDX_XBRL",
         "parent_financial_sources": [
+          {
+            "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=BKSL",
+            "title": "BKSL FY2024 IDX XBRL Instance",
+            "publisher": "IDX (Indonesia Stock Exchange)",
+            "date_published": "2026-05-27T10:08:43",
+            "source_type": "IDX_XBRL"
+          },
           {
             "url": "https://www.indopremier.com/ipotnews/newsDetail.php?jdl=Financial+Statements+Full+Year+2024+of+BKSL&news_id=461955",
             "title": "Financial Statements Full Year 2024 of BKSL",
@@ -4869,7 +4933,8 @@
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
           }
         ],
-        "revenue_idr_fy2024_previous": 744068000000
+        "revenue_idr_fy2024_previous": 744068000000,
+        "operating_profit_idr": 81310561560
       },
       "coord_source": "overpass_v1",
       "coord_osm_ref": "relation/14264143"
@@ -5376,10 +5441,10 @@
         "parent_group": "Sinar Mas Land (via PT Bumi Serpong Damai Tbk / BSDE — acquired 91.99% of SMDM on 23 Oct 2024)",
         "idx_ticker": "SMDM",
         "listed_status": "subsidiary-of-listed",
-        "revenue_idr": 694040000000,
-        "revenue_year": "2024",
-        "net_profit_idr": 123770000000,
-        "total_assets_idr": 3462272000000,
+        "revenue_idr": 694045208919,
+        "revenue_year": 2024,
+        "net_profit_idr": 123777972842,
+        "total_assets_idr": 3462272048915,
         "course_segment_disclosed": true,
         "membership_price_idr": null,
         "membership_price_notes": "Membership tied to Rancamaya township residential program; pricing details not always disclosed in IDX filings.",
@@ -5391,12 +5456,19 @@
           "https://www.idx.co.id/",
           "https://www.rancamaya.com/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-27",
         "parent_company_full_name": "PT Suryamas Dutamakmur Tbk (BSDE/Sinar Mas Land subsidiary from 2024)",
         "revenue_idr_h1": null,
         "net_profit_idr_h1": null,
-        "figure_origin": "audited_FY2024",
+        "figure_origin": "IDX_XBRL",
         "parent_financial_sources": [
+          {
+            "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=SMDM",
+            "title": "SMDM FY2024 IDX XBRL Instance",
+            "publisher": "IDX (Indonesia Stock Exchange)",
+            "date_published": "2026-05-27T10:08:43",
+            "source_type": "IDX_XBRL"
+          },
           {
             "url": "https://market.bisnis.com/read/20250303/192/1844262/emiten-sinar-mas-land-smdm-raih-laba-bersih-rp123-77-miliar-pada-2024",
             "title": "SMDM Laba Bersih Rp 123,77M 2024",
@@ -5440,7 +5512,8 @@
             "note": "SMDM still listed but controlled (91.99%) by BSDE.",
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
           }
-        ]
+        ],
+        "operating_profit_idr": 148817143415
       },
       "coord_source": "overpass_v1",
       "coord_osm_ref": "way/987926003"
@@ -5692,10 +5765,10 @@
         "parent_group": "Jababeka Group",
         "idx_ticker": "KIJA",
         "listed_status": "subsidiary-of-listed",
-        "revenue_idr": 4600000000000,
-        "revenue_year": "2024",
-        "net_profit_idr": 363300000000,
-        "total_assets_idr": 14010000000000,
+        "revenue_idr": 4602648000000,
+        "revenue_year": 2024,
+        "net_profit_idr": 363308000000,
+        "total_assets_idr": 14017356000000,
         "course_segment_disclosed": true,
         "membership_price_idr": null,
         "membership_price_notes": null,
@@ -5707,12 +5780,19 @@
           "https://www.jababeka.com/",
           "https://www.idx.co.id/"
         ],
-        "last_verified": "2026-05-01",
+        "last_verified": "2026-05-27",
         "parent_company_full_name": "PT Kawasan Industri Jababeka Tbk",
         "revenue_idr_h1": null,
         "net_profit_idr_h1": null,
-        "figure_origin": "audited_FY2024",
+        "figure_origin": "IDX_XBRL",
         "parent_financial_sources": [
+          {
+            "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=KIJA",
+            "title": "KIJA FY2024 IDX XBRL Instance",
+            "publisher": "IDX (Indonesia Stock Exchange)",
+            "date_published": "2026-05-27T10:08:43",
+            "source_type": "IDX_XBRL"
+          },
           {
             "url": "https://stockwatch.id/lampaui-target-kija-raih-penjualan-pemasaran-rp319-triliun-di-2024/",
             "title": "KIJA Penjualan Pemasaran Rp 3,19T 2024",
@@ -5728,7 +5808,8 @@
             "date_accessed": "2026-05-01"
           }
         ],
-        "course_segment_notes": "KIJA AR explicitly lists 'Golf' as one of 5 reportable segments (industrial estate, real estate, GOLF, infrastructure, service & maintenance). Specific golf revenue not extracted in this pass."
+        "course_segment_notes": "KIJA AR explicitly lists 'Golf' as one of 5 reportable segments (industrial estate, real estate, GOLF, infrastructure, service & maintenance). Specific golf revenue not extracted in this pass.",
+        "operating_profit_idr": 1313531000000
       },
       "coord_source": "overpass_v1",
       "coord_osm_ref": "way/574920211"
@@ -5828,10 +5909,10 @@
         "parent_group": "Sinar Mas Land",
         "idx_ticker": "BSDE",
         "listed_status": "subsidiary-of-listed",
-        "revenue_idr": 12788452336734,
-        "revenue_year": 2025,
-        "net_profit_idr": 4360000000000,
-        "total_assets_idr": 76020000000000,
+        "revenue_idr": 13796572148837,
+        "revenue_year": 2024,
+        "net_profit_idr": 4359063783992,
+        "total_assets_idr": 76023348886846,
         "course_segment_disclosed": true,
         "membership_price_idr": null,
         "membership_price_notes": null,
@@ -5843,12 +5924,19 @@
           "https://www.sinarmasland.com/",
           "https://www.idx.co.id/"
         ],
-        "last_verified": "2026-05-01",
+        "last_verified": "2026-05-27",
         "parent_company_full_name": "PT Bumi Serpong Damai Tbk",
         "revenue_idr_h1": null,
         "net_profit_idr_h1": null,
-        "figure_origin": "audited_FY2024",
+        "figure_origin": "IDX_XBRL",
         "parent_financial_sources": [
+          {
+            "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=BSDE",
+            "title": "BSDE FY2024 IDX XBRL Instance",
+            "publisher": "IDX (Indonesia Stock Exchange)",
+            "date_published": "2026-05-27T10:08:43",
+            "source_type": "IDX_XBRL"
+          },
           {
             "url": "https://www.bsdcity.com/app/uploads/2025/05/BSDE-Annual-Report-2024-1.pdf",
             "title": "BSDE Annual Report 2024",
@@ -5865,7 +5953,8 @@
           }
         ],
         "course_segment_notes": "Sits inside Sinar Mas Land's Kota Deltamas/Karawang area but not separately broken out in BSDE consolidated segment notes. Note: Palm Springs Batam (separate entity) had Rp 42B segment-disclosed FY2024 contribution to BSDE.",
-        "revenue_idr_fy2024_previous": 13800000000000
+        "revenue_idr_fy2024_previous": 13800000000000,
+        "operating_profit_idr": 4874328196371
       }
     },
     {
@@ -6022,10 +6111,10 @@
         "parent_group": "MNC Group (Hary Tanoesoedibjo)",
         "idx_ticker": "KPIG",
         "listed_status": "subsidiary-of-listed",
-        "revenue_idr": 1770000000000,
-        "revenue_year": "2024",
-        "net_profit_idr": 658629000000,
-        "total_assets_idr": 35830000000000,
+        "revenue_idr": 1770144397893,
+        "revenue_year": 2024,
+        "net_profit_idr": 658629034066,
+        "total_assets_idr": 35827499060643,
         "course_segment_disclosed": true,
         "membership_price_idr": null,
         "membership_price_notes": "Platinum tier USD 70,000 (~Rp 1.13B at ~Rp 16,200/USD), limited to 100 members. Daily play 80 players cap. Other tiers (Individual/Corporate/Family) priced per inquiry. Sources: MNC Group press release + AGIF + Australian Golf Digest 2025 opening coverage. Currency primary USD.",
@@ -6038,12 +6127,19 @@
           "https://www.idx.co.id/",
           "https://mncland.com/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-27",
         "parent_company_full_name": "PT MNC Tourism Indonesia Tbk (formerly PT MNC Land Tbk; renamed July 2025)",
         "revenue_idr_h1": null,
         "net_profit_idr_h1": null,
-        "figure_origin": "audited_FY2024",
+        "figure_origin": "IDX_XBRL",
         "parent_financial_sources": [
+          {
+            "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=KPIG",
+            "title": "KPIG FY2024 IDX XBRL Instance",
+            "publisher": "IDX (Indonesia Stock Exchange)",
+            "date_published": "2026-05-27T10:08:43",
+            "source_type": "IDX_XBRL"
+          },
           {
             "url": "https://www.inews.id/finance/bisnis/naik-246-persen-mnc-land-cetak-pendapatan-rp177-triliun-di-2024",
             "title": "MNC Land Cetak Pendapatan Rp1,77T di 2024",
@@ -6103,7 +6199,8 @@
             "note": "FY2024 net income Rp 658.63B per stockanalysis.com (vs current Rp 679B).",
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_1_result.json"
           }
-        ]
+        ],
+        "operating_profit_idr": 115085838437
       },
       "coord_source": "overpass_v1",
       "coord_osm_ref": "way/1341308101"
@@ -7125,10 +7222,10 @@
         "parent_group": "PT Jakarta Setiabudi Internasional Tbk (JSPT) — owner; Hyatt provides only the franchise/management brand",
         "idx_ticker": "JSPT",
         "listed_status": "subsidiary-of-listed",
-        "revenue_idr": 2402430000000,
-        "revenue_year": null,
-        "net_profit_idr": 261337000000,
-        "total_assets_idr": 6457845000000,
+        "revenue_idr": 2402430479000,
+        "revenue_year": 2024,
+        "net_profit_idr": 261337269000,
+        "total_assets_idr": 6457844771000,
         "course_segment_disclosed": false,
         "membership_price_idr": null,
         "membership_price_notes": "Quarterly, half-yearly, and yearly memberships listed on Hyatt page with discounts and privileges; specific IDR amounts not publicly published.",
@@ -7141,7 +7238,7 @@
           "https://www.golfpass.com/travel-advisor/courses/38211-hyatt-regency-yogyakarta-golf-course",
           "https://www.instagram.com/hyattgolfcourse/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-27",
         "verification_log": [
           {
             "verified_at": "2026-05-06",
@@ -7197,7 +7294,18 @@
             "note": "JSPT total assets at Dec 31 2024 = Rp 6.46T.",
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_2_result.json"
           }
-        ]
+        ],
+        "operating_profit_idr": 616531907000,
+        "parent_financial_sources": [
+          {
+            "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=JSPT",
+            "title": "JSPT FY2024 IDX XBRL Instance",
+            "publisher": "IDX (Indonesia Stock Exchange)",
+            "date_published": "2026-05-27T10:08:43",
+            "source_type": "IDX_XBRL"
+          }
+        ],
+        "figure_origin": "IDX_XBRL"
       },
       "coord_source": "overpass_v1",
       "coord_osm_ref": "way/245570646"
@@ -7421,8 +7529,8 @@
         "idx_ticker": "KIJA",
         "listed_status": "subsidiary-of-listed",
         "revenue_idr": 4602648000000,
-        "revenue_year": "2024",
-        "net_profit_idr": 363300000000,
+        "revenue_year": 2024,
+        "net_profit_idr": 363308000000,
         "total_assets_idr": 14017356000000,
         "course_segment_disclosed": false,
         "membership_price_idr": 167000000,
@@ -7437,7 +7545,7 @@
           "https://www.indopremier.com/ipotnews/newsDetail.php?jdl=Financial_Statements_Full_Year_2024_of_KIJA&news_id=461353",
           "https://borobudur-golf.com/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-27",
         "verification_log": [
           {
             "verified_at": "2026-05-06",
@@ -7457,7 +7565,18 @@
             "note": "KIJA total assets at Dec 31 2024 = Rp 14.02T per balance sheet.",
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_2_result.json"
           }
-        ]
+        ],
+        "operating_profit_idr": 1313531000000,
+        "parent_financial_sources": [
+          {
+            "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=KIJA",
+            "title": "KIJA FY2024 IDX XBRL Instance",
+            "publisher": "IDX (Indonesia Stock Exchange)",
+            "date_published": "2026-05-27T10:08:43",
+            "source_type": "IDX_XBRL"
+          }
+        ],
+        "figure_origin": "IDX_XBRL"
       },
       "coord_source": "overpass_v1",
       "coord_osm_ref": "way/924345026"
@@ -8009,7 +8128,7 @@
         "idx_ticker": "CTRA",
         "listed_status": "subsidiary-of-listed",
         "revenue_idr": 11187565000000,
-        "revenue_year": "2024",
+        "revenue_year": 2024,
         "net_profit_idr": 2126288000000,
         "total_assets_idr": 47022702000000,
         "course_segment_disclosed": false,
@@ -8025,7 +8144,7 @@
           "https://ciputragolf.com/",
           "https://www.idnfinancials.com/ctrs/pt-ciputra-surya-tbk"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-27",
         "verification_log": [
           {
             "verified_at": "2026-05-06",
@@ -8054,7 +8173,18 @@
             "note": "CTRA total assets at Dec 31 2024 = Rp 47.02T.",
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_2_result.json"
           }
-        ]
+        ],
+        "operating_profit_idr": 3305973000000,
+        "parent_financial_sources": [
+          {
+            "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=CTRA",
+            "title": "CTRA FY2024 IDX XBRL Instance",
+            "publisher": "IDX (Indonesia Stock Exchange)",
+            "date_published": "2026-05-27T10:08:43",
+            "source_type": "IDX_XBRL"
+          }
+        ],
+        "figure_origin": "IDX_XBRL"
       },
       "coord_source": "overpass_v1",
       "coord_osm_ref": "relation/5121369"
@@ -8239,10 +8369,10 @@
         "parent_group": "PT Bukit Darmo Property Tbk (Sumampow Family)",
         "idx_ticker": "BKDP",
         "listed_status": "listed",
-        "revenue_idr": 36632337898,
-        "revenue_year": 2025,
-        "net_profit_idr": -35914000000,
-        "total_assets_idr": 752245000000,
+        "revenue_idr": 30520490000,
+        "revenue_year": 2024,
+        "net_profit_idr": -35913549931,
+        "total_assets_idr": 752245162416,
         "course_segment_disclosed": false,
         "membership_price_idr": null,
         "membership_price_notes": "'Rates, Fee, and Membership' page lists member 9H IDR 245k-675k / 18H IDR 365k-910k; explicit Uang Pangkal/Iuran/Jaminan not extractable (site 403 to fetcher).",
@@ -8256,7 +8386,7 @@
           "https://britama.com/index.php/2012/10/sejarah-dan-profil-singkat-bkdp/",
           "https://stockbit.com/symbol/BKDP"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-27",
         "verification_log": [
           {
             "verified_at": "2026-05-06",
@@ -8286,7 +8416,18 @@
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_2_result.json"
           }
         ],
-        "revenue_idr_fy2024_previous": 30520000000
+        "revenue_idr_fy2024_previous": 30520000000,
+        "operating_profit_idr": -30649301682,
+        "parent_financial_sources": [
+          {
+            "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=BKDP",
+            "title": "BKDP FY2024 IDX XBRL Instance",
+            "publisher": "IDX (Indonesia Stock Exchange)",
+            "date_published": "2026-05-27T10:08:43",
+            "source_type": "IDX_XBRL"
+          }
+        ],
+        "figure_origin": "IDX_XBRL"
       },
       "coord_source": "overpass_v1",
       "coord_osm_ref": "way/160043626"
@@ -8890,7 +9031,7 @@
         "idx_ticker": "CTRA",
         "listed_status": "subsidiary-of-listed",
         "revenue_idr": 11187565000000,
-        "revenue_year": "2024",
+        "revenue_year": 2024,
         "net_profit_idr": 2126288000000,
         "total_assets_idr": 47022702000000,
         "course_segment_disclosed": false,
@@ -8906,7 +9047,7 @@
           "https://id.wikipedia.org/wiki/Taman_Dayu",
           "https://tamandayu.com/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-27",
         "verification_log": [
           {
             "verified_at": "2026-05-06",
@@ -8935,7 +9076,18 @@
             "note": "CTRA total assets at Dec 31 2024 = Rp 47.02T.",
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_2_result.json"
           }
-        ]
+        ],
+        "operating_profit_idr": 3305973000000,
+        "parent_financial_sources": [
+          {
+            "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=CTRA",
+            "title": "CTRA FY2024 IDX XBRL Instance",
+            "publisher": "IDX (Indonesia Stock Exchange)",
+            "date_published": "2026-05-27T10:08:43",
+            "source_type": "IDX_XBRL"
+          }
+        ],
+        "figure_origin": "IDX_XBRL"
       },
       "coord_source": "overpass_v1",
       "coord_osm_ref": "relation/20252519"
@@ -9088,10 +9240,10 @@
         "parent_group": "PT Intiland Development Tbk (Intiland Group)",
         "idx_ticker": "DILD",
         "listed_status": "subsidiary-of-listed",
-        "revenue_idr": 2553285000000,
-        "revenue_year": "2024",
-        "net_profit_idr": 174766000000,
-        "total_assets_idr": 13703553000000,
+        "revenue_idr": 2553285289717,
+        "revenue_year": 2024,
+        "net_profit_idr": 174766158653,
+        "total_assets_idr": 13703553080897,
         "course_segment_disclosed": false,
         "membership_price_idr": 25500000,
         "membership_price_notes": "Gold (All Day Yearly) IDR 25.5M; Outstation (Weekend Yearly) IDR 22.5M; Weekday Yearly IDR 13.5M. Flat annual fees, no Uang Pangkal disclosed.",
@@ -9105,7 +9257,7 @@
           "https://www.intiland.com/en/others/surabaya/graha-famili-golf-country-club/",
           "https://golfgraha.com/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-27",
         "verification_log": [
           {
             "verified_at": "2026-05-06",
@@ -9134,7 +9286,18 @@
             "note": "DILD total assets at Dec 31 2024 = Rp 13.70T.",
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_2_result.json"
           }
-        ]
+        ],
+        "operating_profit_idr": 454231193690,
+        "parent_financial_sources": [
+          {
+            "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=DILD",
+            "title": "DILD FY2024 IDX XBRL Instance",
+            "publisher": "IDX (Indonesia Stock Exchange)",
+            "date_published": "2026-05-27T10:08:43",
+            "source_type": "IDX_XBRL"
+          }
+        ],
+        "figure_origin": "IDX_XBRL"
       },
       "coord_source": "overpass_v1",
       "coord_osm_ref": "relation/9332158"
@@ -10466,10 +10629,10 @@
         "idx_ticker": "AMMN",
         "foreign_ticker": null,
         "listed_status": "course is community/staff facility of listed mining parent; resort (Naia) operates privately",
-        "revenue_idr": 42180000000000,
-        "revenue_year": "2024",
-        "net_profit_idr": 10350000000000,
-        "total_assets_idr": 175710000000000,
+        "revenue_idr": 2663630000,
+        "revenue_year": 2024,
+        "net_profit_idr": 636895000,
+        "total_assets_idr": 11121488000,
         "course_segment_disclosed": false,
         "membership_price_idr": null,
         "membership_price_notes": "Originally a Newmont/AMNT staff course; opened to public play via Naia Resort. No formal membership.",
@@ -10484,7 +10647,7 @@
           "https://www.newmont.com/investors/news-release/news-details/2016/Newmont-Successfully-Completes-Sale-of-Indonesian-Assets/default.aspx",
           "https://www.amman.co.id/"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-27",
         "verification_log": [
           {
             "verified_at": "2026-05-06",
@@ -10513,7 +10676,18 @@
             "note": "AMMN total assets US$11.1B as of Dec 31 2024, ~Rp 175.71 trillion.",
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_3_result.json"
           }
-        ]
+        ],
+        "operating_profit_idr": 1224396000,
+        "parent_financial_sources": [
+          {
+            "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=AMMN",
+            "title": "AMMN FY2024 IDX XBRL Instance",
+            "publisher": "IDX (Indonesia Stock Exchange)",
+            "date_published": "2026-05-27T10:08:43",
+            "source_type": "IDX_XBRL"
+          }
+        ],
+        "figure_origin": "IDX_XBRL"
       }
     },
     {
@@ -11661,10 +11835,10 @@
         "idx_ticker": "BSDE",
         "foreign_ticker": "SGX:A26 (Sinarmas Land)",
         "listed_status": "subsidiary-of-listed",
-        "revenue_idr": 12788452336734,
-        "revenue_year": 2025,
-        "net_profit_idr": 4360000000000,
-        "total_assets_idr": 76023000000000,
+        "revenue_idr": 13796572148837,
+        "revenue_year": 2024,
+        "net_profit_idr": 4359063783992,
+        "total_assets_idr": 76023348886846,
         "course_segment_disclosed": true,
         "membership_price_idr": null,
         "membership_price_notes": "Mixed model: pay-per-round for resort guests; some local memberships sold via Nuvasa Bay residential sales.",
@@ -11679,7 +11853,7 @@
           "https://www.bsdcity.com/app/uploads/2025/05/BSDE-Annual-Report-2024-1.pdf",
           "https://www.thejakartapost.com/news/2015/12/13/sinar-mas-land-invest-rp-4t-batam-infrastructure.html"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-27",
         "verification_log": [
           {
             "verified_at": "2026-05-06",
@@ -11700,7 +11874,18 @@
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_3_result.json"
           }
         ],
-        "revenue_idr_fy2024_previous": 13800000000000
+        "revenue_idr_fy2024_previous": 13800000000000,
+        "operating_profit_idr": 4874328196371,
+        "parent_financial_sources": [
+          {
+            "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=BSDE",
+            "title": "BSDE FY2024 IDX XBRL Instance",
+            "publisher": "IDX (Indonesia Stock Exchange)",
+            "date_published": "2026-05-27T10:08:43",
+            "source_type": "IDX_XBRL"
+          }
+        ],
+        "figure_origin": "IDX_XBRL"
       }
     },
     {
@@ -12912,10 +13097,10 @@
         "idx_ticker": "GOLF",
         "foreign_ticker": null,
         "listed_status": "subsidiary-of-listed (since 8 July 2024 IPO of GOLF on IDX)",
-        "revenue_idr": 215519000000,
-        "revenue_year": 2025,
-        "net_profit_idr": 67570000000,
-        "total_assets_idr": 8637499000000,
+        "revenue_idr": 197993814652,
+        "revenue_year": 2024,
+        "net_profit_idr": 67574993523,
+        "total_assets_idr": 8637499132483,
         "course_segment_disclosed": true,
         "membership_price_idr": null,
         "membership_price_notes": "Hotel-and-golf resort guest / green-fee model; no general public membership disclosed.",
@@ -12931,7 +13116,7 @@
           "https://golflinkresorts.co.id/newsevent/en/9/golf-increasingly-popular-intra-golflink-resorts-owned-by-soeharto-s-grandson-goes-public-on-the-stock-exchange",
           "https://e-ipo.co.id/en/ipo/309/golf-pt-intra-golflink-resorts-tbk"
         ],
-        "last_verified": "2026-05-06",
+        "last_verified": "2026-05-27",
         "verification_log": [
           {
             "verified_at": "2026-05-06",
@@ -12970,7 +13155,18 @@
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_3_result.json"
           }
         ],
-        "revenue_idr_fy2024_previous": 197990000000
+        "revenue_idr_fy2024_previous": 197990000000,
+        "operating_profit_idr": 72469171724,
+        "parent_financial_sources": [
+          {
+            "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=GOLF",
+            "title": "GOLF FY2024 IDX XBRL Instance",
+            "publisher": "IDX (Indonesia Stock Exchange)",
+            "date_published": "2026-05-27T10:08:43",
+            "source_type": "IDX_XBRL"
+          }
+        ],
+        "figure_origin": "IDX_XBRL"
       }
     },
     {
@@ -13811,10 +14007,10 @@
         "parent_group": "PT Bukit Asam Tbk (PTBA) / MIND ID (Mining Industry Indonesia) state holding",
         "idx_ticker": "PTBA",
         "listed_status": "listed",
-        "revenue_idr": 42760000000000,
-        "revenue_year": "2024",
-        "net_profit_idr": 5100000000000,
-        "total_assets_idr": 41790000000000,
+        "revenue_idr": 42764968000000,
+        "revenue_year": 2024,
+        "net_profit_idr": 5103720000000,
+        "total_assets_idr": 41854334000000,
         "course_segment_disclosed": false,
         "membership_price_idr": null,
         "membership_price_notes": "Corporate-owned facility primarily for PTBA staff, mining community and invited guests; no commercial membership scheme.",
@@ -13827,7 +14023,18 @@
           "https://voi.id/en/economy/474145",
           "https://www.ptba.co.id/uploads/ptba_laporan_tahunan/20250430114045-2025-04-30ptba_laporan_tahunan113945.pdf"
         ],
-        "last_verified": "2026-05-01"
+        "last_verified": "2026-05-27",
+        "operating_profit_idr": 5335005000000,
+        "parent_financial_sources": [
+          {
+            "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=PTBA",
+            "title": "PTBA FY2024 IDX XBRL Instance",
+            "publisher": "IDX (Indonesia Stock Exchange)",
+            "date_published": "2026-05-27T10:08:43",
+            "source_type": "IDX_XBRL"
+          }
+        ],
+        "figure_origin": "IDX_XBRL"
       },
       "coord_source": "overpass_v1",
       "coord_osm_ref": "way/396516845"
@@ -15021,10 +15228,10 @@
         "idx_ticker": "AKRA",
         "foreign_ticker": null,
         "listed_status": "subsidiary-of-listed",
-        "revenue_idr": 38730000000000,
-        "revenue_year": "2024",
-        "net_profit_idr": 2230000000000,
-        "total_assets_idr": 33110000000000,
+        "revenue_idr": 38729493298000,
+        "revenue_year": 2024,
+        "net_profit_idr": 2225117975000,
+        "total_assets_idr": 33108684368000,
         "course_segment_disclosed": false,
         "membership_price_idr": null,
         "membership_price_notes": "No public membership figures; course open to public (par 72, 18-hole, 5,127 yards).",
@@ -15039,7 +15246,18 @@
           "https://www.petromindo.com/news/article/akr-corporindo-posts-11-rise-in-2025-net-profit-on-jiipe-growth",
           "https://www.petromindo.com/news/article/akr-corporindo-posts-higher-revenue-and-profit-in-q1-2026"
         ],
-        "last_verified": "2026-05-01"
+        "last_verified": "2026-05-27",
+        "operating_profit_idr": 2534444074000,
+        "parent_financial_sources": [
+          {
+            "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=AKRA",
+            "title": "AKRA FY2024 IDX XBRL Instance",
+            "publisher": "IDX (Indonesia Stock Exchange)",
+            "date_published": "2026-05-27T10:08:43",
+            "source_type": "IDX_XBRL"
+          }
+        ],
+        "figure_origin": "IDX_XBRL"
       }
     },
     {
@@ -15119,10 +15337,10 @@
         "idx_ticker": "INCO",
         "foreign_ticker": null,
         "listed_status": "subsidiary-of-listed",
-        "revenue_idr": 15100000000000,
-        "revenue_year": "2024",
-        "net_profit_idr": 938700000000,
-        "total_assets_idr": 50800000000000,
+        "revenue_idr": 950388000,
+        "revenue_year": 2024,
+        "net_profit_idr": 57761000,
+        "total_assets_idr": 3176528000,
         "course_segment_disclosed": false,
         "membership_price_idr": null,
         "membership_price_notes": "9-hole (par 36, 2,997 yards) open to public with light green fee; no formal membership disclosure.",
@@ -15135,7 +15353,18 @@
           "https://www.indopremier.com/ipotnews/newsDetail.php?jdl=Financial_Statements_Full_Year_2024_of_INCO",
           "https://vale.com/documents/44618/1371772/PT+Vale+Indonesia+Tbk+-+Laporan+Tahunan+2024.pdf"
         ],
-        "last_verified": "2026-05-01"
+        "last_verified": "2026-05-27",
+        "operating_profit_idr": 69974000,
+        "parent_financial_sources": [
+          {
+            "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=INCO",
+            "title": "INCO FY2024 IDX XBRL Instance",
+            "publisher": "IDX (Indonesia Stock Exchange)",
+            "date_published": "2026-05-27T10:08:43",
+            "source_type": "IDX_XBRL"
+          }
+        ],
+        "figure_origin": "IDX_XBRL"
       }
     },
     {
@@ -17186,7 +17415,7 @@
         "parent_group": "PT Pakuwon Jati Tbk (Pakuwon Group)",
         "operating_company": "PT Pakuwon Jati Tbk",
         "listed_status": "listed",
-        "revenue_idr": 6670000000000,
+        "revenue_idr": 6670808930000,
         "verification_log": [
           {
             "verified_at": "2026-05-06",
@@ -17225,10 +17454,21 @@
             "source_chunk": "C:\\Users\\yoonseok.moon\\OneDrive - (주) ST International\\Projects\\Matoa 골프장\\site\\data\\agent_input\\chunk_4_result.json"
           }
         ],
-        "last_verified": "2026-05-06",
-        "net_profit_idr": 2620000000000,
+        "last_verified": "2026-05-27",
+        "net_profit_idr": 2074731029000,
         "total_assets_idr": 35371085149000,
-        "revenue_year": "2024"
+        "revenue_year": 2024,
+        "operating_profit_idr": 2900945604000,
+        "parent_financial_sources": [
+          {
+            "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=PWON",
+            "title": "PWON FY2024 IDX XBRL Instance",
+            "publisher": "IDX (Indonesia Stock Exchange)",
+            "date_published": "2026-05-27T10:08:43",
+            "source_type": "IDX_XBRL"
+          }
+        ],
+        "figure_origin": "IDX_XBRL"
       },
       "coord_source": "overpass_v1",
       "coord_osm_ref": "relation/14264202"
@@ -20563,7 +20803,23 @@
         "operating_company": "PT Suvarna Sutera (Padi Golf Estate)",
         "parent_group": "Alam Sutera Realty",
         "idx_ticker": "ASRI",
-        "listed_status": "subsidiary-of-listed"
+        "listed_status": "subsidiary-of-listed",
+        "revenue_idr": 3433337156000,
+        "revenue_year": 2024,
+        "net_profit_idr": 55216151000,
+        "total_assets_idr": 22019031433000,
+        "operating_profit_idr": 1239889270000,
+        "parent_financial_sources": [
+          {
+            "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=ASRI",
+            "title": "ASRI FY2024 IDX XBRL Instance",
+            "publisher": "IDX (Indonesia Stock Exchange)",
+            "date_published": "2026-05-27T10:08:43",
+            "source_type": "IDX_XBRL"
+          }
+        ],
+        "figure_origin": "IDX_XBRL",
+        "last_verified": "2026-05-27"
       },
       "coord_source": "overpass_v1",
       "coord_osm_ref": "way/515754580"
@@ -20726,7 +20982,23 @@
         "operating_company": "PT Accola Hotel Indonesia",
         "parent_group": "PT DMS Propertindo Tbk",
         "idx_ticker": "KOTA",
-        "listed_status": "subsidiary-of-listed"
+        "listed_status": "subsidiary-of-listed",
+        "revenue_idr": 29377755960,
+        "revenue_year": 2024,
+        "net_profit_idr": -18066910543,
+        "total_assets_idr": 1504787301010,
+        "operating_profit_idr": -7559227709,
+        "parent_financial_sources": [
+          {
+            "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=KOTA",
+            "title": "KOTA FY2024 IDX XBRL Instance",
+            "publisher": "IDX (Indonesia Stock Exchange)",
+            "date_published": "2026-05-27T10:08:43",
+            "source_type": "IDX_XBRL"
+          }
+        ],
+        "figure_origin": "IDX_XBRL",
+        "last_verified": "2026-05-27"
       },
       "coord_source": "overpass_v1",
       "coord_osm_ref": "relation/14264148"
@@ -20813,7 +21085,23 @@
         "operating_company": "PT Pembangunan Jaya Ancol Tbk",
         "parent_group": "Pemprov DKI Jakarta / Pembangunan Jaya Group",
         "idx_ticker": "PJAA",
-        "listed_status": "listed"
+        "listed_status": "listed",
+        "revenue_idr": 1265897000000,
+        "revenue_year": 2024,
+        "net_profit_idr": 177792000000,
+        "total_assets_idr": 3591730000000,
+        "operating_profit_idr": 373864000000,
+        "parent_financial_sources": [
+          {
+            "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=PJAA",
+            "title": "PJAA FY2024 IDX XBRL Instance",
+            "publisher": "IDX (Indonesia Stock Exchange)",
+            "date_published": "2026-05-27T10:08:43",
+            "source_type": "IDX_XBRL"
+          }
+        ],
+        "figure_origin": "IDX_XBRL",
+        "last_verified": "2026-05-27"
       }
     },
     {

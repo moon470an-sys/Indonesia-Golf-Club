@@ -13,3 +13,10 @@ _archive/
 # Crawl loop transient artifacts (logs/state, not committed)
 data/crawl_state.json
 data/crawl_console.log
+
+# IDX XBRL — downloaded zips and per-run logs are reproducible
+idx_xbrl/cache/
+idx_xbrl/logs/
+
+# XBRL backup files (large; reproducible from previous git commits)
+data/company_financials_5y.backup.xbrl.*.json

@@ -2077,8 +2077,11 @@ function renderAllTabRow(c, cat = 'all') {
     : '<span class="muted">—</span>';
   const revIdr = fin.revenue_idr ?? fin.revenue_idr_h1;
   const revYearLabel = fin.revenue_idr_h1 != null && fin.revenue_idr == null ? ' (H1)' : '';
+  const xbrlBadge = fin.figure_origin === 'IDX_XBRL'
+    ? ` <span class="xbrl-badge" title="IDX XBRL 공시에서 자동 추출 — ${escapeHtml(fin.last_verified || '')}">XBRL</span>`
+    : '';
   const revCell = revIdr != null
-    ? `<span class="rev-cell">${fmtBigIDR(revIdr)}${revYearLabel}</span>`
+    ? `<span class="rev-cell">${fmtBigIDR(revIdr)}${revYearLabel}${xbrlBadge}</span>`
     : '<span class="muted">—</span>';
 
   // Source column: filtered by selected category (or combined for 'all')
@@ -3072,12 +3075,15 @@ function renderFinanceTable() {
       }
     }
     const firstUrl = validUrls[0] || null;
+    const xbrlBadge = fin.figure_origin === 'IDX_XBRL'
+      ? `<span class="xbrl-badge" title="IDX XBRL 공시에서 자동 추출 — ${escapeHtml(fin.last_verified || '')}">XBRL</span> `
+      : '';
     const srcCellHtml = firstUrl
-      ? `<a href="${escapeHtml(firstUrl)}" target="_blank" rel="noopener" `
+      ? `${xbrlBadge}<a href="${escapeHtml(firstUrl)}" target="_blank" rel="noopener" `
         + `title="${escapeHtml(firstUrl)}">${t('finance.viewSrc', { n: validUrls.length })}</a>`
       : (allFinSources.length > 0
-          ? `<span class="muted" title="${escapeHtml(t('finance.invalidSrcTitle', { n: allFinSources.length }))}">${t('finance.invalidSrc', { n: allFinSources.length })}</span>`
-          : '<span class="muted">—</span>');
+          ? `${xbrlBadge}<span class="muted" title="${escapeHtml(t('finance.invalidSrcTitle', { n: allFinSources.length }))}">${t('finance.invalidSrc', { n: allFinSources.length })}</span>`
+          : (xbrlBadge || '<span class="muted">—</span>'));
 
     // Trend column: opens 5y modal if we have data for the parent ticker.
     const bare = _bareTicker(ticker);

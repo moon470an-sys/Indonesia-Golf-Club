@@ -3188,6 +3188,25 @@ a.ticker-link:focus-visible {
   .src-cell { max-width: none; }
 }
 
+/* === IDX XBRL provenance badge === */
+.xbrl-badge {
+  display: inline-block;
+  padding: 1px 6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: linear-gradient(135deg, #1e7a3f 0%, #14532d 100%);
+  border-radius: 4px;
+  vertical-align: middle;
+  cursor: help;
+  user-select: none;
+}
+[data-theme="dark"] .xbrl-badge {
+  background: linear-gradient(135deg, #34d399 0%, #059669 100%);
+  color: #052e16;
+}
+
 /* === Print === */
 @media print {
   .topbar, .footer, .sidebar, .detail-panel, .modal-overlay, .sidebar-toggle { display: none !important; }

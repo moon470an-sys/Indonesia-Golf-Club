@@ -100,7 +100,151 @@
         "LPKR": "Imperial Klub Golf 1 premium Jakarta. FY24 Rp 11.35T",
         "PWON": "Pakuwon Golf & Family Club 1 course. FY24 Rp 6.67T"
       }
-    }
+    },
+    "xbrl_passes": [
+      {
+        "fetched_at": "2026-05-27T10:06:00",
+        "year": 2024,
+        "period": "audit",
+        "tickers_attempted": [
+          "AKRA",
+          "AMMN",
+          "ASRI",
+          "BKDP",
+          "BKSL",
+          "BSDE",
+          "CTRA",
+          "DILD",
+          "DMIG",
+          "ELTY",
+          "GOLF",
+          "INCO",
+          "JSPT",
+          "KIJA",
+          "KOTA",
+          "KPIG",
+          "LPKR",
+          "MDLN",
+          "PIPG",
+          "PJAA",
+          "PTBA",
+          "PWON",
+          "SMDM",
+          "SMRA"
+        ],
+        "tickers_ok": [
+          "AKRA",
+          "AMMN",
+          "ASRI",
+          "BKDP",
+          "BKSL",
+          "BSDE",
+          "CTRA",
+          "DILD",
+          "ELTY",
+          "GOLF",
+          "INCO",
+          "JSPT",
+          "KIJA",
+          "KOTA",
+          "KPIG",
+          "LPKR",
+          "MDLN",
+          "PJAA",
+          "PTBA",
+          "PWON",
+          "SMDM",
+          "SMRA"
+        ],
+        "tickers_failed": [
+          {
+            "ticker": "DMIG",
+            "status": "not_found",
+            "error": null
+          },
+          {
+            "ticker": "PIPG",
+            "status": "not_found",
+            "error": null
+          }
+        ],
+        "new_companies_added": [
+          "ASRI",
+          "JSPT",
+          "KOTA",
+          "PJAA"
+        ]
+      },
+      {
+        "fetched_at": "2026-05-27T10:08:43",
+        "year": 2024,
+        "period": "audit",
+        "tickers_attempted": [
+          "AKRA",
+          "AMMN",
+          "ASRI",
+          "BKDP",
+          "BKSL",
+          "BSDE",
+          "CTRA",
+          "DILD",
+          "DMIG",
+          "ELTY",
+          "GOLF",
+          "INCO",
+          "JSPT",
+          "KIJA",
+          "KOTA",
+          "KPIG",
+          "LPKR",
+          "MDLN",
+          "PIPG",
+          "PJAA",
+          "PTBA",
+          "PWON",
+          "SMDM",
+          "SMRA"
+        ],
+        "tickers_ok": [
+          "AKRA",
+          "AMMN",
+          "ASRI",
+          "BKDP",
+          "BKSL",
+          "BSDE",
+          "CTRA",
+          "DILD",
+          "ELTY",
+          "GOLF",
+          "INCO",
+          "JSPT",
+          "KIJA",
+          "KOTA",
+          "KPIG",
+          "LPKR",
+          "MDLN",
+          "PJAA",
+          "PTBA",
+          "PWON",
+          "SMDM",
+          "SMRA"
+        ],
+        "tickers_failed": [
+          {
+            "ticker": "DMIG",
+            "status": "not_found",
+            "error": null
+          },
+          {
+            "ticker": "PIPG",
+            "status": "not_found",
+            "error": null
+          }
+        ],
+        "new_companies_added": []
+      }
+    ],
+    "last_xbrl_update": "2026-05-27T10:08:43"
   },
   "companies": [
     {
@@ -190,16 +334,25 @@
         },
         "2023": {
           "revenue": 11539141250155,
-          "operating_profit": 3298781000000,
+          "operating_profit": 3298780995135,
           "net_profit": 1945467441301,
           "ebitda": 3857033000000,
           "total_assets": 66827648486393,
-          "total_liabilities": 25626062000000,
-          "total_equity": 41201586000000,
+          "total_liabilities": 25626062282715,
+          "total_equity": 41201586203678,
           "eps": 93.02,
           "dividend_per_share": 0,
           "employees": null,
           "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=BSDE",
+              "title": "BSDE 2023 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "BSDE_2024_audit.zip"
+            },
             {
               "url": "https://stockanalysis.com/quote/idx/BSDE/financials/",
               "title": "BSDE Financial Statements",
@@ -207,20 +360,42 @@
               "date_published": null,
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "net_profit_total": 2259456837723,
+          "total_equity_parent": 36470759665574,
+          "non_controlling_interests_profit": 313989396422,
+          "gross_profit": 6411686645543,
+          "cost_of_revenue": 5127454604612,
+          "ga_expenses": 1567429489880,
+          "selling_expenses": 1545476160528,
+          "cash_and_equivalents": 9425764083804,
+          "cfo": 840493807756,
+          "cfi": -315001477009,
+          "cff": -312903780210,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2023-12-31"
         },
         "2024": {
-          "revenue": 13796572149000,
-          "operating_profit": 4874328000000,
-          "net_profit": 4359063784000,
+          "revenue": 13796572148837,
+          "operating_profit": 4874328196371,
+          "net_profit": 4359063783992,
           "ebitda": 5620919000000,
-          "total_assets": 76023348887000,
-          "total_liabilities": 28704021000000,
-          "total_equity": 47319328000000,
+          "total_assets": 76023348886846,
+          "total_liabilities": 28704020732842,
+          "total_equity": 47319328154004,
           "eps": 208.43,
           "dividend_per_share": 0,
           "employees": null,
           "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=BSDE",
+              "title": "BSDE 2024 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "BSDE_2024_audit.zip"
+            },
             {
               "url": "https://www.bsdcity.com/app/uploads/2025/05/BSDE-Annual-Report-2024-1.pdf",
               "title": "BSDE Annual Report 2024",
@@ -235,7 +410,20 @@
               "date_published": null,
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "net_profit_total": 4917670536213,
+          "total_equity_parent": 40861177480477,
+          "non_controlling_interests_profit": 558606752221,
+          "gross_profit": 8816385465162,
+          "cost_of_revenue": 4980186683675,
+          "ga_expenses": 2028679336364,
+          "selling_expenses": 1913377932427,
+          "cash_and_equivalents": 8957981035066,
+          "cfo": 916030528262,
+          "cfi": -2715094311001,
+          "cff": 1232882557399,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2024-12-31"
         },
         "2025": {
           "revenue": 12788452000000,
@@ -263,7 +451,7 @@
       },
       "summary_note": "Strong revenue rebound from COVID lows (Rp 6.2T in 2020 to Rp 13.8T in 2024); net profit up ~9x. SMDM (Rancamaya) acquired Oct 2024 for Rp 2.33T.",
       "data_quality": "high",
-      "last_verified": "2026-05-01"
+      "last_verified": "2026-05-27"
     },
     {
       "ticker": "DMIG",
@@ -513,17 +701,26 @@
           ]
         },
         "2023": {
-          "revenue": 1421006434000,
-          "operating_profit": 135473000000,
-          "net_profit": 329809865000,
+          "revenue": 1421006433535,
+          "operating_profit": 117587863931,
+          "net_profit": 329809864915,
           "ebitda": 207713000000,
           "total_assets": 33475139357523,
-          "total_liabilities": 6721229000000,
-          "total_equity": 26753911000000,
+          "total_liabilities": 6721228664101,
+          "total_equity": 26753910693422,
           "eps": 3.69,
           "dividend_per_share": null,
           "employees": null,
           "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=KPIG",
+              "title": "KPIG 2023 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "KPIG_2024_audit.zip"
+            },
             {
               "url": "https://stockanalysis.com/quote/idx/KPIG/financials/",
               "title": "KPIG Financial Statements",
@@ -531,20 +728,42 @@
               "date_published": null,
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "net_profit_total": 345106038319,
+          "total_equity_parent": 26527901444770,
+          "non_controlling_interests_profit": 15296173404,
+          "gross_profit": 516282159708,
+          "cost_of_revenue": 904724273827,
+          "ga_expenses": 353381360979,
+          "selling_expenses": 45312934798,
+          "cash_and_equivalents": 175817063563,
+          "cfo": 87682250071,
+          "cfi": -1197256280447,
+          "cff": 1080726403805,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2023-12-31"
         },
         "2024": {
-          "revenue": 1770144398000,
-          "operating_profit": 129385000000,
-          "net_profit": 658629034000,
+          "revenue": 1770144397893,
+          "operating_profit": 115085838437,
+          "net_profit": 658629034066,
           "ebitda": 270442000000,
-          "total_assets": 35827499061000,
-          "total_liabilities": 7312392000000,
-          "total_equity": 28515107000000,
+          "total_assets": 35827499060643,
+          "total_liabilities": 7312391677778,
+          "total_equity": 28515107382865,
           "eps": 6.75,
           "dividend_per_share": null,
           "employees": null,
           "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=KPIG",
+              "title": "KPIG 2024 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "KPIG_2024_audit.zip"
+            },
             {
               "url": "https://www.inews.id/finance/bisnis/naik-246-persen-mnc-land-cetak-pendapatan-rp177-triliun-di-2024",
               "title": "MNC Land Cetak Pendapatan Rp1,77T di 2024",
@@ -559,7 +778,20 @@
               "date_published": null,
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "net_profit_total": 678951945023,
+          "total_equity_parent": 28098664090006,
+          "non_controlling_interests_profit": 20322910957,
+          "gross_profit": 543151377048,
+          "cost_of_revenue": 1226993020845,
+          "ga_expenses": 369381629343,
+          "selling_expenses": 58683909268,
+          "cash_and_equivalents": 180446928972,
+          "cfo": 575401848492,
+          "cfi": -1734338506834,
+          "cff": 1164147818124,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2024-12-31"
         },
         "2025": {
           "revenue": 2615281000000,
@@ -590,7 +822,7 @@
       },
       "summary_note": "Strong growth driven by Lido City/Trump golf development; revenue Rp 678B→1.77T (~2.6x). Net profit jumped to Rp 659B in 2024 (+96% YoY).",
       "data_quality": "high",
-      "last_verified": "2026-05-01"
+      "last_verified": "2026-05-27"
     },
     {
       "ticker": "BKSL",
@@ -680,16 +912,25 @@
         },
         "2023": {
           "revenue": 1720160600872,
-          "operating_profit": 469603000000,
+          "operating_profit": 504307611518,
           "net_profit": 332300775467,
           "ebitda": 486001000000,
           "total_assets": 19886877883420,
-          "total_liabilities": 4745795000000,
-          "total_equity": 15141083000000,
+          "total_liabilities": 4745794622926,
+          "total_equity": 15141083260494,
           "eps": 2.2,
           "dividend_per_share": 0,
           "employees": null,
           "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=BKSL",
+              "title": "BKSL 2023 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "BKSL_2024_audit.zip"
+            },
             {
               "url": "https://stockanalysis.com/quote/idx/BKSL/financials/",
               "title": "BKSL Financial Statements",
@@ -697,20 +938,43 @@
               "date_published": null,
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "net_profit_total": 317829464554,
+          "total_equity_parent": 14386041926944,
+          "non_controlling_interests_profit": -14471310913,
+          "eps_diluted": 2.2,
+          "gross_profit": 760103298908,
+          "cost_of_revenue": 960057301964,
+          "ga_expenses": 204826741077,
+          "selling_expenses": 50968946313,
+          "cash_and_equivalents": 217617172383,
+          "cfo": -330390944315,
+          "cfi": -4078318705189,
+          "cff": 4336048713117,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2023-12-31"
         },
         "2024": {
-          "revenue": 744068397000,
-          "operating_profit": 36885000000,
-          "net_profit": 17355010000,
+          "revenue": 744068396829,
+          "operating_profit": 81310561560,
+          "net_profit": 17355009761,
           "ebitda": 54698000000,
-          "total_assets": 21188290505000,
-          "total_liabilities": 6034271000000,
-          "total_equity": 15154020000000,
+          "total_assets": 21188290505406,
+          "total_liabilities": 6034270819491,
+          "total_equity": 15154019685915,
           "eps": 0.1,
           "dividend_per_share": 0,
           "employees": null,
           "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=BKSL",
+              "title": "BKSL 2024 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "BKSL_2024_audit.zip"
+            },
             {
               "url": "https://stockanalysis.com/quote/idx/BKSL/financials/",
               "title": "BKSL Financial Statements",
@@ -725,7 +989,21 @@
               "date_published": "2025-01-15",
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "net_profit_total": 13930180346,
+          "total_equity_parent": 14402403181780,
+          "non_controlling_interests_profit": -3424829415,
+          "eps_diluted": 0.1,
+          "gross_profit": 370650077800,
+          "cost_of_revenue": 373418319029,
+          "ga_expenses": 216710219182,
+          "selling_expenses": 72629297058,
+          "cash_and_equivalents": 273904662785,
+          "cfo": 367433459203,
+          "cfi": -46415474681,
+          "cff": -264730494120,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2024-12-31"
         },
         "2025": {
           "revenue": 2757463756020,
@@ -753,7 +1031,7 @@
       },
       "summary_note": "Volatile: COVID losses (2020), recovery (2021), losses (2022), spike (2023), thin profit (2024). Revenue Rp 1.72T (2023) dropped to Rp 744B (2024). Total assets Rp 21.2T.",
       "data_quality": "high",
-      "last_verified": "2026-05-01"
+      "last_verified": "2026-05-27"
     },
     {
       "ticker": "ELTY",
@@ -842,17 +1120,26 @@
           ]
         },
         "2023": {
-          "revenue": 1227355000000,
-          "operating_profit": -183152000000,
+          "revenue": 1273390000000,
+          "operating_profit": 93698000000,
           "net_profit": -1079192000000,
           "ebitda": -109298000000,
           "total_assets": 8639053000000,
           "total_liabilities": 2507808000000,
           "total_equity": 6131245000000,
-          "eps": -24.8,
+          "eps": -2.579e-05,
           "dividend_per_share": 0,
           "employees": null,
           "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=ELTY",
+              "title": "ELTY 2023 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "ELTY_2024_audit.zip"
+            },
             {
               "url": "https://stockanalysis.com/quote/idx/ELTY/financials/",
               "title": "ELTY Financial Statements",
@@ -860,20 +1147,42 @@
               "date_published": null,
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "net_profit_total": -1122557000000,
+          "total_equity_parent": 5625879000000,
+          "non_controlling_interests_profit": -43365000000,
+          "gross_profit": 436851000000,
+          "cost_of_revenue": 836539000000,
+          "ga_expenses": 324970000000,
+          "selling_expenses": 18183000000,
+          "cash_and_equivalents": 133760000000,
+          "cfo": 36273000000,
+          "cfi": -4832000000,
+          "cff": -45801000000,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2023-12-31"
         },
         "2024": {
-          "revenue": 1208198000000,
-          "operating_profit": 75117000000,
+          "revenue": 1226740000000,
+          "operating_profit": 93785000000,
           "net_profit": -68528000000,
           "ebitda": 146548000000,
           "total_assets": 8742017000000,
           "total_liabilities": 2717802000000,
           "total_equity": 6024215000000,
-          "eps": -1.57,
+          "eps": -2.34e-06,
           "dividend_per_share": 0,
           "employees": null,
           "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=ELTY",
+              "title": "ELTY 2024 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "ELTY_2024_audit.zip"
+            },
             {
               "url": "https://stockanalysis.com/quote/idx/ELTY/financials/",
               "title": "ELTY Financial Statements",
@@ -881,7 +1190,20 @@
               "date_published": null,
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "net_profit_total": -101948000000,
+          "total_equity_parent": 5552269000000,
+          "non_controlling_interests_profit": -33420000000,
+          "gross_profit": 418308000000,
+          "cost_of_revenue": 808432000000,
+          "ga_expenses": 304186000000,
+          "selling_expenses": 20337000000,
+          "cash_and_equivalents": 113592000000,
+          "cfo": 29913000000,
+          "cfi": -130081000000,
+          "cff": 77073000000,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2024-12-31"
         },
         "2025": {
           "revenue": 1379377000000,
@@ -895,7 +1217,7 @@
       },
       "summary_note": "5년 연속 적자. 매출은 Rp 616B→1.21T 두 배. 2024년 영업이익 첫 흑자 전환(75B). 자산 Rp 11.8T→8.7T 축소.",
       "data_quality": "high",
-      "last_verified": "2026-05-01"
+      "last_verified": "2026-05-27"
     },
     {
       "ticker": "MDLN",
@@ -967,17 +1289,26 @@
           ]
         },
         "2023": {
-          "revenue": 1152308000000,
-          "operating_profit": 101316000000,
-          "net_profit": -101974000000,
+          "revenue": 1152307658513,
+          "operating_profit": -342725786,
+          "net_profit": -101974457012,
           "ebitda": 162490000000,
-          "total_assets": 13688938000000,
-          "total_liabilities": 9572111000000,
-          "total_equity": 4116827000000,
+          "total_assets": 13688937894339,
+          "total_liabilities": 9572111264549,
+          "total_equity": 4116826629790,
           "eps": -8.25,
           "dividend_per_share": 0,
           "employees": 411,
           "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=MDLN",
+              "title": "MDLN 2023 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "MDLN_2024_audit.zip"
+            },
             {
               "url": "https://stockanalysis.com/quote/idx/MDLN/financials/",
               "title": "MDLN Financial Statements",
@@ -985,20 +1316,43 @@
               "date_published": null,
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "net_profit_total": -104841134375,
+          "total_equity_parent": 4117192307153,
+          "non_controlling_interests_profit": -2866677363,
+          "eps_diluted": -8.25,
+          "gross_profit": 537798953709,
+          "cost_of_revenue": 614508704804,
+          "ga_expenses": 431100645279,
+          "selling_expenses": 107041034216,
+          "cash_and_equivalents": 185364109069,
+          "cfo": 84192652688,
+          "cfi": -146354497544,
+          "cff": 116687472640,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2023-12-31"
         },
         "2024": {
-          "revenue": 1017570000000,
-          "operating_profit": -20448000000,
-          "net_profit": -690272000000,
+          "revenue": 1017570122981,
+          "operating_profit": -109472678252,
+          "net_profit": -690272176510,
           "ebitda": 40365000000,
-          "total_assets": 13561474000000,
-          "total_liabilities": 10108095000000,
-          "total_equity": 3453379000000,
+          "total_assets": 13561474322896,
+          "total_liabilities": 10108095087531,
+          "total_equity": 3453379235365,
           "eps": -57.78,
           "dividend_per_share": 0,
           "employees": 947,
           "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=MDLN",
+              "title": "MDLN 2024 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "MDLN_2024_audit.zip"
+            },
             {
               "url": "https://stockanalysis.com/quote/idx/MDLN/financials/",
               "title": "MDLN Financial Statements",
@@ -1013,7 +1367,21 @@
               "date_published": "2025-04-15",
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "net_profit_total": -690855066136,
+          "total_equity_parent": 3454327802354,
+          "non_controlling_interests_profit": -582889626,
+          "eps_diluted": -57.78,
+          "gross_profit": 454413039096,
+          "cost_of_revenue": 563157083885,
+          "ga_expenses": 443047007108,
+          "selling_expenses": 120838710240,
+          "cash_and_equivalents": 190522197367,
+          "cfo": -5001454688,
+          "cfi": -40289398243,
+          "cff": 51515434742,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2024-12-31"
         },
         "2025": {
           "revenue": 1013159000000,
@@ -1041,7 +1409,7 @@
       },
       "summary_note": "Modern Golf 모회사. 변동성 심함. 2024 골프장+클럽하우스 레스토랑 세그먼트 매출 Rp 74.3B 별도 공시 (희귀 사례).",
       "data_quality": "high",
-      "last_verified": "2026-05-01"
+      "last_verified": "2026-05-27"
     },
     {
       "ticker": "KIJA",
@@ -1114,7 +1482,7 @@
         },
         "2023": {
           "revenue": 3299597000000,
-          "operating_profit": 728477000000,
+          "operating_profit": 983495000000,
           "net_profit": 305576000000,
           "ebitda": 903080000000,
           "total_assets": 12947435000000,
@@ -1125,17 +1493,39 @@
           "employees": 736,
           "sources": [
             {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=KIJA",
+              "title": "KIJA 2023 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "KIJA_2024_audit.zip"
+            },
+            {
               "url": "https://stockanalysis.com/quote/idx/KIJA/financials/",
               "title": "KIJA Financial Statements",
               "publisher": "StockAnalysis",
               "date_published": null,
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "net_profit_total": 528623000000,
+          "total_equity_parent": 5466891000000,
+          "non_controlling_interests_profit": 223047000000,
+          "gross_profit": 1536433000000,
+          "cost_of_revenue": 1763164000000,
+          "ga_expenses": 463346000000,
+          "selling_expenses": 89592000000,
+          "cash_and_equivalents": 1094701000000,
+          "cfo": 564168000000,
+          "cfi": -394394000000,
+          "cff": -398565000000,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2023-12-31"
         },
         "2024": {
           "revenue": 4602648000000,
-          "operating_profit": 1363016000000,
+          "operating_profit": 1313531000000,
           "net_profit": 363308000000,
           "ebitda": 1547501000000,
           "total_assets": 14017356000000,
@@ -1145,6 +1535,15 @@
           "dividend_per_share": 1.792,
           "employees": 723,
           "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=KIJA",
+              "title": "KIJA 2024 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "KIJA_2024_audit.zip"
+            },
             {
               "url": "https://stockanalysis.com/quote/idx/KIJA/financials/",
               "title": "KIJA Financial Statements",
@@ -1159,7 +1558,20 @@
               "date_published": "2025-02-15",
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "net_profit_total": 770058000000,
+          "total_equity_parent": 5831634000000,
+          "non_controlling_interests_profit": 406750000000,
+          "gross_profit": 1967179000000,
+          "cost_of_revenue": 2635469000000,
+          "ga_expenses": 548301000000,
+          "selling_expenses": 105347000000,
+          "cash_and_equivalents": 2048503000000,
+          "cfo": 1870028000000,
+          "cfi": -515955000000,
+          "cff": -410928000000,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2024-12-31"
         },
         "2025": {
           "revenue": 5149425000000,
@@ -1187,7 +1599,7 @@
       },
       "summary_note": "만성 적자에서 흑자 전환 — 2023부터 흑자, 2024 매출 Rp 4.6T 사상 최대. 2024 첫 배당 Rp 1.792.",
       "data_quality": "high",
-      "last_verified": "2026-05-01"
+      "last_verified": "2026-05-27"
     },
     {
       "ticker": "MTLA",
@@ -1382,17 +1794,26 @@
           ]
         },
         "2023": {
-          "revenue": 496498000000,
-          "operating_profit": 115421000000,
-          "net_profit": 104238000000,
+          "revenue": 496497903464,
+          "operating_profit": 95818236224,
+          "net_profit": 104237957150,
           "ebitda": 127780000000,
-          "total_assets": 3534589000000,
-          "total_liabilities": 476255000000,
-          "total_equity": 3058334000000,
+          "total_assets": 3534588823995,
+          "total_liabilities": 476254570089,
+          "total_equity": 3058334253906,
           "eps": 21.79,
           "dividend_per_share": 0,
           "employees": 274,
           "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=SMDM",
+              "title": "SMDM 2023 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "SMDM_2024_audit.zip"
+            },
             {
               "url": "https://stockanalysis.com/quote/idx/SMDM/financials/",
               "title": "SMDM Financial Statements",
@@ -1400,20 +1821,42 @@
               "date_published": null,
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "net_profit_total": 97309514650,
+          "total_equity_parent": 2167024014143,
+          "non_controlling_interests_profit": -6928442500,
+          "gross_profit": 290465240693,
+          "cost_of_revenue": 206032662771,
+          "ga_expenses": 148231937376,
+          "selling_expenses": 46415067093,
+          "cash_and_equivalents": 321778248143,
+          "cfo": 4898500755,
+          "cfi": -4553819656,
+          "cff": 31658050949,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2023-12-31"
         },
         "2024": {
-          "revenue": 694045000000,
-          "operating_profit": 148817000000,
-          "net_profit": 123778000000,
+          "revenue": 694045208919,
+          "operating_profit": 148817143415,
+          "net_profit": 123777972842,
           "ebitda": 161944000000,
-          "total_assets": 3462272000000,
-          "total_liabilities": 251618000000,
-          "total_equity": 3210654000000,
-          "eps": 25.94,
+          "total_assets": 3462272048915,
+          "total_liabilities": 251618246015,
+          "total_equity": 3210653802900,
+          "eps": 25.87,
           "dividend_per_share": 0,
           "employees": 262,
           "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=SMDM",
+              "title": "SMDM 2024 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "SMDM_2024_audit.zip"
+            },
             {
               "url": "https://stockanalysis.com/quote/idx/SMDM/financials/",
               "title": "SMDM Financial Statements",
@@ -1428,7 +1871,20 @@
               "date_published": "2024-10-23",
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "net_profit_total": 162603250072,
+          "total_equity_parent": 2280960360157,
+          "non_controlling_interests_profit": 38825277230,
+          "gross_profit": 397305210275,
+          "cost_of_revenue": 296739998644,
+          "ga_expenses": 180543059345,
+          "selling_expenses": 67945007515,
+          "cash_and_equivalents": 276105517459,
+          "cfo": -69679968003,
+          "cfi": -11185258382,
+          "cff": 35192495701,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2024-12-31"
         },
         "2025": {
           "revenue": 386085000000,
@@ -1456,7 +1912,7 @@
       },
       "summary_note": "Rancamaya 모회사. 2024년 10월 BSDE에 91.99% 인수(Rp 2.33T). 매출 Rp 387B→694B, 순이익 -0.8B→123.8B 회복.",
       "data_quality": "high",
-      "last_verified": "2026-05-01"
+      "last_verified": "2026-05-27"
     },
     {
       "ticker": "LPKR",
@@ -1535,8 +1991,8 @@
           ]
         },
         "2023": {
-          "revenue": 16702038000000,
-          "operating_profit": 2354897000000,
+          "revenue": 16845227000000,
+          "operating_profit": 2827339000000,
           "net_profit": 50140000000,
           "ebitda": 2985457000000,
           "total_assets": 49570824000000,
@@ -1547,17 +2003,39 @@
           "employees": 15549,
           "sources": [
             {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=LPKR",
+              "title": "LPKR 2023 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "LPKR_2024_audit.zip"
+            },
+            {
               "url": "https://stockanalysis.com/quote/idx/LPKR/financials/",
               "title": "LPKR Financial Statements",
               "publisher": "StockAnalysis",
               "date_published": null,
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "net_profit_total": 653699000000,
+          "total_equity_parent": 15314603000000,
+          "non_controlling_interests_profit": 603559000000,
+          "gross_profit": 7366225000000,
+          "cost_of_revenue": 9479002000000,
+          "ga_expenses": 3708518000000,
+          "selling_expenses": 830368000000,
+          "cash_and_equivalents": 2649845000000,
+          "cfo": 2081863000000,
+          "cfi": -978844000000,
+          "cff": -1077427000000,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2023-12-31"
         },
         "2024": {
-          "revenue": 11347979000000,
-          "operating_profit": 1389947000000,
+          "revenue": 11505172000000,
+          "operating_profit": 1768461000000,
           "net_profit": 18746045000000,
           "ebitda": 1676764000000,
           "total_assets": 53783859000000,
@@ -1567,6 +2045,15 @@
           "dividend_per_share": 0,
           "employees": 1708,
           "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=LPKR",
+              "title": "LPKR 2024 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "LPKR_2024_audit.zip"
+            },
             {
               "url": "https://stockanalysis.com/quote/idx/LPKR/financials/",
               "title": "LPKR Financial Statements",
@@ -1581,7 +2068,20 @@
               "date_published": "2025-04-01",
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "net_profit_total": 18727125000000,
+          "total_equity_parent": 29868532000000,
+          "non_controlling_interests_profit": -18920000000,
+          "gross_profit": 4951272000000,
+          "cost_of_revenue": 6553900000000,
+          "ga_expenses": 2421516000000,
+          "selling_expenses": 761295000000,
+          "cash_and_equivalents": 5328028000000,
+          "cfo": 1743280000000,
+          "cfi": 9376693000000,
+          "cff": -8442396000000,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2024-12-31"
         },
         "2025": {
           "revenue": 8843888000000,
@@ -1595,7 +2095,7 @@
       },
       "summary_note": "Imperial Klub 모회사. 2024 순이익 Rp 18.75T는 SILO(Siloam) 분리매각 일회성 이익. 직원수 15,549→1,708 급감(분리 반영).",
       "data_quality": "high",
-      "last_verified": "2026-05-01"
+      "last_verified": "2026-05-27"
     },
     {
       "ticker": "SMRA",
@@ -1667,17 +2167,26 @@
           ]
         },
         "2023": {
-          "revenue": 6658783000000,
-          "operating_profit": 1911672000000,
-          "net_profit": 765970000000,
+          "revenue": 6658782663000,
+          "operating_profit": 1900054136000,
+          "net_profit": 765969994000,
           "ebitda": 2174352000000,
-          "total_assets": 31168375000000,
-          "total_liabilities": 18865313000000,
-          "total_equity": 12303062000000,
-          "eps": 46.4,
+          "total_assets": 31168375086000,
+          "total_liabilities": 18865313214000,
+          "total_equity": 12303061872000,
+          "eps": 0.0464,
           "dividend_per_share": 7,
           "employees": 2541,
           "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=SMRA",
+              "title": "SMRA 2023 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "SMRA_2024_audit.zip"
+            },
             {
               "url": "https://stockanalysis.com/quote/idx/SMRA/financials/",
               "title": "SMRA Financial Statements",
@@ -1685,20 +2194,42 @@
               "date_published": null,
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "net_profit_total": 1057692007000,
+          "total_equity_parent": 9826809976000,
+          "non_controlling_interests_profit": 291722013000,
+          "gross_profit": 3359527957000,
+          "cost_of_revenue": 3299254706000,
+          "ga_expenses": 1038706737000,
+          "selling_expenses": 420767084000,
+          "cash_and_equivalents": 3292876722000,
+          "cfo": 1405384015000,
+          "cfi": -2044736394000,
+          "cff": 789671272000,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2023-12-31"
         },
         "2024": {
-          "revenue": 10623400000000,
-          "operating_profit": 3732400000000,
-          "net_profit": 1373400000000,
+          "revenue": 10623354592000,
+          "operating_profit": 3775543708000,
+          "net_profit": 1373378406000,
           "ebitda": 3811900000000,
-          "total_assets": 33534100000000,
-          "total_liabilities": 19701600000000,
-          "total_equity": 13832500000000,
-          "eps": 83.24,
+          "total_assets": 33534100462000,
+          "total_liabilities": 19701573132000,
+          "total_equity": 13832527330000,
+          "eps": 0.08319,
           "dividend_per_share": 9,
           "employees": 2637,
           "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=SMRA",
+              "title": "SMRA 2024 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "SMRA_2024_audit.zip"
+            },
             {
               "url": "https://www.indopremier.com/ipotnews/newsDetail.php?news_id=460389",
               "title": "Financial Statements Full Year 2024 of SMRA",
@@ -1713,7 +2244,20 @@
               "date_published": "2025-03-15",
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "net_profit_total": 1842219470000,
+          "total_equity_parent": 11047865751000,
+          "non_controlling_interests_profit": 468841064000,
+          "gross_profit": 5460906088000,
+          "cost_of_revenue": 5162448504000,
+          "ga_expenses": 1175905304000,
+          "selling_expenses": 509457076000,
+          "cash_and_equivalents": 3292826506000,
+          "cfo": 577719795000,
+          "cfi": -3599363990000,
+          "cff": 3021593979000,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2024-12-31"
         },
         "2025": {
           "revenue": 8766927000000,
@@ -1741,7 +2285,7 @@
       },
       "summary_note": "Gading Raya 모회사. COVID 직격 후 강한 회복 — 매출 Rp 5T→10.6T(+111%), 순이익 180B→1.37T(+664%). 2024 산업단지 매각 효과.",
       "data_quality": "high",
-      "last_verified": "2026-05-01"
+      "last_verified": "2026-05-27"
     },
     {
       "ticker": "MKPI",
@@ -1953,16 +2497,25 @@
         },
         "2023": {
           "revenue": 38488867000000,
-          "operating_profit": 7265915000000,
+          "operating_profit": 6564308000000,
           "net_profit": 6105856000000,
           "ebitda": 8588575000000,
           "total_assets": 38765189000000,
           "total_liabilities": 17201993000000,
           "total_equity": 21563196000000,
-          "eps": 531.54,
+          "eps": 532,
           "dividend_per_share": 1094.05,
           "employees": 1561,
           "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=PTBA",
+              "title": "PTBA 2023 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "PTBA_2024_audit.zip"
+            },
             {
               "url": "https://stockanalysis.com/quote/idx/PTBA/financials/",
               "title": "PTBA Financial Statements",
@@ -1970,20 +2523,43 @@
               "date_published": null,
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "net_profit_total": 6292521000000,
+          "total_equity_parent": 21434538000000,
+          "non_controlling_interests_profit": 186665000000,
+          "eps_diluted": 532,
+          "gross_profit": 9157305000000,
+          "cost_of_revenue": 29331562000000,
+          "ga_expenses": 1936635000000,
+          "selling_expenses": 656362000000,
+          "cash_and_equivalents": 4138867000000,
+          "cfo": 3104707000000,
+          "cfi": 7257889000000,
+          "cff": -13244158000000,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2023-12-31"
         },
         "2024": {
           "revenue": 42764968000000,
-          "operating_profit": 5530930000000,
+          "operating_profit": 5335005000000,
           "net_profit": 5103720000000,
           "ebitda": 6610692000000,
-          "total_assets": 41785576000000,
-          "total_liabilities": 19141764000000,
+          "total_assets": 41854334000000,
+          "total_liabilities": 19210522000000,
           "total_equity": 22643812000000,
-          "eps": 443.51,
+          "eps": 444,
           "dividend_per_share": 397.71,
           "employees": 1683,
           "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=PTBA",
+              "title": "PTBA 2024 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "PTBA_2024_audit.zip"
+            },
             {
               "url": "https://stockanalysis.com/quote/idx/PTBA/financials/",
               "title": "PTBA Financial Statements",
@@ -1998,12 +2574,26 @@
               "date_published": "2025-04-30",
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "net_profit_total": 5139423000000,
+          "total_equity_parent": 22505288000000,
+          "non_controlling_interests_profit": 35703000000,
+          "eps_diluted": 444,
+          "gross_profit": 8202210000000,
+          "cost_of_revenue": 34562758000000,
+          "ga_expenses": 2078188000000,
+          "selling_expenses": 789017000000,
+          "cash_and_equivalents": 4132858000000,
+          "cfo": 5049190000000,
+          "cfi": -944274000000,
+          "cff": -4139429000000,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2024-12-31"
         }
       },
       "summary_note": "국영 석탄. 2020 COVID 저점 → 2021-22 에너지 위기로 폭발(순이익 12.6T 사상최대) → 2023-24 정상화. Bukit Asam 골프장은 2024 그랜드 런칭.",
       "data_quality": "high",
-      "last_verified": "2026-05-01"
+      "last_verified": "2026-05-27"
     },
     {
       "ticker": "AKRA",
@@ -2075,17 +2665,26 @@
           ]
         },
         "2023": {
-          "revenue": 42086952000000,
-          "operating_profit": 3539627000000,
-          "net_profit": 2780350000000,
+          "revenue": 42086952436000,
+          "operating_profit": 3498593974000,
+          "net_profit": 2780349511000,
           "ebitda": 3931652000000,
-          "total_assets": 30296572000000,
-          "total_liabilities": 16253614000000,
-          "total_equity": 14042958000000,
+          "total_assets": 30296571806000,
+          "total_liabilities": 16253614293000,
+          "total_equity": 14042957513000,
           "eps": 140.87,
           "dividend_per_share": 125,
           "employees": 1994,
           "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=AKRA",
+              "title": "AKRA 2023 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "AKRA_2024_audit.zip"
+            },
             {
               "url": "https://stockanalysis.com/quote/idx/AKRA/financials/",
               "title": "AKRA Financial Statements",
@@ -2093,20 +2692,42 @@
               "date_published": null,
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "net_profit_total": 3078469701000,
+          "total_equity_parent": 11262624208000,
+          "non_controlling_interests_profit": 298120190000,
+          "gross_profit": 4473464537000,
+          "cost_of_revenue": 37613487899000,
+          "ga_expenses": 877798573000,
+          "selling_expenses": 97071990000,
+          "cash_and_equivalents": 6535625681000,
+          "cfo": 3501897695000,
+          "cfi": -583534794000,
+          "cff": -648456763000,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2023-12-31"
         },
         "2024": {
-          "revenue": 38729493000000,
-          "operating_profit": 2561042000000,
-          "net_profit": 2225118000000,
+          "revenue": 38729493298000,
+          "operating_profit": 2534444074000,
+          "net_profit": 2225117975000,
           "ebitda": 2977386000000,
-          "total_assets": 33108684000000,
-          "total_liabilities": 18484692000000,
-          "total_equity": 14623992000000,
+          "total_assets": 33108684368000,
+          "total_liabilities": 18484691894000,
+          "total_equity": 14623992474000,
           "eps": 112.73,
           "dividend_per_share": 100,
           "employees": 2074,
           "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=AKRA",
+              "title": "AKRA 2024 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "AKRA_2024_audit.zip"
+            },
             {
               "url": "https://stockanalysis.com/quote/idx/AKRA/financials/",
               "title": "AKRA Financial Statements",
@@ -2121,12 +2742,25 @@
               "date_published": "2025-03-31",
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "net_profit_total": 2399467512000,
+          "total_equity_parent": 11562536639000,
+          "non_controlling_interests_profit": 174349537000,
+          "gross_profit": 3509035931000,
+          "cost_of_revenue": 35220457367000,
+          "ga_expenses": 873443923000,
+          "selling_expenses": 101147934000,
+          "cash_and_equivalents": 5365991608000,
+          "cfo": 1346631238000,
+          "cfi": -1172912772000,
+          "cff": -1470031624000,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2024-12-31"
         }
       },
       "summary_note": "Grand Kawanua Manado 모회사. 석유/화학 유통 + JIIPE 산업단지. 2022-23 산업단지 매각으로 매출 Rp 47.5T 정점 → 2024 정상화.",
       "data_quality": "high",
-      "last_verified": "2026-05-01"
+      "last_verified": "2026-05-27"
     },
     {
       "ticker": "INCO",
@@ -2198,17 +2832,26 @@
           ]
         },
         "2023": {
-          "revenue": 18969190000000,
-          "operating_profit": 4698393000000,
-          "net_profit": 4223961000000,
+          "revenue": 1232263000,
+          "operating_profit": 324868000,
+          "net_profit": 274334000,
           "ebitda": 7296653000000,
-          "total_assets": 45051522000000,
-          "total_liabilities": 5564801000000,
-          "total_equity": 39495405000000,
-          "eps": 461.91,
+          "total_assets": 2925999000,
+          "total_liabilities": 361462000,
+          "total_equity": 2564537000,
+          "eps": 0.0276,
           "dividend_per_share": 89.61,
           "employees": 3023,
           "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=INCO",
+              "title": "INCO 2023 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "INCO_2024_audit.zip"
+            },
             {
               "url": "https://stockanalysis.com/quote/idx/INCO/financials/",
               "title": "INCO Financial Statements",
@@ -2216,20 +2859,41 @@
               "date_published": null,
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "net_profit_total": 274334000,
+          "total_equity_parent": 2564537000,
+          "non_controlling_interests_profit": 0,
+          "gross_profit": 347023000,
+          "cost_of_revenue": 885240000,
+          "ga_expenses": 22155000,
+          "cash_and_equivalents": 698795000,
+          "cfo": 421158000,
+          "cfi": -285817000,
+          "cff": -65441000,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2023-12-31"
         },
         "2024": {
-          "revenue": 15354941000000,
-          "operating_profit": 1003189000000,
-          "net_profit": 933307000000,
+          "revenue": 950388000,
+          "operating_profit": 69974000,
+          "net_profit": 57761000,
           "ebitda": 3578741000000,
-          "total_assets": 51330789000000,
-          "total_liabilities": 7169676000000,
-          "total_equity": 44161081000000,
-          "eps": 161.57,
+          "total_assets": 3176528000,
+          "total_liabilities": 443752000,
+          "total_equity": 2732776000,
+          "eps": 0.0056,
           "dividend_per_share": null,
           "employees": 3038,
           "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=INCO",
+              "title": "INCO 2024 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "INCO_2024_audit.zip"
+            },
             {
               "url": "https://vale.com/documents/44618/1371772/PT+Vale+Indonesia+Tbk+-+Laporan+Tahunan+2024.pdf",
               "title": "INCO Annual Report 2024",
@@ -2244,12 +2908,24 @@
               "date_published": "2025-02-27",
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "net_profit_total": 57761000,
+          "total_equity_parent": 2732776000,
+          "non_controlling_interests_profit": 0,
+          "gross_profit": 108228000,
+          "cost_of_revenue": 842160000,
+          "ga_expenses": 38254000,
+          "cash_and_equivalents": 674690000,
+          "cfo": 207486000,
+          "cfi": -331772000,
+          "cff": 102282000,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2024-12-31"
         }
       },
       "summary_note": "Sorowako 골프장 모회사. USD 보고를 BI 환율로 IDR 환산. 2024 니켈가격 폭락으로 순이익 -79% YoY. 직원 ~3,040명 (Sorowako 광산촌).",
       "data_quality": "high",
-      "last_verified": "2026-05-01"
+      "last_verified": "2026-05-27"
     },
     {
       "ticker": "GOLF",
@@ -2330,10 +3006,19 @@
           "total_assets": 7764540357254,
           "total_liabilities": 182797540719,
           "total_equity": 7581742816535,
-          "eps": 3431,
+          "eps": 3.431,
           "dividend_per_share": 1641945,
           "employees": 249,
           "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=GOLF",
+              "title": "GOLF 2023 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "GOLF_2024_audit.zip"
+            },
             {
               "url": "https://golflinkresorts.co.id/investor/download/3/Final+Report+PT+Intra+Golflink+Resorts+and+Subsidiaries+Dec+31%2C+2023+%28Reissue+1+230424%29.pdf",
               "title": "GOLF FY2023 Audited FS (Reissue)",
@@ -2342,7 +3027,21 @@
               "date_accessed": "2026-05-01"
             }
           ],
-          "_note": "FY2023 자산 폭증 (Rp 625B→7.76T)은 고정자산 재평가 +Rp 6.68T (OCI 인식). 자회사 통합 아님."
+          "_note": "FY2023 자산 폭증 (Rp 625B→7.76T)은 고정자산 재평가 +Rp 6.68T (OCI 인식). 자회사 통합 아님.",
+          "net_profit_total": 60176514048,
+          "total_equity_parent": 7581249893863,
+          "non_controlling_interests_profit": 453155,
+          "eps_diluted": 3.431,
+          "gross_profit": 112442298222,
+          "cost_of_revenue": 65139719812,
+          "ga_expenses": 39718049709,
+          "selling_expenses": 1275939386,
+          "cash_and_equivalents": 74796821672,
+          "cfo": 87502961373,
+          "cfi": -51193079533,
+          "cff": -701876399,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2023-12-31"
         },
         "2024": {
           "revenue": 197993814652,
@@ -2352,10 +3051,19 @@
           "total_assets": 8637499132483,
           "total_liabilities": 656711721232,
           "total_equity": 7980787411251,
-          "eps": 3896,
+          "eps": 3.896,
           "dividend_per_share": 0,
           "employees": 252,
           "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=GOLF",
+              "title": "GOLF 2024 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "GOLF_2024_audit.zip"
+            },
             {
               "url": "https://golflinkresorts.co.id/investor/download/30/Final_Audit_Laporan_Keuangan_Konsolidasian_PT_Intra_Golflink_Resorts_Tbk_dan_Entitas_Anak.pdf",
               "title": "GOLF FY2024 Audited FS",
@@ -2371,7 +3079,21 @@
               "date_accessed": "2026-05-01",
               "page": "p.7-9"
             }
-          ]
+          ],
+          "net_profit_total": 67575400860,
+          "total_equity_parent": 7980294191871,
+          "non_controlling_interests_profit": 407337,
+          "eps_diluted": 3.896,
+          "gross_profit": 119720546349,
+          "cost_of_revenue": 78273268303,
+          "ga_expenses": 41852086299,
+          "selling_expenses": 5399288326,
+          "cash_and_equivalents": 554024121034,
+          "cfo": 17725458895,
+          "cfi": -353465229455,
+          "cff": 814967069922,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2024-12-31"
         },
         "2025": {
           "revenue": 215520000000,
@@ -2403,7 +3125,7 @@
       },
       "summary_note": "Black Rocks Belitung 운영(48.07% 관계회사, 비연결). 자회사: New Kuta Bali(매출 91B), Palm Hill Sentul(105B). 2024 매출 Rp 198B (golf 47% + 부동산 34% + F&B 14%). EBITDA margin 44.7%. FY2020은 OJK 규정상 미공개(IPO 프로스펙터스 3년 한정).",
       "data_quality": "high",
-      "last_verified": "2026-05-01"
+      "last_verified": "2026-05-27"
     },
     {
       "ticker": "AMMN",
@@ -2504,23 +3226,32 @@
           ]
         },
         "2023": {
-          "revenue": 2033000000,
+          "revenue": 2033365000,
           "revenue_idr_equiv": 31302101000000,
-          "operating_profit": 767230000,
-          "net_profit": 252140000,
+          "operating_profit": 802245000,
+          "net_profit": 252144000,
           "net_profit_idr_equiv": 3882700580000,
           "ebitda": 943920000,
           "ebitda_idr_equiv": 14533321440000,
-          "total_assets": 9097000000,
+          "total_assets": 9097053000,
           "total_assets_idr_equiv": 140116829000000,
-          "total_liabilities": 4462000000,
+          "total_liabilities": 4461508000,
           "total_liabilities_idr_equiv": 68701414000000,
-          "total_equity": 4636000000,
+          "total_equity": 4635545000,
           "total_equity_idr_equiv": 71396092000000,
-          "eps": null,
+          "eps": 0.00367,
           "dividend_per_share": null,
           "employees": null,
           "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=AMMN",
+              "title": "AMMN 2023 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "AMMN_2024_audit.zip"
+            },
             {
               "url": "https://stockanalysis.com/quote/idx/AMMN",
               "title": "AMMN Financial Data",
@@ -2528,26 +3259,47 @@
               "date_published": null,
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "net_profit_total": 258889000,
+          "total_equity_parent": 4549969000,
+          "non_controlling_interests_profit": 6745000,
+          "gross_profit": 901924000,
+          "cost_of_revenue": 1131441000,
+          "ga_expenses": 99679000,
+          "cash_and_equivalents": 1228597000,
+          "cfo": -121212000,
+          "cfi": -1519707000,
+          "cff": 2061815000,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2023-12-31"
         },
         "2024": {
-          "revenue": 2664000000,
+          "revenue": 2663630000,
           "revenue_idr_equiv": 43042248000000,
-          "operating_profit": 1185000000,
-          "net_profit": 636900000,
+          "operating_profit": 1224396000,
+          "net_profit": 636895000,
           "net_profit_idr_equiv": 10290423300000,
           "ebitda": 1431000000,
           "ebitda_idr_equiv": 23120667000000,
-          "total_assets": 11121000000,
+          "total_assets": 11121488000,
           "total_assets_idr_equiv": 179681397000000,
-          "total_liabilities": 5873000000,
+          "total_liabilities": 5873088000,
           "total_liabilities_idr_equiv": 94890061000000,
-          "total_equity": 5248000000,
+          "total_equity": 5248400000,
           "total_equity_idr_equiv": 84791936000000,
-          "eps": 0.01,
+          "eps": 0.00878,
           "dividend_per_share": null,
           "employees": null,
           "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=AMMN",
+              "title": "AMMN 2024 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "AMMN_2024_audit.zip"
+            },
             {
               "url": "https://www.amman.co.id/press-release/amman-full-year-2024-earnings-results",
               "title": "Amman FY2024 Earnings Press Release",
@@ -2555,12 +3307,24 @@
               "date_published": "2025",
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "net_profit_total": 641677000,
+          "total_equity_parent": 5159842000,
+          "non_controlling_interests_profit": 4782000,
+          "gross_profit": 1345034000,
+          "cost_of_revenue": 1318596000,
+          "ga_expenses": 120638000,
+          "cash_and_equivalents": 754280000,
+          "cfo": 151697000,
+          "cfi": -1791800000,
+          "cff": 1164417000,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2024-12-31"
         }
       },
       "summary_note": "Kaleang Sumbawa(구 Newmont 코스) 모회사. USD 보고. 2023.07 IPO. FY2020은 IPO 프로스펙터스에서 audited 풀세트 추출 (Simply Wall St 추정 → 정확값 정정). 매출 USD 1.0B→2.66B, 자산 USD 4.76B→11.12B.",
       "data_quality": "high",
-      "last_verified": "2026-05-01"
+      "last_verified": "2026-05-27"
     },
     {
       "ticker": "PIPG",
@@ -3127,17 +3891,26 @@
           ]
         },
         "2023": {
-          "revenue": 3906826000000,
-          "operating_profit": 1270469000000,
-          "net_profit": 174108000000,
+          "revenue": 3906826399192,
+          "operating_profit": 1270469130996,
+          "net_profit": 174108406452,
           "ebitda": 1391619000000,
-          "total_assets": 14603908000000,
-          "total_liabilities": 8064727000000,
-          "total_equity": 6539181000000,
+          "total_assets": 14603908143192,
+          "total_liabilities": 8064726715168,
+          "total_equity": 6539181428024,
           "eps": 16.8,
           "dividend_per_share": 0,
           "employees": 1288,
           "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=DILD",
+              "title": "DILD 2023 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "DILD_2024_audit.zip"
+            },
             {
               "url": "https://stockanalysis.com/quote/idx/DILD/financials/",
               "title": "DILD Financials",
@@ -3145,20 +3918,42 @@
               "date_published": null,
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "net_profit_total": 758028371346,
+          "total_equity_parent": 5307417143897,
+          "non_controlling_interests_profit": 583919964894,
+          "gross_profit": 1585795815993,
+          "cost_of_revenue": 2321030583199,
+          "ga_expenses": 266633203653,
+          "selling_expenses": 48693481344,
+          "cash_and_equivalents": 954308405033,
+          "cfo": -94262514125,
+          "cfi": 411311746875,
+          "cff": -525224908935,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2023-12-31"
         },
         "2024": {
-          "revenue": 2553285000000,
-          "operating_profit": 454231000000,
-          "net_profit": 174766000000,
+          "revenue": 2553285289717,
+          "operating_profit": 454231193690,
+          "net_profit": 174766158653,
           "ebitda": 583362000000,
-          "total_assets": 13703553000000,
-          "total_liabilities": 6956641000000,
-          "total_equity": 6746912000000,
+          "total_assets": 13703553080897,
+          "total_liabilities": 6956640610515,
+          "total_equity": 6746912470382,
           "eps": 16.86,
           "dividend_per_share": 0,
           "employees": 1224,
           "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=DILD",
+              "title": "DILD 2024 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "DILD_2024_audit.zip"
+            },
             {
               "url": "https://stockanalysis.com/quote/idx/DILD/financials/",
               "title": "DILD Financials",
@@ -3173,7 +3968,20 @@
               "date_published": "2025-04",
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "net_profit_total": 263851731055,
+          "total_equity_parent": 5574604149800,
+          "non_controlling_interests_profit": 89085572402,
+          "gross_profit": 785352003762,
+          "cost_of_revenue": 1767933285955,
+          "ga_expenses": 272173222318,
+          "selling_expenses": 58947587754,
+          "cash_and_equivalents": 752320105532,
+          "cfo": 164288088329,
+          "cfi": -85291235813,
+          "cff": -281179170787,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2024-12-31"
         },
         "2025": {
           "revenue": null,
@@ -3201,7 +4009,7 @@
       },
       "summary_note": "Graha Famili 수라바야 운영(자회사 PT Grande Famili View). 매출 Rp 2.89T(2020) → 2.55T(2024). 2023 정점(3.91T) 후 하락. 5년 무배당.",
       "data_quality": "high",
-      "last_verified": "2026-05-01"
+      "last_verified": "2026-05-27"
     },
     {
       "ticker": "PWON",
@@ -3283,17 +4091,26 @@
           ]
         },
         "2023": {
-          "revenue": 6200438000000,
-          "operating_profit": 2660291000000,
-          "net_profit": 2105210000000,
+          "revenue": 6200438405000,
+          "operating_profit": 2660291438000,
+          "net_profit": 2105210332000,
           "ebitda": 3357671000000,
-          "total_assets": 32710787000000,
-          "total_liabilities": 9915453000000,
-          "total_equity": 22795334000000,
-          "eps": 43.71,
+          "total_assets": 32710786983000,
+          "total_liabilities": 9915452617000,
+          "total_equity": 22795334366000,
+          "eps": 0.04371,
           "dividend_per_share": 9.0,
           "employees": 3030,
           "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=PWON",
+              "title": "PWON 2023 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "PWON_2024_audit.zip"
+            },
             {
               "url": "https://stockanalysis.com/quote/idx/PWON/financials/",
               "title": "PWON Financials",
@@ -3301,20 +4118,42 @@
               "date_published": null,
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "net_profit_total": 2381869254000,
+          "total_equity_parent": 19096579347000,
+          "non_controlling_interests_profit": 276658922000,
+          "gross_profit": 3400687953000,
+          "cost_of_revenue": 2799750452000,
+          "ga_expenses": 516505682000,
+          "selling_expenses": 223890833000,
+          "cash_and_equivalents": 7599820229000,
+          "cfo": 2734231333000,
+          "cfi": -2295757605000,
+          "cff": -260969579000,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2023-12-31"
         },
         "2024": {
-          "revenue": 6670809000000,
-          "operating_profit": 2900946000000,
-          "net_profit": 2074731000000,
+          "revenue": 6670808930000,
+          "operating_profit": 2900945604000,
+          "net_profit": 2074731029000,
           "ebitda": 3579652000000,
-          "total_assets": 35371085000000,
-          "total_liabilities": 10629088000000,
-          "total_equity": 24741997000000,
-          "eps": 43.08,
+          "total_assets": 35371085149000,
+          "total_liabilities": 10629087811000,
+          "total_equity": 24741997338000,
+          "eps": 0.043080318889842,
           "dividend_per_share": 13.0,
           "employees": 3303,
           "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=PWON",
+              "title": "PWON 2024 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "PWON_2024_audit.zip"
+            },
             {
               "url": "https://stockanalysis.com/quote/idx/PWON/financials/",
               "title": "PWON Financials",
@@ -3329,7 +4168,20 @@
               "date_published": "2025-03",
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "net_profit_total": 2421707853000,
+          "total_equity_parent": 20703240241000,
+          "non_controlling_interests_profit": 346976824000,
+          "gross_profit": 3769178115000,
+          "cost_of_revenue": 2901630815000,
+          "ga_expenses": 562313471000,
+          "selling_expenses": 305919040000,
+          "cash_and_equivalents": 9154064042000,
+          "cfo": 3353984668000,
+          "cfi": -1408974757000,
+          "cff": -389274525000,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2024-12-31"
         },
         "2025": {
           "revenue": 7111105000000,
@@ -3343,7 +4195,7 @@
       },
       "summary_note": "Pakuwon Golf & Family Club 수라바야 운영. 매출 Rp 3.98T→6.67T(+68%), 순이익 930B→2.07T(+123%). 배당 0→13 IDR/주 5년 일관 증가. 5년 모두 흑자.",
       "data_quality": "high",
-      "last_verified": "2026-05-01"
+      "last_verified": "2026-05-27"
     },
     {
       "ticker": "BN4",
@@ -3560,38 +4412,26 @@
           ]
         },
         "2023": {
-          "revenue": 31211000000,
-          "operating_profit": -29610000000,
-          "net_profit": -34591000000,
+          "revenue": 31211356619,
+          "operating_profit": -30095138049,
+          "net_profit": -34591125350,
           "ebitda": -9180000000,
-          "total_assets": 758239000000,
-          "total_liabilities": 376331000000,
-          "total_equity": 381907000000,
+          "total_assets": 758238599826,
+          "total_liabilities": 376331162577,
+          "total_equity": 381907437249,
           "eps": -4.6,
           "dividend_per_share": 0,
           "employees": null,
           "sources": [
             {
-              "url": "https://stockanalysis.com/quote/idx/BKDP/financials/",
-              "title": "BKDP Financials",
-              "publisher": "StockAnalysis",
-              "date_published": null,
-              "date_accessed": "2026-05-01"
-            }
-          ]
-        },
-        "2024": {
-          "revenue": 30520000000,
-          "operating_profit": -30586000000,
-          "net_profit": -35914000000,
-          "ebitda": -10856000000,
-          "total_assets": 752245000000,
-          "total_liabilities": 406482000000,
-          "total_equity": 345763000000,
-          "eps": -4.78,
-          "dividend_per_share": 0,
-          "employees": null,
-          "sources": [
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=BKDP",
+              "title": "BKDP 2023 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "BKDP_2024_audit.zip"
+            },
             {
               "url": "https://stockanalysis.com/quote/idx/BKDP/financials/",
               "title": "BKDP Financials",
@@ -3599,7 +4439,63 @@
               "date_published": null,
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "net_profit_total": -34594542018,
+          "total_equity_parent": 381974255437,
+          "non_controlling_interests_profit": -3416668,
+          "gross_profit": -7368117863,
+          "cost_of_revenue": 38579474482,
+          "ga_expenses": 22285792345,
+          "selling_expenses": 441227841,
+          "cash_and_equivalents": 3732873801,
+          "cfo": -14867374445,
+          "cfi": -25408357197,
+          "cff": 36060449627,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2023-12-31"
+        },
+        "2024": {
+          "revenue": 30520490000,
+          "operating_profit": -30649301682,
+          "net_profit": -35913549931,
+          "ebitda": -10856000000,
+          "total_assets": 752245162416,
+          "total_liabilities": 406482108034,
+          "total_equity": 345763054382,
+          "eps": -4.7,
+          "dividend_per_share": 0,
+          "employees": null,
+          "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=BKDP",
+              "title": "BKDP 2024 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "BKDP_2024_audit.zip"
+            },
+            {
+              "url": "https://stockanalysis.com/quote/idx/BKDP/financials/",
+              "title": "BKDP Financials",
+              "publisher": "StockAnalysis",
+              "date_published": null,
+              "date_accessed": "2026-05-01"
+            }
+          ],
+          "net_profit_total": -35914000850,
+          "total_equity_parent": 345830323489,
+          "non_controlling_interests_profit": -450919,
+          "gross_profit": -8124567443,
+          "cost_of_revenue": 38645057443,
+          "ga_expenses": 21932182622,
+          "selling_expenses": 592551617,
+          "cash_and_equivalents": 3422924718,
+          "cfo": -14488503511,
+          "cfi": -19877726471,
+          "cff": 34056280899,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2024-12-31"
         },
         "2025": {
           "revenue": 36632337898,
@@ -3627,7 +4523,7 @@
       },
       "summary_note": "Bukit Darmo Surabaya 골프코스(Jack Nicklaus II, 1995) 직접 운영사. 매출 Rp 20-30B 수준 초소형 emiten. 5년 연속 영업/순손실, 자본잠식 진행 중(자본 Rp 481B→346B). 무배당.",
       "data_quality": "medium",
-      "last_verified": "2026-05-01"
+      "last_verified": "2026-05-27"
     },
     {
       "ticker": "CTRA",
@@ -3700,16 +4596,25 @@
         },
         "2023": {
           "revenue": 9245032000000,
-          "operating_profit": 2932834000000,
+          "operating_profit": 2791429000000,
           "net_profit": 1846087000000,
           "ebitda": 3288090000000,
           "total_assets": 44115215000000,
           "total_liabilities": 21490499000000,
           "total_equity": 22624716000000,
-          "eps": 99.6,
+          "eps": 100,
           "dividend_per_share": 15,
           "employees": null,
           "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=CTRA",
+              "title": "CTRA 2023 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "CTRA_2024_audit.zip"
+            },
             {
               "url": "https://ciputradevelopment.com/wp-content/uploads/2023/05/Laporan-Keuangan-Audit-31-Des-2023_CTRA_01042024.pdf",
               "title": "CTRA Laporan Keuangan Audit 31 Des 2023",
@@ -3724,20 +4629,42 @@
               "date_published": null,
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "net_profit_total": 1909025000000,
+          "total_equity_parent": 20046009000000,
+          "non_controlling_interests_profit": 62938000000,
+          "gross_profit": 4559161000000,
+          "cost_of_revenue": 4685871000000,
+          "ga_expenses": 1378072000000,
+          "selling_expenses": 389660000000,
+          "cash_and_equivalents": 10601301000000,
+          "cfo": 3864820000000,
+          "cfi": -1176280000000,
+          "cff": -1140181000000,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2023-12-31"
         },
         "2024": {
           "revenue": 11187565000000,
-          "operating_profit": 3446378000000,
+          "operating_profit": 3305973000000,
           "net_profit": 2126288000000,
           "ebitda": 3822494000000,
           "total_assets": 47022702000000,
           "total_liabilities": 22407372000000,
           "total_equity": 24615330000000,
-          "eps": 114.71,
+          "eps": 115,
           "dividend_per_share": 21,
           "employees": null,
           "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=CTRA",
+              "title": "CTRA 2024 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "CTRA_2024_audit.zip"
+            },
             {
               "url": "https://stockanalysis.com/quote/idx/CTRA/financials/",
               "title": "CTRA Financials",
@@ -3745,7 +4672,20 @@
               "date_published": null,
               "date_accessed": "2026-05-01"
             }
-          ]
+          ],
+          "net_profit_total": 2327968000000,
+          "total_equity_parent": 21861375000000,
+          "non_controlling_interests_profit": 201680000000,
+          "gross_profit": 5262535000000,
+          "cost_of_revenue": 5925030000000,
+          "ga_expenses": 1487965000000,
+          "selling_expenses": 468597000000,
+          "cash_and_equivalents": 10195216000000,
+          "cfo": 2985452000000,
+          "cfi": -2751166000000,
+          "cff": -634532000000,
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2024-12-31"
         },
         "2025": {
           "revenue": 12616695000000,
@@ -3759,7 +4699,311 @@
       },
       "summary_note": "Ciputra Surabaya · Taman Dayu Pasuruan 등 다수 township 골프장. 매출 Rp 8.07T→11.19T(+39%), 순이익 Rp 1.32T→2.13T(+61%), 배당 Rp 8→21(+163%) 5년 안정 성장.",
       "data_quality": "high",
-      "last_verified": "2026-05-01"
+      "last_verified": "2026-05-27"
+    },
+    {
+      "ticker": "ASRI",
+      "exchange": "IDX",
+      "company_name": "ALAM SUTERA REALTY Tbk",
+      "currency": "IDR",
+      "yearly": {
+        "2024": {
+          "revenue": 3433337156000,
+          "net_profit": 55216151000,
+          "net_profit_total": 65136557000,
+          "total_assets": 22019031433000,
+          "total_liabilities": 10683291993000,
+          "total_equity": 11335739440000,
+          "total_equity_parent": 11214535566000,
+          "non_controlling_interests_profit": 9920406000,
+          "eps": 2.81,
+          "gross_profit": 1776329009000,
+          "cost_of_revenue": 1657008147000,
+          "ga_expenses": 373181134000,
+          "selling_expenses": 163258605000,
+          "cash_and_equivalents": 656950627000,
+          "cfo": 1166392631000,
+          "cfi": -580081425000,
+          "cff": -1105466846000,
+          "operating_profit": 1239889270000,
+          "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=ASRI",
+              "title": "ASRI 2024 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "ASRI_2024_audit.zip"
+            }
+          ],
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2024-12-31"
+        },
+        "2023": {
+          "revenue": 3956015546000,
+          "net_profit": 632327844000,
+          "net_profit_total": 637639854000,
+          "total_assets": 22236236864000,
+          "total_liabilities": 10965051102000,
+          "total_equity": 11271185762000,
+          "total_equity_parent": 11158728509000,
+          "non_controlling_interests_profit": 5312010000,
+          "eps": 32.18,
+          "gross_profit": 2146190702000,
+          "cost_of_revenue": 1809824844000,
+          "ga_expenses": 344819928000,
+          "selling_expenses": 134177275000,
+          "cash_and_equivalents": 1176095510000,
+          "cfo": 1021655345000,
+          "cfi": -301279163000,
+          "cff": -976808442000,
+          "operating_profit": 1667193499000,
+          "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=ASRI",
+              "title": "ASRI 2023 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "ASRI_2024_audit.zip"
+            }
+          ],
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2023-12-31"
+        }
+      },
+      "data_quality": "xbrl_audited",
+      "last_verified": "2026-05-27"
+    },
+    {
+      "ticker": "JSPT",
+      "exchange": "IDX",
+      "company_name": "Jakarta Setiabudi Internasional Tbk",
+      "currency": "IDR",
+      "yearly": {
+        "2024": {
+          "revenue": 2402430479000,
+          "net_profit": 261337269000,
+          "net_profit_total": 310415108000,
+          "total_assets": 6457844771000,
+          "total_liabilities": 3531109991000,
+          "total_equity": 2926734780000,
+          "total_equity_parent": 2176397960000,
+          "non_controlling_interests_profit": 49077839000,
+          "eps": 0.113,
+          "gross_profit": 1610122211000,
+          "cost_of_revenue": 792308268000,
+          "ga_expenses": 869136323000,
+          "selling_expenses": 124453981000,
+          "cash_and_equivalents": 1677492772000,
+          "cfo": 779005990000,
+          "cfi": -85947394000,
+          "cff": -341807572000,
+          "operating_profit": 616531907000,
+          "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=JSPT",
+              "title": "JSPT 2024 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "JSPT_2024_audit.zip"
+            }
+          ],
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2024-12-31"
+        },
+        "2023": {
+          "revenue": 1774897256000,
+          "net_profit": 191237299000,
+          "net_profit_total": 234729712000,
+          "total_assets": 6273818715000,
+          "total_liabilities": 3636019700000,
+          "total_equity": 2637799015000,
+          "total_equity_parent": 1930368151000,
+          "non_controlling_interests_profit": 43492413000,
+          "eps": 0.082,
+          "gross_profit": 1206012067000,
+          "cost_of_revenue": 568885189000,
+          "ga_expenses": 753963374000,
+          "selling_expenses": 96835902000,
+          "cash_and_equivalents": 1297366709000,
+          "cfo": 468391086000,
+          "cfi": -454729846000,
+          "cff": 198424742000,
+          "operating_profit": 355212791000,
+          "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=JSPT",
+              "title": "JSPT 2023 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "JSPT_2024_audit.zip"
+            }
+          ],
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2023-12-31"
+        }
+      },
+      "data_quality": "xbrl_audited",
+      "last_verified": "2026-05-27"
+    },
+    {
+      "ticker": "KOTA",
+      "exchange": "IDX",
+      "company_name": "PT DMS Propertindo Tbk.",
+      "currency": "IDR",
+      "yearly": {
+        "2024": {
+          "revenue": 29377755960,
+          "net_profit": -18066910543,
+          "net_profit_total": -18069882353,
+          "total_assets": 1504787301010,
+          "total_liabilities": 309093409245,
+          "total_equity": 1195693891765,
+          "total_equity_parent": 1194193404825,
+          "non_controlling_interests_profit": -2971810,
+          "eps": -1.7,
+          "gross_profit": 20192563677,
+          "cost_of_revenue": 9185192283,
+          "ga_expenses": 26913377537,
+          "selling_expenses": 838413849,
+          "cash_and_equivalents": 2071068378,
+          "cfo": -357720568,
+          "cfi": 5047174665,
+          "cff": -4040943054,
+          "operating_profit": -7559227709,
+          "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=KOTA",
+              "title": "KOTA 2024 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "KOTA_2024_audit.zip"
+            }
+          ],
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2024-12-31"
+        },
+        "2023": {
+          "revenue": 27879084803,
+          "net_profit": -24659501114,
+          "net_profit_total": -24677123273,
+          "total_assets": 1523366181396,
+          "total_liabilities": 309741611745,
+          "total_equity": 1213624569651,
+          "total_equity_parent": 1212121110901,
+          "non_controlling_interests_profit": -17622159,
+          "eps": -2.3,
+          "gross_profit": 19172048303,
+          "cost_of_revenue": 8707036500,
+          "ga_expenses": 29863349812,
+          "selling_expenses": 931872924,
+          "cash_and_equivalents": 1422557335,
+          "cfo": 210692195,
+          "cfi": 2449671527,
+          "cff": -5797813293,
+          "operating_profit": -11623174433,
+          "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=KOTA",
+              "title": "KOTA 2023 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "KOTA_2024_audit.zip"
+            }
+          ],
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2023-12-31"
+        }
+      },
+      "data_quality": "xbrl_audited",
+      "last_verified": "2026-05-27"
+    },
+    {
+      "ticker": "PJAA",
+      "exchange": "IDX",
+      "company_name": "Pembangunan Jaya Ancol Tbk",
+      "currency": "IDR",
+      "yearly": {
+        "2024": {
+          "revenue": 1265897000000,
+          "net_profit": 177792000000,
+          "net_profit_total": 176287000000,
+          "total_assets": 3591730000000,
+          "total_liabilities": 1857852000000,
+          "total_equity": 1733878000000,
+          "total_equity_parent": 1714301000000,
+          "non_controlling_interests_profit": -1505000000,
+          "eps": 0.000111,
+          "gross_profit": 666773000000,
+          "cost_of_revenue": 599124000000,
+          "ga_expenses": 261678000000,
+          "selling_expenses": 31231000000,
+          "cash_and_equivalents": 292786000000,
+          "cfo": 163815000000,
+          "cfi": -153589000000,
+          "cff": -129205000000,
+          "operating_profit": 373864000000,
+          "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=PJAA",
+              "title": "PJAA 2024 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "PJAA_2024_audit.zip"
+            }
+          ],
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2024-12-31"
+        },
+        "2023": {
+          "revenue": 1273834000000,
+          "net_profit": 235173000000,
+          "net_profit_total": 241306000000,
+          "total_assets": 3743420000000,
+          "total_liabilities": 2075180000000,
+          "total_equity": 1668240000000,
+          "total_equity_parent": 1647160000000,
+          "non_controlling_interests_profit": 6133000000,
+          "eps": 0.000147,
+          "gross_profit": 696951000000,
+          "cost_of_revenue": 576883000000,
+          "ga_expenses": 250260000000,
+          "selling_expenses": 28331000000,
+          "cash_and_equivalents": 411446000000,
+          "cfo": 340619000000,
+          "cfi": -133588000000,
+          "cff": -301646000000,
+          "operating_profit": 418360000000,
+          "sources": [
+            {
+              "url": "https://www.idx.co.id/en/listed-companies/financial-statements-and-annual-report/?ticker=PJAA",
+              "title": "PJAA 2023 AUDIT XBRL Instance",
+              "publisher": "IDX (Indonesia Stock Exchange)",
+              "date_published": "2026-05-27T10:08:43",
+              "date_accessed": "2026-05-27",
+              "source_type": "IDX_XBRL",
+              "source_file": "PJAA_2024_audit.zip"
+            }
+          ],
+          "data_quality_year": "xbrl_audited",
+          "period_end": "2023-12-31"
+        }
+      },
+      "data_quality": "xbrl_audited",
+      "last_verified": "2026-05-27"
     }
   ]
 }
