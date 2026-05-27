@@ -3024,7 +3024,7 @@ function renderFinanceTable() {
   }
 
   if (rows.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="13"><div class="empty-state">
+    tbody.innerHTML = `<tr><td colspan="16"><div class="empty-state">
       <div class="empty-emoji">📊</div>
       <div class="empty-title">${t('empty.financeTitle')}</div>
       <div class="empty-hint">${t('empty.financeHint')}</div>
@@ -3039,6 +3039,38 @@ function renderFinanceTable() {
     loadFinancialsIfNeeded().then(() => renderFinanceTable());
   }
 
+  // Find the latest XBRL fiscal year across all companies — used as the
+  // unified column header (e.g. "매출 FY2024"). Falls back to '2024'.
+  let xbrlYearKey = null;
+  if (financialsByTicker) {
+    for (const co of Object.values(financialsByTicker)) {
+      const yrs = co?.yearly ? Object.keys(co.yearly) : [];
+      for (const y of yrs) {
+        const yb = co.yearly[y];
+        const src = (yb?.sources || [])[0];
+        if (src && src.source_type === 'IDX_XBRL') {
+          if (!xbrlYearKey || y > xbrlYearKey) xbrlYearKey = y;
+        }
+      }
+    }
+  }
+  xbrlYearKey = xbrlYearKey || '2024';
+  // Update column header year label
+  document.querySelectorAll('.finance-table .th-year').forEach(el => {
+    el.textContent = `FY${xbrlYearKey}`;
+  });
+
+  const fmtNumOrDash = (v) => {
+    if (v == null || Number.isNaN(v)) return '<span class="muted">—</span>';
+    if (v < 0) return `<span class="neg">−${escapeHtml(fmtBigIDR(Math.abs(v)) || '')}</span>`;
+    return escapeHtml(fmtBigIDR(v) || '—');
+  };
+  const fmtEps = (v) => {
+    if (v == null || Number.isNaN(v)) return '<span class="muted">—</span>';
+    if (v < 0) return `<span class="neg">${v.toFixed(2)}</span>`;
+    return v.toFixed(2);
+  };
+
   tbody.innerHTML = rows.map(c => {
     const fin = c.financials || {};
     const ticker = fin.idx_ticker || fin.foreign_ticker;
@@ -3051,42 +3083,28 @@ function renderFinanceTable() {
           + `${escapeHtml(ticker)} <span class="ticker-ext">↗</span></a>`
       : '<span class="muted">—</span>';
 
-    const np = fin.net_profit_idr ?? fin.net_profit_idr_h1;
-    const npHtml = np != null
-      ? (np < 0 ? `<span class="neg">−${escapeHtml(fmtBigIDR(Math.abs(np)) || '')}</span>` : escapeHtml(fmtBigIDR(np) || '—'))
-      : '<span class="muted">—</span>';
+    // === Unified XBRL data source ===
+    // All financial cells read from financialsByTicker[ticker].yearly[xbrlYearKey].
+    // If no XBRL block exists (DMIG/PIPG/foreign tickers without IDX filing), cells show —.
+    const bare = _bareTicker(ticker);
+    const company = (bare && financialsByTicker) ? financialsByTicker[bare.toUpperCase()] : null;
+    const yblock = company?.yearly?.[xbrlYearKey];
+    const isXbrl = !!(yblock && (yblock.sources || [])[0]?.source_type === 'IDX_XBRL');
+    const xb = isXbrl ? yblock : null;
+
+    const revHtml = fmtNumOrDash(xb?.revenue);
+    const gpHtml = fmtNumOrDash(xb?.gross_profit);
+    const opHtml = fmtNumOrDash(xb?.operating_profit);
+    const npHtml = fmtNumOrDash(xb?.net_profit);
+    const taHtml = fmtNumOrDash(xb?.total_assets);
+    const tlHtml = fmtNumOrDash(xb?.total_liabilities);
+    const teHtml = fmtNumOrDash(xb?.total_equity);
+    const epsHtml = fmtEps(xb?.eps);
 
     const memHtml = fin.membership_price_idr != null ? escapeHtml(fmtBigIDR(fin.membership_price_idr) || '')
       : (fin.membership_price_usd != null ? `$${fin.membership_price_usd.toLocaleString('en-US')}` : '<span class="muted">—</span>');
 
-    // Sources cell — robust extraction (strings + {url:...} objects + fallback URL)
-    const allFinSources = [
-      ...(fin.sources || []),
-      ...(fin.parent_financial_sources || []),
-      ...(fin.membership_sources || []),
-    ];
-    const validUrls = [];
-    for (const s of allFinSources) {
-      const u = (typeof s === 'string') ? s
-              : (s && typeof s === 'object' && typeof s.url === 'string') ? s.url
-              : null;
-      if (u && /^https?:\/\//i.test(u.trim()) && !validUrls.includes(u.trim())) {
-        validUrls.push(u.trim());
-      }
-    }
-    const firstUrl = validUrls[0] || null;
-    const xbrlBadge = fin.figure_origin === 'IDX_XBRL'
-      ? `<span class="xbrl-badge" title="IDX XBRL 공시에서 자동 추출 — ${escapeHtml(fin.last_verified || '')}">XBRL</span> `
-      : '';
-    const srcCellHtml = firstUrl
-      ? `${xbrlBadge}<a href="${escapeHtml(firstUrl)}" target="_blank" rel="noopener" `
-        + `title="${escapeHtml(firstUrl)}">${t('finance.viewSrc', { n: validUrls.length })}</a>`
-      : (allFinSources.length > 0
-          ? `${xbrlBadge}<span class="muted" title="${escapeHtml(t('finance.invalidSrcTitle', { n: allFinSources.length }))}">${t('finance.invalidSrc', { n: allFinSources.length })}</span>`
-          : (xbrlBadge || '<span class="muted">—</span>'));
-
     // Trend column: opens 5y modal if we have data for the parent ticker.
-    const bare = _bareTicker(ticker);
     const has5y = bare && financialsByTicker && financialsByTicker[bare.toUpperCase()];
     const trendHtml = has5y
       ? `<button class="trend-btn" type="button" data-ticker="${escapeHtml(bare)}"`
@@ -3100,12 +3118,16 @@ function renderFinanceTable() {
       <td>${escapeHtml(fin.operating_company || '—')}</td>
       <td>${escapeHtml(LISTED_STATUS_LABEL[fin.listed_status] || fin.listed_status || '—')}</td>
       <td>${tickerHtml}</td>
-      <td class="num">${escapeHtml(fmtBigIDR(fin.revenue_idr ?? fin.revenue_idr_h1) || '—')}</td>
+      <td class="num">${revHtml}</td>
+      <td class="num">${gpHtml}</td>
+      <td class="num">${opHtml}</td>
       <td class="num">${npHtml}</td>
-      <td class="num">${escapeHtml(fmtBigIDR(fin.total_assets_idr) || '—')}</td>
+      <td class="num">${taHtml}</td>
+      <td class="num">${tlHtml}</td>
+      <td class="num">${teHtml}</td>
+      <td class="num">${epsHtml}</td>
       <td class="num">${memHtml}</td>
       <td class="trend-cell">${trendHtml}</td>
-      <td>${srcCellHtml}</td>
     </tr>`;
   }).join('');
 }
@@ -3486,7 +3508,7 @@ const I18N = {
     'tab.analytics': '대시보드',
     'tab.operations': '운영 벤치마크 ↗',
 
-    'finance.hint': '💡 <strong>티커</strong> 클릭 시 Yahoo Finance가 새 탭으로 열립니다. <strong>재무 추이</strong> 셀을 클릭하면 5년 매출·순이익·자산 그래프를 볼 수 있습니다.',
+    'finance.hint': '💡 모든 수치는 <span class="xbrl-badge" title="IDX XBRL 공시에서 자동 추출">XBRL</span> — IDX 감사필 XBRL 1차 출처에서 직접 추출 (매주 일요일 자동 갱신). <strong>티커</strong> 클릭 시 Yahoo Finance, <strong>재무 추이</strong> 셀 클릭 시 5년 그래프 모달이 열립니다.',
 
     'filter.active': '활성 필터',
     'filter.reset': '초기화',
@@ -3919,7 +3941,7 @@ const I18N = {
     'tab.analytics': 'Dashboard',
     'tab.operations': 'Operations Benchmark ↗',
 
-    'finance.hint': '💡 Click <strong>Ticker</strong> to open Yahoo Finance in a new tab. Click the <strong>Trend</strong> cell to view 5-year revenue / net profit / total assets charts.',
+    'finance.hint': '💡 All figures are <span class="xbrl-badge" title="Auto-extracted from IDX XBRL filings">XBRL</span> — sourced directly from IDX audited XBRL filings (refreshed weekly). Click <strong>Ticker</strong> for Yahoo Finance; click the <strong>Trend</strong> cell for 5-year charts.',
 
     'filter.active': 'Active filters',
     'filter.reset': 'Reset',

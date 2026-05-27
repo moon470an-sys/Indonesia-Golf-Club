@@ -228,10 +228,10 @@
       <span class="table-counter"><strong id="financeVisibleCount">0</strong><span data-i18n="finance.counterSep">개 / 85</span></span>
     </div>
     <p class="finance-hint" data-i18n="finance.hint">
-      💡 <strong>티커</strong> 클릭 시 Yahoo Finance가 새 탭으로 열립니다. <strong>재무 추이</strong> 셀을 클릭하면 5년 매출·순이익·자산 그래프를 볼 수 있습니다. <span class="xbrl-badge" title="IDX XBRL 공시에서 자동 추출">XBRL</span> 배지는 IDX 감사필 XBRL에서 직접 추출된 수치를 의미합니다 (매주 일요일 자동 갱신).
+      💡 모든 수치는 <span class="xbrl-badge" title="IDX XBRL 공시에서 자동 추출">XBRL</span> — IDX 감사필 XBRL 1차 출처에서 직접 추출 (매주 일요일 자동 갱신). <strong>티커</strong> 클릭 시 Yahoo Finance, <strong>재무 추이</strong> 셀 클릭 시 5년 그래프 모달이 열립니다.
     </p>
     <div class="table-scroll">
-      <table class="finance-table">
+      <table class="finance-table finance-table-wide">
         <thead>
           <tr>
             <th data-sort="name_en"><span data-i18n="th.name">골프장명</span> ▾</th>
@@ -240,12 +240,16 @@
             <th data-sort="operating_company" data-i18n="th.opCompany">운영법인</th>
             <th data-sort="listed_status" data-i18n="th.listedStatus">상장 구분</th>
             <th data-sort="idx_ticker" data-i18n="th.ticker">티커</th>
-            <th data-sort="revenue_idr" class="num" data-i18n="th.revenueFY">매출 FY2024</th>
-            <th data-sort="net_profit_idr" class="num" data-i18n="th.netProfit">순이익</th>
-            <th data-sort="total_assets_idr" class="num" data-i18n="th.totalAssets">총자산</th>
+            <th data-sort="xbrl_revenue" class="num">매출 <span class="th-year"></span></th>
+            <th data-sort="xbrl_gross_profit" class="num">매출총이익</th>
+            <th data-sort="xbrl_operating_profit" class="num">영업이익</th>
+            <th data-sort="xbrl_net_profit" class="num">순이익</th>
+            <th data-sort="xbrl_total_assets" class="num">총자산</th>
+            <th data-sort="xbrl_total_liabilities" class="num">총부채</th>
+            <th data-sort="xbrl_total_equity" class="num">자본총계</th>
+            <th data-sort="xbrl_eps" class="num">EPS</th>
             <th data-sort="membership_price_idr" class="num" data-i18n="th.membership">회원권</th>
             <th data-i18n="th.trend">재무 추이</th>
-            <th data-i18n="th.sources">출처</th>
           </tr>
         </thead>
         <tbody id="financeTableBody"></tbody>
