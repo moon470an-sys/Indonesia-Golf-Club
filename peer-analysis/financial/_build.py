@@ -3602,7 +3602,7 @@ def _xbrl_rank_chart(metric: str, title: str, fmt_kind: str, sort_desc: bool, go
 
     return f"""<div class="viz-card" style="padding:14px 16px;">
   <div style="font-weight:700;font-size:13px;color:var(--ink);margin-bottom:2px;">{safe(title)}</div>
-  <div style="font-size:10.5px;color:var(--muted);margin-bottom:8px;">{safe(subtitle)}</div>
+  <div style="font-size:10.5px;color:var(--muted);margin-bottom:8px;{'' if subtitle else 'display:none;'}">{safe(subtitle)}</div>
   {''.join(bars)}
 </div>"""
 
@@ -4023,7 +4023,7 @@ def _xbrl_capex_rank_chart(metric: str, title: str, fmt_kind: str, sort_desc: bo
 
     return f"""<div class="viz-card" style="padding:14px 16px;">
   <div style="font-weight:700;font-size:13px;color:var(--ink);margin-bottom:2px;">{safe(title)}</div>
-  <div style="font-size:10.5px;color:var(--muted);margin-bottom:8px;">{safe(subtitle)}</div>
+  <div style="font-size:10.5px;color:var(--muted);margin-bottom:8px;{'' if subtitle else 'display:none;'}">{safe(subtitle)}</div>
   {''.join(bars)}
 </div>"""
 
@@ -4098,15 +4098,11 @@ def _xbrl_capex_table() -> str:
 
 def _xbrl_capex_comparison_section() -> str:
     """CAPEX 탭에 삽입되는 XBRL 동일 기준 13-peer 자산·CAPEX 비교 섹션."""
-    rank_ai = _xbrl_capex_rank_chart("asset_intensity", "자산집약도 (총자산/매출)", "ratio", sort_desc=True, good_above=0,
-                                       subtitle="높을수록 capital-intensive — 자산 1단위 당 매출 회수에 더 오래 걸림.")
-    rank_nca = _xbrl_capex_rank_chart("nca_ratio", "비유동자산 비중", "pct", sort_desc=True, good_above=0,
-                                        subtitle="비유동자산 / 총자산 — 고정자산(PP&E·투자부동산) 의존도.")
-    rank_cfi = _xbrl_capex_rank_chart("cfi_rev", "CFI 강도 (CFI/매출)", "pct", sort_desc=False, good_above=-5,
-                                        subtitle="음수 = 투자 활발 (capex 큼) · 양수 = 자산 매각. ↓일수록 자본투자 강함.",
+    rank_ai = _xbrl_capex_rank_chart("asset_intensity", "자산집약도", "ratio", sort_desc=True, good_above=0)
+    rank_nca = _xbrl_capex_rank_chart("nca_ratio", "비유동자산 비중", "pct", sort_desc=True, good_above=0)
+    rank_cfi = _xbrl_capex_rank_chart("cfi_rev", "CFI 강도", "pct", sort_desc=False, good_above=-5,
                                         invert_color=True)
-    rank_yoy = _xbrl_capex_rank_chart("asset_yoy", "자산 성장률 (TA YoY)", "pct", sort_desc=True, good_above=5,
-                                        subtitle="(FY25 총자산 − 전년) / 전년 — 자본투자 전개 속도.")
+    rank_yoy = _xbrl_capex_rank_chart("asset_yoy", "자산 성장률", "pct", sort_desc=True, good_above=5)
 
     table = _xbrl_capex_table()
 
@@ -4117,22 +4113,22 @@ def _xbrl_capex_comparison_section() -> str:
     <div class="insight-card insight-warn">
       <div class="insight-tag"><span class="ticker-mini">GOLF</span> 최고 자산집약</div>
       <div class="insight-metric down">40.3<span class="u">x</span></div>
-      <div class="insight-title">총자산 / 매출 (FY25) {_info_tip('자산 8.69T vs 매출 216B — CWIP 진행 중인 확장 단계. 자산회전 0.02x로 13-peer 최하위. 정상화 전 fixed-cost 부담 큼.', 'tip-l')}</div>
+      <div class="insight-title">총자산 / 매출</div>
     </div>
     <div class="insight-card insight-warn">
       <div class="insight-tag"><span class="ticker-mini">KPIG</span> 비유동자산 의존 최고</div>
       <div class="insight-metric down">90.2<span class="u">%</span></div>
-      <div class="insight-title">비유동/총자산 {_info_tip('Hotel·Resort·Golf 부동산 32.5T vs 유동 3.5T. ELTY 81.8%·BSDE 58.7% 능가. 매각 시 유동화 시간 길 가능성.', 'tip-l')}</div>
+      <div class="insight-title">비유동 / 총자산</div>
     </div>
     <div class="insight-card insight-positive">
       <div class="insight-tag"><span class="ticker-mini">PWON</span> 가장 적극적 capex</div>
       <div class="insight-metric down">-70.0<span class="u">%</span></div>
-      <div class="insight-title">CFI/매출 (FY25) {_info_tip('CFI −4.98T (자산 매입) vs 매출 7.11T. SMRA −52%·KIJA −14%·BSDE −12%·LPKR −9%·CTRA −9% 동반 — Tier 4 부동산 그룹 일제히 capex 진행 중.', 'tip-l')}</div>
+      <div class="insight-title">CFI / 매출</div>
     </div>
     <div class="insight-card insight-positive">
-      <div class="insight-tag"><span class="ticker-mini">GOLF</span> 자기자본比 최고</div>
+      <div class="insight-tag"><span class="ticker-mini">GOLF</span> 자기자본비율 최고</div>
       <div class="insight-metric up">92.3<span class="u">%</span></div>
-      <div class="insight-title">지배자본 / 총자산 (FY25) {_info_tip('PIPG 81.0%·KPIG 78.6%도 매우 높음 — 부채 의존도 낮은 self-funded 구조. 반면 MDLN 27.8%·SMRA 30.4%는 leveraged.', 'tip-l')}</div>
+      <div class="insight-title">지배자본 / 총자산</div>
     </div>
   </div>
 
@@ -4146,8 +4142,6 @@ def _xbrl_capex_comparison_section() -> str:
     {rank_cfi}
     {rank_yoy}
   </div>
-
-  {_insight('자산집약도가 가장 높은 <strong>GOLF 40.3x · KPIG·MDLN 13~14x</strong>는 동시에 자산회전 최하위 — Tier 1/3은 capital-heavy. <strong>PIPG 2.6x · KIJA 2.9x · DMIG 2.9x</strong>는 가장 lean. CFI 절대크기는 <strong>PWON −70% · SMRA −52% · KIJA −14%</strong>가 capex 사이클 주도. 자산 YoY는 <strong>SMRA +14% · KIJA +7% · PIPG +7%</strong>가 가장 빠른 capital expansion.', label='4 ranking 종합')}
 </div>"""
 
 
@@ -4266,7 +4260,7 @@ def _xbrl_opex_rank_chart(metric: str, title: str, fmt_kind: str, sort_desc: boo
 
     return f"""<div class="viz-card" style="padding:14px 16px;">
   <div style="font-weight:700;font-size:13px;color:var(--ink);margin-bottom:2px;">{safe(title)}</div>
-  <div style="font-size:10.5px;color:var(--muted);margin-bottom:8px;">{safe(subtitle)}</div>
+  <div style="font-size:10.5px;color:var(--muted);margin-bottom:8px;{'' if subtitle else 'display:none;'}">{safe(subtitle)}</div>
   {''.join(bars)}
 </div>"""
 
@@ -4343,16 +4337,12 @@ def _xbrl_opex_table() -> str:
 
 def _xbrl_opex_comparison_section() -> str:
     """OPEX 탭 #opex-xbrl-compare 섹션."""
-    rank_opex = _xbrl_opex_rank_chart("opex_rev", "OpEx / 매출 (총비용율)", "pct", sort_desc=False, good_above=75,
-                                        subtitle="(COGS + SG&A) / 매출 — 낮을수록 비용 효율 우수. 100% 초과 = 영업적자.",
+    rank_opex = _xbrl_opex_rank_chart("opex_rev", "OpEx / 매출", "pct", sort_desc=False, good_above=75,
                                         invert_color=True)
-    rank_sga = _xbrl_opex_rank_chart("sga_rev", "SG&A / 매출 (판관비율)", "pct", sort_desc=False, good_above=25,
-                                       subtitle="(판매비 + 일반관리비) / 매출 — 영업·관리 비용 비중.",
+    rank_sga = _xbrl_opex_rank_chart("sga_rev", "SG&A / 매출", "pct", sort_desc=False, good_above=25,
                                        invert_color=True)
-    rank_opm = _xbrl_opex_rank_chart("opm", "영업이익률 (OPM)", "pct", sort_desc=True, good_above=20,
-                                       subtitle="영업이익 / 매출 — 비용 효율의 결과 metric.")
-    rank_oy = _xbrl_opex_rank_chart("op_yoy", "영업이익 YoY", "pct_signed", sort_desc=True, good_above=0,
-                                      subtitle="(FY 영업이익 − 전년) / 전년 — 비용 통제 또는 매출 leverage 효과.")
+    rank_opm = _xbrl_opex_rank_chart("opm", "영업이익률", "pct", sort_desc=True, good_above=20)
+    rank_oy = _xbrl_opex_rank_chart("op_yoy", "영업이익 YoY", "pct_signed", sort_desc=True, good_above=0)
 
     table = _xbrl_opex_table()
 
@@ -4363,22 +4353,22 @@ def _xbrl_opex_comparison_section() -> str:
     <div class="insight-card insight-positive">
       <div class="insight-tag"><span class="ticker-mini">PWON</span> 최저 총비용율</div>
       <div class="insight-metric up">58.6<span class="u">%</span></div>
-      <div class="insight-title">OpEx / 매출 (FY25) {_info_tip('SG&A 14.1% + COGS 44.5% — 13-peer 최저. 임대 중심 매출 구조로 인건비·관리비 leverage. OPM 41.4% 1위와 직결.', 'tip-l')}</div>
+      <div class="insight-title">OpEx / 매출</div>
     </div>
     <div class="insight-card insight-positive">
       <div class="insight-tag"><span class="ticker-mini">KIJA</span> 최저 SG&amp;A</div>
       <div class="insight-metric up">12.6<span class="u">%</span></div>
-      <div class="insight-title">SG&amp;A / 매출 {_info_tip('Jababeka 산업단지 captive 수요로 영업비 ↓. Selling 1.3% (peer 최저급) + G&A 11.3%. KPIG 16.7% · PWON 14.1%와 함께 cost-light 상위.', 'tip-l')}</div>
+      <div class="insight-title">SG&amp;A / 매출</div>
     </div>
     <div class="insight-card insight-warn">
       <div class="insight-tag"><span class="ticker-mini">MDLN</span> 영업적자</div>
       <div class="insight-metric down">109.6<span class="u">%</span></div>
-      <div class="insight-title">OpEx/매출 (FY25 100% 초과) {_info_tip('COGS 52.8% + SG&A 56.8% = 영업적자 −9.6%. SG&A가 PWON 14%의 4배. 부동산 그룹 중 비용 구조 최악.', 'tip-l')}</div>
+      <div class="insight-title">OpEx / 매출</div>
     </div>
     <div class="insight-card insight-positive">
       <div class="insight-tag"><span class="ticker-mini">KPIG</span> OP 폭증</div>
       <div class="insight-metric up">+487<span class="u">%</span></div>
-      <div class="insight-title">영업이익 YoY FY25 {_info_tip('Hotel+Resort+Golf 통합 매출 +47.7%가 고정비 leverage → OP 115B→675B. ELTY +66.7%·CTRA +14.4% 동반 성장. 반대로 SMDM −66.7%·LPKR −49% reset.', 'tip-l')}</div>
+      <div class="insight-title">영업이익 YoY</div>
     </div>
   </div>
 
@@ -4392,8 +4382,6 @@ def _xbrl_opex_comparison_section() -> str:
     {rank_opm}
     {rank_oy}
   </div>
-
-  {_insight('OpEx/매출 ↔ OPM 거의 거울 — <strong>PWON 58.6% ↔ 41.4%</strong> 최고 효율, <strong>MDLN 109.6% ↔ −9.6%</strong> 영업적자. SG&A 별도 보면 <strong>KIJA·KPIG·PWON·CTRA 10~17%</strong>는 cost-light 그룹, <strong>MDLN·SMDM·BSDE 32~57%</strong>는 SG&A 부담. OP YoY는 KPIG·ELTY·CTRA·PWON·KIJA가 양수 — 비용 통제 또는 매출 leverage 성공.', label='4 ranking 종합')}
 </div>"""
 
 
@@ -4692,14 +4680,10 @@ def _dmig_pipg_opex_detail_section() -> str:
 
 def _xbrl_comparison_section() -> str:
     """ops-kpi 탭에 삽입되는 XBRL 동일 기준 13-peer 비교 섹션 전체."""
-    rank_opm = _xbrl_rank_chart("opm", "영업이익률 (OPM)", "pct", sort_desc=True, good_above=15,
-                                 subtitle="영업이익 / 매출 — 핵심 운영 마진. 음수 = 영업적자.")
-    rank_npm = _xbrl_rank_chart("npm", "순이익률 (NPM)", "pct", sort_desc=True, good_above=10,
-                                 subtitle="지배 순이익 / 매출 — bottom-line 효율. 음수 = 적자.")
-    rank_roe = _xbrl_rank_chart("roe", "자기자본이익률 (ROE)", "pct", sort_desc=True, good_above=8,
-                                 subtitle="순이익 / 지배자본 — 주주 자본 수익률.")
-    rank_yoy = _xbrl_rank_chart("rev_yoy", "매출 성장률 (Rev YoY)", "pct", sort_desc=True, good_above=5,
-                                 subtitle="(FY 매출 − 전년) / 전년 — 성장 동력. 음수 = 역성장.")
+    rank_opm = _xbrl_rank_chart("opm", "영업이익률", "pct", sort_desc=True, good_above=15)
+    rank_npm = _xbrl_rank_chart("npm", "순이익률", "pct", sort_desc=True, good_above=10)
+    rank_roe = _xbrl_rank_chart("roe", "자기자본이익률", "pct", sort_desc=True, good_above=8)
+    rank_yoy = _xbrl_rank_chart("rev_yoy", "매출 성장률", "pct", sort_desc=True, good_above=5)
 
     table = _xbrl_comparison_table()
 
@@ -4710,22 +4694,22 @@ def _xbrl_comparison_section() -> str:
     <div class="insight-card insight-positive">
       <div class="insight-tag"><span class="ticker-mini">PWON</span> 최고 마진</div>
       <div class="insight-metric up">41.4<span class="u">%</span></div>
-      <div class="insight-title">OPM 13-peer 1위 {_info_tip('임대 중심 Pakuwon Mall 매출 구조. NPM 33.0%·ROA 6.4% 동반 최고. Tier 4 부동산 그룹 중 골프장 추가 투자 검증 우선 대상.', 'tip-l')}</div>
+      <div class="insight-title">OPM 1위</div>
     </div>
     <div class="insight-card insight-positive">
       <div class="insight-tag"><span class="ticker-mini">DMIG·PIPG</span> 자본효율</div>
       <div class="insight-metric up">14<span class="u">% ROE</span></div>
-      <div class="insight-title">Tier 1 골프 ROE = Tier 4 부동산 최상위급 {_info_tip('DMIG 13.9%·PIPG 14.5% — CTRA 11.1%·PWON 10.4% 능가. Asset turnover 0.35~0.39x로 13-peer 최상위 → 회원기반 골프 운영의 자본 회수율 우위.', 'tip-l')}</div>
+      <div class="insight-title">Tier 1 골프 ROE</div>
     </div>
     <div class="insight-card insight-warn">
       <div class="insight-tag"><span class="ticker-mini">KPIG</span> 매출 폭증</div>
       <div class="insight-metric up">+47.7<span class="u">%</span></div>
-      <div class="insight-title">Hotel+Resort+Golf 통합 segment Rev YoY {_info_tip('1.77T → 2.62T. CTRA +12.8%·KIJA +11.9%·GOLF +8.9% 동반 성장 — 골프 인접 사업 동력 검증. SMDM −44.4%·LPKR −21.5% reset과 대조.', 'tip-l')}</div>
+      <div class="insight-title">Rev YoY</div>
     </div>
     <div class="insight-card insight-warn">
       <div class="insight-tag"><span class="ticker-mini">MDLN</span> 부채 risk</div>
       <div class="insight-metric down">2.60<span class="u">x D/E</span></div>
-      <div class="insight-title">영업적자 −9.6% 동반 13-peer 최고 부채 {_info_tip('순이익 −135% YoY. SMRA 1.40x도 위험 구간. 반대로 GOLF·SMDM 0.08x·PIPG 0.23x는 가장 안전 — 회원 deposit 기반.', 'tip-l')}</div>
+      <div class="insight-title">총부채 / 자본</div>
     </div>
   </div>
 
@@ -4739,8 +4723,6 @@ def _xbrl_comparison_section() -> str:
     {rank_roe}
     {rank_yoy}
   </div>
-
-  {_insight('OPM·NPM·ROE 3 chart에서 일관되게 <strong>PWON·DMIG·PIPG</strong>가 상위 — 마진과 자본효율 동시 우수. Rev YoY는 <strong>KPIG·ELTY·CTRA·KIJA</strong>가 성장 가속. <strong>MDLN·SMDM·LPKR</strong>는 다중 지표에서 하위 → 골프장 추가 투자보다 본업 회복이 우선 과제.', label='4 ranking 종합')}
 </div>"""
 
 
