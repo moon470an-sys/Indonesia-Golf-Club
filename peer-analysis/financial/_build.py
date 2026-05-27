@@ -1297,8 +1297,13 @@ OPEX_CAT_COLORS = {
     "기타 (Other)":                      "#d4d0c0",  # neutral
 }
 
-def _opex_norm_data() -> dict:
-    """Shared per-peer OpEx category data for viz + table."""
+def _opex_norm_data(fy: str = "FY2024") -> dict:
+    """Shared per-peer OpEx category data for viz + table.
+
+    fy: 'FY2024' (default) 또는 'FY2025'. FY2025는 DMIG/PIPG만 line-level 데이터
+    보유 (GOLF은 FY2024까지). FY2025 호출 시 revenue는 fy2025_follow_up.pnl_FY2025
+    에서 가져옴.
+    """
     peers_with_opex = [
         ("DMIG", "opex_note", "revenue_note"),
         ("PIPG", "opex_note_29", "revenue_note_27"),
@@ -1307,17 +1312,26 @@ def _opex_norm_data() -> dict:
     per_peer = {}
     for ticker, opex_key, rev_key in peers_with_opex:
         d = NOTES.get(ticker, {})
-        rev_total = (d.get(rev_key) or {}).get("total", {}).get("FY2024")
-        if ticker == "GOLF":
-            rev_total = ((d.get("revenue_note_29") or {}).get("by_operations") or {}).get("total", {}).get("FY2024")
+        if fy == "FY2025":
+            follow = d.get("fy2025_follow_up") or {}
+            rev_total = (follow.get("pnl_FY2025") or {}).get("revenue")
+        else:
+            rev_total = (d.get(rev_key) or {}).get("total", {}).get(fy)
+            if ticker == "GOLF":
+                rev_total = ((d.get("revenue_note_29") or {}).get("by_operations") or {}).get("total", {}).get(fy)
         cat_totals = {}
+        any_value = False
         for ln in (d.get(opex_key) or {}).get("lines") or []:
             cat = _opex_category_of((ln.get("id_label") or "") + " " + (ln.get("en_label") or ""))
-            cat_totals[cat] = cat_totals.get(cat, 0) + (ln.get("FY2024") or 0)
+            v = ln.get(fy) or 0
+            if v:
+                any_value = True
+            cat_totals[cat] = cat_totals.get(cat, 0) + v
+        total_v = (d.get(opex_key) or {}).get("total", {}).get(fy)
         per_peer[ticker] = {
             "rev": rev_total,
-            "by_cat": cat_totals,
-            "total": (d.get(opex_key) or {}).get("total", {}).get("FY2024"),
+            "by_cat": cat_totals if any_value else {},
+            "total": total_v,
         }
     return per_peer
 
@@ -4386,11 +4400,11 @@ def _xbrl_opex_comparison_section() -> str:
 def _dmig_pipg_opex_lines_section() -> str:
     """DMIG·PIPG OPEX 카테고리별 양쪽 비교 — _opex_norm_data() 활용.
 
-    11 표준 카테고리 (인건비/감가/세금·법률/유틸리티/유지보수/등)별로
-    한 행에 DMIG(왼쪽) | category label(중앙) | PIPG(오른쪽) 배치.
+    FY2025 line-level breakdown (DMIG Note 26 · PIPG Note 29). 11 표준
+    카테고리별로 한 행에 DMIG(왼쪽) | category(중앙) | PIPG(오른쪽).
     절대값 + 매출 대비 %를 모두 노출.
     """
-    data = _opex_norm_data()
+    data = _opex_norm_data(fy="FY2025")
     dmig = data.get("DMIG", {})
     pipg = data.get("PIPG", {})
     if not (dmig.get("by_cat") and pipg.get("by_cat")):
@@ -4471,12 +4485,12 @@ def _dmig_pipg_opex_lines_section() -> str:
     header = f"""<div style="display:grid;grid-template-columns:1fr 200px 1fr;align-items:end;padding:0 0 10px;border-bottom:2px solid var(--line-strong);margin-bottom:6px;">
   <div style="text-align:right;">
     <span class="ticker-mini" style="background:{dmig_color};color:#fff;padding:4px 10px;border-radius:4px;font-weight:800;font-size:14px;letter-spacing:0.06em;">DMIG</span>
-    <div style="font-size:10.5px;color:var(--muted);margin-top:3px;">매출 {fmtb(dmig_rev)} (FY24 AR Note 25)</div>
+    <div style="font-size:10.5px;color:var(--muted);margin-top:3px;">매출 {fmtb(dmig_rev)} (FY25 AR Note 26)</div>
   </div>
   <div style="text-align:center;font-size:10.5px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">OpEx Category</div>
   <div style="text-align:left;">
     <span class="ticker-mini" style="background:{pipg_color};color:#fff;padding:4px 10px;border-radius:4px;font-weight:800;font-size:14px;letter-spacing:0.06em;">PIPG</span>
-    <div style="font-size:10.5px;color:var(--muted);margin-top:3px;">매출 {fmtb(pipg_rev)} (FY24 AR Note 29)</div>
+    <div style="font-size:10.5px;color:var(--muted);margin-top:3px;">매출 {fmtb(pipg_rev)} (FY25 AR Note 29)</div>
   </div>
 </div>"""
 

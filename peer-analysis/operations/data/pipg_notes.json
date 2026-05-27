@@ -274,108 +274,126 @@
         "id_label": "Pajak dan perijinan",
         "en_label": "Tax and legal",
         "FY2023": 20678004570,
-        "FY2024": 24206339416
+        "FY2024": 24206339416,
+        "FY2025": 13886800090
       },
       {
         "id_label": "Beban gaji dan tunjangan karyawan",
         "en_label": "Salary and allowances",
         "FY2023": 15214692900,
-        "FY2024": 17879399883
+        "FY2024": 17879399883,
+        "FY2025": 17470951747
       },
       {
         "id_label": "Perbaikan dan pemeliharaan",
         "en_label": "Repair and maintenance",
         "FY2023": 10631126207,
-        "FY2024": 11647849332
+        "FY2024": 11647849332,
+        "FY2025": 9738613847
       },
       {
         "id_label": "Penyusutan",
         "en_label": "Depreciation (Notes 9, 13)",
         "FY2023": 9535969877,
-        "FY2024": 11314046387
+        "FY2024": 11314046387,
+        "FY2025": 11166242301
       },
       {
         "id_label": "Amortisasi beban tangguhan",
         "en_label": "Amortization of deferred charge (Note 12)",
         "FY2023": 2584670742,
-        "FY2024": 2692716768
+        "FY2024": 2692716768,
+        "FY2025": 3178152437
       },
       {
         "id_label": "Penyisihan imbalan pasca kerja karyawan",
         "en_label": "Provision for employee benefit (Note 22)",
         "FY2023": 1337755694,
-        "FY2024": 2531094853
+        "FY2024": 2531094853,
+        "FY2025": 1701805055
       },
       {
         "id_label": "Listrik dan air",
         "en_label": "Electricity and water",
         "FY2023": 2219036841,
-        "FY2024": 2197347660
+        "FY2024": 2197347660,
+        "FY2025": 1994182382
       },
       {
         "id_label": "Perlengkapan dan peralatan kantor",
         "en_label": "Supplies and office equipment",
         "FY2023": 1183525315,
-        "FY2024": 1361780386
+        "FY2024": 1361780386,
+        "FY2025": 1351468347
       },
       {
         "id_label": "Sumbangan dan kontribusi",
         "en_label": "Donation and contribution",
         "FY2023": 895335472,
-        "FY2024": 1053684107
+        "FY2024": 1053684107,
+        "FY2025": 625945438
       },
       {
         "id_label": "Asuransi",
         "en_label": "Insurance",
         "FY2023": 327917408,
-        "FY2024": 355668258
+        "FY2024": 355668258,
+        "FY2025": 131529365
       },
       {
         "id_label": "Beban diklat",
         "en_label": "Training expenses",
         "FY2023": 197620000,
-        "FY2024": 353385800
+        "FY2024": 353385800,
+        "FY2025": 191857747
       },
       {
         "id_label": "Audit dan konsultan",
         "en_label": "Audit and consultant",
         "FY2023": 290935000,
-        "FY2024": 192339000
+        "FY2024": 192339000,
+        "FY2025": 473272522
       },
       {
         "id_label": "Transportasi dan perjalanan dinas",
         "en_label": "Transportation and travels",
         "FY2023": 166345335,
-        "FY2024": 163022268
+        "FY2024": 163022268,
+        "FY2025": 273934479
       },
       {
         "id_label": "Penyisihan penurunan nilai piutang",
         "en_label": "Allowance for impairment of receivable (Note 6)",
         "FY2023": 0,
-        "FY2024": 120228613
+        "FY2024": 120228613,
+        "FY2025": 235847164
       },
       {
         "id_label": "Pos, telepon dan fax",
         "en_label": "Post, telephone and fax",
         "FY2023": 61721108,
-        "FY2024": 41079330
+        "FY2024": 41079330,
+        "FY2025": 37588425
       },
       {
         "id_label": "Penghapusan persediaan",
         "en_label": "Write-off inventory",
         "FY2023": 803666,
-        "FY2024": 7509512
+        "FY2024": 7509512,
+        "FY2025": 0
       },
       {
         "id_label": "Penyisihan persediaan",
         "en_label": "Allowance of inventories",
         "FY2023": 202124424,
-        "FY2024": 0
+        "FY2024": 0,
+        "FY2025": 0
       }
     ],
     "total": {
       "FY2023": 65527584559,
-      "FY2024": 76117491573
+      "FY2024": 76117491573,
+      "FY2025": 62458191346
     }
   },
   "agreements_commitments": {

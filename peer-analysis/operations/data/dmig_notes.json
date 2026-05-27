@@ -149,7 +149,8 @@
         "en_label": "Salaries and wages",
         "FY2022": 24888066326,
         "FY2023": 28299633793,
-        "FY2024": 28632542580
+        "FY2024": 28632542580,
+        "FY2025": 31921295290
       },
       {
         "id_label": "Penyusutan",
@@ -157,42 +158,48 @@
         "ref_note": 11,
         "FY2022": 16567296704,
         "FY2023": 25898201573,
-        "FY2024": 28209973116
+        "FY2024": 28209973116,
+        "FY2025": 31143219586
       },
       {
         "id_label": "Pajak bumi dan bangunan",
         "en_label": "Land and building tax",
         "FY2022": 9096732116,
         "FY2023": 10207296804,
-        "FY2024": 10446341610
+        "FY2024": 10446341610,
+        "FY2025": 7357759120
       },
       {
         "id_label": "Jasa kebersihan dan pelayanan",
         "en_label": "Cleaning service",
         "FY2022": 7760753290,
         "FY2023": 8319132117,
-        "FY2024": 8692025201
+        "FY2024": 8692025201,
+        "FY2025": 9348524364
       },
       {
         "id_label": "Listrik dan air",
         "en_label": "Electricity and water",
         "FY2022": 4040888969,
         "FY2023": 4302806960,
-        "FY2024": 4475253059
+        "FY2024": 4475253059,
+        "FY2025": 4584287457
       },
       {
         "id_label": "Amortisasi",
         "en_label": "Amortization",
         "FY2022": 2613975177,
         "FY2023": 2613975176,
-        "FY2024": 2613975176
+        "FY2024": 2613975176,
+        "FY2025": 2613975176
       },
       {
         "id_label": "Perbaikan dan pemeliharaan",
         "en_label": "Repair and maintenance",
         "FY2022": 1769216137,
         "FY2023": 2249343763,
-        "FY2024": 2268418997
+        "FY2024": 2268418997,
+        "FY2025": 2341661804
       },
       {
         "id_label": "Imbalan kerja karyawan",
@@ -200,76 +207,87 @@
         "ref_note": 19,
         "FY2022": 0,
         "FY2023": 2119591401,
-        "FY2024": 2368855959
+        "FY2024": 2368855959,
+        "FY2025": 2093951391
       },
       {
         "id_label": "Administrasi bank",
         "en_label": "Bank administration",
         "FY2022": 1414623929,
         "FY2023": 1855453943,
-        "FY2024": 2042994947
+        "FY2024": 2042994947,
+        "FY2025": 1951467134
       },
       {
         "id_label": "Pajak dan perizinan",
         "en_label": "Tax and licensing",
         "FY2022": 1170087004,
         "FY2023": 3247087235,
-        "FY2024": 1579152772
+        "FY2024": 1579152772,
+        "FY2025": 1498419928
       },
       {
         "id_label": "Jasa tenaga ahli",
         "en_label": "Professional fee",
         "FY2022": 797127240,
         "FY2023": 502963581,
-        "FY2024": 1125708982
+        "FY2024": 1125708982,
+        "FY2025": 865310730
       },
       {
         "id_label": "Kesejahteraan karyawan",
         "en_label": "Employee welfare",
         "FY2022": 574785770,
         "FY2023": 993373668,
-        "FY2024": 998818935
+        "FY2024": 998818935,
+        "FY2025": 1199261707
       },
       {
         "id_label": "Transportasi",
         "en_label": "Transportation",
         "FY2022": 612452008,
         "FY2023": 952627976,
-        "FY2024": 932938511
+        "FY2024": 932938511,
+        "FY2025": 1035439670
       },
       {
         "id_label": "Beban Asuransi",
         "en_label": "Insurance",
         "FY2022": 430225003,
         "FY2023": 592640505,
-        "FY2024": 570957876
+        "FY2024": 570957876,
+        "FY2025": 564656048
       },
       {
         "id_label": "Alat-alat tulis dan cetakan",
         "en_label": "Stationery and printing",
         "FY2022": 658622158,
         "FY2023": 516534083,
-        "FY2024": 561350429
+        "FY2024": 561350429,
+        "FY2025": 365682655
       },
       {
         "id_label": "Telepon dan teleks",
         "en_label": "Telephone and telex",
         "FY2022": 222859159,
         "FY2023": 269223949,
-        "FY2024": 267908067
+        "FY2024": 267908067,
+        "FY2025": 300191430
       },
       {
         "id_label": "Lain-lain",
         "en_label": "Others (each below Rp100m)",
         "FY2022": 1137620832,
         "FY2023": 1216613146,
-        "FY2024": 1340830505
+        "FY2024": 1340830505,
+        "FY2025": 1140743525
       }
     ],
     "total": {
       "FY2022": 73755331822,
       "FY2023": 94156499674,
-      "FY2024": 97128046722
+      "FY2024": 97128046722,
+      "FY2025": 100325847015
     }
   },
   "related_party_note": {
