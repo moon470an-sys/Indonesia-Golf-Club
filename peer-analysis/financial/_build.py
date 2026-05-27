@@ -4107,32 +4107,8 @@ def _xbrl_capex_comparison_section() -> str:
     table = _xbrl_capex_table()
 
     return f"""<div class="section" id="capex-xbrl-compare">
-  <h2 data-num="01">13-peer 자산·CAPEX 비교</h2>
+  <h2 data-num="01">종합 표</h2>
 
-  <div class="insight-grid" style="margin-bottom:18px;">
-    <div class="insight-card insight-warn">
-      <div class="insight-tag"><span class="ticker-mini">GOLF</span> 최고 자산집약</div>
-      <div class="insight-metric down">40.3<span class="u">x</span></div>
-      <div class="insight-title">총자산 / 매출</div>
-    </div>
-    <div class="insight-card insight-warn">
-      <div class="insight-tag"><span class="ticker-mini">KPIG</span> 비유동자산 의존 최고</div>
-      <div class="insight-metric down">90.2<span class="u">%</span></div>
-      <div class="insight-title">비유동 / 총자산</div>
-    </div>
-    <div class="insight-card insight-positive">
-      <div class="insight-tag"><span class="ticker-mini">PWON</span> 가장 적극적 capex</div>
-      <div class="insight-metric down">-70.0<span class="u">%</span></div>
-      <div class="insight-title">CFI / 매출</div>
-    </div>
-    <div class="insight-card insight-positive">
-      <div class="insight-tag"><span class="ticker-mini">GOLF</span> 자기자본비율 최고</div>
-      <div class="insight-metric up">92.3<span class="u">%</span></div>
-      <div class="insight-title">지배자본 / 총자산</div>
-    </div>
-  </div>
-
-  <h3 style="margin-top:24px;">종합 표</h3>
   {table}
 
   <h3 style="margin-top:28px;">랭킹</h3>
@@ -6352,33 +6328,17 @@ def section_ops_kpi() -> str:
 
 
 def section_capex() -> str:
-    """Tab 2: CAPEX — 13-peer 자산·CAPEX 비교 + DMIG/PIPG PP&E 연도별 + radar + AR."""
+    """Tab 2: CAPEX — 13-peer 종합 표 + DMIG/PIPG PP&E 연도별 + radar + AR."""
     xbrl_capex_html = _xbrl_capex_comparison_section()
     dmig_pipg_ppe = _dmig_pipg_ppe_section()
     peer_radar = _peer_compare_radar()
     capex_narratives = _capex_narrative_grid(peers=["DMIG", "PIPG"])
 
-    exec_h = _tab_exec_headline(
-        tab_key="CAPEX · ASSETS",
-        tab_title="13-peer 자산구조 + DMIG·PIPG PP&E 추이",
-        tab_focus_tiles=[
-            ("자산집약도 최고", "40.3", "x", "GOLF", "총자산/매출 — 자본 회수 가장 느림", "warn"),
-            ("비유동자산比 최고", "90.2", "%", "KPIG", "Hotel·Resort·Golf 부동산 의존", "warn"),
-            ("CFI/매출 절대값 최고", "-70.0", "%", "PWON", "FY25 가장 적극적 capex", "gold"),
-            ("자기자본比 최고", "92.3", "%", "GOLF", "self-funded 구조 (부채 의존 최저)", "green"),
-            ("자산 YoY 최고", "+14.3", "%", "SMRA", "Capital expansion 가속 (FY25)", "green"),
-        ],
-    )
-
     return f"""<section class="panel" data-panel="capex">
   <div class="wrap">
 
-    <a class="back-to-toc" href="#capex-anchor-top">목차</a>
-
-    {exec_h}
-
     <nav class="ops-subnav" id="capex-anchor-top" aria-label="capex sub-navigation">
-      <a class="chip" href="#capex-xbrl-compare">13-peer 비교</a>
+      <a class="chip" href="#capex-xbrl-compare">종합 표</a>
       <a class="chip" href="#dmig-pipg-ppe">DMIG·PIPG PP&amp;E 추이</a>
       <a class="chip" href="#dmig-pipg-radar">DMIG vs PIPG radar</a>
       <a class="chip" href="#dmig-pipg-narrative">DMIG·PIPG AR 본문</a>
@@ -6398,17 +6358,6 @@ def section_capex() -> str:
     <div class="section" id="dmig-pipg-narrative">
       <h2 data-num="04">DMIG·PIPG AR 본문 인용</h2>
       {capex_narratives}
-    </div>
-
-    <div class="closing-stripe">
-      <div class="cs-eyebrow">CAPEX 종합</div>
-      <div class="cs-title">4 takeaways</div>
-      <div class="closing-grid">
-        <div class="closing-takeaway"><div class="num">1</div><div class="txt"><strong>Tier 1 골프 capital-heavy</strong> · GOLF 자산집약 40.3x — 자산회전 0.02x 최하위. CWIP 진행으로 정상화 전.</div></div>
-        <div class="closing-takeaway"><div class="num">2</div><div class="txt"><strong>부동산 그룹 일제히 capex 진행</strong> · SMRA/PWON/BSDE/CTRA CFI 음수 — FY25 부동산 cycle 진입. 차후 감가 부담 증가 예고.</div></div>
-        <div class="closing-takeaway"><div class="num">3</div><div class="txt"><strong>대표 2 peer 상이한 strategy</strong> · DMIG 2 시설 매출 251B · 신규 시설 capex 진행 · PIPG single course 186B · 유지보수 중심 mature operator. radar 형태가 명확히 갈림.</div></div>
-        <div class="closing-takeaway"><div class="num">4</div><div class="txt"><strong>Lean operator 검증</strong> · PIPG/DMIG 자산집약 2.6~2.9x — 13-peer 최저. 회원 deposit 기반 운영의 자본 효율 우위.</div></div>
-      </div>
     </div>
 
   </div>
