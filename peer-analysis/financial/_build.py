@@ -1990,6 +1990,62 @@ def _capex_heatmap_section() -> str:
 # Curated CAPEX/OPEX narratives — extracted from vector DB (multilingual-e5-small)
 # Each quote includes ticker, source page, FY, Korean summary, theme.
 CAPEX_NARRATIVES = [
+    # ============ DMIG FY2025 — 자산·자본투자 핵심 ============
+    {
+        "ticker": "DMIG",
+        "theme": "총자산 +4.22% YoY · 시설 capex 지속",
+        "tone": "positive",
+        "summary": "FY25 총자산 Rp 719.68B (FY24 690.53B → +29.15B). PP&E 281.27B (Range@PIK 운영 자산 포함).",
+        "quote": "Total aset Perseroan pada tahun 2025 mencapai Rp719,68 miliar, naik sebesar Rp29,14 miliar "
+                 "atau 4,22% dibandingkan dengan tahun 2024 yang sebesar Rp690,53 miliar.",
+        "ko": "2 시설 (BSD + PIK) 운영 자산 base. 매출 -0.73% 환경에도 자산은 +4.22% 증가 — 재투자 활성. "
+              "현금성 자산 17.3B (FY25 cash) + Aset Lancar 비중 58%로 자금 여력 충분, "
+              "Aset Tidak Lancar 42%는 시설 중심.",
+        "src": "DMIG FY2025 AR p.20 — Ikhtisar Data Keuangan Penting",
+    },
+    {
+        "ticker": "DMIG",
+        "theme": "The Range 매출 -17.84% · 신규 시설 utilization 과제",
+        "tone": "warn",
+        "summary": "FY25 The Range 매출 Rp 21.36B (FY24 25.99B → -4.64B / -17.84%). Driving Range -17.58% · Tenant -36.23% · Room Rental -32.22%.",
+        "quote": "Pada tahun 2025, pendapatan The Range mencapai Rp21.355.613.726 mengalami penurunan sebesar "
+                 "Rp4.637.540.791 atau 17,84% dibandingkan tahun 2024. Penurunan pendapatan ini disebabkan oleh "
+                 "penurunan traffic pengunjung dan aktivitas komersial, termasuk berkurangnya frekuensi event "
+                 "dan sponsorship serta belum optimalnya pemanfaatan area komersial.",
+        "ko": "FY22→23 +372% 폭증 후 정상화 단계 — capex가 큰 신규 시설의 후속 수익화가 핵심 과제. "
+              "Mini Golf -30%·Tenant -36%·Room Rental -32% 동반 감소 — 트래픽 회복 + commercial 활성화 시급. "
+              "감가상각 부담은 31.1B (FY25)로 가속 중.",
+        "src": "DMIG FY2025 AR p.16 — The Range Performance",
+    },
+    # ============ PIPG FY2025 — 자산·자본투자 핵심 ============
+    {
+        "ticker": "PIPG",
+        "theme": "PP&E +16.6% · 시설 업그레이드 가속 (CWIP)",
+        "tone": "positive",
+        "summary": "FY25 PP&E net Rp 136.4B (FY24 117.0B → +19.4B). Additions 30.61B = FY24 14.06B의 2.2배. Golf Gallery VIP Room + smoking area 신축 + 주차장 아스팔트 진행.",
+        "quote": "Aset dalam penyelesaian terdiri dari renovasi VIP Room Golf Gallery dan pembangunan smoking "
+                 "area Golf Gallery dengan tingkat penyelesaian masing-masing sebesar 30%, yang diperkirakan akan "
+                 "selesai pada Mei 2026 dan Juni 2026. Selain itu, terdapat pekerjaan pengaspalan area parkir "
+                 "dengan tingkat penyelesaian sebesar 95% yang telah selesai pada Januari 2026.",
+        "ko": "1976년 개장 노후 코스의 modernization — Golf Gallery 중심 capex가 +118% YoY 증가. "
+              "PP&E 2년 CAGR +9.3% (DMIG +6.7% 대비 더 적극적). 감가상각 11.14B vs 신규 투자 30.61B로 "
+              "capex/dep 2.7x — 자본투자가 reinvestment 한도를 초과하는 성장기.",
+        "src": "PIPG FY2025 AR att2 Note 9 (Property and Equipment) p.51",
+    },
+    {
+        "ticker": "PIPG",
+        "theme": "총자산 +7.14% · 자기자본 +8.13% · self-funded",
+        "tone": "positive",
+        "summary": "FY25 총자산 477.92B (+31.86B) · 자본 386.98B (+29.1B / +8.13%). 부채는 +3.14%만 증가 — leverage 미사용.",
+        "quote": "Total aset Perseroan pada tahun 2025 mencapai Rp477,92 miliar, naik sebesar Rp31,86 miliar "
+                 "atau 7,14% dibandingkan dengan tahun 2024. Total ekuitas pada tahun 2025 tercatat sebesar "
+                 "Rp386,98 miliar, meningkat sebesar Rp29,1 miliar atau 8,13%.",
+        "ko": "자본 증가율(+8.13%)이 부채 증가율(+3.14%)을 압도 — debt-free expansion. 회원 deposit + "
+              "retained earnings 기반으로 추가 차입 없이 capex 확보. D/E 0.23x로 13-peer 최저급 — "
+              "단일 코스에서 자본 효율 + 시설 투자 양립 모델.",
+        "src": "PIPG FY2025 AR p.34 — Laporan Direksi (Kinerja Keuangan)",
+    },
+    # ============ Legacy (현재 비활성) — 다른 ticker reference 보존 ============
     {
         "ticker": "GOLF",
         "theme": "CWIP — 진행 중 CAPEX",
@@ -2143,28 +2199,60 @@ REVENUE_NARRATIVES = [
 
 # Curated OpEx narratives — operational risk + cost sensitivity from AR Notes
 OPEX_NARRATIVES = [
+    # ============ DMIG FY2025 — 비용·마진 핵심 ============
     {
         "ticker": "DMIG",
-        "theme": "보험 cover — 운영 리스크 hedge",
-        "tone": "neutral",
-        "summary": "고정자산 (토지 제외) Rp 465.73bn + USD 2M 보험. 자산 base 보호.",
-        "quote": "Company's fixed assets, except land, have been insured against the risk of loss with a "
-                 "total coverage amount of Rp 465,731,600,000 and US$2,000,000, respectively.",
-        "ko": "DMIG의 총 fixed asset 대비 보험 cover 수준은 운영 중단·재해 리스크 hedge. "
-              "감가상각 12.2%/매출의 capital intensity를 보완하는 risk management.",
-        "src": "DMIG FY2024 AR p.79 — Fixed assets insurance",
+        "theme": "Beban Usaha +3.29% · 인건비·감가 동시 가속",
+        "tone": "warn",
+        "summary": "FY25 Beban Usaha Rp 100.33B (FY24 97.13B → +3.20B / +3.29%). 인건비 Rp 31.9B (+11.5%) · 감가상각 Rp 31.1B (+10.4%) top 2.",
+        "quote": "Beban usaha Perseroan di tahun 2025 tercatat sebesar Rp100.325.847.015 mengalami kenaikan 3,29% "
+                 "atau Rp3.197.800.293 dibandingkan tahun 2024. Beban tertinggi: Gaji dan upah Rp31,92 miliar dan "
+                 "Penyusutan Rp31,14 miliar.",
+        "ko": "Top 2 cost 인건비(31.9B)·감가상각(31.1B)이 합쳐 OpEx의 63% 차지. 두 항목 동시 두 자릿수 증가 — "
+              "신규 시설(Range@PIK) 감가 + 장기근속자 인건비 leverage. 매출은 -0.73%로 sticky한데 "
+              "비용 +3.29%로 마진 압박 가속.",
+        "src": "DMIG FY2025 AR p.19 — Analisis Kinerja Keuangan (Beban Usaha)",
+    },
+    {
+        "ticker": "DMIG",
+        "theme": "Laba Bersih -8.96% · 마진 압박 본격화",
+        "tone": "warn",
+        "summary": "FY25 Laba Bersih Rp 75.02B (FY24 82.40B → -7.38B / -8.96%). Op profit -12.0%, OPM 31.2% → 27.6%.",
+        "quote": "Laba bersih Perseroan di tahun 2025 tercatat sebesar Rp75.023.832.300 mengalami penurunan 8,96% "
+                 "atau Rp7.380.680.411 dibandingkan tahun 2024 yang tercatat sebesar Rp82.404.512.711.",
+        "ko": "매출 -0.73%·COGS +5.75%·OpEx +3.29% 3중 압박 — Laba Kotor -3.57% → Op Profit -12.0% → "
+              "Net Profit -8.96%. ROE 16.39% → 13.94%로 1.5pp 하락. 신규 시설 capex가 매출 leverage로 "
+              "전환되기 전까지 마진 정상화 어려움.",
+        "src": "DMIG FY2025 AR p.20 — Laba Bersih",
+    },
+    # ============ PIPG FY2025 — 비용·마진 핵심 ============
+    {
+        "ticker": "PIPG",
+        "theme": "Beban Usaha -17.95% · 적극적 cost discipline",
+        "tone": "positive",
+        "summary": "FY25 Beban Usaha Rp 62.46B (FY24 76.12B → -13.65B / -17.95%). PBB·repair·imbalan kerja·sumbangan 4개 라인 동반 절감.",
+        "quote": "Beban usaha turun sebesar Rp13,65 miliar atau 17,95%, dari Rp76,11 miliar pada tahun 2024 "
+                 "menjadi Rp62,46 miliar pada tahun 2025. Beban usaha turun terutama pada biaya PBB, biaya "
+                 "perbaikan dan pemeliharaan, biaya penyisihan imbalan pasca kerja, dan biaya sumbangan dan kontribusi.",
+        "ko": "Tax PBB -42.6% (24.2B → 13.9B 부동산세 절감 ·핵심) · Repair&Maintenance -16.4% · "
+              "Provision for employee benefit -32.8% — 4 라인 일제히 감소. OpEx/매출 비율 38.5% → "
+              "33.6%로 mature operator의 비용 통제 입증.",
+        "src": "PIPG FY2025 AR p.34 — Laporan Direksi (Beban Usaha)",
     },
     {
         "ticker": "PIPG",
-        "theme": "Salary sensitivity — 인건비 leverage",
-        "tone": "warn",
-        "summary": "급여 +1% 시 defined benefits liability Rp 10.76bn 증가. 인건비 base의 sensitivity 큼.",
-        "quote": "If the expected salary growth increase or decrease by 1%, in 2023 defined benefits liability "
-                 "would increase Rp 10,758,977,886 (decrease equivalent). Discount rate ±1% → ±Rp 9-10bn impact.",
-        "ko": "PIPG의 인건비/매출 10.5%는 mid 수준이지만, salary growth 1pp 변동 = liability Rp 10.7bn 충격. "
-              "FY25 OpEx -17.9% 절감의 큰 부분이 인건비 통제에서 왔을 가능성 시사.",
-        "src": "PIPG FY2023 AR p.139 — Defined benefits sensitivity",
+        "theme": "Laba Bersih +0.57% · 매출 -6%에도 이익 유지",
+        "tone": "positive",
+        "summary": "FY25 Laba Bersih Rp 56.22B (FY24 55.90B → +0.32B / +0.57%). 매출 -5.97% 환경에서 OpEx -17.95%로 만회.",
+        "quote": "Perseroan berhasil mencatatkan laba bersih sebesar Rp56,22 miliar pada tahun 2025, naik "
+                 "sebesar Rp318 juta atau 0,57% dibandingkan dengan laba bersih tahun 2024 yang sebesar Rp55,90 miliar. "
+                 "Pendapatan -5,97% tetapi Op Income +4,02%.",
+        "ko": "DMIG (-8.96%)와 정반대 — 같은 pure-play 골프지만 비용 통제 능력 차이가 bottom line 결정. "
+              "OPM 27.05% → 29.93%로 2.9pp 개선. 단일 코스 mature operator의 자체 효율화 사례로 "
+              "Matoa(신규 코스) 운영 시 reference value 가장 높음.",
+        "src": "PIPG FY2025 AR p.35 — Laba Bersih",
     },
+    # ============ Legacy (현재 비활성) ============
     {
         "ticker": "KPIG",
         "theme": "ESG · 유틸리티 metric",
