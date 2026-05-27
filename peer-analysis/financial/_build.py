@@ -2240,15 +2240,19 @@ def _revenue_narrative_grid() -> str:
 </div>"""
 
 
-def _capex_narrative_grid() -> str:
-    """Render curated CAPEX/OPEX vector-DB narratives as quote callout cards."""
+def _capex_narrative_grid(peers: list = None) -> str:
+    """Render curated CAPEX/OPEX vector-DB narratives as quote callout cards.
+
+    peers: 필터링할 ticker 리스트 (None=전체). 예: ['DMIG','PIPG']로 GOLF 제외.
+    """
     tone_to_border = {
         "positive": "var(--green)",
         "warn":     "var(--warn)",
         "neutral":  "#8a8a8a",
     }
+    items = CAPEX_NARRATIVES if peers is None else [n for n in CAPEX_NARRATIVES if n.get("ticker") in peers]
     cards = []
-    for n in CAPEX_NARRATIVES:
+    for n in items:
         border_color = tone_to_border.get(n["tone"], "#8a8a8a")
         quote_text = n["quote"].strip()
         if len(quote_text) > 320:
@@ -3667,10 +3671,10 @@ def _xbrl_comparison_table() -> str:
 
 
 def _dmig_pipg_detail_section() -> str:
-    """대표 2 peer (DMIG + PIPG) 상세 분석 섹션.
+    """대표 2 peer (DMIG + PIPG) 상세 — 양쪽 row-aligned 비교 카드.
 
-    XBRL 13-peer 동급 비교에서는 가려지는 두 pure-play 골프 운영사의
-    상세 구조를 자세히 노출. Matoa 프로젝트와 가장 직접 comparable.
+    한 행에 동일 metric을 DMIG(왼쪽) | metric label(중앙) | PIPG(오른쪽) 배치.
+    XBRL/AR 1차 출처. 부동산 그룹과 달리 회원 deposit 기반 회계 특성 노출.
     """
     import json as _json
     import os as _os
@@ -3680,140 +3684,207 @@ def _dmig_pipg_detail_section() -> str:
         cf = _json.load(f)
     by_t = {c["ticker"]: c for c in cf.get("companies", [])}
 
-    # --- 1. Side-by-side FY25 핵심 수치 + 4Y mini 차트 ---
-    def _peer_card(ticker: str) -> str:
+    def _latest_year_block(ticker: str):
         c = by_t.get(ticker, {})
         yrs = c.get("yearly", {})
-        years_sorted = sorted(yrs.keys())
-        # 가장 최신 primary year
-        latest = None
-        for y in reversed(years_sorted):
+        for y in sorted(yrs.keys(), reverse=True):
             srcs = (yrs[y].get("sources") or [])
             if srcs and isinstance(srcs[0], dict) and srcs[0].get("source_type") in {"IDX_XBRL", "AUDITED_AR"}:
-                latest = y
-                break
-        if not latest:
-            return ""
-        cur = yrs[latest]
-        cur_year_short = f"FY{latest[-2:]}"
+                return c, yrs, y, yrs[y]
+        return c, yrs, None, None
 
-        def fmtb(v):
-            if v is None:
-                return "—"
-            if abs(v) >= 1e12:
-                return f"{v/1e12:.2f}T"
-            if abs(v) >= 1e9:
-                return f"{v/1e9:.1f}B"
-            return f"{v:,.0f}"
+    def fmtb(v):
+        if v is None:
+            return "—"
+        if abs(v) >= 1e12:
+            return f"{v/1e12:.2f}T"
+        if abs(v) >= 1e9:
+            return f"{v/1e9:.1f}B"
+        if abs(v) >= 1e6:
+            return f"{v/1e6:.1f}M"
+        return f"{v:,.0f}"
 
-        def fmtp(num, den, signed=False):
-            if num is None or den in (None, 0):
-                return "—"
-            v = num / den * 100
-            return f"{v:+.1f}%" if signed else f"{v:.1f}%"
+    def fmtp(num, den, signed=False):
+        if num is None or den in (None, 0):
+            return "—"
+        v = num / den * 100
+        return f"{v:+.1f}%" if signed else f"{v:.1f}%"
 
-        rev = cur.get("revenue")
-        gp = cur.get("gross_profit")
-        op = cur.get("operating_profit")
-        np_ = cur.get("net_profit")
-        ta = cur.get("total_assets")
-        tl = cur.get("total_liabilities")
-        te = cur.get("total_equity")
-        cash = cur.get("cash_and_equivalents")
-        cfo = cur.get("cfo")
-        cfi = cur.get("cfi")
+    def pct_color(num, den, signed=False):
+        if num is None or den in (None, 0):
+            return "var(--muted)"
+        v = num / den * 100
+        if signed:
+            return "var(--green)" if v > 0 else "var(--danger)"
+        return "var(--ink)"
 
-        color = PEER_COLORS.get(ticker, "#2d5016")
-        co_name = c.get("company_name", ticker)
+    def cf_color(v):
+        if v is None:
+            return "var(--muted)"
+        return "var(--danger)" if v < 0 else "var(--green)"
 
-        # 4-year revenue + net_profit + op_profit mini trend
-        trend_rows = []
-        for y in [str(int(latest) - i) for i in range(4, -1, -1)]:
-            yb = yrs.get(y, {})
-            if not yb:
-                continue
-            trend_rows.append({
-                "fy": f"FY{y[-2:]}",
-                "rev": yb.get("revenue"),
-                "op": yb.get("operating_profit"),
-                "np": yb.get("net_profit"),
-            })
-        if not trend_rows:
-            trend_rows = []
-        all_rev = [r["rev"] for r in trend_rows if r["rev"]]
-        max_rev = max(all_rev) if all_rev else 1
-        trend_bars = []
-        for tr in trend_rows:
-            pct = (tr["rev"] / max_rev * 100) if tr["rev"] else 0
-            trend_bars.append(f"""<div style="display:grid;grid-template-columns:36px 1fr 56px 56px;gap:6px;align-items:center;font-size:10.5px;padding:2px 0;">
-  <span style="color:var(--ink-soft);font-weight:600;">{tr['fy']}</span>
-  <span style="height:11px;background:var(--line);border-radius:3px;overflow:hidden;">
-    <span style="display:block;height:100%;width:{pct:.1f}%;background:{color};"></span>
-  </span>
-  <span style="text-align:right;font-variant-numeric:tabular-nums;font-weight:600;">{fmtb(tr['rev'])}</span>
-  <span style="text-align:right;font-variant-numeric:tabular-nums;color:var(--muted);">np {fmtb(tr['np'])}</span>
-</div>""")
+    # 두 회사 데이터 로드
+    dmig_co, dmig_yrs, dmig_y, dmig_cur = _latest_year_block("DMIG")
+    pipg_co, pipg_yrs, pipg_y, pipg_cur = _latest_year_block("PIPG")
+    if not (dmig_cur and pipg_cur):
+        return ""
 
-        # 마진 row (GP/Op/Net)
-        rows_margin = []
-        for label, num in [("GP margin", gp), ("Op margin", op), ("Net margin", np_)]:
-            rows_margin.append(f'<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px dashed var(--line);"><span style="color:var(--muted);">{label}</span><span style="font-weight:700;font-variant-numeric:tabular-nums;">{fmtp(num, rev)}</span></div>')
-        # B/S row
-        rows_bs = []
-        for label, num in [("총자산", ta), ("총부채", tl), ("자본총계", te), ("현금성", cash)]:
-            rows_bs.append(f'<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px dashed var(--line);"><span style="color:var(--muted);">{label}</span><span style="font-weight:700;font-variant-numeric:tabular-nums;">{fmtb(num)}</span></div>')
-        # CF row
-        rows_cf = []
-        for label, num in [("영업CF", cfo), ("투자CF", cfi)]:
-            num_color = "var(--ink)" if num is None else ("var(--danger)" if num < 0 else "var(--green)")
-            rows_cf.append(f'<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px dashed var(--line);"><span style="color:var(--muted);">{label}</span><span style="font-weight:700;font-variant-numeric:tabular-nums;color:{num_color};">{fmtb(num)}</span></div>')
+    dmig_color = PEER_COLORS.get("DMIG", "#2d5016")
+    pipg_color = PEER_COLORS.get("PIPG", "#c08a2e")
+    dmig_fy = f"FY{dmig_y[-2:]}"
+    pipg_fy = f"FY{pipg_y[-2:]}"
 
-        return f"""<div class="viz-card" style="padding:16px 18px;border-top:4px solid {color};">
-  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px;">
-    <div>
-      <span class="ticker-mini" style="background:{color};color:#fff;padding:3px 8px;border-radius:4px;font-weight:700;font-size:12px;letter-spacing:0.04em;">{safe(ticker)}</span>
-      <span style="font-size:11px;color:var(--muted);margin-left:6px;">{cur_year_short}</span>
-    </div>
-    <div style="font-size:10.5px;color:var(--muted);text-align:right;max-width:60%;line-height:1.3;">{safe(co_name)}</div>
+    # 직전 연도 (Rev YoY 계산용)
+    def _prior(yrs, y):
+        return yrs.get(str(int(y) - 1), {}) if y else {}
+
+    dmig_prv = _prior(dmig_yrs, dmig_y)
+    pipg_prv = _prior(pipg_yrs, pipg_y)
+
+    # === 한 행 = (DMIG value) | (metric label) | (PIPG value) ===
+    def row(label, dmig_text, pipg_text, dmig_style="", pipg_style="", important=False):
+        weight = "800" if important else "700"
+        size = "16px" if important else "12.5px"
+        return f"""<div style="display:grid;grid-template-columns:1fr 160px 1fr;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);">
+  <div style="text-align:right;font-weight:{weight};font-size:{size};font-variant-numeric:tabular-nums;color:{dmig_color};{dmig_style}">{dmig_text}</div>
+  <div style="text-align:center;font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;font-weight:600;">{label}</div>
+  <div style="text-align:left;font-weight:{weight};font-size:{size};font-variant-numeric:tabular-nums;color:{pipg_color};{pipg_style}">{pipg_text}</div>
+</div>"""
+
+    def section_header(label):
+        return f"""<div style="grid-column:1/-1;background:var(--surface-soft);text-align:center;padding:8px 0;font-size:11px;font-weight:700;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;border-radius:4px;margin-top:14px;margin-bottom:4px;">{label}</div>"""
+
+    # 시각적 매출 비교 bar (한눈에)
+    d_rev = dmig_cur.get("revenue")
+    p_rev = pipg_cur.get("revenue")
+    max_rev = max(filter(None, [d_rev, p_rev])) or 1
+    d_bar_w = (d_rev / max_rev * 100) if d_rev else 0
+    p_bar_w = (p_rev / max_rev * 100) if p_rev else 0
+    rev_bar = f"""<div style="display:grid;grid-template-columns:1fr 160px 1fr;align-items:center;padding:14px 0 8px;border-bottom:2px solid var(--line-strong);">
+  <div style="display:flex;justify-content:flex-end;align-items:center;gap:10px;">
+    <span style="font-size:24px;font-weight:800;color:{dmig_color};font-variant-numeric:tabular-nums;">{fmtb(d_rev)}</span>
+    <span style="height:18px;width:{d_bar_w:.1f}%;max-width:140px;background:{dmig_color};border-radius:3px;"></span>
   </div>
-
-  <div style="display:flex;align-items:baseline;gap:8px;margin:8px 0 4px;">
-    <span style="font-size:28px;font-weight:800;color:{color};font-variant-numeric:tabular-nums;">{fmtb(rev)}</span>
-    <span style="font-size:11px;color:var(--muted);">매출 ({cur_year_short})</span>
-  </div>
-
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:10px;font-size:11px;">
-    <div>
-      <div style="font-weight:700;font-size:10.5px;color:var(--muted);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:4px;">마진</div>
-      {''.join(rows_margin)}
-    </div>
-    <div>
-      <div style="font-weight:700;font-size:10.5px;color:var(--muted);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:4px;">B/S</div>
-      {''.join(rows_bs)}
-    </div>
-    <div>
-      <div style="font-weight:700;font-size:10.5px;color:var(--muted);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:4px;">현금흐름</div>
-      {''.join(rows_cf)}
-    </div>
-  </div>
-
-  <div style="margin-top:14px;padding-top:10px;border-top:1px solid var(--line);">
-    <div style="font-weight:700;font-size:10.5px;color:var(--muted);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:6px;">매출·순이익 5Y 추이</div>
-    {''.join(trend_bars)}
+  <div style="text-align:center;font-size:12px;font-weight:700;color:var(--ink);">매출 ({dmig_fy}/{pipg_fy})</div>
+  <div style="display:flex;justify-content:flex-start;align-items:center;gap:10px;">
+    <span style="height:18px;width:{p_bar_w:.1f}%;max-width:140px;background:{pipg_color};border-radius:3px;"></span>
+    <span style="font-size:24px;font-weight:800;color:{pipg_color};font-variant-numeric:tabular-nums;">{fmtb(p_rev)}</span>
   </div>
 </div>"""
 
-    cards = [_peer_card("DMIG"), _peer_card("PIPG")]
+    # 헤더 (회사명 + 색상 chip)
+    header = f"""<div style="display:grid;grid-template-columns:1fr 160px 1fr;align-items:end;padding:0 0 8px;border-bottom:2px solid var(--line-strong);">
+  <div style="text-align:right;">
+    <span class="ticker-mini" style="background:{dmig_color};color:#fff;padding:4px 10px;border-radius:4px;font-weight:800;font-size:14px;letter-spacing:0.06em;">DMIG</span>
+    <div style="font-size:10.5px;color:var(--muted);margin-top:3px;line-height:1.3;">PT Damai Indah Golf Tbk<br>(BSD + PIK 2 시설)</div>
+  </div>
+  <div style="text-align:center;font-size:10.5px;color:var(--muted);font-weight:700;letter-spacing:0.08em;">대표 2 peer 상세 비교</div>
+  <div style="text-align:left;">
+    <span class="ticker-mini" style="background:{pipg_color};color:#fff;padding:4px 10px;border-radius:4px;font-weight:800;font-size:14px;letter-spacing:0.06em;">PIPG</span>
+    <div style="font-size:10.5px;color:var(--muted);margin-top:3px;line-height:1.3;">PT Pondok Indah Padang Golf Tbk<br>(자카르타 CBD single course)</div>
+  </div>
+</div>"""
+
+    # --- 행 본문 빌더 ---
+    body = []
+    body.append(rev_bar)
+
+    # 매출 / P&L
+    body.append(section_header("매출·마진 (FY 최신)"))
+    body.append(row("Rev YoY",
+        fmtp((d_rev or 0) - (dmig_prv.get("revenue") or 0), dmig_prv.get("revenue"), signed=True) if dmig_prv.get("revenue") else "—",
+        fmtp((p_rev or 0) - (pipg_prv.get("revenue") or 0), pipg_prv.get("revenue"), signed=True) if pipg_prv.get("revenue") else "—",
+    ))
+    body.append(row("매출총이익 (GP)", fmtb(dmig_cur.get("gross_profit")), fmtb(pipg_cur.get("gross_profit"))))
+    body.append(row("GP margin", fmtp(dmig_cur.get("gross_profit"), d_rev), fmtp(pipg_cur.get("gross_profit"), p_rev)))
+    body.append(row("영업이익", fmtb(dmig_cur.get("operating_profit")), fmtb(pipg_cur.get("operating_profit"))))
+    body.append(row("Op margin", fmtp(dmig_cur.get("operating_profit"), d_rev), fmtp(pipg_cur.get("operating_profit"), p_rev)))
+    body.append(row("순이익", fmtb(dmig_cur.get("net_profit")), fmtb(pipg_cur.get("net_profit"))))
+    body.append(row("Net margin", fmtp(dmig_cur.get("net_profit"), d_rev), fmtp(pipg_cur.get("net_profit"), p_rev)))
+    body.append(row("EPS (IDR/주)",
+        f"{dmig_cur.get('eps'):.2f}" if isinstance(dmig_cur.get('eps'), (int, float)) else "—",
+        f"{pipg_cur.get('eps'):.2f}" if isinstance(pipg_cur.get('eps'), (int, float)) else "—",
+    ))
+
+    # B/S
+    body.append(section_header("B/S 구조"))
+    body.append(row("총자산", fmtb(dmig_cur.get("total_assets")), fmtb(pipg_cur.get("total_assets"))))
+    body.append(row("총부채", fmtb(dmig_cur.get("total_liabilities")), fmtb(pipg_cur.get("total_liabilities"))))
+    body.append(row("자본총계", fmtb(dmig_cur.get("total_equity")), fmtb(pipg_cur.get("total_equity"))))
+    body.append(row("현금성", fmtb(dmig_cur.get("cash_and_equivalents")), fmtb(pipg_cur.get("cash_and_equivalents"))))
+    d_te = dmig_cur.get("total_equity") or 1
+    p_te = pipg_cur.get("total_equity") or 1
+    body.append(row("D/E",
+        f"{(dmig_cur.get('total_liabilities') or 0)/d_te:.2f}x" if d_te else "—",
+        f"{(pipg_cur.get('total_liabilities') or 0)/p_te:.2f}x" if p_te else "—",
+    ))
+    body.append(row("자산집약도",
+        f"{(dmig_cur.get('total_assets') or 0)/d_rev:.2f}x" if d_rev else "—",
+        f"{(pipg_cur.get('total_assets') or 0)/p_rev:.2f}x" if p_rev else "—",
+    ))
+
+    # CF
+    body.append(section_header("현금흐름"))
+    body.append(row("영업CF (CFO)",
+        f'<span style="color:{cf_color(dmig_cur.get("cfo"))};">{fmtb(dmig_cur.get("cfo"))}</span>',
+        f'<span style="color:{cf_color(pipg_cur.get("cfo"))};">{fmtb(pipg_cur.get("cfo"))}</span>',
+    ))
+    body.append(row("투자CF (CFI)",
+        f'<span style="color:{cf_color(dmig_cur.get("cfi"))};">{fmtb(dmig_cur.get("cfi"))}</span>',
+        f'<span style="color:{cf_color(pipg_cur.get("cfi"))};">{fmtb(pipg_cur.get("cfi"))}</span>',
+    ))
+    body.append(row("재무CF (CFF)",
+        f'<span style="color:{cf_color(dmig_cur.get("cff"))};">{fmtb(dmig_cur.get("cff"))}</span>',
+        f'<span style="color:{cf_color(pipg_cur.get("cff"))};">{fmtb(pipg_cur.get("cff"))}</span>',
+    ))
+
+    # 5Y 추이
+    body.append(section_header("매출 5년 추이"))
+
+    def _trend_bars(ticker: str, color: str, yrs: dict, latest: str, align: str):
+        rows_html = []
+        all_rev = []
+        years_to_show = [str(int(latest) - i) for i in range(4, -1, -1)]
+        for y in years_to_show:
+            yb = yrs.get(y, {})
+            if yb.get("revenue"):
+                all_rev.append(yb["revenue"])
+        m = max(all_rev) if all_rev else 1
+        for y in years_to_show:
+            yb = yrs.get(y, {})
+            rev = yb.get("revenue")
+            np_ = yb.get("net_profit")
+            pct = (rev / m * 100) if rev else 0
+            if align == "right":
+                rows_html.append(f"""<div style="display:grid;grid-template-columns:1fr 70px 40px;gap:6px;align-items:center;font-size:10.5px;padding:2px 0;">
+  <div style="display:flex;justify-content:flex-end;"><span style="height:11px;width:{pct:.1f}%;max-width:100%;background:{color};border-radius:3px;"></span></div>
+  <span style="text-align:right;font-variant-numeric:tabular-nums;font-weight:600;">{fmtb(rev)}</span>
+  <span style="text-align:right;color:var(--ink-soft);font-weight:600;">FY{y[-2:]}</span>
+</div>""")
+            else:
+                rows_html.append(f"""<div style="display:grid;grid-template-columns:40px 70px 1fr;gap:6px;align-items:center;font-size:10.5px;padding:2px 0;">
+  <span style="color:var(--ink-soft);font-weight:600;">FY{y[-2:]}</span>
+  <span style="text-align:left;font-variant-numeric:tabular-nums;font-weight:600;">{fmtb(rev)}</span>
+  <span style="display:flex;justify-content:flex-start;"><span style="height:11px;width:{pct:.1f}%;max-width:100%;background:{color};border-radius:3px;"></span></span>
+</div>""")
+        return "".join(rows_html)
+
+    body.append(f"""<div style="display:grid;grid-template-columns:1fr 160px 1fr;gap:0;align-items:start;padding:8px 0;">
+  <div>{_trend_bars("DMIG", dmig_color, dmig_yrs, dmig_y, "right")}</div>
+  <div style="text-align:center;font-size:10.5px;color:var(--muted);padding-top:4px;">매출 FY</div>
+  <div>{_trend_bars("PIPG", pipg_color, pipg_yrs, pipg_y, "left")}</div>
+</div>""")
 
     return f"""<div class="section" id="dmig-pipg-detail">
-  <h2 data-num="02">대표 2 peer 상세 — DMIG · PIPG</h2>
-  <h3>Tier 1 pure-play 골프 2개사: 자카르타 도심 프리미엄 운영의 5년 재무 정밀 분석</h3>
+  <h2 data-num="02">대표 2 peer 상세 — DMIG · PIPG (양쪽 비교)</h2>
+  <h3>Tier 1 pure-play 골프 2개사를 한 행에 양쪽으로 배치 — 동일 metric을 즉시 대조</h3>
 
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:14px;margin-top:10px;">
-    {''.join(cards)}
+  <div class="viz-card" style="padding:14px 20px;max-width:1100px;margin:0 auto;">
+    {header}
+    {''.join(body)}
   </div>
 
-  {_insight('두 회사 모두 <strong>회원기반 + 도심 입지</strong>로 mature operator. DMIG는 BSD+PIK 2 시설 운영으로 매출 규모(~251B) 우위, PIPG는 single course(~186B)이지만 자카르타 CBD 5분 입지로 NPM·ROE 모두 동등 수준. 부채비율 극히 낮음 (회원 deposit 기반).', label='2-peer 비교 핵심')}
+  {_insight('회원 deposit 기반 회계로 두 회사 모두 <strong>D/E 0.2~0.3x</strong> (Tier 4 부동산 평균 0.5~1.4x보다 훨씬 안전). DMIG는 BSD+PIK 2 시설로 매출 규모 우위, PIPG는 single course지만 자카르타 CBD 5분 입지 + 1976년 mature brand로 자산집약도 더 낮음 (2.6x vs 2.9x). CFI 두 회사 모두 데이터 부재(AR 출처 한계) — XBRL B/S 추이에서 자산 증가율로 capex 강도 가늠.', label='2-peer 비교 핵심')}
 </div>"""
 
 
@@ -5461,7 +5532,7 @@ def section_capex() -> str:
     xbrl_capex_html = _xbrl_capex_comparison_section()
     dmig_pipg_detail = _dmig_pipg_detail_section()
     peer_radar = _peer_compare_radar()
-    capex_narratives = _capex_narrative_grid()
+    capex_narratives = _capex_narrative_grid(peers=["DMIG", "PIPG"])
 
     exec_h = _tab_exec_headline(
         tab_key="CAPEX · ASSETS · XBRL FY2025",
