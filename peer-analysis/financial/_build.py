@@ -2329,37 +2329,51 @@ def _revenue_narrative_grid() -> str:
 
 
 def _render_clean_narratives(items: list) -> str:
-    """깔끔한 narrative 카드 — 한글 분석 중심, 인도네시아어 원문은 작은 footnote.
+    """깔끔한 narrative 카드 — 회사별 좌/우 컬럼 분리 레이아웃.
+
+    구조:
+      ┌──────────── 2-column grid ────────────┐
+      │  DMIG 컬럼         │  PIPG 컬럼        │
+      │  ┌─card 1─┐        │  ┌─card 1─┐      │
+      │  └────────┘        │  └────────┘      │
+      │  ┌─card 2─┐        │  ┌─card 2─┐      │
+      │  └────────┘        │  └────────┘      │
+      └──────────────────────────────────────┘
 
     카드 구조:
-      [ticker chip · 색상 tone]
-      ┌────────────────────────────────┐
-      │ Theme (작은 라벨)               │
-      │ Headline 큰 글씨 한글           │
-      │ ─────────────                  │
-      │ 한글 분석 본문                  │
-      │ ─────────────                  │
-      │ 원문 (작은 회색, dropshadow)    │
-      │ 출처 (회색 line)                │
-      └────────────────────────────────┘
+      [ticker · theme]
+      Headline 한글 (굵은 글씨)
+      ─────
+      한글 분석 본문
+      ─────
+      ▸ 원문 보기 (접힌 detail)
     """
-    PEER_COLOR_MAP = PEER_COLORS  # alias
+    PEER_COLOR_MAP = PEER_COLORS
     tone_accent = {
         "positive": "var(--green)",
         "warn":     "var(--warn)",
         "neutral":  "var(--muted)",
     }
-    cards = []
+
+    # 회사별 그룹핑 (입력 순서 보존)
+    by_ticker = {}
+    ticker_order = []
     for n in items:
+        t = n.get("ticker", "")
+        if t not in by_ticker:
+            by_ticker[t] = []
+            ticker_order.append(t)
+        by_ticker[t].append(n)
+
+    def _render_card(n):
         accent = tone_accent.get(n["tone"], "var(--muted)")
         ticker = n["ticker"]
         ticker_color = PEER_COLOR_MAP.get(ticker, "#2d5016")
         quote_text = (n["quote"] or "").strip()
         if len(quote_text) > 280:
             quote_text = quote_text[:280].rsplit(" ", 1)[0] + "…"
-        cards.append(f"""<article class="narrative-card" style="border-top:3px solid {accent};">
+        return f"""<article class="narrative-card" style="border-top:3px solid {accent};">
   <header class="nc-head">
-    <span class="ticker-mini" style="background:{ticker_color};color:#fff;padding:3px 10px;border-radius:5px;font-weight:700;letter-spacing:0.06em;font-size:11px;">{safe(ticker)}</span>
     <span class="nc-theme">{safe(n["theme"])}</span>
   </header>
   <div class="nc-headline">{safe(n["summary"])}</div>
@@ -2368,8 +2382,20 @@ def _render_clean_narratives(items: list) -> str:
     <summary class="nc-source-summary">원문 보기 · {safe(n["src"])}</summary>
     <blockquote class="nc-quote">{safe(quote_text)}</blockquote>
   </details>
-</article>""")
-    return f"""<div class="narrative-grid">{"".join(cards)}</div>"""
+</article>"""
+
+    cols = []
+    for t in ticker_order:
+        ticker_color = PEER_COLOR_MAP.get(t, "#2d5016")
+        cards = "".join(_render_card(n) for n in by_ticker[t])
+        cols.append(f"""<div class="narrative-col">
+  <div class="narrative-col-head">
+    <span class="ticker-mini" style="background:{ticker_color};color:#fff;padding:4px 12px;border-radius:6px;font-weight:700;letter-spacing:0.06em;font-size:13px;">{safe(t)}</span>
+  </div>
+  {cards}
+</div>""")
+
+    return f"""<div class="narrative-grid">{"".join(cols)}</div>"""
 
 
 def _capex_narrative_grid(peers: list = None) -> str:
