@@ -4383,6 +4383,114 @@ def _xbrl_opex_comparison_section() -> str:
 </div>"""
 
 
+def _dmig_pipg_opex_lines_section() -> str:
+    """DMIG·PIPG OPEX 카테고리별 양쪽 비교 — _opex_norm_data() 활용.
+
+    11 표준 카테고리 (인건비/감가/세금·법률/유틸리티/유지보수/등)별로
+    한 행에 DMIG(왼쪽) | category label(중앙) | PIPG(오른쪽) 배치.
+    절대값 + 매출 대비 %를 모두 노출.
+    """
+    data = _opex_norm_data()
+    dmig = data.get("DMIG", {})
+    pipg = data.get("PIPG", {})
+    if not (dmig.get("by_cat") and pipg.get("by_cat")):
+        return ""
+
+    dmig_color = PEER_COLORS.get("DMIG", "#2d5016")
+    pipg_color = PEER_COLORS.get("PIPG", "#c08a2e")
+    dmig_rev = dmig.get("rev") or 1
+    pipg_rev = pipg.get("rev") or 1
+    dmig_total = dmig.get("total") or 0
+    pipg_total = pipg.get("total") or 0
+
+    # 카테고리 union, 합산 큰 것부터 정렬
+    cats = set(dmig.get("by_cat", {}).keys()) | set(pipg.get("by_cat", {}).keys())
+    cat_list = sorted(
+        cats,
+        key=lambda c: -(dmig.get("by_cat", {}).get(c, 0) + pipg.get("by_cat", {}).get(c, 0)),
+    )
+
+    def fmtb(v):
+        if v is None or v == 0:
+            return "—"
+        if abs(v) >= 1e12:
+            return f"{v/1e12:.2f}T"
+        if abs(v) >= 1e9:
+            return f"{v/1e9:.1f}B"
+        if abs(v) >= 1e6:
+            return f"{v/1e6:.1f}M"
+        return f"{v:,.0f}"
+
+    # 최대값 찾기 (bar width용)
+    max_v = max(
+        [dmig.get("by_cat", {}).get(c, 0) for c in cat_list]
+        + [pipg.get("by_cat", {}).get(c, 0) for c in cat_list]
+    ) or 1
+
+    rows = []
+    for cat in cat_list:
+        d_v = dmig.get("by_cat", {}).get(cat, 0)
+        p_v = pipg.get("by_cat", {}).get(cat, 0)
+        d_pct = (d_v / dmig_rev * 100) if d_v else None
+        p_pct = (p_v / pipg_rev * 100) if p_v else None
+        d_bar_w = (d_v / max_v * 100) if d_v else 0
+        p_bar_w = (p_v / max_v * 100) if p_v else 0
+        rows.append(f"""<div style="display:grid;grid-template-columns:1fr 200px 1fr;align-items:center;padding:6px 0;border-bottom:1px solid var(--line);">
+  <div style="display:flex;justify-content:flex-end;align-items:center;gap:8px;">
+    <div style="text-align:right;">
+      <div style="font-weight:700;font-size:12.5px;font-variant-numeric:tabular-nums;color:{dmig_color};">{fmtb(d_v)}</div>
+      <div style="font-size:9.5px;color:var(--muted);font-weight:600;">{f'{d_pct:.1f}% 매출' if d_pct else ''}</div>
+    </div>
+    <span style="height:14px;width:{d_bar_w:.1f}%;max-width:120px;background:{dmig_color};border-radius:3px;opacity:0.85;"></span>
+  </div>
+  <div style="text-align:center;font-size:10.5px;color:var(--muted);font-weight:600;letter-spacing:0.02em;line-height:1.3;padding:0 6px;">{safe(cat)}</div>
+  <div style="display:flex;justify-content:flex-start;align-items:center;gap:8px;">
+    <span style="height:14px;width:{p_bar_w:.1f}%;max-width:120px;background:{pipg_color};border-radius:3px;opacity:0.85;"></span>
+    <div style="text-align:left;">
+      <div style="font-weight:700;font-size:12.5px;font-variant-numeric:tabular-nums;color:{pipg_color};">{fmtb(p_v)}</div>
+      <div style="font-size:9.5px;color:var(--muted);font-weight:600;">{f'{p_pct:.1f}% 매출' if p_pct else ''}</div>
+    </div>
+  </div>
+</div>""")
+
+    # Total row
+    d_total_pct = dmig_total / dmig_rev * 100
+    p_total_pct = pipg_total / pipg_rev * 100
+    total_row = f"""<div style="display:grid;grid-template-columns:1fr 200px 1fr;align-items:center;padding:12px 0 6px;border-top:2px solid var(--line-strong);margin-top:6px;">
+  <div style="text-align:right;">
+    <div style="font-weight:800;font-size:16px;font-variant-numeric:tabular-nums;color:{dmig_color};">{fmtb(dmig_total)}</div>
+    <div style="font-size:11px;color:var(--muted);font-weight:700;">{d_total_pct:.1f}% 매출</div>
+  </div>
+  <div style="text-align:center;font-size:11px;font-weight:800;color:var(--ink);letter-spacing:0.04em;">OpEx 합계</div>
+  <div style="text-align:left;">
+    <div style="font-weight:800;font-size:16px;font-variant-numeric:tabular-nums;color:{pipg_color};">{fmtb(pipg_total)}</div>
+    <div style="font-size:11px;color:var(--muted);font-weight:700;">{p_total_pct:.1f}% 매출</div>
+  </div>
+</div>"""
+
+    header = f"""<div style="display:grid;grid-template-columns:1fr 200px 1fr;align-items:end;padding:0 0 10px;border-bottom:2px solid var(--line-strong);margin-bottom:6px;">
+  <div style="text-align:right;">
+    <span class="ticker-mini" style="background:{dmig_color};color:#fff;padding:4px 10px;border-radius:4px;font-weight:800;font-size:14px;letter-spacing:0.06em;">DMIG</span>
+    <div style="font-size:10.5px;color:var(--muted);margin-top:3px;">매출 {fmtb(dmig_rev)} (FY24 AR Note 25)</div>
+  </div>
+  <div style="text-align:center;font-size:10.5px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">OpEx Category</div>
+  <div style="text-align:left;">
+    <span class="ticker-mini" style="background:{pipg_color};color:#fff;padding:4px 10px;border-radius:4px;font-weight:800;font-size:14px;letter-spacing:0.06em;">PIPG</span>
+    <div style="font-size:10.5px;color:var(--muted);margin-top:3px;">매출 {fmtb(pipg_rev)} (FY24 AR Note 29)</div>
+  </div>
+</div>"""
+
+    return f"""<div class="section" id="dmig-pipg-opex-lines">
+  <h2 data-num="03">DMIG · PIPG OPEX 카테고리 상세</h2>
+
+  <div class="viz-card" style="padding:14px 20px;max-width:1200px;margin:0 auto;">
+    {header}
+    {''.join(rows)}
+    {total_row}
+  </div>
+</div>"""
+
+
 def _dmig_pipg_opex_detail_section() -> str:
     """DMIG·PIPG OPEX 상세 — 양쪽 row-aligned 비교 카드 (영업이익/마진 중심)."""
     import json as _json
@@ -6021,6 +6129,7 @@ def section_opex() -> str:
     """Tab 3: OPEX — XBRL/AR 13-peer 비용구조 비교 + DMIG·PIPG 상세 (CAPEX 패턴 동일)."""
     xbrl_opex_html = _xbrl_opex_comparison_section()
     dmig_pipg_opex_detail = _dmig_pipg_opex_detail_section()
+    dmig_pipg_opex_lines = _dmig_pipg_opex_lines_section()
     opex_narratives = _opex_narrative_grid(peers=["DMIG", "PIPG"])
 
     exec_h = _tab_exec_headline(
@@ -6045,6 +6154,7 @@ def section_opex() -> str:
     <nav class="ops-subnav" id="opex-anchor-top" aria-label="opex sub-navigation">
       <a class="chip" href="#opex-xbrl-compare">13-peer 비교</a>
       <a class="chip" href="#dmig-pipg-detail-opex">DMIG·PIPG 상세</a>
+      <a class="chip" href="#dmig-pipg-opex-lines">OPEX 카테고리</a>
       <a class="chip" href="#dmig-pipg-narrative-opex">DMIG·PIPG AR 본문</a>
     </nav>
 
@@ -6054,8 +6164,10 @@ def section_opex() -> str:
 
     {dmig_pipg_opex_detail}
 
+    {dmig_pipg_opex_lines}
+
     <div class="section" id="dmig-pipg-narrative-opex">
-      <h2 data-num="03">DMIG·PIPG AR 본문 인용</h2>
+      <h2 data-num="04">DMIG·PIPG AR 본문 인용</h2>
       {opex_narratives}
     </div>
 
@@ -6163,7 +6275,6 @@ def build_html() -> str:
         ops_kpi_html,
         capex_html,
         opex_html,
-        section_reference(),
     ])
     # Count sections + visual elements across the 3 new ops tabs
     combined = ops_kpi_html + capex_html + opex_html
@@ -6203,7 +6314,6 @@ def build_html() -> str:
       <button class="tab" data-tab="ops-kpi" type="button">⚙️ 운영 KPI</button>
       <button class="tab" data-tab="capex" type="button">🏗️ CAPEX</button>
       <button class="tab" data-tab="opex" type="button">💸 OPEX</button>
-      <button class="tab" data-tab="reference" type="button">📋 참고 (10 peer)</button>
     </nav>
   </div>
 </header>
