@@ -1401,16 +1401,34 @@ function membershipCellText(m) {
   return `<span class="muted">${t('common.private')}</span>`;
 }
 
+// 카테고리당 한 줄씩 stacked 출력 — type/amount 두 셀이 같은 행수·line-height로
+// 정렬되어 "Founder Membership ↔ Rp 500M (init)" 같이 동일 라인에 보이게 한다.
+const _MAX_MEMBER_ROWS = 5;
+
+function _memberCatFeeText(cat) {
+  // 단일 카테고리의 가장 핵심 fee 1건 표시 (init > annual > monthly 우선).
+  const init = cat.initiation_fee || {};
+  const ann = cat.annual_fee || {};
+  const mo = cat.monthly_fee || {};
+  if (init.amount != null) return t('member.cellInit', { amt: fmtMoney(init.amount, init.currency) });
+  if (ann.amount != null) return t('member.cellAnnual', { amt: fmtMoney(ann.amount, ann.currency) });
+  if (mo.amount != null) return t('member.cellMonthly', { amt: fmtMoney(mo.amount, mo.currency) });
+  return null;
+}
+
 function membershipTypeCell(m) {
   if (!m) return '<span class="muted">—</span>';
   const cats = Array.isArray(m.categories) ? m.categories.filter(c => c && typeof c === 'object') : [];
   if (cats.length) {
-    const names = cats.map(c => c.name || '').filter(Boolean);
-    if (names.length) {
-      const visible = names.slice(0, 3).map(n => escapeHtml(n)).join(', ');
-      const more = names.length > 3 ? ` <span class="muted">+${names.length - 3}</span>` : '';
-      return `<span class="member-type-list" title="${escapeHtml(names.join(' · '))}">${visible}${more}</span>`;
+    const visible = cats.slice(0, _MAX_MEMBER_ROWS);
+    const rows = visible.map(c => {
+      const name = (c.name || '').trim();
+      return `<div class="mtype-row" title="${escapeHtml(name)}">${name ? escapeHtml(name) : '<span class="muted">—</span>'}</div>`;
+    });
+    if (cats.length > _MAX_MEMBER_ROWS) {
+      rows.push(`<div class="mtype-row muted">+${cats.length - _MAX_MEMBER_ROWS} more</div>`);
     }
+    return `<div class="mtype-stack">${rows.join('')}</div>`;
   }
   const avail = m.available;
   const label = membershipAvailLabel(avail);
@@ -1423,17 +1441,19 @@ function membershipTypeCell(m) {
 function membershipAmountCell(m) {
   if (!m) return '<span class="muted">—</span>';
   const cats = Array.isArray(m.categories) ? m.categories.filter(c => c && typeof c === 'object') : [];
-  const parts = [];
-  for (const cat of cats) {
-    const init = cat.initiation_fee || {};
-    const ann = cat.annual_fee || {};
-    const mo = cat.monthly_fee || {};
-    if (init.amount != null) parts.push(`<span class="member-amt">${t('member.cellInit', { amt: fmtMoney(init.amount, init.currency) })}</span>`);
-    if (ann.amount != null) parts.push(`<span class="member-amt">${t('member.cellAnnual', { amt: fmtMoney(ann.amount, ann.currency) })}</span>`);
-    if (mo.amount != null) parts.push(`<span class="member-amt">${t('member.cellMonthly', { amt: fmtMoney(mo.amount, mo.currency) })}</span>`);
-    if (parts.length >= 3) break;
+  if (cats.length) {
+    const visible = cats.slice(0, _MAX_MEMBER_ROWS);
+    const rows = visible.map(c => {
+      const txt = _memberCatFeeText(c);
+      return `<div class="mamt-row">${txt ? `<span class="member-amt">${txt}</span>` : '<span class="muted">—</span>'}</div>`;
+    });
+    if (cats.length > _MAX_MEMBER_ROWS) {
+      rows.push('<div class="mamt-row muted">&nbsp;</div>');
+    }
+    const hasAny = visible.some(c => _memberCatFeeText(c));
+    if (!hasAny) return `<span class="muted">${t('common.private')}</span>`;
+    return `<div class="mamt-stack">${rows.join('')}</div>`;
   }
-  if (parts.length) return parts.slice(0, 3).join('<br>');
   return `<span class="muted">${t('common.private')}</span>`;
 }
 

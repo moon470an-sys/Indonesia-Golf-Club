@@ -2511,11 +2511,27 @@ body.detail-open .leaflet-bottom.leaflet-right {
   font-weight: 600;
   font-variant-numeric: tabular-nums;
 }
-.course-table td.member-amount { font-size: 11.5px; }
+.course-table td.member-amount { font-size: 11.5px; vertical-align: top; }
+.course-table td.member-type   { vertical-align: top; min-width: 180px; }
+.course-table td.member-amount { min-width: 130px; white-space: nowrap; }
 .member-type-list {
   font-size: 11.5px;
   color: var(--text-secondary);
 }
+/* Stacked rows for per-category membership type/amount alignment.
+   mtype-row[i] and mamt-row[i] share the same line-height so they sit
+   on the same visual row — name on left column, fee on right column. */
+.mtype-stack, .mamt-stack { display: block; }
+.mtype-row, .mamt-row {
+  display: block;
+  line-height: 1.6;
+  font-size: 11.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mtype-row { color: var(--text-secondary); max-width: 220px; }
+.mamt-row  { text-align: right; }
 
 .course-table .official-links a,
 .course-table .sns-links a {
